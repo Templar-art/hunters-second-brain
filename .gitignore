@@ -1,0 +1,8 @@
+# Obsidian local/workspace state (machine-specific, not for syncing)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# OS
+.DS_Store
