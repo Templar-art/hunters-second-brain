@@ -1,3 +1,9 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+> Note: this "repository" is an **Obsidian vault / knowledge workspace**, not a software project — there is nothing to build, lint, or test. See *How this repo works* below. This file also serves as the `productivity` plugin's working memory; the sections immediately below follow that format.
+
 # Memory
 
 ## Me
@@ -28,7 +34,7 @@ Hunter, Videographer & founder at 10x Visuals (10xvisuals.com.au). Full creative
 |------|------|
 | **CVA** | Architectural render gen — 19 files (Camera 16:9 + VIEW 1:1), Seedream. Ready to run. |
 | **Belle Property — Lot 48** | Insert proposed house into empty lot photos. Blocked on SketchUp file. |
-→ Details: memory/projects/ + full AI workflow KB in ~/.claude memory
+→ Details live in **auto-memory** (`~/.claude/…/memory/` → `project-lot48-belle-property.md`, `ai-realestate-workflow.md`). `memory/projects/` is reserved for vault-local project notes but is currently empty.
 
 ## Preferences
 - Tools: Gmail, Google Calendar
