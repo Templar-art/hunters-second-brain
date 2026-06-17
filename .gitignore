@@ -1,6 +1,7 @@
 # Obsidian local/workspace state (machine-specific, not for syncing)
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+.obsidian/graph.json
 .obsidian/cache
 .trash/
 
