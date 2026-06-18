@@ -33,7 +33,7 @@ Hunter, Videographer & founder at 10x Visuals (10xvisuals.com.au). Full creative
 | Name | What |
 |------|------|
 | **CVA** | Architectural render gen — 19 files (Camera 16:9 + VIEW 1:1), Seedream. Ready to run. |
-| **Belle Property — Lot 48** | Insert proposed house into empty lot photos. Blocked on SketchUp file. |
+| **Belle Property — Lot 48** | Insert proposed house into empty lot photos. House already rendered photoreal; remaining step is angle-matched composite into lot photos (T7/T8 + Seedream). SketchUp not needed. Awaiting "run it". |
 → Details live in **auto-memory** (`~/.claude/…/memory/` → `project-lot48-belle-property.md`, `ai-realestate-workflow.md`). `memory/projects/` is reserved for vault-local project notes but is currently empty.
 
 ## Preferences
