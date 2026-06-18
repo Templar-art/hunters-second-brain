@@ -43,5 +43,5 @@ A link to the actual competitor post that used this style. Only real URLs belong
 _Avoid_: Video Link, Platform, Example
 
 **Source / Library**:
-Where the track lives / is sourced from — `Artlist`, `Spotify`, `YouTube`, `Drive File`, or a standardised combination (`Artlist / Spotify`, alphabetical order). A possession/location label, **not** a licensing status — clearing a track for paid client use is checked separately.
+Where the track lives / is sourced from — `Artlist`, `Spotify`, `YouTube`, `FreeToUse`, `Drive File`, or a standardised combination (`Artlist / Spotify`, alphabetical order). A possession/location label, **not** a licensing status — clearing a track for paid client use is checked separately. Note: `FreeToUse` tracks are free but **require attribution** — confirm per-track before client delivery.
 _Avoid_: Source, Library, Platform

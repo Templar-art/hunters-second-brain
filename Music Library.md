@@ -16,32 +16,25 @@ Track library for scoring 10x Visuals real-estate edits. Filter for a brief, bro
 | **Tempo** | `Slow` (~60–90 BPM) · `Mid` (~90–120 BPM) · `Fast` (120+ BPM) |
 | **Competitor Ref** | `DESIRE STUDIO` |
 | **Reference Link** | real post URL only (no bare `instagram.com`) |
-| **Source / Library** | `Artlist` · `Spotify` · `YouTube` · `Drive File` · combos alphabetical (`Artlist / Spotify`) |
+| **Source / Library** | `Artlist` · `Spotify` · `YouTube` · `FreeToUse` (free, needs attribution) · `Drive File` · combos alphabetical (`Artlist / Spotify`) |
 
 ## Tracks
 
 | Track | Property Tier | Content Format | Vibe | Mood | Energy Build | Tempo | Competitor Ref | Reference Link | Source / Library |
 |-------|---------------|----------------|------|------|--------------|-------|----------------|----------------|------------------|
-| _Example — delete this row_ | Luxury | Walkthrough / Brand Film | Cinematic | Dark / Dreamy | Slow Build | Slow | DESIRE STUDIO | https://instagram.com/p/REAL_POST | Artlist |
+| Sky — massobeats | Luxury | Walkthrough / Brand Film | Cinematic | Dark / Dreamy | Slow Build | Slow | | | FreeToUse |
+| Departure — Soyb | Luxury | Walkthrough / Brand Film | Cinematic | Emotional / Intimate | Slow Build | Slow | | | FreeToUse |
+| The One — Burgundy X | Luxury | Walkthrough / Brand Film | Cinematic | Dark / Dreamy | Steady | Mid | | | FreeToUse |
+| Luxury — Pufino | Luxury | Walkthrough / Brand Film | Cinematic | Warm / Relaxed | Steady | Mid | | | FreeToUse |
+| Morning Hope — Bluewave | Standard | Walkthrough / Brand Film | Chill | Warm / Relaxed | Steady | Mid | | | FreeToUse |
+| At Ease — Hazelwood | Standard | Walkthrough / Brand Film | Chill | Warm / Relaxed | Slow Build | Slow | | | FreeToUse |
+| Midnight Velvet — Dagored | Both | Reel / Social | Cinematic | Dark / Dreamy | Steady | Mid | | | FreeToUse |
+| Real Estate — Aylex | Standard | Brand Film / Testimonial | Hype | Warm / Relaxed | Steady | Mid | | | FreeToUse |
+| Inspirational Elegance — Bluewave | Standard | Brand Film / Testimonial | Cinematic | Emotional / Intimate | Slow Build | Mid | | | FreeToUse |
 |  |  |  |  |  |  |  |  |  |  |
 
-## Candidates — to audition
-
-Real tracks found in research, **not yet tagged** — Vibe / Mood / Tempo / Energy Build are left blank
-on purpose because they need a listen first (tagging by title alone = guessing). Audition, then promote
-the keepers up into the table above with full tags. Source here is the raw platform found — most are
-**FreeToUse** (free + attribution required), so check brand-fit before using on client work; swap for an
-Artlist equivalent where it matters.
-
-| Track | Artist | FreeToUse use-case | Raw source | Notes from source |
-|-------|--------|--------------------|------------|-------------------|
-| Sky | massobeats | Luxury | FreeToUse | luxury bucket |
-| Departure | Soyb | Luxury | FreeToUse | luxury bucket |
-| The One | Burgundy X | Luxury | FreeToUse | luxury bucket |
-| Luxury | Pufino | Luxury | FreeToUse | luxury bucket |
-| Morning Hope | Bluewave | Family homes | FreeToUse | warm, inviting |
-| At Ease | Hazelwood | Family homes | FreeToUse | comfortable, hopeful |
-| Midnight Velvet | Dagored | Urban lofts | FreeToUse | clean, contemporary |
-| Real Estate | Aylex | Commercial | FreeToUse | motivational, subtle |
-| Inspirational Elegance | Bluewave | Commercial | FreeToUse | corporate, elegant |
-| Vuelta al Sol | — | (Artlist blog) | Artlist | ethereal synth + house beat, light xylophone bridge |
+> ⚠️ **The 9 FreeToUse rows above carry first-pass tags I inferred** from each track's FreeToUse
+> use-case bucket + title + the source's mood words — **I have not heard them.** `Property Tier` and
+> `Source` are solid; **`Vibe` / `Mood` / `Tempo` / `Energy Build` need your ear** — you know these
+> tracks, so correct anything that's off. `Competitor Ref` / `Reference Link` are blank (these aren't
+> DESIRE STUDIO-sourced). Attribution required on FreeToUse — confirm before client delivery.
