@@ -30,6 +30,10 @@ _Avoid_: Mood / Feel, Feel, Tone
 How a track's intensity moves over time — `Slow Build`, `Steady`, `Drop`, `Peaks & Valleys`. About structure/arc, not overall speed (that's Tempo).
 _Avoid_: Energy, Build, Arc, Dynamics
 
+**Tempo**:
+The raw speed of a track, independent of how its intensity is arranged — `Slow` (~60–90 BPM), `Mid` (~90–120 BPM), `Fast` (120+ BPM). Distinct from [[Energy Build]] (arc over time) and [[Vibe]] (archetype): a `Slow Build` track can still be `Fast`. Speed only.
+_Avoid_: BPM, Speed, Pace, Energy
+
 **Competitor Ref**:
 The studio whose published work is the reference example for this track's use (currently always `DESIRE STUDIO`). Pairs with [[Reference Link]].
 _Avoid_: Competitor, Inspo, Ref
