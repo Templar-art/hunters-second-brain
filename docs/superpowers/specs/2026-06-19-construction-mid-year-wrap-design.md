@@ -30,9 +30,9 @@ Derived from the 2026-06-18 editorial system + brand guidelines v1.0.
 
 | # | Client | Kicker | Hero | Supports |
 |---|--------|--------|------|----------|
-| Cover | — | `Construction · Gold Coast` / headline **Mid-year wrap** / `2026` | `Camera-2 (1).jpg` (twilight rear) | — |
+| Cover | — | `Construction · Gold Coast` / headline **Mid-year wrap** / `2026` | `Camera-6 (1).jpg` (drone reno aerial — kept distinct from MakerBuild) | — |
 | 01 | **MakerBuild** | New build · architectural | `Camera (1).jpg` (twilight entry) | `Maker Build-16.jpg` (kitchen), `Maker Build-2.jpg` (stair) |
-| 02 | **Coast Life Constructions** | Site · fitout · drone | `Camera (2).jpg` (fitout) | `Camera-6 (1).jpg` (drone aerial) |
+| 02 | **Coast Life Constructions** | Site · fitout | `Camera (2).jpg` (fitout) | single hero (drone moved to cover) |
 | 03 | **Salisbury Building Projects** | Civil · electrical · reno | `Camera-7 (1).jpg` (worker, golden hour) | `DSC05386.jpg` (groundworks), `Camera-8 (1).jpg` (concrete pump), `Camera-4 (1).jpg` (bathroom) |
 | 04 | **MVX Electrical** | Electrical | `Camera-2 (2).jpg` (two electricians) | `Camera-3 (1).jpg` (wide beach / tower) |
 | 05 | **Shape** | Commercial · CSI Club Southport | `Camera-5 (1).jpg` (CSI exterior) | `CSi Southport-22.jpg` (umbrellas), `CSi Southport-13.jpg` (bistro) |
@@ -41,7 +41,7 @@ Note: slide 05's client is the builder **Shape**; CSI Club Southport is the venu
 
 ## Focal crops (keep the best part in frame)
 Each pane center-crops to fill; focal point per hero set so the subject isn't cut:
-- Cover `Camera-2 (1)`: vertical focus ~42% (house + sky).
+- Cover `Camera-6 (1)`: vertical focus ~46% (reno house centred in aerial).
 - 01 hero `Camera (1)`: ~40% (lit entry / soffit).
 - 02 hero `Camera (2)`: ~30% (the two chippies high in frame).
 - 03 hero `Camera-7`: ~38% (backlit worker); bathroom support biased ~65% horizontal (tub).
