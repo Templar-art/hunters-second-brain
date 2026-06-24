@@ -19,8 +19,12 @@ The deliverable the track is intended to score — e.g. `Walkthrough / Brand Fil
 _Avoid_: Best Content Format, Format, Placement, Content Type
 
 **Vibe**:
-The single high-level archetype of a track — `Cinematic`, `Hype`, or `Chill`. The primary top-level filter; maps roughly to use-case (Cinematic→luxury walkthrough, Hype→social reel, Chill→lifestyle). Tempo, [[Mood]] and [[Energy Build]] carry the rest — Vibe never restates them.
+The single high-level archetype of a track — `Cinematic`, `Hype`, `Chill`, or `Corporate`. The primary top-level filter; maps roughly to use-case (Cinematic→luxury walkthrough, Hype→social reel, Chill→lifestyle, Corporate→clean uplifting brand film / promo / explainer). Tempo, [[Mood]] and [[Energy Build]] carry the rest — Vibe never restates them.
 _Avoid_: Vibe / Energy, Energy, Feel, Character
+
+**Corporate** (a [[Vibe]] value):
+The clean, optimistic, motivational archetype — polished and building, for company promos, brand films, explainers and LinkedIn. Distinct from `Cinematic` (more emotional/moody) and `Hype` (club energy); rarely uses a `Drop`.
+_Avoid_: Commercial, Business, Promo (those describe the deliverable, not the sound)
 
 **Mood**:
 The emotional colour of a track — e.g. `Dark / Dreamy`, `Warm / Relaxed`, `Emotional / Intimate`. Distinct from [[Vibe]] (archetype) and Tempo (speed).
