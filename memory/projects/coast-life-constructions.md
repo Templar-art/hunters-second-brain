@@ -62,10 +62,10 @@ Written into `pack/markdown/brand_voice.md` §8 + §14 on 7 Jul 2026:
 - Testimonials on file: Matt C., Helen O. (both 5★ — usable as pull-quotes)
 - Services: custom homes, renovations, kitchens & bathrooms, outdoor/alfresco, extensions
 
-## Remaining fill-ins (small now — confirm with Rob)
-1. Homes-completed count (§8) — warranty now verified from website: **1yr maintenance + 7yr QBCC structural**
-2. Suburbs, handover dates + **client permission to feature** for the 4 named builds; names for 2 more active builds (§14)
-3. Trade partner IG handles beyond the 3 roofing/pumping mates (§13)
+## Remaining fill-ins
+§8 proof claims **complete** — warranty verified from website (**1yr maintenance + 7yr QBCC structural**; lead with the 1yr maintenance, the 7yr QBCC is the statutory minimum); homes-completed count **intentionally omitted** per Hunter (7 Jul 2026).
+1. Suburbs, handover dates + **client permission to feature** for the 4 named builds; names for 2 more active builds (§14)
+2. Trade partner IG handles beyond the 3 roofing/pumping mates (§13)
 
 ## Key metric to watch
 **Commenter mix, not likes.** Success = designers and homeowners in the comments, not just trade mates.

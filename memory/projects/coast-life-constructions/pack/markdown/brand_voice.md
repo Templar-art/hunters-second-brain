@@ -62,13 +62,13 @@ Every caption written from this file should be able to sit on Barlow's grid and 
 ## 8. Proof claims (only use if verified — 10x Visuals to confirm before publishing)
 _Verified from CLC Capability Statement 2026 (`../../references/CLC-Capability-Statement-2026.pdf`), 7 Jul 2026:_
 - Years operating on the Gold Coast: **Established 2020.** Rob Williamson (Builder & Director) has **20+ years in construction**. ⚠️ "20 years of craftsmanship" refers to Rob personally, not the company — phrase accordingly.
-- Number of custom homes completed: [FILL IN — not in capability statement, confirm with Rob]
+- Number of custom homes completed: **intentionally omitted** (Hunter, 7 Jul 2026) — do not use a homes-completed count in any content.
 - Master Builders / HIA membership: **Master Builders Queensland member** ✓ · **QBCC Licensed** ✓. (HIA not claimed — do not use.)
 - Notable projects / awards: Named projects **Chambers Lane, Burleigh, Gundara, Winship** (+ Ladds Ridge on IG). **5 stars on Google.** No awards claimed.
 - Warranty period offered: **1-year maintenance warranty + 7-year QBCC structural warranty** (verified from coastlifeconstructions.com.au, 7 Jul 2026 — site wording: "a one-year maintenance warranty in addition to the seven-year QBCC structural warranty")
 - Additional verified claims: **family-owned and operated** · Rob personally involved in every project, first consultation to final handover · **deliberately limits simultaneous builds** so each home gets full attention · client testimonials on file (Matt C., Helen O. — both 5★, usable as caption pull-quotes)
 
-> **Action for Hunter:** One blank left — homes-completed count. Confirm with Rob. Do not let Claude invent proof claims.
+> **Proof claims complete** (7 Jul 2026). Homes-completed count intentionally left off per Hunter. Do not invent proof claims beyond what's listed above.
 
 ## 9. Calls to action (rotate — one per post max)
 - "Full project walkthrough on our site."
