@@ -54,11 +54,18 @@ Source: Perplexity Computer session "Using Fable for Social Media Posts" (zip: `
 - **Hashtags:** rotate menus (location ×2, category ×2, material ×1, brand always); **retire #OnSite #OnTheTools immediately**.
 - **Contacts:** admin@coastlifeconstructions.com.au · 0406 332 939.
 
-## Fill-ins Hunter owes (30 min at next Coast Life sync)
-Sections in `03_brand_voice.pdf` with blank `[FILL IN]` placeholders — **do NOT invent these; verified facts only:**
-1. **§8 Proof claims** — years operating, homes completed, Master Builders/HIA membership, notable projects/awards, warranty period
-2. **§13 Trade partner tag list** — full supplier IG handles (cabinetry, stone, flooring, steel, electrical, plumbing, tiling, landscape, glazing, engineer, architect, interior designer). Known so far: @r.g_roofing, @harry_south_roofin_co, @lukethepumpy
-3. **§14 Named-project register** — name the last 3 finished builds + 3 active builds (Ladds Ridge already active)
+## Verified facts (from Capability Statement 2026 — filed in `references/`)
+Written into `pack/markdown/brand_voice.md` §8 + §14 on 7 Jul 2026:
+- **Rob Williamson** — Builder & Director, 20+ years in construction (the person, not the company). Company **established 2020**, family-owned, deliberately limits simultaneous builds.
+- **Master Builders QLD member · QBCC Licensed · 5★ Google** (no HIA, no awards claimed)
+- **Named projects already exist:** Chambers Lane (capability-statement cover home), Burleigh, Gundara, Winship — + Ladds Ridge (active, IG). The naming discipline was already there; it just never reached Instagram.
+- Testimonials on file: Matt C., Helen O. (both 5★ — usable as pull-quotes)
+- Services: custom homes, renovations, kitchens & bathrooms, outdoor/alfresco, extensions
+
+## Remaining fill-ins (small now — confirm with Rob)
+1. Homes-completed count + warranty period (§8)
+2. Suburbs, handover dates + **client permission to feature** for the 4 named builds; names for 2 more active builds (§14)
+3. Trade partner IG handles beyond the 3 roofing/pumping mates (§13)
 
 ## Key metric to watch
 **Commenter mix, not likes.** Success = designers and homeowners in the comments, not just trade mates.

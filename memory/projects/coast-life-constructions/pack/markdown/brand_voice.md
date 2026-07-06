@@ -60,13 +60,15 @@ Every caption written from this file should be able to sit on Barlow's grid and 
 - The Ladds Ridge concrete pour (already posted March 2026 — turn into a full project narrative).
 
 ## 8. Proof claims (only use if verified — 10x Visuals to confirm before publishing)
-- Years operating on the Gold Coast: [FILL IN]
-- Number of custom homes completed: [FILL IN]
-- Master Builders / HIA membership: [FILL IN]
-- Notable projects / awards: [FILL IN]
-- Warranty period offered: [FILL IN]
+_Verified from CLC Capability Statement 2026 (`../../references/CLC-Capability-Statement-2026.pdf`), 7 Jul 2026:_
+- Years operating on the Gold Coast: **Established 2020.** Rob Williamson (Builder & Director) has **20+ years in construction**. ⚠️ "20 years of craftsmanship" refers to Rob personally, not the company — phrase accordingly.
+- Number of custom homes completed: [FILL IN — not in capability statement, confirm with Rob]
+- Master Builders / HIA membership: **Master Builders Queensland member** ✓ · **QBCC Licensed** ✓. (HIA not claimed — do not use.)
+- Notable projects / awards: Named projects **Chambers Lane, Burleigh, Gundara, Winship** (+ Ladds Ridge on IG). **5 stars on Google.** No awards claimed.
+- Warranty period offered: [FILL IN — not in capability statement, confirm with Rob]
+- Additional verified claims: **family-owned and operated** · Rob personally involved in every project, first consultation to final handover · **deliberately limits simultaneous builds** so each home gets full attention · client testimonials on file (Matt C., Helen O. — both 5★, usable as caption pull-quotes)
 
-> **Action for Hunter:** Fill these in during next client sync. Do not let Claude invent proof claims.
+> **Action for Hunter:** Two blanks left — homes-completed count + warranty period. Confirm with Rob. Do not let Claude invent proof claims.
 
 ## 9. Calls to action (rotate — one per post max)
 - "Full project walkthrough on our site."
@@ -121,21 +123,22 @@ Barlow tags 8–10 trade partners per post — that's the single biggest free re
 ```
 
 ## 14. Named-project register
-Barlow's biggest lever is that every build has a name (ZARMA, Kokomo, Bon Sol, Aruma). Coast Life is starting from scratch here — only "Ladds Ridge" has been referenced once.
-
-**Action for Hunter:** At the next Coast Life sync, name the last 3 finished builds and the 3 current active builds. Use suburb names, client-chosen names, or Coast Life codenames. Log below.
+Barlow's biggest lever is that every build has a name (ZARMA, Kokomo, Bon Sol, Aruma). **Update 7 Jul 2026: Coast Life already names projects** — the Capability Statement 2026 "Our Projects" section names four. The naming discipline exists; it just never made it to Instagram. Backfill from there:
 
 ```
-Finished builds (backfill for content):
-1. [Name] — [Suburb] — [Handover date] — [Hero material or design feature]
-2. [Name] — [Suburb] — [Handover date] — [Hero material or design feature]
-3. [Name] — [Suburb] — [Handover date] — [Hero material or design feature]
+Finished builds (backfill for content — names verified from Capability Statement 2026):
+1. Chambers Lane — [Suburb] — [Handover date] — hero: front-façade columns/entry (cover home of the capability statement)
+2. Burleigh — Burleigh [confirm exact suburb] — [Handover date] — hero: pool + rooftop terrace (drone aerial exists)
+3. Gundara — [Suburb] — [Handover date] — hero: twilight exterior + horizontal-slat fence (twilight photo exists)
+4. Winship — [Suburb] — [Handover date] — hero: white open-plan interior w/ fireplace (interior photo exists)
 
 Active builds:
-1. Ladds Ridge — [Suburb] — [Stage] — [Notes]
+1. Ladds Ridge — [Suburb] — [Stage — concrete pour posted Mar 2026] — [Notes]
 2. [Name] — [Suburb] — [Stage] — [Notes]
 3. [Name] — [Suburb] — [Stage] — [Notes]
 ```
+
+**Remaining for Hunter:** suburbs + handover dates + client-permission check for the four named builds; names for the other 2 active builds.
 
 ## 15. Hashtag menu (rotate — never repeat the same 5 twice in a week)
 
