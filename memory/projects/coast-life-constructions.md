@@ -28,20 +28,21 @@ Real builder, real projects, real trade network — but the account reads as a *
 5. Tag every trade partner in every post (free growth lever)
 6. 90-day re-audit vs Barlow — target 50+ likes/post, ≥1 designer/homeowner commenter per week
 
-## The Fable 5 Pack — file tracker
-8-file package. Vault home: `coast-life-constructions/pack/`. Status as of 6 Jul 2026:
+## The Fable 5 Pack — COMPLETE ✅ (retrieved from Perplexity 6 Jul 2026)
+Vault home: `coast-life-constructions/`. All 8 files present as PDF (`pack/`) **and editable markdown (`pack/markdown/` — edit these, they're the living source)**:
 
-| # | File | Status |
-|---|------|--------|
-| 00 | profile_audit.pdf | ✅ filed (`audit/`) |
-| 01 | README.pdf | ❌ missing |
-| 02 | master_playbook.pdf (10x house rules) | ❌ missing |
-| 03 | brand_voice.pdf — **the key file** | ✅ filed (`pack/`) |
-| 04 | strategy_guide.pdf (90-day plan) | ❌ missing |
-| 05 | bio.pdf (6 bio variants) | ❌ missing |
-| 06 | pinned_posts.pdf (3 anchor pins) | ❌ missing |
-| 07 | prompt_library.pdf (weekly production prompts) | ❌ missing |
-| — | `markdown/` editable sources (all 8 as .md) | ❌ missing — get these; .md beats PDF for editing |
+| # | File | What it is |
+|---|------|------------|
+| 00 | profile_audit | The audit — all decisions trace back here (`audit/`, .pdf + .md) |
+| 01 | README | Start-here: first-week actions, weekly rhythm, client-onboarding SOP |
+| 02 | master_playbook | 10x Visuals house rules |
+| 03 | brand_voice | **The key file** — voice rules + the 3 fill-in registers |
+| 04 | strategy_guide | 90-day plan / weekly cadence |
+| 05 | bio | 6 bio variants (V1 recommended start; V6 once proof numbers locked) |
+| 06 | pinned_posts | 3 anchor pin concepts |
+| 07 | prompt_library | Weekly production prompts |
+
+Source: Perplexity Computer session "Using Fable for Social Media Posts" (zip: `coast_life_fable5_vault_pack.zip`).
 
 ## Brand voice file — key contents (03)
 - **Positioning:** move toward Barlow's territory **without losing the plainspoken Gold Coast identity** — every caption should sit on Barlow's grid yet keep Coast Life hands-on-honesty.
