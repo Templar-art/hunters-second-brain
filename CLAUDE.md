@@ -32,7 +32,7 @@ Hunter, Videographer & founder at 10x Visuals (10xvisuals.com.au). Full creative
 ## Projects
 | Name | What |
 |------|------|
-| **CVA** | Architectural render gen — 19 files (Camera 16:9 + VIEW 1:1), Seedream. Ready to run. |
+| **CVA** | Architectural render gen — DELIVERED June 2026 (19 stills + ~40 clips, client happy). Repeat client; cost basis in auto-memory `project-cva-render-job.md`. |
 | **Belle Property — Lot 48** | Insert proposed house into empty lot photos. House already rendered photoreal; remaining step is angle-matched composite into lot photos (T7/T8 + Seedream). SketchUp not needed. Awaiting "run it". |
 | **CLC IG Repositioning** | Coast Life Constructions Instagram overhaul — audit 6 Jul 2026. 3 shifts: name every project, 40/25/20/15 pillar mix, editorial captions. → memory/projects/coast-life-constructions.md |
 → Details live in **auto-memory** (`~/.claude/…/memory/` → `project-lot48-belle-property.md`, `ai-realestate-workflow.md`) and in `memory/projects/` for vault-local project notes (currently: CLC).
