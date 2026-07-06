@@ -63,7 +63,7 @@ Written into `pack/markdown/brand_voice.md` §8 + §14 on 7 Jul 2026:
 - Services: custom homes, renovations, kitchens & bathrooms, outdoor/alfresco, extensions
 
 ## Remaining fill-ins (small now — confirm with Rob)
-1. Homes-completed count + warranty period (§8)
+1. Homes-completed count (§8) — warranty now verified from website: **1yr maintenance + 7yr QBCC structural**
 2. Suburbs, handover dates + **client permission to feature** for the 4 named builds; names for 2 more active builds (§14)
 3. Trade partner IG handles beyond the 3 roofing/pumping mates (§13)
 

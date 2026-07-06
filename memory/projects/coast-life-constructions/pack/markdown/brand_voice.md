@@ -65,10 +65,10 @@ _Verified from CLC Capability Statement 2026 (`../../references/CLC-Capability-S
 - Number of custom homes completed: [FILL IN — not in capability statement, confirm with Rob]
 - Master Builders / HIA membership: **Master Builders Queensland member** ✓ · **QBCC Licensed** ✓. (HIA not claimed — do not use.)
 - Notable projects / awards: Named projects **Chambers Lane, Burleigh, Gundara, Winship** (+ Ladds Ridge on IG). **5 stars on Google.** No awards claimed.
-- Warranty period offered: [FILL IN — not in capability statement, confirm with Rob]
+- Warranty period offered: **1-year maintenance warranty + 7-year QBCC structural warranty** (verified from coastlifeconstructions.com.au, 7 Jul 2026 — site wording: "a one-year maintenance warranty in addition to the seven-year QBCC structural warranty")
 - Additional verified claims: **family-owned and operated** · Rob personally involved in every project, first consultation to final handover · **deliberately limits simultaneous builds** so each home gets full attention · client testimonials on file (Matt C., Helen O. — both 5★, usable as caption pull-quotes)
 
-> **Action for Hunter:** Two blanks left — homes-completed count + warranty period. Confirm with Rob. Do not let Claude invent proof claims.
+> **Action for Hunter:** One blank left — homes-completed count. Confirm with Rob. Do not let Claude invent proof claims.
 
 ## 9. Calls to action (rotate — one per post max)
 - "Full project walkthrough on our site."
