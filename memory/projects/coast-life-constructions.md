@@ -61,6 +61,7 @@ Written into `pack/markdown/brand_voice.md` §8 + §14 on 7 Jul 2026:
 - **Named projects already exist:** Chambers Lane (capability-statement cover home), Burleigh, Gundara, Winship — + Ladds Ridge (active, IG). The naming discipline was already there; it just never reached Instagram.
 - Testimonials on file: Matt C., Helen O. (both 5★ — usable as pull-quotes)
 - Services: custom homes, renovations, kitchens & bathrooms, outdoor/alfresco, extensions
+- **Volume: only 3-4 construction jobs a year** (per Hunter, 7 Jul 2026 — consistent with the capability statement's "one or two projects at a time"; confirm with Rob before publishing as a number). Strategy consequence: named-project reveals are a scarce resource — never frame them as a weekly/recurring series ("Featured this week" was rejected for exactly this). Ration reveals; the engine's evergreen pillars (education, people, process) carry the cadence between them.
 
 ## Remaining fill-ins
 §8 proof claims **complete** — warranty verified from website (**1yr maintenance + 7yr QBCC structural**; lead with the 1yr maintenance, the 7yr QBCC is the statutory minimum); homes-completed count **intentionally omitted** per Hunter (7 Jul 2026).
