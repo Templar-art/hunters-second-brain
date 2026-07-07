@@ -70,6 +70,9 @@ Written into `pack/markdown/brand_voice.md` §8 + §14 on 7 Jul 2026:
 ## Key metric to watch
 **Commenter mix, not likes.** Success = designers and homeowners in the comments, not just trade mates.
 
+## Field research (live IG study, 7 Jul 2026)
+First-hand feed study of @barlowbuilding, @grimmondau, @bungalow_home, @smout_property → [references/field-research-2026-07-07.md](coast-life-constructions/references/field-research-2026-07-07.md). Cross-account formula: named-project highlight archives, a human face (Rob), editorial captions, trades as content (IG Collab posts + interview series), curated pins, one grade, teaser→reveal arcs.
+
 ## Related
 - CLC monthly carousel generator: auto-memory `template-clc-social-graphics.md` — apply the named-project + editorial-caption rules to future runs
 - CLC raw assets: ~/Downloads `CLC Exsc-*.jpg`, CLC reels, Coast Life zip (Jun 2026)
