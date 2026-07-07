@@ -105,7 +105,15 @@ Barlow tags 8–10 trade partners per post — that's the single biggest free re
 - @harry_south_roofin_co (roofing)
 - @lukethepumpy (concrete pumping)
 
-**Action for Hunter:** Build the full supplier list on the next site day. Ask the Coast Life team to list every regular subcontractor and supplier — cabinetry, stone, steel, electrical, plumbing, tiling, landscape, glazing, engineer, architect. Add IG handles here. This list becomes the tag menu for every future post.
+**Found in CLC's own following list (7 Jul 2026 — roles inferred from names, confirm trade + relationship with Rob before first tag):**
+- @bigrivertrade_burleigh — Big River Trade, building supplies (Burleigh)
+- @nextlevellinings — Next Level Linings (plastering/linings)
+- @quality_seal_australia — Quality Seal Australia (sealing/waterproofing)
+- @fullborecontracting — Full Bore Contracting
+- @bidcreteapp — Bidcrete (concrete quoting app; CLC already appears on their grid — existing collab relationship)
+- Peers, not suppliers (relationship unknown): @vertexbuilding, @lindeboombuilder
+
+**Action for Hunter:** Confirm the above with Rob + fill the remaining trades — cabinetry, stone, steel, electrical, plumbing, tiling, landscape, glazing, engineer, architect. This list becomes the tag menu for every future post.
 
 ```
 [ ] Cabinetry: @
@@ -126,11 +134,11 @@ Barlow tags 8–10 trade partners per post — that's the single biggest free re
 Barlow's biggest lever is that every build has a name (ZARMA, Kokomo, Bon Sol, Aruma). **Update 7 Jul 2026: Coast Life already names projects** — the Capability Statement 2026 "Our Projects" section names four. The naming discipline exists; it just never made it to Instagram. Backfill from there:
 
 ```
-Finished builds (backfill for content — names verified from Capability Statement 2026):
-1. Chambers Lane — [Suburb] — [Handover date] — hero: front-façade columns/entry (cover home of the capability statement)
-2. Burleigh — Burleigh [confirm exact suburb] — [Handover date] — hero: pool + rooftop terrace (drone aerial exists)
-3. Gundara — [Suburb] — [Handover date] — hero: twilight exterior + horizontal-slat fence (twilight photo exists)
-4. Winship — [Suburb] — [Handover date] — hero: white open-plan interior w/ fireplace (interior photo exists)
+Finished builds (names verified from Capability Statement 2026 + coastlifeconstructions.com.au/our-projects — official site names used):
+1. Chambers Lane Project — 9 Chambers Lane (number visible on fence in hero photo) — [Handover date] — hero: front-façade columns/entry (capability-statement cover home)
+2. Burleigh Project — Burleigh [confirm exact suburb] — [Handover date] — hero: pool + rooftop terrace (drone aerial exists)
+3. Gundara Street Project — [Suburb] — [Handover date] — hero: twilight exterior + horizontal-slat fence (twilight photo exists)
+4. Winship Street Project — [Suburb] — [Handover date] — hero: white open-plan interior w/ fireplace (interior photo exists)
 
 Active builds:
 1. Ladds Ridge — [Suburb] — [Stage — concrete pour posted Mar 2026] — [Notes]
