@@ -73,6 +73,12 @@ Written into `pack/markdown/brand_voice.md` §8 + §14 on 7 Jul 2026:
 ## Field research (live IG study, 7 Jul 2026)
 First-hand feed study of @barlowbuilding, @grimmondau, @bungalow_home, @smout_property → [references/field-research-2026-07-07.md](coast-life-constructions/references/field-research-2026-07-07.md). Cross-account formula: named-project highlight archives, a human face (Rob), editorial captions, trades as content (IG Collab posts + interview series), curated pins, one grade, teaser→reveal arcs.
 
+## Production system (built 7 Jul 2026)
+All in `~/Desktop/General Folder/CLC Brand Kit/`:
+- **Pin 3 carousel BUILT** — 7 slides in `pin3_carousel/` (How We Actually Build, uses verified claims). Pins 1–2 are Reels needing Rob on camera / hero build footage — briefs + final captions in `LAUNCH_CALENDAR.md`.
+- **CONTENT_ENGINE.md** — the weekly loop: cadence table, per-format generator commands, caption formulas, trade tag menu, verified-claims-only list, pre-post checklist.
+- **LAUNCH_CALENDAR.md** — pins + first 2 weeks of posts with ready captions (week 1 reintroduction, week 2 Chambers Lane reveal). Blockers: homeowner permissions, trade confirmation, Rob's Pin 2 shoot, colleague sign-off (strategy PDF on Desktop).
+
 ## Graphics kit (built 7 Jul 2026)
 Editorial kit ripped from benchmark patterns → `~/Desktop/General Folder/CLC Brand Kit/` (generator + README). "CL." highlight covers for the 5 named projects, manifesto text-overlay cards (max 1/week), project reveal cards. Demo photos extracted from the capability statement; re-render with final photography via `build_clc_brand_kit.py`. Note: Gundara letterbox reads "19" → 19 Gundara St.
 
