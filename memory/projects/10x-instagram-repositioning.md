@@ -38,5 +38,25 @@
 - Cadence mirror of CLC: Tue reel (client work) · Thu tile/carousel (tips/process from the 52) · Sat BTS · Sun hero photo
 - Success metric: commenter mix — agents/builders/devs commenting, not just the team. 90-day re-audit vs JUNE coherence + credit-referral count ("how did you hear" tracking).
 
-## Blockers/asks
-- None external — this is our own account. First actions: bio swap, build highlights from existing posts, standardise on the editorial system, add the credit-block line to client deliverables.
+## v2 REVISION (7 Jul 2026, after Hunter feedback — see auto-memory feedback-10x-ig-premium-bar)
+v1 was rejected: too much CLC scaffolding, no reference research, and the 52-tile arsenal is NOT the premium bar for the grid. Redone:
+
+### Reference research (live, 7 Jul)
+- **@thelocalproject (1.7M — the ceiling):** grid is PURE photography, zero graphic tiles; only "graphics" are print objects. Caption anatomy: "Video Feature •" eyebrow + design-intent prose + link-in-bio + full film-credits block (Photography by / Architecture by / Build by / Filmed and edited by @thelocalproduction_ — they credit their own production arm).
+- **@ac_media_ (64.6K — THE direct aspirational):** verified, bio nearly identical to 10x's niche ("Generating attention for luxury Real Estate agencies & brands / Film • Photo • Marketing • Australia Wide"). Reels-first; every client shoot repurposed as an editorial listing post (address + agency tag + geo). Signature graphics = film-style title cards ONLY: craft series ("THE ART OF STATICS", one-word caption "Statics."), monthly recaps ("JUNE" over a drone frame), Channel 9/Today press post. Low comments, huge reach — their game is attention + client acquisition, not conversation. Damon + 10x already follow them.
+- **@junemediaau (1,057 — peer):** coherence + credit loop (unchanged from v1).
+- **The premium law across all three: the less graphic design on the grid, the more premium it reads.** Type on footage, never tiles.
+
+### New graphics direction — "10x Premium Kit" (samples built, pending Hunter verdict)
+`~/Desktop/General Folder/10x Premium Kit/build_10x_premium.py` → `samples/`. Cinematic title cards over 10x's own frames (from `10x Library/_Selected`): white Poppins Light, wide tracking, whisper gradient (peak ~0.4 bottom edge only), no bands/boxes/scrims/body copy. Three formats:
+1. **Project card** — "A 10X VISUALS FILM" kicker + "THE BOWSPRIT." film title lower-left
+2. **Craft card** — centred series title ("CRAFT · NO 01 / THE ART OF TWILIGHT") — needs dark/twilight frames only, white type dies on bright interiors
+3. **Recap card** — "JULY." huge over aerial + "THE MONTH THROUGH OUR LENS" kicker
+The 52-tile editorial arsenal is demoted to ads/utility use only, NOT the grid.
+
+### Strategy adjustments from the research
+- Adopt the **AC Media flywheel**: every client shoot doubles as an editorial 10x post (listing prose + address + agency tag + geo) — content cost ≈ zero, portfolio compounds.
+- Launch a **craft series** (THE ART OF TWILIGHT / STATICS / AERIALS...) — ownable authority format.
+- **Monthly recap reel + cover** — rhythm + proof of volume.
+- TLP-style **credits block** on every post (and clients credit 10x back).
+- The rest of v1 stands: credit-loop growth, named-work highlights, bio upgrade, 40/25/20/15.
