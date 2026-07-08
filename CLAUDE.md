@@ -36,7 +36,8 @@ Hunter, Videographer & founder at 10x Visuals (10xvisuals.com.au). Full creative
 | **Belle Property — Lot 48** | Insert proposed house into empty lot photos. House already rendered photoreal; remaining step is angle-matched composite into lot photos (T7/T8 + Seedream). SketchUp not needed. Awaiting "run it". |
 | **CLC IG Repositioning** | Coast Life Constructions Instagram overhaul — audit 6 Jul 2026. 3 shifts: name every project, 40/25/20/15 pillar mix, editorial captions. → memory/projects/coast-life-constructions.md |
 | **10x IG Repositioning** | Own @10xvisuals.co overhaul — audit 7 Jul 2026. Credit-loop growth (JUNE benchmark), one design system, named-work highlights, 52-tile arsenal ready. → memory/projects/10x-instagram-repositioning.md |
-→ Details live in **auto-memory** (`~/.claude/…/memory/` → `project-lot48-belle-property.md`, `ai-realestate-workflow.md`) and in `memory/projects/` for vault-local project notes (currently: CLC).
+| **Bespoke Estate Agents** | Jason Ward, GC prestige agent — full brand system + Jun–Dec 2026 social strategy filed 8 Jul. Green #132a24, Zodiak/Poppins, 2 posts/wk. Kit: `General Folder/Bespoke Brand Kit`. → memory/projects/bespoke-estate-agents.md |
+→ Details live in **auto-memory** (`~/.claude/…/memory/` → `project-lot48-belle-property.md`, `ai-realestate-workflow.md`) and in `memory/projects/` for vault-local project notes (currently: CLC, Bespoke).
 
 ## Preferences
 - Tools: Gmail, Google Calendar
