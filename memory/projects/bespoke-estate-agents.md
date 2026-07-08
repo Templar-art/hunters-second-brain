@@ -6,6 +6,14 @@
 **Sister brand:** Bespoke Staging & Styling (same green, logo in `_brand/logos/`) — likely related entity; confirm relationship before co-branding.
 **Note:** existing 10x client — see auto-memory [[feedback-generate-vs-real-photos]] (Bespoke 43 Northview job).
 
+## IG audit (@jasonward_wardteam_bespoke, scrubbed 8 Jul 2026)
+- **It's a DUO:** Jason AND Barbara Ward, "husband and wife team" in bio + joint profile photo. Strategy PDF assumes Jason-only face — open question for Hunter/Jason whether Barbara stays in the system.
+- 349 followers / 133 posts / following 612. Bio is exclamation-salesy ("all your real estate needs! Consistently achieving top market results!") — needs the rewrite.
+- Feed today: flyer-style SOLD/JUST LISTED collage cards, script fonts, BMW-forward reels, Santa/CNY holiday cards. Four highlights (New on the…, Properties, Property 2, BTS).
+- **Already-posted properties (never repost their media):** The Boulevard Carrara (suburb-record 1-bed), 82 Birdlife Court, Vespa Crescent, Marina Drive. Existing Benowa seller testimonial reusable as raw material in new design.
+- **43 Northview NOT found on feed** — the 10x shoot (7 heroes + 5 detail crops at `General Folder/Jason Screen Grabs/`) is unposted inventory. REAL PHOTOS ONLY — the `Generated/` AI versions reshaped the pool ([[feedback-generate-vs-real-photos]]).
+- First 4 posts (all existing content, zero shooting) planned at `Bespoke Brand Kit/READY TO POST - Posts 1-4 (existing content)/`.
+
 ## Brand essentials
 - **Colours:** Bespoke Green `#132a24` (primary) · Light Green `#152f2a` (secondary dark — never both in one component) · off-white `#F0EDE8` · greys `#E2DDD7 / #C8C2BB / #7A7470` · body text charcoal `#2A2A2A`. NO accent colours (no gold/terracotta/navy).
 - **Type:** **Zodiak Light (300)** all headings (Regular 400 only for legibility; NEVER bold Zodiak) + **Poppins Regular** body / Medium UI / Semibold CTAs. Fallback Georgia.
