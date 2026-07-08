@@ -15,6 +15,18 @@
 - First 4 posts (all existing content, zero shooting) planned at `Bespoke Brand Kit/READY TO POST - Posts 1-4 (existing content)/`.
 - **Frame drop (8 Jul):** finished 10x edits now at `Bespoke Brand Kit/CONTENT LIBRARY/` — Northview: 41 photos + Main 83s/46s 4K films + Fast 33s / Slow 30s verticals; Staging BTS reel 41s (different property, confirm which); BMW Drive Day (17+reel) + BMW Cross Over (33+reel) — **BMW reels appear ALREADY POSTED on feed, verify before reuse**. Posts 1-4 upgraded: Fast Reel, pool hero, Staging BTS, details carousel — all zero-build.
 
+## Jason's actual caption voice (14-post feed study, 8 Jul 2026 — WRITE CLIENT CAPTIONS IN THIS, not generic premium voice)
+- Openers: "Welcome to [full address, suburb]." / "Welcome home to..." / "Introducing '[Name]' by [builder]" / "JUST LISTED ✨" / sneak peeks: "Sneak peek of..." + light emoji ✨🏡
+- Listing prose: "Positioned in the heart of...", "rare opportunity to secure", "tightly held", "increasingly rare and move quickly", "refined balance of scale, style and everyday functionality"
+- Spec line always: "4 Bedrooms - 3 Bathrooms - 2 Car" (dash-separated)
+- "For Sale - Expressions of Interest around $X.XM." · open-home time blocks · "Private inspections welcomed"
+- Contact: "Contact Jason on 0424 731 063" or "Jason & Barbara Ward | 0424 731 063"
+- SOLD register: celebratory ("SOLD & SETTLED!", "record price", "We would like to congratulate our happy buyers & sellers")
+- Signature closer: "contact us to help you with your property journey"
+- Credits collaborators (@media.abode = their current photo supplier — competitor to 10x, note), hashtag blocks 4-15 tags
+- Second account exists: **@bespoke.estateagents** (brand account) — posts collab with it and @goldcoastbmw
+- Elevation rule: keep his structures/phrases, trim hashtag walls to ~4-5, fix typos ("sneak peak", "collabortation"), never lose the contact block
+
 ## Brand essentials
 - **Colours:** Bespoke Green `#132a24` (primary) · Light Green `#152f2a` (secondary dark — never both in one component) · off-white `#F0EDE8` · greys `#E2DDD7 / #C8C2BB / #7A7470` · body text charcoal `#2A2A2A`. NO accent colours (no gold/terracotta/navy).
 - **Type:** **Zodiak Light (300)** all headings (Regular 400 only for legibility; NEVER bold Zodiak) + **Poppins Regular** body / Medium UI / Semibold CTAs. Fallback Georgia.
