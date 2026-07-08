@@ -82,6 +82,7 @@ All in `~/Desktop/General Folder/CLC Brand Kit/`:
 
 ## ROB'S BRAND VERDICT (8 Jul 2026 — overrides the graphics kit)
 Rob's taste, calibrated across 8 Jul feedback: **he APPROVED the final quality-over-quantity kitchen card** (lower-third statement, kicker below, dim subtle, build fully visible — THE reference for any CLC card) and REJECTED the reveal cards ("too off brand"), the crew manifesto card, and the bio rename. So: cards are allowed but rare and only in the approved style; no reveal-card treatment; no bio change; highlight covers need his OK; Pin 3 text-slides still on hold pending his approval. Default remains photos + plain editorial captions (current feed voice is working — unprompted trade comments).
+**CAPTION VOICE (8 Jul):** write as ROB, not as 10x. His register: short plain sentences, understated, concrete ("Walls and ceilings lined, coming together nicely now", "A quick look from site today"). Clever editorial lines/aphorisms ("the rooms nobody photographs prove the standard") read as an agency posting and got rejected. Test before shipping: would this caption sound at home on @10xvisuals.co? Then it's wrong for CLC. Same discipline as the Jason Ward voice study — every client gets captions in THEIR OWN feed voice.
 Also: Rob runs his own look-backs (May 20 kitchens carousel incl. the Chambers marble kitchen, Jun 11 projects reel) — caption-level feed sweep required before assigning any project/image.
 
 ## Graphics kit (built 7 Jul 2026 — RETIRED for feed use, see above)
