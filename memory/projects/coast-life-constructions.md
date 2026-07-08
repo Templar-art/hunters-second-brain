@@ -80,7 +80,11 @@ All in `~/Desktop/General Folder/CLC Brand Kit/`:
 - **CONTENT_ENGINE.md** — the weekly loop: cadence table, per-format generator commands, caption formulas, trade tag menu, verified-claims-only list, pre-post checklist.
 - **LAUNCH_CALENDAR.md** — pins + first 2 weeks of posts with ready captions (week 1 reintroduction, week 2 Chambers Lane reveal). Blockers: homeowner permissions, trade confirmation, Rob's Pin 2 shoot, colleague sign-off (strategy PDF on Desktop).
 
-## Graphics kit (built 7 Jul 2026)
+## ROB'S BRAND VERDICT (8 Jul 2026 — overrides the graphics kit)
+Rob rejected the editorial overlay system THREE times in one day: reveal card ("too off brand"), crew manifesto card ("too off brand, graphics, and bio"). **CLC policy now: NO text-overlay graphics, NO bio rename, NO highlight covers without his explicit OK. Straight photos/reels + plain editorial captions only** — his reference is the current feed voice ("Inside the build at Ladds Ridge Road..."), which is working (unprompted trade comments). Manifesto/reveal cards retired; Pin 3 text-slides ON HOLD pending Rob. Messages move into captions. This matches the field-research premium law (less graphic design = more premium) — trust it for builder clients by default.
+Also: Rob runs his own look-backs (May 20 kitchens carousel incl. the Chambers marble kitchen, Jun 11 projects reel) — caption-level feed sweep required before assigning any project/image.
+
+## Graphics kit (built 7 Jul 2026 — RETIRED for feed use, see above)
 Editorial kit ripped from benchmark patterns → `~/Desktop/General Folder/CLC Brand Kit/` (generator + README). "CL." highlight covers for the 5 named projects, manifesto text-overlay cards (max 1/week), project reveal cards. Demo photos extracted from the capability statement; re-render with final photography via `build_clc_brand_kit.py`. Note: Gundara letterbox reads "19" → 19 Gundara St.
 
 ## Related
