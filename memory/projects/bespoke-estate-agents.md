@@ -26,6 +26,7 @@
 - Credits collaborators (@media.abode = their current photo supplier — competitor to 10x, note), hashtag blocks 4-15 tags
 - Second account exists: **@bespoke.estateagents** (brand account) — posts collab with it and @goldcoastbmw
 - Elevation rule: keep his structures/phrases, trim hashtag walls to ~4-5, fix typos ("sneak peak", "collabortation"), never lose the contact block
+- **Never write media talk into client captions** (Hunter 8 Jul): no "we photograph our homes at twilight", no shoot/film/edit references — that's 10x's story. The agent's caption sells the HOME (position, frontage, rooms, scarcity). Photography talk belongs on @10xvisuals.co only.
 
 ## Brand essentials
 - **Colours:** Bespoke Green `#132a24` (primary) · Light Green `#152f2a` (secondary dark — never both in one component) · off-white `#F0EDE8` · greys `#E2DDD7 / #C8C2BB / #7A7470` · body text charcoal `#2A2A2A`. NO accent colours (no gold/terracotta/navy).
