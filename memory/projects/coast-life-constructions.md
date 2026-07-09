@@ -68,6 +68,10 @@ Written into `pack/markdown/brand_voice.md` §8 + §14 on 7 Jul 2026:
 1. Suburbs, handover dates + **client permission to feature** for the 4 named builds; names for 2 more active builds (§14)
 2. Trade partner IG handles beyond the 3 roofing/pumping mates (§13)
 
+## People
+- **Rob Williamson** — Builder & Director (the face)
+- **Ollie (@olliesouth1)** — leading hand / site manager (confirm exact title). The blond one in the recent feed posts; trades banter with him in comments — already a recognisable face to the audience. Second voice in the brand story film.
+
 ## Key metric to watch
 **Commenter mix, not likes.** Success = designers and homeowners in the comments, not just trade mates.
 
