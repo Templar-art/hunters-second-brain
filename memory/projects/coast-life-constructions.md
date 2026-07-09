@@ -92,6 +92,9 @@ Also: Rob runs his own look-backs (May 20 kitchens carousel incl. the Chambers m
 ## Graphics kit (built 7 Jul 2026 — RETIRED for feed use, see above)
 Editorial kit ripped from benchmark patterns → `~/Desktop/General Folder/CLC Brand Kit/` (generator + README). "CL." highlight covers for the 5 named projects, manifesto text-overlay cards (max 1/week), project reveal cards. Demo photos extracted from the capability statement; re-render with final photography via `build_clc_brand_kit.py`. Note: Gundara letterbox reads "19" → 19 Gundara St.
 
+## Highlight bubbles — MATERIAL ground (9 Jul 2026)
+Superseded the dimmed-photo bubbles: Hunter's call is **material backgrounds like Barlow** (warm-neutral grade), not project photos. All 5 (ladds_ridge, burleigh, chambers_lane, gundara_street, winship_street) now = **uniform travertine** ground + navy CL. monogram centred (auto-inverts to white if a dark ground is ever used). Seed varies per project for unique veining. Files: `~/Desktop/Coastlife Bubbles/` + kit `highlight_covers/`; old photo bubbles backed up to `_photo_versions/`. Re-run: `build_clc_bubbles.py`. Shared texture engine: `~/Desktop/General Folder/_bubble_engine/` (materials.py procedural plaster/concrete/travertine/timber/patterns + compose.py). Same engine drives Salisbury (off-white microcement alt set) and 10x (blueprint pattern).
+
 ## Related
 - CLC monthly carousel generator: auto-memory `template-clc-social-graphics.md` — apply the named-project + editorial-caption rules to future runs
 - CLC raw assets: ~/Downloads `CLC Exsc-*.jpg`, CLC reels, Coast Life zip (Jun 2026)
