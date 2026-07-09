@@ -10,3 +10,6 @@
 
 # brainstorming companion scratch
 .superpowers/
+
+# client render frames — kept local (CVA asset, ~28MB); regenerate via README
+10x Scroll Build/frames/

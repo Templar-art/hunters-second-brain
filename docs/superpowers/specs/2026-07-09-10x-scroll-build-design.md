@@ -2,7 +2,8 @@
 
 **Date:** 2026-07-09
 **Owner:** Hunter (10x Visuals)
-**Status:** Approved for planning
+**Status:** Built (2026-07-09) — see Build Note below. Pivoted from vector-first to
+photoreal frame-scrub mid-build once Hunter supplied the CVA render.
 
 ## Purpose
 
@@ -87,6 +88,23 @@ Four isolated parts, each with one responsibility:
 When ready: extract frames from the architect renders (ffmpeg, free) into a
 `frames/` folder, populate `PHOTOREAL_FRAMES`, done. Confirm usage permission /
 genericise before any public posting.
+
+## Build Note (2026-07-09)
+
+The vector-first build was completed and shown, but on review Hunter wanted the
+hyper-realistic look of reference reels, not illustration. Hunter supplied a real
+render (`CVA Render Video.mp4`, 4K, ~41s). We pivoted to the **photoreal frame-scrub**:
+
+- Extracted ~164 frames at 1728px via ffmpeg (free, local): `fps=4,scale=1728:-2 -q:v 3`.
+- Rebuilt `index.html` as a full-bleed `<canvas>` that preloads the frames and draws the
+  one matching scroll progress (retina-aware cover-fit, nearest-loaded fallback, loader).
+- Minimal overlay: opening title, one mid caption, hero finale, outro + CTA.
+- Honest credit on the page: "Render: CVA Architects · Scroll experience: 10x Visuals."
+- Frames are git-ignored (client asset, ~28MB); `README.md` documents regeneration.
+
+The original vector approach and its `PHOTOREAL_FRAMES` drop-in slot are superseded by
+this direct canvas scrub. Verified end-to-end in a real browser (scrub, captions,
+finale, no console errors).
 
 ## Success Criteria
 
