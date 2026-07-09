@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10x Visuals — Scroll to Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a1620;          /* drafting-table dark */
+    --void-2:#0e1e2b;
+    --blueprint:#61a8d8;     /* 10x brand blue — linework */
+    --blueprint-dim:#33566b; /* faint grid / ghost lines */
+    --paper:#f4ede0;         /* warm drafting paper — the "delivered" tone */
+    --ink:#d6e6f1;           /* light text on dark */
+    --concrete:#7f95a3;      /* muted captions */
+    --disp:"Poppins",system-ui,sans-serif;
+    --body:"Montserrat",system-ui,sans-serif;
+    --mono:"Space Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:auto}
+  body{
+    background:var(--void);color:var(--ink);font-family:var(--body);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+
+  /* ---------- shared bits ---------- */
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--blueprint)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+  /* ---------- top header ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:40;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 32px;mix-blend-mode:difference}
+  .logo{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.01em;color:#fff}
+  .logo b{color:var(--blueprint)}
+  header .kicker{color:#fff;opacity:.75;font-size:11px}
+  /* thin scrub line under the header shows scroll position through the build */
+  .scrub{position:fixed;top:0;left:0;height:2px;width:0;background:var(--blueprint);z-index:41;
+    box-shadow:0 0 12px var(--blueprint)}
+
+  /* ---------- hero hook ---------- */
+  .hook{min-height:82vh;display:flex;flex-direction:column;justify-content:center;
+    padding-top:70px}
+  .hook h1{font-family:var(--disp);font-weight:700;line-height:.98;letter-spacing:-.02em;
+    font-size:clamp(44px,8.5vw,110px);color:var(--ink);margin:20px 0 26px;max-width:14ch}
+  .hook h1 .warm{color:var(--paper)}
+  .hook p{font-size:clamp(15px,1.5vw,18px);color:var(--concrete);max-width:46ch;line-height:1.6}
+  .cue{margin-top:54px;display:flex;align-items:center;gap:14px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.24em;color:var(--concrete);text-transform:uppercase}
+  .cue .line{width:52px;height:1px;background:var(--blueprint-dim);position:relative;overflow:hidden}
+  .cue .line::after{content:"";position:absolute;inset:0;background:var(--blueprint);
+    animation:sweep 2.4s ease-in-out infinite}
+  @keyframes sweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+
+  /* ---------- the pinned build ---------- */
+  .track{height:560vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(120% 90% at 50% 42%,var(--void-2) 0%,var(--void) 62%)}
+  /* faint blueprint grid on the drafting table */
+  .stage::before{content:"";position:absolute;inset:0;opacity:.5;
+    background-image:linear-gradient(var(--blueprint-dim) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--blueprint-dim) 1px,transparent 1px);
+    background-size:46px 46px;mask-image:radial-gradient(80% 70% at 50% 45%,#000 30%,transparent 78%);
+    -webkit-mask-image:radial-gradient(80% 70% at 50% 45%,#000 30%,transparent 78%)}
+  /* warm wash that fades in as the home becomes real */
+  #warm{position:absolute;inset:0;opacity:0;pointer-events:none;
+    background:radial-gradient(75% 60% at 50% 60%,rgba(244,237,224,.16),transparent 70%)}
+
+  .art{position:relative;width:min(88vw,940px);z-index:2}
+  svg .ink{fill:none;stroke:var(--blueprint);stroke-width:1.6;
+    stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:1;stroke-dashoffset:1}       /* pathLength=1 → draw-on */
+  svg .thin{stroke-width:1;stroke:var(--blueprint-dim)}
+  svg .fill{opacity:0}
+  svg .dimtext{font-family:var(--mono);font-size:13px;fill:var(--blueprint);opacity:0;letter-spacing:.04em}
+
+  /* stage rail (a real sequence, so numbering is honest) */
+  .rail{position:fixed;left:32px;top:50%;transform:translateY(-50%);z-index:30;
+    display:flex;flex-direction:column;gap:22px}
+  .rail .step{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--concrete);
+    text-transform:uppercase;display:flex;align-items:center;gap:12px;opacity:.4;transition:opacity .4s,color .4s}
+  .rail .step .dot{width:8px;height:8px;border:1px solid var(--concrete);border-radius:50%;transition:.4s}
+  .rail .step.on{opacity:1;color:var(--ink)}
+  .rail .step.on .dot{background:var(--blueprint);border-color:var(--blueprint);
+    box-shadow:0 0 12px var(--blueprint)}
+  .rail .num{color:var(--blueprint)}
+
+  /* ---------- concept / craft / delivered ---------- */
+  .beats{padding:130px 0 40px}
+  .beats .head{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4vw,46px);
+    letter-spacing:-.02em;max-width:20ch;margin-bottom:70px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--blueprint-dim)}
+  .beat{background:var(--void);padding:42px 34px 48px}
+  .beat .num{font-family:var(--mono);font-size:12px;color:var(--blueprint);letter-spacing:.2em}
+  .beat h3{font-family:var(--disp);font-weight:600;font-size:23px;margin:18px 0 12px;letter-spacing:-.01em}
+  .beat p{color:var(--concrete);line-height:1.65;font-size:15px}
+
+  /* ---------- proof + CTA ---------- */
+  .close{padding:120px 0 150px;text-align:center}
+  .close .proof{color:var(--concrete);max-width:52ch;margin:0 auto 46px;line-height:1.7;
+    font-size:clamp(16px,2vw,21px)}
+  .close .proof b{color:var(--ink);font-weight:500}
+  .cta{display:inline-flex;align-items:center;gap:12px;font-family:var(--disp);font-weight:600;
+    font-size:16px;color:var(--void);background:var(--blueprint);text-decoration:none;
+    padding:17px 30px;border-radius:2px;transition:transform .25s,box-shadow .25s}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(97,168,216,.32)}
+  .cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  footer{padding:40px 0 60px;text-align:center;color:var(--concrete);font-family:var(--mono);
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+
+  /* ---------- reduced motion: show the finished home, skip the scrub ---------- */
+  @media (prefers-reduced-motion:reduce){
+    .track{height:auto}
+    .stage{position:relative;height:80vh}
+    .cue .line::after{animation:none}
+  }
+  @media (max-width:720px){
+    .rail{display:none}
+    .grid3{grid-template-columns:1fr}
+    header .kicker{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="scrub" id="scrub"></div>
+<header>
+  <div class="logo">10<b>x</b> Visuals</div>
+  <div class="kicker">Scroll-driven</div>
+</header>
+
+<!-- 1 · HOOK -->
+<section class="hook wrap">
+  <div class="kicker">Concept &nbsp;→&nbsp; Built</div>
+  <h1>Watch it <span class="warm">come together.</span></h1>
+  <p>Every home starts as a line on paper. Scroll, and this one draws itself
+     into being, the same way we build scroll experiences for the brands we work with.</p>
+  <div class="cue"><span class="line"></span>Scroll to build</div>
+</section>
+
+<!-- 2 · THE PINNED BUILD -->
+<nav class="rail" aria-hidden="true">
+  <div class="step" data-phase="0"><span class="dot"></span><span class="num">01</span> Concept</div>
+  <div class="step" data-phase="1"><span class="dot"></span><span class="num">02</span> Structure</div>
+  <div class="step" data-phase="2"><span class="dot"></span><span class="num">03</span> Materialise</div>
+  <div class="step" data-phase="3"><span class="dot"></span><span class="num">04</span> Delivered</div>
+</nav>
+
+<div class="track" id="track">
+  <div class="stage">
+    <div id="warm"></div>
+    <div class="art">
+      <!-- photoreal frames cross-dissolve here when PHOTOREAL_FRAMES is populated -->
+      <img id="photoreal" alt="" style="position:absolute;inset:0;width:100%;height:100%;
+           object-fit:contain;opacity:0;pointer-events:none;display:none">
+
+      <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" aria-label="A home assembling from blueprint to finished build.">
+        <!-- ===== MATERIALISED FILLS (fade in after the blueprint) ===== -->
+        <g id="fills">
+          <rect class="fill" data-fade="0.44,0.56" x="250" y="453" width="520" height="24" fill="#c9bfae"/>
+          <rect class="fill" data-fade="0.46,0.58" x="300" y="270" width="420" height="185" fill="var(--paper)"/>
+          <polygon class="fill" data-fade="0.52,0.63" points="272,272 510,150 748,272" fill="#b7481f"/>
+          <rect class="fill" data-fade="0.56,0.65" x="646" y="182" width="36" height="92" fill="#8f6a52"/>
+          <!-- glazing -->
+          <rect class="fill" data-fade="0.58,0.68" x="470" y="368" width="72" height="87" fill="#2f6f95"/>
+          <rect class="fill" data-fade="0.60,0.70" x="342" y="308" width="74" height="62" fill="#6fb7e0"/>
+          <rect class="fill" data-fade="0.62,0.72" x="604" y="308" width="74" height="62" fill="#6fb7e0"/>
+          <!-- landscaping -->
+          <path class="fill" data-fade="0.66,0.78" d="M470 455 L400 520 L612 520 L542 455 Z" fill="#cabfa d" style="fill:#c9bfae"/>
+          <circle class="fill" data-fade="0.68,0.80" cx="168" cy="404" r="60" fill="#5f8f57"/>
+          <rect class="fill" data-fade="0.68,0.80" x="162" y="404" width="12" height="70" fill="#8f6a52"/>
+        </g>
+
+        <!-- ===== BLUEPRINT LINEWORK (draws on first, then fades to a ghost) ===== -->
+        <g id="blueprint">
+          <!-- ground -->
+          <path class="ink" pathLength="1" data-draw="0.00,0.05" d="M120 477 L880 477"/>
+          <!-- foundation slab -->
+          <path class="ink" pathLength="1" data-draw="0.05,0.13" d="M250 453 L770 453 L770 477 L250 477 Z"/>
+          <!-- walls -->
+          <path class="ink" pathLength="1" data-draw="0.15,0.28" d="M300 455 L300 270 L720 270 L720 455"/>
+          <!-- roof -->
+          <path class="ink" pathLength="1" data-draw="0.28,0.42" d="M272 272 L510 150 L748 272"/>
+          <!-- chimney -->
+          <path class="ink" pathLength="1" data-draw="0.30,0.38" d="M646 234 L646 182 L682 182 L682 256"/>
+          <!-- door + windows -->
+          <path class="ink" pathLength="1" data-draw="0.34,0.44" d="M470 455 L470 368 L542 368 L542 455"/>
+          <rect class="ink" pathLength="1" data-draw="0.36,0.45" x="342" y="308" width="74" height="62"/>
+          <rect class="ink" pathLength="1" data-draw="0.38,0.46" x="604" y="308" width="74" height="62"/>
+
+          <!-- ===== DIMENSION ANNOTATIONS — the signature ===== -->
+          <g>
+            <path class="ink thin" pathLength="1" data-draw="0.16,0.26" d="M250 520 L770 520"/>
+            <path class="ink thin" pathLength="1" data-draw="0.16,0.26" d="M250 512 L250 528"/>
+            <path class="ink thin" pathLength="1" data-draw="0.16,0.26" d="M770 512 L770 528"/>
+            <text class="dimtext" data-fade="0.22,0.30" x="510" y="516" text-anchor="middle">14.2 m</text>
+
+            <path class="ink thin" pathLength="1" data-draw="0.30,0.40" d="M210 270 L210 455"/>
+            <path class="ink thin" pathLength="1" data-draw="0.30,0.40" d="M202 270 L218 270"/>
+            <path class="ink thin" pathLength="1" data-draw="0.30,0.40" d="M202 455 L218 455"/>
+            <text class="dimtext" data-fade="0.36,0.44" x="196" y="368" text-anchor="end">6.8 m</text>
+
+            <text class="dimtext" data-fade="0.40,0.47" x="510" y="138" text-anchor="middle">32°</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- 3 · CONCEPT / CRAFT / DELIVERED -->
+<section class="beats wrap">
+  <div class="head">The same build, three ways, for your brand.</div>
+  <div class="grid3">
+    <div class="beat">
+      <div class="num">Concept</div>
+      <h3>We storyboard the scroll</h3>
+      <p>We start with your story and map it to the scroll: what reveals, in what order, at what pace. The drawing before the build.</p>
+    </div>
+    <div class="beat">
+      <div class="num">Craft</div>
+      <h3>We build it frame by frame</h3>
+      <p>We render, animate, and tune every stage to your brand: colour, type, timing. The money moments get room to breathe.</p>
+    </div>
+    <div class="beat">
+      <div class="num">Delivered</div>
+      <h3>A page that builds itself</h3>
+      <p>You get a fast, self-contained page with no plugins and no heavy platform. It runs anywhere and reverses cleanly as people scroll back.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · PROOF + CTA -->
+<section class="close wrap">
+  <p class="proof"><b>10x Visuals</b> makes scroll-driven sites, films, and brand systems
+     for property and construction. This page is one of them — built from scratch, no template.</p>
+  <a class="cta" href="mailto:hunter@10xvisuals.com.au?subject=Scroll-driven%20project">Book a call →</a>
+</section>
+<footer>10x Visuals · 10xvisuals.com.au</footer>
+
+<script>
+  /* ============================================================
+     THE MECHANISM — scroll position of the pinned track → 0..1
+     Everything below is driven by this single number.
+     ============================================================ */
+  const track = document.getElementById('track');
+  const scrub = document.getElementById('scrub');
+  const warm  = document.getElementById('warm');
+  const blueprint = document.getElementById('blueprint');
+  const steps = document.querySelectorAll('.rail .step');
+  const draws = document.querySelectorAll('[data-draw]');
+  const fades = document.querySelectorAll('[data-fade]');
+
+  // DROP-IN PHOTOREAL SLOT — leave empty to ship the vector finale.
+  // Paste frame paths later (e.g. ['frames/0001.jpg', ... ]) and the finale
+  // will cross-dissolve + scrub them. No other code change needed.
+  const PHOTOREAL_FRAMES = [];
+  const photoreal = document.getElementById('photoreal');
+  const framesReady = PHOTOREAL_FRAMES.length > 0;
+  if (framesReady){ photoreal.style.display='block'; PHOTOREAL_FRAMES.forEach(s=>{const i=new Image();i.src=s;}); }
+
+  function getScrollProgress(){
+    const r = track.getBoundingClientRect();
+    const scrollable = r.height - window.innerHeight;
+    const p = scrollable > 0 ? (-r.top) / scrollable : 0;
+    return Math.min(1, Math.max(0, p));
+  }
+  // normalise progress p into 0..1 across the window [a,b]
+  const range = (p,a,b) => Math.min(1, Math.max(0, (p-a)/(b-a)));
+
+  function render(){
+    const p = getScrollProgress();
+
+    // blueprint draws on
+    draws.forEach(el=>{
+      const [a,b] = el.dataset.draw.split(',').map(Number);
+      el.style.strokeDashoffset = (1 - range(p,a,b));
+    });
+    // fills + dimension text fade in (with a small rise)
+    fades.forEach(el=>{
+      const [a,b] = el.dataset.fade.split(',').map(Number);
+      el.style.opacity = range(p,a,b);
+    });
+
+    // materialise: warm wash in, blueprint recedes to a faint ghost
+    warm.style.opacity = range(p,0.44,0.80);
+    blueprint.style.opacity = 1 - range(p,0.80,0.97) * 0.85;
+
+    // finale: cross-dissolve / scrub photoreal frames if provided
+    if (framesReady){
+      const t = range(p,0.80,1.0);
+      photoreal.style.opacity = t;
+      const idx = Math.min(PHOTOREAL_FRAMES.length-1, Math.floor(t*(PHOTOREAL_FRAMES.length-1)));
+      photoreal.src = PHOTOREAL_FRAMES[idx];
+    }
+
+    // scrub line + stage rail
+    scrub.style.width = (p*100) + '%';
+    const phase = p<0.42 ? 0 : p<0.62 ? 1 : p<0.80 ? 2 : 3;
+    steps.forEach(s => s.classList.toggle('on', +s.dataset.phase === phase));
+  }
+
+  // respect reduced motion: paint the finished home, don't hijack scroll
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce){
+    draws.forEach(el=>el.style.strokeDashoffset=0);
+    fades.forEach(el=>el.style.opacity=1);
+    warm.style.opacity=1; blueprint.style.opacity=0.15;
+    steps.forEach(s=>s.classList.toggle('on', +s.dataset.phase===3));
+  } else {
+    let ticking=false;
+    window.addEventListener('scroll',()=>{
+      if(!ticking){requestAnimationFrame(()=>{render();ticking=false;});ticking=true;}
+    },{passive:true});
+    window.addEventListener('resize',render);
+    render();
+  }
+</script>
+</body>
+</html>
