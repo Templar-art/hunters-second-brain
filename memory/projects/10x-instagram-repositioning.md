@@ -60,3 +60,11 @@ The 52-tile editorial arsenal is demoted to ads/utility use only, NOT the grid.
 - **Monthly recap reel + cover** — rhythm + proof of volume.
 - TLP-style **credits block** on every post (and clients credit 10x back).
 - The rest of v1 stands: credit-loop growth, named-work highlights, bio upgrade, 40/25/20/15.
+
+## Story highlight covers — BUILT (9 Jul 2026)
+Closes the "zero highlights" gap from the audit. Organised as a **craft + service menu** (not per-client — deliberately unlike CLC, per [[feedback-10x-ig-premium-bar]]), evergreen and film-house-like.
+- **6 bubbles:** FILM · PHOTO · TWILIGHT · AERIALS · STAGING · THE PROCESS (RECAP to be added once monthly recaps run).
+- **Treatment = the CLC cover system, exactly:** photo dimmed (brightness ×0.62 + 16% navy #102f41 tint), **fully-white 10X mark centred at 34% frame height**, soft alpha edge. The IG highlight *label* carries the craft name, so no word on the cover (Barlow "B." model). Set the IG highlight NAMES to: Film, Photo, Twilight, Aerials, Staging, The Process.
+- Hunter's call: word-on-cover felt redundant with the label; logo fully white (the brand "White" SVG actually renders white 10 + blue X, so it's force-whitened via alpha); photo greyed back "exactly like the coastlife ones".
+- **Files:** `~/Desktop/General Folder/10x Premium Kit/highlight_covers/` + `highlight_cover()` folded into `build_10x_premium.py` (re-runnable; edit the `HIGHLIGHTS` list). White mark baked to `_assets/10x_mark_white.png` so the kit is self-contained.
+- **Open loop:** THE PROCESS uses a placeholder landscape frame — swap for a real BTS/on-set frame (camera/crew/rig) when shot. Frames pulled from `10x Library/_Selected` (unposted), 5 real + 1 placeholder.
