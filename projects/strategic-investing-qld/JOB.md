@@ -26,6 +26,7 @@ Property investment advisory (new client). Static FB/IG ad from supplied brief +
 - 2026-07-10 grill: decisions locked — gen Aussie lowset brick-and-tile hero, 3-format kit, keep invented label + CTA copy, add compliance disclaimer, placeholder logo (swap when client sends file)
 - 2026-07-10 generation: Nano Banana Pro, 2 options, 150 credits (~$6 AUD) — Hunter approved before spend
 - 2026-07-10 build: 3-format kit rendered; status → review (awaiting Hunter/client sign-off)
+- 2026-07-10 revision: placeholder wordmark removed from top-right (Hunter), top scrim softened; kit re-rendered
 
 ## Open items
 
