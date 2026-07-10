@@ -17,7 +17,7 @@ Hunter's personal assistant built on Claude Code. Built in phases; each phase ge
 
 ## Phase 1 mechanics
 
-- Scheduled cloud routine, cron weekdays 7:00 AM Australia/Brisbane.
+- Scheduled task `jarvis-morning-brief` in the Claude desktop app (local, not cloud — file: `~/.claude/scheduled-tasks/jarvis-morning-brief/SKILL.md`), cron `0 7 * * 1-5` local time. **Limitation:** runs while the Claude app is open; if closed at 7am, it fires on next launch.
 - Reads the 10x CRM MCP (`list_personal_todos` — the only read tool the CRM exposes: title, priority, optional due date).
 - Brief: max 10 lines, overdue → due today → next 3 days → by priority; one closing line on the shape of the day.
 - Failure is loud: CRM unreachable pushes "re-auth needed"; empty slate pushes "slate clear". A missing brief is itself the alarm.
