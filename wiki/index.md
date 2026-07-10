@@ -31,6 +31,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[brand-system]] — 10x brand + standing design rules for all graphics
 - [[ig-caption-voice]] — per-account caption voice discipline (10x modes, Rob, Jason)
 - [[music-taxonomy]] — locked controlled vocabulary for the music library
+- [[jarvis]] — Hunter's phased personal assistant; phase 1 = weekday 7am CRM morning brief via push
 
 ## Sources (from `raw/clc/` — CLC Fable 5 pack + research)
 - [[clc-profile-audit]] — the audit all CLC decisions trace to (6 Jul 2026)
