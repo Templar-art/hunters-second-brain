@@ -1,2 +1,6 @@
 .muted
+.use-say
 ask.log
+kokoro/venv/
+kokoro/*.onnx
+kokoro/*.bin

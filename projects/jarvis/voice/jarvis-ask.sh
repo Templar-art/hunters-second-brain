@@ -7,11 +7,19 @@ WAV="${1:?usage: jarvis-ask.sh <wav>}"
 DIR="$(cd "$(dirname "$0")" && pwd)"
 VAULT="$HOME/Documents/Hunters Second Brain"
 MODEL="$HOME/.cache/whisper/ggml-base.en.bin"
-VOICE="Daniel"
+VOICE="Jamie (Premium)"
+KOKORO_VOICE="bm_george"
+ENGINE_FLAG="$DIR/.use-say"   # touch this file to fall back to macOS say
 MUTE_FLAG="$DIR/.muted"
 
 speak() {
-  [ -f "$MUTE_FLAG" ] || say -v "$VOICE" "$1" &
+  [ -f "$MUTE_FLAG" ] && return
+  if [ ! -f "$ENGINE_FLAG" ] && [ -x "$DIR/kokoro/venv/bin/python" ]; then
+    ("$DIR/kokoro/venv/bin/python" "$DIR/kokoro/kokoro-say.py" "$1" "$KOKORO_VOICE" \
+      || say -v "$VOICE" "$1") &
+  else
+    say -v "$VOICE" "$1" &
+  fi
 }
 
 if [ ! -s "$WAV" ]; then
