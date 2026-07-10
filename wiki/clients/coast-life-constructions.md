@@ -1,9 +1,16 @@
+---
+type: client
+tags: [client, builder, instagram]
+status: active-execution
+updated: 2026-07-10
+---
+
 # Coast Life Constructions — Instagram Repositioning
 
 **Client:** Coast Life Constructions (@coast_life_constructions_qld)
 **Location:** Varsity Lakes, QLD 4227 (Gold Coast) · coastlifeconstructions.com.au
 **Status:** Active — audit delivered 6 Jul 2026, execution phase next
-**Source docs:** [audit PDF](coast-life-constructions/audit/00_profile_audit.pdf) · [brand voice PDF](coast-life-constructions/pack/03_brand_voice.pdf)
+**Source docs:** [audit PDF](../../raw/clc/00_profile_audit.pdf) · [brand voice PDF](../../raw/clc/03_brand_voice.pdf)
 **Benchmarks:** @barlowbuilding (12-month target), @grimmondau (long-term ceiling)
 
 ## The diagnosis (one line)
@@ -29,7 +36,7 @@ Real builder, real projects, real trade network — but the account reads as a *
 6. 90-day re-audit vs Barlow — target 50+ likes/post, ≥1 designer/homeowner commenter per week
 
 ## The Fable 5 Pack — COMPLETE ✅ (retrieved from Perplexity 6 Jul 2026)
-Vault home: `coast-life-constructions/`. All 8 files present as PDF (`pack/`) **and editable markdown (`pack/markdown/` — edit these, they're the living source)**:
+Vault home: PDFs in `raw/clc/` (immutable) **and editable markdown in `wiki/sources/clc-*.md` — edit those, they are the living source**:
 
 | # | File | What it is |
 |---|------|------------|
@@ -76,7 +83,7 @@ Written into `pack/markdown/brand_voice.md` §8 + §14 on 7 Jul 2026:
 **Commenter mix, not likes.** Success = designers and homeowners in the comments, not just trade mates.
 
 ## Field research (live IG study, 7 Jul 2026)
-First-hand feed study of @barlowbuilding, @grimmondau, @bungalow_home, @smout_property → [references/field-research-2026-07-07.md](coast-life-constructions/references/field-research-2026-07-07.md). Cross-account formula: named-project highlight archives, a human face (Rob), editorial captions, trades as content (IG Collab posts + interview series), curated pins, one grade, teaser→reveal arcs.
+First-hand feed study of @barlowbuilding, @grimmondau, @bungalow_home, @smout_property → [references/field-research-2026-07-07.md](../sources/clc-field-research-2026-07-07.md). Cross-account formula: named-project highlight archives, a human face (Rob), editorial captions, trades as content (IG Collab posts + interview series), curated pins, one grade, teaser→reveal arcs.
 
 ## Production system (built 7 Jul 2026)
 All in `~/Desktop/General Folder/CLC Brand Kit/`:

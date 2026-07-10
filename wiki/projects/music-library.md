@@ -1,10 +1,17 @@
+---
+type: project
+tags: [music, editing, library]
+status: good-could-be-better
+updated: 2026-07-10
+---
+
 # Music Library
 
 Track library for scoring 10x Visuals real-estate edits. Filter for a brief, browse by eye, hand to an editor.
 
-**Controlled vocabulary lives in [[CONTEXT]] — that file is the source of truth.** Only use the locked values below; if a value isn't listed there, it doesn't go in the table (add it to [[CONTEXT]] first).
+**Controlled vocabulary lives in [[music-taxonomy]] — that file is the source of truth.** Only use the locked values below; if a value isn't listed there, it doesn't go in the table (add it to [[music-taxonomy]] first).
 
-## Allowed values (quick reference — canonical defs in [[CONTEXT]])
+## Allowed values (quick reference — canonical defs in [[music-taxonomy]])
 
 | Column | Allowed values |
 |--------|----------------|

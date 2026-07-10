@@ -1,3 +1,9 @@
+---
+type: concept
+tags: [music, taxonomy, locked-terminology]
+updated: 2026-07-10
+---
+
 # Music Reference Library
 
 A tagging taxonomy for choosing music to score 10x Visuals real-estate video edits.

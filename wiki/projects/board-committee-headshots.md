@@ -1,3 +1,10 @@
+---
+type: project
+tags: [corporate, bts, edit-plan]
+status: retouch-and-edit-pending
+updated: 2026-07-10
+---
+
 # Board Committee BTS — Edit Plan
 
 > Studio shoot BTS for a board/committee. Goal: make serious people feel **human, likeable, and cool** while showing 10x makes premium media look effortless. Personality first, polish second.

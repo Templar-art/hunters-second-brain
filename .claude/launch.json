@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "scroll-build",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8777", "--directory", "10x Scroll Build"],
-      "port": 8777
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/private/tmp/claude-501/-Users-10xhunter-Documents-Hunters-Second-Brain/4c08795e-4472-45a8-a879-c713bdce7363/scratchpad/static-server.js"],
+      "port": 8778
     }
   ]
 }

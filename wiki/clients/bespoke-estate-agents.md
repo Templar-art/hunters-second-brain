@@ -1,3 +1,10 @@
+---
+type: client
+tags: [client, real-estate, brand-system]
+status: active
+updated: 2026-07-10
+---
+
 # Bespoke Estate Agents — Brand + Social System
 
 **Client:** Jason Ward, Principal Agent — boutique prestige residential, Gold Coast ($1M+ market)

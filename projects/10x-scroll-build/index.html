@@ -120,7 +120,7 @@
   const SRC = i => `frames/f_${pad(i+1)}.jpg`;   // 0-indexed -> f_0001..f_0164
 
   const canvas = document.getElementById('c');
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha:false });
   const track = document.getElementById('track');
   const scrub = document.getElementById('scrub');
   const loader = document.getElementById('loader');
@@ -129,83 +129,91 @@
   const capMid = document.getElementById('capMid');
   const cue = document.getElementById('cue');
 
-  const images = new Array(FRAME_COUNT);
-  let loaded = 0, current = -1;
+  const frames = new Array(FRAME_COUNT);       // decoded ImageBitmaps (fast GPU blits)
+  let loaded = 0, drawn = -1;
+  let cw = 0, ch = 0;
+  let target = 0, shown = 0, p = 0;            // scroll-target frame, eased frame, progress
 
   /* ---------- canvas sizing (retina-aware) ---------- */
   function sizeCanvas(){
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width  = Math.round(window.innerWidth  * dpr);
-    canvas.height = Math.round(window.innerHeight * dpr);
-    draw(current < 0 ? 0 : current, true);
+    cw = canvas.width  = Math.round(window.innerWidth  * dpr);
+    ch = canvas.height = Math.round(window.innerHeight * dpr);
+    drawn = -1;                                // force a repaint at the new size
+    blit(Math.round(shown));
   }
-  /* cover-fit draw of the nearest loaded frame */
-  function draw(idx, force){
-    idx = Math.max(0, Math.min(FRAME_COUNT-1, idx));
-    let img = images[idx];
-    if(!img || !img.complete){                 // fall back to nearest loaded frame
-      for(let d=1; d<FRAME_COUNT; d++){
-        if(images[idx-d] && images[idx-d].complete){ img = images[idx-d]; break; }
-        if(images[idx+d] && images[idx+d].complete){ img = images[idx+d]; break; }
-      }
+  function nearest(idx){
+    if(frames[idx]) return frames[idx];
+    for(let d=1; d<FRAME_COUNT; d++){          // fall back to closest decoded frame
+      if(frames[idx-d]) return frames[idx-d];
+      if(frames[idx+d]) return frames[idx+d];
     }
-    if(!img || !img.complete) return;
-    if(!force && idx === current) return;
-    current = idx;
-    const cw=canvas.width, ch=canvas.height, ir=img.width/img.height, cr=cw/ch;
+    return null;
+  }
+  /* cover-fit blit of one frame; skips redundant redraws */
+  function blit(idx){
+    idx = Math.max(0, Math.min(FRAME_COUNT-1, idx));
+    if(idx === drawn) return;
+    const bmp = nearest(idx);
+    if(!bmp) return;
+    drawn = idx;
+    const ir = bmp.width/bmp.height, cr = cw/ch;
     let w,h,x,y;
     if(ir>cr){ h=ch; w=ch*ir; x=(cw-w)/2; y=0; }
     else     { w=cw; h=cw/ir; x=0; y=(ch-h)/2; }
-    ctx.drawImage(img, x, y, w, h);
+    ctx.drawImage(bmp, x, y, w, h);
   }
 
-  /* ---------- THE MECHANISM: scroll → 0..1 → frame index ---------- */
+  /* ---------- THE MECHANISM: scroll → 0..1 ---------- */
   function progress(){
     const r = track.getBoundingClientRect();
-    const scrollable = r.height - window.innerHeight;
-    return scrollable>0 ? Math.min(1, Math.max(0, (-r.top)/scrollable)) : 0;
+    const s = r.height - window.innerHeight;
+    return s>0 ? Math.min(1, Math.max(0, (-r.top)/s)) : 0;
   }
   const range = (p,a,b) => Math.min(1, Math.max(0,(p-a)/(b-a)));
 
-  function render(){
-    const p = progress();
-    draw(Math.round(p*(FRAME_COUNT-1)));
+  /* Continuous loop: ease the shown frame toward the scroll target.
+     Decoupling the draw from scroll events + easing is what removes the jank. */
+  function loop(){
+    p = progress();
+    target = p*(FRAME_COUNT-1);
+    shown += (target - shown) * 0.18;          // lerp — the glide
+    if(Math.abs(target - shown) < 0.01) shown = target;
+    blit(Math.round(shown));
+
     scrub.style.transform = 'scaleX('+p+')';
-    // opening title fades out early; mid caption breathes in the middle; cue fades once moving
     capOpen.style.opacity = 1 - range(p,0.02,0.10);
     cue.style.opacity     = (1 - range(p,0.02,0.10)) * 0.7;
     capMid.style.opacity  = Math.min(range(p,0.40,0.48), 1 - range(p,0.60,0.68));
+
+    requestAnimationFrame(loop);
   }
 
-  /* ---------- preload, then wire scroll ---------- */
+  /* ---------- preload: decode each frame to an ImageBitmap off-thread ---------- */
+  async function preload(i){
+    try{
+      const res = await fetch(SRC(i));
+      frames[i] = await createImageBitmap(await res.blob());
+    }catch(e){ /* leave undefined; nearest() covers the gap */ }
+    loaded++;
+    lbar.style.width = Math.round(loaded/FRAME_COUNT*100)+'%';
+    if(i===0){ drawn=-1; blit(0); }            // paint first frame ASAP
+    if(loaded >= Math.ceil(FRAME_COUNT*0.9)) loader.classList.add('done');
+  }
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function start(){
     sizeCanvas();
-    if(reduce){ draw(FRAME_COUNT-1, true); capOpen.style.opacity=0; cue.style.display='none'; return; }
-    let ticking=false;
-    window.addEventListener('scroll',()=>{ if(!ticking){ requestAnimationFrame(()=>{render();ticking=false;}); ticking=true; }},{passive:true});
-    render();
+    for(let i=0;i<FRAME_COUNT;i++) preload(i);  // browser parallelises the fetches
+    if(reduce){
+      capOpen.style.opacity=0; cue.style.display='none'; loader.classList.add('done');
+      const paintLast = setInterval(()=>{ if(frames[FRAME_COUNT-1]){ drawn=-1; blit(FRAME_COUNT-1); clearInterval(paintLast); } }, 100);
+      return;
+    }
+    requestAnimationFrame(loop);
   }
-
-  for(let i=0;i<FRAME_COUNT;i++){
-    const img = new Image();
-    img.onload = () => {
-      loaded++;
-      lbar.style.width = Math.round(loaded/FRAME_COUNT*100)+'%';
-      if(i===0) draw(0, true);                 // paint first frame ASAP
-      if(loaded===FRAME_COUNT){ loader.classList.add('done'); }
-    };
-    img.onerror = () => { loaded++; if(loaded===FRAME_COUNT) loader.classList.add('done'); };
-    img.src = SRC(i);
-    images[i] = img;
-  }
-  // don't block forever on a slow frame — reveal once most are in
-  const revealWhenReady = setInterval(()=>{
-    if(loaded >= Math.ceil(FRAME_COUNT*0.85)){ loader.classList.add('done'); clearInterval(revealWhenReady); }
-  }, 200);
 
   window.addEventListener('resize', sizeCanvas);
-  window.addEventListener('load', start);
   start();
 </script>
 </body>

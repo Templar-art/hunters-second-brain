@@ -1,3 +1,10 @@
+---
+type: project
+tags: [10x-visuals, instagram, strategy]
+status: active
+updated: 2026-07-10
+---
+
 # 10x Visuals — Own-Brand Instagram Strategy
 
 **Account:** @10xvisuals.co (verified) · audited live 7 Jul 2026
