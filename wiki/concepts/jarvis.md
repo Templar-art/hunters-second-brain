@@ -13,7 +13,7 @@ Hunter's personal assistant built on Claude Code. Built in phases; each phase ge
 
 1. **Brain + ops copilot** — live. Weekday 8:30 AM morning brief: ranked open to-dos from the 10x CRM, delivered as a push notification. Spec: [phase 1 design](../../docs/superpowers/specs/2026-07-10-jarvis-phase1-design.md). Prompt: [PROMPT.md](../../projects/jarvis/PROMPT.md).
 2. **Job state tracking** — live. Every job folder gets `JOB.md` (from [JOB-template.md](../../projects/jarvis/JOB-template.md)): status, shots table, cost tally, append-only log; updated on every state change. Enforced by vault CLAUDE.md rule + cross-project auto-memory. Spec: [phase 2 design](../../docs/superpowers/specs/2026-07-10-jarvis-phase2-job-tracking-design.md). Query/resume/brief-integration deferred — cheap once tracking exists.
-3. **Voice layer** — wake word + STT/TTS on the Mac. Not started.
+3. **Voice layer** — built, awaiting first-run permissions. Push-to-talk: hold right-option → speak → spoken (Daniel en_GB) + on-screen answer. Components in [projects/jarvis/voice/](../../projects/jarvis/voice/): `jarvis.lua` (Hammerspoon hotkey + overlay), `jarvis-ask.sh` (ffmpeg → whisper-cli base.en → `claude -p` with [VOICE-PROMPT.md](../../projects/jarvis/voice/VOICE-PROMPT.md) → `say`), Cmd+Alt+J mute. Ask + capture only: reads vault/CRM, may create todos, hard-banned from paid ops/writes. Spec: [phase 3 design](../../docs/superpowers/specs/2026-07-10-jarvis-phase3-voice-design.md). **Blockers at handover:** CLI OAuth expired (run `claude` in Terminal once), Hammerspoon accessibility + mic permissions on first launch; headless CRM connector access unverified.
 
 ## Phase 1 mechanics
 

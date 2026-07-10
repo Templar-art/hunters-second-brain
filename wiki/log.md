@@ -10,3 +10,6 @@ Designed and built Jarvis phase 1 (brain + ops copilot): spec at `docs/superpowe
 
 ## [2026-07-10] ingest | Jarvis phase 2 — JOB.md job-state tracking
 Spec `docs/superpowers/specs/2026-07-10-jarvis-phase2-job-tracking-design.md`; template `projects/jarvis/JOB-template.md`; CLAUDE.md job-tracking rule; cross-project auto-memory entry; [[jarvis]] roadmap updated.
+
+## [2026-07-10] ingest | Jarvis phase 3 — push-to-talk voice layer built
+Spec + plan in docs/superpowers/; pipeline in `projects/jarvis/voice/` (Hammerspoon right-option push-to-talk → ffmpeg → whisper-cli base.en → `claude -p` voice prompt → say Daniel + overlay). Installed Hammerspoon + whisper base.en model. Pending: CLI re-auth (OAuth expired 17 Jun), first-run mic/accessibility perms, headless CRM verification.
