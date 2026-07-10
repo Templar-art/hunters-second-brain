@@ -12,7 +12,7 @@ Hunter's personal assistant built on Claude Code. Built in phases; each phase ge
 ## Roadmap
 
 1. **Brain + ops copilot** — live. Weekday 8:30 AM morning brief: ranked open to-dos from the 10x CRM, delivered as a push notification. Spec: [phase 1 design](../../docs/superpowers/specs/2026-07-10-jarvis-phase1-design.md). Prompt: [PROMPT.md](../../projects/jarvis/PROMPT.md).
-2. **Job orchestrator** — one command runs a whole 10x job (intake → staging → stills → video → delivery) on existing skills. Not started.
+2. **Job state tracking** — live. Every job folder gets `JOB.md` (from [JOB-template.md](../../projects/jarvis/JOB-template.md)): status, shots table, cost tally, append-only log; updated on every state change. Enforced by vault CLAUDE.md rule + cross-project auto-memory. Spec: [phase 2 design](../../docs/superpowers/specs/2026-07-10-jarvis-phase2-job-tracking-design.md). Query/resume/brief-integration deferred — cheap once tracking exists.
 3. **Voice layer** — wake word + STT/TTS on the Mac. Not started.
 
 ## Phase 1 mechanics

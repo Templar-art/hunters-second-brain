@@ -7,3 +7,6 @@ Converted the vault to the Karpathy LLM-wiki structure (spec: `docs/superpowers/
 
 ## [2026-07-10] ingest | Jarvis phase 1 — spec, prompt, wiki page, scheduled routine
 Designed and built Jarvis phase 1 (brain + ops copilot): spec at `docs/superpowers/specs/2026-07-10-jarvis-phase1-design.md`, agent prompt at `projects/jarvis/PROMPT.md`, concept page [[jarvis]]. Weekday 7am Brisbane morning brief from 10x CRM to-dos via push notification; loud failure rules.
+
+## [2026-07-10] ingest | Jarvis phase 2 — JOB.md job-state tracking
+Spec `docs/superpowers/specs/2026-07-10-jarvis-phase2-job-tracking-design.md`; template `projects/jarvis/JOB-template.md`; CLAUDE.md job-tracking rule; cross-project auto-memory entry; [[jarvis]] roadmap updated.
