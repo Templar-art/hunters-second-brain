@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salisbury Building Projects — Scroll the Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  /* Salisbury register: near-black ground, bone type, heavy condensed caps
+     (their wordmark voice), one warm accent pulled from the twilight windows. */
+  :root{
+    --ink:#0b0b0a;
+    --bone:#efece4;
+    --amber:#d99a4e;
+    --disp:"Anton",system-ui,sans-serif;
+    --body:"Montserrat",system-ui,sans-serif;
+    --mono:"Space Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ink);color:var(--bone);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  .scrub{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--amber);z-index:60;
+    box-shadow:0 0 14px rgba(217,154,78,.6);transform:scaleX(0);transform-origin:left}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;
+    align-items:center;padding:22px 30px}
+  .logo{font-family:var(--disp);font-size:17px;line-height:1.05;letter-spacing:.06em;color:#fff;
+    text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+  header .tag{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:#fff;opacity:.8;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+
+  #loader{position:fixed;inset:0;background:var(--ink);z-index:70;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease}
+  #loader.done{opacity:0;pointer-events:none}
+  #loader .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.6}
+  #loader .barwrap{width:220px;height:2px;background:rgba(239,236,228,.15);overflow:hidden}
+  #loader .bar{height:100%;width:100%;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+
+  .track{height:520vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--ink)}
+  canvas{display:block;width:100%;height:100%}
+  .stage::before,.stage::after{content:"";position:absolute;left:0;right:0;height:26vh;pointer-events:none;z-index:2}
+  .stage::before{top:0;background:linear-gradient(rgba(8,8,7,.55),transparent)}
+  .stage::after{bottom:0;background:linear-gradient(transparent,rgba(8,8,7,.6))}
+
+  .cap{position:absolute;z-index:3;text-shadow:0 2px 22px rgba(0,0,0,.55);pointer-events:none;opacity:0}
+  .cap.open{left:30px;bottom:12vh;max-width:24ch}
+  .cap .ey{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--amber)}
+  .cap.open h1{font-family:var(--disp);font-weight:400;font-size:clamp(40px,6.4vw,88px);line-height:.98;
+    margin-top:14px;text-transform:uppercase;letter-spacing:.01em}
+  .cue{position:absolute;left:30px;bottom:5vh;z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:.24em;
+    text-transform:uppercase;color:#fff;opacity:.7;display:flex;align-items:center;gap:12px;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+  .cue .ln{width:46px;height:1px;background:rgba(255,255,255,.5);position:relative;overflow:hidden}
+  .cue .ln::after{content:"";position:absolute;inset:0;background:var(--amber);animation:sweep 2.4s ease-in-out infinite}
+  @keyframes sweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+  .cap.mid{left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;max-width:26ch}
+  .cap.mid .big{font-family:var(--disp);font-weight:400;font-size:clamp(24px,3.8vw,46px);line-height:1.08;
+    text-transform:uppercase;letter-spacing:.02em}
+
+  .outro{padding:130px 0 40px;text-align:center}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 30px}
+  .outro .ey{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--amber)}
+  .outro h2{font-family:var(--disp);font-weight:400;font-size:clamp(34px,5vw,64px);line-height:1;
+    letter-spacing:.01em;text-transform:uppercase;margin:20px auto 22px;max-width:18ch}
+  .outro p{color:#c7c2b6;max-width:52ch;margin:0 auto 40px;line-height:1.7;font-size:clamp(15px,1.6vw,18px)}
+  .cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:600;font-size:15px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--amber);text-decoration:none;
+    padding:17px 30px;border-radius:2px;transition:transform .25s,box-shadow .25s}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(217,154,78,.3)}
+  .cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .credit{margin-top:56px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:#7d786d}
+  footer{padding:50px 0 60px;text-align:center;color:#6d685e;font-family:var(--mono);font-size:11px;
+    letter-spacing:.2em;text-transform:uppercase}
+
+  @media (prefers-reduced-motion:reduce){ .track{height:auto} .stage{position:relative;height:88vh} .cue{display:none} }
+  @media (max-width:720px){ header .tag{display:none} .cap.open{left:20px} .cue{left:20px} }
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="lbl">Loading build</div><div class="barwrap"><div class="bar" id="lbar"></div></div></div>
+<div class="scrub" id="scrub"></div>
+
+<header>
+  <div class="logo">Salisbury<br>Building<br>Projects</div>
+  <div class="tag">Scroll the build</div>
+</header>
+
+<div class="track" id="track">
+  <div class="stage">
+    <canvas id="c"></canvas>
+    <div class="cap open" id="capOpen">
+      <div class="ey">120 Kennedys Lane · Northern Rivers</div>
+      <h1>Walk it<br>before the<br>key turns.</h1>
+    </div>
+    <div class="cue" id="cue"><span class="ln"></span>Scroll to move</div>
+    <div class="cap mid" id="capMid"><div class="big">Every metre, at your pace.</div></div>
+  </div>
+</div>
+
+<section class="outro wrap">
+  <div class="ey">Scroll-driven builds by 10x Visuals</div>
+  <h2>Your projects, driven by the client.</h2>
+  <p>A film of the build wired straight to the scroll — forward and back, as slow or fast as
+     the visitor wants to go. Drops into the site as one self-contained page. This demo runs
+     on a single hero shot; a full version scrubs slab to handover.</p>
+  <a class="cta" href="mailto:hunter@10xvisuals.com.au?subject=Scroll-driven%20build">Talk to 10x →</a>
+  <div class="credit">Build: Salisbury Building Projects &nbsp;·&nbsp; Film + scroll experience: 10x Visuals</div>
+</section>
+<footer>Salisbury Building Projects · demo by 10x Visuals</footer>
+
+<script>
+  const FRAME_COUNT = 120;
+  const pad = n => String(n).padStart(4,'0');
+  const SRC = i => `frames/f_${pad(i+1)}.jpg`;
+
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d', { alpha:false });
+  const track = document.getElementById('track');
+  const scrub = document.getElementById('scrub');
+  const loader = document.getElementById('loader');
+  const lbar = document.getElementById('lbar');
+  const capOpen = document.getElementById('capOpen');
+  const capMid = document.getElementById('capMid');
+  const cue = document.getElementById('cue');
+
+  const frames = new Array(FRAME_COUNT);
+  let loaded = 0, drawn = -1;
+  let cw = 0, ch = 0;
+  let target = 0, shown = 0, p = 0;
+
+  function sizeCanvas(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cw = canvas.width  = Math.round(window.innerWidth  * dpr);
+    ch = canvas.height = Math.round(window.innerHeight * dpr);
+    drawn = -1;
+    blit(Math.round(shown));
+  }
+  function nearest(idx){
+    if(frames[idx]) return frames[idx];
+    for(let d=1; d<FRAME_COUNT; d++){
+      if(frames[idx-d]) return frames[idx-d];
+      if(frames[idx+d]) return frames[idx+d];
+    }
+    return null;
+  }
+  function blit(idx){
+    idx = Math.max(0, Math.min(FRAME_COUNT-1, idx));
+    if(idx === drawn) return;
+    const bmp = nearest(idx);
+    if(!bmp) return;
+    drawn = idx;
+    const ir = bmp.width/bmp.height, cr = cw/ch;
+    let w,h,x,y;
+    if(ir>cr){ h=ch; w=ch*ir; x=(cw-w)/2; y=0; }
+    else     { w=cw; h=cw/ir; x=0; y=(ch-h)/2; }
+    ctx.drawImage(bmp, x, y, w, h);
+  }
+
+  function progress(){
+    const r = track.getBoundingClientRect();
+    const s = r.height - window.innerHeight;
+    return s>0 ? Math.min(1, Math.max(0, (-r.top)/s)) : 0;
+  }
+  const range = (p,a,b) => Math.min(1, Math.max(0,(p-a)/(b-a)));
+
+  let lastTick = 0;
+  function paint(){
+    scrub.style.transform = 'scaleX('+p+')';
+    capOpen.style.opacity = 1 - range(p,0.02,0.10);
+    cue.style.opacity     = (1 - range(p,0.02,0.10)) * 0.7;
+    capMid.style.opacity  = Math.min(range(p,0.40,0.48), 1 - range(p,0.60,0.68));
+  }
+  function loop(t){
+    lastTick = t;
+    p = progress();
+    target = p*(FRAME_COUNT-1);
+    shown += (target - shown) * 0.18;
+    if(Math.abs(target - shown) < 0.01) shown = target;
+    blit(Math.round(shown));
+    paint();
+    requestAnimationFrame(loop);
+  }
+  /* rAF starves in backgrounded/embedded contexts — snap directly on scroll then.
+     Capture-phase on document catches scrolls regardless of scrolling element. */
+  function snap(){
+    if(performance.now() - lastTick > 200){
+      p = progress();
+      target = shown = p*(FRAME_COUNT-1);
+      blit(Math.round(shown));
+      paint();
+    }
+  }
+  document.addEventListener('scroll', snap, {passive:true, capture:true});
+
+  async function preload(i){
+    try{
+      const res = await fetch(SRC(i));
+      frames[i] = await createImageBitmap(await res.blob());
+    }catch(e){}
+    loaded++;
+    lbar.style.transform = 'scaleX(' + (loaded/FRAME_COUNT) + ')';
+    if(i===0){ drawn=-1; blit(0); }
+    if(loaded >= Math.ceil(FRAME_COUNT*0.9)) loader.classList.add('done');
+  }
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function start(){
+    sizeCanvas();
+    for(let i=0;i<FRAME_COUNT;i++) preload(i);
+    if(reduce){
+      capOpen.style.opacity=0; cue.style.display='none'; loader.classList.add('done');
+      const paintLast = setInterval(()=>{ if(frames[FRAME_COUNT-1]){ drawn=-1; blit(FRAME_COUNT-1); clearInterval(paintLast); } }, 100);
+      return;
+    }
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', sizeCanvas);
+  start();
+</script>
+</body>
+</html>
