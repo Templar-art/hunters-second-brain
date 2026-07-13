@@ -9,7 +9,7 @@ updated: 2026-07-14
 
 See also [[10x-socials-funnel]] — sibling initiative splitting RE/construction into their own accounts, funneling curated best-of back here.
 
-**Account:** @10xvisuals.co (verified) · audited live 7 Jul 2026
+**Account:** **@10xvisuals_** (verified) — ⚠️ renamed from @10xvisuals.co (found live 14 Jul 2026; old caption credits tagging @10xvisuals.co now point at a dead handle — credit line is "Filmed and edited by @10xvisuals_"). Bio link is the website 10xvisuals.co. · audited live 7 Jul 2026
 **Status:** strategy drafted same day, mirrors the CLC playbook but B2B
 **Deliverable:** `~/Desktop/10x_IG_Strategy_July2026.pdf` + artifact
 
@@ -90,6 +90,10 @@ The bubbles need stories behind them (a highlight is just archived stories). **1
 - **THE PROCESS:** toolbox-talk BTS ("ON SET.") · whiteboard ("THE PLAN.") · Hour Glass site doco ("BEHIND THE SCENES.").
 - QC swaps during build: Criterion gaming-corner crop (KENO signage) → Villa Noosa; fake-twilight frame → true dusk 25 Dungogie; exterior-with-ute → Hour Glass worker frame.
 - **Posting flow:** post each frame to story (in order, craft opener first), immediately add to its highlight from the story viewer. Future: every job's best 1–2 frames get a story in the matching bubble — the highlights become living portfolios.
+
+## Live feed sweep (14 Jul 2026, via Hunter's Chrome)
+Last 4 weeks arrow-through with captions: Club Southport/SHAPE reel (3d) · 7020 Riverview Cres carousel w/ @marco.santos_sothebys (4d) · Salisbury site post (5d) · **Broncos Leagues Club ad reel (7d)** · Will Simpson client post (7d) · Maker Build carousel + Najim Mudgeeraba teaser + Sanctuary Cove reel + CVA Azura collab (2w) · 7652 Fairway Blvd Belle collab (3w) · GC BMW collab (4w). Pins unchanged (SŌL / ad / $30M penthouse).
+**Consequences applied:** Broncos card pulled from the master feed pack → replaced with THE CRITERION. (frame from the actual reel). **Highlights: 5 bubbles live with the white-mark covers but filled with old reel shares — the 18 story frames are NOT yet posted; Staging bubble missing entirely.** Posting plan: `~/Desktop/POSTING PLAN - 10x ALL ACCOUNTS.md`.
 
 ## Feed pack v1 — BUILT (14 Jul 2026)
 **⚠️ supersedes the material-engraved covers as the shipped set:** Hunter's boss called it — bubble covers use the **white 10X mark on dimmed photo** (the CLC-style set in `~/Desktop/10x Bubbles/*.jpg`), NOT the engraved-material treatment ("not a brand new logo"). READY TO POST pack covers swapped accordingly; material set stays on disk as an alternate.

@@ -10,7 +10,7 @@ updated: 2026-07-14
 Sibling initiative to [[10x-ig-repositioning]] (which is scoped to @10xvisuals.co alone). This one splits volume by vertical and uses the master account as a curated best-of, not a firehose.
 
 ## The architecture
-- **Master** — `@10xvisuals.co` (existing, unchanged). Only the best work lands here — the funnel destination.
+- **Master** — **`@10xvisuals_`** (⚠️ renamed from `@10xvisuals.co`, found 14 Jul — vertical bios and credit lines must use the new handle). Only the best work lands here — the funnel destination.
 - **Real estate** — new account, all RE content (full volume, no curation bar).
 - **Construction** — new account, all construction content (full volume, no curation bar).
 - Bio links: master's bio points out to both verticals; each vertical's bio points back to master ("Best of it all → @10xvisuals.co").
