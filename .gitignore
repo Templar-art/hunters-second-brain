@@ -13,3 +13,5 @@
 
 # client render frames — kept local (CVA asset, ~28MB); regenerate via README
 projects/10x-scroll-build/frames/
+projects/10x-scroll-salisbury/frames/
+projects/10x-scroll-salisbury/*.mp4

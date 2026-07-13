@@ -31,3 +31,19 @@ Replace `standin.mp4` with the Seedance output, rerun step 3, done — same fram
 ## Usage
 Demo asset for selling scroll-driven builds to Salisbury (and the template for any client).
 Photo is 10x's own delivery to Salisbury; clear it with Murph before the page goes public.
+
+## LIVE: Seedance 2.0 render (14 Jul 2026)
+`seedance_render.mp4` (5s, 1080p, 3,500 credits) now drives the page — 121 frames at 24fps.
+The ffmpeg stand-in is kept at `_standin_backup.mp4`. Concept: **"the house comes alive"** —
+push-in + dusk deepening + windows igniting room by room. All three changes are monotonic,
+so the scrub reads perfectly in both directions.
+
+## Replicating per niche (the product)
+Same recipe, one variable — what "comes alive" means for the client:
+- **Builder** (this demo): lights ignite room by room as you approach — the handover moment.
+- **Developer:** slow aerial rise from street to masterplan view, stage lighting coming on.
+- **RE agency:** twilight glamour push toward the pool/entry, water lights blooming.
+- **Architect:** light study — sun sweeping across the facade, shadows walking the brick.
+Prompt template: SEEDANCE-PROMPT.md structure; swap Scene & Mood + Movement's "ignition"
+layer. One 5s 1080p Seedance 2.0 Pro clip per site (3,500 cr) or run it in the Higgsfield
+web app on the plan. Then: frames at fps=24 → index.html (FRAME_COUNT + brand vars).
