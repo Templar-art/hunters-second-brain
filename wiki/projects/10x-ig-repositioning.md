@@ -2,10 +2,12 @@
 type: project
 tags: [10x-visuals, instagram, strategy]
 status: active
-updated: 2026-07-13
+updated: 2026-07-14
 ---
 
 # 10x Visuals — Own-Brand Instagram Strategy
+
+See also [[10x-socials-funnel]] — sibling initiative splitting RE/construction into their own accounts, funneling curated best-of back here.
 
 **Account:** @10xvisuals.co (verified) · audited live 7 Jul 2026
 **Status:** strategy drafted same day, mirrors the CLC playbook but B2B
@@ -88,6 +90,11 @@ The bubbles need stories behind them (a highlight is just archived stories). **1
 - **THE PROCESS:** toolbox-talk BTS ("ON SET.") · whiteboard ("THE PLAN.") · Hour Glass site doco ("BEHIND THE SCENES.").
 - QC swaps during build: Criterion gaming-corner crop (KENO signage) → Villa Noosa; fake-twilight frame → true dusk 25 Dungogie; exterior-with-ute → Hour Glass worker frame.
 - **Posting flow:** post each frame to story (in order, craft opener first), immediately add to its highlight from the story viewer. Future: every job's best 1–2 frames get a story in the matching bubble — the highlights become living portfolios.
+
+## Feed pack v1 — BUILT (14 Jul 2026)
+**⚠️ supersedes the material-engraved covers as the shipped set:** Hunter's boss called it — bubble covers use the **white 10X mark on dimmed photo** (the CLC-style set in `~/Desktop/10x Bubbles/*.jpg`), NOT the engraved-material treatment ("not a brand new logo"). READY TO POST pack covers swapped accordingly; material set stays on disk as an alternate.
+
+**Feed:** 10 posts in `~/Desktop/10x FEED - READY TO POST/` via `10x Premium Kit/build_10x_feed.py` — each folder = post.jpg (4:5 premium system) + caption.txt (organic-showcase voice, no hashtags/CTA, ≤1 emoji, [@handle] placeholders Hunter must verify before posting). Mix: 3 project cards (Broncos League Club, Villa Noosa, The Bowsprit) · 2 craft cards (Art of Twilight, Art of Aerials) · 4 pure heroes (TLP pattern, zero type: Ocean Shores, 88 Third Ave, GC skyline, acreage golden hour) · July recap (post start of August). Cadence Thu + Sun; Tue reel slot reserved for video. QC: craft titles placed in sky, aerial variety enforced (three near-identical hinterland sunsets → one swapped to GC skyline).
 
 ### Material alternate — distinct material per craft (9 Jul 2026)
 Blueprint pattern was tried and **rejected by Hunter** ("shit") → deleted. Final 10x call: a **different real material per craft** (Magnific Recraft textures, like the client brands but with a cooler/design bent): film=black concrete, photo=pale oak, twilight=indigo slate, aerials=brushed steel, staging=cream travertine, the_process=warm concrete. The 10X mark is **carved/engraved into the material**, NOT a flat colour fill — Hunter's call. v1 was a procedural PIL deboss (`compose.deboss`); **v2 (final) upgraded to photoreal engravings via Nano Banana Pro** (Magnific `imagen-nano-banana-2`, img2img on the PIL version as reference to preserve exact 10X shape/placement) — real beveled walls, cast shadow, physical light. Baked finals in `10x Premium Kit/_engraved/{craft}.png`; builder crops+saves them (no re-spend). PIL versions backed up to `10x Bubbles/material_pil_versions/`. NB re-roll note: it can hallucinate a ring/coin border around the mark — prompt must forbid "circle/ring/border" (staging needed one re-roll). Client marks (CL./SBP) stay flat filled. Output: `~/Desktop/10x Bubbles/material/` (photo craft set in `~/Desktop/10x Bubbles/` kept as alt). Textures saved to `10x Premium Kit/_textures/`; recompose free via `_bubble_engine/build_material_bubbles.py`.
