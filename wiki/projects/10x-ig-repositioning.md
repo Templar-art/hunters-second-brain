@@ -2,7 +2,7 @@
 type: project
 tags: [10x-visuals, instagram, strategy]
 status: active
-updated: 2026-07-10
+updated: 2026-07-13
 ---
 
 # 10x Visuals — Own-Brand Instagram Strategy
@@ -76,6 +76,18 @@ Closes the "zero highlights" gap from the audit. Organised as a **craft + servic
 - **Files:** `~/Desktop/General Folder/10x Premium Kit/highlight_covers/` + `highlight_cover()` folded into `build_10x_premium.py` (re-runnable; edit the `HIGHLIGHTS` list). White mark baked to `_assets/10x_mark_white.png` so the kit is self-contained.
 - **One property/vertical per bubble** (Hunter's rule — don't show the same house 3×): FILM = Criterion Tavern bar interior (`Criterion Tavern-5`, moody depth — Hunter's pick) · PHOTO = Ocean Shores bath (light/brass detail) · TWILIGHT = 15 The Bowsprit dusk pool (only true dusk exterior in the library) · AERIALS = GC skyline at sunset (aerial_088) · STAGING = 88 Third Ave living room · THE PROCESS = documentary BTS (Interior Hill Linings toolbox-talk shoot, `Internal | 10x/Team Meeting-09`).
 - Frames pulled from the wider `10x Library` (Criterion Tavern + `Internal | 10x` folders beyond `_Selected`); all unposted. THE PROCESS could later swap to an actual 10x-crew/on-set frame if one is shot, but Hunter signed off on the documentary BTS shot (9 Jul).
+
+## Story content for the highlights — BUILT (13 Jul 2026)
+The bubbles need stories behind them (a highlight is just archived stories). **18 story frames (1080×1920), 3 per bubble**, built in the premium type system (whisper gradient, tracked white Poppins, kicker + film-title; IG safe zones respected — nothing in top ~170px / bottom ~280px).
+- **Files:** `~/Desktop/General Folder/10x Premium Kit/stories/` via `build_10x_stories.py` (re-runnable; frames picked off eyeballed contact sheets, not filenames).
+- **FILM:** Broncos League Club bar · Villa Noosa back-bar glow · Broncos detail ("THE DETAILS.") — kicker "A 10X VISUALS FILM".
+- **PHOTO:** Ocean Shores vanity · 88 Third Ave bath · Queenslander golden hour — kicker "10X VISUALS · PHOTOGRAPHY".
+- **TWILIGHT:** craft opener "THE ART OF TWILIGHT" (Bowsprit) · 15 The Bowsprit pool · 25 Dungogie dusk facade.
+- **AERIALS:** craft opener "THE ART OF AERIALS" · Ladds Ridge construction top-down ("EVERY ANGLE.") · GC hinterland sunset.
+- **STAGING:** 88 Third Ave ×2 ("STAGED TO SELL.") · 2 Carmel Close — kicker "VIRTUAL STAGING".
+- **THE PROCESS:** toolbox-talk BTS ("ON SET.") · whiteboard ("THE PLAN.") · Hour Glass site doco ("BEHIND THE SCENES.").
+- QC swaps during build: Criterion gaming-corner crop (KENO signage) → Villa Noosa; fake-twilight frame → true dusk 25 Dungogie; exterior-with-ute → Hour Glass worker frame.
+- **Posting flow:** post each frame to story (in order, craft opener first), immediately add to its highlight from the story viewer. Future: every job's best 1–2 frames get a story in the matching bubble — the highlights become living portfolios.
 
 ### Material alternate — distinct material per craft (9 Jul 2026)
 Blueprint pattern was tried and **rejected by Hunter** ("shit") → deleted. Final 10x call: a **different real material per craft** (Magnific Recraft textures, like the client brands but with a cooler/design bent): film=black concrete, photo=pale oak, twilight=indigo slate, aerials=brushed steel, staging=cream travertine, the_process=warm concrete. The 10X mark is **carved/engraved into the material**, NOT a flat colour fill — Hunter's call. v1 was a procedural PIL deboss (`compose.deboss`); **v2 (final) upgraded to photoreal engravings via Nano Banana Pro** (Magnific `imagen-nano-banana-2`, img2img on the PIL version as reference to preserve exact 10X shape/placement) — real beveled walls, cast shadow, physical light. Baked finals in `10x Premium Kit/_engraved/{craft}.png`; builder crops+saves them (no re-spend). PIL versions backed up to `10x Bubbles/material_pil_versions/`. NB re-roll note: it can hallucinate a ring/coin border around the mark — prompt must forbid "circle/ring/border" (staging needed one re-roll). Client marks (CL./SBP) stay flat filled. Output: `~/Desktop/10x Bubbles/material/` (photo craft set in `~/Desktop/10x Bubbles/` kept as alt). Textures saved to `10x Premium Kit/_textures/`; recompose free via `_bubble_engine/build_material_bubbles.py`.
