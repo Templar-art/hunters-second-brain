@@ -38,7 +38,7 @@
   #loader .barwrap{width:220px;height:2px;background:rgba(239,236,228,.15);overflow:hidden}
   #loader .bar{height:100%;width:100%;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .2s}
 
-  .track{height:520vh;position:relative}
+  .track{height:900vh;position:relative}
   .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--ink)}
   canvas{display:block;width:100%;height:100%}
   .stage::before,.stage::after{content:"";position:absolute;left:0;right:0;height:26vh;pointer-events:none;z-index:2}
@@ -55,9 +55,10 @@
   .cue .ln{width:46px;height:1px;background:rgba(255,255,255,.5);position:relative;overflow:hidden}
   .cue .ln::after{content:"";position:absolute;inset:0;background:var(--amber);animation:sweep 2.4s ease-in-out infinite}
   @keyframes sweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
-  .cap.mid{left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;max-width:26ch}
-  .cap.mid .big{font-family:var(--disp);font-weight:400;font-size:clamp(24px,3.8vw,46px);line-height:1.08;
-    text-transform:uppercase;letter-spacing:.02em}
+  .cap.phase{right:30px;bottom:12vh;text-align:right}
+  .cap.phase .big{font-family:var(--disp);font-weight:400;font-size:clamp(28px,4.6vw,60px);line-height:1;
+    text-transform:uppercase;letter-spacing:.02em;color:var(--bone)}
+  .cap.phase .big::after{content:"";display:block;height:3px;width:38%;margin:10px 0 0 auto;background:var(--amber)}
 
   .outro{padding:130px 0 40px;text-align:center}
   .wrap{max-width:1120px;margin:0 auto;padding:0 30px}
@@ -96,8 +97,8 @@
       <div class="ey">120 Kennedys Lane · Northern Rivers</div>
       <h1>Walk it<br>before the<br>key turns.</h1>
     </div>
-    <div class="cue" id="cue"><span class="ln"></span>Scroll to move</div>
-    <div class="cap mid" id="capMid"><div class="big">Every metre, at your pace.</div></div>
+    <div class="cue" id="cue"><span class="ln"></span>Scroll to build</div>
+    <div class="cap phase" id="capStage"><div class="big" id="stageWord"></div></div>
   </div>
 </div>
 
@@ -113,7 +114,7 @@
 <footer>Salisbury Building Projects · demo by 10x Visuals</footer>
 
 <script>
-  const FRAME_COUNT = 121;
+  const FRAME_COUNT = 323;
   const pad = n => String(n).padStart(4,'0');
   const SRC = i => `frames/f_${pad(i+1)}.jpg`;
 
@@ -124,8 +125,17 @@
   const loader = document.getElementById('loader');
   const lbar = document.getElementById('lbar');
   const capOpen = document.getElementById('capOpen');
-  const capMid = document.getElementById('capMid');
+  const capStage = document.getElementById('capStage');
+  const stageWord = document.getElementById('stageWord');
   const cue = document.getElementById('cue');
+
+  /* build stages mapped to scroll progress (4 chained 5s clips) */
+  const STAGES = [
+    [0.00, 0.25, 'Frame.'],
+    [0.25, 0.50, 'Brick.'],
+    [0.50, 0.75, 'Roof.'],
+    [0.75, 1.01, 'Home.']
+  ];
 
   const frames = new Array(FRAME_COUNT);
   let loaded = 0, drawn = -1;
@@ -172,7 +182,11 @@
     scrub.style.transform = 'scaleX('+p+')';
     capOpen.style.opacity = 1 - range(p,0.02,0.10);
     cue.style.opacity     = (1 - range(p,0.02,0.10)) * 0.7;
-    capMid.style.opacity  = Math.min(range(p,0.40,0.48), 1 - range(p,0.60,0.68));
+    /* stage word: pick by progress, fade in/out inside each stage's band */
+    const st = STAGES.find(s => p >= s[0] && p < s[1]) || STAGES[STAGES.length-1];
+    if(stageWord.textContent !== st[2]) stageWord.textContent = st[2];
+    const inStage = (p - st[0]) / (st[1] - st[0]);
+    capStage.style.opacity = range(p,0.06,0.12) * Math.min(range(inStage,0.05,0.22), 1 - range(inStage,0.85,1.0));
   }
   function loop(t){
     lastTick = t;

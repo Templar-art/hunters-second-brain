@@ -47,3 +47,12 @@ Same recipe, one variable — what "comes alive" means for the client:
 Prompt template: SEEDANCE-PROMPT.md structure; swap Scene & Mood + Movement's "ignition"
 layer. One 5s 1080p Seedance 2.0 Pro clip per site (3,500 cr) or run it in the Higgsfield
 web app on the plan. Then: frames at fps=24 → index.html (FRAME_COUNT + brand vars).
+
+## v2 LIVE: "Built before your eyes" (14 Jul 2026)
+The scroll now plays the FULL BUILD — 20s, 323 frames, four chained Seedance 2.0 Pro clips:
+slab → timber frame → brickwork → roof/glass/gardens/dusk → the original lights-on push-in
+as the finale. Chaining trick: 3 construction-stage stills generated with Nano Banana Pro
+from the real finished photo (exact geometry held), then each clip keyframed start→end on
+consecutive stills so the joins are seamless. Stage captions (FRAME. / BRICK. / ROOF. / HOME.)
+fade per scroll band. Cost: 3 stills ~300 cr + 3 clips 10,500 cr (+3,500 for v1's dusk clip).
+Full film also saved as `build_full.mp4` (usable as a reel/timelapse asset on socials).
