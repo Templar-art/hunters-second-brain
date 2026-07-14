@@ -15,3 +15,8 @@
 projects/10x-scroll-build/frames/
 projects/10x-scroll-salisbury/frames/
 projects/10x-scroll-salisbury/*.mp4
+projects/10x-scroll-salisbury/**/*.mp4
+projects/10x-scroll-salisbury/**/*.jpg
+projects/10x-scroll-salisbury/**/*.png
+projects/10x-scroll-salisbury/camtests/
+projects/10x-scroll-salisbury/flystory/

@@ -85,3 +85,18 @@ CRANE-UP good reveal · FPV drifted (hallucinated a wide street + tree) → drop
 Next: commit winner(s) to Seedance 2.0 Pro 1080p for the final page. Concept options —
 (A) single hero move on the finished house (simplest, instantly replicable per niche), or
 (B) regenerate the 4 build stages on Pro WITH camera moves (richest, geometry-continuity risk).
+
+## v4 LIVE — cinematic fly-story (14 Jul 2026, FINAL)
+Replaced the build-timelapse with a genuine 3D camera journey the user asked for:
+**reveal → orbit → step inside**, 15.2s, 304 frames. Three Seedance 2.0 Pro 1080p clips
+(~10,500 cr) chained seamlessly by keyframing each clip's START on the previous clip's
+END frame (extracted via ffmpeg `-sseof`):
+1. **Reveal** — pullOut from the glowing entry to the full dusk facade framed by trees.
+2. **Orbit** — orbitLeft around the house, real foreground-tree parallax.
+3. **Step inside** — superDollyIn straight through the front door, landing in the timber
+   staircase foyer. The payoff: the scroll literally walks the buyer into the home.
+Engine: 2D camera rig retired (footage now carries the motion); cross-blend interpolation
+kept for scrub smoothness. Captions: The reveal. / Every angle. / Step inside.
+Full film saved as `fly_full.mp4` (usable as a hero reel). Prior build clips + Mini camera
+tests kept in flystory/ + camtests/ (all git-ignored).
+Per-niche recipe unchanged: same 3-move chain, swap the property photo + the interior payoff.
