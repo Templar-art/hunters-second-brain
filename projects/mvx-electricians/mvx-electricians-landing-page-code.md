@@ -9,7 +9,7 @@ updated: 2026-07-14
 Residential electricians Google Ads landing page (gold-coast-electricians). Paste the ENTIRE code block below into the Elementor HTML widget, replacing anything already in it. Includes the theme link-colour guard, mobile optimisation, and the no-dash copy rules.
 
 After pasting:
-1. "Prefer we call you?" button has `href="#"`, point it at your form section anchor.
+1. "Prefer we call you?" scrolls to `#form`. Give your Elementor form section the CSS ID `form` (section > Advanced > CSS ID).
 2. Confirm the blue chip names row (City of Gold Coast / Gold Coast Airport / McDonald's) is fine to publish with Matt.
 
 ```html
@@ -270,7 +270,7 @@ After pasting:
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
           <span>Call now: 0427 593 990<span class="mvx-sub">Talk to a real local electrician</span></span>
         </a>
-        <a class="mvx-btn-ghost" href="#">Prefer we call you? ↓</a>
+        <a class="mvx-btn-ghost" href="#form">Prefer we call you? ↓</a>
       </div>
       <ul class="mvx-points">
         <li><span class="mvx-tick">✓</span> Same day and emergency response</li>
