@@ -222,6 +222,15 @@
 @media (prefers-reduced-motion:reduce){
   .mvx-lp *,.mvx-lp *::before,.mvx-lp *::after{transition:none !important;animation:none !important}
 }
+
+/* WordPress/Elementor override guard: the theme's global link colour
+   (green a{}) outranks widget styles, so pin every link colour here. */
+.mvx-lp a{text-decoration:none !important}
+.mvx-lp a.mvx-btn-call,.mvx-lp a.mvx-btn-call span,.mvx-lp a.mvx-btn-call:hover,.mvx-lp a.mvx-btn-call:active{color:var(--mvx-black) !important}
+.mvx-lp a.mvx-btn-ghost,.mvx-lp a.mvx-btn-ghost:hover{color:var(--mvx-white) !important}
+.mvx-lp a.mvx-svc-cta{color:var(--mvx-charcoal) !important}
+.mvx-lp a.mvx-svc-cta .mvx-num{color:var(--mvx-green-text) !important}
+.mvx-lp .mvx-callbar a.mvx-btn-call{color:var(--mvx-black) !important}
 </style>
 
 <div class="mvx-lp">
