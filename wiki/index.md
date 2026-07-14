@@ -18,6 +18,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[belle-property]] — Lot 48 house-into-lot composite; awaiting "run it"
 - [[cva-architects]] — render enhancement; delivered Jun 2026, repeat client
 - [[jang-studio]] — vendor contact: offshore architectural photo editor
+- [[mvx-electrical]] — web client (Matt); aircon Google Ads landing page conversion redesign Jul 2026
 
 ## Projects
 - [[10x-ig-repositioning]] — own-brand IG overhaul: credit loop, premium kit, craft series

@@ -2,6 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "mvx-aircon",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "/Users/10xhunter/Documents/Hunters Second Brain/projects/mvx-aircon"],
+      "port": 8766
+    },
+    {
       "name": "scroll-salisbury",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8765", "--directory", "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-scroll-salisbury"],
