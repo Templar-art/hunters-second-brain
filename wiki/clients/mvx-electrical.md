@@ -17,4 +17,5 @@ Gold Coast + Northern NSW electrical contractor, owner **Matt**. 10x Visuals bui
 
 ## Work
 
+- **2026-07-14 — Residential electricians landing page.** Same conversion system as the aircon page (League Gothic/Poppins brand build, phone-first, 2x2 services, ends at FAQ, Elementor-ready scoped CSS). Hero = Liversaver-14, blue-chip trust row replaces brands row. Deliverable: [landing-page.html](../../projects/mvx-electricians/landing-page.html) + shareable code note in same folder.
 - **2026-07-14 — Aircon landing page conversion redesign.** Existing Google Ads landing page underperforming vs competitor [T42 Electrical](https://t42electrical.com.au/air-conditioning-installation-repair/). Rebuilt phone-first (11 tap-to-call CTAs, sticky mobile call bar, message-match H1, 4-field callback form moved to bottom, "we ARE the electricians — one trade, one visit" differentiator). Deliverable: [landing-page.html](../../projects/mvx-aircon/landing-page.html) + [CONVERSION-NOTES.md](../../projects/mvx-aircon/CONVERSION-NOTES.md) (incl. pre-launch checklist: confirm brands, call tracking, Formidable wiring).

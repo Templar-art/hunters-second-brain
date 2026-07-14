@@ -41,3 +41,5 @@ Hunter's boss overruled the per-vertical recolour (navy RE / orange construction
 ## [2026-07-14] ingest | Salisbury scroll v2 — 20s built-before-your-eyes film (4 chained Seedance clips + NB Pro stage stills, ~14k cr approved via 174k balance); stage captions on scrub
 
 ## [2026-07-14] ingest | MVX Electrical aircon landing page redesign — phone-first conversion rebuild vs T42 competitor; deliverable projects/mvx-aircon/ + new client page
+
+## [2026-07-14] ingest | MVX residential electricians LP built on aircon-page system (projects/mvx-electricians)
