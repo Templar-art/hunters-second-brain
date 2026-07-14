@@ -23,6 +23,7 @@
 .mvx-lp{
   --mvx-green:#7EC004;
   --mvx-green-dark:#5E8519;
+  --mvx-green-text:#4F7011; /* green for normal-size text on white, 5.7:1 */
   --mvx-black:#000000;
   --mvx-charcoal:#1a1a1a;
   --mvx-bg-deep:#0f0f0f;
@@ -61,7 +62,7 @@
 
 /* Buttons: green = CTA accent per brand, radius-md, no pills */
 .mvx-btn-call{display:inline-flex;align-items:center;gap:.65rem;background:var(--mvx-green);color:var(--mvx-black);font-family:var(--mvx-sans);font-weight:700;text-decoration:none;padding:1rem 1.8rem;border-radius:var(--mvx-r-md);font-size:clamp(1.05rem,1rem + .3vw,1.25rem);box-shadow:var(--mvx-shadow);transition:background .2s cubic-bezier(0.4,0,0.2,1),transform .2s cubic-bezier(0.4,0,0.2,1)}
-.mvx-btn-call:hover{background:var(--mvx-green-dark);color:var(--mvx-white);transform:translateY(-2px)}
+.mvx-btn-call:hover{background:var(--mvx-green-dark);color:var(--mvx-black);transform:translateY(-2px)}
 .mvx-btn-call svg{flex:none}
 .mvx-btn-call .mvx-sub{display:block;font-size:.72rem;font-weight:500;letter-spacing:.04em;opacity:.8}
 .mvx-btn-ghost{display:inline-flex;align-items:center;gap:.5rem;color:var(--mvx-white);font-weight:500;text-decoration:none;padding:1rem 1.5rem;border-radius:var(--mvx-r-md);border:1px solid var(--mvx-line-dark);font-size:1rem;transition:border-color .2s,background .2s}
@@ -110,8 +111,8 @@
 .mvx-svc:hover{box-shadow:0 12px 32px rgba(0,0,0,0.12);transform:translateY(-3px)}
 .mvx-svc h3{font-size:1.25rem;color:var(--mvx-charcoal)}
 .mvx-svc p{color:var(--mvx-muted);font-size:.97rem;font-weight:300;flex:1}
-.mvx-svc-cta{display:inline-flex;align-items:center;gap:.45rem;color:var(--mvx-charcoal);font-weight:600;text-decoration:none;font-size:.98rem;margin-top:.4rem}
-.mvx-svc-cta .mvx-num{color:var(--mvx-green-dark)}
+.mvx-svc-cta{display:inline-flex;align-items:center;gap:.45rem;color:var(--mvx-charcoal);font-weight:600;text-decoration:none;font-size:.98rem;margin-top:.1rem;padding:.7rem 0;margin-bottom:-.4rem}
+.mvx-svc-cta .mvx-num{color:var(--mvx-green-text)}
 .mvx-svc-cta:hover .mvx-num{text-decoration:underline}
 .mvx-svc-icon{width:46px;height:46px;border-radius:var(--mvx-r-md);background:var(--mvx-charcoal);display:grid;place-items:center;color:var(--mvx-green)}
 
@@ -153,7 +154,7 @@
 .mvx-gbadge small{display:block;color:var(--mvx-ink-2);font-size:.8rem;font-weight:300}
 .mvx-rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
 .mvx-rev{background:var(--mvx-white);border:1px solid var(--mvx-line-light);border-radius:var(--mvx-r-md);padding:1.7rem 1.6rem;display:flex;flex-direction:column;gap:.8rem}
-.mvx-rev .mvx-stars{color:var(--mvx-green-dark);letter-spacing:.1em}
+.mvx-rev .mvx-stars{color:var(--mvx-green-text);letter-spacing:.1em}
 .mvx-rev p{font-size:.95rem;font-weight:300;color:var(--mvx-body-ink)}
 .mvx-rev cite{font-style:normal;font-weight:600;color:var(--mvx-charcoal);font-size:.92rem;margin-top:auto}
 .mvx-rev cite small{display:block;font-weight:300;color:var(--mvx-muted)}
@@ -179,6 +180,10 @@
 .mvx-faq summary::after{content:"+";font-size:1.5rem;font-weight:300;color:var(--mvx-green);transition:transform .2s}
 .mvx-faq details[open] summary::after{transform:rotate(45deg)}
 .mvx-faq details p{padding:0 1.4rem 1.25rem;color:var(--mvx-ink-2);font-weight:300;font-size:.97rem}
+
+/* Keyboard focus: visible on both light and dark surfaces */
+.mvx-lp a:focus-visible,.mvx-lp summary:focus-visible{outline:2px solid var(--mvx-green);outline-offset:2px;border-radius:var(--mvx-r-sm)}
+.mvx-sec:not(.mvx-sec-dark) a:focus-visible{outline-color:var(--mvx-green-text)}
 
 @media (prefers-reduced-motion:reduce){
   .mvx-lp *,.mvx-lp *::before,.mvx-lp *::after{transition:none !important;animation:none !important}
@@ -283,7 +288,7 @@
 <section class="mvx-sec mvx-why">
   <div class="mvx-wrap">
     <div class="mvx-why-img">
-      <img src="https://mvxelectrical.com.au/wp-content/uploads/2026/04/MVX-Liversaver-11-scaled.jpg" alt="Matt, Director of MVX Electrical, on site on the Gold Coast" loading="lazy">
+      <img src="https://mvxelectrical.com.au/wp-content/uploads/2026/04/MVX-Liversaver-11-scaled.jpg" alt="Matt, Director of MVX Electrical, on site on the Gold Coast" loading="lazy" decoding="async" width="2560" height="1707">
       <span class="mvx-img-tag">Meet Matt, MVX Director</span>
     </div>
     <div>
