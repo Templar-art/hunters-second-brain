@@ -56,3 +56,24 @@ from the real finished photo (exact geometry held), then each clip keyframed sta
 consecutive stills so the joins are seamless. Stage captions (FRAME. / BRICK. / ROOF. / HOME.)
 fade per scroll band. Cost: 3 stills ~300 cr + 3 clips 10,500 cr (+3,500 for v1's dusk clip).
 Full film also saved as `build_full.mp4` (usable as a reel/timelapse asset on socials).
+
+## v3 engine: cross-blend + camera-fly rig (14 Jul 2026)
+Two upgrades, both free/local (no new credits):
+- **Sub-frame cross-blend** — the canvas now draws `floor(f)` solid + `ceil(f)` at the
+  fractional weight every rAF, so the scrub interpolates continuously instead of stepping
+  to the nearest frame. This is the "60fps / time-interpolation" smoothness in software —
+  and it's safer than ffmpeg `minterpolate` on this footage, because optical-flow interp
+  warps on build-morph content (bricks/trusses appearing aren't real motion). Frames
+  re-extracted at 15fps/1280px (303 frames) — density × blend reads buttery.
+- **Camera rig** — scroll-driven `scale`+`translate` keyframes on the canvas (GPU transform):
+  dive onto the slab (1.30) → pull back as it tops out (1.05) → dive into the brick (1.32) →
+  rise for the shell (1.07) → punch toward the glowing entry (1.36) → settle on reveal (1.03).
+  In-and-out rhythm layered over the footage. Scale floor 1.03 = no edge gaps.
+
+### Ceiling / next step (PAID — needs Hunter go-ahead)
+The camera fly is a 2D digital move on flat footage — reads as movement, but it's not true
+3D parallax. Real drone-swoop / orbit / crane "flying" only comes from regenerating the
+Seedance clips WITH camera motion (Seedance 2.0 supports fpvDrone, craneUp/Down, orbitLeft/
+Right, superDollyIn/Out, 360Orbit). Cost to redo the 4 build clips with camera moves:
+~3,500 cr each on 2.0 Pro (~14,000 total) or ~700 cr each on 2.0 Mini 720p (~2,800 total).
+Recommend Mini first as a look-test before committing Pro credits.
