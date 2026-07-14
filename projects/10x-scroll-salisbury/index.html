@@ -97,7 +97,7 @@
       <div class="ey">120 Kennedys Lane · Northern Rivers</div>
       <h1>Walk it<br>before the<br>key turns.</h1>
     </div>
-    <div class="cue" id="cue"><span class="ln"></span>Scroll to fly through</div>
+    <div class="cue" id="cue"><span class="ln"></span>Scroll from dirt to doorway</div>
     <div class="cap phase" id="capStage"><div class="big" id="stageWord"></div></div>
   </div>
 </div>
@@ -114,7 +114,7 @@
 <footer>Salisbury Building Projects · demo by 10x Visuals</footer>
 
 <script>
-  const FRAME_COUNT = 304;
+  const FRAME_COUNT = 365;
   const pad = n => String(n).padStart(4,'0');
   const SRC = i => `frames/f_${pad(i+1)}.jpg`;
 
@@ -131,9 +131,12 @@
 
   /* build stages mapped to scroll progress (4 chained 5s clips) */
   const STAGES = [
-    [0.00, 0.34, 'The reveal.'],
-    [0.34, 0.67, 'Every angle.'],
-    [0.67, 1.01, 'Step inside.']
+    [0.00, 0.17, 'The site.'],
+    [0.17, 0.33, 'Framed.'],
+    [0.33, 0.50, 'Built.'],
+    [0.50, 0.67, 'The reveal.'],
+    [0.67, 0.83, 'Every angle.'],
+    [0.83, 1.01, 'Step inside.']
   ];
 
   const frames = new Array(FRAME_COUNT);

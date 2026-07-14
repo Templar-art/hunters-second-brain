@@ -100,3 +100,19 @@ kept for scrub smoothness. Captions: The reveal. / Every angle. / Step inside.
 Full film saved as `fly_full.mp4` (usable as a hero reel). Prior build clips + Mini camera
 tests kept in flystory/ + camtests/ (all git-ignored).
 Per-niche recipe unchanged: same 3-move chain, swap the property photo + the interior payoff.
+
+## v5 LIVE — full aerial build + fly (14 Jul 2026, FINAL)
+The complete story the user asked for: **aerial dirt → slab (builders) → frame → finished
+house → reveal → orbit → step inside.** 30.4s, 365 frames, 6 Seedance 2.0 Pro 1080p clips
+chained by end→start keyframes:
+1. Aerial descent onto the graded lot; concrete slab pours into the pegged footprint, two
+   distant hi-vis workers (craneDown). Start still = Nano Banana aerial-dirt render.
+2. Descent continues; timber frame rises from the slab (craneDown).
+3. Frame → brick → roof → dusk finished house. END-KEYFRAMED to the real finished photo,
+   which RE-ANCHORS fidelity after build-morph drift and joins seamlessly into...
+4–6. the earlier fly clips (reveal pull-out / orbit / dolly-in through the door), reused
+   because clip 3 ends exactly where clip 4 starts (the real photo) — saved ~7,000 cr.
+Captions: The site / Framed / Built / The reveal / Every angle / Step inside.
+Cost this pass: 2 aerial-dirt stills ~150 cr + 3 Pro clips 10,500 cr (orbit/reveal/inside reused).
+Engine unchanged (cross-blend interpolation, 2D rig off). Full film: fly_full.mp4.
+Per-niche recipe: swap the property photo + interior payoff; the 6-beat chain is the template.
