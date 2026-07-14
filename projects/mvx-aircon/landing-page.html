@@ -2,7 +2,7 @@
 <html lang="en-AU">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Air Conditioning Installation &amp; Repair Gold Coast | MVX Electrical | Call 0427 593 990</title>
 <meta name="robots" content="noindex, nofollow">
 </head>
@@ -180,6 +180,40 @@
 .mvx-faq summary::after{content:"+";font-size:1.5rem;font-weight:300;color:var(--mvx-green);transition:transform .2s}
 .mvx-faq details[open] summary::after{transform:rotate(45deg)}
 .mvx-faq details p{padding:0 1.4rem 1.25rem;color:var(--mvx-ink-2);font-weight:300;font-size:.97rem}
+
+/* Touch devices: no hover-dependent motion, give active feedback instead */
+@media (hover:none){
+  .mvx-btn-call:hover{transform:none;background:var(--mvx-green);color:var(--mvx-black)}
+  .mvx-btn-call:active{background:var(--mvx-green-dark);color:var(--mvx-black)}
+  .mvx-svc:hover{transform:none;box-shadow:none}
+  .mvx-svc:active{box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+}
+
+/* Mobile (ads traffic is thumb-first) */
+@media (max-width:640px){
+  .mvx-lp{font-size:16px}
+  .mvx-hero .mvx-wrap{padding:2.6rem 0 2.4rem}
+  /* text spans full width on mobile: one solid legibility layer instead of a side gradient */
+  .mvx-hero::after{background:linear-gradient(180deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.8) 100%)}
+  .mvx-hero .mvx-h1{font-size:clamp(2.7rem,14vw,3.4rem)}
+  .mvx-rating{font-size:.82rem;padding:.4rem .8rem;margin-bottom:1.1rem}
+  .mvx-hero .mvx-lede{margin-bottom:1.5rem}
+  .mvx-ctas{flex-direction:column;align-items:stretch;gap:.7rem;margin-bottom:1.7rem}
+  .mvx-btn-call,.mvx-btn-ghost{width:100%;justify-content:center;text-align:center}
+  .mvx-points{flex-direction:column;gap:.55rem}
+  .mvx-licences .mvx-wrap{flex-direction:column;align-items:flex-start;gap:.3rem;padding:1rem 0;font-size:.84rem}
+  .mvx-sec-head{margin-bottom:1.6rem}
+  .mvx-svc{padding:1.5rem 1.35rem 1.35rem}
+  .mvx-step{padding:1.5rem 1.35rem}
+  .mvx-step::before{font-size:2.4rem;margin-bottom:.5rem}
+  .mvx-rev-head{flex-direction:column;align-items:flex-start;gap:1.2rem;margin-bottom:1.6rem}
+  .mvx-rev{padding:1.4rem 1.3rem}
+  .mvx-why-img .mvx-img-tag{font-size:.78rem;left:.8rem;bottom:.8rem}
+  .mvx-brands{padding:2.2rem 0}
+  .mvx-brands .mvx-row{gap:.3rem 1.6rem}
+  .mvx-faq summary{padding:1rem 1.1rem;font-size:.98rem}
+  .mvx-faq details p{padding:0 1.1rem 1.1rem}
+}
 
 /* Keyboard focus: visible on both light and dark surfaces */
 .mvx-lp a:focus-visible,.mvx-lp summary:focus-visible{outline:2px solid var(--mvx-green);outline-offset:2px;border-radius:var(--mvx-r-sm)}
