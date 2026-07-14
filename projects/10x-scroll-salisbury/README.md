@@ -77,3 +77,11 @@ Seedance clips WITH camera motion (Seedance 2.0 supports fpvDrone, craneUp/Down,
 Right, superDollyIn/Out, 360Orbit). Cost to redo the 4 build clips with camera moves:
 ~3,500 cr each on 2.0 Pro (~14,000 total) or ~700 cr each on 2.0 Mini 720p (~2,800 total).
 Recommend Mini first as a look-test before committing Pro credits.
+
+## Camera-move look-test (14 Jul 2026, Seedance 2.0 Mini 720p, 4×700=2,800 cr)
+Tested 4 signature moves on the finished house (camtests/): orbit / super-dolly-in / crane-up / fpv-drone.
+Verdict: ORBIT best (faithful + real 3D parallax) · DOLLY-IN strong (lands inside on the staircase) ·
+CRANE-UP good reveal · FPV drifted (hallucinated a wide street + tree) → drop.
+Next: commit winner(s) to Seedance 2.0 Pro 1080p for the final page. Concept options —
+(A) single hero move on the finished house (simplest, instantly replicable per niche), or
+(B) regenerate the 4 build stages on Pro WITH camera moves (richest, geometry-continuity risk).

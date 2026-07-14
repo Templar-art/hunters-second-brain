@@ -43,3 +43,5 @@ Hunter's boss overruled the per-vertical recolour (navy RE / orange construction
 ## [2026-07-14] ingest | MVX Electrical aircon landing page redesign — phone-first conversion rebuild vs T42 competitor; deliverable projects/mvx-aircon/ + new client page
 
 ## [2026-07-14] ingest | MVX residential electricians LP built on aircon-page system (projects/mvx-electricians)
+
+## [2026-07-14] ingest | Seedance camera-move look-test (2,800 cr Mini): orbit wins, dolly-in strong, fpv drifted; awaiting Pro-commit direction
