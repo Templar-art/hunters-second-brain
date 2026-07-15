@@ -27,6 +27,7 @@ NAVY_TOP  = (15, 34, 56)        # subtle darker top for gradient
 NAVY_LINE = (38, 60, 86)        # #263C56 quiet connective lines
 GOLD      = (183, 137, 59)      # #B7893B burnished gold — spent rarely
 GOLD_SOFT = (201, 160, 90)      # #C9A05A
+GOLD_INK  = (122, 88, 36)       # deep bronze for gold *text on cream* (WCAG 5.4:1)
 CREAM     = (243, 236, 222)     # #F3ECDE warm cream — the air everything breathes in
 CREAM_DIM = (198, 185, 162)     # #C6B9A2 quieter cream for support text
 SLATE     = (150, 165, 184)     # muted labels
@@ -91,12 +92,10 @@ def gold_bar(draw, y, w=64, x=None, center=True, thick=3):
 def _norm(word):
     return word.strip(".,?!:;’'\"()").lower()
 
-def headline(draw, text, font, top, max_w, base=CREAM, gold_words=None,
-             center=True, leading=1.14):
-    gold_words = {_norm(w) for w in (gold_words or [])}
+def wrap_words(draw, text, font, max_w, balance=True):
+    """Greedy word-wrap; balance pulls a word down to avoid a single-word last line."""
     words = text.split()
     space = measure(draw, " ", font)[0]
-    # greedy wrap into lines of words
     lines, cur, curw = [], [], 0
     for wd in words:
         ww = measure(draw, wd, font)[0]
@@ -107,28 +106,32 @@ def headline(draw, text, font, top, max_w, base=CREAM, gold_words=None,
             lines.append(cur); cur = [wd]; curw = ww
     if cur:
         lines.append(cur)
+    if balance and len(lines) >= 2 and len(lines[-1]) == 1 and len(lines[-2]) >= 2:
+        moved = lines[-2][-1]
+        trial = [moved] + lines[-1]
+        tw = sum(measure(draw, w, font)[0] for w in trial) + space * (len(trial) - 1)
+        if tw <= max_w:
+            lines[-2] = lines[-2][:-1]; lines[-1] = trial
+    return lines, space
+
+def headline(draw, text, font, top, max_w, base=CREAM, gold_words=None,
+             center=True, leading=1.14, gold=GOLD):
+    gold_words = {_norm(w) for w in (gold_words or [])}
+    lines, space = wrap_words(draw, text, font, max_w)
     lh = int(font.size * leading)
     y = top
     for line in lines:
         lw = sum(measure(draw, w, font)[0] for w in line) + space * (len(line) - 1)
         x = (W - lw) / 2 if center else MARGIN
         for wd in line:
-            col = GOLD if _norm(wd) in gold_words else base
+            col = gold if _norm(wd) in gold_words else base
             draw.text((x, y), wd, font=font, fill=col)
             x += measure(draw, wd, font)[0] + space
         y += lh
     return y
 
 def count_lines(draw, text, font, max_w):
-    words, cur, curw, n = text.split(), [], 0, 0
-    space = measure(draw, " ", font)[0]
-    for wd in words:
-        ww = measure(draw, wd, font)[0]; add = ww + (space if cur else 0)
-        if curw + add <= max_w or not cur:
-            cur.append(wd); curw += add
-        else:
-            n += 1; cur = [wd]; curw = ww
-    return n + (1 if cur else 0)
+    return len(wrap_words(draw, text, font, max_w)[0])
 
 def block(draw, text, font, fill, top, max_w, center=True, leading=1.3):
     words, lines, cur = text.split(), [], ""
@@ -186,9 +189,10 @@ def brand_mark(draw, y=H - 108, on_light=False):
     yy = y + 22
     main = NAVY if on_light else CREAM
     dim = SLATE_NAVY if on_light else SLATE
+    accent = GOLD_INK if on_light else GOLD
     x += tracked(draw, (x, yy), left, f, main, tr)
     x += tracked(draw, (x, yy), mid, f, dim, tr)
-    tracked(draw, (x, yy), right, f, GOLD, tr)
+    tracked(draw, (x, yy), right, f, accent, tr)
 
 # ---------------------------------------------------------------- photo helpers
 def load_photo(name):
@@ -355,19 +359,8 @@ def tip_card(label, statement, gold_words=None, idx=None):
     d.rounded_rectangle([lx, ly, lx + lw, ly + 62], radius=31, outline=GOLD, width=2)
     tracked(d, (W / 2, ly + 17), label, lf, GOLD, 4, anchor="ma")
     hf = serif(82)
-    words = statement.split()
-    space = measure(d, " ", hf)[0]
-    lines, cur, curw = [], [], 0
-    for wd in words:
-        ww = measure(d, wd, hf)[0]; add = ww + (space if cur else 0)
-        if curw + add <= CW or not cur:
-            cur.append(wd); curw += add
-        else:
-            lines.append(cur); cur = [wd]; curw = ww
-    if cur:
-        lines.append(cur)
     lh = int(hf.size * 1.16)
-    top = (H - lh * len(lines)) / 2 - 30
+    top = (H - lh * count_lines(d, statement, hf, CW)) / 2 - 30
     y = headline(d, statement, hf, top, CW, base=CREAM, gold_words=gold_words)
     gold_bar(d, y + 24, w=66, thick=3)
     brand_mark(d)
@@ -410,13 +403,14 @@ def cream_quote(quote, kick, gold_words=None):
     img = Image.new("RGB", (W, H), CREAM_BG)
     houses(img, alpha=13, color=NAVY)
     d = ImageDraw.Draw(img)
-    tracked(d, (W / 2, MARGIN + 26), kick.upper(), inter(23, "SemiBold"), GOLD, 6, anchor="ma")
+    tracked(d, (W / 2, MARGIN + 26), kick.upper(), inter(23, "SemiBold"), GOLD_INK, 6, anchor="ma")
     gold_bar(d, MARGIN + 70, w=42, thick=2)
     hf = serif(74)
     n = count_lines(d, quote, hf, CW)
     top = (H - n * int(hf.size * 1.18)) / 2 + 24
     d.text((W / 2, top - 92), "“", font=serif(150), fill=GOLD, anchor="mm")
-    y = headline(d, quote, hf, top, CW, base=NAVY, gold_words=gold_words, leading=1.18)
+    y = headline(d, quote, hf, top, CW, base=NAVY, gold_words=gold_words, leading=1.18,
+                 gold=GOLD_INK)
     gold_bar(d, y + 26, w=66, thick=3)
     brand_mark(d, on_light=True)
     return img
