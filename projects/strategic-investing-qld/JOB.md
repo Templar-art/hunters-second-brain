@@ -89,3 +89,14 @@ Files: `out/post-NN/`. Captions: `captions.md`.
 ## Log (cont.)
 - 2026-07-15 revision: numbering fixed; 8 filler posts added (2 cream, 3 photo, 1
   monogram, 2 tips); 3 free stock photos pulled + graded. Cost: 0 credits.
+
+## Revision 2 (15 Jul) — no CTAs, more informative, gaps fixed
+- Removed all CTAs: post 9 (was "Book a chat") → why_support "What a good strategy
+  balances"; post 11 (was coffee CTA) → "Good strategy starts with good questions". No
+  phone/book/message copy anywhere. Captions rewritten CTA-free + dash-free.
+- Added informative posts 18–23: Growth vs cashflow · What is equity · Rentvesting ·
+  Know your numbers (photo, planning.jpg) · 2 principle cream quotes. **23 posts total.**
+- Fixed the big vertical gaps: numbered_step + list_slide now vertically centre their
+  content group and carry the house line-work motif; cream_quote mark tightened.
+- Grid rhythm balanced across photo / white (cream) / blue (navy). 4 photos, 4 cream,
+  rest navy. 1 more free stock photo pulled (planning, 0 credits).

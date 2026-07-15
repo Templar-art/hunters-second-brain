@@ -272,13 +272,23 @@ def statement_cover(kick, head, sub=None, gold_words=None, contact=None,
     return img
 
 def list_slide(kick, head, items=None, gold_words=None, sub=None,
-               idx=None, active=None, count=None):
+               active=None, count=None):
     img = new_canvas()
+    houses(img, 14)
     d = ImageDraw.Draw(img)
     if active is not None:
         slide_badge(d, active + 1, count)
     kicker(d, kick)
-    y = headline(d, head, serif(72), MARGIN + 156, CW, base=CREAM, gold_words=gold_words)
+    hf = serif(72)
+    # measure the content group so it can be vertically centred (kills dead space)
+    lh_sub = int(31 * 1.3)
+    gh = count_lines(d, head, hf, CW) * int(hf.size * 1.12)
+    if sub:
+        gh += 22 + count_lines(d, sub, inter(31, "Light"), CW - 60) * lh_sub
+    if items:
+        gh += 74 + len(items) * 88 - 22
+    top = max(MARGIN + 150, (H - 150 - gh) // 2)
+    y = headline(d, head, hf, top, CW, base=CREAM, gold_words=gold_words)
     if sub:
         y = block(d, sub, inter(31, "Light"), SLATE, y + 22, CW - 60)
     if items:
@@ -293,17 +303,24 @@ def list_slide(kick, head, items=None, gold_words=None, sub=None,
     brand_mark(d)
     return img
 
-def numbered_step(kick, num, head, sub=None, idx=None, active=None, count=None):
+def numbered_step(kick, num, head, sub=None, active=None, count=None):
     img = new_canvas()
+    houses(img, 14)
     d = ImageDraw.Draw(img)
     if active is not None:
         slide_badge(d, active + 1, count)
     kicker(d, kick)
-    d.text((W / 2, 462), num, font=serif(300), fill=GOLD, anchor="mm")
-    gold_bar(d, 606, w=58, thick=3)
-    y = headline(d, head, serif(60), 676, CW, base=CREAM)
+    nf, hf = serif(300), serif(58)
+    num_h = 214          # visual height of the numeral
+    gh = num_h + 58 + count_lines(d, head, hf, CW) * int(hf.size * 1.12)
     if sub:
-        block(d, sub, inter(31, "Light"), SLATE, y + 28, CW - 60)
+        gh += 26 + count_lines(d, sub, inter(31, "Light"), CW - 60) * int(31 * 1.3)
+    top = max(MARGIN + 150, (H - 150 - gh) // 2)
+    d.text((W / 2, top + num_h / 2), num, font=nf, fill=GOLD, anchor="mm")
+    gold_bar(d, top + num_h + 24, w=58, thick=3)
+    y = headline(d, head, hf, top + num_h + 58, CW, base=CREAM)
+    if sub:
+        block(d, sub, inter(31, "Light"), SLATE, y + 26, CW - 60)
     if active is not None:
         dots(d, active, count)
     brand_mark(d)
@@ -395,10 +412,10 @@ def cream_quote(quote, kick, gold_words=None):
     d = ImageDraw.Draw(img)
     tracked(d, (W / 2, MARGIN + 26), kick.upper(), inter(23, "SemiBold"), GOLD, 6, anchor="ma")
     gold_bar(d, MARGIN + 70, w=42, thick=2)
-    d.text((W / 2, 372), "“", font=serif(200), fill=(*GOLD, 255), anchor="mm")
     hf = serif(74)
     n = count_lines(d, quote, hf, CW)
-    top = (H - n * int(hf.size * 1.18)) / 2 - 10
+    top = (H - n * int(hf.size * 1.18)) / 2 + 24
+    d.text((W / 2, top - 92), "“", font=serif(150), fill=GOLD, anchor="mm")
     y = headline(d, quote, hf, top, CW, base=NAVY, gold_words=gold_words, leading=1.18)
     gold_bar(d, y + 26, w=66, thick=3)
     brand_mark(d, on_light=True)
@@ -433,29 +450,29 @@ def build():
     save(statement_cover("Strategic Investing · QLD",
                          "Welcome to Strategic Investing QLD",
                          "QLD property investing made clearer.",
-                         gold_words=["QLD"], idx=1, motif="houses"), 1, single=True)
+                         gold_words=["QLD"], motif="houses"), 1, single=True)
 
     print("Post 2 — Who this is for")
     save(list_slide("Who this is for", "Is this you?",
-                    gold_words=["you?"], idx=2, active=0, count=4,
+                    gold_words=["you?"], active=0, count=4,
                     sub="Investors at every stage. This page is built for you."), 2, 1)
     save(numbered_step("Stage 01", "01", "Just starting out",
-                       "No investment property yet.", idx=2, active=1, count=4), 2, 2)
+                       "No investment property yet.", active=1, count=4), 2, 2)
     save(numbered_step("Stage 02", "02", "Already own 1 to 3",
-                       "Building an investment portfolio.", idx=2, active=2, count=4), 2, 3)
+                       "Building an investment portfolio.", active=2, count=4), 2, 3)
     save(numbered_step("Stage 03", "03", "Experienced investor",
-                       "Four or more properties.", idx=2, active=3, count=4), 2, 4)
+                       "Four or more properties.", active=3, count=4), 2, 4)
 
     print("Post 3 — Why QLD")
     save(why_support("Why Queensland", "Why investors keep looking at QLD",
                      [("Diverse markets", "Different regions, different opportunities."),
                       ("Long-term demand drivers", "Population, infrastructure and lifestyle."),
                       ("Range of strategies", "Growth, cashflow or a balance of both.")],
-                     gold_words=["QLD"], idx=3), 3, single=True)
+                     gold_words=["QLD"]), 3, single=True)
 
     print("Post 4 — Common mistakes")
     save(list_slide("Educational", "Five common property investing mistakes",
-                    gold_words=["five"], idx=4, active=0, count=6,
+                    gold_words=["five"], active=0, count=6,
                     sub="Most of them happen before you even buy."), 4, 1)
     mistakes = [
         ("01", "Buying on hype instead of a plan"),
@@ -465,18 +482,18 @@ def build():
         ("05", "Copying someone else’s strategy blindly"),
     ]
     for i, (num, txt) in enumerate(mistakes):
-        save(numbered_step("Mistake", num, txt, idx=4, active=i + 1, count=6), 4, i + 2)
+        save(numbered_step("Mistake", num, txt, active=i + 1, count=6), 4, i + 2)
 
     print("Post 5 — Case study")
     save(list_slide("Case study", "From uncertainty to a clearer plan",
-                    gold_words=["clearer"], idx=5, active=0, count=4,
+                    gold_words=["clearer"], active=0, count=4,
                     sub="Sometimes clarity is the whole strategy."), 5, 1)
     save(numbered_step("Starting point", "01", "Unsure whether to invest",
-                       "Worried about risk and the next move.", idx=5, active=1, count=4), 5, 2)
+                       "Worried about risk and the next move.", active=1, count=4), 5, 2)
     save(numbered_step("The process", "02", "A strategy conversation",
-                       "Goals, current position and options reviewed.", idx=5, active=2, count=4), 5, 3)
+                       "Goals, current position and options reviewed.", active=2, count=4), 5, 3)
     save(numbered_step("Outcome", "03", "Clearer next steps",
-                       "A realistic plan and more confidence.", idx=5, active=3, count=4), 5, 4)
+                       "A realistic plan and more confidence.", active=3, count=4), 5, 4)
 
     print("Post 6 — Strategy chat")
     save(list_slide("What to expect", "What happens in a strategy chat?",
@@ -484,25 +501,25 @@ def build():
                            "Clarify your goals and timeline",
                            "Talk through possible options",
                            "Outline practical next steps"],
-                    gold_words=["chat?"], idx=6), 6, single=True)
+                    gold_words=["chat?"]), 6, single=True)
 
     print("Post 7 — The right team")
     save(list_slide("Support", "You don’t have to figure it out alone",
                     items=["Strategy", "Finance", "Tax", "Property professionals"],
-                    gold_words=["alone"], idx=7), 7, single=True)
+                    gold_words=["alone"]), 7, single=True)
 
     print("Post 8 — Strategy tip")
     save(tip_card("STRATEGY TIP 01",
                   "Decide your outcome before you pick the suburb.",
-                  gold_words=["outcome"], idx=8), 8, single=True)
+                  gold_words=["outcome"]), 8, single=True)
 
-    print("Post 9 — Book a chat")
-    save(statement_cover("Get started",
-                         "Book a QLD property strategy chat",
-                         "Clearer thinking. Better next steps.",
-                         gold_words=["QLD"],
-                         contact=["0409 224 488", "info@strategicinvestingqld.com"],
-                         idx=9, motif="monogram"), 9, single=True)
+    print("Post 9 — What a strategy balances")
+    save(why_support("Strategy basics", "What a good strategy balances",
+                     [("Your goal", "Growth, cashflow or a mix of both."),
+                      ("Your cashflow", "What you can comfortably hold."),
+                      ("Your timeline", "How long you plan to stay invested."),
+                      ("Your risk comfort", "How much movement you can sit with.")],
+                     gold_words=["balances"]), 9, single=True)
 
     # ---- Filler posts (variety for the grid) -------------------------------
     print("Post 10 — Photo band (home)")
@@ -511,11 +528,11 @@ def build():
                     "Strategy first. Property second.",
                     gold_words=["life"]), 10, single=True)
 
-    print("Post 11 — Photo full (coffee chat)")
-    save(photo_full("coffee-chat.jpg", "No pressure",
-                    "Let’s talk it through, over coffee",
-                    "A calm, honest strategy chat. Nothing more.",
-                    gold_words=["coffee"]), 11, single=True)
+    print("Post 11 — Photo full (good questions)")
+    save(photo_full("coffee-chat.jpg", "Where it starts",
+                    "Good strategy starts with good questions",
+                    "Where are you now, where do you want to be, and what’s the plan in between.",
+                    gold_words=["questions"]), 11, single=True)
 
     print("Post 12 — Photo band (suburb aerial)")
     save(photo_band("suburb-aerial.jpg", "Queensland",
@@ -543,6 +560,44 @@ def build():
     save(tip_card("STRATEGY TIP 03",
                   "Cashflow keeps you in the game. Plan for it.",
                   gold_words=["Cashflow"]), 17, single=True)
+
+    # ---- Informative expansion -------------------------------------------
+    print("Post 18 — Growth vs cashflow")
+    save(why_support("Property basics", "Growth vs cashflow",
+                     [("Growth", "Your property’s value rising over time."),
+                      ("Cashflow", "Rent measured against your costs today."),
+                      ("Most plans blend both", "The mix follows your goal.")],
+                     gold_words=["cashflow"]), 18, single=True)
+
+    print("Post 19 — What is equity")
+    save(list_slide("Property basics", "What is equity?",
+                    sub="The part of your property you actually own. Its value, minus what you still owe.",
+                    items=["It grows as you pay down the loan",
+                           "It grows if the property rises in value",
+                           "Investors use it to fund the next move"],
+                    gold_words=["equity?"]), 19, single=True)
+
+    print("Post 20 — Rentvesting")
+    save(list_slide("Strategy", "Rentvesting, simply",
+                    sub="Rent where you want to live. Invest where the numbers work.",
+                    items=["Live near work, lifestyle or family",
+                           "Buy where growth or yield stacks up",
+                           "Keep your flexibility while you build"],
+                    gold_words=["Rentvesting,"]), 20, single=True)
+
+    print("Post 21 — Photo band (know your numbers)")
+    save(photo_band("planning.jpg", "Property basics",
+                    "Know your numbers first",
+                    "Borrowing power, your buffer, and a target yield, before you fall for a listing.",
+                    gold_words=["numbers"]), 21, single=True)
+
+    print("Post 22 — Cream quote")
+    save(cream_quote("Time in the market beats timing the market.",
+                     "Principle", gold_words=["Time"]), 22, single=True)
+
+    print("Post 23 — Cream quote")
+    save(cream_quote("You make much of your return the day you buy well.",
+                     "Principle", gold_words=["buy"]), 23, single=True)
 
     print("\nDone. All slides in", os.path.relpath(OUT, HERE))
 
