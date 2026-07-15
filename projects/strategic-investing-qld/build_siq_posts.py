@@ -438,10 +438,10 @@ def build():
     print("Post 2 — Who this is for")
     save(list_slide("Who this is for", "Is this you?",
                     gold_words=["you?"], idx=2, active=0, count=4,
-                    sub="Investors at every stage — this page is built for you."), 2, 1)
+                    sub="Investors at every stage. This page is built for you."), 2, 1)
     save(numbered_step("Stage 01", "01", "Just starting out",
                        "No investment property yet.", idx=2, active=1, count=4), 2, 2)
-    save(numbered_step("Stage 02", "02", "Already own 1–3",
+    save(numbered_step("Stage 02", "02", "Already own 1 to 3",
                        "Building an investment portfolio.", idx=2, active=2, count=4), 2, 3)
     save(numbered_step("Stage 03", "03", "Experienced investor",
                        "Four or more properties.", idx=2, active=3, count=4), 2, 4)
@@ -514,13 +514,13 @@ def build():
     print("Post 11 — Photo full (coffee chat)")
     save(photo_full("coffee-chat.jpg", "No pressure",
                     "Let’s talk it through, over coffee",
-                    "A calm, honest strategy chat — nothing more.",
+                    "A calm, honest strategy chat. Nothing more.",
                     gold_words=["coffee"]), 11, single=True)
 
     print("Post 12 — Photo band (suburb aerial)")
     save(photo_band("suburb-aerial.jpg", "Queensland",
                     "Different suburbs, different strategies",
-                    "The right area depends on your goal — not the hype.",
+                    "The right area depends on your goal, not the hype.",
                     gold_words=["strategies"]), 12, single=True)
 
     print("Post 13 — Cream quote")
