@@ -70,3 +70,22 @@ Files: `out/post-NN/`. Captions: `captions.md`.
 - Brand mark = typographic lockup (STRATEGIC INVESTING · QLD). Swap for real SIQ logo
   when supplied.
 - FB: 4:5 works in-feed; 1080×1080 square variants on request (generator extendable).
+
+## Revisions (15 Jul, same day)
+- **Numbering:** carousel badge now = slide/total within its own carousel (e.g. 02/04),
+  not "post N of 9". Standalone posts carry **no number** (posting separately).
+- **Filler batch — posts 10–17** for grid variety (the first 9 read too samey — all
+  navy). Added templates: `photo_band`, `photo_full`, `cream_quote`, `monogram_tile`.
+  - 10 photo-band (home) · 11 photo-full (coffee chat, CTA) · 12 photo-band (suburb
+    aerial) · 13 + 14 cream-inverse quotes · 15 monogram stamp · 16 + 17 Strategy Tips
+    02/03. Total now **17 posts**.
+  - Photos: **free Freepik stock via Magnific (0 credits)** — `photos/home.jpg`,
+    `coffee-chat.jpg`, `suburb-aerial.jpg` (Australian residential aerial). Graded to the
+    navy/gold system. Freepik free license — attribution may apply per platform.
+  - `grid-preview.png` = 3-wide contact sheet of all 17 cover tiles.
+- Grid tip: interleave photo / cream / monogram tiles among the navy ones so no 3-in-a-row
+  look identical.
+
+## Log (cont.)
+- 2026-07-15 revision: numbering fixed; 8 filler posts added (2 cream, 3 photo, 1
+  monogram, 2 tips); 3 free stock photos pulled + graded. Cost: 0 credits.

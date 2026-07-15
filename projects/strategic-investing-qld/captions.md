@@ -108,3 +108,77 @@ It's a simple conversation about where you're at, what your goals are, and what 
 steps could look like.
 
 Send us a message to get started — or call 0409 224 488.
+
+---
+
+## Filler batch (posts 10–17) — added for grid variety
+
+**Post 10 — Build a portfolio that fits your life** · photo · `out/post-10/`
+
+The goal was never just "buy a property". It's to build something that fits the life you
+actually want — your income, your timeline, your comfort with risk.
+
+Strategy first. Property second.
+
+---
+
+**Post 11 — Over coffee (CTA)** · photo · `out/post-11/`
+
+No pitch, no pressure — just a calm conversation about where you're at and what your
+options could look like.
+
+For a lot of people, that clarity is the most useful hour they'll spend.
+
+Message us to grab a coffee, or call 0409 224 488.
+
+---
+
+**Post 12 — Different suburbs, different strategies** · photo · `out/post-12/`
+
+Queensland isn't one market — it's many.
+
+Growth, cashflow and timeline all point to different areas. The skill is matching the
+suburb to your goal, not chasing the latest "hot" postcode.
+
+---
+
+**Post 13 — Start with the outcome** · cream · `out/post-13/`
+
+It's tempting to jump straight to suburbs and listings.
+
+But the clearer your outcome — growth, cashflow, a long hold — the easier every location
+decision becomes.
+
+---
+
+**Post 14 — Clarity is the whole strategy** · cream · `out/post-14/`
+
+Most investors don't need anything flashy. They need a plan that's clear enough to
+actually follow.
+
+That's where good strategy starts.
+
+---
+
+**Post 15 — Brand stamp** · monogram · `out/post-15/`
+
+QLD property investing, made clearer.
+
+Education, strategy and support for new and experienced investors. Follow along.
+
+---
+
+**Post 16 — Strategy Tip 02** · `out/post-16/`
+
+A "good area" isn't automatically a good investment for you.
+
+The right buy is the one that serves your strategy — your goals, your numbers, your
+timeline — not just a postcode with momentum.
+
+---
+
+**Post 17 — Strategy Tip 03** · `out/post-17/`
+
+Growth gets the attention, but cashflow is what lets you hold long enough to see it.
+
+Build your buffers and plan your cashflow before you buy — not after.

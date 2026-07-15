@@ -11,7 +11,7 @@ Renders 9 posts (~20 slides) at 1080x1350 (4:5 IG portrait) to out/post-NN/.
 Re-runnable. Templates: statement_cover · list_slide · numbered_step · why_support · tip_card
 """
 import os
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 
 # ---------------------------------------------------------------- canvas / grid
 W, H = 1080, 1350
@@ -30,6 +30,9 @@ GOLD_SOFT = (201, 160, 90)      # #C9A05A
 CREAM     = (243, 236, 222)     # #F3ECDE warm cream — the air everything breathes in
 CREAM_DIM = (198, 185, 162)     # #C6B9A2 quieter cream for support text
 SLATE     = (150, 165, 184)     # muted labels
+CREAM_BG  = (241, 233, 218)     # inverse-tile paper
+SLATE_NAVY= (74, 94, 118)       # muted navy for support text on cream
+PHOTOS    = os.path.join(HERE, "photos")
 
 # ---------------------------------------------------------------- fonts
 MARCELLUS = os.path.join(FONTS, "Marcellus-Regular.ttf")
@@ -90,7 +93,7 @@ def _norm(word):
 
 def headline(draw, text, font, top, max_w, base=CREAM, gold_words=None,
              center=True, leading=1.14):
-    gold_words = {w.lower() for w in (gold_words or [])}
+    gold_words = {_norm(w) for w in (gold_words or [])}
     words = text.split()
     space = measure(draw, " ", font)[0]
     # greedy wrap into lines of words
@@ -147,12 +150,12 @@ def block(draw, text, font, fill, top, max_w, center=True, leading=1.3):
     return y
 
 # ---------------------------------------------------------------- house line-work motif
-def houses(img, alpha=18):
-    """Faint bottom-anchored pitched-roof homes in fine gold line-work."""
+def houses(img, alpha=18, color=GOLD):
+    """Faint bottom-anchored pitched-roof homes in fine line-work."""
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(ov)
     base = H - 150
-    g = (*GOLD, alpha)
+    g = (*color, alpha)
     plots = [(70, 150, 150, 70), (250, 130, 120, 60), (430, 175, 175, 82),
              (650, 140, 135, 66), (840, 165, 160, 76)]
     for x, w, wh, rh in plots:
@@ -172,7 +175,7 @@ def ghost_serif(img, ch="SI", alpha=12):
     img.paste(Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB"), (0, 0))
 
 # ---------------------------------------------------------------- shared furniture
-def brand_mark(draw, y=H - 108):
+def brand_mark(draw, y=H - 108, on_light=False):
     gold_bar(draw, y, w=52, thick=2)
     f = inter(19, "Medium")
     left, mid, right = "STRATEGIC INVESTING", "   ·   ", "QLD"
@@ -181,9 +184,48 @@ def brand_mark(draw, y=H - 108):
     total = tw(left) + tw(mid) + tw(right)
     x = (W - total) / 2
     yy = y + 22
-    x += tracked(draw, (x, yy), left, f, CREAM, tr)
-    x += tracked(draw, (x, yy), mid, f, SLATE, tr)
+    main = NAVY if on_light else CREAM
+    dim = SLATE_NAVY if on_light else SLATE
+    x += tracked(draw, (x, yy), left, f, main, tr)
+    x += tracked(draw, (x, yy), mid, f, dim, tr)
     tracked(draw, (x, yy), right, f, GOLD, tr)
+
+# ---------------------------------------------------------------- photo helpers
+def load_photo(name):
+    return Image.open(os.path.join(PHOTOS, name)).convert("RGB")
+
+def fit_cover(img, w, h):
+    """Resize + centre-crop to fill (w, h)."""
+    iw, ih = img.size
+    scale = max(w / iw, h / ih)
+    nw, nh = int(iw * scale + 0.5), int(ih * scale + 0.5)
+    img = img.resize((nw, nh), Image.LANCZOS)
+    x, y = (nw - w) // 2, (nh - h) // 2
+    return img.crop((x, y, x + w, y + h))
+
+def grade(img):
+    """Unify stock to the house look: gentle contrast + slight desaturate + warm
+    tint + a faint navy wash so every photo shares one temperature."""
+    img = ImageEnhance.Contrast(img).enhance(1.07)
+    img = ImageEnhance.Color(img).enhance(0.90)
+    warm = Image.new("RGB", img.size, (196, 150, 84))
+    img = Image.blend(img, Image.composite(warm, img, Image.new("L", img.size, 22)), 1.0)
+    navy = Image.new("RGB", img.size, NAVY)
+    img = Image.composite(navy, img, Image.new("L", img.size, 20))
+    return img
+
+def vscrim(size, color=NAVY, top=0, bottom=235, start=0.42):
+    """Vertical gradient scrim, transparent up top → opaque color at the base."""
+    w, h = size
+    ov = Image.new("RGBA", size, (0, 0, 0, 0))
+    px = ov.load()
+    s = int(h * start)
+    for yy in range(s, h):
+        t = (yy - s) / max(h - s, 1)
+        a = int(top + (bottom - top) * (t ** 1.4))
+        for xx in range(w):
+            px[xx, yy] = (*color, a)
+    return ov
 
 def slide_badge(draw, pos, total):
     """Carousel position, e.g. 02/04. Only shown on multi-slide carousels."""
@@ -314,6 +356,67 @@ def tip_card(label, statement, gold_words=None, idx=None):
     brand_mark(d)
     return img
 
+def photo_band(photo_name, kick, head, sub=None, gold_words=None, img_h=742):
+    """Image top, thin gold rule, navy band with serif headline (the ad look)."""
+    img = new_canvas()
+    photo = grade(fit_cover(load_photo(photo_name), W, img_h))
+    img.paste(photo, (0, 0))
+    d = ImageDraw.Draw(img)
+    gold_bar(d, img_h - 2, w=W, x=0, thick=5)
+    ky = img_h + 54
+    tracked(d, (W / 2, ky), kick.upper(), inter(23, "SemiBold"), GOLD, 6, anchor="ma")
+    gold_bar(d, ky + 44, w=42, thick=2)
+    y = headline(d, head, serif(60), ky + 96, CW, base=CREAM, gold_words=gold_words)
+    if sub:
+        block(d, sub, inter(29, "Light"), CREAM_DIM, y + 20, CW - 80)
+    brand_mark(d)
+    return img
+
+def photo_full(photo_name, kick, head, sub=None, gold_words=None):
+    """Full-bleed graded photo, navy scrim from the base, serif line low."""
+    img = grade(fit_cover(load_photo(photo_name), W, H))
+    img = Image.alpha_composite(img.convert("RGBA"),
+                                vscrim((W, H), start=0.30, bottom=246)).convert("RGB")
+    d = ImageDraw.Draw(img)
+    n = count_lines(d, head, serif(72), CW)
+    head_top = H - 250 - n * int(serif(72).size * 1.14)
+    tracked(d, (W / 2, head_top - 66), kick.upper(), inter(22, "SemiBold"), GOLD_SOFT, 6, anchor="ma")
+    gold_bar(d, head_top - 24, w=42, thick=2)
+    y = headline(d, head, serif(72), head_top, CW, base=CREAM, gold_words=gold_words)
+    if sub:
+        block(d, sub, inter(29, "Light"), CREAM_DIM, y + 18, CW - 80)
+    brand_mark(d)
+    return img
+
+def cream_quote(quote, kick, gold_words=None):
+    """Warm-cream inverse tile — navy serif quote. Flips the grid rhythm."""
+    img = Image.new("RGB", (W, H), CREAM_BG)
+    houses(img, alpha=13, color=NAVY)
+    d = ImageDraw.Draw(img)
+    tracked(d, (W / 2, MARGIN + 26), kick.upper(), inter(23, "SemiBold"), GOLD, 6, anchor="ma")
+    gold_bar(d, MARGIN + 70, w=42, thick=2)
+    d.text((W / 2, 372), "“", font=serif(200), fill=(*GOLD, 255), anchor="mm")
+    hf = serif(74)
+    n = count_lines(d, quote, hf, CW)
+    top = (H - n * int(hf.size * 1.18)) / 2 - 10
+    y = headline(d, quote, hf, top, CW, base=NAVY, gold_words=gold_words, leading=1.18)
+    gold_bar(d, y + 26, w=66, thick=3)
+    brand_mark(d, on_light=True)
+    return img
+
+def monogram_tile():
+    """Brand stamp — a clean grid anchor."""
+    img = new_canvas()
+    houses(img, 12)
+    d = ImageDraw.Draw(img)
+    d.text((W / 2, H / 2 - 70), "SI", font=serif(360), fill=GOLD, anchor="mm")
+    gold_bar(d, H / 2 + 120, w=70, thick=3)
+    tracked(d, (W / 2, H / 2 + 168), "STRATEGIC INVESTING QLD",
+            inter(26, "Medium"), CREAM, 5, anchor="ma")
+    tracked(d, (W / 2, H / 2 + 214), "QLD PROPERTY INVESTING, MADE CLEARER",
+            inter(17, "Regular"), SLATE, 3, anchor="ma")
+    return img
+
 # ---------------------------------------------------------------- render helpers
 def save(img, post, slide=1, single=False):
     d = os.path.join(OUT, f"post-{post:02d}")
@@ -400,6 +503,46 @@ def build():
                          gold_words=["QLD"],
                          contact=["0409 224 488", "info@strategicinvestingqld.com"],
                          idx=9, motif="monogram"), 9, single=True)
+
+    # ---- Filler posts (variety for the grid) -------------------------------
+    print("Post 10 — Photo band (home)")
+    save(photo_band("home.jpg", "QLD property",
+                    "Build a portfolio that fits your life",
+                    "Strategy first. Property second.",
+                    gold_words=["life"]), 10, single=True)
+
+    print("Post 11 — Photo full (coffee chat)")
+    save(photo_full("coffee-chat.jpg", "No pressure",
+                    "Let’s talk it through, over coffee",
+                    "A calm, honest strategy chat — nothing more.",
+                    gold_words=["coffee"]), 11, single=True)
+
+    print("Post 12 — Photo band (suburb aerial)")
+    save(photo_band("suburb-aerial.jpg", "Queensland",
+                    "Different suburbs, different strategies",
+                    "The right area depends on your goal — not the hype.",
+                    gold_words=["strategies"]), 12, single=True)
+
+    print("Post 13 — Cream quote")
+    save(cream_quote("Start with the outcome, not the address.",
+                     "On strategy", gold_words=["outcome,"]), 13, single=True)
+
+    print("Post 14 — Cream quote")
+    save(cream_quote("Clarity is the whole strategy.",
+                     "Principle", gold_words=["Clarity"]), 14, single=True)
+
+    print("Post 15 — Monogram tile")
+    save(monogram_tile(), 15, single=True)
+
+    print("Post 16 — Strategy Tip 02")
+    save(tip_card("STRATEGY TIP 02",
+                  "Buy for the strategy, not the postcode.",
+                  gold_words=["strategy,"]), 16, single=True)
+
+    print("Post 17 — Strategy Tip 03")
+    save(tip_card("STRATEGY TIP 03",
+                  "Cashflow keeps you in the game. Plan for it.",
+                  gold_words=["Cashflow"]), 17, single=True)
 
     print("\nDone. All slides in", os.path.relpath(OUT, HERE))
 
