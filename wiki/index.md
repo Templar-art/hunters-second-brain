@@ -19,6 +19,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[cva-architects]] — render enhancement; delivered Jun 2026, repeat client
 - [[jang-studio]] — vendor contact: offshore architectural photo editor
 - [[mvx-electrical]] — web client (Matt); aircon Google Ads landing page conversion redesign Jul 2026
+- [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch 1 (9 posts) delivered 15 Jul
 
 ## Projects
 - [[10x-ig-repositioning]] — own-brand IG overhaul: credit loop, premium kit, craft series

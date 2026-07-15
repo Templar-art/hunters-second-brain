@@ -32,3 +32,41 @@ Property investment advisory (new client). Static FB/IG ad from supplied brief +
 
 - [ ] Real logo file from client → swap placeholder, regenerate kit (one script run)
 - [ ] Client compliance sign-off on headline claim + disclaimer wording
+
+---
+
+# Job 2 — Social Post Batch 1 (2026-07-15)
+
+First social batch: 9 posts (IG-first, FB-adaptable), **20 PNG slides** @ 1080×1350.
+Aligned to the established **Quiet Equity** house system (navy #132A43 · gold #B7893B ·
+cream · Marcellus serif headlines / Inter body / home line-work). Rendered with PIL —
+**0 credits, $0**. Re-runnable generator: `build_siq_posts.py` (fonts vendored in `fonts/`).
+
+| # | Post | Format | Slides | Status |
+|---|------|--------|--------|--------|
+| 1 | Welcome / brand intro | static | 1 | delivered |
+| 2 | Who this is for | carousel | 4 | delivered |
+| 3 | Why QLD | static | 1 | delivered |
+| 4 | 5 common mistakes | carousel | 6 | delivered |
+| 5 | Case study | carousel | 4 | delivered |
+| 6 | What happens in a strategy chat | static | 1 | delivered |
+| 7 | The right team matters | static | 1 | delivered |
+| 8 | Strategy Tip 01 | static | 1 | delivered |
+| 9 | Book a chat (CTA) | static | 1 | delivered |
+
+Files: `out/post-NN/`. Captions: `captions.md`.
+
+## Log
+- 2026-07-15 intake: new brief (`strategic-investing-qld-claude-brief.md`) + website
+  reviewed. Brief asked navy-base + sans-serif; caught the existing Quiet Equity house
+  style and re-aligned per Hunter's call.
+- 2026-07-15 fonts: vendored Marcellus + Inter into `fonts/` (free, Google Fonts).
+- 2026-07-15 delivered: 20 slides rendered in house system. Cost: 0 credits.
+
+## Notes
+- ⚠️ Brief tone = calm / no hype. Client site runs bolder claims ("80% pay off mortgage
+  <10yrs", "13,000+ clients"). Posts kept claim-light per brief. Revisit if Hunter wants
+  the proof numbers in.
+- Brand mark = typographic lockup (STRATEGIC INVESTING · QLD). Swap for real SIQ logo
+  when supplied.
+- FB: 4:5 works in-feed; 1080×1080 square variants on request (generator extendable).
