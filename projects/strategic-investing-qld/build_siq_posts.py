@@ -185,9 +185,10 @@ def brand_mark(draw, y=H - 108):
     x += tracked(draw, (x, yy), mid, f, SLATE, tr)
     tracked(draw, (x, yy), right, f, GOLD, tr)
 
-def index_badge(draw, i, n=9):
-    tracked(draw, (W - MARGIN - 58, MARGIN - 4), f"{i:02d}", inter(21, "SemiBold"), GOLD, 2)
-    draw.text((W - MARGIN - 26, MARGIN - 4), f"/{n:02d}", font=inter(21, "Light"), fill=SLATE)
+def slide_badge(draw, pos, total):
+    """Carousel position, e.g. 02/04. Only shown on multi-slide carousels."""
+    tracked(draw, (W - MARGIN - 58, MARGIN - 4), f"{pos:02d}", inter(21, "SemiBold"), GOLD, 2)
+    draw.text((W - MARGIN - 26, MARGIN - 4), f"/{total:02d}", font=inter(21, "Light"), fill=SLATE)
 
 def dots(draw, active, count, y=H - 168):
     r, gap = 5, 26
@@ -212,8 +213,6 @@ def statement_cover(kick, head, sub=None, gold_words=None, contact=None,
     elif motif == "monogram":
         ghost_serif(img, "SI", 11)
     d = ImageDraw.Draw(img)
-    if idx:
-        index_badge(d, idx, n)
     kicker(d, kick)
     hf = serif(92)
     n_lines = count_lines(d, head, hf, CW)
@@ -234,8 +233,8 @@ def list_slide(kick, head, items=None, gold_words=None, sub=None,
                idx=None, active=None, count=None):
     img = new_canvas()
     d = ImageDraw.Draw(img)
-    if idx:
-        index_badge(d, idx)
+    if active is not None:
+        slide_badge(d, active + 1, count)
     kicker(d, kick)
     y = headline(d, head, serif(72), MARGIN + 156, CW, base=CREAM, gold_words=gold_words)
     if sub:
@@ -255,8 +254,8 @@ def list_slide(kick, head, items=None, gold_words=None, sub=None,
 def numbered_step(kick, num, head, sub=None, idx=None, active=None, count=None):
     img = new_canvas()
     d = ImageDraw.Draw(img)
-    if idx:
-        index_badge(d, idx)
+    if active is not None:
+        slide_badge(d, active + 1, count)
     kicker(d, kick)
     d.text((W / 2, 462), num, font=serif(300), fill=GOLD, anchor="mm")
     gold_bar(d, 606, w=58, thick=3)
@@ -272,8 +271,6 @@ def why_support(kick, head, points, gold_words=None, idx=None):
     img = new_canvas()
     houses(img, 16)
     d = ImageDraw.Draw(img)
-    if idx:
-        index_badge(d, idx)
     kicker(d, kick)
     y = headline(d, head, serif(70), MARGIN + 156, CW, base=CREAM, gold_words=gold_words)
     y += 92
@@ -292,8 +289,6 @@ def tip_card(label, statement, gold_words=None, idx=None):
     img = new_canvas()
     ghost_serif(img, "SI", 9)
     d = ImageDraw.Draw(img)
-    if idx:
-        index_badge(d, idx)
     lf = inter(25, "SemiBold")
     lw = sum(measure(d, ch, lf)[0] for ch in label) + 4 * (len(label) - 1) + 84
     lx = (W - lw) / 2
