@@ -1,13 +1,16 @@
 ---
 type: client
 tags: [lead, podcast, fitness, content-retainer]
-status: lead — proposal sent 2026-07-16
+status: lead — warm, responded 2026-07-16, direct deal (not via 10x)
 updated: 2026-07-16
 ---
 
 # Anthony (lead) → proposal for Hattie Boydle
 
 Recipient is **Hattie Boydle** (@hattieboydle, 582K, 2X WBFF World Champion, Coach + Educator, @flex.method / FMG) — podcast, physique content, sponsors, coaching calls, own studio. "Anthony" is the lead's name from intake (relationship to Hattie TBC — manager/partner/referrer?).
+
+## Status (2026-07-16, evening)
+Hattie replied warm ("thank you so much", apologised for slow reply). Asked if proposal is via the agency or independent → **Hunter confirmed: direct deal, NOT through 10x Visuals.** Reply sent positioning it as him personally at $1,500 all-in. Open: PDF footer still shows hunter@10xvisuals.com.au (Hunter aware, left as-is unless he swaps).
 
 ## Proposal v3 (2026-07-16) — brand-guidelines restyle, $1,500
 Anthropic-brand system per /brand-guidelines skill: cream #faf9f5, ink #141413, orange #d97757 accent, Poppins headings + Lora body (embedded). PDF: `Hattie Boydle - Content Partnership Proposal.pdf` (also on Desktop).
