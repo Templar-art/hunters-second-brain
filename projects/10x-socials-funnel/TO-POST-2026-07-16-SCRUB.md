@@ -20,7 +20,7 @@ Post = reel + carousel same drop. Nothing below appears on the live feed.
 | 1 | **Uniq Residences · 2-4 Waterford Ct** (Bespoke/Jason Ward) | Main + Reel + Slowed | full set | Desktop `TO POST - NEW CONTENT` | verify @handle, collab check |
 | 2 | **3009 The Boulevard** (Bespoke) | Main + Reel | full set + map pins | Desktop `TO POST - NEW CONTENT` | same |
 | 3 | **3049/3029 The Boulevard** | Main | full set | Desktop + WD_BLACK | same |
-| 4 | **Ashley Noosa Villa** (ACC) | ACC Noosa Main + Reel | Villa Noosa folder | WD_BLACK | = feed card 04_villa_noosa — the video EXISTS, card + reel = full package |
+| 4 | **Ashley Noosa Villa** (ACC) | ACC Noosa Main + Reel | Villa Noosa folder | WD_BLACK | **STAGED for tonight** — Desktop `TONIGHT - VILLA NOOSA`, handle verified |
 | 5 | **154 Marine Parade** | Main + Reel | in folder | WD_BLACK | |
 | 6 | **Jessica Wallace listing** | Main + **Sold Reel** | in folder | WD_BLACK | SOLD angle = strong caption |
 | 7 | **31 Coobowie St** (Kollosche · Mitch Palmer) | Main + Reel | in folder | WD_BLACK | ⚠️ Kollosche feed check first |
