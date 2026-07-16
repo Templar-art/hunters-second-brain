@@ -1,0 +1,21 @@
+[
+  {
+    "id": "b3a137db-ecf9-443b-bc9a-367201a8bc23",
+    "status": "completed",
+    "display_name": "GPT Image 2",
+    "job_set_type": "gpt_image_2",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_052533_b3a137db-ecf9-443b-bc9a-367201a8bc23.png",
+    "created_at": 1784179533.220898,
+    "params": {
+      "width": 2688,
+      "height": 1520,
+      "prompt": "Cinematic photorealistic architectural photography of a single luxury Australian coastal prestige home, shot on anamorphic lens, gentle cinematic depth of field, warm twilight golden-hour light with deep dusk-blue sky, warm interior glow from windows, subtle film grain, natural light only, editorial restraint, muted palette of warm neutral stone, deep charcoal night tones and soft steel-blue dusk accents. Empty, unoccupied, architectural. No people, no text, no letters, no logos. Focal subject centred in frame.\nSubject: wide dusk exterior of the home's facade seen from the end of a stone driveway, low horizontal architecture with floor-to-ceiling glass glowing warm from within, sculptural eaves, native coastal planting, last light on the horizon behind the roofline.",
+      "medias": [],
+      "aspect_ratio": "16:9",
+      "quality": "high",
+      "resolution": "2k",
+      "model": "videotape-alpha",
+      "reference_elements": []
+    }
+  }
+]

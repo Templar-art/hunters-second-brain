@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1b4b68ec-0e24-45bc-9313-cab5780732cc",
+    "status": "completed",
+    "display_name": "GPT Image 2",
+    "job_set_type": "gpt_image_2",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_052927_1b4b68ec-0e24-45bc-9313-cab5780732cc.png",
+    "created_at": 1784179767.564849,
+    "params": {
+      "width": 2688,
+      "height": 1520,
+      "prompt": "Cinematic photorealistic architectural photography of a single luxury Australian coastal prestige home, shot on anamorphic lens, gentle cinematic depth of field, warm twilight golden-hour light with deep dusk-blue sky, warm interior glow from windows, subtle film grain, natural light only, editorial restraint, muted palette of warm neutral stone, deep charcoal night tones and soft steel-blue dusk accents. Empty, unoccupied, architectural. No people, no text, no letters, no logos. Focal subject centred in frame.\nSubject: the outdoor terrace with a glassy infinity-edge pool reflecting the dusk sky, the water perfectly still, the coastline and ocean beyond, warm architectural lighting along the terrace edge, the home's glass wall glowing on one side.",
+      "medias": [
+        {
+          "data": {
+            "id": "9f76b33f-d227-4233-906f-4d0fcdddc11a",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/9f76b33f-d227-4233-906f-4d0fcdddc11a_resize.jpg",
+            "type": "media_input"
+          },
+          "role": "image"
+        }
+      ],
+      "aspect_ratio": "16:9",
+      "quality": "high",
+      "resolution": "2k",
+      "model": "videotape-alpha",
+      "reference_elements": []
+    }
+  }
+]

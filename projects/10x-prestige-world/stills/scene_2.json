@@ -1,0 +1,30 @@
+[
+  {
+    "id": "8a77f2e2-fcc5-4e95-9d15-5d845d311b09",
+    "status": "completed",
+    "display_name": "GPT Image 2",
+    "job_set_type": "gpt_image_2",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_052921_8a77f2e2-fcc5-4e95-9d15-5d845d311b09.png",
+    "created_at": 1784179761.846177,
+    "params": {
+      "width": 2688,
+      "height": 1520,
+      "prompt": "Cinematic photorealistic architectural photography of a single luxury Australian coastal prestige home, shot on anamorphic lens, gentle cinematic depth of field, warm twilight golden-hour light with deep dusk-blue sky, warm interior glow from windows, subtle film grain, natural light only, editorial restraint, muted palette of warm neutral stone, deep charcoal night tones and soft steel-blue dusk accents. Empty, unoccupied, architectural. No people, no text, no letters, no logos. Focal subject centred in frame.\nSubject: the entry threshold opening into a double-height open-plan living space, view straight down the axis from the front door, oak floors, a floating stone fireplace wall mid-distance, warm pendant light, dusk glow spilling through glass at the far end.",
+      "medias": [
+        {
+          "data": {
+            "id": "5b800c43-e0fe-4fec-96b0-e34aede9a0dc",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/5b800c43-e0fe-4fec-96b0-e34aede9a0dc_resize.jpg",
+            "type": "media_input"
+          },
+          "role": "image"
+        }
+      ],
+      "aspect_ratio": "16:9",
+      "quality": "high",
+      "resolution": "2k",
+      "model": "videotape-alpha",
+      "reference_elements": []
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1f4c1680-de85-4973-b00d-e84b6336266a",
+    "status": "completed",
+    "display_name": "GPT Image 2",
+    "job_set_type": "gpt_image_2",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_052922_1f4c1680-de85-4973-b00d-e84b6336266a.png",
+    "created_at": 1784179762.244181,
+    "params": {
+      "width": 2688,
+      "height": 1520,
+      "prompt": "Cinematic photorealistic architectural photography of a single luxury Australian coastal prestige home, shot on anamorphic lens, gentle cinematic depth of field, warm twilight golden-hour light with deep dusk-blue sky, warm interior glow from windows, subtle film grain, natural light only, editorial restraint, muted palette of warm neutral stone, deep charcoal night tones and soft steel-blue dusk accents. Empty, unoccupied, architectural. No people, no text, no letters, no logos. Focal subject centred in frame.\nSubject: the primary suite at dusk, architectural and serene, a wide window wall framing the darkening ocean horizon, soft warm bedside lamps, linen textures in warm neutrals, the room empty and perfectly composed like a magazine spread.",
+      "medias": [
+        {
+          "data": {
+            "id": "a7b4bb99-0932-4d04-b573-2cb2995c7f81",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/a7b4bb99-0932-4d04-b573-2cb2995c7f81_resize.jpg",
+            "type": "media_input"
+          },
+          "role": "image"
+        }
+      ],
+      "aspect_ratio": "16:9",
+      "quality": "high",
+      "resolution": "2k",
+      "model": "videotape-alpha",
+      "reference_elements": []
+    }
+  }
+]

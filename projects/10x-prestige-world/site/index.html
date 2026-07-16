@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>10X VISUALS — We produce the film. The property does the selling.</title>
+<meta name="description" content="10x Visuals: cinematic media for prestige property. One continuous flight through the home, from first light to last."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper:#f6f3ec;
+    --night:#111519;
+    --ink:#14181b;
+    --ivory:#f3efe6;
+    --ivory-soft:rgba(243,239,230,.62);
+    --ivory-faint:rgba(243,239,230,.38);
+    --line-dark:rgba(243,239,230,.16);
+    --blue:#34789d;
+    --blue-light:#61a8d8;
+    --expo:cubic-bezier(.16,1,.3,1);
+
+    /* scroll-world theme */
+    --sw-bg:var(--night);
+    --sw-ink:var(--ivory);
+    --sw-ink-soft:var(--ivory-soft);
+    --sw-accent:var(--blue-light);
+    --sw-font-display:'Prata',serif;
+    --sw-font-body:'Montserrat',sans-serif;
+  }
+  html,body{margin:0;padding:0;background:var(--night);color:var(--ivory);
+    font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;
+    -webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--blue);color:var(--ivory);}
+</style>
+</head>
+<body>
+
+<div id="world">
+  <!-- Crawlable copy: hidden by the engine on mount, read by crawlers / no-JS -->
+  <div data-sw-seo>
+    <h1>We produce the film. The property does the selling.</h1>
+    <p>10x Visuals is a media and marketing studio for prestige property. One continuous camera flight through the home, from first light on the facade to the last light on the water.</p>
+    <h2>The property does the selling.</h2>
+    <p>Cinematic media for prestige property. Considered, restrained, and shot for the hour the home looks its best.</p>
+    <h2>One take. No cuts.</h2>
+    <p>The walkthrough is a single continuous move. The buyer never leaves the home from first frame to last.</p>
+    <h2>We shoot the hour that sells.</h2>
+    <p>Twilight is when glass glows and rooms breathe. Every hero film is built around it.</p>
+    <h2>Where the buyer decides.</h2>
+    <p>The reveal: terrace, water, horizon. The frame that stops the scroll and starts the inspection.</p>
+    <h2>10x Visuals</h2>
+    <p>Media and marketing for prestige property. hunter@10xvisuals.com.au · 10xvisuals.com.au</p>
+  </div>
+</div>
+
+<script src="scrub-engine.js"></script>
+<script>
+mountScrollWorld(document.getElementById('world'), {
+  brand: { name: '10X VISUALS', href: '#top' },
+  diveScroll: 1.4,
+  crossfade: 0.08,
+  hint: 'scroll to begin the flight',
+  nav: true,
+  atmosphere: false,
+  sections: [
+    {
+      id: 'arrival', label: 'I · Arrival',
+      still: 'assets/stills/scene_1.png',
+      poster: 'assets/vid/leg_1-poster.jpg', posterMobile: 'assets/vid/leg_1-m-poster.jpg',
+      clip: 'assets/vid/leg_1.mp4', clipMobile: 'assets/vid/leg_1-m.mp4',
+      accent: '#61a8d8',
+      scroll: 1.6, linger: 0.4,
+      eyebrow: 'Prestige Property Media',
+      title: 'The property does the selling.',
+      body: 'Considered, cinematic media for homes that deserve better than a slideshow.',
+      tags: ['Hero films', 'Twilight photography']
+    },
+    {
+      id: 'walkthrough', label: 'II · The Walkthrough',
+      still: 'assets/stills/scene_2.png',
+      poster: 'assets/vid/leg_2-poster.jpg', posterMobile: 'assets/vid/leg_2-m-poster.jpg',
+      clip: 'assets/vid/leg_2.mp4', clipMobile: 'assets/vid/leg_2-m.mp4',
+      accent: '#61a8d8',
+      scroll: 1.3,
+      eyebrow: 'The Walkthrough',
+      title: 'One take. No cuts.',
+      body: 'The buyer moves through the home the way they would in person: one continuous, unhurried line.',
+      tags: ['Single continuous move']
+    },
+    {
+      id: 'light', label: 'III · The Light',
+      still: 'assets/stills/scene_3.png',
+      poster: 'assets/vid/leg_3-poster.jpg', posterMobile: 'assets/vid/leg_3-m-poster.jpg',
+      clip: 'assets/vid/leg_3.mp4', clipMobile: 'assets/vid/leg_3-m.mp4',
+      accent: '#61a8d8',
+      scroll: 1.4, linger: 0.35,
+      eyebrow: 'The Light',
+      title: 'We shoot the hour that sells.',
+      body: 'Twilight is when glass glows and rooms breathe. Every hero film is built around it.',
+      tags: ['Twilight', 'Natural light']
+    },
+    {
+      id: 'reveal', label: 'IV · The Reveal',
+      still: 'assets/stills/scene_4.png',
+      poster: 'assets/vid/leg_4-poster.jpg', posterMobile: 'assets/vid/leg_4-m-poster.jpg',
+      clip: 'assets/vid/leg_4.mp4', clipMobile: 'assets/vid/leg_4-m.mp4',
+      accent: '#61a8d8',
+      scroll: 1.4,
+      eyebrow: 'The Reveal',
+      title: 'Where the buyer decides.',
+      body: 'Terrace, water, horizon. The frame that stops the scroll and starts the inspection.',
+      tags: ['The hero frame']
+    },
+    {
+      id: 'contact', label: 'V · 10x Visuals',
+      still: 'assets/stills/scene_5.png',
+      poster: 'assets/vid/leg_5-poster.jpg', posterMobile: 'assets/vid/leg_5-m-poster.jpg',
+      clip: 'assets/vid/leg_5.mp4', clipMobile: 'assets/vid/leg_5-m.mp4',
+      accent: '#61a8d8',
+      scroll: 1.8, linger: 0.5,
+      eyebrow: '10x Visuals · Media and Marketing',
+      title: 'We produce the film.',
+      body: 'Prestige property media, produced end to end. hunter@10xvisuals.com.au · 10xvisuals.com.au'
+    }
+  ],
+  connectors: [],
+  connectorsMobile: []
+});
+</script>
+
+</body>
+</html>
