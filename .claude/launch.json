@@ -2,6 +2,18 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "anthony-proposal",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8768",
+        "--directory",
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/anthony-proposal"
+      ],
+      "port": 8768
+    },
+    {
       "name": "mvx-aircon",
       "runtimeExecutable": "python3",
       "runtimeArgs": [
