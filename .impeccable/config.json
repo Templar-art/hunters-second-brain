@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "reason": "10x Prestige v2.0 brand guidelines mandate Prata + Montserrat",
+        "createdAt": "2026-07-16T05:30:25.873Z"
+      }
+    ]
+  }
+}

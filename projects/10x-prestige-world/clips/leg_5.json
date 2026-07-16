@@ -1,0 +1,39 @@
+[
+  {
+    "id": "7b08a757-b28f-41d8-a0f3-fca5f322ee26",
+    "status": "completed",
+    "display_name": "Seedance 2.0",
+    "job_set_type": "seedance_2_0",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_065109_7b08a757-b28f-41d8-a0f3-fca5f322ee26.mp4",
+    "created_at": 1784184669.961245,
+    "params": {
+      "width": 1920,
+      "height": 1080,
+      "prompt": "Single continuous cinematic camera move, no cuts. Continue the same slow steady forward drift into the primary suite at dusk, gliding gently FORWARD toward the wide window wall framing the darkening ocean horizon, soft warm lamplight, the move slowing gracefully. In the final seconds the camera eases to a near stillness, gently drifting toward the window and the last light on the water. Cinematic photorealistic, anamorphic lens character, subtle film grain, warm twilight light, smooth graceful slow camera, single continuous take, no cuts. Empty, unoccupied, architectural. No people, no text, no logos.",
+      "genre": "auto",
+      "medias": [
+        {
+          "data": {
+            "id": "9c711517-83da-4c25-b432-e1caf53a61c4",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/9c711517-83da-4c25-b432-e1caf53a61c4.png",
+            "type": "media_input"
+          },
+          "role": "start_image"
+        }
+      ],
+      "duration": 8,
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "generate_audio": true,
+      "multi_shots": false,
+      "multi_shot_mode": "custom",
+      "multi_prompt": [],
+      "speedramp": "auto",
+      "reference_elements": [],
+      "prompt_language": "en",
+      "mode": "std",
+      "model": "seedance_2_0",
+      "bitrate_mode": "standard"
+    }
+  }
+]

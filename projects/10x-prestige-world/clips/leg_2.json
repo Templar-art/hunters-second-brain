@@ -1,0 +1,39 @@
+[
+  {
+    "id": "a450910a-1116-4d7d-8638-9fa6be4a9bcc",
+    "status": "completed",
+    "display_name": "Seedance 2.0",
+    "job_set_type": "seedance_2_0",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_053937_a450910a-1116-4d7d-8638-9fa6be4a9bcc.mp4",
+    "created_at": 1784180377.786219,
+    "params": {
+      "width": 1920,
+      "height": 1080,
+      "prompt": "Single continuous cinematic camera move, no cuts. Continue the same slow steady forward drift through the front entry threshold into the double-height open-plan living space, gliding smoothly FORWARD down the central axis past the floating stone fireplace wall, never pulling back or reversing. In the final second the camera settles into a slow steady forward drift toward the main living room and its glass wall. Cinematic photorealistic, anamorphic lens character, subtle film grain, warm twilight light, smooth graceful slow camera, single continuous take, no cuts. Empty, unoccupied, architectural. No people, no text, no logos.",
+      "genre": "auto",
+      "medias": [
+        {
+          "data": {
+            "id": "d84c341c-e892-4554-a4ca-07324b164fae",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/d84c341c-e892-4554-a4ca-07324b164fae.png",
+            "type": "media_input"
+          },
+          "role": "start_image"
+        }
+      ],
+      "duration": 8,
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "generate_audio": true,
+      "multi_shots": false,
+      "multi_shot_mode": "custom",
+      "multi_prompt": [],
+      "speedramp": "auto",
+      "reference_elements": [],
+      "prompt_language": "en",
+      "mode": "std",
+      "model": "seedance_2_0",
+      "bitrate_mode": "standard"
+    }
+  }
+]

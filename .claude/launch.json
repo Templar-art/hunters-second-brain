@@ -4,20 +4,49 @@
     {
       "name": "mvx-aircon",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "/Users/10xhunter/Documents/Hunters Second Brain/projects/mvx-aircon"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8766",
+        "--directory",
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/mvx-aircon"
+      ],
       "port": 8766
     },
     {
       "name": "scroll-salisbury",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-scroll-salisbury"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-scroll-salisbury"
+      ],
       "port": 8765
     },
     {
       "name": "open-generative-ai",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "/Users/10xhunter/Desktop/Open-Generative-AI"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/10xhunter/Desktop/Open-Generative-AI"
+      ],
       "port": 3000
+    },
+    {
+      "name": "prestige-world",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8767",
+        "--directory",
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-prestige-world/site"
+      ],
+      "port": 8767
     }
   ]
 }

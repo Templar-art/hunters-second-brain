@@ -1,0 +1,39 @@
+[
+  {
+    "id": "bfe232dd-bbc2-4de4-aa01-c849b5988d4e",
+    "status": "completed",
+    "display_name": "Seedance 2.0",
+    "job_set_type": "seedance_2_0",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_053630_bfe232dd-bbc2-4de4-aa01-c849b5988d4e.mp4",
+    "created_at": 1784180190.284655,
+    "params": {
+      "width": 1920,
+      "height": 1080,
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin on this dusk view of the luxury home's facade and glide slowly FORWARD along the stone driveway toward the glowing front entry, the architecture growing around the frame, never pulling back. In the final second the camera settles into a slow steady forward drift toward the front door. Cinematic photorealistic, anamorphic lens character, subtle film grain, warm twilight light, smooth graceful slow camera, single continuous take, no cuts. Empty, unoccupied, architectural. No people, no text, no logos.",
+      "genre": "auto",
+      "medias": [
+        {
+          "data": {
+            "id": "375dd1ed-238c-4c32-b424-e3d45865774c",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/375dd1ed-238c-4c32-b424-e3d45865774c_resize.jpg",
+            "type": "media_input"
+          },
+          "role": "start_image"
+        }
+      ],
+      "duration": 8,
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "generate_audio": true,
+      "multi_shots": false,
+      "multi_shot_mode": "custom",
+      "multi_prompt": [],
+      "speedramp": "auto",
+      "reference_elements": [],
+      "prompt_language": "en",
+      "mode": "std",
+      "model": "seedance_2_0",
+      "bitrate_mode": "standard"
+    }
+  }
+]

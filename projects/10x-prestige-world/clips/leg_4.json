@@ -1,0 +1,39 @@
+[
+  {
+    "id": "f6acfe4f-ccf9-4e55-8aa9-06c54e5649bb",
+    "status": "completed",
+    "display_name": "Seedance 2.0",
+    "job_set_type": "seedance_2_0",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_064324_f6acfe4f-ccf9-4e55-8aa9-06c54e5649bb.mp4",
+    "created_at": 1784184204.488728,
+    "params": {
+      "width": 1920,
+      "height": 1080,
+      "prompt": "Single continuous cinematic camera move, no cuts. Continue the same slow steady forward drift out through the glass door onto the terrace, gliding FORWARD along the still infinity-edge pool that mirrors the dusk sky, the coastline beyond, never reversing. In the final second the camera settles into a slow steady forward drift toward the warm-lit interior beyond the far end of the terrace. Cinematic photorealistic, anamorphic lens character, subtle film grain, warm twilight light, smooth graceful slow camera, single continuous take, no cuts. Empty, unoccupied, architectural. No people, no text, no logos.",
+      "genre": "auto",
+      "medias": [
+        {
+          "data": {
+            "id": "1b4afca8-24e8-4330-8f0e-f01c1981455e",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/1b4afca8-24e8-4330-8f0e-f01c1981455e.png",
+            "type": "media_input"
+          },
+          "role": "start_image"
+        }
+      ],
+      "duration": 8,
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "generate_audio": true,
+      "multi_shots": false,
+      "multi_shot_mode": "custom",
+      "multi_prompt": [],
+      "speedramp": "auto",
+      "reference_elements": [],
+      "prompt_language": "en",
+      "mode": "std",
+      "model": "seedance_2_0",
+      "bitrate_mode": "standard"
+    }
+  }
+]

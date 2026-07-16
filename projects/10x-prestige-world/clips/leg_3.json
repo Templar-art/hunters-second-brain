@@ -1,0 +1,39 @@
+[
+  {
+    "id": "3b1458db-6d7b-49d6-8710-82e60b6c80f0",
+    "status": "completed",
+    "display_name": "Seedance 2.0",
+    "job_set_type": "seedance_2_0",
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/hf_20260716_063624_3b1458db-6d7b-49d6-8710-82e60b6c80f0.mp4",
+    "created_at": 1784183784.75001,
+    "params": {
+      "width": 1920,
+      "height": 1080,
+      "prompt": "Single continuous cinematic camera move, no cuts. Continue the same slow steady forward camera drift through the open-plan interior toward the floor-to-ceiling glass wall and the dusk ocean horizon beyond, tracking straight ahead past the dining table and kitchen island, never reversing. In the final second the camera settles into a slow steady forward drift toward a glass sliding door that opens to the outdoor terrace. Cinematic photorealistic, anamorphic lens character, subtle film grain, warm twilight light, smooth graceful slow camera, single continuous take, no cuts. Empty unoccupied architectural interior photography, real estate walkthrough. No people, no text, no logos.",
+      "genre": "auto",
+      "medias": [
+        {
+          "data": {
+            "id": "229349e9-f03c-4e60-987c-46cf9c85ff45",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3DxpjYwhrK7X5wcYd6Mt2wNzmdX/229349e9-f03c-4e60-987c-46cf9c85ff45.png",
+            "type": "media_input"
+          },
+          "role": "start_image"
+        }
+      ],
+      "duration": 8,
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "generate_audio": true,
+      "multi_shots": false,
+      "multi_shot_mode": "custom",
+      "multi_prompt": [],
+      "speedramp": "auto",
+      "reference_elements": [],
+      "prompt_language": "en",
+      "mode": "std",
+      "model": "seedance_2_0",
+      "bitrate_mode": "standard"
+    }
+  }
+]

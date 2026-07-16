@@ -33,6 +33,18 @@
     font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;
     -webkit-font-smoothing:antialiased;}
   ::selection{background:var(--blue);color:var(--ivory);}
+
+  /* Prestige theme override — #world (ID) outranks the engine's .sw-root defaults */
+  #world.sw-root, #world{
+    --sw-bg:var(--night);
+    --sw-ink:var(--ivory);
+    --sw-ink-soft:var(--ivory-soft);
+    --sw-accent:var(--blue-light);
+    --sw-font-display:'Prata',serif;
+    --sw-font-body:'Montserrat',sans-serif;
+  }
+  /* Prestige: nothing floats, nothing bounces — kill the engine's drifting particles */
+  #world .sw-particles{display:none;}
 </style>
 </head>
 <body>
@@ -67,7 +79,7 @@ mountScrollWorld(document.getElementById('world'), {
   sections: [
     {
       id: 'arrival', label: 'I · Arrival',
-      still: 'assets/stills/scene_1.png',
+      still: 'assets/stills/scene_1.jpg',
       poster: 'assets/vid/leg_1-poster.jpg', posterMobile: 'assets/vid/leg_1-m-poster.jpg',
       clip: 'assets/vid/leg_1.mp4', clipMobile: 'assets/vid/leg_1-m.mp4',
       accent: '#61a8d8',
@@ -79,7 +91,7 @@ mountScrollWorld(document.getElementById('world'), {
     },
     {
       id: 'walkthrough', label: 'II · The Walkthrough',
-      still: 'assets/stills/scene_2.png',
+      still: 'assets/stills/scene_2.jpg',
       poster: 'assets/vid/leg_2-poster.jpg', posterMobile: 'assets/vid/leg_2-m-poster.jpg',
       clip: 'assets/vid/leg_2.mp4', clipMobile: 'assets/vid/leg_2-m.mp4',
       accent: '#61a8d8',
@@ -91,7 +103,7 @@ mountScrollWorld(document.getElementById('world'), {
     },
     {
       id: 'light', label: 'III · The Light',
-      still: 'assets/stills/scene_3.png',
+      still: 'assets/stills/scene_3.jpg',
       poster: 'assets/vid/leg_3-poster.jpg', posterMobile: 'assets/vid/leg_3-m-poster.jpg',
       clip: 'assets/vid/leg_3.mp4', clipMobile: 'assets/vid/leg_3-m.mp4',
       accent: '#61a8d8',
@@ -103,7 +115,7 @@ mountScrollWorld(document.getElementById('world'), {
     },
     {
       id: 'reveal', label: 'IV · The Reveal',
-      still: 'assets/stills/scene_4.png',
+      still: 'assets/stills/scene_4.jpg',
       poster: 'assets/vid/leg_4-poster.jpg', posterMobile: 'assets/vid/leg_4-m-poster.jpg',
       clip: 'assets/vid/leg_4.mp4', clipMobile: 'assets/vid/leg_4-m.mp4',
       accent: '#61a8d8',
@@ -115,7 +127,7 @@ mountScrollWorld(document.getElementById('world'), {
     },
     {
       id: 'contact', label: 'V · 10x Visuals',
-      still: 'assets/stills/scene_5.png',
+      still: 'assets/stills/scene_5.jpg',
       poster: 'assets/vid/leg_5-poster.jpg', posterMobile: 'assets/vid/leg_5-m-poster.jpg',
       clip: 'assets/vid/leg_5.mp4', clipMobile: 'assets/vid/leg_5-m.mp4',
       accent: '#61a8d8',
