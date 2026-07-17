@@ -1,6 +1,6 @@
 ---
 type: overview
-updated: 2026-07-10
+updated: 2026-07-17
 ---
 
 # 10x Visuals — Overview
@@ -14,7 +14,8 @@ updated: 2026-07-10
 - **Client work:** [[coast-life-constructions]] is in execution after a full IG repositioning (Rob's brand verdict now governs all graphics/captions). [[bespoke-estate-agents]] has a complete brand + social system filed, first posts ready. [[belle-property]] Lot 48 composite is awaiting "run it". [[cva-architects]] render job delivered June — repeat client, and their render powers the [[10x-scroll-build]] sales demo.
 - **Own brand:** [[10x-ig-repositioning]] is the active internal project — credit-loop growth, premium kit title cards (not tiles), craft series, highlight bubbles built.
 - **The synthesis emerging across clients:** premium = less graphic design, named projects, one grade, captions in the client's own feed voice ([[ig-caption-voice]]), verified claims only. Every client engagement now follows this playbook, tuned per voice.
-- **Production knowledge:** routing and hard rules in [[higgsfield-pipelines]] and [[staging-rules]]; design rules in [[brand-system]]; scoring taxonomy in [[music-taxonomy]] feeding [[music-library]].
+- **Production knowledge:** routing and hard rules in [[higgsfield-pipelines]] and [[staging-rules]]; design rules in [[brand-system]]; scoring taxonomy in [[music-taxonomy]] feeding [[music-library]]; proposal design/pricing recipe in [[proposal-playbook]].
+- **Two-tier go-to-market — provisional (2026-07-17):** the [[anthony]] / Hattie Boydle pitch surfaced a second front door: Hunter solo on a direct retainer ($1,500 all-in, undercutting the incumbent) as the low-friction entry, with 10x Visuals agency packages (marketing videos, photos, account management, lead-gen ads) held as the upsell path. Also the first entry into the fitness/podcast vertical beyond property & construction. Deal not yet closed — verdict at close.
 
 ## Standing constraints
 - Money gate: no credit spend without Hunter's explicit go-ahead.

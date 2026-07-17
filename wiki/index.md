@@ -20,7 +20,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[jang-studio]] — vendor contact: offshore architectural photo editor
 - [[mvx-electrical]] — web client (Matt); aircon Google Ads landing page conversion redesign Jul 2026
 - [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch 1 (9 posts) delivered 15 Jul
-- [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal v3 (brand-guidelines restyle) 16 Jul, PDF ready
+- [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 
 ## Projects
 - [[10x-ig-repositioning]] — own-brand IG overhaul: credit loop, premium kit, craft series
@@ -38,6 +38,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[music-taxonomy]] — locked controlled vocabulary for the music library
 - [[jarvis]] — Hunter's phased personal assistant; phase 1 = weekday 7am CRM morning brief via push
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
+- [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
 
 ## Sources (from `raw/clc/` — CLC Fable 5 pack + research)
 - [[clc-profile-audit]] — the audit all CLC decisions trace to (6 Jul 2026)
