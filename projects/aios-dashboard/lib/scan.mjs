@@ -69,7 +69,7 @@ function scanWiki() {
       for (const line of text.split('\n')) {
         if (/\b(waiting on|awaiting|follow[- ]?up|no reply|chase)\b/i.test(line) && !line.startsWith('#')) {
           followups++;
-          followupLines.push({ page: p.split('/').pop().replace('.md', ''), line: line.replace(/^[-*\s]+/, '').slice(0, 140) });
+          followupLines.push({ page: p.split('/').pop().replace('.md', ''), path: p.replace(VAULT + '/', ''), line: line.replace(/^[-*\s]+/, '').slice(0, 140) });
         }
       }
     }
@@ -96,6 +96,7 @@ export function scan() {
   const active = jobs.filter(j => !/delivered|closed|done/i.test(j.status));
   return {
     generatedAt: today.toISOString(),
+    vaultName: VAULT.split('/').pop(),
     stats: {
       activeJobs: active.length,
       totalJobs: jobs.length,

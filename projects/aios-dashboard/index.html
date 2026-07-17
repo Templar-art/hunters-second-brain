@@ -11,82 +11,166 @@
     --mono: "SF Mono", ui-monospace, Menlo, monospace;
   }
   * { box-sizing: border-box; margin: 0; }
-  body { background: var(--bg); color: var(--text); font-family: Poppins, -apple-system, sans-serif; font-size: 14px; padding: 22px clamp(14px, 4vw, 48px) 60px; }
-  header { display: flex; align-items: center; gap: 12px; padding-bottom: 18px; }
-  .logo { font-family: var(--mono); letter-spacing: .35em; font-weight: 600; font-size: 15px; }
+  body { background: var(--bg); color: var(--text); font-family: Poppins, -apple-system, sans-serif; font-size: 14px; padding: 18px clamp(14px, 4vw, 48px) 60px; }
+
+  header { display: flex; align-items: center; gap: 22px; padding-bottom: 16px; flex-wrap: wrap; }
+  .logo { font-family: var(--mono); letter-spacing: .35em; font-weight: 600; font-size: 15px; white-space: nowrap; }
   .logo span { color: var(--accent); }
+  nav { display: flex; gap: 6px; }
+  nav button { background: none; border: 1px solid transparent; color: var(--dim); font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em; padding: 6px 14px; border-radius: 4px; cursor: pointer; }
+  nav button.on { color: var(--text); background: var(--panel2); border-color: var(--line); }
   .live { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--green); border: 1px solid var(--line); padding: 4px 10px; border-radius: 4px; letter-spacing: .15em; }
   .live::before { content: "●"; margin-right: 6px; }
+
+  .hero { display: grid; grid-template-columns: 210px 1fr; gap: 12px; margin-bottom: 12px; align-items: stretch; }
+  @media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
+  .orbBox { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 8px 12px; }
+  .orbBox canvas { width: 170px; height: 170px; }
+  .orbLabel { font-family: var(--mono); font-size: 9.5px; letter-spacing: .3em; color: var(--dim); text-transform: uppercase; margin-top: 2px; }
+  .orbLabel b { color: var(--accent); font-weight: 600; }
+
   .grid { display: grid; gap: 12px; }
-  .stats { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-bottom: 12px; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; position: relative; overflow: hidden; }
-  .card .k { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--dim); text-transform: uppercase; }
-  .card .v { font-size: 30px; font-weight: 600; margin-top: 6px; font-variant-numeric: tabular-nums; }
-  .card .s { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-top: 2px; }
+  .stats { grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); align-content: stretch; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; justify-content: center; }
+  .card .k { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--dim); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+  .card .k::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); opacity: .8; }
+  .card.amber .k::before { background: var(--amber); }
+  .card .v { font-size: 30px; font-weight: 600; margin-top: 8px; font-variant-numeric: tabular-nums; }
   .card.accent .v { color: var(--accent); } .card.amber .v { color: var(--amber); }
+  .card .s { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-top: 2px; }
+
   .buttons { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-bottom: 12px; }
   button.action { background: var(--panel2); border: 1px solid var(--line); color: var(--text); font-family: var(--mono); font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; padding: 13px 8px; border-radius: 6px; cursor: pointer; transition: border-color .15s, color .15s; }
   button.action:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
   button.action:disabled { opacity: .38; cursor: not-allowed; }
   button.action.running { border-color: var(--amber); color: var(--amber); animation: pulse 1.2s infinite; }
   @keyframes pulse { 50% { opacity: .55; } }
+
   .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
   .panel h2 { font-family: var(--mono); font-size: 10px; letter-spacing: .25em; color: var(--amber); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-  .panel h2 .right { margin-left: auto; color: var(--dim); letter-spacing: .1em; }
+  .panel h2 .right { margin-left: auto; color: var(--dim); letter-spacing: .1em; display: flex; gap: 10px; align-items: center; }
   #term { font-family: var(--mono); font-size: 12px; line-height: 1.55; white-space: pre-wrap; color: #b9c2ca; max-height: 320px; overflow-y: auto; min-height: 44px; }
-  #term .muted { color: var(--dim); }
-  #killBtn { display: none; background: none; border: 1px solid var(--red); color: var(--red); font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 4px; cursor: pointer; }
+  .muted { color: var(--dim); }
+  .obs, #killBtn { background: none; border: 1px solid var(--line); color: var(--dim); font-family: var(--mono); font-size: 10px; padding: 2px 10px; border-radius: 4px; cursor: pointer; letter-spacing: .1em; text-decoration: none; }
+  .obs:hover { border-color: var(--accent); color: var(--accent); }
+  #killBtn { display: none; border-color: var(--red); color: var(--red); }
+
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { font-family: var(--mono); font-size: 10px; letter-spacing: .15em; color: var(--dim); text-transform: uppercase; text-align: left; padding: 4px 10px 8px 0; }
-  td { padding: 6px 10px 6px 0; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  td { padding: 7px 10px 7px 0; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  td a { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--dim); }
+  td a:hover { color: var(--accent); border-color: var(--accent); }
   .tag { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 3px; border: 1px solid var(--line); letter-spacing: .1em; text-transform: uppercase; }
   .tag.delivered { color: var(--green); border-color: #2c4436; }
   .tag.generating, .tag.review { color: var(--amber); border-color: #4a3d28; }
   .tag.intake, .tag.unknown { color: var(--dim); }
-  ul.plain { list-style: none; } ul.plain li { padding: 5px 0; border-top: 1px solid var(--line); font-size: 13px; }
+  ul.plain { list-style: none; } ul.plain li { padding: 6px 0; border-top: 1px solid var(--line); font-size: 13px; }
   ul.plain li:first-child { border-top: 0; }
-  .pg { color: var(--accent); font-family: var(--mono); font-size: 11px; margin-right: 8px; }
+  .pg { color: var(--accent); font-family: var(--mono); font-size: 11px; margin-right: 8px; text-decoration: none; }
+  .pg:hover { text-decoration: underline; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
-  #daily { font-family: var(--mono); font-size: 12px; white-space: pre-wrap; color: #b9c2ca; max-height: 300px; overflow-y: auto; }
+  #daily { font-family: var(--mono); font-size: 12px; white-space: pre-wrap; color: #b9c2ca; max-height: 340px; overflow-y: auto; }
+  .tab { display: none; } .tab.on { display: block; }
 </style>
 </head>
 <body>
 <header>
   <div class="logo">⌁ AGENTIC <span>OS</span></div>
+  <nav id="tabs">
+    <button data-tab="overview" class="on">Overview</button>
+    <button data-tab="jobs">Jobs</button>
+    <button data-tab="vault">Vault</button>
+  </nav>
   <div class="live" id="liveDot">LIVE</div>
 </header>
 
-<div class="grid stats" id="stats"></div>
+<div class="hero">
+  <div class="orbBox">
+    <canvas id="orb" width="340" height="340"></canvas>
+    <div class="orbLabel"><b>JARVIS</b> · <span id="orbState">standing by</span></div>
+  </div>
+  <div class="grid stats" id="stats"></div>
+</div>
+
 <div class="grid buttons" id="buttons"></div>
 
 <div class="panel">
-  <h2>Console <button id="killBtn">kill</button><span class="right" id="runState">idle</span></h2>
+  <h2>Console <span class="right"><button id="killBtn">kill</button><span id="runState">idle</span></span></h2>
   <div id="term"><span class="muted">> press a button to run an action — output streams here</span></div>
 </div>
 
-<div class="cols">
-  <div>
-    <div class="panel"><h2>Today's Note<span class="right" id="dailyPath"></span></h2><div id="daily"></div></div>
+<div class="tab on" id="tab-overview">
+  <div class="cols">
+    <div class="panel"><h2>Today's Note <span class="right"><a class="obs" id="dailyObs" href="#">open in obsidian</a><span id="dailyPath"></span></span></h2><div id="daily"></div></div>
     <div class="panel"><h2>Follow-ups</h2><ul class="plain" id="followups"></ul></div>
   </div>
-  <div>
-    <div class="panel"><h2>Jobs</h2><table id="jobs"></table></div>
-    <div class="panel"><h2>Wiki Log</h2><ul class="plain" id="log"></ul></div>
-  </div>
+</div>
+
+<div class="tab" id="tab-jobs">
+  <div class="panel"><h2>Jobs <span class="right">click client → JOB.md in Obsidian</span></h2><table id="jobs"></table></div>
+</div>
+
+<div class="tab" id="tab-vault">
+  <div class="panel"><h2>Wiki Log</h2><ul class="plain" id="log"></ul></div>
 </div>
 
 <script>
 const $ = (id) => document.getElementById(id);
+let vaultName = 'Hunters Second Brain'; // updated from /api/data on load
+const obsUrl = (path) => `obsidian://open?vault=${encodeURIComponent(vaultName)}&file=${encodeURIComponent(path.replace(/\.md$/, ''))}`;
 let running = false;
 
-function esc(s) { return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
+/* ---------- tabs ---------- */
+$('tabs').addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('nav button').forEach(x => x.classList.toggle('on', x === b));
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.id === 'tab-' + b.dataset.tab));
+});
+
+/* ---------- jarvis orb ---------- */
+const orb = $('orb'), octx = orb.getContext('2d');
+const PTS = [];
+for (let i = 0; i < 520; i++) { // fibonacci sphere
+  const y = 1 - (i / 519) * 2, r = Math.sqrt(1 - y * y), t = i * 2.39996;
+  PTS.push([Math.cos(t) * r, y, Math.sin(t) * r]);
+}
+let rot = 0, speed = 0.004, hueMix = 0; // 0 = blue idle, 1 = amber running
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function drawOrb() {
+  const target = running ? 0.028 : 0.004;
+  speed += (target - speed) * 0.04;
+  hueMix += ((running ? 1 : 0) - hueMix) * 0.05;
+  rot += speed;
+  const wob = Math.sin(rot * 0.7) * 0.35;
+  octx.clearRect(0, 0, 340, 340);
+  const R = 118, cx = 170, cy = 170;
+  const pulse = 1 + Math.sin(rot * 2.2) * 0.02;
+  for (const [x0, y0, z0] of PTS) {
+    let x = x0 * Math.cos(rot) - z0 * Math.sin(rot), z = x0 * Math.sin(rot) + z0 * Math.cos(rot);
+    let y = y0 * Math.cos(wob) - z * Math.sin(wob); z = y0 * Math.sin(wob) + z * Math.cos(wob);
+    const p = 1.6 / (1.6 - z * 0.9);
+    const d = (z + 1) / 2; // depth 0..1
+    const r = Math.round(97 + (216 - 97) * hueMix), g = Math.round(168 + (165 - 168) * hueMix), b = Math.round(216 + (97 - 216) * hueMix);
+    octx.fillStyle = `rgba(${r},${g},${b},${0.12 + d * 0.55})`;
+    octx.beginPath();
+    octx.arc(cx + x * R * p * pulse, cy + y * R * p * pulse, (0.6 + d * 1.5) * p, 0, 7);
+    octx.fill();
+  }
+  if (!reduced) requestAnimationFrame(drawOrb);
+}
+drawOrb();
+if (reduced) { rot = 1; drawOrb(); } // single static frame
+
+/* ---------- data ---------- */
 async function refresh() {
   let d;
   try { d = await (await fetch('/api/data')).json(); }
   catch { $('liveDot').textContent = 'OFFLINE'; $('liveDot').style.color = 'var(--red)'; return; }
   $('liveDot').textContent = 'LIVE'; $('liveDot').style.color = 'var(--green)';
+  if (d.vaultName) vaultName = d.vaultName;
 
   $('stats').innerHTML = [
     ['accent', 'Active Jobs', d.stats.activeJobs, d.stats.totalJobs + ' tracked total'],
@@ -99,22 +183,26 @@ async function refresh() {
     `<button class="action" data-id="${a.id}" title="${esc(a.disabled ? (a.disabledReason||'') : a.description)}" ${a.disabled ? 'disabled' : ''}>${esc(a.label)}</button>`).join('');
 
   $('dailyPath').textContent = d.daily.path;
+  $('dailyObs').href = obsUrl(d.daily.path);
   $('daily').textContent = d.daily.exists ? d.daily.content : `> no daily note at ${d.daily.path}\nrun Morning Brief above to create it`;
 
-  $('jobs').innerHTML = '<tr><th>Client</th><th>Address</th><th>Status</th><th>Credits</th></tr>' +
-    d.jobs.map(j => `<tr><td>${esc(j.client)}</td><td>${esc(j.address)}</td><td><span class="tag ${esc(j.status)}">${esc(j.status)}</span></td><td>${j.credits.toLocaleString()}</td></tr>`).join('');
+  $('jobs').innerHTML = '<tr><th>Client</th><th>Address</th><th>Status</th><th>Credits</th><th>AUD</th></tr>' +
+    d.jobs.map(j => `<tr><td><a href="${obsUrl(j.path)}">${esc(j.client)}</a></td><td>${esc(j.address)}</td><td><span class="tag ${esc(j.status)}">${esc(j.status)}</span></td><td>${j.credits.toLocaleString()}</td><td>$${j.aud.toFixed(0)}</td></tr>`).join('');
 
-  $('followups').innerHTML = d.followupLines.map(f => `<li><span class="pg">${esc(f.page)}</span>${esc(f.line)}</li>`).join('') || '<li class="muted">none detected</li>';
+  $('followups').innerHTML = d.followupLines.map(f => `<li><a class="pg" href="${f.path ? obsUrl(f.path) : '#'}">${esc(f.page)}</a>${esc(f.line)}</li>`).join('') || '<li class="muted">none detected</li>';
   $('log').innerHTML = d.log.map(l => `<li>${esc(l.replace('## ',''))}</li>`).join('');
 }
 
+/* ---------- runs ---------- */
 $('buttons').addEventListener('click', async (e) => {
   const btn = e.target.closest('button.action');
   if (!btn || running) return;
   running = true;
+  if (reduced) drawOrb();
   btn.classList.add('running');
   document.querySelectorAll('button.action').forEach(b => { if (b !== btn) b.disabled = true; });
   $('runState').textContent = 'running ' + btn.dataset.id;
+  $('orbState').textContent = 'running ' + btn.dataset.id;
   $('killBtn').style.display = 'inline-block';
   const term = $('term'); term.textContent = '';
   try {
@@ -129,7 +217,9 @@ $('buttons').addEventListener('click', async (e) => {
     }
   } catch (err) { term.textContent += '\n> stream error: ' + err.message; }
   running = false;
+  if (reduced) drawOrb();
   $('runState').textContent = 'idle';
+  $('orbState').textContent = 'standing by';
   $('killBtn').style.display = 'none';
   refresh();
 });
