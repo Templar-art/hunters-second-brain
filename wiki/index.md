@@ -40,6 +40,9 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
 
+## Sources (ops)
+- [[weekly-review-2026-07-17]] — 7-day review: shipped/moved/stalled/learned, next focus = clear stalled client queue
+
 ## Sources (from `raw/clc/` — CLC Fable 5 pack + research)
 - [[clc-profile-audit]] — the audit all CLC decisions trace to (6 Jul 2026)
 - [[clc-pack-readme]] — start-here: first-week actions, weekly rhythm, onboarding SOP
