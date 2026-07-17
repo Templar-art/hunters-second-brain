@@ -1,0 +1,4 @@
+file 'c1_frame.mp4'
+file 'c2_brick.mp4'
+file 'c3_finish.mp4'
+file 'seedance_render.mp4'
