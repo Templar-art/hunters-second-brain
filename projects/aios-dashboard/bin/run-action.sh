@@ -21,5 +21,9 @@ export PATH="$HOME/.nvm/versions/node/v24.16.0/bin:/usr/local/bin:/opt/homebrew/
     --permission-mode acceptEdits \
     --allowedTools 'Read,Write,Edit,Glob,Grep,Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git log:*),Bash(ls:*)' \
     --disallowedTools 'mcp__magnific__*,mcp__higgsfield__*' </dev/null
-  echo "=== exit $? @ $(date '+%F %T') ==="
+  EXIT=$?
+  echo "=== exit $EXIT @ $(date '+%F %T') ==="
+  if [[ $EXIT -ne 0 ]]; then
+    osascript -e "display notification \"$ACTION failed (exit $EXIT) — see logs\" with title \"AIOS loop\" sound name \"Basso\"" || true
+  fi
 } >> "$LOG" 2>&1

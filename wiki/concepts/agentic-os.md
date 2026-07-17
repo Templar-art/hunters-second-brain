@@ -26,6 +26,9 @@ Scheduled loops (macOS launchd, survive reboots, no Claude window needed):
 |------|----------|--------|
 | `com.10x.aios.morning-brief` | weekdays 6:27am | writes `## Morning Brief` into the daily note `YYYY-MM-DD.md`: jobs + stalled flags, follow-ups, vault health; commits + pushes |
 | `com.10x.aios.nightly-lint` | daily 9:57pm | CLAUDE.md lint pass over the wiki; appends `log.md`; commits + pushes |
+| `com.10x.aios.weekly-review` | Sunday 4:53pm | writes `wiki/sources/weekly-review-YYYY-MM-DD.md` (shipped/moved/stalled/learned/next); commits + pushes |
+
+Any loop that exits nonzero fires a macOS notification ("AIOS loop … failed") via the shared runner.
 
 Controls: `launchctl bootout gui/$UID/com.10x.aios.morning-brief` pauses a loop; `launchctl bootstrap gui/$UID ~/Library/LaunchAgents/<plist>` resumes it. Logs land in `projects/aios-dashboard/logs/`.
 
