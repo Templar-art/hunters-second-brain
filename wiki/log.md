@@ -71,3 +71,5 @@ Hunter's boss overruled the per-vertical recolour (navy RE / orange construction
 ## [2026-07-17] query | AIOS morning brief
 
 ## [2026-07-17] harvest | anthony-proposal → clients/anthony, concepts/proposal-playbook, overview
+
+## [2026-07-17] update | AIOS L4 live — scrubbed template repo pushed private (Templar-art/aios-template); dashboard button verified end-to-end (morning brief ran from click)

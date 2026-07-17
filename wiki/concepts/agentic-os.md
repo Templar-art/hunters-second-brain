@@ -14,7 +14,7 @@ Hunter's agentic operating system layered on this vault. Four levels; phase 1 (L
 1. **Skill + Loop Engineering** (keeps behavior) — skills already live in `.agents/skills/` and Claude plugins; the *loop engine* is new (below).
 2. **Memory + State** (keeps state) — this vault: the wiki schema, auto-memory, JOB.md job tracking. Pre-existing.
 3. **Interface / UI** (keeps access) — the AIOS dashboard (below).
-4. **Distribution** (keeps it for others) — roadmap. Repo already on GitHub (Templar-art/hunters-second-brain).
+4. **Distribution** (keeps it for others) — live 2026-07-17: scrubbed template at github.com/Templar-art/aios-template (**private** until Hunter flips it public). Local working copy: `~/Desktop/aios-template`.
 
 ## Loop engine (L1)
 
