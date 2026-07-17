@@ -41,6 +41,6 @@ Jarvis phase 1 (weekday 7am CRM brief via push) overlaps the morning-brief loop.
 
 ## Roadmap
 
-- Re-auth 10x-crm → enable the Pull CRM action and fold CRM tasks into the morning brief.
+- 10x CRM: **blocked externally** (2026-07-16) — full connection needs Vercel-side authorization the boss hasn't granted; Pull CRM action stays disabled until then. When unblocked: enable the action and fold CRM tasks into the morning brief.
 - L4: publish a scrubbed template repo of the OS.
 - Social-metrics pull, push notifications on loop failures.

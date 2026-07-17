@@ -35,6 +35,6 @@
     "prompt": "pull-crm.md",
     "description": "Pull tasks + reminders from 10x CRM into the daily note",
     "disabled": true,
-    "disabledReason": "10x-crm MCP needs re-auth — run /mcp in an interactive Claude Code session first"
+    "disabledReason": "10x CRM auth blocked — Vercel-side authorization needs boss approval (2026-07-16)"
   }
 ]
