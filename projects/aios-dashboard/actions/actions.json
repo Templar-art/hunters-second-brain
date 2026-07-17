@@ -1,0 +1,40 @@
+[
+  {
+    "id": "morning-brief",
+    "label": "Morning Brief",
+    "prompt": "morning-brief.md",
+    "description": "Write today's brief into the daily note: jobs, follow-ups, vault health"
+  },
+  {
+    "id": "plan-today",
+    "label": "Plan Today",
+    "prompt": "plan-today.md",
+    "description": "Turn the brief + open jobs into a prioritised plan appended to the daily note"
+  },
+  {
+    "id": "vault-lint",
+    "label": "Vault Lint",
+    "prompt": "vault-lint.md",
+    "description": "Hunt contradictions, orphans and stale pages; log the pass"
+  },
+  {
+    "id": "job-status",
+    "label": "Job Status",
+    "prompt": "job-status.md",
+    "description": "Audit every JOB.md — stalled jobs, missing updates, cost tallies"
+  },
+  {
+    "id": "weekly-review",
+    "label": "Weekly Review",
+    "prompt": "weekly-review.md",
+    "description": "Week in review: what shipped, what stalled, what the wiki learned"
+  },
+  {
+    "id": "pull-crm",
+    "label": "Pull CRM",
+    "prompt": "pull-crm.md",
+    "description": "Pull tasks + reminders from 10x CRM into the daily note",
+    "disabled": true,
+    "disabledReason": "10x-crm MCP needs re-auth — run /mcp in an interactive Claude Code session first"
+  }
+]

@@ -2,6 +2,14 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "aios",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/aios-dashboard/server.mjs"
+      ],
+      "port": 8770
+    },
+    {
       "name": "anthony-proposal",
       "runtimeExecutable": "python3",
       "runtimeArgs": [

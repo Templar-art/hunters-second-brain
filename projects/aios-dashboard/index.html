@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AGENTIC OS — 10x</title>
+<style>
+  :root {
+    --bg: #101214; --panel: #16191c; --panel2: #1b1f23; --line: #262b30;
+    --text: #d7dde2; --dim: #6d7680; --accent: #61a8d8; --amber: #d8a561; --green: #6fbf8a; --red: #d87961;
+    --mono: "SF Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--text); font-family: Poppins, -apple-system, sans-serif; font-size: 14px; padding: 22px clamp(14px, 4vw, 48px) 60px; }
+  header { display: flex; align-items: center; gap: 12px; padding-bottom: 18px; }
+  .logo { font-family: var(--mono); letter-spacing: .35em; font-weight: 600; font-size: 15px; }
+  .logo span { color: var(--accent); }
+  .live { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--green); border: 1px solid var(--line); padding: 4px 10px; border-radius: 4px; letter-spacing: .15em; }
+  .live::before { content: "●"; margin-right: 6px; }
+  .grid { display: grid; gap: 12px; }
+  .stats { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-bottom: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; position: relative; overflow: hidden; }
+  .card .k { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--dim); text-transform: uppercase; }
+  .card .v { font-size: 30px; font-weight: 600; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .card .s { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-top: 2px; }
+  .card.accent .v { color: var(--accent); } .card.amber .v { color: var(--amber); }
+  .buttons { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-bottom: 12px; }
+  button.action { background: var(--panel2); border: 1px solid var(--line); color: var(--text); font-family: var(--mono); font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; padding: 13px 8px; border-radius: 6px; cursor: pointer; transition: border-color .15s, color .15s; }
+  button.action:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  button.action:disabled { opacity: .38; cursor: not-allowed; }
+  button.action.running { border-color: var(--amber); color: var(--amber); animation: pulse 1.2s infinite; }
+  @keyframes pulse { 50% { opacity: .55; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
+  .panel h2 { font-family: var(--mono); font-size: 10px; letter-spacing: .25em; color: var(--amber); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .panel h2 .right { margin-left: auto; color: var(--dim); letter-spacing: .1em; }
+  #term { font-family: var(--mono); font-size: 12px; line-height: 1.55; white-space: pre-wrap; color: #b9c2ca; max-height: 320px; overflow-y: auto; min-height: 44px; }
+  #term .muted { color: var(--dim); }
+  #killBtn { display: none; background: none; border: 1px solid var(--red); color: var(--red); font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 4px; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { font-family: var(--mono); font-size: 10px; letter-spacing: .15em; color: var(--dim); text-transform: uppercase; text-align: left; padding: 4px 10px 8px 0; }
+  td { padding: 6px 10px 6px 0; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .tag { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 3px; border: 1px solid var(--line); letter-spacing: .1em; text-transform: uppercase; }
+  .tag.delivered { color: var(--green); border-color: #2c4436; }
+  .tag.generating, .tag.review { color: var(--amber); border-color: #4a3d28; }
+  .tag.intake, .tag.unknown { color: var(--dim); }
+  ul.plain { list-style: none; } ul.plain li { padding: 5px 0; border-top: 1px solid var(--line); font-size: 13px; }
+  ul.plain li:first-child { border-top: 0; }
+  .pg { color: var(--accent); font-family: var(--mono); font-size: 11px; margin-right: 8px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
+  #daily { font-family: var(--mono); font-size: 12px; white-space: pre-wrap; color: #b9c2ca; max-height: 300px; overflow-y: auto; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">⌁ AGENTIC <span>OS</span></div>
+  <div class="live" id="liveDot">LIVE</div>
+</header>
+
+<div class="grid stats" id="stats"></div>
+<div class="grid buttons" id="buttons"></div>
+
+<div class="panel">
+  <h2>Console <button id="killBtn">kill</button><span class="right" id="runState">idle</span></h2>
+  <div id="term"><span class="muted">> press a button to run an action — output streams here</span></div>
+</div>
+
+<div class="cols">
+  <div>
+    <div class="panel"><h2>Today's Note<span class="right" id="dailyPath"></span></h2><div id="daily"></div></div>
+    <div class="panel"><h2>Follow-ups</h2><ul class="plain" id="followups"></ul></div>
+  </div>
+  <div>
+    <div class="panel"><h2>Jobs</h2><table id="jobs"></table></div>
+    <div class="panel"><h2>Wiki Log</h2><ul class="plain" id="log"></ul></div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let running = false;
+
+function esc(s) { return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+async function refresh() {
+  let d;
+  try { d = await (await fetch('/api/data')).json(); }
+  catch { $('liveDot').textContent = 'OFFLINE'; $('liveDot').style.color = 'var(--red)'; return; }
+  $('liveDot').textContent = 'LIVE'; $('liveDot').style.color = 'var(--green)';
+
+  $('stats').innerHTML = [
+    ['accent', 'Active Jobs', d.stats.activeJobs, d.stats.totalJobs + ' tracked total'],
+    ['amber', 'Credits Spent', d.stats.creditsSpent.toLocaleString(), '$' + d.stats.audSpent.toFixed(0) + ' AUD, all jobs'],
+    ['accent', 'Pages Updated', d.stats.pagesUpdatedWeek, 'last 7 days'],
+    ['amber', 'Follow-ups', d.stats.followups, 'waiting on someone'],
+  ].map(([c,k,v,s]) => `<div class="card ${c}"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`).join('');
+
+  if (!running) $('buttons').innerHTML = d.actions.map(a =>
+    `<button class="action" data-id="${a.id}" title="${esc(a.disabled ? (a.disabledReason||'') : a.description)}" ${a.disabled ? 'disabled' : ''}>${esc(a.label)}</button>`).join('');
+
+  $('dailyPath').textContent = d.daily.path;
+  $('daily').textContent = d.daily.exists ? d.daily.content : `> no daily note at ${d.daily.path}\nrun Morning Brief above to create it`;
+
+  $('jobs').innerHTML = '<tr><th>Client</th><th>Address</th><th>Status</th><th>Credits</th></tr>' +
+    d.jobs.map(j => `<tr><td>${esc(j.client)}</td><td>${esc(j.address)}</td><td><span class="tag ${esc(j.status)}">${esc(j.status)}</span></td><td>${j.credits.toLocaleString()}</td></tr>`).join('');
+
+  $('followups').innerHTML = d.followupLines.map(f => `<li><span class="pg">${esc(f.page)}</span>${esc(f.line)}</li>`).join('') || '<li class="muted">none detected</li>';
+  $('log').innerHTML = d.log.map(l => `<li>${esc(l.replace('## ',''))}</li>`).join('');
+}
+
+$('buttons').addEventListener('click', async (e) => {
+  const btn = e.target.closest('button.action');
+  if (!btn || running) return;
+  running = true;
+  btn.classList.add('running');
+  document.querySelectorAll('button.action').forEach(b => { if (b !== btn) b.disabled = true; });
+  $('runState').textContent = 'running ' + btn.dataset.id;
+  $('killBtn').style.display = 'inline-block';
+  const term = $('term'); term.textContent = '';
+  try {
+    const res = await fetch('/api/run', { method: 'POST', headers: {'content-type':'application/json'}, body: JSON.stringify({ id: btn.dataset.id }) });
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      term.textContent += dec.decode(value, { stream: true });
+      term.scrollTop = term.scrollHeight;
+    }
+  } catch (err) { term.textContent += '\n> stream error: ' + err.message; }
+  running = false;
+  $('runState').textContent = 'idle';
+  $('killBtn').style.display = 'none';
+  refresh();
+});
+
+$('killBtn').addEventListener('click', () => fetch('/api/kill', { method: 'POST' }));
+
+refresh();
+setInterval(() => { if (!running) refresh(); }, 30000);
+</script>
+</body>
+</html>

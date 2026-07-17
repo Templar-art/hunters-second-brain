@@ -1,0 +1,112 @@
+// AIOS vault scanner — builds the live data payload for the dashboard.
+// Zero dependencies; reads the vault directly on every /api/data call.
+import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+export const VAULT = fileURLToPath(new URL('../../..', import.meta.url)).replace(/\/$/, '');
+
+function read(p) {
+  try { return readFileSync(p, 'utf8'); } catch { return null; }
+}
+
+function frontmatter(text) {
+  const m = text && text.match(/^---\n([\s\S]*?)\n---/);
+  if (!m) return {};
+  const fm = {};
+  for (const line of m[1].split('\n')) {
+    const kv = line.match(/^(\w[\w-]*):\s*(.*)$/);
+    if (kv) fm[kv[1]] = kv[2].trim();
+  }
+  return fm;
+}
+
+function walk(dir, out = []) {
+  let entries = [];
+  try { entries = readdirSync(dir, { withFileTypes: true }); } catch { return out; }
+  for (const e of entries) {
+    if (e.name.startsWith('.')) continue;
+    const p = join(dir, e.name);
+    if (e.isDirectory()) walk(p, out);
+    else out.push(p);
+  }
+  return out;
+}
+
+function scanJobs() {
+  const jobs = [];
+  for (const p of walk(join(VAULT, 'projects'))) {
+    if (!p.endsWith('JOB.md') || p.includes('JOB-template')) continue;
+    const text = read(p);
+    if (!text) continue;
+    const fm = frontmatter(text);
+    const cost = (fm.cost || '').match(/credits:\s*([\d.]+).*?aud:\s*([\d.]+)/);
+    jobs.push({
+      client: fm.client || p.split('/').slice(-2)[0],
+      address: fm.address || '',
+      status: (fm.status || 'unknown').split('#')[0].trim(),
+      credits: cost ? Number(cost[1]) : 0,
+      aud: cost ? Number(cost[2]) : 0,
+      path: p.replace(VAULT + '/', ''),
+    });
+  }
+  return jobs;
+}
+
+function scanWiki() {
+  const now = Date.now();
+  const week = 7 * 86400e3;
+  let updatedThisWeek = 0;
+  let followups = 0;
+  const followupLines = [];
+  for (const p of walk(join(VAULT, 'wiki'))) {
+    if (!p.endsWith('.md')) continue;
+    const text = read(p);
+    if (!text) continue;
+    const fm = frontmatter(text);
+    if (fm.updated && now - Date.parse(fm.updated) < week) updatedThisWeek++;
+    if (p.includes('/clients/') || p.includes('/people/') || p.includes('/projects/')) {
+      for (const line of text.split('\n')) {
+        if (/\b(waiting on|awaiting|follow[- ]?up|no reply|chase)\b/i.test(line) && !line.startsWith('#')) {
+          followups++;
+          followupLines.push({ page: p.split('/').pop().replace('.md', ''), line: line.replace(/^[-*\s]+/, '').slice(0, 140) });
+        }
+      }
+    }
+  }
+  return { updatedThisWeek, followups, followupLines: followupLines.slice(0, 12) };
+}
+
+function recentLog() {
+  const text = read(join(VAULT, 'wiki', 'log.md')) || '';
+  return text.split('\n').filter(l => l.startsWith('## ')).slice(-8).reverse();
+}
+
+function dailyNote(dateStr) {
+  const p = join(VAULT, `${dateStr}.md`);
+  if (!existsSync(p)) return { exists: false, path: `${dateStr}.md` };
+  return { exists: true, path: `${dateStr}.md`, content: read(p).slice(0, 4000), mtime: statSync(p).mtime };
+}
+
+export function scan() {
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-CA'); // YYYY-MM-DD local
+  const jobs = scanJobs();
+  const wiki = scanWiki();
+  const active = jobs.filter(j => !/delivered|closed|done/i.test(j.status));
+  return {
+    generatedAt: today.toISOString(),
+    stats: {
+      activeJobs: active.length,
+      totalJobs: jobs.length,
+      creditsSpent: jobs.reduce((s, j) => s + j.credits, 0),
+      audSpent: jobs.reduce((s, j) => s + j.aud, 0),
+      pagesUpdatedWeek: wiki.updatedThisWeek,
+      followups: wiki.followups,
+    },
+    jobs,
+    followupLines: wiki.followupLines,
+    log: recentLog(),
+    daily: dailyNote(dateStr),
+  };
+}
