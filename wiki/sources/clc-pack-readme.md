@@ -1,4 +1,6 @@
 # Coast Life Constructions — Fable 5 Pack
+
+_Pack for [[coast-life-constructions]] — the audit everything traces to: [[clc-profile-audit]]._
 _Built by 10x Visuals · Cinematic real estate/construction system_
 _Built from real IG profile audit · Benchmarked against @barlowbuilding and @grimmondau_
 

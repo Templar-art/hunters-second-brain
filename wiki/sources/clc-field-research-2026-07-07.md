@@ -1,5 +1,7 @@
 # CLC Field Research — Live Instagram Study (7 Jul 2026)
 
+_Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
+
 First-hand study of benchmark + adjacent accounts via live feeds (not just the Perplexity audit). Feeds into `../pack/markdown/strategy_guide.md` execution. Studied: @barlowbuilding, @grimmondau, @bungalow_home, @smout_property. (@matt_srama checked — buyers agent, not a builder reference.)
 
 ## @barlowbuilding — 17.3K followers, 384 posts (the target)

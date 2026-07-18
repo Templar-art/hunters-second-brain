@@ -1,4 +1,6 @@
 # Coast Life Constructions — 3 Pinned Post Concepts
+
+_Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 _Managed by 10x Visuals | These anchor the profile top row. Refresh every 90 days._
 _Benchmark: @barlowbuilding's grid opens with editorial finished-build hero shots plus text-overlay design statements. Coast Life's current top row is BTS drone + on-site workers, which reads as "we do construction" not "we build custom homes." These 3 pins fix that in the first 30 days._
 

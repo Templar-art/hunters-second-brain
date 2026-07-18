@@ -20,3 +20,5 @@ updated: 2026-07-17
 ## Standing constraints
 - Money gate: no credit spend without Hunter's explicit go-ahead.
 - Task source of truth: the 10x CRM (MCP), not files in this vault.
+
+Full page catalog: [[index]] · ops chronology: [[log]].

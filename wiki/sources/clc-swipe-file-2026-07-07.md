@@ -1,5 +1,7 @@
 # CLC Swipe File — 15 referenced posts/patterns (7 Jul 2026)
 
+_Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
+
 Live-captured from benchmark accounts. Format per entry: link · what it is · why it works (or doesn't) · the CLC version to make.
 
 ## A. Barlow (@barlowbuilding, 17.3k)

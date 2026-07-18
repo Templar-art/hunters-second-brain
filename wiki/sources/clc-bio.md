@@ -1,4 +1,6 @@
 # Coast Life Constructions — Instagram Bio Variants
+
+_Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 _Managed by 10x Visuals | Pick one, test for 4 weeks, then rotate._
 _Benchmark note: @barlowbuilding uses a single-word all-caps brand mark. @grimmondau does the same. Long descriptive bios pull the account back to "local trade" positioning. Keep it short and premium._
 

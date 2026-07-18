@@ -1,4 +1,6 @@
 # Coast Life Constructions — 90-Day Instagram Strategy
+
+_Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 _Managed by 10x Visuals | Cycle: Jul–Sep 2026_
 _Built from profile audit (see `00_profile_audit.md`)_
 

@@ -7,7 +7,7 @@ updated: 2026-07-10
 # Music Reference Library
 
 A tagging taxonomy for choosing music to score 10x Visuals real-estate video edits.
-Each track is tagged with a controlled set of attributes so the library can be
+Each track in [[music-library]] is tagged with a controlled set of attributes so the library can be
 **filtered** (find a track for a brief), **browsed** (scan by eye), and **handed to
 an editor** (unambiguous to someone who isn't Hunter).
 
@@ -21,19 +21,19 @@ The market segment of the listing the music is meant for — `Luxury`, `Standard
 _Avoid_: Property Type, Tier, Segment, Class
 
 **Content Format**:
-The deliverable the track is intended to score — e.g. `Walkthrough / Brand Film`, `Reel / Social`, `Brand Film / Testimonial`. This column — never [[Property Tier]] — owns all format/placement values.
+The deliverable the track is intended to score — e.g. `Walkthrough / Brand Film`, `Reel / Social`, `Brand Film / Testimonial`. This column — never **Property Tier** — owns all format/placement values.
 _Avoid_: Best Content Format, Format, Placement, Content Type
 
 **Vibe**:
-The single high-level archetype of a track — `Cinematic`, `Hype`, `Chill`, or `Corporate`. The primary top-level filter; maps roughly to use-case (Cinematic→luxury walkthrough, Hype→social reel, Chill→lifestyle, Corporate→clean uplifting brand film / promo / explainer). Tempo, [[Mood]] and [[Energy Build]] carry the rest — Vibe never restates them.
+The single high-level archetype of a track — `Cinematic`, `Hype`, `Chill`, or `Corporate`. The primary top-level filter; maps roughly to use-case (Cinematic→luxury walkthrough, Hype→social reel, Chill→lifestyle, Corporate→clean uplifting brand film / promo / explainer). Tempo, **Mood** and **Energy Build** carry the rest — Vibe never restates them.
 _Avoid_: Vibe / Energy, Energy, Feel, Character
 
-**Corporate** (a [[Vibe]] value):
+**Corporate** (a **Vibe** value):
 The clean, optimistic, motivational archetype — polished and building, for company promos, brand films, explainers and LinkedIn. Distinct from `Cinematic` (more emotional/moody) and `Hype` (club energy); rarely uses a `Drop`.
 _Avoid_: Commercial, Business, Promo (those describe the deliverable, not the sound)
 
 **Mood**:
-The emotional colour of a track — e.g. `Dark / Dreamy`, `Warm / Relaxed`, `Emotional / Intimate`. Distinct from [[Vibe]] (archetype) and Tempo (speed).
+The emotional colour of a track — e.g. `Dark / Dreamy`, `Warm / Relaxed`, `Emotional / Intimate`. Distinct from **Vibe** (archetype) and Tempo (speed).
 _Avoid_: Mood / Feel, Feel, Tone
 
 **Energy Build**:
@@ -41,11 +41,11 @@ How a track's intensity moves over time — `Slow Build`, `Steady`, `Drop`, `Pea
 _Avoid_: Energy, Build, Arc, Dynamics
 
 **Tempo**:
-The raw speed of a track, independent of how its intensity is arranged — `Slow` (~60–90 BPM), `Mid` (~90–120 BPM), `Fast` (120+ BPM). Distinct from [[Energy Build]] (arc over time) and [[Vibe]] (archetype): a `Slow Build` track can still be `Fast`. Speed only.
+The raw speed of a track, independent of how its intensity is arranged — `Slow` (~60–90 BPM), `Mid` (~90–120 BPM), `Fast` (120+ BPM). Distinct from **Energy Build** (arc over time) and **Vibe** (archetype): a `Slow Build` track can still be `Fast`. Speed only.
 _Avoid_: BPM, Speed, Pace, Energy
 
 **Competitor Ref**:
-The studio whose published work is the reference example for this track's use (currently always `DESIRE STUDIO`). Pairs with [[Reference Link]].
+The studio whose published work is the reference example for this track's use (currently always `DESIRE STUDIO`). Pairs with **Reference Link**.
 _Avoid_: Competitor, Inspo, Ref
 
 **Reference Link**:

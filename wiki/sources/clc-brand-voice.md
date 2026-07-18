@@ -1,4 +1,6 @@
 # Coast Life Constructions — Brand Voice File
+
+_Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 _Last updated: 2026-07-06 | Managed by 10x Visuals_
 _Built from real profile audit — see `00_profile_audit.md` for benchmark data against @barlowbuilding and @grimmondau._
 

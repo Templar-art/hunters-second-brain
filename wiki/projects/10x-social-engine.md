@@ -32,7 +32,7 @@ Ranked by Hunter's priorities (volume/cadence, reels, ads first):
 |---|---|---|
 | 1 | **Volume/cadence** — 10 feed posts ≈ 5 weeks, then dry; no refill loop | SOP below: the engine turns every delivered job into feed + story + reel assets in one run. Bottleneck is library ingestion, not design |
 | 2 | **Tue reel slot had no system** | ✅ Built: FCP overlay + cover per reel; 3 reels ready (Criterion, Hour Glass, Bell Street). Cutting stays in FCP |
-| 3 | **Ads/lead gen had only the rejected tiles** | ✅ Built: 3 premium ad cards × 2 placements (listings / builders / staging). Captions per [[../concepts/brand-system]] ad formula |
+| 3 | **Ads/lead gen had only the rejected tiles** | ✅ Built: 3 premium ad cards × 2 placements (listings / builders / staging). Captions per [[brand-system]] ad formula |
 | 4 | **Nothing posted yet** — bubbles, stories, feed all sitting on Desktop | On Hunter: post per pack READMEs. Everything is blocked behind this |
 | 5 | **3 pins** (showreel / meet 10x / how-a-shoot-works) not built | Needs footage decisions — next session with Hunter |
 | 6 | **Bio not updated** | 30-second manual change; text in [[10x-ig-repositioning]] |
@@ -54,7 +54,7 @@ Every delivery email + JOB.md gets the line: *"When posting, please credit @10xv
 
 ### Before posting ANY asset
 - Verify handles against live profiles; fill `[@handle]` blanks.
-- Check the client's live feed — never re-post already-published media ([[../concepts/brand-system]] rules; the Chambers miss).
+- Check the client's live feed — never re-post already-published media ([[brand-system]] rules; the Chambers miss).
 - No third-party branding/pins/watermarks in frames (client's own branding in their doco film is fine).
 
 ## Rules baked into the engine

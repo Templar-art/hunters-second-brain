@@ -7,6 +7,8 @@ updated: 2026-07-14
 
 # MVX Electrical
 
+_10x web client — company context: [[overview]]._
+
 Gold Coast + Northern NSW electrical contractor, owner **Matt**. 10x Visuals built their website (WordPress + Elementor, "Web Design by 10x Visuals" credit in footer). Phone 0427 593 990, [mvxelectrical.com.au](https://mvxelectrical.com.au).
 
 **Brand:** volt green `#7EC004` + black, Poppins, white logo on dark. Blokey-straight copy voice ("Aircon packed it in?").

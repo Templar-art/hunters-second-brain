@@ -36,7 +36,7 @@ Real builder, real projects, real trade network — but the account reads as a *
 6. 90-day re-audit vs Barlow — target 50+ likes/post, ≥1 designer/homeowner commenter per week
 
 ## The Fable 5 Pack — COMPLETE ✅ (retrieved from Perplexity 6 Jul 2026)
-Vault home: PDFs in `raw/clc/` (immutable) **and editable markdown in `wiki/sources/clc-*.md` — edit those, they are the living source**:
+Vault home: PDFs in `raw/clc/` (immutable) **and editable markdown in `wiki/sources/clc-*.md` — edit those, they are the living source** (start: [[clc-pack-readme]], audit: [[clc-profile-audit]], voice: [[clc-brand-voice]]):
 
 | # | File | What it is |
 |---|------|------------|
@@ -102,7 +102,7 @@ Editorial kit ripped from benchmark patterns → `~/Desktop/General Folder/CLC B
 ## Highlight bubbles — MATERIAL ground (9 Jul 2026)
 Superseded the dimmed-photo bubbles: Hunter's call is **material backgrounds like Barlow** (warm-neutral grade), not project photos, and **a different material per bubble** (procedural v1 was rejected as low-quality → regenerated with real Magnific textures). All 5 = distinct warm-neutral materials + navy CL. monogram (auto-inverts to white on dark grounds): ladds_ridge=travertine, burleigh=honey oak, chambers_lane=cream limewash, gundara_street=charcoal microcement (white mark), winship_street=terrazzo. Files: `~/Desktop/Coastlife Bubbles/` + kit `highlight_covers/`; old photo bubbles backed up to `_photo_versions/`.
 - **Textures** (Recraft V4.1, 60cr each, 1:1) saved to `CLC Brand Kit/_textures/{project}.png` — recompose for FREE, never re-spend.
-- **Live builder:** `~/Desktop/General Folder/_bubble_engine/build_material_bubbles.py` (drives all 3 brands from saved textures; compose.py does cover-crop + auto-contrast mark + vignette). Procedural `materials.py`/`compose.py` still there for patterns; old per-brand procedural builders deleted (were clobber footguns). See [[reference-magnific]], [[project-bespoke... n/a]].
+- **Live builder:** `~/Desktop/General Folder/_bubble_engine/build_material_bubbles.py` (drives all 3 brands from saved textures; compose.py does cover-crop + auto-contrast mark + vignette). Procedural `materials.py`/`compose.py` still there for patterns; old per-brand procedural builders deleted (were clobber footguns). See auto-memory `reference-magnific`.
 
 ## Related
 - CLC monthly carousel generator: auto-memory `template-clc-social-graphics.md` — apply the named-project + editorial-caption rules to future runs

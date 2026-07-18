@@ -1,4 +1,6 @@
 # Coast Life Constructions — Instagram Profile Audit
+
+_Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 _Audited 6 July 2026 · Managed by 10x Visuals_
 _Benchmarked against: @barlowbuilding, @grimmondau_
 
