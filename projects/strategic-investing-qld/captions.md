@@ -213,3 +213,6 @@ A lot of your return is set the day you buy.
 
 Buying well, at the right price, in the right area, for your strategy, gives everything
 that follows a head start.
+
+---
+_Vault: [[strategic-investing-qld]]_

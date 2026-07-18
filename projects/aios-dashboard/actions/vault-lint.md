@@ -15,3 +15,6 @@ Run the lint pass per CLAUDE.md:
 4. Commit `chore(aios): nightly lint YYYY-MM-DD` and push.
 
 Output a short findings summary.
+
+---
+_Vault: [[agentic-os]]_

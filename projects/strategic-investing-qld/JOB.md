@@ -100,3 +100,6 @@ Files: `out/post-NN/`. Captions: `captions.md`.
   content group and carry the house line-work motif; cream_quote mark tightened.
 - Grid rhythm balanced across photo / white (cream) / blue (navy). 4 photos, 4 cream,
   rest navy. 1 more free stock photo pulled (planning, 0 credits).
+
+---
+_Vault: [[strategic-investing-qld]]_

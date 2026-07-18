@@ -45,3 +45,6 @@ Render: cairosvg + PIL via `~/.claude-tools/Skill_Seekers/.venv/bin/python`.
 
 ## Out of scope
 Flat-colour treatments (revisit later — "ditch the coloured stuff for now"), light/white-background tiles (blocked on a dark-logo export).
+
+---
+_Vault: [[10x-social-engine]]_

@@ -63,3 +63,6 @@ A Claude Code scheduled agent (routine):
 
 - Weekday mornings, a push notification arrives unprompted with an accurate, ranked view of what's on Hunter's plate.
 - CRM outage produces an explicit "unreachable" push, not silence.
+
+---
+_Vault: [[jarvis]]_

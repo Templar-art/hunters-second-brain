@@ -96,3 +96,6 @@ Keep all existing windows, water view, sliding door, glass ensuite, bath, vanity
 - 2026-07-14 KEEPER: master hero -3 done by Hunter on Seedream (Higgsfield) — faithful, on-brief, listing-ready.
 - 2026-07-14 workflow decision: Hunter runs all remaining gens himself on Seedream; Claude supplies prompts + does Magnific upscale finish on keepers.
 - 2026-07-14 ANCHOR: open-plan anchor = -2 (widest: living+dining+kitchen+TV wall). Approve first, then transfer into -7/-9/-11 to hold the set. Six-frame ZED prompt set written (-7 dining, -2 anchor, -9 living, -11 dining+island, -8 study nook +iMac, -6 ensuite). Swaps: black leather→cream bouclé, black-gloss console→white-gloss, flowers→neutral; boat photos + built-in shelf kept.
+
+---
+_Vault: [[overview]]_

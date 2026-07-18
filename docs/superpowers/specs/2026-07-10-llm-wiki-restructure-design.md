@@ -56,3 +56,6 @@ Hunters Second Brain/
 - No qmd/search tooling yet (index.md sufficient at this scale).
 - No changes to `.agents/` vendored skills, skills-lock.json, `.github/`, `.obsidian/`.
 - No Dataview/Marp setup.
+
+---
+_Vault: [[overview]]_

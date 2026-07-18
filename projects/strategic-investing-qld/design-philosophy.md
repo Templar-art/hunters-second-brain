@@ -11,3 +11,6 @@ Form is drawn, not photographed from chaos. Architecture is rendered in confiden
 Typography carries emotion through a single elegant serif set large and calm, never in capitals, its natural letterspacing left untouched. A humanist sans handles everything functional beneath it, smaller, quieter, perfectly aligned. Text is sparse and essential — a statement, a supporting line, a single invitation — integrated into the composition's banded architecture rather than laid on top of it. Hierarchy is achieved through scale and colour temperature, never through noise.
 
 The finished artefact should feel like a document from a steadier world: a certificate of the achievable, drafted with the reverence of an architectural elevation and the warmth of late Queensland morning light. Someone who knows the subject should feel their own street in it; everyone else should simply sense that whoever made this cared, checked, and refined it countless times until it was pristine.
+
+---
+_Vault: [[strategic-investing-qld]]_

@@ -36,3 +36,6 @@ Cinematic, understated, confident. A film house, not a content shop. Copy is blo
 ## Accessibility & Inclusion
 
 White type must survive its background: adaptive scrim on bright frames, soft drop shadow always. No text in IG UI dead zones (story top ~170px / bottom ~280px). Copy in sentence-length fragments readable at feed scale.
+
+---
+_Vault: [[overview]]_

@@ -44,3 +44,6 @@ Real files only, never text wordmarks — see auto-memory `reference-brand-asset
 - No third-party branding/map pins/sold signs/watermarks in frames
 - Never re-post already-published media — check the live feed first
 - One property per highlight cover; vary properties across a posting run (no 3 near-identical sunsets in one pack)
+
+---
+_Vault: [[overview]]_

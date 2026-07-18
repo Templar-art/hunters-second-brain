@@ -74,3 +74,6 @@ PIL composites each slide: white base → paste focal-cropped photos with 3px gu
 
 ## Known caveat
 Client branding is visible in-frame (Salisbury jacket, MVX van, CSI signage, Ballina truck). This deliberately bumps the standing **no-third-party-branding** rule for general posts — accepted here because a client wrap is a credit reel; showing client work is the intent.
+
+---
+_Vault: [[10x-social-engine]]_

@@ -122,3 +122,6 @@ natural, keep the hook verbatim.
 
 Master (@10xvisuals.co) stays on its own Thu/Sun + Tue reel plan — only the
 best of the verticals gets re-cut for it.
+
+---
+_Vault: [[10x-socials-funnel]]_

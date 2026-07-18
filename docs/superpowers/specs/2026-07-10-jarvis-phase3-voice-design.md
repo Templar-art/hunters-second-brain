@@ -39,3 +39,6 @@ All components local and free except the Claude call (subscription CLI). Each st
 ## Success criteria
 
 Hold key, ask "what's on my plate", release → spoken + on-screen answer listing current CRM to-dos within ~5 s. "Remind me to call Rob tomorrow" → to-do appears in CRM. Mishears or empty audio fail gracefully, aloud.
+
+---
+_Vault: [[jarvis]]_

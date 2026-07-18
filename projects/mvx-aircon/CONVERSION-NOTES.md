@@ -49,3 +49,6 @@
 - [ ] Fire conversion events: tel: clicks (primary), form submit (secondary)
 - [ ] Real review count/score pulled from actual Google Business Profile before claiming 4.9
 - [ ] Strip site-wide nav from the live version (landing pages leak less with no menu — current page has full nav; new design already omits it)
+
+---
+_Vault: [[mvx-electrical]]_

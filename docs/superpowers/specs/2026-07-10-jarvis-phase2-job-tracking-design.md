@@ -34,3 +34,6 @@ Job state (what's generated, approved, delivered, spent) lives in Hunter's head 
 ## Success criteria
 
 Every job started after 2026-07-10 has a JOB.md accurate enough that a fresh session could resume it — even though resume isn't built yet.
+
+---
+_Vault: [[jarvis]]_

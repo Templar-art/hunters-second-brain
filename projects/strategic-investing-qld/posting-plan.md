@@ -242,3 +242,6 @@ yield stacks up.
 Growth gets the attention, but cashflow is what lets you hold long enough to see it.
 
 Build your buffers and plan your cashflow before you buy, not after.
+
+---
+_Vault: [[strategic-investing-qld]]_

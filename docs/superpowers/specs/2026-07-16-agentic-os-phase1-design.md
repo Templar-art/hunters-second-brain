@@ -45,3 +45,6 @@ One **action registry** (`projects/aios-dashboard/actions/*.md` prompt files) co
 ## Out of scope (roadmap)
 
 - L4 GitHub template/distribution; cloud scheduled agents; push notifications; social-metrics pull; CRM write-back.
+
+---
+_Vault: [[agentic-os]]_

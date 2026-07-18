@@ -10,8 +10,11 @@ Do this:
    - **Follow-ups** — list lines tagged `#followup` (or ⏳) across `wiki/` pages, with the page each came from. These tags are the single source of truth for follow-ups (the dashboard counts the same tag); do not infer follow-ups from prose.
    - **CRM** — the 10x CRM MCP is not available in headless runs; write one line: "CRM: not connected in loop runs — check CRM directly or re-auth."
    - **Vault health** — one line: pages updated in the last 7 days, date of last lint entry in `wiki/log.md`.
-3. Keep the brief tight — scannable in 60 seconds, no filler.
+3. Keep the brief tight — scannable in 60 seconds, no filler. Write client/project names as `[[wikilinks]]` so the daily note stays connected in graph view, and end the note with `_Vault: [[agentic-os]]_` if not already present.
 4. Append one line to `wiki/log.md`: `## [YYYY-MM-DD] query | AIOS morning brief`.
 5. Commit everything with message `chore(aios): morning brief YYYY-MM-DD` and push.
 
 Output a 3-line summary of what you wrote.
+
+---
+_Vault: [[agentic-os]]_

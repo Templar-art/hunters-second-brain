@@ -44,3 +44,6 @@ Full ZED restyle + declutter, whole listing. Hunter runs all gens himself on **S
 - Standing corrections captured this job: outdoor rooms = weatherproof ZED furniture (rect table, sides-only chairs); pin fences/gates "nothing new built" (Seedream invents doors/gates on patios); declutter-proof pass before staging on hard outdoor frames; velvet/marble indoor set never outdoors.
 - ⚠️ EXPORT ISSUE: some keepers accidentally exported at ~5KB — re-export originals from Higgsfield at full res before Magnific upscale pass.
 - NEXT: (1) re-export 5KB frames full-res, (2) finish pending gens/redos, (3) Magnific upscale finish on all keepers (subtle/auto/Standard Ultra, creativity −3, resemblance 3, materials-only prompt), (4) post cleanup: blue object bed 1, black object master bedside.
+
+---
+_Vault: [[staging-rules]]_

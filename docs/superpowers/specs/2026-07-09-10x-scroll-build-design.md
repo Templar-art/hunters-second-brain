@@ -113,3 +113,6 @@ finale, no console errors).
 - Feels premium and on-brand (dark, blueprint-blue, restrained).
 - A prospect immediately understands "10x can build this for me."
 - Photoreal frames can be added later by editing one config array.
+
+---
+_Vault: [[10x-scroll-build]]_

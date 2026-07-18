@@ -52,3 +52,6 @@ curl -L -o ~/.cache/whisper/ggml-base.en.bin \
 - [ ] **Step 3:** "Remind me to call Rob tomorrow" → todo appears in CRM (`list_personal_todos` confirms).
 - [ ] **Step 4:** Silent press (no speech) → graceful "didn't catch that".
 - [ ] **Step 5:** Fix issues found; if transcripts rough, swap model to `small.en` in jarvis-ask.sh.
+
+---
+_Vault: [[jarvis]]_

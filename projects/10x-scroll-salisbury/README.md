@@ -116,3 +116,6 @@ Captions: The site / Framed / Built / The reveal / Every angle / Step inside.
 Cost this pass: 2 aerial-dirt stills ~150 cr + 3 Pro clips 10,500 cr (orbit/reveal/inside reused).
 Engine unchanged (cross-blend interpolation, 2D rig off). Full film: fly_full.mp4.
 Per-niche recipe: swap the property photo + interior payoff; the 6-beat chain is the template.
+
+---
+_Vault: [[10x-scroll-build]]_

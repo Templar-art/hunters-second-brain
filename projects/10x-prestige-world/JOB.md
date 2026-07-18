@@ -22,3 +22,6 @@
 - [2026-07-16] Seam fix landed: sanitized leg-3 prompt passed first try ("real estate walkthrough" phrasing beats the NSFW filter). Re-chained 4-5 (L5 one re-roll, refunded). Seam 2-3 now composition-continuous.
 - [2026-07-16] QA: SSIM gate numerically RED (0.51-0.67) — documented as model behaviour: Seedance 2.0 std re-renders start frames rather than pixel-locking, so the skill's >=0.95 bar is unreachable; eye-verified all 4 seams composition-continuous, crossfade 0.08 covers render drift. Browser QA green: blob seek OK, no console errors, mobile tier serves -m.mp4, phone crop reads.
 - [2026-07-16] Final spend: ~18 successful gens, ~395 cr image+video (NSFW rejections refunded). Balance 2445.94.
+
+---
+_Vault: [[overview]]_

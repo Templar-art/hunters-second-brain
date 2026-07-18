@@ -17,3 +17,6 @@ cost: { credits: 0, aud: 0 }
 ## Log
 
 - {YYYY-MM-DD} intake: {N} shots triaged
+
+---
+_Vault: [[jarvis]]_

@@ -8,3 +8,6 @@ HARD RULES: No paid/credit-spending tools. No deletions.
 4. Commit `chore(aios): weekly review YYYY-MM-DD` and push.
 
 Output the Shipped/Stalled/Next-week lines as your summary.
+
+---
+_Vault: [[agentic-os]]_

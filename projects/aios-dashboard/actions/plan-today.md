@@ -8,3 +8,6 @@ HARD RULES: No paid/credit-spending tools. No file deletion.
 4. Commit `chore(aios): plan YYYY-MM-DD` and push.
 
 Output the plan itself as your summary.
+
+---
+_Vault: [[agentic-os]]_

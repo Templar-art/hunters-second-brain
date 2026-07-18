@@ -69,3 +69,6 @@ Camera Capture: wide-latitude cinema capture, vintage 35mm 2x anamorphic charact
 After render: `ffmpeg -i build.mp4 -vf "fps=24" -q:v 3 "frames/f_%04d.jpg"` → set FRAME_COUNT
 to the frame count (15s ≈ 360) → captions in index.html can gain per-stage lines
 (SLAB. / FRAME. / BRICK. / ROOF. / HOME.) keyed to scroll ranges.
+
+---
+_Vault: [[10x-scroll-build]]_

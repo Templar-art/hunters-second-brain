@@ -7,3 +7,6 @@ HARD RULES: No paid/credit-spending tools. Read-only against the CRM — do not 
 3. Commit `chore(aios): crm pull YYYY-MM-DD` and push.
 
 If the CRM MCP is unavailable, say so clearly and stop — do not guess task content.
+
+---
+_Vault: [[agentic-os]]_

@@ -49,3 +49,6 @@ golden hour) are photo posts by design — no video needed.
 ## Rules (unchanged)
 Collab/client feed check before master · verify every @handle live · organic voice,
 no hashtags/CTA on master · never same project 2× in one week on one account.
+
+---
+_Vault: [[10x-socials-funnel]]_
