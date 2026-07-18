@@ -82,6 +82,22 @@ function recentLog() {
   return text.split('\n').filter(l => l.startsWith('## ')).slice(-8).reverse();
 }
 
+function latestWeeklyReview() {
+  let files = [];
+  try {
+    files = readdirSync(join(VAULT, 'wiki', 'sources'))
+      .filter(f => /^weekly-review-\d{4}-\d{2}-\d{2}\.md$/.test(f)).sort();
+  } catch { /* no sources dir */ }
+  if (!files.length) return null;
+  const name = files[files.length - 1];
+  const text = read(join(VAULT, 'wiki', 'sources', name)) || '';
+  const bullets = text.split('\n')
+    .filter(l => /^\s*[-*] /.test(l))
+    .map(l => l.replace(/^\s*[-*] /, '').slice(0, 200))
+    .slice(0, 6);
+  return { path: `wiki/sources/${name}`, date: name.match(/(\d{4}-\d{2}-\d{2})/)[1], bullets };
+}
+
 function dailyNote(dateStr) {
   const p = join(VAULT, `${dateStr}.md`);
   if (!existsSync(p)) return { exists: false, path: `${dateStr}.md` };
@@ -109,5 +125,6 @@ export function scan() {
     followupLines: wiki.followupLines,
     log: recentLog(),
     daily: dailyNote(dateStr),
+    weekly: latestWeeklyReview(),
   };
 }
