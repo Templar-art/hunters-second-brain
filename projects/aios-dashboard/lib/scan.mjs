@@ -65,12 +65,11 @@ function scanWiki() {
     if (!text) continue;
     const fm = frontmatter(text);
     if (fm.updated && now - Date.parse(fm.updated) < week) updatedThisWeek++;
-    if (p.includes('/clients/') || p.includes('/people/') || p.includes('/projects/')) {
-      for (const line of text.split('\n')) {
-        if (/\b(waiting on|awaiting|follow[- ]?up|no reply|chase)\b/i.test(line) && !line.startsWith('#')) {
-          followups++;
-          followupLines.push({ page: p.split('/').pop().replace('.md', ''), path: p.replace(VAULT + '/', ''), line: line.replace(/^[-*\s]+/, '').slice(0, 140) });
-        }
+    // Follow-ups are explicit only: tag a line with #followup (or ⏳) in any wiki page.
+    for (const line of text.split('\n')) {
+      if (/#followup\b|⏳/.test(line)) {
+        followups++;
+        followupLines.push({ page: p.split('/').pop().replace('.md', ''), path: p.replace(VAULT + '/', ''), line: line.replace(/^[-*\s]+/, '').replace(/#followup\b/, '').trim().slice(0, 140) });
       }
     }
   }
