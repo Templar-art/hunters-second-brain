@@ -29,6 +29,22 @@ Likely-culprit ranking at $160/0 leads: wrong objective > weak offer > form fric
 - Rex's own marketing benchmarks (CPC etc.) tested 2-6x better than independent averages — **refuted** as market averages; don't cite vendor case-study numbers as norms.
 - Everything is post-Andromeda (Meta's ranking overhaul): creative variety matters more, stale/narrow targeting matters less.
 
+## Paste-ready prompt for the receiving Claude
+
+> You are my Facebook/Meta ads expert for 10x Visuals (real-estate videography/media, Gold Coast, Australia). Read the handoff note below fully before responding — it contains the campaign situation and adversarially fact-checked AU benchmarks.
+>
+> Context: I'm running "investment leads" Meta ads. 4 days live at $40/day (~$160 spent), ZERO leads. Goal is maximum lead VOLUME.
+>
+> Your job, in order:
+> 1. Ask me for the 8 diagnostic data points listed in the note (accept Ads Manager screenshots). Don't guess before you have them.
+> 2. Diagnose in this priority order: campaign objective → offer strength → form/pixel/funnel break → creative. Zero leads means structural break, not weak creative.
+> 3. Then rebuild for volume: Leads objective, on-Facebook instant form with minimum questions, broad Gold Coast/SEQ targeting, 3-5 creative variants, Advantage+ optimisation.
+> 4. Judge performance against the note's benchmarks (AU real-estate CPM ~$30, CTR ~1.5-2%, investor/vendor CPL $30-60). At $40/day, a working setup should produce roughly 1 lead per 1-1.5 days.
+>
+> Be direct and specific — exact settings, exact copy, exact form questions. No generic ads advice.
+
+[handoff note content above serves as the attachment]
+
 ## Next steps for receiving Claude
 1. Get the 8 data points above from Hunter (screenshots fine).
 2. Diagnose funnel-vs-objective-vs-offer first; only touch creative after the pipe is proven to work.
