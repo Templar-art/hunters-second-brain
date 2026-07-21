@@ -2,7 +2,7 @@
 client: strategic-investing-qld
 address: n/a (social ad creative, not a property)
 opened: 2026-07-10
-status: review        # intake → generating → review → delivered
+status: delivered     # intake → generating → review → delivered
 cost: { credits: 150, aud: 6 }
 ---
 

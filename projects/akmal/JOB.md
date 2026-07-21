@@ -2,7 +2,7 @@
 client: akmal
 address: 1007/180 Marine Parade
 opened: 2026-07-14
-status: intake        # intake → generating → review → delivered
+status: delivered     # intake → generating → review → delivered
 cost: { credits: 14, aud: 0.56 }   # ~7cr wasted: dining prompt run on -3 (bedroom) by filename error
 
 # TRUE FILE MAPPING (locked 2026-07-14 after mislabel)
