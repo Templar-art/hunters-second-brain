@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real Estate Photography — Partnership Proposal</title>
+<style>
+  :root{
+    --ink:#2b2a26;        /* charcoal text */
+    --soft:#6f6a61;       /* muted body */
+    --line:#e2dacd;       /* hairlines */
+    --cream:#f7f3ec;      /* page bg */
+    --card:#fffdf9;       /* card bg */
+    --sand:#a6774c;       /* warm bronze accent */
+    --sand-tint:#f0e6d8;  /* accent wash */
+    --dark:#26251f;       /* premium dark block */
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-font-smoothing:antialiased}
+  body{
+    font-family:"Avenir Next","Avenir","Segoe UI",sans-serif;
+    color:var(--ink);background:var(--cream);
+    font-size:14px;line-height:1.6;
+  }
+  .page{max-width:820px;margin:0 auto;padding:56px 60px 40px}
+  .serif{font-family:Georgia,"Times New Roman",serif}
+  .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--sand);font-weight:600}
+  .muted{color:var(--soft)}
+
+  /* header */
+  .top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:40px}
+  .top .brand{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+
+  /* hero */
+  .hero h1{font-size:38px;line-height:1.14;font-weight:400;letter-spacing:-.01em;margin:14px 0 16px}
+  .hero h1 em{font-style:italic;color:var(--sand)}
+  .hero p.lead{font-size:16px;color:var(--soft);max-width:600px}
+  .rule{height:1px;background:var(--line);margin:44px 0}
+
+  h2.section{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);font-weight:600;margin-bottom:18px}
+
+  /* opportunity */
+  .opp{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .opp p{color:var(--soft);font-size:14px}
+  .opp .big{font-family:Georgia,serif;font-size:21px;line-height:1.4;color:var(--ink)}
+
+  /* deliverables */
+  .deliver{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 34px;margin-top:6px}
+  .deliver .item{display:flex;gap:12px;align-items:flex-start}
+  .deliver .dot{color:var(--sand);font-weight:700;line-height:1.5}
+  .deliver .item b{font-weight:600}
+  .deliver .item span{color:var(--soft)}
+
+  /* packages */
+  .pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px}
+  .pkg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 20px;display:flex;flex-direction:column}
+  .pkg.feature{background:var(--dark);border-color:var(--dark);color:#f2ece1}
+  .pkg .tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);font-weight:700;margin-bottom:10px}
+  .pkg.feature .tag{color:#d9b489}
+  .pkg .name{font-family:Georgia,serif;font-size:20px;margin-bottom:2px}
+  .pkg .price{font-family:Georgia,serif;font-size:30px;margin:8px 0 4px}
+  .pkg .price small{font-size:12px;font-family:"Avenir Next","Avenir","Segoe UI",sans-serif;color:var(--soft);letter-spacing:.04em}
+  .pkg.feature .price small{color:#b8b0a2}
+  .pkg ul{list-style:none;margin-top:14px;font-size:12.5px}
+  .pkg li{padding:6px 0;border-top:1px solid var(--line);color:var(--soft)}
+  .pkg.feature li{border-color:#3a382f;color:#cfc7b8}
+  .pkg li:first-child{border-top:none}
+  .pkg .best{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#d9b489;margin-top:14px;font-weight:700}
+
+  /* add ons */
+  .addons{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 40px;margin-top:4px;font-size:13px}
+  .addon{display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding:7px 0}
+  .addon span{color:var(--soft)}
+  .addon b{font-weight:600;font-family:Georgia,serif}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:4px}
+  .step .n{font-family:Georgia,serif;font-size:26px;color:var(--sand);line-height:1}
+  .step h4{font-size:13px;margin:8px 0 4px;font-weight:600}
+  .step p{font-size:12px;color:var(--soft)}
+
+  /* founding note */
+  .founding{background:var(--sand-tint);border-radius:10px;padding:24px 28px;margin-top:6px}
+  .founding h3{font-family:Georgia,serif;font-size:19px;font-weight:400;margin-bottom:6px}
+  .founding p{color:#7a6a55;font-size:13.5px;max-width:640px}
+
+  /* start + footer */
+  .start{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:start}
+  .start ol{margin-left:18px;font-size:14px}
+  .start li{padding:5px 0;color:var(--soft)}
+  .start li b{color:var(--ink);font-weight:600}
+  .contact{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}
+  .contact .label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);font-weight:700}
+  .contact .who{font-family:Georgia,serif;font-size:20px;margin:6px 0 12px}
+  .contact div.row{font-size:13px;color:var(--soft);padding:3px 0}
+  .foot{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;font-size:11px;color:var(--soft);letter-spacing:.04em}
+
+  @page{size:A4;margin:11mm}
+  @media print{
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+    body{background:var(--cream)}
+    .page{padding:0 6mm}
+    .pkg,.founding,.contact,.step,.opp,.deliver{break-inside:avoid}
+    .rule{margin:26px 0}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top">
+    <div class="kicker">Real Estate Photography</div>
+    <div class="brand">Gold Coast &middot; South East QLD</div>
+  </div>
+
+  <div class="hero">
+    <div class="kicker">Prepared for [FIRST NAME]</div>
+    <h1 class="serif">Listings that stop the scroll and <em>fill the inspection.</em></h1>
+    <p class="lead">You are getting back into selling. The photos are the first thing a buyer sees, and they decide who books the inspection. Here is a simple, premium way to make every listing look like it should.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2 class="section">Why it matters</h2>
+  <div class="opp">
+    <p class="big serif">Buyers scroll before they ever call. The first image decides whether your listing gets a tap or gets skipped.</p>
+    <p>Great photography is the cheapest lever you have on price and days on market. Sharp, bright, well composed images earn more clicks, more enquiries, and more people through the door. This is about making your name the one vendors trust with their biggest asset, right from your first listings back.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2 class="section">What you get, every listing</h2>
+  <div class="deliver">
+    <div class="item"><span class="dot">&bull;</span><div><b>Full home coverage.</b> <span>Every key room plus exterior, shot to feel bright, spacious and true to the property.</span></div></div>
+    <div class="item"><span class="dot">&bull;</span><div><b>Next business day delivery.</b> <span>Edited high resolution images back fast, so you list without waiting.</span></div></div>
+    <div class="item"><span class="dot">&bull;</span><div><b>Portal and print ready.</b> <span>Sized correctly for realestate.com.au, Domain, social and brochures.</span></div></div>
+    <div class="item"><span class="dot">&bull;</span><div><b>Professionally edited.</b> <span>Colour, exposure and window views handled properly. No phone snaps, no over cooked HDR.</span></div></div>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2 class="section">Packages</h2>
+  <div class="pkgs">
+    <div class="pkg">
+      <div class="tag">Essentials</div>
+      <div class="name serif">The core set</div>
+      <div class="price serif">$275<small> per listing</small></div>
+      <ul>
+        <li>Up to 25 edited hi res photos</li>
+        <li>Full interior and exterior</li>
+        <li>Next business day delivery</li>
+        <li>Portal, web and print ready</li>
+      </ul>
+    </div>
+    <div class="pkg feature">
+      <div class="tag">Signature</div>
+      <div class="name serif">The full picture</div>
+      <div class="price serif">$450<small> per listing</small></div>
+      <ul>
+        <li>Everything in Essentials</li>
+        <li>Drone exterior and aerials</li>
+        <li>One twilight hero shot</li>
+        <li>Priority next day delivery</li>
+      </ul>
+      <div class="best">Most popular</div>
+    </div>
+    <div class="pkg">
+      <div class="tag">Premium</div>
+      <div class="name serif">Photo and film</div>
+      <div class="price serif">$650<small> per listing</small></div>
+      <ul>
+        <li>Everything in Signature</li>
+        <li>30 to 45s vertical listing reel</li>
+        <li>Cut to music, social ready</li>
+        <li>Hero clip for your feed and ads</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2 class="section">Add on anything, a la carte</h2>
+  <div class="addons">
+    <div class="addon"><span>Drone exteriors and aerials</span><b>$120</b></div>
+    <div class="addon"><span>Twilight hero shot</span><b>$100</b></div>
+    <div class="addon"><span>Vertical listing reel, 30 to 45s</span><b>$300</b></div>
+    <div class="addon"><span>Floor plan</span><b>$100</b></div>
+    <div class="addon"><span>Extra edited images, per 10</span><b>$60</b></div>
+    <div class="addon"><span>Same day rush delivery</span><b>$80</b></div>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2 class="section">How it works</h2>
+  <div class="steps">
+    <div class="step"><div class="n serif">1</div><h4>Book</h4><p>Send the address and list date. I confirm a shoot time that beats your deadline.</p></div>
+    <div class="step"><div class="n serif">2</div><h4>Shoot</h4><p>I photograph the home at the right time of day for the best natural light.</p></div>
+    <div class="step"><div class="n serif">3</div><h4>Deliver</h4><p>Edited gallery back the next business day, ready to upload.</p></div>
+    <div class="step"><div class="n serif">4</div><h4>List</h4><p>You go live with images that make the property look its absolute best.</p></div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="founding">
+    <h3 class="serif">A founding rate, locked while you build back up</h3>
+    <p>These are founding client prices, held for you as you get back into selling. No lock in, no contracts, no minimums. Pay per listing, use me when it suits, and keep this rate as your volume grows. If a set ever misses the mark, I reshoot the frames that need it at no cost.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="start">
+    <div>
+      <h2 class="section">Getting started</h2>
+      <ol>
+        <li><b>Pick a package</b> for your next listing, or start with Essentials.</li>
+        <li><b>Send the address and list date</b> and I lock in the shoot.</li>
+        <li><b>Go live</b> with a gallery that does the selling for you.</li>
+      </ol>
+    </div>
+    <div class="contact">
+      <div class="label">Your photographer</div>
+      <div class="who serif">Hunter</div>
+      <div class="row">hunter@10xvisuals.com.au</div>
+      <div class="row">[PHONE]</div>
+      <div class="row">10xvisuals.com.au</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Real Estate Photography &middot; Prepared for [FIRST NAME]</span>
+    <span>Captured by Hunter &middot; 10x Visuals</span>
+  </div>
+
+</div>
+</body>
+</html>
