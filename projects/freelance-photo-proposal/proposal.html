@@ -9,17 +9,22 @@
     --ink:#2b2a26;        /* charcoal text */
     --soft:#6f6a61;       /* muted body */
     --line:#e2dacd;       /* hairlines */
-    --cream:#f7f3ec;      /* page bg */
-    --card:#fffdf9;       /* card bg */
-    --sand:#a6774c;       /* warm bronze accent */
-    --sand-tint:#f0e6d8;  /* accent wash */
+    --paper:#f8f7f5;      /* clean warm-white body bg */
+    --card:#fffefb;       /* card bg */
+    --sand:#8a5f36;       /* bronze accent, contrast-safe for text */
+    --sand-tint:#f0e6d8;  /* warm accent block wash */
     --dark:#26251f;       /* premium dark block */
+    --dark-ink:#f2ece1;   /* text on dark */
+    --dark-tag:#d9b489;   /* bronze on dark */
+    --dark-muted:#cfc7b8; /* muted on dark */
+    --dark-soft:#b8b0a2;  /* faint on dark */
+    --dark-line:#3a382f;  /* hairline on dark */
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{-webkit-font-smoothing:antialiased}
   body{
     font-family:"Avenir Next","Avenir","Segoe UI",sans-serif;
-    color:var(--ink);background:var(--cream);
+    color:var(--ink);background:var(--paper);
     font-size:14px;line-height:1.6;
   }
   .page{max-width:820px;margin:0 auto;padding:56px 60px 40px}
@@ -37,7 +42,7 @@
   .hero p.lead{font-size:16px;color:var(--soft);max-width:600px}
   .rule{height:1px;background:var(--line);margin:44px 0}
 
-  h2.section{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);font-weight:600;margin-bottom:18px}
+  h2.section{font-family:Georgia,"Times New Roman",serif;font-size:20px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:400;margin-bottom:16px}
 
   /* opportunity */
   .opp{display:grid;grid-template-columns:1fr 1fr;gap:28px}
@@ -52,20 +57,20 @@
   .deliver .item span{color:var(--soft)}
 
   /* packages */
-  .pkgs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:4px;max-width:600px}
+  .pkgs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:4px}
   .pkg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 20px;display:flex;flex-direction:column}
-  .pkg.feature{background:var(--dark);border-color:var(--dark);color:#f2ece1}
+  .pkg.feature{background:var(--dark);border-color:var(--dark);color:var(--dark-ink)}
   .pkg .tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);font-weight:700;margin-bottom:10px}
-  .pkg.feature .tag{color:#d9b489}
+  .pkg.feature .tag{color:var(--dark-tag)}
   .pkg .name{font-family:Georgia,serif;font-size:20px;margin-bottom:2px}
   .pkg .price{font-family:Georgia,serif;font-size:30px;margin:8px 0 4px}
   .pkg .price small{font-size:12px;font-family:"Avenir Next","Avenir","Segoe UI",sans-serif;color:var(--soft);letter-spacing:.04em}
-  .pkg.feature .price small{color:#b8b0a2}
+  .pkg.feature .price small{color:var(--dark-soft)}
   .pkg ul{list-style:none;margin-top:14px;font-size:12.5px}
   .pkg li{padding:6px 0;border-top:1px solid var(--line);color:var(--soft)}
-  .pkg.feature li{border-color:#3a382f;color:#cfc7b8}
+  .pkg.feature li{border-color:var(--dark-line);color:var(--dark-muted)}
   .pkg li:first-child{border-top:none}
-  .pkg .best{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#d9b489;margin-top:14px;font-weight:700}
+  .pkg .best{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dark-tag);margin-top:14px;font-weight:700}
 
   /* add ons */
   .addons{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 40px;margin-top:4px;font-size:13px}
@@ -82,7 +87,7 @@
   /* founding note */
   .founding{background:var(--sand-tint);border-radius:10px;padding:24px 28px;margin-top:6px}
   .founding h3{font-family:Georgia,serif;font-size:19px;font-weight:400;margin-bottom:6px}
-  .founding p{color:#7a6a55;font-size:13.5px;max-width:640px}
+  .founding p{color:#5f513c;font-size:13.5px;max-width:640px}
 
   /* start + footer */
   .start{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:start}
@@ -95,10 +100,16 @@
   .contact div.row{font-size:13px;color:var(--soft);padding:3px 0}
   .foot{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;font-size:11px;color:var(--soft);letter-spacing:.04em}
 
+  @media (max-width:640px){
+    .page{padding:32px 24px}
+    .hero h1{font-size:30px}
+    .opp,.deliver,.pkgs,.addons,.steps,.start{grid-template-columns:1fr;gap:16px}
+    .top{flex-direction:column;gap:4px}
+  }
   @page{size:A4;margin:11mm}
   @media print{
     *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-    body{background:var(--cream)}
+    body{background:var(--paper)}
     .page{padding:0 6mm}
     .pkg,.founding,.contact,.step,.opp,.deliver{break-inside:avoid}
     .rule{margin:26px 0}
