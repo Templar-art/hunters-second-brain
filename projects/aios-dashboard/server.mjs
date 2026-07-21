@@ -62,7 +62,12 @@ const server = createServer((req, res) => {
   }
 
   if (req.method === 'POST' && url.pathname === '/api/kill') {
-    if (current) { current.child.kill('SIGTERM'); }
+    if (current) {
+      const c = current;
+      c.child.kill('SIGTERM');
+      // Escalate to SIGKILL and free the lock even if the child ignores SIGTERM.
+      setTimeout(() => { try { c.child.kill('SIGKILL'); } catch {} if (current === c) current = null; }, 3000);
+    }
     return json(res, 200, { ok: true });
   }
 
