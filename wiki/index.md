@@ -4,6 +4,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 
 ## Core
 - [[overview]] — 10x Visuals at a glance: team, current state, emerging synthesis
+- [[craft]] — the craft knowledge base: how-to-shoot / edit / sell reference layer (6 domains)
 
 ## People
 - [[hunter]] — founder & videographer (me)
@@ -39,6 +40,16 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[jarvis]] — Hunter's phased personal assistant; phase 1 = weekday 7am CRM morning brief via push
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
+- [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)
+
+## Craft (reference)
+The durable how-to layer — standing technique, distinct from client/ops pages. Hub: [[craft]].
+- [[architectural-photography]] — MOC (22): [[arch-composition]] · [[perspective-correction]] · [[tilt-shift-technique]] · [[photo-gear-and-settings]] · [[metering-and-dynamic-range]] · [[exposure-blending]] · [[strobe-lighting]] · [[hdr-software]] · [[light-and-timing]] · [[focus-stacking]] · [[panorama-stitching]] · [[film-large-format]] · [[interior-photography]] · [[exterior-architecture]] · [[architectural-details]] · [[shot-list-and-planning]] · [[deliverables-and-export]] · [[archiving-and-backup]] · [[releases-and-permissions]] · [[real-estate-vs-architectural]] · [[matterport-3d-tours]] · [[awards-and-competitions]]
+- [[videography]] — MOC: [[video-camera-settings]] · [[cinematic-movement]] · [[property-film-structure]] · [[audio-for-video]]
+- [[post-production]] — MOC: [[photo-editing-pipeline]] · [[color-grading]] · [[video-edit-pipeline]]
+- [[ai-toolkit]] — MOC: [[ai-image-tools]] · [[ai-video-tools]] · [[ai-prompting]] (routing/rules stay in [[higgsfield-pipelines]] · [[staging-rules]])
+- [[content-systems]] — MOC: [[reel-formats]] · [[posting-cadence]] (voice/design stay in [[ig-caption-voice]] · [[brand-system]])
+- [[business-craft]] — MOC: [[pricing-and-packaging]] · [[client-onboarding]] · [[lead-gen-and-sales]] (proposal recipe stays in [[proposal-playbook]])
 
 ## Sources (ops)
 - [[weekly-review-2026-07-17]] — 7-day review: shipped/moved/stalled/learned, next focus = clear stalled client queue
