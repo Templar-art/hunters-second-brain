@@ -1,0 +1,45 @@
+# 10x SSD -> Google Drive (Clients shared drive) upload map
+# Format: <source path on SSD><TAB><client folder name in gdrive:Clients>
+# Lines starting with # are ignored. Edit freely; re-run upload.sh anytime (resumable).
+#
+# --- CONFIDENT matches ---
+/Volumes/WD_BLACK/4x4 Rugged.zip	Rugged 4x4
+/Volumes/WD_BLACK/ACC - Shoot.zip	Ashley Cooper Construction
+/Volumes/10X SSD4/Ashley Cooper Samford.zip	Ashley Cooper Construction
+/Volumes/10X SSD2/Montague Hotel | ACC.zip	Ashley Cooper Construction
+/Volumes/10X SSD4/CLC Shoot 19 June.zip	Coast Life Constructions
+/Volumes/10X SSD2/Empire Ads.zip	Empire Technologies
+/Volumes/10X SSD2/Emprie (Cris) Kirstian.zip	Empire Technologies
+/Volumes/10X SSD4/Mastr Pics.zip	Mastr Minds
+/Volumes/10X SSD2/Pacific Street, New Brighton | Salisbury.zip	Salisbury Building Projects
+/Volumes/10X SSD2/Sailsbury Building Projects.zip	Salisbury Building Projects
+/Volumes/10X SSD2/Salisbury Building Projects1.0.zip	Salisbury Building Projects
+/Volumes/10X SSD2/Synergy - Jordan Gauder.zip	Synergy
+/Volumes/10X SSD2/Synergy stuff (Damon).zip	Synergy
+/Volumes/10X SSD4/1204:30 | Jessica Wallace Photos set 2?.zip	Jessica Wallace
+#
+# --- ROUTED by Hunter (2026-07-21) ---
+/Volumes/WD_BLACK/15 Muscon Court | Zed.zip	Zed Real Estate
+/Volumes/WD_BLACK/27 Girtin Circuit | Logan Rullis.zip	mystery stuff
+/Volumes/WD_BLACK/Jason Carra.zip	Bespoke
+/Volumes/WD_BLACK/3049 Boulevard Jason.zip	Bespoke
+/Volumes/WD_BLACK/63 Talli Road.zip	Zed Real Estate
+/Volumes/10X SSD2/T42 Electrical.zip	T42 Electrical
+/Volumes/10X SSD4/Urban Core | Site Update Carindale | Mecca.zip	Urban Core
+/Volumes/10X SSD2/UseSoftware.zip	Use Software
+/Volumes/10X SSD2/UseSoftware Testimonial.zip	Use Software
+/Volumes/10X SSD4/White fox Photos.zip	Whitefox Real Estate
+/Volumes/10X SSD4/White Fox BTS.zip	10x Visuals
+/Volumes/WD_BLACK/1245 Gold Coast Highway - Apartment 1 .zip	Jessica Wallace
+/Volumes/WD_BLACK/1245 Gold Coast Highway - Apartment 2 Furnished.zip	Jessica Wallace
+/Volumes/WD_BLACK/701:1245 Gold Coast Highway.zip	Jessica Wallace
+/Volumes/WD_BLACK/801:1245 Gold Coast Highway.zip	Jessica Wallace
+/Volumes/10X SSD4/180 Marine Parade | Twilight Photos.zip	Zed Real Estate
+/Volumes/10X SSD4/24 Ferrymans Court | Twilight Shoot.zip	Phillis
+/Volumes/WD_BLACK/25 Davenport Drive.zip	mystery stuff
+/Volumes/WD_BLACK/35 Orlando Drive.zip	mystery stuff
+/Volumes/10X SSD4/47 Somerset Drive.zip	Whitefox Real Estate
+/Volumes/WD_BLACK/48:26 Yaun Street.zip	mystery stuff
+/Volumes/WD_BLACK/10x Firms.zip	10x Visuals
+/Volumes/10X SSD4/BTS MASTR.zip	10x Visuals
+/Volumes/10X SSD4/10x Head Shots.zip	10x Photos
