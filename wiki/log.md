@@ -96,3 +96,6 @@ Built the "ask and it uploads" pipeline. Inventoried all deliverable zips across
 
 ## [2026-07-21] update | Stalled queue cleared — Akmal, Belle Property, SIQ ad kit all delivered
 Hunter confirmed three stalled jobs done. Akmal (1007/180 Marine Parade, ZED restyle) intake→delivered. Belle Property Lot 48 (house-into-lot composite) awaiting-go→delivered. Strategic Investing QLD Meta ad kit review→delivered. JOB.md statuses + [[belle-property]] client page bumped. Active job now ZED full-house only.
+
+## [2026-07-21] query | 90-day social content plan (RE + Construction) — planner rebuilt v11
+Hunter scoping tomorrow's work. Built the @10xvisuals_ own-feed 90-day content plan, two verticals (Real Estate + Construction), repurposing delivered library (zero new shooting). Prior planner xlsx (v1..v10) gone from ~/Downloads — rebuilt populated as `10x_Visuals_90Day_Growth_Planner_v11.xlsx`: 6 sheets, 65 posts / 13wk (Mon 27 Jul–Fri 23 Oct), weekly rhythm Mon RE / Tue Tyson TH / Wed Construction / Thu BTS / Fri trending+proof+wrap, monthly wraps last Fri, all captions in locked short voice, Status + Audience dropdowns, live Dashboard counts + Growth Tracker. Detail in auto-memory [[project-90day-growth-planner]].
