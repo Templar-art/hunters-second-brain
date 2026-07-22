@@ -4,256 +4,299 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bespoke Estate Agents | Beyond Luxury Real Estate, Gold Coast</title>
-  <meta name="description" content="Boutique prestige real estate on the Gold Coast. Jason Ward brings local knowledge and honest advice to selling your home. Book a free appraisal.">
+  <meta name="description" content="Boutique prestige real estate on the Gold Coast. A bespoke, cinematic presentation of recent results by Jason Ward.">
   <link rel="icon" type="image/png" href="assets/logos/favicon.png">
   <link rel="preload" href="assets/fonts/Zodiak-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
   <script>try{if(sessionStorage.getItem('beaSeen'))document.documentElement.dataset.preloaded='1'}catch(e){}</script>
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/showcase.css">
 </head>
 <body>
-  <!-- Startup logo-draw intro (plays once per session) -->
   <div class="preloader" id="preloader" aria-hidden="true">
-    <video class="preloader__vid" autoplay muted playsinline>
-      <source src="assets/video/loadscreen.mp4" type="video/mp4">
-    </video>
+    <video class="preloader__vid" autoplay muted playsinline><source src="assets/video/loadscreen.mp4" type="video/mp4"></video>
   </div>
+
   <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Bespoke Estate Agents home">
-      <img class="brand__icon" src="assets/logos/bespoke-icon-offwhite.svg" alt="">
-      <span class="brand__word">
-        <b>BESPOKE</b>
-        <span>Estate Agents</span>
-      </span>
-    </a>
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Bespoke Estate Agents home">
+        <img class="brand__icon" src="assets/logos/bespoke-icon-offwhite.png" alt="">
+        <span class="brand__word"><b>BESPOKE</b><span>Estate Agents</span></span>
+      </a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="#top">Home</a>
+        <a href="#team">About</a>
+        <a href="services.html">Services</a>
+        <a href="#estates">Sold Listings</a>
+        <a href="projects.html">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn--light header-cta" href="#contact">Book an Appraisal</a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
 
-    <nav class="nav-desktop" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="sold-listings.html">Sold Listings</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
+  <div class="site-menu" id="site-menu">
+    <nav aria-label="Full site">
+      <a href="#top"><span class="num">01</span>Home</a>
+      <a href="#team"><span class="num">02</span>About</a>
+      <a href="services.html"><span class="num">03</span>Services</a>
+      <a href="#estates"><span class="num">04</span>Sold Listings</a>
+      <a href="projects.html"><span class="num">05</span>Projects</a>
+      <a href="#contact"><span class="num">06</span>Contact</a>
     </nav>
-
-    <a class="btn btn--light header-cta" href="contact.html">Book an Appraisal</a>
-
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="site-menu__foot">
+      <span>Gold Coast, Queensland</span>
+      <span><a href="tel:0422228229">0422 228 229</a> &middot; <a href="mailto:info@bespokerealestate.com.au">info@bespokerealestate.com.au</a></span>
+    </div>
   </div>
-</header>
 
-  <div class="site-menu" id="site-menu" data-nav>
-  <nav aria-label="Full site">
-    <a href="index.html"><span class="num">01</span>Home</a>
-    <a href="about.html"><span class="num">02</span>About</a>
-    <a href="services.html"><span class="num">03</span>Services</a>
-    <a href="sold-listings.html"><span class="num">04</span>Sold Listings</a>
-    <a href="projects.html"><span class="num">05</span>Projects</a>
-    <a href="contact.html"><span class="num">06</span>Contact</a>
-  </nav>
-  <div class="site-menu__foot">
-    <span>Gold Coast, Queensland</span>
-    <span>
-      <a href="tel:0422228229">0422 228 229</a>
-      &nbsp;&middot;&nbsp;
-      <a href="mailto:info@bespokerealestate.com.au">info@bespokerealestate.com.au</a>
-    </span>
-  </div>
-</div>
+  <main id="top">
 
-
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero__media">
-        <video autoplay muted loop playsinline poster="assets/img/hero.jpg">
+    <!-- 1 · HERO -->
+    <section class="lux-hero">
+      <div class="lux-hero__media">
+        <video autoplay muted loop playsinline poster="assets/img/listings/boulevard/boulevard-01.jpg">
           <source src="assets/video/hero.mp4" type="video/mp4">
         </video>
       </div>
-      <div class="hero__inner">
+      <div class="lux-hero__scrim"></div>
+      <div class="lux-hero__inner">
         <div class="wrap">
-          <span class="eyebrow on-dark">Gold Coast Prestige Property</span>
-          <h1>Beyond luxury real estate.</h1>
-          <p class="lead">Every property has a story. Every seller deserves the right person to tell it. Boutique, people first, and built on local knowledge you will not find anywhere else.</p>
-          <div class="btn-row">
-            <a class="btn btn--light" href="contact.html">Book a Free Appraisal</a>
-            <a class="btn btn--outline-light" href="sold-listings.html">View Recent Results</a>
-          </div>
+          <span class="kicker">Gold Coast Prestige Property</span>
+          <h1 class="display display--xl">Beyond luxury<br>real estate.</h1>
+          <p class="lux-hero__sub">Every property has a story. Every seller deserves the right person to tell it.</p>
+          <div class="lux-hero__cta"><a class="btn btn--light" href="#contact">Book a Private Appraisal</a></div>
         </div>
       </div>
-      <div class="hero__scroll">Scroll</div>
+      <a class="scroll-cue" href="#intro" aria-label="Scroll">Scroll</a>
     </section>
 
-    <!-- INTRO -->
-    <section class="section">
-      <div class="wrap">
-        <div class="split split--media-right">
-          <div class="reveal">
-            <span class="eyebrow">The Bespoke Difference</span>
-            <h2>A straightforward approach to prestige property.</h2>
-            <p class="lead mt-md">Jason Ward brings clarity to a market that too often trades on noise. No jargon, no pressure, just local knowledge and honest advice. Whether you are selling the family home or your next investment, you will always know exactly where you stand.</p>
-            <p class="muted mt-md">The Gold Coast is not one market. It is thirty different micro markets, each with its own buyers, its own timing, and its own price ceiling. Knowing the difference is what separates a good result from an exceptional one.</p>
-            <a class="btn btn--outline mt-lg" href="about.html">Meet Jason</a>
-          </div>
-          <div class="split__media tall reveal" data-delay="1">
-            <img src="assets/img/listings/cairngorm/cairngorm-04.jpg" alt="Prestige Gold Coast residence at dusk" loading="lazy">
-          </div>
+    <!-- 2 · POSITIONING -->
+    <section class="lux section--offwhite" id="intro">
+      <div class="wrap two-col">
+        <h2 class="statement r-up">A boutique approach to the Gold Coast's most considered homes. <span class="dim">Presented the way prestige deserves.</span></h2>
+        <div class="r-up" data-delay="1">
+          <span class="kicker">The Bespoke Difference</span>
+          <p class="lead mt-md">Jason Ward brings clarity to a market that trades on noise. No jargon, no pressure, just local knowledge and honest advice.</p>
+          <p class="muted mt-md">The Gold Coast is not one market. It is thirty micro markets, each with its own buyers, timing, and ceiling. Knowing the difference is what turns a good result into an exceptional one.</p>
         </div>
       </div>
     </section>
 
-    <!-- STATS -->
-    <section class="section--tight section--green">
-      <div class="wrap">
-        <div class="stats reveal">
-          <div class="stat"><b>30+</b><span>Gold Coast micro markets</span></div>
-          <div class="stat"><b>14</b><span>Median days to sold</span></div>
-          <div class="stat"><b>100%</b><span>Boutique attention</span></div>
-          <div class="stat"><b>1</b><span>Agent, start to finish</span></div>
-        </div>
+    <!-- 3 · FEATURED (pinned crossfade) -->
+    <section class="featured" id="showcase" data-estates='[{"count":"01 / 03","title":"The Boulevard","name":"Riverfront &middot; Sold"},{"count":"02 / 03","title":"11 Cairngorm Street","name":"Family Residence &middot; Sold"},{"count":"03 / 03","title":"43 Northview","name":"Marina Frontage &middot; Sold"}]'>
+      <div class="featured__stage">
+        <div class="featured__layer"><img src="assets/img/listings/boulevard/boulevard-01.jpg" alt="The Boulevard"></div>
+        <div class="featured__layer"><img src="assets/img/listings/cairngorm/cairngorm-01.jpg" alt="11 Cairngorm Street"></div>
+        <div class="featured__layer"><img src="assets/img/listings/northview/northview-04.jpg" alt="43 Northview"></div>
+        <div class="featured__caption"><div class="wrap">
+          <span class="featured__count" data-count>01 / 03</span>
+          <h2 class="featured__title" data-title>The Boulevard</h2>
+        </div></div>
+        <span class="featured__name" data-name>Riverfront &middot; Sold</span>
       </div>
     </section>
 
-    <!-- FEATURED LISTINGS -->
-    <section class="section section--offwhite">
-      <div class="wrap">
-        <div class="center maxw-prose reveal">
-          <span class="eyebrow">Recent Results</span>
-          <h2>The visual proof of what Bespoke delivers.</h2>
-          <p class="muted mt-md">A closer look at the homes we have taken to market, presented the way prestige property deserves to be seen.</p>
-        </div>
+    <!-- 4-6 · ESTATES -->
+    <div id="estates">
+      <section class="lux lux--flush">
+        <div class="wrap">
 
-        <div class="property-grid mt-2xl">
-          <a class="property reveal" href="sold-listings.html">
-            <span class="property__tag">Sold</span>
-            <div class="property__img"><img src="assets/img/listings/cairngorm/cairngorm-01.jpg" alt="11 Cairngorm Street exterior at twilight" loading="lazy"></div>
-            <div class="property__body">
-              <h3>11 Cairngorm Street</h3>
-              <p class="muted" style="color:var(--be-grey-300)">A light filled family home framed by established gardens, styled and sold at its full potential.</p>
-              <div class="property__meta">
-                <span><img src="assets/icons/WhiteBed.svg" alt="">4 Bed</span>
-                <span><img src="assets/icons/WhiteShower.svg" alt="">2 Bath</span>
-                <span><img src="assets/icons/WhiteCar.svg" alt="">2 Car</span>
+          <!-- Boulevard -->
+          <div class="estate estate--rev">
+            <div class="estate__head">
+              <figure class="estate__fig r-clip"><span class="estate__tag">Sold</span><img src="assets/img/listings/boulevard/boulevard-01.jpg" alt="The Boulevard"></figure>
+              <div class="r-up">
+                <span class="kicker">Recent Result</span>
+                <h2 class="display display--m mt-md">The Boulevard</h2>
+                <p class="muted mt-md measure-wide">A striking waterfront residence in a tightly held riverside enclave. Captured at golden hour from the air, with light filled indoor to outdoor living at its heart.</p>
+                <div class="estate__meta"><span><span class="n">4</span><span class="l">Bed</span></span><span><span class="n">3</span><span class="l">Bath</span></span><span><span class="n">2</span><span class="l">Car</span></span><span><span class="n">River</span><span class="l">Frontage</span></span></div>
+                <button class="drop-toggle" aria-expanded="false" aria-controls="gal-boulevard"><span class="chev"></span><span data-label>View the gallery</span><span class="bar"></span></button>
               </div>
             </div>
-          </a>
+            <div class="gallery-drop" id="gal-boulevard" data-open="false"><div class="gallery-drop__inner"><div class="gallery">
+        <img src="assets/img/listings/boulevard/boulevard-01.jpg" alt="Boulevard photo 1" loading="lazy">
+        <img src="assets/img/listings/boulevard/boulevard-02.jpg" alt="Boulevard photo 2" loading="lazy">
+        <img src="assets/img/listings/boulevard/boulevard-03.jpg" alt="Boulevard photo 3" loading="lazy">
+        <img src="assets/img/listings/boulevard/boulevard-04.jpg" alt="Boulevard photo 4" loading="lazy">
+        <img src="assets/img/listings/boulevard/boulevard-05.jpg" alt="Boulevard photo 5" loading="lazy">
+        <img src="assets/img/listings/boulevard/boulevard-location.jpg" alt="Boulevard location" loading="lazy">
+            </div></div></div>
+          </div>
 
-          <a class="property reveal" data-delay="1" href="sold-listings.html">
-            <span class="property__tag">Sold</span>
-            <div class="property__img"><img src="assets/img/listings/northview/northview-04.jpg" alt="43 Northview waterfront residence" loading="lazy"></div>
-            <div class="property__body">
-              <h3>43 Northview</h3>
-              <p class="muted" style="color:var(--be-grey-300)">A waterfront position on the marina, captured from the ground and the air to tell the full story.</p>
-              <div class="property__meta">
-                <span><img src="assets/icons/WhiteBed.svg" alt="">5 Bed</span>
-                <span><img src="assets/icons/WhiteShower.svg" alt="">3 Bath</span>
-                <span><img src="assets/icons/WhiteCar.svg" alt="">2 Car</span>
+          <!-- Cairngorm -->
+          <div class="estate">
+            <div class="estate__head">
+              <figure class="estate__fig r-clip"><span class="estate__tag">Sold</span><img src="assets/img/listings/cairngorm/cairngorm-01.jpg" alt="11 Cairngorm Street"></figure>
+              <div class="r-up">
+                <span class="kicker">Recent Result</span>
+                <h2 class="display display--m mt-md">11 Cairngorm Street</h2>
+                <p class="muted mt-md measure-wide">A light filled, two storey family home framed by established gardens. Styled, photographed at golden hour, and taken to market at its full potential.</p>
+                <div class="estate__meta"><span><span class="n">4</span><span class="l">Bed</span></span><span><span class="n">2</span><span class="l">Bath</span></span><span><span class="n">2</span><span class="l">Car</span></span><span><span class="n">14d</span><span class="l">To Sold</span></span></div>
+                <button class="drop-toggle" aria-expanded="false" aria-controls="gal-cairngorm"><span class="chev"></span><span data-label>View the gallery</span><span class="bar"></span></button>
               </div>
             </div>
-          </a>
-        </div>
+            <div class="gallery-drop" id="gal-cairngorm" data-open="false"><div class="gallery-drop__inner"><div class="gallery">
+        <img src="assets/img/listings/cairngorm/cairngorm-01.jpg" alt="Cairngorm photo 1" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-02.jpg" alt="Cairngorm photo 2" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-03.jpg" alt="Cairngorm photo 3" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-04.jpg" alt="Cairngorm photo 4" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-05.jpg" alt="Cairngorm photo 5" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-06.jpg" alt="Cairngorm photo 6" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-07.jpg" alt="Cairngorm photo 7" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-08.jpg" alt="Cairngorm photo 8" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-09.jpg" alt="Cairngorm photo 9" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-10.jpg" alt="Cairngorm photo 10" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-11.jpg" alt="Cairngorm photo 11" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-12.jpg" alt="Cairngorm photo 12" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-13.jpg" alt="Cairngorm photo 13" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-14.jpg" alt="Cairngorm photo 14" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-15.jpg" alt="Cairngorm photo 15" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-16.jpg" alt="Cairngorm photo 16" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-17.jpg" alt="Cairngorm photo 17" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-18.jpg" alt="Cairngorm photo 18" loading="lazy">
+        <img src="assets/img/listings/cairngorm/cairngorm-19.jpg" alt="Cairngorm photo 19" loading="lazy">
+            </div></div></div>
+          </div>
 
-        <div class="center mt-2xl reveal">
-          <a class="btn btn--primary" href="sold-listings.html">View All Listings</a>
+          <!-- Northview -->
+          <div class="estate estate--rev">
+            <div class="estate__head">
+              <figure class="estate__fig r-clip"><span class="estate__tag">Sold</span><img src="assets/img/listings/northview/northview-04.jpg" alt="43 Northview"></figure>
+              <div class="r-up">
+                <span class="kicker">Recent Result</span>
+                <h2 class="display display--m mt-md">43 Northview</h2>
+                <p class="muted mt-md measure-wide">A waterfront position on the marina, captured from the ground and the air to tell the full story of the home and its setting.</p>
+                <div class="estate__meta"><span><span class="n">5</span><span class="l">Bed</span></span><span><span class="n">3</span><span class="l">Bath</span></span><span><span class="n">2</span><span class="l">Car</span></span><span><span class="n">Water</span><span class="l">Frontage</span></span></div>
+                <button class="drop-toggle" aria-expanded="false" aria-controls="gal-northview"><span class="chev"></span><span data-label>View the gallery</span><span class="bar"></span></button>
+              </div>
+            </div>
+            <div class="gallery-drop" id="gal-northview" data-open="false"><div class="gallery-drop__inner"><div class="gallery">
+        <img src="assets/img/listings/northview/northview-01.jpg" alt="Northview photo 1" loading="lazy">
+        <img src="assets/img/listings/northview/northview-02.jpg" alt="Northview photo 2" loading="lazy">
+        <img src="assets/img/listings/northview/northview-03.jpg" alt="Northview photo 3" loading="lazy">
+        <img src="assets/img/listings/northview/northview-04.jpg" alt="Northview photo 4" loading="lazy">
+        <img src="assets/img/listings/northview/northview-05.jpg" alt="Northview photo 5" loading="lazy">
+        <img src="assets/img/listings/northview/northview-06.jpg" alt="Northview photo 6" loading="lazy">
+        <img src="assets/img/listings/northview/northview-07.jpg" alt="Northview photo 7" loading="lazy">
+        <img src="assets/img/listings/northview/northview-08.jpg" alt="Northview photo 8" loading="lazy">
+        <img src="assets/img/listings/northview/northview-09.jpg" alt="Northview photo 9" loading="lazy">
+        <img src="assets/img/listings/northview/northview-10.jpg" alt="Northview photo 10" loading="lazy">
+        <img src="assets/img/listings/northview/northview-11.jpg" alt="Northview photo 11" loading="lazy">
+        <img src="assets/img/listings/northview/northview-12.jpg" alt="Northview photo 12" loading="lazy">
+        <img src="assets/img/listings/northview/northview-13.jpg" alt="Northview photo 13" loading="lazy">
+        <img src="assets/img/listings/northview/northview-14.jpg" alt="Northview photo 14" loading="lazy">
+        <img src="assets/img/listings/northview/northview-15.jpg" alt="Northview photo 15" loading="lazy">
+        <img src="assets/img/listings/northview/northview-16.jpg" alt="Northview photo 16" loading="lazy">
+        <img src="assets/img/listings/northview/northview-17.jpg" alt="Northview photo 17" loading="lazy">
+        <img src="assets/img/listings/northview/northview-18.jpg" alt="Northview photo 18" loading="lazy">
+        <img src="assets/img/listings/northview/northview-19.jpg" alt="Northview photo 19" loading="lazy">
+        <img src="assets/img/listings/northview/northview-20.jpg" alt="Northview photo 20" loading="lazy">
+        <img src="assets/img/listings/northview/northview-21.jpg" alt="Northview photo 21" loading="lazy">
+        <img src="assets/img/listings/northview/northview-22.jpg" alt="Northview photo 22" loading="lazy">
+        <img src="assets/img/listings/northview/northview-23.jpg" alt="Northview photo 23" loading="lazy">
+        <img src="assets/img/listings/northview/northview-24.jpg" alt="Northview photo 24" loading="lazy">
+        <img src="assets/img/listings/northview/northview-25.jpg" alt="Northview photo 25" loading="lazy">
+        <img src="assets/img/listings/northview/northview-26.jpg" alt="Northview photo 26" loading="lazy">
+        <img src="assets/img/listings/northview/northview-27.jpg" alt="Northview photo 27" loading="lazy">
+        <img src="assets/img/listings/northview/northview-28.jpg" alt="Northview photo 28" loading="lazy">
+        <img src="assets/img/listings/northview/northview-29.jpg" alt="Northview photo 29" loading="lazy">
+        <img src="assets/img/listings/northview/northview-30.jpg" alt="Northview photo 30" loading="lazy">
+        <img src="assets/img/listings/northview/northview-31.jpg" alt="Northview photo 31" loading="lazy">
+        <img src="assets/img/listings/northview/northview-32.jpg" alt="Northview photo 32" loading="lazy">
+        <img src="assets/img/listings/northview/northview-33.jpg" alt="Northview photo 33" loading="lazy">
+        <img src="assets/img/listings/northview/northview-34.jpg" alt="Northview photo 34" loading="lazy">
+        <img src="assets/img/listings/northview/northview-35.jpg" alt="Northview photo 35" loading="lazy">
+        <img src="assets/img/listings/northview/northview-36.jpg" alt="Northview photo 36" loading="lazy">
+        <img src="assets/img/listings/northview/northview-37.jpg" alt="Northview photo 37" loading="lazy">
+        <img src="assets/img/listings/northview/northview-38.jpg" alt="Northview photo 38" loading="lazy">
+        <img src="assets/img/listings/northview/northview-39.jpg" alt="Northview photo 39" loading="lazy">
+        <img src="assets/img/listings/northview/northview-40.jpg" alt="Northview photo 40" loading="lazy">
+            </div></div></div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- 7 · TEAM -->
+    <section class="lux section--offwhite" id="team">
+      <div class="wrap two-col">
+        <figure class="team__fig r-clip">
+          <img src="assets/img/team-ward.jpg" alt="Jason and Barbara Ward, Bespoke Estate Agents">
+          <figcaption class="team__cap">Jason &amp; Barbara Ward</figcaption>
+        </figure>
+        <div class="r-up" data-delay="1">
+          <span class="kicker">Principal Agent</span>
+          <h2 class="display display--m mt-md">Jason Ward</h2>
+          <p class="lead mt-md">Jason is the face, the expert, and the relationship at Bespoke. A straightforward approach to prestige real estate: no jargon, no pressure, just local knowledge and honest advice.</p>
+          <p class="muted mt-md">He has sold in these streets more than once, so he knows what buyers are looking for and what they will pay. He does not just sell properties, he manages the sale so his clients do not have to think about it.</p>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES TEASER -->
-    <section class="section">
+    <!-- 8 · ENQUIRY -->
+    <section class="lux enquire" id="contact">
+      <div class="enquire__bg"><img src="assets/img/location-aerial.jpg" alt="Gold Coast from above"></div>
       <div class="wrap">
-        <div class="center maxw-prose reveal">
-          <span class="eyebrow">How We Work</span>
-          <h2>Managed so you do not have to think about it.</h2>
+        <div class="two-col">
+          <div class="r-up">
+            <span class="kicker">Enquire</span>
+            <h2 class="display display--l mt-md" style="color:#fff">Let us tell your property's story.</h2>
+            <p class="lux-hero__sub" style="max-width:38ch">Start with a conversation. No pressure, no obligation, just an honest read on where you stand.</p>
+            <div class="mt-xl" style="color:rgba(255,255,255,.85)">
+              <p style="margin-bottom:8px"><a href="tel:0422228229" style="font-family:var(--be-font-heading);font-size:1.4rem">0422 228 229</a></p>
+              <p><a href="mailto:info@bespokerealestate.com.au">info@bespokerealestate.com.au</a></p>
+            </div>
+          </div>
+          <div class="r-up" data-delay="1">
+            <form data-contact class="card" novalidate>
+              <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+              <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+              <div class="field"><label for="message">How can we help?</label><textarea id="message" name="message"></textarea></div>
+              <button class="btn btn--light" type="submit">Send Enquiry</button>
+              <p data-form-note class="mt-md" hidden style="color:rgba(255,255,255,.8)">Thank you. Jason will be in touch shortly.</p>
+            </form>
+          </div>
         </div>
-        <div class="grid grid-3 mt-2xl">
-          <div class="card reveal">
-            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
-            <h3>Selling</h3>
-            <p class="muted">A considered campaign built around your property and your timing, from first appraisal to settlement day, with no surprises.</p>
-          </div>
-          <div class="card reveal" data-delay="1">
-            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 8l9-5 9 5M5 21V10M19 21V10"/></svg></div>
-            <h3>Appraisals</h3>
-            <p class="muted">An honest read on what your home is worth right now, grounded in real local data, not a number designed to win your business.</p>
-          </div>
-          <div class="card reveal" data-delay="2">
-            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-            <h3>Market Insight</h3>
-            <p class="muted">Suburb by suburb intelligence on price movement and buyer demand, so every decision you make is an informed one.</p>
-          </div>
-        </div>
-        <div class="center mt-2xl reveal"><a class="btn btn--outline" href="services.html">Explore Services</a></div>
       </div>
     </section>
 
-    <!-- CLOSING CTA -->
-    <section class="page-hero has-img">
-      <div class="page-hero__media"><img src="assets/img/location-aerial.jpg" alt="Gold Coast marina from above" loading="lazy"></div>
-      <div class="wrap">
-        <div class="maxw-prose reveal">
-          <span class="eyebrow on-dark">Thinking of selling?</span>
-          <h1>Let us show you what is happening in your street.</h1>
-          <p>A short conversation is often all it takes to see the difference the right agent makes. No pressure, no obligation.</p>
-          <div class="btn-row mt-lg"><a class="btn btn--light" href="contact.html">Book a Free Appraisal</a></div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a class="brand" href="index.html" aria-label="Bespoke Estate Agents home">
-          <img class="brand__icon" src="assets/logos/bespoke-icon-offwhite.svg" alt="">
-          <span class="brand__word">
-            <b>BESPOKE</b>
-            <span>Estate Agents</span>
-          </span>
-        </a>
-        <p>Boutique prestige real estate on the Gold Coast. Every property has a story, and every seller deserves the right person to tell it.</p>
-        <div class="socials">
-          <a href="https://www.instagram.com/bespoke.international" aria-label="Instagram" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.38.19-1.7.31-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.12.32-.27.8-.31 1.7C3.6 8.5 3.6 8.85 3.6 12s0 3.5.07 4.75c.04.9.19 1.38.31 1.7.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.12.8.27 1.7.31 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.38-.19 1.7-.31.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.12-.32.27-.8.31-1.7.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.19-1.38-.31-1.7a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.12-.8-.27-1.7-.31C15.5 4 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06Zm0 8.15A3.21 3.21 0 1 0 8.79 12 3.21 3.21 0 0 0 12 15.21Zm6.29-8.35a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15Z"/></svg>
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="Bespoke Estate Agents home">
+            <img class="brand__icon" src="assets/logos/bespoke-icon-offwhite.png" alt="">
+            <span class="brand__word"><b>BESPOKE</b><span>Estate Agents</span></span>
           </a>
-          <a href="https://www.facebook.com/bespokeinternationalrealty" aria-label="Facebook" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/company/bespoke-international-realty" aria-label="LinkedIn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg>
-          </a>
+          <p>Boutique prestige real estate on the Gold Coast. Every property has a story, and every seller deserves the right person to tell it.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#team">About</a><a href="services.html">Services</a><a href="#estates">Sold Listings</a><a href="projects.html">Projects</a><a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <a href="tel:0422228229">0422 228 229</a>
+          <a href="mailto:info@bespokerealestate.com.au">info@bespokerealestate.com.au</a>
+          <p>Gold Coast, Queensland</p>
         </div>
       </div>
-
-      <div class="footer-col" data-nav>
-        <h4>Explore</h4>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="sold-listings.html">Sold Listings</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Get in touch</h4>
-        <a href="tel:0422228229">0422 228 229</a>
-        <a href="mailto:info@bespokerealestate.com.au">info@bespokerealestate.com.au</a>
-        <p>Gold Coast, Queensland</p>
-        <a class="btn btn--outline-light mt-md" href="contact.html">Book an Appraisal</a>
+      <div class="footer-bottom">
+        <span>&copy; <span data-year>2026</span> Bespoke Estate Agents. All rights reserved.</span>
+        <span>Beyond Luxury Real Estate</span>
       </div>
     </div>
+  </footer>
 
-    <div class="footer-bottom">
-      <span>&copy; <span data-year>2026</span> Bespoke Estate Agents. All rights reserved.</span>
-      <span>Beyond Luxury Real Estate</span>
-    </div>
-  </div>
-</footer>
-
-  <script src="assets/js/site.js"></script>
+  <script src="assets/js/vendor/gsap.min.js"></script>
+  <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/js/vendor/lenis.min.js"></script>
+  <script src="assets/js/showcase.js"></script>
 </body>
 </html>
