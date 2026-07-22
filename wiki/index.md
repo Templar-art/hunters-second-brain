@@ -15,7 +15,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 
 ## Clients
 - [[coast-life-constructions]] — builder IG repositioning; active execution; Rob's brand verdict governs
-- [[bespoke-estate-agents]] — Jason Ward prestige agent; full brand + social system filed 8 Jul
+- [[bespoke-estate-agents]] — Jason Ward prestige agent; full brand + social system filed 8 Jul; live website (WP) logged + audited 22 Jul (P0 reveal bug)
 - [[belle-property]] — Lot 48 house-into-lot composite; awaiting "run it"
 - [[cva-architects]] — render enhancement; delivered Jun 2026, repeat client
 - [[jang-studio]] — vendor contact: offshore architectural photo editor

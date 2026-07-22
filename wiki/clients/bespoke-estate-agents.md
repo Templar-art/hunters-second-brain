@@ -2,7 +2,7 @@
 type: client
 tags: [client, real-estate, brand-system]
 status: active
-updated: 2026-07-10
+updated: 2026-07-22
 ---
 
 # Bespoke Estate Agents — Brand + Social System
@@ -59,3 +59,12 @@ Trusted local expert; confidence through knowledge, not volume. First person (Ja
 
 ## Cross-client rules that apply here too
 [[coast-life-constructions]] claims policy: verified claims only, no volume numbers public, no always/every founder claims, never block the photo's subject. The caption no-dash rule is explicit in Bespoke's own guide.
+
+## Website — live (logged 22 Jul 2026)
+An external team ("the other boys") finished and deployed the Bespoke website. Live at **https://bespoke.agents.10xvisuals.co** (multi-page: Home / Services / Projects / Sold / About / Contact).
+
+**Design verdict — strong.** Brand-faithful: Zodiak Light headings + Poppins body, Bespoke Green `#132a24`, off-white sections, real property photography (47 Somerset Drive set), generous whitespace, no accent-colour drift. Reads premium and on-system. Hunter's take: "very good." The design intent matches the brand kit closely.
+
+**Deploy stack:** WordPress + ElementsKit (Elementor). This is a WP port of the static single-page concept, NOT the self-contained static build in `projects/bespoke-site/` (that repo version has a different 6-item nav + "Book an Appraisal" CTA and cairngorm/northview imagery; the live site is the other team's separate WP rebuild).
+
+**⚠️ Audit found a P0 (22 Jul):** on `/services/`, every body-copy `.reveal` block ships at `opacity:0`. The scroll observer fires (adds `is-in in` classes) and the images fade in correctly, but the text reveals never un-hide — `.reveal.in { opacity:1 }` loses the cascade inside the WP/ElementsKit stylesheet load order, so all service descriptions, the process steps, and the CTA render invisible in-browser. The static concept's reveal CSS worked standalone; it broke on the WP port. Full audit trail in [[log]] (22 Jul entry). Needs the other team to fix the cascade (or make `.reveal` visible-by-default and treat motion as enhancement) before this page is client-ready.
