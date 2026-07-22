@@ -7,7 +7,8 @@
       "runtimeArgs": [
         "/Users/10xhunter/Documents/Hunters Second Brain/projects/aios-dashboard/server.mjs"
       ],
-      "port": 8770
+      "port": 8770,
+      "autoPort": false
     },
     {
       "name": "anthony-proposal",
@@ -55,6 +56,18 @@
         "/Users/10xhunter/Desktop/Open-Generative-AI"
       ],
       "port": 3000
+    },
+    {
+      "name": "bespoke-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8771",
+        "--directory",
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/bespoke-site"
+      ],
+      "port": 8771
     },
     {
       "name": "prestige-world",
