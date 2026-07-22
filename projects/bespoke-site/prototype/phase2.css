@@ -243,6 +243,9 @@ dialog.modal::backdrop{background:rgba(13,31,26,.6);}
 .modal-close:hover{background:rgba(19,42,36,.12);}
 @media(max-width:520px){.modal-in{padding:var(--sp-xl);}}
 
+/* ---------- Match live-site header: minimal uppercase tracked nav ---------- */
+.site-header .nav-desktop a{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;}
+
 /* ---------- Header legibility over bright hero media ---------- */
 /* Transparent header can wash out on light imagery; add a soft top scrim +
    text-shadow until it solidifies on scroll. Cheap, premium-safe, universal. */

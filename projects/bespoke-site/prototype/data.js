@@ -29,8 +29,8 @@
   var TEAM = "../assets/img/team-ward.jpg";
 
   var AGENTS = {
-    jason:   { id:"a1", slug:"jason-ward",   name:"Jason Ward",   role:"Principal Agent", photo:{url:TEAM,alt:"Jason Ward"},   phone:"0424 731 063", email:"jason@bespokerealestate.com.au" },
-    barbara: { id:"a2", slug:"barbara-ward", name:"Barbara Ward", role:"Director",         photo:{url:TEAM,alt:"Barbara Ward"}, phone:"0424 731 063", email:"barbara@bespokerealestate.com.au" }
+    jason:   { id:"a1", slug:"jason-ward",   name:"Jason Ward",   role:"Principal Agent", photo:{url:TEAM,alt:"Jason Ward"},   phone:"0422 228 229", email:"jason@bespokerealestate.com.au" },
+    barbara: { id:"a2", slug:"barbara-ward", name:"Barbara Ward", role:"Director",         photo:{url:TEAM,alt:"Barbara Ward"}, phone:"0422 228 229", email:"barbara@bespokerealestate.com.au" }
   };
 
   function media(url, alt){ return { url:url, alt:alt, type:"image" }; }

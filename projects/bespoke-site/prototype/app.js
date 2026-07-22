@@ -18,13 +18,13 @@
   function soc(href, label, path) { return '<a href="' + href + '" aria-label="' + label + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + path + '"/></svg></a>'; }
   var FOOTER =
     '<div class="wrap"><div class="footer-top">' +
-      '<div class="footer-brand"><a class="brand" href="../index.html" aria-label="Bespoke Estate Agents home">' +
+      '<div class="footer-brand"><a class="brand" href="https://bespoke.agents.10xvisuals.co/" aria-label="Bespoke Estate Agents home">' +
         '<img class="brand__icon" src="../assets/logos/bespoke-icon-offwhite.png" alt=""><span class="brand__word"><b>BESPOKE</b><span>Estate Agents</span></span></a>' +
         '<p>Boutique prestige real estate on the Gold Coast. Every property has a story, and every seller deserves the right person to tell it.</p>' +
         '<div class="socials">' + soc("https://www.instagram.com/bespoke.international", "Instagram", IG) + soc("https://www.facebook.com/bespokeinternationalrealty", "Facebook", FB) + soc("https://www.linkedin.com/company/bespoke-international-realty", "LinkedIn", LI) + '</div>' +
       '</div>' +
-      '<div class="footer-col"><h4>Explore</h4><a href="../index.html">Home</a><a href="index.html">Collection</a><a href="../index.html#team">About</a><a href="../services.html">Services</a><a href="../projects.html">Projects</a><a href="../index.html#contact">Contact</a></div>' +
-      '<div class="footer-col"><h4>Get in touch</h4><a href="tel:0424731063">0424 731 063</a><a href="mailto:info@bespokerealestate.com.au">info@bespokerealestate.com.au</a><p>Gold Coast, Queensland</p>' +
+      '<div class="footer-col"><h4>Explore</h4><a href="index.html">Collection</a><a href="https://bespoke.agents.10xvisuals.co/#estates">Sold</a><a href="https://bespoke.agents.10xvisuals.co/projects/">Projects</a><a href="https://bespoke.agents.10xvisuals.co/about/">About</a><a href="https://bespoke.agents.10xvisuals.co/services/">Services</a><a href="https://bespoke.agents.10xvisuals.co/#contact">Contact</a></div>' +
+      '<div class="footer-col"><h4>Get in touch</h4><a href="tel:0422228229">0422 228 229</a><a href="mailto:info@bespokerealestate.com.au">info@bespokerealestate.com.au</a><p>Gold Coast, Queensland</p>' +
         '<a class="btn btn--outline-light" href="soon.html?s=appraisal" data-appraisal style="margin-top:16px">Book a Private Appraisal</a></div>' +
     '</div>' +
     '<div class="footer-bottom"><span>&copy; <span data-year></span> Bespoke Estate Agents. All rights reserved.</span><span>Beyond Luxury Real Estate</span></div></div>';
