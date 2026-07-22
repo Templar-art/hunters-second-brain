@@ -1,0 +1,6 @@
+https://bespokeinternationalrealty.com/wp-sitemap-posts-page-1.xml
+https://bespokeinternationalrealty.com/wp-sitemap-posts-project-1.xml
+https://bespokeinternationalrealty.com/wp-sitemap-posts-property-listing-1.xml
+https://bespokeinternationalrealty.com/wp-sitemap-taxonomies-project-status-1.xml
+https://bespokeinternationalrealty.com/wp-sitemap-taxonomies-property-listing-status-1.xml
+https://bespokeinternationalrealty.com/wp-sitemap-users-1.xml

@@ -1,0 +1,14 @@
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-css-2fe3d7baa88092203432590b3c385da4.css
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-css-45bb0b2568fffbba4399de014115a9cb.css
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-css-7ded075ffac6be570bf10bf3f783edeb.css
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-css-8c267b3362840374cfd25f445a885bbe.css
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-css-b95cb199d1ebd1c6cb71dab177ecf21e.css
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-css-f8683aa29df3281d773661143cdd70ed.css
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-1008413c9267024604b6e0b40a325f80.js
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-ddd134672f4a7d6237945ed038d0b33e.js
+https://bespokeinternationalrealty.com/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-e4fb9e69df8b5a6d9e6b71fba807c23b.js
+https://bespokeinternationalrealty.com/wp-includes/js/dist/hooks.min.js
+https://bespokeinternationalrealty.com/wp-includes/js/dist/i18n.min.js
+https://bespokeinternationalrealty.com/wp-includes/js/jquery/jquery.min.js
+https://bespokeinternationalrealty.com/wp-includes/js/wp-emoji-loader.min.js
+https://bespokeinternationalrealty.com/wp-includes/js/wp-emoji-release.min.js
