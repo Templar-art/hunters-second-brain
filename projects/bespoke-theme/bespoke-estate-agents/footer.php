@@ -1,0 +1,50 @@
+<?php if (!defined('ABSPATH')) exit;
+  $up   = 'https://bespoke.agents.10xvisuals.co/wp-content/uploads/2026/07';
+  $icon = $up . '/bespoke-icon-offwhite-scaled.png';
+?>
+  </main><!-- #main -->
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="<?php echo esc_url(home_url('/')); ?>" aria-label="Bespoke Estate Agents home">
+            <img class="brand__icon" src="<?php echo esc_url($icon); ?>" alt="">
+            <span class="brand__word"><b>BESPOKE</b><span>Estate Agents</span></span>
+          </a>
+          <p>Boutique prestige real estate on the Gold Coast. Every property has a story, and every seller deserves the right person to tell it.</p>
+          <div class="socials">
+            <a href="https://www.instagram.com/bespoke.international" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.38.19-1.7.31-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.12.32-.27.8-.31 1.7C3.6 8.5 3.6 8.85 3.6 12s0 3.5.07 4.75c.04.9.19 1.38.31 1.7.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.12.8.27 1.7.31 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.38-.19 1.7-.31.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.12-.32.27-.8.31-1.7.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.19-1.38-.31-1.7a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.12-.8-.27-1.7-.31C15.5 4 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06Zm0 8.15A3.21 3.21 0 1 0 8.79 12 3.21 3.21 0 0 0 12 15.21Zm6.29-8.35a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15Z"/></svg></a>
+            <a href="https://www.facebook.com/bespokeinternationalrealty" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://www.linkedin.com/company/bespoke-international-realty" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="<?php echo esc_url(home_url('/about/')); ?>">About</a>
+          <a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a>
+          <a href="<?php echo esc_url(home_url('/sold-listings/')); ?>">Sold Listings</a>
+          <a href="<?php echo esc_url(home_url('/projects/')); ?>">Projects</a>
+          <a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <a href="tel:0422228229">0422 228 229</a>
+          <a href="mailto:info@bespokerealestate.com.au">info@bespokerealestate.com.au</a>
+          <p>Gold Coast, Queensland</p>
+          <a class="btn btn--outline-light mt-md" href="<?php echo esc_url(home_url('/contact/')); ?>">Book an Appraisal</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <?php echo esc_html(date('Y')); ?> Bespoke Estate Agents. All rights reserved.</span>
+        <span>Beyond Luxury Real Estate</span>
+      </div>
+    </div>
+  </footer>
+
+<?php wp_footer(); ?>
+</body>
+</html>
