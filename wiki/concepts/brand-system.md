@@ -3,7 +3,7 @@ type: concept
 tags: [brand, design, 10x-visuals]
 updated: 2026-07-10
 ---
-
+         
 # 10x Visuals Brand System
 
 - **Colour:** #61a8d8 dominant. **Type:** Poppins / Montserrat. Full v1.0 guidelines in auto-memory `10x-visuals-brand-guidelines.md`; asset paths in `reference-brand-assets.md`.
@@ -18,3 +18,6 @@ updated: 2026-07-10
 
 ## Caption voice
 → [[ig-caption-voice]]
+
+## Craft
+The "one grade" premium rule in practice: [[color-grading]]. Content formats that honour the graphic restraint: [[content-systems]] · [[reel-formats]].

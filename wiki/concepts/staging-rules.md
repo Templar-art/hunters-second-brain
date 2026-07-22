@@ -17,3 +17,6 @@ Standing rules for AI staging of listing photos, distilled from job feedback (ca
 - **Room hierarchy** — secondary bedrooms one step below primary (bed-width headboard, single bedside, ≤3 cushions).
 - **Fridge isolation** — kitchen staging: isolate the fridge in its own pass, name the door, freeze island size.
 - **Reference-transfer SOP** (Freepik) and **Magnific upscale recipe** — auto-memory `reference-staging-transfer-sop`, `reference-magnific-upscale-recipe`, `reference-freepik-staging-workflow`.
+
+## Craft
+Prompting patterns behind these rules: [[ai-prompting]]. Tool selection: [[ai-image-tools]]. Shooting the source photos: [[interior-photography]].

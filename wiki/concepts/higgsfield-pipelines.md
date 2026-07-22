@@ -32,3 +32,6 @@ How 10x routes real-estate AI image/video work. Full KB with T1–T10 prompt tem
 
 ## Used by
 [[coast-life-constructions]] · [[bespoke-estate-agents]] · [[belle-property]] · [[cva-architects]]
+
+## Craft
+Tool-selection and prompting craft: [[ai-toolkit]] · [[ai-image-tools]] · [[ai-video-tools]] · [[ai-prompting]].

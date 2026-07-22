@@ -19,3 +19,6 @@ The core discipline: **every account gets captions in its OWN feed voice.** Test
 ## Universal caption rules
 - No em dashes (10x + Bespoke explicit rule).
 - Verified claims only; no volume numbers public ([[brand-system]]).
+
+## Craft
+Where captions attach to the content system: [[content-systems]] · [[reel-formats]] · [[posting-cadence]].

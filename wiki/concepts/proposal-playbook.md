@@ -29,3 +29,6 @@ A "current setup vs this partnership" table converts the prospect's existing fru
 ## 5. Structure that landed
 
 Hero (their name + one-line promise) → pain section naming their exact frustration → deliverables ledger with big numbers → "how a month runs" week-by-week table → incumbent comparison → investment block → 3-bullet getting-started. Every number is written as a commitment, not a pitch.
+
+## Craft
+Wider business craft this recipe sits inside: [[business-craft]] · [[pricing-and-packaging]] · [[lead-gen-and-sales]] · [[client-onboarding]].

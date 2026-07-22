@@ -54,4 +54,7 @@ _Avoid_: Video Link, Platform, Example
 
 **Source / Library**:
 Where the track lives / is sourced from — `Artlist`, `Spotify`, `YouTube`, `FreeToUse`, `Drive File`, or a standardised combination (`Artlist / Spotify`, alphabetical order). A possession/location label, **not** a licensing status — clearing a track for paid client use is checked separately. Note: `FreeToUse` tracks are free but **require attribution** — confirm per-track before client delivery.
+
+## Craft
+How tracks get used in the edit: [[video-edit-pipeline]] · [[property-film-structure]] · [[reel-formats]].
 _Avoid_: Source, Library, Platform
