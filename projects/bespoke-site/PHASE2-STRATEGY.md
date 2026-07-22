@@ -80,8 +80,34 @@ Consistency rules: (1) one `status` enum drives both search tabs and the future 
 ## Reusable components
 Filter bar (tabs + pills) · Property card · Full-bleed media hero (image/video) · Editorial split block (asymmetric text+media) · Suburb-record marker (type-only) · Gallery/lightbox · Enquiry/appraisal form (single, consistent, → Lead) · Press-logo strip.
 
-## Open items before build
-- Real curated suburb list (which GC prestige pockets).
-- Jason solo vs Jason & Barbara as the site's team face (open since brand kit).
-- Confirm stack decision (Next.js+Payload vs WP fallback) with whoever builds it.
+## Locked decisions — round 2 (2026-07-22)
+
+**Team face — Jason & Barbara duo.** Premium boutique husband-and-wife positioning; warm but refined, not family-business cheesy, not a scaled team story yet. Two `Agent` records, joint presence on About + brand story, listing bylines support individual or duo attribution.
+
+**Search taxonomy — Standard (locked).** Buy / Sold / Upcoming tabs + Suburb · Price · Beds · Baths · Car · Property type. No land-size/keyword/advanced-sort this phase (staged to P3). Clean, low-friction, not portal-like.
+
+**Suburb Guides — proposed shortlist (Hunter to approve/correct against real footprint).** Grounded in GC prestige-market reality + Bespoke's inferred footprint from known listings (Broadbeach Waters/Monaco St, Paradise Waters, Carrara/The Boulevard, Benowa testimonial, Somerset Dr/Northview north-corridor shoots).
+
+*Primary (launch 6):*
+- **Sovereign Islands** — apex GC address, gated deep-water mega-mansions; anchors the prestige claim.
+- **Mermaid Waters + Mermaid Beach** — blue-chip waterfront + Hedges Ave "Millionaires' Row"; broadest recognition.
+- **Broadbeach Waters** — established canal luxury, central; Bespoke sold here (Monaco St).
+- **Paradise Waters / Main Beach** — tightly-held waterfront enclave; Bespoke listing history.
+- **Isle of Capri** — tightly-held island prestige beside Surfers; scarcity.
+- **Sanctuary Cove / Hope Island** — gated marina-golf prestige, north GC; ties to Bespoke's north-corridor work.
+
+*Secondary (expand-later):* Carrara · Benowa & Benowa Waters · Clear Island Waters · Surfers Paradise · Tallebudgera & Currumbin Valley · Runaway Bay.
+
+**Stack — dual-path (do not collapse to generic WP; do not assume CRM real until stack capability confirmed).**
+
+*Path A — PREFERRED: Next.js + Payload.* Next.js App Router + brand tokens + GSAP, Vercel host. Payload CMS (Postgres via Neon/Supabase) — collections are the CRM objects, real admin for Jason & Barbara. Filtered Postgres search now (Meilisearch later), forms → Lead collection. CRM path real: add Contacts/Deals + pipeline later; live feed = sync job upserting Listings by externalId. Owned relational DB, best performance/motion ceiling. Cons: higher build skill (React/Node), Vercel + managed Postgres devops, higher cost/maintenance.
+
+*Path B — FALLBACK: WordPress + ACF + FacetWP.* Listings/Regions/Agents = ACF CPTs mirroring the same fields; FacetWP facets (suburb/price/beds/baths/car/type); Gravity/Fluent Forms → FluentCRM. Faster, cheaper, familiar to the current WP team, easy client editing. CRM ambition CAPPED: FluentCRM is a bolt-on not a relational model, live-feed sync into CPTs is fragile/custom, and the future CRM becomes a separate rebuild not an extension.
+
+*Tradeoff:* if the CRM is genuinely part of the $30k, Path A — Path B means paying twice (site now, CRM rebuild later). **Design decision either way: front-end component contracts (card props, filter state) are specified stack-agnostic**, so design and pages are identical on both paths; only the data layer differs. Choosing the stack later then costs nothing on the design.
+
+## Remaining open items
+- Hunter to approve/correct the suburb shortlist against where Jason & Barbara actually transact.
+- Confirm whether the other team can build/maintain Next.js + Payload (decides Path A vs B).
 - Source of initial listings to seed (existing 10x shoots: Somerset Dr, Cairngorm, Northview, etc.).
+- Next step: build spec for the other team (both paths) OR Claude prototypes the design language in the real stack.
