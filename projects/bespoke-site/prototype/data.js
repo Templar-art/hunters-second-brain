@@ -1,9 +1,9 @@
 /* ==========================================================================
-   BESPOKE — prototype seed data
-   Shapes match BUILD-SPEC §4 exactly. In production this array is replaced by
-   a Payload query (Path A) or a WP REST response (Path B); nothing else changes.
+   BESPOKE, prototype seed data
+   Shapes match BUILD-SPEC section 4 exactly. In production this array is replaced
+   by a Payload query (Path A) or a WP REST response (Path B); nothing else changes.
    Property photos are the client's placeholder set (47 Somerset Dr) reused across
-   listings — swapped for real per-property media later. Suburbs/addresses illustrative.
+   listings, swapped for real per-property media later. Suburbs/addresses illustrative.
    ========================================================================== */
 (function (w) {
   var U = "https://bespoke.agents.10xvisuals.co/wp-content/uploads/2026/07/";
@@ -146,7 +146,21 @@
       intro:"Island living beside Surfers Paradise, held apart from it. Isle of Capri is leafy, quiet and closely held, with a village heart and some of the most sought-after waterfront crescents on the coast." },
     { id:"r6", slug:"sanctuary-cove", name:"Sanctuary Cove", tier:"primary", order:6,
       hero:media(IMG.drone3,"Sanctuary Cove"),
-      intro:"Gated, golf-and-marina resort living on the northern Gold Coast. Sanctuary Cove offers security, deep-water berths and a lifestyle community, a distinct market that suits a specific and discerning buyer." }
+      intro:"Gated, golf-and-marina resort living on the northern Gold Coast. Sanctuary Cove offers security, deep-water berths and a lifestyle community, a distinct market that suits a specific and discerning buyer." },
+    { id:"r7", slug:"main-beach", name:"Main Beach", tier:"secondary", order:7, hero:media(IMG.i15,"Main Beach"),
+      intro:"Tedder Avenue, the spit and the surf. Main Beach pairs a village feel with genuine beachfront prestige at the northern end of the glitter strip." },
+    { id:"r8", slug:"clear-island-waters", name:"Clear Island Waters", tier:"secondary", order:8, hero:media(IMG.i25,"Clear Island Waters"),
+      intro:"Wide lakes and quiet, leafy streets moments from Broadbeach. A family-focused waterfront pocket held for its space and calm." },
+    { id:"r9", slug:"benowa", name:"Benowa Waters", tier:"secondary", order:9, hero:media(IMG.i7,"Benowa Waters"),
+      intro:"Central and established, with generous blocks and mature streetscapes. Benowa Waters offers waterfront living close to the heart of the coast." },
+    { id:"r10", slug:"carrara", name:"Carrara", tier:"secondary", order:10, hero:media(IMG.i33,"Carrara"),
+      intro:"Acreage and hidden prestige pockets in the green heart of the Gold Coast, with room and privacy rarely found this close to the coast." },
+    { id:"r11", slug:"surfers-paradise", name:"Surfers Paradise", tier:"secondary", order:11, hero:media(IMG.i18,"Surfers Paradise"),
+      intro:"Beachfront penthouses and sub-penthouse residences with the coast's most recognised skyline and outlook." },
+    { id:"r12", slug:"runaway-bay", name:"Runaway Bay", tier:"secondary", order:12, hero:media(IMG.drone2,"Runaway Bay"),
+      intro:"Broadwater-side living on the northern Gold Coast, with a strong boating culture and generous waterfront homes." },
+    { id:"r13", slug:"currumbin-valley", name:"Currumbin Valley", tier:"secondary", order:13, hero:media(IMG.i26,"Currumbin Valley"),
+      intro:"Hinterland acreage where rainforest meets the coast. Privacy, land and a distinct lifestyle at the southern end of the market." }
   ];
 
   w.BESPOKE_DATA = { LISTINGS: LISTINGS, REGIONS: REGIONS, AGENTS: AGENTS };

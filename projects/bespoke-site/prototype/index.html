@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Listings | Bespoke Estate Agents | Gold Coast Prestige Property</title>
-  <meta name="description" content="Browse Bespoke Estate Agents' curated Gold Coast prestige listings — waterfront homes, apartments and estates across the coast's most sought-after suburbs.">
+  <meta name="description" content="Browse Bespoke Estate Agents' curated Gold Coast prestige listings. Waterfront homes, apartments and estates across the coast's most sought-after suburbs.">
   <link rel="icon" type="image/png" href="../assets/logos/favicon.png">
   <link rel="preload" href="../assets/fonts/Zodiak-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -21,12 +21,12 @@
       </a>
       <nav class="nav-desktop" aria-label="Primary">
         <a href="index.html" aria-current="page">Listings</a>
-        <a href="#">Suburbs</a>
+        <a href="soon.html?s=suburbs">Suburbs</a>
         <a href="index.html?status=sold">Sold</a>
-        <a href="#">Journal</a>
-        <a href="#">About</a>
+        <a href="soon.html?s=journal">Journal</a>
+        <a href="soon.html?s=about">About</a>
       </nav>
-      <a class="btn btn--light header-cta" href="#">Book a Private Appraisal</a>
+      <a class="btn btn--light header-cta" href="soon.html?s=appraisal" data-appraisal>Book a Private Appraisal</a>
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
         <span></span><span></span><span></span>
       </button>
@@ -36,11 +36,11 @@
   <div class="site-menu" id="site-menu">
     <nav aria-label="Full site">
       <a href="index.html">Listings</a>
-      <a href="#">Suburbs</a>
+      <a href="soon.html?s=suburbs">Suburbs</a>
       <a href="index.html?status=sold">Sold</a>
-      <a href="#">Journal</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+      <a href="soon.html?s=journal">Journal</a>
+      <a href="soon.html?s=about">About</a>
+      <a href="soon.html?s=contact">Contact</a>
     </nav>
     <div class="site-menu__foot">
       <span>Gold Coast, Queensland</span>
@@ -86,10 +86,10 @@
             <option value="">Car</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option>
           </select></div>
           <div class="fb-field"><select name="pmin" aria-label="Minimum price">
-            <option value="">Min price</option><option value="1000000">$1M</option><option value="2000000">$2M</option><option value="3000000">$3M</option><option value="4000000">$4M</option><option value="5000000">$5M</option>
+            <option value="">Min price</option><option value="750000">$750K</option><option value="1000000">$1M</option><option value="1500000">$1.5M</option><option value="2000000">$2M</option><option value="3000000">$3M</option><option value="5000000">$5M</option>
           </select></div>
           <div class="fb-field"><select name="pmax" aria-label="Maximum price">
-            <option value="">Max price</option><option value="2000000">$2M</option><option value="3000000">$3M</option><option value="4000000">$4M</option><option value="5000000">$5M</option><option value="8000000">$8M</option>
+            <option value="">Max price</option><option value="1500000">$1.5M</option><option value="2000000">$2M</option><option value="3000000">$3M</option><option value="5000000">$5M</option><option value="7500000">$7.5M</option><option value="10000000">$10M</option><option value="100000000">$10M+</option>
           </select></div>
           <button class="fb-clear" id="fb-clear" hidden>Clear all</button>
         </div>
@@ -109,20 +109,13 @@
     <section class="section section--green">
       <div class="wrap center prose">
         <h2 class="reveal">Considering a move?</h2>
-        <p class="reveal" data-d="1" style="margin:16px auto 0;color:var(--be-grey-300)">A quiet, private appraisal with real numbers on the table — no pressure, no obligation.</p>
-        <div class="btn-row reveal" data-d="2" style="justify-content:center;margin-top:var(--sp-xl)"><a class="btn btn--light" href="#">Book a Private Appraisal</a></div>
+        <p class="reveal" data-d="1" style="margin:16px auto 0;color:var(--be-grey-300)">A quiet, private appraisal with real numbers on the table. No pressure, no obligation.</p>
+        <div class="btn-row reveal" data-d="2" style="justify-content:center;margin-top:var(--sp-xl)"><a class="btn btn--light" href="soon.html?s=appraisal" data-appraisal>Book a Private Appraisal</a></div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-bottom" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:32px">
-        <span>&copy; <span data-year>2026</span> Bespoke Estate Agents.</span>
-        <span>Beyond Luxury Real Estate</span>
-      </div>
-    </div>
-  </footer>
+  <footer class="site-footer" data-footer></footer>
 
   <script src="data.js"></script>
   <script src="app.js"></script>

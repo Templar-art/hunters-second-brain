@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bespoke Estate Agents</title>
+  <meta name="description" content="Bespoke Estate Agents, Gold Coast prestige property.">
+  <link rel="icon" type="image/png" href="../assets/logos/favicon.png">
+  <link rel="preload" href="../assets/fonts/Zodiak-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="phase2.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Bespoke Estate Agents home">
+        <img class="brand__icon" src="../assets/logos/bespoke-icon-offwhite.png" alt="">
+        <span class="brand__word"><b>BESPOKE</b><span>Estate Agents</span></span>
+      </a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="index.html">Listings</a>
+        <a href="soon.html?s=suburbs">Suburbs</a>
+        <a href="index.html?status=sold">Sold</a>
+        <a href="soon.html?s=journal">Journal</a>
+        <a href="soon.html?s=about">About</a>
+      </nav>
+      <a class="btn btn--light header-cta" href="soon.html?s=appraisal" data-appraisal>Book a Private Appraisal</a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="site-menu" id="site-menu">
+    <nav aria-label="Full site">
+      <a href="index.html">Listings</a>
+      <a href="soon.html?s=suburbs">Suburbs</a>
+      <a href="index.html?status=sold">Sold</a>
+      <a href="soon.html?s=journal">Journal</a>
+      <a href="soon.html?s=about">About</a>
+      <a href="soon.html?s=contact">Contact</a>
+    </nav>
+    <div class="site-menu__foot">
+      <span>Gold Coast, Queensland</span>
+      <span><a href="tel:0424731063">0424 731 063</a></span>
+    </div>
+  </div>
+
+  <main id="soon-root"><!-- rendered by app.js from ?s= --></main>
+
+  <footer class="site-footer" data-footer></footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
