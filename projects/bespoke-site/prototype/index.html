@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Listings | Bespoke Estate Agents | Gold Coast Prestige Property</title>
+  <meta name="description" content="Browse Bespoke Estate Agents' curated Gold Coast prestige listings — waterfront homes, apartments and estates across the coast's most sought-after suburbs.">
+  <link rel="icon" type="image/png" href="../assets/logos/favicon.png">
+  <link rel="preload" href="../assets/fonts/Zodiak-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="phase2.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Bespoke Estate Agents home">
+        <img class="brand__icon" src="../assets/logos/bespoke-icon-offwhite.png" alt="">
+        <span class="brand__word"><b>BESPOKE</b><span>Estate Agents</span></span>
+      </a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="index.html" aria-current="page">Listings</a>
+        <a href="#">Suburbs</a>
+        <a href="index.html?status=sold">Sold</a>
+        <a href="#">Journal</a>
+        <a href="#">About</a>
+      </nav>
+      <a class="btn btn--light header-cta" href="#">Book a Private Appraisal</a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="site-menu" id="site-menu">
+    <nav aria-label="Full site">
+      <a href="index.html">Listings</a>
+      <a href="#">Suburbs</a>
+      <a href="index.html?status=sold">Sold</a>
+      <a href="#">Journal</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="site-menu__foot">
+      <span>Gold Coast, Queensland</span>
+      <span><a href="tel:0424731063">0424 731 063</a></span>
+    </div>
+  </div>
+
+  <main id="listings" class="stack-page" style="padding-top:0">
+    <section class="p-hero">
+      <div class="p-hero__media"><img src="https://bespoke.agents.10xvisuals.co/wp-content/uploads/2026/07/47-Somersert-Drive-_-Print-Drone-2-scaled.jpg" alt="Gold Coast prestige waterfront property"></div>
+      <div class="wrap">
+        <span class="eyebrow on-dark">Listings</span>
+        <h1>The current collection.</h1>
+        <p>A considered selection of prestige homes across the Gold Coast's most tightly held suburbs.</p>
+      </div>
+    </section>
+
+    <div class="filterbar">
+      <div class="wrap filterbar__inner">
+        <div class="fb-tabs" role="tablist" aria-label="Listing status">
+          <button class="fb-tab" data-status="buy" role="tab" aria-selected="true">Buy</button>
+          <button class="fb-tab" data-status="sold" role="tab" aria-selected="false">Sold</button>
+          <button class="fb-tab" data-status="upcoming" role="tab" aria-selected="false">Upcoming</button>
+        </div>
+        <div class="fb-filters">
+          <div class="fb-field"><select name="suburb" aria-label="Suburb"><option value="">All suburbs</option></select></div>
+          <div class="fb-field"><select name="type" aria-label="Property type">
+            <option value="">All types</option>
+            <option value="house">House</option>
+            <option value="apartment">Apartment</option>
+            <option value="townhouse">Townhouse</option>
+            <option value="duplex">Duplex</option>
+            <option value="land">Land</option>
+            <option value="acreage">Acreage</option>
+          </select></div>
+          <div class="fb-field"><select name="beds" aria-label="Minimum bedrooms">
+            <option value="">Beds</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option>
+          </select></div>
+          <div class="fb-field"><select name="baths" aria-label="Minimum bathrooms">
+            <option value="">Baths</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option>
+          </select></div>
+          <div class="fb-field"><select name="cars" aria-label="Minimum car spaces">
+            <option value="">Car</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option>
+          </select></div>
+          <div class="fb-field"><select name="pmin" aria-label="Minimum price">
+            <option value="">Min price</option><option value="1000000">$1M</option><option value="2000000">$2M</option><option value="3000000">$3M</option><option value="4000000">$4M</option><option value="5000000">$5M</option>
+          </select></div>
+          <div class="fb-field"><select name="pmax" aria-label="Maximum price">
+            <option value="">Max price</option><option value="2000000">$2M</option><option value="3000000">$3M</option><option value="4000000">$4M</option><option value="5000000">$5M</option><option value="8000000">$8M</option>
+          </select></div>
+          <button class="fb-clear" id="fb-clear" hidden>Clear all</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="wrap">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--sp-xl)">
+          <span class="eyebrow" style="margin:0">Residences</span>
+          <span class="fb-count" id="fb-count"></span>
+        </div>
+        <div class="p-grid" id="listings-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section--green">
+      <div class="wrap center prose">
+        <h2 class="reveal">Considering a move?</h2>
+        <p class="reveal" data-d="1" style="margin:16px auto 0;color:var(--be-grey-300)">A quiet, private appraisal with real numbers on the table — no pressure, no obligation.</p>
+        <div class="btn-row reveal" data-d="2" style="justify-content:center;margin-top:var(--sp-xl)"><a class="btn btn--light" href="#">Book a Private Appraisal</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-bottom" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:32px">
+        <span>&copy; <span data-year>2026</span> Bespoke Estate Agents.</span>
+        <span>Beyond Luxury Real Estate</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

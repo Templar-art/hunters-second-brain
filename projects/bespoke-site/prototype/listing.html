@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Listing | Bespoke Estate Agents</title>
+  <meta name="description" content="A Bespoke Estate Agents prestige listing on the Gold Coast.">
+  <link rel="icon" type="image/png" href="../assets/logos/favicon.png">
+  <link rel="preload" href="../assets/fonts/Zodiak-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="phase2.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Bespoke Estate Agents home">
+        <img class="brand__icon" src="../assets/logos/bespoke-icon-offwhite.png" alt="">
+        <span class="brand__word"><b>BESPOKE</b><span>Estate Agents</span></span>
+      </a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="index.html">Listings</a>
+        <a href="#">Suburbs</a>
+        <a href="index.html?status=sold">Sold</a>
+        <a href="#">Journal</a>
+        <a href="#">About</a>
+      </nav>
+      <a class="btn btn--light header-cta" href="#">Book a Private Appraisal</a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="site-menu" id="site-menu">
+    <nav aria-label="Full site">
+      <a href="index.html">Listings</a>
+      <a href="#">Suburbs</a>
+      <a href="index.html?status=sold">Sold</a>
+      <a href="#">Journal</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="site-menu__foot">
+      <span>Gold Coast, Queensland</span>
+      <span><a href="tel:0424731063">0424 731 063</a></span>
+    </div>
+  </div>
+
+  <main id="listing-detail"><!-- rendered by app.js from the listing in ?id= --></main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-bottom" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:32px">
+        <span>&copy; <span data-year>2026</span> Bespoke Estate Agents.</span>
+        <span>Beyond Luxury Real Estate</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
