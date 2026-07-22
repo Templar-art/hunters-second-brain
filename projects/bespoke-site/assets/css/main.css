@@ -41,6 +41,16 @@
   --header-h:76px;
 }
 
+/* ---------- Preloader (startup logo-draw animation) ---------- */
+.preloader{position:fixed;inset:0;z-index:9999;background:var(--be-green);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity .9s var(--ease),visibility .9s var(--ease);}
+.preloader__vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.preloader.done{opacity:0;visibility:hidden;}
+/* Already seen this session, or reduced motion: never show it. */
+html[data-preloaded] .preloader{display:none;}
+@media(prefers-reduced-motion:reduce){.preloader{display:none;}}
+/* Keep page from scrolling while the intro plays */
+body.preloading{overflow:hidden;}
+
 /* ---------- Reset ---------- */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}

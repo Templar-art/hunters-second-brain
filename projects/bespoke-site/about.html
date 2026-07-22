@@ -8,9 +8,16 @@
   <link rel="icon" type="image/png" href="assets/logos/favicon.png">
   <link rel="preload" href="assets/fonts/Zodiak-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <script>try{if(sessionStorage.getItem('beaSeen'))document.documentElement.dataset.preloaded='1'}catch(e){}</script>
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
+  <!-- Startup logo-draw intro (plays once per session) -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <video class="preloader__vid" autoplay muted playsinline>
+      <source src="assets/video/loadscreen.mp4" type="video/mp4">
+    </video>
+  </div>
   <div data-include="header"></div>
   <div data-include="menu"></div>
 

@@ -128,7 +128,37 @@
     });
   }
 
+  /* ---- Startup logo-draw preloader (once per session) ---- */
+  function initPreloader() {
+    var pre = document.getElementById('preloader');
+    if (!pre) return;
+    // Already seen this session? dismiss instantly (belt-and-braces; CSS also hides via data-preloaded).
+    var seen = false;
+    try { seen = !!sessionStorage.getItem('beaSeen'); } catch (e) {}
+    if (seen) { pre.remove(); return; }
+
+    document.body.classList.add('preloading');
+    var vid = pre.querySelector('video');
+    var done = false;
+    function dismiss() {
+      if (done) return; done = true;
+      try { sessionStorage.setItem('beaSeen', '1'); } catch (e) {}
+      pre.classList.add('done');
+      document.body.classList.remove('preloading');
+      setTimeout(function () { if (pre.parentNode) pre.remove(); }, 950);
+    }
+    if (vid) {
+      vid.addEventListener('ended', dismiss);
+      vid.addEventListener('error', dismiss);
+      var p = vid.play && vid.play();
+      if (p && p.catch) p.catch(dismiss); // autoplay blocked -> just reveal
+    }
+    // Safety net: never trap the visitor if the video stalls (clip is ~5s).
+    setTimeout(dismiss, 5600);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    initPreloader();
     injectPartials().then(function () {
       initHeader();
       initMenu();
