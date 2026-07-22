@@ -19,8 +19,7 @@
   </div>
 
   <?php
-    $up   = 'https://bespoke.agents.10xvisuals.co/wp-content/uploads/2026/07';
-    $icon = $up . '/bespoke-icon-offwhite-scaled.png';
+    $icon = get_template_directory_uri() . '/assets/logos/bespoke-icon-offwhite.svg';
     $nav  = array(
       ''              => 'Home',
       'about'         => 'About',
