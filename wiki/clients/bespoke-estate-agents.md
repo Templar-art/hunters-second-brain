@@ -63,6 +63,8 @@ Trusted local expert; confidence through knowledge, not volume. First person (Ja
 ## Website — live (logged 22 Jul 2026)
 An external team ("the other boys") finished and deployed the Bespoke website. Live at **https://bespoke.agents.10xvisuals.co** (multi-page: Home / Services / Projects / Sold / About / Contact).
 
+**Purpose: it's a PITCH DEMO, not the final site.** Goal = show Jason a polished concept to win a ~$30k website build. Images are throwaway placeholders (just their good ones dropped in) — image quality/optimisation does NOT matter here. What matters is that it looks expensive and renders fully when shown to the client. That makes the P0 below critical: a blank-content page in a client screen-share sinks the pitch.
+
 **Design verdict — strong.** Brand-faithful: Zodiak Light headings + Poppins body, Bespoke Green `#132a24`, off-white sections, real property photography (47 Somerset Drive set), generous whitespace, no accent-colour drift. Reads premium and on-system. Hunter's take: "very good." The design intent matches the brand kit closely.
 
 **Deploy stack:** WordPress + ElementsKit (Elementor). This is a WP port of the static single-page concept, NOT the self-contained static build in `projects/bespoke-site/` (that repo version has a different 6-item nav + "Book an Appraisal" CTA and cairngorm/northview imagery; the live site is the other team's separate WP rebuild).
