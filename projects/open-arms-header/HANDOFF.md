@@ -30,9 +30,9 @@ Everything else is turnkey.
 
 ---
 
-## Note: the white gap under the header
+## Note: the white gap under the header (all pages)
 
-The homepage content section ships with **55px top padding**, which left a white strip between the header and the hero. The header file now includes a 2-line patch at the top of the `<style>` block that removes it (targets `.elementor-element-a22a11b`). Cleaner alternative: in Elementor, select that content section → Advanced → Padding → set **Top = 0**, then delete those 2 patch lines. If that section ever gets rebuilt (its ID changes), re-point or use the Elementor setting.
+Every page's first content section ships with **55px top padding**, which left a white strip between the header and the page below it. The header file includes a patch at the top of the `<style>` block that removes it **site-wide** — it targets the first section of whichever Elementor content root follows the header template (`elementor-121`), so one paste of the header fixes every page. Cleaner alternative: per page in Elementor, select that first section → Advanced → Padding → set **Top = 0**, then delete the patch lines. (If the header template's Elementor ID isn't 121 on this install, update `elementor-121` in the patch selector to match.)
 
 ## What it does
 

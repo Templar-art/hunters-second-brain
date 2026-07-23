@@ -55,10 +55,13 @@
 </div>
 
 <style>
-/* ── Site patch: the homepage content section ships with 55px top padding that
-   leaves a white gap under this header. This removes it so the hero sits flush.
-   Proper alternative: in Elementor set that section's top padding to 0, then delete these 2 lines. ── */
-body .elementor-element-a22a11b{ padding-top:0 !important; padding-block-start:0 !important; }
+/* ── Site patch (all pages): every page's first content section ships with 55px
+   top padding, leaving a white gap under this header. This zeroes it so the hero/
+   first section sits flush — targets the first section of whichever Elementor
+   content root follows the header template (elementor-121), so it works site-wide.
+   Proper alternative: set that first section's top padding to 0 per page in
+   Elementor, then delete these 2 lines. ── */
+body > .elementor-121 ~ .elementor > .e-con-full:first-child{ padding-top:0 !important; padding-block-start:0 !important; }
 
 .oa-x{
   --oa-green:#368063; --oa-green-dark:#2C6B52; --oa-green-light:#6BA489;
