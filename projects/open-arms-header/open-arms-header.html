@@ -1,0 +1,211 @@
+<!-- ═══════════ OPEN ARMS AUSTRALIA — HEADER (Elementor HTML widget) ═══════════ -->
+<!-- Paste this ENTIRE file into one Elementor "HTML" widget. Self-contained: markup + CSS + JS. -->
+<!-- Poppins, lean (400/500/600 only) + warmed connection. Delete these 3 lines if the theme already loads Poppins. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+
+<div class="oa-x oa-header">
+  <div class="oa-topbar">
+    <div class="wrap">
+      <span class="oa-ndis"><span class="oa-ndis-dot" aria-hidden="true"></span>NDIS Registered Provider</span>
+      <div class="oa-topbar-end">
+        <span class="oa-topbar-areas">Supporting QLD&nbsp;· NSW&nbsp;· VIC</span>
+        <!-- phone shows here on mobile only (nav phone takes over on desktop) so the number never appears twice -->
+        <a class="oa-topbar-phone" href="tel:0414585535">
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>0414 585 535</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header class="oa-nav" id="oaNav">
+    <div class="wrap">
+      <a class="oa-nav-logo" href="/" aria-label="Open Arms Australia home">
+        <!-- right-sized logo (768px source, ~14KB vs the 54KB -scaled original); box reserved via CSS aspect-ratio -->
+        <img src="https://open.arms.10xvisuals.co/wp-content/uploads/2026/07/OpenArms_Horizontal-Primary-Logo-768x189.png" decoding="async" alt="Open Arms Australia">
+      </a>
+
+      <nav class="oa-nav-menu" aria-label="Main">
+        <ul class="oa-nav-links" id="oaNavLinks">
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/for-support-workers">For Support Workers</a></li>
+          <li><a href="/areas-we-serve">Areas We Serve</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div class="oa-nav-menu-foot">
+          <a class="oa-btn primary oa-nav-cta-mobile" href="/contact">Enquire today</a>
+        </div>
+      </nav>
+
+      <div class="oa-nav-actions">
+        <a class="oa-btn primary" href="/contact">
+          Enquire today
+          <svg class="oa-btn-arrow" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <button class="oa-nav-toggle" id="oaNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="oaNavLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<style>
+.oa-x{
+  --oa-green:#368063; --oa-green-dark:#2C6B52; --oa-green-light:#6BA489;
+  --oa-purple:#8080B8;
+  --oa-charcoal:#161616; --oa-grey:#EDEDED; --oa-grey-mid:#6E6E6E; --oa-cream:#F7F7F7;
+  --oa-green-tint:#EAF2EE; --oa-green-line:#DBE8E1; --oa-purple-tint:#EDEDF6;
+  --oa-font:'Poppins','Segoe UI','Helvetica Neue',Arial,sans-serif;
+  --oa-radius-pill:999px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --dur-fast:180ms; --dur-med:300ms;
+  --oa-max-width:1240px; --oa-gutter:2rem;
+  font-family:var(--oa-font); color:var(--oa-charcoal); line-height:1.7;
+}
+.oa-x, .oa-x *, .oa-x *::before, .oa-x *::after{ box-sizing:border-box; margin:0; padding:0; }
+.oa-x img{ display:block; max-width:100%; }
+.oa-x a{ color:inherit; text-decoration:none; }
+.oa-x ::selection{ background:var(--oa-green); color:#fff; }
+.oa-x .wrap{ max-width:var(--oa-max-width); margin:0 auto; padding:0 var(--oa-gutter); }
+
+/* wrapper generates no box so the sticky nav sticks to the page, not this widget */
+.oa-header{ display:contents; }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.oa-x .oa-btn{
+  font-family:var(--oa-font); font-size:.9rem; font-weight:600; letter-spacing:.01em;
+  padding:.85rem 1.6rem; border-radius:var(--oa-radius-pill); border:1px solid transparent; cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem; line-height:1.2; white-space:nowrap;
+  transition:transform var(--dur-fast) var(--ease), box-shadow var(--dur-med) var(--ease),
+             background-color var(--dur-fast) var(--ease);
+}
+.oa-x .oa-btn.primary{
+  background:var(--oa-green); color:#fff; border-color:var(--oa-green);
+  box-shadow:0 1px 2px rgba(22,22,22,.08);
+}
+.oa-x .oa-btn.primary:hover{
+  background:var(--oa-green-dark); border-color:var(--oa-green-dark);
+  transform:translateY(-2px); box-shadow:0 10px 22px -12px rgba(44,107,82,.6);
+}
+.oa-x .oa-btn.primary:active{ transform:translateY(0); }
+.oa-x .oa-btn-arrow{ transition:transform var(--dur-med) var(--ease); }
+.oa-x .oa-btn.primary:hover .oa-btn-arrow{ transform:translateX(3px); }
+/* outline follows each element's own radius (pills stay pills); no radius override here */
+.oa-x .oa-btn:focus-visible, .oa-x a:focus-visible, .oa-x button:focus-visible{ outline:2.5px solid var(--oa-green-light); outline-offset:3px; }
+
+/* ── Top utility bar ─────────────────────────────────────── */
+.oa-x .oa-topbar{
+  background:var(--oa-green-tint); color:var(--oa-green-dark);
+  border-bottom:1px solid var(--oa-green-line);
+  font-size:.78rem; letter-spacing:.01em;
+}
+.oa-x .oa-topbar .wrap{ display:flex; justify-content:space-between; align-items:center; min-height:42px; gap:1rem; flex-wrap:wrap; }
+.oa-x .oa-ndis{ display:inline-flex; align-items:center; gap:.5rem; font-weight:600; }
+.oa-x .oa-ndis-dot{ width:7px; height:7px; border-radius:50%; background:var(--oa-purple); flex:none; }
+.oa-x .oa-topbar-end{ display:flex; align-items:center; gap:1.25rem; }
+.oa-x .oa-topbar-areas{ color:var(--oa-green-dark); opacity:.85; }
+/* the single phone number lives here (top bar) at every width, so it never appears twice */
+.oa-x .oa-topbar-phone{ display:inline-flex; align-items:center; gap:.45rem; padding:.45rem 0; font-weight:600; color:var(--oa-green-dark); transition:color var(--dur-fast); }
+.oa-x .oa-topbar-phone:hover{ color:var(--oa-green); }
+
+/* ── Main navigation ─────────────────────────────────────── */
+.oa-x .oa-nav{
+  position:sticky; top:0; z-index:60;
+  background:#fff;
+  border-bottom:1px solid var(--oa-grey);
+  transition:box-shadow var(--dur-med) var(--ease), border-color var(--dur-med);
+}
+.oa-x .oa-nav.scrolled{ border-bottom-color:transparent; box-shadow:0 6px 24px -14px rgba(22,22,22,.22); }
+.oa-x .oa-nav .wrap{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:88px; transition:min-height var(--dur-med) var(--ease); }
+.oa-x .oa-nav.scrolled .wrap{ min-height:70px; }
+.oa-x .oa-nav-logo{ flex-shrink:0; }   /* never let flexbox squash the logo when the nav gets tight */
+.oa-x .oa-nav-logo img{ height:48px; width:auto; aspect-ratio:768 / 189; transition:height var(--dur-med) var(--ease); }
+.oa-x .oa-nav.scrolled .oa-nav-logo img{ height:40px; }
+
+.oa-x .oa-nav-menu{ display:flex; align-items:center; }
+.oa-x .oa-nav-links{ display:flex; align-items:center; gap:.35rem; list-style:none; }
+.oa-x .oa-nav-links a{
+  display:block; padding:.5rem .8rem; border-radius:var(--oa-radius-pill);
+  font-size:.92rem; font-weight:500; color:var(--oa-charcoal); white-space:nowrap;
+  transition:color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+.oa-x .oa-nav-links a:hover{ color:var(--oa-green-dark); background:var(--oa-green-tint); }
+.oa-x .oa-nav-links a[aria-current="page"]{ color:var(--oa-green-dark); background:var(--oa-green-tint); font-weight:600; }
+.oa-x .oa-nav-menu-foot{ display:none; }
+
+.oa-x .oa-nav-actions{ display:flex; align-items:center; gap:1.25rem; }
+
+/* ── Mobile toggle ───────────────────────────────────────── */
+.oa-x .oa-nav-toggle{ display:none; flex-direction:column; align-items:center; justify-content:center; width:44px; height:44px; background:none; border:none; border-radius:10px; cursor:pointer; margin-right:-.5rem; transition:background-color var(--dur-fast) var(--ease); }
+.oa-x .oa-nav-toggle:hover{ background:var(--oa-green-tint); }
+.oa-x .oa-nav-toggle span{ display:block; width:24px; height:2px; background:var(--oa-charcoal); margin:2.5px 0; border-radius:2px; transition:transform var(--dur-med) var(--ease), opacity var(--dur-fast); }
+.oa-x .oa-nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.oa-x .oa-nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.oa-x .oa-nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width:1240px){   /* full horizontal nav needs the room; below it, the hamburger menu */
+  .oa-x .oa-nav-toggle{ display:inline-flex; }
+
+  .oa-x .oa-nav-menu{
+    position:absolute; top:100%; left:0; right:0; z-index:70;
+    background:#fff; border-bottom:1px solid var(--oa-grey);
+    box-shadow:0 14px 32px -18px rgba(22,22,22,.28);
+    display:block; overflow:hidden;
+    max-height:0; opacity:0; visibility:hidden;
+    transition:max-height var(--dur-med) var(--ease), opacity var(--dur-fast) var(--ease), visibility 0s linear var(--dur-med);
+  }
+  .oa-x .oa-nav-menu.open{
+    max-height:calc(100vh - 130px); opacity:1; visibility:visible; overflow-y:auto;
+    transition:max-height var(--dur-med) var(--ease), opacity var(--dur-med) var(--ease), visibility 0s;
+  }
+  .oa-x .oa-nav-links{ flex-direction:column; align-items:stretch; gap:.15rem; padding:1rem var(--oa-gutter) .5rem; }
+  .oa-x .oa-nav-links a{ padding:.9rem 1rem; font-size:1rem; border-radius:12px; }
+  .oa-x .oa-nav-menu-foot{ display:flex; flex-direction:column; gap:1rem; padding:1rem var(--oa-gutter) 1.5rem; border-top:1px solid var(--oa-grey); margin-top:.5rem; }
+  .oa-x .oa-nav-cta-mobile{ width:100%; padding:1rem; }
+  /* the always-visible desktop CTA is hidden on mobile in favour of the in-menu one */
+  .oa-x .oa-nav-actions > .oa-btn.primary{ display:none; }
+}
+@media (max-width:560px){
+  .oa-x{ --oa-gutter:1.25rem; }
+  .oa-x .oa-topbar-areas{ display:none; }  /* leaves NDIS badge + phone on the strip */
+  .oa-x .oa-nav-logo img{ height:42px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .oa-x .oa-nav, .oa-x .oa-nav *, .oa-x .oa-btn, .oa-x .oa-nav-menu{ transition-duration:.01ms !important; }
+}
+</style>
+
+<script>
+(function(){
+  var toggle=document.getElementById('oaNavToggle'),
+      menu=document.querySelector('.oa-x .oa-nav-menu'),
+      nav=document.getElementById('oaNav');
+
+  function setMenu(open){
+    if(!menu||!toggle) return;
+    menu.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open?'true':'false');
+    toggle.setAttribute('aria-label', open?'Close menu':'Open menu');
+  }
+
+  if(toggle&&menu){
+    toggle.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
+    menu.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape' && menu.classList.contains('open')){ setMenu(false); toggle.focus(); }
+    });
+    window.addEventListener('resize', function(){ if(window.innerWidth>980) setMenu(false); });
+  }
+
+  if(nav){
+    var onScroll=function(){ nav.classList.toggle('scrolled', window.scrollY>8); };
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  }
+})();
+</script>

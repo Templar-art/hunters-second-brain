@@ -16,7 +16,7 @@ Full ZED restyle + declutter, whole listing. Hunter runs all gens himself on **S
 |---|------|----------|--------|-------|
 | 1 | Bedroom 1 (white timber bed, secondary) | full-frame SD5 | ✅ keeper | blue object under bed → clone in post; styled sl. heavy for secondary, accepted |
 | 2 | Bedroom 2 (green feature wall, secondary) | full-frame SD5 | ✅ keeper | stepped down to secondary tier on re-spec; small black object left bedside → post |
-| 3 | Bedroom 3 (teal lamps, secondary) | full-frame SD5 | prompt delivered | 2 pillows + 1 cushion, single bedside, small art |
+| 3 | Bedroom 3 (teal lamps, secondary) | full-frame SD5 | redo issued | client: "makes room look small" → scale fix: queen+low slim headboard, raised legs (floor visible), light coverlet, more foreground carpet |
 | 4 | Master anchor (drawers/timber floor) | full-frame SD5 | ✅ keeper | hotel stack, cream bench, shag rug, fig |
 | 5 | Master angle 2 (mirror wardrobe) | SD5 + @ref anchor | redo #2 issued | fail #1: rug missing, wall art survived; patched prompt out |
 | 6 | Living anchor (single sofa, walkway open) | full-frame SD5 | ✅ keeper | v2 after 2-sofa layout scrapped |
@@ -41,6 +41,7 @@ Full ZED restyle + declutter, whole listing. Hunter runs all gens himself on **S
 ## Log
 
 - 2026-07-17 intake→review in one session: ~23 frames triaged + prompted. Hunter self-runs Seedream 5 Pro 2k.
+- 2026-07-21 client revisions round 1. Bedroom 3: "makes room look small" → redo #1 (scale/geometry): queen bed, low slim headboard, raised legs w/ floor visible beneath, tailored light coverlet, more clear foreground carpet, kept 2+1 secondary styling. ~6cr, Hunter runs.
 - Standing corrections captured this job: outdoor rooms = weatherproof ZED furniture (rect table, sides-only chairs); pin fences/gates "nothing new built" (Seedream invents doors/gates on patios); declutter-proof pass before staging on hard outdoor frames; velvet/marble indoor set never outdoors.
 - ⚠️ EXPORT ISSUE: some keepers accidentally exported at ~5KB — re-export originals from Higgsfield at full res before Magnific upscale pass.
 - NEXT: (1) re-export 5KB frames full-res, (2) finish pending gens/redos, (3) Magnific upscale finish on all keepers (subtle/auto/Standard Ultra, creativity −3, resemblance 3, materials-only prompt), (4) post cleanup: blue object bed 1, black object master bedside.

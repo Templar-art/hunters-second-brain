@@ -1,16 +1,17 @@
 #!/bin/bash
-# 10x Visuals — SSD → Google Drive (Clients shared drive) batch uploader.
-# Reads upload-map.tsv (source<TAB>client-folder) and uploads each zip to
-# gdrive:Clients/<client-folder>. Fully RESUMABLE: rclone skips anything already
-# uploaded (same size), so if it dies (daily cap, sleep, unplugged SSD) just re-run.
+# 10x Visuals — SSD → Google Drive (Clients shared drive) PARALLEL batch uploader.
+# Reads upload-map.tsv (source<TAB>client-folder) and uploads up to MAXJOBS zips at
+# once, each to gdrive:Clients/<client-folder>. Google throttles ~per connection, so
+# N files in parallel ≈ N× the aggregate speed of one-at-a-time.
+#
+# Fully RESUMABLE: rclone skips anything already uploaded (same size). If it stops
+# (daily cap, sleep, unplugged SSD) just re-run — it picks up where it left off.
 #
 # Usage:
-#   ./upload.sh            # real upload
-#   ./upload.sh --dry-run  # show what WOULD upload, send nothing
-#   ./upload.sh --check    # verify every source file exists, no upload
-#
-# Runs safely for days: --drive-stop-on-upload-limit makes rclone stop cleanly when
-# Google's 750 GB/day cap is hit. Re-run the next day and it picks up where it left off.
+#   ./upload.sh              # real upload, 4 files at once
+#   MAXJOBS=6 ./upload.sh    # crank concurrency higher
+#   ./upload.sh --dry-run    # show what WOULD upload, send nothing
+#   ./upload.sh --check      # verify every source file exists, no upload
 
 set -uo pipefail
 DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -18,13 +19,15 @@ MAP="$DIR/upload-map.tsv"
 LOG="$DIR/upload.log"
 REMOTE="gdrive:Clients"
 MODE="${1:-run}"
+MAXJOBS="${MAXJOBS:-4}"
 
-RCLONE_FLAGS=(--transfers 8 --drive-chunk-size 128M --drive-stop-on-upload-limit --progress)
-[ "$MODE" = "--dry-run" ] && RCLONE_FLAGS+=(--dry-run)
+PER_FILE_FLAGS=(--drive-chunk-size 128M --drive-stop-on-upload-limit
+                --stats 20s --stats-one-line -v --log-file "$LOG")
+[ "$MODE" = "--dry-run" ] && PER_FILE_FLAGS+=(--dry-run)
 
-echo "================ upload run: $(date) (mode: $MODE) ================" | tee -a "$LOG"
+echo "================ PARALLEL upload run: $(date) (mode: $MODE, $MAXJOBS at once) ================" | tee -a "$LOG"
 
-total=0; done_ok=0; missing=0
+total=0; missing=0
 while IFS=$'\t' read -r SRC DEST; do
   [ -z "${SRC// }" ] && continue
   case "$SRC" in \#*) continue;; esac
@@ -37,19 +40,18 @@ while IFS=$'\t' read -r SRC DEST; do
 
   if [ "$MODE" = "--check" ]; then
     echo "  ✓ found: $SRC  ->  $REMOTE/$DEST"
-    done_ok=$((done_ok+1)); continue
+    continue
   fi
 
-  echo "" ; echo ">>> $(basename "$SRC")  ->  $REMOTE/$DEST" | tee -a "$LOG"
-  rclone copy "$SRC" "$REMOTE/$DEST" "${RCLONE_FLAGS[@]}" --log-file "$LOG" --log-level INFO
-  rc=$?
-  if [ $rc -ne 0 ]; then
-    echo "  ✗ rclone exit $rc on this file (likely daily 750GB cap or transient)." | tee -a "$LOG"
-    echo "    Stopping. Re-run ./upload.sh tomorrow — it resumes automatically." | tee -a "$LOG"
-    break
-  fi
-  done_ok=$((done_ok+1))
+  # throttle: keep at most MAXJOBS rclone workers running at once (bash 3.2 safe)
+  while [ "$(jobs -rp | wc -l | tr -d ' ')" -ge "$MAXJOBS" ]; do sleep 2; done
+
+  echo ">>> launching: $(basename "$SRC")  ->  $REMOTE/$DEST" | tee -a "$LOG"
+  rclone copy "$SRC" "$REMOTE/$DEST" "${PER_FILE_FLAGS[@]}" &
 done < "$MAP"
 
-echo "" ; echo "================ finished: $(date) ================" | tee -a "$LOG"
-echo "mapped: $total | ok/checked: $done_ok | missing: $missing" | tee -a "$LOG"
+echo "…waiting for in-flight uploads to finish…" | tee -a "$LOG"
+wait
+
+echo "================ finished: $(date) ================" | tee -a "$LOG"
+echo "mapped: $total | missing: $missing" | tee -a "$LOG"
