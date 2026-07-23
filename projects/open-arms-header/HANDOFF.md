@@ -30,6 +30,10 @@ Everything else is turnkey.
 
 ---
 
+## Note: the white gap under the header
+
+The homepage content section ships with **55px top padding**, which left a white strip between the header and the hero. The header file now includes a 2-line patch at the top of the `<style>` block that removes it (targets `.elementor-element-a22a11b`). Cleaner alternative: in Elementor, select that content section → Advanced → Padding → set **Top = 0**, then delete those 2 patch lines. If that section ever gets rebuilt (its ID changes), re-point or use the Elementor setting.
+
 ## What it does
 
 - **Sticky** top-bar + nav; nav compacts and drops a soft shadow on scroll.
