@@ -29,7 +29,7 @@
 
       <nav class="oa-nav-menu" aria-label="Main">
         <ul class="oa-nav-links" id="oaNavLinks">
-          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="/about-us">About Us</a></li>
           <li><a href="/services">Services</a></li>
           <li><a href="/for-support-workers">For Support Workers</a></li>
@@ -214,6 +214,15 @@ body > .elementor-121 ~ .elementor > .e-con-full:first-child{ padding-top:0 !imp
   if(nav){
     var onScroll=function(){ nav.classList.toggle('scrolled', window.scrollY>8); };
     window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  }
+
+  // Light the green pill on the link that matches the current page (any page, no hard-coding).
+  var here=location.pathname.replace(/\/+$/,'')||'/';
+  var navLinks=document.querySelectorAll('.oa-x .oa-nav-links a');
+  for(var i=0;i<navLinks.length;i++){
+    var href=(navLinks[i].getAttribute('href')||'').replace(/\/+$/,'')||'/';
+    if(href===here){ navLinks[i].setAttribute('aria-current','page'); }
+    else { navLinks[i].removeAttribute('aria-current'); }
   }
 })();
 </script>
