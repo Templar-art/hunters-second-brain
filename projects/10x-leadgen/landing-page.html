@@ -181,6 +181,24 @@
   .tx-lp *,.tx-lp *::before,.tx-lp *::after{transition:none !important}
 }
 .tx-lp a:focus-visible,.tx-lp button:focus-visible{outline:2px solid var(--tx-blue);outline-offset:3px;border-radius:4px}
+
+/* Validation + send states. Error and success inks clear 6:1 on every surface
+   they appear on. Errors never rely on colour alone: text plus a glyph. */
+.tx-lp{--tx-error:#b3261e;--tx-success:#1d6b3f}
+.tx-err{display:flex;gap:.4rem;margin-top:.4rem;font-size:.88rem;font-weight:400;color:var(--tx-error);max-width:none}
+.tx-err::before{content:"!";flex:none;width:1.05rem;height:1.05rem;margin-top:.2rem;border-radius:50%;background:var(--tx-error);color:#fff;font-size:.72rem;font-weight:700;line-height:1.05rem;text-align:center}
+.tx-field input[aria-invalid="true"],.tx-field select[aria-invalid="true"],.tx-field textarea[aria-invalid="true"]{border-color:var(--tx-error);border-width:2px}
+.tx-submit[aria-busy="true"]{opacity:.75;cursor:progress}
+.tx-sr-status{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.tx-sendfail{margin-top:1rem;border:1px solid var(--tx-error);border-radius:6px;padding:1rem 1.1rem;font-size:.94rem;font-weight:300;color:var(--tx-body);background:color-mix(in srgb,var(--tx-error) 6%,var(--tx-white))}
+.tx-sendfail strong{color:var(--tx-error);font-weight:600}
+.tx-sendfail a{color:var(--tx-error);font-weight:600;text-decoration:underline}
+.tx-ok{border:1px solid var(--tx-line);border-radius:10px;background:color-mix(in srgb,var(--tx-blue) 8%,var(--tx-white));padding:clamp(1.6rem,3vw,2.2rem)}
+.tx-ok:focus{outline:2px solid var(--tx-ink);outline-offset:3px}
+.tx-ok-tick{display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--tx-success);color:#fff;font-size:1.4rem;font-weight:700;margin-bottom:1rem}
+.tx-ok h3{margin-bottom:.6rem}
+.tx-ok p{color:var(--tx-body);font-weight:300;font-size:.98rem}
+.tx-ok a{color:var(--tx-blue-text);font-weight:600;text-decoration:underline}
 </style>
 
 <div class="tx-lp">
@@ -347,26 +365,48 @@
         </ul>
       </div>
       <div class="tx-form-card">
-        <form method="post" action="#" novalidate>
+        <!-- ⚠️ ENDPOINT: data-endpoint must be replaced with the real POST URL before
+             launch. While it reads REPLACE_ME the script simulates a successful send so
+             the states can be reviewed, and warns in the console. It never silently
+             pretends in production. -->
+        <form class="tx-form" method="post" action="#" data-endpoint="REPLACE_ME">
           <div class="tx-field">
             <label for="tx-name">Name</label>
-            <input type="text" id="tx-name" name="name" autocomplete="name" required>
+            <input type="text" id="tx-name" name="name" autocomplete="name" maxlength="80" required aria-describedby="tx-name-err">
+            <p class="tx-err" id="tx-name-err" hidden></p>
           </div>
           <div class="tx-field">
             <label for="tx-phone">Phone</label>
-            <input type="tel" id="tx-phone" name="phone" autocomplete="tel" inputmode="tel" required>
+            <input type="tel" id="tx-phone" name="phone" autocomplete="tel" maxlength="20" pattern="[0-9+\(\)\s\-]{8,20}" inputmode="tel" required aria-describedby="tx-phone-err">
+            <p class="tx-err" id="tx-phone-err" hidden></p>
           </div>
           <div class="tx-field">
             <label for="tx-agency">Agency</label>
-            <input type="text" id="tx-agency" name="agency" autocomplete="organization" required>
+            <input type="text" id="tx-agency" name="agency" autocomplete="organization" maxlength="80" required aria-describedby="tx-agency-err">
+            <p class="tx-err" id="tx-agency-err" hidden></p>
           </div>
           <div class="tx-field">
             <label for="tx-listing">Listing address <span class="tx-opt">(optional)</span></label>
-            <input type="text" id="tx-listing" name="listing">
+            <input type="text" id="tx-listing" name="listing" autocomplete="street-address" maxlength="120">
           </div>
           <button type="submit" class="tx-btn tx-submit">Book my test drive</button>
-          <p class="tx-form-note">Or call <a href="tel:0431516634">0431 516 634</a> and we'll sort it on the phone.</p>
+          <p class="tx-form-note">Or call <a href="tel:0431516634">0431 516 634</a> and we’ll sort it on the phone.</p>
+
+          <!-- Screen-reader announcement for validation and send results. -->
+          <p class="tx-sr-status" role="status" aria-live="polite"></p>
+
+          <!-- Send failure: form stays filled in, phone offered as the fallback -->
+          <div class="tx-sendfail" role="alert" hidden>
+            <strong>That didn’t send.</strong> Your details are still here, so you can try again. If it keeps failing, call <a href="tel:0431516634">0431 516 634</a> and we’ll book it over the phone.
+          </div>
         </form>
+
+        <!-- Success state, in place of the form. Names the next step and the timeframe. -->
+        <div class="tx-ok" hidden tabindex="-1">
+          <span class="tx-ok-tick" aria-hidden="true">✓</span>
+          <h3>Booked in. We’ll call you today.</h3>
+          <p>We’ll confirm the price and a shoot time on the phone, and the film lands within 72 hours of us being on site. If you’d rather not wait, call <a href="tel:0431516634">0431 516 634</a> now.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -378,6 +418,144 @@
     <span><a href="tel:0431516634">0431 516 634</a> · <a href="https://www.instagram.com/10xvisuals_">@10xvisuals_</a></span>
   </div>
 </footer>
+
+<!-- ────────────────────────────────────────────────────────────────
+     Form behaviour. Progressive enhancement only: with this script removed,
+     `required` and `pattern` still work because the markup no longer carries
+     `novalidate`, so the browser blocks an empty submit by itself. The script
+     swaps the browser's bubbles for plain language beside each field, keeps
+     what was typed across an interruption, stops double-submits, and shows the
+     success state in place.
+     ──────────────────────────────────────────────────────────────── -->
+<script>
+(function () {
+  var form = document.querySelector('.tx-form');
+  if (!form) return;
+  var card   = form.parentElement;
+  var ok     = card.querySelector('.tx-ok');
+  var fail   = form.querySelector('.tx-sendfail');
+  var status = form.querySelector('.tx-sr-status');
+  var button = form.querySelector('.tx-submit');
+  var STORE  = 'tx-testdrive-form';
+
+  // Native validation stays on in the markup for the no-JS case. Now that JS is
+  // running, switch it off: it would block the submit event before our own
+  // messages could render.
+  form.noValidate = true;
+
+  var MESSAGES = {
+    'tx-name': { empty: "We’ll need a name so we know who we’re calling." },
+    'tx-phone': { empty: "We need a phone number to confirm the shoot.", bad: "That number doesn’t look right. Check it and try again." },
+    'tx-agency': { empty: "Which agency are you with?" }
+  };
+  var fields = Object.keys(MESSAGES).map(function (id) { return document.getElementById(id); });
+
+  function messageFor(el) {
+    var m = MESSAGES[el.id] || {};
+    if (el.validity.valueMissing) return m.empty;
+    return m.bad || m.empty;
+  }
+  function showError(el, text) {
+    var err = document.getElementById(el.id + '-err');
+    if (err) { err.textContent = text; err.hidden = false; }
+    el.setAttribute('aria-invalid', 'true');
+  }
+  function clearError(el) {
+    var err = document.getElementById(el.id + '-err');
+    if (err) { err.hidden = true; err.textContent = ''; }
+    el.removeAttribute('aria-invalid');
+  }
+
+  fields.forEach(function (el) {
+    if (!el) return;
+    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', function () {
+      if (el.checkValidity()) clearError(el);
+      save();
+    });
+    el.addEventListener('blur', function () {
+      if (el.value !== '' && !el.checkValidity()) showError(el, messageFor(el));
+    });
+  });
+
+  function save() {
+    try {
+      var data = {};
+      form.querySelectorAll('input, select, textarea').forEach(function (el) {
+        if (el.name) data[el.name] = el.value;
+      });
+      sessionStorage.setItem(STORE, JSON.stringify(data));
+    } catch (e) {}
+  }
+  function restore() {
+    try {
+      var raw = sessionStorage.getItem(STORE);
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      form.querySelectorAll('input, select, textarea').forEach(function (el) {
+        if (el.name && data[el.name]) el.value = data[el.name];
+      });
+    } catch (e) {}
+  }
+  restore();
+  var extra = document.getElementById('tx-listing');
+  if (extra) extra.addEventListener('input', save);
+
+  function succeed() {
+    try { sessionStorage.removeItem(STORE); } catch (e) {}
+    form.hidden = true;
+    ok.hidden = false;
+    ok.focus();
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    fail.hidden = true;
+
+    var invalid = fields.filter(function (el) { return el && !el.checkValidity(); });
+    invalid.forEach(function (el) { showError(el, messageFor(el)); });
+    fields.forEach(function (el) { if (el && el.checkValidity()) clearError(el); });
+
+    if (invalid.length) {
+      status.textContent = invalid.length === 1
+        ? 'One field needs fixing: ' + messageFor(invalid[0])
+        : invalid.length + ' fields need fixing before we can send this.';
+      invalid[0].focus();
+      return;
+    }
+
+    if (button.getAttribute('aria-busy') === 'true') return;
+    button.setAttribute('aria-busy', 'true');
+    button.disabled = true;
+    var label = button.textContent;
+    button.textContent = 'Sending…';
+    status.textContent = 'Sending your details.';
+
+    var endpoint = form.getAttribute('data-endpoint');
+    function reset() {
+      button.removeAttribute('aria-busy');
+      button.disabled = false;
+      button.textContent = label;
+    }
+
+    if (!endpoint || endpoint === 'REPLACE_ME') {
+      console.warn('[tx] data-endpoint is still REPLACE_ME. Simulating a successful send so the success state can be reviewed. Wire the real endpoint before launch.');
+      setTimeout(function () { reset(); succeed(); }, 600);
+      return;
+    }
+
+    fetch(endpoint, { method: 'POST', body: new FormData(form) })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        reset(); succeed();
+      })
+      .catch(function () {
+        reset();
+        fail.hidden = false;
+        status.textContent = 'That didn’t send. Your details are still here, or you can call us instead.';
+      });
+  });
+})();
+</script>
 
 </div><!-- /.tx-lp -->
 
