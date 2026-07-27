@@ -47,6 +47,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
 - [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)
+- [[mac-performance]] — what actually slows the MacBook (RAM ceiling, 3 displays, Adobe stack); never delete the Camera Raw cache
 
 ## Craft (reference)
 The durable how-to layer — standing technique, distinct from client/ops pages. Hub: [[craft]].
