@@ -33,7 +33,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 /* CVA feasibility landing page. All rules scoped under .cva-lp. */
@@ -66,7 +66,6 @@
 .cva-lp .cva-h1{font-size:clamp(2.3rem,1.6rem + 3.2vw,4rem)}
 .cva-lp .cva-h2{font-size:clamp(1.8rem,1.4rem + 1.8vw,2.7rem)}
 .cva-lp .cva-h3{font-size:1.22rem;line-height:1.3}
-.cva-kicker{font-family:var(--cva-sans);font-size:.76rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--cva-grey);display:block;margin-bottom:1.1rem}
 .cva-lede{font-size:clamp(1.05rem,1rem + .35vw,1.22rem);color:var(--cva-grey-dark);font-weight:300}
 
 /* Buttons: black fill, square-ish, no gradient. Restraint is the brand. */
@@ -78,17 +77,16 @@
 /* Header: logo + phone only. No nav — this is an ad landing page. */
 .cva-head{border-bottom:1px solid var(--cva-line)}
 .cva-head .cva-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.15rem 0}
-.cva-logo{font-family:var(--cva-display);font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cva-ink);text-decoration:none}
-.cva-head a.cva-tel{font-size:.95rem;color:var(--cva-ink);text-decoration:none;font-weight:500}
+.cva-logo{display:inline-block;font-family:var(--cva-display);font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cva-ink);text-decoration:none}
+.cva-head a.cva-tel{font-size:.95rem;color:var(--cva-ink);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;min-height:44px;padding:0 .25rem}
 .cva-head a.cva-tel:hover{text-decoration:underline}
 
 /* Hero: photography-led, type over image, generous air */
 .cva-hero{position:relative;background:var(--cva-ink);color:var(--cva-white);overflow:hidden}
-.cva-hero::before{content:"";position:absolute;inset:0;background:url('https://cvaarchitects.com.au/wp-content/uploads/2024/09/cva-hero-placeholder.jpg') center/cover no-repeat;opacity:.55}
+.cva-hero::before{content:"";position:absolute;inset:0;background:url('https://cvaarchitects.com.au/wp-content/uploads/2026/07/Dacelo-UPPER-BANNER-IMAGE-1536x1536.jpg') center/cover no-repeat;opacity:.55}
 .cva-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.62) 55%,rgba(0,0,0,.25) 100%)}
 .cva-hero .cva-wrap{position:relative;z-index:1;padding:clamp(4rem,9vw,7.5rem) 0 clamp(3.5rem,8vw,6.5rem)}
 .cva-hero-inner{max-width:620px}
-.cva-hero .cva-kicker{color:rgba(255,255,255,.72)}
 .cva-hero .cva-h1{color:var(--cva-white);margin-bottom:1.3rem}
 .cva-hero .cva-lede{color:rgba(255,255,255,.82);margin-bottom:2.3rem;max-width:52ch}
 .cva-hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem}
@@ -102,7 +100,6 @@
 .cva-sec-soft{background:var(--cva-bg-soft)}
 .cva-sec-dark{background:var(--cva-ink);color:rgba(255,255,255,.78)}
 .cva-sec-dark .cva-h2,.cva-sec-dark .cva-h3{color:var(--cva-white)}
-.cva-sec-dark .cva-kicker{color:rgba(255,255,255,.6)}
 .cva-sec-head{max-width:720px;margin-bottom:clamp(2.2rem,4vw,3.2rem)}
 .cva-sec-head .cva-h2{margin-bottom:.9rem}
 .cva-sec-head p{color:var(--cva-grey)}
@@ -133,7 +130,7 @@
 .cva-work figure{position:relative;overflow:hidden;background:var(--cva-line)}
 .cva-work img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;transition:transform .5s ease}
 .cva-work figure:hover img{transform:scale(1.03)}
-.cva-work figcaption{font-size:.9rem;color:var(--cva-grey);padding-top:.7rem;letter-spacing:.02em}
+.cva-work figcaption{font-size:.9rem;color:var(--cva-grey-dark);padding-top:.7rem;letter-spacing:.02em} /* grey-dark: caption can sit on the figure fallback bg, not just white */
 
 /* Testimonial */
 .cva-quote{max-width:800px}
@@ -154,7 +151,7 @@
 .cva-form-card{border:1px solid var(--cva-line);padding:clamp(1.7rem,3.5vw,2.4rem);background:var(--cva-white)}
 .cva-field{margin-bottom:1.15rem}
 .cva-field label{display:block;font-size:.86rem;font-weight:500;color:var(--cva-ink);margin-bottom:.45rem;letter-spacing:.03em}
-.cva-field input,.cva-field select,.cva-field textarea{width:100%;font-family:var(--cva-sans);font-weight:300;font-size:1rem;padding:.85rem .95rem;border:1px solid #d4d4d4;background:var(--cva-white);color:var(--cva-ink);border-radius:0}
+.cva-field input,.cva-field select,.cva-field textarea{width:100%;font-family:var(--cva-sans);font-weight:300;font-size:1rem;padding:.85rem .95rem;border:1px solid #949494;background:var(--cva-white);color:var(--cva-ink);border-radius:0}
 .cva-field input:focus,.cva-field select:focus,.cva-field textarea:focus{outline:2px solid var(--cva-ink);outline-offset:1px}
 .cva-field .cva-opt{font-weight:300;color:var(--cva-grey);letter-spacing:0}
 .cva-submit{width:100%;justify-content:center;cursor:pointer}
@@ -166,7 +163,7 @@
 /* Footer */
 .cva-foot{border-top:1px solid var(--cva-line);padding:2.2rem 0;font-size:.9rem;color:var(--cva-grey)}
 .cva-foot .cva-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem}
-.cva-foot a{color:var(--cva-ink);text-decoration:none}
+.cva-foot a{color:var(--cva-ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 .cva-foot a:hover{text-decoration:underline}
 
 /* Mobile */
@@ -192,7 +189,7 @@
 <!-- HEADER: no nav. Ad landing pages leak through menus. -->
 <header class="cva-head">
   <div class="cva-wrap">
-    <a class="cva-logo" href="#">CVA Architects</a>
+    <span class="cva-logo">CVA Architects</span>
     <a class="cva-tel" href="tel:0419938222">0419 938 222</a>
   </div>
 </header>
@@ -201,7 +198,6 @@
 <section class="cva-hero">
   <div class="cva-wrap">
     <div class="cva-hero-inner">
-      <span class="cva-kicker">Gold Coast architectural practice</span>
       <h1 class="cva-h1">Find out what your site will actually allow.</h1>
       <p class="cva-lede">Before drawings, before fees, before anything: a 30 minute site and feasibility chat with the architect. What the block permits, whether the brief fits the budget, and what the path looks like from here.</p>
       <div class="cva-hero-ctas">
@@ -215,7 +211,6 @@
 <!-- THE PROBLEM WE'RE ANSWERING -->
 <section class="cva-sec">
   <div class="cva-narrow">
-    <span class="cva-kicker">Where most projects stall</span>
     <h2 class="cva-h2">Not on the design. On whether it's possible at all.</h2>
     <p class="cva-lede" style="margin-top:1.2rem">Most people sitting on a block, or a plan to buy one, are stuck on the same three questions: can I build what I have in mind here, what will it cost, and what happens once I commit. Those are answerable in half an hour by someone who does it for a living, and they're the questions we start with anyway.</p>
     <p style="margin-top:1.1rem">So we've made that the first step, at no charge and with nothing attached to it.</p>
@@ -226,7 +221,6 @@
 <section class="cva-sec cva-sec-soft">
   <div class="cva-wrap">
     <div class="cva-sec-head">
-      <span class="cva-kicker">The feasibility chat</span>
       <h2 class="cva-h2">Thirty minutes, three answers</h2>
       <p>In person, on site, or over a call. Whichever suits you.</p>
     </div>
@@ -252,7 +246,6 @@
 <section class="cva-sec">
   <div class="cva-narrow">
     <div class="cva-qualify">
-      <span class="cva-kicker">Straight about fit</span>
       <h3 class="cva-h3">We're a small practice, and we're upfront about it</h3>
       <p>CVA takes on a limited number of homes and boutique developments each year, which means architect-led design, drawn and documented properly, with the architect on site rather than a draftsperson working from a template.</p>
       <p>That carries project minimums. Our work typically suits builds from around <strong>$[CAMERON TO CONFIRM]</strong> in construction cost. If you're after the cheapest set of plans that will pass council, we're honestly not the right practice, and we'd rather say so now than at the end of a quote.</p>
@@ -265,7 +258,6 @@
 <section class="cva-sec cva-sec-dark">
   <div class="cva-wrap">
     <div class="cva-sec-head">
-      <span class="cva-kicker">How it runs</span>
       <h2 class="cva-h2">Concept to completion, architect-led throughout</h2>
     </div>
     <div class="cva-steps">
@@ -290,20 +282,19 @@
 <section class="cva-sec">
   <div class="cva-wrap">
     <div class="cva-sec-head">
-      <span class="cva-kicker">Selected work</span>
       <h2 class="cva-h2">Homes and developments across the Gold Coast</h2>
     </div>
     <div class="cva-work">
       <figure>
-        <img src="https://cvaarchitects.com.au/wp-content/uploads/agnes-placeholder.jpg" alt="Agnes, a CVA Architects residential project" loading="lazy" decoding="async">
-        <figcaption>Agnes, new residence</figcaption>
+        <img src="https://cvaarchitects.com.au/wp-content/uploads/2026/02/Beacons-3-1024x1024.jpg" alt="Beacons, a CVA Architects residence on the Gold Coast" loading="lazy" decoding="async">
+        <figcaption>Beacons, new residence</figcaption>
       </figure>
       <figure>
-        <img src="https://cvaarchitects.com.au/wp-content/uploads/mudgeeraba-placeholder.jpg" alt="Mudgeeraba, a CVA Architects residential project" loading="lazy" decoding="async">
+        <img src="https://cvaarchitects.com.au/wp-content/uploads/2026/02/Mudgeeraba-4-1024x1024.jpg" alt="Mudgeeraba, a CVA Architects residential project" loading="lazy" decoding="async">
         <figcaption>Mudgeeraba, renovation and addition</figcaption>
       </figure>
       <figure>
-        <img src="https://cvaarchitects.com.au/wp-content/uploads/the-shed-placeholder.jpg" alt="The Shed, a CVA Architects project" loading="lazy" decoding="async">
+        <img src="https://cvaarchitects.com.au/wp-content/uploads/2026/02/The-Shed-1-768x1365.jpg" alt="The Shed, a CVA Architects project" loading="lazy" decoding="async">
         <figcaption>The Shed</figcaption>
       </figure>
     </div>
@@ -314,7 +305,6 @@
 <section class="cva-sec cva-sec-soft">
   <div class="cva-wrap">
     <div class="cva-quote">
-      <span class="cva-kicker">Client</span>
       <blockquote>“Professional and efficient from the first conversation through to the finished project.”</blockquote>
       <cite>Cat G., CVA Architects client</cite>
     </div>
@@ -325,7 +315,6 @@
 <section class="cva-sec">
   <div class="cva-narrow cva-faq">
     <div class="cva-sec-head">
-      <span class="cva-kicker">Before you book</span>
       <h2 class="cva-h2">Reasonable questions</h2>
     </div>
     <details>
@@ -363,7 +352,6 @@
   <div class="cva-wrap">
     <div class="cva-form-grid">
       <div>
-        <span class="cva-kicker">Book it</span>
         <h2 class="cva-h2">Start with the feasibility chat</h2>
         <p style="margin-top:1rem">Four details and we'll call to arrange a time. Thirty minutes, no fee, no obligation.</p>
         <ul class="cva-form-list">

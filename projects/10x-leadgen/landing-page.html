@@ -46,13 +46,12 @@
   --tx-blue:#61a8d8;
   --tx-blue-deep:#3d87ba;
   --tx-blue-text:#2b6b96; /* blue for normal text on white, AA */
-  --tx-navy:#102f41;
   --tx-ink:#12181c;
   --tx-charcoal:#1c2529;
   --tx-white:#ffffff;
   --tx-off:#f5f7f9;
   --tx-body:#39454b;
-  --tx-muted:#6b787f;
+  --tx-muted:#67737a;
   --tx-line:#e3e8eb;
   --tx-line-dark:rgba(255,255,255,.12);
   --tx-display:'Montserrat',-apple-system,sans-serif;
@@ -75,7 +74,6 @@
 .tx-lp .tx-h1{font-size:clamp(2.3rem,1.6rem + 3.4vw,4rem)}
 .tx-lp .tx-h2{font-size:clamp(1.75rem,1.4rem + 1.8vw,2.6rem)}
 .tx-lp h3{font-family:var(--tx-display);font-weight:600;font-size:1.15rem;line-height:1.3;color:var(--tx-ink)}
-.tx-kicker{display:block;font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tx-blue-text);margin-bottom:1rem}
 .tx-lede{font-size:clamp(1.05rem,1rem + .35vw,1.22rem);font-weight:300}
 
 .tx-btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--tx-blue);color:var(--tx-ink);font-family:var(--tx-sans);font-weight:600;font-size:1.02rem;text-decoration:none;padding:1.05rem 2rem;border:0;border-radius:6px;cursor:pointer;transition:background .22s ease,transform .22s ease}
@@ -86,14 +84,14 @@
 /* Header: mark + phone. No nav. */
 .tx-head{background:var(--tx-ink);border-bottom:1px solid var(--tx-line-dark)}
 .tx-head .tx-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.05rem 0}
-.tx-logo{font-family:var(--tx-display);font-weight:700;font-size:1.1rem;letter-spacing:.02em;color:var(--tx-white);text-decoration:none}
+.tx-logo{display:inline-block;font-family:var(--tx-display);font-weight:700;font-size:1.1rem;letter-spacing:.02em;color:var(--tx-white);text-decoration:none}
 .tx-logo span{color:var(--tx-blue)}
-.tx-head a.tx-tel{color:rgba(255,255,255,.85);font-size:.94rem;font-weight:500;text-decoration:none}
+.tx-head a.tx-tel{color:rgba(255,255,255,.85);font-size:.94rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;padding:0 .25rem}
 .tx-head a.tx-tel:hover{color:var(--tx-blue)}
 
 /* Hero */
 .tx-hero{position:relative;background:var(--tx-ink);color:var(--tx-white);overflow:hidden}
-.tx-hero::before{content:"";position:absolute;inset:0;background:url('https://10xvisuals.com.au/wp-content/uploads/hero-placeholder.jpg') center/cover no-repeat;opacity:.42}
+.tx-hero::before{content:"";position:absolute;inset:0;background:url('https://10xvisuals.com.au/wp-content/uploads/2026/03/25-Davenport-Drive-Web-01-1024x576.jpg') center/cover no-repeat;opacity:.42}
 .tx-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,24,28,.95) 0%,rgba(18,24,28,.78) 50%,rgba(18,24,28,.35) 100%)}
 .tx-hero .tx-wrap{position:relative;z-index:1;padding:clamp(3.6rem,8vw,6.8rem) 0 clamp(3.2rem,7vw,6rem)}
 .tx-hero-inner{max-width:640px}
@@ -110,7 +108,6 @@
 .tx-sec-off{background:var(--tx-off)}
 .tx-sec-dark{background:var(--tx-charcoal);color:rgba(255,255,255,.76)}
 .tx-sec-dark .tx-h2,.tx-sec-dark h3{color:var(--tx-white)}
-.tx-sec-dark .tx-kicker{color:var(--tx-blue)}
 .tx-sec-head{max-width:740px;margin-bottom:clamp(2rem,4vw,3rem)}
 .tx-sec-head .tx-h2{margin-bottom:.9rem}
 .tx-sec-head p{color:var(--tx-muted)}
@@ -130,7 +127,7 @@
 .tx-work{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.1rem}
 .tx-work figure{position:relative;border-radius:8px;overflow:hidden;background:var(--tx-charcoal)}
 .tx-work img{width:100%;aspect-ratio:16/9;object-fit:cover}
-.tx-work figcaption{padding-top:.65rem;font-size:.9rem;color:var(--tx-muted)}
+.tx-work figcaption{padding-top:.65rem;font-size:.9rem;color:#9aa4aa} /* light ink: caption sits on the charcoal figure, not on white */
 
 /* Steps */
 .tx-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.4rem}
@@ -150,12 +147,12 @@
 .tx-form-card{background:var(--tx-white);border:1px solid var(--tx-line);border-radius:10px;padding:clamp(1.7rem,3.5vw,2.3rem);box-shadow:0 14px 40px rgba(16,47,65,.08)}
 .tx-field{margin-bottom:1.1rem}
 .tx-field label{display:block;font-size:.88rem;font-weight:600;color:var(--tx-ink);margin-bottom:.4rem}
-.tx-field input,.tx-field select,.tx-field textarea{width:100%;font-family:var(--tx-sans);font-weight:300;font-size:1rem;padding:.85rem .95rem;border:1px solid #d3dade;border-radius:6px;background:var(--tx-white);color:var(--tx-ink)}
+.tx-field input,.tx-field select,.tx-field textarea{width:100%;font-family:var(--tx-sans);font-weight:300;font-size:1rem;padding:.85rem .95rem;border:1px solid #8f9497;border-radius:6px;background:var(--tx-white);color:var(--tx-ink)}
 .tx-field input:focus,.tx-field select:focus,.tx-field textarea:focus{outline:2px solid var(--tx-blue-text);outline-offset:1px;border-color:var(--tx-blue-text)}
 .tx-field .tx-opt{font-weight:400;color:var(--tx-muted);font-size:.85rem}
 .tx-submit{width:100%;justify-content:center}
 .tx-form-note{margin-top:.95rem;font-size:.88rem;color:var(--tx-muted)}
-.tx-form-note a{color:var(--tx-blue-text);font-weight:600;text-decoration:none}
+.tx-form-note a{color:var(--tx-blue-text);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;padding:0 .2rem}
 .tx-tick-list{list-style:none;margin-top:1.5rem}
 .tx-tick-list li{display:flex;gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--tx-line);font-size:.97rem;color:var(--tx-body)}
 .tx-tick-list li:last-child{border-bottom:0}
@@ -164,7 +161,7 @@
 /* Footer */
 .tx-foot{background:var(--tx-ink);color:rgba(255,255,255,.6);padding:2.1rem 0;font-size:.9rem}
 .tx-foot .tx-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem}
-.tx-foot a{color:rgba(255,255,255,.85);text-decoration:none}
+.tx-foot a{color:rgba(255,255,255,.85);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 .tx-foot a:hover{color:var(--tx-blue)}
 
 /* Mobile */
@@ -190,7 +187,7 @@
 
 <header class="tx-head">
   <div class="tx-wrap">
-    <a class="tx-logo" href="#">10<span>x</span> Visuals</a>
+    <span class="tx-logo">10<span>x</span> Visuals</span>
     <a class="tx-tel" href="tel:0431516634">0431 516 634</a>
   </div>
 </header>
@@ -199,7 +196,6 @@
 <section class="tx-hero">
   <div class="tx-wrap">
     <div class="tx-hero-inner">
-      <span class="tx-kicker" style="color:var(--tx-blue)">Gold Coast property films</span>
       <h1 class="tx-h1">Pick one listing. We'll film it. <em>72 hours.</em></h1>
       <p class="tx-lede">You shouldn't have to sign a retainer to find out whether a videographer is any good. So try one film on one property, at a fixed price, and judge it against the photos you'd have run instead.</p>
       <div class="tx-hero-ctas">
@@ -218,7 +214,6 @@
 <!-- THE GAP — the argument for listing video at all -->
 <section class="tx-sec">
   <div class="tx-narrow">
-    <span class="tx-kicker">Why this exists</span>
     <h2 class="tx-h2">Buyers look for video. Most listings still don't have one.</h2>
     <p class="tx-lede" style="margin-top:1.1rem;color:var(--tx-body)">Video is where buyers spend their attention, and where most listings are still silent. That gap is the easiest advantage an agent can pick up this year, and it doesn't require changing how you work. It requires one film, on one property, done properly.</p>
     <p style="margin-top:1rem">The problem has never been whether listing film works. It's that hiring a production company usually means a meeting, a proposal, a retainer and a month before you see anything. So we removed all of that.</p>
@@ -230,7 +225,6 @@
   <div class="tx-wrap">
     <div class="tx-offer">
       <div class="tx-offer-top">
-        <span class="tx-kicker" style="color:var(--tx-blue)">The offer</span>
         <h2 class="tx-h2">The Listing Film Test Drive</h2>
         <p>One property. One film. Fixed price, agreed before we shoot. In your hands within 72 hours of the shoot.</p>
       </div>
@@ -260,22 +254,21 @@
 <section class="tx-sec" id="tx-work">
   <div class="tx-wrap">
     <div class="tx-sec-head">
-      <span class="tx-kicker">Recent work</span>
       <h2 class="tx-h2">Judge it on the films, not the pitch</h2>
       <p>A few recent Gold Coast listings and builds.</p>
     </div>
     <div class="tx-work">
       <figure>
-        <img src="https://10xvisuals.com.au/wp-content/uploads/work-1-placeholder.jpg" alt="Still from a 10x Visuals waterfront listing film" loading="lazy" decoding="async">
-        <figcaption>Waterfront residence, listing film</figcaption>
+        <img src="https://10xvisuals.com.au/wp-content/uploads/2026/04/88-Third-Ave-Print-09-1024x683.jpg" alt="88 Third Avenue, shot by 10x Visuals for a Gold Coast listing" loading="lazy" decoding="async">
+        <figcaption>88 Third Avenue, listing film</figcaption>
       </figure>
       <figure>
-        <img src="https://10xvisuals.com.au/wp-content/uploads/work-2-placeholder.jpg" alt="Still from a 10x Visuals twilight listing film" loading="lazy" decoding="async">
-        <figcaption>Twilight walkthrough, listing film</figcaption>
+        <img src="https://10xvisuals.com.au/wp-content/uploads/2026/03/25-Davenport-Drive-Print-15-1024x683.jpg" alt="25 Davenport Drive, interior shot by 10x Visuals" loading="lazy" decoding="async">
+        <figcaption>25 Davenport Drive, listing film</figcaption>
       </figure>
       <figure>
-        <img src="https://10xvisuals.com.au/wp-content/uploads/work-3-placeholder.jpg" alt="Still from a 10x Visuals aerial property film" loading="lazy" decoding="async">
-        <figcaption>Aerial and location, listing film</figcaption>
+        <img src="https://10xvisuals.com.au/wp-content/uploads/2026/03/Maker-Build-52-1024x576.jpg" alt="Maker Build construction project, documented by 10x Visuals" loading="lazy" decoding="async">
+        <figcaption>Maker Build, construction film</figcaption>
       </figure>
     </div>
   </div>
@@ -285,7 +278,6 @@
 <section class="tx-sec tx-sec-dark">
   <div class="tx-wrap">
     <div class="tx-sec-head">
-      <span class="tx-kicker">How it runs</span>
       <h2 class="tx-h2">Booked to delivered without a meeting</h2>
     </div>
     <div class="tx-steps">
@@ -313,7 +305,6 @@
 <section class="tx-sec tx-sec-off">
   <div class="tx-wrap">
     <div class="tx-sec-head">
-      <span class="tx-kicker">Straight answers</span>
       <h2 class="tx-h2">What agents usually ask first</h2>
     </div>
     <div class="tx-obj">
@@ -346,7 +337,6 @@
   <div class="tx-wrap">
     <div class="tx-form-grid">
       <div>
-        <span class="tx-kicker">Book it</span>
         <h2 class="tx-h2">Three details and we'll call you back today</h2>
         <p style="margin-top:1rem">No proposal, no discovery call. We'll confirm the price and a shoot time, and you'll have the film within 72 hours of us being on site.</p>
         <ul class="tx-tick-list">
