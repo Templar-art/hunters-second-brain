@@ -34,7 +34,8 @@ docs/       Specs and process docs (superpowers).
 ## Operations
 - **Ingest** (new source dropped in `raw/` or pasted): read it → discuss takeaways → write/update a `sources/` page → update every affected entity/concept page → update `index.md` → append to `log.md`. A single ingest may touch many pages; that's the point.
 - **Query**: read `index.md` first, drill into pages, answer with citations. If the answer is a durable artifact (comparison, analysis, connection), file it back into the wiki as a page and index it.
-- **Lint** (on request or periodically): hunt contradictions, stale claims, orphan pages, missing cross-references, concepts mentioned but pageless. Log the pass.
+- **Harvest** (a job or deliverable finishes; `/harvest`): every folder under `projects/` needs a wiki page or a paragraph on an existing one — client, what shipped, cost, and what it taught us — then index + log. **A `projects/` folder with no wiki page is a leak**, and the JOB.md is not a substitute: nobody reads it from `index.md`. Same for a `feedback-*` written to auto-memory during a job — the standing-rule page it belongs to (e.g. [[staging-rules]]) gets updated in the same breath, or the rule only exists in one system.
+- **Lint** (on request or periodically): hunt contradictions, stale claims, orphan pages, missing cross-references, concepts mentioned but pageless. Also diff `projects/*/` and the auto-memory dir against the wiki — that gap is where knowledge actually goes missing. Log the pass.
 - **"Remember this"**: repo/business facts → wiki pages here. Cross-project Claude preferences/feedback → auto-memory (`~/.claude/projects/.../memory/`, its own MEMORY.md index, loaded via system reminders). Two systems — don't confuse them. Auto-memory holds the full AI-workflow KB, brand guidelines, and feedback files the wiki pages point to.
 
 ## Obsidian conventions
