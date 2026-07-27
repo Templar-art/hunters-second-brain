@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Listing Film Test Drive | 10x Visuals | Gold Coast Property Films</title>
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     10x VISUALS — lead capture landing page (Meta + Google ads)
+
+     Strategy: projects/lead-audit-2026-07-28/AD-STRATEGY.md §3
+     Brand: #61a8d8, Poppins + Montserrat, per wiki/concepts/brand-system.md
+     and the auto-memory brand guidelines.
+
+     WHY THIS PAGE EXISTS: 10xvisuals.com.au has no lead form at all —
+     contact is a mailto plus a phone number. The 20 Jul Meta campaign
+     spent ~$160 and produced zero leads (projects/fb-ads-handoff.md).
+     A campaign cannot generate leads into a site with no capture.
+
+     THE OFFER: "Listing Film Test Drive" — one property, one film,
+     fixed price, 72 hours. It converts a retainer decision into a
+     low-risk trial, which an agent can say yes to without a meeting.
+
+     ⚠️ BEFORE IT GOES LIVE, HUNTER MUST CONFIRM:
+     1. The test drive PRICE (marked $[CONFIRM] below) and that the
+        72-hour turnaround is genuinely deliverable every time. It is
+        stated repeatedly — if it slips, the offer damages the brand.
+     2. Which contact details to use. The live site shows tyson@ and
+        0431 516 634; this page uses Hunter's. Pick one and be consistent.
+     3. Swap the placeholder film thumbnails for real listing work.
+        Product is visual: this page lives or dies on the showreel.
+     4. NO client volume claims or invented stats on this page — standing
+        rule from the brand feedback (feedback-client-claims-and-photo-cover).
+     ════════════════════════════════════════════════════════════════ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* 10x Visuals lead-capture landing page. All rules scoped under .tx-lp. */
+.tx-lp{
+  --tx-blue:#61a8d8;
+  --tx-blue-deep:#3d87ba;
+  --tx-blue-text:#2b6b96; /* blue for normal text on white, AA */
+  --tx-navy:#102f41;
+  --tx-ink:#12181c;
+  --tx-charcoal:#1c2529;
+  --tx-white:#ffffff;
+  --tx-off:#f5f7f9;
+  --tx-body:#39454b;
+  --tx-muted:#6b787f;
+  --tx-line:#e3e8eb;
+  --tx-line-dark:rgba(255,255,255,.12);
+  --tx-display:'Montserrat',-apple-system,sans-serif;
+  --tx-sans:'Poppins',-apple-system,sans-serif;
+  font-family:var(--tx-sans);
+  font-weight:300;
+  font-size:16.5px;
+  line-height:1.72;
+  color:var(--tx-body);
+  background:var(--tx-white);
+  -webkit-font-smoothing:antialiased;
+}
+.tx-lp *,.tx-lp *::before,.tx-lp *::after{margin:0;padding:0;box-sizing:border-box}
+.tx-lp img{max-width:100%;display:block}
+.tx-lp p{text-wrap:pretty;max-width:66ch}
+.tx-wrap{width:min(1180px,91vw);margin-inline:auto}
+.tx-narrow{width:min(780px,91vw);margin-inline:auto}
+
+.tx-lp .tx-h1,.tx-lp .tx-h2{font-family:var(--tx-display);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--tx-ink);text-wrap:balance}
+.tx-lp .tx-h1{font-size:clamp(2.3rem,1.6rem + 3.4vw,4rem)}
+.tx-lp .tx-h2{font-size:clamp(1.75rem,1.4rem + 1.8vw,2.6rem)}
+.tx-lp h3{font-family:var(--tx-display);font-weight:600;font-size:1.15rem;line-height:1.3;color:var(--tx-ink)}
+.tx-kicker{display:block;font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tx-blue-text);margin-bottom:1rem}
+.tx-lede{font-size:clamp(1.05rem,1rem + .35vw,1.22rem);font-weight:300}
+
+.tx-btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--tx-blue);color:var(--tx-ink);font-family:var(--tx-sans);font-weight:600;font-size:1.02rem;text-decoration:none;padding:1.05rem 2rem;border:0;border-radius:6px;cursor:pointer;transition:background .22s ease,transform .22s ease}
+.tx-btn:hover{background:var(--tx-blue-deep);color:var(--tx-white);transform:translateY(-2px)}
+.tx-btn-line{display:inline-flex;align-items:center;gap:.6rem;color:var(--tx-white);font-weight:500;text-decoration:none;padding:1.05rem 1.7rem;border:1px solid rgba(255,255,255,.35);border-radius:6px;transition:border-color .22s,background .22s}
+.tx-btn-line:hover{border-color:var(--tx-blue);background:rgba(97,168,216,.12)}
+
+/* Header: mark + phone. No nav. */
+.tx-head{background:var(--tx-ink);border-bottom:1px solid var(--tx-line-dark)}
+.tx-head .tx-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.05rem 0}
+.tx-logo{font-family:var(--tx-display);font-weight:700;font-size:1.1rem;letter-spacing:.02em;color:var(--tx-white);text-decoration:none}
+.tx-logo span{color:var(--tx-blue)}
+.tx-head a.tx-tel{color:rgba(255,255,255,.85);font-size:.94rem;font-weight:500;text-decoration:none}
+.tx-head a.tx-tel:hover{color:var(--tx-blue)}
+
+/* Hero */
+.tx-hero{position:relative;background:var(--tx-ink);color:var(--tx-white);overflow:hidden}
+.tx-hero::before{content:"";position:absolute;inset:0;background:url('https://10xvisuals.com.au/wp-content/uploads/hero-placeholder.jpg') center/cover no-repeat;opacity:.42}
+.tx-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,24,28,.95) 0%,rgba(18,24,28,.78) 50%,rgba(18,24,28,.35) 100%)}
+.tx-hero .tx-wrap{position:relative;z-index:1;padding:clamp(3.6rem,8vw,6.8rem) 0 clamp(3.2rem,7vw,6rem)}
+.tx-hero-inner{max-width:640px}
+.tx-hero .tx-h1{color:var(--tx-white);margin-bottom:1.25rem}
+.tx-hero .tx-h1 em{font-style:normal;color:var(--tx-blue)}
+.tx-hero .tx-lede{color:rgba(255,255,255,.8);margin-bottom:2.1rem;max-width:52ch}
+.tx-hero-ctas{display:flex;flex-wrap:wrap;gap:.85rem;margin-bottom:2rem}
+.tx-hero-points{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem 1.7rem}
+.tx-hero-points li{display:flex;align-items:center;gap:.5rem;font-size:.95rem;color:rgba(255,255,255,.9)}
+.tx-hero-points span{color:var(--tx-blue);font-weight:600}
+
+/* Sections */
+.tx-sec{padding:clamp(3.4rem,7vw,5.6rem) 0}
+.tx-sec-off{background:var(--tx-off)}
+.tx-sec-dark{background:var(--tx-charcoal);color:rgba(255,255,255,.76)}
+.tx-sec-dark .tx-h2,.tx-sec-dark h3{color:var(--tx-white)}
+.tx-sec-dark .tx-kicker{color:var(--tx-blue)}
+.tx-sec-head{max-width:740px;margin-bottom:clamp(2rem,4vw,3rem)}
+.tx-sec-head .tx-h2{margin-bottom:.9rem}
+.tx-sec-head p{color:var(--tx-muted)}
+.tx-sec-dark .tx-sec-head p{color:rgba(255,255,255,.7)}
+
+/* The offer card */
+.tx-offer{border:1px solid var(--tx-line);border-radius:10px;overflow:hidden;background:var(--tx-white)}
+.tx-offer-top{background:var(--tx-ink);color:var(--tx-white);padding:clamp(1.7rem,3.5vw,2.4rem)}
+.tx-offer-top .tx-h2{color:var(--tx-white);margin-bottom:.7rem}
+.tx-offer-top p{color:rgba(255,255,255,.78)}
+.tx-offer-body{padding:clamp(1.7rem,3.5vw,2.4rem);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.6rem}
+.tx-offer-item h3{margin-bottom:.35rem;font-size:1.05rem}
+.tx-offer-item p{color:var(--tx-muted);font-size:.95rem}
+.tx-offer-foot{padding:0 clamp(1.7rem,3.5vw,2.4rem) clamp(1.7rem,3.5vw,2.4rem)}
+
+/* Work grid */
+.tx-work{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.1rem}
+.tx-work figure{position:relative;border-radius:8px;overflow:hidden;background:var(--tx-charcoal)}
+.tx-work img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.tx-work figcaption{padding-top:.65rem;font-size:.9rem;color:var(--tx-muted)}
+
+/* Steps */
+.tx-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.4rem}
+.tx-step{border-top:2px solid var(--tx-blue);padding-top:1.15rem}
+.tx-step h3{margin-bottom:.4rem;font-size:1.08rem}
+.tx-step p{color:rgba(255,255,255,.7);font-size:.94rem}
+
+/* Objections */
+.tx-obj{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+.tx-obj-card{background:var(--tx-white);border:1px solid var(--tx-line);border-radius:8px;padding:1.6rem 1.5rem}
+.tx-obj-card h3{margin-bottom:.5rem;font-size:1.05rem}
+.tx-obj-card p{color:var(--tx-muted);font-size:.95rem}
+
+/* Form */
+.tx-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.2rem);align-items:start}
+@media(max-width:880px){.tx-form-grid{grid-template-columns:1fr}}
+.tx-form-card{background:var(--tx-white);border:1px solid var(--tx-line);border-radius:10px;padding:clamp(1.7rem,3.5vw,2.3rem);box-shadow:0 14px 40px rgba(16,47,65,.08)}
+.tx-field{margin-bottom:1.1rem}
+.tx-field label{display:block;font-size:.88rem;font-weight:600;color:var(--tx-ink);margin-bottom:.4rem}
+.tx-field input,.tx-field select,.tx-field textarea{width:100%;font-family:var(--tx-sans);font-weight:300;font-size:1rem;padding:.85rem .95rem;border:1px solid #d3dade;border-radius:6px;background:var(--tx-white);color:var(--tx-ink)}
+.tx-field input:focus,.tx-field select:focus,.tx-field textarea:focus{outline:2px solid var(--tx-blue-text);outline-offset:1px;border-color:var(--tx-blue-text)}
+.tx-field .tx-opt{font-weight:400;color:var(--tx-muted);font-size:.85rem}
+.tx-submit{width:100%;justify-content:center}
+.tx-form-note{margin-top:.95rem;font-size:.88rem;color:var(--tx-muted)}
+.tx-form-note a{color:var(--tx-blue-text);font-weight:600;text-decoration:none}
+.tx-tick-list{list-style:none;margin-top:1.5rem}
+.tx-tick-list li{display:flex;gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--tx-line);font-size:.97rem;color:var(--tx-body)}
+.tx-tick-list li:last-child{border-bottom:0}
+.tx-tick-list span{color:var(--tx-blue-text);font-weight:700;flex:none}
+
+/* Footer */
+.tx-foot{background:var(--tx-ink);color:rgba(255,255,255,.6);padding:2.1rem 0;font-size:.9rem}
+.tx-foot .tx-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem}
+.tx-foot a{color:rgba(255,255,255,.85);text-decoration:none}
+.tx-foot a:hover{color:var(--tx-blue)}
+
+/* Mobile */
+@media(max-width:640px){
+  .tx-lp{font-size:16px}
+  .tx-hero::after{background:linear-gradient(180deg,rgba(18,24,28,.92) 0%,rgba(18,24,28,.78) 100%)}
+  .tx-hero .tx-wrap{padding:2.8rem 0 2.6rem}
+  .tx-hero-ctas{flex-direction:column;align-items:stretch}
+  .tx-btn,.tx-btn-line{width:100%;justify-content:center;text-align:center}
+  .tx-hero-points{flex-direction:column;gap:.55rem}
+}
+@media (hover:none){
+  .tx-btn:hover{transform:none;background:var(--tx-blue);color:var(--tx-ink)}
+  .tx-btn:active{background:var(--tx-blue-deep);color:var(--tx-white)}
+}
+@media (prefers-reduced-motion:reduce){
+  .tx-lp *,.tx-lp *::before,.tx-lp *::after{transition:none !important}
+}
+.tx-lp a:focus-visible,.tx-lp button:focus-visible{outline:2px solid var(--tx-blue);outline-offset:3px;border-radius:4px}
+</style>
+
+<div class="tx-lp">
+
+<header class="tx-head">
+  <div class="tx-wrap">
+    <a class="tx-logo" href="#">10<span>x</span> Visuals</a>
+    <a class="tx-tel" href="tel:0431516634">0431 516 634</a>
+  </div>
+</header>
+
+<!-- HERO — the offer, stated plainly, above the fold -->
+<section class="tx-hero">
+  <div class="tx-wrap">
+    <div class="tx-hero-inner">
+      <span class="tx-kicker" style="color:var(--tx-blue)">Gold Coast property films</span>
+      <h1 class="tx-h1">Pick one listing. We'll film it. <em>72 hours.</em></h1>
+      <p class="tx-lede">You shouldn't have to sign a retainer to find out whether a videographer is any good. So try one film on one property, at a fixed price, and judge it against the photos you'd have run instead.</p>
+      <div class="tx-hero-ctas">
+        <a class="tx-btn" href="#tx-book">Book a test drive</a>
+        <a class="tx-btn-line" href="#tx-work">See the work first</a>
+      </div>
+      <ul class="tx-hero-points">
+        <li><span>✓</span> One property, one film, fixed price</li>
+        <li><span>✓</span> Delivered in 72 hours</li>
+        <li><span>✓</span> No retainer, no lock-in</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAP — the argument for listing video at all -->
+<section class="tx-sec">
+  <div class="tx-narrow">
+    <span class="tx-kicker">Why this exists</span>
+    <h2 class="tx-h2">Buyers look for video. Most listings still don't have one.</h2>
+    <p class="tx-lede" style="margin-top:1.1rem;color:var(--tx-body)">Video is where buyers spend their attention, and where most listings are still silent. That gap is the easiest advantage an agent can pick up this year, and it doesn't require changing how you work. It requires one film, on one property, done properly.</p>
+    <p style="margin-top:1rem">The problem has never been whether listing film works. It's that hiring a production company usually means a meeting, a proposal, a retainer and a month before you see anything. So we removed all of that.</p>
+  </div>
+</section>
+
+<!-- THE OFFER -->
+<section class="tx-sec tx-sec-off">
+  <div class="tx-wrap">
+    <div class="tx-offer">
+      <div class="tx-offer-top">
+        <span class="tx-kicker" style="color:var(--tx-blue)">The offer</span>
+        <h2 class="tx-h2">The Listing Film Test Drive</h2>
+        <p>One property. One film. Fixed price, agreed before we shoot. In your hands within 72 hours of the shoot.</p>
+      </div>
+      <div class="tx-offer-body">
+        <div class="tx-offer-item">
+          <h3>What you get</h3>
+          <p>A finished listing film cut for social and portals, graded and sound-designed, plus vertical cutdowns for Reels and stories.</p>
+        </div>
+        <div class="tx-offer-item">
+          <h3>What it costs</h3>
+          <p>A fixed <strong>$[CONFIRM]</strong> for the test drive. No proposal process, no retainer, no minimum number of listings.</p>
+        </div>
+        <div class="tx-offer-item">
+          <h3>What happens after</h3>
+          <p>If it earns its place in your marketing, we'll talk about doing it regularly. If it doesn't, you've spent one fixed fee to find out.</p>
+        </div>
+      </div>
+      <div class="tx-offer-foot">
+        <a class="tx-btn" href="#tx-book">Book a test drive</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK — ⚠️ swap for real listing films. This section is the whole
+     credibility argument: the product is visual, so show it. -->
+<section class="tx-sec" id="tx-work">
+  <div class="tx-wrap">
+    <div class="tx-sec-head">
+      <span class="tx-kicker">Recent work</span>
+      <h2 class="tx-h2">Judge it on the films, not the pitch</h2>
+      <p>A few recent Gold Coast listings and builds.</p>
+    </div>
+    <div class="tx-work">
+      <figure>
+        <img src="https://10xvisuals.com.au/wp-content/uploads/work-1-placeholder.jpg" alt="Still from a 10x Visuals waterfront listing film" loading="lazy" decoding="async">
+        <figcaption>Waterfront residence, listing film</figcaption>
+      </figure>
+      <figure>
+        <img src="https://10xvisuals.com.au/wp-content/uploads/work-2-placeholder.jpg" alt="Still from a 10x Visuals twilight listing film" loading="lazy" decoding="async">
+        <figcaption>Twilight walkthrough, listing film</figcaption>
+      </figure>
+      <figure>
+        <img src="https://10xvisuals.com.au/wp-content/uploads/work-3-placeholder.jpg" alt="Still from a 10x Visuals aerial property film" loading="lazy" decoding="async">
+        <figcaption>Aerial and location, listing film</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT RUNS -->
+<section class="tx-sec tx-sec-dark">
+  <div class="tx-wrap">
+    <div class="tx-sec-head">
+      <span class="tx-kicker">How it runs</span>
+      <h2 class="tx-h2">Booked to delivered without a meeting</h2>
+    </div>
+    <div class="tx-steps">
+      <div class="tx-step">
+        <h3>You send the listing</h3>
+        <p>Address, access, and when it's presentable. We confirm the price and a shoot time by text.</p>
+      </div>
+      <div class="tx-step">
+        <h3>We shoot it</h3>
+        <p>A single visit, worked around your open homes and the light. You don't need to be there.</p>
+      </div>
+      <div class="tx-step">
+        <h3>72 hours later</h3>
+        <p>Finished film plus vertical cutdowns, delivered ready to post. One round of changes included.</p>
+      </div>
+      <div class="tx-step">
+        <h3>You decide</h3>
+        <p>Run it, measure it, and tell us whether it belongs in every listing. No follow-up sales process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<section class="tx-sec tx-sec-off">
+  <div class="tx-wrap">
+    <div class="tx-sec-head">
+      <span class="tx-kicker">Straight answers</span>
+      <h2 class="tx-h2">What agents usually ask first</h2>
+    </div>
+    <div class="tx-obj">
+      <div class="tx-obj-card">
+        <h3>"I already have a photographer."</h3>
+        <p>Good, keep them. This is the film, not the photos, and it's a single listing rather than a change of supplier.</p>
+      </div>
+      <div class="tx-obj-card">
+        <h3>"My vendors won't pay for it."</h3>
+        <p>Then run the first one yourself on a listing you want to win attention for. It's a fixed fee, and it's the cheapest listing presentation advantage available.</p>
+      </div>
+      <div class="tx-obj-card">
+        <h3>"72 hours seems unlikely."</h3>
+        <p>It's the whole point of the offer, and it's the thing we'd be embarrassed to miss. If we ever do, you don't pay for that film.</p>
+      </div>
+      <div class="tx-obj-card">
+        <h3>"What if I don't like it?"</h3>
+        <p>One round of changes is included. If it still isn't right, don't book us again, and we'll have cost you one fixed fee and a shoot you didn't have to attend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM — three fields. This is the entire point of the page.
+     WIRING NOTE: Name · Phone · Agency, all required, plus optional
+     listing address. NO email required. Keep a honeypot. Notification
+     to whoever actually answers the phone — a lead that sits unread is
+     the same as no lead. -->
+<section class="tx-sec" id="tx-book">
+  <div class="tx-wrap">
+    <div class="tx-form-grid">
+      <div>
+        <span class="tx-kicker">Book it</span>
+        <h2 class="tx-h2">Three details and we'll call you back today</h2>
+        <p style="margin-top:1rem">No proposal, no discovery call. We'll confirm the price and a shoot time, and you'll have the film within 72 hours of us being on site.</p>
+        <ul class="tx-tick-list">
+          <li><span>✓</span> Fixed price confirmed before anything is booked</li>
+          <li><span>✓</span> Finished film plus vertical cutdowns for Reels</li>
+          <li><span>✓</span> One round of changes included</li>
+          <li><span>✓</span> No retainer, no lock-in, no minimum listings</li>
+        </ul>
+      </div>
+      <div class="tx-form-card">
+        <form method="post" action="#" novalidate>
+          <div class="tx-field">
+            <label for="tx-name">Name</label>
+            <input type="text" id="tx-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="tx-field">
+            <label for="tx-phone">Phone</label>
+            <input type="tel" id="tx-phone" name="phone" autocomplete="tel" inputmode="tel" required>
+          </div>
+          <div class="tx-field">
+            <label for="tx-agency">Agency</label>
+            <input type="text" id="tx-agency" name="agency" autocomplete="organization" required>
+          </div>
+          <div class="tx-field">
+            <label for="tx-listing">Listing address <span class="tx-opt">(optional)</span></label>
+            <input type="text" id="tx-listing" name="listing">
+          </div>
+          <button type="submit" class="tx-btn tx-submit">Book my test drive</button>
+          <p class="tx-form-note">Or call <a href="tel:0431516634">0431 516 634</a> and we'll sort it on the phone.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="tx-foot">
+  <div class="tx-wrap">
+    <span>10x Visuals, property and construction films, Gold Coast</span>
+    <span><a href="tel:0431516634">0431 516 634</a> · <a href="https://www.instagram.com/10xvisuals_">@10xvisuals_</a></span>
+  </div>
+</footer>
+
+</div><!-- /.tx-lp -->
+
+<!-- ════════════════════════════════════════════════════════════════
+     PRE-LAUNCH CHECKLIST
+     [ ] Test drive price filled in (placeholder currently in two places)
+     [ ] 72-hour turnaround confirmed as always deliverable — it is promised
+         five times on this page and once in the ad copy
+     [ ] Contact details settled (this page uses 0431 516 634; live site
+         also shows tyson@ — pick one)
+     [ ] Real film thumbnails swapped in for the three placeholders
+     [ ] Form wired, 3 required fields, honeypot, notification to a phone
+         that gets answered the same day
+     [ ] Form submit tracked as a conversion; Meta pixel + Lead event firing
+     [ ] Test lead submitted from a phone and confirmed received
+     [ ] Then, and only then, relaunch Meta with the Leads objective and an
+         on-Facebook instant form — the 20 Jul campaign's likely core fault
+         was objective + no capture, not creative
+     [ ] Retire or rewrite the "investment leads" campaign; it was never
+         a defined offer
+     ════════════════════════════════════════════════════════════════ -->
+
+</body>
+</html>

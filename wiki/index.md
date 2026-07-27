@@ -17,15 +17,16 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[coast-life-constructions]] — builder IG repositioning; active execution; Rob's brand verdict governs
 - [[bespoke-estate-agents]] — Jason Ward prestige agent; full brand + social system filed 8 Jul; live website (WP) logged + audited 22 Jul (clean; doubles as portfolio piece)
 - [[belle-property]] — Lot 48 house-into-lot composite; awaiting "run it"
-- [[cva-architects]] — render enhancement; delivered Jun 2026, repeat client
+- [[cva-architects]] — render enhancement delivered Jun 2026; feasibility-offer landing page built 28 Jul, awaiting Cameron
 - [[jang-studio]] — vendor contact: offshore architectural photo editor
-- [[mvx-electrical]] — web client (Matt); two Google Ads landing pages live; form-friction fix + no-hot-water-surface finding 27 Jul
+- [[mvx-electrical]] — web client (Matt); 2 live Google Ads LPs + hot water page built 28 Jul; blocked on plumbing-licence call
 - [[open-arms-australia]] — web client; NDIS support provider (QLD/NSW/VIC); site header redesigned + handed to Lach 23 Jul
 - [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch delivered 15 Jul — **converted: 10–15 leads in 4 business days**
 - [[akmal]] — 1007/180 Marine Parade full ZED restyle; delivered 14 Jul, 14cr
 - [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 
 ## Projects
+- [[lead-gen-engine]] — ads + landing pages for MVX, CVA and 10x itself; per-niche strategy, 3 pages built 28 Jul
 - [[10x-ig-repositioning]] — own-brand IG overhaul: credit loop, premium kit, craft series
 - [[10x-social-engine]] — unified graphics engine (tenx.py), gap audit, content-flow SOPs, reel + ad formats
 - [[10x-socials-funnel]] — new RE + construction accounts funneling curated best-of to master

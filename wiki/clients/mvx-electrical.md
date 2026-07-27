@@ -2,7 +2,7 @@
 type: client
 tags: [client, web-design, electrical, gold-coast]
 status: active
-updated: 2026-07-27
+updated: 2026-07-28
 ---
 
 # MVX Electrical
@@ -29,6 +29,7 @@ Design shipped to spec (message-matched H1, 7 tap-to-call, sticky call bar, lice
 
 ## Work
 
+- **2026-07-28 — Hot water landing page + Google Ads campaign plan.** [landing-page.html](../../projects/mvx-hot-water/landing-page.html), built on the same proven conversion system as the aircon page. Offer hook = heat-pump STC rebate (~$998 applied upfront). Includes the correct **4-field** form inline so the Formidable rebuild can't reintroduce friction, plus a which-system comparison table and hot-water-specific FAQ. Two Search campaigns specced (Emergency vs Replacement/Upgrade), with keywords, negatives, and RSA copy in [AD-STRATEGY.md](../../projects/lead-audit-2026-07-28/AD-STRATEGY.md) §1. ⚠️ Written for **Route A** (MVX partners/subs a plumber); every dependent line is marked `ROUTE-A` for a one-edit swap. **Do not run traffic until Matt confirms the plumbing route and the rebate/price figures.** See [[lead-gen-engine]].
 - **2026-07-27 — Ad landing page lead-capture fix (spec, unbuilt).** [FORM-FIX.md](../../projects/mvx-lead-fix/FORM-FIX.md): delete Email, relabel Postcode → Suburb, make the message optional (both forms) → back to the 4-field spec; strip site nav from both LPs; confirm `tel:` clicks fire as Google Ads conversions (phone-first page — the calls *are* the leads). Also caught a live bug: the electricians form's job-type validation still reads "How can we help with your **aircon**?" Needs WP admin access to apply; baseline the last 14 days of entries + call conversions first or the lift is unmeasurable.
 - **2026-07-14 — Residential electricians landing page.** Same conversion system as the aircon page (League Gothic/Poppins brand build, phone-first, 2x2 services, ends at FAQ, Elementor-ready scoped CSS). Hero = Liversaver-14, blue-chip trust row replaces brands row. Deliverable: [landing-page.html](../../projects/mvx-electricians/landing-page.html) + shareable code note in same folder.
 - **2026-07-14 — Aircon landing page conversion redesign.** Existing Google Ads landing page underperforming vs competitor [T42 Electrical](https://t42electrical.com.au/air-conditioning-installation-repair/). Rebuilt phone-first (11 tap-to-call CTAs, sticky mobile call bar, message-match H1, 4-field callback form moved to bottom, "we ARE the electricians — one trade, one visit" differentiator). Deliverable: [landing-page.html](../../projects/mvx-aircon/landing-page.html) + [CONVERSION-NOTES.md](../../projects/mvx-aircon/CONVERSION-NOTES.md) (incl. pre-launch checklist: confirm brands, call tracking, Formidable wiring).
