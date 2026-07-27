@@ -2,7 +2,7 @@
 type: client
 tags: [client, property-investing, financial-services, instagram, facebook]
 status: active
-updated: 2026-07-15
+updated: 2026-07-27
 ---
 
 # Strategic Investing QLD — Property Investment Advisory
@@ -33,6 +33,19 @@ Brief tone brief = **calm, credible, no hype, not guru**. The **website runs bol
 ("80% pay off mortgage in <10yrs", "13,000+ clients"). Social work kept claim-light per
 brief; the proof numbers are available if a campaign wants them — but flag compliance
 (financial-advice disclaimer) before publishing any hard claim.
+
+## ✅ Result — it worked (reported by Hunter, 27 Jul 2026)
+
+**10–15 leads in 4 business days.** The only SIQ campaign result on record, and the one proven
+lead-gen pattern across the whole client book — worth copying to MVX / CVA / 10x rather than
+inventing something new.
+
+⚠️ **Attribution not yet confirmed.** Two assets shipped: the mortgage-freedom Meta ad kit
+(10 Jul) and the 23-post organic batch (15 Jul, deliberately **CTA-free** — no phone, no
+"book", no message copy). CTA-free organic posts do not plausibly produce 10–15 leads in four
+days, so the ad kit is the likely driver — but that is an inference, not a fact. Before
+replicating, pin down: which asset ran, daily spend, campaign objective, and **where the leads
+landed** (instant form / website form / phone / DM). That last one is the transferable part.
 
 ## Work delivered
 - **Mortgage-freedom Meta ad kit** (10 Jul 2026) — QLD brick-and-tile hero, 1:1 / 4:5 /

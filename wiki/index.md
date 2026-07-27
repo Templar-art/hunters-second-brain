@@ -19,9 +19,9 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[belle-property]] — Lot 48 house-into-lot composite; awaiting "run it"
 - [[cva-architects]] — render enhancement; delivered Jun 2026, repeat client
 - [[jang-studio]] — vendor contact: offshore architectural photo editor
-- [[mvx-electrical]] — web client (Matt); aircon Google Ads landing page conversion redesign Jul 2026
+- [[mvx-electrical]] — web client (Matt); two Google Ads landing pages live; form-friction fix + no-hot-water-surface finding 27 Jul
 - [[open-arms-australia]] — web client; NDIS support provider (QLD/NSW/VIC); site header redesigned + handed to Lach 23 Jul
-- [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch 1 (9 posts) delivered 15 Jul
+- [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch delivered 15 Jul — **converted: 10–15 leads in 4 business days**
 - [[akmal]] — 1007/180 Marine Parade full ZED restyle; delivered 14 Jul, 14cr
 - [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 
