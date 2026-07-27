@@ -1,7 +1,7 @@
 ---
 type: reference
 tags: [lead-gen, sales, pipeline, outbound, positioning]
-updated: 2026-07-19
+updated: 2026-07-27
 ---
 
 # Lead Gen and Sales
@@ -47,6 +47,14 @@ Warm replies decay fast. Answer with a fast, specific follow-up — reference th
 ## Lead-gen ads as a service
 
 Running lead-gen ADS *for* clients is itself a 10x package — sell the pipeline you built for yourself.
+
+**⚠️ Sell it from a funnel that works.** 10xvisuals.com.au carries "Lead Gen" as a nav-level service while having no lead form of its own (verified 27 Jul 2026), and the 20 Jul investment-leads Meta campaign spent ~$160 for zero leads. Fix the shoemaker's shoes before pitching the package.
+
+**The one proven pattern:** [[strategic-investing-qld]] converted 10–15 leads in 4 business days. Copy that recipe rather than inventing per client — but confirm its attribution first (two assets shipped, one of them CTA-free by design).
+
+**Diagnose in two buckets, never one:** *no leads* = channel / offer / capture broken. *Leads don't convert* = follow-up speed, qualification, offer mismatch. A client slow to call back cannot be fixed with better ads. As of 27 Jul we have no speed-to-contact data for any client — that gap is the next thing to close.
+
+Session run sheet for the 28 Jul audit: [RUN-SHEET.md](../../projects/lead-audit-2026-07-28/RUN-SHEET.md).
 
 ## Pipeline tracking
 
