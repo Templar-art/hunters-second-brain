@@ -185,6 +185,7 @@
 /* Validation + send states. Error and success inks clear 6:1 on every surface
    they appear on. Errors never rely on colour alone: text plus a glyph. */
 .tx-lp{--tx-error:#b3261e;--tx-success:#1d6b3f}
+.tx-err[hidden]{display:none}  /* an author display value beats the hidden attribute: without this the empty error row renders */
 .tx-err{display:flex;gap:.4rem;margin-top:.4rem;font-size:.88rem;font-weight:400;color:var(--tx-error);max-width:none}
 .tx-err::before{content:"!";flex:none;width:1.05rem;height:1.05rem;margin-top:.2rem;border-radius:50%;background:var(--tx-error);color:#fff;font-size:.72rem;font-weight:700;line-height:1.05rem;text-align:center}
 .tx-field input[aria-invalid="true"],.tx-field select[aria-invalid="true"],.tx-field textarea[aria-invalid="true"]{border-color:var(--tx-error);border-width:2px}

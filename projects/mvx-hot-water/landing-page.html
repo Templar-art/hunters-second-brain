@@ -59,7 +59,7 @@
   --mvx-sans:'Poppins',-apple-system,sans-serif;
   font-family:var(--mvx-sans);
   font-weight:400;
-  font-size:16.5px;
+  font-size:16px;           /* official Body = Poppins 400 16px */
   line-height:1.7;
   color:var(--mvx-body-ink);
   background:var(--mvx-white);
@@ -103,6 +103,15 @@
 .mvx-points{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;padding:0;list-style:none}
 .mvx-points li{display:flex;align-items:center;gap:.5rem;color:var(--mvx-ink);font-size:.95rem;font-weight:400}
 .mvx-points .mvx-tick{color:var(--mvx-green);font-weight:700}
+
+/* Header: supplied wordmark + phone, no navigation. Clear space equal to the
+   height of the "M" is held by the padding, per Brand Guidelines §03. */
+.mvx-head{background:var(--mvx-black)}
+.mvx-head .mvx-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0}
+.mvx-logo{height:34px;width:auto;flex:none}
+@media(max-width:640px){.mvx-logo{height:28px}}
+.mvx-head-tel{display:inline-flex;align-items:center;min-height:44px;padding:0 .25rem;color:var(--mvx-white);font-size:.94rem;font-weight:600;text-decoration:none}
+.mvx-head-tel:hover{color:var(--mvx-green)}
 
 /* Licence strip */
 .mvx-licences{background:var(--mvx-charcoal);color:var(--mvx-ink-2)}
@@ -201,7 +210,7 @@
 /* Areas */
 .mvx-chip-row{display:flex;flex-wrap:wrap;gap:.55rem}
 .mvx-chip{background:var(--mvx-white);border:1px solid var(--mvx-line-light);border-radius:var(--mvx-r-sm);padding:.42rem 1rem;font-size:.9rem;font-weight:400;color:var(--mvx-body-ink)}
-.mvx-chip-green{background:var(--mvx-green);border-color:var(--mvx-green);color:var(--mvx-black);font-weight:600}
+.mvx-chip-green{background:var(--mvx-black);border-color:var(--mvx-black);color:var(--mvx-green);font-weight:600}  /* green on black, never on the grey band */
 .mvx-areas{background:#f5f5f5}
 
 /* FAQ */
@@ -220,7 +229,7 @@
 @media(max-width:860px){.mvx-form-grid{grid-template-columns:1fr}}
 .mvx-form-copy .mvx-h2{color:var(--mvx-charcoal);margin-bottom:1rem}
 .mvx-form-copy p{color:var(--mvx-muted);font-weight:300;margin-bottom:1.4rem}
-.mvx-form-card{background:#f7f7f7;border:1px solid var(--mvx-line-light);border-radius:var(--mvx-r-lg);padding:clamp(1.6rem,3vw,2.2rem)}
+.mvx-form-card{background:var(--mvx-white);  /* white, not grey: the green submit button may only sit on black or white */border:1px solid var(--mvx-line-light);border-radius:var(--mvx-r-lg);padding:clamp(1.6rem,3vw,2.2rem)}
 .mvx-field{margin-bottom:1.1rem}
 .mvx-field label{display:block;font-size:.92rem;font-weight:600;color:var(--mvx-charcoal);margin-bottom:.4rem}
 .mvx-field input,.mvx-field select,.mvx-field textarea{width:100%;font-family:var(--mvx-sans);font-size:1rem;padding:.85rem 1rem;border:1px solid #8f8f8f;border-radius:var(--mvx-r-md);background:var(--mvx-white);color:var(--mvx-body-ink)}
@@ -234,6 +243,7 @@
    --mvx-error 6.1:1 on white and on the card tint; --mvx-success 6.1:1 likewise.
    Errors never rely on colour alone: they carry text and an icon glyph. */
 .mvx-lp{--mvx-error:#b3261e;--mvx-success:#1d6b3f}
+.mvx-err[hidden]{display:none}  /* an author display value beats the hidden attribute: without this the empty error row renders */
 .mvx-err{display:flex;gap:.4rem;margin-top:.4rem;font-size:.88rem;font-weight:400;color:var(--mvx-error);max-width:none}
 .mvx-err::before{content:"!";flex:none;width:1.05rem;height:1.05rem;margin-top:.2rem;border-radius:50%;background:var(--mvx-error);color:var(--mvx-white);font-size:.72rem;font-weight:700;line-height:1.05rem;text-align:center}
 .mvx-field input[aria-invalid="true"],.mvx-field select[aria-invalid="true"],.mvx-field textarea[aria-invalid="true"]{border-color:var(--mvx-error);border-width:2px}
@@ -242,7 +252,7 @@
 .mvx-sendfail{margin-top:1rem;border:1px solid var(--mvx-error);border-radius:var(--mvx-r-md);padding:1rem 1.1rem;font-size:.94rem;font-weight:300;color:var(--mvx-body-ink);background:color-mix(in srgb,var(--mvx-error) 6%,var(--mvx-white))}
 .mvx-sendfail strong{color:var(--mvx-error);font-weight:600}
 .mvx-sendfail a{color:var(--mvx-error);font-weight:600;text-decoration:underline}
-.mvx-ok{border:1px solid var(--mvx-line-light);border-radius:var(--mvx-r-lg);background:color-mix(in srgb,var(--mvx-green) 8%,var(--mvx-white));padding:clamp(1.6rem,3vw,2.2rem)}
+.mvx-ok{border:1px solid var(--mvx-line-light);border-radius:var(--mvx-r-lg);background:var(--mvx-white);padding:clamp(1.6rem,3vw,2.2rem)}
 .mvx-ok:focus{outline:2px solid var(--mvx-green-text);outline-offset:3px}
 .mvx-ok-tick{display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--mvx-success);color:var(--mvx-white);font-size:1.4rem;font-weight:700;margin-bottom:1rem}
 .mvx-ok h3{font-size:1.3rem;color:var(--mvx-charcoal);margin-bottom:.6rem}
@@ -293,6 +303,8 @@
 .mvx-lp a.mvx-svc-cta{color:var(--mvx-charcoal) !important}
 .mvx-lp a.mvx-svc-cta .mvx-num{color:var(--mvx-green-text) !important}
 .mvx-lp .mvx-callbar a.mvx-btn-call{color:var(--mvx-black) !important}
+.mvx-lp a.mvx-head-tel{color:var(--mvx-white) !important}
+.mvx-lp a.mvx-head-tel:hover{color:var(--mvx-green) !important}
 .mvx-lp button.mvx-btn-call{color:var(--mvx-black) !important}
 </style>
 
@@ -305,6 +317,18 @@
     Call 0427 593 990
   </a>
 </div>
+
+<!-- HEADER — supplied logo artwork, never re-typeset (Brand Guidelines §02/§03).
+     White wordmark on black is the primary treatment. No navigation by design:
+     every menu item is a way to lose a click you paid for.
+     ⚠️ src is a local relative path for review. Upload the artwork to the WP
+     media library and swap in the absolute URL before this goes live. -->
+<header class="mvx-head">
+  <div class="mvx-wrap">
+    <img class="mvx-logo" src="assets/mvx-logo-white.png" alt="MVX Electrical" width="1181" height="482">
+    <a class="mvx-head-tel" href="tel:0427593990">0427 593 990</a>
+  </div>
+</header>
 
 <!-- HERO — message-matched to "no hot water" / "hot water repair gold coast" -->
 <section class="mvx-hero">
@@ -331,12 +355,15 @@
   <div class="mvx-hero-rule" aria-hidden="true"></div>
 </section>
 
-<!-- Licence strip: legitimacy inside one second -->
+<!-- Licence strip: legitimacy inside one second. Licence numbers and the
+     "15+ years" figure are approved trust assets from Brand Guidelines §08.
+     Proof by specifics, never by superlatives. -->
 <div class="mvx-licences" role="note">
   <div class="mvx-wrap">
+    <span><b>15+ years</b> on Gold Coast jobs</span>
     <span>QLD Electrical <b>87592</b></span>
     <span>NSW Contractor <b>483405C</b></span>
-    <span>Solar Accreditation <b>S4837975</b></span>
+    <span>ARC <b>L198354</b></span>
     <span>Fully insured, compliance certificate on every job</span>
   </div>
 </div>
@@ -383,8 +410,8 @@
 <!-- CTA band -->
 <section class="mvx-sec mvx-band">
   <div class="mvx-wrap">
-    <h2 class="mvx-h2">Showering in cold water right now?</h2>
-    <p>Call and talk to a local electrician, not a call centre. Most Gold Coast jobs get a same day response.</p>
+    <h2 class="mvx-h2">Hot water, sorted properly</h2>
+    <p>Talk to a local licensed electrician, not a call centre. Upfront price, work done as promised, and most Gold Coast jobs get a same day response.</p>
     <div class="mvx-ctas">
       <a class="mvx-btn-call" href="tel:0427593990">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>

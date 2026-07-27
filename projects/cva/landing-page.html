@@ -33,23 +33,24 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 /* CVA feasibility landing page. All rules scoped under .cva-lp. */
 .cva-lp{
   --cva-black:#000000;
-  --cva-ink:#1a1a1a;
-  --cva-grey-dark:#3D3D3D;
-  --cva-grey:#6b6b6b;
-  --cva-line:#E8E8E8;
-  --cva-bg-soft:#f6f6f5;
+  --cva-charcoal:#111111;   /* official Charcoal: text, nav, dominant UI */
+  --cva-grey-dark:#333333;  /* official Dark Grey: secondary text */
+  --cva-grey:#737373;       /* official Mid Grey: captions, labels */
+  --cva-line:#E6E6E6;       /* official Light Grey: dividers, borders */
+  --cva-bg-soft:#f7f7f7;    /* light layer, keeps photography the hero */
   --cva-white:#ffffff;
   --cva-display:'Fahkwang',Georgia,serif;
-  --cva-sans:'Poppins',-apple-system,sans-serif;
+  --cva-sans:'Montserrat',-apple-system,sans-serif;  /* official body face */
   font-family:var(--cva-sans);
-  font-weight:300;
-  font-size:16.5px;
+  font-weight:400;          /* Montserrat Regular is the body weight */
+  font-size:16px;           /* official Body = 1rem */
+  letter-spacing:.025em;    /* official body tracking +10 */
   line-height:1.75;
   color:var(--cva-grey-dark);
   background:var(--cva-white);
@@ -62,27 +63,27 @@
 .cva-narrow{width:min(760px,90vw);margin-inline:auto}
 
 /* Type: Fahkwang light, mixed case, never all-caps (their site never shouts) */
-.cva-lp .cva-h1,.cva-lp .cva-h2,.cva-lp .cva-h3{font-family:var(--cva-display);font-weight:300;line-height:1.12;letter-spacing:-.01em;color:var(--cva-ink);text-wrap:balance}
-.cva-lp .cva-h1{font-size:clamp(2.3rem,1.6rem + 3.2vw,4rem)}
-.cva-lp .cva-h2{font-size:clamp(1.8rem,1.4rem + 1.8vw,2.7rem)}
-.cva-lp .cva-h3{font-size:1.22rem;line-height:1.3}
-.cva-lede{font-size:clamp(1.05rem,1rem + .35vw,1.22rem);color:var(--cva-grey-dark);font-weight:300}
+.cva-lp .cva-h1,.cva-lp .cva-h2,.cva-lp .cva-h3{font-family:var(--cva-display);font-weight:400;line-height:1.15;letter-spacing:.06em;color:var(--cva-charcoal);text-wrap:balance}
+.cva-lp .cva-h1{font-size:clamp(2rem,1.5rem + 2.4vw,3.5rem)}   /* official Display 3.5rem ceiling */
+.cva-lp .cva-h2{font-size:clamp(1.6rem,1.35rem + 1.1vw,2rem)}  /* official H2 2rem */
+.cva-lp .cva-h3{font-size:1.25rem;line-height:1.35}            /* official H3 1.25rem */
+.cva-lede{font-size:1.125rem;color:var(--cva-grey-dark);font-weight:400}  /* official Lead 1.125rem / 400 */
 
 /* Buttons: black fill, square-ish, no gradient. Restraint is the brand. */
 .cva-btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--cva-black);color:var(--cva-white);font-family:var(--cva-sans);font-weight:500;font-size:1rem;letter-spacing:.02em;text-decoration:none;padding:1.05rem 2rem;border:1px solid var(--cva-black);transition:background .25s ease,color .25s ease}
 .cva-btn:hover{background:var(--cva-white);color:var(--cva-black)}
-.cva-btn-line{display:inline-flex;align-items:center;gap:.6rem;background:transparent;color:var(--cva-ink);font-weight:500;text-decoration:none;padding:1.05rem 1.8rem;border:1px solid var(--cva-ink);transition:background .25s ease,color .25s ease}
-.cva-btn-line:hover{background:var(--cva-ink);color:var(--cva-white)}
+.cva-btn-line{display:inline-flex;align-items:center;gap:.6rem;background:transparent;color:var(--cva-charcoal);font-weight:500;text-decoration:none;padding:1.05rem 1.8rem;border:1px solid var(--cva-charcoal);transition:background .25s ease,color .25s ease}
+.cva-btn-line:hover{background:var(--cva-charcoal);color:var(--cva-white)}
 
 /* Header: logo + phone only. No nav — this is an ad landing page. */
 .cva-head{border-bottom:1px solid var(--cva-line)}
 .cva-head .cva-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.15rem 0}
-.cva-logo{display:inline-block;font-family:var(--cva-display);font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cva-ink);text-decoration:none}
-.cva-head a.cva-tel{font-size:.95rem;color:var(--cva-ink);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;min-height:44px;padding:0 .25rem}
+.cva-logo{display:block;width:auto;height:34px;flex:none}  /* official artwork only, never typeset */
+.cva-head a.cva-tel{font-size:.95rem;color:var(--cva-charcoal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;min-height:44px;padding:0 .25rem}
 .cva-head a.cva-tel:hover{text-decoration:underline}
 
 /* Hero: photography-led, type over image, generous air */
-.cva-hero{position:relative;background:var(--cva-ink);color:var(--cva-white);overflow:hidden}
+.cva-hero{position:relative;background:var(--cva-charcoal);color:var(--cva-white);overflow:hidden}
 .cva-hero::before{content:"";position:absolute;inset:0;background:url('https://cvaarchitects.com.au/wp-content/uploads/2026/07/Dacelo-UPPER-BANNER-IMAGE-1536x1536.jpg') center/cover no-repeat;opacity:.55}
 .cva-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.62) 55%,rgba(0,0,0,.25) 100%)}
 .cva-hero .cva-wrap{position:relative;z-index:1;padding:clamp(4rem,9vw,7.5rem) 0 clamp(3.5rem,8vw,6.5rem)}
@@ -98,7 +99,10 @@
 /* Sections */
 .cva-sec{padding:clamp(3.5rem,7vw,6rem) 0}
 .cva-sec-soft{background:var(--cva-bg-soft)}
-.cva-sec-dark{background:var(--cva-ink);color:rgba(255,255,255,.78)}
+/* Official Mid Grey reaches only 4.43:1 on the soft ground, so body copy on that
+   layer steps up to official Dark Grey. Both are palette colours: no new grey. */
+.cva-sec-soft p,.cva-sec-soft .cva-sec-head p,.cva-sec-soft .cva-col p{color:var(--cva-grey-dark)}
+.cva-sec-dark{background:var(--cva-charcoal);color:rgba(255,255,255,.78)}
 .cva-sec-dark .cva-h2,.cva-sec-dark .cva-h3{color:var(--cva-white)}
 .cva-sec-head{max-width:720px;margin-bottom:clamp(2.2rem,4vw,3.2rem)}
 .cva-sec-head .cva-h2{margin-bottom:.9rem}
@@ -130,16 +134,16 @@
 .cva-work figure{position:relative;overflow:hidden;background:var(--cva-line)}
 .cva-work img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;transition:transform .5s ease}
 .cva-work figure:hover img{transform:scale(1.03)}
-.cva-work figcaption{font-size:.9rem;color:var(--cva-grey-dark);padding-top:.7rem;letter-spacing:.02em} /* grey-dark: caption can sit on the figure fallback bg, not just white */
+.cva-work figcaption{font-size:.8rem;font-weight:300;color:var(--cva-grey-dark);padding-top:.7rem;letter-spacing:.025em}  /* official Caption .8rem / 300 */ /* grey-dark: caption can sit on the figure fallback bg, not just white */
 
 /* Testimonial */
 .cva-quote{max-width:800px}
-.cva-quote blockquote{font-family:var(--cva-display);font-weight:300;font-size:clamp(1.3rem,1.1rem + 1vw,1.85rem);line-height:1.4;color:var(--cva-ink)}
+.cva-quote blockquote{font-family:var(--cva-display);font-weight:300;font-size:clamp(1.3rem,1.1rem + 1vw,1.85rem);line-height:1.4;color:var(--cva-charcoal)}
 .cva-quote cite{display:block;margin-top:1.2rem;font-family:var(--cva-sans);font-style:normal;font-size:.92rem;color:var(--cva-grey);letter-spacing:.04em}
 
 /* FAQ */
 .cva-faq details{border-bottom:1px solid var(--cva-line)}
-.cva-faq summary{cursor:pointer;list-style:none;padding:1.3rem 0;font-family:var(--cva-display);font-weight:300;font-size:1.12rem;color:var(--cva-ink);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.cva-faq summary{cursor:pointer;list-style:none;padding:1.3rem 0;font-family:var(--cva-display);font-weight:300;font-size:1.12rem;color:var(--cva-charcoal);display:flex;justify-content:space-between;align-items:center;gap:1rem}
 .cva-faq summary::-webkit-details-marker{display:none}
 .cva-faq summary::after{content:"+";font-size:1.35rem;color:var(--cva-grey);font-weight:300;transition:transform .25s ease}
 .cva-faq details[open] summary::after{transform:rotate(45deg)}
@@ -150,9 +154,9 @@
 @media(max-width:880px){.cva-form-grid{grid-template-columns:1fr}}
 .cva-form-card{border:1px solid var(--cva-line);padding:clamp(1.7rem,3.5vw,2.4rem);background:var(--cva-white)}
 .cva-field{margin-bottom:1.15rem}
-.cva-field label{display:block;font-size:.86rem;font-weight:500;color:var(--cva-ink);margin-bottom:.45rem;letter-spacing:.03em}
-.cva-field input,.cva-field select,.cva-field textarea{width:100%;font-family:var(--cva-sans);font-weight:300;font-size:1rem;padding:.85rem .95rem;border:1px solid #949494;background:var(--cva-white);color:var(--cva-ink);border-radius:0}
-.cva-field input:focus,.cva-field select:focus,.cva-field textarea:focus{outline:2px solid var(--cva-ink);outline-offset:1px}
+.cva-field label{display:block;font-size:.86rem;font-weight:600;color:var(--cva-charcoal);margin-bottom:.45rem;letter-spacing:.03em}
+.cva-field input,.cva-field select,.cva-field textarea{width:100%;font-family:var(--cva-sans);font-weight:300;font-size:1rem;padding:.85rem .95rem;border:1px solid #949494;background:var(--cva-white);color:var(--cva-charcoal);border-radius:0}
+.cva-field input:focus,.cva-field select:focus,.cva-field textarea:focus{outline:2px solid var(--cva-charcoal);outline-offset:1px}
 .cva-field .cva-opt{font-weight:300;color:var(--cva-grey);letter-spacing:0}
 .cva-submit{width:100%;justify-content:center;cursor:pointer}
 .cva-form-note{font-size:.88rem;color:var(--cva-grey);margin-top:1rem}
@@ -163,7 +167,7 @@
 /* Footer */
 .cva-foot{border-top:1px solid var(--cva-line);padding:2.2rem 0;font-size:.9rem;color:var(--cva-grey)}
 .cva-foot .cva-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem}
-.cva-foot a{color:var(--cva-ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.cva-foot a{color:var(--cva-charcoal);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 .cva-foot a:hover{text-decoration:underline}
 
 /* Mobile */
@@ -180,26 +184,31 @@
 @media (prefers-reduced-motion:reduce){
   .cva-lp *,.cva-lp *::before,.cva-lp *::after{transition:none !important}
 }
-.cva-lp a:focus-visible,.cva-lp summary:focus-visible,.cva-lp button:focus-visible{outline:2px solid var(--cva-ink);outline-offset:3px}
+.cva-lp a:focus-visible,.cva-lp summary:focus-visible,.cva-lp button:focus-visible{outline:2px solid var(--cva-charcoal);outline-offset:3px}
 .cva-sec-dark a:focus-visible{outline-color:var(--cva-white)}
 
 /* Validation + send states. Error and success inks clear 6:1 on every surface
    they appear on. Errors never rely on colour alone: text plus a glyph. */
-.cva-lp{--cva-error:#b3261e;--cva-success:#1d6b3f}
+/* The official palette permits no accent colours, so validation is carried by
+   charcoal type, a filled glyph and a heavier border rather than by red. The
+   message itself does the work, which also satisfies "never colour alone".
+   If CVA's marketing team approves a functional error red, swap these two. */
+.cva-lp{--cva-error:var(--cva-charcoal);--cva-success:var(--cva-charcoal)}
+.cva-err[hidden]{display:none}  /* an author display value beats the hidden attribute: without this the empty error row renders */
 .cva-err{display:flex;gap:.4rem;margin-top:.4rem;font-size:.88rem;font-weight:400;color:var(--cva-error);max-width:none}
 .cva-err::before{content:"!";flex:none;width:1.05rem;height:1.05rem;margin-top:.2rem;border-radius:50%;background:var(--cva-error);color:#fff;font-size:.72rem;font-weight:700;line-height:1.05rem;text-align:center}
 .cva-field input[aria-invalid="true"],.cva-field select[aria-invalid="true"],.cva-field textarea[aria-invalid="true"]{border-color:var(--cva-error);border-width:2px}
 .cva-submit[aria-busy="true"]{opacity:.75;cursor:progress}
 .cva-sr-status{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
-.cva-sendfail{margin-top:1rem;border:1px solid var(--cva-error);border-radius:0;padding:1rem 1.1rem;font-size:.94rem;font-weight:300;color:var(--cva-grey-dark);background:color-mix(in srgb,var(--cva-error) 6%,var(--cva-white))}
+.cva-sendfail{margin-top:1rem;border:1px solid var(--cva-error);border-radius:0;padding:1rem 1.1rem;font-size:.94rem;font-weight:300;color:var(--cva-grey-dark);background:var(--cva-bg-soft)}
 .cva-sendfail strong{color:var(--cva-error);font-weight:600}
 .cva-sendfail a{color:var(--cva-error);font-weight:600;text-decoration:underline}
-.cva-ok{border:1px solid var(--cva-line);border-radius:0;background:color-mix(in srgb,var(--cva-ink) 4%,var(--cva-white));padding:clamp(1.6rem,3vw,2.2rem)}
-.cva-ok:focus{outline:2px solid var(--cva-ink);outline-offset:3px}
+.cva-ok{border:1px solid var(--cva-line);border-radius:0;background:var(--cva-bg-soft);padding:clamp(1.6rem,3vw,2.2rem)}
+.cva-ok:focus{outline:2px solid var(--cva-charcoal);outline-offset:3px}
 .cva-ok-tick{display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--cva-success);color:#fff;font-size:1.4rem;font-weight:700;margin-bottom:1rem}
 .cva-ok h3{margin-bottom:.6rem}
 .cva-ok p{color:var(--cva-grey-dark);font-weight:300;font-size:.98rem}
-.cva-ok a{color:var(--cva-ink);font-weight:600;text-decoration:underline}
+.cva-ok a{color:var(--cva-charcoal);font-weight:600;text-decoration:underline}
 </style>
 
 <div class="cva-lp">
@@ -207,7 +216,7 @@
 <!-- HEADER: no nav. Ad landing pages leak through menus. -->
 <header class="cva-head">
   <div class="cva-wrap">
-    <span class="cva-logo">CVA Architects</span>
+    <img class="cva-logo" src="assets/cva-logo-black.png" alt="CVA Architects" width="5692" height="2606">
     <a class="cva-tel" href="tel:0419938222">0419 938 222</a>
   </div>
 </header>
@@ -417,7 +426,7 @@
             <textarea id="cva-msg" name="message" rows="3" maxlength="1000"></textarea>
           </div>
           <button type="submit" class="cva-btn cva-submit">Request a feasibility chat</button>
-          <p class="cva-form-note">Prefer to talk now? Call <a href="tel:0419938222" style="color:var(--cva-ink)">0419 938 222</a>.</p>
+          <p class="cva-form-note">Prefer to talk now? Call <a href="tel:0419938222" style="color:var(--cva-charcoal)">0419 938 222</a>.</p>
 
           <!-- Screen-reader announcement for validation and send results. -->
           <p class="cva-sr-status" role="status" aria-live="polite"></p>
