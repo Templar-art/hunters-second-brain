@@ -1,3 +1,9 @@
+---
+type: source
+tags: [clc, coast-life-constructions]
+updated: 2026-07-07
+---
+
 # CLC Field Research — Live Instagram Study (7 Jul 2026)
 
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._

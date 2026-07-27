@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [virtual-staging, workflow, rules]
-updated: 2026-07-10
+updated: 2026-07-27
 ---
 
 # Virtual Staging Rules
@@ -16,6 +16,14 @@ Standing rules for AI staging of listing photos, distilled from job feedback (ca
 - **Vary bed styling** — no two beds dressed identically; vary ≥2 of cushions/throw/coverlet/pillow stack.
 - **Room hierarchy** — secondary bedrooms one step below primary (bed-width headboard, single bedside, ≤3 cushions).
 - **Fridge isolation** — kitchen staging: isolate the fridge in its own pass, name the door, freeze island size.
+- **Ask the room type** — never infer master/guest/secondary from a photo; ask Hunter before labelling or setting the styling tier.
+- **Ask if the property is low-end** — if it is, stage every room to feel as large as possible (corner placement, minimum footprint, open floor).
+- **No wall art by default** — don't add paintings or framed art above beds; Nano Banana defaults to it, so phrase the bare wall positively and expect to mask residuals.
+- **One bedside lamp** — Nano Banana Pro spawns a second floating lamp; enforce the count with geometry and a positive number, never negation.
+- **No detail vignettes in wide frames** — desks, laptops and small props read as "past the couch" in a wide; save them for the close-up.
+- **Matching angles need a reference** — every room angle after the first must pass the approved frame as `@reference`; standalone prompts only for the first frame of a room.
+- **Token the images** — multi-image staging/transfer prompts use `@original` / `@reference` tokens plus a legend, so images can be swapped without reading the prompt body.
+- **Outdoor = outdoor furniture** — patios get weatherproof pieces in the client palette (never indoor furniture), and fences are pinned with "nothing new built".
 - **Reference-transfer SOP** (Freepik) and **Magnific upscale recipe** — auto-memory `reference-staging-transfer-sop`, `reference-magnific-upscale-recipe`, `reference-freepik-staging-workflow`.
 
 ## Craft

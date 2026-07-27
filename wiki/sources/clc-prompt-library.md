@@ -1,3 +1,9 @@
+---
+type: source
+tags: [clc, coast-life-constructions]
+updated: 2026-07-10
+---
+
 # Coast Life Constructions — Fable 5 Prompt Library
 
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._

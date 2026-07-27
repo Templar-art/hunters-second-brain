@@ -2,7 +2,7 @@
 type: client
 tags: [client, real-estate, brand-system]
 status: active
-updated: 2026-07-22
+updated: 2026-07-27
 ---
 
 # Bespoke Estate Agents — Brand + Social System
@@ -76,3 +76,8 @@ An external team ("the other boys") finished and deployed the Bespoke website. L
 **Correction — earlier false alarm (same session):** an initial pass flagged a P0 "invisible body copy" on Services/Projects. That was a **testing artifact, not a site bug** — the automated browser pane kept going hidden/backgrounded, which pauses CSS scroll-reveal transitions, so content froze at its `opacity:0` start state and never animated in. Re-tested statically (cascade resolves to opacity 1) and visually (body copy renders): the site is fine. Lesson logged: don't trust scroll-reveal opacity readings taken while the automation pane is hidden.
 
 **Remaining notes are minor/polish only** (none block showing it to a prospect): eyebrow kicker on most sections (mild AI-template tell, optional to thin out); Services page `<title>` is lowercase WP-default while Home's is correct; `lang="en-US"` on an AU business. Photos are deliberate placeholders (good ones swapped in later) — explicitly out of scope. Fix owner for the polish items = external team. Full trail in [[log]] (22 Jul entry).
+
+## Working assets in `projects/` (logged 27 Jul 2026)
+
+- **`projects/bespoke-scrape/`** — full 22 Jul scrape of **bespokeinternationalrealty.com** (WordPress + Elementor): 222 asset files and 25 page HTMLs, ~27 MB. Includes 3 brand SVG logos, 16 UI icons, 32 clean full-size originals, the mirrored `wp-content` tree, and the theme/Elementor CSS + JS. `INVENTORY.md` is the folder map. **⚠️ Unverified relationship:** it isn't recorded anywhere whether that domain is Jason's own live business or a reference/competitor site being studied — confirm before treating its brand assets as the client's.
+- **`projects/bespoke-theme/bespoke-estate-agents/`** — a hand-built WordPress theme (front-page, about, services, projects, sold-listings, contact templates plus `functions.php`). Separate from both the live ElementsKit site and the static concept in `projects/bespoke-site/`, so the Bespoke work now exists in **four** places: live WP site, this theme, the static concept, and the Phase 2 prototype. Worth collapsing before the next build round.

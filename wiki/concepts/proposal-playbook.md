@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [proposal, pricing, positioning, pitch, retainer]
-updated: 2026-07-17
+updated: 2026-07-27
 ---
 
 # Proposal Playbook
@@ -32,3 +32,7 @@ Hero (their name + one-line promise) → pain section naming their exact frustra
 
 ## Craft
 Wider business craft this recipe sits inside: [[business-craft]] · [[pricing-and-packaging]] · [[lead-gen-and-sales]] · [[client-onboarding]].
+
+## Instances
+- [[anthony]] — Hattie Boydle podcast/fitness retainer, $1,500/mo, delivered 16 Jul 2026. The proposal this playbook was harvested from.
+- **Real estate photography partnership** — `projects/freelance-photo-proposal/` (proposal.html + proposal.pdf, 21 Jul 2026). Same HTML → Chrome print-to-PDF pipeline, headline "Listings that stop the scroll". Recipient not recorded in the vault — worth naming on this page next time it comes up.

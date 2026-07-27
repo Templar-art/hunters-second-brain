@@ -22,6 +22,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[mvx-electrical]] — web client (Matt); aircon Google Ads landing page conversion redesign Jul 2026
 - [[open-arms-australia]] — web client; NDIS support provider (QLD/NSW/VIC); site header redesigned + handed to Lach 23 Jul
 - [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch 1 (9 posts) delivered 15 Jul
+- [[akmal]] — 1007/180 Marine Parade full ZED restyle; delivered 14 Jul, 14cr
 - [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 
 ## Projects
@@ -32,10 +33,13 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[music-library]] — tagged track library for scoring edits
 - [[board-committee-headshots]] — 127 RAW portraits + BTS edit plan; retouch pending
 - [[open-arms-header]] — reusable Elementor-widget header shell (`.oa-x`, token-driven); built for Open Arms Australia
+- [[zed-full-house]] — 23-frame whole-listing ZED restyle, hinterland two-storey; in client revisions
+- [[elevra-invoices]] — JSON → A4 PDF invoice generator (EM- numbering, no-GST rule, 1.3mm fidelity)
 
 ## Concepts
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
+- [[zed-style]] — the ZED piece-list: white/cream restyle set, single source for both ZED jobs
 - [[brand-system]] — 10x brand + standing design rules for all graphics
 - [[ig-caption-voice]] — per-account caption voice discipline (10x modes, Rob, Jason)
 - [[music-taxonomy]] — locked controlled vocabulary for the music library
@@ -55,6 +59,7 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 
 ## Sources (ops)
 - [[weekly-review-2026-07-17]] — 7-day review: shipped/moved/stalled/learned, next focus = clear stalled client queue
+- [[strategic-investing-qld-brief]] — Brian O'Neill / Quiet Equity source brief behind [[strategic-investing-qld]]
 
 ## Sources (from `raw/clc/` — CLC Fable 5 pack + research)
 - [[clc-profile-audit]] — the audit all CLC decisions trace to (6 Jul 2026)

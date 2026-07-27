@@ -1,3 +1,9 @@
+---
+type: source
+tags: [clc, coast-life-constructions]
+updated: 2026-07-10
+---
+
 # 10x Visuals — Master Playbook (read this before every client task)
 
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._

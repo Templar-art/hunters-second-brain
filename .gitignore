@@ -21,3 +21,6 @@ projects/10x-scroll-salisbury/**/*.png
 projects/10x-scroll-salisbury/camtests/
 projects/10x-scroll-salisbury/flystory/
 projects/aios-dashboard/logs/
+
+# invoice configs contain bank details (BSB + account no.) — keep local
+projects/elevra-invoices/invoices/

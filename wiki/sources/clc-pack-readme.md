@@ -1,3 +1,9 @@
+---
+type: source
+tags: [clc, coast-life-constructions]
+updated: 2026-07-10
+---
+
 # Coast Life Constructions — Fable 5 Pack
 
 _Pack for [[coast-life-constructions]] — the audit everything traces to: [[clc-profile-audit]]._
