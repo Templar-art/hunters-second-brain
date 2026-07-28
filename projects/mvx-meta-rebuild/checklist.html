@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<title>MVX Meta Rebuild, Action Checklist</title>
+<style>
+@font-face{font-family:'League Gothic';src:url('../mvx-creatives/fonts/LeagueGothic.ttf') format('truetype');font-weight:400}
+@page{size:A4;margin:14mm 13mm}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:'Poppins',-apple-system,sans-serif;font-weight:300;font-size:9.4pt;line-height:1.5;color:#1f1f1f}
+h1,h2,h3{font-family:'League Gothic','Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:-.01em;line-height:.98}
+
+/* Masthead. Contained, not bled: negative margins push outside Chrome's
+   printable area and the type gets clipped off the left edge. */
+.top{background:#000;color:#fff;padding:9mm 9mm 7mm;margin:0 0 7mm;border-bottom:4px solid #7EC004}
+.top h1{font-size:31pt;color:#fff}
+.top h1 span{color:#7EC004}
+.top .sub{font-size:9pt;color:#b9b9b9;font-weight:300;margin-top:2.5mm;max-width:150mm}
+.top .meta{font-size:7.6pt;color:#8f8f8f;letter-spacing:.09em;text-transform:uppercase;font-weight:500;margin-bottom:3mm}
+
+/* Rule zero */
+.rule0{border:1.4pt solid #000;padding:5mm 6mm;margin-bottom:7mm}
+.rule0 h3{font-size:13.5pt;margin-bottom:1.5mm}
+.rule0 p{font-size:9.2pt}
+.rule0 b{font-weight:600}
+
+/* Steps */
+section{margin-bottom:6.5mm;break-inside:avoid}
+h2{font-size:15pt;margin-bottom:2.5mm;padding-bottom:1.5mm;border-bottom:1.2pt solid #000}
+h2 .n{color:#7EC004}
+.lead{font-size:8.9pt;color:#5b5b5b;margin-bottom:3mm}
+ul{list-style:none}
+li{position:relative;padding-left:7.5mm;margin-bottom:1.9mm;font-size:9.3pt}
+li::before{content:"";position:absolute;left:0;top:.6mm;width:4.1mm;height:4.1mm;border:1.1pt solid #4a4a4a;border-radius:.6mm}
+li b{font-weight:600;color:#000}
+li .why{display:block;font-size:8.3pt;color:#6a6a6a;margin-top:.5mm}
+.tight li{margin-bottom:1.3mm}
+
+/* Sub-blocks */
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm;margin-top:3mm}
+.card{border:.9pt solid #cfcfcf;padding:3.5mm 4mm}
+.card h3{font-size:11.5pt;margin-bottom:2mm;color:#000}
+.card .opts{font-size:8.1pt;color:#4a4a4a;line-height:1.42}
+.card .opts b{font-weight:600;color:#000;display:block;margin-top:1.6mm}
+
+/* Copy blocks */
+.copy{border-left:none;background:#f4f4f4;padding:3.5mm 4mm;margin-top:2mm;font-size:8.6pt}
+.copy .lbl{font-family:'Poppins';font-size:7.4pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4F7011;display:block;margin-bottom:1mm}
+.copy p{margin-bottom:1.8mm}
+.copy p:last-child{margin-bottom:0}
+
+/* Settings table */
+table{width:100%;border-collapse:collapse;margin-top:2mm;font-size:8.8pt}
+th{background:#000;color:#fff;text-align:left;padding:2mm 3mm;font-weight:600;font-size:8.2pt;letter-spacing:.02em}
+td{padding:2mm 3mm;border-bottom:.7pt solid #e2e2e2;vertical-align:top}
+td:first-child{font-weight:600;color:#000;width:38%}
+tr:last-child td{border-bottom:0}
+.warn{color:#000;font-weight:600}
+
+/* Blocked */
+.blocked td:first-child{width:46%}
+.blocked th{background:#1a1a1a}
+
+footer{margin-top:8mm;padding-top:3mm;border-top:.9pt solid #cfcfcf;font-size:7.6pt;color:#7a7a7a;display:flex;justify-content:space-between}
+.pagebreak{break-before:page}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="meta">MVX Electrical · Meta Ads · 28 July 2026</div>
+  <h1>Turn off, <span>rebuild,</span> relaunch</h1>
+  <p class="sub">Working checklist. The old campaigns can't be corrected because Meta locks the conversion location and performance goal once an ad set publishes, so they get paused and replaced. Work top to bottom.</p>
+</div>
+
+<div class="rule0">
+  <h3>Rule zero: don't go dark</h3>
+  <p>Aircon is currently producing leads at about <b>$27 each</b>. If it's paused the same day the new campaign launches, there will be <b>3 to 7 days of no leads at all</b> while Meta learns. Leave Aircon Push running until the new campaign has produced its first few leads, then pause it. Everything else in step 2 can happen today.</p>
+</div>
+
+<section>
+  <h2><span class="n">1.</span> Before touching anything</h2>
+  <ul>
+    <li><b>Download the leads from both existing forms.</b> Aircon Enquiry (11 leads) and General Electrician Enquiry (3).
+      <span class="why">Do this first. Lead access can disappear once a form is archived, and this data is the only record of what the old settings actually produced.</span></li>
+    <li><b>Screenshot the 30-day stats</b> for both campaigns: spend, leads, cost per lead.
+      <span class="why">This is the baseline. Without it there's no way to prove the rebuild worked.</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">2.</span> Turn off the old campaigns</h2>
+  <p class="lead">Pause, never delete. Deleting destroys the account's conversion history and the only comparison point available.</p>
+  <ul>
+    <li><b>Pause General Electrician | Lead Form | July 2026</b>, today.
+      <span class="why">3 leads at $89.43 each over 30 days. Nothing is lost by stopping it.</span></li>
+    <li><b>Leave Aircon Push | Lead Form | July 2026 running</b> for now.
+      <span class="why">10 leads at $27.28. It's the only thing producing and it's the control.</span></li>
+    <li><b>Pause Aircon Push</b> once the new campaign has produced its first leads (expect day 3 to 7).</li>
+    <li>Leave both forms <b>active</b> until their leads are downloaded.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">3.</span> Build the three instant forms first</h2>
+  <p class="lead">Build forms before ads: an ad can't be finished without a form to point at. Every form uses the same shape. The two settings that matter most are <b>phone prefill OFF</b> and the <b>owner question first</b>.</p>
+
+  <table>
+    <tr><th>Every form gets</th><th>Why</th></tr>
+    <tr><td>Owner question, first</td><td>A renter cannot authorise the work. This is the strongest single filter available.</td></tr>
+    <tr><td>Issue type dropdown</td><td>Real quoting information, and it separates people who've thought about it from people who haven't.</td></tr>
+    <tr><td>Budget band</td><td>Filters privately, so no pricing needs to appear in the ad.</td></tr>
+    <tr><td>Suburb, short answer</td><td>Not postcode. Suburb is what a resident types without thinking.</td></tr>
+    <tr><td>Name, prefill allowed</td><td>No friction needed here.</td></tr>
+    <tr><td class="warn">Phone, prefill OFF</td><td>Typing your own number takes five seconds and filters harder than any wording change.</td></tr>
+    <tr><td>Best time to call, optional</td><td>Morning / afternoon / anytime.</td></tr>
+    <tr><td>"Review your info" ON</td><td>Extra friction is the point.</td></tr>
+    <tr><td>No email. No free-text box.</td><td>The follow-up is a phone call. On the old form people wrote essays and it changed nothing.</td></tr>
+    <tr><td>Completion screen</td><td>"Got it. We'll call you today." Plus 0427 593 990 for anyone who won't wait.</td></tr>
+  </table>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Air Con Enquiry</h3>
+      <div class="opts">
+        <b>Do you own the property?</b>
+        I own it · I'm renting · I manage it for the owner
+        <b>What's happening?</b>
+        Not cooling · Tripping the power · Leaking water · Noisy or smelling · Want a new system installed · Service and clean
+        <b>Budget</b>
+        Under $2,000 · $2,000–4,000 · $4,000–8,000 · $8,000+ · Not sure
+      </div>
+    </div>
+    <div class="card">
+      <h3>General Electrical</h3>
+      <div class="opts">
+        <b>Do you own the property?</b>
+        I own it · I'm renting · I manage it for the owner
+        <b>What do you need?</b>
+        Power tripping or outages · Lights or fittings · Power points · Switchboard or safety switch · Renovation or new build · Something else
+        <b>Budget</b>
+        Under $500 · $500–1,500 · $1,500–5,000 · $5,000+ · Not sure
+      </div>
+    </div>
+    <div class="card">
+      <h3>Hot Water Enquiry</h3>
+      <div class="opts">
+        <b>Do you own the property?</b>
+        I own it · I'm renting · I manage it for the owner
+        <b>What's happening?</b>
+        No hot water · Only lukewarm · Leaking · Want an old system replaced · Interested in a heat pump upgrade · Not sure
+        <b>What have you got now?</b>
+        Electric tank · Gas · Solar · Heat pump · Don't know
+        <b>Budget</b>
+        Under $1,500 · $1,500–3,000 · $3,000–6,000 · $6,000+ · Not sure
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pagebreak">
+  <h2><span class="n">4.</span> Build one ad set</h2>
+  <p class="lead">One campaign, one ad set, three ads. Three separate campaigns at $15/day each would split the budget and the data three ways; one ad set lets Meta show which service it can actually sell, then that one gets scaled into its own campaign.</p>
+  <table>
+    <tr><th>Setting</th><th>Value</th></tr>
+    <tr><td>Campaign name</td><td>MVX | Qualified Leads | Aug 2026</td></tr>
+    <tr><td>Objective</td><td>Leads</td></tr>
+    <tr><td class="warn">Conversion location</td><td>Instant forms. <b>Cannot be changed after publishing.</b> This is the setting that forced the rebuild. Check it twice.</td></tr>
+    <tr><td class="warn">Performance goal</td><td>Maximise number of leads, with a <b>cost per result goal of $60</b>. Left blank, Meta chases the cheapest possible form-fill, which is exactly how the junk leads happened. A higher target lets it bid for better people.</td></tr>
+    <tr><td class="warn">Location</td><td>Gold Coast + Tweed Heads / Northern NSW, set to <b>"People living in this location"</b>. Not "living in or recently in".</td></tr>
+    <tr><td class="warn">Advantage+ audience</td><td><b>OFF.</b> Use original audience options. Left on, Meta widens past the targeting whenever cheaper fills exist, that's where the Sydney and Canberra leads came from.</td></tr>
+    <tr><td>Age</td><td>30 to 65+. Under 30 rarely owns the house.</td></tr>
+    <tr><td>Detailed targeting</td><td>None. Broad inside a locked geography is correct; the filtering is done by the creative and the form.</td></tr>
+    <tr><td>Placements</td><td>Manual: Facebook feed, Instagram feed, Reels, Stories. Audience Network stays excluded.</td></tr>
+    <tr><td>Budget</td><td>$20 to $25 per day, set at campaign level.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="n">5.</span> Build three ads in that ad set</h2>
+  <p class="lead">Each ad points at its own form. Creatives are in <b>projects/mvx-creatives/out/</b>. Square for feed, story for Reels and Stories.</p>
+
+  <div class="copy">
+    <span class="lbl">Ad 1 · Air Con · mvx-aircon-1x1.png + mvx-aircon-9x16.png</span>
+    <p><b>Primary text:</b> Aircon not cooling, tripping the power or leaking inside? Most of those faults are electrical, and that's our trade. Tell us what it's doing and we'll call you back.</p>
+    <p><b>Headline:</b> Aircon not cooling properly?</p>
+  </div>
+
+  <div class="copy">
+    <span class="lbl">Ad 2 · General Electrical · mvx-general-1x1.png + mvx-general-9x16.png</span>
+    <p><b>Primary text:</b> Power tripping, lights flickering, or power points that stopped working? Tell us what it's doing and a licensed electrician will call you back.</p>
+    <p><b>Headline:</b> Power tripping? Lights flickering?</p>
+  </div>
+
+  <div class="copy">
+    <span class="lbl">Ad 3 · Hot Water · mvx-hotwater-1x1.png + mvx-hotwater-9x16.png</span>
+    <p><b>Primary text:</b> No hot water, or only lukewarm? Elements, thermostats and circuits are where these systems actually fail, and all of it is electrical work.</p>
+    <p><b>Headline:</b> No hot water? We're electricians</p>
+  </div>
+
+  <ul class="tight" style="margin-top:3mm">
+    <li>No pricing in any ad. Scope filters publicly, budget bands filter privately.</li>
+    <li>No same-day or guaranteed-time promises anywhere.</li>
+    <li>CTA button: <b>Get quote</b> on aircon and hot water, <b>Learn more</b> or <b>Get quote</b> on general.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">6.</span> Test it yourself before it spends</h2>
+  <ul>
+    <li><b>Submit all three forms from your own phone.</b>
+      <span class="why">Two minutes. It also answers the "why is there no spam" question: Meta instant forms prefill from real profiles, so they rarely get any. Nothing was broken.</span></li>
+    <li><b>Confirm every submission arrives where Matt actually sees it.</b>
+      <span class="why">A lead that lands in an inbox nobody checks is the same as no lead.</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">7.</span> Review at day 7</h2>
+  <ul class="tight">
+    <li>Kill any ad over <b>$80 per lead</b>.</li>
+    <li>Kill any ad producing only renters and "not sure" budgets.</li>
+    <li>Scale the survivor to <b>$40 to $45 per day</b>, which is where the Strategic Investing winner sits.</li>
+    <li>Judge on <b>jobs quoted</b>, not leads. Four good leads beat ten junk ones.</li>
+    <li>Compare lead quality against the old aircon leads. Same account, same audience, so any difference is the settings.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Still blocked</h2>
+  <table class="blocked">
+    <tr><th>What's needed</th><th>From</th></tr>
+    <tr><td>Plumbing route: does MVX sub or partner a licensed plumber?</td><td><b>Matt.</b> The hot water ad can't run until this is answered, because we can't advertise what MVX can't deliver</td></tr>
+    <tr><td>Minimum job value worth his time</td><td><b>Matt.</b> Sets the budget bands and the kill threshold</td></tr>
+    <tr><td>Which of the last 11 aircon leads he'd actually have wanted</td><td><b>Matt.</b> Defines "quality" better than anything we can infer</td></tr>
+    <tr><td>Phone call tracking</td><td><b>Lach.</b> Until calls are tracked, form fills are the only visible conversion, and the performance goal can't move to conversion leads</td></tr>
+  </table>
+  <p class="lead" style="margin-top:3mm">The first three are one phone call to Matt.</p>
+</section>
+
+<footer>
+  <span>MVX Electrical · Meta rebuild checklist · 28 July 2026</span>
+  <span>Prepared by 10x Visuals</span>
+</footer>
+
+</body>
+</html>
