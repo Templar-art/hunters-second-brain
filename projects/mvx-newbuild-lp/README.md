@@ -4,14 +4,14 @@ One file: [index.html](index.html). Embedded CSS and JS, no frameworks, no build
 Assets in `assets/`. Open it in a browser and it works.
 
 Built for Meta ad traffic from the new builds and renovations campaign
-(`../mvx-meta-rebuild/BUILD-NEWBUILDS.md`). Single goal: get a phone call.
+(`../mvx-meta-rebuild/BUILD-NEWBUILDS.md`). Single goal: get a phone call on 0468 049 157.
 
 ## Before it goes live
 
 - [ ] **Confirm the licence and insurance line.** Two visible placeholders, in the
   trust strip and the footer. They are deliberately marked, not invented.
-- [ ] Upload the logo. It is the only asset still served from `assets/`; both photos
-  are already live off mvxelectrical.com.au.
+- [ ] Nothing to upload. Both photos are live off mvxelectrical.com.au and the logo
+  is no longer used, so `assets/` is now unreferenced by the page.
 - [ ] Tap every `tel:` link on a real phone and confirm it dials.
 - [ ] Track `tel:` clicks as the conversion. There is no form, so a call is the only
   lead this page produces and it is the only thing worth counting.
@@ -33,6 +33,28 @@ display scale with a green rule and a scope line, and the smaller work is one da
 strip below them. The tier break is carried by three things at once: scale (a
 display face against Poppins at 1.16rem), surface (dark panel against white), and
 typeface role. No icons, no fourth identical card.
+
+**No header, no footer.** Removed 28 Jul. The page is now hero to FAQ and nothing
+else, on the assumption it is being dropped into the MVX WordPress theme, which will
+supply its own header and footer. Two things went with them, both worth knowing:
+
+- **The logo is no longer on the page at all.** It only ever appeared in the header
+  and footer. `assets/logo-white-64.png` and `-96.png` are now unreferenced.
+- **One of the two licence placeholders is gone.** The footer carried a legal line;
+  the remaining marker is the one in the trust strip under the hero, still reading
+  `[Licence and insurance details to confirm]`.
+
+There is also no longer a phone number pinned to the top or bottom of the page. On
+mobile the sticky bar covers it. On desktop the number appears in the hero, in the
+why-plan-early section and in the not-this-page note, and nowhere else, so a desktop
+visitor mid-page has to scroll to find it. Worth letting the sticky bar show on
+desktop too if that matters.
+
+**Body margin is scoped, not reset.** The default 8px body margin used to sit behind
+the header and now shows as a frame standalone, but a bare `body{margin:0}` in an
+embedded style block would fight the theme. It is written as
+`body:has(> .mvx-lp){margin:0}`, so it only applies when the wrapper is a direct
+child of body, which is this file on its own.
 
 **FAQ is the last section.** The closing "Tell us about your project" band was
 removed 28 Jul. It also fixed a rhythm problem: the page previously ended in three

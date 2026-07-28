@@ -80,13 +80,8 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   outline:2px solid var(--mvx-green);outline-offset:3px;border-radius:var(--mvx-r-sm)}
 .mvx-sec:not(.mvx-sec-dark) a:focus-visible{outline-color:var(--mvx-green-text)}
 
-.mvx-head{background:var(--mvx-black)}
-.mvx-head .mvx-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0}
-img.mvx-logo{height:32px;width:auto;flex:none}
-@media (max-width:640px){img.mvx-logo{height:26px}}
-.mvx-head-tel{display:inline-flex;align-items:center;min-height:44px;padding:0;white-space:nowrap;
-  color:var(--mvx-white);font-size:.94rem;font-weight:600;text-decoration:none}
-.mvx-head-tel:hover{color:var(--mvx-green)}
+
+body:has(> .mvx-lp){margin:0}
 
 .mvx-hero{position:relative;background:var(--mvx-black);color:var(--mvx-white);overflow:hidden}
 .mvx-lp img.mvx-hero-pic{position:absolute;inset:0;z-index:0;width:100%;height:100%;
@@ -212,13 +207,6 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 .fit-not a{color:var(--mvx-green-text);font-weight:600;text-decoration:underline;
   display:inline-flex;align-items:center;min-height:44px}
 
-.mvx-foot{background:var(--mvx-black);color:var(--mvx-ink-2);padding:2.8rem 0}
-img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
-.mvx-foot p{font-size:.94rem;max-width:52ch;font-weight:300}
-.mvx-foot .row{display:flex;flex-wrap:wrap;gap:.4rem 2rem;margin-top:1rem;font-size:.92rem}
-.mvx-foot a{color:var(--mvx-white);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
-.mvx-foot a:hover{color:var(--mvx-green)}
-.mvx-foot .fine{margin-top:1.2rem;font-size:.83rem;color:#7d7d7d}
 
 .mvx-sticky{position:fixed;left:0;right:0;bottom:0;z-index:100;display:none;
   background:var(--mvx-black);border-top:2px solid var(--mvx-green);
@@ -239,14 +227,6 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 <body>
 <div class="mvx-lp" id="page">
 
-<header class="mvx-head">
-  <div class="mvx-wrap">
-    <img class="mvx-logo" src="assets/logo-white-64.png"
-         srcset="assets/logo-white-64.png 1x, assets/logo-white-96.png 2x"
-         alt="MVX Electrical" width="157" height="64">
-    <a class="mvx-head-tel" href="tel:0427593990">0427 593 990</a>
-  </div>
-</header>
 
 <main id="main">
 
@@ -263,7 +243,7 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
       <p class="mvx-lede">We wire new homes, renovations and extensions across the Gold Coast and Northern NSW. Lights, switches, power points, the whole lot. Tell us about your project and we will send you a free quote.</p>
       <p class="mvx-planned"><b>This is for planned work.</b> New builds, renovations and extensions, booked in ahead.</p>
       <div class="mvx-ctas">
-        <a class="mvx-btn" href="tel:0427593990">Call 0427 593 990</a>
+        <a class="mvx-btn" href="tel:0468049157">Call 0468 049 157</a>
         <a class="mvx-btn-ghost" href="#services">See what we do &#8595;</a>
       </div>
       <ul class="mvx-points">
@@ -383,7 +363,7 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
         <p>Moving a light after the plaster is up means cutting, patching and painting. Before that, it is just a cable.</p>
       </div>
 
-      <a class="mvx-btn" href="tel:0427593990">Call 0427 593 990</a>
+      <a class="mvx-btn" href="tel:0468049157">Call 0468 049 157</a>
     </div>
     <div class="why-img">
       <img src="https://mvxelectrical.com.au/wp-content/uploads/2026/07/283-1024x682.jpg"
@@ -437,7 +417,7 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
         <li>Adding lights, switches or power points</li>
         <li>Upgrading an old switchboard as part of the work</li>
       </ul>
-      <p class="fit-not"><b>Not this page:</b> a power fault, a burning smell, or anything unsafe. Still call <a href="tel:0427593990">0427 593 990</a>, but say it is urgent and we will treat it that way.</p>
+      <p class="fit-not"><b>Not this page:</b> a power fault, a burning smell, or anything unsafe. Still call <a href="tel:0468049157">0468 049 157</a>, but say it is urgent and we will treat it that way.</p>
     </div>
     <div>
       <div class="mvx-sec-head" style="margin-bottom:.6rem">
@@ -464,7 +444,7 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
     </div>
     <details>
       <summary>Is this for emergency jobs?</summary>
-      <p>No. This page is for work you are planning, like a build, a reno or an extension. If your power is out or something is unsafe, ring 0427 593 990 and we will help you from there.</p>
+      <p>No. This page is for work you are planning, like a build, a reno or an extension. If your power is out or something is unsafe, ring 0468 049 157 and we will help you from there.</p>
     </details>
     <details>
       <summary>When should I ask for a quote?</summary>
@@ -487,22 +467,9 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 
 </main>
 
-<footer class="mvx-foot">
-  <div class="mvx-wrap">
-    <img class="mvx-foot-logo" src="assets/logo-white-64.png"
-         srcset="assets/logo-white-64.png 1x, assets/logo-white-96.png 2x"
-         alt="MVX Electrical" width="157" height="64" loading="lazy" decoding="async">
-    <p>Planned residential electrical work. New builds, renovations and extensions.</p>
-    <div class="row">
-      <span>Gold Coast and Northern NSW</span>
-      <a href="tel:0427593990">0427 593 990</a>
-    </div>
-    <p class="fine">MVX Electrical Pty Ltd. Licence and insurance details to be confirmed before launch.</p>
-  </div>
-</footer>
 
 <div class="mvx-sticky">
-  <a class="mvx-btn" href="tel:0427593990">Call 0427 593 990</a>
+  <a class="mvx-btn" href="tel:0468049157">Call 0468 049 157</a>
 </div>
 
 </div>

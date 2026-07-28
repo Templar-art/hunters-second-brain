@@ -314,3 +314,29 @@ worth reclaiming later.
 **Measurement note:** cross-origin images report `encodedBodySize` 0 without a
 `Timing-Allow-Origin` header, so photo weights have to come from the origin's
 `Content-Length`, not from the page's own resource timings.
+
+## [2026-07-28] build | MVX new-builds LP — chrome stripped, new number
+
+**New MVX number: 0468 049 157.** Replaced 0427 593 990 in all four `tel:` links and
+every visible instance on the new-builds page, prose in the FAQ included. Zero
+occurrences of the old number remain. ⚠️ **The old number is still live on the hot
+water, aircon and electricians pages** (8, 8 and 12 `tel:` links respectively) and
+presumably across mvxelectrical.com.au and the Google listing. Ask Matt whether 0427
+is being kept as a redirect or retired, because that decides whether those pages are
+wrong right now.
+
+**Header and footer removed**, so the page runs hero to FAQ. It reads as being
+prepared for the MVX WordPress theme, which supplies its own chrome. Two side effects
+recorded rather than left to be discovered: the **logo is now nowhere on the page**
+(it only ever sat in the header and footer, so `assets/logo-white-*.png` are
+unreferenced), and **one of the two licence placeholders went with the footer** —
+only the trust-strip marker is left.
+
+Also no phone number is pinned top or bottom now. Mobile has the sticky bar; a
+desktop visitor mid-page has to scroll to a CTA to find the number.
+
+The default 8px body margin, previously hidden behind the header, is reset as
+`body:has(> .mvx-lp){margin:0}` so it fires standalone but does not fight the theme
+once the page is nested.
+
+Page is 476 lines, from 761 this morning. No JS, no form, no chrome.
