@@ -28,7 +28,8 @@ Real MVX imagery only, chosen off a contact sheet rather than filenames.
 
 ## Notes
 
-- The Google review badge is drawn to match the incumbent creatives (4.9, five stars, "REVIEWS"). Stars are polygons, not glyphs — Poppins has no ★ and renders tofu boxes.
+- The Google review badge matches the incumbent creatives (4.9, five gold stars, "REVIEWS"). Stars use the real glyph from Arial Unicode: Poppins has no star, and my first attempt at drawing them as polygons looked wrong.
+- **The story is ONE photo.** A single image sits behind the lower two thirds; the white CTA panel is drawn over it, so the photo shows above the panel and again below the green band. It is not two crops.
 - Green stays an accent: the CTA word, the ticks, the rule and the slabs. Never a background fill, per §04.
 - To change wording, edit `SERVICES` at the top of `build.py` and re-run. Nothing else needs touching.
 

@@ -27,6 +27,7 @@ LEAGUE = str(BASE / "fonts/LeagueGothic.ttf")
 POP = "/Library/Fonts/Poppins-Regular.ttf"
 POP_SB = "/Library/Fonts/Poppins-SemiBold.ttf"
 POP_BOLD = "/Library/Fonts/Poppins-Bold.ttf"
+STARF = "/Library/Fonts/Arial Unicode.ttf"   # Poppins has no star glyph
 
 LOGO_BLACK = BASE.parent / "mvx-hot-water/assets/mvx-logo-black.png"
 LOGO_WHITE = BASE.parent / "mvx-hot-water/assets/mvx-logo-white.png"
@@ -167,19 +168,18 @@ def google_badge(im, d, cx, y, scale=1.0):
     for c, col, wd in zip(letters, g_cols, widths):
         d.text((x, y), c, font=gf, fill=col)
         x += wd
-    # Stars are drawn as polygons: Poppins has no ★ glyph and renders tofu.
+    # "4.9" + five gold stars on one baseline, as on the incumbent creatives.
     sf = f(POP_SB, int(34 * scale))
+    stf = f(STARF, int(31 * scale))
     rating = "4.9 "
+    stars = "\u2605" * 5
     rw = d.textlength(rating, font=sf)
-    sr = 15 * scale                      # star radius
-    step = sr * 2.25
-    sw = step * 4 + sr * 2
+    sw = d.textlength(stars, font=stf)
     sx = cx - (rw + sw) / 2
     yy = y + int(66 * scale)
-    d.text((sx, yy), rating, font=sf, fill=INK)
-    scy = yy + sf.size * 0.58
-    for i in range(5):
-        star(d, sx + rw + sr + i * step, scy, sr, (251, 188, 5))
+    base = yy + sf.size * 0.78              # shared baseline
+    d.text((sx, base), rating, font=sf, fill=INK, anchor="ls")
+    d.text((sx + rw, base), stars, font=stf, fill=(251, 188, 5), anchor="ls")
     rf = f(POP, int(22 * scale))
     d.text((cx, yy + int(46 * scale)), "REVIEWS", font=rf, fill=(120, 120, 120), anchor="ma")
 
@@ -299,12 +299,15 @@ def build_square(key, cfg):
 
 # ── Story 1080×1920 ──────────────────────────────────────────────────────
 def build_story(key, cfg):
+    """One photo sits behind the lower two thirds. The white CTA panel is drawn
+    OVER it, so the photo shows above the panel and again below the green band.
+    It is a single image, not two crops."""
     W, H = 1080, 1920
     im = Image.new("RGB", (W, H), WHITE)
     d = ImageDraw.Draw(im)
     M = 62
 
-    # Headline: green line then black line, pill sits to the right of line 1
+    # Headline: green line, then black line, pill inline with line 1
     hg = fit(cfg["head_green"], LEAGUE, W - M * 2 - 300, 118)
     d.text((M, 150), cfg["head_green"], font=hg, fill=GREEN)
     pill(d, (M + hg.getbbox(cfg["head_green"])[2] + 40, 168), "Gold Coast",
@@ -312,7 +315,7 @@ def build_story(key, cfg):
     hw = fit(cfg["head_white"], LEAGUE, W - M * 2, 118)
     d.text((M, 150 + int(hg.size * 0.94)), cfg["head_white"], font=hw, fill=BLACK)
 
-    # 2x2 checklist (story drops the 5th bullet)
+    # 2x2 checklist (story carries the first four bullets)
     bf = f(POP, 33)
     y0 = 150 + int(hg.size * 0.94) + int(hw.size * 0.94) + 60
     r = 27
@@ -329,23 +332,26 @@ def build_story(key, cfg):
         else:
             d.text((tx, cy), b, font=bf, fill=INK, anchor="lm")
 
-    # Photo block with the offset green slabs behind it
+    # ONE photo, inset with rounded corners, running to the bottom of the frame
     py = y0 + 168
-    pw, ph_ = W - M * 2 - 40, 640
-    d.rectangle([0, py + 200, W, py + ph_ - 60], fill=GREEN)
-    ph = cover(Image.open(BASE / "photos" / cfg["photo"]).convert("RGB"), pw, ph_)
-    mask = Image.new("L", (pw, ph_), 0)
-    ImageDraw.Draw(mask).rounded_rectangle([0, 0, pw, ph_], radius=26, fill=255)
-    im.paste(ph, (M + 20, py), mask)
+    pw = W - (M + 20) * 2
+    ph_h = H - 26 - py
+    ph = cover(Image.open(BASE / "photos" / cfg["photo"]).convert("RGB"), pw, ph_h)
+    mask = Image.new("L", (pw, ph_h), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, pw, ph_h], radius=26, fill=255)
 
-    # CTA + logos on white
-    # Base green slab plus the repeated photo crop, as in the original story
-    band_top = H - 190
-    d.rectangle([0, band_top, W, H], fill=GREEN)
-    band = cover(Image.open(BASE / "photos" / cfg["photo"]).convert("RGB"), pw, 150)
-    im.paste(band, (M + 20, band_top + 20))
-    footer(im, d, W, band_top - 34, cfg["cta"], W - 150, scale=0.70, logo_h=70,
-           cta_start=112, top_limit=py + ph_ + 30)
+    # Green slabs bleed to the edges behind the photo
+    d.rectangle([0, py + 200, W, py + 640], fill=GREEN)
+    im.paste(ph, (M + 20, py), mask)
+    d = ImageDraw.Draw(im)
+
+    # White CTA panel drawn OVER the photo, then the green band beneath it
+    panel_top, panel_h, band_h = 1418, 300, 62
+    d.rectangle([0, panel_top, W, panel_top + panel_h], fill=WHITE)
+    d.rectangle([0, panel_top + panel_h, W, panel_top + panel_h + band_h], fill=GREEN)
+
+    footer(im, d, W, panel_top + panel_h - 22, cfg["cta"], W - 150,
+           scale=0.70, logo_h=70, cta_start=112, top_limit=panel_top + 18)
 
     p = OUT / f"mvx-{key}-9x16.png"
     im.save(p)
