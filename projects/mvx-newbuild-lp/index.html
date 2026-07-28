@@ -31,8 +31,13 @@
   --mvx-ink-2:#a8a8a8;
   --mvx-body-ink:#2b2b2b;
   --mvx-muted:#5e5e5e;
-  --mvx-line-dark:rgba(255,255,255,.1);
-  --mvx-line-light:#e4e4e4;
+  /* Two separate roles. A surface boundary (form card, chips) can be quiet.
+     A structural rule (the service rows, the note dividers) carries the layout
+     and has to be seen: at #e4e4e4 it measured 1.27:1 and all but vanished. */
+  --mvx-line-light:#dcdcdc;        /* surface boundary, 1.37:1 on white */
+  --mvx-rule:#cccccc;              /* structural separator, 1.61:1 on white */
+  --mvx-line-dark:rgba(255,255,255,.2);   /* dark separators, 1.82:1 on #0f0f0f */
+  --mvx-edge:rgba(255,255,255,.4);        /* control boundary on dark, 3.7:1 on pure black */
   --mvx-error:#b3261e;
   --mvx-r-sm:4px; --mvx-r-md:8px; --mvx-r-lg:12px;
   --mvx-shadow:0 4px 16px rgba(0,0,0,.4);
@@ -63,7 +68,7 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 .mvx-btn:hover{background:var(--mvx-green-dark);color:var(--mvx-black);transform:translateY(-2px)}
 .mvx-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:56px;
   color:var(--mvx-white);font-weight:500;text-decoration:none;padding:1rem 1.6rem;
-  border:1px solid var(--mvx-line-dark);border-radius:var(--mvx-r-md);font-size:1rem;
+  border:1px solid var(--mvx-edge);border-radius:var(--mvx-r-md);font-size:1rem;
   transition:border-color .2s,background .2s}
 .mvx-btn-ghost:hover{border-color:var(--mvx-green);background:rgba(126,192,4,.1);color:var(--mvx-white)}
 @media (hover:none){
@@ -108,7 +113,7 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 .mvx-licences .mvx-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
   gap:.4rem 2rem;padding:.85rem 0;font-size:.88rem}
 .mvx-licences b{color:var(--mvx-green);font-weight:600}
-.mvx-licences .mvx-todo{color:#7d7d7d}
+.mvx-licences .mvx-todo{color:#8f8f8f}   /* 5.38:1 on charcoal, was 4.23:1 */
 
 .mvx-sec{padding:clamp(3.2rem,7vw,5.6rem) 0}
 .mvx-sec-dark{background:var(--mvx-bg-deep);color:var(--mvx-ink)}
@@ -121,8 +126,8 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 
 /* Services: editorial rows. Title left, detail right, hairline between. */
 .svc-row{display:grid;gap:.7rem 3.5rem;padding:clamp(1.7rem,3vw,2.5rem) 0;
-  border-top:1px solid var(--mvx-line-light)}
-.svc-row:last-of-type{border-bottom:1px solid var(--mvx-line-light)}
+  border-top:1px solid var(--mvx-rule)}
+.svc-row:last-of-type{border-bottom:1px solid var(--mvx-rule)}
 @media (min-width:820px){.svc-row{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:start}}
 .svc-row .mvx-h3{color:var(--mvx-charcoal)}
 .svc-row .svc-lede{color:var(--mvx-body-ink);font-size:1.05rem;margin-bottom:1rem}
@@ -162,7 +167,7 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 .fit-list{list-style:none;display:grid;gap:.6rem;margin-top:.4rem}
 .fit-list li{position:relative;padding-left:1.5rem;font-size:1rem}
 .fit-list li::before{content:"✓";position:absolute;left:0;color:var(--mvx-green-text);font-weight:700}
-.fit-not{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--mvx-line-light);
+.fit-not{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--mvx-rule);
   font-size:.97rem;color:var(--mvx-muted)}
 .fit-not b{color:var(--mvx-charcoal);font-weight:600}
 .mvx-chip-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}
@@ -184,7 +189,7 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 /* Quote form */
 .quote .mvx-wrap{display:grid;gap:clamp(2.2rem,4vw,4rem);align-items:start}
 @media (min-width:900px){.quote .mvx-wrap{grid-template-columns:.85fr 1.15fr}}
-.note{margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--mvx-line-light);
+.note{margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--mvx-rule);
   font-size:.95rem;color:var(--mvx-muted)}
 .note a,.sendfail a,.form-alt a,.done a,.fit-not a{color:var(--mvx-green-text);font-weight:600;
   text-decoration:underline;display:inline-flex;align-items:center;min-height:44px;padding:0 .2rem}
