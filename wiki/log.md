@@ -258,3 +258,32 @@ Two findings worth keeping:
 Still open: the ghost-border alpha fix (`rgba(255,255,255,.1)` → `.4`) has not been
 ported to the hot water and aircon pages, which inherited the 1.21:1 control
 boundary. See [[mvx-electrical]].
+
+## [2026-07-28] build | MVX new-builds LP — services tiered, form removed
+
+Hunter's two calls on the new-builds landing page.
+
+**Services now read as two tiers.** They were four identical editorial rows, so a
+scroller could not tell what MVX actually does or which jobs matter. New builds,
+renovations and extensions now run at display scale with a green rule and a scope
+line; the smaller planned work is one dark strip underneath. The tier break is
+carried by scale, surface and typeface role at once, so it holds without icons or a
+fourth lookalike card.
+
+**Form removed. The phone is the only action.** Every CTA is now `tel:0427593990`.
+That also removed the `REPLACE_ME` endpoint, which was blocker #1 on this page and
+would have shown a **fake success state** if it had ever shipped unwired, plus ~180
+lines of validation JS and the whole error surface. 761 lines to 543.
+
+The cost, stated so nobody is surprised: no out-of-hours capture. Someone scrolling
+at 11pm can no longer leave details, so that lead now depends on them ringing. Worth
+watching once Lach's call tracking is live, since calls are the only thing this page
+can produce.
+
+Three copy lines that referred to the form were rewritten, not left to contradict
+the page: process step 01, the hero's "ring us instead", and the not-this-page note.
+
+**Tooling note worth keeping:** headless Chrome on this Mac cannot verify a 390px
+viewport. Asked for 390 it reports `innerWidth=500`, lays out at 500 and crops to
+390, which is indistinguishable from the page overflowing. It produced two false
+overflow findings here. Narrow-viewport checks go through the browser pane.

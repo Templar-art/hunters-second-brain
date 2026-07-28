@@ -38,7 +38,6 @@
   --mvx-rule:#cccccc;              /* structural separator, 1.61:1 on white */
   --mvx-line-dark:rgba(255,255,255,.2);   /* dark separators, 1.82:1 on #0f0f0f */
   --mvx-edge:rgba(255,255,255,.4);        /* control boundary on dark, 3.7:1 on pure black */
-  --mvx-error:#b3261e;
   --mvx-r-sm:4px; --mvx-r-md:8px; --mvx-r-lg:12px;
   --mvx-shadow:0 4px 16px rgba(0,0,0,.4);
   --mvx-display:'League Gothic','Arial Narrow',sans-serif;
@@ -125,18 +124,41 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 .mvx-sec-dark .mvx-sec-head .mvx-h2{color:var(--mvx-white)}
 .mvx-sec-dark .mvx-sec-head p{color:var(--mvx-ink-2)}
 
-/* Services: editorial rows. Title left, detail right, hairline between. */
-.svc-row{display:grid;gap:.7rem 3.5rem;padding:clamp(1.7rem,3vw,2.5rem) 0;
-  border-top:1px solid var(--mvx-rule)}
-.svc-row:last-of-type{border-bottom:1px solid var(--mvx-rule)}
-@media (min-width:820px){.svc-row{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:start}}
-.svc-row .mvx-h3{color:var(--mvx-charcoal)}
-.svc-row .svc-lede{color:var(--mvx-body-ink);font-size:1.05rem;margin-bottom:1rem}
-.svc-row ul{list-style:none;display:grid;gap:.55rem}
-@media (min-width:560px){.svc-row ul{grid-template-columns:1fr 1fr;gap:.55rem 2rem}}
-.svc-row li{position:relative;padding-left:1.15rem;color:var(--mvx-muted);font-size:.99rem}
-.svc-row li::before{content:"";position:absolute;left:0;top:.72em;width:.42rem;height:1px;
+/* Services, two tiers. The three main jobs run at display scale with a green
+   rule and a scope line, so a scroller reads the offer in one pass. The smaller
+   work is one dark strip in Poppins, a tier down by scale, surface and typeface
+   rather than by being another identical row. */
+.svc-set{border-top:1px solid var(--mvx-rule)}
+.svc{display:grid;gap:1rem 3rem;padding:clamp(2rem,4vw,3.4rem) 0;
+  border-bottom:1px solid var(--mvx-rule)}
+@media (min-width:820px){
+  .svc{grid-template-columns:minmax(0,.66fr) minmax(0,1.34fr);align-items:start}
+}
+.svc-head::before{content:"";display:block;width:56px;height:4px;
+  background:var(--mvx-green);margin-bottom:1.1rem}
+.svc-name{font-family:var(--mvx-display);font-weight:400;color:var(--mvx-charcoal);
+  font-size:clamp(2.2rem,1.7rem + 2.4vw,3.3rem);line-height:.92;text-transform:uppercase;
+  letter-spacing:.005em;text-wrap:balance;margin-bottom:.55rem}
+.svc-scope{color:var(--mvx-green-text);font-weight:600;font-size:.95rem;line-height:1.4}
+.svc-lede{color:var(--mvx-body-ink);font-size:1.06rem;margin-bottom:1.1rem;max-width:52ch}
+.svc-body ul{list-style:none;display:grid;gap:.55rem}
+@media (min-width:560px){.svc-body ul{grid-template-columns:1fr 1fr;gap:.55rem 2rem}}
+.svc-body li{position:relative;padding-left:1.15rem;color:var(--mvx-muted);font-size:.99rem}
+.svc-body li::before{content:"";position:absolute;left:0;top:.72em;width:.42rem;height:1px;
   background:var(--mvx-green-text)}
+
+.svc-more{margin-top:clamp(2rem,4vw,3rem);background:var(--mvx-charcoal);
+  border-radius:var(--mvx-r-lg);padding:clamp(1.6rem,3vw,2.2rem);
+  display:grid;gap:1.2rem 3rem;color:var(--mvx-ink-2)}
+@media (min-width:820px){.svc-more{grid-template-columns:minmax(0,.66fr) minmax(0,1.34fr)}}
+.svc-more-head h3{font-family:var(--mvx-sans);font-weight:600;font-size:1.16rem;
+  line-height:1.35;color:var(--mvx-white);margin-bottom:.35rem}
+.svc-more-head p{font-size:.95rem;font-weight:300;max-width:38ch}
+.svc-more ul{list-style:none;display:grid;gap:.5rem}
+@media (min-width:560px){.svc-more ul{grid-template-columns:1fr 1fr;gap:.5rem 2rem}}
+.svc-more li{position:relative;padding-left:1.15rem;font-size:.97rem;color:var(--mvx-ink)}
+.svc-more li::before{content:"";position:absolute;left:0;top:.72em;width:.42rem;height:1px;
+  background:var(--mvx-green)}
 
 /* Why plan early: large display numerals, not badges */
 .why .mvx-wrap{display:grid;gap:clamp(2.2rem,5vw,4.5rem);align-items:center}
@@ -187,43 +209,16 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 .mvx-faq details[open] summary::after{transform:rotate(45deg)}
 .mvx-faq details p{padding:0 0 1.3rem;color:var(--mvx-ink-2);font-weight:300;font-size:.99rem}
 
-/* Quote form */
-.quote .mvx-wrap{display:grid;gap:clamp(2.2rem,4vw,4rem);align-items:start}
-@media (min-width:900px){.quote .mvx-wrap{grid-template-columns:.85fr 1.15fr}}
-.note{margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--mvx-rule);
-  font-size:.95rem;color:var(--mvx-muted)}
-.note a,.sendfail a,.form-alt a,.done a,.fit-not a{color:var(--mvx-green-text);font-weight:600;
-  text-decoration:underline;display:inline-flex;align-items:center;min-height:44px;padding:0 .2rem}
-.sendfail a{color:var(--mvx-error)}
-.form-card{background:var(--mvx-white);border:1px solid var(--mvx-line-light);
-  border-radius:var(--mvx-r-lg);padding:clamp(1.6rem,3vw,2.3rem)}
-.mvx-field{margin-bottom:1.15rem}
-.mvx-field label{display:block;font-size:.94rem;font-weight:600;color:var(--mvx-charcoal);margin-bottom:.4rem}
-.mvx-field .opt{font-weight:400;color:var(--mvx-muted)}
-.mvx-field input,.mvx-field select,.mvx-field textarea{width:100%;font-family:var(--mvx-sans);
-  font-size:1rem;color:var(--mvx-body-ink);background:var(--mvx-white);padding:.85rem .95rem;
-  border:1px solid #8f8f8f;border-radius:var(--mvx-r-md)}
-.mvx-field textarea{resize:vertical;min-height:6.5rem}
-.mvx-field input:focus,.mvx-field select:focus,.mvx-field textarea:focus{
-  outline:2px solid var(--mvx-green-text);outline-offset:1px;border-color:var(--mvx-green-text)}
-.mvx-field [aria-invalid="true"]{border-color:var(--mvx-error);border-width:2px}
-.mvx-err[hidden]{display:none}
-.mvx-err{display:flex;gap:.4rem;margin-top:.4rem;font-size:.9rem;color:var(--mvx-error);max-width:none}
-.mvx-err::before{content:"!";flex:none;width:1.1rem;height:1.1rem;margin-top:.2rem;border-radius:50%;
-  background:var(--mvx-error);color:var(--mvx-white);font-size:.74rem;font-weight:700;
-  line-height:1.1rem;text-align:center}
-.mvx-submit{width:100%}
-.mvx-submit[aria-busy="true"]{opacity:.75;cursor:progress}
-.form-alt{margin-top:1rem;text-align:center;font-size:.93rem;color:var(--mvx-muted)}
-.mvx-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
-  clip-path:inset(50%);white-space:nowrap;border:0}
-.sendfail{margin-top:1rem;border:1px solid var(--mvx-error);border-radius:var(--mvx-r-md);
-  padding:1rem 1.1rem;font-size:.95rem;background:color-mix(in srgb,var(--mvx-error) 6%,var(--mvx-white))}
-.sendfail strong{color:var(--mvx-error);font-weight:600}
-.done{border:1px solid var(--mvx-line-light);border-top:3px solid var(--mvx-green);
-  border-radius:var(--mvx-r-lg);padding:clamp(1.7rem,3vw,2.4rem);background:var(--mvx-white)}
-.done:focus{outline:2px solid var(--mvx-green-text);outline-offset:3px}
-.done .mvx-h3{color:var(--mvx-charcoal);margin-bottom:.6rem}
+/* Closing call band. No form on this page: the phone is the action, so the
+   section is one statement and one button rather than a card to fill in. */
+.close .mvx-wrap{max-width:660px;text-align:center}
+.close .mvx-h2{color:var(--mvx-white);margin-bottom:.9rem}
+.close-lede{color:var(--mvx-ink-2);font-weight:300;font-size:1.08rem;margin-bottom:1.8rem}
+.close-btn{font-size:1.12rem;padding:1.15rem 2.2rem}
+.close-note{margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--mvx-line-dark);
+  font-size:.93rem;color:var(--mvx-ink-2)}
+.fit-not a{color:var(--mvx-green-text);font-weight:600;text-decoration:underline;
+  display:inline-flex;align-items:center;min-height:44px}
 
 .mvx-foot{background:var(--mvx-black);color:var(--mvx-ink-2);padding:2.8rem 0}
 img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
@@ -240,7 +235,7 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 @media (max-width:899px){
   .mvx-sticky{display:block}
   .mvx-lp{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
-  .mvx-lp.form-open .mvx-sticky{display:none}
+  .mvx-lp.cta-open .mvx-sticky{display:none}
 }
 @media (max-width:640px){
   .mvx-hero::after{background:linear-gradient(180deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.78) 100%)}
@@ -278,9 +273,9 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
     <div class="mvx-hero-inner">
       <h1 class="mvx-h1">Wiring your new build or reno, <span>done right the first time</span></h1>
       <p class="mvx-lede">We wire new homes, renovations and extensions across the Gold Coast and Northern NSW. Lights, switches, power points, the whole lot. Tell us about your project and we will send you a free quote.</p>
-      <p class="mvx-planned"><b>This is for planned work.</b> If your power is off right now, please ring us instead.</p>
+      <p class="mvx-planned"><b>This is for planned work.</b> New builds, renovations and extensions, booked in ahead.</p>
       <div class="mvx-ctas">
-        <a class="mvx-btn" href="#quote">Request your free quote</a>
+        <a class="mvx-btn" href="tel:0427593990">Call 0427 593 990</a>
         <a class="mvx-btn-ghost" href="#services">See what we do &#8595;</a>
       </div>
       <ul class="mvx-points">
@@ -308,60 +303,71 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
   <div class="mvx-wrap">
     <div class="mvx-sec-head">
       <h2 class="mvx-h2">The work we do</h2>
-      <p>All of it planned ahead, not rushed. Here is what fits.</p>
+      <p>Three jobs we do most, plus the smaller planned work. All of it booked in ahead, so nothing gets rushed.</p>
     </div>
 
-    <article class="svc-row">
-      <h3 class="mvx-h3">New home builds</h3>
-      <div>
-        <p class="svc-lede">We wire the whole house, from the first rough-in to the day you move in.</p>
-        <ul>
-          <li>Full house wiring</li>
-          <li>Switchboard and safety switches</li>
-          <li>Lights, fans and power points</li>
-          <li>Fit-off and final connection</li>
-        </ul>
-      </div>
-    </article>
+    <div class="svc-set">
+      <article class="svc">
+        <div class="svc-head">
+          <h3 class="svc-name">New home builds</h3>
+          <p class="svc-scope">Rough-in to fit-off</p>
+        </div>
+        <div class="svc-body">
+          <p class="svc-lede">We wire the whole house, from the first rough-in to the day you move in.</p>
+          <ul>
+            <li>Full house wiring</li>
+            <li>Switchboard and safety switches</li>
+            <li>Lights, fans and power points</li>
+            <li>Fit-off and final connection</li>
+          </ul>
+        </div>
+      </article>
 
-    <article class="svc-row">
-      <h3 class="mvx-h3">Renovations</h3>
-      <div>
-        <p class="svc-lede">Old wiring often will not handle a new kitchen or bathroom. We sort that out while the walls are still open.</p>
-        <ul>
-          <li>New circuits for kitchens and bathrooms</li>
-          <li>Moving or adding power points</li>
-          <li>Replacing old switches and lights</li>
-          <li>Rewiring a room or the whole house</li>
-        </ul>
-      </div>
-    </article>
+      <article class="svc">
+        <div class="svc-head">
+          <h3 class="svc-name">Renovations</h3>
+          <p class="svc-scope">While the walls are open</p>
+        </div>
+        <div class="svc-body">
+          <p class="svc-lede">Old wiring often will not handle a new kitchen or bathroom. We sort that out while the walls are still open.</p>
+          <ul>
+            <li>New circuits for kitchens and bathrooms</li>
+            <li>Moving or adding power points</li>
+            <li>Replacing old switches and lights</li>
+            <li>Rewiring a room or the whole house</li>
+          </ul>
+        </div>
+      </article>
 
-    <article class="svc-row">
-      <h3 class="mvx-h3">Extensions</h3>
-      <div>
-        <p class="svc-lede">Adding a room means adding load. We check the board can take it, then run the new work in.</p>
-        <ul>
-          <li>Power out to the new part of the house</li>
-          <li>Checking the switchboard can handle it</li>
-          <li>Lighting and power point layout</li>
-          <li>Outdoor power and lights</li>
-        </ul>
-      </div>
-    </article>
+      <article class="svc">
+        <div class="svc-head">
+          <h3 class="svc-name">Extensions</h3>
+          <p class="svc-scope">New rooms, more load</p>
+        </div>
+        <div class="svc-body">
+          <p class="svc-lede">Adding a room means adding load. We check the board can take it, then run the new work in.</p>
+          <ul>
+            <li>Power out to the new part of the house</li>
+            <li>Checking the switchboard can handle it</li>
+            <li>Lighting and power point layout</li>
+            <li>Outdoor power and lights</li>
+          </ul>
+        </div>
+      </article>
+    </div>
 
-    <article class="svc-row">
-      <h3 class="mvx-h3">Lighting, switches and power</h3>
-      <div>
-        <p class="svc-lede">Smaller planned jobs, done properly. Handy if the house is fine but the wiring is dated.</p>
-        <ul>
-          <li>Downlights and new light fittings</li>
-          <li>Extra power points where you need them</li>
-          <li>Switch and dimmer changes</li>
-          <li>Outdoor and garage power</li>
-        </ul>
+    <aside class="svc-more">
+      <div class="svc-more-head">
+        <h3>Smaller planned jobs</h3>
+        <p>Handy if the house is fine but the wiring is dated.</p>
       </div>
-    </article>
+      <ul>
+        <li>Downlights and new light fittings</li>
+        <li>Extra power points where you need them</li>
+        <li>Switch and dimmer changes</li>
+        <li>Outdoor and garage power</li>
+      </ul>
+    </aside>
   </div>
 </section>
 
@@ -389,7 +395,7 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
         <p>Moving a light after the plaster is up means cutting, patching and painting. Before that, it is just a cable.</p>
       </div>
 
-      <a class="mvx-btn" href="#quote">Request your free quote</a>
+      <a class="mvx-btn" href="tel:0427593990">Call 0427 593 990</a>
     </div>
     <div class="why-img">
       <picture>
@@ -416,12 +422,12 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
       <div class="proc-step">
         <span class="n" aria-hidden="true">01</span>
         <h4>Tell us about the project</h4>
-        <p>Fill in the short form. A sentence or two about the job is enough to start.</p>
+        <p>Give us a ring. A sentence or two about the job is enough to start.</p>
       </div>
       <div class="proc-step">
         <span class="n" aria-hidden="true">02</span>
         <h4>We review it and quote</h4>
-        <p>We work out what the electrical side needs and send you a price. We will ring if we have questions.</p>
+        <p>We work out what the electrical side needs and send you a written price. We will call back if we have questions.</p>
       </div>
       <div class="proc-step">
         <span class="n" aria-hidden="true">03</span>
@@ -446,7 +452,7 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
         <li>Adding lights, switches or power points</li>
         <li>Upgrading an old switchboard as part of the work</li>
       </ul>
-      <p class="fit-not"><b>Not this page:</b> a power fault, a burning smell, or anything unsafe. Ring <a href="tel:0427593990">0427 593 990</a> and we will help you from there.</p>
+      <p class="fit-not"><b>Not this page:</b> a power fault, a burning smell, or anything unsafe. Still call <a href="tel:0427593990">0427 593 990</a>, but say it is urgent and we will treat it that way.</p>
     </div>
     <div>
       <div class="mvx-sec-head" style="margin-bottom:.6rem">
@@ -494,80 +500,12 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
   </div>
 </section>
 
-<section class="mvx-sec quote" id="quote">
+<section class="mvx-sec mvx-sec-dark close" id="talk">
   <div class="mvx-wrap">
-    <div>
-      <div class="mvx-sec-head" style="margin-bottom:0">
-        <h2 class="mvx-h2">Request your free quote</h2>
-        <p>Four quick details and a line about the job. That is all we need to get started.</p>
-      </div>
-      <p class="note">Best for new builds, renovations, extensions and planned upgrades. For a power fault or anything urgent, ring <a href="tel:0427593990">0427 593 990</a> instead.</p>
-    </div>
-
-    <div>
-      <!-- Set data-endpoint to the real handler before launch. While it reads
-           REPLACE_ME the page shows the success state and warns in the console.
-           NOTE for whoever wires it: maxlength and pattern here are conveniences
-           for the person typing, not validation. A script can set any value and
-           a POST can be crafted by hand, so the handler must validate length and
-           content itself, and rate-limit. -->
-      <div class="form-card" id="form-card">
-        <form id="quote-form" method="post" action="#" data-endpoint="REPLACE_ME">
-          <div class="mvx-field">
-            <label for="q-name">Your name</label>
-            <input type="text" id="q-name" name="name" autocomplete="name" maxlength="80" required aria-describedby="q-name-err">
-            <p class="mvx-err" id="q-name-err" hidden></p>
-          </div>
-          <div class="mvx-field">
-            <label for="q-phone">Phone</label>
-            <input type="tel" id="q-phone" name="phone" autocomplete="tel" inputmode="tel"
-                   maxlength="20" pattern="[0-9+\(\)\s\-]{8,20}" required aria-describedby="q-phone-err">
-            <p class="mvx-err" id="q-phone-err" hidden></p>
-          </div>
-          <div class="mvx-field">
-            <label for="q-suburb">Suburb</label>
-            <input type="text" id="q-suburb" name="suburb" autocomplete="address-level2" maxlength="60" required aria-describedby="q-suburb-err">
-            <p class="mvx-err" id="q-suburb-err" hidden></p>
-          </div>
-          <div class="mvx-field">
-            <label for="q-type">What is the project?</label>
-            <select id="q-type" name="project_type" required aria-describedby="q-type-err">
-              <option value="">Pick one</option>
-              <option>New home build</option>
-              <option>Renovation</option>
-              <option>Extension</option>
-              <option>Lighting, switches or power points</option>
-              <option>Rewiring or a switchboard upgrade</option>
-              <option>Something else</option>
-            </select>
-            <p class="mvx-err" id="q-type-err" hidden></p>
-          </div>
-          <div class="mvx-field">
-            <label for="q-detail">Tell us about the job <span class="opt">(optional)</span></label>
-            <textarea id="q-detail" name="details" maxlength="1200"
-                      placeholder="For example: knocking out the kitchen wall, need new power points and downlights."></textarea>
-          </div>
-
-          <noscript>
-            <div class="sendfail" style="margin-bottom:1rem">
-              <strong>This form needs JavaScript to send.</strong> It looks like it is switched off, so please call <a href="tel:0427593990">0427 593 990</a> and we will take your details over the phone.
-            </div>
-          </noscript>
-          <button type="submit" class="mvx-btn mvx-submit" id="q-submit">Request your free quote</button>
-          <p class="form-alt">Would rather talk? Call <a href="tel:0427593990">0427 593 990</a>.</p>
-          <p class="mvx-sr" role="status" aria-live="polite" id="q-status"></p>
-
-          <div class="sendfail" role="alert" id="q-fail" hidden>
-            <strong>That did not send.</strong> Your details are still here, so you can try again. If it keeps failing, call <a href="tel:0427593990">0427 593 990</a> and we will take them over the phone.
-          </div>
-        </form>
-      </div>
-
-      <div class="done" id="q-done" hidden tabindex="-1">
-        <h3 class="mvx-h3">Thanks, we have got it</h3>
-        <p>We will read through your project and get back to you about the quote. If you would rather talk it through now, ring <a href="tel:0427593990">0427 593 990</a>.</p>
-      </div>
-    </div>
+    <h2 class="mvx-h2">Tell us about your project</h2>
+    <p class="close-lede">Give us a ring and talk it through. If it suits, we will come and look at the job, then send you a written quote.</p>
+    <a class="mvx-btn close-btn" href="tel:0427593990">Call 0427 593 990</a>
+    <p class="close-note">New builds, renovations, extensions and planned upgrades across the Gold Coast and Northern NSW.</p>
   </div>
 </section>
 
@@ -588,172 +526,20 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 </footer>
 
 <div class="mvx-sticky">
-  <a class="mvx-btn" href="#quote">Request your free quote</a>
+  <a class="mvx-btn" href="tel:0427593990">Call 0427 593 990</a>
 </div>
 
 </div>
 
 <script>
 (function () {
-  var form = document.getElementById('quote-form');
-  if (!form) return;
-  var page   = document.getElementById('page');
-  var card   = document.getElementById('form-card');
-  var done   = document.getElementById('q-done');
-  var fail   = document.getElementById('q-fail');
-  var status = document.getElementById('q-status');
-  var button = document.getElementById('q-submit');
-  var STORE  = 'mvx-newbuild-quote';
-
-  // The markup ships without novalidate, so a visitor with JS off still gets the
-  // browser's own checks. Now that JS is running we turn it off, because native
-  // validation blocks the submit event before our own messages can render.
-  form.noValidate = true;
-
-  var MESSAGES = {
-    'q-name':   { empty: 'We need a name so we know who we are talking to.' },
-    'q-phone':  { empty: 'We need a phone number in case we have a question.',
-                  bad:   'That number does not look right. Have a quick check.' },
-    'q-suburb': { empty: 'Which suburb is the job in?' },
-    'q-type':   { empty: 'Pick the closest option so we know what the job is.' }
-  };
-  var fields = Object.keys(MESSAGES).map(function (id) { return document.getElementById(id); });
-
-  function messageFor(el) {
-    var m = MESSAGES[el.id] || {};
-    return el.validity.valueMissing ? m.empty : (m.bad || m.empty);
-  }
-  function showError(el, text) {
-    var e = document.getElementById(el.id + '-err');
-    if (e) { e.textContent = text; e.hidden = false; }
-    el.setAttribute('aria-invalid', 'true');
-  }
-  function clearError(el) {
-    var e = document.getElementById(el.id + '-err');
-    if (e) { e.hidden = true; e.textContent = ''; }
-    el.removeAttribute('aria-invalid');
-  }
-
-  fields.forEach(function (el) {
-    if (!el) return;
-    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', function () {
-      if (el.checkValidity()) clearError(el);
-      save();
-    });
-    el.addEventListener('blur', function () {
-      if (el.value !== '' && !el.checkValidity()) showError(el, messageFor(el));
-    });
-  });
-
-  function save() {
-    try {
-      var d = {};
-      form.querySelectorAll('input, select, textarea').forEach(function (el) {
-        if (el.name) d[el.name] = el.value;
-      });
-      sessionStorage.setItem(STORE, JSON.stringify(d));
-    } catch (e) {}
-  }
-  function restore() {
-    try {
-      var raw = sessionStorage.getItem(STORE);
-      if (!raw) return;
-      var d = JSON.parse(raw);
-      form.querySelectorAll('input, select, textarea').forEach(function (el) {
-        if (el.name && d[el.name]) el.value = d[el.name];
-      });
-    } catch (e) {}
-  }
-  restore();
-  document.getElementById('q-detail').addEventListener('input', save);
-
-  function succeed() {
-    try { sessionStorage.removeItem(STORE); } catch (e) {}
-    card.hidden = true;
-    done.hidden = false;
-    done.focus();
-  }
-
-  form.addEventListener('submit', function (ev) {
-    ev.preventDefault();
-    fail.hidden = true;
-
-    var invalid = fields.filter(function (el) { return el && !el.checkValidity(); });
-    invalid.forEach(function (el) { showError(el, messageFor(el)); });
-    fields.forEach(function (el) { if (el && el.checkValidity()) clearError(el); });
-
-    if (invalid.length) {
-      status.textContent = invalid.length === 1
-        ? 'One thing needs fixing: ' + messageFor(invalid[0])
-        : invalid.length + ' things need fixing before this can send.';
-      invalid[0].focus();
-      return;
-    }
-
-    if (button.getAttribute('aria-busy') === 'true') return;
-    button.setAttribute('aria-busy', 'true');
-    button.disabled = true;
-    var label = button.textContent;
-    button.textContent = 'Sending...';
-    status.textContent = 'Sending your details.';
-
-    var endpoint = form.getAttribute('data-endpoint');
-    function reset() {
-      button.removeAttribute('aria-busy');
-      button.disabled = false;
-      button.textContent = label;
-    }
-
-    if (!endpoint || endpoint === 'REPLACE_ME') {
-      console.warn('[MVX new builds LP] data-endpoint is still REPLACE_ME. Showing the success state so it can be reviewed. Wire the real endpoint before launch.');
-      setTimeout(function () { reset(); succeed(); }, 600);
-      return;
-    }
-
-    // Offline is worth catching up front: a fetch on a dead connection just
-    // hangs until it times out, and the visitor sits watching "Sending".
-    if (navigator.onLine === false) {
-      reset();
-      fail.hidden = false;
-      status.textContent = 'You look offline. Your details are still here, or you can call us instead.';
-      return;
-    }
-
-    // Bound the request. Without this the button can stay busy indefinitely on
-    // a stalled connection, which is a common state on a building site.
-    var ctrl = ('AbortController' in window) ? new AbortController() : null;
-    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
-
-    fetch(endpoint, {
-      method: 'POST',
-      body: new FormData(form),
-      signal: ctrl ? ctrl.signal : undefined
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        // Some form handlers answer 200 with an error in the body. Read it if
-        // it is JSON, ignore it if it is not, and never treat an error as a send.
-        return res.clone().json().catch(function () { return null; });
-      })
-      .then(function (body) {
-        if (body && (body.error || body.success === false)) throw new Error('handler rejected');
-        clearTimeout(timer);
-        reset(); succeed();
-      })
-      .catch(function () {
-        clearTimeout(timer);
-        reset();
-        fail.hidden = false;
-        status.textContent = 'That did not send. Your details are still here, or you can call us instead.';
-      });
-  });
-
-  // The sticky bar would cover the button the visitor is already looking at.
-  var quote = document.getElementById('quote');
-  if ('IntersectionObserver' in window) {
+  // The sticky bar would sit on top of the button the visitor is already looking at.
+  var page = document.getElementById('page');
+  var talk = document.getElementById('talk');
+  if (page && talk && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (e) {
-      page.classList.toggle('form-open', e[0].isIntersecting);
-    }, { threshold: .2 }).observe(quote);
+      page.classList.toggle('cta-open', e[0].isIntersecting);
+    }, { threshold: .2 }).observe(talk);
   }
 })();
 </script>
