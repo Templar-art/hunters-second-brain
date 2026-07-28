@@ -131,10 +131,19 @@ Keep the camera moves slow and simple. Slow looks expensive.
 
 Rules:
 
-* **One move per clip.** If the camera pushes in and pans and tilts at the same time, it looks like a video game
-* **3 to 5 seconds.** Longer than that and the model starts inventing things and the room bends
-* **Nothing solid can move.** Walls, benches, windows, taps. All fixed. If a wall bends or a bench melts, we cannot use that clip. Please do not hide it in the edit. Tell me and we run it again
-* **Make two or three versions of the important shots.** Some will come back broken. That is normal
+One move per clip.
+
+If the camera pushes in and pans and tilts at the same time, it looks like a video game
+3 to 5 seconds.
+
+Longer than that and the model starts inventing things and the room bends
+Nothing solid can move.
+
+Walls, benches, windows, taps. All fixed. If a wall bends or a bench melts, we cannot use that clip. 
+
+Please do not hide it in the edit. Tell me and we run it again
+
+Make two or three versions of the important shots.** Some will come back broken. That is normal
 
 ## 5. Files and names
 
