@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Electrical for New Builds and Renovations | MVX Electrical | Gold Coast</title>
-<meta name="description" content="MVX Electrical plans and installs wiring, lights, switches and power points for new home builds, renovations and extensions on the Gold Coast and Northern NSW. Ask for a free quote.">
+<meta name="description" content="MVX Electrical wires new home builds, renovations and extensions on the Gold Coast and Northern NSW. Lighting, switches, power points and planned upgrades. Request a free quote.">
 <meta name="robots" content="noindex, nofollow">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,329 +12,365 @@
 <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ─────────────────────────────────────────────────────────────────────
-   MVX Electrical — new builds and renovations landing page.
-   Brand Guidelines v0.1: League Gothic display, Poppins everything else,
-   black dominant (~60%), white and light grey for breathing room (~30%),
-   volt green as accent only (~10%, never a background fill).
-
-   Neutral off-white rather than a warm cream: warm near-whites are the
-   saturated default look right now, and MVX's own base is black and white.
-   ───────────────────────────────────────────────────────────────────── */
-:root{
-  --green:#7EC004;
-  --green-dark:#5E8519;
-  --green-ink:#4F7011;      /* green as text on white: 5.7:1 */
-  --black:#000;
-  --ink:#141414;
-  --ink-2:#1e1e1e;
-  --white:#fff;
-  --off:#f7f7f7;
-  --body:#2b2b2b;           /* 14.2:1 on white */
-  --muted:#5e5e5e;          /* 6.5:1 on white, 6.0:1 on --off */
-  --line:#e4e4e4;
-  --line-dark:rgba(255,255,255,.14);
-  --on-dark:#f4f4f4;
-  --on-dark-2:#b4b4b4;      /* 8.3:1 on --ink */
-  --error:#b3261e;          /* 6.5:1 on white */
-  --success:#1d6b3f;
-  --r-sm:6px; --r-md:10px; --r-lg:16px;
-  --display:'League Gothic','Arial Narrow',sans-serif;
-  --sans:'Poppins',-apple-system,BlinkMacSystemFont,sans-serif;
-  --wrap:1120px;
-  --ease:cubic-bezier(.4,0,.2,1);
+/* MVX Electrical, new builds and renovations landing page.
+   Same design system as the aircon and hot water pages: League Gothic display
+   at real scale, Poppins for everything else, black dominant, volt green as an
+   accent only and never a background fill, 4/8/12px radii.
+   Deliberately not icon-led: services and reasons are editorial rows divided by
+   hairlines, so typography carries the hierarchy instead of decoration. */
+.mvx-lp{
+  --mvx-green:#7EC004;
+  --mvx-green-dark:#5E8519;
+  --mvx-green-text:#4F7011;
+  --mvx-black:#000;
+  --mvx-charcoal:#1a1a1a;
+  --mvx-bg-deep:#0f0f0f;
+  --mvx-bg-mid:#1e1e1e;
+  --mvx-white:#fff;
+  --mvx-ink:#f4f4f4;
+  --mvx-ink-2:#a8a8a8;
+  --mvx-body-ink:#2b2b2b;
+  --mvx-muted:#5e5e5e;
+  --mvx-line-dark:rgba(255,255,255,.1);
+  --mvx-line-light:#e4e4e4;
+  --mvx-error:#b3261e;
+  --mvx-r-sm:4px; --mvx-r-md:8px; --mvx-r-lg:12px;
+  --mvx-shadow:0 4px 16px rgba(0,0,0,.4);
+  --mvx-display:'League Gothic','Arial Narrow',sans-serif;
+  --mvx-sans:'Poppins',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:var(--mvx-sans);font-weight:400;font-size:16px;line-height:1.7;
+  color:var(--mvx-body-ink);background:var(--mvx-white);-webkit-font-smoothing:antialiased;
 }
-
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+.mvx-lp *,.mvx-lp *::before,.mvx-lp *::after{margin:0;padding:0;box-sizing:border-box}
+.mvx-lp img{max-width:100%;display:block;height:auto}
+.mvx-lp p{text-wrap:pretty;max-width:66ch}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{font-family:var(--sans);font-weight:400;font-size:17px;line-height:1.65;color:var(--body);background:var(--white);-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block;height:auto}
-p{text-wrap:pretty;max-width:62ch}
+.mvx-wrap{width:min(1200px,92vw);margin-inline:auto}
 
-h1,h2,.display{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.94;letter-spacing:-.01em;text-wrap:balance;color:var(--ink)}
-h1{font-size:clamp(2.6rem,1.9rem + 4.4vw,4.6rem);letter-spacing:-.02em}
-h2{font-size:clamp(2rem,1.6rem + 2.2vw,3rem)}
-h3{font-family:var(--sans);font-weight:600;font-size:1.15rem;line-height:1.35;color:var(--ink)}
+.mvx-lp .mvx-h1,.mvx-lp .mvx-h2,.mvx-lp .mvx-h3{font-family:var(--mvx-display);font-weight:400;
+  text-transform:uppercase;line-height:.95;letter-spacing:-1px;text-wrap:balance}
+.mvx-lp .mvx-h1{font-size:clamp(3rem,2rem + 5.5vw,5.5rem);letter-spacing:-2px}
+.mvx-lp .mvx-h2{font-size:clamp(2.1rem,1.6rem + 2.6vw,3.4rem)}
+.mvx-lp .mvx-h3{font-size:clamp(1.55rem,1.35rem + .85vw,2rem)}
+.mvx-lp h4{font-family:var(--mvx-sans);font-weight:600;font-size:1.05rem;line-height:1.4}
 
-.wrap{width:min(var(--wrap),92vw);margin-inline:auto}
-.sec{padding:clamp(3.2rem,7vw,5.4rem) 0}
-.sec-off{background:var(--off)}
-.sec-dark{background:var(--ink);color:var(--on-dark)}
-.sec-dark h2,.sec-dark h3{color:var(--white)}
-.sec-head{max-width:640px;margin-bottom:clamp(2rem,4vw,2.8rem)}
-.sec-head h2{margin-bottom:.7rem}
-.sec-head p{color:var(--muted);font-size:1.06rem}
-.sec-dark .sec-head p{color:var(--on-dark-2)}
-
-/* Buttons. Green fills the primary action only. */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:56px;
-  background:var(--green);color:var(--black);font-weight:600;font-size:1.06rem;
-  padding:1rem 1.9rem;border:0;border-radius:var(--r-md);cursor:pointer;text-decoration:none;
-  transition:background .2s var(--ease),transform .2s var(--ease)}
-.btn:hover{background:var(--green-dark);color:var(--white);transform:translateY(-2px)}
-.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:56px;
-  background:transparent;color:var(--white);font-weight:500;padding:1rem 1.6rem;
-  border:1px solid rgba(255,255,255,.4);border-radius:var(--r-md);text-decoration:none;
-  transition:background .2s var(--ease),border-color .2s var(--ease)}
-.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:var(--white)}
+.mvx-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:56px;
+  background:var(--mvx-green);color:var(--mvx-black);font-family:var(--mvx-sans);font-weight:700;
+  font-size:clamp(1.02rem,1rem + .3vw,1.18rem);text-decoration:none;padding:1rem 1.9rem;border:0;
+  border-radius:var(--mvx-r-md);cursor:pointer;box-shadow:var(--mvx-shadow);
+  transition:background .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1)}
+.mvx-btn:hover{background:var(--mvx-green-dark);color:var(--mvx-black);transform:translateY(-2px)}
+.mvx-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:56px;
+  color:var(--mvx-white);font-weight:500;text-decoration:none;padding:1rem 1.6rem;
+  border:1px solid var(--mvx-line-dark);border-radius:var(--mvx-r-md);font-size:1rem;
+  transition:border-color .2s,background .2s}
+.mvx-btn-ghost:hover{border-color:var(--mvx-green);background:rgba(126,192,4,.1);color:var(--mvx-white)}
 @media (hover:none){
-  .btn:hover{transform:none;background:var(--green);color:var(--black)}
-  .btn:active{background:var(--green-dark);color:var(--white)}
+  .mvx-btn:hover{transform:none;background:var(--mvx-green);color:var(--mvx-black)}
+  .mvx-btn:active{background:var(--mvx-green-dark);color:var(--mvx-white)}
 }
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
-  outline:3px solid var(--green-ink);outline-offset:3px;border-radius:var(--r-sm)}
-.sec-dark a:focus-visible,.hdr a:focus-visible,.hero a:focus-visible{outline-color:var(--green)}
+.mvx-lp a:focus-visible,.mvx-lp button:focus-visible,.mvx-lp summary:focus-visible,
+.mvx-lp input:focus-visible,.mvx-lp select:focus-visible,.mvx-lp textarea:focus-visible{
+  outline:2px solid var(--mvx-green);outline-offset:3px;border-radius:var(--mvx-r-sm)}
+.mvx-sec:not(.mvx-sec-dark) a:focus-visible{outline-color:var(--mvx-green-text)}
 
-/* Header: wordmark and phone. No navigation, on purpose. */
-.hdr{background:var(--black)}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0}
-.hdr img{height:30px;width:auto}
-.hdr .tel{display:inline-flex;align-items:center;min-height:44px;padding:0 .3rem;
-  color:var(--white);font-size:.95rem;font-weight:600;text-decoration:none}
-.hdr .tel:hover{color:var(--green)}
+.mvx-head{background:var(--mvx-black)}
+.mvx-head .mvx-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0}
+img.mvx-logo{height:32px;width:auto;flex:none}
+@media (max-width:640px){img.mvx-logo{height:26px}}
+.mvx-head-tel{display:inline-flex;align-items:center;min-height:44px;padding:0;white-space:nowrap;
+  color:var(--mvx-white);font-size:.94rem;font-weight:600;text-decoration:none}
+.mvx-head-tel:hover{color:var(--mvx-green)}
 
-/* Hero */
-.hero{background:var(--ink);color:var(--on-dark)}
-.hero .wrap{display:grid;gap:clamp(2rem,4vw,3.4rem);align-items:center;
-  padding:clamp(2.6rem,6vw,4.6rem) 0 clamp(2.6rem,6vw,4.2rem)}
-@media (min-width:900px){.hero .wrap{grid-template-columns:1.05fr .95fr}}
-.hero h1{color:var(--white);margin-bottom:1.1rem}
-.hero h1 em{font-style:normal;color:var(--green)}
-.hero .lede{color:var(--on-dark-2);font-size:clamp(1.06rem,1rem + .4vw,1.22rem);font-weight:300;margin-bottom:1.1rem}
-.hero .planned{display:inline-block;font-size:.93rem;color:var(--on-dark-2);
-  border:1px solid var(--line-dark);border-radius:var(--r-sm);padding:.55rem .9rem;margin-bottom:1.8rem}
-.hero .planned b{color:var(--white);font-weight:600}
-.hero-ctas{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.9rem}
-@media (min-width:520px){.hero-ctas{flex-direction:row;flex-wrap:wrap}}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none}
-.chips li{font-size:.9rem;color:var(--on-dark);border:1px solid var(--line-dark);
-  border-radius:100px;padding:.42rem .95rem;background:rgba(255,255,255,.04)}
-.hero-img{border-radius:var(--r-lg);overflow:hidden;background:var(--ink-2)}
-.hero-img img{width:100%;aspect-ratio:4/3;object-fit:cover}
-@media (min-width:900px){.hero-img img{aspect-ratio:1/1}}
+.mvx-hero{position:relative;background:var(--mvx-black);color:var(--mvx-white);overflow:hidden}
+.mvx-hero::before{content:"";position:absolute;inset:0;
+  background:url('assets/hero-newbuild.jpg') center 32%/cover no-repeat;opacity:.5}
+.mvx-hero::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.82) 44%,rgba(0,0,0,.32) 100%)}
+.mvx-hero .mvx-wrap{position:relative;z-index:1;padding:clamp(3.4rem,8vw,6.4rem) 0 clamp(3rem,7vw,5.4rem)}
+.mvx-hero-inner{max-width:680px}
+.mvx-hero-rule{position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--mvx-green);z-index:2}
+.mvx-hero .mvx-h1{color:var(--mvx-white);margin-bottom:1.1rem}
+.mvx-hero .mvx-h1 span{color:var(--mvx-green)}
+.mvx-lede{color:var(--mvx-ink-2);font-weight:300;font-size:clamp(1.04rem,.98rem + .4vw,1.22rem);
+  margin-bottom:1.3rem;max-width:54ch}
+.mvx-planned{max-width:54ch;font-size:.94rem;color:var(--mvx-ink-2);
+  border-top:1px solid var(--mvx-line-dark);padding-top:.9rem;margin-bottom:1.9rem}
+.mvx-planned b{color:var(--mvx-white);font-weight:600}
+.mvx-ctas{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem}
+@media (min-width:520px){.mvx-ctas{flex-direction:row;flex-wrap:wrap;align-items:center}}
+.mvx-points{display:flex;flex-wrap:wrap;gap:.5rem 1.7rem;list-style:none}
+.mvx-points li{display:flex;align-items:center;gap:.5rem;color:var(--mvx-ink);font-size:.95rem}
+.mvx-points .mvx-tick{color:var(--mvx-green);font-weight:700}
 
-/* Trust strip */
-.trust{background:var(--black);color:var(--on-dark-2)}
-.trust .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2.2rem;padding:.95rem 0;font-size:.92rem}
-.trust span{display:inline-flex;align-items:center;gap:.5rem}
-.trust .tick{color:var(--green);font-weight:700}
-.trust .todo{color:#7d7d7d}
+.mvx-licences{background:var(--mvx-charcoal);color:var(--mvx-ink-2)}
+.mvx-licences .mvx-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+  gap:.4rem 2rem;padding:.85rem 0;font-size:.88rem}
+.mvx-licences b{color:var(--mvx-green);font-weight:600}
+.mvx-licences .mvx-todo{color:#7d7d7d}
 
-/* Service cards. Three, and they are genuinely different content. */
-.cards{display:grid;gap:1.2rem}
-@media (min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
-.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);
-  padding:1.9rem 1.7rem;display:flex;flex-direction:column;gap:.8rem}
-.card h3{font-size:1.28rem}
-.card p{color:var(--muted);font-size:.99rem}
-.card ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-top:.1rem}
-.card li{position:relative;padding-left:1.5rem;font-size:.97rem;color:var(--body)}
-.card li::before{content:"";position:absolute;left:0;top:.62em;width:.5rem;height:.5rem;
-  border-radius:50%;background:var(--green)}
+.mvx-sec{padding:clamp(3.2rem,7vw,5.6rem) 0}
+.mvx-sec-dark{background:var(--mvx-bg-deep);color:var(--mvx-ink)}
+.mvx-sec-grey{background:#f5f5f5}
+.mvx-sec-head{max-width:720px;margin-bottom:clamp(2.2rem,4vw,3.2rem)}
+.mvx-sec-head .mvx-h2{margin-bottom:.8rem;color:var(--mvx-charcoal)}
+.mvx-sec-head p{color:var(--mvx-muted);font-size:1.06rem;font-weight:300}
+.mvx-sec-dark .mvx-sec-head .mvx-h2{color:var(--mvx-white)}
+.mvx-sec-dark .mvx-sec-head p{color:var(--mvx-ink-2)}
 
-/* Why plan early */
-.why .wrap{display:grid;gap:clamp(2rem,4vw,3.2rem);align-items:center}
-@media (min-width:900px){.why .wrap{grid-template-columns:1fr 1fr}}
-.why-img{border-radius:var(--r-lg);overflow:hidden}
-.why-img img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.why-list{list-style:none;display:flex;flex-direction:column;gap:1.15rem;margin:1.4rem 0 1.8rem}
-.why-list li{display:flex;gap:.9rem}
-.why-list .n{flex:none;width:2rem;height:2rem;border-radius:50%;background:var(--green);
-  color:var(--black);font-weight:700;font-size:.95rem;display:grid;place-items:center}
-.why-list p{color:var(--on-dark-2);font-size:1rem;margin-top:.1rem}
-.why-list b{color:var(--white);font-weight:600;display:block;margin-bottom:.15rem}
+/* Services: editorial rows. Title left, detail right, hairline between. */
+.svc-row{display:grid;gap:.7rem 3.5rem;padding:clamp(1.7rem,3vw,2.5rem) 0;
+  border-top:1px solid var(--mvx-line-light)}
+.svc-row:last-of-type{border-bottom:1px solid var(--mvx-line-light)}
+@media (min-width:820px){.svc-row{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:start}}
+.svc-row .mvx-h3{color:var(--mvx-charcoal)}
+.svc-row .svc-lede{color:var(--mvx-body-ink);font-size:1.05rem;margin-bottom:1rem}
+.svc-row ul{list-style:none;display:grid;gap:.55rem}
+@media (min-width:560px){.svc-row ul{grid-template-columns:1fr 1fr;gap:.55rem 2rem}}
+.svc-row li{position:relative;padding-left:1.15rem;color:var(--mvx-muted);font-size:.99rem}
+.svc-row li::before{content:"";position:absolute;left:0;top:.72em;width:.42rem;height:1px;
+  background:var(--mvx-green-text)}
 
-/* Quote form */
-.quote .wrap{display:grid;gap:clamp(2rem,4vw,3.4rem);align-items:start}
-@media (min-width:900px){.quote .wrap{grid-template-columns:.9fr 1.1fr}}
-.steps{list-style:none;display:flex;flex-direction:column;gap:1rem;margin-top:1.3rem}
-.steps li{display:flex;gap:.8rem;font-size:1rem}
-.steps .tick{flex:none;color:var(--green-ink);font-weight:700}
-.note{margin-top:1.5rem;font-size:.95rem;color:var(--muted);border-top:1px solid var(--line);padding-top:1.1rem}
-.note a,.sendfail a{display:inline-flex;align-items:center;min-height:44px;padding:0 .2rem;text-decoration:underline}
+/* Why plan early: large display numerals, not badges */
+.why .mvx-wrap{display:grid;gap:clamp(2.2rem,5vw,4.5rem);align-items:center}
+@media (min-width:960px){.why .mvx-wrap{grid-template-columns:1.05fr .95fr}}
+.why-img{border-radius:var(--mvx-r-lg);overflow:hidden;box-shadow:var(--mvx-shadow)}
+.why-img img{width:100%;aspect-ratio:4/5;object-fit:cover}
+@media (max-width:959px){.why-img img{aspect-ratio:3/2}}
+.why-row{display:grid;grid-template-columns:auto 1fr;gap:.15rem 1.4rem;padding:1.3rem 0;
+  border-top:1px solid var(--mvx-line-dark)}
+.why-row:first-of-type{margin-top:1.5rem}
+.why-num{font-family:var(--mvx-display);font-size:2.5rem;line-height:.8;color:var(--mvx-green);
+  grid-row:span 2;align-self:start}
+.why-row h4{color:var(--mvx-white)}
+.why-row p{color:var(--mvx-ink-2);font-size:.99rem;font-weight:300}
+.why .mvx-btn{margin-top:2rem}
 
-.form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);
-  padding:clamp(1.5rem,3vw,2.2rem);box-shadow:0 14px 40px rgba(0,0,0,.07)}
-.field{margin-bottom:1.15rem}
-.field label{display:block;font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
-.field .opt{font-weight:400;color:var(--muted)}
-.field input,.field select,.field textarea{width:100%;font-family:var(--sans);font-size:1rem;
-  color:var(--body);background:var(--white);padding:.85rem .95rem;
-  border:1px solid #8f8f8f;border-radius:var(--r-md)}
-.field textarea{resize:vertical;min-height:6.5rem}
-.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid var(--green-ink);outline-offset:1px;border-color:var(--green-ink)}
-.field [aria-invalid="true"]{border-color:var(--error);border-width:2px}
-.err{display:flex;gap:.4rem;margin-top:.4rem;font-size:.92rem;color:var(--error)}
-.err[hidden]{display:none}   /* an author display value beats the hidden attribute */
-.err::before{content:"!";flex:none;width:1.15rem;height:1.15rem;margin-top:.15rem;border-radius:50%;
-  background:var(--error);color:var(--white);font-size:.78rem;font-weight:700;line-height:1.15rem;text-align:center}
-.submit{width:100%}
-.submit[aria-busy="true"]{opacity:.75;cursor:progress}
-.form-alt{margin-top:1rem;font-size:.94rem;color:var(--muted);text-align:center}
-.form-alt a{color:var(--green-ink);font-weight:600;text-decoration:underline;
-  display:inline-flex;align-items:center;min-height:44px;padding:0 .2rem}
-.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
-.sendfail{margin-top:1rem;border:1px solid var(--error);border-radius:var(--r-md);
-  padding:1rem 1.1rem;font-size:.96rem;background:color-mix(in srgb,var(--error) 6%,var(--white))}
-.sendfail strong{color:var(--error)}
-.sendfail a{color:var(--error);font-weight:600}
-.done{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);
-  padding:clamp(1.7rem,3vw,2.4rem)}
-.done:focus{outline:3px solid var(--green-ink);outline-offset:3px}
-.done .tick-big{display:grid;place-items:center;width:3rem;height:3rem;border-radius:50%;
-  background:var(--success);color:var(--white);font-size:1.5rem;font-weight:700;margin-bottom:1.1rem}
-.done h3{font-size:1.4rem;margin-bottom:.6rem}
-.done p{color:var(--body)}
-.done a{color:var(--green-ink);font-weight:600}
+/* Process: three columns, hairline above each, display numeral */
+.proc{display:grid;gap:1.6rem}
+@media (min-width:760px){.proc{grid-template-columns:repeat(3,1fr);gap:2.4rem}}
+.proc-step{border-top:2px solid var(--mvx-green);padding-top:1.2rem}
+.proc-step .n{font-family:var(--mvx-display);font-size:1.5rem;color:var(--mvx-green);
+  display:block;line-height:1;margin-bottom:.5rem}
+.proc-step h4{color:var(--mvx-white);margin-bottom:.35rem}
+.proc-step p{color:var(--mvx-ink-2);font-size:.99rem;font-weight:300}
+
+/* Project fit and area */
+.fit .mvx-wrap{display:grid;gap:clamp(2rem,4vw,3.5rem)}
+@media (min-width:900px){.fit .mvx-wrap{grid-template-columns:1fr 1fr}}
+.fit-list{list-style:none;display:grid;gap:.6rem;margin-top:.4rem}
+.fit-list li{position:relative;padding-left:1.5rem;font-size:1rem}
+.fit-list li::before{content:"✓";position:absolute;left:0;color:var(--mvx-green-text);font-weight:700}
+.fit-not{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--mvx-line-light);
+  font-size:.97rem;color:var(--mvx-muted)}
+.fit-not b{color:var(--mvx-charcoal);font-weight:600}
+.mvx-chip-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}
+.mvx-chip{background:var(--mvx-white);border:1px solid var(--mvx-line-light);
+  border-radius:var(--mvx-r-sm);padding:.42rem 1rem;font-size:.9rem;color:var(--mvx-body-ink)}
+.mvx-chip-dark{background:var(--mvx-black);border-color:var(--mvx-black);color:var(--mvx-green);font-weight:600}
 
 /* FAQ */
-.faq{max-width:760px}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;
-  align-items:center;gap:1rem;padding:1.15rem 0;font-weight:600;font-size:1.06rem;color:var(--ink);min-height:44px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--sans);font-weight:400;font-size:1.6rem;
-  color:var(--green-ink);line-height:1;transition:transform .2s var(--ease)}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{padding:0 0 1.25rem;color:var(--muted);font-size:1rem}
+.mvx-faq .mvx-wrap{max-width:860px}
+.mvx-faq details{border-bottom:1px solid var(--mvx-line-dark)}
+.mvx-faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;
+  align-items:center;gap:1rem;padding:1.2rem 0;min-height:44px;font-weight:600;font-size:1.04rem;
+  color:var(--mvx-white)}
+.mvx-faq summary::-webkit-details-marker{display:none}
+.mvx-faq summary::after{content:"+";font-size:1.5rem;font-weight:300;color:var(--mvx-green);transition:transform .2s}
+.mvx-faq details[open] summary::after{transform:rotate(45deg)}
+.mvx-faq details p{padding:0 0 1.3rem;color:var(--mvx-ink-2);font-weight:300;font-size:.99rem}
 
-/* Footer */
-footer{background:var(--black);color:var(--on-dark-2);padding:2.6rem 0}
-footer img{height:26px;width:auto;margin-bottom:1rem}
-footer p{font-size:.94rem;max-width:52ch}
-footer .row{display:flex;flex-wrap:wrap;gap:.6rem 2rem;margin-top:1.1rem;font-size:.92rem}
-footer a{color:var(--white);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
-footer a:hover{color:var(--green)}
-footer .fine{margin-top:1.2rem;font-size:.84rem;color:#7d7d7d}
+/* Quote form */
+.quote .mvx-wrap{display:grid;gap:clamp(2.2rem,4vw,4rem);align-items:start}
+@media (min-width:900px){.quote .mvx-wrap{grid-template-columns:.85fr 1.15fr}}
+.note{margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--mvx-line-light);
+  font-size:.95rem;color:var(--mvx-muted)}
+.note a,.sendfail a,.form-alt a,.done a,.fit-not a{color:var(--mvx-green-text);font-weight:600;
+  text-decoration:underline;display:inline-flex;align-items:center;min-height:44px;padding:0 .2rem}
+.sendfail a{color:var(--mvx-error)}
+.form-card{background:var(--mvx-white);border:1px solid var(--mvx-line-light);
+  border-radius:var(--mvx-r-lg);padding:clamp(1.6rem,3vw,2.3rem)}
+.mvx-field{margin-bottom:1.15rem}
+.mvx-field label{display:block;font-size:.94rem;font-weight:600;color:var(--mvx-charcoal);margin-bottom:.4rem}
+.mvx-field .opt{font-weight:400;color:var(--mvx-muted)}
+.mvx-field input,.mvx-field select,.mvx-field textarea{width:100%;font-family:var(--mvx-sans);
+  font-size:1rem;color:var(--mvx-body-ink);background:var(--mvx-white);padding:.85rem .95rem;
+  border:1px solid #8f8f8f;border-radius:var(--mvx-r-md)}
+.mvx-field textarea{resize:vertical;min-height:6.5rem}
+.mvx-field input:focus,.mvx-field select:focus,.mvx-field textarea:focus{
+  outline:2px solid var(--mvx-green-text);outline-offset:1px;border-color:var(--mvx-green-text)}
+.mvx-field [aria-invalid="true"]{border-color:var(--mvx-error);border-width:2px}
+.mvx-err[hidden]{display:none}
+.mvx-err{display:flex;gap:.4rem;margin-top:.4rem;font-size:.9rem;color:var(--mvx-error);max-width:none}
+.mvx-err::before{content:"!";flex:none;width:1.1rem;height:1.1rem;margin-top:.2rem;border-radius:50%;
+  background:var(--mvx-error);color:var(--mvx-white);font-size:.74rem;font-weight:700;
+  line-height:1.1rem;text-align:center}
+.mvx-submit{width:100%}
+.mvx-submit[aria-busy="true"]{opacity:.75;cursor:progress}
+.form-alt{margin-top:1rem;text-align:center;font-size:.93rem;color:var(--mvx-muted)}
+.mvx-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;border:0}
+.sendfail{margin-top:1rem;border:1px solid var(--mvx-error);border-radius:var(--mvx-r-md);
+  padding:1rem 1.1rem;font-size:.95rem;background:color-mix(in srgb,var(--mvx-error) 6%,var(--mvx-white))}
+.sendfail strong{color:var(--mvx-error);font-weight:600}
+.done{border:1px solid var(--mvx-line-light);border-top:3px solid var(--mvx-green);
+  border-radius:var(--mvx-r-lg);padding:clamp(1.7rem,3vw,2.4rem);background:var(--mvx-white)}
+.done:focus{outline:2px solid var(--mvx-green-text);outline-offset:3px}
+.done .mvx-h3{color:var(--mvx-charcoal);margin-bottom:.6rem}
 
-/* Sticky mobile CTA */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
-  background:var(--black);border-top:2px solid var(--green);
+.mvx-foot{background:var(--mvx-black);color:var(--mvx-ink-2);padding:2.8rem 0}
+img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
+.mvx-foot p{font-size:.94rem;max-width:52ch;font-weight:300}
+.mvx-foot .row{display:flex;flex-wrap:wrap;gap:.4rem 2rem;margin-top:1rem;font-size:.92rem}
+.mvx-foot a{color:var(--mvx-white);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.mvx-foot a:hover{color:var(--mvx-green)}
+.mvx-foot .fine{margin-top:1.2rem;font-size:.83rem;color:#7d7d7d}
+
+.mvx-sticky{position:fixed;left:0;right:0;bottom:0;z-index:100;display:none;
+  background:var(--mvx-black);border-top:2px solid var(--mvx-green);
   padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom))}
-.sticky .btn{width:100%}
+.mvx-sticky .mvx-btn{width:100%;box-shadow:none}
 @media (max-width:899px){
-  .sticky{display:block}
-  body{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
-  body.form-open .sticky{display:none}
+  .mvx-sticky{display:block}
+  .mvx-lp{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+  .mvx-lp.form-open .mvx-sticky{display:none}
+}
+@media (max-width:640px){
+  .mvx-hero::after{background:linear-gradient(180deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.78) 100%)}
+  .mvx-ctas .mvx-btn,.mvx-ctas .mvx-btn-ghost{width:100%}
+  .mvx-points{flex-direction:column;gap:.55rem}
+  .mvx-licences .mvx-wrap{flex-direction:column;align-items:flex-start;gap:.3rem;padding:1rem 0}
 }
 </style>
 </head>
 <body>
+<div class="mvx-lp" id="page">
 
-<header class="hdr">
-  <div class="wrap">
-    <img src="assets/mvx-logo-white.png" alt="MVX Electrical" width="1181" height="482">
-    <a class="tel" href="tel:0427593990">0427 593 990</a>
+<header class="mvx-head">
+  <div class="mvx-wrap">
+    <img class="mvx-logo" src="assets/mvx-logo-white.png" alt="MVX Electrical" width="1181" height="482">
+    <a class="mvx-head-tel" href="tel:0427593990">0427 593 990</a>
   </div>
 </header>
 
-<!-- ── Hero ───────────────────────────────────────────────────────── -->
-<section class="hero">
-  <div class="wrap">
-    <div>
-      <h1>Wiring your new build or reno, <em>done right the first time</em></h1>
-      <p class="lede">We plan and install the wiring, lights, switches and power points for homes on the Gold Coast and Northern NSW. Tell us about your project and we will send you a free quote.</p>
-      <p class="planned"><b>This is for planned work.</b> If your power is off right now, please ring us instead.</p>
-      <div class="hero-ctas">
-        <a class="btn" href="#quote">Request your free quote</a>
-        <a class="btn-ghost" href="#services">See what we do</a>
+<section class="mvx-hero">
+  <div class="mvx-wrap">
+    <div class="mvx-hero-inner">
+      <h1 class="mvx-h1">Wiring your new build or reno, <span>done right the first time</span></h1>
+      <p class="mvx-lede">We wire new homes, renovations and extensions across the Gold Coast and Northern NSW. Lights, switches, power points, the whole lot. Tell us about your project and we will send you a free quote.</p>
+      <p class="mvx-planned"><b>This is for planned work.</b> If your power is off right now, please ring us instead.</p>
+      <div class="mvx-ctas">
+        <a class="mvx-btn" href="#quote">Request your free quote</a>
+        <a class="mvx-btn-ghost" href="#services">See what we do &#8595;</a>
       </div>
-      <ul class="chips">
-        <li>New home builds</li>
-        <li>Renovations</li>
-        <li>Extensions</li>
-        <li>Lighting, switches and power</li>
+      <ul class="mvx-points">
+        <li><span class="mvx-tick">&#10003;</span> New home builds</li>
+        <li><span class="mvx-tick">&#10003;</span> Renovations</li>
+        <li><span class="mvx-tick">&#10003;</span> Extensions</li>
+        <li><span class="mvx-tick">&#10003;</span> Lighting, switches and power</li>
       </ul>
     </div>
-    <div class="hero-img">
-      <img src="assets/hero-newbuild.jpg" width="1600" height="1067" fetchpriority="high"
-           alt="An electrician cutting cable at a brick wall while wiring a house that is still being built">
-    </div>
   </div>
+  <div class="mvx-hero-rule" aria-hidden="true"></div>
 </section>
 
-<!-- ── Trust strip. Factual only. Licence numbers left for Matt to confirm. ── -->
-<div class="trust" role="note">
-  <div class="wrap">
-    <span><b class="tick">✓</b> New builds</span>
-    <span><b class="tick">✓</b> Renovations and extensions</span>
-    <span><b class="tick">✓</b> Planned home electrical work</span>
-    <span><b class="tick">✓</b> Gold Coast and Northern NSW</span>
-    <span class="todo">[Licence and insurance details to be confirmed before launch]</span>
+<div class="mvx-licences" role="note">
+  <div class="mvx-wrap">
+    <span>New builds</span>
+    <span>Renovations and extensions</span>
+    <span>Planned home electrical work</span>
+    <span>Gold Coast <b>&middot;</b> Northern NSW</span>
+    <span class="mvx-todo">[Licence and insurance details to confirm]</span>
   </div>
 </div>
 
-<!-- ── Services ───────────────────────────────────────────────────── -->
-<section class="sec" id="services">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>The kind of work we do</h2>
+<section class="mvx-sec" id="services">
+  <div class="mvx-wrap">
+    <div class="mvx-sec-head">
+      <h2 class="mvx-h2">The work we do</h2>
       <p>All of it planned ahead, not rushed. Here is what fits.</p>
     </div>
-    <div class="cards">
 
-      <article class="card">
-        <h3>New home builds</h3>
-        <p>We wire the whole house, from the first rough-in to the day you move in.</p>
+    <article class="svc-row">
+      <h3 class="mvx-h3">New home builds</h3>
+      <div>
+        <p class="svc-lede">We wire the whole house, from the first rough-in to the day you move in.</p>
         <ul>
           <li>Full house wiring</li>
           <li>Switchboard and safety switches</li>
           <li>Lights, fans and power points</li>
           <li>Fit-off and final connection</li>
         </ul>
-      </article>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>Renovations</h3>
-        <p>Old wiring often will not handle a new kitchen or bathroom. We sort that out while the walls are open.</p>
+    <article class="svc-row">
+      <h3 class="mvx-h3">Renovations</h3>
+      <div>
+        <p class="svc-lede">Old wiring often will not handle a new kitchen or bathroom. We sort that out while the walls are still open.</p>
         <ul>
           <li>New circuits for kitchens and bathrooms</li>
           <li>Moving or adding power points</li>
           <li>Replacing old switches and lights</li>
-          <li>Rewiring rooms or a whole house</li>
+          <li>Rewiring a room or the whole house</li>
         </ul>
-      </article>
+      </div>
+    </article>
 
-      <article class="card">
-        <h3>Extensions</h3>
-        <p>Adding a room means adding load. We check the board can take it, then run the new work in.</p>
+    <article class="svc-row">
+      <h3 class="mvx-h3">Extensions</h3>
+      <div>
+        <p class="svc-lede">Adding a room means adding load. We check the board can take it, then run the new work in.</p>
         <ul>
-          <li>Running power to the new part of the house</li>
+          <li>Power out to the new part of the house</li>
           <li>Checking the switchboard can handle it</li>
           <li>Lighting and power point layout</li>
           <li>Outdoor power and lights</li>
         </ul>
-      </article>
+      </div>
+    </article>
 
-    </div>
+    <article class="svc-row">
+      <h3 class="mvx-h3">Lighting, switches and power</h3>
+      <div>
+        <p class="svc-lede">Smaller planned jobs, done properly. Handy if the house is fine but the wiring is dated.</p>
+        <ul>
+          <li>Downlights and new light fittings</li>
+          <li>Extra power points where you need them</li>
+          <li>Switch and dimmer changes</li>
+          <li>Outdoor and garage power</li>
+        </ul>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ── Why plan early ─────────────────────────────────────────────── -->
-<section class="sec sec-dark why">
-  <div class="wrap">
+<section class="mvx-sec mvx-sec-dark why">
+  <div class="mvx-wrap">
     <div>
-      <h2>Why it pays to ask early</h2>
-      <p style="color:var(--on-dark-2);margin-bottom:.4rem">Wiring goes in before the walls are closed up. Once they are lined and painted, changing it gets expensive.</p>
-      <ul class="why-list">
-        <li>
-          <span class="n" aria-hidden="true">1</span>
-          <p><b>You get the power points where you want them</b>
-          Think about where the TV goes, where you charge your phone, and which bench you use. We can put them there while it is easy.</p>
-        </li>
-        <li>
-          <span class="n" aria-hidden="true">2</span>
-          <p><b>Changes cost less before lining goes on</b>
-          Moving a light after the plaster is up means cutting, patching and painting. Before that, it is just a cable.</p>
-        </li>
-        <li>
-          <span class="n" aria-hidden="true">3</span>
-          <p><b>Your build stays on track</b>
-          Electrical has to happen at the right point in the job. Booked in early, it does not hold up the trades after us.</p>
-        </li>
-      </ul>
-      <a class="btn" href="#quote">Request your free quote</a>
+      <div class="mvx-sec-head" style="margin-bottom:0">
+        <h2 class="mvx-h2">Why it pays to ask early</h2>
+        <p>Wiring goes in before the walls are closed up. Once they are lined and painted, changing it costs a lot more.</p>
+      </div>
+
+      <div class="why-row">
+        <span class="why-num" aria-hidden="true">1</span>
+        <h4>Power points end up where you want them</h4>
+        <p>Think about where the TV goes, where you charge your phone, and which bench you actually use. We can put them there while it is easy.</p>
+      </div>
+      <div class="why-row">
+        <span class="why-num" aria-hidden="true">2</span>
+        <h4>Lights get planned room by room</h4>
+        <p>How many downlights, where the switches sit, which lights you want on their own switch. Simple choices, much better to make them now.</p>
+      </div>
+      <div class="why-row">
+        <span class="why-num" aria-hidden="true">3</span>
+        <h4>You are not stuck with it later</h4>
+        <p>Moving a light after the plaster is up means cutting, patching and painting. Before that, it is just a cable.</p>
+      </div>
+
+      <a class="mvx-btn" href="#quote">Request your free quote</a>
     </div>
     <div class="why-img">
       <img src="assets/rough-in.jpg" width="1600" height="1067" loading="lazy" decoding="async"
@@ -343,66 +379,147 @@ footer .fine{margin-top:1.2rem;font-size:.84rem;color:#7d7d7d}
   </div>
 </section>
 
-<!-- ── Quote form ─────────────────────────────────────────────────── -->
-<section class="sec sec-off quote" id="quote">
-  <div class="wrap">
-    <div>
-      <div class="sec-head" style="margin-bottom:0">
-        <h2>Request your free quote</h2>
-        <p>Tell us a bit about the job. It only takes a minute.</p>
+<section class="mvx-sec mvx-sec-dark" style="background:var(--mvx-bg-mid)">
+  <div class="mvx-wrap">
+    <div class="mvx-sec-head">
+      <h2 class="mvx-h2">How it works</h2>
+      <p>Three steps. No pressure, no sales visit you did not ask for.</p>
+    </div>
+    <div class="proc">
+      <div class="proc-step">
+        <span class="n" aria-hidden="true">01</span>
+        <h4>Tell us about the project</h4>
+        <p>Fill in the short form. A sentence or two about the job is enough to start.</p>
       </div>
-      <ol class="steps">
-        <li><span class="tick">✓</span> You send us the details below.</li>
-        <li><span class="tick">✓</span> We read it and work out what the job needs.</li>
-        <li><span class="tick">✓</span> We get in touch with your quote and answer any questions.</li>
-      </ol>
-      <p class="note">Best for new builds, renovations, extensions and planned upgrades. For a power fault or something urgent, ring <a href="tel:0427593990" style="color:var(--green-ink);font-weight:600">0427 593 990</a> instead.</p>
+      <div class="proc-step">
+        <span class="n" aria-hidden="true">02</span>
+        <h4>We review it and quote</h4>
+        <p>We work out what the electrical side needs and send you a price. We will ring if we have questions.</p>
+      </div>
+      <div class="proc-step">
+        <span class="n" aria-hidden="true">03</span>
+        <h4>We book it in and do the work</h4>
+        <p>We fit around your builder and the other trades, then hand over the compliance paperwork at the end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mvx-sec mvx-sec-grey fit">
+  <div class="mvx-wrap">
+    <div>
+      <div class="mvx-sec-head" style="margin-bottom:.6rem">
+        <h2 class="mvx-h2">Is this page for your job?</h2>
+      </div>
+      <ul class="fit-list">
+        <li>Building a new home</li>
+        <li>Renovating a kitchen, bathroom or whole house</li>
+        <li>Adding a room, a deck or a granny flat</li>
+        <li>Rewiring an older house</li>
+        <li>Adding lights, switches or power points</li>
+        <li>Upgrading an old switchboard as part of the work</li>
+      </ul>
+      <p class="fit-not"><b>Not this page:</b> a power fault, a burning smell, or anything unsafe. Ring <a href="tel:0427593990">0427 593 990</a> and we will help you from there.</p>
+    </div>
+    <div>
+      <div class="mvx-sec-head" style="margin-bottom:.6rem">
+        <h2 class="mvx-h2">Where we work</h2>
+        <p>Based on the Gold Coast, working across the coast and into Northern NSW.</p>
+      </div>
+      <div class="mvx-chip-row">
+        <span class="mvx-chip">Burleigh Heads</span><span class="mvx-chip">Palm Beach</span>
+        <span class="mvx-chip">Currumbin</span><span class="mvx-chip">Robina</span>
+        <span class="mvx-chip">Mermaid Waters</span><span class="mvx-chip">Broadbeach</span>
+        <span class="mvx-chip">Nerang</span><span class="mvx-chip">Southport</span>
+        <span class="mvx-chip">Helensvale</span><span class="mvx-chip">Coomera</span>
+        <span class="mvx-chip">Tweed Heads</span><span class="mvx-chip">Kingscliff</span>
+        <span class="mvx-chip mvx-chip-dark">and nearby</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mvx-sec mvx-sec-dark mvx-faq">
+  <div class="mvx-wrap">
+    <div class="mvx-sec-head">
+      <h2 class="mvx-h2">Questions people ask</h2>
+    </div>
+    <details>
+      <summary>Is this for emergency jobs?</summary>
+      <p>No. This page is for work you are planning, like a build, a reno or an extension. If your power is out or something is unsafe, ring 0427 593 990 and we will help you from there.</p>
+    </details>
+    <details>
+      <summary>When should I ask for a quote?</summary>
+      <p>As early as you can. The best time is before the walls are lined, because that is when wiring is easy to change. Even if your build is months away, it is worth asking now.</p>
+    </details>
+    <details>
+      <summary>What projects fit this page?</summary>
+      <p>New home builds, renovations, extensions, rewiring, and adding lights or power points. Anything planned, big or small.</p>
+    </details>
+    <details>
+      <summary>Can you help me work out where the lights and power points should go?</summary>
+      <p>Yes. Most people are not sure, and that is normal. We walk through the rooms with you and work out what you need and where it should sit.</p>
+    </details>
+    <details>
+      <summary>Do you work with builders?</summary>
+      <p>Yes. We work straight with homeowners and alongside builders. If you already have a builder, we can talk to them about timing.</p>
+    </details>
+  </div>
+</section>
+
+<section class="mvx-sec quote" id="quote">
+  <div class="mvx-wrap">
+    <div>
+      <div class="mvx-sec-head" style="margin-bottom:0">
+        <h2 class="mvx-h2">Request your free quote</h2>
+        <p>Four quick details and a line about the job. That is all we need to get started.</p>
+      </div>
+      <p class="note">Best for new builds, renovations, extensions and planned upgrades. For a power fault or anything urgent, ring <a href="tel:0427593990">0427 593 990</a> instead.</p>
     </div>
 
     <div>
-      <!-- ⚠️ Set data-endpoint to the real form handler before launch. While it
-           reads REPLACE_ME the page shows the success state and logs a console
-           warning, so the states can be reviewed without pretending in production. -->
+      <!-- Set data-endpoint to the real handler before launch. While it reads
+           REPLACE_ME the page shows the success state and warns in the console. -->
       <div class="form-card" id="form-card">
         <form id="quote-form" method="post" action="#" data-endpoint="REPLACE_ME">
-          <div class="field">
+          <div class="mvx-field">
             <label for="q-name">Your name</label>
             <input type="text" id="q-name" name="name" autocomplete="name" maxlength="80" required aria-describedby="q-name-err">
-            <p class="err" id="q-name-err" hidden></p>
+            <p class="mvx-err" id="q-name-err" hidden></p>
           </div>
-          <div class="field">
+          <div class="mvx-field">
             <label for="q-phone">Phone</label>
             <input type="tel" id="q-phone" name="phone" autocomplete="tel" inputmode="tel"
                    maxlength="20" pattern="[0-9+\(\)\s\-]{8,20}" required aria-describedby="q-phone-err">
-            <p class="err" id="q-phone-err" hidden></p>
+            <p class="mvx-err" id="q-phone-err" hidden></p>
           </div>
-          <div class="field">
-            <label for="q-email">Email</label>
-            <input type="email" id="q-email" name="email" autocomplete="email" maxlength="120" required aria-describedby="q-email-err">
-            <p class="err" id="q-email-err" hidden></p>
+          <div class="mvx-field">
+            <label for="q-suburb">Suburb</label>
+            <input type="text" id="q-suburb" name="suburb" autocomplete="address-level2" maxlength="60" required aria-describedby="q-suburb-err">
+            <p class="mvx-err" id="q-suburb-err" hidden></p>
           </div>
-          <div class="field">
+          <div class="mvx-field">
             <label for="q-type">What is the project?</label>
             <select id="q-type" name="project_type" required aria-describedby="q-type-err">
               <option value="">Pick one</option>
               <option>New home build</option>
               <option>Renovation</option>
               <option>Extension</option>
-              <option>Lighting or power point changes</option>
-              <option>Rewiring or an electrical upgrade</option>
+              <option>Lighting, switches or power points</option>
+              <option>Rewiring or a switchboard upgrade</option>
               <option>Something else</option>
             </select>
-            <p class="err" id="q-type-err" hidden></p>
+            <p class="mvx-err" id="q-type-err" hidden></p>
           </div>
-          <div class="field">
-            <label for="q-detail">Tell us about the job <span class="opt">(a sentence or two is plenty)</span></label>
+          <div class="mvx-field">
+            <label for="q-detail">Tell us about the job <span class="opt">(optional)</span></label>
             <textarea id="q-detail" name="details" maxlength="1200"
                       placeholder="For example: knocking out the kitchen wall, need new power points and downlights."></textarea>
           </div>
 
-          <button type="submit" class="btn submit" id="q-submit">Request your free quote</button>
+          <button type="submit" class="mvx-btn mvx-submit" id="q-submit">Request your free quote</button>
           <p class="form-alt">Would rather talk? Call <a href="tel:0427593990">0427 593 990</a>.</p>
-          <p class="sr" role="status" aria-live="polite" id="q-status"></p>
+          <p class="mvx-sr" role="status" aria-live="polite" id="q-status"></p>
 
           <div class="sendfail" role="alert" id="q-fail" hidden>
             <strong>That did not send.</strong> Your details are still here, so you can try again. If it keeps failing, call <a href="tel:0427593990">0427 593 990</a> and we will take them over the phone.
@@ -411,49 +528,17 @@ footer .fine{margin-top:1.2rem;font-size:.84rem;color:#7d7d7d}
       </div>
 
       <div class="done" id="q-done" hidden tabindex="-1">
-        <span class="tick-big" aria-hidden="true">✓</span>
-        <h3>Thanks, we have got it</h3>
-        <p>We will read through your project and get back to you about your quote. If you would rather talk it through now, ring <a href="tel:0427593990">0427 593 990</a>.</p>
+        <h3 class="mvx-h3">Thanks, we have got it</h3>
+        <p>We will read through your project and get back to you about the quote. If you would rather talk it through now, ring <a href="tel:0427593990">0427 593 990</a>.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── FAQ ────────────────────────────────────────────────────────── -->
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Questions people ask</h2>
-    </div>
-    <div class="faq">
-      <details>
-        <summary>Is this for emergency jobs?</summary>
-        <p>No. This page is for work you are planning, like a build, a reno or an extension. If your power is out or something is unsafe, ring 0427 593 990 and we will help you from there.</p>
-      </details>
-      <details>
-        <summary>When should I ask for a quote?</summary>
-        <p>As early as you can. The best time is before the walls are lined, because that is when wiring is easy to change. Even if your build is months away, it is worth asking now.</p>
-      </details>
-      <details>
-        <summary>What kind of projects fit?</summary>
-        <p>New home builds, renovations, extensions, lighting changes, extra power points, and rewiring. Anything planned, big or small.</p>
-      </details>
-      <details>
-        <summary>Can you help me work out where the lights and power points should go?</summary>
-        <p>Yes. Most people are not sure, and that is normal. We walk through the rooms with you and work out what you need and where it should sit.</p>
-      </details>
-      <details>
-        <summary>Do you work with builders?</summary>
-        <p>Yes. We work directly with homeowners and alongside builders. If you already have a builder, we can talk to them about timing.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <img src="assets/mvx-logo-white.png" alt="MVX Electrical" width="1181" height="482">
-    <p>Electrical for new builds, renovations and extensions. Planned work, done properly.</p>
+<footer class="mvx-foot">
+  <div class="mvx-wrap">
+    <img class="mvx-foot-logo" src="assets/mvx-logo-white.png" alt="MVX Electrical" width="1181" height="482">
+    <p>Planned residential electrical work. New builds, renovations and extensions.</p>
     <div class="row">
       <span>Gold Coast and Northern NSW</span>
       <a href="tel:0427593990">0427 593 990</a>
@@ -462,14 +547,17 @@ footer .fine{margin-top:1.2rem;font-size:.84rem;color:#7d7d7d}
   </div>
 </footer>
 
-<div class="sticky">
-  <a class="btn" href="#quote">Request your free quote</a>
+<div class="mvx-sticky">
+  <a class="mvx-btn" href="#quote">Request your free quote</a>
+</div>
+
 </div>
 
 <script>
 (function () {
   var form = document.getElementById('quote-form');
   if (!form) return;
+  var page   = document.getElementById('page');
   var card   = document.getElementById('form-card');
   var done   = document.getElementById('q-done');
   var fail   = document.getElementById('q-fail');
@@ -477,18 +565,16 @@ footer .fine{margin-top:1.2rem;font-size:.84rem;color:#7d7d7d}
   var button = document.getElementById('q-submit');
   var STORE  = 'mvx-newbuild-quote';
 
-  // The markup ships without `novalidate` so a visitor with JS off still gets
-  // the browser's own checks. Now that JS is running we switch it off, because
-  // native validation blocks the submit event before our own plain-language
-  // messages can render beside each field.
+  // The markup ships without novalidate, so a visitor with JS off still gets the
+  // browser's own checks. Now that JS is running we turn it off, because native
+  // validation blocks the submit event before our own messages can render.
   form.noValidate = true;
 
   var MESSAGES = {
     'q-name':   { empty: 'We need a name so we know who we are talking to.' },
     'q-phone':  { empty: 'We need a phone number in case we have a question.',
                   bad:   'That number does not look right. Have a quick check.' },
-    'q-email':  { empty: 'We need an email so we can send the quote.',
-                  bad:   'That email does not look right. Have a quick check.' },
+    'q-suburb': { empty: 'Which suburb is the job in?' },
     'q-type':   { empty: 'Pick the closest option so we know what the job is.' }
   };
   var fields = Object.keys(MESSAGES).map(function (id) { return document.getElementById(id); });
@@ -519,8 +605,6 @@ footer .fine{margin-top:1.2rem;font-size:.84rem;color:#7d7d7d}
     });
   });
 
-  // Keep what was typed. People fill these in on a site, get interrupted,
-  // and come back.
   function save() {
     try {
       var d = {};
@@ -566,11 +650,11 @@ footer .fine{margin-top:1.2rem;font-size:.84rem;color:#7d7d7d}
       return;
     }
 
-    if (button.getAttribute('aria-busy') === 'true') return;   // no double sends
+    if (button.getAttribute('aria-busy') === 'true') return;
     button.setAttribute('aria-busy', 'true');
     button.disabled = true;
     var label = button.textContent;
-    button.textContent = 'Sending…';
+    button.textContent = 'Sending...';
     status.textContent = 'Sending your details.';
 
     var endpoint = form.getAttribute('data-endpoint');
@@ -598,16 +682,14 @@ footer .fine{margin-top:1.2rem;font-size:.84rem;color:#7d7d7d}
       });
   });
 
-  // Hide the sticky bar once the form is on screen: it would cover the button
-  // the visitor is already looking at.
+  // The sticky bar would cover the button the visitor is already looking at.
   var quote = document.getElementById('quote');
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      document.body.classList.toggle('form-open', entries[0].isIntersecting);
-    }, { threshold: 0.22 }).observe(quote);
+    new IntersectionObserver(function (e) {
+      page.classList.toggle('form-open', e[0].isIntersecting);
+    }, { threshold: .2 }).observe(quote);
   }
 })();
 </script>
-
 </body>
 </html>
