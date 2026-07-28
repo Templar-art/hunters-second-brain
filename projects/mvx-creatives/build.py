@@ -189,7 +189,7 @@ def badge_width(d, scale=1.0):
     return d.textlength("Google", font=gf)
 
 
-def footer(im, d, W, bottom, cta, cta_max_w, scale=0.82, logo_h=80):
+def footer(im, d, W, bottom, cta, cta_max_w, scale=0.82, logo_h=80, cta_start=104, top_limit=None):
     """CTA line + logo/badge row, laid out from the bottom edge up so
     nothing ever clips off the canvas. Returns the top y of the block."""
     bh = badge_height(scale)
@@ -205,11 +205,17 @@ def footer(im, d, W, bottom, cta, cta_max_w, scale=0.82, logo_h=80):
     google_badge(im, d, lx + logo_w + gap_x + bw / 2, row_y + (row_h - bh) / 2, scale)
 
     a, b_ = cta
-    cf = fit(f"{a} {b_}", LEAGUE, cta_max_w, 104)
+    cf = fit(f"{a} {b_}", LEAGUE, cta_max_w, cta_start)
+    # Never let the CTA push above the block it lives in (it was crossing the
+    # green rule and sitting over the photo).
+    if top_limit is not None:
+        avail = row_y - 26 - top_limit
+        while cf.size > 40 and cf.size > avail:
+            cf = f(LEAGUE, cf.size - 2)
     aw = d.textlength(a + " ", font=cf)
     bw2 = d.textlength(b_, font=cf)
     sx = (W - (aw + bw2)) / 2
-    cy = row_y - 34 - cf.size
+    cy = row_y - 26 - cf.size
     d.text((sx, cy), a + " ", font=cf, fill=BLACK)
     d.text((sx + aw, cy), b_, font=cf, fill=GREEN)
     return cy
@@ -226,7 +232,7 @@ def paste_logo(im, path, x, y, h):
 # ── Square 1080×1080 ─────────────────────────────────────────────────────
 def build_square(key, cfg):
     W = H = 1080
-    photo_h = 742
+    photo_h = int(H * 0.723)   # green rule sits at ~72% in the original
     im = Image.new("RGB", (W, H), WHITE)
 
     ph = cover(Image.open(BASE / "photos" / cfg["photo"]).convert("RGB"), W, photo_h)
@@ -240,34 +246,34 @@ def build_square(key, cfg):
     pill(d, (M, 52), "Gold Coast", f(POP_SB, 34), WHITE, BLACK)
 
     # Headline, left column
-    col_w = 545
-    hl = fit(cfg["head_green"], LEAGUE, col_w, 118)
+    col_w = int(W * 0.505)      # headline column, as in the original
+    # Wrap the white line, then set EVERY line at one shared size, as large as
+    # will fit the column. The original headline is big and fills the left half.
     words = cfg["head_white"].split()
-    # break the white line into at most 2 lines that fit
+    probe = f(LEAGUE, 150)
     lines, cur = [], ""
     for w_ in words:
         t = (cur + " " + w_).strip()
-        if f(LEAGUE, 118).getbbox(t)[2] <= col_w or not cur:
+        if probe.getbbox(t)[2] <= col_w or not cur:
             cur = t
         else:
-            lines.append(cur)
-            cur = w_
+            lines.append(cur); cur = w_
     lines.append(cur)
-    hw = min([fit(l, LEAGUE, col_w, 118).size for l in lines])
-    hwf = f(LEAGUE, hw)
+    size = min([fit(t, LEAGUE, col_w, 150).size for t in [cfg["head_green"]] + lines])
+    hf = f(LEAGUE, size)
 
-    y = 272
-    d.text((M, y), cfg["head_green"], font=hl, fill=GREEN)
-    y += int(hl.size * 0.92)
+    y = int(H * 0.165)          # headline starts high, as in the original
+    d.text((M, y), cfg["head_green"], font=hf, fill=GREEN)
+    y += int(hf.size * 0.90)
     for l in lines:
-        d.text((M, y), l, font=hwf, fill=WHITE)
-        y += int(hwf.size * 0.92)
+        d.text((M, y), l, font=hf, fill=WHITE)
+        y += int(hf.size * 0.90)
 
     # Checklist, right column
-    bf = f(POP, 35)
-    bx, r = 618, 31
+    bf = f(POP, int(W * 0.0345))
+    bx, r = int(W * 0.575), int(W * 0.029)
     n = len(cfg["bullets"])
-    gap = 124
+    gap = int(H * 0.118)
     by = (photo_h - (n - 1) * gap) // 2
     for i, b in enumerate(cfg["bullets"]):
         cy = by + i * gap
@@ -283,7 +289,8 @@ def build_square(key, cfg):
 
     # Green rule, then the white CTA block (laid out from the bottom up)
     d.rectangle([0, photo_h, W, photo_h + 16], fill=GREEN)
-    footer(im, d, W, H - 42, cfg["cta"], W - 130, scale=0.80, logo_h=78)
+    footer(im, d, W, H - 26, cfg["cta"], W - 110, scale=0.70, logo_h=72,
+           cta_start=126, top_limit=photo_h + 16 + 14)
 
     p = OUT / f"mvx-{key}-1x1.png"
     im.save(p)
@@ -323,7 +330,7 @@ def build_story(key, cfg):
             d.text((tx, cy), b, font=bf, fill=INK, anchor="lm")
 
     # Photo block with the offset green slabs behind it
-    py = y0 + 260
+    py = y0 + 168
     pw, ph_ = W - M * 2 - 40, 640
     d.rectangle([0, py + 200, W, py + ph_ - 60], fill=GREEN)
     ph = cover(Image.open(BASE / "photos" / cfg["photo"]).convert("RGB"), pw, ph_)
@@ -332,9 +339,13 @@ def build_story(key, cfg):
     im.paste(ph, (M + 20, py), mask)
 
     # CTA + logos on white
-    # Base green slab, matching the incumbent story layout
-    d.rectangle([0, H - 132, W, H], fill=GREEN)
-    footer(im, d, W, H - 132 - 46, cfg["cta"], W - 150, scale=0.80, logo_h=74)
+    # Base green slab plus the repeated photo crop, as in the original story
+    band_top = H - 190
+    d.rectangle([0, band_top, W, H], fill=GREEN)
+    band = cover(Image.open(BASE / "photos" / cfg["photo"]).convert("RGB"), pw, 150)
+    im.paste(band, (M + 20, band_top + 20))
+    footer(im, d, W, band_top - 34, cfg["cta"], W - 150, scale=0.70, logo_h=70,
+           cta_start=112, top_limit=py + ph_ + 30)
 
     p = OUT / f"mvx-{key}-9x16.png"
     im.save(p)
