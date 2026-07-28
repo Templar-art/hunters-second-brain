@@ -69,11 +69,11 @@ SERVICES = {
         "cta": ("GET IN TOUCH", "TODAY"),
     },
     "hotwater": {
-        # ⚠️ STILL NOT A HOT WATER PHOTO. Nothing in MVX's library shows a
-        # hot water system. Using real crew-at-a-panel instead of stock, which
-        # at least matches the "we're the electricians" message and is on-brand.
-        # Replace with an actual changeover shot as soon as Matt has one.
-        "photo": "liversaver9.jpg",
+        # Hot water stock supplied by Hunter, 28 Jul: a tech at a wall-mounted
+        # unit. Landscape crop for the square, portrait for the story.
+        "photo": "hotwater-wide.jpg",
+        "photo_sq": "hotwater-wide.jpg",
+        "photo_st": "hotwater-tall.jpg",
         "head_green": "NO HOT WATER?",
         "head_white": "WE'RE THE ELECTRICIANS",
         "bullets": [
@@ -89,17 +89,19 @@ SERVICES = {
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────
-def cover(img, w, h):
-    """Scale + centre-crop to exactly w×h."""
+def cover(img, w, h, fx=0.5, fy=0.5):
+    """Scale + crop to exactly w×h. fx/fy bias which part is kept (0=left/top,
+    1=right/bottom). On the square, the subject is biased right so the big
+    headline isn't sitting on top of somebody's face."""
     ar_t, ar_i = w / h, img.width / img.height
     if ar_i > ar_t:
-        nh = h
-        nw = int(h * ar_i)
+        nh, nw = h, int(h * ar_i)
     else:
-        nw = w
-        nh = int(w / ar_i)
+        nw, nh = w, int(w / ar_i)
     img = img.resize((nw, nh), Image.LANCZOS)
-    return img.crop(((nw - w) // 2, (nh - h) // 2, (nw - w) // 2 + w, (nh - h) // 2 + h))
+    x = int((nw - w) * fx)
+    y = int((nh - h) * fy)
+    return img.crop((x, y, x + w, y + h))
 
 
 def pill(d, xy, text, font, bg, fg, pad=(34, 18), r=100):
@@ -247,7 +249,8 @@ def build_square(key, cfg):
     photo_h = int(H * 0.723)   # green rule sits at ~72% in the original
     im = Image.new("RGB", (W, H), WHITE)
 
-    ph = cover(Image.open(BASE / "photos" / cfg["photo"]).convert("RGB"), W, photo_h)
+    ph = cover(Image.open(BASE / "photos" / cfg.get("photo_sq", cfg["photo"])).convert("RGB"),
+               W, photo_h, fx=cfg.get("fx_sq", 0.5), fy=cfg.get("fy_sq", 0.5))
     # Dark scrim so white type survives the frame, per brand legibility rule
     scrim = Image.new("RGB", (W, photo_h), (38, 38, 38))
     ph = Image.blend(ph, scrim, 0.62)
@@ -257,29 +260,42 @@ def build_square(key, cfg):
     M = 58
     pill(d, (M, 52), "Gold Coast", f(POP_SB, 34), WHITE, BLACK)
 
-    # Headline, left column
-    col_w = int(W * 0.505)      # headline column, as in the original
-    # Wrap the white line, then set EVERY line at one shared size, as large as
-    # will fit the column. The original headline is big and fills the left half.
-    words = cfg["head_white"].split()
-    probe = f(LEAGUE, 150)
-    lines, cur = [], ""
-    for w_ in words:
-        t = (cur + " " + w_).strip()
-        if probe.getbbox(t)[2] <= col_w or not cur:
-            cur = t
-        else:
-            lines.append(cur); cur = w_
-    lines.append(cur)
-    size = min([fit(t, LEAGUE, col_w, 150).size for t in [cfg["head_green"]] + lines])
+    # Headline, left column. BOTH the green and white lines wrap, and the whole
+    # block is sized to FILL the column top to bottom. Sizing off the longest
+    # single line left short headlines floating in void space.
+    col_w = int(W * 0.505)
+    top = int(H * 0.145)
+    avail_h = int(photo_h * 0.94) - top
+    LEAD = 0.885
+
+    def wrap(text, font):
+        out, cur = [], ""
+        for w_ in text.split():
+            t = (cur + " " + w_).strip()
+            if font.getbbox(t)[2] <= col_w or not cur:
+                cur = t
+            else:
+                out.append(cur); cur = w_
+        out.append(cur)
+        return out
+
+    size, g_lines, w_lines = 40, [cfg["head_green"]], [cfg["head_white"]]
+    for s_ in range(200, 40, -2):
+        fo = f(LEAGUE, s_)
+        gl, wl = wrap(cfg["head_green"], fo), wrap(cfg["head_white"], fo)
+        widest = max(fo.getbbox(t)[2] for t in gl + wl)
+        if widest <= col_w and (len(gl) + len(wl)) * s_ * LEAD <= avail_h:
+            size, g_lines, w_lines = s_, gl, wl
+            break
     hf = f(LEAGUE, size)
 
-    y = int(H * 0.165)          # headline starts high, as in the original
-    d.text((M, y), cfg["head_green"], font=hf, fill=GREEN)
-    y += int(hf.size * 0.90)
-    for l in lines:
+    y = top
+    for l in g_lines:
+        d.text((M, y), l, font=hf, fill=GREEN)
+        y += int(hf.size * LEAD)
+    for l in w_lines:
         d.text((M, y), l, font=hf, fill=WHITE)
-        y += int(hf.size * 0.90)
+        y += int(hf.size * LEAD)
 
     # Checklist, right column
     bf = f(POP, int(W * 0.0345))
@@ -348,7 +364,7 @@ def build_story(key, cfg):
     py = y0 + 168
     pw = W - (M + 20) * 2
     ph_h = H - 26 - py
-    ph = cover(Image.open(BASE / "photos" / cfg["photo"]).convert("RGB"), pw, ph_h)
+    ph = cover(Image.open(BASE / "photos" / cfg.get("photo_st", cfg["photo"])).convert("RGB"), pw, ph_h)
     mask = Image.new("L", (pw, ph_h), 0)
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, pw, ph_h], radius=26, fill=255)
 

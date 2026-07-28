@@ -24,7 +24,18 @@ Real MVX imagery only, chosen off a contact sheet rather than filenames.
 
 - **Aircon** — `79233.jpg`, split-system service. The shot already used in the incumbent creative.
 - **General electrical** — `liversaver10.jpg`, real crew in hi-vis at a panel. Per §06 this beats stock, which the guide explicitly rejects.
-- **Hot water** — ⚠️ `liversaver9.jpg`, **not a hot water photo.** Nothing in MVX's library shows a hot water system. Real crew was chosen over stock because it's on-brand and matches the "we're the electricians" message, but this should be swapped for an actual changeover shot when Matt has one. It's the weakest of the six.
+- **Hot water** — `hotwater-wide.jpg` (square) and `hotwater-tall.jpg` (story), stock supplied by Hunter 28 Jul. A tech at a wall-mounted unit. Each format gets the crop that suits it, via `photo_sq` / `photo_st`.
+
+## Headline sizing
+
+The square headline **fills the left column top to bottom**. Both the green and
+white lines wrap, and the block is set at the largest shared size where every
+line fits the column and the whole thing fits the available height.
+
+Sizing off the longest single line instead left short headlines ("Electrical
+problems at home?") floating in void space, which was the first thing Hunter
+picked up. Longer headlines now come out smaller and taller, shorter ones bigger,
+and either way the column is full.
 
 ## Notes
 
@@ -32,6 +43,7 @@ Real MVX imagery only, chosen off a contact sheet rather than filenames.
 - **The story is ONE photo.** A single image sits behind the lower two thirds; the white CTA panel is drawn over it, so the photo shows above the panel and again below the green band. It is not two crops.
 - Green stays an accent: the CTA word, the ticks, the rule and the slabs. Never a background fill, per §04.
 - To change wording, edit `SERVICES` at the top of `build.py` and re-run. Nothing else needs touching.
+- `fx_sq` / `fy_sq` bias the square's crop, but every current photo is 3:2 against a 1.38:1 frame, so there's only ~90px of horizontal play. It won't reposition a subject out from under the headline; the dark scrim is what keeps the type legible. Left at centre.
 
 ---
 _Vault: [[mvx-electrical]] · campaign spec: [BUILD.md](../mvx-meta-rebuild/BUILD.md)_
