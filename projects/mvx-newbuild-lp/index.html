@@ -49,6 +49,7 @@
 .mvx-lp *,.mvx-lp *::before,.mvx-lp *::after{margin:0;padding:0;box-sizing:border-box}
 .mvx-lp img{max-width:100%;display:block;height:auto}
 .mvx-lp p{text-wrap:pretty;max-width:66ch}
+.mvx-lp p,.mvx-lp li,.mvx-lp h1,.mvx-lp h2,.mvx-lp h3,.mvx-lp h4{overflow-wrap:break-word}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .mvx-wrap{width:min(1200px,92vw);margin-inline:auto}
@@ -258,6 +259,8 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
     <a class="mvx-head-tel" href="tel:0427593990">0427 593 990</a>
   </div>
 </header>
+
+<main id="main">
 
 <section class="mvx-hero">
   <div class="mvx-wrap">
@@ -484,7 +487,11 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 
     <div>
       <!-- Set data-endpoint to the real handler before launch. While it reads
-           REPLACE_ME the page shows the success state and warns in the console. -->
+           REPLACE_ME the page shows the success state and warns in the console.
+           NOTE for whoever wires it: maxlength and pattern here are conveniences
+           for the person typing, not validation. A script can set any value and
+           a POST can be crafted by hand, so the handler must validate length and
+           content itself, and rate-limit. -->
       <div class="form-card" id="form-card">
         <form id="quote-form" method="post" action="#" data-endpoint="REPLACE_ME">
           <div class="mvx-field">
@@ -522,6 +529,11 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
                       placeholder="For example: knocking out the kitchen wall, need new power points and downlights."></textarea>
           </div>
 
+          <noscript>
+            <div class="sendfail" style="margin-bottom:1rem">
+              <strong>This form needs JavaScript to send.</strong> It looks like it is switched off, so please call <a href="tel:0427593990">0427 593 990</a> and we will take your details over the phone.
+            </div>
+          </noscript>
           <button type="submit" class="mvx-btn mvx-submit" id="q-submit">Request your free quote</button>
           <p class="form-alt">Would rather talk? Call <a href="tel:0427593990">0427 593 990</a>.</p>
           <p class="mvx-sr" role="status" aria-live="polite" id="q-status"></p>
@@ -539,6 +551,8 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
     </div>
   </div>
 </section>
+
+</main>
 
 <footer class="mvx-foot">
   <div class="mvx-wrap">
@@ -675,12 +689,38 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
       return;
     }
 
-    fetch(endpoint, { method: 'POST', body: new FormData(form) })
+    // Offline is worth catching up front: a fetch on a dead connection just
+    // hangs until it times out, and the visitor sits watching "Sending".
+    if (navigator.onLine === false) {
+      reset();
+      fail.hidden = false;
+      status.textContent = 'You look offline. Your details are still here, or you can call us instead.';
+      return;
+    }
+
+    // Bound the request. Without this the button can stay busy indefinitely on
+    // a stalled connection, which is a common state on a building site.
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+
+    fetch(endpoint, {
+      method: 'POST',
+      body: new FormData(form),
+      signal: ctrl ? ctrl.signal : undefined
+    })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
+        // Some form handlers answer 200 with an error in the body. Read it if
+        // it is JSON, ignore it if it is not, and never treat an error as a send.
+        return res.clone().json().catch(function () { return null; });
+      })
+      .then(function (body) {
+        if (body && (body.error || body.success === false)) throw new Error('handler rejected');
+        clearTimeout(timer);
         reset(); succeed();
       })
       .catch(function () {
+        clearTimeout(timer);
         reset();
         fail.hidden = false;
         status.textContent = 'That did not send. Your details are still here, or you can call us instead.';

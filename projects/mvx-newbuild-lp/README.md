@@ -46,6 +46,27 @@ each field.
 `hidden` attribute, and without that line every error row renders on page load as a
 bare "!" glyph. It has bitten this codebase once already.
 
+## Edge cases handled
+
+Tested rather than assumed:
+
+| Case | Behaviour |
+|---|---|
+| JavaScript off | `<noscript>` block tells the visitor to call. Without it a valid submit posted to `#` and looked like it worked |
+| Offline | Caught before the fetch, so the button does not sit on "Sending" waiting for a timeout |
+| Stalled connection | 15s `AbortController` timeout, then the failure state |
+| Handler returns 200 with an error body | Read as JSON if it is JSON, treated as a failure, never as a send |
+| Network failure | Failure state shown, button reset, form still filled, success never shown |
+| Triple-tap submit | Guarded by `aria-busy`; one send, one success |
+| Emoji, CJK, RTL input | Accepted, no layout shift |
+| Emoji in the phone field | Rejected by `pattern`; `+61 (07) 5555 1234` accepted |
+| Very long unbroken words | `overflow-wrap:break-word` on text elements, no page overflow |
+| `sessionStorage` unavailable | Wrapped in try/catch, form still works |
+
+**`maxlength` and `pattern` are conveniences for the person typing, not
+validation.** A script can set any value and a POST can be hand-crafted, so the
+handler must validate length and content itself and rate-limit.
+
 ## Verified
 
 No horizontal overflow at 375 or 1280. One `h1`, no heading skips. Every image has
