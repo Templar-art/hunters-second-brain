@@ -1,7 +1,7 @@
 # MVX Meta Rebuild — build sheet
 
 **Date:** 2026-07-28 · **Goal:** fewer, better leads. Not cheaper leads.
-**Why rebuild rather than edit:** Meta locks conversion location and performance goal after an ad set publishes, so the existing two campaigns can't be corrected. Delete both, start clean.
+**Why build new rather than edit:** Meta locks conversion location and performance goal once an ad set publishes, so the existing campaigns can't be corrected. **Nothing gets deleted** — hot water launches as a new campaign and aircon keeps running as the control.
 
 ## What went wrong (so we don't repeat it)
 
@@ -128,11 +128,12 @@ No manufactured urgency in any of the four. Angle 3 is deliberately about **runn
 
 ## Sequence
 
-1. Delete both existing campaigns (General Electrician $89/lead, Aircon Push)
-3. Build the form first, the ad set second, the four ads last
-3. Launch at $20/day
-4. Lach's call tracking lands → switch the performance goal to conversion leads
-6. If the new settings win: rebuild aircon the same way, then Google. Lach's call tracking landing switches the performance goal to conversion leads
+1. **Matt confirms the plumbing route** and the current rebate figure. Nothing launches before this.
+2. **Pause** General Electrician. Leave Aircon Push running as the control. Delete nothing.
+3. Build the **form** first, the **ad set** second, the **four ads** last. The ad set is the step that can't be undone, so check conversion location and performance goal twice before publishing.
+4. Launch hot water at **$20/day**.
+5. **Day 7 review** against the kill rules, comparing lead quality against aircon on the old settings.
+6. If the new settings win: rebuild aircon the same way, then Google. Lach's call tracking landing is what lets the performance goal switch to conversion leads.
 
 ---
 _Vault: [[mvx-electrical]] · method: [[paid-ads-diagnostic-rulebook]] · proven pattern: [[strategic-investing-qld]]_
