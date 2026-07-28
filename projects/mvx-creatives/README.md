@@ -9,6 +9,11 @@ Regenerate: `python3 build.py`. No credits, no paid APIs — PIL + League Gothic
 | Aircon | `out/mvx-aircon-1x1.png` | `out/mvx-aircon-9x16.png` | Get your free quote |
 | General electrical | `out/mvx-general-1x1.png` | `out/mvx-general-9x16.png` | Get in touch today |
 | Hot water | `out/mvx-hotwater-1x1.png` | `out/mvx-hotwater-9x16.png` | Get your free quote |
+| **New builds & renos** | `out/mvx-newbuild-1x1.png` | `out/mvx-newbuild-9x16.png` | Request your free quote |
+
+**New builds & renos is the live one.** It's the offer for the current campaign
+(see `../mvx-meta-rebuild/BUILD-NEWBUILDS.md`). The other three are symptom-led
+and belong to the superseded three-service plan; keep them, don't run them yet.
 
 ## Copy rules applied
 
@@ -36,6 +41,18 @@ Sizing off the longest single line instead left short headlines ("Electrical
 problems at home?") floating in void space, which was the first thing Hunter
 picked up. Longer headlines now come out smaller and taller, shorter ones bigger,
 and either way the column is full.
+
+## Cropping a wide photo into the story format
+
+The story block is roughly 0.70 aspect and every source photo is 3:2, so a plain
+crop keeps only about half the width. When the subject is small in frame that
+loses the action: the new-build shot cropped straight onto the tradesman's
+shoulder, then onto bare brick, and read as a photo of a wall.
+
+`crop_st` fixes it. It takes a normalised `(x0, y0, x1, y1)` region of the source
+and applies it *before* the fit, so you can frame the part that matters. The
+new-build story uses `(0.28, 0.30, 0.94, 1.0)` to land on the hand, pliers and
+cable. `fx_st` / `fy_st` bias the remaining crop if that's all you need.
 
 ## Notes
 

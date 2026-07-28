@@ -68,6 +68,24 @@ SERVICES = {
         ],
         "cta": ("GET IN TOUCH", "TODAY"),
     },
+    "newbuild": {
+        # Planned work, not emergencies. Rough-in on site: reads as a build,
+        # not a service call. Supplied by Hunter 28 Jul.
+        "photo": "newbuild.jpg",
+        # Tighten onto the hand, pliers and cable. The full frame is mostly
+        # wall, so a plain crop reads as a brick photo with an arm in it.
+        "crop_st": (0.28, 0.30, 0.94, 1.0),
+        "head_green": "ELECTRICAL",
+        "head_white": "FOR NEW BUILDS & RENOS",
+        "bullets": [
+            "New home builds",
+            "Renovations & extensions",
+            "Lighting & power points",
+            "Switchboard upgrades",
+            "Fit-off & final connection",
+        ],
+        "cta": ("REQUEST YOUR FREE", "QUOTE"),
+    },
     "hotwater": {
         # Hot water stock supplied by Hunter, 28 Jul: a tech at a wall-mounted
         # unit. Landscape crop for the square, portrait for the story.
@@ -89,6 +107,17 @@ SERVICES = {
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────
+def region(img, box):
+    """Crop to a normalised (x0,y0,x1,y1) region of the source before fitting.
+    Needed when the subject is small in frame: on a tall format, a plain crop of
+    a wide photo keeps the background and loses the action."""
+    if not box:
+        return img
+    x0, y0, x1, y1 = box
+    return img.crop((int(x0 * img.width), int(y0 * img.height),
+                     int(x1 * img.width), int(y1 * img.height)))
+
+
 def cover(img, w, h, fx=0.5, fy=0.5):
     """Scale + crop to exactly w×h. fx/fy bias which part is kept (0=left/top,
     1=right/bottom). On the square, the subject is biased right so the big
@@ -364,7 +393,12 @@ def build_story(key, cfg):
     py = y0 + 168
     pw = W - (M + 20) * 2
     ph_h = H - 26 - py
-    ph = cover(Image.open(BASE / "photos" / cfg.get("photo_st", cfg["photo"])).convert("RGB"), pw, ph_h)
+    # A landscape source cropped into a tall block loses most of the frame, so
+    # fx_st picks which horizontal slice survives. Without it the new-build shot
+    # cropped onto the tradesman's shoulder and the job wasn't readable.
+    ph = cover(region(Image.open(BASE / "photos" / cfg.get("photo_st", cfg["photo"])).convert("RGB"),
+                      cfg.get("crop_st")),
+               pw, ph_h, fx=cfg.get("fx_st", 0.5), fy=cfg.get("fy_st", 0.5))
     mask = Image.new("L", (pw, ph_h), 0)
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, pw, ph_h], radius=26, fill=255)
 
