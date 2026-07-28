@@ -15,148 +15,178 @@ After that the link to their instagrams are
 
 Please go watch all the videos they have in their instagram, they dont have many so it wont take you very long to, take a couple of notes on cool shots you see and would like to replicate.
 
-Below is the rest of it, what to look for while you are watching, the tools and the rules I have gathered on how this sort of thing gets made, and a small test at the end so you can have a go yourself.
+The rest of this is what to look for while you watch, the tools and the rules I have found on how this kind of video gets made, and a small test at the end so you can try it yourself. If any part of this is not clear, please just ask me and I will explain it again in a different way.
 
 ---
 
 ## 1. What we are trying to make
 
-The idea is that most of it is not filmed. An architect or a developer has 3D renders of a house that is not built yet, and those renders are usually flat and grey and obviously computer made. What we want to be able to do is turn one of those into an image that looks like a real photographer stood there with a real camera, and then bring that image to life as a short moving clip, and then cut a few of those clips together into a video.
+Most of it is not filmed with a camera.
 
-So the order would be:
+An architect has 3D renders of a house that is not built yet. Those renders look flat and grey. You can tell they came from a computer.
 
-1. A render (or a photo) comes in
-2. Make it look photoreal, same room, same camera angle, just believable
-3. Animate that finished image into a 3 to 5 second clip
-4. Cut the clips together into the video
+We want to take one of those renders and make it look like a real photo, taken by a real photographer in a real room. Then we want to make that photo move for 3 to 5 seconds. Then we cut a few of those clips together into a video.
 
-One thing to have in your head the whole way through: we are not designing a new house. The building has to stay exactly as the architect drew it. We are only changing how it is lit and how real it looks and how the camera moves. If a window ends up in a different spot, or the benchtop changes shape, that image is no good to us no matter how nice it looks.
+So the steps would be:
+
+1. A render arrives
+2. We make it look real. Same room, same camera angle, just believable
+3. We turn that image into a short clip
+4. We cut the clips together
+
+One important thing. We are not designing a new house. The building must stay exactly as the architect drew it. We only change the light, how real it looks, and how the camera moves. If a window moves to a different place, or a benchtop changes shape, we cannot use that image. Even if it looks beautiful.
 
 ## 2. Phase 1, the research (please do this first)
 
-Give yourself a couple of hours on the website and the two Instagrams. What I am after is not a summary of what they sell, I can read that myself. I want to work out how the videos are actually built. So while you watch, note down:
+Spend a couple of hours on the website and the two Instagram pages.
 
-**On the shots themselves**
+I do not need a summary of what they sell. I can read that myself. I want to understand how the videos are built. So while you watch, write down these things.
 
-* How the camera moves. Is it a slow push in, a slow pull back, a rise up, a slide sideways, a reveal from behind a wall or a plant. Write down the move, not just "nice shot"
-* How long each shot is before it cuts. Most of theirs look short to me, count them properly
-* Where the shot starts and where it ends. I think a lot of AI clips are just a start frame and an end frame, so if you can work out what those two frames were you have basically reverse engineered the shot
-* What time of day it is. It looks to me like most of the good ones are warm late afternoon or dusk, see if that holds up
-* Whether there are people in the shot, and if so how they are used. Looks like mostly a person walking through frame or a hand doing something small, never a face doing acting
-* The little detail shots. Water moving, a curtain, light across a benchtop, a plant in the breeze. I have a feeling these are what stop it feeling like a slideshow, see what you think
+**About the shots**
 
-**On the edit**
+* How does the camera move? Slow push in, slow pull back, rise up, slide sideways, or a reveal from behind a wall or a plant. Write the move, not just "nice shot"
+* How long is the shot before it cuts? They look short to me. Please count them
+* What do you see in the first frame, and what do you see in the last frame? I think many AI clips are only a start frame and an end frame. If you can see those two frames, you understand how the shot was made
+* What time of day is it? To me, most of the good ones look like late afternoon or dusk. See if you agree
+* Are there people in the shot? If yes, how are they used? It looks like a person walking past, or a hand doing something small. Never a face acting
+* Are there small detail shots? Water moving, a curtain, light on a benchtop, a plant in the wind. I think these are what make it feel like a film and not a slideshow. Tell me what you think
 
-* How they get from one shot into the next. Straight cut, or a match cut where the movement carries through
-* The sound. Music only, or is there ambience like birds and water underneath, or a voice over
-* Any text on screen, when it comes in, how long it stays
-* The colour. Warm or cool, is it contrasty, are the shadows blue or black
+**About the edit**
 
-**What I would like back from you**
+* How does one shot join the next one? A normal cut, or does the movement continue through the cut?
+* The sound. Only music? Or also background sound like birds and water? Or a voice?
+* Is there text on screen? When does it appear, and how long does it stay?
+* The colour. Warm or cold? Strong contrast or soft? Are the shadows blue or black?
 
-One document, it doesnt need to be pretty. For every video you watch: the link, roughly how many shots are in it, then a line per shot in the format "camera move, what is in frame, how long". Then at the bottom, the 5 or 6 shots you reckon are the best and would like to have a go at recreating, and one sentence each on why you think that shot works.
+**What I would like from you**
 
-Send that through before you start making anything, and we will go through it together and pick which ones you try. Honestly I am interested in what you see in them, you might pick up things I have missed.
+One document. It does not need to look nice.
+
+For each video: the link, how many shots it has, then one line for each shot, like this:
+
+`slow push in, kitchen towards window, 4 seconds`
+
+At the end, choose the 5 or 6 shots you like most and want to try to make yourself. Write one sentence for each one about why you think it works.
+
+Please send me that document before you make anything. Then we will look at it together and choose which shots you try. I am interested in what you see, you may notice things I did not.
 
 ## 3. Phase 2, the images
 
-The tool we would be using is Higgsfield. I will sort out your access to it, please dont pay for anything yourself, and please dont run generations on anything outside of what I have given you, because every generation costs money off our account.
+The tool for this is Higgsfield. I will give you access. Please do not pay for anything yourself. And please only run generations on the files I give you, because every generation costs money from our account.
 
-From what I understand there are two different jobs and they want two different models:
+There are two different jobs, and each one needs a different model:
 
-* **Making a render look real, same room, nothing moved.** Seedream 4.5. This one sticks closely to the image you give it, which is what we want on someones render
-* **Putting furniture into an empty room, or restyling a room.** Nano Banana Pro. This one is more creative, which is good for furniture and bad for architecture
+* **Make a render look real. Same room, nothing moved.** Use **Seedream 4.5**. This one stays close to the image you give it. That is what we want for someones render
+* **Put furniture in an empty room, or change the style of a room.** Use **Nano Banana Pro**. This one is more creative. Good for furniture, bad for architecture
 
-Before you run anything, check the size of the source image so you can set the right aspect ratio. A 16:9 image has to be generated as 16:9, a square as 1:1, otherwise it comes back stretched or cropped and the generation is wasted.
+Before you start, check the size of the image so you use the right aspect ratio. A 16:9 image must be generated as 16:9. A square image as 1:1. If this is wrong the image comes back stretched or cropped, and the generation is wasted.
 
-### Writing the prompt
+### How to write the prompt
 
-This seems to be the part that decides whether it works, so read it twice.
+This part decides if it works, so please read it twice.
 
-**Describe the finished photo, like you are describing a photo that already exists.** Dont write instructions, and try to avoid the words "dont", "remove", "keep" and "avoid". These models dont really deal with no. If you write "no clutter on the bench" you can easily end up with clutter on the bench.
+**Describe the finished photo. Write it like the photo already exists.**
 
-So not this:
+Do not write instructions. Try not to use the words "dont", "remove", "keep" or "avoid". These models do not understand "no" very well. If you write "no plates on the bench", you often get plates on the bench.
+
+Not like this:
 
 > make this render look realistic, dont change the kitchen, remove the grey look
 
-More like this:
+Better like this:
 
 > Photorealistic luxury real estate photograph. Open plan kitchen, large stone topped island bench, integrated appliances, full height cabinetry, pendant lighting over the island, floor to ceiling windows, natural light. Warm timber joinery, white plaster walls, blonde oak flooring. Identical camera angle. High resolution.
 
-The rest of what goes with it:
+You can see the shape of it. Room, materials, light, floor, then camera angle. Nouns and materials, no instructions.
 
-* **One job per prompt.** If you want it photoreal and you also want the sky changed and you also want a sofa added, thats three passes, not one sentence with three jobs in it. The more you ask for at once the more it takes liberties with the rest of the frame
-* **Always generate from the original file.** Dont feed an AI output back in for a second go, it gets softer and mushier each time. If something is wrong, go back to the original and change the prompt
-* **Short and dense seems to beat long and careful.** Materials, light, floor, camera angle
-* **End with "Identical camera angle. High resolution."** every time
-* **Use the same wording across every room in the one house.** If one prompt says warm afternoon and the next says bright midday, the clips wont cut together at the end
+Other rules:
 
-### The one I would really like you to be careful with
+* **One job per prompt.** You want it photoreal, and you want a new sky, and you want a sofa added? That is three separate passes. Not one sentence with three jobs. The more you ask for at one time, the more the model changes other things
+* **Always generate from the original file.** Do not put an AI result back in for a second try. It becomes soft and blurry each time. If something is wrong, go back to the original file and change the words
+* **Short and simple works better than long and detailed**
+* **Always finish with "Identical camera angle. High resolution."**
+* **Use the same words for every room in the same house.** If one prompt says warm afternoon and the next says bright midday, the clips will not match when we edit them
 
-Please dont run a full frame generation on a drone shot or a wide exterior with a lot of fine detail in it. It regenerates every single pixel, so it rebuilds the roofs and the fences and the neighbours houses, and it comes back looking wrong. On those, the sky or whatever you are fixing should be masked so only that part gets regenerated. If you get one of those and you are not sure, ask me first rather than guessing.
+### One thing to be careful with
 
-Same with real photos rather than renders. A real photo shouldnt get fully regenerated, it wants a masked fix or an upscale. Full frame generation is for renders.
+Please do not run a full frame generation on a drone shot, or on a wide photo of the outside with a lot of small detail.
+
+Full frame means the model rebuilds every pixel. So it also rebuilds the roofs, the fences and the neighbours houses. The result is always wrong.
+
+For those images, we cover everything except the part we want to change (this is called a mask), so only that part is rebuilt. If you get an image like this and you are not sure, please ask me first.
+
+Same for real photos, not renders. A real photo should not be fully regenerated. It needs a mask, or an upscale. Full frame generation is only for renders.
 
 ## 4. Phase 3, making it move
 
-Once a still is signed off, that still becomes the first frame of a clip. Kling is the one for the video side. Keep the moves slow and boring, that seems to be what makes it look expensive:
+When a still image is approved, that image becomes the first frame of a clip. Kling is the tool for the video.
 
-* Slow push in through a doorway or towards a window
-* Slow pull back to reveal the room
-* Slow rise, camera lifting up
-* Slow slide left or right past something in the foreground
-* Small detail moves, water, curtains, light shifting
+Keep the camera moves slow and simple. Slow looks expensive.
 
-What to stick to:
+* Slow push in, through a door or towards a window
+* Slow pull back, to show the whole room
+* Slow rise, the camera lifts up
+* Slow slide, left or right, past something close to the camera
+* Small detail movement. Water, curtains, light changing
 
-* One move per clip. A camera that pushes in and pans and tilts all at once looks like a video game
-* 3 to 5 seconds. Longer than that and it starts inventing things and the room warps
-* Nothing structural can move. Walls, benches, windows, taps, all fixed. If a wall bends or a bench melts thats a reject, dont try and hide it in the edit, tell me and we will run it again
-* Make a couple of versions of the shots that matter. I expect some will come back broken, so options are better than one go
+Rules:
 
-## 5. Files, naming and delivery
+* **One move per clip.** If the camera pushes in and pans and tilts at the same time, it looks like a video game
+* **3 to 5 seconds.** Longer than that and the model starts inventing things and the room bends
+* **Nothing solid can move.** Walls, benches, windows, taps. All fixed. If a wall bends or a bench melts, we cannot use that clip. Please do not hide it in the edit. Tell me and we run it again
+* **Make two or three versions of the important shots.** Some will come back broken. That is normal
 
-Lets keep it in this shape from the start, it will get messy fast otherwise:
+## 5. Files and names
+
+Please use this structure from the beginning:
 
 ```
 CLIENT NAME /
   PROPERTY ADDRESS /
-    01_ORIGINALS      the renders as they were sent, never touched, never edited
-    02_AI_IMAGES      your generated stills
+    01_ORIGINALS      the renders as they arrived. Never edited, never renamed
+    02_AI_IMAGES      your generated images
     03_VIDEO          your clips
-    04_DELIVERED      the final selects only
+    04_DELIVERED      only the final selected files
 ```
 
-Naming: `address_room_shotnumber_version`, so `28-smith-st_kitchen_01_v2.jpg`. No spaces, all lower case, keep the version number on the end.
+File names like this: `address_room_shotnumber_version`
 
-Please dont rename or edit anything in 01_ORIGINALS. Thats the source of truth, and if it gets lost we cant go back and redo anything.
+Example: `28-smith-st_kitchen_01_v2.jpg`
 
-## 6. Before you send anything over
+No spaces. All lower case. Always keep the version number at the end.
 
-* Open every file and make sure none of them are corrupt
-* Put the output next to the original and zoom in to 100%. Is it still the same room. Same windows, same benchtop, same doors, same view outside. I think this is the check that catches most of the problems, so please actually do it
-* Is the light consistent across the set, or does one room look like a different time of day
-* Melted taps, bent door frames, extra light fittings, strange reflections, plants growing out of nothing
-* On the clips, check the last second, thats usually where it falls apart
-* Then send me the lot with a short note on which ones you are not happy with and why. I would much rather hear "shot 4 is soft" from you than find it myself
+Please never edit or rename the files in 01_ORIGINALS. Those are the original files. If we lose them, we cannot make anything again.
+
+## 6. Check this before you send it to me
+
+* Open every file. Make sure none are broken
+* Put your image next to the original and zoom to 100%. Is it the same room? Same windows, same benchtop, same doors, same view outside? I think this check finds most of the problems, so please really do it
+* Is the light the same across all the images? Or does one room look like a different time of day?
+* Look for melted taps, bent door frames, extra lights, strange reflections, plants growing from nothing
+* On the clips, watch the last second. That is usually where it breaks
+* Then send me everything, with a short note about which files you are not happy with and why. I would much rather you tell me "shot 4 is soft" than me find it later
 
 ## 7. The test
 
-Once your research notes come through, I will send you 2 renders. For each one I would like:
+When your research document arrives, I will send you 2 renders.
 
-1. One photoreal still, same camera angle, nothing moved
-2. One 3 to 5 second clip made from that still, one camera move only
+For each render I would like:
 
-So four files, plus a couple of sentences on what you found hard or what didnt work. Take your time with it, I am not timing you, I am more interested in how you think about it than how fast you are.
+1. One photoreal image. Same camera angle, nothing moved
+2. One clip of 3 to 5 seconds made from that image. One camera move only
 
-## 8. Ask me rather than guessing
+So four files. Plus a few sentences about what was difficult, or what did not work.
 
-Please ask, it is never annoying:
+Please take your time. I am not timing you. I want to see how you think about it, not how fast you are.
 
-* You have been given a drone shot or a wide exterior
-* The source is a real photo rather than a render
-* You are about to run a lot of generations on the same image
-* Theres something in the render you cant identify
-* Something has failed twice. Dont go for a third, send me what you have and the prompt you used and we will look at it together
+## 8. Please ask me instead of guessing
 
-Thank you Giovanni. Take your time on the research part, I think thats honestly the most valuable bit of this. Once you have an eye for why their shots work the rest of it is mostly repetition.
+Ask me any time, it is never a problem:
+
+* You have a drone shot, or a wide photo of the outside
+* The file is a real photo and not a render
+* You are about to run many generations on the same image
+* There is something in the render and you do not know what it is
+* Something failed two times. Please do not try a third time. Send me the result and the words you used, and we look at it together
+
+Thank you Giovanni. Please take your time with the research part, I think that is the most valuable part of all of this. When you understand why their shots work, the rest is mostly repetition.
