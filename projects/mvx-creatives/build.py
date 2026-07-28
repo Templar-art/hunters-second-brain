@@ -153,7 +153,7 @@ def star(d, cx, cy, r, colour):
 
 def badge_height(scale=1.0):
     """Total drawn height of the Google badge, so callers can lay it out."""
-    return int(58 * scale) + int(66 * scale) + int(46 * scale) + int(24 * scale)
+    return int(58 * scale) + int(84 * scale) + int(46 * scale) + int(24 * scale)
 
 
 def google_badge(im, d, cx, y, scale=1.0):
@@ -176,7 +176,7 @@ def google_badge(im, d, cx, y, scale=1.0):
     rw = d.textlength(rating, font=sf)
     sw = d.textlength(stars, font=stf)
     sx = cx - (rw + sw) / 2
-    yy = y + int(66 * scale)
+    yy = y + int(84 * scale)          # clear of the Google descenders
     base = yy + sf.size * 0.78              # shared baseline
     d.text((sx, base), rating, font=sf, fill=INK, anchor="ls")
     d.text((sx + rw, base), stars, font=stf, fill=(251, 188, 5), anchor="ls")
@@ -219,6 +219,18 @@ def footer(im, d, W, bottom, cta, cta_max_w, scale=0.82, logo_h=80, cta_start=10
     d.text((sx, cy), a + " ", font=cf, fill=BLACK)
     d.text((sx + aw, cy), b_, font=cf, fill=GREEN)
     return cy
+
+
+def shadow(im, box, radius=26, blur=20, alpha=105, offset=(0, 12)):
+    """Soft drop shadow behind a rounded block. Used on the story format so the
+    green bar running behind the photo reads as a separate layer."""
+    lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    x0, y0, x1, y1 = box
+    ImageDraw.Draw(lay).rounded_rectangle(
+        [x0 + offset[0], y0 + offset[1], x1 + offset[0], y1 + offset[1]],
+        radius=radius, fill=(0, 0, 0, alpha))
+    lay = lay.filter(ImageFilter.GaussianBlur(blur))
+    im.paste(Image.alpha_composite(im.convert("RGBA"), lay).convert("RGB"), (0, 0))
 
 
 def paste_logo(im, path, x, y, h):
@@ -342,11 +354,17 @@ def build_story(key, cfg):
 
     # Green slabs bleed to the edges behind the photo
     d.rectangle([0, py + 200, W, py + 640], fill=GREEN)
+
+    # Photo lifts off the green bar
+    shadow(im, (M + 20, py, M + 20 + pw, py + ph_h), radius=26, blur=22, alpha=110)
     im.paste(ph, (M + 20, py), mask)
     d = ImageDraw.Draw(im)
 
-    # White CTA panel drawn OVER the photo, then the green band beneath it
+    # White CTA panel drawn OVER the photo, lifted off it by its own shadow
     panel_top, panel_h, band_h = 1418, 300, 62
+    shadow(im, (-40, panel_top, W + 40, panel_top + panel_h),
+           radius=0, blur=24, alpha=115, offset=(0, 0))
+    d = ImageDraw.Draw(im)
     d.rectangle([0, panel_top, W, panel_top + panel_h], fill=WHITE)
     d.rectangle([0, panel_top + panel_h, W, panel_top + panel_h + band_h], fill=GREEN)
 
