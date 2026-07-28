@@ -80,6 +80,18 @@
         "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-prestige-world/site"
       ],
       "port": 8767
+    },
+    {
+      "name": "mvx-newbuild",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8772",
+        "--directory",
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/mvx-newbuild-lp"
+      ],
+      "port": 8772
     }
   ]
 }

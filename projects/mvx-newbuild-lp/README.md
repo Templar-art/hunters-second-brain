@@ -13,7 +13,9 @@ Built for Meta ad traffic from the new builds and renovations campaign
   states can be reviewed without pretending in production.
 - [ ] **Confirm the licence and insurance line.** Two visible placeholders, in the
   trust strip and the footer. They are deliberately marked, not invented.
-- [ ] Upload the two photos and the logo, swap the relative paths for real URLs.
+- [ ] Upload the photos and the logo, swap the relative paths for real URLs. **Both
+  photos ship as a `<picture>` with a WebP `srcset` and a JPEG fallback, so every
+  size in `assets/` has to go up, not just one.**
 - [ ] Submit a test enquiry from a phone and confirm it arrives where Matt sees it.
 - [ ] Track the form submit as a conversion, and `tel:` clicks as secondary.
 
@@ -45,6 +47,29 @@ each field.
 **`.err[hidden]{display:none}` is load-bearing.** An author `display:flex` beats the
 `hidden` attribute, and without that line every error row renders on page load as a
 bare "!" glyph. It has bitten this codebase once already.
+
+## Weight
+
+Measured on the page, not estimated. A visitor on a 390px phone at 2× downloads
+**112.5 KB** total, of which 76 KB is images. Before the responsive pass it was
+**431 KB** for every visitor regardless of screen, a 74% reduction.
+
+**The hero is an `<img>`, not a CSS background.** A background image is invisible to
+the browser until the CSS parses, cannot use `srcset`, and this one is the LCP
+element. As an `<img>` with `fetchpriority="high"` it is found while the HTML is
+still being read: LCP lands at 96 ms locally. The gradient sits above it on
+`z-index:1` and the copy on `z-index:2`, so the look is unchanged.
+
+**No AVIF, deliberately.** It was generated and measured, and at the sizes this page
+actually serves it came out *larger* than WebP (hero 119 vs 115 KB, rough-in 39 vs
+31 KB). A third format for a negative saving is just more files to keep in sync.
+
+**A 750w step is not enough on its own.** A 390px phone at 2× needs 780px, which
+skipped straight past 750w to the 1200w file. The 800w step exists for exactly that
+very common case and saves 27 KB on it.
+
+**Logo densities, not a 1181px PNG for a 32px mark.** `logo-white-64.png` at 1×,
+`logo-white-96.png` at 2×: 5 KB and 8 KB against the original 24 KB.
 
 ## Edge cases handled
 

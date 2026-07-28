@@ -233,3 +233,28 @@ Two mechanics in there earn their place. **Link clicks versus landing-page views
 Benchmarks came out of a fan-out research pass with three-vote adversarial verification, and that layer paid for itself: a vendor's published real-estate CPC figures ran 2–6x better than independent aggregates and were **refuted** as market averages — a self-selected sample published as marketing. The vendor's CPL figure survived with caveats. Kept: AU real-estate CPM ~$30 (about 52% above global), link CTR ~1.68% in 2025 (down from 2.60%), vendor-lead CPL ~AU$48.71 median, generic real-estate CPL ~AU$26. Standing rule from this: a plausible number from a single source is not a fact, especially when the source sells the product.
 
 ⚠️ The CPL and CTR figures come from windows ending Sep 2024 and 2025 respectively, pre- or mid-Andromeda. Treat them as floors, and re-verify before they go in front of a client.
+
+## [2026-07-28] optimize | MVX new-builds landing page — responsive images
+
+`/impeccable optimize` on `projects/mvx-newbuild-lp/`. Measured first: the page was
+shipping **431 KB to every visitor**, of which 395 KB was two 1600px photos and a
+1181px logo PNG used for a 32px mark. A 390px phone was downloading all of it.
+
+Fixed: hero converted from a CSS background to a real `<img>` with `srcset` and
+`fetchpriority="high"` (a background image can't use `srcset` and isn't discoverable
+until the CSS parses — and it's the LCP element), both photos wrapped in `<picture>`
+with WebP plus a JPEG fallback, logo served at 64/96px densities.
+
+Result, measured in the browser: **112.5 KB on a 390px phone at 2×, down 74%.**
+LCP is now the hero image at 96 ms.
+
+Two findings worth keeping:
+- **AVIF was worse than WebP here.** Generated and measured, it came out larger at
+  the sizes this page serves. Dropped it rather than shipping a third format for a
+  negative saving.
+- **A 750w step gets skipped.** 390px at 2× needs 780px, so the browser jumped to
+  the 1200w file. Added an 800w step, which saves 27 KB on the most common phone.
+
+Still open: the ghost-border alpha fix (`rgba(255,255,255,.1)` → `.4`) has not been
+ported to the hot water and aircon pages, which inherited the 1.21:1 control
+boundary. See [[mvx-electrical]].

@@ -90,11 +90,11 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 .mvx-head-tel:hover{color:var(--mvx-green)}
 
 .mvx-hero{position:relative;background:var(--mvx-black);color:var(--mvx-white);overflow:hidden}
-.mvx-hero::before{content:"";position:absolute;inset:0;
-  background:url('assets/hero-newbuild.jpg') center 32%/cover no-repeat;opacity:.5}
-.mvx-hero::after{content:"";position:absolute;inset:0;
+.mvx-hero-pic{position:absolute;inset:0;z-index:0}
+.mvx-hero-pic img{width:100%;height:100%;object-fit:cover;object-position:center 32%;opacity:.5}
+.mvx-hero::after{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.82) 44%,rgba(0,0,0,.32) 100%)}
-.mvx-hero .mvx-wrap{position:relative;z-index:1;padding:clamp(3.4rem,8vw,6.4rem) 0 clamp(3rem,7vw,5.4rem)}
+.mvx-hero .mvx-wrap{position:relative;z-index:2;padding:clamp(3.4rem,8vw,6.4rem) 0 clamp(3rem,7vw,5.4rem)}
 .mvx-hero-inner{max-width:680px}
 .mvx-hero-rule{position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--mvx-green);z-index:2}
 .mvx-hero .mvx-h1{color:var(--mvx-white);margin-bottom:1.1rem}
@@ -255,7 +255,9 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 
 <header class="mvx-head">
   <div class="mvx-wrap">
-    <img class="mvx-logo" src="assets/mvx-logo-white.png" alt="MVX Electrical" width="1181" height="482">
+    <img class="mvx-logo" src="assets/logo-white-64.png"
+         srcset="assets/logo-white-64.png 1x, assets/logo-white-96.png 2x"
+         alt="MVX Electrical" width="157" height="64">
     <a class="mvx-head-tel" href="tel:0427593990">0427 593 990</a>
   </div>
 </header>
@@ -263,6 +265,15 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 <main id="main">
 
 <section class="mvx-hero">
+  <picture class="mvx-hero-pic">
+    <source type="image/webp"
+            srcset="assets/hero-750.webp 750w, assets/hero-800.webp 800w, assets/hero-1200.webp 1200w, assets/hero-1600.webp 1600w"
+            sizes="100vw">
+    <img src="assets/hero-1200.jpg"
+         srcset="assets/hero-750.jpg 750w, assets/hero-800.jpg 800w, assets/hero-1200.jpg 1200w, assets/hero-1600.jpg 1600w"
+         sizes="100vw" width="1600" height="1067" fetchpriority="high" decoding="async"
+         alt="An electrician cutting cable at a brick wall while wiring a house that is still being built">
+  </picture>
   <div class="mvx-wrap">
     <div class="mvx-hero-inner">
       <h1 class="mvx-h1">Wiring your new build or reno, <span>done right the first time</span></h1>
@@ -381,8 +392,16 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
       <a class="mvx-btn" href="#quote">Request your free quote</a>
     </div>
     <div class="why-img">
-      <img src="assets/rough-in.jpg" width="1600" height="1067" loading="lazy" decoding="async"
-           alt="New power points wired into a stud wall on a house under construction">
+      <picture>
+        <source type="image/webp"
+                srcset="assets/roughin-660.webp 660w, assets/roughin-800.webp 800w, assets/roughin-1000.webp 1000w, assets/roughin-1400.webp 1400w"
+                sizes="(min-width:960px) 45vw, 92vw">
+        <img src="assets/roughin-1000.jpg"
+             srcset="assets/roughin-660.jpg 660w, assets/roughin-800.jpg 800w, assets/roughin-1000.jpg 1000w, assets/roughin-1400.jpg 1400w"
+             sizes="(min-width:960px) 45vw, 92vw"
+             width="1400" height="934" loading="lazy" decoding="async"
+             alt="New power points wired into a stud wall on a house under construction">
+      </picture>
     </div>
   </div>
 </section>
@@ -556,7 +575,9 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 
 <footer class="mvx-foot">
   <div class="mvx-wrap">
-    <img class="mvx-foot-logo" src="assets/mvx-logo-white.png" alt="MVX Electrical" width="1181" height="482">
+    <img class="mvx-foot-logo" src="assets/logo-white-64.png"
+         srcset="assets/logo-white-64.png 1x, assets/logo-white-96.png 2x"
+         alt="MVX Electrical" width="157" height="64" loading="lazy" decoding="async">
     <p>Planned residential electrical work. New builds, renovations and extensions.</p>
     <div class="row">
       <span>Gold Coast and Northern NSW</span>
