@@ -287,3 +287,30 @@ the page: process step 01, the hero's "ring us instead", and the not-this-page n
 viewport. Asked for 390 it reports `innerWidth=500`, lays out at 500 and crops to
 390, which is indistinguishable from the page overflowing. It produced two false
 overflow findings here. Narrow-viewport checks go through the browser pane.
+
+## [2026-07-28] build | MVX new-builds LP — FAQ closes the page, live photos
+
+Two more of Hunter's calls.
+
+**Closing call band removed, FAQ is now the last section.** Also fixes the rhythm
+problem flagged an hour earlier: the page had been ending in three dark bands in a
+row with no break, so it finished as one mass. Now grey, dark, footer.
+
+**The page now ships zero JavaScript.** Removing the form took the validation
+script; removing the call band took the sticky-bar observer, whose only job was
+hiding the bar over that band. 761 lines at the start of the day, 511 now.
+
+**Photos moved to live URLs on mvxelectrical.com.au** — `8166` hero, `283` rough-in.
+Worth recording why they are not the URLs as given: the bare uploads are 2000px at
+**2.4 MB and 1 MB**, which would have made this a ~3.5 MB page and thrown away the
+morning's responsive work. WordPress had already generated 768/1024/1536 variants of
+both, so `srcset` runs off those and the full file is never served. A phone at 2x
+pulls ~212 KB of photo.
+
+Still heavier than the 76 KB the local WebP set managed, because the origin has no
+WebP at these sizes. The optimised set stays in `assets/` in case that weight is
+worth reclaiming later.
+
+**Measurement note:** cross-origin images report `encodedBodySize` 0 without a
+`Timing-Allow-Origin` header, so photo weights have to come from the origin's
+`Content-Length`, not from the page's own resource timings.

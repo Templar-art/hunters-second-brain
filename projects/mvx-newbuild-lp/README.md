@@ -10,9 +10,8 @@ Built for Meta ad traffic from the new builds and renovations campaign
 
 - [ ] **Confirm the licence and insurance line.** Two visible placeholders, in the
   trust strip and the footer. They are deliberately marked, not invented.
-- [ ] Upload the photos and the logo, swap the relative paths for real URLs. **Both
-  photos ship as a `<picture>` with a WebP `srcset` and a JPEG fallback, so every
-  size in `assets/` has to go up, not just one.**
+- [ ] Upload the logo. It is the only asset still served from `assets/`; both photos
+  are already live off mvxelectrical.com.au.
 - [ ] Tap every `tel:` link on a real phone and confirm it dials.
 - [ ] Track `tel:` clicks as the conversion. There is no form, so a call is the only
   lead this page produces and it is the only thing worth counting.
@@ -35,6 +34,32 @@ strip below them. The tier break is carried by three things at once: scale (a
 display face against Poppins at 1.16rem), surface (dark panel against white), and
 typeface role. No icons, no fourth identical card.
 
+**FAQ is the last section.** The closing "Tell us about your project" band was
+removed 28 Jul. It also fixed a rhythm problem: the page previously ended in three
+dark bands in a row (FAQ, call band, footer) with no break between them, so it
+finished as one undifferentiated mass. Now it runs grey, dark, footer.
+
+**Zero JavaScript.** Removing the form took the validation script, and removing the
+call band took the sticky-bar observer with it, because the only thing that observer
+did was hide the bar over that band. Nothing on the page depends on JS now. The
+sticky call bar is CSS only.
+
+**Photos are live off the client's site, wired through WordPress's own sizes.**
+`8166` is the hero, `283` is the rough-in. The bare upload URLs are 2000px files at
+**2.4 MB and 1 MB**; using them as given would have made this a ~3.5 MB page and
+undone the whole responsive pass. WordPress had already generated 768 / 1024 / 1536
+variants of both, so `srcset` comes off those and the full-size file is never served.
+A phone at 2x pulls the 1024 hero and the 768 rough-in, about 212 KB of photo.
+
+That is still heavier than the 76 KB the local WebP set managed, because WordPress
+serves JPEG only at these sizes and there is no WebP on the origin. The optimised
+set is still in `assets/` if that weight is ever worth reclaiming: upload it and
+point the `srcset` back at local paths.
+
+**Cross-origin images cannot be weighed from the page.** `encodedBodySize` reports 0
+for them without a `Timing-Allow-Origin` header, so the sizes above come from the
+origin's `Content-Length`, not from `performance.getEntriesByType`.
+
 **No form. The phone is the action.** Removed 28 Jul on Hunter's call. Every CTA is
 now `tel:0427593990`: hero, why-plan-early, the closing band, the sticky mobile bar,
 and the header. One action, four places, no competing exits.
@@ -45,9 +70,6 @@ about 180 lines of validation JS, the `sessionStorage` draft restore, and the wh
 error-state surface. The page went 761 lines to 543 and now has no way to fail
 silently. What it costs is the out-of-hours enquiry: someone scrolling at 11pm can no
 longer leave their details, so that lead depends on them remembering to ring.
-
-**The sticky bar hides itself** over the closing call band, via IntersectionObserver.
-It would otherwise cover the button the visitor is already looking at.
 
 **Copy had to move with it.** Three lines referred to a form that no longer exists:
 step 01 said "fill in the short form", the hero said to ring instead if it was
@@ -84,10 +106,10 @@ Tested rather than assumed:
 
 | Case | Behaviour |
 |---|---|
-| JavaScript off | Page is fully readable and every CTA still dials. Nothing on it depends on JS except the sticky bar hiding itself |
+| JavaScript off | No effect whatsoever. The page ships no JS |
 | Emoji, CJK, RTL input | n/a, no inputs left on the page |
 | Very long unbroken words | `overflow-wrap:break-word` on text elements, no page overflow |
-| No `IntersectionObserver` | Sticky bar simply stays visible, guarded by a feature check |
+| Origin images unreachable | Alt text carries the meaning; layout holds, since both images have width and height |
 
 ## Verified
 

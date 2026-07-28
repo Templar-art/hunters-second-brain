@@ -89,8 +89,8 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 .mvx-head-tel:hover{color:var(--mvx-green)}
 
 .mvx-hero{position:relative;background:var(--mvx-black);color:var(--mvx-white);overflow:hidden}
-.mvx-hero-pic{position:absolute;inset:0;z-index:0}
-.mvx-hero-pic img{width:100%;height:100%;object-fit:cover;object-position:center 32%;opacity:.5}
+.mvx-lp img.mvx-hero-pic{position:absolute;inset:0;z-index:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 32%;opacity:.5}
 .mvx-hero::after{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.82) 44%,rgba(0,0,0,.32) 100%)}
 .mvx-hero .mvx-wrap{position:relative;z-index:2;padding:clamp(3.4rem,8vw,6.4rem) 0 clamp(3rem,7vw,5.4rem)}
@@ -209,14 +209,6 @@ img.mvx-logo{height:32px;width:auto;flex:none}
 .mvx-faq details[open] summary::after{transform:rotate(45deg)}
 .mvx-faq details p{padding:0 0 1.3rem;color:var(--mvx-ink-2);font-weight:300;font-size:.99rem}
 
-/* Closing call band. No form on this page: the phone is the action, so the
-   section is one statement and one button rather than a card to fill in. */
-.close .mvx-wrap{max-width:660px;text-align:center}
-.close .mvx-h2{color:var(--mvx-white);margin-bottom:.9rem}
-.close-lede{color:var(--mvx-ink-2);font-weight:300;font-size:1.08rem;margin-bottom:1.8rem}
-.close-btn{font-size:1.12rem;padding:1.15rem 2.2rem}
-.close-note{margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--mvx-line-dark);
-  font-size:.93rem;color:var(--mvx-ink-2)}
 .fit-not a{color:var(--mvx-green-text);font-weight:600;text-decoration:underline;
   display:inline-flex;align-items:center;min-height:44px}
 
@@ -235,7 +227,6 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 @media (max-width:899px){
   .mvx-sticky{display:block}
   .mvx-lp{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
-  .mvx-lp.cta-open .mvx-sticky{display:none}
 }
 @media (max-width:640px){
   .mvx-hero::after{background:linear-gradient(180deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.78) 100%)}
@@ -260,15 +251,12 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 <main id="main">
 
 <section class="mvx-hero">
-  <picture class="mvx-hero-pic">
-    <source type="image/webp"
-            srcset="assets/hero-750.webp 750w, assets/hero-800.webp 800w, assets/hero-1200.webp 1200w, assets/hero-1600.webp 1600w"
-            sizes="100vw">
-    <img src="assets/hero-1200.jpg"
-         srcset="assets/hero-750.jpg 750w, assets/hero-800.jpg 800w, assets/hero-1200.jpg 1200w, assets/hero-1600.jpg 1600w"
-         sizes="100vw" width="1600" height="1067" fetchpriority="high" decoding="async"
-         alt="An electrician cutting cable at a brick wall while wiring a house that is still being built">
-  </picture>
+  <img class="mvx-hero-pic" src="https://mvxelectrical.com.au/wp-content/uploads/2026/07/8166-1024x682.jpg"
+       srcset="https://mvxelectrical.com.au/wp-content/uploads/2026/07/8166-768x512.jpg 768w,
+               https://mvxelectrical.com.au/wp-content/uploads/2026/07/8166-1024x682.jpg 1024w,
+               https://mvxelectrical.com.au/wp-content/uploads/2026/07/8166-1536x1024.jpg 1536w"
+       sizes="100vw" width="1536" height="1024" fetchpriority="high" decoding="async"
+       alt="An electrician cutting cable at a brick wall while wiring a house that is still being built">
   <div class="mvx-wrap">
     <div class="mvx-hero-inner">
       <h1 class="mvx-h1">Wiring your new build or reno, <span>done right the first time</span></h1>
@@ -398,16 +386,13 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
       <a class="mvx-btn" href="tel:0427593990">Call 0427 593 990</a>
     </div>
     <div class="why-img">
-      <picture>
-        <source type="image/webp"
-                srcset="assets/roughin-660.webp 660w, assets/roughin-800.webp 800w, assets/roughin-1000.webp 1000w, assets/roughin-1400.webp 1400w"
-                sizes="(min-width:960px) 45vw, 92vw">
-        <img src="assets/roughin-1000.jpg"
-             srcset="assets/roughin-660.jpg 660w, assets/roughin-800.jpg 800w, assets/roughin-1000.jpg 1000w, assets/roughin-1400.jpg 1400w"
+      <img src="https://mvxelectrical.com.au/wp-content/uploads/2026/07/283-1024x682.jpg"
+             srcset="https://mvxelectrical.com.au/wp-content/uploads/2026/07/283-768x512.jpg 768w,
+                     https://mvxelectrical.com.au/wp-content/uploads/2026/07/283-1024x682.jpg 1024w,
+                     https://mvxelectrical.com.au/wp-content/uploads/2026/07/283-1536x1024.jpg 1536w"
              sizes="(min-width:960px) 45vw, 92vw"
-             width="1400" height="934" loading="lazy" decoding="async"
+             width="1536" height="1024" loading="lazy" decoding="async"
              alt="New power points wired into a stud wall on a house under construction">
-      </picture>
     </div>
   </div>
 </section>
@@ -500,15 +485,6 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
   </div>
 </section>
 
-<section class="mvx-sec mvx-sec-dark close" id="talk">
-  <div class="mvx-wrap">
-    <h2 class="mvx-h2">Tell us about your project</h2>
-    <p class="close-lede">Give us a ring and talk it through. If it suits, we will come and look at the job, then send you a written quote.</p>
-    <a class="mvx-btn close-btn" href="tel:0427593990">Call 0427 593 990</a>
-    <p class="close-note">New builds, renovations, extensions and planned upgrades across the Gold Coast and Northern NSW.</p>
-  </div>
-</section>
-
 </main>
 
 <footer class="mvx-foot">
@@ -531,17 +507,5 @@ img.mvx-foot-logo{height:26px;width:auto;margin-bottom:1.1rem}
 
 </div>
 
-<script>
-(function () {
-  // The sticky bar would sit on top of the button the visitor is already looking at.
-  var page = document.getElementById('page');
-  var talk = document.getElementById('talk');
-  if (page && talk && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (e) {
-      page.classList.toggle('cta-open', e[0].isIntersecting);
-    }, { threshold: .2 }).observe(talk);
-  }
-})();
-</script>
 </body>
 </html>
