@@ -30,11 +30,11 @@ Brief: same three pop-up beats, Bespoke brand. No paid generation involved (HTML
   was wrong; parked as `popups-cards.html`.
 - 2026-07-29 rebuild: `popups.html` reference-matched — Zodiak Light Italic "Sold", Poppins Bold numbers
   with count-up, accumulating stat stack. All 3 scenes verified over a real Bespoke plate.
-- 2026-07-29 cost: 0 credits. Nothing paid touched.
-
----
-_Vault: [[jarvis]] · [[bespoke-estate-agents]]_
 - 2026-07-29 16:9: same markup now renders both aspects (em-based type off the frame). Fixed the
   frame falling off screen (scaled but still laid out at 1080x1920 → page overflowed).
 - 2026-07-29 delivered preview: `preview/popups-16x9.mp4` (1920x1080, 10s) + 6 stills.
   Render tooling in `tools/`. CDP renderer hangs on captureScreenshot with paused animations; use the shell script.
+- 2026-07-29 cost: 0 credits. Nothing paid touched.
+
+---
+_Vault: [[jarvis]] · [[bespoke-estate-agents]]_
