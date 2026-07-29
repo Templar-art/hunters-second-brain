@@ -82,6 +82,18 @@
       "port": 8767
     },
     {
+      "name": "bespoke-popups",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8773",
+        "--directory",
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/bespoke-sold-popups"
+      ],
+      "port": 8773
+    },
+    {
       "name": "mvx-newbuild",
       "runtimeExecutable": "python3",
       "runtimeArgs": [

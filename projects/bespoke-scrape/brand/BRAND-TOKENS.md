@@ -43,4 +43,5 @@ Content pillars: Authority · Connection · Visibility · Proof.
 ## Logos on hand
 - `official-logos-from-guide/logo-*.png` — official Bespoke Estate Agents icon + wordmark (white, transparent bg) extracted from guide.
 - Scraped vectors in `../assets/.../*.svg` (from live site) + `logos/`, `icons/`.
-- ⚠️ MISSING: **Zodiak font files** — not embedded anywhere. Needed to host headings in the real brand face (else Georgia fallback).
+- **Zodiak font files: ON HAND** at `zodiak/Zodiak_Complete/Fonts/` (OTF, TTF, WEB woff/woff2).
+  **⚠️ supersedes** the earlier "MISSING — Georgia fallback" note. Used in `../../bespoke-sold-popups/`.
