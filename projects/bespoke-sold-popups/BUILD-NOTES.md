@@ -54,11 +54,19 @@ node tools/render-sequence.mjs 169 ~/Desktop/popups-169 none     # transparent, 
 node tools/render-sequence.mjs 916 ~/Desktop/popups-916 plate    # over the test still, H.264
 ```
 One headless Chrome driven over DevTools Protocol, 25fps, ~80ms a frame — the whole run is under a
-minute. Outputs a PNG sequence plus `-alpha.mov` (ProRes 4444, `yuva444p12le`) and `-alpha.webm`
-(VP9 alpha) when `bg=none`, or an `.mp4` otherwise.
+minute. With `bg=none` it writes a PNG sequence plus three alpha deliverables:
 
-Alpha masters live on the Desktop (`Bespoke-SOLD-popups/`), not in the repo — 60–90MB each,
-gitignored. The small webms are in `preview/`.
+| File | Codec | Size | Use |
+|------|-------|------|-----|
+| `-alpha.mp4`  | HEVC + alpha (`hvc1`) | ~3MB  | **the one to hand over** — keys in FCP, small enough to send |
+| `-alpha.mov`  | ProRes 4444 | 40–60MB | archival master / heavy grading |
+| `-alpha.webm` | VP9 alpha | ~2MB | web |
+
+`-alpha_quality 1` is not optional on the HEVC encode: at `0.9` the type decodes back at ~77% opacity.
+That encoder is `hevc_videotoolbox`, so the mp4 path is macOS-only.
+
+ProRes masters live on the Desktop (`Bespoke-SOLD-popups/`), not in the repo — gitignored. The mp4s
+and webms are small enough to keep in `preview/`.
 
 Three things had to line up for this to work, all of them non-obvious:
 1. **`--default-background-color=00000000` does nothing** in Chrome 150 (and `--headless=old` is gone).

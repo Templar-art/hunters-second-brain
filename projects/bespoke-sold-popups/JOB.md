@@ -39,6 +39,8 @@ Brief: same three pop-up beats, Bespoke brand. No paid generation involved (HTML
   device-metrics override for exact frame size. ProRes 4444 + VP9 alpha, both aspects, ~50s a run.
   Masters on Desktop `Bespoke-SOLD-popups/`; webms in `preview/`. Static server swapped to `tools/serve.mjs`
   (python http.server dies on this Mac's hostname).
+- 2026-07-30 delivered: alpha MP4 (HEVC+alpha, ~3MB) both aspects alongside the ProRes masters.
+  `-alpha_quality 1` required — at 0.9 the type decodes at ~77% opacity.
 - 2026-07-29 cost: 0 credits. Nothing paid touched.
 
 ---

@@ -122,10 +122,15 @@ if (BG === "none"){
   outs.push(`${OUT}-alpha.mov`);
   await ffmpeg([...input, "-c:v", "prores_ks", "-profile:v", "4444",
                 "-pix_fmt", "yuva444p10le", "-alpha_bits", "16", "-r", "30", outs[0]]);
+  /* HEVC with an alpha channel in an .mp4 — ~3MB instead of ~40MB, still keys in FCP.
+     alpha_quality must be 1: at 0.9 the type comes back ~77% opaque. macOS only (videotoolbox). */
+  outs.push(`${OUT}-alpha.mp4`);
+  await ffmpeg([...input, "-c:v", "hevc_videotoolbox", "-pix_fmt", "bgra",
+                "-alpha_quality", "1", "-b:v", "20M", "-tag:v", "hvc1", "-r", "30", outs.at(-1)]);
   /* VP9 alpha for anything web-side */
   outs.push(`${OUT}-alpha.webm`);
   await ffmpeg([...input, "-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p",
-                "-b:v", "4M", "-r", "30", outs[1]]);
+                "-b:v", "4M", "-r", "30", outs.at(-1)]);
 } else {
   outs.push(`${OUT}.mp4`);
   await ffmpeg([...input, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-r", "30", outs[0]]);
