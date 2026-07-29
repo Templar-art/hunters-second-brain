@@ -39,6 +39,26 @@ Out = fall 18px + blur, 460ms. Beats at 1×: 3.6s / 2.8s / 5.2s, 200ms gap.
 over busy footage at reel scale, and the reference look depends on heavy sans weight. Zodiak Light *Italic* carries
 the word "Sold" — the on-brand stand-in for the reference's brush script (Bespoke has no script face).
 
+## Aspect
+Both 9:16 (1080×1920) and 16:9 (1920×1080) come out of the same markup — type is sized in `em`
+off `#stage`'s font-size (100px at 9:16, 74px at 16:9), positions are in `%`. Toggle with the
+aspect button or `A`; `?ar=169` loads straight into 16:9.
+
+The frame is `position:fixed` and centred with `translate(-50%,-50%) scale()`, so it is always
+fully on screen. (Earlier it was scaled but still laid out at 1080×1920, so the page overflowed
+and pushed the frame off the bottom.)
+
+## Rendering to video
+```
+tools/render-frames.sh 169 ~/Desktop/popups-169     # or 916
+```
+One headless Chrome per frame at 15fps, six at a time, then ffmpeg → MP4. ~6 min for the full run.
+`preview/popups-16x9.mp4` is the current output.
+
+`tools/render-sequence.mjs` is the faster CDP version (one browser, ~30s) but it **hangs**:
+`Page.captureScreenshot` never returns once the page's animations are paused, which is exactly
+what freezing a frame does. Kept for reference; use the shell script.
+
 ## Controls
 Play all · scene 1/2/3 · background cycle (black → Bespoke green → checker → chroma `#00b140` → `assets/plate.jpg`) · speed 1× / 0.5× / 0.25×.
 Keys: `1` `2` `3` · `R`/space replay · `B` background · **`C` hides the control bar before you record**.

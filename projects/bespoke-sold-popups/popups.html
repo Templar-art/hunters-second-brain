@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Bespoke — SOLD pop-ups (9:16)</title>
+<title>Bespoke — SOLD pop-ups</title>
 <style>
   @font-face { font-family:"Zodiak"; src:url("assets/Zodiak-Light.woff2") format("woff2"); font-weight:300; font-style:normal; font-display:block; }
   @font-face { font-family:"Zodiak"; src:url("assets/Zodiak-LightItalic.otf") format("opentype"); font-weight:300; font-style:italic; font-display:block; }
@@ -16,15 +16,24 @@
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html,body{ height:100%; background:#0a0a0a; font-family:"Poppins",system-ui,sans-serif; }
-  body{ display:grid; place-items:center; overflow:hidden; }
+  html,body{ height:100%; overflow:hidden; background:#0a0a0a; font-family:"Poppins",system-ui,sans-serif; }
 
-  /* ---------- stage: true 1080x1920, scaled to fit ---------- */
-  #stage{ position:relative; width:1080px; height:1920px; overflow:hidden; transform-origin:center; }
-  #stage.bg-black{ background:#000; }
-  #stage.bg-green{ background:#132a24; }        /* Bespoke green */
-  #stage.bg-key{   background:#00b140; }        /* chroma key */
-  #stage.bg-plate{ background:#1a1714 url("assets/plate.jpg") center/cover no-repeat; }
+  /* ---------- stage ----------
+     Absolutely centred and scaled from its own centre, so the frame is ALWAYS fully
+     on screen no matter the window size. Type is sized in em off #stage's font-size,
+     so 9:16 and 16:9 share one set of rules.                                        */
+  #stage{
+    position:fixed; left:50%; top:50%; overflow:hidden;
+    transform:translate(-50%,-50%) scale(var(--fit,1));
+  }
+  #stage.ar-916{ width:1080px; height:1920px; font-size:100px; }
+  #stage.ar-169{ width:1920px; height:1080px; font-size:74px; }
+
+  #stage.bg-black{ background-color:#000; }
+  #stage.bg-green{ background-color:#132a24; }        /* Bespoke green */
+  #stage.bg-key{   background-color:#00b140; }        /* chroma key */
+  #stage.bg-plate.ar-916{ background:#1a1714 url("assets/plate.jpg")     center/cover no-repeat; }
+  #stage.bg-plate.ar-169{ background:#1a1714 url("assets/plate-169.jpg") center/cover no-repeat; }
   #stage.bg-checker{
     background-color:#2b2b2b;
     background-image:
@@ -40,50 +49,48 @@
     visibility:hidden; pointer-events:none;
   }
   .pop.live{ visibility:visible; }
-  .pop.at-title{ top:330px; }
+  .pop.at-title { top:17%; }
+  .pop.at-logo  { top:33%; }
   .pop.at-centre{ top:50%; transform:translateY(-50%); }
 
-  /* every animated element: hidden until its scene is live */
   .el{ opacity:0; }
   .live .el{ animation:popIn .74s var(--ease) both; animation-delay:var(--d,0s); }
   @keyframes popIn{
-    from{ opacity:0; transform:translateY(30px) scale(.965); filter:blur(9px); }
-    to  { opacity:1; transform:none;                         filter:blur(0); }
+    from{ opacity:0; transform:translateY(.30em) scale(.965); filter:blur(9px); }
+    to  { opacity:1; transform:none;                          filter:blur(0); }
   }
-  .out .el{ animation:popOut .46s cubic-bezier(.4,0,.7,.2) both; animation-delay:calc(var(--o,0s)); }
+  .out .el{ animation:popOut .46s cubic-bezier(.4,0,.7,.2) both; animation-delay:var(--o,0s); }
   @keyframes popOut{
-    from{ opacity:1; transform:none;             filter:blur(0); }
-    to  { opacity:0; transform:translateY(-18px); filter:blur(8px); }
+    from{ opacity:1; transform:none;              filter:blur(0); }
+    to  { opacity:0; transform:translateY(-.18em); filter:blur(8px); }
   }
 
   .num{ font-weight:700; line-height:1; letter-spacing:-.01em; font-variant-numeric:tabular-nums; }
-  .plus{ font-weight:700; font-size:.46em; vertical-align:.42em; margin-left:.10em; }
   .label{ font-weight:700; text-transform:uppercase; letter-spacing:.02em; line-height:1; }
 
   /* ---------- scene 1 — Sold / for / price ---------- */
-  #s1 .sold{ font-family:"Zodiak",Georgia,serif; font-weight:300; font-style:italic;
-             font-size:280px; line-height:.86; }
-  #s1 .for{ margin-top:6px; font-size:58px; font-weight:500; letter-spacing:.34em;
-            text-transform:uppercase; }
-  #s1 .price{ margin-top:12px; font-size:138px; }
+  #s1 .sold { font-family:"Zodiak",Georgia,serif; font-weight:300; font-style:italic;
+              font-size:2.80em; line-height:.86; }
+  #s1 .for  { margin-top:.06em; font-size:.58em; font-weight:500; letter-spacing:.34em;
+              text-transform:uppercase; }
+  #s1 .price{ margin-top:.12em; font-size:1.38em; }
 
   /* ---------- scene 2 — logo ---------- */
-  #s2{ top:640px; }
-  #s2 img{ width:660px; height:auto; margin:0 auto; display:block;
-           filter:drop-shadow(0 3px 10px rgba(0,0,0,.55)) drop-shadow(0 10px 40px rgba(0,0,0,.40)); }
-  #s2 .tag{ margin-top:70px; font-size:36px; font-weight:500; letter-spacing:.36em;
-            text-transform:uppercase; }
+  #s2 img  { width:6.6em; height:auto; margin:0 auto; display:block;
+             filter:drop-shadow(0 3px 10px rgba(0,0,0,.55)) drop-shadow(0 10px 40px rgba(0,0,0,.40)); }
+  #s2 .tag { margin-top:.70em; font-size:.36em; font-weight:500; letter-spacing:.36em;
+             text-transform:uppercase; }
 
   /* ---------- scene 3 — accumulating stat stack ---------- */
-  #s3 .stat + .stat{ margin-top:86px; }
-  #s3 .num{ font-size:112px; }
-  #s3 .label{ margin-top:16px; font-size:54px; }
-  #s3 .kicker{ margin-top:96px; font-size:54px; font-weight:700; letter-spacing:.02em;
+  #s3 .stat + .stat{ margin-top:.86em; }
+  #s3 .num   { font-size:1.12em; }
+  #s3 .label { margin-top:.16em; font-size:.54em; }
+  #s3 .kicker{ margin-top:.96em; font-size:.54em; font-weight:700; letter-spacing:.02em;
                text-transform:uppercase; }
 
   /* ---------- controls (C hides them) ---------- */
   #ui{
-    position:fixed; left:50%; bottom:16px; transform:translateX(-50%); z-index:50;
+    position:fixed; left:50%; bottom:14px; transform:translateX(-50%); z-index:50;
     display:flex; gap:8px; align-items:center; padding:10px 14px; border-radius:999px;
     background:rgba(20,20,20,.88); border:1px solid #333; color:#ddd;
     font:500 12px/1 "Poppins",sans-serif;
@@ -98,7 +105,7 @@
 </head>
 <body>
 
-<div id="stage" class="bg-black">
+<div id="stage" class="ar-916 bg-black">
 
   <!-- SCENE 1 — SOLD / $1,125,000 ————————————————— -->
   <section class="pop at-title" id="s1">
@@ -109,26 +116,26 @@
   </section>
 
   <!-- SCENE 2 — BESPOKE lockup ———————————————————— -->
-  <section class="pop" id="s2">
-    <img class="el" style="--d:0s" src="assets/bespoke-lockup.svg" alt="Bespoke Estate Agents">
-    <div class="tag el" style="--d:.62s; --o:.04s">Beyond Luxury Real Estate</div>
+  <section class="pop at-logo" id="s2">
+    <img class="el" style="--d:0s; --o:.06s" src="assets/bespoke-lockup.svg" alt="Bespoke Estate Agents">
+    <div class="tag el" style="--d:.62s; --o:0s">Beyond Luxury Real Estate</div>
   </section>
 
   <!-- SCENE 3 — the numbers ——————————————————————— -->
   <section class="pop at-centre" id="s3">
     <div class="stat">
-      <div class="num el" style="--d:0s; --o:0s" data-count="63" data-dur="1500">0</div>
-      <div class="label el" style="--d:.16s; --o:0s">Enquiries</div>
+      <div class="num el"   style="--d:0s;    --o:0s" data-count="63" data-dur="1500">0</div>
+      <div class="label el" style="--d:.16s;  --o:0s">Enquiries</div>
     </div>
     <div class="stat">
-      <div class="num el" style="--d:1.05s; --o:.04s" data-count="4" data-dur="900">0</div>
+      <div class="num el"   style="--d:1.05s; --o:.04s" data-count="4" data-dur="900">0</div>
       <div class="label el" style="--d:1.20s; --o:.04s">Offers</div>
     </div>
     <div class="stat">
-      <div class="num el" style="--d:2.05s; --o:.08s" data-count="26" data-dur="1100">0</div>
+      <div class="num el"   style="--d:2.05s; --o:.08s" data-count="26" data-dur="1100">0</div>
       <div class="label el" style="--d:2.20s; --o:.08s">Days on market</div>
     </div>
-    <div class="kicker el" style="--d:3.10s; --o:.12s">Premium marketing, proven</div>
+    <div class="kicker el"  style="--d:3.10s; --o:.12s">Premium marketing, proven</div>
   </section>
 
 </div>
@@ -140,6 +147,7 @@
   <button data-act="s2">2 · Logo</button>
   <button data-act="s3">3 · Numbers</button>
   <div class="sep"></div>
+  <button data-act="ar">9:16</button>
   <button data-act="bg">Background</button>
   <button data-act="speed">1×</button>
   <div class="sep"></div>
@@ -148,9 +156,9 @@
 
 <script>
 const stage  = document.getElementById("stage");
+const ui     = document.getElementById("ui");
 const scenes = ["s1","s2","s3"].map(id => document.getElementById(id));
 
-/* in-duration (longest child delay + animation), hold, per scene — ms at 1x */
 const TIMELINE = [
   { el: scenes[0], hold: 3600 },
   { el: scenes[1], hold: 2800 },
@@ -172,8 +180,7 @@ function runCounters(scene){
     el.textContent = prefix + "0";
     const tick = now => {
       const p = Math.min(1, Math.max(0, (now - start) / dur));
-      const eased = 1 - Math.pow(1 - p, 3);                 // ease-out cubic
-      el.textContent = prefix + fmt(Math.round(target * eased));
+      el.textContent = prefix + fmt(Math.round(target * (1 - Math.pow(1 - p, 3))));   // ease-out cubic
       if (p < 1) raf.push(requestAnimationFrame(tick));
     };
     raf.push(requestAnimationFrame(tick));
@@ -187,7 +194,7 @@ function reset(){
     s.classList.remove("live","out");
     s.querySelectorAll("[data-count]").forEach(el => el.textContent = (el.dataset.prefix||"") + "0");
   });
-  void stage.offsetWidth;                                    // reflow so animations re-fire
+  void stage.offsetWidth;
 }
 
 async function playScene(t){
@@ -203,10 +210,25 @@ async function playScene(t){
 async function playOne(i){ reset(); await playScene(TIMELINE[i]); }
 async function playAll(){ reset(); for (const t of TIMELINE){ await playScene(t); await wait(GAP); } }
 
+/* ---- aspect + fit: the frame is always fully visible ---- */
+const AR = { "ar-916":[1080,1920], "ar-169":[1920,1080] };
+let ar = "ar-916";
+
+function setAR(next){
+  stage.classList.remove(ar); ar = next; stage.classList.add(ar);
+  ui.querySelector('[data-act="ar"]').textContent = ar === "ar-916" ? "9:16" : "16:9";
+  fit();
+}
+function fit(){
+  const [w,h] = AR[ar];
+  const pad = ui.classList.contains("hidden") ? 24 : 86;   // leave room for the control bar
+  stage.style.setProperty("--fit", Math.min((innerWidth - 24) / w, (innerHeight - pad) / h));
+}
+addEventListener("resize", fit);
+
 /* ---- controls ---- */
 const BGS = ["bg-black","bg-green","bg-checker","bg-key","bg-plate"];
 let bg = 0;
-const ui = document.getElementById("ui");
 
 ui.addEventListener("click", e => {
   const act = e.target.dataset.act;
@@ -215,6 +237,7 @@ ui.addEventListener("click", e => {
   if (act === "s1")  playOne(0);
   if (act === "s2")  playOne(1);
   if (act === "s3")  playOne(2);
+  if (act === "ar")  setAR(ar === "ar-916" ? "ar-169" : "ar-916");
   if (act === "bg"){ stage.classList.remove(BGS[bg]); bg = (bg + 1) % BGS.length; stage.classList.add(BGS[bg]); }
   if (act === "speed"){
     speed = speed === 1 ? 0.5 : speed === 0.5 ? 0.25 : 1;
@@ -228,17 +251,56 @@ addEventListener("keydown", e => {
   if (k === "2") playOne(1);
   if (k === "3") playOne(2);
   if (k === "r" || k === " ") { e.preventDefault(); playAll(); }
-  if (k === "c") ui.classList.toggle("hidden");
+  if (k === "a") setAR(ar === "ar-916" ? "ar-169" : "ar-916");
   if (k === "b") ui.querySelector('[data-act="bg"]').click();
+  if (k === "c"){ ui.classList.toggle("hidden"); fit(); }
 });
 
-/* ---- fit 1080x1920 to the window ---- */
-function fit(){
-  stage.style.transform = `scale(${Math.min(innerWidth / 1080, (innerHeight - 70) / 1920)})`;
-}
-addEventListener("resize", fit); fit();
+/* ---- render mode: ?frame=<scene>:<ms>[&ar=916|169][&bg=plate|black|green|key]
+   freezes one moment 1:1 for headless stills / frame sequences. ---- */
+const Q = new URLSearchParams(location.search);
 
-document.fonts.ready.then(playAll);
+/* renderFrame() is also called directly over CDP to shoot a whole sequence
+   from one page load — see tools/render-sequence.mjs */
+window.renderFrame = async function(sceneNo, ms, opts = {}){
+  const aspect = opts.ar || Q.get("ar") || "916";
+  stage.className = `ar-${aspect} bg-${opts.bg || Q.get("bg") || "plate"}`;
+  ar = "ar-" + aspect;
+  ui.classList.add("hidden");
+  stage.style.setProperty("--fit", 1);
+  stage.style.transform = "none";
+  stage.style.left = stage.style.top = "0";
+
+  const scene = scenes[sceneNo - 1];
+  reset();
+  scene.classList.add("live");
+  // two frames so the CSS animations exist — but never block on rAF alone:
+  // a headless/backgrounded page can stop firing it entirely.
+  await Promise.race([
+    new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))),
+    new Promise(r => setTimeout(r, 60))
+  ]);
+  scene.getAnimations({ subtree:true }).forEach(a => { a.currentTime = ms; a.pause(); });
+
+  scene.querySelectorAll("[data-count]").forEach(el => {
+    const target = +el.dataset.count;
+    const delay  = (parseFloat(getComputedStyle(el).animationDelay) || 0) * 1000;
+    const p = Math.min(1, Math.max(0, (ms - delay) / (+el.dataset.dur || 1400)));
+    el.textContent = (el.dataset.prefix || "") + fmt(Math.round(target * (1 - Math.pow(1 - p, 3))));
+  });
+  document.body.dataset.ready = "1";
+  return true;
+};
+
+if (Q.has("ar") && !Q.has("frame")) setAR("ar-" + Q.get("ar"));
+fit();
+
+if (Q.has("frame")){
+  const [sceneNo, ms] = Q.get("frame").split(":").map(Number);
+  document.fonts.ready.then(() => renderFrame(sceneNo, ms));
+} else {
+  document.fonts.ready.then(playAll);
+}
 </script>
 </body>
 </html>
