@@ -369,3 +369,42 @@ Long-form VSL is logged as a test, not a plan. It carries no numbers and came wi
 account data, but it points at the one asset 10x can make better than any competitor
 in trade services, so it earns an A/B slot against the four-angle ad set rather than a
 rebuild around it.
+
+## [2026-07-29] query | Meta dataset/pixel setup — and what it doesn't track
+
+Hunter asked how to set up the dataset/pixel and whether it works for forms. The
+answer split the question, because "forms" means two different things on this account
+and only one of them involves a pixel: **on-Facebook instant forms are recorded by Meta
+natively with no dataset at all**, while website forms need a dataset and a fired `Lead`
+event. A pixel observes events on a website, and an instant form never loads the
+website.
+
+⚠️ **Correction to this morning's entry.** [BUILD.md](../projects/mvx-meta-rebuild/BUILD.md)
+listed "dataset installed and the Lead event verified firing" as a pre-launch item for
+the MVX hot water campaign — which is instant-form by design, so that event cannot
+exist. Corrected in BUILD.md and in [[paid-ads-diagnostic-rulebook]] Rule 8, which now
+carries the scope limit explicitly: diagnosing a dead instant-form campaign by checking
+the pixel is looking in the wrong place. The tip from [[zidane-meta-ads-tips]] was
+sound, it was scoped to the wrong campaign on the way in.
+
+Audited the live site to see what exists: **no Meta pixel anywhere** on the homepage or
+either Google Ads landing page. One Google tag (`GT-PLHFWDZJ`), no GTM container,
+Formidable handling the forms. So Meta tracking starts from zero.
+
+Filed [[meta-tracking-setup]] with the install path, and three decisions worth keeping.
+**GTM is the recommended route** even though it adds a layer, because the same container
+serves the Google Ads conversions [FORM-FIX.md](../projects/mvx-lead-fix/FORM-FIX.md)
+already needs — one admin session fixes both platforms. **Lead events fire on
+thank-you-page redirects, not on the form plugin's AJAX success event**, because the
+event name belongs to the plugin and a silent rename looks exactly like a campaign that
+stopped converting. And a **`tel:` click is not a call** — worth firing as `Contact` for
+intent, never counted as a lead or reported to a client as calls received.
+
+The separation that matters most: the pixel answers *did a lead happen*, and cannot
+answer *was it any good*, which is the actual MVX problem. Lead quality runs through
+offline conversions / CRM-connected CAPI — Lach's call tracking feeding statuses back,
+which then unlocks "Maximise number of conversion leads". That path works for
+instant forms; the pixel doesn't.
+
+Everything here is blocked on the same wall as the form fix: client Business Manager,
+WordPress admin, and DNS. Bundled into one ask rather than three.
