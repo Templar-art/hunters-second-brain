@@ -408,3 +408,43 @@ instant forms; the pixel doesn't.
 
 Everything here is blocked on the same wall as the form fix: client Business Manager,
 WordPress admin, and DNS. Bundled into one ask rather than three.
+
+## [2026-07-29] ingest | MVX video ad scripts + one-document shoot brief
+
+Hunter briefed two Meta video ads for [[mvx-electrical]] — general electrical work and
+new builds & renos — at 3 hooks, 1 body, 1-2 CTAs each, 20s casual, filming Monday
+3 Aug. Also dropped a reference video (`Salisbury Talking Reel.mp4`, Drive). The link
+resolves and the file is reachable, but audio can't be transcribed here, so the
+reference went unused pending Hunter's call on a frame-only pass.
+
+Wrote the scripts, then rewrote them twice on Hunter's direction. First pass read as
+copywriting rather than speech; the brief was "easy for a tradie to say and what a
+tradie would say". The fix was mechanical once named: **sentence fragments instead of
+clauses**, noun lists cut to three items (reciting five sounds like reading), "sparky"
+over "electrician" in the hook, "flick us a message" over "tap below", and one line
+deleted outright — *"Building a house is about a hundred decisions"* was writer voice,
+not a bloke on site. The most valuable line in the brief turned out to be a delivery
+note rather than ad copy: *don't learn it word for word, say it how you'd say it, change
+any word that feels wrong in your mouth.* A tradie reciting is worse than a tradie
+paraphrasing.
+
+Then Hunter asked for one document, as a PDF, instead of the three audience-split
+markdown files. Built `brief.html` → Chrome headless → `MVX-Video-Shoot-Brief.pdf`,
+six A4 pages covering the lines, delivery, shoot plan, camera/sound/light,
+close-ups, file handoff, edit spec and a pre-Monday checklist.
+
+Two rendering faults were caught only by rendering the PDF and looking at it, not by
+the HTML. The masthead used negative margins to bleed off the page edge and **Chrome
+clipped it instead of bleeding** — the logo and the first letters of every headline
+were cut off. Contained the band inside the page margins instead. And
+`break-inside:avoid` on the ad cards had shunted each one to its own page, leaving
+three half-empty pages; removing the forced breaks and making page 1 a deliberate cover
+fixed it. Lesson worth keeping: **an HTML→PDF job isn't done until the PDF has been
+read back page by page.** Both faults were invisible in the markup.
+
+The impeccable hook flagged 16 palette and radius findings against DESIGN.md. Left
+unchanged and recorded as out of scope rather than suppressed: DESIGN.md is the
+web/landing-page system, specified in px with button, form-field and iOS-zoom rules,
+and this is an A4 print document in mm. The DESIGN.md rule that does bind here is the
+Not-Ours-To-Set Rule — the document uses 10x blue, not MVX volt green, because it is a
+10x deliverable. That holds.
