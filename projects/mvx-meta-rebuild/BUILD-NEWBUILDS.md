@@ -22,6 +22,8 @@ New builds and renos are the opposite. Nobody Googles "electrician" the day they
 
 ## Ad set
 
+⚠️ **Location setting, Advantage+ audience and Advantage+ placements: see [ACCOUNT-SETTINGS.md](ACCOUNT-SETTINGS.md)**, which reconciles this sheet with [BUILD.md](BUILD.md). This sheet's analysis of the location dropdown was the correct one and is carried over.
+
 | Setting | Value |
 |---|---|
 | Name | `New Builds & Renos – GC + Northern NSW` |

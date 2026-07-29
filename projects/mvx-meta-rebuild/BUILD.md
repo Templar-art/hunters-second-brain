@@ -71,6 +71,8 @@ Recorded so that if the campaign disappoints, the first week's numbers get read 
 
 Identical across all five ad sets — the only difference between them is the ad inside.
 
+⚠️ **Location setting, Advantage+ audience and Advantage+ placements are account-wide, not per-campaign — [ACCOUNT-SETTINGS.md](ACCOUNT-SETTINGS.md) is authoritative for those three and corrects the Advantage+ audience reasoning below.**
+
 - **Conversion location:** Instant forms
 - **Performance goal:** Maximise number of leads, **with a cost-per-result goal of $60**. Counterintuitive but deliberate: leaving it at "None" tells Meta to chase the floor, which is how we got $27 tyre-kickers. A higher target lets it bid for better people. **Once Lach's call tracking is live and lead statuses feed back, switch to "Maximise number of conversion leads"** — that's the real fix and it needs the data first.
 - **Location:** Gold Coast + Tweed Heads / Northern NSW. Set to **"People living in this location"**, not "living in or recently in".

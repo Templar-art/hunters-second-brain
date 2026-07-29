@@ -448,3 +448,43 @@ web/landing-page system, specified in px with button, form-field and iOS-zoom ru
 and this is an A4 print document in mm. The DESIGN.md rule that does bind here is the
 Not-Ours-To-Set Rule — the document uses 10x blue, not MVX volt green, because it is a
 10x deliverable. That holds.
+
+## [2026-07-29] lint | Reconciled the MVX campaign specs; drafted the asks for Matt
+
+Two follow-ons from the video brief, both unblocking work rather than adding any.
+
+**Reconciled the contested settings.** [BUILD.md](../projects/mvx-meta-rebuild/BUILD.md)
+and [BUILD-NEWBUILDS.md](../projects/mvx-meta-rebuild/BUILD-NEWBUILDS.md) disagreed on
+location setting, Advantage+ audience and Advantage+ placements. That's a defect rather
+than a difference of view: those three describe MVX's service area and audience, so they
+cannot correctly be ON in one campaign and OFF in another for the same business. Filed
+[ACCOUNT-SETTINGS.md](../projects/mvx-meta-rebuild/ACCOUNT-SETTINGS.md) as the single
+source, with both build sheets now pointing at it so the conflict can't quietly return.
+
+⚠️ **Corrected an attribution I had wrong.** BUILD.md listed Advantage+ audience among
+the causes of the out-of-area leads. Advantage+ audience can exceed the interests, age
+and gender you specify, but **location is a hard boundary it does not cross** — so
+Sydney and Canberra came from the location dropdown ("living in or recently in", Meta's
+default), not from audience expansion. BUILD-NEWBUILDS had the better analysis of the
+two and its reasoning is the one carried forward. The geo fix is the locked location
+setting; Advantage+ audience is a separate and much lower-stakes question that was never
+the root cause. Recommendation is ON with the cost-per-result goal and the form
+questions carrying lead quality instead, but either answer is defensible — what isn't is
+different answers per campaign, which would make any quality comparison meaningless.
+Placements resolved to ON, partly because the creative is now 9:16 vertical built for
+Reels and Stories.
+
+⚠️ **Also surfaced: total daily spend is unbudgeted.** Hot water $40/day + new builds
+$20/day + anything for general electrical is $60+/day, against ~$18/day across the two
+old campaigns. Nobody has agreed to triple the spend. Needs a number before more than
+one campaign publishes.
+
+**Drafted the asks for Matt** —
+[MATT-ASKS.md](../projects/mvx-meta-rebuild/MATT-ASKS.md), not sent. Eight things were
+waiting on him across the shoot, the campaigns and the tracking, which is about six too
+many for one message. Split into a same-day text covering only Monday's shoot (site
+access, call time, wardrobe, the two flagged script lines) and a call this week for
+access plus the three decisions. A tradie answers three texts and ignores an eight-point
+email. Also dropped the DNS request from the access ask — domain verification can be
+done with a header tag, which the WordPress access already covers, so it was a
+needless third thing to chase.
