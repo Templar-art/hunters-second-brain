@@ -33,7 +33,7 @@ Brief: same three pop-up beats, Bespoke brand. No paid generation involved (HTML
 - 2026-07-29 16:9: same markup now renders both aspects (em-based type off the frame). Fixed the
   frame falling off screen (scaled but still laid out at 1080x1920 → page overflowed).
 - 2026-07-29 delivered preview: `preview/popups-16x9.mp4` (1920x1080, 10s) + 6 stills.
-  Render tooling in `tools/`. CDP renderer hangs on captureScreenshot with paused animations; use the shell script.
+  Render tooling in `tools/`. (CDP renderer was hanging at this point — fixed next day.)
 - 2026-07-30 alpha: transparent renders working — CDP background override (the Chrome flag is dead),
   frozen frames now baked with commitStyles instead of paused (paused animations wedge captureScreenshot),
   device-metrics override for exact frame size. ProRes 4444 + VP9 alpha, both aspects, ~50s a run.
