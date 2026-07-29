@@ -44,7 +44,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[brand-system]] — 10x brand + standing design rules for all graphics
 - [[ig-caption-voice]] — per-account caption voice discipline (10x modes, Rob, Jason)
 - [[music-taxonomy]] — locked controlled vocabulary for the music library
-- [[paid-ads-diagnostic-rulebook]] — portable method for diagnosing a dead Meta lead campaign + AU benchmarks
+- [[paid-ads-diagnostic-rulebook]] — portable method for diagnosing a dead Meta lead campaign + AU benchmarks; Rule 8 = pre-launch tracking setup
 - [[jarvis]] — Hunter's phased personal assistant; phase 1 = weekday 7am CRM morning brief via push
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
@@ -63,6 +63,7 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 ## Sources (ops)
 - [[weekly-review-2026-07-17]] — 7-day review: shipped/moved/stalled/learned, next focus = clear stalled client queue
 - [[strategic-investing-qld-brief]] — Brian O'Neill / Quiet Equity source brief behind [[strategic-investing-qld]]
+- [[zidane-meta-ads-tips]] — mate's Meta operator tips 29 Jul: CBO, long VSL, creative enhancements OFF, dataset early, dynamic UTMs
 
 ## Sources (from `raw/clc/` — CLC Fable 5 pack + research)
 - [[clc-profile-audit]] — the audit all CLC decisions trace to (6 Jul 2026)

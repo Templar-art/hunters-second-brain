@@ -1,8 +1,8 @@
 ---
 type: concept
-tags: [ads, meta, facebook, lead-gen, diagnosis, method]
+tags: [ads, meta, facebook, lead-gen, diagnosis, method, tracking]
 status: active
-updated: 2026-07-28
+updated: 2026-07-29
 ---
 
 # Paid Ads Diagnostic Rulebook
@@ -67,6 +67,14 @@ When the goal is lead *volume* rather than lead quality, the settings follow mec
 ## Rule 7 — Hand off with a prompt, not just a document
 
 A research note alone makes the next chat re-derive the method. Pair the findings with an operator prompt that states the role, the situation, the priority order, and the instruction to gather data before advising — then the next session starts where this one ended instead of starting over. The pattern is in [fb-ads-handoff.md](../../projects/fb-ads-handoff.md).
+
+## Rule 8 — Set up the measurement before the campaign that needs it
+
+The rules above are written from the post-mortem direction: something ran, it underperformed, work out why. Three pieces of setup hygiene make that post-mortem possible at all, and each one is cheap before launch and unrecoverable after. Source: [[zidane-meta-ads-tips]], 29 Jul 2026.
+
+- **Install the dataset early.** Meta's Pixel is now called a *dataset* in Events Manager. A fresh one has no event history, so it cannot optimise or build audiences on the first days of a campaign — which is exactly when a new campaign is being judged. Install it, verify the Lead event fires, and let it accumulate before the spend it is meant to inform.
+- **Turn Advantage+ creative enhancements off.** Text improvements and visual improvements let Meta rewrite ad copy and re-crop, filter and re-score creative per placement. On a campaign whose qualification depends on precise wording — scope stated publicly, budget asked privately, no pricing anywhere — a copy rewrite silently removes the filter, and the resulting bad leads look like a targeting failure. Off by default; on only as a deliberate test.
+- **Tag website destinations with dynamic UTMs.** `utm_source=facebook&utm_medium=cpc&utm_term={{adset.name}}&utm_content={{ad.name}}&utm_campaign={{campaign.name}}` — Meta fills each placeholder from the asset's own name at delivery, so per-ad attribution needs no manual tagging. It follows that asset names *are* the analytics labels, so name them deliberately and avoid spaces and commas. Irrelevant to on-Facebook instant forms, which load no URL.
 
 ## Method note — how the research itself was run
 

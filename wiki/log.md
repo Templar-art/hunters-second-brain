@@ -340,3 +340,32 @@ The default 8px body margin, previously hidden behind the header, is reset as
 once the page is nested.
 
 Page is 476 lines, from 761 this morning. No JS, no form, no chrome.
+
+## [2026-07-29] ingest | Zidane — Meta ads operator tips
+
+Five verbal tips from a mate of Hunter's who runs Meta spend, relayed as a raw dump:
+CBO, long videos beat short for VSL, turn text/visual improvements off, get a
+pixel/dataset so it collects data, and a dynamic UTM parameter string.
+
+Filed as [[zidane-meta-ads-tips]] with each tip decoded rather than transcribed, plus
+a verdict table separating what confirms an existing decision from what is new and
+untested. Two corrections made in the process. The pasted UTM string arrived corrupted
+— a messaging client had auto-linked every `{{adset.name}}` into
+`{{adset.name (http://adset.name/)}}` — so the working string is recorded clean. And
+the UTM tip **does not apply to the MVX Meta rebuild at all**: that campaign uses
+on-Facebook instant forms, which load no URL, so there are no parameters to populate.
+It belongs on the Google Ads landing pages and any future website-destination Meta ad.
+
+[[paid-ads-diagnostic-rulebook]] gained **Rule 8 — set up the measurement before the
+campaign that needs it**, which is the gap these tips fill: the existing seven rules
+all work backwards from a post-mortem, and dataset-first, enhancements-off and URL
+tagging are all cheap before launch and unrecoverable after. [[mvx-electrical]] got a
+dated work entry making the three pre-launch changes explicit, since the rebuild is
+specced but unpublished — creative enhancements off is the one that would otherwise
+have shipped wrong, because Meta rewriting ad copy would quietly remove the
+scope-qualification wording and the bad leads would look like a targeting problem.
+
+Long-form VSL is logged as a test, not a plan. It carries no numbers and came with no
+account data, but it points at the one asset 10x can make better than any competitor
+in trade services, so it earns an A/B slot against the four-angle ad set rather than a
+rebuild around it.
