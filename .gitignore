@@ -24,3 +24,7 @@ projects/aios-dashboard/logs/
 
 # invoice configs contain bank details (BSB + account no.) — keep local
 projects/elevra-invoices/invoices/
+
+# bespoke pop-ups: ProRes 4444 alpha masters are ~60-90MB each, regenerate via tools/render-sequence.mjs
+projects/bespoke-sold-popups/preview/*.mov
+projects/bespoke-sold-popups/preview/frames/

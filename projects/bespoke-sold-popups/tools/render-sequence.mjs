@@ -16,8 +16,9 @@ import { join } from "node:path";
 
 const AR      = process.argv[2] || "169";
 const OUT     = process.argv[3] || `/tmp/bespoke-popups-${AR}`;
+const BG      = process.argv[4] || "none";     // none = transparent, or plate/black/green/key
 const [W, H]  = AR === "169" ? [1920, 1080] : [1080, 1920];
-const URL_    = `http://localhost:8773/popups.html?ar=${AR}&bg=plate`;
+const URL_    = `http://localhost:8773/popups.html?ar=${AR}&bg=${BG}`;
 const CHROME  = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const PORT    = 9333;
 const FPS     = 25;
@@ -77,8 +78,15 @@ const evaluate = async expression => {
 
 await send("Page.enable");
 await send("Runtime.enable");
-/* NB: no Emulation.setDeviceMetricsOverride and no fromSurface on the capture —
-   either one wedges Page.captureScreenshot in headless=new. --window-size is enough. */
+/* Exact frame size — --window-size alone leaves ~87px of browser chrome out of the shot.
+   Alpha comes from the background override, NOT --default-background-color (Chrome 150
+   ignores that flag). Both of these used to wedge Page.captureScreenshot; the real culprit
+   was the page leaving paused animations behind, which renderFrame no longer does. */
+await send("Emulation.setDeviceMetricsOverride",
+  { width: W, height: H, deviceScaleFactor: 1, mobile: false });
+if (BG === "none")
+  await send("Emulation.setDefaultBackgroundColorOverride", { color: { r:0, g:0, b:0, a:0 } });
+
 await send("Page.navigate", { url: URL_ });
 for (let i = 0; i < 80; i++){                       // wait for fonts + first paint
   await sleep(150);
@@ -91,7 +99,7 @@ await mkdir(OUT, { recursive: true });
 let n = 0;
 for (const [scene, end] of SCENES){
   for (let ms = 0; ms <= end; ms += STEP){
-    await evaluate(`window.renderFrame(${scene}, ${Math.round(ms)}, {ar:"${AR}"})`);
+    await evaluate(`window.renderFrame(${scene}, ${Math.round(ms)}, {ar:"${AR}", bg:"${BG}"})`);
     const { data } = await send("Page.captureScreenshot", { format: "png" });
     await writeFile(join(OUT, String(n++).padStart(4, "0") + ".png"), Buffer.from(data, "base64"));
   }
@@ -99,14 +107,27 @@ for (const [scene, end] of SCENES){
 }
 
 ws.close(); chrome.kill();
-await rm(PROFILE, { recursive: true, force: true });
+/* Chrome may still be flushing its profile — a failed cleanup must not kill the render */
+await rm(PROFILE, { recursive: true, force: true }).catch(() => {});
 
-const mp4 = `${OUT}.mp4`;
-await new Promise((res, rej) => {
-  const ff = spawn("ffmpeg", [
-    "-y", "-v", "error", "-framerate", String(FPS), "-i", join(OUT, "%04d.png"),
-    "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-r", "30", mp4
-  ], { stdio: "inherit" });
+const ffmpeg = args => new Promise((res, rej) => {
+  const ff = spawn("ffmpeg", ["-y", "-v", "error", ...args], { stdio: "inherit" });
   ff.on("exit", code => code === 0 ? res() : rej(new Error("ffmpeg exit " + code)));
 });
-console.log(`${n} frames -> ${mp4}`);
+const input = ["-framerate", String(FPS), "-i", join(OUT, "%04d.png")];
+const outs  = [];
+
+if (BG === "none"){
+  /* ProRes 4444 carries the alpha channel — FCP and Resolve read it straight in */
+  outs.push(`${OUT}-alpha.mov`);
+  await ffmpeg([...input, "-c:v", "prores_ks", "-profile:v", "4444",
+                "-pix_fmt", "yuva444p10le", "-alpha_bits", "16", "-r", "30", outs[0]]);
+  /* VP9 alpha for anything web-side */
+  outs.push(`${OUT}-alpha.webm`);
+  await ffmpeg([...input, "-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p",
+                "-b:v", "4M", "-r", "30", outs[1]]);
+} else {
+  outs.push(`${OUT}.mp4`);
+  await ffmpeg([...input, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-r", "30", outs[0]]);
+}
+console.log(`${n} frames -> ${outs.join(", ")}`);

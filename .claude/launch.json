@@ -83,13 +83,10 @@
     },
     {
       "name": "bespoke-popups",
-      "runtimeExecutable": "python3",
+      "runtimeExecutable": "node",
       "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8773",
-        "--directory",
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/bespoke-sold-popups"
+        "/Users/10xhunter/Documents/Hunters Second Brain/projects/bespoke-sold-popups/tools/serve.mjs",
+        "8773"
       ],
       "port": 8773
     },

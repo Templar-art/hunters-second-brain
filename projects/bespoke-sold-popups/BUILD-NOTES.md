@@ -50,17 +50,35 @@ and pushed the frame off the bottom.)
 
 ## Rendering to video
 ```
-tools/render-frames.sh 169 ~/Desktop/popups-169     # or 916
+node tools/render-sequence.mjs 169 ~/Desktop/popups-169 none     # transparent, ProRes 4444 + webm
+node tools/render-sequence.mjs 916 ~/Desktop/popups-916 plate    # over the test still, H.264
 ```
-One headless Chrome per frame at 15fps, six at a time, then ffmpeg → MP4. ~6 min for the full run.
-`preview/popups-16x9.mp4` is the current output.
+One headless Chrome driven over DevTools Protocol, 25fps, ~80ms a frame — the whole run is under a
+minute. Outputs a PNG sequence plus `-alpha.mov` (ProRes 4444, `yuva444p12le`) and `-alpha.webm`
+(VP9 alpha) when `bg=none`, or an `.mp4` otherwise.
 
-`tools/render-sequence.mjs` is the faster CDP version (one browser, ~30s) but it **hangs**:
-`Page.captureScreenshot` never returns once the page's animations are paused, which is exactly
-what freezing a frame does. Kept for reference; use the shell script.
+Alpha masters live on the Desktop (`Bespoke-SOLD-popups/`), not in the repo — 60–90MB each,
+gitignored. The small webms are in `preview/`.
+
+Three things had to line up for this to work, all of them non-obvious:
+1. **`--default-background-color=00000000` does nothing** in Chrome 150 (and `--headless=old` is gone).
+   Transparency comes from CDP `Emulation.setDefaultBackgroundColorOverride` with `a: 0`.
+2. **`Page.captureScreenshot` never returns if the page has paused animations.** `renderFrame` used to
+   freeze by pausing; it now sets `currentTime`, calls `commitStyles()`, then `cancel()`s — the frame is
+   baked into inline styles and no animation is left running. `reset()` restores each element's authored
+   `style` attribute (which carries `--d`/`--o`) from a WeakMap.
+3. **`--window-size` is not the capture size** — it leaves ~87px of browser chrome out, giving 1920×993.
+   `Emulation.setDeviceMetricsOverride` fixes it (and is harmless once #2 is sorted).
+
+`tools/render-frames.sh` is the fallback: one Chrome launch per frame, 6 in parallel, ~6 min. It cannot
+do alpha (see #1) so it's plate/black/green only.
+
+The static server is `tools/serve.mjs`, not `python3 -m http.server` — the Python one dies on this Mac
+with `'idna' codec can't encode character '\x83'` because `http.server` calls `socket.getfqdn()` on
+bind and the machine's hostname isn't ASCII-clean.
 
 ## Controls
-Play all · scene 1/2/3 · background cycle (black → Bespoke green → checker → chroma `#00b140` → `assets/plate.jpg`) · speed 1× / 0.5× / 0.25×.
+Play all · scene 1/2/3 · background cycle (black → Bespoke green → checker → chroma `#00b140` → `assets/plate.jpg` → none) · speed 1× / 0.5× / 0.25×.
 Keys: `1` `2` `3` · `R`/space replay · `B` background · **`C` hides the control bar before you record**.
 
 ## Getting it into the edit

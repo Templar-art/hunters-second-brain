@@ -29,6 +29,7 @@
   #stage.ar-916{ width:1080px; height:1920px; font-size:100px; }
   #stage.ar-169{ width:1920px; height:1080px; font-size:74px; }
 
+  #stage.bg-none { background:none; }                 /* alpha render — nothing behind the type */
   #stage.bg-black{ background-color:#000; }
   #stage.bg-green{ background-color:#132a24; }        /* Bespoke green */
   #stage.bg-key{   background-color:#00b140; }        /* chroma key */
@@ -187,11 +188,17 @@ function runCounters(scene){
   });
 }
 
+/* the per-element inline style (--d / --o) as authored, so a baked render frame
+   can be undone without losing the delays */
+const BASE_STYLE = new WeakMap();
+document.querySelectorAll(".el").forEach(el => BASE_STYLE.set(el, el.getAttribute("style") || ""));
+
 function reset(){
   timers.forEach(clearTimeout); timers = [];
   raf.forEach(cancelAnimationFrame); raf = [];
   scenes.forEach(s => {
     s.classList.remove("live","out");
+    s.querySelectorAll(".el").forEach(el => el.setAttribute("style", BASE_STYLE.get(el) || ""));
     s.querySelectorAll("[data-count]").forEach(el => el.textContent = (el.dataset.prefix||"") + "0");
   });
   void stage.offsetWidth;
@@ -227,7 +234,7 @@ function fit(){
 addEventListener("resize", fit);
 
 /* ---- controls ---- */
-const BGS = ["bg-black","bg-green","bg-checker","bg-key","bg-plate"];
+const BGS = ["bg-black","bg-green","bg-checker","bg-key","bg-plate","bg-none"];
 let bg = 0;
 
 ui.addEventListener("click", e => {
@@ -264,7 +271,12 @@ const Q = new URLSearchParams(location.search);
    from one page load — see tools/render-sequence.mjs */
 window.renderFrame = async function(sceneNo, ms, opts = {}){
   const aspect = opts.ar || Q.get("ar") || "916";
-  stage.className = `ar-${aspect} bg-${opts.bg || Q.get("bg") || "plate"}`;
+  const bgName = opts.bg || Q.get("bg") || "plate";
+  stage.className = `ar-${aspect} bg-${bgName}`;
+  if (bgName === "none"){                       // let the page itself go transparent
+    document.documentElement.style.background = "transparent";
+    document.body.style.background = "transparent";
+  }
   ar = "ar-" + aspect;
   ui.classList.add("hidden");
   stage.style.setProperty("--fit", 1);
@@ -280,7 +292,12 @@ window.renderFrame = async function(sceneNo, ms, opts = {}){
     new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))),
     new Promise(r => setTimeout(r, 60))
   ]);
-  scene.getAnimations({ subtree:true }).forEach(a => { a.currentTime = ms; a.pause(); });
+  // Freeze by baking the computed styles in and cancelling, rather than leaving paused
+  // animations on the page: a page with paused animations wedges Page.captureScreenshot.
+  const anims = scene.getAnimations({ subtree:true });
+  anims.forEach(a => { a.currentTime = ms; });
+  anims.forEach(a => { try { a.commitStyles(); } catch {} });
+  anims.forEach(a => a.cancel());
 
   scene.querySelectorAll("[data-count]").forEach(el => {
     const target = +el.dataset.count;

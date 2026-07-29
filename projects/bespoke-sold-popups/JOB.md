@@ -34,6 +34,11 @@ Brief: same three pop-up beats, Bespoke brand. No paid generation involved (HTML
   frame falling off screen (scaled but still laid out at 1080x1920 → page overflowed).
 - 2026-07-29 delivered preview: `preview/popups-16x9.mp4` (1920x1080, 10s) + 6 stills.
   Render tooling in `tools/`. CDP renderer hangs on captureScreenshot with paused animations; use the shell script.
+- 2026-07-30 alpha: transparent renders working — CDP background override (the Chrome flag is dead),
+  frozen frames now baked with commitStyles instead of paused (paused animations wedge captureScreenshot),
+  device-metrics override for exact frame size. ProRes 4444 + VP9 alpha, both aspects, ~50s a run.
+  Masters on Desktop `Bespoke-SOLD-popups/`; webms in `preview/`. Static server swapped to `tools/serve.mjs`
+  (python http.server dies on this Mac's hostname).
 - 2026-07-29 cost: 0 credits. Nothing paid touched.
 
 ---
