@@ -25,7 +25,7 @@ const FPS     = 25;
 const STEP    = 1000 / FPS;
 
 /* scene → last millisecond to shoot (in + hold, before the out) */
-const SCENES = [[1, 2800], [2, 2200], [3, 4600]];
+const SCENES = [[1, 2800], [2, 1600], [3, 3200]];
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 

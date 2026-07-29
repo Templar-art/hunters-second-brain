@@ -79,15 +79,15 @@
   /* ---------- scene 2 — logo ---------- */
   #s2 img  { width:6.6em; height:auto; margin:0 auto; display:block;
              filter:drop-shadow(0 3px 10px rgba(0,0,0,.55)) drop-shadow(0 10px 40px rgba(0,0,0,.40)); }
-  #s2 .tag { margin-top:.70em; font-size:.36em; font-weight:500; letter-spacing:.36em;
-             text-transform:uppercase; }
 
-  /* ---------- scene 3 — accumulating stat stack ---------- */
-  #s3 .stat + .stat{ margin-top:.86em; }
-  #s3 .num   { font-size:1.12em; }
-  #s3 .label { margin-top:.16em; font-size:.54em; }
-  #s3 .kicker{ margin-top:.96em; font-size:.54em; font-weight:700; letter-spacing:.02em;
-               text-transform:uppercase; }
+  /* ---------- scene 3 — three stats side by side ---------- */
+  /* equal thirds — with labels this different in length, auto widths read lopsided */
+  #s3 .stats{ display:grid; grid-template-columns:repeat(3,1fr); align-items:start;
+              width:88%; margin:0 auto; }
+  /* 88% of a 1920 frame flings them apart — keep the group tight in landscape */
+  #stage.ar-169 #s3 .stats{ width:56%; }
+  #s3 .num  { font-size:1.05em; }
+  #s3 .label{ margin-top:.18em; font-size:.30em; letter-spacing:.10em; }
 
   /* ---------- controls (C hides them) ---------- */
   #ui{
@@ -118,25 +118,25 @@
 
   <!-- SCENE 2 — BESPOKE lockup ———————————————————— -->
   <section class="pop at-logo" id="s2">
-    <img class="el" style="--d:0s; --o:.06s" src="assets/bespoke-lockup.svg" alt="Bespoke Estate Agents">
-    <div class="tag el" style="--d:.62s; --o:0s">Beyond Luxury Real Estate</div>
+    <img class="el" style="--d:0s; --o:0s" src="assets/bespoke-lockup.svg" alt="Bespoke Estate Agents">
   </section>
 
   <!-- SCENE 3 — the numbers ——————————————————————— -->
   <section class="pop at-centre" id="s3">
-    <div class="stat">
-      <div class="num el"   style="--d:0s;    --o:0s" data-count="63" data-dur="1500">0</div>
-      <div class="label el" style="--d:.16s;  --o:0s">Enquiries</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="num el"   style="--d:0s;   --o:0s" data-count="63" data-dur="1500">0</div>
+        <div class="label el" style="--d:.16s; --o:0s">Enquiries</div>
+      </div>
+      <div class="stat">
+        <div class="num el"   style="--d:.70s; --o:.04s" data-count="4" data-dur="900">0</div>
+        <div class="label el" style="--d:.86s; --o:.04s">Offers</div>
+      </div>
+      <div class="stat">
+        <div class="num el"   style="--d:1.40s; --o:.08s" data-count="26" data-dur="1100">0</div>
+        <div class="label el" style="--d:1.56s; --o:.08s">Days on market</div>
+      </div>
     </div>
-    <div class="stat">
-      <div class="num el"   style="--d:1.05s; --o:.04s" data-count="4" data-dur="900">0</div>
-      <div class="label el" style="--d:1.20s; --o:.04s">Offers</div>
-    </div>
-    <div class="stat">
-      <div class="num el"   style="--d:2.05s; --o:.08s" data-count="26" data-dur="1100">0</div>
-      <div class="label el" style="--d:2.20s; --o:.08s">Days on market</div>
-    </div>
-    <div class="kicker el"  style="--d:3.10s; --o:.12s">Premium marketing, proven</div>
   </section>
 
 </div>
@@ -162,8 +162,8 @@ const scenes = ["s1","s2","s3"].map(id => document.getElementById(id));
 
 const TIMELINE = [
   { el: scenes[0], hold: 3600 },
-  { el: scenes[1], hold: 2800 },
-  { el: scenes[2], hold: 5200 }
+  { el: scenes[1], hold: 2200 },
+  { el: scenes[2], hold: 3800 }
 ];
 const OUT = 620, GAP = 200;
 
