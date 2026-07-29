@@ -25,6 +25,11 @@ Brief: same three pop-up beats, Bespoke brand. No paid generation involved (HTML
 - 2026-07-29 build: `popups.html` + Zodiak/Poppins/logo assets; `bespoke-popups` server on :8773;
   all 3 scenes verified in browser. Reference reel could not be decoded in the automated browser
   (IG login wall), so motion is a brand interpretation — awaiting 3 frame grabs from Hunter to frame-match.
+- 2026-07-29 reference: pulled the reel with `yt-dlp`, stepped at 2fps. Real treatment = no panels,
+  centred white bold sans, **numbers count up**, blocks accumulate. First pass (glass cards, lower third)
+  was wrong; parked as `popups-cards.html`.
+- 2026-07-29 rebuild: `popups.html` reference-matched — Zodiak Light Italic "Sold", Poppins Bold numbers
+  with count-up, accumulating stat stack. All 3 scenes verified over a real Bespoke plate.
 - 2026-07-29 cost: 0 credits. Nothing paid touched.
 
 ---
