@@ -15,7 +15,33 @@ colors:
   page-off-white: "#f5f7f9"
   page-line: "#e3e8eb"
   white: "#ffffff"
+  prestige-paper: "#f6f3ec"
+  prestige-paper-deep: "#efeadf"
+  prestige-ink: "#14181b"
+  prestige-night: "#111519"
+  prestige-ivory: "#f3efe6"
+  prestige-blue: "#2e6a8a"
+  prestige-blue-rule: "#34789d"
+  prestige-blue-light: "#61a8d8"
+  prestige-clay: "#bd8270"
+  prestige-nav-veil: "rgba(246,243,236,.94)"
 typography:
+  prestige-display:
+    fontFamily: "Prata, 'Times New Roman', serif"
+    fontSize: "clamp(40px, 6.6vw, 88px)"
+    fontWeight: 400
+    lineHeight: 1.06
+    letterSpacing: "0.01em"
+  prestige-heading:
+    fontFamily: "Prata, 'Times New Roman', serif"
+    fontSize: "clamp(31px, 4.6vw, 56px)"
+    fontWeight: 400
+    lineHeight: 1.12
+  prestige-body:
+    fontFamily: "Montserrat, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "17px"
+    fontWeight: 300
+    lineHeight: 1.75
   display:
     fontFamily: "Montserrat, -apple-system, sans-serif"
     fontSize: "clamp(2.3rem, 1.6rem + 3.4vw, 4rem)"
@@ -107,6 +133,37 @@ The layers share type, blue and voice. They share nothing structurally. A landin
 - Landing pages are phone-first, nav-free, and end in a short form
 - Copy is blokey-Australian, plain, and free of dashes
 - Every number on a client page is verified before it ships
+
+## The third surface class: the Prestige layer
+
+Added 30 Jul 2026 with the 10xvisuals.com.au homepage rebuild. Source of truth: `10x-prestige-design-system.html` (Prestige DS v1.0). This is 10x's **own front door**, and it behaves like neither of the first two layers: not a film-house grid card, not a nav-free client ad landing page. It is a long editorial scroll whose job is to make a prospect conclude 10x is the expensive option before they read a word of copy.
+
+**Type.** Prata carries every display moment: headlines, project titles, prices, pull-quotes, the client roster. Montserrat 300 to 600 carries body, labels and detail. This is the one place the identity uses a serif; the pairing is on a genuine contrast axis (display serif against humanist sans) rather than the geometric-against-geometric pairing the other two layers use.
+
+**Colour.** Warm paper `#f6f3ec` and deep night `#111519`, never pure white or black. Roughly 90% of any surface is paper or night; blue appears only as hairlines, numerals, active states and the scroll line. Never a blue fill.
+
+**Motion.** One curve, `cubic-bezier(.16,1,.3,1)`. Hero photo drifts 1.1 to 1.0 over 22s. Reveals rise 32px and are applied only to elements that start below the fold, so nothing above the fold is ever gated on JS.
+
+### Named Rules
+
+**The AA-Amendment Rule.** Prestige DS v1.0 shipped four token values that fail WCAG AA when measured against the surfaces they actually land on. They are amended here, and the amended values are the real system:
+
+| Token | v1.0 | Amended | Measured |
+|---|---|---|---|
+| `--ink-faint` | `rgba(20,24,27,.42)` | `.62` | 2.64:1 → 4.82:1 on paper |
+| `--ivory-faint` | `rgba(243,239,230,.38)` | `.55` | 3.27:1 → 5.51:1 on night |
+| `--blue` (as text) | `#34789d` | `#2e6a8a` | 4.39:1 → 5.35:1 on paper |
+| `--clay` | absent | `#bd8270` | validation only, 5.76:1 on night |
+
+`#34789d` survives as `--blue-rule` for hairlines and the scroll gradient, where nothing has to be read. This is the Surface-Not-Token Rule applied to a new layer: a token is only compliant on the surface it lands on.
+
+**⚠️ The Eyebrow Contradiction, resolved against the DS.** Prestige DS v1.0 prescribes a tracked uppercase kicker plus an oversized ghost roman numeral on every section. That is precisely what **The No-Eyebrow Rule** and **The No-Numbers Rule** below already forbid on any web surface, after two pages shipped with eyebrows above 9 of 9 and 7 of 7 sections in July 2026 and both were stripped.
+
+The homepage follows the older rules and drops both. Section cadence is a 56px blue hairline above the heading. Two further reasons beyond the existing rule: at chapters I to IV the Prata glyphs render as plain vertical bars, which read as a stray watermark rather than a chapter mark, and the numbered-eyebrow-plus-display-serif combination is the single most saturated AI landing-page pattern of 2026, so it works against the premium read it was meant to create.
+
+No numbered markers survive anywhere on the page. The case-study plates briefly carried a `01` to `05` work index on the argument that a portfolio is an ordered run; it is not one, since nothing requires reading the projects in order, so the numerals came out too. Each plate now carries its discipline label alone on its hairline. The rule holds without exception: a number appears only where the order itself is information the reader needs.
+
+**The Roster-Not-Logos Rule.** The client strip is typeset in Prata, not assembled from logo files. 10x's client logos are a mix of dark-on-white JPEGs, an inverse navy lockup and a yellow Ray White square; greyscaling and multiplying them yields pale boxes of unequal weight in a ragged grid, which is the identical-card-grid anti-pattern made of assets that do not belong together. A typeset roster also carries every client, including the ten with no logo asset at all. Logos return only if a matched monochrome set on transparent backgrounds is supplied.
 
 ## Colors
 

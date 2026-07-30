@@ -175,4 +175,46 @@ Recorded here so it is not lost, not built now:
 - The other five pages have no prestige-standard treatment and will visibly clash with the new homepage until they get one.
 
 ---
-_Vault: [[overview]] · [[brand-system]] · [[lead-gen-engine]]_
+
+## 10. Build outcome, 30 Jul 2026
+
+Built at [projects/10x-site/index.html](../../../projects/10x-site/index.html). Five decisions in this spec were overturned during the build. Each is recorded here because the spec above no longer describes the shipped page.
+
+**1. No numbered eyebrows, no ghost numerals.** §4 specified a tracked kicker plus an oversized Prata roman numeral per section, per Prestige DS v1.0. Removed. [DESIGN.md](../../../DESIGN.md) already carries The No-Eyebrow Rule and The No-Numbers Rule, which forbid exactly this on any web surface after two pages were stripped for it in July 2026. Independently: at chapters I to IV the Prata glyphs render as plain vertical bars that read as a stray watermark, and numbered-eyebrow-plus-display-serif is the most saturated AI landing-page pattern of 2026, so it worked against the premium read. Section cadence is now a 56px blue hairline above each heading. The `01` to `05` work index went too, on the same rule: nothing requires reading the projects in order.
+
+**2. Client logos became a typeset roster.** §4.2 specified a monochrome logo strip. The nine available logo files are a mix of dark-on-white JPEGs, an inverse navy lockup and a yellow Ray White square; greyscaled and multiplied they render as pale boxes of unequal weight in a ragged grid, which is the identical-card-grid anti-pattern built from mismatched assets. Replaced with all sixteen client names typeset in Prata on a hairline grid, which also carries the ten clients that have no logo asset. Logos return only if a matched monochrome set on transparent grounds is supplied. The logo files were deleted; restore with the download loop in the project README if needed.
+
+**3. Four design tokens amended for WCAG AA.** DS v1.0 shipped four values that fail against the surfaces they land on: `--ink-faint` 2.64:1, `--ivory-faint` 3.27:1, `--blue` as text 4.39:1, and no validation colour at all. Amended to `.62`, `.55`, `#2e6a8a` and a new `--clay:#bd8270`; `#34789d` survives as `--blue-rule` for hairlines, where nothing must be read. Full table in DESIGN.md under The AA-Amendment Rule.
+
+**4. Reveal bootstrap rewritten.** The first implementation gated content visibility on the IntersectionObserver, so a deep link to `#close`, which the hero CTA itself points at, could land on a blank section. Reveals now arm only when the observer exists, arm after the browser settles any anchor scroll, and a 2.5s failsafe clears every pending element regardless.
+
+**5. Founders section moved to night and monochrome.** The available frame is a wide studio-seamless team shot in black tees, which reads as a team snap rather than a portrait. Now on the night surface, greyscaled and cropped tight. **This is a holding treatment.** The section wants a real environmental portrait; that needs a shoot, not CSS.
+
+### Verification performed
+
+Measured in a real browser at 1440, 768 and 375, plus headless Chrome for the hero.
+
+| Check | Result |
+|---|---|
+| Text contrast, 11 pairs, alpha-composited on live DOM | 4.68:1 to 6.69:1, **0 failures** |
+| Touch targets under 44px | **0** (was 11) |
+| Horizontal overflow at 1440 / 768 / 375 | none |
+| Page weight | **3.81MB total, 634KB above the fold** (was 6.09MB, all eager) |
+| Images lazy-loaded | 8 of 9, hero eager with `fetchpriority=high` |
+| Console errors | none |
+| Anti-pattern detector | clean, 0 findings (was 17) |
+| Form: invalid submit | all three fields flagged, errors shown, focus moves to first bad field |
+| Form: success state | fields swap for the thank-you line |
+| Deep link `/#close` | scrolls correctly, 0 pending, all reveals at opacity 1 |
+| Semantics | `<main>` present, 5 project titles are `h3`, every image has real alt text |
+
+### Still open, needs Hunter
+
+- **Form endpoint.** `FORM_ENDPOINT` is `null`, so submit opens a `mailto:` compose to hello@10xvisuals.com.au. One-line change at deploy.
+- **Founders portrait.** Holding treatment per above.
+- **Plate grading.** SOL is a night aerial, Davenport and Bespoke are bright daylight. A uniform `saturate(.94) contrast(1.03)` unifies them slightly, but a true one-grade pass needs graded exports, which is a Lightroom job not a CSS one.
+- **Skye Development Group** confirmed as the correct spelling, from the logo artwork itself. The site copy said "Skye", the asset filename said "Sky".
+- **`/contact-us/`** still carries the seven-field form with a required free-text message.
+
+---
+_Vault: [[overview]] · [[brand-system]] · [[lead-gen-engine]] · [[10x-website]]_

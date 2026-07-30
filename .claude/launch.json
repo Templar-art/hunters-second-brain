@@ -2,105 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "aios",
-      "runtimeExecutable": "node",
-      "runtimeArgs": [
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/aios-dashboard/server.mjs"
-      ],
-      "port": 8770,
-      "autoPort": false
-    },
-    {
-      "name": "anthony-proposal",
+      "name": "10x-site",
       "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8768",
-        "--directory",
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/anthony-proposal"
-      ],
-      "port": 8768
-    },
-    {
-      "name": "mvx-aircon",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8766",
-        "--directory",
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/mvx-aircon"
-      ],
-      "port": 8766
-    },
-    {
-      "name": "scroll-salisbury",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8765",
-        "--directory",
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-scroll-salisbury"
-      ],
-      "port": 8765
-    },
-    {
-      "name": "open-generative-ai",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "dev",
-        "--prefix",
-        "/Users/10xhunter/Desktop/Open-Generative-AI"
-      ],
-      "port": 3000
-    },
-    {
-      "name": "bespoke-site",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8771",
-        "--directory",
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/bespoke-site"
-      ],
-      "port": 8771
-    },
-    {
-      "name": "prestige-world",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8767",
-        "--directory",
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-prestige-world/site"
-      ],
-      "port": 8767
-    },
-    {
-      "name": "bespoke-popups",
-      "runtimeExecutable": "node",
-      "runtimeArgs": [
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/bespoke-sold-popups/tools/serve.mjs",
-        "8773"
-      ],
-      "port": 8773
-    },
-    {
-      "name": "mvx-newbuild",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8772",
-        "--directory",
-        "/Users/10xhunter/Documents/Hunters Second Brain/projects/mvx-newbuild-lp"
-      ],
-      "port": 8772
+      "runtimeArgs": ["-m", "http.server", "8791", "--directory", "projects/10x-site"],
+      "port": 8791
     }
   ]
 }

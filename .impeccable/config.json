@@ -6,7 +6,7 @@
       {
         "rule": "overused-font",
         "value": "montserrat",
-        "reason": "10x Prestige v2.0 brand guidelines mandate Prata + Montserrat",
+        "reason": "10x Visuals brand font, mandated by CLAUDE.md and DESIGN.md",
         "createdAt": "2026-07-16T05:30:25.873Z"
       }
     ]

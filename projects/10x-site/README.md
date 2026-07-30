@@ -1,0 +1,33 @@
+# 10x Visuals homepage, Prestige rebuild
+
+Static rebuild of the `10xvisuals.com.au` homepage against Prestige Design System v1.0, amended for WCAG AA. One self-contained `index.html` plus `assets/`. Works over `file://` and HTTP.
+
+- **Spec + build outcome:** [2026-07-30-10x-homepage-prestige-rebuild-design.md](../../docs/superpowers/specs/2026-07-30-10x-homepage-prestige-rebuild-design.md)
+- **Design system of record:** [DESIGN.md](../../DESIGN.md), the Prestige layer section
+- **Wiki:** [[10x-website]]
+
+## Run it
+
+```bash
+python3 -m http.server 8791 --directory "projects/10x-site"
+```
+
+Then open `http://localhost:8791`. Opening `index.html` directly also works; assets are all relative.
+
+## Before this goes live
+
+1. Set `FORM_ENDPOINT` at the top of the script block to a real POST endpoint. While it is `null` the form opens a `mailto:` compose to hello@10xvisuals.com.au, so enquiries still arrive but nothing is captured server-side.
+2. Replace the founders photograph. The current frame is a studio-seamless team shot, greyscaled and cropped as a holding treatment.
+3. Decide on the client strip. It is currently a typeset Prata roster of all sixteen clients. Logos return only with a matched monochrome set on transparent grounds.
+
+## Assets
+
+Downloaded once from the live WordPress uploads, then downscaled and re-encoded. Nothing hotlinks to `wp-content` at runtime. To re-fetch the client logo files that were removed:
+
+```bash
+B=https://10xvisuals.com.au/wp-content/uploads; mkdir -p projects/10x-site/assets/logos; for f in The-Agency-REA Shape-Construction Ray-White-Rea Salisbury-Building-Projects-Logo PRD-Rea Mastr-Logo Kollosche Gold-Coast-BMW-Logo Ashley-Cooper-Construction-Logo; do curl -sfL "$B/2026/03/10x-Visuals-Web-Logos_$f.jpg" -o "projects/10x-site/assets/logos/$f.jpg"; done
+```
+
+## Scope
+
+Homepage only. The other five pages (`/branding`, `/content-creation`, `/lead-generation`, `/systems-processes`, `/contact-us`) are untouched and will visibly clash with this one until they get the same treatment.
