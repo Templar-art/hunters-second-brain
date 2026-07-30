@@ -23,7 +23,19 @@ Then open `http://localhost:8791`. Opening `index.html` directly also works; ass
 
 ## Assets
 
-Downloaded once from the live WordPress uploads, then downscaled and re-encoded. Nothing hotlinks to `wp-content` at runtime. To re-fetch the client logo files that were removed:
+Every image ships as **WebP plus a JPEG fallback, at three or four widths**, wired up through `<picture>` with `srcset` and `sizes`. Measured cold-cache transfer: **0.98MB at 1440px, 0.34MB at 390px**, down from 4.34MB when a single full-size JPEG was served to everyone. The hero is preloaded with a responsive `imagesrcset`.
+
+**The full-size masters are not in this folder.** They were removed because an unreferenced 4.34MB would ship with a static deploy. The masters live in `~/Downloads` (the 47 Somerset Drive prints) and on the live WordPress uploads. To regenerate the variant set from a master, per image:
+
+```bash
+# widths 800 / 1400 / 1800 / native, WebP from each JPEG
+sips -Z 1400 -s format jpeg -s formatOptions 68 master.jpg --out name-1400.jpg
+cwebp -quiet -q 72 -m 5 name-1400.jpg -o name-1400.webp
+```
+
+`assets/manifest.json` records the widths generated for each image; keep it in step with the `srcset` values in `index.html`.
+
+To re-fetch the client logo files that were removed:
 
 ```bash
 B=https://10xvisuals.com.au/wp-content/uploads; mkdir -p projects/10x-site/assets/logos; for f in The-Agency-REA Shape-Construction Ray-White-Rea Salisbury-Building-Projects-Logo PRD-Rea Mastr-Logo Kollosche Gold-Coast-BMW-Logo Ashley-Cooper-Construction-Logo; do curl -sfL "$B/2026/03/10x-Visuals-Web-Logos_$f.jpg" -o "projects/10x-site/assets/logos/$f.jpg"; done

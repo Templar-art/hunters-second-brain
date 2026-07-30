@@ -1,0 +1,84 @@
+{
+ "close-a": {
+  "native": 2000,
+  "widths": [
+   800,
+   1400,
+   1800,
+   2000
+  ]
+ },
+ "founders": {
+  "native": 1500,
+  "widths": [
+   800,
+   1400
+  ]
+ },
+ "hero-stonehaven": {
+  "native": 2200,
+  "widths": [
+   800,
+   1400,
+   1800,
+   2200
+  ]
+ },
+ "interlude": {
+  "native": 2000,
+  "widths": [
+   800,
+   1400,
+   1800,
+   2000
+  ]
+ },
+ "work-bespoke": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "work-broncos": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "work-davenport": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "work-elysium": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "work-sol": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "work-stonehaven": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ }
+}
