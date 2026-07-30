@@ -51,4 +51,18 @@ The hero is Stonehaven at 47 Somerset Drive, marketed by Whitefox: the late-afte
 
 ## Scope
 
-Homepage only. The other five pages (`/branding`, `/content-creation`, `/lead-generation`, `/systems-processes`, `/contact-us`) are untouched and will visibly clash with this one until they get the same treatment.
+Homepage only. The five interior pages were built on 30 Jul and then dropped at Hunter's request to concentrate on the front page; nav and discipline rows point back at the live WordPress routes. The build script is kept at `docs/` history in git if they are wanted again.
+
+## Why it does not look generated
+
+The page was reworked specifically against the AI-landing-page tells. What changed and why:
+
+- **The work leads.** It used to sit below three text sections. A media studio burying its work is backwards, and "hidden work" was the one structural fault the UI database flagged too.
+- **No repeated marker above headings.** Tracked eyebrows went first; the 56px hairline that replaced them was the same reflex one level down, so it went too. Headings and surface changes carry the cadence now.
+- **One typographic statement, not six equal headings.** The studio thesis runs at up to 60px in a left rail; every other heading drops to a label scale. Uniform heading size is texture, not hierarchy.
+- **An editorial column pair.** Prose sits in a heading rail plus a wider body column instead of one narrow left column repeated down the page, which was the single strongest templated signal.
+- **The client roster is grouped by what each client is** (agencies, builders and developers, venues and brands). Real information, and it stops seventeen names reading as an even filler grid.
+- **Uneven vertical rhythm.** Sections use `pad-tight` or `pad-wide` rather than one clamp everywhere.
+- **The close is left-aligned**, not a centred landing-page footer.
+
+Rejected from the UI database because it contradicts the brand: Playfair Display (also on the reflex-reject list), `#2563EB`, Brutalism's instant transitions and 700-weight type, and `back.out(1.4)` easing, which is the bounce that DESIGN.md bans outright.

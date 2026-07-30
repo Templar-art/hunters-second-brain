@@ -9,323 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-  /* ============================================================
-     10x Prestige Design System v1.0.
-     Four amendments, all forced by measured WCAG AA failures in
-     the original tokens. Documented in DESIGN.md:
-       --ink-faint    .42 -> .62   (2.64:1 -> 4.82:1 on paper)
-       --ivory-faint  .38 -> .55   (3.27:1 -> 5.51:1 on night)
-       --blue     #34789d -> #2e6a8a for text (4.39:1 -> 5.35:1)
-                  original kept as --blue-rule for hairlines
-       --clay     added, #bd8270   (validation only, 5.76:1)
-     ============================================================ */
-  :root{
-    --paper:#f6f3ec;
-    --paper-deep:#efeadf;
-    --ink:#14181b;
-    --ink-soft:rgba(20,24,27,.64);
-    --ink-faint:rgba(20,24,27,.62);
-    --line:rgba(20,24,27,.14);
-    --night:#111519;
-    --ivory:#f3efe6;
-    --ivory-soft:rgba(243,239,230,.62);
-    --ivory-faint:rgba(243,239,230,.55);
-    --line-dark:rgba(243,239,230,.16);
-    --blue:#2e6a8a;
-    --blue-rule:#34789d;
-    --blue-light:#61a8d8;
-    --clay:#bd8270;
-    --expo:cubic-bezier(.16,1,.3,1);
-    --tap:44px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--paper);color:var(--ink);font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-  ::selection{background:var(--blue);color:var(--ivory);}
-  img{max-width:100%;display:block;}
-  picture{display:contents;}
-  a{color:inherit;}
-  .serif{font-family:'Prata','Times New Roman',serif;font-weight:400;}
-  .label{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:10px;letter-spacing:.42em;text-transform:uppercase;}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(24px,5vw,64px);position:relative;z-index:2;}
-  em{font-style:italic;}
-  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
-  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:4px;}
-  .dark a:focus-visible,.dark button:focus-visible,.dark input:focus-visible,
-  header a:focus-visible,#close a:focus-visible,#close button:focus-visible,#close input:focus-visible{outline-color:var(--ivory);}
-
-  /* ---------- Nav ---------- */
-  nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .4s ease, box-shadow .4s ease;padding:14px 0;}
-  nav.scrolled{background:rgba(246,243,236,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);}
-  nav .bar{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;}
-  nav .wordmark{color:var(--ivory);font-size:15px;letter-spacing:.34em;text-decoration:none;transition:color .4s ease;display:inline-flex;align-items:center;min-height:var(--tap);}
-  nav.scrolled .wordmark{color:var(--ink);}
-  nav .links{display:flex;gap:clamp(18px,2.4vw,34px);align-items:center;}
-  nav a.nlink{color:var(--ivory-soft);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;transition:color .3s;display:inline-flex;align-items:center;min-height:var(--tap);}
-  nav.scrolled a.nlink{color:var(--ink-soft);}
-  nav a.nlink:hover{color:var(--blue-light);}
-  nav.scrolled a.nlink:hover{color:var(--blue);}
-  nav a.nlink.only{display:none;}
-  @media(max-width:900px){
-    nav .links a.nlink{display:none;}
-    nav .links a.nlink.only{display:inline-flex;}
-  }
-  #scrollProgress{position:fixed;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue-rule),var(--blue-light));transform:scaleX(0);transform-origin:0 50%;z-index:80;}
-
-  /* ---------- Hero ---------- */
-  header{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--night);}
-  @supports(min-height:100dvh){header{min-height:100dvh;}}
-  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:drift 22s ease-out forwards;}
-  @keyframes drift{from{transform:scale(1.1);}to{transform:scale(1);}}
-  /* Two scrims. The DS gradient sets the key; the second is anchored
-     to the bottom so type always lands in real shadow however bright
-     the lower third of the photograph is. */
-  .hero-veil{position:absolute;inset:0;background:
-    linear-gradient(to bottom, rgba(17,21,25,.58) 0%, rgba(17,21,25,.20) 34%, rgba(17,21,25,.30) 52%, rgba(17,21,25,.86) 88%, rgba(17,21,25,.94) 100%),
-    linear-gradient(to top, rgba(17,21,25,.78) 0%, rgba(17,21,25,.52) 30%, rgba(17,21,25,.20) 50%, rgba(17,21,25,0) 64%);}
-  /* Type shadow: DESIGN.md shadow vocabulary. White type over footage
-     always carries a soft wide ink shadow so it survives a bright frame. */
-  .hero-inner{position:relative;z-index:2;width:100%;padding:0 clamp(24px,6vw,84px) clamp(56px,9vh,110px);
-    text-shadow:0 2px 14px rgba(5,12,20,.58);}
-  .interlude .inner,#close .wrap{text-shadow:0 2px 14px rgba(5,12,20,.5);}
-  .hero-rule{width:56px;height:1px;background:var(--blue-light);margin-bottom:28px;}
-  /* Tracked caps at .42em overrun a phone. Tighten and let it wrap
-     there; at desktop it must stay on one line, so no width cap. */
-  @media(max-width:620px){
-    .hero-kicker{font-size:9px;letter-spacing:.2em;line-height:2;}
-  }
-  /* 35px floor, not 40: if Prata fails to load the fallback serif is
-     wider, and 40px overran a 390px viewport inside the clipping line
-     box. 35px leaves headroom for the fallback metrics. */
-  h1{color:var(--ivory);font-family:'Prata','Times New Roman',serif;font-weight:400;font-size:clamp(35px,6.6vw,88px);line-height:1.06;letter-spacing:.01em;max-width:16ch;text-wrap:balance;}
-  h1 .ln{display:block;overflow:hidden;}
-  h1 .ln > span{display:block;}
-  /* Entrance motion is opt-in, added by JS. Default state is fully
-     visible, so a blocked animation can never hide the headline. */
-  .anim h1 .ln > span{transform:translateY(106%);animation:lineUp 1.15s var(--expo) forwards;}
-  .anim h1 .ln:nth-child(1) > span{animation-delay:.40s;}
-  .anim h1 .ln:nth-child(2) > span{animation-delay:.58s;}
-  @keyframes lineUp{to{transform:none;}}
-  .hero-meta{display:flex;flex-wrap:wrap;gap:20px 48px;align-items:flex-end;justify-content:space-between;margin-top:clamp(32px,5vh,56px);padding-top:26px;border-top:1px solid var(--line-dark);}
-  .hero-meta .lede-h{color:var(--ivory-soft);font-size:14.5px;line-height:1.8;max-width:46ch;text-wrap:pretty;}
-  .anim .fade{opacity:0;transform:translateY(26px);animation:rise 1.1s var(--expo) forwards;}
-  .anim .fade.d1{animation-delay:.2s}.anim .fade.d2{animation-delay:.4s}.anim .fade.d3{animation-delay:.85s}
-  @keyframes rise{to{opacity:1;transform:none;}}
-
-  /* ---------- Tracked link, hairline extends on hover ---------- */
-  .tlink{display:inline-flex;align-items:flex-end;min-height:var(--tap);text-decoration:none;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--blue);padding-bottom:11px;position:relative;background:none;border:none;cursor:pointer;}
-  .tlink::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--line);}
-  .tlink::before{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--expo);}
-  .tlink:hover::before,a:hover .tlink::before{transform:scaleX(1);}
-  .dark .tlink,header .tlink,#close .tlink{color:var(--blue-light);}
-  .dark .tlink::after,header .tlink::after,#close .tlink::after{background:var(--line-dark);}
-  .dark .tlink::before,header .tlink::before,#close .tlink::before{background:var(--blue-light);}
-
-  /* ---------- Sections ---------- */
-  section{padding:clamp(80px,12vh,150px) 0;position:relative;overflow:hidden;}
-  /* Section cadence is a hairline, not a tracked eyebrow.
-     DESIGN.md, The No-Eyebrow Rule. */
-  .srule{width:56px;height:1px;background:var(--blue-rule);margin-bottom:clamp(26px,4.5vh,44px);}
-  .dark .srule,#founders .srule{background:var(--blue-light);}
-  h2{font-family:'Prata','Times New Roman',serif;font-weight:400;font-size:clamp(31px,4.6vw,56px);line-height:1.12;max-width:22ch;text-wrap:balance;}
-  .dark h2{color:var(--ivory);line-height:1.17;}
-  .lede{font-size:17px;color:var(--ink-soft);max-width:62ch;margin-top:24px;text-wrap:pretty;}
-  .dark{background:var(--night);color:var(--ivory);}
-  .dark .lede{color:var(--ivory-soft);line-height:1.82;}
-  .reveal{transition:opacity .9s var(--expo), transform .9s var(--expo);}
-  .reveal.pending{opacity:0;transform:translateY(32px);}
-  /* Group stagger, so a section arrives in parts rather than as one slab */
-  .stagger > .reveal:nth-child(2){transition-delay:.09s}
-  .stagger > .reveal:nth-child(3){transition-delay:.18s}
-  .stagger > .reveal:nth-child(4){transition-delay:.27s}
-
-  /* ---------- Staged reveals ----------
-     A stagger root is observed as one element but animates its children
-     in reading order, so a row of clients or a stack of captions arrives
-     in sequence rather than as a slab. The root itself never hides, so
-     one observer entry drives the whole group.
-     Follow-through: 70ms between siblings, well inside the 900ms travel,
-     so the group reads as one gesture rather than separate events. */
-  .reveal.stgr.pending{opacity:1;transform:none;}
-  .anim .stgr > *{transition:opacity .75s var(--expo), transform .75s var(--expo);}
-  .anim .stgr.pending > *{opacity:0;transform:translateY(20px);}
-  .anim .stgr > *:nth-child(2){transition-delay:.07s}
-  .anim .stgr > *:nth-child(3){transition-delay:.14s}
-  .anim .stgr > *:nth-child(4){transition-delay:.21s}
-  .anim .stgr > *:nth-child(5){transition-delay:.28s}
-  .anim .stgr > *:nth-child(6){transition-delay:.35s}
-  /* Client roster staggers by row, not by cell, so 16 names do not take
-     a second and a half to arrive. */
-  .anim .roster.stgr > *{transition-delay:calc(var(--row,0) * .09s);}
-
-  /* ---------- Masked heading rise ----------
-     Same clip-mask gesture as the hero headline, reused on section heads.
-     The mask only exists once JS has opted motion in, so the heading is
-     never clipped or hidden by default. */
-  .h2m > span{display:block;}
-  .anim .h2m{overflow:hidden;padding-bottom:.12em;}
-  .anim .h2m.pending > span{transform:translateY(104%);}
-  .anim .h2m > span{transition:transform 1.05s var(--expo);}
-  .reveal.h2m.pending{opacity:1;transform:none;}
-
-  /* ---------- Scroll-linked parallax ----------
-     Transform only, driven by the single rAF-throttled scroll handler. */
-  /* will-change is added only while the frame is on screen, so the two
-     parallax layers are not held in compositor memory for the whole page. */
-  [data-par].par-live{will-change:transform;}
-
-  /* ---------- Clients ---------- */
-  #clients{background:var(--paper-deep);padding:clamp(64px,9vh,104px) 0;}
-  .roster{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(28px,4vh,44px);border-top:1px solid var(--line);list-style:none;}
-  .roster li{font-family:'Prata','Times New Roman',serif;font-size:clamp(15px,1.35vw,19px);line-height:1.35;color:var(--ink);padding:clamp(18px,2.4vw,26px) clamp(14px,2vw,26px) clamp(18px,2.4vw,26px) 0;border-bottom:1px solid var(--line);}
-  @media(max-width:900px){.roster{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:480px){.roster{grid-template-columns:1fr;}}
-
-  /* ---------- Work ---------- */
-  .plate{position:relative;overflow:hidden;background:var(--paper-deep);}
-  .plate img{width:100%;height:100%;object-fit:cover;clip-path:inset(0);transform:scale(1);
-    filter:saturate(.94) contrast(1.03);
-    transition:clip-path 1.15s var(--expo), transform 1.1s var(--expo);}
-  .plate.pending{opacity:1;transform:none;}
-  .plate.pending img{clip-path:inset(0 0 100% 0);transform:scale(1.06);}
-  a:hover .plate img{transform:scale(1.032);}
-  .pcap{display:flex;justify-content:flex-start;align-items:baseline;padding-top:14px;border-top:1px solid var(--line);margin-top:18px;}
-  .pcap .t{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-faint);}
-  .w-title{font-family:'Prata','Times New Roman',serif;font-weight:400;font-size:clamp(24px,2.7vw,34px);line-height:1.14;margin-top:20px;}
-  .bleed .w-title{font-size:clamp(30px,4vw,52px);}
-  .w-client{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-faint);margin-top:12px;}
-  .w-line{font-size:15px;color:var(--ink-soft);max-width:48ch;margin-top:16px;text-wrap:pretty;}
-  .w-cta{margin-top:14px;}
-  .bleed{width:100vw;margin-left:50%;transform:translateX(-50%);}
-  .bleed .plate{aspect-ratio:16/8;}
-  .bleed .under{max-width:1120px;margin:0 auto;padding:0 clamp(24px,5vw,64px);}
-  .work-item{margin-top:clamp(56px,9vh,110px);}
-  .two-up{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);}
-  .two-up .plate{aspect-ratio:4/3;}
-  @media(max-width:820px){
-    .two-up{grid-template-columns:1fr;gap:clamp(48px,8vh,72px);}
-  }
-
-  /* ---------- Interlude ---------- */
-  .interlude{position:relative;height:clamp(320px,52vh,500px);overflow:hidden;}
-  .interlude img{position:absolute;left:0;right:0;width:100%;height:150%;top:-25%;object-fit:cover;}
-  .interlude .veil{position:absolute;inset:0;background:rgba(17,21,25,.66);}
-  .interlude .inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 24px;}
-  .interlude .quote{font-family:'Prata','Times New Roman',serif;color:var(--ivory);font-size:clamp(24px,3.2vw,40px);line-height:1.36;max-width:26ch;text-wrap:balance;}
-
-  /* ---------- Disciplines ---------- */
-  .disc{margin-top:clamp(32px,5vh,52px);border-top:1px solid var(--line-dark);}
-  .disc a.row{display:grid;grid-template-columns:minmax(150px,220px) 1fr auto;gap:clamp(18px,3vw,44px);align-items:baseline;padding:26px 0;min-height:var(--tap);border-bottom:1px solid var(--line-dark);text-decoration:none;transition:transform .5s var(--expo);}
-  .disc a.row:hover{transform:translateX(12px);}
-  .disc .rn{font-family:'Prata','Times New Roman',serif;font-size:16px;color:var(--blue-light);letter-spacing:.14em;}
-  .disc .rt{font-family:'Prata','Times New Roman',serif;font-size:clamp(19px,2vw,25px);color:var(--ivory);}
-  .disc .rd{color:var(--ivory-soft);font-size:14.5px;line-height:1.8;}
-  .disc .rv{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--ivory-faint);transition:color .4s;}
-  .disc a.row:hover .rv{color:var(--blue-light);}
-  @media(max-width:820px){
-    .disc a.row{grid-template-columns:1fr;gap:6px;padding:22px 0;}
-    .disc .rv{display:none;}
-  }
-
-  /* ---------- Founders ---------- */
-  #founders{background:var(--night);}
-  .founders{display:grid;grid-template-columns:1fr .9fr;gap:clamp(32px,5vw,76px);align-items:center;margin-top:clamp(28px,4vh,44px);}
-  /* Monochrome and cropped tight: the original frame is a wide studio
-     seamless, which reads as a team snap rather than a portrait. */
-  /* 4/3 matches the source exactly, so cover crops nothing. A portrait
-     plate sliced both outer founders out of the frame. */
-  .founders .plate{aspect-ratio:4/3;background:var(--night);}
-  .founders .plate img{filter:grayscale(1) contrast(1.08) brightness(.96);object-position:50% 42%;}
-  .fq{font-family:'Prata','Times New Roman',serif;color:var(--ivory);font-size:clamp(22px,2.6vw,33px);line-height:1.36;max-width:26ch;text-wrap:balance;}
-  .fnames{margin-top:28px;color:var(--ivory-faint);}
-  @media(max-width:820px){.founders{grid-template-columns:1fr;}.founders .plate{aspect-ratio:4/3;}}
-
-  /* ---------- Testimonial ---------- */
-  .tq{font-family:'Prata','Times New Roman',serif;color:var(--ivory);font-size:clamp(21px,2.7vw,32px);line-height:1.42;max-width:38ch;margin-top:30px;text-wrap:pretty;}
-  .tattr{margin-top:32px;color:var(--ivory-faint);}
-
-  /* ---------- Close + form ---------- */
-  #close{position:relative;overflow:hidden;background:var(--night);padding:clamp(96px,15vh,170px) 0;}
-  /* Overscan for the parallax travel. At factor .07 over a ~800px
-     section the image moves up to ~59px each way, so a flush
-     inset:0 / height:100% frame would expose a bare edge. */
-  #close .bg{position:absolute;left:0;right:0;top:-10%;width:100%;height:120%;object-fit:cover;}
-  /* Bottom-weighted so the form half is materially darker than the
-     headline half; the fields never sit on the brightest region. */
-  #close .veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(17,21,25,.80) 0%,rgba(17,21,25,.88) 38%,rgba(17,21,25,.94) 66%,rgba(17,21,25,.96) 100%);}
-  #close .wrap{text-align:center;}
-  #close h2{color:var(--ivory);margin:0 auto;max-width:20ch;}
-  #close .lede{color:var(--ivory-soft);margin:24px auto 0;max-width:44ch;}
-  #close .hero-rule{margin:0 auto 28px;}
-  form{margin:clamp(44px,7vh,72px) auto 0;max-width:760px;}
-  .fields{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);text-align:left;}
-  @media(max-width:720px){.fields{grid-template-columns:1fr;gap:24px;}}
-  .field label{display:block;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--ivory-faint);margin-bottom:8px;}
-  .field input{width:100%;min-height:var(--tap);background:none;border:none;border-bottom:1px solid var(--ivory-faint);color:var(--ivory);font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:15px;padding:8px 0 12px;transition:border-color .4s var(--expo);}
-  .field input:focus{border-bottom-color:var(--blue-light);}
-  /* aria-invalid is the single source of truth for the error state, so the
-     visual and the assistive-tech state can never disagree. */
-  .field input[aria-invalid="true"]{border-bottom-color:var(--clay);}
-  .field .err{display:none;font-size:11.5px;letter-spacing:.04em;color:var(--clay);margin-top:8px;}
-  .field input[aria-invalid="true"] ~ .err{display:block;}
-  .submit{margin-top:clamp(32px,5vh,48px);display:flex;justify-content:center;}
-  button.tlink[aria-busy="true"],button.tlink:disabled{opacity:.5;cursor:default;}
-  button.tlink[aria-busy="true"]::before,button.tlink:disabled::before{transform:scaleX(0);}
-  /* Alternative contact path. Visible always, so someone with JS off or a
-     failed submit is never left without a way to reach 10x. */
-  .form-alt{margin-top:26px;font-size:13px;color:var(--ivory-faint);}
-  /* Inline links in a sentence, so exempt from the 44px rule (WCAG 2.5.8
-     inline exception), but padded so they are not fiddly on a phone. */
-  .form-alt a{color:var(--ivory-soft);text-decoration:underline;text-underline-offset:3px;padding:9px 0;}
-  .form-alt a:hover{color:var(--blue-light);}
-  .form-done{display:none;font-family:'Prata','Times New Roman',serif;color:var(--ivory);font-size:clamp(20px,2.3vw,27px);line-height:1.4;max-width:30ch;margin:clamp(44px,7vh,72px) auto 0;}
-  .form-fail{display:none;color:var(--ivory-soft);font-size:14.5px;margin-top:26px;}
-  form.sent .fields,form.sent .submit{display:none;}
-  form.sent + .form-done{display:block;}
-
-  /* ---------- Footer ---------- */
-  footer{background:var(--night);border-top:1px solid var(--line-dark);padding:34px 0 42px;}
-  footer .inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 36px;}
-  footer .mark{font-family:'Prata','Times New Roman',serif;font-size:18px;color:var(--ivory);letter-spacing:.2em;}
-  footer .fl{display:flex;flex-wrap:wrap;gap:0 28px;align-items:center;}
-  footer p,footer a{color:var(--ivory-faint);font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;text-decoration:none;}
-  footer a{display:inline-flex;align-items:center;min-height:var(--tap);}
-  footer a:hover{color:var(--blue-light);}
-  @media(max-width:720px){footer .inner{flex-direction:column;align-items:flex-start;}}
-
-  /* ---------- Grain ---------- */
-  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.014'/%3E%3C/svg%3E");pointer-events:none;z-index:90;}
-
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    .fade,.anim .fade{animation:none !important;opacity:1 !important;transform:none !important;}
-    h1 .ln > span,.anim h1 .ln > span{animation:none !important;transform:none !important;}
-    .hero-img{animation:none;}
-    .reveal,.reveal.pending{opacity:1 !important;transform:none !important;transition-delay:0s !important;}
-    .stgr > *,.stgr.pending > *{opacity:1 !important;transform:none !important;transition-delay:0s !important;}
-    .h2m{overflow:visible !important;padding-bottom:0 !important;}
-    .h2m > span,.h2m.pending > span{transform:none !important;}
-    [data-par]{transform:none !important;}
-    .plate.pending img,a:hover .plate img{clip-path:inset(0) !important;transform:none !important;}
-    .disc a.row:hover{transform:none !important;}
-    *{transition-duration:.01ms !important;}
-  }
-  @media print{
-    nav,#scrollProgress{display:none;}
-    body::before{display:none;}
-    .fade,.anim .fade,.reveal,.reveal.pending{opacity:1 !important;transform:none !important;animation:none !important;}
-    .stgr > *,.stgr.pending > *{opacity:1 !important;transform:none !important;}
-    .h2m{overflow:visible !important;}
-    .h2m > span,.h2m.pending > span{transform:none !important;}
-    [data-par]{transform:none !important;}
-    h1 .ln > span,.anim h1 .ln > span{animation:none !important;transform:none !important;}
-    .plate.pending img{clip-path:inset(0) !important;transform:none !important;}
-    header{min-height:auto;height:80vh;page-break-after:always;}
-    section{page-break-inside:avoid;}
-    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
-  }
-</style>
+<link rel="stylesheet" href="assets/prestige.css"/>
 </head>
 <body>
 
@@ -367,47 +51,10 @@
   </div>
 </header>
 
-<!-- ============ CLIENTS ============ -->
-<section id="clients">
+<!-- ============ THE WORK ============ -->
+<section id="work" class="pad-tight">
   <div class="wrap">
-    <h2 class="sr">Clients</h2>
-    <p class="label reveal" style="color:var(--ink-faint);">Trusted by</p>
-    <ul class="roster reveal stgr">
-      <li style="--row:0">Kollosche</li>
-      <li style="--row:0">Ray White</li>
-      <li style="--row:0">PRD</li>
-      <li style="--row:0">The Agency</li>
-      <li style="--row:1">Ashley Cooper Construction</li>
-      <li style="--row:1">Shape Construction</li>
-      <li style="--row:1">Salisbury Building Projects</li>
-      <li style="--row:1">Skye Development Group</li>
-      <li style="--row:2">Maker Build</li>
-      <li style="--row:2">Broncos Leagues Club</li>
-      <li style="--row:2">CSi Club Southport</li>
-      <li style="--row:2">Hill Interior Linings</li>
-      <li style="--row:3">Gold Coast BMW</li>
-      <li style="--row:3">Mastr</li>
-      <li style="--row:3">Ocean Shores</li>
-      <li style="--row:3">Whitefox</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ I. THE STUDIO ============ -->
-<section id="studio">
-  <div class="wrap stagger">
-    <div class="reveal"><div class="srule"></div></div>
-    <h2 class="reveal h2m"><span>Four disciplines, one standard.</span></h2>
-    <p class="lede reveal">10x Visuals is a Gold Coast studio built on a single idea: the way a property or a build is presented decides what people are willing to pay for it. We photograph the homes, film the projects, and brand the businesses behind them.</p>
-    <p class="lede reveal">Brand, content, lead generation and the AI systems that let a small team work at volume. One team across all four, so the standard holds from the first frame to the last ad.</p>
-  </div>
-</section>
-
-<!-- ============ II. THE WORK ============ -->
-<section id="work" style="padding-top:0;">
-  <div class="wrap stagger">
-    <div class="reveal"><div class="srule"></div></div>
-    <h2 class="reveal h2m"><span>Homes, builds, and the brands behind them.</span></h2>
+    <h2 class="reveal h2m h-small"><span>Homes, builds, and the brands behind them.</span></h2>
   </div>
 
   <div class="work-item bleed">
@@ -482,21 +129,30 @@
   </div>
 </section>
 
+<!-- ============ THE STUDIO ============ -->
+<section id="studio" class="pad-wide">
+  <div class="wrap ed stagger">
+    <h2 class="statement reveal h2m"><span>Four disciplines, one standard.</span></h2>
+    <div class="reveal">
+      <p class="lede">10x Visuals is a Gold Coast studio built on a single idea: the way a property or a build is presented decides what people are willing to pay for it. We photograph the homes, film the projects, and brand the businesses behind them.</p>
+      <p class="lede">Brand, content, lead generation and the AI systems that let a small team work at volume. One team across all four, so the standard holds from the first frame to the last ad.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ INTERLUDE ============ -->
 <div class="interlude">
   <picture><source type="image/webp" srcset="assets/interlude-800.webp 800w, assets/interlude-1400.webp 1400w, assets/interlude-1800.webp 1800w, assets/interlude-2000.webp 2000w" sizes="100vw"/><img id="parallaxImg" data-par="0.12" src="assets/interlude-2000.jpg" srcset="assets/interlude-800.jpg 800w, assets/interlude-1400.jpg 1400w, assets/interlude-1800.jpg 1800w, assets/interlude-2000.jpg 2000w" sizes="100vw" width="2000" height="1125" loading="lazy" decoding="async" alt="A hinterland residence at twilight, interiors lit, pool glowing."/></picture>
   <div class="veil"></div>
   <div class="inner reveal">
-    <p class="label" style="color:var(--ivory-faint);margin-bottom:24px;">The Principle</p>
     <p class="quote">The best marketing doesn't look like marketing. It looks like the work, presented properly.</p>
   </div>
 </div>
 
-<!-- ============ III. THE DISCIPLINES ============ -->
+<!-- ============ THE DISCIPLINES ============ -->
 <section id="disciplines" class="dark">
   <div class="wrap stagger">
-    <div class="reveal"><div class="srule"></div></div>
-    <h2 class="reveal h2m"><span>What we actually do.</span></h2>
+    <h2 class="reveal h2m h-small"><span>What we actually do.</span></h2>
     <div class="disc reveal stgr">
       <a class="row" href="/branding">
         <span class="rt">Branding</span>
@@ -522,11 +178,31 @@
   </div>
 </section>
 
-<!-- ============ IV. THE FOUNDERS ============ -->
+<!-- ============ CLIENTS ============ -->
+<section id="clients" class="pad-tight">
+  <div class="wrap">
+    <h2 class="sr">Clients</h2>
+    <div class="reveal stgr">
+      <div class="rgroup">
+        <h3>Agencies</h3>
+        <ul><li>Kollosche</li><li>Ray White</li><li>PRD</li><li>The Agency</li><li>Whitefox</li><li>Bespoke Estate Agents</li></ul>
+      </div>
+      <div class="rgroup">
+        <h3>Builders &amp; Developers</h3>
+        <ul><li>Ashley Cooper Construction</li><li>Shape Construction</li><li>Salisbury Building Projects</li><li>Skye Development Group</li><li>Maker Build</li><li>Hill Interior Linings</li></ul>
+      </div>
+      <div class="rgroup">
+        <h3>Venues &amp; Brands</h3>
+        <ul><li>Broncos Leagues Club</li><li>CSi Club Southport</li><li>Gold Coast BMW</li><li>Mastr</li><li>Ocean Shores</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE FOUNDERS ============ -->
 <section id="founders">
   <div class="wrap">
     <h2 class="sr">The founders</h2>
-    <div class="reveal"><div class="srule"></div></div>
     <div class="founders">
       <div class="plate reveal"><picture><source type="image/webp" srcset="assets/founders-800.webp 800w, assets/founders-1400.webp 1400w" sizes="(max-width:820px) 100vw, 44vw"/><img src="assets/founders-1400.jpg" srcset="assets/founders-800.jpg 800w, assets/founders-1400.jpg 1400w" sizes="(max-width:820px) 100vw, 44vw" width="1500" height="1125" loading="lazy" decoding="async" alt="The 10x Visuals founders, photographed on the Gold Coast."/></picture></div>
       <div class="reveal">
@@ -551,9 +227,9 @@
 <section id="close">
   <picture><source type="image/webp" srcset="assets/close-a-800.webp 800w, assets/close-a-1400.webp 1400w, assets/close-a-1800.webp 1800w, assets/close-a-2000.webp 2000w" sizes="100vw"/><img class="bg" data-par="0.07" src="assets/close-a-2000.jpg" srcset="assets/close-a-800.jpg 800w, assets/close-a-1400.jpg 1400w, assets/close-a-1800.jpg 1800w, assets/close-a-2000.jpg 2000w" sizes="100vw" width="2000" height="1333" loading="lazy" decoding="async" alt=""/></picture>
   <div class="veil"></div>
-  <div class="wrap stagger">
+  <div class="wrap left stagger">
     <div class="reveal"><div class="hero-rule"></div></div>
-    <h2 class="reveal h2m"><span>It's time to raise the standard.</span></h2>
+    <h2 class="reveal h2m statement"><span>It's time to raise the standard.</span></h2>
     <p class="lede reveal">Tell us what you're building. We will tell you what it needs.</p>
 
     <form id="enquiry" novalidate>
@@ -597,179 +273,6 @@
   </div>
 </footer>
 
-<script>
-  /* Swap in a real POST endpoint at deploy. While null, the form
-     falls back to a mailto: compose so no enquiry is ever lost. */
-  const FORM_ENDPOINT = null;
-  const CONTACT_EMAIL = 'hello@10xvisuals.com.au';
-
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduced) document.documentElement.classList.add('anim');
-  const nav = document.getElementById('mainNav');
-  const progress = document.getElementById('scrollProgress');
-  const parallax = [...document.querySelectorAll('[data-par]')].map(el => ({
-    el, factor: parseFloat(el.dataset.par) || 0
-  }));
-  let ticking = false;
-
-  function onScroll(){
-    if (ticking) return; ticking = true;
-    requestAnimationFrame(() => {
-      nav.classList.toggle('scrolled', scrollY > 60);
-      const max = document.documentElement.scrollHeight - innerHeight;
-      progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(scrollY / max, 1) : 0) + ')';
-      /* Parallax: transform only, and only while the frame is actually
-         on screen, so offscreen sections cost nothing. */
-      if (!reduced) for (const p of parallax) {
-        const r = p.el.parentElement.getBoundingClientRect();
-        if (r.bottom > 0 && r.top < innerHeight) {
-          /* Clamp to the element's own overscan. Travel scales with
-             viewport height, so an unclamped factor exposes the frame
-             behind the image on tall viewports. */
-          const slack = Math.max(0, (p.el.offsetHeight - p.el.parentElement.clientHeight) / 2);
-          const raw = (r.top + r.height / 2 - innerHeight / 2) * -p.factor;
-          const travel = Math.max(-slack, Math.min(slack, raw));
-          p.el.style.transform = 'translateY(' + travel.toFixed(2) + 'px)';
-        }
-      }
-      ticking = false;
-    });
-  }
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  /* Promote a parallax layer only while its section is near the viewport. */
-  if (!reduced && 'IntersectionObserver' in window) {
-    const liveIO = new IntersectionObserver(es => es.forEach(e => {
-      e.target.classList.toggle('par-live', e.isIntersecting);
-    }), { rootMargin: '200px 0px' });
-    for (const p of parallax) liveIO.observe(p.el);
-  }
-
-  /* Reveals enhance an already-visible default. Content is never left
-     depending on the observer: we only hide anything once we know the
-     observer exists, we arm after the browser has settled any anchor
-     scroll (a deep link like /#close used to leave a section blank),
-     and a failsafe clears everything regardless after 2.5s. */
-  function armReveals(){
-    if (reduced || !('IntersectionObserver' in window)) return;
-
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.remove('pending'); io.unobserve(e.target); }
-    }), { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => {
-      if (el.getBoundingClientRect().top > innerHeight * 1.05) {
-        el.classList.add('pending');
-        io.observe(el);
-      }
-    });
-
-    setTimeout(() => {
-      document.querySelectorAll('.reveal.pending').forEach(el => el.classList.remove('pending'));
-    }, 2500);
-  }
-  requestAnimationFrame(() => requestAnimationFrame(armReveals));
-
-  /* ---- Enquiry form ----
-     Validation drives aria-invalid, which drives both the visual state and
-     what assistive tech reports, so the two can never disagree. Each error
-     paragraph is role="alert" and wired to its input via aria-describedby,
-     so a failed submit is announced rather than only coloured. */
-  const form = document.getElementById('enquiry');
-  const fail = document.getElementById('formFail');
-  const done = document.getElementById('formDone');
-  const submitBtn = form.querySelector('button[type="submit"]');
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  const TIMEOUT_MS = 12000;
-
-  const rules = {
-    name:  v => v.length > 1,
-    email: v => EMAIL_RE.test(v),
-    phone: v => v.replace(/[^0-9]/g, '').length >= 8
-  };
-
-  function mark(input, ok){
-    input.setAttribute('aria-invalid', ok ? 'false' : 'true');
-    return ok;
-  }
-
-  /* Clear a field's error as soon as the user corrects it, rather than
-     making them submit again to find out. */
-  for (const name of Object.keys(rules)) {
-    form[name].addEventListener('input', e => {
-      if (e.target.getAttribute('aria-invalid') === 'true'
-          && rules[name](e.target.value.trim())) {
-        e.target.setAttribute('aria-invalid', 'false');
-      }
-    });
-  }
-
-  let sending = false;
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    if (sending) return;                 /* no double posts */
-    fail.style.display = 'none';
-
-    const values = {};
-    let firstBad = null;
-    for (const name of Object.keys(rules)) {
-      const input = form[name];
-      values[name] = input.value.trim();
-      if (!mark(input, rules[name](values[name])) && !firstBad) firstBad = input;
-    }
-    if (firstBad) { firstBad.focus(); return; }
-
-    const succeed = () => {
-      form.classList.add('sent');
-      sending = false;
-      /* Move focus to the confirmation so it is announced and so keyboard
-         focus is not left on a button that no longer exists visually. */
-      done.focus();
-    };
-    const stop = () => {
-      sending = false;
-      submitBtn.removeAttribute('aria-busy');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send enquiry';
-    };
-
-    sending = true;
-    submitBtn.setAttribute('aria-busy', 'true');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending';
-
-    if (!FORM_ENDPOINT) {
-      /* mailto: compose only. Never a query string, so personal details
-         never end up in a URL. */
-      const body = 'Name: ' + values.name
-                 + '\nEmail: ' + values.email
-                 + '\nPhone: ' + values.phone;
-      location.href = 'mailto:' + CONTACT_EMAIL
-        + '?subject=' + encodeURIComponent('Website enquiry')
-        + '&body=' + encodeURIComponent(body);
-      succeed();
-      return;
-    }
-
-    /* Abort a hung request rather than leaving the button dead forever. */
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
-
-    fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
-      signal: ctrl.signal
-    }).then(r => {
-      if (!r.ok) throw new Error(r.status);
-      succeed();
-    }).catch(() => {
-      stop();
-      fail.style.display = 'block';
-    }).finally(() => clearTimeout(timer));
-  });
-</script>
+<script src="assets/prestige.js"></script>
 </body>
 </html>

@@ -1,0 +1,420 @@
+/* 10x Prestige Design System v1.0 (AA-amended). Shared by every page.
+   Source of truth: DESIGN.md, the Prestige layer. */
+/* ============================================================
+     10x Prestige Design System v1.0.
+     Four amendments, all forced by measured WCAG AA failures in
+     the original tokens. Documented in DESIGN.md:
+       --ink-faint    .42 -> .62   (2.64:1 -> 4.82:1 on paper)
+       --ivory-faint  .38 -> .55   (3.27:1 -> 5.51:1 on night)
+       --blue     #34789d -> #2e6a8a for text (4.39:1 -> 5.35:1)
+                  original kept as --blue-rule for hairlines
+       --clay     added, #bd8270   (validation only, 5.76:1)
+     ============================================================ */
+  :root{
+    --paper:#f6f3ec;
+    --paper-deep:#efeadf;
+    --ink:#14181b;
+    --ink-soft:rgba(20,24,27,.64);
+    --ink-faint:rgba(20,24,27,.62);
+    --line:rgba(20,24,27,.14);
+    --night:#111519;
+    --ivory:#f3efe6;
+    --ivory-soft:rgba(243,239,230,.62);
+    --ivory-faint:rgba(243,239,230,.55);
+    --line-dark:rgba(243,239,230,.16);
+    --blue:#2e6a8a;
+    --blue-rule:#34789d;
+    --blue-light:#61a8d8;
+    --clay:#bd8270;
+    --expo:cubic-bezier(.16,1,.3,1);
+    --tap:44px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:var(--blue);color:var(--ivory);}
+  img{max-width:100%;display:block;}
+  picture{display:contents;}
+  a{color:inherit;}
+  .serif{font-family:'Prata','Times New Roman',serif;font-weight:400;}
+  .label{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:10px;letter-spacing:.42em;text-transform:uppercase;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(24px,5vw,64px);position:relative;z-index:2;}
+  em{font-style:italic;}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:4px;}
+  .dark a:focus-visible,.dark button:focus-visible,.dark input:focus-visible,
+  header a:focus-visible,#close a:focus-visible,#close button:focus-visible,#close input:focus-visible{outline-color:var(--ivory);}
+
+  /* ---------- Nav ---------- */
+  /* A scrim behind the nav, so the wordmark and links survive a bright hero.
+     Measured across all six heroes: without it the lead-gen wordmark sits at
+     3.37:1 over near-white sky. With it the worst case is 5.47:1. */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .4s ease, box-shadow .4s ease;padding:14px 0;
+    background:linear-gradient(to bottom, rgba(17,21,25,.55) 0%, rgba(17,21,25,0) 100%);}
+  nav.scrolled{background:rgba(246,243,236,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);}
+  nav .bar{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;}
+  nav .wordmark{color:var(--ivory);font-size:15px;letter-spacing:.34em;text-decoration:none;transition:color .4s ease;display:inline-flex;align-items:center;min-height:var(--tap);}
+  nav.scrolled .wordmark{color:var(--ink);}
+  nav .links{display:flex;gap:clamp(18px,2.4vw,34px);align-items:center;}
+  nav a.nlink{color:var(--ivory);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;transition:color .3s;display:inline-flex;align-items:center;min-height:var(--tap);}
+  nav.scrolled a.nlink{color:var(--ink-soft);}
+  nav a.nlink:hover{color:var(--blue-light);}
+  nav.scrolled a.nlink:hover{color:var(--blue);}
+  nav a.nlink.only{display:none;}
+  @media(max-width:900px){
+    nav .links a.nlink{display:none;}
+    nav .links a.nlink.only{display:inline-flex;}
+  }
+  #scrollProgress{position:fixed;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue-rule),var(--blue-light));transform:scaleX(0);transform-origin:0 50%;z-index:80;}
+
+  /* ---------- Hero ---------- */
+  header{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--night);}
+  @supports(min-height:100dvh){header{min-height:100dvh;}}
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:drift 22s ease-out forwards;}
+  @keyframes drift{from{transform:scale(1.1);}to{transform:scale(1);}}
+  /* Two scrims. The DS gradient sets the key; the second is anchored
+     to the bottom so type always lands in real shadow however bright
+     the lower third of the photograph is. */
+  .hero-veil{position:absolute;inset:0;background:
+    linear-gradient(to bottom, rgba(17,21,25,.58) 0%, rgba(17,21,25,.20) 34%, rgba(17,21,25,.30) 52%, rgba(17,21,25,.86) 88%, rgba(17,21,25,.94) 100%),
+    linear-gradient(to top, rgba(17,21,25,.78) 0%, rgba(17,21,25,.52) 30%, rgba(17,21,25,.20) 50%, rgba(17,21,25,0) 64%);}
+  /* Type shadow: DESIGN.md shadow vocabulary. White type over footage
+     always carries a soft wide ink shadow so it survives a bright frame. */
+  .hero-inner{position:relative;z-index:2;width:100%;padding:0 clamp(24px,6vw,84px) clamp(56px,9vh,110px);
+    text-shadow:0 2px 14px rgba(5,12,20,.58);}
+  .interlude .inner,#close .wrap{text-shadow:0 2px 14px rgba(5,12,20,.5);}
+  .hero-rule{width:56px;height:1px;background:var(--blue-light);margin-bottom:28px;}
+  /* Tracked caps at .42em overrun a phone. Tighten and let it wrap
+     there; at desktop it must stay on one line, so no width cap. */
+  @media(max-width:620px){
+    .hero-kicker{font-size:9px;letter-spacing:.2em;line-height:2;}
+  }
+  /* 35px floor, not 40: if Prata fails to load the fallback serif is
+     wider, and 40px overran a 390px viewport inside the clipping line
+     box. 35px leaves headroom for the fallback metrics. */
+  h1{color:var(--ivory);font-family:'Prata','Times New Roman',serif;font-weight:400;font-size:clamp(35px,6.6vw,88px);line-height:1.06;letter-spacing:.01em;max-width:16ch;text-wrap:balance;}
+  h1 .ln{display:block;overflow:hidden;}
+  h1 .ln > span{display:block;}
+  /* Entrance motion is opt-in, added by JS. Default state is fully
+     visible, so a blocked animation can never hide the headline. */
+  .anim h1 .ln > span{transform:translateY(106%);animation:lineUp 1.15s var(--expo) forwards;}
+  .anim h1 .ln:nth-child(1) > span{animation-delay:.40s;}
+  .anim h1 .ln:nth-child(2) > span{animation-delay:.58s;}
+  @keyframes lineUp{to{transform:none;}}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:20px 48px;align-items:flex-end;justify-content:space-between;margin-top:clamp(32px,5vh,56px);padding-top:26px;border-top:1px solid var(--line-dark);}
+  .hero-meta .lede-h{color:var(--ivory-soft);font-size:14.5px;line-height:1.8;max-width:46ch;text-wrap:pretty;}
+  .anim .fade{opacity:0;transform:translateY(26px);animation:rise 1.1s var(--expo) forwards;}
+  .anim .fade.d1{animation-delay:.2s}.anim .fade.d2{animation-delay:.4s}.anim .fade.d3{animation-delay:.85s}
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---------- Tracked link, hairline extends on hover ---------- */
+  .tlink{display:inline-flex;align-items:flex-end;min-height:var(--tap);text-decoration:none;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--blue);padding-bottom:11px;position:relative;background:none;border:none;cursor:pointer;}
+  .tlink::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--line);}
+  .tlink::before{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--expo);}
+  .tlink:hover::before,a:hover .tlink::before{transform:scaleX(1);}
+  .dark .tlink,header .tlink,#close .tlink{color:var(--blue-light);}
+  .dark .tlink::after,header .tlink::after,#close .tlink::after{background:var(--line-dark);}
+  .dark .tlink::before,header .tlink::before,#close .tlink::before{background:var(--blue-light);}
+
+  /* ---------- Sections ---------- */
+  section{padding:clamp(80px,12vh,150px) 0;position:relative;overflow:hidden;}
+  /* Section cadence is a hairline, not a tracked eyebrow.
+     DESIGN.md, The No-Eyebrow Rule. */
+  .srule{width:56px;height:1px;background:var(--blue-rule);margin-bottom:clamp(26px,4.5vh,44px);}
+  .dark .srule,#founders .srule{background:var(--blue-light);}
+  h2{font-family:'Prata','Times New Roman',serif;font-weight:400;font-size:clamp(31px,4.6vw,56px);line-height:1.12;max-width:22ch;text-wrap:balance;}
+  .dark h2{color:var(--ivory);line-height:1.17;}
+  .lede{font-size:17px;color:var(--ink-soft);max-width:62ch;margin-top:24px;text-wrap:pretty;}
+  .dark{background:var(--night);color:var(--ivory);}
+  .dark .lede{color:var(--ivory-soft);line-height:1.82;}
+  .reveal{transition:opacity .9s var(--expo), transform .9s var(--expo);}
+  .reveal.pending{opacity:0;transform:translateY(32px);}
+  /* Group stagger, so a section arrives in parts rather than as one slab */
+  .stagger > .reveal:nth-child(2){transition-delay:.09s}
+  .stagger > .reveal:nth-child(3){transition-delay:.18s}
+  .stagger > .reveal:nth-child(4){transition-delay:.27s}
+
+  /* ---------- Staged reveals ----------
+     A stagger root is observed as one element but animates its children
+     in reading order, so a row of clients or a stack of captions arrives
+     in sequence rather than as a slab. The root itself never hides, so
+     one observer entry drives the whole group.
+     Follow-through: 70ms between siblings, well inside the 900ms travel,
+     so the group reads as one gesture rather than separate events. */
+  .reveal.stgr.pending{opacity:1;transform:none;}
+  .anim .stgr > *{transition:opacity .75s var(--expo), transform .75s var(--expo);}
+  .anim .stgr.pending > *{opacity:0;transform:translateY(20px);}
+  .anim .stgr > *:nth-child(2){transition-delay:.07s}
+  .anim .stgr > *:nth-child(3){transition-delay:.14s}
+  .anim .stgr > *:nth-child(4){transition-delay:.21s}
+  .anim .stgr > *:nth-child(5){transition-delay:.28s}
+  .anim .stgr > *:nth-child(6){transition-delay:.35s}
+  /* Client roster staggers by row, not by cell, so 16 names do not take
+     a second and a half to arrive. */
+  .anim .roster.stgr > *{transition-delay:calc(var(--row,0) * .09s);}
+
+  /* ---------- Masked heading rise ----------
+     Same clip-mask gesture as the hero headline, reused on section heads.
+     The mask only exists once JS has opted motion in, so the heading is
+     never clipped or hidden by default. */
+  .h2m > span{display:block;}
+  .anim .h2m{overflow:hidden;padding-bottom:.12em;}
+  .anim .h2m.pending > span{transform:translateY(104%);}
+  .anim .h2m > span{transition:transform 1.05s var(--expo);}
+  .reveal.h2m.pending{opacity:1;transform:none;}
+
+  /* ---------- Scroll-linked parallax ----------
+     Transform only, driven by the single rAF-throttled scroll handler. */
+  /* will-change is added only while the frame is on screen, so the two
+     parallax layers are not held in compositor memory for the whole page. */
+  [data-par].par-live{will-change:transform;}
+
+  /* ---------- Clients ---------- */
+  #clients{background:var(--paper-deep);padding:clamp(64px,9vh,104px) 0;}
+  .roster{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(28px,4vh,44px);border-top:1px solid var(--line);list-style:none;}
+  .roster li{font-family:'Prata','Times New Roman',serif;font-size:clamp(15px,1.35vw,19px);line-height:1.35;color:var(--ink);padding:clamp(18px,2.4vw,26px) clamp(14px,2vw,26px) clamp(18px,2.4vw,26px) 0;border-bottom:1px solid var(--line);}
+  @media(max-width:900px){.roster{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:480px){.roster{grid-template-columns:1fr;}}
+
+  /* ---------- Work ---------- */
+  .plate{position:relative;overflow:hidden;background:var(--paper-deep);}
+  .plate img{width:100%;height:100%;object-fit:cover;clip-path:inset(0);transform:scale(1);
+    filter:saturate(.94) contrast(1.03);
+    transition:clip-path 1.15s var(--expo), transform 1.1s var(--expo);}
+  .plate.pending{opacity:1;transform:none;}
+  .plate.pending img{clip-path:inset(0 0 100% 0);transform:scale(1.06);}
+  a:hover .plate img{transform:scale(1.032);}
+  .pcap{display:flex;justify-content:flex-start;align-items:baseline;padding-top:14px;border-top:1px solid var(--line);margin-top:18px;}
+  .pcap .t{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-faint);}
+  .w-title{font-family:'Prata','Times New Roman',serif;font-weight:400;font-size:clamp(24px,2.7vw,34px);line-height:1.14;margin-top:20px;}
+  .bleed .w-title{font-size:clamp(30px,4vw,52px);}
+  .w-client{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-faint);margin-top:12px;}
+  .w-line{font-size:15px;color:var(--ink-soft);max-width:48ch;margin-top:16px;text-wrap:pretty;}
+  .w-cta{margin-top:14px;}
+  .bleed{width:100vw;margin-left:50%;transform:translateX(-50%);}
+  .bleed .plate{aspect-ratio:16/8;}
+  .bleed .under{max-width:1120px;margin:0 auto;padding:0 clamp(24px,5vw,64px);}
+  .work-item{margin-top:clamp(56px,9vh,110px);}
+  .two-up{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);}
+  .two-up .plate{aspect-ratio:4/3;}
+  @media(max-width:820px){
+    .two-up{grid-template-columns:1fr;gap:clamp(48px,8vh,72px);}
+  }
+
+  /* ---------- Interlude ---------- */
+  .interlude{position:relative;height:clamp(320px,52vh,500px);overflow:hidden;}
+  .interlude img{position:absolute;left:0;right:0;width:100%;height:150%;top:-25%;object-fit:cover;}
+  .interlude .veil{position:absolute;inset:0;background:rgba(17,21,25,.66);}
+  .interlude .inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 24px;}
+  .interlude .quote{font-family:'Prata','Times New Roman',serif;color:var(--ivory);font-size:clamp(24px,3.2vw,40px);line-height:1.36;max-width:26ch;text-wrap:balance;}
+
+  /* ---------- Disciplines ---------- */
+  .disc{margin-top:clamp(32px,5vh,52px);border-top:1px solid var(--line-dark);}
+  .disc a.row{display:grid;grid-template-columns:minmax(150px,220px) 1fr auto;gap:clamp(18px,3vw,44px);align-items:baseline;padding:26px 0;min-height:var(--tap);border-bottom:1px solid var(--line-dark);text-decoration:none;transition:transform .5s var(--expo);}
+  .disc a.row:hover{transform:translateX(12px);}
+  .disc .rn{font-family:'Prata','Times New Roman',serif;font-size:16px;color:var(--blue-light);letter-spacing:.14em;}
+  .disc .rt{font-family:'Prata','Times New Roman',serif;font-size:clamp(19px,2vw,25px);color:var(--ivory);}
+  .disc .rd{color:var(--ivory-soft);font-size:14.5px;line-height:1.8;}
+  .disc .rv{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--ivory-faint);transition:color .4s;}
+  .disc a.row:hover .rv{color:var(--blue-light);}
+  @media(max-width:820px){
+    .disc a.row{grid-template-columns:1fr;gap:6px;padding:22px 0;}
+    .disc .rv{display:none;}
+  }
+
+  /* ---------- Founders ---------- */
+  #founders{background:var(--night);}
+  .founders{display:grid;grid-template-columns:1fr .9fr;gap:clamp(32px,5vw,76px);align-items:center;margin-top:clamp(28px,4vh,44px);}
+  /* Monochrome and cropped tight: the original frame is a wide studio
+     seamless, which reads as a team snap rather than a portrait. */
+  /* 4/3 matches the source exactly, so cover crops nothing. A portrait
+     plate sliced both outer founders out of the frame. */
+  .founders .plate{aspect-ratio:4/3;background:var(--night);}
+  .founders .plate img{filter:grayscale(1) contrast(1.08) brightness(.96);object-position:50% 42%;}
+  .fq{font-family:'Prata','Times New Roman',serif;color:var(--ivory);font-size:clamp(22px,2.6vw,33px);line-height:1.36;max-width:26ch;text-wrap:balance;}
+  .fnames{margin-top:28px;color:var(--ivory-faint);}
+  @media(max-width:820px){.founders{grid-template-columns:1fr;}.founders .plate{aspect-ratio:4/3;}}
+
+  /* ---------- Testimonial ---------- */
+  .tq{font-family:'Prata','Times New Roman',serif;color:var(--ivory);font-size:clamp(21px,2.7vw,32px);line-height:1.42;max-width:38ch;margin-top:30px;text-wrap:pretty;}
+  .tattr{margin-top:32px;color:var(--ivory-faint);}
+
+  /* ---------- Close + form ---------- */
+  #close{position:relative;overflow:hidden;background:var(--night);padding:clamp(96px,15vh,170px) 0;}
+  /* Overscan for the parallax travel. At factor .07 over a ~800px
+     section the image moves up to ~59px each way, so a flush
+     inset:0 / height:100% frame would expose a bare edge. */
+  #close .bg{position:absolute;left:0;right:0;top:-10%;width:100%;height:120%;object-fit:cover;}
+  /* Bottom-weighted so the form half is materially darker than the
+     headline half; the fields never sit on the brightest region. */
+  #close .veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(17,21,25,.80) 0%,rgba(17,21,25,.88) 38%,rgba(17,21,25,.94) 66%,rgba(17,21,25,.96) 100%);}
+  #close .wrap{text-align:center;}
+  #close h2{color:var(--ivory);margin:0 auto;max-width:20ch;}
+  #close .lede{color:var(--ivory-soft);margin:24px auto 0;max-width:44ch;}
+  #close .hero-rule{margin:0 auto 28px;}
+  form{margin:clamp(44px,7vh,72px) auto 0;max-width:760px;}
+  .fields{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);text-align:left;}
+  @media(max-width:720px){.fields{grid-template-columns:1fr;gap:24px;}}
+  .field label{display:block;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--ivory-faint);margin-bottom:8px;}
+  .field input{width:100%;min-height:var(--tap);background:none;border:none;border-bottom:1px solid var(--ivory-faint);color:var(--ivory);font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:15px;padding:8px 0 12px;transition:border-color .4s var(--expo);}
+  .field input:focus{border-bottom-color:var(--blue-light);}
+  /* aria-invalid is the single source of truth for the error state, so the
+     visual and the assistive-tech state can never disagree. */
+  .field input[aria-invalid="true"]{border-bottom-color:var(--clay);}
+  .field .err{display:none;font-size:11.5px;letter-spacing:.04em;color:var(--clay);margin-top:8px;}
+  .field input[aria-invalid="true"] ~ .err{display:block;}
+  .submit{margin-top:clamp(32px,5vh,48px);display:flex;justify-content:center;}
+  button.tlink[aria-busy="true"],button.tlink:disabled{opacity:.5;cursor:default;}
+  button.tlink[aria-busy="true"]::before,button.tlink:disabled::before{transform:scaleX(0);}
+  /* Alternative contact path. Visible always, so someone with JS off or a
+     failed submit is never left without a way to reach 10x. */
+  .form-alt{margin-top:26px;font-size:13px;color:var(--ivory-faint);}
+  /* Inline links in a sentence, so exempt from the 44px rule (WCAG 2.5.8
+     inline exception), but padded so they are not fiddly on a phone. */
+  .form-alt a{color:var(--ivory-soft);text-decoration:underline;text-underline-offset:3px;padding:9px 0;}
+  .form-alt a:hover{color:var(--blue-light);}
+  .form-done{display:none;font-family:'Prata','Times New Roman',serif;color:var(--ivory);font-size:clamp(20px,2.3vw,27px);line-height:1.4;max-width:30ch;margin:clamp(44px,7vh,72px) auto 0;}
+  .form-fail{display:none;color:var(--ivory-soft);font-size:14.5px;margin-top:26px;}
+  form.sent .fields,form.sent .submit{display:none;}
+  form.sent + .form-done{display:block;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--night);border-top:1px solid var(--line-dark);padding:34px 0 42px;}
+  footer .inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 36px;}
+  footer .mark{font-family:'Prata','Times New Roman',serif;font-size:18px;color:var(--ivory);letter-spacing:.2em;}
+  footer .fl{display:flex;flex-wrap:wrap;gap:0 28px;align-items:center;}
+  footer p,footer a{color:var(--ivory-faint);font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;text-decoration:none;}
+  footer a{display:inline-flex;align-items:center;min-height:var(--tap);}
+  footer a:hover{color:var(--blue-light);}
+  @media(max-width:720px){footer .inner{flex-direction:column;align-items:flex-start;}}
+
+/* ---------- Interior page hero (shorter than the homepage's full viewport) ---------- */
+  header.hero-sm{min-height:0;height:66vh;min-height:460px;}
+  @supports(height:66dvh){header.hero-sm{height:66dvh;}}
+  header.hero-sm h1{font-size:clamp(32px,5.2vw,68px);max-width:18ch;}
+
+  /* ---------- Offer rows: a service list, hairline-ruled ---------- */
+  .offer{margin-top:clamp(32px,5vh,52px);border-top:1px solid var(--line);}
+  .offer .row{display:grid;grid-template-columns:minmax(180px,300px) 1fr;gap:clamp(18px,3vw,52px);
+    padding:clamp(24px,3.4vw,34px) 0;border-bottom:1px solid var(--line);align-items:start;}
+  .offer .rt{font-family:'Prata','Times New Roman',serif;font-size:clamp(21px,2.2vw,27px);line-height:1.2;color:var(--ink);}
+  .offer .rd{color:var(--ink-soft);font-size:15px;line-height:1.8;max-width:62ch;text-wrap:pretty;}
+  .offer .rd p + p{margin-top:12px;}
+  .dark .offer{border-top-color:var(--line-dark);}
+  .dark .offer .row{border-bottom-color:var(--line-dark);}
+  .dark .offer .rt{color:var(--ivory);}
+  .dark .offer .rd{color:var(--ivory-soft);}
+  @media(max-width:820px){.offer .row{grid-template-columns:1fr;gap:10px;}}
+
+  /* ---------- FAQ: native disclosure, no JS ---------- */
+  .faq{margin-top:clamp(32px,5vh,52px);border-top:1px solid var(--line);}
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    padding:24px 0;min-height:var(--tap);font-family:'Prata','Times New Roman',serif;font-size:clamp(18px,1.8vw,22px);
+    line-height:1.3;color:var(--ink);}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:'';flex:0 0 12px;height:12px;position:relative;top:4px;
+    background:linear-gradient(var(--blue),var(--blue)) center/12px 1px no-repeat,
+               linear-gradient(var(--blue),var(--blue)) center/1px 12px no-repeat;
+    transition:transform .45s var(--expo);}
+  .faq details[open] summary::after{transform:rotate(45deg);background-size:12px 1px,1px 0;}
+  .faq summary:focus-visible{outline:2px solid var(--blue);outline-offset:4px;}
+  .faq .a{color:var(--ink-soft);font-size:15px;line-height:1.8;max-width:70ch;padding:0 0 26px;text-wrap:pretty;}
+
+  /* ---------- Two-column contact split ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:start;margin-top:clamp(28px,4vh,44px);}
+  @media(max-width:820px){.split{grid-template-columns:1fr;}}
+  .direct dt{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:10px;
+    letter-spacing:.34em;text-transform:uppercase;color:var(--ivory-faint);margin-top:26px;}
+  .direct dd{margin:8px 0 0;}
+  .direct dd a{font-family:'Prata','Times New Roman',serif;font-size:clamp(19px,2vw,24px);color:var(--ivory);
+    text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);}
+  .direct dd a:hover{color:var(--blue-light);}
+
+  /* On an interior page the enquiry block sits on paper, not over a photo */
+  #close.on-paper{background:var(--paper-deep);}
+  #close.on-paper h2,#close.on-paper .form-done{color:var(--ink);}
+  #close.on-paper .lede{color:var(--ink-soft);}
+  #close.on-paper .wrap{text-shadow:none;}
+  #close.on-paper .field label{color:var(--ink-faint);}
+  #close.on-paper .field input{color:var(--ink);border-bottom-color:var(--ink-faint);}
+  #close.on-paper .field input:focus{border-bottom-color:var(--blue);}
+  #close.on-paper .tlink{color:var(--blue);}
+  #close.on-paper .tlink::after{background:var(--line);}
+  #close.on-paper .tlink::before{background:var(--blue);}
+  #close.on-paper .form-alt{color:var(--ink-faint);}
+  #close.on-paper .form-alt a{color:var(--ink-soft);}
+  #close.on-paper .hero-rule{background:var(--blue-rule);}
+
+/* ---------- Editorial split ----------
+     A monograph column pair: heading in a narrow rail, prose in a wider
+     column beside it. Replaces the single left-aligned column that every
+     section shared, which is what made the page read as templated. */
+  .ed{display:grid;grid-template-columns:minmax(260px,1.05fr) minmax(0,1.25fr);
+    gap:clamp(24px,4.5vw,84px);align-items:start;}
+  .ed .lede{margin-top:0;max-width:58ch;}
+  .ed .lede + .lede{margin-top:22px;}
+  @media(max-width:900px){.ed{grid-template-columns:1fr;gap:18px;}}
+
+  /* The page's one typographic statement. Deliberately larger than every
+     other heading so the scale is a hierarchy, not a texture. */
+  .statement{font-family:'Prata','Times New Roman',serif;font-weight:400;
+    font-size:clamp(30px,4.6vw,60px);line-height:1.06;letter-spacing:-.005em;
+    max-width:15ch;text-wrap:balance;}
+  /* Section headings that are labels for what follows, not statements. */
+  .h-small{font-size:clamp(23px,2.5vw,32px);max-width:26ch;}
+
+  /* Deliberately uneven vertical rhythm. */
+  .pad-tight{padding-top:clamp(48px,7vh,86px);padding-bottom:clamp(48px,7vh,86px);}
+  .pad-wide{padding-top:clamp(96px,17vh,210px);padding-bottom:clamp(96px,17vh,210px);}
+
+  /* ---------- Client roster, grouped ----------
+     Grouped by what the client actually is. Real information, and it stops
+     sixteen names reading as an even filler grid. */
+  .rgroup{border-top:1px solid var(--line);padding-top:18px;}
+  .rgroup + .rgroup{margin-top:clamp(26px,3.4vw,40px);}
+  .rgroup h3{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;
+    font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-faint);}
+  .rgroup ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px clamp(22px,3vw,44px);margin-top:14px;}
+  .rgroup li{font-family:'Prata','Times New Roman',serif;font-size:clamp(15px,1.45vw,20px);
+    line-height:1.5;color:var(--ink);}
+
+  /* The close reads as part of the page, not a centred landing-page footer. */
+  #close .wrap.left{text-align:left;}
+  #close .wrap.left h2,#close .wrap.left .lede{margin-left:0;margin-right:0;}
+  #close .wrap.left .hero-rule{margin-left:0;}
+  #close .wrap.left form{margin-left:0;}
+  #close .wrap.left .submit{justify-content:flex-start;}
+  #close .wrap.left .form-done{margin-left:0;}
+
+  /* ---------- Grain ---------- */
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.014'/%3E%3C/svg%3E");pointer-events:none;z-index:90;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .fade,.anim .fade{animation:none !important;opacity:1 !important;transform:none !important;}
+    h1 .ln > span,.anim h1 .ln > span{animation:none !important;transform:none !important;}
+    .hero-img{animation:none;}
+    .reveal,.reveal.pending{opacity:1 !important;transform:none !important;transition-delay:0s !important;}
+    .stgr > *,.stgr.pending > *{opacity:1 !important;transform:none !important;transition-delay:0s !important;}
+    .h2m{overflow:visible !important;padding-bottom:0 !important;}
+    .h2m > span,.h2m.pending > span{transform:none !important;}
+    [data-par]{transform:none !important;}
+    .plate.pending img,a:hover .plate img{clip-path:inset(0) !important;transform:none !important;}
+    .disc a.row:hover{transform:none !important;}
+    *{transition-duration:.01ms !important;}
+  }
+  @media print{
+    nav,#scrollProgress{display:none;}
+    body::before{display:none;}
+    .fade,.anim .fade,.reveal,.reveal.pending{opacity:1 !important;transform:none !important;animation:none !important;}
+    .stgr > *,.stgr.pending > *{opacity:1 !important;transform:none !important;}
+    .h2m{overflow:visible !important;}
+    .h2m > span,.h2m.pending > span{transform:none !important;}
+    [data-par]{transform:none !important;}
+    h1 .ln > span,.anim h1 .ln > span{animation:none !important;transform:none !important;}
+    .plate.pending img{clip-path:inset(0) !important;transform:none !important;}
+    header{min-height:auto;height:80vh;page-break-after:always;}
+    section{page-break-inside:avoid;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  }
