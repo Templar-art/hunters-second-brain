@@ -45,7 +45,9 @@ B=https://10xvisuals.com.au/wp-content/uploads; mkdir -p projects/10x-site/asset
 
 Six entries: Stonehaven (full bleed), Davenport and Bespoke (two up), Elysium (full bleed), then SOL and Broncos Leagues Club (two up). SOL sits below Elysium by request; it used to be the hero.
 
-The hero is Stonehaven at 47 Somerset Drive, marketed by Whitefox, shot at dusk. It replaced the SOL drone frame because that shot's lower third is a bright white roof, so the headline sat on the subject with almost no contrast. Stonehaven's foreground lawn and paving are genuinely dark, which is what the DS scrim expects.
+The hero is Stonehaven at 47 Somerset Drive, marketed by Whitefox: the late-afternoon aerial (`47 Somerset Drive _ Touch Ups Print-3.jpg`), which shows the full acreage, the entry court and the pool terrace. It replaced the SOL drone frame, then briefly a dusk patio frame that Hunter rejected.
+
+**Legibility was measured, not eyeballed.** For each type zone, the photograph's mean luminance in that region is composited through both hero scrims and the type's own alpha, then checked as a contrast ratio. At 1440 and at 390 the kicker, headline and lede all pass. The kicker only passes because it is full `--ivory`; at the DS's `--ivory-soft` it measured 3.45:1 against a 4.5 requirement, since it sits where the scrim is weakest over sunlit grass.
 
 ## Scope
 

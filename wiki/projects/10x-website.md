@@ -17,9 +17,9 @@ Six pages: home, `/branding`, `/content-creation`, `/lead-generation`, `/systems
 
 ## What shipped
 
-A single self-contained `index.html`: full-bleed **Stonehaven** dusk hero under the headline "Presentation decides the price.", a typeset client roster, six case-study plates alternating full-bleed and two-up, a parallax interlude, the four disciplines as hairline rows, founders, testimonial, and a three-field enquiry close. Works over `file://` and HTTP. Not deployed.
+A single self-contained `index.html`: full-bleed **Stonehaven** aerial hero under the headline "Presentation decides the price.", a typeset client roster, six case-study plates alternating full-bleed and two-up, a parallax interlude, the four disciplines as hairline rows, founders, testimonial, and a three-field enquiry close. Works over `file://` and HTTP. Not deployed.
 
-**Hero: Stonehaven**, 47 Somerset Drive, marketed by Whitefox, shot at dusk. It replaced the [[sol]] drone frame on 30 Jul. Work order is Stonehaven, Davenport + Bespoke, Elysium, then SOL + Broncos; SOL moved below Elysium at Hunter's request.
+**Hero: Stonehaven**, 47 Somerset Drive, marketed by Whitefox: the late-afternoon aerial. It replaced the [[sol]] drone frame on 30 Jul, and then a dusk patio frame that Hunter rejected the same day. Work order is Stonehaven, Davenport + Bespoke, Elysium, then SOL + Broncos; SOL moved below Elysium at Hunter's request.
 
 ## What it taught us
 
@@ -30,6 +30,8 @@ A single self-contained `index.html`: full-bleed **Stonehaven** dusk hero under 
 **Never gate content visibility on JavaScript.** The first reveal implementation hid every below-fold section until an IntersectionObserver fired. A deep link to `#close`, which the page's own hero CTA points at, could land on a blank section. Reveals must enhance an already-visible default, with a failsafe that clears them regardless. See [[hidden-pane-scroll-reveal]] for the related lesson about not misreading such a pane as broken.
 
 **Mismatched logo files are worse than no logos.** Nine client logos across dark-on-white JPEGs, an inverse navy lockup and a yellow Ray White square cannot be unified by greyscale and multiply; they render as pale boxes of unequal weight. A typeset Prata roster looks more expensive and carries the ten clients that have no logo asset at all. Recorded as The Roster-Not-Logos Rule.
+
+**Measure the type zones, do not judge them.** For each zone the photograph's mean luminance in that region is composited through the scrims and the type's own alpha, then read as a contrast ratio. On the Stonehaven aerial the kicker measured 3.45:1 against a 4.5 requirement, purely because the DS sets that label at 62% opacity and it lands where the scrim is weakest. Full opacity fixed it at 6.09:1 without dimming the photograph at all. The instinct would have been to deepen the scrim, which would have cost the subject for no reason.
 
 **A hero is chosen by where the dark is, not by how good the photo is.** The SOL drone frame is a strong photograph and still made a poor cover, because its lower third is a bright white roof and pale concrete, exactly where the headline sits. Stonehaven works because its foreground lawn and paving are dark, giving ivory type a real bed. Judge a candidate by the tonal map of the region the type occupies, not by the image as a whole, and judge it at full resolution: SOL was picked off a downscaled preview where that roof read as dark water.
 
