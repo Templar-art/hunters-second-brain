@@ -47,6 +47,20 @@
   </div>
 </div>
 
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Project preview" aria-hidden="true">
+  <button type="button" id="lbClose" class="lb-close">Close</button>
+  <div class="lb-body">
+    <div class="lb-frame"><img id="lbImg" alt=""/></div>
+    <div class="lb-meta">
+      <p class="pcap" style="border-top:none;padding-top:0;margin-top:0;"><span class="t" id="lbDiscipline"></span></p>
+      <h3 class="lb-title" id="lbTitle"></h3>
+      <p class="w-client" id="lbClient"></p>
+      <p class="w-line" id="lbLine"></p>
+      <a class="tlink" id="lbLink" href="#">View full project</a>
+    </div>
+  </div>
+</div>
+
 <main>
 
 <!-- ============ HERO ============ -->
@@ -77,7 +91,7 @@
   </div>
 
   <div class="work-item bleed">
-    <div>
+    <div class="work-trigger" role="button" tabindex="0" aria-haspopup="dialog">
       <div class="plate reveal"><picture><source type="image/webp" srcset="assets/work-stonehaven-800.webp 800w, assets/work-stonehaven-1400.webp 1400w, assets/work-stonehaven-1800.webp 1800w" sizes="100vw"/><img src="assets/work-stonehaven-1800.jpg" srcset="assets/work-stonehaven-800.jpg 800w, assets/work-stonehaven-1400.jpg 1400w, assets/work-stonehaven-1800.jpg 1800w" sizes="100vw" width="1800" height="1200" loading="lazy" decoding="async" alt="Stonehaven, the front elevation at 47 Somerset Drive, symmetrical under a clear sky."/></picture></div>
       <div class="under reveal stgr">
         <div class="pcap"><span class="t">Film &amp; Photography</span></div>
@@ -89,7 +103,7 @@
   </div>
 
   <div class="work-item wrap two-up">
-    <a href="/davenport" style="text-decoration:none;">
+    <a href="/davenport" class="work-trigger" aria-haspopup="dialog" style="text-decoration:none;">
       <div class="plate reveal"><picture><source type="image/webp" srcset="assets/work-davenport-800.webp 800w, assets/work-davenport-1400.webp 1400w, assets/work-davenport-1800.webp 1800w" sizes="(max-width:820px) 100vw, 47vw"/><img src="assets/work-davenport-1800.jpg" srcset="assets/work-davenport-800.jpg 800w, assets/work-davenport-1400.jpg 1400w, assets/work-davenport-1800.jpg 1800w" sizes="(max-width:820px) 100vw, 47vw" width="1800" height="1200" loading="lazy" decoding="async" alt="Davenport, a refined hillside residence marketed by PRD Burleigh, looking out over the pool."/></picture></div>
       <div class="cap reveal stgr">
         <div class="pcap"><span class="t">Film &amp; Photography</span></div>
@@ -99,7 +113,7 @@
         <p class="w-cta"><span class="tlink">View project</span></p>
       </div>
     </a>
-    <a href="/bespoke" style="text-decoration:none;">
+    <a href="/bespoke" class="work-trigger" aria-haspopup="dialog" style="text-decoration:none;">
       <div class="plate reveal"><picture><source type="image/webp" srcset="assets/work-bespoke-800.webp 800w, assets/work-bespoke-1400.webp 1400w, assets/work-bespoke-1800.webp 1800w" sizes="(max-width:820px) 100vw, 47vw"/><img src="assets/work-bespoke-1800.jpg" srcset="assets/work-bespoke-800.jpg 800w, assets/work-bespoke-1400.jpg 1400w, assets/work-bespoke-1800.jpg 1800w" sizes="(max-width:820px) 100vw, 47vw" width="1800" height="1200" loading="lazy" decoding="async" alt="A prestige Gold Coast listing photographed for Bespoke Estate Agents."/></picture></div>
       <div class="cap reveal stgr">
         <div class="pcap"><span class="t">Brand &amp; Web</span></div>
@@ -112,7 +126,7 @@
   </div>
 
   <div class="work-item bleed">
-    <a href="/elysium" style="text-decoration:none;display:block;">
+    <a href="/elysium" class="work-trigger" aria-haspopup="dialog" style="text-decoration:none;display:block;">
       <div class="plate reveal"><picture><source type="image/webp" srcset="assets/work-elysium-800.webp 800w, assets/work-elysium-1400.webp 1400w, assets/work-elysium-1800.webp 1800w" sizes="100vw"/><img src="assets/work-elysium-1800.jpg" srcset="assets/work-elysium-800.jpg 800w, assets/work-elysium-1400.jpg 1400w, assets/work-elysium-1800.jpg 1800w" sizes="100vw" width="1800" height="1200" loading="lazy" decoding="async" alt="Elysium, a completed large scale apartment development delivered by Shape Construction."/></picture></div>
       <div class="under reveal stgr">
         <div class="pcap"><span class="t">Film &amp; Photography</span></div>
@@ -125,7 +139,7 @@
   </div>
 
   <div class="work-item wrap two-up">
-    <a href="/sol" style="text-decoration:none;">
+    <a href="/sol" class="work-trigger" aria-haspopup="dialog" style="text-decoration:none;">
       <div class="plate reveal"><picture><source type="image/webp" srcset="assets/work-sol-800.webp 800w, assets/work-sol-1400.webp 1400w, assets/work-sol-1800.webp 1800w" sizes="(max-width:820px) 100vw, 47vw"/><img src="assets/work-sol-1800.jpg" srcset="assets/work-sol-800.jpg 800w, assets/work-sol-1400.jpg 1400w, assets/work-sol-1800.jpg 1800w" sizes="(max-width:820px) 100vw, 47vw" width="1800" height="1285" loading="lazy" decoding="async" alt="SOL by Skye Development Group, the completed canal side compound lit at night."/></picture></div>
       <div class="cap reveal stgr">
         <div class="pcap"><span class="t">Film &amp; Photography</span></div>
@@ -135,7 +149,7 @@
         <p class="w-cta"><span class="tlink">View project</span></p>
       </div>
     </a>
-    <a href="/broncos-leagues-club" style="text-decoration:none;">
+    <a href="/broncos-leagues-club" class="work-trigger" aria-haspopup="dialog" style="text-decoration:none;">
       <div class="plate reveal"><picture><source type="image/webp" srcset="assets/work-broncos-800.webp 800w, assets/work-broncos-1400.webp 1400w, assets/work-broncos-1800.webp 1800w" sizes="(max-width:820px) 100vw, 47vw"/><img src="assets/work-broncos-1800.jpg" srcset="assets/work-broncos-800.jpg 800w, assets/work-broncos-1400.jpg 1400w, assets/work-broncos-1800.jpg 1800w" sizes="(max-width:820px) 100vw, 47vw" width="1800" height="1012" loading="lazy" decoding="async" alt="The refurbished Broncos Leagues Club interior, delivered by Ashley Cooper Construction."/></picture></div>
       <div class="cap reveal stgr">
         <div class="pcap"><span class="t">Progress &amp; Completion</span></div>

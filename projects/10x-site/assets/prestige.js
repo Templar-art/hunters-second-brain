@@ -196,7 +196,9 @@
       menuOverlay.classList.remove('open');
       menuOverlay.setAttribute('aria-hidden', 'true');
       menuToggle.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('menu-open');
+      if (!document.getElementById('lightbox')?.classList.contains('open')) {
+        document.body.classList.remove('menu-open');
+      }
       menuToggle.focus();
       document.removeEventListener('keydown', onKey);
     }
@@ -242,4 +244,129 @@
       });
       el.addEventListener('mouseleave', () => { el.style.transform = ''; });
     });
+  }
+
+  /* ---------- Project lightbox ----------
+     Reads its content straight from the DOM of whichever plate was
+     clicked (title, client, line, discipline, image), rather than
+     duplicating that copy into data attributes: one source of truth. */
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+    const lbClose = document.getElementById('lbClose');
+    const lbImg = document.getElementById('lbImg');
+    const lbFrame = lightbox.querySelector('.lb-frame');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbClient = document.getElementById('lbClient');
+    const lbLine = document.getElementById('lbLine');
+    const lbDiscipline = document.getElementById('lbDiscipline');
+    const lbLink = document.getElementById('lbLink');
+    let returnFocusEl = null;
+    let sourceImg = null;
+
+    function lbFocusables(){ return [...lightbox.querySelectorAll('a, button')]; }
+
+    function trapTab(e){
+      if (e.key === 'Escape') { e.preventDefault(); closeLightbox(); return; }
+      if (e.key !== 'Tab') return;
+      const items = lbFocusables();
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    function openLightbox(trigger){
+      const img = trigger.querySelector('img');
+      if (!img) return;
+      sourceImg = img;
+      returnFocusEl = trigger;
+
+      const under = trigger.querySelector('.under, .cap');
+      lbImg.src = img.currentSrc || img.src;
+      lbTitle.textContent = under.querySelector('.w-title')?.textContent || '';
+      lbClient.textContent = under.querySelector('.w-client')?.textContent || '';
+      lbLine.textContent = under.querySelector('.w-line')?.textContent || '';
+      lbDiscipline.textContent = under.querySelector('.pcap .t')?.textContent || '';
+      const href = trigger.tagName === 'A' ? trigger.getAttribute('href') : null;
+      if (href) { lbLink.style.display = ''; lbLink.href = href; }
+      else { lbLink.style.display = 'none'; }
+
+      document.body.classList.add('menu-open');
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+
+      if (!reduced) {
+        const startRect = img.getBoundingClientRect();
+        /* Sit the frame instantly, then measure where it actually lands,
+           then animate transform only from start to that real position. */
+        lbImg.style.transition = 'none';
+        lbImg.style.transform = 'none';
+        requestAnimationFrame(() => {
+          const destRect = lbImg.getBoundingClientRect();
+          const scaleX = startRect.width / destRect.width;
+          const scaleY = startRect.height / destRect.height;
+          const dx = (startRect.left + startRect.width / 2) - (destRect.left + destRect.width / 2);
+          const dy = (startRect.top + startRect.height / 2) - (destRect.top + destRect.height / 2);
+          lbImg.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
+          requestAnimationFrame(() => {
+            lbImg.style.transition = 'transform .65s var(--expo)';
+            lbImg.style.transform = 'none';
+          });
+        });
+      }
+
+      lbClose.focus();
+      document.addEventListener('keydown', trapTab);
+    }
+
+    function closeLightbox(){
+      const finish = () => {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        if (!document.getElementById('menuOverlay')?.classList.contains('open')) {
+          document.body.classList.remove('menu-open');
+        }
+        document.removeEventListener('keydown', trapTab);
+        lbImg.style.transition = 'none';
+        lbImg.style.transform = 'none';
+        if (returnFocusEl) returnFocusEl.focus();
+      };
+
+      if (!reduced && sourceImg && sourceImg.isConnected) {
+        const startRect = sourceImg.getBoundingClientRect();
+        const destRect = lbImg.getBoundingClientRect();
+        const scaleX = startRect.width / destRect.width;
+        const scaleY = startRect.height / destRect.height;
+        const dx = (startRect.left + startRect.width / 2) - (destRect.left + destRect.width / 2);
+        const dy = (startRect.top + startRect.height / 2) - (destRect.top + destRect.height / 2);
+        lbImg.style.transition = 'transform .5s var(--expo)';
+        lbImg.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        if (!document.getElementById('menuOverlay')?.classList.contains('open')) {
+          document.body.classList.remove('menu-open');
+        }
+        document.removeEventListener('keydown', trapTab);
+        if (returnFocusEl) returnFocusEl.focus();
+        setTimeout(() => { lbImg.style.transition = 'none'; lbImg.style.transform = 'none'; }, 520);
+      } else {
+        finish();
+      }
+    }
+
+    document.querySelectorAll('.work-trigger').forEach(trigger => {
+      trigger.addEventListener('click', e => {
+        if (trigger.tagName === 'A' && (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1)) return;
+        e.preventDefault();
+        openLightbox(trigger);
+      });
+      if (trigger.getAttribute('role') === 'button') {
+        trigger.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(trigger); }
+        });
+      }
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   }

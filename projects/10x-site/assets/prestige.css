@@ -174,9 +174,9 @@
      only, and it snaps back on its own transition so JS never has to
      animate the release. */
   .magnetic{transition:transform .4s var(--expo);}
-  .dark .tlink,header .tlink,#close .tlink{color:var(--blue-light);}
-  .dark .tlink::after,header .tlink::after,#close .tlink::after{background:var(--line-dark);}
-  .dark .tlink::before,header .tlink::before,#close .tlink::before{background:var(--blue-light);}
+  .dark .tlink,header .tlink,#close .tlink,#lightbox .tlink{color:var(--blue-light);}
+  .dark .tlink::after,header .tlink::after,#close .tlink::after,#lightbox .tlink::after{background:var(--line-dark);}
+  .dark .tlink::before,header .tlink::before,#close .tlink::before,#lightbox .tlink::before{background:var(--blue-light);}
 
   /* ---------- Sections ---------- */
   section{padding:clamp(80px,12vh,150px) 0;position:relative;overflow:hidden;}
@@ -448,6 +448,46 @@
   #close .wrap.left form{margin-left:0;}
   #close .wrap.left .submit{justify-content:flex-start;}
   #close .wrap.left .form-done{margin-left:0;}
+
+/* ---------- Project lightbox ----------
+     A real FLIP: the clicked thumbnail's own <img> is measured and
+     re-parented conceptually via transform math, so the photo itself
+     grows into the fullscreen frame rather than a generic modal fading
+     in over it. Transform/opacity only, so the animation is compliant
+     with the same performance rule as everything else on the page. */
+  .work-trigger{cursor:pointer;}
+  #lightbox{position:fixed;inset:0;z-index:72;background:rgba(17,21,25,.97);
+    opacity:0;pointer-events:none;transition:opacity .45s var(--expo);
+    overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  #lightbox.open{opacity:1;pointer-events:auto;}
+  .lb-close{position:fixed;top:20px;right:clamp(20px,4vw,48px);z-index:2;
+    background:none;border:0;cursor:pointer;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;
+    font-weight:500;font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ivory);min-height:var(--tap);min-width:64px;}
+  .lb-close:hover{color:var(--blue-light);}
+  .lb-body{max-width:1160px;margin:0 auto;padding:clamp(72px,10vh,110px) clamp(24px,5vw,48px) 64px;
+    display:flex;flex-direction:column;gap:32px;min-height:100%;justify-content:center;}
+  .lb-frame{width:100%;max-height:70vh;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;background:var(--night);}
+  .lb-frame img{max-width:100%;max-height:70vh;width:auto;height:auto;object-fit:contain;
+    transform-origin:center center;}
+  .lb-meta{color:var(--ivory);}
+  .lb-meta .pcap .t{color:var(--ivory-faint);}
+  .lb-title{font-family:'Prata','Times New Roman',serif;font-weight:400;
+    font-size:clamp(28px,3.6vw,44px);line-height:1.1;margin-top:16px;}
+  .lb-meta .w-client{color:var(--ivory-faint);margin-top:12px;}
+  .lb-meta .w-line{color:var(--ivory-soft);margin-top:14px;max-width:60ch;}
+  .lb-meta .tlink{margin-top:22px;}
+  @media(min-width:900px){
+    .lb-body{flex-direction:row;align-items:center;gap:56px;}
+    .lb-frame{flex:1 1 62%;max-height:80vh;}
+    .lb-frame img{max-height:80vh;}
+    .lb-meta{flex:1 1 34%;}
+  }
+  @media(prefers-reduced-motion: reduce){
+    #lightbox{transition:none;}
+    .lb-frame img{transition:none !important;transform:none !important;}
+  }
 
   /* ---------- Grain ---------- */
   body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.014'/%3E%3C/svg%3E");pointer-events:none;z-index:90;}
