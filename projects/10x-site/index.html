@@ -88,16 +88,27 @@
     text-shadow:0 2px 14px rgba(5,12,20,.58);}
   .interlude .inner,#close .wrap{text-shadow:0 2px 14px rgba(5,12,20,.5);}
   .hero-rule{width:56px;height:1px;background:var(--blue-light);margin-bottom:28px;}
-  h1{color:var(--ivory);font-family:'Prata','Times New Roman',serif;font-weight:400;font-size:clamp(40px,6.6vw,88px);line-height:1.06;letter-spacing:.01em;max-width:16ch;text-wrap:balance;}
+  /* Tracked caps at .42em overrun a phone. Tighten and let it wrap. */
+  .hero-kicker{max-width:34ch;}
+  @media(max-width:620px){
+    .hero-kicker{font-size:9px;letter-spacing:.2em;line-height:2;}
+  }
+  /* 35px floor, not 40: if Prata fails to load the fallback serif is
+     wider, and 40px overran a 390px viewport inside the clipping line
+     box. 35px leaves headroom for the fallback metrics. */
+  h1{color:var(--ivory);font-family:'Prata','Times New Roman',serif;font-weight:400;font-size:clamp(35px,6.6vw,88px);line-height:1.06;letter-spacing:.01em;max-width:16ch;text-wrap:balance;}
   h1 .ln{display:block;overflow:hidden;}
-  h1 .ln > span{display:block;transform:translateY(106%);animation:lineUp 1.15s var(--expo) forwards;}
-  h1 .ln:nth-child(1) > span{animation-delay:.40s;}
-  h1 .ln:nth-child(2) > span{animation-delay:.58s;}
+  h1 .ln > span{display:block;}
+  /* Entrance motion is opt-in, added by JS. Default state is fully
+     visible, so a blocked animation can never hide the headline. */
+  .anim h1 .ln > span{transform:translateY(106%);animation:lineUp 1.15s var(--expo) forwards;}
+  .anim h1 .ln:nth-child(1) > span{animation-delay:.40s;}
+  .anim h1 .ln:nth-child(2) > span{animation-delay:.58s;}
   @keyframes lineUp{to{transform:none;}}
   .hero-meta{display:flex;flex-wrap:wrap;gap:20px 48px;align-items:flex-end;justify-content:space-between;margin-top:clamp(32px,5vh,56px);padding-top:26px;border-top:1px solid var(--line-dark);}
   .hero-meta .lede-h{color:var(--ivory-soft);font-size:14.5px;line-height:1.8;max-width:46ch;text-wrap:pretty;}
-  .fade{opacity:0;transform:translateY(26px);animation:rise 1.1s var(--expo) forwards;}
-  .fade.d1{animation-delay:.2s}.fade.d2{animation-delay:.4s}.fade.d3{animation-delay:.85s}
+  .anim .fade{opacity:0;transform:translateY(26px);animation:rise 1.1s var(--expo) forwards;}
+  .anim .fade.d1{animation-delay:.2s}.anim .fade.d2{animation-delay:.4s}.anim .fade.d3{animation-delay:.85s}
   @keyframes rise{to{opacity:1;transform:none;}}
 
   /* ---------- Tracked link, hairline extends on hover ---------- */
@@ -239,8 +250,8 @@
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
-    .fade{animation:none !important;opacity:1 !important;transform:none !important;}
-    h1 .ln > span{animation:none !important;transform:none !important;}
+    .fade,.anim .fade{animation:none !important;opacity:1 !important;transform:none !important;}
+    h1 .ln > span,.anim h1 .ln > span{animation:none !important;transform:none !important;}
     .hero-img{animation:none;}
     .reveal,.reveal.pending{opacity:1 !important;transform:none !important;transition-delay:0s !important;}
     .plate.pending img,a:hover .plate img{clip-path:inset(0) !important;transform:none !important;}
@@ -250,8 +261,8 @@
   @media print{
     nav,#scrollProgress{display:none;}
     body::before{display:none;}
-    .fade,.reveal,.reveal.pending{opacity:1 !important;transform:none !important;animation:none !important;}
-    h1 .ln > span{animation:none !important;transform:none !important;}
+    .fade,.anim .fade,.reveal,.reveal.pending{opacity:1 !important;transform:none !important;animation:none !important;}
+    h1 .ln > span,.anim h1 .ln > span{animation:none !important;transform:none !important;}
     .plate.pending img{clip-path:inset(0) !important;transform:none !important;}
     header{min-height:auto;height:80vh;page-break-after:always;}
     section{page-break-inside:avoid;}
@@ -286,7 +297,7 @@
   <div class="hero-inner">
     <div class="fade d1">
       <div class="hero-rule"></div>
-      <p class="label" style="color:var(--ivory-soft);margin-bottom:22px;">Prestige Property &amp; Construction Media &nbsp;·&nbsp; Gold Coast</p>
+      <p class="label hero-kicker" style="color:var(--ivory-soft);margin-bottom:22px;">Prestige Property &amp; Construction Media · Gold Coast</p>
     </div>
     <h1>
       <span class="ln"><span>Presentation decides</span></span>
@@ -521,6 +532,7 @@
   const CONTACT_EMAIL = 'hello@10xvisuals.com.au';
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) document.documentElement.classList.add('anim');
   const nav = document.getElementById('mainNav');
   const progress = document.getElementById('scrollProgress');
   const pImg = document.getElementById('parallaxImg');
