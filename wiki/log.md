@@ -520,3 +520,27 @@ free-text message, not absence.
 
 Weight went 6.09MB all-eager to 3.81MB with 634KB above the fold. Anti-pattern detector clean,
 0 findings from 17. Zero cost, nothing paid was touched.
+
+## [2026-07-30] ingest | Stonehaven becomes the 10x homepage hero
+
+Hunter flagged the [[sol]] drone cover as not strong enough and asked for the Stonehaven
+(47 Somerset Drive, Whitefox) frames instead, plus SOL moved below Elysium. Done: hero is
+now the Stonehaven dusk frame, work run is six entries (Stonehaven, Davenport + Bespoke,
+Elysium, SOL + Broncos), Whitefox added to the client roster in place of Hour Glass, which
+was never verified. Stonehaven has no project page on the live site, so that entry is
+deliberately unlinked rather than pointing at a 404.
+
+Two lessons worth keeping, both on [[10x-website]]:
+
+- **A hero is chosen by where the dark is.** SOL is a better photograph and a worse cover:
+  its lower third is a bright white roof, exactly where the headline sits. Stonehaven's
+  foreground lawn is dark, so ivory type lands in real shadow. Judge the tonal map of the
+  region the type occupies, not the image.
+- **Burnt-in marketing graphics.** The first White Fox files were all `Whitefox Mappins-*`
+  with a map pin composited into the frame, which DESIGN.md bans. Filenames naming a
+  marketing treatment rather than a shot are suspect.
+
+Also fixed two rendering errors Hunter spotted, added the scroll animation layer (staged
+reveals in reading order, masked heading rise, generalised parallax), and caught a third
+bug while testing it: the close background was flush at height 100%, so parallax travel
+would have exposed a bare edge. Zero cost, nothing paid was touched.

@@ -18,7 +18,8 @@ Then open `http://localhost:8791`. Opening `index.html` directly also works; ass
 
 1. Set `FORM_ENDPOINT` at the top of the script block to a real POST endpoint. While it is `null` the form opens a `mailto:` compose to hello@10xvisuals.com.au, so enquiries still arrive but nothing is captured server-side.
 2. Replace the founders photograph. The current frame is a studio-seamless team shot, greyscaled and cropped as a holding treatment.
-3. Decide on the client strip. It is currently a typeset Prata roster of all sixteen clients. Logos return only with a matched monochrome set on transparent grounds.
+3. Decide on the client strip. It is currently a typeset Prata roster of sixteen clients. Logos return only with a matched monochrome set on transparent grounds.
+4. **Stonehaven has no project page.** It is the hero and the opening case study, but `10xvisuals.com.au` has no `/stonehaven` route, so that entry is deliberately not a link and carries no "View project" CTA. Build the page, then make it one.
 
 ## Assets
 
@@ -27,6 +28,12 @@ Downloaded once from the live WordPress uploads, then downscaled and re-encoded.
 ```bash
 B=https://10xvisuals.com.au/wp-content/uploads; mkdir -p projects/10x-site/assets/logos; for f in The-Agency-REA Shape-Construction Ray-White-Rea Salisbury-Building-Projects-Logo PRD-Rea Mastr-Logo Kollosche Gold-Coast-BMW-Logo Ashley-Cooper-Construction-Logo; do curl -sfL "$B/2026/03/10x-Visuals-Web-Logos_$f.jpg" -o "projects/10x-site/assets/logos/$f.jpg"; done
 ```
+
+## Work order
+
+Six entries: Stonehaven (full bleed), Davenport and Bespoke (two up), Elysium (full bleed), then SOL and Broncos Leagues Club (two up). SOL sits below Elysium by request; it used to be the hero.
+
+The hero is Stonehaven at 47 Somerset Drive, marketed by Whitefox, shot at dusk. It replaced the SOL drone frame because that shot's lower third is a bright white roof, so the headline sat on the subject with almost no contrast. Stonehaven's foreground lawn and paving are genuinely dark, which is what the DS scrim expects.
 
 ## Scope
 

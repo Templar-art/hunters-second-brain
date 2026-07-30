@@ -17,7 +17,9 @@ Six pages: home, `/branding`, `/content-creation`, `/lead-generation`, `/systems
 
 ## What shipped
 
-A single self-contained `index.html`: full-bleed [[sol]] drone hero under the headline "Presentation decides the price.", a typeset client roster, five case-study plates alternating full-bleed and two-up, a parallax interlude, the four disciplines as hairline rows, founders, testimonial, and a three-field enquiry close. Works over `file://` and HTTP. Not deployed.
+A single self-contained `index.html`: full-bleed **Stonehaven** dusk hero under the headline "Presentation decides the price.", a typeset client roster, six case-study plates alternating full-bleed and two-up, a parallax interlude, the four disciplines as hairline rows, founders, testimonial, and a three-field enquiry close. Works over `file://` and HTTP. Not deployed.
+
+**Hero: Stonehaven**, 47 Somerset Drive, marketed by Whitefox, shot at dusk. It replaced the [[sol]] drone frame on 30 Jul. Work order is Stonehaven, Davenport + Bespoke, Elysium, then SOL + Broncos; SOL moved below Elysium at Hunter's request.
 
 ## What it taught us
 
@@ -28,6 +30,10 @@ A single self-contained `index.html`: full-bleed [[sol]] drone hero under the he
 **Never gate content visibility on JavaScript.** The first reveal implementation hid every below-fold section until an IntersectionObserver fired. A deep link to `#close`, which the page's own hero CTA points at, could land on a blank section. Reveals must enhance an already-visible default, with a failsafe that clears them regardless. See [[hidden-pane-scroll-reveal]] for the related lesson about not misreading such a pane as broken.
 
 **Mismatched logo files are worse than no logos.** Nine client logos across dark-on-white JPEGs, an inverse navy lockup and a yellow Ray White square cannot be unified by greyscale and multiply; they render as pale boxes of unequal weight. A typeset Prata roster looks more expensive and carries the ten clients that have no logo asset at all. Recorded as The Roster-Not-Logos Rule.
+
+**A hero is chosen by where the dark is, not by how good the photo is.** The SOL drone frame is a strong photograph and still made a poor cover, because its lower third is a bright white roof and pale concrete, exactly where the headline sits. Stonehaven works because its foreground lawn and paving are dark, giving ivory type a real bed. Judge a candidate by the tonal map of the region the type occupies, not by the image as a whole.
+
+**Watch for burnt-in marketing graphics in client deliverables.** The first White Fox files found were `Whitefox Mappins-0*.jpg`, all four carrying a map-pin graphic composited into the frame, which DESIGN.md bans outright. The usable set was the 47 Somerset Drive prints. Anything named for a marketing treatment rather than a shot is suspect.
 
 **Judge a photograph at full size before committing to it.** The hero was chosen off a downscaled preview on the reasoning that its bottom third was dark water. At full size that third is a bright white roof and pale concrete, so the headline sat on the subject with almost no contrast, breaking the vault's own rule about type in the bottom gradient only. Fixed with a second bottom-anchored scrim plus the documented ink type-shadow, but the selection should have been made at full resolution.
 
