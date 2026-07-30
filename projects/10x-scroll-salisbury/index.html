@@ -239,10 +239,25 @@
   }
   document.addEventListener('scroll', snap, {passive:true, capture:true});
 
+  /* <img> rather than fetch(): fetch is blocked by the file:// origin policy, so a
+     zipped copy opened by double-click would load nothing. An image element loads
+     either way, and we never read pixels back, so the tainted canvas costs nothing. */
+  function loadImage(src){
+    return new Promise((res, rej) => {
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload = () => res(img);
+      img.onerror = rej;
+      img.src = src;
+    });
+  }
   async function preload(i){
     try{
-      const res = await fetch(SRC(i));
-      frames[i] = await createImageBitmap(await res.blob());
+      const img = await loadImage(SRC(i));
+      /* decode to a bitmap where supported — cheaper per draw; fall back to the
+         image element itself (Safari on file:// among others). */
+      try{ frames[i] = await createImageBitmap(img); }
+      catch(e){ frames[i] = img; }
     }catch(e){}
     loaded++;
     lbar.style.transform = 'scaleX(' + (loaded/FRAME_COUNT) + ')';
