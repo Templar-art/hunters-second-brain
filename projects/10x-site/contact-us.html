@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact | 10x Visuals</title>
+<meta name="description" content="Talk to 10x Visuals about branding, content, lead generation or systems."/>
+<link rel="preload" as="image" type="image/webp" imagesrcset="assets/hero-contact-800.webp 800w, assets/hero-contact-1400.webp 1400w, assets/hero-contact-1800.webp 1800w" imagesizes="100vw" fetchpriority="high"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/prestige.css"/>
+</head>
+<body>
+
+<span id="scrollProgress" aria-hidden="true"></span>
+
+<nav id="mainNav">
+  <div class="bar">
+    <a href="index.html" class="wordmark serif">10X&nbsp;VISUALS</a>
+    <div class="links">
+      <a class="nlink" href="branding.html">Branding</a>
+      <a class="nlink" href="content-creation.html">Content</a>
+      <a class="nlink" href="lead-generation.html">Lead Gen</a>
+      <a class="nlink" href="systems-processes.html">AI Systems</a>
+      <a class="nlink" href="contact-us.html">Contact</a>
+    </div>
+    <button type="button" id="menuToggle" class="nlink only" aria-haspopup="true" aria-expanded="false" aria-controls="menuOverlay">Menu</button>
+  </div>
+</nav>
+
+<div id="menuOverlay" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
+  <div class="mo-top">
+    <a href="index.html" class="wordmark serif">10X&nbsp;VISUALS</a>
+    <button type="button" id="menuClose" class="tlink">Close</button>
+  </div>
+  <nav class="mo-links" aria-label="Site">
+    <a href="branding.html">Branding</a>
+    <a href="content-creation.html">Content</a>
+    <a href="lead-generation.html">Lead Gen</a>
+    <a href="systems-processes.html">AI Systems</a>
+    <a href="contact-us.html">Contact</a>
+  </nav>
+  <div class="mo-foot">
+    <a href="mailto:hello@10xvisuals.com.au">hello@10xvisuals.com.au</a>
+    <a href="tel:+61431516634">0431 516 634</a>
+  </div>
+</div>
+
+<main>
+<header id="top" class="hero-sm">
+  <picture><source type="image/webp" srcset="assets/hero-contact-800.webp 800w, assets/hero-contact-1400.webp 1400w, assets/hero-contact-1800.webp 1800w" sizes="100vw"/><img class="hero-img" src="assets/hero-contact-1800.jpg" srcset="assets/hero-contact-800.jpg 800w, assets/hero-contact-1400.jpg 1400w, assets/hero-contact-1800.jpg 1800w" sizes="100vw" fetchpriority="high" alt="The guest studio at Stonehaven, 47 Somerset Drive."/></picture>
+  <div class="hero-veil"></div>
+  <div class="hero-inner">
+    <div class="fade d1">
+      <div class="hero-rule"></div>
+      <p class="label hero-kicker" style="color:var(--ivory);margin-bottom:22px;">Contact</p>
+    </div>
+    <h1>
+      <span class="ln"><span>Let's connect.</span></span>
+    </h1>
+    <div class="hero-meta fade d3">
+      <p class="lede-h">Tell us what you're building. We will tell you what it needs.</p>
+      <a class="tlink magnetic" href="#close">Start a project</a>
+    </div>
+  </div>
+  <div class="scroll-cue fade d3" aria-hidden="true"><span class="sc-rule"></span>Scroll</div>
+</header>
+
+<section class="dark">
+  <div class="wrap">
+    <h2 class="sr">Enquire</h2>
+    <div class="split">
+      <div class="reveal">
+        <h3 class="fq" style="font-size:clamp(21px,2.4vw,30px);">Use the form, or call us. Either reaches the same three people.</h3>
+        <dl class="direct">
+          <dt>Phone</dt><dd><a href="tel:+61431516634">0431 516 634</a></dd>
+          <dt>Email</dt><dd><a href="mailto:hello@10xvisuals.com.au">hello@10xvisuals.com.au</a></dd>
+          <dt>Instagram</dt><dd><a href="https://www.instagram.com/10xvisuals_/" rel="noopener">@10xvisuals_</a></dd>
+        </dl>
+      </div>
+      <div class="reveal">
+    <form id="enquiry" novalidate>
+      <div class="fields">
+        <div class="field" id="f-name">
+          <label for="i-name">Name</label>
+          <input id="i-name" name="name" type="text" autocomplete="name" maxlength="80" required aria-describedby="e-name"/>
+          <p class="err" id="e-name" role="alert">Please add your name.</p>
+        </div>
+        <div class="field" id="f-email">
+          <label for="i-email">Email</label>
+          <input id="i-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" required aria-describedby="e-email"/>
+          <p class="err" id="e-email" role="alert">Please add a valid email, including the @.</p>
+        </div>
+        <div class="field" id="f-phone">
+          <label for="i-phone">Phone</label>
+          <input id="i-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required aria-describedby="e-phone"/>
+          <p class="err" id="e-phone" role="alert">Please add a contact number, at least eight digits.</p>
+        </div>
+      </div>
+      <div class="submit"><button class="tlink magnetic" type="submit">Send enquiry</button></div>
+      <p class="form-alt">Or reach us directly on <a href="tel:+61431516634">0431 516 634</a> or <a href="mailto:hello@10xvisuals.com.au">hello@10xvisuals.com.au</a>.</p>
+    </form>
+    <p class="form-done" id="formDone" role="status" tabindex="-1">Thank you. We will be in touch within one business day.</p>
+    <p class="form-fail" id="formFail" role="alert">That didn't send. Call 0431 516 634 or email hello@10xvisuals.com.au and we will pick it up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stagger">
+    <h2 class="reveal h2m h-small"><span>Questions we often get.</span></h2>
+    <div class="faq reveal stgr">
+      <details><summary>What types of businesses do you work with?</summary><p class="a">We work with a wide range of businesses across different industries. Our clients include construction companies, trades, real estate groups, property developers, professional services, and growing brands that want to strengthen their marketing and digital presence. As a full service agency, we adapt our strategies to suit each industry and business stage.</p></details>
+      <details><summary>What services do you offer?</summary><p class="a">Our services cover the full spectrum of modern marketing and digital growth. This includes branding, website design, photography and videography, paid advertising, SEO, and business systems such as automation and CRM implementation.</p></details>
+      <details><summary>Do you offer one off shoots or projects?</summary><p class="a">Yes. While many of our clients work with us on ongoing marketing and content projects, we also offer one off services such as photography, videography, branding work and website builds. Whether it is a single project or a long term partnership, we tailor the scope to suit your needs.</p></details>
+      <details><summary>Can you work alongside our existing team or agency?</summary><p class="a">Absolutely. We often collaborate with internal teams, external marketing partners and business owners to support specific parts of a project. Whether it is content production, advertising or systems, we can integrate into existing workflows where needed.</p></details>
+      <details><summary>Do you work with small businesses or only larger companies?</summary><p class="a">We work with businesses at different stages of growth. Some clients are established organisations looking to scale their marketing, while others are smaller businesses building a strong foundation. What matters most is working with businesses that value quality and are serious about improving their brand and marketing.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap inner">
+    <p class="mark">10X VISUALS</p>
+    <div class="fl">
+      <a href="mailto:hello@10xvisuals.com.au">Email</a>
+      <a href="tel:+61431516634">0431 516 634</a>
+      <a href="https://www.instagram.com/10xvisuals_/" rel="noopener">Instagram</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <p>&copy; 2026 10x Visuals Pty Ltd</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/prestige.js"></script>
+</body>
+</html>

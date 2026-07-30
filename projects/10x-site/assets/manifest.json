@@ -80,5 +80,45 @@
    1400,
    1800
   ]
+ },
+ "hero-branding": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "hero-content": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "hero-leadgen": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "hero-systems": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
+ },
+ "hero-contact": {
+  "native": 1800,
+  "widths": [
+   800,
+   1400,
+   1800
+  ]
  }
 }
