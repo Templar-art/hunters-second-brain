@@ -544,3 +544,29 @@ Also fixed two rendering errors Hunter spotted, added the scroll animation layer
 reveals in reading order, masked heading rise, generalised parallax), and caught a third
 bug while testing it: the close background was flush at height 100%, so parallax travel
 would have exposed a bare edge. Zero cost, nothing paid was touched.
+
+## [2026-07-30] design+build | 10x site: competitor review, project lightbox, pages restored
+
+Hunter asked to review desirestudio.com.au and x-media.com.au and pull the premium interaction
+patterns into the 10x rebuild, then bring the five interior pages back at the same standard.
+
+Real bug the competitor review surfaced: mobile nav had collapsed to a single Contact link,
+with no way to reach the other four pages without going through the enquiry form. Replaced with
+a full-bleed overlay menu (text "MENU"/"CLOSE" triggers, not a hamburger), real dialog semantics,
+focus trap, Escape close, scroll lock. Added a scroll cue and magnetic-pull CTAs as tasteful
+translations; explicitly rejected Desire Studio's 3D drag-balloon hero as off-brand.
+
+Built the headline feature: a project lightbox where the clicked work photo's own image element
+is measured and animated via transform (FLIP technique) into a fullscreen preview, rather than a
+generic modal fading in over it. Real links pass through untouched on modifier-click.
+
+Restored all five interior pages via a generator script (projects/10x-site/scripts/build_pages.py,
+checked in), elevated to the homepage's post-rework standard: one statement-scale heading per
+page in an editorial split, no repeated hairline eyebrows, left-aligned close sections.
+
+Two real bugs caught mid-build, both patterns already in [[10x-website]]: the lightbox's
+"View full project" link inherited paper-tuned blue and measured 3.1:1 on its own night
+background (fixed, now 7.07:1); and a test script itself measured a page's on-paper close
+section against the wrong background, producing a false 1.02:1 failure. Full writeup on the page.
+
+Zero cost, nothing paid was touched.
