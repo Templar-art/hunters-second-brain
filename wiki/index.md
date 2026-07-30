@@ -30,6 +30,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[10x-ig-repositioning]] — own-brand IG overhaul: credit loop, premium kit, craft series
 - [[10x-social-engine]] — unified graphics engine (tenx.py), gap audit, content-flow SOPs, reel + ad formats
 - [[10x-socials-funnel]] — new RE + construction accounts funneling curated best-of to master
+- [[10x-website]] — 10xvisuals.com.au; homepage rebuilt 30 Jul on Prestige DS, not yet deployed
 - [[10x-scroll-build]] — scroll-scrub film demo (sales asset, CVA render)
 - [[music-library]] — tagged track library for scoring edits
 - [[board-committee-headshots]] — 127 RAW portraits + BTS edit plan; retouch pending

@@ -2,7 +2,7 @@
 type: project
 tags: [lead-gen, ads, google-ads, meta-ads, landing-pages, mvx, cva, 10x-visuals]
 status: active
-updated: 2026-07-28
+updated: 2026-07-30
 ---
 
 # Lead Gen Engine — ads + landing pages across three clients
@@ -18,7 +18,7 @@ Evidence gathered 27 Jul from live sites, sitemaps and page markup, not from ad 
 | MVX | **No hot water surface exists** anywhere on a 29-page site. Nothing for search demand to land on. Aircon leads flow because aircon is the only funded, page-backed service. | A page, then spend |
 | MVX | Both live ad LPs re-added form friction in the Elementor build: six required fields incl. a required free-text message | [FORM-FIX.md](../../projects/mvx-lead-fix/FORM-FIX.md) |
 | CVA | Every CTA points at `/contact`, which only catches people who already decided to hire an architect. No top-of-funnel offer against a 6–18 month consideration window | A feasibility offer |
-| 10x | **No lead form at all** on 10xvisuals.com.au. The 20 Jul Meta campaign spent ~$160 for zero leads pointing at it | A capture page + a real offer |
+| 10x | **⚠️ Superseded 30 Jul 2026.** A form *does* exist at `/contact-us/`, so the 27 Jul "no lead form at all" reading was wrong. It carries seven fields including a required free-text message, the same friction we bill MVX to remove. The 20 Jul Meta campaign still spent ~$160 for zero leads. The homepage rebuild adds a three-field inline capture, see [[10x-website]] | Cut the contact form to three fields |
 
 ## The strategy
 

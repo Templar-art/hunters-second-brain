@@ -488,3 +488,35 @@ access plus the three decisions. A tradie answers three texts and ignores an eig
 email. Also dropped the DNS request from the access ask — domain verification can be
 done with a header tag, which the WordPress access already covers, so it was a
 needless third thing to chase.
+
+## [2026-07-30] ingest+harvest | 10x Visuals homepage rebuilt on Prestige DS v1.0
+
+Hunter supplied `10x-prestige-design-system.html` (Prata + Montserrat, paper/night, blue as
+accent only, one expo curve) and asked for the 10xvisuals.com.au homepage rebuilt to that
+standard. Built static and self-contained at `projects/10x-site/`; not deployed. New page
+[[10x-website]], indexed. Spec and full build outcome in
+`docs/superpowers/specs/2026-07-30-10x-homepage-prestige-rebuild-design.md`.
+
+Five things the vault did not know before:
+
+1. **Prestige DS v1.0 fails WCAG AA in four places**, including its own text blue at 4.39:1.
+   Amended and recorded in DESIGN.md as The AA-Amendment Rule; 11 text pairs now measure
+   4.68:1 to 6.69:1 with no failures.
+2. **⚠️ The DS contradicts DESIGN.md.** It prescribes a tracked kicker plus an oversized roman
+   numeral on every section; DESIGN.md's No-Eyebrow and No-Numbers Rules already forbade both
+   after two pages were stripped for it earlier in July. Resolved for the learned rule.
+   New rule: a system handed down does not outrank a rule the vault learned from shipped work.
+3. **Never gate content visibility on JS.** The first reveal pass hid below-fold sections until
+   an IntersectionObserver fired, so a deep link to `#close`, which the hero CTA itself points
+   at, could land blank. Now armed only when the observer exists, after any anchor scroll
+   settles, with a 2.5s failsafe.
+4. **Mismatched client logos read cheaper than type.** Recorded as The Roster-Not-Logos Rule.
+5. **Judge a photo at full resolution before committing.** The hero was picked off a thumbnail
+   for a "dark bottom third" that is actually a bright white roof.
+
+Corrected a wrong vault claim: [[lead-gen-engine]] said 10xvisuals.com.au had no lead form at
+all (27 Jul). It has one at `/contact-us/`; the problem is seven fields with a required
+free-text message, not absence.
+
+Weight went 6.09MB all-eager to 3.81MB with 634KB above the fold. Anti-pattern detector clean,
+0 findings from 17. Zero cost, nothing paid was touched.
