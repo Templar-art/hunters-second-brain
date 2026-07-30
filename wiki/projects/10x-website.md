@@ -31,11 +31,9 @@ A single self-contained `index.html`: full-bleed **Stonehaven** dusk hero under 
 
 **Mismatched logo files are worse than no logos.** Nine client logos across dark-on-white JPEGs, an inverse navy lockup and a yellow Ray White square cannot be unified by greyscale and multiply; they render as pale boxes of unequal weight. A typeset Prata roster looks more expensive and carries the ten clients that have no logo asset at all. Recorded as The Roster-Not-Logos Rule.
 
-**A hero is chosen by where the dark is, not by how good the photo is.** The SOL drone frame is a strong photograph and still made a poor cover, because its lower third is a bright white roof and pale concrete, exactly where the headline sits. Stonehaven works because its foreground lawn and paving are dark, giving ivory type a real bed. Judge a candidate by the tonal map of the region the type occupies, not by the image as a whole.
+**A hero is chosen by where the dark is, not by how good the photo is.** The SOL drone frame is a strong photograph and still made a poor cover, because its lower third is a bright white roof and pale concrete, exactly where the headline sits. Stonehaven works because its foreground lawn and paving are dark, giving ivory type a real bed. Judge a candidate by the tonal map of the region the type occupies, not by the image as a whole, and judge it at full resolution: SOL was picked off a downscaled preview where that roof read as dark water.
 
 **Watch for burnt-in marketing graphics in client deliverables.** The first White Fox files found were `Whitefox Mappins-0*.jpg`, all four carrying a map-pin graphic composited into the frame, which DESIGN.md bans outright. The usable set was the 47 Somerset Drive prints. Anything named for a marketing treatment rather than a shot is suspect.
-
-**Judge a photograph at full size before committing to it.** The hero was chosen off a downscaled preview on the reasoning that its bottom third was dark water. At full size that third is a bright white roof and pale concrete, so the headline sat on the subject with almost no contrast, breaking the vault's own rule about type in the bottom gradient only. Fixed with a second bottom-anchored scrim plus the documented ink type-shadow, but the selection should have been made at full resolution.
 
 ## Open
 
