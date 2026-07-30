@@ -28,3 +28,6 @@ projects/elevra-invoices/invoices/
 # bespoke pop-ups: ProRes 4444 alpha masters are ~60-90MB each, regenerate via tools/render-sequence.mjs
 projects/bespoke-sold-popups/preview/*.mov
 projects/bespoke-sold-popups/preview/frames/
+
+# impeccable detector cache
+**/.impeccable/hook.cache.json
