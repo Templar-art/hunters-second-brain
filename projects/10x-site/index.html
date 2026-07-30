@@ -13,6 +13,16 @@
 </head>
 <body>
 
+<div id="splash" role="dialog" aria-modal="true" aria-label="Entrance">
+  <picture><source type="image/webp" srcset="assets/hero-stonehaven-800.webp 800w, assets/hero-stonehaven-1400.webp 1400w, assets/hero-stonehaven-1800.webp 1800w, assets/hero-stonehaven-2200.webp 2200w" sizes="100vw"/><img class="splash-img" src="assets/hero-stonehaven-1800.jpg" srcset="assets/hero-stonehaven-800.jpg 800w, assets/hero-stonehaven-1400.jpg 1400w, assets/hero-stonehaven-1800.jpg 1800w, assets/hero-stonehaven-2200.jpg 2200w" sizes="100vw" width="2200" height="1650" fetchpriority="high" alt=""/></picture>
+  <div class="splash-veil"></div>
+  <div class="splash-inner">
+    <p class="wordmark serif splash-mark">10X&nbsp;VISUALS</p>
+    <button type="button" id="splashEnter" class="tlink">Enter</button>
+  </div>
+</div>
+<noscript><style>#splash{display:none !important;}</style></noscript>
+
 <span id="scrollProgress" aria-hidden="true"></span>
 
 <nav id="mainNav">
@@ -184,30 +194,46 @@
 
 <!-- ============ THE DISCIPLINES ============ -->
 <section id="disciplines" class="dark">
-  <div class="wrap stagger">
+  <div class="wrap">
     <h2 class="reveal h2m h-small"><span>What we actually do.</span></h2>
-    <div class="disc reveal stgr">
-      <a class="row" href="branding.html">
-        <span class="rt">Branding</span>
-        <span class="rd">Strategy, identity, and the guidelines that keep it intact.</span>
-        <span class="rv">View</span>
+  </div>
+  <div class="disc-split reveal">
+      <a class="dcol" href="branding.html">
+        <picture><source type="image/webp" srcset="assets/hero-branding-800.webp 800w, assets/hero-branding-1400.webp 1400w, assets/hero-branding-1800.webp 1800w" sizes="(max-width:820px) 100vw, 25vw"/><img src="assets/hero-branding-1800.jpg" srcset="assets/hero-branding-800.jpg 800w, assets/hero-branding-1400.jpg 1400w, assets/hero-branding-1800.jpg 1800w" sizes="(max-width:820px) 100vw, 25vw" loading="lazy" decoding="async" alt="A refined living space at Stonehaven, photographed for Whitefox."/></picture>
+        <div class="dcol-veil"></div>
+        <div class="dcol-cap">
+          <h3>Branding</h3>
+          <p>Strategy, identity, and the guidelines that keep it intact.</p>
+          <span class="dcol-more">Find out more<span aria-hidden="true"> &rarr;</span></span>
+        </div>
       </a>
-      <a class="row" href="content-creation.html">
-        <span class="rt">Content</span>
-        <span class="rd">Photography and film for property, construction, and the brands behind them.</span>
-        <span class="rv">View</span>
+      <a class="dcol" href="content-creation.html">
+        <picture><source type="image/webp" srcset="assets/hero-content-800.webp 800w, assets/hero-content-1400.webp 1400w, assets/hero-content-1800.webp 1800w" sizes="(max-width:820px) 100vw, 25vw"/><img src="assets/hero-content-1800.jpg" srcset="assets/hero-content-800.jpg 800w, assets/hero-content-1400.jpg 1400w, assets/hero-content-1800.jpg 1800w" sizes="(max-width:820px) 100vw, 25vw" loading="lazy" decoding="async" alt="The garden and firepit terrace at Stonehaven in late afternoon light."/></picture>
+        <div class="dcol-veil"></div>
+        <div class="dcol-cap">
+          <h3>Content</h3>
+          <p>Photography and film for property, construction, and the brands behind them.</p>
+          <span class="dcol-more">Find out more<span aria-hidden="true"> &rarr;</span></span>
+        </div>
       </a>
-      <a class="row" href="lead-generation.html">
-        <span class="rt">Lead Gen</span>
-        <span class="rd">Campaigns and landing pages built to produce enquiries, not impressions.</span>
-        <span class="rv">View</span>
+      <a class="dcol" href="lead-generation.html">
+        <picture><source type="image/webp" srcset="assets/hero-leadgen-800.webp 800w, assets/hero-leadgen-1400.webp 1400w, assets/hero-leadgen-1800.webp 1800w" sizes="(max-width:820px) 100vw, 25vw"/><img src="assets/hero-leadgen-1800.jpg" srcset="assets/hero-leadgen-800.jpg 800w, assets/hero-leadgen-1400.jpg 1400w, assets/hero-leadgen-1800.jpg 1800w" sizes="(max-width:820px) 100vw, 25vw" loading="lazy" decoding="async" alt="The front elevation and lawn at Stonehaven, 47 Somerset Drive."/></picture>
+        <div class="dcol-veil"></div>
+        <div class="dcol-cap">
+          <h3>Lead Gen</h3>
+          <p>Campaigns and landing pages built to produce enquiries, not impressions.</p>
+          <span class="dcol-more">Find out more<span aria-hidden="true"> &rarr;</span></span>
+        </div>
       </a>
-      <a class="row" href="systems-processes.html">
-        <span class="rt">AI Systems</span>
-        <span class="rd">Generation and automation that let a small team ship at volume.</span>
-        <span class="rv">View</span>
+      <a class="dcol" href="systems-processes.html">
+        <picture><source type="image/webp" srcset="assets/hero-systems-800.webp 800w, assets/hero-systems-1400.webp 1400w, assets/hero-systems-1800.webp 1800w" sizes="(max-width:820px) 100vw, 25vw"/><img src="assets/hero-systems-1800.jpg" srcset="assets/hero-systems-800.jpg 800w, assets/hero-systems-1400.jpg 1400w, assets/hero-systems-1800.jpg 1800w" sizes="(max-width:820px) 100vw, 25vw" loading="lazy" decoding="async" alt="The alfresco dining terrace at Stonehaven, open to the pool."/></picture>
+        <div class="dcol-veil"></div>
+        <div class="dcol-cap">
+          <h3>AI Systems</h3>
+          <p>Generation and automation that let a small team ship at volume.</p>
+          <span class="dcol-more">Find out more<span aria-hidden="true"> &rarr;</span></span>
+        </div>
       </a>
-    </div>
   </div>
 </section>
 
@@ -240,7 +266,7 @@
       <div class="plate reveal"><picture><source type="image/webp" srcset="assets/founders-800.webp 800w, assets/founders-1400.webp 1400w" sizes="(max-width:820px) 100vw, 44vw"/><img src="assets/founders-1400.jpg" srcset="assets/founders-800.jpg 800w, assets/founders-1400.jpg 1400w" sizes="(max-width:820px) 100vw, 44vw" width="1500" height="1125" loading="lazy" decoding="async" alt="The 10x Visuals founders, photographed on the Gold Coast."/></picture></div>
       <div class="reveal">
         <blockquote class="fq">We started 10x because good work kept being let down by the way it was presented. Fixing that is the whole job.</blockquote>
-        <p class="label fnames">Tyson &nbsp;·&nbsp; Hunter &nbsp;·&nbsp; Damon</p>
+        <p class="label fnames">Damon &nbsp;·&nbsp; Tyson &nbsp;·&nbsp; Lachlan</p>
       </div>
     </div>
   </div>

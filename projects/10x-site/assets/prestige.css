@@ -489,6 +489,69 @@
     .lb-frame img{transition:none !important;transform:none !important;}
   }
 
+/* ---------- Entrance splash ----------
+     A deliberate threshold, once per session (sessionStorage), never a
+     dead end: no-JS visitors never see it (the <noscript> rule removes
+     it outright), Escape enters same as the button, and reduced motion
+     collapses the exit to an instant cut via the existing global rule. */
+  #splash{position:fixed;inset:0;z-index:95;background:var(--night);
+    display:flex;align-items:center;justify-content:center;
+    transition:opacity .7s var(--expo), clip-path .7s var(--expo);}
+  #splash.leaving{clip-path:inset(0 0 100% 0);opacity:0;pointer-events:none;}
+  .splash-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .splash-veil{position:absolute;inset:0;background:rgba(17,21,25,.62);}
+  .splash-inner{position:relative;z-index:2;display:flex;flex-direction:column;
+    align-items:center;gap:clamp(28px,5vh,44px);text-align:center;
+    opacity:0;transform:translateY(10px);
+    animation:splashIn 1s var(--expo) .25s forwards;}
+  @keyframes splashIn{to{opacity:1;transform:none;}}
+  .splash-mark{color:var(--ivory);font-size:clamp(16px,2vw,20px);letter-spacing:.4em;}
+  #splash .tlink{color:var(--blue-light);}
+  #splash .tlink::after{background:var(--line-dark);}
+  #splash .tlink::before{background:var(--blue-light);}
+  @media(prefers-reduced-motion: reduce){
+    #splash{transition:none;}
+    .splash-inner{animation:none;opacity:1;transform:none;}
+  }
+
+/* ---------- Disciplines: full-bleed mono-to-colour split ----------
+     Four photographs, one per discipline, desaturated at rest and
+     brought to full colour on hover/focus. Only filter and a contained
+     image transform change on interaction, so nothing here is a layout
+     property and the four columns never resize against each other. */
+  .disc-split{width:100vw;margin-left:50%;transform:translateX(-50%);
+    display:flex;margin-top:clamp(28px,4vh,44px);
+    height:clamp(520px,74vh,760px);}
+  .dcol{position:relative;flex:1 1 25%;overflow:hidden;display:block;
+    text-decoration:none;border-right:1px solid var(--line-dark);}
+  .dcol:last-child{border-right:0;}
+  .dcol picture,.dcol img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .dcol img{filter:grayscale(1) contrast(1.05) brightness(.7);
+    transform:scale(1.01);
+    transition:filter .6s var(--expo), transform .8s var(--expo);}
+  .dcol:hover img,.dcol:focus-visible img{filter:grayscale(0) contrast(1.02) brightness(.82);transform:scale(1.05);}
+  .dcol-veil{position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(17,21,25,.86) 0%, rgba(17,21,25,.42) 38%, rgba(17,21,25,.08) 62%, rgba(17,21,25,0) 80%);}
+  .dcol-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(20px,3vw,32px);}
+  .dcol-cap h3{font-family:'Prata','Times New Roman',serif;font-weight:400;color:var(--ivory);
+    font-size:clamp(22px,2.4vw,28px);line-height:1.15;}
+  .dcol-cap p{color:var(--ivory-soft);font-size:13.5px;line-height:1.6;max-width:26ch;
+    margin-top:10px;opacity:0;max-height:0;transition:opacity .4s var(--expo);}
+  .dcol-more{display:inline-flex;align-items:center;gap:6px;margin-top:16px;min-height:var(--tap);
+    font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:10px;
+    letter-spacing:.28em;text-transform:uppercase;color:var(--ivory-faint);
+    border-top:1px solid var(--line-dark);padding-top:14px;
+    transition:color .4s var(--expo);}
+  .dcol:hover .dcol-more,.dcol:focus-visible .dcol-more{color:var(--blue-light);}
+  .dcol:hover .dcol-cap p,.dcol:focus-visible .dcol-cap p{opacity:1;max-height:6em;}
+  .dcol:focus-visible{outline:2px solid var(--ivory);outline-offset:-4px;}
+  @media(max-width:820px){
+    .disc-split{flex-direction:column;height:auto;}
+    .dcol{flex:none;height:280px;border-right:0;border-bottom:1px solid var(--line-dark);}
+    .dcol:last-child{border-bottom:0;}
+    .dcol-cap p{opacity:1;max-height:none;}
+  }
+
   /* ---------- Grain ---------- */
   body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.014'/%3E%3C/svg%3E");pointer-events:none;z-index:90;}
 

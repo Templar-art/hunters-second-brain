@@ -6,7 +6,44 @@
   const CONTACT_EMAIL = 'hello@10xvisuals.com.au';
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduced) document.documentElement.classList.add('anim');
+
+  /* ---------- Entrance splash (homepage only) ----------
+     Only index.html has #splash in the DOM, so this is a no-op on every
+     other page. Skips itself entirely once per browser session, and the
+     hero's own entrance choreography (.anim) is held back until the
+     visitor actually enters, so it fires fresh rather than mid-flight
+     under a splash they haven't dismissed yet. */
+  const splash = document.getElementById('splash');
+  const alreadyEntered = splash && sessionStorage.getItem('10x-entered') === '1';
+
+  if (splash && !alreadyEntered) {
+    const mainNav = document.getElementById('mainNav');
+    const mainEl = document.querySelector('main');
+    const enterBtn = document.getElementById('splashEnter');
+    if (mainNav) mainNav.inert = true;
+    if (mainEl) mainEl.inert = true;
+    enterBtn.focus();
+
+    const leave = () => {
+      sessionStorage.setItem('10x-entered', '1');
+      splash.classList.add('leaving');
+      if (mainNav) mainNav.inert = false;
+      if (mainEl) mainEl.inert = false;
+      if (!reduced) document.documentElement.classList.add('anim');
+      document.removeEventListener('keydown', onSplashKey);
+      const finish = () => { splash.style.display = 'none'; mainNav?.querySelector('a,button')?.focus(); };
+      if (reduced) finish();
+      else splash.addEventListener('transitionend', finish, { once: true });
+    };
+    function onSplashKey(e){
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') { e.preventDefault(); leave(); }
+    }
+    enterBtn.addEventListener('click', leave);
+    document.addEventListener('keydown', onSplashKey);
+  } else {
+    if (splash) splash.style.display = 'none';
+    if (!reduced) document.documentElement.classList.add('anim');
+  }
   const nav = document.getElementById('mainNav');
   const progress = document.getElementById('scrollProgress');
   const parallax = [...document.querySelectorAll('[data-par]')].map(el => ({
