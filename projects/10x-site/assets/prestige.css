@@ -56,14 +56,56 @@
   nav .wordmark{color:var(--ivory);font-size:15px;letter-spacing:.34em;text-decoration:none;transition:color .4s ease;display:inline-flex;align-items:center;min-height:var(--tap);}
   nav.scrolled .wordmark{color:var(--ink);}
   nav .links{display:flex;gap:clamp(18px,2.4vw,34px);align-items:center;}
-  nav a.nlink{color:var(--ivory);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;transition:color .3s;display:inline-flex;align-items:center;min-height:var(--tap);}
-  nav.scrolled a.nlink{color:var(--ink-soft);}
-  nav a.nlink:hover{color:var(--blue-light);}
-  nav.scrolled a.nlink:hover{color:var(--blue);}
-  nav a.nlink.only{display:none;}
+  nav a.nlink,nav button.nlink{color:var(--ivory);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;transition:color .3s;display:inline-flex;align-items:center;min-height:var(--tap);}
+  nav.scrolled a.nlink,nav.scrolled button.nlink{color:var(--ink-soft);}
+  nav a.nlink:hover,nav button.nlink:hover{color:var(--blue-light);}
+  nav.scrolled a.nlink:hover,nav.scrolled button.nlink:hover{color:var(--blue);}
+  /* The "only" trigger is a real button, not a fifth Contact link, so
+     mobile visitors can still reach Branding / Content / Lead Gen / AI
+     Systems rather than being funnelled straight to Contact. */
+  nav button.nlink.only{display:none;background:none;border:0;cursor:pointer;
+    font-family:inherit;padding:0;}
   @media(max-width:900px){
     nav .links a.nlink{display:none;}
-    nav .links a.nlink.only{display:inline-flex;}
+    nav button.nlink.only{display:inline-flex;}
+  }
+
+  /* ---------- Full-bleed menu overlay ----------
+     Editorial full-screen panel on night, not a rounded card. Clip-reveal
+     with the one expo curve; opacity/clip only, so it costs nothing and
+     degrades to an instant toggle under reduced motion. */
+  #menuOverlay{position:fixed;inset:0;z-index:70;background:var(--night);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:20px clamp(24px,6vw,64px) clamp(32px,6vh,56px);
+    clip-path:inset(0 0 100% 0);opacity:0;pointer-events:none;
+    transition:clip-path .6s var(--expo), opacity .5s var(--expo);}
+  #menuOverlay.open{clip-path:inset(0 0 0 0);opacity:1;pointer-events:auto;}
+  .mo-top{display:flex;align-items:center;justify-content:space-between;
+    min-height:var(--tap);}
+  .mo-top .wordmark{color:var(--ivory);font-size:15px;letter-spacing:.34em;
+    text-decoration:none;display:inline-flex;align-items:center;min-height:var(--tap);}
+  .mo-links{display:flex;flex-direction:column;border-top:1px solid var(--line-dark);}
+  .mo-links a{font-family:'Prata','Times New Roman',serif;font-size:clamp(30px,9vw,46px);
+    color:var(--ivory);text-decoration:none;padding:16px 0;
+    border-bottom:1px solid var(--line-dark);
+    opacity:0;transform:translateY(14px);
+    transition:opacity .5s var(--expo), transform .5s var(--expo), color .3s;}
+  #menuOverlay.open .mo-links a{opacity:1;transform:none;}
+  .mo-links a:nth-child(1){transition-delay:.08s}
+  .mo-links a:nth-child(2){transition-delay:.13s}
+  .mo-links a:nth-child(3){transition-delay:.18s}
+  .mo-links a:nth-child(4){transition-delay:.23s}
+  .mo-links a:nth-child(5){transition-delay:.28s}
+  .mo-links a:hover,.mo-links a:focus-visible{color:var(--blue-light);}
+  .mo-foot{display:flex;flex-wrap:wrap;gap:8px clamp(20px,4vw,40px);}
+  .mo-foot a{font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ivory-faint);text-decoration:none;min-height:var(--tap);
+    display:inline-flex;align-items:center;}
+  .mo-foot a:hover{color:var(--blue-light);}
+  body.menu-open{overflow:hidden;}
+  @media(prefers-reduced-motion: reduce){
+    #menuOverlay,.mo-links a{transition:none !important;}
   }
   #scrollProgress{position:fixed;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue-rule),var(--blue-light));transform:scaleX(0);transform-origin:0 50%;z-index:80;}
 
@@ -103,6 +145,21 @@
   @keyframes lineUp{to{transform:none;}}
   .hero-meta{display:flex;flex-wrap:wrap;gap:20px 48px;align-items:flex-end;justify-content:space-between;margin-top:clamp(32px,5vh,56px);padding-top:26px;border-top:1px solid var(--line-dark);}
   .hero-meta .lede-h{color:var(--ivory-soft);font-size:14.5px;line-height:1.8;max-width:46ch;text-wrap:pretty;}
+
+  /* A quiet scroll cue, in the DS's own hairline-plus-label vocabulary
+     rather than a bouncing chevron or an arrow emoji. Fades out once the
+     visitor has actually started scrolling. */
+  .scroll-cue{position:absolute;left:clamp(24px,6vw,84px);bottom:clamp(20px,3vh,32px);
+    z-index:2;display:flex;align-items:center;gap:10px;
+    font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-weight:500;
+    font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--ivory-faint);
+    transition:opacity .5s var(--expo);}
+  .sc-rule{width:1px;height:22px;background:var(--ivory-faint);
+    animation:scpulse 2.2s var(--expo) infinite;}
+  @keyframes scpulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+  header.scrolled-past .scroll-cue{opacity:0;pointer-events:none;}
+  @media(max-width:620px){.scroll-cue{display:none;}}
+  @media(prefers-reduced-motion: reduce){.sc-rule{animation:none;}}
   .anim .fade{opacity:0;transform:translateY(26px);animation:rise 1.1s var(--expo) forwards;}
   .anim .fade.d1{animation-delay:.2s}.anim .fade.d2{animation-delay:.4s}.anim .fade.d3{animation-delay:.85s}
   @keyframes rise{to{opacity:1;transform:none;}}
@@ -112,6 +169,11 @@
   .tlink::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--line);}
   .tlink::before{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--expo);}
   .tlink:hover::before,a:hover .tlink::before{transform:scaleX(1);}
+  /* Magnetic pull on the two primary CTAs: a restrained, functional
+     cousin of a drag toy. Transform only, capped small, pointer devices
+     only, and it snaps back on its own transition so JS never has to
+     animate the release. */
+  .magnetic{transition:transform .4s var(--expo);}
   .dark .tlink,header .tlink,#close .tlink{color:var(--blue-light);}
   .dark .tlink::after,header .tlink::after,#close .tlink::after{background:var(--line-dark);}
   .dark .tlink::before,header .tlink::before,#close .tlink::before{background:var(--blue-light);}

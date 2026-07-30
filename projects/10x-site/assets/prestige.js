@@ -172,3 +172,74 @@
       fail.style.display = 'block';
     }).finally(() => clearTimeout(timer));
   });
+
+  /* ---------- Menu overlay ----------
+     Full-bleed panel, not a dropdown, so it needs its own focus and
+     scroll-lock handling rather than piggybacking on the desktop nav. */
+  const menuToggle = document.getElementById('menuToggle');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuClose = document.getElementById('menuClose');
+
+  if (menuToggle && menuOverlay) {
+    const focusables = () => [...menuOverlay.querySelectorAll('a, button')];
+
+    function openMenu(){
+      menuOverlay.classList.add('open');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      const first = focusables()[0];
+      if (first) first.focus();
+      document.addEventListener('keydown', onKey);
+    }
+    function closeMenu(){
+      menuOverlay.classList.remove('open');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      menuToggle.focus();
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e){
+      if (e.key === 'Escape') { e.preventDefault(); closeMenu(); return; }
+      /* Manual focus trap: Tab past either end wraps, rather than
+         escaping into the hidden page behind the overlay. */
+      if (e.key !== 'Tab') return;
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    menuToggle.addEventListener('click', openMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+  }
+
+  /* ---------- Hero scroll cue ---------- */
+  const heroEl = document.getElementById('top');
+  if (heroEl) {
+    const cueIO = new IntersectionObserver(es => es.forEach(e => {
+      heroEl.classList.toggle('scrolled-past', e.intersectionRatio < 0.94);
+    }), { threshold: [0, .94, 1] });
+    cueIO.observe(heroEl);
+  }
+
+  /* ---------- Magnetic CTAs ----------
+     A restrained, functional cousin of a drag toy: the two decision-moment
+     buttons pull toward the pointer within a small radius. Fine pointers
+     only (a touchscreen has no hover to feel this), and off entirely under
+     reduced motion. Capped displacement, and the CSS transition on
+     .magnetic handles the snap-back, so there is no animation loop here. */
+  if (!reduced && matchMedia('(pointer: fine)').matches) {
+    const MAX_PULL = 10;
+    document.querySelectorAll('.magnetic').forEach(el => {
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        el.style.transform = `translate(${(x * MAX_PULL).toFixed(1)}px, ${(y * MAX_PULL).toFixed(1)}px)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+    });
+  }
