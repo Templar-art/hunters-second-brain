@@ -74,6 +74,11 @@ FOOTER = """<footer>
   </div>
 </footer>"""
 
+# Shared source for both generators (build_case_studies.py imports this
+# constant rather than redeclaring it - ENG-09). index.html's own inline
+# copy of this same form is NOT generated and must be kept in sync with
+# this constant by hand; that duplicate is a documented exception, not
+# an oversight.
 FORM = """    <form id="enquiry" novalidate>
       <div class="fields">
         <div class="field" id="f-name">
@@ -93,6 +98,7 @@ FORM = """    <form id="enquiry" novalidate>
         </div>
       </div>
       <div class="submit"><button class="tlink magnetic" type="submit">Send enquiry</button></div>
+      <p class="form-alt">We&rsquo;ll only use this to reply.</p>
       <p class="form-alt">Or reach us directly on <a href="tel:+61431516634">0431 516 634</a> or <a href="mailto:hello@10xvisuals.com.au">hello@10xvisuals.com.au</a>.</p>
     </form>
     <p class="form-done" id="formDone" role="status" tabindex="-1">Thank you. We will be in touch within one business day.</p>
@@ -145,8 +151,9 @@ def shell(title, desc, hero_base, body, preload_base=None):
 """
 
 
-def hero(base, alt, label, h1_lines, lede):
+def hero(base, alt, label, h1_lines, lede, value_line=None):
     lines = "\n      ".join(f'<span class="ln"><span>{l}</span></span>' for l in h1_lines)
+    value_p = f'\n      <p class="lede-h">{value_line}</p>' if value_line else ""
     return f"""<header id="top" class="hero-sm">
   {picture(base, alt, "100vw", cls='class="hero-img"', eager=True)}
   <div class="hero-veil"></div>
@@ -159,7 +166,7 @@ def hero(base, alt, label, h1_lines, lede):
       {lines}
     </h1>
     <div class="hero-meta fade d3">
-      <p class="lede-h">{lede}</p>
+      <p class="lede-h">{lede}</p>{value_p}
       <a class="tlink magnetic" href="#close">Start a project</a>
     </div>
   </div>
@@ -233,6 +240,7 @@ PAGES["branding.html"] = dict(
     label="Branding",
     h1=["Where strategy", "becomes identity."],
     lede="We design brands with clarity, confidence and lasting impact.",
+    value_line="One clear identity, working the same way across every place people encounter your business.",
     intro=("Branding that creates clarity", [
         "Your brand is more than a logo. It is the perception people form the moment they encounter your business.",
         "We develop clear, strategic identities that define who you are, communicate what you stand for, and position your brand to be recognised and remembered.",
@@ -270,6 +278,7 @@ PAGES["content-creation.html"] = dict(
     label="Content",
     h1=["Visuals that speak", "for your brand."],
     lede="High quality photo and video content designed to strengthen perception and capture attention.",
+    value_line="Photography and film that let people judge the quality of your work before you say a word.",
     intro=("Content that brings your brand to life", [
         "Content is often the first way people experience your brand. High quality photography and videography allow businesses to communicate clearly, showcase their work, and build trust with their audience.",
         "We create cinematic visuals that highlight what makes your business unique and present it with clarity, professionalism and impact.",
@@ -307,6 +316,7 @@ PAGES["lead-generation.html"] = dict(
     label="Lead Gen",
     h1=["Turn attention", "into enquiries."],
     lede="Strategic advertising and search visibility designed to bring the right people to your business.",
+    value_line="Search and advertising built to reach people already looking for what you offer.",
     intro=("Lead generation that drives real enquiries", [
         "Great marketing does more than attract attention. It connects businesses with the people actively looking for their services.",
         "Through targeted advertising and search visibility, we help businesses generate consistent enquiries and build predictable growth.",
@@ -344,6 +354,7 @@ PAGES["systems-processes.html"] = dict(
     label="AI Systems",
     h1=["Build a business", "that runs smarter."],
     lede="Automation, systems and infrastructure designed to streamline operations and support scalable growth.",
+    value_line="Automation and CRM that keep every enquiry moving, without extra admin.",
     intro=("AI systems that support growth", [
         "As businesses grow, complexity increases. Systems and processes create the structure that allows teams to operate efficiently, manage leads effectively, and maintain consistency across every stage of the client journey.",
         "We help businesses implement smarter workflows and automation that reduce friction and create scalable foundations for growth.",
@@ -388,27 +399,28 @@ FAQS = [
 
 # ---------------------------------------------------------------- write
 
-written = []
-for fn, d in PAGES.items():
-    body = "\n\n".join([
-        hero(d["hero_base"], d["hero_alt"], d["label"], d["h1"], d["lede"]),
-        prose(*d["intro"], statement=True),
-        prose(*d["why"], dark=True),
-        offer(d["offer_heading"], d["items"]),
-        interlude(d["interlude_base"], d["interlude_alt"], d["quote"]),
-        close_block(*d["close"]),
-    ])
-    open(os.path.join(ROOT, fn), "w").write(
-        shell(d["title"], d["desc"], d["hero_base"], body, preload_base=d["hero_base"]))
-    written.append(fn)
+if __name__ == "__main__":
+    written = []
+    for fn, d in PAGES.items():
+        body = "\n\n".join([
+            hero(d["hero_base"], d["hero_alt"], d["label"], d["h1"], d["lede"], d.get("value_line")),
+            prose(*d["intro"], statement=True),
+            prose(*d["why"], dark=True),
+            offer(d["offer_heading"], d["items"]),
+            interlude(d["interlude_base"], d["interlude_alt"], d["quote"]),
+            close_block(*d["close"]),
+        ])
+        open(os.path.join(ROOT, fn), "w").write(
+            shell(d["title"], d["desc"], d["hero_base"], body, preload_base=d["hero_base"]))
+        written.append(fn)
 
-# contact page
-faq_rows = "\n".join(
-    f'      <details><summary>{q}</summary><p class="a">{a}</p></details>' for q, a in FAQS)
-contact_body = "\n\n".join([
-    hero("hero-contact", "The guest studio at Stonehaven, 47 Somerset Drive.", "Contact",
-         ["Let's connect."], "Tell us what you're building. We will tell you what it needs."),
-    f"""<section class="dark">
+    # contact page
+    faq_rows = "\n".join(
+        f'      <details><summary>{q}</summary><p class="a">{a}</p></details>' for q, a in FAQS)
+    contact_body = "\n\n".join([
+        hero("hero-contact", "The guest studio at Stonehaven, 47 Somerset Drive.", "Contact",
+             ["Let's connect."], "Tell us what you're building. We will tell you what it needs."),
+        f"""<section class="dark">
   <div class="wrap">
     <h2 class="sr">Enquire</h2>
     <div class="split">
@@ -426,7 +438,7 @@ contact_body = "\n\n".join([
     </div>
   </div>
 </section>""",
-    f"""<section>
+        f"""<section>
   <div class="wrap stagger">
     <h2 class="reveal h2m h-small"><span>Questions we often get.</span></h2>
     <div class="faq reveal stgr">
@@ -434,11 +446,11 @@ contact_body = "\n\n".join([
     </div>
   </div>
 </section>""",
-])
-open(os.path.join(ROOT, "contact-us.html"), "w").write(
-    shell("Contact | 10x Visuals", "Talk to 10x Visuals about branding, content, lead generation or systems.",
-          "hero-contact", contact_body, preload_base="hero-contact"))
-written.append("contact-us.html")
+    ])
+    open(os.path.join(ROOT, "contact-us.html"), "w").write(
+        shell("Contact | 10x Visuals", "Talk to 10x Visuals about branding, content, lead generation or systems.",
+              "hero-contact", contact_body, preload_base="hero-contact"))
+    written.append("contact-us.html")
 
-for f in written:
-    print(f"{f:20} {os.path.getsize(os.path.join(ROOT,f)):>7} bytes")
+    for f in written:
+        print(f"{f:20} {os.path.getsize(os.path.join(ROOT,f)):>7} bytes")
