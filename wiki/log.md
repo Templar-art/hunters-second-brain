@@ -570,3 +570,35 @@ background (fixed, now 7.07:1); and a test script itself measured a page's on-pa
 section against the wrong background, producing a false 1.02:1 failure. Full writeup on the page.
 
 Zero cost, nothing paid was touched.
+
+## [2026-07-31] build+harvest | 10x site: SOL scaffold, FORM fix, hero copy — partial release committed
+
+Ran as a formal ticket pack (ENG-01/02/09/10), one ticket at a time, in implementation mode.
+
+ENG-01 scaffolded scripts/build_case_studies.py and sol.html (empty sequence, no quote —
+real branches, pending real shoot frames). ENG-02 stayed correctly blocked on CONTENT-01:
+checked raw/, an external SSD, Desktop, Downloads and the live WP /sol/ page, found nothing
+usable, reported blocked rather than inventing placeholder imagery.
+
+ENG-09 added the contact-funnel line "We'll only use this to reply." and, in doing so,
+surfaced a real three-way FORM duplication (build_pages.py, a byte-identical copy ENG-01 had
+introduced in build_case_studies.py, and index.html's hand-written inline copy). Fixed by
+having build_case_studies.py import FORM from build_pages.py, which exposed a real mechanical
+hazard: both generators' write loops ran unguarded at module level, so the import would have
+silently regenerated every page. Both are now guarded behind `if __name__ == "__main__":`.
+index.html's copy stays a documented hand-synced exception.
+
+ENG-10 added a value-restatement line under the hero lede on the four service pages only,
+via a new optional value_line param on hero(), reusing the existing .lede-h class. No new CSS
+anywhere in this pass.
+
+Assessed release readiness explicitly rather than assuming: not ready for the full release
+(5 of 6 case studies don't exist), ready for a partial one. Shipped home + 4 service pages +
+contact-us as commit 2e7610f, 9 files staged deliberately. Deploy has nowhere to go yet — no
+hosting pipeline exists in this repo; asked Hunter rather than guess, he chose local-only.
+
+Real should-fix, not blocking: the homepage's five case-study tiles link to routes with no
+backing page at all, harmless with JS (the lightbox intercepts the click, confirmed live) but
+a dead end for no-JS/crawlers. Pre-existing from the lightbox build, flagged not fixed.
+
+Zero cost, nothing paid was touched.
