@@ -9,6 +9,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!-- tdx-widgets.css loads first so prestige.css (below) wins any
+     cascade tie against Tailwind's preflight reset on shared
+     selectors like body/headings. -->
+<link rel="stylesheet" href="assets/tdx-widgets/tdx-widgets.css"/>
 <link rel="stylesheet" href="assets/prestige.css"/>
 </head>
 <body>
@@ -175,6 +179,26 @@
   </div>
 </section>
 
+<!-- ============ WORK, ANOTHER WAY ============
+     Interactive companion to the grid above, same real project
+     photography, rendered as a draggable 3D carousel + a hover-expand
+     row. Built as a separate React/Tailwind/shadcn bundle (web/), not
+     part of the Python page generators — see web/README.md. Both roots
+     no-op gracefully if tdx-widgets.js fails to load or JS is off. -->
+<section id="work-carousel" class="pad-tight">
+  <div class="wrap">
+    <h2 class="reveal h2m h-small"><span>The same work, from every angle.</span></h2>
+  </div>
+  <div id="tdx-carousel-root" class="reveal"></div>
+</section>
+
+<section id="work-gallery" class="pad-tight">
+  <div class="wrap">
+    <h2 class="reveal h2m h-small"><span>A closer look.</span></h2>
+  </div>
+  <div id="tdx-gallery-root" class="reveal"></div>
+</section>
+
 <!-- ============ THE STUDIO ============ -->
 <section id="studio" class="pad-wide">
   <div class="wrap ed stagger">
@@ -339,6 +363,7 @@
   </div>
 </footer>
 
+<script src="assets/tdx-widgets/tdx-widgets.js"></script>
 <script src="assets/prestige.js"></script>
 </body>
 </html>

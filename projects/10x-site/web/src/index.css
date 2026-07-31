@@ -1,0 +1,16 @@
+/* Prefixed (tdx:) so nothing generated here can collide with the host
+   page's own class names (assets/prestige.css). This does include
+   Tailwind's preflight reset — the split theme.css/utilities.css
+   import that would skip it turned out to silently break v4's content
+   scanning entirely (bisected against a minimal test file; several
+   hours not worth re-losing). Preflight's blast radius is contained
+   instead by loading this stylesheet BEFORE prestige.css in index.html,
+   so prestige.css's own body/heading rules win any cascade tie. */
+@import "tailwindcss" prefix(tdx);
+
+@theme {
+  --color-night: #111519;
+  --color-paper: #f6f3ec;
+  --color-paper-deep: #efeadf;
+  --color-ivory: #f3efe6;
+}
