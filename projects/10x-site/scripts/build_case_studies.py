@@ -130,10 +130,22 @@ def shell(title, desc, hero_base, body, preload_base=None):
 
 # ---------------------------------------------------------------- case-study components
 
-def cs_hero(base, alt):
+def cs_hero(base, alt, video=None):
     """Full-bleed opening frame. Mirrors the homepage's .work-item.bleed
     full-bleed plate exactly (not build_pages.py's hero(), which builds a
-    <header> banner — the wrong shape for a case-study opening image)."""
+    <header> banner — the wrong shape for a case-study opening image).
+
+    video, when given, is a filename under assets/ (not manifest-driven —
+    it's a single delivery file, not a responsive srcset). The existing
+    largest still for `base` is reused as the poster, so there's no new
+    asset to source just for the loading frame. autoplay/muted/loop are
+    native attributes so the video plays with no JS; prestige.js only
+    steps in to stop it for prefers-reduced-motion."""
+    if video:
+        poster = f"assets/{base}-{MAN[base]['widths'][-1]}.jpg"
+        return f"""<div class="work-item bleed">
+  <div class="plate reveal"><video class="hero-video" poster="{poster}" autoplay muted loop playsinline preload="auto" aria-label="{alt}"><source src="assets/{video}" type="video/mp4"/></video></div>
+</div>"""
     return f"""<div class="work-item bleed">
   <div class="plate reveal">{picture(base, alt, "100vw", eager=True)}</div>
 </div>"""
@@ -212,6 +224,7 @@ PAGES["sol.html"] = dict(
     ],
     sequence=[],   # populated in ENG-02 once frames are selected (CONTENT-01)
     quote=None,    # no confirmed client quote yet; not a placeholder
+    hero_video="sol-hero.mp4",  # working cut, Hunter is re-editing a final version
     close=("Building something with this much craft?", "Tell us what you're building. We will tell you what it needs."),
 )
 
@@ -223,7 +236,7 @@ PAGES["sol.html"] = dict(
 if __name__ == "__main__":
     written = []
     for fn, d in PAGES.items():
-        sections = [cs_hero(d["hero_base"], d["hero_alt"]),
+        sections = [cs_hero(d["hero_base"], d["hero_alt"], d.get("hero_video")),
                     cs_brief(d["title"].split(" | ")[0], d["client"], d["discipline"], d["brief"])]
         seq = cs_sequence(d["sequence"])
         if seq:
@@ -233,8 +246,11 @@ if __name__ == "__main__":
         sections.append(close_block(*d["close"]))
 
         body = "\n\n".join(sections)
+        # A video hero doesn't want its poster still preloaded as a competing
+        # download; only preload the image when there's no video to paint first.
+        preload = None if d.get("hero_video") else d["hero_base"]
         open(os.path.join(ROOT, fn), "w").write(
-            shell(d["title"], d["desc"], d["hero_base"], body, preload_base=d["hero_base"]))
+            shell(d["title"], d["desc"], d["hero_base"], body, preload_base=preload))
         written.append(fn)
 
     for f in written:

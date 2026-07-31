@@ -407,3 +407,15 @@
     lbClose.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   }
+
+  /* ---------- Hero video (case-study pages) ----------
+     autoplay/loop are set in the markup so it paints with no JS at all.
+     This only steps in for prefers-reduced-motion, dropping back to the
+     poster frame rather than an autoplaying loop. */
+  if (reduced) {
+    document.querySelectorAll('.hero-video').forEach(v => {
+      v.pause();
+      v.removeAttribute('autoplay');
+      v.currentTime = 0;
+    });
+  }
