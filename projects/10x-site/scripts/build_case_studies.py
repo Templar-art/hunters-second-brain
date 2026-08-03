@@ -19,11 +19,11 @@ import json, os, sys
 ROOT = "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-site"
 MAN = json.load(open(os.path.join(ROOT, "assets/manifest.json")))
 sys.path.insert(0, os.path.dirname(__file__))
-from build_pages import FORM  # single shared source, see build_pages.py FORM comment (ENG-09)
+from build_pages import FORM, MEDIA_BASE  # single shared source, see build_pages.py FORM comment (ENG-09)
 
 
 def srcset(base, ext):
-    return ", ".join(f"assets/{base}-{w}.{ext} {w}w" for w in MAN[base]["widths"])
+    return ", ".join(f"{MEDIA_BASE}{base}-{w}.{ext} {w}w" for w in MAN[base]["widths"])
 
 
 def picture(base, alt, sizes, cls="", eager=False, extra=""):
@@ -32,7 +32,7 @@ def picture(base, alt, sizes, cls="", eager=False, extra=""):
     load = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
     return (
         f'<picture><source type="image/webp" srcset="{srcset(base,"webp")}" sizes="{sizes}"/>'
-        f'<img {cls} src="assets/{base}-{largest}.jpg" srcset="{srcset(base,"jpg")}" sizes="{sizes}" '
+        f'<img {cls} src="{MEDIA_BASE}{base}-{largest}.jpg" srcset="{srcset(base,"jpg")}" sizes="{sizes}" '
         f'{load} alt="{alt}"{extra}/></picture>'
     )
 
@@ -64,7 +64,7 @@ NAV = """<nav id="mainNav">
     <a href="contact-us.html">Contact</a>
   </nav>
   <div class="mo-foot">
-    <a href="mailto:hello@10xvisuals.com.au">hello@10xvisuals.com.au</a>
+    <a href="mailto:marketing@10xvisuals.com.au">marketing@10xvisuals.com.au</a>
     <a href="tel:+61431516634">0431 516 634</a>
   </div>
 </div>"""
@@ -73,7 +73,7 @@ FOOTER = """<footer>
   <div class="wrap inner">
     <p class="mark">10X VISUALS</p>
     <div class="fl">
-      <a href="mailto:hello@10xvisuals.com.au">Email</a>
+      <a href="mailto:marketing@10xvisuals.com.au">Email</a>
       <a href="tel:+61431516634">0431 516 634</a>
       <a href="https://www.instagram.com/10xvisuals_/" rel="noopener">Instagram</a>
       <a href="/privacy-policy">Privacy Policy</a>
@@ -130,7 +130,7 @@ def shell(title, desc, hero_base, body, preload_base=None):
 
 # ---------------------------------------------------------------- case-study components
 
-def cs_hero(base, alt, video=None):
+def cs_hero(base, alt, video=None, video_mobile=None):
     """Full-bleed opening frame. Mirrors the homepage's .work-item.bleed
     full-bleed plate exactly (not build_pages.py's hero(), which builds a
     <header> banner — the wrong shape for a case-study opening image).
@@ -140,11 +140,21 @@ def cs_hero(base, alt, video=None):
     largest still for `base` is reused as the poster, so there's no new
     asset to source just for the loading frame. autoplay/muted/loop are
     native attributes so the video plays with no JS; prestige.js only
-    steps in to stop it for prefers-reduced-motion."""
+    steps in to stop it for prefers-reduced-motion.
+
+    video_mobile, when given, is a smaller/lower-bitrate cut served via a
+    media-queried <source> ahead of the full one — same technique <picture>
+    uses for responsive images, supported on <video> too. Without it,
+    every visitor downloads the same ~12MB file regardless of viewport
+    (flagged in /impeccable audit)."""
     if video:
-        poster = f"assets/{base}-{MAN[base]['widths'][-1]}.jpg"
+        poster = f"{MEDIA_BASE}{base}-{MAN[base]['widths'][-1]}.jpg"
+        mobile_source = (
+            f'<source src="{MEDIA_BASE}{video_mobile}" type="video/mp4" media="(max-width: 640px)"/>'
+            if video_mobile else ""
+        )
         return f"""<div class="work-item bleed">
-  <div class="plate reveal"><video class="hero-video" poster="{poster}" autoplay muted loop playsinline preload="auto" aria-label="{alt}"><source src="assets/{video}" type="video/mp4"/></video></div>
+  <div class="plate reveal"><video class="hero-video" poster="{poster}" autoplay muted loop playsinline preload="auto" aria-label="{alt}">{mobile_source}<source src="{MEDIA_BASE}{video}" type="video/mp4"/></video></div>
 </div>"""
     return f"""<div class="work-item bleed">
   <div class="plate reveal">{picture(base, alt, "100vw", eager=True)}</div>
@@ -222,21 +232,91 @@ PAGES["sol.html"] = dict(
         "A canal side compound on the Gold Coast, delivered by Skye Development Group.",
         "10x shot the architecture, the waterfront setting and the premium finishes across both day and night, for use in the developer's own marketing.",
     ],
-    sequence=[],   # populated in ENG-02 once frames are selected (CONTENT-01)
+    sequence=[],   # ENG-02 closed as not needed: SOL ships with the hero video below,
+                   # no separate image sequence — see wiki/projects/10x-website.md
     quote=None,    # no confirmed client quote yet; not a placeholder
-    hero_video="sol-hero.mp4",  # working cut, Hunter is re-editing a final version
+    hero_video="sol-hero.mp4",
+    hero_video_mobile="sol-hero-mobile.mp4",
     close=("Building something with this much craft?", "Tell us what you're building. We will tell you what it needs."),
 )
 
-# Davenport, Bespoke, Elysium, Broncos Leagues Club, Stonehaven follow the
-# same shape in later tickets (ENG-04 through ENG-08).
+# Davenport, Bespoke, Elysium, Broncos Leagues Club and Stonehaven each
+# have exactly one real photo in assets/ (the same tile already used on
+# the homepage work grid) and nothing else in raw/ — same situation SOL
+# was in before its video hero. sequence stays [] for all five; this is
+# not a placeholder, it's every real asset that currently exists.
+
+PAGES["davenport.html"] = dict(
+    title="Davenport | 10x Visuals",
+    desc="Davenport, a refined hillside residence marketed by PRD Burleigh, captured for its atmosphere rather than its floor area.",
+    client="PRD Burleigh",
+    discipline="Film &amp; Photography",
+    hero_base="work-davenport",
+    hero_alt="Davenport, a refined hillside residence marketed by PRD Burleigh, looking out over the pool.",
+    brief=["A refined hillside residence, captured for its atmosphere rather than its floor area."],
+    sequence=[],
+    quote=None,
+    close=("Building somewhere with a view like this?", "Tell us what you're building. We will tell you what it needs."),
+)
+
+PAGES["salisbury.html"] = dict(
+    title="Salisbury Building Projects | 10x Visuals",
+    desc="Kennedys Lane, a completed build delivered by Salisbury Building Projects, documented from the air.",
+    client="Salisbury Building Projects",
+    discipline="Film &amp; Photography",
+    hero_base="work-salisbury",
+    hero_alt="Kennedys Lane, a completed build delivered by Salisbury Building Projects, seen from above.",
+    brief=["A completed build for Salisbury Building Projects, captured from the air to show the property in full."],
+    sequence=[],
+    quote=None,
+    close=("Finishing a build worth showing off?", "Tell us what you're building. We will tell you what it needs."),
+)
+
+PAGES["elysium.html"] = dict(
+    title="Elysium | 10x Visuals",
+    desc="Elysium, a completed large scale apartment development delivered by Shape Construction, documented for scale and quality once complete.",
+    client="Shape Construction",
+    discipline="Film &amp; Photography",
+    hero_base="work-elysium",
+    hero_alt="Elysium, a completed large scale apartment development delivered by Shape Construction.",
+    brief=["A large scale apartment build, documented for scale and quality once complete."],
+    sequence=[],
+    quote=None,
+    close=("Delivering something on this scale?", "Tell us what you're building. We will tell you what it needs."),
+)
+
+PAGES["broncos-leagues-club.html"] = dict(
+    title="Broncos Leagues Club | 10x Visuals",
+    desc="The refurbished Broncos Leagues Club interior, delivered by Ashley Cooper Construction, recorded from before to completion.",
+    client="Ashley Cooper Construction",
+    discipline="Progress &amp; Completion",
+    hero_base="work-broncos",
+    hero_alt="The refurbished Broncos Leagues Club interior, delivered by Ashley Cooper Construction.",
+    brief=["A major refurbishment recorded from before to completion for the builder’s portfolio."],
+    sequence=[],
+    quote=None,
+    close=("Documenting a project of your own?", "Tell us what you're building. We will tell you what it needs."),
+)
+
+PAGES["stonehaven.html"] = dict(
+    title="Stonehaven | 10x Visuals",
+    desc="Stonehaven at 47 Somerset Drive, marketed by Whitefox: a new build on acreage, shot across dusk and daylight.",
+    client="Whitefox &nbsp;&middot;&nbsp; 47 Somerset Drive",
+    discipline="Film &amp; Photography",
+    hero_base="work-stonehaven",
+    hero_alt="Stonehaven, the front elevation at 47 Somerset Drive, symmetrical under a clear sky.",
+    brief=["A new build on acreage, shot across dusk and daylight for the facade, the interiors and the grounds."],
+    sequence=[],
+    quote=None,
+    close=("Building something worth this kind of presentation?", "Tell us what you're building. We will tell you what it needs."),
+)
 
 # ---------------------------------------------------------------- write
 
 if __name__ == "__main__":
     written = []
     for fn, d in PAGES.items():
-        sections = [cs_hero(d["hero_base"], d["hero_alt"], d.get("hero_video")),
+        sections = [cs_hero(d["hero_base"], d["hero_alt"], d.get("hero_video"), d.get("hero_video_mobile")),
                     cs_brief(d["title"].split(" | ")[0], d["client"], d["discipline"], d["brief"])]
         seq = cs_sequence(d["sequence"])
         if seq:

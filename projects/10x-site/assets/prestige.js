@@ -3,43 +3,45 @@
 /* Swap in a real POST endpoint at deploy. While null, the form
      falls back to a mailto: compose so no enquiry is ever lost. */
   const FORM_ENDPOINT = null;
-  const CONTACT_EMAIL = 'hello@10xvisuals.com.au';
+  const CONTACT_EMAIL = 'marketing@10xvisuals.com.au';
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Entrance splash (homepage only) ----------
+  /* ---------- Entrance splash / preloader (homepage only) ----------
      Only index.html has #splash in the DOM, so this is a no-op on every
-     other page. Skips itself entirely once per browser session, and the
-     hero's own entrance choreography (.anim) is held back until the
-     visitor actually enters, so it fires fresh rather than mid-flight
-     under a splash they haven't dismissed yet. */
+     other page. Auto-playing animated logo mark, no click required —
+     mirrors the bespoke.agents.10xvisuals.co preloader pattern (play the
+     mark, dismiss on its own after it's had time to read, once per
+     session via sessionStorage). The hero's own entrance choreography
+     (.anim) is held back until the mark has played, so it fires fresh
+     rather than mid-flight under a splash still on screen. */
   const splash = document.getElementById('splash');
   const alreadyEntered = splash && sessionStorage.getItem('10x-entered') === '1';
 
   if (splash && !alreadyEntered) {
     const mainNav = document.getElementById('mainNav');
     const mainEl = document.querySelector('main');
-    const enterBtn = document.getElementById('splashEnter');
     if (mainNav) mainNav.inert = true;
     if (mainEl) mainEl.inert = true;
-    enterBtn.focus();
+    document.body.classList.add('preloading');
 
+    let done = false;
     const leave = () => {
+      if (done) return;
+      done = true;
       sessionStorage.setItem('10x-entered', '1');
       splash.classList.add('leaving');
+      document.body.classList.remove('preloading');
       if (mainNav) mainNav.inert = false;
       if (mainEl) mainEl.inert = false;
       if (!reduced) document.documentElement.classList.add('anim');
-      document.removeEventListener('keydown', onSplashKey);
       const finish = () => { splash.style.display = 'none'; mainNav?.querySelector('a,button')?.focus(); };
       if (reduced) finish();
       else splash.addEventListener('transitionend', finish, { once: true });
     };
-    function onSplashKey(e){
-      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') { e.preventDefault(); leave(); }
-    }
-    enterBtn.addEventListener('click', leave);
-    document.addEventListener('keydown', onSplashKey);
+
+    if (reduced) leave();
+    else setTimeout(leave, 1800); // lets the mark animation (~1.1s) read before dismissing
   } else {
     if (splash) splash.style.display = 'none';
     if (!reduced) document.documentElement.classList.add('anim');
@@ -419,3 +421,40 @@
       v.currentTime = 0;
     });
   }
+
+  /* ---------- Cursor label on clickable work tiles ----------
+     Fine-pointer, hover-capable devices only — nothing to follow a
+     touch. A small "View" tag tracks the cursor over any project
+     tile so it's obvious the whole frame is clickable, not just the
+     "View project" text underneath it. */
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const cursorLabel = document.createElement('div');
+    cursorLabel.className = 'cursor-label';
+    cursorLabel.textContent = 'View';
+    cursorLabel.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cursorLabel);
+    let cursorActive = false;
+    addEventListener('mousemove', e => {
+      cursorLabel.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%) scale(${cursorActive ? 1 : 0.8})`;
+    }, { passive: true });
+    document.querySelectorAll('.work-trigger').forEach(trigger => {
+      trigger.addEventListener('mouseenter', () => { cursorActive = true; cursorLabel.classList.add('is-active'); });
+      trigger.addEventListener('mouseleave', () => { cursorActive = false; cursorLabel.classList.remove('is-active'); });
+    });
+  }
+
+  /* ---------- Work grid category filter (Real Estate / Construction) ---------- */
+  const catButtons = document.querySelectorAll('.cat-btn');
+  const catGroups = document.querySelectorAll('.work-cat');
+  catButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      catButtons.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+      });
+      catGroups.forEach(group => {
+        group.hidden = group.dataset.cat !== cat;
+      });
+    });
+  });

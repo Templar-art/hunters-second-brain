@@ -12,10 +12,14 @@ import json, os, html
 
 ROOT = "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-site"
 MAN = json.load(open(os.path.join(ROOT, "assets/manifest.json")))
+# Media (images/video) is hosted on the live WordPress media library so the
+# static site doesn't need to ship these files itself. prestige.css/js stay
+# local (site-relative). See wiki/projects/10x-website.md for the export.
+MEDIA_BASE = "https://10xvisuals.com.au/wp-content/uploads/2026/08/"
 
 
 def srcset(base, ext):
-    return ", ".join(f"assets/{base}-{w}.{ext} {w}w" for w in MAN[base]["widths"])
+    return ", ".join(f"{MEDIA_BASE}{base}-{w}.{ext} {w}w" for w in MAN[base]["widths"])
 
 
 def picture(base, alt, sizes, cls="", eager=False, extra=""):
@@ -24,7 +28,7 @@ def picture(base, alt, sizes, cls="", eager=False, extra=""):
     load = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
     return (
         f'<picture><source type="image/webp" srcset="{srcset(base,"webp")}" sizes="{sizes}"/>'
-        f'<img {cls} src="assets/{base}-{largest}.jpg" srcset="{srcset(base,"jpg")}" sizes="{sizes}" '
+        f'<img {cls} src="{MEDIA_BASE}{base}-{largest}.jpg" srcset="{srcset(base,"jpg")}" sizes="{sizes}" '
         f'{load} alt="{alt}"{extra}/></picture>'
     )
 
@@ -56,7 +60,7 @@ NAV = """<nav id="mainNav">
     <a href="contact-us.html">Contact</a>
   </nav>
   <div class="mo-foot">
-    <a href="mailto:hello@10xvisuals.com.au">hello@10xvisuals.com.au</a>
+    <a href="mailto:marketing@10xvisuals.com.au">marketing@10xvisuals.com.au</a>
     <a href="tel:+61431516634">0431 516 634</a>
   </div>
 </div>"""
@@ -65,7 +69,7 @@ FOOTER = """<footer>
   <div class="wrap inner">
     <p class="mark">10X VISUALS</p>
     <div class="fl">
-      <a href="mailto:hello@10xvisuals.com.au">Email</a>
+      <a href="mailto:marketing@10xvisuals.com.au">Email</a>
       <a href="tel:+61431516634">0431 516 634</a>
       <a href="https://www.instagram.com/10xvisuals_/" rel="noopener">Instagram</a>
       <a href="/privacy-policy">Privacy Policy</a>
@@ -99,10 +103,10 @@ FORM = """    <form id="enquiry" novalidate>
       </div>
       <div class="submit"><button class="tlink magnetic" type="submit">Send enquiry</button></div>
       <p class="form-alt">We&rsquo;ll only use this to reply.</p>
-      <p class="form-alt">Or reach us directly on <a href="tel:+61431516634">0431 516 634</a> or <a href="mailto:hello@10xvisuals.com.au">hello@10xvisuals.com.au</a>.</p>
+      <p class="form-alt">Or reach us directly on <a href="tel:+61431516634">0431 516 634</a> or <a href="mailto:marketing@10xvisuals.com.au">marketing@10xvisuals.com.au</a>.</p>
     </form>
     <p class="form-done" id="formDone" role="status" tabindex="-1">Thank you. We will be in touch within one business day.</p>
-    <p class="form-fail" id="formFail" role="alert">That didn't send. Call 0431 516 634 or email hello@10xvisuals.com.au and we will pick it up.</p>"""
+    <p class="form-fail" id="formFail" role="alert">That didn't send. Call 0431 516 634 or email marketing@10xvisuals.com.au and we will pick it up.</p>"""
 
 
 def close_block(heading, lede):
@@ -265,8 +269,8 @@ PAGES["branding.html"] = dict(
                                   "Whether it is a full rebrand or a refined update, we help modernise brands while maintaining the strength of what already works."]),
     ],
     quote="Average brands compete. Great brands dominate.",
-    interlude_base="work-bespoke",
-    interlude_alt="A prestige Gold Coast listing photographed for Bespoke Estate Agents.",
+    interlude_base="work-salisbury",
+    interlude_alt="Kennedys Lane, a completed build delivered by Salisbury Building Projects, seen from above.",
     close=("The right brand changes everything.", "Tell us what you're building. We will tell you what it needs."),
 )
 
@@ -428,7 +432,7 @@ if __name__ == "__main__":
         <h3 class="fq" style="font-size:clamp(21px,2.4vw,30px);">Use the form, or call us. Either reaches the same three people.</h3>
         <dl class="direct">
           <dt>Phone</dt><dd><a href="tel:+61431516634">0431 516 634</a></dd>
-          <dt>Email</dt><dd><a href="mailto:hello@10xvisuals.com.au">hello@10xvisuals.com.au</a></dd>
+          <dt>Email</dt><dd><a href="mailto:marketing@10xvisuals.com.au">marketing@10xvisuals.com.au</a></dd>
           <dt>Instagram</dt><dd><a href="https://www.instagram.com/10xvisuals_/" rel="noopener">@10xvisuals_</a></dd>
         </dl>
       </div>
