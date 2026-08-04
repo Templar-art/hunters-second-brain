@@ -28,10 +28,10 @@ Real builder, real projects, real trade network — but the account reads as a *
 - Don't spend on ads until pillars are rebalanced (ads would amplify the wrong audience)
 
 ## Next actions (in order)
-1. Fill confirmed proof claims in `brand_voice.md` (years operating, homes completed, HIA/MBA status, warranty)
+1. Fill confirmed proof claims in [[clc-brand-voice]] (years operating, homes completed, HIA/MBA status, warranty)
 2. Retroactively name the last 3 finished builds → first 3 named-project reveals
-3. Produce the 3 pinned posts from `pinned_posts.md` — Signature Build Reel, Meet Coast Life, How We Actually Build carousel
-4. Run weekly cadence from `strategy_guide.md`
+3. Produce the 3 pinned posts from [[clc-pinned-posts]] — Signature Build Reel, Meet Coast Life, How We Actually Build carousel
+4. Run weekly cadence from [[clc-strategy-guide]]
 5. Tag every trade partner in every post (free growth lever)
 6. 90-day re-audit vs Barlow — target 50+ likes/post, ≥1 designer/homeowner commenter per week
 
@@ -40,14 +40,16 @@ Vault home: PDFs in `raw/clc/` (immutable) **and editable markdown in `wiki/sour
 
 | # | File | What it is |
 |---|------|------------|
-| 00 | profile_audit | The audit — all decisions trace back here (`audit/`, .pdf + .md) |
-| 01 | README | Start-here: first-week actions, weekly rhythm, client-onboarding SOP |
-| 02 | master_playbook | 10x Visuals house rules |
-| 03 | brand_voice | **The key file** — voice rules + the 3 fill-in registers |
-| 04 | strategy_guide | 90-day plan / weekly cadence |
-| 05 | bio | 6 bio variants (V1 recommended start; V6 once proof numbers locked) |
-| 06 | pinned_posts | 3 anchor pin concepts |
-| 07 | prompt_library | Weekly production prompts |
+| 00 | [[clc-profile-audit]] | The audit — all decisions trace back here (`audit/`, .pdf + .md) |
+| 01 | [[clc-pack-readme]] | Start-here: first-week actions, weekly rhythm, client-onboarding SOP |
+| 02 | [[clc-master-playbook]] | 10x Visuals house rules |
+| 03 | [[clc-brand-voice]] | **The key file** — voice rules + the 3 fill-in registers |
+| 04 | [[clc-strategy-guide]] | 90-day plan / weekly cadence |
+| 05 | [[clc-bio]] | 6 bio variants (V1 recommended start; V6 once proof numbers locked) |
+| 06 | [[clc-pinned-posts]] | 3 anchor pin concepts |
+| 07 | [[clc-prompt-library]] | Weekly production prompts |
+
+Plus the live research layer: [[clc-field-research-2026-07-07]] and [[clc-swipe-file-2026-07-07]] (7 Jul 2026 feed study, feeds the strategy guide).
 
 Source: Perplexity Computer session "Using Fable for Social Media Posts" (zip: `coast_life_fable5_vault_pack.zip`).
 

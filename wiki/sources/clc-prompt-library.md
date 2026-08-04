@@ -7,7 +7,9 @@ updated: 2026-07-10
 # Coast Life Constructions — Fable 5 Prompt Library
 
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
-_Managed by 10x Visuals | Copy-paste ready. Always attach `master_playbook.md` + `brand_voice.md` first._
+_Managed by 10x Visuals | Copy-paste ready. Always attach [[clc-master-playbook]] + [[clc-brand-voice]] first._
+
+Companion files referenced below: [[clc-strategy-guide]] (cadence), [[clc-pinned-posts]], [[clc-bio]].
 
 ## Session opener (always run first)
 ```

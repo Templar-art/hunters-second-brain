@@ -1,8 +1,8 @@
 ---
 type: project
 tags: [10x-visuals, website, design-system, prestige, lead-gen]
-status: partial-release-committed-not-deployed
-updated: 2026-07-31
+status: deploy-in-progress-hunter-and-lach
+updated: 2026-08-04
 ---
 
 # 10x Website
@@ -65,14 +65,47 @@ Work ran as a formal ticket pack (ENG-01 through ENG-10) executed one ticket at 
 
 **Should-fix, not blocking:** the homepage work-grid's five case-study tiles (`/sol`, `/davenport`, `/bespoke`, `/elysium`, `/broncos-leagues-club`) point at routes with no backing page at all. Harmless with JS on — the project lightbox intercepts the click before navigation, confirmed live — but a real dead end for no-JS visitors or a link-checking crawler. Pre-existing from the lightbox build, not introduced this pass, and will get worse as more tiles get wired to still-unbuilt pages.
 
+## What shipped, round four (31 Jul) — video heroes, React widgets, all six case studies
+
+**Video heroes on home and SOL.** Hunter supplied working cuts (`~/Downloads/WEBSITE VIDEO_v02.mp4` for SOL, `~/Movies/test.mp4` for the homepage), both re-edited once during the session and now final per Hunter. Transcoded from 4K/120-180MB sources down to ~12MB 1080p h264, muted/looped/autoplay, with the original still nested as a no-video-support fallback (home) or reused as the poster frame (SOL, no new asset needed). `hero()` and `cs_hero()` both gained an optional video param; `prestige.js` pauses `.hero-video` for `prefers-reduced-motion` since autoplay/loop/muted are otherwise native, JS-free attributes.
+
+**Client list corrections.** Founders caption reordered to match the actual photo (Tyson · Damon · Lachlan, left to right — it was wrong). Hill Interior Linings dropped from the client list (no longer a client). Ocean Shores renamed to Coastlife Constructions and moved from Venues & Brands into Builders & Developers, where it belongs.
+
+**A real React/shadcn stack, on request.** Hunter asked specifically for two components from a pasted shadcn registry snippet (a 3D drag carousel, a hover-expand gallery row) with their own React/Tailwind/TypeScript/shadcn requirements — a different stack from the rest of this static, Python-generated site. Rather than silently reinterpreting the ask, flagged the mismatch and the pasted code's Unsplash/picsum stock imagery, got explicit confirmation the real stack was wanted, then built it as a genuinely separate concern: `projects/10x-site/web/`, scaffolded with the actual `shadcn` CLI (confirming `/components/ui` really is its default path), building to a self-contained IIFE bundle (`assets/tdx-widgets/`) that the static `index.html` loads via plain `<script>`/`<link>` tags — no Node server at runtime. Real project photography swapped in for every stock image.
+
+**Two real Tailwind v4 bugs, not user error, cost real time here:**
+- The content scanner silently skips filenames starting with a digit. The pasted component's own filename, `3d-carousel.tsx`, was never being scanned at all — zero classes generated, no error. Renamed to `carousel-3d.tsx`.
+- The "skip Tailwind's preflight reset so it doesn't fight the host page's styles" approach — importing `tailwindcss/theme.css` + `tailwindcss/utilities.css` separately instead of the single `@import "tailwindcss"` — silently breaks content scanning entirely, independent of the filename bug. Reverted to the standard `@import "tailwindcss" prefix(tdx)` (which does include preflight), and contained its blast radius by loading `tdx-widgets.css` *before* `prestige.css` in `<head>`, so prestige.css's own body/heading rules win any cascade tie. Verified live that `h1` still renders in Prata, not Tailwind's reset.
+
+Both bugs were isolated by bisection (a minimal sibling test file, renamed copies, config reverts) rather than guessed at — worth remembering if Tailwind v4 content detection ever silently returns zero classes again on this project.
+
+**ENG-02 closed, not left blocked.** Hunter's call: SOL never gets a separate image sequence — it ships with the hero video instead, and that's sufficient. Confirmed the other five case studies (Davenport, Bespoke, Elysium, Broncos, Stonehaven) are in the identical asset situation SOL was in — exactly one real photo each in `assets/`, nothing further in `raw/` — and built them anyway, to the same honest standard: real hero photo, real brief copy (reused verbatim from the homepage grid, not invented), no sequence, no quote, close block. All six case-study pages now exist and are real.
+
+**Dead work-grid tiles, fixed.** The homepage's six case-study tiles pointed at routes with no backing page (`/sol`, `/davenport`, etc. — extensionless, nothing served there). Now that all six pages are real, every tile's `href` points at the actual generated file (`sol.html`, `davenport.html`, ...); Stonehaven's tile, which previously had no link at all (a bare `role="button"` div), now has one too. Confirmed the project lightbox still intercepts every click under normal JS operation — this only changes behaviour for no-JS visitors and crawlers, from broken to correct.
+
+## What shipped, round five (4 Aug) — real pillar photography, carousel galleries, WordPress media migration
+
+**All four pillar heroes replaced.** Branding, Lead Gen, AI Systems and Content pillars had been shipped with placeholder stock (round four had no real photography for them yet). Now:
+- **Branding** — a business-card mockup built from scratch (perspective-warped Bespoke Estate Agents wordmark, real logo pulled from `projects/bespoke-scrape/brand/logos/`, composited onto a stock concrete-tile photo via OpenCV `getPerspectiveTransform` + shading match, not an AI generation). First pass used the wrong Bespoke entity (Staging & Styling, a sister brand) — corrected once Hunter clarified he meant [[bespoke-estate-agents]] itself.
+- **AI Systems + homepage card** — real 10x BTS photo (`AI PILLAR.JPG`, laptop showing code + a glowing blue AI network render), sourced from `/Volumes/10X SSD5/10x BTS STUFF/Print/`.
+- **Content pillar** — real BTS crew photo (`MVX ELECTRICAL BTS PHOTOS FOR 10x-3.JPG`), from an earlier round-five exchange.
+- **Lead Gen** — no real asset existed for this one; sourced free-licensed stock instead (a dual-monitor desk/chart photo, cropped tight to stay abstract). Rejected two earlier candidates first: the extremely overused "Search Console clicks/impressions" screenshot (50M+ views — reads as stock instantly) and a generic Excel-chart-gallery screenshot.
+- Pasted-inline images (sent directly in chat) aren't file-accessible to any tool here — each time, Hunter had to save to disk and give a path (Finder "Option-click → Copy as Pathname") before it could go in the pipeline. Recurring limitation, not a one-off.
+
+**Case-study photo galleries converted grid → carousel.** Hunter's explicit call: the `.pg-grid` full-page grid of every delivered photo (Salisbury/Stonehaven/Elysium/Davenport/Broncos, 32-57 photos each) was "too much on one page." Rebuilt as `.pg-strip`, an edge-to-edge horizontal-scroll filmstrip (same break-out technique as `.interlude`/`.disc-split`: `width:100vw;margin-left:50%;transform:translateX(-50%)`), `scroll-snap-type:x proximity`, fixed-width `.pg-item`s. Lightbox click-through (`#pg-lightbox`, prev/next, Escape/click-outside) untouched — same markup, only the container layout changed.
+
+**All new pillar images uploaded to WordPress media library, `LOCAL_ONLY` cleared.** Got WP REST API application-password auth working (`hunter@10xvisuals.com.au` + app password — first attempt used a display name "Claude WP Login" as the username, which 401'd; the actual account email worked). Uploaded 24 files (4 pillars × 3 widths × jpg/webp) via `POST /wp-json/wp/v2/media`; WP's big-image threshold (2560px) auto-scaled the 1800w portrait variants and suffixed them `-scaled`, but confirmed the plain unscaled filename URL also resolves (200), so `MEDIA_BASE + filename` still works unmodified. `build_pages.py`'s `LOCAL_ONLY` set (which routed these four basenames to local `assets/` while they were placeholder stock) is now empty. Full-site link sweep after: 87/87 remote (WP) URLs return 200, 995/995 local asset references (`src`/`srcset`/`href`/`poster`/`data-full-webp`) resolve on disk. Case-study gallery photos and hero videos deliberately stayed local-only — per-job raw delivery assets, not evergreen site chrome, never uploaded to WP by design.
+
+**Deploy decision made.** Previously open ("decision still open on whether this replaces the WordPress site or is handed to the web team to port," round four). Resolved: Hunter deploys it himself as a static-file bypass — upload the finished `.html`/`.css`/`.js`/`assets/` straight onto the same server/domain so they load directly, WordPress keeps running underneath but these pages don't route through it. Considered and passed on for now: a full WP theme port (translating `build_pages.py`/`build_case_studies.py`'s shared `nav()`/`shell()`/`hero()` template functions into PHP template parts) — assessed as genuinely feasible given this site's already-templated structure, but scoped as its own week-sized job, not folded into this pass. Reason to defer further: **Lachlan still needs to build the WordPress header/footer/menu layout** — so the real theme port waits on that anyway.
+
 ## Open
 
 - **No form endpoint.** `FORM_ENDPOINT` is `null`; submit opens a `mailto:` compose. One line at deploy.
 - **Founders portrait.** Current frame is a studio-seamless team shot, greyscaled and cropped as a holding treatment. Wants a real environmental portrait, which is a shoot.
 - **Plate grading.** Night aerial next to bright daylight frames. A true one-grade pass needs graded exports, not CSS. See [[color-grading]].
 - **⚠️ `/contact-us/` still carries a seven-field form with a required free-text message**, the exact friction 10x bills clients to remove. See [[lead-gen-engine]].
-- **Not deployed.** Decision still open on whether this replaces the WordPress site or is handed to the web team to port. As of 31 Jul, a partial release (6 of 6 non-case-study pages) is committed and build-verified but has nowhere to go live — no hosting pipeline is configured, and Hunter has chosen local-only for now.
-- **Homepage work-grid tiles point nowhere.** `/sol`, `/davenport`, `/bespoke`, `/elysium`, `/broncos-leagues-club` have no backing page. Fine under normal JS operation (the lightbox intercepts the click); a dead end for no-JS or crawlers.
+- **Deploying now, not yet live.** Hunter is uploading the static files to the server himself (FTP/cPanel, not yet handed to Claude — no file-level server access exists here, only WP REST media). Lach separately owns the WordPress header/footer/menu layout; a full WP theme port of this design is a real future option (see round five) but blocked on that work first.
+- **Both hero videos are Hunter's own working cuts**, final as of 31 Jul per Hunter — but if he re-edits again, the transcode step (`ffmpeg` crop/scale/crf, see commit history) needs re-running, it isn't automated.
 
 ## Corrections to the vault
 

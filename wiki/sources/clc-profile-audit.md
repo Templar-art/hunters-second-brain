@@ -18,7 +18,7 @@ Coast Life Constructions has the **on-site raw material** (real projects, real t
 
 The **fastest path from where they are to where Barlow is** is not more content — it's a positioning shift: name the projects, show the design intent, elevate the caption voice, and add finished-build hero shots to the mix.
 
-This document is the reason for every choice in the rebuilt `brand_voice.md`, `strategy_guide.md`, `bio.md`, and `pinned_posts.md`.
+This document is the reason for every choice in the rebuilt [[clc-brand-voice]], [[clc-strategy-guide]], [[clc-bio]], and [[clc-pinned-posts]].
 
 ---
 
@@ -161,9 +161,9 @@ Ban the current caption patterns ("long days", "on the tools", "boys getting int
 
 ## What we do next (in order)
 
-1. **Fill in the confirmed proof claims** in `brand_voice.md` (years operating, homes completed, HIA/MBA status, warranty).
+1. **Fill in the confirmed proof claims** in [[clc-brand-voice]] (years operating, homes completed, HIA/MBA status, warranty).
 2. **Retroactively name the last 3 finished builds.** These become the first three named-project reveals over the coming month.
-3. **Produce the 3 pinned posts** from `pinned_posts.md` — Signature Build Reel, Meet Coast Life, How We Actually Build carousel.
-4. **Run the rebuilt weekly cadence** from `strategy_guide.md`: 40% finished builds / 25% BTS / 20% educational / 15% people.
+3. **Produce the 3 pinned posts** from [[clc-pinned-posts]] — Signature Build Reel, Meet Coast Life, How We Actually Build carousel.
+4. **Run the rebuilt weekly cadence** from [[clc-strategy-guide]]: 40% finished builds / 25% BTS / 20% educational / 15% people.
 5. **Tag every trade partner in every post** starting immediately. This is a free growth lever.
 6. **90-day review** — re-audit against Barlow benchmarks. Target: 50+ likes per post, mixed commenter base including at least one designer or homeowner per week.

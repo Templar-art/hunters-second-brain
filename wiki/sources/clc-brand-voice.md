@@ -8,7 +8,7 @@ updated: 2026-07-10
 
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 _Last updated: 2026-07-06 | Managed by 10x Visuals_
-_Built from real profile audit — see `00_profile_audit.md` for benchmark data against @barlowbuilding and @grimmondau._
+_Built from real profile audit — see [[clc-profile-audit]] for benchmark data against @barlowbuilding and @grimmondau._
 
 ## 0. The positioning move (read this first)
 The audit shows Coast Life currently reads as a **tradie mate's account** (audience = roofers and pumpies) but has the raw material to sit alongside @barlowbuilding (audience = homeowners, designers, architects). This voice file is calibrated to move Coast Life toward Barlow's territory **without losing the plainspoken Gold Coast identity** — which is actually a competitive advantage over more corporate builders.

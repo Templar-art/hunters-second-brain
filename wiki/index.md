@@ -16,7 +16,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 ## Clients
 - [[coast-life-constructions]] — builder IG repositioning; active execution; Rob's brand verdict governs
 - [[bespoke-estate-agents]] — Jason Ward prestige agent; full brand + social system filed 8 Jul; live website (WP) logged + audited 22 Jul (clean; doubles as portfolio piece)
-- [[belle-property]] — Lot 48 house-into-lot composite; awaiting "run it"
+- [[belle-property]] — Lot 48 house-into-lot composite; delivered 21 Jul
 - [[cva-architects]] — render enhancement delivered Jun 2026; feasibility-offer landing page built 28 Jul, awaiting Cameron
 - [[jang-studio]] — vendor contact: offshore architectural photo editor
 - [[mvx-electrical]] — web client (Matt); 2 live Google Ads LPs + hot water page built 28 Jul; blocked on plumbing-licence call
@@ -30,10 +30,10 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[10x-ig-repositioning]] — own-brand IG overhaul: credit loop, premium kit, craft series
 - [[10x-social-engine]] — unified graphics engine (tenx.py), gap audit, content-flow SOPs, reel + ad formats
 - [[10x-socials-funnel]] — new RE + construction accounts funneling curated best-of to master
-- [[10x-website]] — 10xvisuals.com.au; all 6 pages rebuilt 30 Jul on Prestige DS + a project lightbox; SOL scaffold + FORM fix + hero copy shipped as a partial release 31 Jul (committed, not deployed)
+- [[10x-website]] — 10xvisuals.com.au; all pillars now real photography, carousel galleries, images on WP media (4 Aug); Hunter deploying as static bypass, WP theme port pending Lach's header/footer/menu
 - [[10x-scroll-build]] — scroll-scrub film demo (sales asset, CVA render)
 - [[music-library]] — tagged track library for scoring edits
-- [[board-committee-headshots]] — 127 RAW portraits + BTS edit plan; retouch pending
+- [[board-committee-headshots]] — 127 RAW portraits + BTS edit plan; headshot retouch delivered 3 Aug, BTS edit still open
 - [[open-arms-header]] — reusable Elementor-widget header shell (`.oa-x`, token-driven); built for Open Arms Australia
 - [[zed-full-house]] — 23-frame whole-listing ZED restyle, hinterland two-storey; in client revisions
 - [[elevra-invoices]] — JSON → A4 PDF invoice generator (EM- numbering, no-GST rule, 1.3mm fidelity)

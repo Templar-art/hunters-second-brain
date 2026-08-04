@@ -8,7 +8,7 @@ updated: 2026-07-07
 
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 
-Live-captured from benchmark accounts. Format per entry: link · what it is · why it works (or doesn't) · the CLC version to make.
+Live-captured from benchmark accounts. Format per entry: link · what it is · why it works (or doesn't) · the CLC version to make. Companion to [[clc-field-research-2026-07-07]] (same 7 Jul 2026 study); steals feed [[clc-strategy-guide]] and [[clc-pinned-posts]].
 
 ## A. Barlow (@barlowbuilding, 17.3k)
 

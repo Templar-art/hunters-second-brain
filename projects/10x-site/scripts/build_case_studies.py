@@ -19,7 +19,7 @@ import json, os, sys
 ROOT = "/Users/10xhunter/Documents/Hunters Second Brain/projects/10x-site"
 MAN = json.load(open(os.path.join(ROOT, "assets/manifest.json")))
 sys.path.insert(0, os.path.dirname(__file__))
-from build_pages import FORM, MEDIA_BASE  # single shared source, see build_pages.py FORM comment (ENG-09)
+from build_pages import FORM, MEDIA_BASE, NAV, FOOTER  # single shared source, see build_pages.py FORM comment (ENG-09)
 
 
 def srcset(base, ext):
@@ -37,50 +37,8 @@ def picture(base, alt, sizes, cls="", eager=False, extra=""):
     )
 
 
-NAV = """<nav id="mainNav">
-  <div class="bar">
-    <a href="index.html" class="wordmark serif">10X&nbsp;VISUALS</a>
-    <div class="links">
-      <a class="nlink" href="branding.html">Branding</a>
-      <a class="nlink" href="content-creation.html">Content</a>
-      <a class="nlink" href="lead-generation.html">Lead Gen</a>
-      <a class="nlink" href="systems-processes.html">AI Systems</a>
-      <a class="nlink" href="contact-us.html">Contact</a>
-    </div>
-    <button type="button" id="menuToggle" class="nlink only" aria-haspopup="true" aria-expanded="false" aria-controls="menuOverlay">Menu</button>
-  </div>
-</nav>
-
-<div id="menuOverlay" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
-  <div class="mo-top">
-    <a href="index.html" class="wordmark serif">10X&nbsp;VISUALS</a>
-    <button type="button" id="menuClose" class="tlink">Close</button>
-  </div>
-  <nav class="mo-links" aria-label="Site">
-    <a href="branding.html">Branding</a>
-    <a href="content-creation.html">Content</a>
-    <a href="lead-generation.html">Lead Gen</a>
-    <a href="systems-processes.html">AI Systems</a>
-    <a href="contact-us.html">Contact</a>
-  </nav>
-  <div class="mo-foot">
-    <a href="mailto:marketing@10xvisuals.com.au">marketing@10xvisuals.com.au</a>
-    <a href="tel:+61431516634">0431 516 634</a>
-  </div>
-</div>"""
-
-FOOTER = """<footer>
-  <div class="wrap inner">
-    <p class="mark">10X VISUALS</p>
-    <div class="fl">
-      <a href="mailto:marketing@10xvisuals.com.au">Email</a>
-      <a href="tel:+61431516634">0431 516 634</a>
-      <a href="https://www.instagram.com/10xvisuals_/" rel="noopener">Instagram</a>
-      <a href="/privacy-policy">Privacy Policy</a>
-      <p>&copy; 2026 10x Visuals Pty Ltd</p>
-    </div>
-  </div>
-</footer>"""
+# NAV/FOOTER imported from build_pages.py above (ENG-09) — both are
+# now just removal-notice placeholders; see that file's comment.
 
 def close_block(heading, lede):
     return f"""<section id="close" class="on-paper pad-wide">
@@ -122,6 +80,13 @@ def shell(title, desc, hero_base, body, preload_base=None):
 
 {FOOTER}
 
+<div id="pg-lightbox" role="dialog" aria-modal="true" aria-label="Photo" aria-hidden="true">
+  <button type="button" id="pgClose" class="lb-close">Close</button>
+  <button type="button" id="pgPrev" class="pg-nav pg-prev" aria-label="Previous photo">&larr;</button>
+  <img id="pgImg" alt=""/>
+  <button type="button" id="pgNext" class="pg-nav pg-next" aria-label="Next photo">&rarr;</button>
+</div>
+
 <script src="assets/prestige.js"></script>
 </body>
 </html>
@@ -148,13 +113,21 @@ def cs_hero(base, alt, video=None, video_mobile=None):
     every visitor downloads the same ~12MB file regardless of viewport
     (flagged in /impeccable audit)."""
     if video:
+        # Project videos are never uploaded to WordPress (they're the raw
+        # delivery cuts, often 20-40MB) — always served from local assets/,
+        # unlike the still images which mostly are WP-hosted.
         poster = f"{MEDIA_BASE}{base}-{MAN[base]['widths'][-1]}.jpg"
         mobile_source = (
-            f'<source src="{MEDIA_BASE}{video_mobile}" type="video/mp4" media="(max-width: 640px)"/>'
+            f'<source src="assets/{video_mobile}" type="video/mp4" media="(max-width: 640px)"/>'
             if video_mobile else ""
         )
         return f"""<div class="work-item bleed">
-  <div class="plate reveal"><video class="hero-video" poster="{poster}" autoplay muted loop playsinline preload="auto" aria-label="{alt}">{mobile_source}<source src="{MEDIA_BASE}{video}" type="video/mp4"/></video></div>
+  <div class="plate reveal"><video class="hero-video" poster="{poster}" autoplay muted loop playsinline preload="auto" aria-label="{alt}">{mobile_source}<source src="assets/{video}" type="video/mp4"/></video>
+    <button type="button" class="sound-toggle" aria-pressed="false" aria-label="Turn sound on">
+      <svg class="so-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor"/><path d="M17 7l6 10M23 7l-6 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <svg class="so-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor"/><path d="M16 8.5c1.2 1 2 2.6 2 4.5s-.8 3.5-2 4.5M18.5 6c2 1.6 3.2 4 3.2 7s-1.2 5.4-3.2 7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+    </button>
+  </div>
 </div>"""
     return f"""<div class="work-item bleed">
   <div class="plate reveal">{picture(base, alt, "100vw", eager=True)}</div>
@@ -205,6 +178,32 @@ def cs_sequence(images):
     return "\n\n".join(blocks)
 
 
+def cs_gallery(slug, count, client):
+    """Full photo set for the project: a horizontal-scroll carousel of every
+    real delivered photo, each opening the shared #pg-lightbox (prestige.js)
+    at full size on click. Distinct from cs_sequence()'s curated bleed/two-up
+    rhythm — this is the exhaustive "every photo" strip, not a highlight reel.
+    The strip breaks out of .wrap (edge-to-edge) so it reads as a filmstrip,
+    not a page-filling grid. count=0 renders nothing (no hollow section ships
+    for projects with no gallery photos yet, e.g. SOL which ships video-only)."""
+    if not count:
+        return ""
+    items = "\n    ".join(
+        f'<a href="assets/gallery-{slug}-{n}-full.jpg" class="pg-item" data-full-webp="assets/gallery-{slug}-{n}-full.webp">'
+        f'<picture><source type="image/webp" srcset="assets/gallery-{slug}-{n}-thumb.webp"/>'
+        f'<img src="assets/gallery-{slug}-{n}-thumb.jpg" loading="lazy" decoding="async" alt="{client} — photo {n}"/></picture></a>'
+        for n in range(1, count + 1)
+    )
+    return f"""<section class="pad-tight">
+  <div class="wrap">
+    <h2 class="reveal h2m h-small"><span>Every frame.</span></h2>
+  </div>
+  <div class="pg-strip reveal stgr">
+    {items}
+  </div>
+</section>"""
+
+
 def cs_quote(text, attr):
     """Mirrors the homepage #testimonial section's .tq/.tattr markup
     verbatim. Not called at all when quote is None."""
@@ -240,11 +239,11 @@ PAGES["sol.html"] = dict(
     close=("Building something with this much craft?", "Tell us what you're building. We will tell you what it needs."),
 )
 
-# Davenport, Bespoke, Elysium, Broncos Leagues Club and Stonehaven each
-# have exactly one real photo in assets/ (the same tile already used on
-# the homepage work grid) and nothing else in raw/ — same situation SOL
-# was in before its video hero. sequence stays [] for all five; this is
-# not a placeholder, it's every real asset that currently exists.
+# Davenport, Salisbury, Elysium, Broncos and Stonehaven each now have a
+# full delivered photo set (cs_gallery, gallery_slug/gallery_count) plus a
+# hero video.
+# sequence stays [] for all five — the curated bleed/two-up rhythm isn't
+# used here, the exhaustive gallery grid covers it instead.
 
 PAGES["davenport.html"] = dict(
     title="Davenport | 10x Visuals",
@@ -256,11 +255,15 @@ PAGES["davenport.html"] = dict(
     brief=["A refined hillside residence, captured for its atmosphere rather than its floor area."],
     sequence=[],
     quote=None,
+    hero_video="davenport-hero.mp4",
+    hero_video_mobile="davenport-hero-mobile.mp4",
+    gallery_slug="davenport",
+    gallery_count=32,
     close=("Building somewhere with a view like this?", "Tell us what you're building. We will tell you what it needs."),
 )
 
 PAGES["salisbury.html"] = dict(
-    title="Salisbury Building Projects | 10x Visuals",
+    title="Kennedys Lane | 10x Visuals",
     desc="Kennedys Lane, a completed build delivered by Salisbury Building Projects, documented from the air.",
     client="Salisbury Building Projects",
     discipline="Film &amp; Photography",
@@ -269,6 +272,10 @@ PAGES["salisbury.html"] = dict(
     brief=["A completed build for Salisbury Building Projects, captured from the air to show the property in full."],
     sequence=[],
     quote=None,
+    hero_video="salisbury-hero.mp4",
+    hero_video_mobile="salisbury-hero-mobile.mp4",
+    gallery_slug="salisbury",
+    gallery_count=46,
     close=("Finishing a build worth showing off?", "Tell us what you're building. We will tell you what it needs."),
 )
 
@@ -282,6 +289,10 @@ PAGES["elysium.html"] = dict(
     brief=["A large scale apartment build, documented for scale and quality once complete."],
     sequence=[],
     quote=None,
+    hero_video="elysium-hero.mp4",
+    hero_video_mobile="elysium-hero-mobile.mp4",
+    gallery_slug="elysium",
+    gallery_count=50,
     close=("Delivering something on this scale?", "Tell us what you're building. We will tell you what it needs."),
 )
 
@@ -295,6 +306,10 @@ PAGES["broncos-leagues-club.html"] = dict(
     brief=["A major refurbishment recorded from before to completion for the builder’s portfolio."],
     sequence=[],
     quote=None,
+    hero_video="broncos-hero.mp4",
+    hero_video_mobile="broncos-hero-mobile.mp4",
+    gallery_slug="broncos",
+    gallery_count=40,
     close=("Documenting a project of your own?", "Tell us what you're building. We will tell you what it needs."),
 )
 
@@ -308,6 +323,10 @@ PAGES["stonehaven.html"] = dict(
     brief=["A new build on acreage, shot across dusk and daylight for the facade, the interiors and the grounds."],
     sequence=[],
     quote=None,
+    hero_video="stonehaven-hero.mp4",
+    hero_video_mobile="stonehaven-hero-mobile.mp4",
+    gallery_slug="stonehaven",
+    gallery_count=57,
     close=("Building something worth this kind of presentation?", "Tell us what you're building. We will tell you what it needs."),
 )
 
@@ -321,9 +340,11 @@ if __name__ == "__main__":
         seq = cs_sequence(d["sequence"])
         if seq:
             sections.append(seq)
+        gallery = cs_gallery(d.get("gallery_slug"), d.get("gallery_count", 0), d["client"])
+        if gallery:
+            sections.append(gallery)
         if d["quote"]:
             sections.append(cs_quote(d["quote"]["text"], d["quote"]["attr"]))
-        sections.append(close_block(*d["close"]))
 
         body = "\n\n".join(sections)
         # A video hero doesn't want its poster still preloaded as a competing

@@ -8,7 +8,7 @@ updated: 2026-07-07
 
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 
-First-hand study of benchmark + adjacent accounts via live feeds (not just the Perplexity audit). Feeds into `../pack/markdown/strategy_guide.md` execution. Studied: @barlowbuilding, @grimmondau, @bungalow_home, @smout_property. (@matt_srama checked — buyers agent, not a builder reference.)
+First-hand study of benchmark + adjacent accounts via live feeds (not just the Perplexity audit). Feeds into [[clc-strategy-guide]] execution, and its "6 steals" are cross-referenced in [[clc-swipe-file-2026-07-07]]. Studied: @barlowbuilding, @grimmondau, @bungalow_home, @smout_property. (@matt_srama checked — buyers agent, not a builder reference.)
 
 ## @barlowbuilding — 17.3K followers, 384 posts (the target)
 

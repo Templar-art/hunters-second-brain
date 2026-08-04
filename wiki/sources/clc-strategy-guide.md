@@ -8,7 +8,7 @@ updated: 2026-07-10
 
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 _Managed by 10x Visuals | Cycle: Jul–Sep 2026_
-_Built from profile audit (see `00_profile_audit.md`)_
+_Built from profile audit (see [[clc-profile-audit]])_
 
 ## Starting position (July 2026)
 - **Current engagement:** 12–34 likes per post, 0–4 comments
@@ -56,7 +56,7 @@ Success metrics (track weekly):
 ## 90-day theme arc
 
 **Month 1 — "Name the builds" (Jul 2026)**
-Retroactively name and reintroduce the last 3 finished builds. Produce and pin the 3 anchor posts (see `pinned_posts.md`). Publish the first named-project reveal as a Reel. Every post from day 1 tags trade partners. Goal: shift the grid from anonymous BTS to named, credited work.
+Retroactively name and reintroduce the last 3 finished builds. Produce and pin the 3 anchor posts (see [[clc-pinned-posts]]). Publish the first named-project reveal as a Reel. Every post from day 1 tags trade partners. Goal: shift the grid from anonymous BTS to named, credited work.
 
 **Month 2 — "How we actually build" (Aug 2026)**
 Deep-dive design and process content. Educational carousels on materials, cost realities, common mistakes. Bring in the "Translating intent into reality" cadence — people studying drawings, materials being selected, decisions being made. Goal: establish design authority and start pulling in non-trade commenters.

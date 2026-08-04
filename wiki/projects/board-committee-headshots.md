@@ -1,13 +1,15 @@
 ---
 type: project
 tags: [corporate, bts, edit-plan]
-status: retouch-and-edit-pending
-updated: 2026-07-10
+status: headshots-delivered-bts-edit-pending
+updated: 2026-08-03
 ---
 
 # Board Committee BTS — Edit Plan
 
 _10x client job — company context: [[overview]]._
+
+**✅ Headshot retouch delivered 2026-08-03** — the 127-RAW cull/retouch pass is done, hero portraits finished. BTS edit below still open; it needs the graded hero portrait for its reveal match-cut (now unblocked).
 
 > Studio shoot BTS for a board/committee. Goal: make serious people feel **human, likeable, and cool** while showing 10x makes premium media look effortless. Personality first, polish second.
 

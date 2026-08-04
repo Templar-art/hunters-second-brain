@@ -42,9 +42,10 @@ Consistent folder structure: `Year / Client / YYYY-MM-DD_Address-Job`. Same ever
 - NAS for local redundancy + working archive.
 - Cloud (Backblaze / cloud drive) for the offsite copy.
 - Automate it — manual backups get skipped.
+- Delivery uploads off an SSD to the client Drive: [[rclone-drive-upload]] (fast, no local-copy bottleneck).
 
 ## Verify periodically
 A backup you never test isn't a backup. Periodically restore a random job and confirm it opens. Check drive health (SMART). Replace ageing drives before they fail.
 
 ## Related
-[[architectural-photography]] · [[photo-gear-and-settings]] · [[deliverables-and-export]] · [[photo-editing-pipeline]]
+[[architectural-photography]] · [[photo-gear-and-settings]] · [[deliverables-and-export]] · [[photo-editing-pipeline]] · [[rclone-drive-upload]]

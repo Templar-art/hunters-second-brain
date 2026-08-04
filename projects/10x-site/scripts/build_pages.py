@@ -17,66 +17,40 @@ MAN = json.load(open(os.path.join(ROOT, "assets/manifest.json")))
 # local (site-relative). See wiki/projects/10x-website.md for the export.
 MEDIA_BASE = "https://10xvisuals.com.au/wp-content/uploads/2026/08/"
 
+# Basenames served from the local assets/ folder instead of MEDIA_BASE.
+# The four pillar-hero "-gen" sets (branding/lead-gen/AI-systems/content)
+# were local-only while they were placeholder stock photography; all four
+# are now uploaded to WordPress (2026-08-04) and route through MEDIA_BASE
+# like everything else. Empty until a future asset needs the same holdover.
+LOCAL_ONLY = set()
+
+
+def media_base(base):
+    return "assets/" if base in LOCAL_ONLY else MEDIA_BASE
+
 
 def srcset(base, ext):
-    return ", ".join(f"{MEDIA_BASE}{base}-{w}.{ext} {w}w" for w in MAN[base]["widths"])
+    mb = media_base(base)
+    return ", ".join(f"{mb}{base}-{w}.{ext} {w}w" for w in MAN[base]["widths"])
 
 
 def picture(base, alt, sizes, cls="", eager=False, extra=""):
     widths = MAN[base]["widths"]
     largest = widths[-1]
+    mb = media_base(base)
     load = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
     return (
         f'<picture><source type="image/webp" srcset="{srcset(base,"webp")}" sizes="{sizes}"/>'
-        f'<img {cls} src="{MEDIA_BASE}{base}-{largest}.jpg" srcset="{srcset(base,"jpg")}" sizes="{sizes}" '
+        f'<img {cls} src="{mb}{base}-{largest}.jpg" srcset="{srcset(base,"jpg")}" sizes="{sizes}" '
         f'{load} alt="{alt}"{extra}/></picture>'
     )
 
 
-NAV = """<nav id="mainNav">
-  <div class="bar">
-    <a href="index.html" class="wordmark serif">10X&nbsp;VISUALS</a>
-    <div class="links">
-      <a class="nlink" href="branding.html">Branding</a>
-      <a class="nlink" href="content-creation.html">Content</a>
-      <a class="nlink" href="lead-generation.html">Lead Gen</a>
-      <a class="nlink" href="systems-processes.html">AI Systems</a>
-      <a class="nlink" href="contact-us.html">Contact</a>
-    </div>
-    <button type="button" id="menuToggle" class="nlink only" aria-haspopup="true" aria-expanded="false" aria-controls="menuOverlay">Menu</button>
-  </div>
-</nav>
-
-<div id="menuOverlay" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
-  <div class="mo-top">
-    <a href="index.html" class="wordmark serif">10X&nbsp;VISUALS</a>
-    <button type="button" id="menuClose" class="tlink">Close</button>
-  </div>
-  <nav class="mo-links" aria-label="Site">
-    <a href="branding.html">Branding</a>
-    <a href="content-creation.html">Content</a>
-    <a href="lead-generation.html">Lead Gen</a>
-    <a href="systems-processes.html">AI Systems</a>
-    <a href="contact-us.html">Contact</a>
-  </nav>
-  <div class="mo-foot">
-    <a href="mailto:marketing@10xvisuals.com.au">marketing@10xvisuals.com.au</a>
-    <a href="tel:+61431516634">0431 516 634</a>
-  </div>
-</div>"""
-
-FOOTER = """<footer>
-  <div class="wrap inner">
-    <p class="mark">10X VISUALS</p>
-    <div class="fl">
-      <a href="mailto:marketing@10xvisuals.com.au">Email</a>
-      <a href="tel:+61431516634">0431 516 634</a>
-      <a href="https://www.instagram.com/10xvisuals_/" rel="noopener">Instagram</a>
-      <a href="/privacy-policy">Privacy Policy</a>
-      <p>&copy; 2026 10x Visuals Pty Ltd</p>
-    </div>
-  </div>
-</footer>"""
+# Site header/nav and footer are no longer generated here — the
+# WordPress/Elementor rebuild supplies both, and every page ships as
+# standalone body content it can drop straight into a template.
+NAV = '<!-- Site header/nav removed — handled by the WordPress/Elementor build. -->'
+FOOTER = '<!-- Site footer removed — handled by the WordPress/Elementor build. -->'
 
 # Shared source for both generators (build_case_studies.py imports this
 # constant rather than redeclaring it - ENG-09). index.html's own inline
@@ -155,13 +129,15 @@ def shell(title, desc, hero_base, body, preload_base=None):
 """
 
 
-def hero(base, alt, label, h1_lines, lede, value_line=None):
+def hero(base, alt, label, h1_lines, lede, value_line=None, cta_href="contact-us.html"):
     lines = "\n      ".join(f'<span class="ln"><span>{l}</span></span>' for l in h1_lines)
     value_p = f'\n      <p class="lede-h">{value_line}</p>' if value_line else ""
     return f"""<header id="top" class="hero-sm">
-  {picture(base, alt, "100vw", cls='class="hero-img"', eager=True)}
+  <div class="hero-media" data-par="0.1" data-par-max="26">
+    {picture(base, alt, "100vw", cls='class="hero-img"', eager=True)}
+  </div>
   <div class="hero-veil"></div>
-  <div class="hero-inner">
+  <div class="hero-inner" data-par="0.06" data-par-max="16">
     <div class="fade d1">
       <div class="hero-rule"></div>
       <p class="label hero-kicker" style="color:var(--ivory);margin-bottom:22px;">{label}</p>
@@ -171,10 +147,9 @@ def hero(base, alt, label, h1_lines, lede, value_line=None):
     </h1>
     <div class="hero-meta fade d3">
       <p class="lede-h">{lede}</p>{value_p}
-      <a class="tlink magnetic" href="#close">Start a project</a>
+      <a class="tlink magnetic" href="{cta_href}">Work with 10x</a>
     </div>
   </div>
-  <div class="scroll-cue fade d3" aria-hidden="true"><span class="sc-rule"></span>Scroll</div>
 </header>"""
 
 
@@ -227,7 +202,9 @@ def interlude(base, alt, quote):
   {picture(base, alt, "100vw", extra=' data-par="0.12"')}
   <div class="veil"></div>
   <div class="inner reveal">
-    <p class="quote">{quote}</p>
+    <div data-par="0.1" data-par-max="18">
+      <p class="quote">{quote}</p>
+    </div>
   </div>
 </div>"""
 
@@ -239,8 +216,8 @@ PAGES = {}
 PAGES["branding.html"] = dict(
     title="Branding &amp; Design | 10x Visuals",
     desc="Strategy, identity and the guidelines that keep it intact. Branding for property, construction and the businesses behind them.",
-    hero_base="hero-branding",
-    hero_alt="A refined living space at Stonehaven, photographed for Whitefox.",
+    hero_base="hero-branding-gen",
+    hero_alt="A Bespoke Estate Agents business card mockup resting on a concrete tile.",
     label="Branding",
     h1=["Where strategy", "becomes identity."],
     lede="We design brands with clarity, confidence and lasting impact.",
@@ -277,8 +254,8 @@ PAGES["branding.html"] = dict(
 PAGES["content-creation.html"] = dict(
     title="Content, Photography &amp; Film | 10x Visuals",
     desc="Cinematic photography and film for property, construction and the brands behind them.",
-    hero_base="hero-content",
-    hero_alt="The garden and firepit terrace at Stonehaven in late afternoon light.",
+    hero_base="hero-content-gen",
+    hero_alt="The 10x Visuals crew on location, filming behind the scenes.",
     label="Content",
     h1=["Visuals that speak", "for your brand."],
     lede="High quality photo and video content designed to strengthen perception and capture attention.",
@@ -315,8 +292,8 @@ PAGES["content-creation.html"] = dict(
 PAGES["lead-generation.html"] = dict(
     title="Lead Generation | 10x Visuals",
     desc="Campaigns, search visibility and landing pages built to produce enquiries, not impressions.",
-    hero_base="hero-leadgen",
-    hero_alt="The front elevation and lawn at Stonehaven, 47 Somerset Drive.",
+    hero_base="hero-leadgen-gen",
+    hero_alt="A dual-monitor desk setup showing market trend charts with teal accent lighting, stock photography.",
     label="Lead Gen",
     h1=["Turn attention", "into enquiries."],
     lede="Strategic advertising and search visibility designed to bring the right people to your business.",
@@ -353,8 +330,8 @@ PAGES["lead-generation.html"] = dict(
 PAGES["systems-processes.html"] = dict(
     title="AI Systems &amp; Automation | 10x Visuals",
     desc="Automation, CRM and infrastructure that let a small team run at volume.",
-    hero_base="hero-systems",
-    hero_alt="The alfresco dining terrace at Stonehaven, open to the pool.",
+    hero_base="hero-aisystems-gen",
+    hero_alt="A laptop screen showing code alongside a glowing blue AI network render, on location at a 10x Visuals shoot.",
     label="AI Systems",
     h1=["Build a business", "that runs smarter."],
     lede="Automation, systems and infrastructure designed to streamline operations and support scalable growth.",
@@ -412,7 +389,6 @@ if __name__ == "__main__":
             prose(*d["why"], dark=True),
             offer(d["offer_heading"], d["items"]),
             interlude(d["interlude_base"], d["interlude_alt"], d["quote"]),
-            close_block(*d["close"]),
         ])
         open(os.path.join(ROOT, fn), "w").write(
             shell(d["title"], d["desc"], d["hero_base"], body, preload_base=d["hero_base"]))
@@ -423,7 +399,8 @@ if __name__ == "__main__":
         f'      <details><summary>{q}</summary><p class="a">{a}</p></details>' for q, a in FAQS)
     contact_body = "\n\n".join([
         hero("hero-contact", "The guest studio at Stonehaven, 47 Somerset Drive.", "Contact",
-             ["Let's connect."], "Tell us what you're building. We will tell you what it needs."),
+             ["Let's connect."], "Tell us what you're building. We will tell you what it needs.",
+             cta_href="#enquiry"),
         f"""<section class="dark">
   <div class="wrap">
     <h2 class="sr">Enquire</h2>

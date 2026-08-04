@@ -49,7 +49,7 @@ Real-estate / architectural stills. Lightroom for baseline + volume, Photoshop f
 - Edit hero → sync to set → spot-fix outliers. Presets for recurring clients (e.g. [[coast-life-constructions]]).
 - Batch export with saved presets.
 
-## Handoff (offshore editor — jang-studio)
+## Handoff (offshore editor — [[jang-studio]])
 - Consistent written brief: WB target, vertical correction, window pulls, sky policy, delete-object list, export specs.
 - Supply a graded reference frame. Review round, then lock.
 

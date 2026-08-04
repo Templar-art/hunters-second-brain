@@ -49,14 +49,18 @@
   const nav = document.getElementById('mainNav');
   const progress = document.getElementById('scrollProgress');
   const parallax = [...document.querySelectorAll('[data-par]')].map(el => ({
-    el, factor: parseFloat(el.dataset.par) || 0
+    el, factor: parseFloat(el.dataset.par) || 0,
+    /* Images rely on their own overscan (taller than the frame that
+       clips them) for slack; a plain text block has no such overscan,
+       so it can opt into a fixed pixel range instead via data-par-max. */
+    maxOverride: el.dataset.parMax ? parseFloat(el.dataset.parMax) : null
   }));
   let ticking = false;
 
   function onScroll(){
     if (ticking) return; ticking = true;
     requestAnimationFrame(() => {
-      nav.classList.toggle('scrolled', scrollY > 60);
+      if (nav) nav.classList.toggle('scrolled', scrollY > 60);
       const max = document.documentElement.scrollHeight - innerHeight;
       progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(scrollY / max, 1) : 0) + ')';
       /* Parallax: transform only, and only while the frame is actually
@@ -67,7 +71,8 @@
           /* Clamp to the element's own overscan. Travel scales with
              viewport height, so an unclamped factor exposes the frame
              behind the image on tall viewports. */
-          const slack = Math.max(0, (p.el.offsetHeight - p.el.parentElement.clientHeight) / 2);
+          const slack = p.maxOverride != null ? p.maxOverride
+            : Math.max(0, (p.el.offsetHeight - p.el.parentElement.clientHeight) / 2);
           const raw = (r.top + r.height / 2 - innerHeight / 2) * -p.factor;
           const travel = Math.max(-slack, Math.min(slack, raw));
           p.el.style.transform = 'translateY(' + travel.toFixed(2) + 'px)';
@@ -118,6 +123,9 @@
      paragraph is role="alert" and wired to its input via aria-describedby,
      so a failed submit is announced rather than only coloured. */
   const form = document.getElementById('enquiry');
+  /* The enquiry form only exists on contact-us.html now (every other
+     page's CTA section was removed — Lach is building his own). */
+  if (form) {
   const fail = document.getElementById('formFail');
   const done = document.getElementById('formDone');
   const submitBtn = form.querySelector('button[type="submit"]');
@@ -211,6 +219,7 @@
       fail.style.display = 'block';
     }).finally(() => clearTimeout(timer));
   });
+  }
 
   /* ---------- Menu overlay ----------
      Full-bleed panel, not a dropdown, so it needs its own focus and
@@ -422,25 +431,76 @@
     });
   }
 
-  /* ---------- Cursor label on clickable work tiles ----------
-     Fine-pointer, hover-capable devices only — nothing to follow a
-     touch. A small "View" tag tracks the cursor over any project
-     tile so it's obvious the whole frame is clickable, not just the
-     "View project" text underneath it. */
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const cursorLabel = document.createElement('div');
-    cursorLabel.className = 'cursor-label';
-    cursorLabel.textContent = 'View';
-    cursorLabel.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(cursorLabel);
-    let cursorActive = false;
-    addEventListener('mousemove', e => {
-      cursorLabel.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%) scale(${cursorActive ? 1 : 0.8})`;
-    }, { passive: true });
-    document.querySelectorAll('.work-trigger').forEach(trigger => {
-      trigger.addEventListener('mouseenter', () => { cursorActive = true; cursorLabel.classList.add('is-active'); });
-      trigger.addEventListener('mouseleave', () => { cursorActive = false; cursorLabel.classList.remove('is-active'); });
+  /* ---------- Hero video sound toggle (case-study pages) ----------
+     Videos always start muted (autoplay requires it); the button lets a
+     visitor opt into sound, one video per page so no ambiguity about
+     which video a toggle controls. */
+  document.querySelectorAll('.sound-toggle').forEach(btn => {
+    const vid = btn.parentElement.querySelector('video');
+    if (!vid) return;
+    btn.addEventListener('click', () => {
+      vid.muted = !vid.muted;
+      const on = !vid.muted;
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', String(on));
+      btn.setAttribute('aria-label', on ? 'Turn sound off' : 'Turn sound on');
     });
+  });
+
+  /* ---------- Project photo gallery lightbox (case-study pages) ----------
+     A plain prev/next/close lightbox over every .pg-item on the page —
+     distinct from the homepage's #lightbox (which reads title/client
+     copy off the work-grid tile); a gallery photo has no such metadata. */
+  const pgItems = [...document.querySelectorAll('.pg-item')];
+  const pgLightbox = document.getElementById('pg-lightbox');
+  if (pgItems.length && pgLightbox) {
+    const pgImg = document.getElementById('pgImg');
+    const pgClose = document.getElementById('pgClose');
+    const pgPrev = document.getElementById('pgPrev');
+    const pgNext = document.getElementById('pgNext');
+    let pgIndex = 0;
+    let pgReturnFocus = null;
+
+    function pgSupportsWebp(){
+      const c = document.createElement('canvas');
+      return c.toDataURL && c.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    }
+    const useWebp = pgSupportsWebp();
+
+    function pgShow(i){
+      pgIndex = (i + pgItems.length) % pgItems.length;
+      const item = pgItems[pgIndex];
+      pgImg.src = useWebp ? item.dataset.fullWebp : item.getAttribute('href');
+      pgImg.alt = item.querySelector('img')?.alt || '';
+    }
+    function pgOpen(i, trigger){
+      pgReturnFocus = trigger;
+      pgShow(i);
+      pgLightbox.classList.add('open');
+      pgLightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('menu-open');
+      pgClose.focus();
+      document.addEventListener('keydown', pgKeydown);
+    }
+    function pgCloseFn(){
+      pgLightbox.classList.remove('open');
+      pgLightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-open');
+      document.removeEventListener('keydown', pgKeydown);
+      if (pgReturnFocus) pgReturnFocus.focus();
+    }
+    function pgKeydown(e){
+      if (e.key === 'Escape') { e.preventDefault(); pgCloseFn(); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); pgShow(pgIndex - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); pgShow(pgIndex + 1); }
+    }
+    pgItems.forEach((item, i) => {
+      item.addEventListener('click', e => { e.preventDefault(); pgOpen(i, item); });
+    });
+    pgClose.addEventListener('click', pgCloseFn);
+    pgPrev.addEventListener('click', () => pgShow(pgIndex - 1));
+    pgNext.addEventListener('click', () => pgShow(pgIndex + 1));
+    pgLightbox.addEventListener('click', e => { if (e.target === pgLightbox) pgCloseFn(); });
   }
 
   /* ---------- Work grid category filter (Real Estate / Construction) ---------- */

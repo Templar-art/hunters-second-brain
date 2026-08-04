@@ -602,3 +602,54 @@ backing page at all, harmless with JS (the lightbox intercepts the click, confir
 a dead end for no-JS/crawlers. Pre-existing from the lightbox build, flagged not fixed.
 
 Zero cost, nothing paid was touched.
+
+## [2026-07-31] build+harvest | 10x site: video heroes, React widgets, all six case studies shipped
+
+Continued the same session's ticketed pass. Added video heroes to home and SOL
+(Hunter's own footage, transcoded down from 4K/120-180MB to ~12MB 1080p; both
+re-edited once, final as of today). Fixed three real client-list errors: founders
+caption order was wrong (now Tyson/Damon/Lachlan matching the actual photo), Hill
+Interior Linings dropped (no longer a client), Ocean Shores renamed to Coastlife
+Constructions and moved into the correct category.
+
+Hunter asked for two specific components from a pasted shadcn registry snippet
+(3D carousel, hover gallery) — a different stack (React/Tailwind/TS/shadcn) from
+this static Python-generated site. Flagged the mismatch and the stock imagery in
+the pasted code rather than silently reinterpreting the ask; got explicit
+confirmation the real stack was wanted; built it properly at projects/10x-site/web/
+via the actual shadcn CLI, real project photos swapping out the Unsplash/picsum
+stock, compiled to a self-contained bundle the static site just loads via
+<script>/<link> tags.
+
+Hit two real Tailwind v4 bugs, not user error: the content scanner silently skips
+digit-leading filenames (3d-carousel.tsx renamed to carousel-3d.tsx), and splitting
+the import to skip preflight silently breaks scanning entirely, independent of
+that. Both isolated by bisection against a minimal test file before landing on the
+fix (@import "tailwindcss" prefix(tdx), with tdx-widgets.css loaded before
+prestige.css so the host page's own styles win any cascade tie).
+
+Hunter's call: ENG-02 (SOL image sequence) is closed, not left blocked — SOL ships
+with the video instead. Checked and confirmed the other five case studies were in
+the identical single-photo, no-sequence situation, and built them anyway to the
+same honest standard: real photo, real reused copy, no fabricated sequence or
+quote. All six case-study pages exist now. Fixed the homepage work-grid tiles,
+which pointed at routes with no backing page, to link to the real files; Stonehaven
+previously had no link at all and now does too. Confirmed the JS lightbox still
+intercepts every click; this only fixes the no-JS/crawler fallback.
+
+Zero cost, nothing paid was touched.
+
+## [2026-08-03] update | Board headshots delivered, Lot 48 confirmed closed
+Hunter confirmed two jobs done. **Board Committee headshots** — 127-RAW cull/retouch pass finished, hero portraits delivered; [[board-committee-headshots]] status bumped, BTS edit remains open (now unblocked — its reveal cut needed a finished portrait). **Belle Property Lot 48** — reconfirmed delivered (already marked so on 21 Jul; [[belle-property]] + index one-liner were stale, pointing at "awaiting run it" — fixed). 10x-site work (bespoke case-study page + wrap) targeted to finish today; tracked as a personal to-do.
+
+## [2026-08-03] lint | Graph connectivity pass — CLC pack wired, remaining orphans fixed
+Hunter reported the vault "grew crazy," asked to connect all the nodes. Full orphan/dead-end sweep across all 92 wiki pages (inbound-[[wikilink]] count per page).
+
+**The big gap: the whole CLC source pack was disconnected.** All 8 `clc-*.md` files under `wiki/sources/` already pointed *out* to [[clc-pack-readme]]/[[clc-profile-audit]], but every cross-reference between sibling files ([[clc-pack-readme]]'s own file table, `00_profile_audit.md`, `brand_voice.md`, `strategy_guide.md`, `pinned_posts.md`, `master_playbook.md`) was plain backtick filenames, not `[[wikilinks]]` — so nothing linked back in and the pack read as 8 separate islands to any graph view. Converted every one of those refs to real wikilinks across [[clc-pack-readme]], [[clc-profile-audit]], [[clc-master-playbook]], [[clc-brand-voice]], [[clc-strategy-guide]], [[clc-prompt-library]], [[clc-field-research-2026-07-07]], [[clc-swipe-file-2026-07-07]], and [[coast-life-constructions]] itself (its pack table + next-actions list had the same filename-not-link problem). Also linked the two live-research files ([[clc-field-research-2026-07-07]], [[clc-swipe-file-2026-07-07]]) into the readme's table — they postdate the original Fable 5 zip and had never been listed there.
+
+**Other true single-inbound-link pages, fixed:** [[jang-studio]] was named in prose (not linked) from [[photo-editing-pipeline]]'s offshore-handoff section — now a real wikilink. [[rclone-drive-upload]] only had index + [[higgsfield-pipelines]] pointing at it — added it to [[archiving-and-backup]]'s cloud/offsite section, the natural craft-layer home for a delivery-upload tool. [[damon]] and [[tyson]] were bio stubs with no lateral team links (only [[hunter]] cross-referenced [[kris]]) — added a Team line to both matching the roster pattern.
+
+Left alone as correctly sparse, not broken: [[elevra-invoices]], [[strategic-investing-qld-brief]], [[weekly-review-2026-07-17]] — dated ops/source docs naturally have few inbound links and were already reachable from their owning client/project page. Confirmed the new untracked `projects/10x-site/*.html` case-study pages (bespoke, davenport, elysium, stonehaven, broncos) are already fully documented in [[10x-website]] — not a wiki gap, just uncommitted files.
+
+## [2026-08-04] ingest | 10x Website round five — real pillar photography, carousel galleries, WordPress media migration
+Replaced all four pillar-hero placeholders with real/premium imagery: Branding got a from-scratch business-card mockup (real [[bespoke-estate-agents]] wordmark, perspective-composited via OpenCV onto a stock concrete-tile photo — corrected once from the wrong sister-brand logo), AI Systems + Content pillars got real 10x BTS photos, Lead Gen got a re-picked free-licensed stock cover after rejecting the cliché "Search Console" screenshot. Converted case-study photo galleries (Salisbury/Stonehaven/Elysium/Davenport/Broncos) from a full-page `.pg-grid` to an edge-to-edge horizontal-scroll `.pg-strip` carousel per Hunter's explicit "too much on one page" call — lightbox untouched. Got WordPress REST API media upload working (app-password auth; first attempt 401'd on a display-name username, the actual account email worked), uploaded all 24 new pillar images, cleared `LOCAL_ONLY` in `build_pages.py`. Full-site link sweep: 87/87 remote WP URLs + 995/995 local asset paths resolve. Deploy decision made (previously open): Hunter deploys the static files himself as a same-domain bypass, WordPress theme port deferred as its own future job pending Lachlan's WP header/footer/menu work. Full detail in [[10x-website]].

@@ -17,13 +17,15 @@ Coast Life today reads as a **tradie mate's account** (roofers commenting, no fi
 
 | File | What it does | When to open it |
 |---|---|---|
-| **`00_profile_audit.md`** | **The full audit — Coast Life today vs @barlowbuilding vs @grimmondau. All strategic decisions in the other files trace back here.** | **Read this first, then quarterly re-audit** |
-| `master_playbook.md` | 10x Visuals house rules — style, aspect ratio, voice guardrails | Attach to every Claude Code session |
-| `brand_voice.md` | Coast Life identity, audience, voice, proof, hooks, tag menu, hashtag rotation | Attach to every Claude Code session |
-| `strategy_guide.md` | 90-day plan with rebalanced pillars, growth levers, success metrics | Weekly planning + monthly review |
-| `bio.md` | 6 Instagram bio variants incl. Barlow-style editorial | Set once, review quarterly |
-| `pinned_posts.md` | 3 profile-anchor pin concepts | Produce in first 30 days |
-| `prompt_library.md` | Copy-paste prompts for weekly production | Every posting day |
+| **[[clc-profile-audit]]** | **The full audit — Coast Life today vs @barlowbuilding vs @grimmondau. All strategic decisions in the other files trace back here.** | **Read this first, then quarterly re-audit** |
+| [[clc-master-playbook]] | 10x Visuals house rules — style, aspect ratio, voice guardrails | Attach to every Claude Code session |
+| [[clc-brand-voice]] | Coast Life identity, audience, voice, proof, hooks, tag menu, hashtag rotation | Attach to every Claude Code session |
+| [[clc-strategy-guide]] | 90-day plan with rebalanced pillars, growth levers, success metrics | Weekly planning + monthly review |
+| [[clc-bio]] | 6 Instagram bio variants incl. Barlow-style editorial | Set once, review quarterly |
+| [[clc-pinned-posts]] | 3 profile-anchor pin concepts | Produce in first 30 days |
+| [[clc-prompt-library]] | Copy-paste prompts for weekly production | Every posting day |
+
+Live research layer (not in the original Fable 5 zip): [[clc-field-research-2026-07-07]] · [[clc-swipe-file-2026-07-07]].
 
 Empty folders to fill in:
 - `/references/` — drop 5–10 screenshots (Barlow's grid is the primary reference set; add Grimmond and any others Coast Life loves)

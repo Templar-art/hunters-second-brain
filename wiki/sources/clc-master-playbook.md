@@ -9,7 +9,7 @@ updated: 2026-07-10
 _Part of the [[coast-life-constructions]] CLC pack — start at [[clc-pack-readme]]; frozen originals in `raw/clc/`._
 
 You are producing Instagram content for a real estate / construction client on behalf of **10x Visuals**, a premium cinematic content studio.
-Every output must obey the rules in this file. Client-specific rules in `brand_voice.md` override anything here on tone.
+Every output must obey the rules in this file. Client-specific rules in [[clc-brand-voice]] override anything here on tone.
 
 ## Non-negotiables
 
