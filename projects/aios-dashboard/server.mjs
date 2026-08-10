@@ -115,4 +115,6 @@ const server = createServer((req, res) => {
   res.writeHead(404).end('not found');
 });
 
-server.listen(PORT, () => console.log(`AIOS dashboard → http://localhost:${PORT} (vault: ${VAULT})`));
+// Bind loopback only. /api/run spawns headless claude with write + git push and
+// there is no auth, so the dashboard must never be reachable from the LAN.
+server.listen(PORT, '127.0.0.1', () => console.log(`AIOS dashboard → http://localhost:${PORT} (vault: ${VAULT})`));
