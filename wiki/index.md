@@ -36,6 +36,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[10x-socials-funnel]] — new RE + construction accounts funneling curated best-of to master
 - [[10x-website]] — 10xvisuals.com.au; all pillars now real photography, carousel galleries, images on WP media (4 Aug); Hunter deploying as static bypass, WP theme port pending Lach's header/footer/menu
 - [[10x-scroll-build]] — scroll-scrub film demo (sales asset, CVA render)
+- [[sol]] — SŌL, 14 Binda Place Sorrento: shoot + case study; the hero-choice and don't-fabricate-frames lessons
 - [[music-library]] — tagged track library for scoring edits
 - [[board-committee-headshots]] — 127 RAW portraits + BTS edit plan; headshot retouch delivered 3 Aug, BTS edit still open
 - [[open-arms-header]] — reusable Elementor-widget header shell (`.oa-x`, token-driven); built for Open Arms Australia
