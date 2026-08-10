@@ -14,6 +14,9 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[lachlan]] — editor; holds the [[10x-website]] Elementor rebuild handoff
 - [[giovanni]] — onboarding onto AI property stills + video (SOP issued 28 Jul)
 
+## Daily notes
+- [[2026-07-17]] · [[2026-07-22]] · [[2026-08-10]] — dated plan/queue notes; the durable content from these lives on the pages they link to
+
 ## Clients
 - [[coast-life-constructions]] — builder IG repositioning; active execution; Rob's brand verdict governs
 - [[bespoke-estate-agents]] — Jason Ward prestige agent; live site (Elementor HTML paste) getting real photos in / fake listings out (4 Aug), source at `projects/bespoke-elementor-source/`; About still a Services duplicate

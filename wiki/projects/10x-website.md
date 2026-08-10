@@ -11,6 +11,7 @@ updated: 2026-08-10
 
 **Build:** [projects/10x-site/](../../projects/10x-site/) · **Spec + outcome:** [design spec](../../docs/superpowers/specs/2026-07-30-10x-homepage-prestige-rebuild-design.md) · **System of record:** [DESIGN.md](../../DESIGN.md), Prestige layer
 **Handoff (6 Aug):** [projects/10x-site-for-lach/](../../projects/10x-site-for-lach/) · **Media:** [projects/10x-site-media-export/](../../projects/10x-site-media-export/)
+**Vite/React app:** [projects/10x-site/web/](../../projects/10x-site/web/) ([README](../../projects/10x-site/web/README.md)) — the tooling scaffold behind the showcase widget, distinct from the static export.
 
 ## Handoff to [[lachlan]] (6 Aug 2026)
 

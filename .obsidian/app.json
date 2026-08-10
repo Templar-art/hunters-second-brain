@@ -4,6 +4,7 @@
     ".agents/",
     ".github/",
     ".claude/",
-    ".impeccable/"
+    ".impeccable/",
+    "projects/bespoke-scrape/brand/zodiak/"
   ]
 }

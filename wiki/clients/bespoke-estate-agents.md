@@ -79,6 +79,9 @@ An external team ("the other boys") finished and deployed the Bespoke website. L
 
 ## Working assets in `projects/` (logged 27 Jul 2026)
 
+Reference docs inside those folders, so they are reachable from here rather than only by browsing: the full-site scrape [INVENTORY.md](../../projects/bespoke-scrape/INVENTORY.md) (what was pulled off `bespokeinternationalrealty.com` on 22 Jul), the extracted [BRAND-TOKENS.md](../../projects/bespoke-scrape/brand/BRAND-TOKENS.md), and the [POLISH-NOTES-for-web-team.md](../../projects/bespoke-site/POLISH-NOTES-for-web-team.md) — three non-blocking items, explicitly not bugs.
+
+
 - **`projects/bespoke-scrape/`** — full 22 Jul scrape of **bespokeinternationalrealty.com** (WordPress + Elementor): 222 asset files and 25 page HTMLs, ~27 MB. Includes 3 brand SVG logos, 16 UI icons, 32 clean full-size originals, the mirrored `wp-content` tree, and the theme/Elementor CSS + JS. `INVENTORY.md` is the folder map. **⚠️ Unverified relationship:** it isn't recorded anywhere whether that domain is Jason's own live business or a reference/competitor site being studied — confirm before treating its brand assets as the client's.
 - **`projects/bespoke-theme/bespoke-estate-agents/`** — a hand-built WordPress theme (front-page, about, services, projects, sold-listings, contact templates plus `functions.php`). Separate from both the live ElementsKit site and the static concept in `projects/bespoke-site/`, so the Bespoke work now exists in **four** places: live WP site, this theme, the static concept, and the Phase 2 prototype. Worth collapsing before the next build round.
 

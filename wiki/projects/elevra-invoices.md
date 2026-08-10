@@ -27,3 +27,6 @@ The `invoices/*.json` configs carry a payment block with BSB and account number,
 
 ## Links
 [[overview]] · [[business-craft]]
+
+**Generator docs:** [projects/elevra-invoices/README.md](../../projects/elevra-invoices/README.md) — config in, A4 PDF out. The `invoices/` folder itself is gitignored: it carries BSB and account numbers.
+

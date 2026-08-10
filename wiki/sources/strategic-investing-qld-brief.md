@@ -35,3 +35,6 @@ See [[strategic-investing-qld]] · JOB.md · captions.md in `projects/strategic-
 ## Flags carried forward
 - **⚠️** Brief's calm/no-hype tone vs the website's bolder claims — kept posts claim-light.
 - Typographic brand mark is a placeholder until the real SIQ logo lands.
+
+**Raw original:** [raw/strategic-investing-qld/claude-brief.md](../../raw/strategic-investing-qld/claude-brief.md) — frozen source, this page is the living version.
+
