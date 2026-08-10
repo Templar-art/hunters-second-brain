@@ -57,15 +57,15 @@ Set to the config the account's better campaign was already using: **Gold Coast 
 
 The whole quality strategy in [BUILD-CALLS.md](BUILD-CALLS.md) rested on optimising for *quality calls* (60s+ duration), so Meta only books a result when someone actually described a job. Meta's own tooltip: **"Maximise number of calls is the only performance goal available for this conversion location."**
 
-So the calls campaign optimises for the *tap*. Quality control now rests entirely on the creative, the geo, and the ad schedule. ⚠️ **Watch for four-second calls in week one** — that is the failure mode this would have prevented.
+A calls campaign therefore optimises for the *tap*, not the conversation. ✅ **Moot in the end** — the campaign became a form campaign (§3a), where *Maximise number of leads* is the correct and expected goal. Retained here because it stands as a permanent constraint on this account: **do not plan a calls campaign around call duration, it isn't available.**
 
-**No cost cap was set, and that is a deliberate reversal.** The fallback plan was a $45 cost-per-result cap. On inspection a call *tap* will likely cost $10–25, so a $45 cap binds on nothing; and if calls do run dearer it throttles delivery on a campaign with no history. Better to read the real cost per call at day 7 and set a cap that has data behind it.
+**No cost cap was set, and that was a deliberate reversal.** The fallback plan was a $45 cost-per-result cap. A call *tap* likely costs $10–25, so a $45 cap binds on nothing; and if calls did run dearer it would throttle delivery on a campaign with no history. Still empty on the form version, same reasoning — set a cap at day 7 with real numbers behind it.
 
-### Ad scheduling IS available on a daily budget — for calls campaigns
+### Ad scheduling IS available on a daily budget — but only for calls campaigns
 
-[BUILD-CALLS.md](BUILD-CALLS.md) said dayparting needs a lifetime budget and the campaign would have to run 24/7. **Wrong for this conversion location.** A Calls ad set exposes *Ad scheduling → Set a schedule for ads* on a plain daily CBO budget, and Meta itself recommended it: *"You could get 25.4% more call conversions by running ads during your business hours."*
+[BUILD-CALLS.md](BUILD-CALLS.md) said dayparting needs a lifetime budget. **Wrong — for a Calls conversion location.** A Calls ad set exposes *Ad scheduling → Set a schedule for ads* on a plain daily CBO budget, and Meta itself recommended it: *"You could get 25.4% more call conversions by running ads during your business hours."* It was set to Mon–Sat 09:00–18:00 Brisbane.
 
-Set to **Mon–Sat 09:00–18:00, Brisbane time**. Saturday is in deliberately — the "list" audience does its thinking on weekends. This is the single biggest mitigation of the missed-call risk.
+⚠️ **The option disappears on Instant forms.** Switching conversion location removed the whole Ad scheduling section, so the final campaign runs 24/7. **No loss** — the schedule existed only to stop the phone ringing when nobody could answer, and a form doesn't care what time it lands. Worth knowing as a rule: **dayparting on a daily budget is a calls-campaign privilege.**
 
 ### Minimum age caps at 25
 
@@ -103,7 +103,7 @@ It resolves to the **financial products and services declaration** checkbox. Not
 |---|---|---|
 | 1 | **Aircon Push \| July → ON**, $10/day | 12 leads at $28 is the best number in the account's history and it was sitting dark |
 | 2 | **MVX – Air Cons – Aug → OFF** | Same offer as #1 at 2.3× the cost. Two campaigns bidding for the same person |
-| 3 | **MVX – General Electrician – Aug → OFF** | 1 lead at $125. Replaced by the new calls campaign |
+| 3 | **MVX – General Electrician – Aug → OFF** | 1 lead at $125. Replaced by the new General Electrical campaign |
 | 4 | MVX – New Builds & Renos – Aug | **Left running**, $20/day, untouched |
 | 5 | General Electrician \| July | Left off |
 
@@ -111,16 +111,19 @@ Nothing was deleted. Every paused campaign is still there for reference.
 
 ### Drafts built, not published (Hunter presses Publish)
 
-**New campaign — `MVX | General Electrical | Calls | Aug 2026`**
+**New campaign — `MVX | General Electrical | Leads | Aug 2026`**
+
+⚠️ **This was first built as a *calls* campaign and then rebuilt as a *form* campaign later the same day.** Reason and consequences in §3a below; the reasoning trail for the calls version is kept there deliberately, because the decision reversed on new information rather than on a mistake.
 
 ```
 Objective            Leads
-Conversion location  Calls              ← locks at publish
-Performance goal     Maximise number of calls (only option available)
+Conversion location  Instant forms      ← locks at publish
+Performance goal     Maximise number of leads
 Cost per result goal empty, deliberately
 Budget               $20/day, campaign level (CBO)
-Phone                0427 593 990
-Schedule             Mon–Sat 09:00–18:00 Brisbane
+Instant form         General Electrician Enquiry | MVX | August 2026 (existing)
+                     with "Call Matt Directly" additional action retained
+Schedule             none — runs 24/7 (dayparting is calls-only, see §3a)
 Locations            Gold Coast +17 km QLD; Byron Bay +40 km NSW
 "Reach more people likely to respond"   UNTICKED
 Minimum age          25
@@ -130,9 +133,10 @@ Advantage+ placements ON
 Ad set               1 · Ads 2
 ```
 
-- **`GE-List`** → MVX Ad 3 (10.1s) · headline *Get The Whole List Done*
-- **`GE-WholeList`** → MVX Ad 2 (12.3s) · headline *One Visit, One Trade*
-- Both: CTA **Call Now**, multi-advertiser ads off, no AI creative, call description *"You'll speak to a licensed MVX electrician, not a call centre."*
+- **`GE-List`** → MVX Ad 3 (10.1s) · headline *Get The Whole List Done* · description *Gold Coast & Northern NSW.*
+- **`GE-WholeList`** → MVX Ad 2 (12.3s) · headline *One Visit, One Trade* · description *Licensed. Gold Coast & Northern NSW.*
+- Both: CTA **Get quote**, multi-advertiser ads off, all Advantage+ creative enhancements off, no AI creative
+- Both primary texts rewritten to end on *"tell us what's on the list and we'll come back to you"* rather than pointing at a phone
 
 **New ad in the existing campaign — `NB-Renos-Video`**
 
@@ -143,7 +147,41 @@ Inside `MVX – New Builds & Renos – Aug 2026`. **No budget or targeting chang
 - Same `New Home & Renos | MVX | August 2026` instant form as the existing ad, with its "Call Matt Directly" action intact
 - Multi-advertiser ads off · all four Advantage+ creative enhancements off (video touch-ups, text improvements, relevant comments, enhance CTA) · no AI images
 
-**Total after publish: $50/day** — Aircon Push $10 + New Builds $20 + Calls $20. Approved by Hunter, 10 Aug.
+**Total after publish: $50/day** — Aircon Push $10 + New Builds $20 + General Electrical $20. Approved by Hunter, 10 Aug. Note the third ad, `NB-Renos-Video`, costs nothing extra: it rides on New Builds' existing $20.
+
+---
+
+## 3a. Why the calls campaign became a form campaign
+
+**The trigger:** Hunter, on being told the campaign put a Call Now button in front of Gold Coast homeowners — *"wouldn't a form be better cause he is bad at answering the phone?"* That is decisive information that wasn't available when the calls version was specced, and it inverts the logic.
+
+**The argument.** A calls campaign makes Matt's phone habits the product. Every dollar buys a ring, and a missed ring is a paid click that leaves **no name, no number, no record** — nothing to follow up and no way to even know it happened. A form lead sits in the inbox until he gets to it. Against an owner who doesn't reliably answer, a mediocre form beats a good call every time.
+
+**Timing was the whole reason this was cheap.** Conversion location locks at **publish**, not at build. The campaign was still a draft, so the switch cost nothing. An hour later it would have meant a full rebuild.
+
+**What was kept:** the form retains its **"Call Matt Directly"** additional action, so anyone who'd rather ring still can. The choice was never call-or-form; it was which one is the *default*.
+
+### What the switch cost
+
+| Lost | Assessment |
+|---|---|
+| Mon–Sat 09:00–18:00 schedule | **No real loss.** Ad scheduling on a daily budget is a calls-only feature — it vanished from the ad set on switching. But the only reason for that schedule was to stop the phone ringing when nobody could answer. A form doesn't care what time it arrives. 24/7 is now correct |
+| Creative on both ads | ⚠️ **Real cost.** Switching conversion location **silently wiped the video and all copy from both ads.** No warning. Both were rebuilt from scratch. **Lesson: set conversion location before building ads, never after** |
+| Message match | ⚠️ Matt says *"give us a call"* on camera while the button reads *Get quote*. A genuine mismatch, accepted deliberately against the missed-call risk, and softened by the call action on the form |
+
+### The WhatsApp ghost
+
+After the switch, `GE-WholeList` refused to validate: *"WhatsApp number required: Reconnect your WhatsApp number to your Facebook Page or Instagram account to run this ad. (#2446880)"* — despite WhatsApp being unticked everywhere visible.
+
+Cause: that ad was duplicated **while the campaign was still on Calls**, and the Calls destination panel carries a *"Call on WhatsApp"* option. The duplicate inherited a reference the form UI no longer displays and therefore can't clear. Fix was to delete the ad and re-duplicate from the already-rebuilt `GE-List`. **If a stale error survives every visible setting, the object is carrying state from a previous conversion location — rebuild it rather than hunt for the toggle.**
+
+### The form: built, then discarded
+
+A purpose-built form (`General Electrical - Qualified - Aug 2026`) was started with **Higher intent** (adds a review step) and **Flexible form delivery OFF** — that last one matters and is easy to miss: it lets Meta *remove your qualifying questions* to lift volume, which would silently delete the entire quality strategy.
+
+Two things happened to it. First, Hunter challenged the opening question — *"why does it matter if you own the property, only people who own would be doing it"* — **and he was right.** Ownership is a hot-water qualifier, where a renter genuinely cannot authorise a $3k system swap. On a fan or a powerpoint it filters almost nobody, and property managers are legitimate buyers. It was swapped for a scope question. Then Hunter's call: **use existing forms.** The new form was discarded unsaved and `General Electrician Enquiry | MVX | August 2026` attached instead.
+
+⚠️ **Live risk, stated plainly:** that is the same form the General Electrician campaign was running when it produced 1 lead at $125. The creative and the geo are materially different now, so this is not a like-for-like repeat — but **if week one produces junk again, the form is the first suspect, not the ads.**
 
 ---
 
@@ -159,7 +197,9 @@ The 3 Aug shoot delivered **five files, three of them ads.** Verified by pulling
 | Green Power Boxes | 47.9s | Commercial switchboard/pillar project | none | organic only |
 | Broadbeach Library | 19.9s | Council library fitout | none | organic only |
 
-**The CTA split is what decided the whole structure.** Two cuts say *call*, one says *send your plans*. Conversion location locks at publish, so the mechanism had to follow the creative — a calls campaign for the two, and the existing form campaign for the third. Putting all three in one place would have mismatched the ask on at least one of them.
+**The CTA split is what decided the structure.** Two cuts say *call*, one says *send your plans*, so they could never share a campaign — the two "list" cuts went to General Electrical, the reno cut into the existing New Builds campaign whose form already matches its ask.
+
+⚠️ **The split no longer decides the *mechanism*, only the grouping.** Both campaigns are now forms. The two "list" ads therefore say *"give us a call"* on camera while their button reads *Get quote* — a knowing mismatch, taken because Matt doesn't reliably answer the phone (§3a), and softened by the "Call Matt Directly" action on the form. **If those two are ever re-cut, change the spoken CTA to "tap below" or "send us your list."**
 
 **The two project videos are not lead ads.** They end on scenery with no offer and no ask, and their subject is council/commercial work. In a lead campaign they would spend and return nothing. They belong on the Page and Instagram organically, and later as retargeting creative.
 
@@ -169,24 +209,27 @@ The 3 Aug shoot delivered **five files, three of them ads.** Verified by pulling
 
 ## 5. Open, in priority order
 
-1. **⚠️ Matt: who answers the phone, and what does voicemail say?** Highest priority and it is not an Ads Manager setting. The calls ads put a Call Now button in front of Gold Coast homeowners six days a week; a rung-out phone is a paid click with no record it happened. The Mon–Sat 9–6 schedule mitigates it, it does not solve it.
-2. **Publish the three drafts.** Hunter.
-3. **SMS verification on the New Builds instant form.** Meta offers it in the duplicate dialog claiming +27% lead quality. Left off deliberately — it changes a live form's flow, which is a decision not a side effect. Recommended: turn it on. That campaign's documented problem is junk leads at $126 each, and this is the closest available substitute for the qualifying questions the form doesn't have.
-4. **4:5 crops** on all three videos, checked frame by frame against the caption safe zone.
+1. **Publish the three drafts.** Hunter. Nothing is live; the account is running $30/day until he does.
+2. **⚠️ Watch the form's lead quality specifically.** `General Electrician Enquiry | MVX | August 2026` is the same form that campaign ran when it made 1 lead at $125. Different creative and geo now, so not a repeat — but it is the first suspect if week one is junk. **Downgraded from "who answers the phone", which the switch to forms largely retired.**
+3. **SMS verification on both instant forms.** Meta offers it in the duplicate dialog claiming +27% lead quality, and again inside the form builder as *"Require SMS verification to submit form"*. Left off deliberately — it changes a live form's flow, which is a decision not a side effect. Recommended: turn it on. Junk leads are the documented problem and this is the closest substitute for qualifiers these forms don't have.
+4. **4:5 crops** on all three videos, checked frame by frame against the caption safe zone. Meta has auto-generated 1024×1280 crops in the library — **inspect before using, they were not reviewed.**
 5. **Min job value from Matt** — outstanding since 29 Jul, still sets the kill thresholds.
-6. **Business Manager admin bump** — outstanding since 29 Jul. Not on the critical path for an on-Facebook calls campaign, blocks everything after it.
+6. **Business Manager admin bump** — outstanding since 29 Jul. Not on the critical path, blocks everything after it.
+
+⚠️ **If the two "list" ads are ever re-cut**, change Matt's spoken CTA from "give us a call" to something form-shaped.
 
 ---
 
 ## 6. Review calendar
 
-- **Day 0, +2h** — ads Active not Rejected. Ring 0427 593 990 yourself; it tests the actual product, which is Matt's phone.
-- **Day 2** — did it spend the full $20? Short means the goal or audience is too tight. Change one thing.
+- **Day 0, +2h** — ads Active, not Rejected.
+- **Day 0** — submit a test lead through the form yourself. Confirm it lands where Matt will actually see it. This is the equivalent of ringing the phone on a calls campaign, and it is the single cheapest check available.
+- **Day 2** — did it spend the full $20? Short means the audience or goal is too tight. Change one thing.
 - **Days 3–6** — hands off. Editing restarts learning.
-- **Day 7** — cut the weaker of the two calls ads on **link CTR** (~1% floor against the ~1.68% AU baseline) and 3-second views. **No cost decisions yet.** Also pull *Breakdown → By Time → Hour of day* to check the schedule is landing where it should.
-- **Day 14** — ask Matt how many calls were real jobs. If they're all four-second hang-ups, that's the missing duration goal, not the creative.
-- **Week 3** — cost per call means something. Set a cost cap with real data. Scale the survivor.
-- **Throughout** — judge on jobs quoted, not calls received, and compare quality against Aircon Push running on the old settings. Same account, same brand, same audience, different settings: whatever the difference is, it's the settings. That's why the control is back on.
+- **Day 7** — cut the weaker of the two ads on **link CTR** (~1% floor against the ~1.68% AU baseline) and 3-second video views. **No cost-per-lead decisions yet** — the sample is too small to mean anything.
+- **Day 14** — ask Matt how many were real jobs. If they're junk, look at the **form** first (item 2), not the creative.
+- **Week 3** — cost per lead finally means something. Set a cost cap with real data. Scale the survivor.
+- **Throughout** — judge on jobs quoted, not leads received, and compare quality against Aircon Push running on the old settings. Same account, same brand, same audience, different settings: whatever the difference is, it's the settings. That's why the control is back on.
 
 ---
 _Vault: [[mvx-electrical]] · [BUILD-CALLS.md](BUILD-CALLS.md) · [BUILD.md](BUILD.md) · [ACCOUNT-SETTINGS.md](ACCOUNT-SETTINGS.md) · method: [[paid-ads-diagnostic-rulebook]]_
