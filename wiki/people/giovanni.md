@@ -21,4 +21,4 @@ Closing instruction worth keeping as a general training pattern: **if something 
 
 ## Related
 
-[[jang-studio]] — the other offshore editing relationship · [[higgsfield-pipelines]] · [[staging-rules]] · [[film-engine|film engine]]
+[[jang-studio]] — the other offshore editing relationship · [[higgsfield-pipelines]] · [[staging-rules]]

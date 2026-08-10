@@ -7,7 +7,7 @@ updated: 2026-07-29
 
 # Paid Ads Diagnostic Rulebook
 
-A portable method for diagnosing an underperforming Meta/Facebook lead campaign, written so it can be handed to a fresh chat with no prior context. Built during the [[10x Visuals]] investment-leads campaign (4 days, $40/day, zero leads) and generalised. The rules below are the method, not the campaign — they hold for any local-service lead campaign.
+A portable method for diagnosing an underperforming Meta/Facebook lead campaign, written so it can be handed to a fresh chat with no prior context. Built during the [[overview|10x Visuals]] investment-leads campaign (4 days, $40/day, zero leads) and generalised. The rules below are the method, not the campaign — they hold for any local-service lead campaign.
 
 Companion artefacts: the live job handoff is [fb-ads-handoff.md](../../projects/fb-ads-handoff.md), which pairs a paste-ready operator prompt with the campaign's own numbers.
 
