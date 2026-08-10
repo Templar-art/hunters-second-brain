@@ -1,5 +1,9 @@
 {
   "userIgnoreFilters": [
-    "projects/jarvis/voice/kokoro/venv/"
+    "projects/jarvis/voice/kokoro/venv/",
+    ".agents/",
+    ".github/",
+    ".claude/",
+    ".impeccable/"
   ]
 }

@@ -48,8 +48,25 @@ function json(res, code, obj) {
   res.end(JSON.stringify(obj));
 }
 
+// Loopback binding stops the LAN, not the browser: any page Hunter visits can
+// POST to 127.0.0.1 from his own machine, and a text/plain form post skips the
+// CORS preflight entirely. Since /api/run spawns an agent with write + push,
+// every mutating request must look like it came from the dashboard's own fetch:
+// same-origin (or absent) Origin header, and a real JSON content-type, which a
+// cross-site form cannot set without triggering a preflight this server fails.
+const ALLOWED_ORIGINS = new Set([`http://127.0.0.1:${PORT}`, `http://localhost:${PORT}`]);
+function sameOrigin(req) {
+  const origin = req.headers.origin;
+  if (origin && !ALLOWED_ORIGINS.has(origin)) return false;
+  return (req.headers['content-type'] || '').startsWith('application/json');
+}
+
 const server = createServer((req, res) => {
   const url = new URL(req.url, 'http://localhost');
+
+  if (req.method === 'POST' && !sameOrigin(req)) {
+    return json(res, 403, { error: 'cross-site request refused' });
+  }
 
   if (req.method === 'GET' && url.pathname === '/') {
     res.writeHead(200, { 'content-type': 'text/html' });

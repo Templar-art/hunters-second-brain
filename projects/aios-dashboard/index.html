@@ -282,7 +282,7 @@ $('buttons').addEventListener('click', (e) => {
   if (btn) runAction(btn.dataset.id, btn);
 });
 $('wrRun').addEventListener('click', () => runAction('weekly-review', null));
-$('killBtn').addEventListener('click', () => fetch('/api/kill', { method: 'POST' }));
+$('killBtn').addEventListener('click', () => fetch('/api/kill', { method: 'POST', headers: { 'content-type': 'application/json' } }));
 $('refreshBtn').addEventListener('click', refresh);
 
 refresh();
