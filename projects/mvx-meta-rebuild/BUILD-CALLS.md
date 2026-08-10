@@ -1,6 +1,15 @@
 # MVX Meta — General Electrical (Calls) — build sheet
 
-**Date:** 2026-08-10 · **Creative:** 3 talking-head cuts filmed 3 Aug · **Status:** ready to build, three items need Matt
+**Date:** 2026-08-10 · **Creative:** 3 talking-head cuts filmed 3 Aug · **Status:** ⚠️ **BUILT — but this sheet was written before the account was inspected and several of its assumptions turned out to be wrong. [ACCOUNT-STATE-2026-08-10.md](ACCOUNT-STATE-2026-08-10.md) is authoritative for what actually exists.** Read that first; this sheet is kept for the reasoning trail.
+
+**Corrections, all confirmed in Ads Manager 10 Aug:**
+- **The creative is not all one angle.** Ad 1 is New Builds & Renos and its spoken CTA is "send us your plans", not a call. It went into the existing New Builds campaign as `NB-Renos-Video`. Only Ads 2 and 3 are in the calls campaign.
+- **There is no quality-calls / call-duration performance goal on this account.** "Maximise number of calls is the only performance goal available for this conversion location." The quality lever specced below does not exist.
+- **No cost-per-result cap was set** — deliberate reversal of the fallback below, since a call tap costs far less than $45 and a cap would only throttle.
+- **Ad scheduling IS available on a daily budget** for a Calls conversion location. Set Mon–Sat 09:00–18:00. The lifetime-budget claim below is wrong.
+- **Minimum age caps at 25**, not 30.
+- **Three August campaigns were already live and unlogged**, and Aircon Push had been switched off. Corrected.
+
 **Decisions locked 10 Aug (Hunter):** conversion location **Calls** · budget **up to $50/day** · Advantage+ audience **ON**
 
 Vault: [[mvx-electrical]] · scripts: [VIDEO-SCRIPTS.md](../mvx-creatives/VIDEO-SCRIPTS.md) · account settings: [ACCOUNT-SETTINGS.md](ACCOUNT-SETTINGS.md) · method: [[paid-ads-diagnostic-rulebook]]
