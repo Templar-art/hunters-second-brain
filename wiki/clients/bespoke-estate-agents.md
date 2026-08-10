@@ -2,7 +2,7 @@
 type: client
 tags: [client, real-estate, brand-system]
 status: active
-updated: 2026-07-27
+updated: 2026-08-10
 ---
 
 # Bespoke Estate Agents — Brand + Social System
@@ -102,3 +102,13 @@ An external team ("the other boys") finished and deployed the Bespoke website. L
 - **The site's own custom CSS** (an inline `<style>` block, ~26KB, not reachable via the HTML-widget paste) still hardcodes two stock-image backgrounds (`.cta-fixed`, `.page-hero--fixed`) and mobile-fallback caption text reading "The Boulevard" / "01 / 03" — needs a direct edit in Elementor's Custom CSS panel, which the HTML paste route can't reach.
 
 **Deploy status:** none of this is live yet — it's all sitting in `projects/bespoke-elementor-source/` waiting to be pasted into the real Elementor HTML widgets. Home/Projects/Services/Contact are ready to paste as-is; About is not (still the Services duplicate). A local preview build exists at `projects/bespoke-elementor-source/preview/` (site CSS/fonts/header/footer reconstructed from the live page so the raw fragments render properly outside Elementor) for checking layout before pasting.
+
+## SOLD reel pop-ups (29–30 Jul 2026) — delivered, 0 credits
+
+Three animated pop-up overlays for a Bespoke SOLD reel, built as HTML/CSS and rendered to video rather than generated: **0 credits, $0**. Build: [projects/bespoke-sold-popups/](../../projects/bespoke-sold-popups/) · [JOB.md](../../projects/bespoke-sold-popups/JOB.md) · [BUILD-NOTES.md](../../projects/bespoke-sold-popups/BUILD-NOTES.md). Delivered in 9:16 and 16:9, ProRes 4444 and HEVC-with-alpha, masters on Desktop.
+
+Briefed against Belinda Blucher's "SOLD in 7 Days" reel, re-typeset in Bespoke's faces (Zodiak Light Italic + Poppins).
+
+**What it taught us, and it is the transferable part: interpret a reference only after you have actually watched it.** The first pass was built from a description of the reel — glass cards, lower third, hairlines — because Instagram's login wall blocked the automated browser. It was wrong in every structural way. Pulling the reel with `yt-dlp` and stepping it at 2fps showed the real treatment: no panels at all, plain centred white type straight on the footage, numbers that **count up**, stat blocks that **accumulate** down the frame and clear together. The rebuild matched it. The parked first pass survives as `popups-cards.html`. **A blocked reference is a blocker, not a licence to guess** — and `yt-dlp` gets past the wall the browser could not.
+
+Render lessons worth keeping for the next overlay job: Chrome's transparent-background flag is dead, so alpha comes from a CDP background override; paused animations wedge `captureScreenshot`, so frozen frames get baked with `commitStyles` instead; and HEVC alpha needs `-alpha_quality 1` — at `0.9` the type decodes at ~77% opacity, which reads as a soft, cheap overlay rather than a crisp one.

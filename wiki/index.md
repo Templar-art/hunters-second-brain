@@ -11,7 +11,8 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[tyson]] — CEO
 - [[damon]] — COO
 - [[kris]] — videographer
-- [[lachlan]] — editor
+- [[lachlan]] — editor; holds the [[10x-website]] Elementor rebuild handoff
+- [[giovanni]] — onboarding onto AI property stills + video (SOP issued 28 Jul)
 
 ## Clients
 - [[coast-life-constructions]] — builder IG repositioning; active execution; Rob's brand verdict governs

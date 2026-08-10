@@ -2,7 +2,7 @@
 type: project
 tags: [10x-visuals, website, design-system, prestige, lead-gen]
 status: deploy-in-progress-hunter-and-lach
-updated: 2026-08-04
+updated: 2026-08-10
 ---
 
 # 10x Website
@@ -10,6 +10,13 @@ updated: 2026-08-04
 10x Visuals' own front door, `10xvisuals.com.au`. A WordPress site with real content and real case studies whose finish did not match the work it sells. Rebuilt on 30 Jul 2026 as six static pages against [[brand-system|Prestige DS v1.0]]: the homepage plus all five interior pages, generated from a script rather than hand-written.
 
 **Build:** [projects/10x-site/](../../projects/10x-site/) · **Spec + outcome:** [design spec](../../docs/superpowers/specs/2026-07-30-10x-homepage-prestige-rebuild-design.md) · **System of record:** [DESIGN.md](../../DESIGN.md), Prestige layer
+**Handoff (6 Aug):** [projects/10x-site-for-lach/](../../projects/10x-site-for-lach/) · **Media:** [projects/10x-site-media-export/](../../projects/10x-site-media-export/)
+
+## Handoff to [[lachlan]] (6 Aug 2026)
+
+The static build was exported for a WordPress/Elementor rebuild: 12 HTML files (homepage plus 11 interior and case-study pages), `assets/prestige.css` + `prestige.js`, the `tdx-widgets` bundle behind the homepage "closer look" gallery, and the real client logos. `README.txt` in that folder is the handoff note.
+
+Two deliberate choices in the export, both easy to get wrong on the receiving end. **Header and footer are stripped from every page** — those come from the WordPress theme and must not be duplicated out of the static build. And **most media is not in the export at all**: images already point at `10xvisuals.com.au/wp-content/uploads/2026/08/…`, so only the two files that were not yet in the media library ship alongside. The separate media export folder holds the full set at multiple widths (800/1400/1800/2200 + webp) for anything that does need re-uploading.
 
 ## What the site is
 
