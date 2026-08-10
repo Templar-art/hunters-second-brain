@@ -5,6 +5,10 @@
     ".github/",
     ".claude/",
     ".impeccable/",
-    "projects/bespoke-scrape/brand/zodiak/"
+    "projects/bespoke-scrape/brand/zodiak/",
+    "/node_modules/",
+    "/site-packages/",
+    "/\\.venv/",
+    "/(^|\\/)venv\\//"
   ]
 }
