@@ -757,6 +757,24 @@ track to its own content instead of scrolling, since grid items default to `min-
 phantom and the real bug came out of the same measurement, per [[claude-code-setup]]-adjacent lesson:
 verify the pane is visible before trusting or dismissing a layout number.
 
+**Third pass, and the correction that mattered: "the ones you gave me were body fonts not header
+fonts."** Correct. All twenty-nine so far had been selected on long-copy legibility, which is the
+criterion for a *text* face, and the single-family recommendation quietly assumed the headline did
+not need a voice. A text face set at 60px is a headline that is merely big. Added a **ten-face header
+sweep** judged on presence instead — Jost, Unbounded, Wix Madefor Display, Bricolage Grotesque,
+Familjen Grotesk, Chivo, Big Shoulders, Anton, Syne, and Bebas Neue included expressly to be ruled
+out as the Australian real-estate cliché. Each header card shows the name at display size **and the
+same face at body size underneath**, so the limitation is visible rather than asserted.
+
+Recommendation is now a pairing: **Jost SemiBold headlines + Libre Franklin Regular body**, with Wix
+Madefor Display/Text as the zero-clash alternative. That required owning a reversal in writing:
+geometric faces were ruled out earlier (Outfit, Poppins) and Jost is geometric. The objection was to
+geometry *as a body face*; at 60px used sparingly the same evenness is the premium property register.
+Different job, opposite verdict — now stated on the page rather than left to look like inconsistency.
+
+The durable lesson went to [[typography]] as a role table: **ask which job the face is for before
+researching**, because the two shortlists share almost no members.
+
 New concept page [[typography]] holds the durable half — the two-family decision table, the
 never-Poppins and Inter-is-a-fallback rules, and a licensing note that **Fontshare's free-commercial
 fonts are reported to need written consent before self-hosting webfonts**, which is a live risk on

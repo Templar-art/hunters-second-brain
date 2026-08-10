@@ -48,7 +48,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
 - [[zed-style]] — the ZED piece-list: white/cream restyle set, single source for both ZED jobs
 - [[brand-system]] — 10x brand + standing design rules for all graphics
-- [[typography]] — choosing type *for a client*: serif vs sans, the three sans families, no-serif systems, licensing, never-Poppins rule; O'Neill Group 19-face shortlist 10 Aug
+- [[typography]] — choosing type *for a client*: **display vs text is the split that gets missed**, serif vs sans, the three sans families, no-serif systems, licensing, never-Poppins rule; O'Neill Group 29-face shortlist 10 Aug
 - [[ig-caption-voice]] — per-account caption voice discipline (10x modes, Rob, Jason)
 - [[music-taxonomy]] — locked controlled vocabulary for the music library
 - [[paid-ads-diagnostic-rulebook]] — portable method for diagnosing a dead Meta lead campaign + AU benchmarks; Rule 8 = pre-launch tracking setup

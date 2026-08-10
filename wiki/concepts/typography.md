@@ -56,6 +56,27 @@ with real condensed widths. Logotype only → geometric is fine.
 - Anything sold per-seat or per-pageview is a client purchase, not an agency one — never bury a
   paid licence inside a deliverable.
 
+## Display vs text — the distinction that gets missed
+
+**A text face set large is not a headline face.** A text face is drawn to disappear at 16px across a
+long paragraph: open spacing, long extenders, even colour. A display face is drawn for 60px —
+tighter spacing, shorter extenders, shapes that only resolve at size. Set a text face at 60px and
+you get a headline that is merely big; set a display face at 16px and it clogs.
+
+So a shortlist has to be built per role. Ask which job the face is for **before** researching:
+
+| | Header / display | Body / text |
+|---|---|---|
+| Judged on | Character, presence, how the wordmark looks | Legibility at 13–17px over paragraphs |
+| Wants | Tight tracking, heavy weights, distinctive shapes | Open apertures, generous spacing, big weight range |
+| Free picks | Jost, Unbounded, Wix Madefor Display, Familjen Grotesk, Bricolage Grotesque, Chivo | Libre Franklin, Schibsted Grotesk, Manrope, Hanken Grotesk, Public Sans |
+| Avoid | Bebas Neue (the AU real-estate cliché), Anton (single weight, cannot flex) | Inter (no distinction), any display face |
+
+⚠️ **Geometric faces flip verdict by role.** Ruled out as a *body* face — perfect circles even out a
+paragraph's texture and read start-up at 16px. Right as a *display* face — at 60px, used sparingly,
+that evenness is the premium register property branding runs on. Same shapes, opposite call. State
+the role when quoting either verdict.
+
 ## No-serif systems
 
 When a client rules serifs out — as O'Neill Group's did, on the grounds of disliking the pointy
@@ -82,14 +103,23 @@ when the audience skews older.
 
 ## Applied: O'Neill Group (10 Aug 2026)
 
-Nineteen free faces with the client's own name set in each one, rendered in themselves so the choice
-is made by eye: [sans-serif-shortlist.html](../../projects/oneill-group-type/sans-serif-shortlist.html) ·
+Twenty-nine free faces — ten header, nineteen body — with the client's own name set in each one,
+rendered in themselves so the choice is made by eye:
+[sans-serif-shortlist.html](../../projects/oneill-group-type/sans-serif-shortlist.html) ·
 [artifact](https://claude.ai/code/artifact/80e5acd5-0afb-45ce-a40a-d7b7fc2d6071)
 
-**Recommendation: Libre Franklin across the whole system** — Bold 700 headlines, SemiBold 600
-kickers tracked 0.18em caps, Regular 400 body, SemiBold tabular figures. It descends from Franklin
-Gothic, the face of American newspapers and civic signage for a century: established without
-reading old, and the only candidate equally convincing at 13px and at 46px.
+**Recommendation: Jost SemiBold headlines + Libre Franklin Regular body.** Jost is Futura's geometry
+redrawn and released free — wide, even, calm, no serifs and no sharp spurs, and the shape language
+behind a great deal of premium property branding. Libre Franklin under it descends from Franklin
+Gothic, the face of American newspapers and civic signage for a century: established without reading
+old, and equally convincing at 13px and at 46px.
+
+Zero-risk alternative if the client wants nothing to argue about: **Wix Madefor Display over Wix
+Madefor Text** — one family, two properly separate drawings, so a clash is not possible.
+
+⚠️ The first version of this recommendation was **one family in three weights**, which is the right
+answer only if the headline should stay anonymous. Hunter's correction — those were all body faces —
+was correct, and it is the reason the display/text split above is written down.
 
 **Closest rival: Schibsted Grotesk** — purpose-drawn for headline and body in one voice, and barely
 used in Australian property. Libre Franklin takes it on two counts only: a century of civic and
