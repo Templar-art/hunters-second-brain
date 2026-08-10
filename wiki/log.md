@@ -708,3 +708,37 @@ Two lessons pulled out of those folders rather than left in a JOB.md. From the p
 Also fixed this session, before the graph work: the AIOS dashboard was **CSRF-able from any website Hunter visited** — loopback binding stops the LAN, not the browser, and a `text/plain` form post skips the CORS preflight, so `/api/run` (headless Claude with write + push) was reachable cross-site. Mutating requests now require a same-origin-or-absent `Origin` and a JSON content-type; verified refused from a spoofed origin under both content types. See [[claude-code-setup]] and [[agentic-os]]. Zero cost.
 
 Not done, deliberately: the `.git` directory is 1.3GB against 1.1GB of tracked files (two ~40MB hero videos, a 41MB JPG, a 43MB PDF). Shrinking it means rewriting history and force-pushing to the only remote that backs this vault up, and the media in question are real assets — the rewrite would strip them from the repo, not just from history. Left alone as slow-but-correct.
+
+## [2026-08-10] query | Sans serif research for O'Neill Group
+
+Hunter asked for sans serif research without knowing what the term meant, for client work on
+**O'Neill Group**. No such entity exists in the vault — the only O'Neill on record is Brian O'Neill
+of [[strategic-investing-qld]], whose Quiet Equity system already runs Marcellus + Inter. The work
+was written against that system with the mismatch flagged rather than assumed away, on both the
+deliverable and [[typography]].
+
+Built a specimen sheet rather than a list of font names: eight free faces, each **rendered in
+itself** via base64 `@font-face` data URIs (17 latin woff2 faces, 500KB, embedded because the
+artifact CSP blocks font CDNs), all set in identical real client copy so the only variable is the
+typeface — [sans-serif-shortlist.html](../projects/oneill-group-type/sans-serif-shortlist.html) ·
+[artifact](https://claude.ai/code/artifact/80e5acd5-0afb-45ce-a40a-d7b7fc2d6071). Opens by teaching
+the term (a serif is a foot, *sans* is without) and the three families, because that was the actual
+question.
+
+**Mid-task the brief changed: no serifs at all** — the client dislikes the pointy parts — which
+killed the Marcellus half of the first recommendation and took the serif out of the deliverable's
+own headings. Rebuilt as a **sans-only, single-family system: Libre Franklin at 700/600/400**, with
+the hierarchy coming from weight, size and tracking instead of from a second kind of letter. Added
+three soft-terminal candidates for the no-pointy brief (Manrope, Figtree, Nunito Sans) and set the
+client's own name as a wordmark on all eleven cards, since that is the line actually being judged.
+Ruled out Outfit (fintech register), Poppins (it is 10x's own face — a client should not wear its
+agency's typeface), Inter (the incumbent; flawless and completely undistinctive) and Nunito Sans
+(too soft when the subject is somebody's mortgage).
+
+Flagged rather than assumed: if O'Neill Group *is* the SIQ brand, no-serifs means **retiring
+Marcellus**, which is a live identity change and a reissue of every asset built on it.
+
+New concept page [[typography]] holds the durable half — the two-family decision table, the
+never-Poppins and Inter-is-a-fallback rules, and a licensing note that **Fontshare's free-commercial
+fonts are reported to need written consent before self-hosting webfonts**, which is a live risk on
+any client site build and is flagged unverified against the licence text itself.
