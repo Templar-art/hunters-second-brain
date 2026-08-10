@@ -69,23 +69,38 @@ not personality, becomes the selection criterion.
 
 "No serifs" also often means "nothing pointy", which is a different constraint: it is about how the
 stroke ends are finished — cut flat, cut at an angle, or blunt and soft. Soft-ended faces worth
-knowing: **Manrope** (soft but still has a spine), **Figtree** (soft geometric), **Nunito Sans**
+knowing: **Manrope** (soft but still has a spine), **Hanken Grotesk** (calm, recedes), **Red Hat
+Text** (warm corporate), **Figtree** and **Albert Sans** (soft geometrics), **Nunito Sans**
 (genuinely rounded, and too informal for anything financial).
+
+The faces drawn *for* headline-plus-body duty are the ones to reach for when there is no serif to
+share the load: **Schibsted Grotesk** (commissioned by a Nordic news group), **Libre Franklin** and
+its federal-design-system fork **Public Sans**, and **Red Hat** / **Wix Madefor**, which ship
+separate Display and Text cuts. **Lexend** is the outlier worth remembering — drawn with wide
+apertures specifically to lower reading effort, with research behind it, which is a real argument
+when the audience skews older.
 
 ## Applied: O'Neill Group (10 Aug 2026)
 
-Eleven free faces with the client's own name set in each one, rendered in themselves so the choice
+Nineteen free faces with the client's own name set in each one, rendered in themselves so the choice
 is made by eye: [sans-serif-shortlist.html](../../projects/oneill-group-type/sans-serif-shortlist.html) ·
 [artifact](https://claude.ai/code/artifact/80e5acd5-0afb-45ce-a40a-d7b7fc2d6071)
 
 **Recommendation: Libre Franklin across the whole system** — Bold 700 headlines, SemiBold 600
 kickers tracked 0.18em caps, Regular 400 body, SemiBold tabular figures. It descends from Franklin
 Gothic, the face of American newspapers and civic signage for a century: established without
-reading old, and the only candidate equally convincing at 13px and at 46px. Runner-up **Manrope**
-if the soft-terminals objection needs answering harder; **Instrument Sans** if the brand should
-feel younger. Ruled out: **Outfit** (fintech register, wrong for financial advice), **Poppins**
-(agency conflict), **Inter** (incumbent, flawless and completely undistinctive), **Nunito Sans**
-(trades gravitas for friendliness — wrong when the subject is somebody's mortgage).
+reading old, and the only candidate equally convincing at 13px and at 46px.
+
+**Closest rival: Schibsted Grotesk** — purpose-drawn for headline and body in one voice, and barely
+used in Australian property. Libre Franklin takes it on two counts only: a century of civic and
+financial usage behind the shapes, and nine weights against six, which matters when one family
+covers hero to disclaimer. Swap them if the brand should look less like the category.
+
+Runner-up on softness **Manrope**; **Hanken Grotesk** if the type should recede; **Lexend** if the
+readability argument wins. Ruled out: **Outfit** (fintech register), **Poppins** (agency conflict),
+**Inter** (incumbent, flawless and completely undistinctive), **IBM Plex Sans** (engineered, colder
+than the brief), **Nunito Sans** and **Gabarito** (trade gravitas for friendliness — wrong when the
+subject is somebody's mortgage).
 
 ⚠️ **Two things unconfirmed.** Written against the Quiet Equity system on file for Brian O'Neill's
 [[strategic-investing-qld]] — navy, gold, Marcellus, Inter. If O'Neill Group is a separate entity

@@ -738,6 +738,25 @@ agency's typeface), Inter (the incumbent; flawless and completely undistinctive)
 Flagged rather than assumed: if O'Neill Group *is* the SIQ brand, no-serifs means **retiring
 Marcellus**, which is a live identity change and a reissue of every asset built on it.
 
+**Second sweep on request: eight more, nineteen total.** Went looking specifically for faces drawn
+to carry headline *and* body in one voice, since that is what a serif-free system demands. It turned
+up a genuine rival rather than filler: **Schibsted Grotesk**, commissioned by a Nordic news group for
+exactly that dual duty and almost unused in Australian property. Libre Franklin keeps the
+recommendation on two counts only — a century of civic and financial usage behind the shapes, and
+nine weights against six — and the swap is offered rather than buried. Also added Public Sans (a
+federal-design-system fork of Libre Franklin, same bones and flatter), Hanken Grotesk, Lexend (drawn
+to lower reading effort, a real argument for an older audience), Red Hat Text, Albert Sans, IBM Plex
+Sans and Gabarito.
+
+Two build notes worth keeping. Google's CSS endpoint **rate-limits burst loops and returns an HTML
+bot page rather than an error code**, which silently poisoned eight font files with identical 6316-byte
+payloads; fixed with a retry-and-verify fetch plus an on-disk woff2 cache in the build script. And
+the browser pane going hidden reports `clientWidth: 0`, which faked a 1016px overflow — but once it
+was visible again the check found a **real** one: `.codeblock` inside a grid item was sizing the `1fr`
+track to its own content instead of scrolling, since grid items default to `min-width: auto`. Both the
+phantom and the real bug came out of the same measurement, per [[claude-code-setup]]-adjacent lesson:
+verify the pane is visible before trusting or dismissing a layout number.
+
 New concept page [[typography]] holds the durable half — the two-family decision table, the
 never-Poppins and Inter-is-a-fallback rules, and a licensing note that **Fontshare's free-commercial
 fonts are reported to need written consent before self-hosting webfonts**, which is a live risk on
