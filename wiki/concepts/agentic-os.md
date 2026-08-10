@@ -2,7 +2,7 @@
 type: concept
 tags: [aios, automation, infrastructure]
 status: phase-1-live
-updated: 2026-07-16
+updated: 2026-08-10
 ---
 
 # Agentic OS (AIOS)
@@ -33,11 +33,13 @@ The maintenance loop is the odd one out: a plain zsh script (`bin/mac-maintenanc
 
 Any loop that exits nonzero fires a macOS notification ("AIOS loop … failed") via the shared runner.
 
+**⚠️ The runners are node, not zsh, and must stay that way** (changed 2026-08-10, `3c20adf`). Under launchd `/bin/zsh` has no TCC access to `~/Documents`: it can `cd` into the vault but gets `Operation not permitted` on any file read. Every scheduled loop had been dead since at least 9 Aug for exactly this reason, failing on `can't open input file` before it ever reached Claude — no brief, no lint, no weekly review, and the failure notification never fired because the script died before the trap. `node` is already TCC-permitted, which is why the dashboard kept working throughout. `bin/run-action.mjs` replaced `run-action.sh`; `bin/run-shell.mjs` pipes the maintenance script into `zsh -s` so zsh never opens the protected path itself. Anything new on this clock takes the same route. Full audit: [[claude-code-setup]].
+
 Controls: `launchctl bootout gui/$UID/com.10x.aios.morning-brief` pauses a loop; `launchctl bootstrap gui/$UID ~/Library/LaunchAgents/<plist>` resumes it. Logs land in `projects/aios-dashboard/logs/`.
 
 ## Dashboard (L3)
 
-`node projects/aios-dashboard/server.mjs` → http://localhost:8770 (also in `.claude/launch.json` as `aios`). Live vault scan (jobs, credits, follow-ups, wiki health, daily note) plus buttons that fire any registry action with output streaming into an on-page console. Adding a button = one entry in `actions/actions.json` + one prompt file.
+`node projects/aios-dashboard/server.mjs` → http://localhost:8770 (also in `.claude/launch.json` as `aios`). **Binds `127.0.0.1` only** — it shipped bound to `0.0.0.0`, which put an unauthenticated `/api/run` (headless Claude with write + `git push`) in front of the whole LAN until 2026-08-10 (`cdac0f6`). Never re-bind it wide without adding auth first. Live vault scan (jobs, credits, follow-ups, wiki health, daily note) plus buttons that fire any registry action with output streaming into an on-page console. Adding a button = one entry in `actions/actions.json` + one prompt file.
 
 Current actions: Morning Brief, Plan Today, Vault Lint, Job Status (read-only audit), Weekly Review, Pull CRM (disabled until the 10x-crm MCP is re-authed).
 

@@ -49,6 +49,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[meta-tracking-setup]] — dataset/pixel install + which lead types it covers (⚠️ not instant forms); MVX site has no pixel
 - [[jarvis]] — Hunter's phased personal assistant; phase 1 = weekday 7am CRM morning brief via push
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
+- [[claude-code-setup]] — the Claude install mapped: settings, skills, MCP, permissions posture; 10 Aug audit (LAN-exposed dashboard, every scheduled loop dead on TCC)
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
 - [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)
 - [[mac-performance]] — what actually slows the MacBook (RAM ceiling, 3 displays, Adobe stack); never delete the Camera Raw cache
