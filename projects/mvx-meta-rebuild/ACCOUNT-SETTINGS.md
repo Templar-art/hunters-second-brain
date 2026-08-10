@@ -1,13 +1,13 @@
 # MVX Meta — account-wide settings
 
-**Date:** 2026-07-29 · **Status:** one open decision, flagged below
+**Date:** 2026-07-29 · **Updated:** 2026-08-10 · **Status:** all three settled
 
 Three settings were specified differently in [BUILD.md](BUILD.md) and [BUILD-NEWBUILDS.md](BUILD-NEWBUILDS.md). That's a bug rather than a difference of opinion, because these are **account-level truths about MVX's service area and audience** — they can't correctly be ON in one campaign and OFF in another for the same business. This file is the single source for them; both build sheets defer here.
 
 | Setting | BUILD.md said | BUILD-NEWBUILDS said | Resolved |
 |---|---|---|---|
 | Location setting | People living in this location | People living in this location | **Living in. Locked.** |
-| Advantage+ audience | OFF | ON | **Open — Hunter's call** |
+| Advantage+ audience | OFF | ON | **ON.** Hunter's call, 10 Aug 2026 — locked account-wide |
 | Advantage+ placements | Manual, no Audience Network | ON | **ON** |
 
 ---
@@ -28,7 +28,11 @@ Costs nothing, fights nothing, non-negotiable on every MVX campaign.
 
 Which means: the geo problem is already fixed by the locked setting, and Advantage+ audience is a separate, lower-stakes question that was never the root cause.
 
-### The open decision
+### Resolved 10 Aug 2026: ON
+
+Hunter's call, taken when the General Electrical calls campaign was built ([BUILD-CALLS.md](BUILD-CALLS.md)). **ON, account-wide, every campaign.** The reasoning below stands as recorded; the recommendation was ON and it was accepted. The geo is hard-locked, so expansion cannot reach another state, and the quality lever now sits in the performance goal — call *duration* on the calls campaign, cost-per-result target elsewhere.
+
+### The decision as it was framed
 
 **The argument for ON** — Meta needs room to find people, especially on $20–40/day. Post-Andromeda, broad-within-a-locked-geography genuinely outperforms hand-built interest stacks, and BUILD-NEWBUILDS notes it worked on Brian's [[strategic-investing-qld]] campaign, which converted.
 
@@ -60,7 +64,7 @@ Not everything should be unified. These stay campaign-level and the build sheets
 - **Conversion location, performance goal, cost-per-result target** — offer-specific.
 - **The form and its qualifying questions** — a hot water budget band and a new-build project type are not the same filter.
 
-⚠️ **Total daily spend across all MVX campaigns is now unbudgeted.** Hot water at $40/day plus new builds at $20/day plus anything for general electrical is $60+/day against two old campaigns that spent ~$541 over 30 days between them, or about $18/day. Nobody has agreed to triple the spend. **Needs a number before more than one campaign publishes.**
+⚠️ **Total daily spend across all MVX campaigns.** Hot water at $40/day plus new builds at $20/day plus anything for general electrical is $60+/day against two old campaigns that spent ~$541 over 30 days between them, or about $18/day. **Partly answered 10 Aug:** General Electrical (Calls) is approved at **$50/day** — but that is a number for one campaign, not an account ceiling, and hot water and new builds are both still unbuilt with their own budgets specced. The account-wide ceiling is still unset, and the aircon control's actual daily spend needs reading off the account rather than assumed.
 
 ---
 
