@@ -42,6 +42,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[open-arms-header]] — reusable Elementor-widget header shell (`.oa-x`, token-driven); built for Open Arms Australia
 - [[zed-full-house]] — 23-frame whole-listing ZED restyle, hinterland two-storey; in client revisions
 - [[elevra-invoices]] — JSON → A4 PDF invoice generator (EM- numbering, no-GST rule, 1.3mm fidelity)
+- [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
 
 ## Concepts
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate

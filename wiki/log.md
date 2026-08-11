@@ -779,3 +779,13 @@ New concept page [[typography]] holds the durable half — the two-family decisi
 never-Poppins and Inter-is-a-fallback rules, and a licensing note that **Fontshare's free-commercial
 fonts are reported to need written consent before self-hosting webfonts**, which is a live risk on
 any client site build and is flagged unverified against the licence text itself.
+
+## [2026-08-11] ingest | SSD → Google Drive offload — multi-day project page
+New project page [[ssd-to-drive-offload]] documenting the ongoing multi-day job to clear footage off
+the 10x SSDs (SSD2/3/5, WD_BLACK) into `Clients/` on Google Drive via `rclone` (remote already
+configured). Zip-then-upload convention (staging on SSD2), folder→client mapping, and repeated
+gotchas (drives disconnecting mid-job, tmp scratchpad getting recycled across sessions, ~13MB/s
+bandwidth ceiling) captured so a future session can resume without re-deriving them. Still running;
+most of the backlog (Kodiak, Coast Life, Salisbury, BMW, etc.) not yet started. A separate one-off
+raw upload (Whitheriff | Salt PM Shoot, 189GB) is going to `Internal | 10x/Giovanni ` rather than
+the Clients archive.
