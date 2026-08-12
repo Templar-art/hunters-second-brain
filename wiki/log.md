@@ -789,3 +789,16 @@ bandwidth ceiling) captured so a future session can resume without re-deriving t
 most of the backlog (Kodiak, Coast Life, Salisbury, BMW, etc.) not yet started. A separate one-off
 raw upload (Whitheriff | Salt PM Shoot, 189GB) is going to `Internal | 10x/Giovanni ` rather than
 the Clients archive.
+
+## [2026-08-12] ingest | SSD offload — Whitheriff, Hibiscus Parade, Byron shoot delivered to Giovanni
+[[ssd-to-drive-offload]] updated: three raw (unzipped) uploads completed to `Internal | 10x/Giovanni /` —
+Whitheriff Salt PM Shoot (226GB, drone photos excluded), 37 Hibiscus Parade Banora Point (Video 93GB +
+Drone 6.4GB, Photo excluded), Byron shoot (Video 57GB incl. DJI drone clips, Pictures excluded). New
+drive **SSD6** surfaced with its own untouched backlog including a `TO BE UPLOADED | DON'T DELETE`
+folder — flagged as next-session priority. Clients/ archive backlog (Kodiak, Coast Life, Salisbury,
+BMW, etc.) still not resumed.
+
+## [2026-08-12] ingest | SSD offload — Workshop Sel Studios videos, uploading now
+[[ssd-to-drive-offload]] updated: `Workshop | Sel Studios | 12th of Aug 2026` (SSD2) Videos folder
+(123GB, 169 files, Photos excluded) uploading raw to `Internal | 10x/Giovanni /`. Same Giovanni
+stream as Whitheriff/Hibiscus/Byron — Clients/ archive backlog untouched.
