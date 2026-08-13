@@ -802,3 +802,8 @@ BMW, etc.) still not resumed.
 [[ssd-to-drive-offload]] updated: `Workshop | Sel Studios | 12th of Aug 2026` (SSD2) Videos folder
 (123GB, 169 files, Photos excluded) uploading raw to `Internal | 10x/Giovanni /`. Same Giovanni
 stream as Whitheriff/Hibiscus/Byron — Clients/ archive backlog untouched.
+
+## [2026-08-12] ingest | SSD offload — Workshop Sel Studios done, Bespoke August retainer uploading
+Workshop | Sel Studios videos finished uploading (123GB, 169/169 files, matched source exactly).
+Now uploading `Project August Content Retainer Bespoke` (SSD6) Video folder (46GB, 92 files, Photo
+folder excluded). [[ssd-to-drive-offload]] updated. Clients/ archive backlog still untouched.

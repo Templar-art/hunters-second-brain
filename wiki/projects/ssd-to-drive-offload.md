@@ -37,8 +37,9 @@ Most folders map to existing `Clients/` names directly (Whitefox Real Estate, As
   - `Whitheriff | Salt PM Shoot 11 | Aug | 2026` (SSD2) — 226GB, drone *photos* excluded, everything else (A7S3 NO1/NO2, BTS A7S3, BTS DRONE, Mavic 4 PRO video) included.
   - `37 Hibiscus Parade, Banora Point Site Update` (SSD6) — Video (93GB) + Drone (6.4GB), Photo/Drone Photo excluded.
   - `Byron shoot` (SSD6) — Video (57GB, includes DJI drone clips — no separate drone folder existed for this one), Pictures excluded.
-- **Currently uploading (Giovanni stream)**: `Workshop | Sel Studios | 12th of Aug 2026` (SSD2) — Videos only (123GB, 169 files), Photos excluded. ~76% done as of last check, survived a mid-job computer restart cleanly (rclone resumed, skipped already-uploaded files — no data lost, just needed a relaunch since `/private/tmp` gets wiped on reboot).
-- New drive seen in this project: **SSD6** (has its own backlog too — Project August Content Retainer Bespoke, Broll for 6/08/26, Lach Salisbury, 47 Somerset Drive + Project Files, Zed Real Estate 2105/1 Grant Avenue, McGrath Palm Beach, and a `TO BE UPLOADED | DON'T DELETE` folder that's presumably a priority queue — none of these have been actioned yet).
+  - `Workshop | Sel Studios | 12th of Aug 2026` (SSD2) — Videos only (123GB, 169 files), Photos excluded. Survived a mid-job computer restart cleanly (rclone resumed, skipped already-uploaded files — no data lost, just needed a relaunch since `/private/tmp` gets wiped on reboot).
+- **Currently uploading (Giovanni stream)**: `Project August Content Retainer Bespoke` (SSD6) — Video only (46GB, 92 files), Photo folder (88GB) excluded.
+- New drive seen in this project: **SSD6** (has its own backlog too — Broll for 6/08/26, Lach Salisbury, 47 Somerset Drive + Project Files, Zed Real Estate 2105/1 Grant Avenue, McGrath Palm Beach, and a `TO BE UPLOADED | DON'T DELETE` folder that's presumably a priority queue — none of these have been actioned yet).
 - Given the ~13MB/s ceiling (sometimes better, ~20-40MB/s, when only one job runs), the remaining Clients/ backlog is realistically several more days of continuous background uploading.
 
 ## Next steps for whoever picks this up
