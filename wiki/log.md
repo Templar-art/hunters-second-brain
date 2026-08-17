@@ -814,3 +814,12 @@ Studio intro anim (letters corner → top-middle), Coastal Team page. Goal: "lux
 property is personal" — families over mansions, premium experience at every price point. Ref
 sites for pattern research (not copying): era-residence.com, horizonte-village.com, eleos.la,
 awwwards footer-studiofmrg, horizonestatebali.com, minaleandmann.com, makearchitects.com.
+
+## [2026-08-17] migrate | Correction — White Fox was reference, not client; real client is O'Neill Group
+Mis-filed above: WhiteFox (goldcoast.whitefoxrealestate.com.au) is a real existing Gold Coast
+agency, not our client — kept as UX/structural reference only, no colour/copy. Actual new client
+is **[[oneill-group]]**: the principal running [[belle-property]] is leaving with her family to
+launch her own agency. 10x is doing full branding (logo, colours) + website from scratch. Design
+brief uses 10x colours ([[brand-system]]), WhiteFox site structure as UX base, plus the wider
+research pool. All prior pattern/audit research moved to [[real-estate-design-refs]] (now a
+source page, not a client page) since it's reusable beyond one client.

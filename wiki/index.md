@@ -28,7 +28,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch delivered 15 Jul — **converted: 10–15 leads in 4 business days**
 - [[akmal]] — 1007/180 Marine Parade full ZED restyle; delivered 14 Jul, 14cr
 - [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
-- [[white-fox-real-estate]] — NEW web client; old-money/minimal/architectural luxury real estate site; brief locked 17 Aug, ref-site pattern research in progress
+- [[oneill-group]] — NEW client; rebrand — Belle Property's principal launching her own agency; 10x building logo/colours/website from scratch, WhiteFox Gold Coast kept as UX structural base only
 
 ## Projects
 - [[lead-gen-engine]] — ads + landing pages for MVX, CVA and 10x itself; per-niche strategy, 3 pages built 28 Jul
@@ -75,6 +75,7 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 - [[weekly-review-2026-07-17]] — 7-day review: shipped/moved/stalled/learned, next focus = clear stalled client queue
 - [[strategic-investing-qld-brief]] — Brian O'Neill / Quiet Equity source brief behind [[strategic-investing-qld]]
 - [[zidane-meta-ads-tips]] — mate's Meta operator tips 29 Jul: CBO, long VSL, creative enhancements OFF, dataset early, dynamic UTMs
+- [[real-estate-design-refs]] — luxury/boutique real-estate web design pattern research (20+ sites audited); feeds [[oneill-group]]
 
 ## Sources (from `raw/clc/` — CLC Fable 5 pack + research)
 - [[clc-profile-audit]] — the audit all CLC decisions trace to (6 Jul 2026)
