@@ -807,3 +807,10 @@ stream as Whitheriff/Hibiscus/Byron — Clients/ archive backlog untouched.
 Workshop | Sel Studios videos finished uploading (123GB, 169/169 files, matched source exactly).
 Now uploading `Project August Content Retainer Bespoke` (SSD6) Video folder (46GB, 92 files, Photo
 folder excluded). [[ssd-to-drive-offload]] updated. Clients/ archive backlog still untouched.
+
+## [2026-08-17] ingest | White Fox Real Estate — new web client, brief captured
+[[white-fox-real-estate]] created. Old-money/minimal/architectural luxury real estate site.
+Studio intro anim (letters corner → top-middle), Coastal Team page. Goal: "luxury for everyone,
+property is personal" — families over mansions, premium experience at every price point. Ref
+sites for pattern research (not copying): era-residence.com, horizonte-village.com, eleos.la,
+awwwards footer-studiofmrg, horizonestatebali.com, minaleandmann.com, makearchitects.com.
