@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O'Neill Group — Preloader Demo</title>
+<script>try{if(sessionStorage.getItem('ogSeen'))document.documentElement.dataset.preloaded='1'}catch(e){}</script>
+<style>
+  :root{
+    --og-panel:#2d2d2d;
+    --og-mark:#d9d2c7;
+    --og-sage:#758670;
+    --ease:cubic-bezier(.65,0,.35,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#f2f0ec;font-family:system-ui,sans-serif;overflow-x:hidden;}
+
+  .preloader{
+    position:fixed;inset:0;z-index:9999;
+    background:var(--og-panel);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    transition:opacity .9s var(--ease),visibility .9s var(--ease);
+  }
+  .preloader.done{opacity:0;visibility:hidden;}
+  html[data-preloaded] .preloader{display:none;}
+  @media(prefers-reduced-motion:reduce){.preloader{display:none;}}
+  body.preloading{overflow:hidden;}
+
+  .preloader__stage{
+    position:relative;
+    width:min(40vw,220px);
+    opacity:0;
+    animation:stage-in .6s ease-out forwards;
+  }
+  @keyframes stage-in{ to{ opacity:1; } }
+  .preloader__mark{
+    width:100%;height:auto;display:block;
+  }
+  .preloader__mark path{
+    fill:var(--og-mark);
+    fill-opacity:0;
+    stroke:var(--og-mark);
+    stroke-width:2;
+  }
+  /* exact per-path lengths (via getTotalLength) so the draw finishes exactly on the last visible pixel — no dead hold */
+  .preloader__mark path:nth-of-type(1){
+    stroke-dasharray:234;
+    stroke-dashoffset:234;
+    animation:draw-accent 2.6s cubic-bezier(.45,0,.2,1) forwards;
+  }
+  .preloader__mark path:nth-of-type(2){
+    stroke-dasharray:3313;
+    stroke-dashoffset:3313;
+    animation:draw-main 2.6s cubic-bezier(.45,0,.2,1) forwards, fill-fade 1s ease-in-out 2.8s forwards;
+  }
+  @keyframes draw-accent{ to{ stroke-dashoffset:0; } }
+  @keyframes draw-main{ to{ stroke-dashoffset:0; } }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes fill-fade{ to{ fill-opacity:1; } }
+
+  /* demo page behind it */
+  .page{padding:6vh 6vw;color:#2d2d2d;}
+  .page h1{font-family:Inter,system-ui,sans-serif;letter-spacing:.1em;font-weight:500;margin-bottom:1rem;}
+  .replay{margin-top:2rem;padding:.75rem 1.5rem;border:1px solid #2d2d2d;background:none;cursor:pointer;font:inherit;letter-spacing:.05em;}
+</style>
+</head>
+<body>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__stage">
+      <svg class="preloader__mark" viewBox="0 0 577.09 375.61" xmlns="http://www.w3.org/2000/svg">
+        <path class="fill-in" d="M379.54,25.66c0,21.44-16.52,48.5-34.09,57.29l-4.22-4.57c11.25-7.38,20.74-22.85,23.2-36.55-1.76.7-4.22,1.41-7.03,1.41-12.3,0-21.79-9.14-21.79-21.44S345.1,0,357.05,0s22.49,8.79,22.49,25.66Z"/>
+        <path class="fill-in" d="M547.79,20.26v288.33l-3.38-3.26c-78.99-76.13-154.94-155.28-231.4-233.95-32.51-33.45-78.82-53.69-132.06-53.69C77.55,17.69,0,94.74,0,196.65s77.55,178.96,180.95,178.96,181.45-77.05,181.45-178.96c0-10.78-.92-21.26-2.59-31.42l188.43,205.99h28.85V20.26h-29.3ZM180.95,365.67c-81.03,0-134.72-67.11-134.72-169.02S99.92,27.63,180.95,27.63s135.21,67.11,135.21,169.02-53.69,169.02-135.21,169.02Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="page">
+    <h1>O'NEILL GROUP</h1>
+    <p>Preloader demo — reload the page to see it play (sessionStorage gates it to once per session, same as Bespoke).</p>
+    <button class="replay" onclick="sessionStorage.removeItem('ogSeen');location.reload();">Replay intro</button>
+  </div>
+
+<script>
+(function(){
+  function initPreloader(){
+    var pre = document.getElementById('preloader');
+    if (!pre) return;
+    var seen = false;
+    try { seen = !!sessionStorage.getItem('ogSeen'); } catch(e){}
+    if (seen) { pre.remove(); return; }
+
+    document.body.classList.add('preloading');
+    var done = false;
+    function dismiss(){
+      if (done) return; done = true;
+      try { sessionStorage.setItem('ogSeen','1'); } catch(e){}
+      pre.classList.add('done');
+      document.body.classList.remove('preloading');
+      setTimeout(function(){ if (pre.parentNode) pre.remove(); }, 950);
+    }
+    // animation runs ~3.8s (draw 2.6s, then fill-fade 2.8s→3.8s) — hold slightly past that, then release
+    setTimeout(dismiss, 4000);
+  }
+  document.addEventListener('DOMContentLoaded', initPreloader);
+})();
+</script>
+</body>
+</html>
