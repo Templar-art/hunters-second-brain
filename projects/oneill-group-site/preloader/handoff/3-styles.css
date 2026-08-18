@@ -1,0 +1,61 @@
+/* ===== O'Neill Group — preloader ===== */
+/* Merge these into the site's main stylesheet. Uses the O'Neill brand palette:
+   Charcoal #2d2d2d (panel) / Cream #d9d2c7 (mark). Sage #758670 is on hand as
+   a brand var but unused by the preloader itself — kept here for reference. */
+
+:root{
+  --og-panel:#2d2d2d;
+  --og-mark:#d9d2c7;
+  --og-sage:#758670;
+  --og-ease:cubic-bezier(.65,0,.35,1);
+}
+
+.preloader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--og-panel);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  transition:opacity .9s var(--og-ease),visibility .9s var(--og-ease);
+}
+.preloader.done{opacity:0;visibility:hidden;}
+/* already seen this session -> never render it at all */
+html[data-preloaded] .preloader{display:none;}
+/* accessibility: respect reduced-motion, skip straight to the site */
+@media(prefers-reduced-motion:reduce){.preloader{display:none;}}
+/* lock background scroll while the intro plays */
+body.preloading{overflow:hidden;}
+
+.preloader__stage{
+  position:relative;
+  width:min(40vw,220px);
+  opacity:0;
+  animation:og-stage-in .6s ease-out forwards;
+}
+.preloader__mark{
+  width:100%;height:auto;display:block;
+}
+.preloader__mark path{
+  fill:var(--og-mark);
+  fill-opacity:0;
+  stroke:var(--og-mark);
+  stroke-width:2;
+}
+/* exact per-path lengths (via SVG getTotalLength in devtools) so each path's
+   outline finishes drawing on its last real pixel — no dead hold at the end.
+   If the mark SVG is ever re-exported, these two numbers need re-measuring. */
+.preloader__mark path:nth-of-type(1){
+  stroke-dasharray:234;
+  stroke-dashoffset:234;
+  animation:og-draw 3.2s cubic-bezier(.45,0,.2,1) forwards,
+            og-fill 1s ease-out 3.2s forwards;
+}
+.preloader__mark path:nth-of-type(2){
+  stroke-dasharray:3313;
+  stroke-dashoffset:3313;
+  animation:og-draw 3.2s cubic-bezier(.45,0,.2,1) forwards,
+            og-fill 1s ease-out 3.2s forwards;
+}
+
+@keyframes og-stage-in{ to{ opacity:1; } }
+@keyframes og-draw{ to{ stroke-dashoffset:0; } }
+@keyframes og-fill{ to{ fill-opacity:1; } }

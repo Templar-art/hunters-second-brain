@@ -47,12 +47,12 @@
   .preloader__mark path:nth-of-type(1){
     stroke-dasharray:234;
     stroke-dashoffset:234;
-    animation:draw-accent 2.6s cubic-bezier(.45,0,.2,1) forwards;
+    animation:draw-accent 3.2s cubic-bezier(.45,0,.2,1) forwards, fill-fade 1s ease-out 3.2s forwards;
   }
   .preloader__mark path:nth-of-type(2){
     stroke-dasharray:3313;
     stroke-dashoffset:3313;
-    animation:draw-main 2.6s cubic-bezier(.45,0,.2,1) forwards, fill-fade 1s ease-in-out 2.8s forwards;
+    animation:draw-main 3.2s cubic-bezier(.45,0,.2,1) forwards, fill-fade 1s ease-out 3.2s forwards;
   }
   @keyframes draw-accent{ to{ stroke-dashoffset:0; } }
   @keyframes draw-main{ to{ stroke-dashoffset:0; } }
@@ -100,8 +100,8 @@
       document.body.classList.remove('preloading');
       setTimeout(function(){ if (pre.parentNode) pre.remove(); }, 950);
     }
-    // animation runs ~3.8s (draw 2.6s, then fill-fade 2.8s→3.8s) — hold slightly past that, then release
-    setTimeout(dismiss, 4000);
+    // animation runs ~4.2s (draw 3.2s, then fill-fade 3.2s→4.2s) — hold slightly past that, then release
+    setTimeout(dismiss, 4400);
   }
   document.addEventListener('DOMContentLoaded', initPreloader);
 })();

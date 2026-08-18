@@ -1,0 +1,7 @@
+<!--
+  Paste inside <head>, BEFORE any stylesheet link.
+  Purpose: on a repeat visit within the same browser session, flags the page as
+  already-preloaded before CSS even paints, so the preloader never flashes on screen
+  for returning navigations (only shows once per session, first visit).
+-->
+<script>try{if(sessionStorage.getItem('ogSeen'))document.documentElement.dataset.preloaded='1'}catch(e){}</script>
