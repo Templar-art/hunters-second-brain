@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "10x-site",
+      "name": "bespoke-site",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8791", "--directory", "projects/10x-site"],
-      "port": 8791
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "projects/bespoke-site"],
+      "port": 8123
     }
   ]
 }

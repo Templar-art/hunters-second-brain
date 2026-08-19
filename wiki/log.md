@@ -5,6 +5,9 @@ Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|que
 ## [2026-07-10] migrate | Genesis — vault restructured to LLM-wiki pattern
 Converted the vault to the Karpathy LLM-wiki structure (spec: `docs/superpowers/specs/2026-07-10-llm-wiki-restructure-design.md`). `memory/` retired and translated into `wiki/` (5 people, 5 clients, 6 projects/concepts pages); CLC pack PDFs + capability statement moved to `raw/clc/`; CLC pack markdown, audit, field research, and swipe file became `wiki/sources/` pages; CONTEXT.md → [[music-taxonomy]]; root notes → wiki/projects/; working artifacts (scroll demo, CVA breakdown, dashboard, TASKS) → top-level `projects/`; CLAUDE.md rewritten as the schema.
 
+## [2026-08-19] query | Jang Studio fake-flambient technique theory
+Lachlan's theory on how Jang fakes flambient without real flash brackets: depth map → 3D mesh warp (Blender) → virtual flash lights → render lighting pass only → composite masked over real ambient. Matches VIP 24-48hr vs standard 8-12hr turnaround gap. Logged to [[jang-studio]].
+
 ## [2026-07-10] ingest | Jarvis phase 1 — spec, prompt, wiki page, scheduled routine
 Designed and built Jarvis phase 1 (brain + ops copilot): spec at `docs/superpowers/specs/2026-07-10-jarvis-phase1-design.md`, agent prompt at `projects/jarvis/PROMPT.md`, concept page [[jarvis]]. Weekday 7am Brisbane morning brief from 10x CRM to-dos via push notification; loud failure rules.
 
