@@ -39,7 +39,8 @@ Most folders map to existing `Clients/` names directly (Whitefox Real Estate, As
   - `Byron shoot` (SSD6) — Video (57GB, includes DJI drone clips — no separate drone folder existed for this one), Pictures excluded.
   - `Workshop | Sel Studios | 12th of Aug 2026` (SSD2) — Videos only (123GB, 169 files), Photos excluded. Survived a mid-job computer restart cleanly (rclone resumed, skipped already-uploaded files — no data lost, just needed a relaunch since `/private/tmp` gets wiped on reboot).
   - `Project August Content Retainer Bespoke` (SSD6) — Video only (46GB, 92 files), Photo folder (88GB) excluded.
-- **Currently uploading (Giovanni stream)**: `ACC | BROADWALK TAVERN | FINISHED PROJECT` (SSD3) — A7S3 Videos (77GB) + Drone Videos (8.1GB), A7R5 Photos (64GB) and Drone Photos (7.3GB) excluded.
+  - `ACC | BROADWALK TAVERN | FINISHED PROJECT` (SSD3) — A7S3 Videos (77GB) + Drone Videos (5.7GB), A7R5 Photos (64GB) and Drone Photos (7.3GB) excluded.
+- **Nothing currently uploading** — Giovanni stream idle, waiting on next request.
 - New drive seen in this project: **SSD6** (has its own backlog too — Broll for 6/08/26, Lach Salisbury, 47 Somerset Drive + Project Files, Zed Real Estate 2105/1 Grant Avenue, McGrath Palm Beach, and a `TO BE UPLOADED | DON'T DELETE` folder that's presumably a priority queue — none of these have been actioned yet).
 - Given the ~13MB/s ceiling (sometimes better, ~20-40MB/s, when only one job runs), the remaining Clients/ backlog is realistically several more days of continuous background uploading.
 
