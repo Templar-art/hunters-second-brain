@@ -1,0 +1,1013 @@
+<title>O'Neill Build Fixlist</title>
+
+<style>
+  :root {
+    --paper: #efeae3;
+    --card: #f7f4ef;
+    --ink: #23262a;
+    --body: #4a5158;
+    --muted: #6d757c;
+    --line: #ddd6cc;
+    --line-soft: #e7e1d8;
+    --sage: #6f8570;
+    --basalt: #2d2d2d;
+    --p0: #a63d2f;
+    --p0-bg: #f2ded9;
+    --p1: #9a6a20;
+    --p1-bg: #f4e8d4;
+    --p2: #5a6f7a;
+    --p2-bg: #e2e8ea;
+    --done: #4f7355;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #16181a;
+      --card: #1e2124;
+      --ink: #eceae6;
+      --body: #b7bcc1;
+      --muted: #8b9298;
+      --line: #303539;
+      --line-soft: #282c30;
+      --sage: #9ab29b;
+      --p0: #e08b7c;
+      --p0-bg: #3a2320;
+      --p1: #d9ab63;
+      --p1-bg: #362b18;
+      --p2: #9dbac6;
+      --p2-bg: #1f2c33;
+      --done: #8fbf99;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #16181a;
+    --card: #1e2124;
+    --ink: #eceae6;
+    --body: #b7bcc1;
+    --muted: #8b9298;
+    --line: #303539;
+    --line-soft: #282c30;
+    --sage: #9ab29b;
+    --p0: #e08b7c;
+    --p0-bg: #3a2320;
+    --p1: #d9ab63;
+    --p1-bg: #362b18;
+    --p2: #9dbac6;
+    --p2-bg: #1f2c33;
+    --done: #8fbf99;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--body);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    margin: 0;
+    padding: clamp(28px, 5vw, 72px) clamp(18px, 5vw, 40px) 120px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 980px; margin: 0 auto; }
+
+  h1 {
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    font-weight: 600;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+
+  .sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0 0 6px;
+  }
+
+  .meta {
+    font-size: 13.5px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    margin-top: 26px;
+    padding-top: 14px;
+  }
+
+  h2 {
+    font-size: clamp(21px, 3vw, 27px);
+    line-height: 1.16;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+
+  .surface {
+    margin-top: 52px;
+    border-top: 2px solid var(--ink);
+    padding-top: 18px;
+  }
+
+  .surface-note {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin: 0 0 22px;
+    max-width: 68ch;
+  }
+
+  .surface-note code { font-size: 13px; }
+
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin: 34px 0 12px;
+    letter-spacing: -0.005em;
+  }
+
+  ol.items { list-style: none; margin: 0; padding: 0; counter-reset: item; }
+
+  li.item {
+    counter-increment: item;
+    border-bottom: 1px solid var(--line-soft);
+    padding: 15px 0 16px;
+    display: grid;
+    grid-template-columns: 34px 62px 1fr;
+    gap: 0 14px;
+    align-items: start;
+  }
+  li.item:last-child { border-bottom: 0; }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+  .num::before { content: counter(item, decimal-leading-zero); }
+
+  .sev {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 0;
+    border-radius: 3px;
+    text-align: center;
+    margin-top: 1px;
+  }
+  .p0 { color: var(--p0); background: var(--p0-bg); }
+  .p1 { color: var(--p1); background: var(--p1-bg); }
+  .p2 { color: var(--p2); background: var(--p2-bg); }
+
+  .body-cell { min-width: 0; }
+
+  .what {
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 15.5px;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .detail { font-size: 14.5px; margin: 0 0 6px; }
+
+  .fix {
+    font-size: 14.5px;
+    margin: 0;
+    padding-left: 15px;
+    border-left: 1px solid var(--line);
+    color: var(--body);
+  }
+  .fix b { color: var(--ink); font-weight: 600; }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.8px;
+    background: var(--card);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    padding: 1px 5px;
+    word-break: break-word;
+  }
+
+  .scorewrap { overflow-x: auto; margin: 30px 0 8px; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 14.5px; }
+  th, td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  th { color: var(--ink); font-weight: 600; font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase; border-bottom-color: var(--line); }
+  td.score { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); font-weight: 600; }
+  tr.total td { border-bottom: 0; border-top: 2px solid var(--ink); padding-top: 12px; color: var(--ink); font-weight: 600; }
+
+  .callout {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 26px 0;
+  }
+  .callout h3 { margin-top: 0; }
+  .callout ol { margin: 0; padding-left: 20px; }
+  .callout li { margin-bottom: 7px; }
+  .callout li:last-child { margin-bottom: 0; }
+
+  .key { font-size: 13.5px; color: var(--muted); margin: 18px 0 0; }
+  .key b { color: var(--ink); }
+
+  .counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .counts span { padding: 5px 11px; border-radius: 4px; }
+
+  @media (max-width: 620px) {
+    li.item { grid-template-columns: 52px 1fr; gap: 0 12px; }
+    .num { display: none; }
+  }
+</style>
+
+<div class="wrap">
+
+<h1>O'Neill Property — design review &amp; build fixlist</h1>
+<p class="sub">Full audit of <code>oneill.group.10xvisuals.co</code>. <b>Part 1</b> is the design critique — the decisions that come before the build. <b>Part 2</b> is the fixlist, organised by surface so each block can be picked up on its own.</p>
+
+<p class="meta">
+Audited 23 August 2026 · all 9 pages in the sitemap · Chrome, desktop 1440&times;900 and mobile 390&times;844.<br>
+Listing cards, news cards and team members are known filler; they are listed only where the <em>wiring</em> behind them needs building, not for their copy.
+</p>
+
+<div class="counts">
+  <span class="p0">20 &times; P0</span>
+  <span class="p1">37 &times; P1</span>
+  <span class="p2">24 &times; P2</span>
+</div>
+
+<p class="key"><b>P0</b> — ship blocker: broken, wrong, or publicly embarrassing. <b>P1</b> — fix before launch. <b>P2</b> — polish pass.</p>
+
+<!-- ============ PART 1 — CRITIQUE ============ -->
+<section class="surface">
+<h2>Part 1 — Design critique</h2>
+<p class="surface-note">These are decisions, not tickets. Most need a call from Hunter or the client before anyone builds against them.</p>
+
+<div class="scorewrap">
+<table>
+  <thead><tr><th>#</th><th>Heuristic</th><th>Score</th><th>Key issue</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Visibility of system status</td><td class="score">1 / 4</td><td>The property search is inert — the source comment says "Nothing here is wired up yet". No submit feedback, no result state.</td></tr>
+    <tr><td>2</td><td>Match system / real world</td><td class="score">3 / 4</td><td>"Buy It / Sell It / Lease It" is strong plain language. The listing statuses are not: "Own It" and "Preparing It" where buyers scan for "For Sale" and "Under Offer".</td></tr>
+    <tr><td>3</td><td>User control and freedom</td><td class="score">2 / 4</td><td>The 5,400&nbsp;px pinned scroll wall hijacks scroll speed and cannot be skipped. The testimonial marquee cannot be paused.</td></tr>
+    <tr><td>4</td><td>Consistency and standards</td><td class="score">2 / 4</td><td>Kicker rules bleed off-viewport on interior heroes, inset on the homepage. Two contact identities. One header colour for two ground types.</td></tr>
+    <tr><td>5</td><td>Error prevention</td><td class="score">1 / 4</td><td>Required free-text message, required markers at 1.6:1, nine cards that look clickable and aren't, a footer link to a 404.</td></tr>
+    <tr><td>6</td><td>Recognition over recall</td><td class="score">3 / 4</td><td>Nav is short, persistent, with an active state. Filter state vanishes after search; no position indicator in the long scroll.</td></tr>
+    <tr><td>7</td><td>Flexibility and efficiency</td><td class="score">2 / 4</td><td>Six nav items and zero calls to action in the header. No phone number above the footer, on a business that runs on phone calls.</td></tr>
+    <tr><td>8</td><td>Aesthetic and minimalist design</td><td class="score">3 / 4</td><td>The real strength. Docked for a 13,000&nbsp;px homepage and a headline used twice.</td></tr>
+    <tr><td>9</td><td>Error recovery</td><td class="score">1 / 4</td><td><code>/news/</code> is a bare 404 reachable from every page. Form error states are unstyled plugin defaults.</td></tr>
+    <tr><td>10</td><td>Help and documentation</td><td class="score">2 / 4</td><td>The privacy policy is genuinely thorough. Nothing else explains fees, timelines, or what happens after you submit.</td></tr>
+    <tr class="total"><td></td><td>Total</td><td class="score">20 / 40</td><td>Bottom of the normal band (most real interfaces land 20–32)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Does this look AI-generated? No.</h3>
+<p class="surface-note" style="max-width:72ch;">That should be said first, because it is the hardest part to get right and this site has it. The palette is committed and uncommon — sage, cream and basalt, no pure white and no pure black. Real photography carries the design. No gradient text, no glass cards, no hero-metric row, no grid of identical icon-and-heading tiles. The copy has a voice: "A family name, not a call centre", "Your address is not a line on a board". Someone made decisions here.</p>
+<p class="surface-note" style="max-width:72ch;">Two house rules do get tripped. <b>A kicker sits above nearly every section</b> — ABOUT US, HOW WE WORK, INSIGHTS, GET IN TOUCH, LEGAL, WHAT WE LOOK FOR. One named kicker is voice; a kicker as section grammar is scaffolding. And <b>01 / 02 / 03 appears on things that are not sequences</b>. The numbering on "How we work" (listen, care, deliver) is legitimate and should stay. Buy / Sell / Lease and "four things we look for" are parallel lists and should lose it.</p>
+<p class="surface-note" style="max-width:72ch;">The automated scan returned 97 findings across the 9 pages. The substantive ones: the body face is Inter and Elementor is still pulling Roboto; the header animates <code>width</code> and <code>height</code> on scroll, which thrashes layout on a fixed element during the most frequent interaction on the site; and 20 build comments ship in the production source, including <em>"Inert. Nothing here is wired up yet."</em> and <em>"Three tiles, one photo, three crops."</em> Anyone who views source reads the to-do list.</p>
+
+<h3>Overall impression</h3>
+<p class="surface-note" style="max-width:72ch;">This is a good-looking site that has not yet been asked what it is for.</p>
+<p class="surface-note" style="max-width:72ch;">The craft is real. The interior page heroes are the best thing on it — "PUT YOUR NAME TO IT" over a dusk exterior with a three-column fact strip underneath is a confident, composed piece of design that most Gold Coast agencies could not produce. The restraint is genuine rather than timid.</p>
+<p class="surface-note" style="max-width:72ch;">But the homepage opens with 756&nbsp;px of dark video that says nothing, and the site never once asks for a phone call above the footer. An agency website has two jobs: convince a vendor to list, and let a buyer find stock. Right now the design is optimised for a third thing, which is being admired. The biggest opportunity is not visual. It is deciding what the visitor should do, then letting the design carry them there.</p>
+
+<h3>What's working</h3>
+<p class="surface-note" style="max-width:72ch;"><b>The interior page heroes.</b> Our People and Careers both open with a display headline, a supporting paragraph offset right, and a hairline-divided fact strip along the bottom, all on a dusk photograph. Asymmetric without being arbitrary, and the fact strip does real work — three short answers to the three questions a visitor actually has. This is the pattern the homepage should be borrowing.</p>
+<p class="surface-note" style="max-width:72ch;"><b>The colour discipline.</b> Three grounds, used consistently, alternating for rhythm rather than decoration. Uncommon for the category, which is exactly why it reads as considered. The only failures are places where sage is asked to carry text it cannot support — a token-application problem, not a palette problem.</p>
+<p class="surface-note" style="max-width:72ch;"><b>The copy voice.</b> Plain, Australian, unsentimental, free of agency cliché. "We're not a franchise, and we're not a boutique that only opens the door for the top end of the market" does more positioning in one sentence than most agency about-pages manage in a page.</p>
+
+<h3>Priority design issues</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">The first fold makes no argument</span>
+<p class="detail">A prospect sees a dark abstract video, six nav items, and nothing else. No headline, no proposition, no search, no number, no action. The mission statement that would do this work sits below the fold, and on mobile the video crops to unreadable shapes. Every other page opens with a headline and a supporting paragraph — the homepage is the only one that opens with silence, and it gets the most traffic.</p>
+<p class="fix"><b>Fix:</b> bring the mission statement onto the video using the Careers hero pattern — display headline, one supporting line, a fact strip or single primary action along the bottom. Video stays as ground, not content. <b>Command:</b> <code>/impeccable shape</code></p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">There is no path to a phone call</span>
+<p class="detail">This is an agency; the conversion is a conversation. The header carries six nav items and zero calls to action. There is no phone number anywhere above the footer, and the footer number is a placeholder. The one real conversion point requires a free-text message before it will submit. The homepage CTA band then offers five exits at once — Buy, Sell, Lease, Contact Us, Request a Property Quote — with no primary among them.</p>
+<p class="fix"><b>Fix:</b> a persistent call action in the header with the real number. One primary action per section, visually dominant. Message field optional. <b>Command:</b> <code>/impeccable shape</code></p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The scroll wall spends the page's whole attention budget on four sentences</span>
+<p class="detail">Six full viewports to deliver four short statements, sitting between the About block and the testimonials, with scroll speed hijacked throughout. It is also where the art direction fails: "WE LISTEN" works because the type sits on the dark left third of its frame; "WE CARE" puts cream type on a white kitchen and is unreadable, as are the closing two frames. There is no rule governing type placement against photo brightness, so each frame works or fails by luck.</p>
+<p class="fix"><b>Fix:</b> cut the dwell to three viewports or fewer. Add a brightness-adaptive scrim behind the type block, tuned per frame. <b>Command:</b> <code>/impeccable distill</code></p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The three commercial pages are the emptiest on the site</span>
+<p class="detail">Buy It, Sell It and Lease It are structurally identical: one headline, the shared listings grid, the shared CTA, nothing between. Sell It is the highest-value page on the site — a vendor choosing an agency is the decision that pays for everything — and it contains one sentence of unique content. The grid isn't even filtered per page, so Lease It shows Sold listings.</p>
+<p class="fix"><b>Fix:</b> each page needs one section only it could carry. For Sell It that is the campaign process, what the fee covers, and proof. Filter the grid per page. <b>Command:</b> <code>/impeccable shape</code></p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Two type voices, and only one has character</span>
+<p class="detail">The display face carries the whole brand and is the reason the site looks expensive. The body face is Inter — the most common typeface on the web — so all the personality lives in the headings and none survives into the paragraphs. The display face is also Sinhala MN, an Apple system font repurposed with metric overrides and shipped as a 322&nbsp;KB unsubset WOFF. The identity rests on a font that was never licensed for this.</p>
+<p class="fix"><b>Fix:</b> a licensed display serif of the same voice, subsetted. Replace Inter with a body face chosen against it on a real contrast axis rather than defaulted to. <b>Command:</b> <code>/impeccable typeset</code></p>
+</div></li>
+
+</ol>
+
+<h3>Walked through as three visitors</h3>
+<p class="surface-note" style="max-width:72ch;"><b>Jordan, first-timer, arrived from a For Sale board.</b> Lands on the homepage, sees a dark video and no message, has no idea whether this agency covers their suburb or price bracket. Scrolls to the grid and finds nine cards reading "00 Placeholder Street". Tries the search; nothing happens, because it is inert. Sees badges saying "Own It" and "Preparing It" and cannot tell which means available. Gives up before the About section.</p>
+<p class="surface-note" style="max-width:72ch;"><b>The Vendor, interviewing three agencies — the decision that matters.</b> Goes straight to Sell It. Finds one headline, placeholder listings, and a form. No process, no fee structure, no recent sales, no named agent. Goes to Our People to see who they would deal with and finds six cards showing the same stock photograph of the same man, named PLACEHOLDER ONE through SIX, sharing one phone number. The page meant to prove there are real people behind the family name currently proves the opposite.</p>
+<p class="surface-note" style="max-width:72ch;"><b>The Buyer, on a phone, on the couch.</b> The hero video crops to abstract dark rings. The header shows three inline links about 40&times;20&nbsp;px plus a hamburger — two navigation systems competing in one strip. Scrolls, and the white nav pill sits on top of whatever they were reading. Reaches the testimonials and the quotes are sliced mid-word at both edges. Wants to call; there is no number until the footer, and it reads 07 0000 0000.</p>
+
+<h3>Smaller notes</h3>
+<p class="surface-note" style="max-width:72ch;">20 HTML build comments ship in production source. "PROPERTY IS PERSONAL" is used twice on the homepage. The kicker hairline bleeds off-viewport on interior heroes but is inset on the homepage — pick one. The ON monogram tile straddles a section boundary and reads as mispositioned. A small empty rectangle sits beside the scroll wall's progress dashes. Careers leaves a large empty column beside the "Four things" heading. Bracketed contact details read as unfilled template slots, especially while the values inside them are placeholders. The listing status vocabulary extends the Buy&nbsp;It / Sell&nbsp;It / Lease&nbsp;It naming somewhere it does not work — nav labels can be voice, status badges need to be scannable.</p>
+
+<h3>Questions worth answering before the next build pass</h3>
+<p class="surface-note" style="max-width:72ch;">
+If a vendor could only see one page before choosing an agency, which would you want it to be, and does that page currently earn the choice?<br><br>
+The interior heroes are better than the homepage hero. What stops the homepage from using the same pattern?<br><br>
+The scroll wall is the most expensive thing on the site in attention. Cut to three frames — which one goes, and does anyone notice?<br><br>
+What is the site's single most important action, and where is it on the screen right now?<br><br>
+The restraint is real. Is the silence on the first fold restraint, or an unmade decision wearing restraint's clothes?
+</p>
+</section>
+
+<!-- ============ PART 2 ============ -->
+<section class="surface">
+<h2>Part 2 — Build fixlist</h2>
+<p class="surface-note">Technical quality pass: accessibility, performance, responsive behaviour, broken wiring. Organised by surface. Scored separately from the critique above.</p>
+</section>
+
+<div class="callout">
+<h3>If only five things get done</h3>
+<ol>
+  <li><b>Purge the freight demo content.</b> Not one page — <b>15 surfaces</b>: <code>/services/</code>, a blog index, 6 lorem articles, and 7 orphan "logistic-v1" templates. All live, all indexable, all titled "… - O'Neill Group".</li>
+  <li><b>Stop the fixed header covering content.</b> It sits over a heading or a card badge at almost every scroll position, on every page, desktop and mobile.</li>
+  <li><b>Give the header a dark state.</b> White nav on the cream pages measures 1.38:1 — it is effectively invisible.</li>
+  <li><b>Fix the contact details.</b> Three different phone numbers, two different email domains, and six agents sharing one placeholder mobile.</li>
+  <li><b>Block the staging site from search.</b> No robots meta, <code>robots.txt</code> allows everything, and a sitemap is published.</li>
+</ol>
+</div>
+
+<div class="scorewrap">
+<table>
+  <thead>
+    <tr><th>Dimension</th><th>Score</th><th>Headline finding</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Accessibility</td><td class="score">1 / 4</td><td>Two pages with no H1, 14 empty headings, contrast failures in five repeated components, no <code>&lt;main&gt;</code> or skip link</td></tr>
+    <tr><td>Performance</td><td class="score">2 / 4</td><td>1.48&nbsp;MB homepage; a 322&nbsp;KB unsubset display font and 2560&nbsp;px logo PNGs in 82&nbsp;px slots</td></tr>
+    <tr><td>Responsive</td><td class="score">2 / 4</td><td>No horizontal scroll anywhere, but the header overlap and the hero video crop both get worse on mobile</td></tr>
+    <tr><td>Theming</td><td class="score">3 / 4</td><td>A real, consistent token system; the sage-on-cream pairing is used in places where it cannot carry text</td></tr>
+    <tr><td>Anti-patterns</td><td class="score">3 / 4</td><td>Genuinely distinctive, not templated. Trips two house rules: a kicker above nearly every section, and 01/02/03 markers on things that are not sequences</td></tr>
+    <tr class="total"><td>Total</td><td class="score">11 / 20</td><td>Acceptable — significant work needed</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============ GLOBAL ============ -->
+<section class="surface">
+<h2>Site-wide</h2>
+<p class="surface-note">Applies to every page. Fix once, fixes nine.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">15 freight-and-logistics demo surfaces are still live</span>
+<p class="detail">The theme kit was never cleaned out. Everything below returns 200 and carries an "&hellip; - O'Neill Group" title:</p>
+<p class="detail" style="padding-left:14px;border-left:1px solid var(--line)">
+<b>1 page.</b> <code>/services/</code> — "Freight &amp; Logistics Services", Road / Air / Sea / Rail Freight cards with emoji in the headings, a stock aeroplane-and-shipping-container hero, a "Customized Pricing for Professional Logistics Operations" table, 12 empty headings, and lorem copy beginning "Was justice improve age article between."<br><br>
+<b>7 posts.</b> <code>/blog-logistic-v1/</code> plus <code>/how-modern-logistics-improves-efficiency/</code>, <code>/managing-project-cargo-successfully-today/</code>, <code>/how-technology-transforms-supply-chains/</code>, <code>/reducing-costs-through-smarter-logistics/</code>, <code>/how-customs-brokerage-simplifies-trade/</code>, <code>/building-resilient-supply-chain-networks/</code>. All lorem, filed under categories "Insights, Shipping, Trucking", dated December 2025, and each showing "1 Comment" — so comments are open and taking spam.<br><br>
+<b>7 orphan templates</b> in <code>wpr_templates-sitemap.xml</code>, all named <code>logistic-v1</code>: header, footer, 404, single-post, single-page, blog archive, category/tag archive. The 404 template is the one serving the broken <code>/news/</code> link.
+</p>
+<p class="fix"><b>Fix:</b> delete all 15, confirm each slug 404s, delete the Royal template kit, then clear the freight stock imagery out of the media library. Regenerate the sitemap and confirm it lists only the 8 real pages.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">The author sitemap exposes the admin username</span>
+<p class="detail"><code>author-sitemap.xml</code> publishes <code>/author/admin_bj1b251x/</code>. Handing an attacker a valid username halves the work of a brute-force attempt on <code>wp-login</code>.</p>
+<p class="fix"><b>Fix:</b> disable author archives in Yoast, and rate-limit or restrict <code>wp-login.php</code>.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">No <code>favicon.ico</code></span>
+<p class="detail">The icon links are declared as JPGs, which browsers accept, but <code>/favicon.ico</code> itself 404s — some crawlers and older clients request it directly.</p>
+<p class="fix"><b>Fix:</b> add a real <code>favicon.ico</code> and export the icon set as PNG rather than JPG.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">The 404 page is the theme default</span>
+<p class="detail">"Error 404 / Oops, page was not found… / Back to Home" — generic, with an ellipsis, no search, no suggested links, and none of the voice the rest of the site has. It matters more than usual here because the footer's broken <code>/news/</code> link sends people to it from every page.</p>
+<p class="fix"><b>Fix:</b> write it in the site's own voice and offer the three service pages plus contact as exits.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">The staging site is fully indexable</span>
+<p class="detail">No <code>&lt;meta name="robots"&gt;</code>, no <code>X-Robots-Tag</code>, <code>robots.txt</code> has an empty <code>Disallow:</code>, and Yoast is publishing a sitemap. Everything above — including the freight page and every "00 Placeholder Street" — is crawlable, and will compete with the real domain later.</p>
+<p class="fix"><b>Fix:</b> site-wide <code>noindex, nofollow</code> plus HTTP auth on the staging host until launch.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">No meta description on any of the 9 pages</span>
+<p class="detail">Yoast is installed but the field is empty everywhere, so <code>og:description</code> falls back to a dump of the whole page. The homepage's is several thousand characters long and contains "00 Placeholder Street" nine times. That is what appears when anyone shares the link in Slack, WhatsApp or Facebook.</p>
+<p class="fix"><b>Fix:</b> write a 150–160 character description per page. Set a proper <code>og:image</code> (currently a 2560&nbsp;px PNG).</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The display serif is an Apple system font, self-hosted</span>
+<p class="detail"><code>SinhalaMN.woff</code>, 322&nbsp;KB — the single heaviest asset on the site after the hero photo. It is Sinhala MN, bundled with macOS, re-served with <code>ascent-override</code> hacks and a <code>Sinhala MN Web</code> alias. It is unsubset (the entire Sinhala script rides along, unused) and it is WOFF, not WOFF2. There is a licensing question here as well as a weight one.</p>
+<p class="fix"><b>Fix:</b> swap for a licensed display serif with the same voice, subset to Latin, served as WOFF2. Expect 30–50&nbsp;KB. This changes every heading on the site, so do it early.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Unused Google Fonts loading on every page</span>
+<p class="detail">Elementor's defaults are pulling Roboto and Roboto Slab at all 18 weights each, italics included, and none of it is used. Inter is requested from Google ten separate times.</p>
+<p class="fix"><b>Fix:</b> set Elementor's default fonts to the real stack so the Roboto requests stop; consolidate the Inter requests into one.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Reveal animations hide content until JavaScript runs</span>
+<p class="detail">Sections ship as <code>opacity: 0</code> and only become visible when a script adds <code>.is-in</code> — for example <code>.onp-tile { opacity: 0; transform: translateY(30px) }</code>. If the observer doesn't fire (prerender, a crawler, a background tab, a JS error) the section ships blank. There <em>is</em> a <code>prefers-reduced-motion</code> override that forces them visible, which is good, but it doesn't cover the failure case.</p>
+<p class="fix"><b>Fix:</b> invert it. Content visible by default; the script adds a <code>.will-reveal</code> class that sets the start state, so a page with no JS is a page with no animation rather than a page with no content.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">No <code>&lt;main&gt;</code> landmark and no skip link</span>
+<p class="detail">A keyboard or screen-reader user tabs through the whole header on every page before reaching content. Two of the seven <code>&lt;nav&gt;</code> elements also have no <code>aria-label</code>.</p>
+<p class="fix"><b>Fix:</b> wrap the page body in <code>&lt;main id="main"&gt;</code>, add a visually-hidden skip link as the first focusable element, label the remaining navs.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">Locale is US</span>
+<p class="detail"><code>&lt;html lang="en-US"&gt;</code> and <code>og:locale = en_US</code> on an entirely Gold Coast business.</p>
+<p class="fix"><b>Fix:</b> <code>en-AU</code> in both places.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">No canonical tags</span>
+<p class="fix"><b>Fix:</b> enable Yoast canonicals, pointing at the production domain once it exists.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">Homepage is 1.48&nbsp;MB over 66 requests</span>
+<p class="detail">671&nbsp;KB images, 369&nbsp;KB fonts, 190&nbsp;KB scripts, 149&nbsp;KB CSS. Five plugin bundles (Elementor, Royal Addons, ElementsKit, Essential Addons, Formidable) plus jQuery and jQuery-migrate. Largest single asset: <code>47-Somersert-Drive-_-Web-16-scaled.jpg</code> at 511&nbsp;KB.</p>
+<p class="fix"><b>Fix:</b> serve WebP at the size actually rendered, audit which of the five addon plugins are genuinely in use, and dequeue the rest per page.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ HEADER ============ -->
+<section class="surface">
+<h2>Header</h2>
+<p class="surface-note">One global header, <code>position: fixed</code>, 141&nbsp;px tall, <code>z-index: 1000</code>. Present on all 9 pages, so every item here is a nine-page fix.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">The header covers content at almost every scroll position</span>
+<p class="detail">Once you scroll, the nav collapses to a white pill and floats over whatever is beneath it. It is not an occasional clash, it is constant. On the homepage alone it covers: the first line of the "YOUR GOLD COAST PROPERTY JOURNEY" mission statement, the OWN IT / PREPARING IT badges on the listing cards, the "MARKET UPDATE" heading, and the top of the CTA band. Same on mobile, worse — the pill is proportionally larger.</p>
+<p class="fix"><b>Fix:</b> two parts. Add <code>scroll-padding-top</code> to <code>:root</code> and <code>scroll-margin-top</code> to section anchors so jump links land clear. Then either shrink the pill materially on scroll or hide it on scroll-down and reveal on scroll-up, so it is never resting on top of a heading.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">Nav text is white with no dark variant, so it disappears on light pages</span>
+<p class="detail">On <code>/privacy-policy/</code> — a cream page with no hero image — the nav measures <b>1.38:1</b> against the background. The wordmark goes with it. WCAG AA needs 4.5:1. The same problem shows on the light-hero pages and over the pale sections of <code>/contact/</code>, <code>/our-people/</code> and <code>/careers/</code>.</p>
+<p class="fix"><b>Fix:</b> add a dark header state (basalt text, no white pill) and apply it on any page without a dark hero, plus on scroll once past a dark hero. Measure both states.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Mobile header shows an inline nav <em>and</em> a hamburger</span>
+<p class="detail">At 390&nbsp;px the header carries the wordmark, "BUY IT SELL IT LEASE IT" as inline links, and a hamburger. The three inline links sit roughly 8&nbsp;px apart and measure about 40&times;20&nbsp;px each. Two navigation systems, competing, both cramped.</p>
+<p class="fix"><b>Fix:</b> pick one. Either the hamburger holds everything, or the three primary links stay and the hamburger goes.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Every nav link is under the 44&nbsp;px tap-target minimum</span>
+<p class="detail">Desktop links measure 78&times;32&nbsp;px (97&times;32 for "OUR PEOPLE"). Mobile is smaller again. Between 20 and 37 sub-44&nbsp;px targets per page, and the header accounts for six of them on all nine.</p>
+<p class="fix"><b>Fix:</b> increase vertical padding on the anchor itself, not the wrapper, so the hit area grows without moving the text.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The current page is marked visually but not programmatically</span>
+<p class="detail">The active item gets a CSS underline. There is no <code>aria-current="page"</code> anywhere on the site, so a screen reader has no idea where it is.</p>
+<p class="fix"><b>Fix:</b> add <code>aria-current="page"</code> to the active item and drive the underline off that attribute rather than a separate class.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The search form has no visible focus ring</span>
+<p class="detail">Tabbing through the homepage: the seven header links all show a focus outline correctly, then focus enters the property search and the ring disappears. Measured <code>outline: 0px none</code> on the text input and on the SEARCH button, and <code>outline-style: none</code> on all four selects. A keyboard user loses track of where they are inside the one interactive component on the page. WCAG 2.4.7.</p>
+<p class="fix"><b>Fix:</b> a <code>:focus-visible</code> ring on every field and the button, using the same treatment the header links already have.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Keyboard focus lands underneath the fixed header</span>
+<p class="detail">Same root cause as the overlap issue above, confirmed with the keyboard: once focus moves past the header, focused elements scroll to the top of the viewport and sit under the 141&nbsp;px bar. The user cannot see what they have focused.</p>
+<p class="fix"><b>Fix:</b> <code>scroll-padding-top</code> on <code>:root</code> matching the header height. Same fix as the overlap issue, so do them together.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">Header height changes at every breakpoint</span>
+<p class="detail">141&nbsp;px at 1440, 137&nbsp;px at 1024, 94&nbsp;px at 768. Whatever offset gets used to fix the overlap has to track all three rather than being a single hard-coded value.</p>
+<p class="fix"><b>Fix:</b> drive the offset from a CSS custom property set per breakpoint, or measure the header at runtime.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">Logos are 2560&nbsp;px PNGs in 82&nbsp;px and 159&nbsp;px slots</span>
+<p class="detail"><code>Oneill-Property-White-Logo-scaled.png</code> is 2560&nbsp;px wide rendering at 159&nbsp;px; <code>Oneill-Property-Icon-Basalt-scaled.png</code> is 2560&nbsp;px rendering at 82&nbsp;px. About 155&nbsp;KB of PNG for two marks, on every page.</p>
+<p class="fix"><b>Fix:</b> use the SVGs. They already exist at <code>projects/oneill-group-site/preloader/assets/oneill-lockup.svg</code> and <code>oneill-mark.svg</code>.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<section class="surface">
+<h2>Footer</h2>
+<p class="surface-note">One global footer on all 9 pages. Same multiplier as the header.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">"NEWS" links to a 404</span>
+<p class="detail"><code>/news/</code> returns 404 and there is no news page in the sitemap, but the link is in the footer on every page — nine broken links.</p>
+<p class="fix"><b>Fix:</b> build the news index (the homepage already has a "VIEW ALL" that needs the same destination) or remove the item until it exists.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">All three social links are dead</span>
+<p class="detail">Instagram, Facebook and LinkedIn all have an empty <code>href</code>. On every page. Clicking does nothing.</p>
+<p class="fix"><b>Fix:</b> real URLs, <code>target="_blank" rel="noopener"</code>, and an <code>aria-label</code> on each since they are icon-and-word links.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">Placeholder phone and a wrong email domain, sitewide</span>
+<p class="detail">The footer shows <code>[ 07 0000 0000 ]</code> wired to <code>tel:+61700000000</code>, and <code>hello@oneillgroup.com.au</code>. Every other email on the site uses <b>oneillproperty.com.au</b> — the footer is the only place using <b>oneillgroup</b>. Address is just "Gold Coast, Queensland".</p>
+<p class="fix"><b>Fix:</b> confirm the real number, email and street address with the client and use one set everywhere. See the Contact page item below — right now there are three competing versions.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Text over an unscrimmed photo</span>
+<p class="detail">The footer sits on a property photo with only a light overlay. Where the photo is bright — the upper-left on mobile especially — the white column headings and links lose contrast against it. Contrast varies pixel to pixel, which means it cannot be measured or guaranteed.</p>
+<p class="fix"><b>Fix:</b> either a flat basalt ground, or keep the photo and put a solid scrim over it at an opacity that holds white text everywhere in the frame.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">Square brackets around the phone and email read as unfilled placeholders</span>
+<p class="detail"><code>[ 07 0000 0000 ]</code> and <code>[ hello@... ]</code>. With placeholder values inside them, the brackets look like a template that was never filled rather than a design device. On the privacy page the same bracket convention <em>is</em> an unfilled placeholder, which muddies it further.</p>
+<p class="fix"><b>Fix:</b> keep the brackets only if they survive next to real details; otherwise drop them.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">2560&nbsp;px logo PNG again</span>
+<p class="fix"><b>Fix:</b> same SVG swap as the header.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ HOME ============ -->
+<section class="surface">
+<h2>Home <span style="font-weight:400;color:var(--muted);font-size:16px;">— <code>/</code></span></h2>
+<p class="surface-note">12,797&nbsp;px tall on desktop, 13,831&nbsp;px on mobile. The longest and most ambitious page on the site, and where most of the remaining work sits.</p>
+
+<h3>Structure</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">No <code>&lt;h1&gt;</code></span>
+<p class="detail">The page begins at H2 ("OUR PROPERTIES"). The homepage of the site has no top-level heading at all.</p>
+<p class="fix"><b>Fix:</b> make the mission statement — "Your Gold Coast property journey, guided by O'Neill Property" — the H1. It is already the first real statement on the page and it reads as one.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">Two empty <code>&lt;h2&gt;</code> elements</span>
+<p class="detail">Both in the "HOW WE WORK" scroll section. They register in the outline as headings with no text.</p>
+<p class="fix"><b>Fix:</b> give them their real text or change them to non-heading elements.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">"PROPERTY IS PERSONAL" is used twice</span>
+<p class="detail">Once as the About section H2, then again as the closing statement of the scroll wall a few thousand pixels later.</p>
+<p class="fix"><b>Fix:</b> pick one home for it. The wall outro is the stronger placement.</p>
+</div></li>
+</ol>
+
+<h3>Hero</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">The first screen carries no message and no call to action</span>
+<p class="detail">756&nbsp;px of dark video with the nav floating over it. No headline, no CTA, no property search. A visitor's entire first fold says nothing beyond the logo. The statement doesn't appear until they scroll.</p>
+<p class="fix"><b>Fix:</b> this is a design decision, not a bug, so it needs a call. Either pull the mission statement up onto the video, or commit to the silent-video opener and make the scroll cue unmistakable. Right now it is neither.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The hero video has no poster frame</span>
+<p class="detail">1920&times;1080, <code>preload="metadata"</code>, <code>poster=""</code>. Until it buffers there is nothing to look at.</p>
+<p class="fix"><b>Fix:</b> add a <code>poster</code> — the first frame, exported as a small WebP — so the fold is never empty.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The ghost O'NEILL watermark is cut off at both edges</span>
+<p class="detail">The oversized wordmark across the bottom of the hero runs past the left and right edges mid-letter. It reads as a rendering error rather than a deliberate bleed, and it is worse on mobile where only two or three letters remain.</p>
+<p class="fix"><b>Fix:</b> either scale it to fit with intentional margin, or bleed it far enough that it obviously reads as a texture. Halfway is the problem.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The video crop is unreadable on mobile</span>
+<p class="detail">At 390&nbsp;px the 16:9 frame crops to a portrait sliver of abstract dark rings. It is not identifiable as property, interiors, or anything else.</p>
+<p class="fix"><b>Fix:</b> a separate portrait crop for narrow viewports, or a still image on mobile instead of the video.</p>
+</div></li>
+</ol>
+
+<h3>Listings block</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">All 9 listing cards have an empty <code>href</code></span>
+<p class="detail">Expected while the content is filler, but the cards are already marked up as links, so the wiring is the outstanding job.</p>
+<p class="fix"><b>Fix:</b> point them at the listing CPT once it exists.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The search field has no label and is 12.5&nbsp;px</span>
+<p class="detail">"Suburb or address" is a placeholder only — once someone types, the field's purpose disappears. The four <code>&lt;select&gt;</code>s are labelled; the text input is not. All five are 12.5&nbsp;px, and anything under 16&nbsp;px makes iOS Safari zoom the page on focus.</p>
+<p class="fix"><b>Fix:</b> add a visually-hidden <code>&lt;label&gt;</code>, and lift the font size to 16&nbsp;px on mobile.</p>
+</div></li>
+</ol>
+
+<h3>Buy / Sell / Lease triptych</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">All three tiles are the same photograph</span>
+<p class="detail">One image, <code>47-Somersert-Drive-_-Web-8-scaled.jpg</code>, used three times and zoomed 1.55–1.62&times; with different offsets to fake three shots. The zoom makes each crop soft, and the crops land on the same architectural lines, so the row reads as mismatched bands of one blurry photo. The source even carries the note: <em>"Three tiles, one photo, three crops. When you have a separate image per service, change each src."</em></p>
+<p class="fix"><b>Fix:</b> three real photographs, one per service, and delete the inline <code>--z</code> / <code>--tx</code> / <code>--ty</code> zoom values so each centres normally.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">01 / 02 / 03 on a set that is not a sequence</span>
+<p class="detail">Buy, sell and lease are three parallel services. Numbering them implies an order that doesn't exist, and it repeats a pattern already ruled out on 10x's own pages.</p>
+<p class="fix"><b>Fix:</b> drop the numerals. The hairline under each title already carries the cadence. The numbering on "HOW WE WORK" (listen → care → deliver) can stay, because that one genuinely is a sequence.</p>
+</div></li>
+</ol>
+
+<h3>"How we work" scroll wall</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">"WE CARE" is unreadable — cream type on a near-white kitchen</span>
+<p class="detail">The panel behind it is a bright white kitchen. The heading and the body copy beneath it are both cream, with no scrim, landing on white cabinetry and white tile. Effective contrast is around 1.2:1. The same failure hits the "PROPERTY IS PERSONAL" outro and the closing logo frame, both of which sit on a bright bathroom.</p>
+<p class="fix"><b>Fix:</b> an adaptive scrim behind the type — a gradient sized to the text block, with peak opacity tuned per frame. The bright interiors need roughly twice the scrim of the dark ones. This is the same brightness-adaptive scrim rule 10x already applies to type on footage.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The section is 5,400&nbsp;px tall for four statements</span>
+<p class="detail">Six full viewports of pinned scrolling on desktop, more on mobile, to deliver four short lines. It is the single longest section on the site and it sits between the About block and the testimonials, so a visitor heading for the contact CTA has to scroll through all of it.</p>
+<p class="fix"><b>Fix:</b> tighten each statement's dwell so the whole wall lands in three viewports or fewer.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">A stray empty box next to the progress dashes</span>
+<p class="detail">A small unfilled rectangle sits to the right of the four progress dashes at the bottom of the wall, roughly 30&times;16&nbsp;px, with no visible content.</p>
+<p class="fix"><b>Fix:</b> identify and remove, or give it whatever content it was meant to hold.</p>
+</div></li>
+</ol>
+
+<h3>Testimonials</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Quotes are chopped mid-word at both edges</span>
+<p class="detail">The marquee container is <code>overflow: visible</code> with no mask, so the first and last cards are sliced through the middle of words — "…eeks, for / …hout a" is what a visitor actually reads at the left edge. It looks like a clipping bug rather than a scroller.</p>
+<p class="fix"><b>Fix:</b> a <code>mask-image</code> linear-gradient fading roughly 80&nbsp;px at each edge, so cards dissolve rather than being cut.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Auto-moving content with no pause control</span>
+<p class="detail">The strip moves continuously and cannot be stopped. WCAG 2.2.2 requires a pause, stop, or hide mechanism for any motion that starts automatically and runs more than five seconds. The duplicate cards are correctly marked <code>aria-hidden</code>, so that part is already handled.</p>
+<p class="fix"><b>Fix:</b> pause on hover and on focus, plus a visible pause control. Honour <code>prefers-reduced-motion</code> by not auto-scrolling at all.</p>
+</div></li>
+</ol>
+
+<h3>"Every move starts somewhere" band</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">Buy / Sell / Lease chips fail contrast badly</span>
+<p class="detail">Cream <code>#E2DAD1</code> on sage <code>#839C83</code> at 11&nbsp;px = <b>2.15:1</b>, against a 4.5:1 requirement. This exact pairing (<code>.onpch-act</code> / <code>.onpsb-act</code>) also appears on <code>/contact/</code> and <code>/our-people/</code>, so it is one fix in three places.</p>
+<p class="fix"><b>Fix:</b> basalt <code>#2D2D2D</code> on the sage reaches about 6.4:1 and keeps the palette. If the text must stay light, the ground has to drop to roughly <code>#41543F</code> or darker.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The ON monogram square hangs half off the section edge</span>
+<p class="detail">A dark monogram tile straddles the boundary between the testimonial section and the band below, sitting half in each. It reads as a mispositioned element rather than a deliberate overlap.</p>
+<p class="fix"><b>Fix:</b> either seat it fully inside the band, or commit to the overlap by aligning it to the container gutter so it looks intentional.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The band's headline sits on the brightest part of its photo</span>
+<p class="detail">"EVERY MOVE / STARTS SOMEWHERE" is cream over pale kitchen cabinetry. Not as severe as the scroll wall, but the same missing-scrim problem.</p>
+<p class="fix"><b>Fix:</b> same adaptive scrim treatment. Or reposition the type over the darker left third of the frame.</p>
+</div></li>
+</ol>
+
+<h3>News and CTA</h3>
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">All 3 news cards and the "VIEW ALL" button have empty hrefs</span>
+<p class="detail">"VIEW ALL" would go to <code>/news/</code>, which is the 404 flagged in the footer section.</p>
+<p class="fix"><b>Fix:</b> build the news index and the single-post template, then wire all four.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The CTA has two competing actions and neither is clearly primary</span>
+<p class="detail">"CONTACT US" is a semi-transparent sage block over the photo; "REQUEST A PROPERTY QUOTE" is an underlined text link beside it. The sage block's fill lets the photo through, so its label loses contrast, and the underlined link has a 25&nbsp;px-tall hit area.</p>
+<p class="fix"><b>Fix:</b> make the primary button a solid fill, and give the secondary a real button footprint even if it stays visually quiet.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">12 of 17 images have no alt text; 5 load eagerly</span>
+<p class="detail">The 511&nbsp;KB <code>47-Somersert-Drive-_-Web-16-scaled.jpg</code> is among the eager loads.</p>
+<p class="fix"><b>Fix:</b> alt text naming the actual property; <code>loading="lazy"</code> on everything below the fold.</p>
+</div></li>
+</ol>
+</section>
+
+<!-- ============ BUY/SELL/LEASE ============ -->
+<section class="surface">
+<h2>Buy It · Sell It · Lease It <span style="font-weight:400;color:var(--muted);font-size:16px;">— <code>/buy-it/</code> <code>/sell-it/</code> <code>/lease-it/</code></span></h2>
+<p class="surface-note">Three pages, structurally identical, 3,482&nbsp;px each. Every item here applies to all three.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The three pages are the same page with a different H1</span>
+<p class="detail">Each is: hero with one headline, the shared "OUR PROPERTIES" grid, the shared "LET'S START THE CONVERSATION" CTA. Nothing between the headline and the grid. No process, no proof, no fee explanation, no FAQ, nothing specific to selling versus leasing. The H1s are good — "FIND THE ONE WORTH STAYING FOR", "A CAMPAIGN BUILT AROUND YOUR PROPERTY", "MANAGED LIKE IT'S OUR OWN" — and then nothing follows them up.</p>
+<p class="fix"><b>Fix:</b> a content decision, not a build one, so it needs the client. Each page needs at least one section that only it could carry. Sell It in particular is the highest-value page on the site and currently has the least on it.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The same 9 dead listing cards on each page</span>
+<p class="detail">Identical to the homepage grid, including the empty hrefs, and unfiltered — Lease It shows the same "SOLD IT" and "OWN IT" cards as Buy It.</p>
+<p class="fix"><b>Fix:</b> filter the query per page once the listing CPT is in, so Buy It shows available stock and Lease It shows rentals.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Search field unlabelled, 12.5&nbsp;px</span>
+<p class="fix"><b>Fix:</b> same as the homepage — hidden label, 16&nbsp;px on mobile.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">2 of 5 images missing alt; 3 of 5 eager; 3 oversized</span>
+<p class="fix"><b>Fix:</b> batch with the sitewide image pass.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ OUR PEOPLE ============ -->
+<section class="surface">
+<h2>Our People <span style="font-weight:400;color:var(--muted);font-size:16px;">— <code>/our-people/</code></span></h2>
+<p class="surface-note">H1 "A FAMILY NAME ON EVERY BOARD". Six team cards, then a closing statement.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">Six identical stock headshots of the same man</span>
+<p class="detail">All six cards use the same photo of the same person in the same suit. Names are PLACEHOLDER ONE through SIX. Every card links to <code>tel:+61400000000</code>, and the emails run <code>one@</code>, <code>two@</code>, <code>three@</code>, <code>four@</code>, <code>five@</code>, <code>six@oneillproperty.com.au</code>.</p>
+<p class="fix"><b>Fix:</b> a real headshot shoot, matched lighting and crop across all six, plus real names, titles, mobiles and emails. Of all the filler on the site this is the most damaging, because the page exists specifically to prove there are real people behind the name.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">The sage chip contrast failure again</span>
+<p class="detail"><code>.onpsb-act</code>, cream on sage, 2.15:1.</p>
+<p class="fix"><b>Fix:</b> covered by the sitewide chip fix.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">10 of 13 images have no alt text</span>
+<p class="detail">On a page that is entirely portraits, so every missing alt is a person with no name in the accessibility tree.</p>
+<p class="fix"><b>Fix:</b> alt text is the person's name and role.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">11 oversized images</span>
+<p class="detail">Including <code>IMG_4015.jpg</code> at 1320&nbsp;px rendering into 396&nbsp;px — and the filename suggests it went up straight off a camera roll.</p>
+<p class="fix"><b>Fix:</b> resize to the rendered dimension, rename meaningfully, serve WebP.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">32 sub-44&nbsp;px tap targets</span>
+<p class="detail">Worst offenders are the per-agent phone (119&times;28) and email (203&times;28) links — the two things a visitor is most likely to tap on this page, on a phone.</p>
+<p class="fix"><b>Fix:</b> pad the contact rows out to 44&nbsp;px minimum.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ CAREERS ============ -->
+<section class="surface">
+<h2>Careers <span style="font-weight:400;color:var(--muted);font-size:16px;">— <code>/careers/</code></span></h2>
+<p class="surface-note">H1 "PUT YOUR NAME TO IT". The best-written page on the site; the issues are all presentational.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The large section numerals fail contrast</span>
+<p class="detail">The oversized <code>01</code> markers are sage <code>#839C83</code> on cream <code>#E2DAD1</code> at 75&nbsp;px = <b>2.15:1</b>. Large text still needs 3:1.</p>
+<p class="fix"><b>Fix:</b> darken to roughly <code>#5C7159</code> for 3.2:1, or drop the numerals — same argument as the homepage triptych, since "four things we look for" is a list, not a sequence.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The "WHAT WE LOOK FOR" hairline runs off the left edge of the viewport</span>
+<p class="detail">The rule before the kicker starts at x=0 instead of the 72&nbsp;px container gutter, so it bleeds past the page margin while every other section's rule is inset. It breaks the left alignment the whole page otherwise holds.</p>
+<p class="fix"><b>Fix:</b> align the rule's start to the container gutter, matching the other sections.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">A large empty column beside the "FOUR THINGS" heading</span>
+<p class="detail">The heading occupies the left half; the right half is blank until the body copy starts well below it. Reads as a layout that lost a column rather than as deliberate space.</p>
+<p class="fix"><b>Fix:</b> raise the supporting paragraph to sit alongside the heading, or let the heading run the full width.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">4 of 7 images missing alt; 6 oversized</span>
+<p class="detail">Two 2560&nbsp;px files rendering at 556&nbsp;px.</p>
+<p class="fix"><b>Fix:</b> batch with the sitewide image pass.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">Confirm <code>careers@oneillproperty.com.au</code> is a live mailbox</span>
+<p class="detail">It is the only route to apply on the page, and every other contact detail on the site turned out to be a placeholder.</p>
+<p class="fix"><b>Fix:</b> verify with the client, and consider an application form so submissions are captured rather than sitting in an inbox.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="surface">
+<h2>Contact <span style="font-weight:400;color:var(--muted);font-size:16px;">— <code>/contact/</code></span></h2>
+<p class="surface-note">1,953&nbsp;px. The shortest page and the one that has to convert.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">Three different sets of contact details across the site</span>
+<p class="detail">This page says <b>07 5555 0000</b>, <b>hello@oneillproperty.com.au</b>, <b>123 Bundall Road, Bundall QLD 4217</b>. The footer directly beneath it says <b>07 0000 0000</b>, <b>hello@oneillgroup.com.au</b>, <b>Gold Coast, Queensland</b>. Our People gives every agent <b>0400 000 000</b>. All three are visible on this one page, and all three phone numbers are placeholders.</p>
+<p class="fix"><b>Fix:</b> get the real number, email and address from the client and set them in one place that the footer, contact page and schema all read from.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">No <code>&lt;h1&gt;</code></span>
+<p class="detail">"LET'S TALK" is marked up as an H2. Second page on the site with no top-level heading.</p>
+<p class="fix"><b>Fix:</b> promote it.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The form is an unstyled Formidable default dropped onto a designed page</span>
+<p class="detail">Stock 36&nbsp;px-tall inputs, 14&nbsp;px labels, default radio buttons, a border radius that matches nothing else on the site, and a grey-sage "Submit" button. Everything around it is carefully art-directed and the form looks like it arrived from a different project. This is the last thing a visitor touches before becoming a lead.</p>
+<p class="fix"><b>Fix:</b> restyle to the site's own vocabulary — the type scale, the hairline borders, the basalt button. Inputs at 16&nbsp;px minimum so iOS doesn't zoom on focus.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The submit button and the required markers both fail contrast</span>
+<p class="detail">"Submit" is white on sage at <b>2.98:1</b>. The required-field asterisks are sage on the sage panel at <b>1.6:1</b>, so the one signal telling someone which fields are mandatory is nearly invisible.</p>
+<p class="fix"><b>Fix:</b> basalt text on the sage button (about 6.4:1). Asterisks in basalt, or replace them with the word "required" on the optional-field labels instead.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">A required free-text message on a callback form</span>
+<p class="detail">Name, email, phone, a five-way topic choice, and a required "Your Message" textarea. The page's own promise is "we will come back to you the same day", which is a phone call — so the required essay is the heaviest possible ask standing between a visitor and that call, and it will cost completions on mobile.</p>
+<p class="fix"><b>Fix:</b> make the message optional and label it so. Consider whether email is needed at all when the follow-up is a call.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">30 sub-44&nbsp;px tap targets</span>
+<p class="detail">Including the form inputs at 166&times;36.</p>
+<p class="fix"><b>Fix:</b> 44&nbsp;px minimum height on every field and control.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="surface">
+<h2>Services <span style="font-weight:400;color:var(--muted);font-size:16px;">— <code>/services/</code></span></h2>
+<p class="surface-note">Not an O'Neill page.</p>
+
+<ol class="items">
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">Delete it</span>
+<p class="detail">Live freight-and-logistics demo content left over from the theme: "Freight &amp; Logistics Services", Road / Air / Sea / Rail Freight cards with emoji in their headings, an aeroplane-and-shipping-container stock hero, lorem body copy, a pricing table headed "Customized Pricing for Professional Logistics Operations", 12 empty headings, and a set of contrast failures that are not worth listing because the page should not exist. It is reachable, in the sitemap, and indexable.</p>
+<p class="fix"><b>Fix:</b> delete, then confirm <code>/services/</code> 404s. Check the media library for the freight stock images and remove those too.</p>
+</div></li>
+</ol>
+</section>
+
+<!-- ============ PRIVACY ============ -->
+<section class="surface">
+<h2>Privacy Policy <span style="font-weight:400;color:var(--muted);font-size:16px;">— <code>/privacy-policy/</code></span></h2>
+<p class="surface-note">7,174&nbsp;px. Well structured — 22 headings, a working on-this-page index, and genuinely Queensland-specific content covering tenancy databases and the Privacy Act.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">Unfilled merge fields are live in the published policy</span>
+<p class="detail">Visible in the body text: <code>[[Trading entity name]]</code>, <code>[[ABN]]</code>, <code>[[domain]]</code>, and <code>[[DD MONTH 2026]]</code> as the last-updated date. This is a legal document that currently does not name the entity it binds.</p>
+<p class="fix"><b>Fix:</b> get the registered trading name, ABN and production domain from the client and fill them. Then search the rest of the site for the same <code>[[...]]</code> pattern.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p0">P0</span><div class="body-cell">
+<span class="what">The header is invisible on this page</span>
+<p class="detail">White nav and white wordmark on the cream ground = <b>1.38:1</b>. This is the clearest demonstration of the sitewide header-state problem, because the page has no hero image to hide behind.</p>
+<p class="fix"><b>Fix:</b> the dark header state from the Header section.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">37 sub-44&nbsp;px tap targets</span>
+<p class="detail">The 16 on-this-page index links are 220&times;18&nbsp;px each — 18&nbsp;px tall, stacked, and hard to hit accurately on a phone.</p>
+<p class="fix"><b>Fix:</b> increase the line height and vertical padding on the index items.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ TABLET ============ -->
+<section class="surface">
+<h2>Tablet</h2>
+<p class="surface-note">Checked at 768&times;1024 and 1024&times;768. Better than expected — no horizontal scroll at either width — but two things need attention.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">The service triptych stays three-across at 768&nbsp;px</span>
+<p class="detail">Each tile becomes 228&nbsp;px wide while its headline is still set at 29&nbsp;px minimum. "LEASE IT" barely fits and the supporting line wraps to three or four lines in a 228&nbsp;px column. The layout only drops to a single column below 768.</p>
+<p class="fix"><b>Fix:</b> add a two-across step, or move the single-column breakpoint up to 900&nbsp;px.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">Decorative elements overflow the viewport at both tablet widths</span>
+<p class="detail"><code>.onpm-bloom</code> reaches 804&nbsp;px at a 768&nbsp;px viewport and 1076&nbsp;px at 1024. <code>.onp-watermark</code> and three images do the same. Nothing scrolls sideways because an ancestor clips them, but the watermark is cut off rather than composed — the same halfway bleed as the hero wordmark.</p>
+<p class="fix"><b>Fix:</b> constrain them to the viewport, or bleed them decisively. Currently neither.</p>
+</div></li>
+
+</ol>
+</section>
+
+<!-- ============ COVERAGE ============ -->
+<section class="surface">
+<h2>What this audit did not cover</h2>
+<p class="surface-note">Listed so nobody assumes a clean bill on things that were never tested. Worth a second pass once the items above are done.</p>
+
+<ol class="items">
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Form submission was never exercised</span>
+<p class="detail">Nothing was submitted, so validation behaviour, inline error messages, the success state, the notification email, and whether entries actually land anywhere are all unverified. Given the form is the site's only conversion point, this is the most important untested thing on the list.</p>
+<p class="fix"><b>Test:</b> submit valid and invalid entries, confirm the notification email arrives at a real inbox, confirm the honeypot or spam guard is on.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p1">P1</span><div class="body-cell">
+<span class="what">Safari and iOS were not tested</span>
+<p class="detail">Everything here is Chrome. Safari differs on the things this site leans on hardest: video autoplay policy, <code>aspect-ratio</code>, scroll-driven animation, backdrop blur, and <code>100vh</code> handling with a dynamic toolbar. The pinned scroll wall is the most likely thing to behave differently.</p>
+<p class="fix"><b>Test:</b> real iOS Safari on a handset, not a simulator, with particular attention to the hero video and the scroll wall.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">The mobile menu drawer was only partly checked</span>
+<p class="detail">The trigger itself is well built — 46&times;46&nbsp;px, <code>aria-label="Open menu"</code>, <code>aria-expanded="false"</code>, <code>aria-controls="op-menu"</code>, which is better than most of the site. But the probe could not confirm the panel opening, so the open state, focus trapping, Escape-to-close, and background scroll-lock are all unverified.</p>
+<p class="fix"><b>Test:</b> open it on a real device; confirm focus moves into the panel, Escape closes it, and the page behind does not scroll.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">No screen reader pass and no real Core Web Vitals</span>
+<p class="detail">Accessibility findings here are measured (contrast ratios, heading structure, tab order, tap targets) but nothing was tested with VoiceOver or NVDA. Performance figures are transfer weight and request counts, not throttled LCP, CLS or INP — and the pinned scroll wall plus the header's <code>width</code>/<code>height</code> transition are exactly the kind of thing that hurts INP.</p>
+<p class="fix"><b>Test:</b> Lighthouse on mobile throttling, plus one VoiceOver pass over the homepage and the contact form.</p>
+</div></li>
+
+<li class="item"><span class="num"></span><span class="sev p2">P2</span><div class="body-cell">
+<span class="what">Hover and active states, and the print stylesheet</span>
+<p class="detail">Hover transitions are declared in the CSS and look considered, but were not exercised. No print styles were checked — relevant only because people do print property pages.</p>
+</div></li>
+
+</ol>
+</section>
+
+<p class="meta" style="margin-top:56px;">
+Contrast figures are computed WCAG 2.1 ratios measured against the element's actual rendered background. Ratios are not given for type sitting directly on photographs, because those vary across the frame and cannot be stated as a single number — those are flagged by description instead. Tested in Chrome at 1440&times;900, 1024&times;768, 768&times;1024 and 390&times;844.
+</p>
+
+</div>
