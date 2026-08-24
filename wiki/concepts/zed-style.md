@@ -12,7 +12,7 @@ This page is the single source for the piece-list. Job files (`projects/akmal/JO
 
 ## Piece-list
 
-**Dining** — round white Carrara-marble table on a sculptural white marble pedestal; 4 cream velvet chairs on slim brushed-gold legs, evenly spaced; one low matte-cream ceramic bowl as the centrepiece. The round table is deliberate: it removes the end-chair failure mode (see [[staging-rules]]).
+**Dining** — white stone/concrete-top table (round or rectangular) on a substantial matte-white pedestal or block base; 4 cream upholstered dining chairs with slightly curved backs and armrests, evenly spaced; one low matte-cream ceramic bowl as the centrepiece. This exact table+chair design is the locked default — approved 2026-08-24, replacing the earlier marble-and-gold version. Round table stays the default shape where end-chair risk applies (see [[staging-rules]]).
 
 **Living** — cream bouclé L-sectional; white marble + brushed-gold rectangular coffee table; cream shag rug wider than the sofa's front legs; one ivory accent chair; gold-stem floor lamp; fiddle-leaf fig in a white ceramic pot.
 
