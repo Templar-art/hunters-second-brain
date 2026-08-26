@@ -1,0 +1,1762 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover so the unbound reading view can pay out to the notch
+     with env() insets rather than being letterboxed by the safe area. -->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="description" content="O'Neill Property Brand Book, Edition One. The standards for the logo, colour, type, voice, signage, print, photography and the website.">
+<title>O'Neill Property Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   O'NEILL PROPERTY — BRAND BOOK
+   ------------------------------------------------------------
+   SINGLE THEME BY DESIGN. This is a brand document: the palette is
+   the subject, so it does not follow the viewer's light or dark
+   setting. Every ground and every colour is painted explicitly so
+   the page holds on either host.
+
+   Twenty-two spreads, each a fixed A4 landscape sheet on screen and
+   one sheet to a page in print. Under 1024px the book comes off its
+   binding and each spread becomes a full-bleed panel: see THE
+   UNBOUND READING VIEW at the foot of this sheet.
+   ============================================================ */
+
+/* ---------- 1. TOKENS ---------- */
+:root{
+  /* --- brand colour. Four values, and no fifth. --- */
+  --basalt:#3A3A3A;
+  --sage:#B7C1B3;
+  --stone:#E2DAD1;
+  --deep:#839C83;
+
+  /* The document ground is Stone, so every field in this book is one
+     the brand owns. There is no fifth off-white. */
+  --paper:var(--stone);
+
+  /* --- ground-relative ink ---
+     Opacity is not a hierarchy device on a mid tone ground, so these
+     three tiers are re-cut against every ground the book uses. The
+     defaults below are the Stone values.
+       --ink    primary type
+       --ink-2  secondary type, measured for body copy
+       --ink-3  wayfinding and labels only, large text tier
+     Measured, not estimated:
+       Stone   .88 = 6.1:1   .74 = 4.3:1
+       Sage    .88 = 4.8:1   .74 = 3.6:1
+       Basalt  .80 = 5.9:1   .62 = 4.2:1  (Stone ink) */
+  --ink:var(--basalt);
+  --ink-2:rgba(58,58,58,.88);
+  --ink-3:rgba(58,58,58,.74);
+  --hair:rgba(58,58,58,.24);
+
+  /* Deep Sage is a graphic colour, never a type colour. As a marker it
+     needs to be visible against its ground: 2.2:1 on Stone and 3.8:1
+     on Basalt read as a drawn rule, 1.6:1 on Sage Grey does not. So on
+     Sage the marker falls back to Basalt. */
+  --marker:var(--deep);
+
+  /* --- type ---
+     Sinhala MN is the display face. Georgia and Times trail it only so
+     the page renders somewhere; neither is the nominated brand
+     substitute, which is still an open decision (spread 21). */
+  --display:"Sinhala MN",Georgia,"Times New Roman",serif;
+  --sans:"Inter","Helvetica Neue",Arial,sans-serif;
+
+  /* --- spacing scale. em of the sheet, so a spread scales as one
+         piece of artwork rather than reflowing like a web page. --- */
+  --s1:.45em;
+  --s2:.8em;
+  --s3:1.3em;
+  --s4:2.1em;
+  --s5:3.4em;
+  --s6:5.5em;
+
+  /* --- grid and frame --- */
+  --cols:12;
+  --gut:3.4em;
+  --pad-x:6.2em;
+  --pad-t:4.9em;
+  --pad-b:5.9em;
+  --hair-w:1px;
+  --marker-w:2px;
+
+  /* --- measure caps --- */
+  --measure:34em;
+  --measure-sm:30em;
+
+  /* --- breakpoints, for reference in this sheet ---
+     unbound reading view: max-width 1023px */
+}
+
+/* ---------- 2. RESET AND BASE ---------- */
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{ max-width:100%; }
+:focus-visible{ outline:2px solid currentColor; outline-offset:3px; }
+
+.skip{
+  position:absolute; left:1rem; top:-4rem; z-index:40;
+  background:var(--basalt); color:var(--stone);
+  padding:.7rem 1rem; text-decoration:none;
+  font:600 .78rem/1 var(--sans); letter-spacing:.18em; text-transform:uppercase;
+  transition:top .12s;
+}
+.skip:focus{ top:1rem; }
+.vh{
+  position:absolute; width:1px; height:1px; margin:-1px;
+  padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* ---------- 3. THE BOOK AND THE SHEET ---------- */
+.book{
+  height:100dvh; overflow-y:auto;
+  scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
+  background:var(--paper);
+}
+.spread{
+  scroll-snap-align:center;
+  scroll-snap-stop:always;
+  width:min(100% - 2.6vw, 1500px);
+  margin:1.3vw auto;
+  /* A4 landscape, 297 x 210. Not 16:9: this document is meant to be
+     printed and read as a set of A4 sheets, so the page it is designed
+     on has to be the page it lands on. */
+  aspect-ratio:297 / 210;
+  position:relative;
+  overflow:hidden;
+  background:var(--paper);
+  /* NOT cqw. An element cannot be its own query container, so cqw set
+     here resolves against the viewport instead of the spread. This
+     mirrors the width rule above: the spread is min(97.4vw, 1500px),
+     so one per cent of it is min(0.974vw, 15px). */
+  font-size:min(0.955vw, 14.35px);
+  box-shadow:0 1px 0 rgba(58,58,58,.08), 0 18px 44px -28px rgba(58,58,58,.5);
+}
+
+/* --- ground variants. Each carries its own re-cut ink tiers. --- */
+.is-stone{ background:var(--stone); }
+.is-sage{
+  background:var(--sage);
+  --ink-2:rgba(58,58,58,.88);   /* 4.8:1 */
+  --ink-3:rgba(58,58,58,.74);   /* 3.6:1, wayfinding only */
+  --hair:rgba(58,58,58,.26);
+  --marker:var(--basalt);       /* Deep Sage on Sage is 1.6:1 */
+}
+.is-basalt{
+  background:var(--basalt);
+  color:var(--stone);
+  --ink:var(--stone);
+  --ink-2:rgba(226,218,209,.8);   /* 5.9:1 */
+  --ink-3:rgba(226,218,209,.62);  /* 4.2:1 */
+  --hair:rgba(226,218,209,.24);
+  --marker:var(--deep);           /* 3.8:1 on Basalt */
+}
+/* A Basalt panel inside a Sage or Stone spread inherits that spread's
+   tiers, which are cut for a light ground. Panels carry the re-cut
+   with them. */
+.on-basalt{
+  background:var(--basalt); color:var(--stone);
+  --ink:var(--stone);
+  --ink-2:rgba(226,218,209,.8);
+  --ink-3:rgba(226,218,209,.62);
+  --hair:rgba(226,218,209,.24);
+  --marker:var(--deep);
+}
+.on-paper{ background:var(--paper); color:var(--basalt); --ink:var(--basalt); }
+
+.pad{
+  position:absolute; inset:0;
+  padding:var(--pad-t) var(--pad-x) var(--pad-b);
+  display:flex; flex-direction:column;
+}
+
+/* ---------- 4. RUNNING FOOT ---------- */
+.folio{
+  position:absolute; left:var(--pad-x); right:var(--pad-x); bottom:2.5em;
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:1.05em; letter-spacing:.24em; text-transform:uppercase;
+  font-weight:500; color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+.is-basalt .folio{ color:var(--ink-3); }
+
+/* ---------- 5. TYPE ---------- */
+.eyebrow{
+  font-size:1.05em; font-weight:600; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--ink-2);
+  display:flex; align-items:center; gap:1.4em;
+}
+.eyebrow::before{ content:""; display:block; width:3.4em; height:var(--hair-w); background:currentColor; opacity:.6; flex:none; }
+h1,h2,h3{ font-family:var(--display); font-weight:400; margin:0; text-wrap:balance; }
+h1{ font-size:6.6em; line-height:.98; letter-spacing:.004em; }
+h2{ font-size:4.9em; line-height:1.02; letter-spacing:.006em; }
+h2.h2-sm{ font-size:4.2em; }
+h3{ font-size:2.3em; line-height:1.12; }
+.kicker{
+  font-family:var(--sans); font-size:1.1em; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--ink-2);
+}
+.kicker-q{ color:var(--ink-3); }
+p{ margin:0; font-size:1.42em; line-height:1.68; font-weight:300; max-width:var(--measure); text-wrap:pretty; }
+p.sm{ font-size:1.22em; line-height:1.62; }
+p.xs{ font-size:1.08em; line-height:1.55; color:var(--ink-2); }
+strong{ font-weight:500; color:var(--ink); }
+.pull{ font-family:var(--display); font-size:2.9em; line-height:1.16; max-width:20em; }
+.hr{ height:var(--hair-w); background:var(--hair); width:100%; border:0; }
+
+/* ---------- 6. GRID AND FLOW ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(var(--cols),minmax(0,1fr));
+  column-gap:var(--gut);
+  align-items:start;
+}
+.grid.fill{ flex:1; }
+.grid.mid{ align-items:center; }
+.grid.end{ align-items:end; }
+.c2{ grid-column:span 2; }
+.c3{ grid-column:span 3; }
+.c4{ grid-column:span 4; }
+.c5{ grid-column:span 5; }
+.c6{ grid-column:span 6; }
+.c7{ grid-column:span 7; }
+.c8{ grid-column:span 8; }
+.c12{ grid-column:span 12; }
+.start6{ grid-column:6 / -1; }
+.start7{ grid-column:7 / -1; }
+.start8{ grid-column:8 / -1; }
+.start9{ grid-column:9 / -1; }
+.start10{ grid-column:10 / -1; }
+.stack{ display:flex; flex-direction:column; gap:var(--s3); }
+.stack.tight{ gap:var(--s2); }
+.stack.loose{ gap:var(--s4); }
+.mt{ margin-top:var(--s4); }
+.mt-s{ margin-top:var(--s3); }
+.mt-l{ margin-top:var(--s5); }
+.push{ margin-top:auto; }
+
+/* ---------- 7. SPREAD HEADER ---------- */
+/* Two variants, used deliberately rather than alternately: --split
+   pairs the title with a lede in the right columns, --stack sets the
+   title over a full-width body. */
+.head{ display:grid; grid-template-columns:repeat(var(--cols),minmax(0,1fr)); column-gap:var(--gut); align-items:end; }
+.head__title{ grid-column:1 / span 7; }
+.head__lede{ grid-column:8 / -1; }
+.head__lede p{ max-width:26em; }
+.head h2{ margin-top:var(--s3); }
+
+/* ---------- 8. RULE LISTS ---------- */
+/* Replaces a hand-built stack of paragraphs separated by hairline
+   divs. One component, one hairline per row. */
+.rules{ list-style:none; margin:0; padding:0; }
+.rules > li{
+  border-top:var(--hair-w) solid var(--hair);
+  padding:.9em 0;
+  font-size:1.08em; line-height:1.55; font-weight:300; color:var(--ink-2);
+}
+.rules.airy > li{ padding:1.15em 0; }
+.rules > li strong{ font-weight:500; color:var(--ink); }
+.rules > li:last-child{ border-bottom:var(--hair-w) solid var(--hair); }
+
+/* Warnings and requirements get a drawn marker in the graphic colour
+   so they can be found by eye rather than by reading. */
+.flag{
+  border-left:var(--marker-w) solid var(--marker);
+  padding:.2em 0 .2em 1.35em;
+}
+.note{ padding:1.9em 2.1em; }
+/* A translucent Stone panel lifts the Basalt ground to #474746, where
+   the spread's own ink tiers measure 5.0:1 and 3.7:1 rather than the
+   5.9 and 4.2 they were cut for. The panel carries its own re-cut:
+   .88 = 5.6:1, .70 = 4.2:1. */
+.veil{
+  background:rgba(226,218,209,.08);
+  --ink-2:rgba(226,218,209,.88);
+  --ink-3:rgba(226,218,209,.7);
+}
+.note .kicker + p{ margin-top:var(--s2); }
+
+/* ---------- 9. FOOT NOTES ROW ---------- */
+.notes{
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--gut);
+  padding-top:1.5em; border-top:var(--hair-w) solid var(--hair);
+}
+.notes p{ max-width:none; }
+
+/* ---------- 10. LOGO MARKS ---------- */
+.mark{ display:block; width:100%; height:auto; color:var(--basalt); }
+.mark-stone{ color:var(--stone); }
+.mark-sage{ color:var(--sage); }
+.plate{
+  background:var(--paper);
+  display:flex; align-items:center; justify-content:center;
+  padding:2.6em 2em; height:12em;
+}
+
+/* ---------- 11. SWATCHES ---------- */
+.swatches{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2.2em; }
+.sw{ display:flex; flex-direction:column; }
+.sw .chip{
+  height:11em; display:flex; align-items:flex-end; padding:1.2em 1.3em;
+  font-size:1em; letter-spacing:.22em; text-transform:uppercase; font-weight:600;
+}
+.sw .nm{ font-family:var(--display); font-size:2em; margin-top:.6em; line-height:1.1; }
+.sw .hx{ font-size:1.1em; font-weight:500; letter-spacing:.1em; font-variant-numeric:tabular-nums; margin-top:.3em; }
+.sw .hx span{ color:var(--ink-2); font-weight:400; }
+.sw .us{ font-size:1.05em; line-height:1.5; color:var(--ink-2); margin-top:.55em; font-weight:300; }
+
+/* ---------- 12. RATIO BAR ---------- */
+.ratio{ display:flex; height:7em; overflow:hidden; }
+.ratio div{
+  display:flex; align-items:center; padding-inline:1.3em;
+  /* the Sage band sits on a Sage page and would otherwise vanish */
+  box-shadow:inset 0 0 0 var(--hair-w) rgba(58,58,58,.2);
+  font-size:1.06em; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+  white-space:nowrap;
+}
+.rkey{ display:flex; gap:.6em 2.2em; flex-wrap:wrap; margin-top:1.1em; font-size:1.06em; color:var(--ink-2); }
+.rkey span{ display:flex; align-items:center; gap:.7em; }
+.rkey i{ width:.95em; height:.95em; display:block; box-shadow:inset 0 0 0 var(--hair-w) rgba(58,58,58,.16); }
+
+/* ---------- 13. MEASURED CONTRAST ROWS ---------- */
+.pairs{ display:flex; flex-direction:column; gap:.5em; list-style:none; margin:0; padding:0; }
+.pairs li{
+  display:flex; justify-content:space-between; align-items:center; gap:1.5em;
+  padding:1.1em 1.3em; font-size:1.14em;
+}
+.pairs b{ font-weight:500; }
+.pairs .val{ font-size:.86em; letter-spacing:.16em; text-transform:uppercase; font-variant-numeric:tabular-nums; }
+
+/* ---------- 14. TYPE SPECIMEN ---------- */
+.spec{ display:grid; grid-template-columns:11em 1fr; gap:1.4em 2.4em; align-items:baseline; margin:0; }
+.spec dt{
+  font-size:1.02em; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-2); padding-top:.5em;
+}
+.spec dd{ margin:0; }
+.spec .lab{ font-size:.98em; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); display:block; margin-top:.35em; font-weight:500; }
+
+/* ---------- 15. CLEAR SPACE DIAGRAM ---------- */
+.cs{ background:var(--stone); padding:4.5em; position:relative; }
+.cs__inner{ position:relative; padding:3.4em; }
+.cs__guide{ position:absolute; inset:0; border:var(--hair-w) dashed rgba(58,58,58,.34); }
+.cs__o{ position:absolute; font-family:var(--display); font-size:2.2em; color:rgba(58,58,58,.55); }
+.cs__o.l{ left:1.1em; top:50%; transform:translateY(-50%); }
+.cs__o.r{ right:1.1em; top:50%; transform:translateY(-50%); }
+.cs__o.t{ top:.5em; left:50%; transform:translateX(-50%); }
+.cs__o.b{ bottom:.5em; left:50%; transform:translateX(-50%); }
+
+/* ---------- 16. CORRECT / INCORRECT ---------- */
+.examples{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2.2em 2.4em; }
+.ex__frame{
+  background:var(--paper); padding:2.2em;
+  display:flex; align-items:center; justify-content:center;
+  height:9.2em; overflow:hidden; position:relative;
+}
+.ex__frame .mark{ width:74%; }
+.ex__cap{ font-size:1.05em; margin-top:.75em; line-height:1.45; color:var(--ink-2); font-weight:300; padding-top:.65em; border-top:var(--hair-w) solid var(--hair); }
+.ex__cap b{ display:block; font-weight:600; color:var(--ink); letter-spacing:.02em; }
+.ex.ok .ex__cap{ border-top:var(--marker-w) solid var(--marker); }
+
+/* ---------- 17. VOICE TABLE ---------- */
+.vt{ display:grid; grid-template-columns:1fr 1fr; column-gap:var(--gut); list-style:none; margin:0; padding:0; }
+.vt li{ padding:.8em 0; border-top:var(--hair-w) solid var(--hair); font-size:1.26em; font-weight:300; }
+.vt li:nth-child(1), .vt li:nth-child(2){ border-top:0; }
+.vt .no{ color:var(--ink-2); text-decoration:line-through; text-decoration-thickness:1px; }
+
+/* ---------- 18. TABLES ---------- */
+.tbl{ width:100%; border-collapse:collapse; font-size:1.18em; }
+.tbl caption{ text-align:left; font-size:.001em; color:transparent; }
+.tbl th{
+  text-align:left; font-size:.88em; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-2); padding:0 1.4em .8em 0; border-bottom:var(--hair-w) solid var(--hair);
+}
+.tbl td{ padding:.7em 1.4em .7em 0; border-bottom:var(--hair-w) solid var(--hair); vertical-align:top; font-weight:300; }
+.tbl td.t{ color:var(--ink-2); }
+.tbl td.b{ font-weight:500; font-family:var(--display); font-size:1.14em; }
+.tbl td.mono{ font-variant-numeric:tabular-nums; letter-spacing:.08em; font-weight:500; }
+.tbl.tight td{ padding:.5em 1.2em .5em 0; }
+
+/* ---------- 19. THE NINE DECISIONS ---------- */
+.nine{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:var(--hair-w) solid var(--hair); list-style:none; margin:0; padding:0; }
+.nine li{ padding:.8em 1.4em .85em 0; border-bottom:var(--hair-w) solid var(--hair); }
+.nine .k{ font-size:.98em; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-2); }
+.nine .v{ font-family:var(--display); font-size:1.62em; line-height:1.14; margin-top:.3em; }
+.nine .s{ font-size:1em; line-height:1.45; color:var(--ink-2); margin-top:.35em; font-weight:300; }
+
+/* ---------- 20. CONTENTS ---------- */
+.toc{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:5em; list-style:none; margin:0; padding:0; }
+.toc a{
+  display:flex; align-items:baseline; gap:1em; padding:.6em 0;
+  border-top:var(--hair-w) solid var(--hair); color:inherit; text-decoration:none; font-size:1.2em;
+}
+.toc .n{ font-size:.82em; font-weight:600; letter-spacing:.16em; color:var(--ink-2); font-variant-numeric:tabular-nums; width:2.6em; flex:none; }
+.toc .d{ flex:1; border-bottom:var(--hair-w) dotted var(--ink-3); transform:translateY(-.28em); }
+/* Hover recolouring the title to sage would measure 1.6:1 against the
+   Sage Grey page: a state change nobody could see. The leader
+   solidifies instead, which costs no contrast at all. */
+@media (hover:hover){
+  .toc a:hover .d{ border-bottom-style:solid; border-bottom-color:var(--ink); }
+  .toc a:hover .n{ color:var(--ink); }
+}
+.toc a:active .d{ border-bottom-color:var(--marker); }
+
+/* ---------- 21. FIGURES ---------- */
+figure{ margin:0; }
+figcaption{
+  font-size:1em; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:600; margin-top:.85em;
+}
+/* Collateral: the supplied artwork, placed rather than redrawn. Each
+   frame carries its own label, so a reader whose browser cannot load
+   the file still sees which piece belongs where. */
+.shot{
+  position:relative; overflow:hidden; background:var(--sage);
+  /* The artwork is Sage Grey and so is the page it sits on. A hairline
+     and a low shadow put the piece ON the field rather than in it. */
+  box-shadow:inset 0 0 0 var(--hair-w) rgba(58,58,58,.18), 0 .14em .55em rgba(58,58,58,.2);
+}
+.shot::after{
+  content:attr(data-piece);
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  padding:1.5em; text-align:center;
+  font-size:1em; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(58,58,58,.88); z-index:0;
+}
+.shot img{ position:relative; z-index:1; width:100%; height:100%; display:block; object-fit:contain; }
+
+/* Photography. Cropped by intent with object-position, never distorted. */
+.photo{ position:relative; overflow:hidden; background:var(--basalt); }
+.photo img{ width:100%; height:100%; display:block; object-fit:cover; }
+.r32{ aspect-ratio:3 / 2; }
+/* The second frame of the pair is dropped below the first's top edge.
+   This is the asymmetry, not a margin: it comes off in one column. */
+.photo-offset{ margin-top:5.5em; }
+.r45{ aspect-ratio:4 / 5; }
+
+/* ---------- 22. CHECKLIST ---------- */
+.check{ list-style:none; margin:0; padding:0; }
+.check li{
+  display:grid; grid-template-columns:1.1em 1fr; gap:.85em;
+  padding:.5em 0; font-size:1.06em; line-height:1.5; font-weight:300; color:var(--ink-2);
+}
+.check li::before{
+  content:""; width:1.05em; height:1.05em; margin-top:.28em;
+  border:var(--hair-w) solid var(--ink-3);
+}
+.check strong{ font-weight:500; }
+
+/* ---------- 23. OPEN DECISIONS ---------- */
+.open{ border-left:var(--marker-w) solid var(--marker); padding-left:1.35em; }
+.open__label{
+  font-size:.98em; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ink-2);
+}
+.open h3{ font-size:1.7em; margin-top:.3em; }
+.open p{ margin-top:.4em; }
+
+/* ---------- 24. COVER ---------- */
+.cover{ position:absolute; inset:0; display:grid; grid-template-rows:auto 1fr auto; }
+.cover__rail,
+.cover__foot{ padding:3.2em var(--pad-x); position:relative; }
+.cover__rail{ display:flex; justify-content:space-between; align-items:flex-start; gap:var(--gut); }
+.cover__foot{ padding-bottom:4.2em; display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gut); align-items:end; }
+.cover__band{ position:relative; overflow:hidden; }
+.divider{ grid-template-rows:1fr auto; }
+.cover__band img{ width:100%; height:100%; object-fit:cover; object-position:50% 55%; display:block; }
+.cover__wm{ position:absolute; right:-6em; bottom:-9em; width:34em; color:rgba(226,218,209,.07); pointer-events:none; }
+.meta{ font-size:1.1em; font-weight:600; letter-spacing:.2em; text-transform:uppercase; line-height:1.9; color:var(--ink-2); }
+
+/* ---------- 25. PROGRESS CHIP ---------- */
+.hud{
+  position:fixed; right:1.6vw; bottom:1.4vw; z-index:20;
+  font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  font-variant-numeric:tabular-nums;
+  color:rgba(58,58,58,.88);
+  background:var(--stone); padding:8px 12px; border:1px solid rgba(58,58,58,.24);
+  pointer-events:none;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .book{ scroll-behavior:auto; }
+  .skip{ transition:none; }
+}
+
+/* ============================================================
+   26. PRINT
+   A4 landscape, one spread to a sheet, no margin: the spread already
+   carries its own.
+   ============================================================ */
+@page{ size:A4 landscape; margin:0; }
+@media print{
+  html,body{ background:#fff; }
+  /* The grounds ARE the content of this document. Without this, a
+     browser drops every Sage and Basalt field and the book prints as
+     black type on white. */
+  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .book{ height:auto; overflow:visible; }
+  .skip, .hud{ display:none !important; }
+  .spread{
+    /* Sized to the sheet in absolute units rather than by aspect
+       ratio. A ratio-derived height lands a hair over 210mm and every
+       spread then breaks across two sheets. */
+    width:297mm; height:210mm; aspect-ratio:auto;
+    margin:0; box-shadow:none; overflow:hidden;
+    /* 0.957 per cent of the sheet, the proportion the spread is set at
+       on screen */
+    font-size:2.84mm;
+    break-after:page; page-break-after:always;
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .spread:last-child{ break-after:auto; page-break-after:auto; }
+  h1,h2,h3,.eyebrow,.kicker{ break-after:avoid; page-break-after:avoid; }
+  figure,table,.rules,.check,.examples,.swatches,.pairs,.open{ break-inside:avoid; page-break-inside:avoid; }
+  .toc a{ text-decoration:none; }
+  .shot{ box-shadow:inset 0 0 0 var(--hair-w) rgba(58,58,58,.18); }
+  img{ image-rendering:auto; }
+}
+
+/* ============================================================
+   27. THE UNBOUND READING VIEW  —  screen only, under 1024px
+   ------------------------------------------------------------
+   Under 1024px the sheet stops being a page and becomes a postage
+   stamp. The spread scale is derived from viewport width, so at 375px
+   the body copy computed to about five physical pixels. Scaling the
+   sheet down further is not an adaptation, it is a smaller failure.
+
+   So the book comes off its binding. Each spread becomes a full-bleed
+   panel of its own ground, content height, one column, set from a
+   readable base instead of from vw. The folio stays and moves inline,
+   where it does what a folio has always done: it says the page ended.
+
+   Nothing is dropped. A fabricator checking a clear-space rule on a
+   phone at a sign shop needs the same twenty-three spreads the printed
+   book has, in the same order.
+
+   EVERY RULE IN HERE IS SCOPED `screen`. Chrome lays a print job out
+   in a narrow viewport, so an unscoped max-width rule wins the cascade
+   over the print block and sets the type from vw instead of from the
+   sheet. That bug has been fixed once. It does not come back.
+   ============================================================ */
+@media screen and (max-width:1023px){
+
+  /* Page scroll, not an inner scroller: the address bar collapse and
+     the overscroll belong to the document on a phone. Mandatory snap
+     comes off with it, or a panel taller than the viewport traps. */
+  .book{ height:auto; overflow:visible; scroll-snap-type:none; }
+
+  .spread{
+    --gut:clamp(1.35rem, 5.5vw, 2.5rem);
+    --pad-x:0;
+    scroll-snap-align:none; scroll-snap-stop:normal;
+    width:100%; margin:0;
+    /* the sheet ratio is a print fact, not a screen one */
+    aspect-ratio:auto; height:auto;
+    box-shadow:none;
+    font-size:clamp(14px, 1.9vw, 15px);
+    padding-inline:calc(var(--frame) + env(safe-area-inset-left)) calc(var(--frame) + env(safe-area-inset-right));
+    --frame:clamp(1.35rem, 5.5vw, 2.5rem);
+    border-top:1px solid transparent;
+  }
+  /* consecutive spreads share a ground several times in the book, so
+     the panel edge is drawn rather than assumed */
+  .is-sage, .is-stone{ border-top-color:rgba(58,58,58,.2); }
+  .is-basalt{ border-top-color:rgba(226,218,209,.2); }
+  .spread:first-of-type{ border-top-color:transparent; }
+
+  .pad, .cover{
+    position:static; inset:auto;
+    padding:clamp(2.25rem,7.5vw,3.5rem) 0 clamp(1.25rem,4vw,1.75rem);
+    display:flex; flex-direction:column;
+  }
+
+  /* ---- the folio becomes the page divider ---- */
+  .folio{
+    position:static; left:auto; right:auto; bottom:auto;
+    margin-top:clamp(1.75rem,6vw,2.75rem);
+    padding:.85em 0 clamp(1.5rem,5vw,2.25rem);
+    border-top:1px solid var(--hair);
+    font-size:.95em; letter-spacing:.2em;
+  }
+  .hud{ display:none; }
+
+  /* ---- type ---- */
+  h1{ font-size:clamp(2.5rem,10vw,4rem); line-height:1; }
+  h2, h2.h2-sm{ font-size:clamp(1.9rem,7.4vw,3rem); line-height:1.05; }
+  h3{ font-size:clamp(1.2rem,4.4vw,1.5rem); }
+  .pull{ font-size:clamp(1.4rem,5.4vw,1.9rem); line-height:1.22; max-width:none; }
+  .eyebrow{ font-size:1em; gap:1em; }
+  .eyebrow::before{ width:2.4em; }
+  p, .head__lede p{ max-width:none; }
+  /* The sheet runs three prose tiers because it has three column
+     widths. One column needs two, and both clear 16px. */
+  p.sm, p.xs{ font-size:1.16em; line-height:1.62; }
+  .rules > li, .check li, .nine .s, .sw .us, .ex__cap{ font-size:1.12em; line-height:1.5; }
+  /* Tracking scales with measure. A label tracked for a 1500px sheet
+     is tracked too loose for a 375px column. */
+  .kicker{ letter-spacing:.16em; }
+  .kicker, .eyebrow, .folio{ overflow-wrap:break-word; }
+
+  /* ---- one column ---- */
+  .grid, .head{ grid-template-columns:1fr !important; row-gap:clamp(1.5rem,5vw,2.25rem); align-items:stretch !important; }
+  .grid > *, .head > *{ grid-column:1 / -1 !important; }
+  .notes, .swatches, .examples, .nine, .toc, .spec, .vt{ grid-template-columns:1fr !important; }
+  .push{ margin-top:clamp(1.5rem,5vw,2.25rem) !important; }
+  .notes{ row-gap:clamp(1.25rem,4.5vw,2rem); }
+
+  /* ---- contents: 44px targets, one column ---- */
+  .toc{ column-gap:0; }
+  .toc a{ min-height:44px; align-items:center; padding-block:.5em; font-size:1.1em; }
+  .toc .n{ width:2.4em; }
+  .toc .d{ transform:none; }
+
+  /* ---- the nine decisions ---- */
+  .nine li{ padding:1em 0 1.05em !important; }
+  .nine .v{ font-size:1.35em; }
+  .nine .s{ font-size:1.02em; }
+
+  /* ---- colour ---- */
+  .sw .chip{ height:clamp(4rem,15vw,5.5rem); }
+  .sw .nm{ font-size:1.7em; }
+  /* the band labels cannot fit a phone width and the key underneath
+     already names all four, so the bar becomes purely a bar */
+  .ratio{ height:3.25em; }
+  .ratio div{ padding-inline:0; font-size:0; }
+  .pairs li{ padding:1em 1.1em; font-size:1.02em; flex-wrap:wrap; gap:.2em .9em; }
+  .pairs .val{ font-size:.9em; }
+
+  /* ---- clear space diagram: the sheet paddings are far too generous
+     once the panel is only a phone wide ---- */
+  .cs{ padding:clamp(1.4rem,5.5vw,2.5rem); }
+  .cs__inner{ padding:clamp(1.7rem,7vw,3rem); }
+
+  /* ---- correct / incorrect ---- */
+  .ex__frame{ height:clamp(6rem,22vw,8rem); padding:1.6em; }
+  .ex__frame .mark{ width:82%; }
+
+  /* ---- type specimen: label above sample ---- */
+  .spec{ gap:.3em 0 !important; }
+  .spec dt{ padding-top:1.05em; border-top:1px solid var(--hair); }
+  .spec dt:first-of-type{ padding-top:0; border-top:0; }
+
+  /* ---- voice: the two heads pair with the two-column list under
+     them, so this one row is the exception that does not stack ---- */
+  .vt{ grid-template-columns:1fr 1fr !important; column-gap:clamp(.9rem,4vw,2rem); }
+  .vt li{ font-size:1.06em; padding:.7em 0; }
+  .voice-heads{ display:grid !important; grid-template-columns:1fr 1fr !important; column-gap:clamp(.9rem,4vw,2rem); }
+  .voice-heads > *{ grid-column:auto !important; }
+
+  /* ---- tables: three columns of unequal weight read better as
+     labelled blocks than as a table that has to scroll. The column
+     heads are printed once, on the first row, then the pattern
+     carries. ---- */
+  .tbl, .tbl tbody, .tbl tr, .tbl td{ display:block; width:auto !important; }
+  .tbl thead{ display:none; }
+  .tbl{ font-size:1.1em; }
+  .tbl tr{ padding:1em 0; border-bottom:1px solid var(--hair); }
+  .tbl tr:last-child{ border-bottom:0; }
+  .tbl td{ padding:0 !important; border:0; }
+  .tbl td + td{ margin-top:.45em; }
+  .tbl td.b{ font-size:1.3em; }
+  .tbl tr:first-child td::before{
+    content:attr(data-label);
+    display:block; margin-bottom:.2em;
+    font-family:var(--sans); font-size:.68em; font-weight:600;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--ink-2);
+  }
+
+  /* ---- collateral and photography ---- */
+  .shot{ width:100%; max-height:70vh; margin-inline:auto; }
+  .photo.r45{ aspect-ratio:3 / 2; }
+  .photo-offset{ margin-top:0 !important; }
+  .divider-photo{ aspect-ratio:3 / 2 !important; }
+
+  /* ---- cover ---- */
+  .cover{ gap:clamp(2rem,7vw,3rem); }
+  .cover__rail, .cover__foot{ padding:0; display:flex; flex-direction:column; gap:clamp(1.25rem,5vw,2rem); align-items:flex-start; }
+  .cover__band{ aspect-ratio:3 / 2; margin-inline:calc(-1 * var(--frame)); }
+  .cover__wm{ width:22em; right:-5em; bottom:-8em; }
+}
+
+/* Coarse pointers get the interactive rows at a full 44px whatever the
+   viewport is, including a touch laptop reading the bound view. */
+@media screen and (pointer:coarse){
+  .toc a{ min-height:44px; align-items:center; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contents">Skip to the contents</a>
+<!-- The supplied artwork, as a symbol sprite. Never redrawn, never
+     re-typed: every placement in this book is a <use> of these three. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="lg-primary" viewBox="0 0 1884.25 724.11" fill="currentColor"><g> <path d="M437.5,659.59v-92.9h31.39c7.29,0,13.25,1.31,17.9,3.92,4.64,2.62,8.08,6.15,10.32,10.59,2.24,4.45,3.36,9.41,3.36,14.88s-1.11,10.45-3.33,14.92c-2.22,4.48-5.65,8.04-10.27,10.68-4.63,2.65-10.55,3.97-17.78,3.97h-22.5v-9.98h22.14c4.99,0,9-.86,12.02-2.59,3.02-1.72,5.22-4.06,6.6-7.01,1.38-2.95,2.07-6.28,2.07-10s-.69-7.05-2.07-9.98c-1.38-2.93-3.59-5.24-6.64-6.92-3.06-1.68-7.11-2.52-12.16-2.52h-19.78v82.92h-11.25Z"/> <path d="M569.7,659.59v-92.9h31.39c7.26,0,13.21,1.23,17.87,3.7,4.66,2.46,8.1,5.84,10.34,10.14,2.24,4.29,3.36,9.18,3.36,14.65s-1.12,10.33-3.36,14.56c-2.24,4.23-5.67,7.55-10.3,9.96-4.63,2.4-10.54,3.61-17.74,3.61h-25.4v-10.16h25.04c4.96,0,8.96-.73,12-2.18,3.04-1.45,5.25-3.52,6.62-6.19,1.38-2.68,2.07-5.87,2.07-9.59s-.7-6.97-2.09-9.75c-1.39-2.78-3.61-4.94-6.67-6.46-3.05-1.53-7.09-2.29-12.11-2.29h-19.78v82.92h-11.25ZM613.43,617.86l22.86,41.73h-13.06l-22.5-41.73h12.7Z"/> <path d="M780.83,613.14c0,9.8-1.77,18.27-5.31,25.4-3.54,7.14-8.39,12.64-14.56,16.51-6.17,3.87-13.22,5.81-21.14,5.81s-14.97-1.93-21.14-5.81c-6.17-3.87-11.02-9.37-14.56-16.51-3.54-7.14-5.31-15.6-5.31-25.4s1.77-18.27,5.31-25.4c3.54-7.14,8.39-12.64,14.56-16.51,6.17-3.87,13.22-5.81,21.14-5.81s14.97,1.94,21.14,5.81c6.17,3.87,11.02,9.38,14.56,16.51,3.54,7.14,5.31,15.6,5.31,25.4ZM769.95,613.14c0-8.04-1.34-14.83-4.01-20.37-2.68-5.53-6.29-9.72-10.84-12.57-4.55-2.84-9.64-4.26-15.26-4.26s-10.71,1.42-15.26,4.26c-4.55,2.84-8.17,7.03-10.84,12.57-2.68,5.53-4.01,12.32-4.01,20.37s1.34,14.83,4.01,20.37c2.68,5.53,6.29,9.72,10.84,12.57,4.55,2.84,9.64,4.26,15.26,4.26s10.71-1.42,15.26-4.26c4.55-2.84,8.17-7.03,10.84-12.57,2.68-5.53,4.01-12.32,4.01-20.37Z"/> <path d="M850.8,659.59v-92.9h31.39c7.29,0,13.25,1.31,17.9,3.92,4.64,2.62,8.08,6.15,10.32,10.59,2.24,4.45,3.36,9.41,3.36,14.88s-1.11,10.45-3.33,14.92c-2.22,4.48-5.65,8.04-10.27,10.68-4.63,2.65-10.55,3.97-17.78,3.97h-22.5v-9.98h22.14c4.99,0,9-.86,12.02-2.59,3.02-1.72,5.22-4.06,6.6-7.01,1.38-2.95,2.07-6.28,2.07-10s-.69-7.05-2.07-9.98c-1.38-2.93-3.59-5.24-6.64-6.92-3.06-1.68-7.11-2.52-12.16-2.52h-19.78v82.92h-11.25Z"/> <path d="M983,659.59v-92.9h56.07v9.98h-44.82v31.39h41.92v9.98h-41.92v31.57h45.54v9.98h-56.79Z"/> <path d="M1110.49,659.59v-92.9h31.39c7.26,0,13.21,1.23,17.87,3.7,4.66,2.46,8.1,5.84,10.34,10.14,2.24,4.29,3.36,9.18,3.36,14.65s-1.12,10.33-3.36,14.56c-2.24,4.23-5.67,7.55-10.3,9.96-4.63,2.4-10.54,3.61-17.74,3.61h-25.4v-10.16h25.04c4.96,0,8.96-.73,12-2.18,3.04-1.45,5.25-3.52,6.62-6.19,1.38-2.68,2.07-5.87,2.07-9.59s-.7-6.97-2.09-9.75c-1.39-2.78-3.61-4.94-6.67-6.46-3.05-1.53-7.09-2.29-12.11-2.29h-19.78v82.92h-11.25ZM1154.21,617.86l22.86,41.73h-13.06l-22.5-41.73h12.7Z"/> <path d="M1238.15,576.67v-9.98h69.68v9.98h-29.21v82.92h-11.25v-82.92h-29.21Z"/> <path d="M1368.36,566.69h12.88l25.77,43.37h1.09l25.77-43.37h12.88l-33.57,54.62v38.29h-11.25v-38.29l-33.57-54.62Z"/> </g> <g> <path d="M496.91,91.95c0,23.99-18.48,54.26-38.14,64.09l-4.72-5.11c12.58-8.26,23.2-25.56,25.95-40.89-1.97.79-4.72,1.57-7.86,1.57-13.76,0-24.38-10.22-24.38-23.99s10.62-24.38,23.99-24.38,25.17,9.83,25.17,28.7Z"/> <path d="M1050.62,452.27v26.29h-276.53V85.92h270.92v19.22h-221v163.35h176.13v19.22h-176.13v164.56h226.61Z"/> <path d="M1116.18,85.92h49.92v392.64h-49.92V85.92Z"/> <path d="M1501.25,452.27v26.29h-262.51V85.92h49.92v366.35h212.58Z"/> <path d="M1811.96,452.27v26.29h-262.51V85.92h49.92v366.35h212.58Z"/> <path d="M685.15,85.91v322.58l-3.78-3.65c-88.37-85.17-173.35-173.73-258.89-261.74-36.37-37.42-88.18-60.07-147.74-60.07-115.69,0-202.45,86.21-202.45,200.22s86.76,200.22,202.45,200.22,203-86.21,203-200.22c0-12.06-1.03-23.79-2.9-35.16l210.81,230.46h32.28V85.91h-32.78ZM274.73,472.35c-90.66,0-150.72-75.08-150.72-189.1s60.07-189.1,150.72-189.1,151.28,75.08,151.28,189.1-60.07,189.1-151.28,189.1Z"/> </g></symbol>
+  <symbol id="lg-secondary" viewBox="0 0 1884.25 608.91" fill="currentColor"><path d="M496.91,123.04c0,23.99-18.48,54.26-38.14,64.09l-4.72-5.11c12.58-8.26,23.2-25.56,25.95-40.89-1.97.79-4.72,1.57-7.86,1.57-13.76,0-24.38-10.22-24.38-23.99s10.62-24.38,23.99-24.38,25.17,9.83,25.17,28.7Z"/> <path d="M1050.62,483.36v26.29h-276.53V117.01h270.92v19.22h-221v163.35h176.13v19.22h-176.13v164.56h226.61Z"/> <path d="M1116.18,117.01h49.92v392.64h-49.92V117.01Z"/> <path d="M1501.25,483.36v26.29h-262.51V117.01h49.92v366.35h212.58Z"/> <path d="M1811.96,483.36v26.29h-262.51V117.01h49.92v366.35h212.58Z"/> <path d="M685.15,117v322.58l-3.78-3.65c-88.37-85.17-173.35-173.73-258.89-261.74-36.37-37.42-88.18-60.07-147.74-60.07-115.69,0-202.45,86.21-202.45,200.22s86.76,200.22,202.45,200.22,203-86.21,203-200.22c0-12.06-1.03-23.79-2.9-35.16l210.81,230.46h32.28V117h-32.78ZM274.73,503.45c-90.66,0-150.72-75.08-150.72-189.1s60.07-189.1,150.72-189.1,151.28,75.08,151.28,189.1-60.07,189.1-151.28,189.1Z"/></symbol>
+  <symbol id="lg-icon" viewBox="0 0 1054 719.27" fill="currentColor"><path d="M673.96,97.76c0,34.62-26.68,78.33-55.06,92.52l-6.81-7.38c18.16-11.92,33.49-36.9,37.46-59.03-2.84,1.14-6.81,2.27-11.35,2.27-19.87,0-35.19-14.76-35.19-34.63s15.33-35.19,34.62-35.19,36.33,14.19,36.33,41.44Z"/> <path d="M945.69,89.04v465.66l-5.46-5.27c-127.57-122.95-250.24-250.79-373.72-377.84-52.5-54.02-127.29-86.71-213.28-86.71-167,0-292.25,124.44-292.25,289.03s125.24,289.03,292.25,289.03,293.04-124.44,293.04-289.03c0-17.41-1.48-34.34-4.19-50.75l304.32,332.68h46.6V89.04h-47.32ZM353.23,646.89c-130.87,0-217.58-108.39-217.58-272.97S222.37,100.94,353.23,100.94s218.37,108.38,218.37,272.97-86.71,272.97-218.37,272.97Z"/></symbol>
+</svg>
+
+<main class="book" id="book">
+
+<!-- ============================================================
+     01  COVER
+     The strongest supplied frame carries the cover. No type sits on
+     the photograph: the mark, the title and the edition all sit on
+     Basalt fields above and below it, which is the same rule the
+     book gives everyone else on spread 07.
+     ============================================================ -->
+<header class="spread is-basalt" id="s01" aria-label="Cover">
+  <div class="cover">
+    <div class="cover__rail">
+      <svg viewBox="0 0 1884.25 724.11" class="mark mark-stone" style="width:19em" role="img" aria-label="O'Neill Property"><use href="#lg-primary"/></svg>
+      <p class="meta" style="text-align:right;max-width:none">Brand Book<br>Edition One<br>August 2026</p>
+    </div>
+
+    <div class="cover__band">
+      <img src="https://oneill.group.10xvisuals.co/wp-content/uploads/2026/08/37-Southaven-Web-34-scaled.jpg"
+           width="2560" height="1707" decoding="async" fetchpriority="high"
+           alt="Dusk at a waterfront home: a lap pool beside a covered alfresco area, palms along the boundary, and a pontoon on the canal beyond.">
+    </div>
+
+    <div class="cover__foot">
+      <svg viewBox="0 0 1054 719.27" class="mark cover__wm" aria-hidden="true"><use href="#lg-icon"/></svg>
+      <div class="c7">
+        <h1>Property<br>is personal</h1>
+      </div>
+      <div class="start8">
+        <p class="sm" style="color:var(--ink-2);max-width:26em">The standards that make a board, a brochure, a window card and a website look like they came from the same family. Read it once. Keep it close.</p>
+        <p class="meta mt">O&rsquo;Neill Property &middot; Northern Gold Coast<br>Prepared by 10xVisuals</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     02  CONTENTS
+     ============================================================ -->
+<section class="spread is-sage" id="contents" aria-label="Contents">
+  <div class="pad">
+    <div class="eyebrow">Contents</div>
+    <div class="grid fill mt" style="--gut:6em">
+      <div class="c4">
+        <h2>What is<br>in here</h2>
+        <p class="sm mt">Twenty-three spreads. The first four say what the brand is. The rest say how to build it, in the order you will need them, and the last three say what is still open and what to check before anything goes out.</p>
+        <p class="xs mt-s">Every measurement in this book has been checked rather than estimated. Where a rule exists to protect legibility, the ratio is printed next to it.</p>
+      </div>
+      <ol class="toc start6">
+        <li><a href="#s01"><span class="n">01</span><span>Cover</span><span class="d"></span></a></li>
+        <li><a href="#contents"><span class="n">02</span><span>Contents</span><span class="d"></span></a></li>
+        <li><a href="#s03"><span class="n">03</span><span>The brand in one page</span><span class="d"></span></a></li>
+        <li><a href="#s04"><span class="n">04</span><span>Position and principles</span><span class="d"></span></a></li>
+        <li><a href="#s05"><span class="n">05</span><span>The logo system</span><span class="d"></span></a></li>
+        <li><a href="#s06"><span class="n">06</span><span>Clear space and minimum size</span><span class="d"></span></a></li>
+        <li><a href="#s07"><span class="n">07</span><span>Colourways</span><span class="d"></span></a></li>
+        <li><a href="#s08"><span class="n">08</span><span>Correct and incorrect use</span><span class="d"></span></a></li>
+        <li><a href="#s09"><span class="n">09</span><span>Colour</span><span class="d"></span></a></li>
+        <li><a href="#s10"><span class="n">10</span><span>Balance and legibility</span><span class="d"></span></a></li>
+        <li><a href="#s11"><span class="n">11</span><span>Typography</span><span class="d"></span></a></li>
+        <li><a href="#s12"><span class="n">12</span><span>The type scale</span><span class="d"></span></a></li>
+        <li><a href="#s13"><span class="n">13</span><span>Voice</span><span class="d"></span></a></li>
+        <li><a href="#s14"><span class="n">14</span><span>Campaign language</span><span class="d"></span></a></li>
+        <li><a href="#s15"><span class="n">15</span><span>Signage</span><span class="d"></span></a></li>
+        <li><a href="#s16"><span class="n">16</span><span>Print and stationery</span><span class="d"></span></a></li>
+        <li><a href="#s17"><span class="n">17</span><span>Photography</span><span class="d"></span></a></li>
+        <li><a href="#s18"><span class="n">18</span><span>Photography in the frame</span><span class="d"></span></a></li>
+        <li><a href="#s19"><span class="n">19</span><span>The property is the hero</span><span class="d"></span></a></li>
+        <li><a href="#s20"><span class="n">20</span><span>Website and digital</span><span class="d"></span></a></li>
+        <li><a href="#s21"><span class="n">21</span><span>Non-negotiables</span><span class="d"></span></a></li>
+        <li><a href="#s22"><span class="n">22</span><span>Open decisions and exceptions</span><span class="d"></span></a></li>
+        <li><a href="#s23"><span class="n">23</span><span>Quick reference</span><span class="d"></span></a></li>
+      </ol>
+    </div>
+  </div>
+  <div class="folio"><span>Contents</span><span>02 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     03  THE BRAND IN ONE PAGE
+     ============================================================ -->
+<section class="spread is-sage" id="s03" aria-label="The brand in one page">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">The brand in one page</div>
+        <h2 class="h2-sm">If you read<br>nothing else</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Everything in this book resolves to nine decisions. Get these right and the work will look like O&rsquo;Neill before anyone reads a word of it.</p>
+      </div>
+    </div>
+    <ol class="nine mt">
+      <li><span class="k">Say</span><span class="v">Property is personal</span><span class="s">Confident, warm, specific. Never salesy.</span></li>
+      <li><span class="k">Show</span><span class="v">Natural light</span><span class="s">Architectural, uncluttered, honest colour.</span></li>
+      <li><span class="k">Set in</span><span class="v">Sinhala MN and Inter</span><span class="s">Two families. Never a third.</span></li>
+      <li><span class="k">Build on</span><span class="v">Sage Grey</span><span class="s">Half of everything. Basalt for type, Stone to rest the eye, Deep Sage as a graphic only.</span></li>
+      <li><span class="k">Lead with</span><span class="v">The O&rsquo;Neill mark</span><span class="s">Always dominant, always with its clear space.</span></li>
+      <li><span class="k">Campaign in</span><span class="v">Own It &middot; Lease It &middot; Achieved</span><span class="s">Paired with the plain word wherever status must be instant.</span></li>
+      <li><span class="k">Protect</span><span class="v">Whitespace</span><span class="s">If it feels empty, it is probably right.</span></li>
+      <li><span class="k">Never</span><span class="v">Gold, gradients, clich&eacute;s</span><span class="s">Premium comes from restraint, not decoration.</span></li>
+      <li><span class="k">Test with</span><span class="v">Is the property the hero?</span><span class="s">If the answer is the agency, start again.</span></li>
+    </ol>
+  </div>
+  <div class="folio"><span>The brand in one page</span><span>03 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     04  POSITION AND PRINCIPLES
+     ============================================================ -->
+<section class="spread is-basalt" id="s04" aria-label="Position and principles">
+  <div class="pad">
+    <div class="eyebrow">Position and principles</div>
+    <div class="grid fill mt" style="--gut:5.5em">
+      <div class="c6">
+        <h2>A family name,<br>not a franchise</h2>
+        <p class="mt">O&rsquo;Neill Property is a Northern Gold Coast agency built around one belief: property is personal. The name on the board is the name the family answers to, and that is the reason the standard has to hold from the first appraisal to the last signature.</p>
+        <p class="mt-s">The brand should feel established without being old-fashioned, sophisticated without being pretentious, and thoroughly professional without losing its warmth.</p>
+      </div>
+      <div class="start8 stack loose">
+        <div>
+          <div class="kicker kicker-q">The promise</div>
+          <p class="pull mt-s" style="max-width:20em">Listen first, give you the straight version, and run the campaign properly to the end.</p>
+        </div>
+        <hr class="hr">
+        <div class="grid" style="--cols:2;--gut:2.6em">
+          <div><div class="kicker kicker-q">Who it is for</div><p class="xs mt-s">Owners and buyers on the northern Gold Coast, from a first apartment to a home on the water. The same standard at every price point.</p></div>
+          <div><div class="kicker kicker-q">What it is not</div><p class="xs mt-s">A franchise template with a local name dropped into it. Nothing in this book should be reachable by editing someone else&rsquo;s.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Position and principles</span><span>04 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     05  THE LOGO SYSTEM
+     ============================================================ -->
+<section class="spread is-sage" id="s05" aria-label="The logo system">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">The logo system</div>
+        <h2>Three lockups,<br>one mark</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">There is no fourth version. If a placement will not take one of these three, the placement is wrong, not the logo.</p>
+      </div>
+    </div>
+
+    <div class="grid mid mt" style="flex:1;--gut:4em">
+      <figure class="c4">
+        <div class="plate">
+          <svg viewBox="0 0 1884.25 724.11" class="mark" style="width:100%" role="img" aria-label="Primary logo: the O'Neill wordmark above PROPERTY"><use href="#lg-primary"/></svg>
+        </div>
+        <figcaption class="vh">Primary logo</figcaption>
+        <h3 class="mt-s">Primary</h3>
+        <p class="xs mt-s">The default. Wordmark over PROPERTY. Use it wherever there is room to set it at 40&nbsp;mm wide or more: boards, covers, stationery, the site header.</p>
+      </figure>
+      <figure class="c4">
+        <div class="plate">
+          <svg viewBox="0 0 1884.25 608.91" class="mark" style="width:100%" role="img" aria-label="Secondary logo: the O'Neill wordmark alone"><use href="#lg-secondary"/></svg>
+        </div>
+        <figcaption class="vh">Secondary logo</figcaption>
+        <h3 class="mt-s">Secondary</h3>
+        <p class="xs mt-s">The wordmark alone, for tight horizontal bands where the descender line would crowd: email footers, ad bars, vehicle livery, sponsor rows.</p>
+      </figure>
+      <figure class="c4">
+        <div class="plate">
+          <svg viewBox="0 0 1054 719.27" class="mark" style="width:52%" role="img" aria-label="Icon: the O and N monogram"><use href="#lg-icon"/></svg>
+        </div>
+        <figcaption class="vh">Icon</figcaption>
+        <h3 class="mt-s">Icon</h3>
+        <p class="xs mt-s">The O and N monogram. Avatars, favicons, stamps, watermarks and anywhere the full name already appears in the surrounding copy.</p>
+      </figure>
+    </div>
+  </div>
+  <div class="folio"><span>The logo system</span><span>05 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     06  CLEAR SPACE AND MINIMUM SIZE
+     ============================================================ -->
+<section class="spread is-stone" id="s06" aria-label="Clear space and minimum size">
+  <div class="pad">
+    <div class="eyebrow">Clear space and minimum size</div>
+    <div class="grid mid mt" style="flex:1;--gut:5em">
+      <div class="c6">
+        <h2>Give it the<br>height of the O</h2>
+        <p class="mt">The exclusion zone on every side is the cap height of the O in the wordmark. Nothing enters it: no type, no rule, no photograph edge, no other logo, no portal badge.</p>
+        <ul class="rules mt airy">
+          <li class="flag"><strong>Minimum sizes.</strong> Primary 40&nbsp;mm wide in print, 150&nbsp;px on screen. Secondary 28&nbsp;mm, 110&nbsp;px. Icon 8&nbsp;mm, 32&nbsp;px. Below those the counters in the O and the apostrophe start to fill in, and on a signboard at speed it stops reading as a name.</li>
+          <li><strong>On a vehicle or a building fascia,</strong> set the clear space from the physical panel edge, not from the artwork bounding box. A mark that sits hard against a shut line reads as a sticker.</li>
+        </ul>
+      </div>
+      <figure class="start8">
+        <div class="cs">
+          <div class="cs__inner">
+            <div class="cs__guide"></div>
+            <svg viewBox="0 0 1884.25 724.11" class="mark" style="position:relative" role="img" aria-label="The primary logo with its clear space marked on all four sides"><use href="#lg-primary"/></svg>
+            <span class="cs__o l" aria-hidden="true">O</span>
+            <span class="cs__o r" aria-hidden="true">O</span>
+            <span class="cs__o t" aria-hidden="true">O</span>
+            <span class="cs__o b" aria-hidden="true">O</span>
+          </div>
+        </div>
+        <figcaption style="letter-spacing:0;text-transform:none;font-weight:300;font-size:1.08em;line-height:1.55">The dashed line is the boundary, not artwork. It never prints.</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="folio"><span>Clear space and minimum size</span><span>06 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     07  COLOURWAYS
+     ============================================================ -->
+<section class="spread is-sage" id="s07" aria-label="Colourways">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Colourways</div>
+        <h2>Four finishes,<br>chosen by ground</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Pick the version that gives the mark the most contrast against what is behind it. Never tint the artwork to make a fifth.</p>
+      </div>
+    </div>
+
+    <div class="grid mt" style="--cols:4;--gut:2.6em">
+      <figure>
+        <div class="plate" style="height:11em"><svg viewBox="0 0 1884.25 724.11" class="mark" style="width:76%" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption>Basalt on light</figcaption>
+        <p class="xs mt-s">The default. Any Stone, paper or pale photographic ground.</p>
+      </figure>
+      <figure>
+        <div class="plate on-basalt" style="height:11em"><svg viewBox="0 0 1884.25 724.11" class="mark mark-stone" style="width:76%" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption>Stone on Basalt</figcaption>
+        <p class="xs mt-s">Dark grounds, night photography, the footer.</p>
+      </figure>
+      <figure>
+        <div class="plate" style="height:11em;background:var(--deep)"><svg viewBox="0 0 1884.25 724.11" class="mark mark-stone" style="width:76%" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption>Stone on Deep Sage</figcaption>
+        <p class="xs mt-s">Campaign fields and covers where sage carries the whole panel.</p>
+      </figure>
+      <figure>
+        <div class="plate on-basalt" style="height:11em"><svg viewBox="0 0 1884.25 724.11" class="mark mark-sage" style="width:76%" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption>Sage Grey on Basalt</figcaption>
+        <p class="xs mt-s">The softer dark treatment, at 6.1:1. The social avatar, where full Stone reads too stark.</p>
+      </figure>
+    </div>
+
+    <ul class="rules mt">
+      <li class="flag"><strong>Over photography,</strong> use Stone or white and place the mark on the quietest part of the frame. If no part of the frame is quiet enough, the mark goes on a solid band beside the picture rather than being given a drop shadow.</li>
+      <li><strong>The app icon is not settled.</strong> Stone on Basalt and Sage Grey on Basalt are both nominated for it in this edition. See spread 22.</li>
+    </ul>
+  </div>
+  <div class="folio"><span>Colourways</span><span>07 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     08  CORRECT AND INCORRECT USE
+     The correct default is shown first, in the same frame and at the
+     same size as the six failures, so the comparison is direct.
+     ============================================================ -->
+<section class="spread is-sage" id="s08" aria-label="Correct and incorrect use">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Correct and incorrect use</div>
+        <h2 class="h2-sm">One right way,<br>six wrong ones</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Every failure below has happened to a real agency mark. The artwork is supplied as SVG, so none of them are necessary.</p>
+      </div>
+    </div>
+
+    <div class="examples mt">
+      <figure class="ex ok">
+        <div class="ex__frame"><svg viewBox="0 0 1884.25 724.11" class="mark" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption class="ex__cap"><b>Correct</b>Supplied artwork, unmodified, in a brand colourway, with its clear space.</figcaption>
+      </figure>
+      <figure class="ex">
+        <div class="ex__frame"><svg viewBox="0 0 1884.25 724.11" class="mark" style="transform:scaleX(1.34)" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption class="ex__cap"><b>Do not stretch</b>The proportions are drawn, not typed. Scale both axes together.</figcaption>
+      </figure>
+      <figure class="ex">
+        <div class="ex__frame"><svg viewBox="0 0 1884.25 724.11" class="mark" style="transform:rotate(-8deg)" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption class="ex__cap"><b>Do not rotate</b>The mark sits square to the format, always.</figcaption>
+      </figure>
+      <figure class="ex">
+        <div class="ex__frame"><svg viewBox="0 0 1884.25 724.11" class="mark" style="color:#8E6B3C" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption class="ex__cap"><b>Do not recolour</b>Four colourways exist. Gold is the palette this brand was built to avoid.</figcaption>
+      </figure>
+      <figure class="ex">
+        <div class="ex__frame"><svg viewBox="0 0 1884.25 724.11" class="mark" style="filter:drop-shadow(0 .18em .18em rgba(0,0,0,.55))" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption class="ex__cap"><b>No shadows or effects</b>No bevel, no glow, no outline, no gradient fill.</figcaption>
+      </figure>
+      <figure class="ex">
+        <div class="ex__frame"><svg viewBox="0 0 1884.25 724.11" class="mark" style="opacity:.42" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption class="ex__cap"><b>Do not fade it out</b>A mark at 40 per cent is a watermark. Use the Sage colourway instead.</figcaption>
+      </figure>
+      <figure class="ex">
+        <div class="ex__frame"><svg viewBox="0 0 1884.25 724.11" class="mark" style="transform:scale(1.25);clip-path:inset(0 0 18% 0)" aria-hidden="true"><use href="#lg-primary"/></svg></div>
+        <figcaption class="ex__cap"><b>Do not crop or box it</b>Nothing is added beside it, nothing is cut off it, no rule is drawn around it.</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="folio"><span>Correct and incorrect use</span><span>08 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     09  COLOUR
+     ============================================================ -->
+<section class="spread is-basalt" id="s09" aria-label="Colour">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Colour</div>
+        <h2>Four values,<br>and no fifth</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Sage Grey is the ground, not the accent. Fifty per cent of the brand is that one colour, thirty is Basalt, fifteen is Stone and the last five is Deep Sage doing graphic work.</p>
+      </div>
+    </div>
+
+    <div class="swatches mt">
+      <div class="sw">
+        <div class="chip" style="background:var(--sage);color:var(--basalt)"><span>Signature &middot; 50%</span></div>
+        <div class="nm">Sage Grey</div>
+        <div class="hx">#B7C1B3 <span>&nbsp;183 193 179</span></div>
+        <div class="us">The field. Boards, covers, campaign panels, stationery, half of everything the brand makes.</div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background:var(--stone);color:var(--basalt)"><span>Neutral &middot; 15%</span></div>
+        <div class="nm">Stone</div>
+        <div class="hx">#E2DAD1 <span>&nbsp;226 218 209</span></div>
+        <div class="us">The rest. A quieter ground for long reading, and the mark reversed out of dark photography.</div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background:var(--basalt);color:var(--stone);box-shadow:inset 0 0 0 1px rgba(226,218,209,.24)"><span>Anchor &middot; 30%</span></div>
+        <div class="nm">Basalt</div>
+        <div class="hx">#3A3A3A <span>&nbsp;58 58 58</span></div>
+        <div class="us">All type, frames, fascias, footers and any panel that has to hold its own against a photograph.</div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background:var(--deep);color:var(--stone)"><span>Graphic &middot; 5%</span></div>
+        <div class="nm">Deep Sage</div>
+        <div class="hx">#839C83 <span>&nbsp;131 156 131</span></div>
+        <div class="us">Rules, markers, icon strokes and small fields. A graphic colour, never a type colour.</div>
+      </div>
+    </div>
+
+    <div class="notes mt">
+      <p class="xs">Hex values are taken from the master artwork, not sampled from a screenshot. CMYK is a printer&rsquo;s starting point, never a substitute for a proof, and Basalt as a flat build will look weak across a large printed field: ask for a rich black.</p>
+      <p class="xs">Stone should usually be the paper rather than an ink. Printing a near-white flat across a sheet costs money and flattens the texture the identity depends on.</p>
+      <p class="xs flag"><strong>One value to change.</strong> Basalt is #3A3A3A in the master artwork. The website currently ships #2D2D2D. The artwork wins; the site is corrected to #3A3A3A. Specified again on spread 20.</p>
+    </div>
+  </div>
+  <div class="folio"><span>Colour</span><span>09 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     10  BALANCE AND LEGIBILITY
+     ============================================================ -->
+<section class="spread is-sage" id="s10" aria-label="Balance and legibility">
+  <div class="pad">
+    <div class="eyebrow">Balance and legibility</div>
+    <div class="grid fill mt-s" style="--gut:4.5em">
+      <div class="c5">
+        <h2>How much<br>of each</h2>
+        <p class="mt">Half of everything is Sage Grey. It is the field the brand is built on, not an accent applied to a white one, and it is the colour people will use when they describe the identity to someone else.</p>
+        <div class="ratio mt" role="img" aria-label="Proportion bar: Sage Grey 50 per cent, Basalt 30, Stone 15, Deep Sage 5.">
+          <div style="flex:50;background:var(--sage);color:var(--basalt)">Sage Grey 50</div>
+          <div style="flex:30;background:var(--basalt);color:var(--stone)">Basalt 30</div>
+          <div style="flex:15;background:var(--stone);color:var(--basalt)">Stone 15</div>
+          <div style="flex:5;background:var(--deep)"></div>
+        </div>
+        <div class="rkey" aria-hidden="true">
+          <span><i style="background:var(--sage)"></i>Sage Grey 50</span>
+          <span><i style="background:var(--basalt)"></i>Basalt 30</span>
+          <span><i style="background:var(--stone)"></i>Stone 15</span>
+          <span><i style="background:var(--deep)"></i>Deep Sage 5</span>
+        </div>
+        <p class="xs mt-s">This book is set to its own rule. Of twenty-three spreads, nine are Sage Grey, seven are Stone and seven are Basalt, two of those Basalt sheets given over to a photograph rather than to type, and Deep Sage appears only as rules and markers.</p>
+      </div>
+      <div class="start7">
+        <h3>Measured, not assumed</h3>
+        <p class="xs mt-s">WCAG 2.1. Body copy needs 4.5:1. Large text, meaning 24&nbsp;px and above or 19&nbsp;px bold, needs 3:1.</p>
+        <ul class="pairs mt-s">
+          <li style="background:var(--basalt);color:var(--sage)"><b>Sage Grey on Basalt</b><span class="val">6.1 : 1 &nbsp;&middot;&nbsp; all text</span></li>
+          <li style="background:var(--stone);color:var(--basalt)"><b>Basalt on Stone</b><span class="val">8.2 : 1 &nbsp;&middot;&nbsp; all text</span></li>
+          <li style="background:var(--basalt);color:var(--stone)"><b>Stone on Basalt</b><span class="val">8.2 : 1 &nbsp;&middot;&nbsp; all text</span></li>
+          <li style="background:var(--sage);color:var(--basalt);box-shadow:inset 0 0 0 1px rgba(58,58,58,.2)"><b>Basalt on Sage Grey</b><span class="val">6.1 : 1 &nbsp;&middot;&nbsp; all text</span></li>
+          <li style="background:var(--stone);color:var(--deep)"><b>Deep Sage on Stone</b><span class="val">2.2 : 1 &nbsp;&middot;&nbsp; do not set type</span></li>
+          <li style="background:var(--sage);color:var(--stone);box-shadow:inset 0 0 0 1px rgba(58,58,58,.2)"><b>Stone on Sage Grey</b><span class="val">1.3 : 1 &nbsp;&middot;&nbsp; do not set type</span></li>
+        </ul>
+        <p class="xs mt-s flag"><strong>The sage rule.</strong> No sage in this palette can carry body copy: not Sage Grey, not Deep Sage. If words have to be read, set them in Basalt, or put them on Basalt.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Balance and legibility</span><span>10 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     11  TYPOGRAPHY
+     ============================================================ -->
+<section class="spread is-basalt" id="s11" aria-label="Typography">
+  <div class="pad">
+    <div class="eyebrow">Typography</div>
+    <div class="grid mid fill mt-s" style="--gut:5em">
+      <div class="c6">
+        <div aria-hidden="true" style="font-family:var(--display);font-size:9em;line-height:.86;color:var(--stone)">Aa</div>
+        <div class="kicker mt-s" style="color:var(--sage)">Display</div>
+        <h3 class="mt-s">Sinhala&nbsp;MN</h3>
+        <p class="sm mt-s" style="color:var(--ink-2)">Headlines, campaign statements, addresses on a board, the moments that carry the name. One weight. Never below 18&nbsp;px, where its contrast breaks down and it stops looking premium.</p>
+      </div>
+      <div class="start8">
+        <div aria-hidden="true" style="font-size:9em;line-height:.86;font-weight:300;color:var(--stone)">Aa</div>
+        <div class="kicker mt-s" style="color:var(--sage)">Text</div>
+        <h3 class="mt-s">Inter</h3>
+        <p class="sm mt-s" style="color:var(--ink-2)">Everything that has to work hard: body copy, navigation, agent details, captions, forms, signage information. Weights 300, 400, 500 and 600. Nothing heavier.</p>
+      </div>
+    </div>
+    <div class="notes mt">
+      <p class="xs flag">Two families, never a third. Where the display face is unavailable, substitute a restrained high-contrast serif and keep Inter as the working sans. Which serif is still an open decision: see spread 22.</p>
+      <p class="xs">One display size per layout. Two competing headline sizes read as a template rather than a design.</p>
+      <p class="xs">Measure runs to about 65 characters. Never justify, never hyphenate, never track body copy.</p>
+    </div>
+  </div>
+  <div class="folio"><span>Typography</span><span>11 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     12  THE TYPE SCALE
+     ============================================================ -->
+<section class="spread is-stone" id="s12" aria-label="The type scale">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">The type scale</div>
+        <h2 class="h2-sm">Seven sizes,<br>used in order</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Sizes are the screen reference. In print, scale the whole set together rather than picking new numbers for each piece.</p>
+      </div>
+    </div>
+    <dl class="spec mt">
+      <dt>Display</dt>
+      <dd><div style="font-family:var(--display);font-size:4.2em;line-height:1">Property is personal</div><span class="lab">Sinhala MN &middot; 64 / .95</span></dd>
+      <dt>Heading</dt>
+      <dd><div style="font-family:var(--display);font-size:2.8em;line-height:1.08">A considered approach</div><span class="lab">Sinhala MN &middot; 44 / 1.15</span></dd>
+      <dt>Subhead</dt>
+      <dd><div style="font-family:var(--display);font-size:1.9em;line-height:1.2">Northern Gold Coast</div><span class="lab">Sinhala MN &middot; 28 / 1.25</span></dd>
+      <dt>Eyebrow</dt>
+      <dd><div style="font-size:1.05em;font-weight:600;letter-spacing:.24em;text-transform:uppercase">Recent results</div><span class="lab">Inter 600 &middot; 11 / .24em</span></dd>
+      <dt>Body large</dt>
+      <dd><div style="font-size:1.48em;font-weight:300;line-height:1.7">A rare north facing residence on a quiet Hope Island street, positioned to take the water and the afternoon light.</div><span class="lab">Inter 300 &middot; 19 / 1.7</span></dd>
+      <dt>Body</dt>
+      <dd><div style="font-size:1.26em;font-weight:400;line-height:1.75">Four bedrooms, a considered renovation throughout, and direct boating access from a private pontoon.</div><span class="lab">Inter 400 &middot; 16 / 1.75</span></dd>
+      <dt>Caption</dt>
+      <dd><div style="font-size:1.02em;font-weight:500;letter-spacing:.12em;text-transform:uppercase">4 Bed &nbsp;&middot;&nbsp; 3 Bath &nbsp;&middot;&nbsp; 2 Car &nbsp;&middot;&nbsp; 812 m&sup2;</div><span class="lab">Inter 500 &middot; 12 / .12em</span></dd>
+    </dl>
+    <div class="notes push">
+      <p class="xs"><strong>Tracking.</strong> The wordmark is fixed and never adjusted. Eyebrows .24em, captions .12em, both uppercase only. Display sits at zero to .01em, a serif needs almost none. Body copy is never tracked.</p>
+      <p class="xs"><strong>Caps.</strong> Reserved for lockups, eyebrows and captions. A paragraph in all caps stops being read and starts being scanned, which is the opposite of what listing copy needs.</p>
+      <p class="xs"><strong>Headlines.</strong> Short, with space around them. If a headline needs a third line at display size, the headline is too long, not the type too big.</p>
+    </div>
+  </div>
+  <div class="folio"><span>The type scale</span><span>12 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     13  VOICE
+     ============================================================ -->
+<section class="spread is-sage" id="s13" aria-label="Voice">
+  <div class="pad">
+    <div class="eyebrow">Voice</div>
+    <div class="grid fill mt-s" style="--gut:5em">
+      <div class="c5">
+        <h2>An agent<br>speaking,<br>not a brochure</h2>
+        <p class="mt">Knowledgeable, warm, decisive and brief. Lead with what matters to the client, prefer a specific fact to an inflated adjective, and write like a person rather than a corporation. Australian English throughout.</p>
+        <hr class="hr mt">
+        <div class="grid mt-s" style="--cols:2;--gut:2.4em">
+          <div><div class="kicker kicker-q">A price reduction</div><p class="xs mt-s">Direct and unapologetic.</p></div>
+          <div><div class="kicker kicker-q">A missed result</div><p class="xs mt-s">Honest, brief, forward looking.</p></div>
+          <div class="mt-s"><div class="kicker kicker-q">Market commentary</div><p class="xs mt-s">Plain, useful, unspun.</p></div>
+          <div class="mt-s"><div class="kicker kicker-q">A complaint</div><p class="xs mt-s">Human first, process second.</p></div>
+        </div>
+      </div>
+      <div class="start7">
+        <div class="grid voice-heads" style="--cols:2;--gut:3.4em">
+          <div class="kicker kicker-q">We are</div>
+          <div class="kicker kicker-q">We are not</div>
+        </div>
+        <ul class="vt mt-s">
+          <li>Confident</li><li class="no">Boastful</li>
+          <li>Personal</li><li class="no">Over familiar</li>
+          <li>Premium</li><li class="no">Pretentious</li>
+          <li>Clear</li><li class="no">Abrupt</li>
+          <li>Knowledgeable</li><li class="no">Jargon heavy</li>
+          <li>Warm</li><li class="no">Fluffy</li>
+          <li>Results focused</li><li class="no">Salesy</li>
+          <li>Local</li><li class="no">Parochial</li>
+        </ul>
+        <div class="note on-paper mt">
+          <div class="kicker" style="color:var(--ink)">On brand</div>
+          <p class="sm mt-s">&ldquo;North facing, 812&nbsp;m&sup2;, and the only home on the street with a private pontoon. We think it sells in three weeks.&rdquo;</p>
+          <div class="kicker mt" style="color:var(--ink-2)">Off brand</div>
+          <p class="sm mt-s" style="color:var(--ink-2)">&ldquo;An absolutely breathtaking, once in a lifetime masterpiece that will take your breath away. A true must see!&rdquo;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Voice</span><span>13 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     14  CAMPAIGN LANGUAGE
+     ============================================================ -->
+<section class="spread is-stone" id="s14" aria-label="Campaign language">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Campaign language</div>
+        <h2 class="h2-sm">Say it the<br>same way</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">A consistent vocabulary is the cheapest brand asset there is. It costs nothing to print and it makes every touchpoint recognisably O&rsquo;Neill.</p>
+      </div>
+    </div>
+    <div class="grid fill mt" style="--gut:4em">
+      <div class="c8">
+        <table class="tbl tight">
+          <caption>The word book: standard industry terms and the O&rsquo;Neill language that replaces them.</caption>
+          <thead><tr><th style="width:11em">Standard term</th><th style="width:14em">O&rsquo;Neill language</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="t" data-label="Standard term">For Sale</td><td class="b" data-label="O&rsquo;Neill language">Own It</td><td data-label="Notes">Hero campaign device. Use it selectively.</td></tr>
+            <tr><td class="t" data-label="Standard term">Coming Soon</td><td class="b" data-label="O&rsquo;Neill language">Preparing It</td><td data-label="Notes">Pre market and soft launch.</td></tr>
+            <tr><td class="t" data-label="Standard term">Sold</td><td class="b" data-label="O&rsquo;Neill language">Achieved</td><td data-label="Notes">Pair with SOLD where a portal or the law needs the plain word.</td></tr>
+            <tr><td class="t" data-label="Standard term">For Lease</td><td class="b" data-label="O&rsquo;Neill language">Lease It</td><td data-label="Notes">Rental campaign device.</td></tr>
+            <tr><td class="t" data-label="Standard term">Open Home</td><td class="b" data-label="O&rsquo;Neill language">Open</td><td data-label="Notes">The date and the time are the hero, not the label.</td></tr>
+            <tr><td class="t" data-label="Standard term">Listing</td><td class="b" data-label="O&rsquo;Neill language">Property / Residence / Home</td><td data-label="Notes">Choose by context.</td></tr>
+            <tr><td class="t" data-label="Standard term">Key Features</td><td class="b" data-label="O&rsquo;Neill language">The Details</td><td data-label="Notes">Editorial, and less generic.</td></tr>
+            <tr><td class="t" data-label="Standard term">Recent Sales</td><td class="b" data-label="O&rsquo;Neill language">Recent Results</td><td data-label="Notes">Preferred on collateral.</td></tr>
+            <tr><td class="t" data-label="Standard term">Vendor</td><td class="b" data-label="O&rsquo;Neill language">Seller / Owner</td><td data-label="Notes">Client facing language, not industry language.</td></tr>
+            <tr><td class="t" data-label="Standard term">Buyer database</td><td class="b" data-label="O&rsquo;Neill language">Buyer Network</td><td data-label="Notes">More human, and more premium.</td></tr>
+            <tr><td class="t" data-label="Standard term">Team</td><td class="b" data-label="O&rsquo;Neill language">Our People</td><td data-label="Notes">Useful on the site. TEAM stays acceptable in navigation.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="start10">
+        <div class="note on-basalt">
+          <div class="kicker" style="color:var(--sage)">Two words the brand does not own</div>
+          <p class="sm">Property Management and Property Appraisal. Both are searched for by name. Branding them would cost enquiries, so they stay plain.</p>
+        </div>
+        <p class="xs mt flag">The campaign words are a device, not a replacement. Where status has to be instant, from the footpath or in a portal thumbnail, the plain word runs with them: OWN IT beside FOR SALE, ACHIEVED beside SOLD.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Campaign language</span><span>14 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     15  SIGNAGE
+     ============================================================ -->
+<section class="spread is-stone" id="s15" aria-label="Signage">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Signage</div>
+        <h2 class="h2-sm">Read it at<br>fifty kilometres</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">A board has about two seconds of a driver&rsquo;s attention. One message, one mark, one number. Everything else belongs on the phone they will pick up afterwards.</p>
+      </div>
+    </div>
+
+    <div class="grid fill mt">
+      <figure class="c4">
+        <div class="shot" data-piece="Open home directional" style="aspect-ratio:3462/2231">
+          <picture><source type="image/webp" srcset="brand-book-assets/open-homes-1600.webp"><img src="brand-book-assets/open-homes-1600.jpg" width="3462" height="2231" loading="lazy" decoding="async" alt="Open home directional sign: the wordmark with the agent's name and number across the top, OPEN HOME set large with a chevron, on a Sage Grey field with a Basalt foot."></picture>
+        </div>
+        <figcaption>Open home directional</figcaption>
+      </figure>
+
+      <figure class="c2">
+        <div class="shot" data-piece="Photo board" style="aspect-ratio:2945/4165">
+          <picture><source type="image/webp" srcset="brand-book-assets/signboard-1200.webp"><img src="brand-book-assets/signboard-1200.jpg" width="2945" height="4165" loading="lazy" decoding="async" alt="Photo board: the wordmark above OWN IT, the address and the bed, bath and car line, with the agent on a Basalt band at the foot."></picture>
+        </div>
+        <figcaption>Photo board</figcaption>
+      </figure>
+
+      <div class="start7">
+        <div class="kicker kicker-q">The rules</div>
+        <ul class="rules mt-s">
+          <li><strong>One campaign word.</strong> Own It, Preparing It, Lease It or Achieved. Never two on the same board.</li>
+          <li><strong>The mark sits on Basalt.</strong> A dark head band reads from further away than a mark floating on sage, and it stops the board disappearing against a hedge.</li>
+          <li><strong>The agent is the smallest element.</strong> Name, then number, at the foot. A face on a board is optional; a legible phone number is not.</li>
+          <li><strong>Sage carries display type only.</strong> Basalt on Sage Grey measures 6.1:1 and is fine at any size. Nothing lighter than Basalt goes on sage.</li>
+          <li><strong>Directional arrows point, they do not decorate.</strong> One chevron, on the side it points to, at the size of the campaign word.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Signage</span><span>15 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     16  PRINT AND STATIONERY
+     ============================================================ -->
+<section class="spread is-stone" id="s16" aria-label="Print and stationery">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Print and stationery</div>
+        <h2 class="h2-sm">The same system,<br>smaller</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Nothing new is invented at A4 or at card size. The same field, the same mark, the same one campaign word, set to the same ratio.</p>
+      </div>
+    </div>
+
+    <div class="grid fill mt">
+      <div class="c4 stack">
+        <figure>
+          <div class="shot" data-piece="Business card, front" style="aspect-ratio:2380/1460">
+            <picture><source type="image/webp" srcset="brand-book-assets/card-front-1400.webp"><img src="brand-book-assets/card-front-1400.jpg" width="2380" height="1460" loading="lazy" decoding="async" alt="Business card front: the wordmark centred on a Sage Grey field, and nothing else."></picture>
+          </div>
+          <figcaption>Card, front</figcaption>
+        </figure>
+        <figure>
+          <div class="shot" data-piece="Business card, back" style="aspect-ratio:2380/1448">
+            <picture><source type="image/webp" srcset="brand-book-assets/card-back-1400.webp"><img src="brand-book-assets/card-back-1400.jpg" width="2380" height="1448" loading="lazy" decoding="async" alt="Business card back: a QR code with the monogram at its centre, beside the agent's name, title, phone and email."></picture>
+          </div>
+          <figcaption>Card, back</figcaption>
+        </figure>
+      </div>
+
+      <div class="start6">
+        <div class="kicker kicker-q">Stock and finish</div>
+        <ul class="rules mt-s airy">
+          <li><strong>Uncoated, always.</strong> 350&nbsp;gsm for cards, 170 for flyers. Gloss undoes the whole palette: these are chalky, natural colours and a shine reads as budget.</li>
+          <li><strong>Stone is the paper.</strong> Specify a warm uncoated stock rather than printing a near-white flat. It saves ink and it looks better than the ink would.</li>
+          <li class="flag"><strong>Ask for a rich black.</strong> Basalt as a flat single black will look grey and patchy across a large solid.</li>
+          <li><strong>No foil, no spot gloss, no bevel.</strong> If a piece needs lifting, lift it with paper weight or an edge paint in Basalt, never with shine.</li>
+          <li><strong>One display size per piece.</strong> The campaign word is the only thing set large. The address is the next size down, the agent smaller again.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Print and stationery</span><span>16 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     17  PHOTOGRAPHY — THE STANDARD
+     ============================================================ -->
+<section class="spread is-basalt" id="s17" aria-label="Photography, the standard">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Photography</div>
+        <h2>Let the light<br>do the work</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Natural light, honest colour, architectural framing. The property is the hero. If a viewer notices the photography before the house, the shoot has failed.</p>
+      </div>
+    </div>
+
+    <div class="grid fill mt">
+      <div class="c4">
+        <div class="kicker" style="color:var(--sage)">Do</div>
+        <ul class="rules mt-s">
+          <li>Shoot early or late. Long shadows and warm light suit the palette; midday sun blows out the water and flattens the render.</li>
+          <li>Square the verticals. A leaning doorframe is the fastest way to make a premium home look like a rental listing.</li>
+          <li>Leave the room breathing. Fewer props, no staged towels folded into swans, nothing that will not be there on inspection day.</li>
+          <li>Keep colour honest. Grass is not emerald, timber is not orange, and the sky over the Broadwater is not turquoise.</li>
+        </ul>
+      </div>
+      <div style="grid-column:5 / span 4">
+        <div class="kicker kicker-q">Do not</div>
+        <ul class="rules mt-s">
+          <li>Composite a sunset that was not there, or drop a sky in that does not match the shadows on the ground.</li>
+          <li>Run a filter, a vignette, or a heavy graduated wash across the frame.</li>
+          <li>Set type across the middle of a photograph. Type sits on a solid field beside the picture, or on the quietest corner of it.</li>
+          <li>Use a stock image of a house that is not the house. Ever.</li>
+        </ul>
+      </div>
+      <div class="start9">
+        <div class="note veil">
+          <div class="kicker" style="color:var(--sage)">Type on photography</div>
+          <p class="xs">Where Stone type must sit on an image, the image gets a measured scrim, not a guess. Stone needs 4.5:1 against the pixels actually behind it, and a flat sage wash cannot deliver that at any opacity.</p>
+          <p class="xs mt-s">Every scrim on the website was measured against the real frame. Those ratios are recorded in the page files, not in this book.</p>
+        </div>
+        <p class="xs mt flag">Prefer the field to the scrim. A headline on a solid Basalt, Sage Grey or Stone panel beside the picture always beats a headline fighting the picture.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Photography</span><span>17 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     18  PHOTOGRAPHY IN THE FRAME
+     Two frames, deliberately unequal: one large-format landscape and
+     one narrower portrait crop dropped below its top edge. Not two
+     tiles. Captions are neutral by rule: this book does not make
+     claims about a property it is not selling.
+     ============================================================ -->
+<section class="spread is-stone" id="s18" aria-label="Photography in the frame">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Photography in the frame</div>
+        <h2 class="h2-sm">What a correct<br>frame looks like</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Two frames from one O&rsquo;Neill shoot. Read them for the light, the verticals and the restraint, not for the house.</p>
+      </div>
+    </div>
+
+    <div class="grid fill mt">
+      <figure class="c7">
+        <div class="photo r32">
+          <img src="https://oneill.group.10xvisuals.co/wp-content/uploads/2026/08/37-Southaven-Web-7-scaled.jpg"
+               width="2560" height="1707" loading="lazy" decoding="async" style="object-position:50% 50%"
+               alt="A bedroom in daylight: a bed with a dark upholstered bedhead, a jute rug over timber floors, and sliding doors open to palms and water.">
+        </div>
+        <figcaption>O&rsquo;Neill Property photography</figcaption>
+        <p class="xs mt-s">Uncropped, at the ratio it was shot. Natural light from one side, verticals square, styling kept to what the room already holds.</p>
+      </figure>
+      <figure class="start10 photo-offset">
+        <div class="photo r45">
+          <img src="https://oneill.group.10xvisuals.co/wp-content/uploads/2026/08/37-Southaven-Web-16-scaled.jpg"
+               width="2560" height="1707" loading="lazy" decoding="async" style="object-position:56% 50%"
+               alt="A dining area looking through two black-framed windows to palms, a pool and the canal beyond, with a white table and chairs in the foreground.">
+        </div>
+        <figcaption>Photography example</figcaption>
+        <p class="xs mt-s">Cropped to a portrait frame for a narrower column. The crop moves, the colour does not: no wash, no vignette, no replaced sky.</p>
+      </figure>
+    </div>
+  </div>
+  <div class="folio"><span>Photography in the frame</span><span>18 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     19  THE PROPERTY IS THE HERO
+     The hinge between the brand system and its implementation. One
+     full-bleed frame, and the test restated on a Basalt band so no
+     type touches the picture.
+     ============================================================ -->
+<section class="spread is-basalt" id="s19" aria-label="The property is the hero">
+  <div class="cover divider">
+    <div class="cover__band">
+      <img src="https://oneill.group.10xvisuals.co/wp-content/uploads/2026/08/37-Southaven-Web-23-scaled.jpg"
+           width="2560" height="1707" loading="lazy" decoding="async" style="object-position:50% 42%"
+           alt="An elevated view of a waterfront home in its street: pool and terrace at the rear, a pontoon with a jet ski on the canal, and neighbouring rooflines and hills behind.">
+    </div>
+    <div class="cover__foot" style="padding-top:3.4em">
+      <div class="c7">
+        <div class="eyebrow">The test</div>
+        <p class="pull mt-s">Is the property the hero? If the answer is the agency, start again.</p>
+      </div>
+      <div class="start9">
+        <p class="xs" style="color:var(--ink-2)">O&rsquo;Neill Property photography. A wide frame carries the address, the water and the street in one read, which is why nothing is ever set across it.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>The property is the hero</span><span>19 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     20  WEBSITE AND DIGITAL
+     ============================================================ -->
+<section class="spread is-sage" id="s20" aria-label="Website and digital">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Website and digital</div>
+        <h2 class="h2-sm">What the build<br>has to match</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">One page for whoever is in the stylesheet. Values, sizes and the one correction this edition asks for.</p>
+      </div>
+    </div>
+
+    <div class="grid fill mt">
+      <div class="c6">
+        <table class="tbl tight">
+          <caption>Digital colour tokens, taken from the master artwork.</caption>
+          <thead><tr><th>Role</th><th>Name</th><th>Hex</th><th>RGB</th></tr></thead>
+          <tbody>
+            <tr><td class="t" data-label="Role">Signature field</td><td class="b" data-label="Name">Sage Grey</td><td class="mono" data-label="Hex">#B7C1B3</td><td class="mono t" data-label="RGB">183 193 179</td></tr>
+            <tr><td class="t" data-label="Role">Neutral ground</td><td class="b" data-label="Name">Stone</td><td class="mono" data-label="Hex">#E2DAD1</td><td class="mono t" data-label="RGB">226 218 209</td></tr>
+            <tr><td class="t" data-label="Role">Anchor and all type</td><td class="b" data-label="Name">Basalt</td><td class="mono" data-label="Hex">#3A3A3A</td><td class="mono t" data-label="RGB">58 58 58</td></tr>
+            <tr><td class="t" data-label="Role">Graphic detail only</td><td class="b" data-label="Name">Deep Sage</td><td class="mono" data-label="Hex">#839C83</td><td class="mono t" data-label="RGB">131 156 131</td></tr>
+          </tbody>
+        </table>
+        <div class="note on-basalt mt">
+          <div class="kicker" style="color:var(--sage)">Correction required</div>
+          <p class="sm">The site ships Basalt as <strong style="color:var(--stone)">#2D2D2D</strong>. The master artwork is <strong style="color:var(--stone)">#3A3A3A</strong>. Change the token, not the artwork, and re-check any scrim measured against the old value.</p>
+        </div>
+      </div>
+
+      <div class="start8">
+        <ul class="rules airy">
+          <li><strong>Logo minimums on screen.</strong> Primary 150&nbsp;px wide, Secondary 110&nbsp;px, Icon 32&nbsp;px. Clear space on every side is the cap height of the O, including inside a header that is already tight.</li>
+          <li><strong>Type.</strong> Inter 300, 400, 500 and 600 for everything functional. Sinhala MN for display only, never below 18&nbsp;px. Measure to about 65 characters; never justify, never hyphenate, never track body copy.</li>
+          <li class="flag"><strong>Sinhala MN is Apple-only.</strong> Windows and Android need a nominated substitute before launch, and the CSS stack in the meantime must fall back to a restrained serif rather than to a system sans. See spread 22.</li>
+          <li class="flag"><strong>No sage carries body copy.</strong> Not Sage Grey, not Deep Sage, at any size or weight. Set text in Basalt, or set it on Basalt.</li>
+          <li><strong>Type over images.</strong> Measure the scrim against the actual frame, per frame, to 4.5:1 for Stone. Record the ratio beside the component. A flat sage wash never qualifies.</li>
+          <li><strong>Retired name.</strong> oneillgroup.com.au is no longer the name. Anywhere it still appears, in markup, metadata, redirects or artwork, it comes out.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Website and digital</span><span>20 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     21  NON-NEGOTIABLES
+     ============================================================ -->
+<section class="spread is-basalt" id="s21" aria-label="Non-negotiables">
+  <div class="pad">
+    <div class="eyebrow">Non-negotiables</div>
+    <div class="grid fill mt-s" style="--gut:5em">
+      <div class="c5">
+        <h2 class="h2-sm">When in doubt,<br>take something<br>away</h2>
+        <p class="mt-s">This brand is built on restraint. Almost every way it can go wrong is an addition: one more colour, one more typeface, one more badge, one more adjective.</p>
+        <div class="note veil mt">
+          <div class="kicker" style="color:var(--sage)">The test</div>
+          <p class="pull mt-s" style="font-size:2.2em;max-width:none">Is the property the hero?</p>
+          <p class="xs mt-s">If the answer is the agency, start again.</p>
+        </div>
+      </div>
+      <div class="start7">
+        <div class="grid" style="--cols:2;--gut:3.4em">
+          <div>
+            <div class="kicker kicker-q">Never</div>
+            <ul class="rules mt-s">
+              <li>Gold, metallics, gradients or glossy black.</li>
+              <li>A third typeface, or a script anywhere.</li>
+              <li>Sage as a full page flood.</li>
+              <li>Superlatives: stunning, breathtaking, must see, once in a lifetime.</li>
+              <li>A dash used as punctuation. Rewrite the sentence instead.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="kicker kicker-q">Always</div>
+            <ul class="rules mt-s">
+              <li>Australian English.</li>
+              <li>The clear space, even when it is inconvenient.</li>
+              <li>One campaign word per piece.</li>
+              <li>Measured contrast wherever type meets a photograph.</li>
+              <li>The plain word beside the campaign word where status must be instant.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid mt" style="--cols:2;--gut:3.4em">
+          <div>
+            <div class="kicker kicker-q">Where a supplier pushes back</div>
+            <p class="xs mt-s">Portals, franchisor templates and sign fabricators will all ask for a compromise at some point. Grant the smallest one that solves their problem, write down what was granted and why, and never let it become the new default.</p>
+          </div>
+          <div>
+            <div class="kicker kicker-q">Where this book is silent</div>
+            <p class="xs mt-s">Nothing here is a licence to invent. If a piece needs something this book does not cover, the answer is the nearest rule it does cover, applied with less rather than more.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Non-negotiables</span><span>21 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     22  OPEN DECISIONS AND EXCEPTIONS
+     Everything this edition has not settled, in one place, labelled.
+     Nothing here has been quietly resolved.
+     ============================================================ -->
+<section class="spread is-stone" id="s22" aria-label="Open decisions and exceptions">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Open decisions and exceptions</div>
+        <h2 class="h2-sm">Not settled<br>in this edition</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Six items. Each one is either a decision nobody has made yet or a correction that has been decided and not yet shipped. None of them are guessed at elsewhere in this book.</p>
+      </div>
+    </div>
+
+    <div class="grid fill mt" style="--gut:4em">
+      <div class="c6 stack loose">
+        <article class="open">
+          <div class="open__label">Decided, not yet shipped</div>
+          <h3>The Basalt value on the website</h3>
+          <p class="xs">The master artwork is #3A3A3A. The site ships #2D2D2D. The artwork wins. Until the token is changed, the two do not match and any contrast measured against #2D2D2D has to be taken again.</p>
+        </article>
+        <article class="open">
+          <div class="open__label">Open decision</div>
+          <h3>The display face substitute</h3>
+          <p class="xs">Sinhala MN is available on Apple devices only. A restrained high-contrast serif has to be nominated for Windows, for Android and for any printer that cannot embed the original. Until it is, the CSS in this file falls back to Georgia and then Times: a rendering fallback, not a nomination.</p>
+        </article>
+        <article class="open">
+          <div class="open__label">Open decision</div>
+          <h3>Pantone, paint and CMYK</h3>
+          <p class="xs">References are still to be selected against a physical swatch book, under the light the sign or the paint will actually live in. No CMYK build is published in this edition: the printer sets one and proofs it, and Basalt across a large field is specified as a rich black.</p>
+        </article>
+      </div>
+      <div class="start8 stack loose">
+        <article class="open">
+          <div class="open__label">Pending reprint</div>
+          <h3>The retired domain</h3>
+          <p class="xs">The business card and the photo board still carry oneillgroup.com.au. It comes off at the next print run, not by overprinting, and it comes out of the site at the same time.</p>
+        </article>
+        <article class="open">
+          <div class="open__label">Contradiction to resolve</div>
+          <h3>The app icon colourway</h3>
+          <p class="xs">Spread 07 nominates Stone on Basalt and Sage Grey on Basalt for the app icon. Both cannot be the default. Pick one, and leave the other to the social avatar.</p>
+        </article>
+        <article class="open">
+          <div class="open__label">Recorded elsewhere</div>
+          <h3>The measured scrim ratios</h3>
+          <p class="xs">Every scrim on the website was measured against its real frame, but the ratios live in the page files rather than in this book. Anyone setting type on a new image measures that image, and records the number where the next person will find it.</p>
+        </article>
+        <p class="xs flag" style="max-width:none"><strong>Production note.</strong> The four collateral photographs on spreads 15 and 16 load from <span style="font-variant-numeric:tabular-nums">./brand-book-assets/</span>. Keep that folder beside this file, or the frames show their labels instead.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>Open decisions and exceptions</span><span>22 / 23</span></div>
+</section>
+
+<!-- ============================================================
+     23  QUICK REFERENCE
+     ============================================================ -->
+<section class="spread is-sage" id="s23" aria-label="Quick reference">
+  <div class="pad">
+    <div class="head">
+      <div class="head__title">
+        <div class="eyebrow">Quick reference</div>
+        <h2 class="h2-sm">Before it<br>goes out</h2>
+      </div>
+      <div class="head__lede">
+        <p class="sm">Nothing new on this page. Every line is a rule from an earlier spread, in the order a piece of work usually breaks.</p>
+      </div>
+    </div>
+
+    <div class="grid fill mt">
+      <div class="c4">
+        <div class="kicker kicker-q">The mark and the field</div>
+        <ul class="check mt-s">
+          <li>One of the three supplied lockups, unmodified.</li>
+          <li>Clear space on all four sides is the cap height of the O.</li>
+          <li>At or above minimum size: 40&nbsp;mm / 150&nbsp;px primary, 28&nbsp;mm / 110&nbsp;px secondary, 8&nbsp;mm / 32&nbsp;px icon.</li>
+          <li>Colourway chosen for contrast against the ground behind it.</li>
+          <li>Sage Grey is carrying the piece, not accenting it.</li>
+          <li>Deep Sage is doing graphic work only.</li>
+        </ul>
+      </div>
+      <div style="grid-column:5 / span 4">
+        <div class="kicker kicker-q">Type and words</div>
+        <ul class="check mt-s">
+          <li>Two families only: Sinhala MN for display, Inter for everything else.</li>
+          <li>One display size in the layout.</li>
+          <li>No type set in any sage, at any size.</li>
+          <li>Body copy measures 4.5:1 against its ground; large text 3:1.</li>
+          <li>One campaign word, with the plain status word beside it where clarity is required.</li>
+          <li>Australian English, no superlatives, no dash as punctuation.</li>
+        </ul>
+      </div>
+      <div class="start9">
+        <div class="kicker kicker-q">Image and production</div>
+        <ul class="check mt-s">
+          <li>Natural light, squared verticals, honest colour, no replaced sky.</li>
+          <li>No type across the middle of a photograph; measured scrim or a solid field.</li>
+          <li>Uncoated stock, Stone as the paper, rich black for large Basalt.</li>
+          <li>No gloss, foil, gradient, bevel or shadow anywhere.</li>
+          <li>oneillgroup.com.au does not appear.</li>
+          <li>The property, not the agency, is the hero.</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="grid end push" style="padding-top:1.6em;border-top:var(--hair-w) solid var(--hair)">
+      <div class="c4">
+        <svg viewBox="0 0 1884.25 724.11" class="mark" style="width:12em" role="img" aria-label="O'Neill Property"><use href="#lg-primary"/></svg>
+      </div>
+      <p class="meta start9" style="text-align:right;max-width:none">Brand Book, Edition One &middot; August 2026<br>Prepared by 10xVisuals for O&rsquo;Neill Property</p>
+    </footer>
+  </div>
+  <div class="folio"><span>Quick reference</span><span>23 / 23</span></div>
+</section>
+
+</main>
+
+<div class="hud" id="hud" aria-hidden="true">01 / 23</div>
+
+<script>
+(function(){
+  var book=document.getElementById('book');
+  var spreads=[].slice.call(document.querySelectorAll('.spread'));
+  var hud=document.getElementById('hud');
+  if(!book||!spreads.length) return;
+
+  /* Folio readout. IntersectionObserver rather than a scroll handler:
+     the spreads snap, so the only thing worth knowing is which one is
+     centred, and that is exactly what the observer reports. Root stays
+     the book: switching it to the viewport silently stops the readout
+     updating, and the unbound view hides the readout anyway. */
+  if(hud && 'IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var i=spreads.indexOf(e.target)+1;
+          hud.textContent=(i<10?'0':'')+i+' / '+spreads.length;
+        }
+      });
+    },{root:book,threshold:.55});
+    spreads.forEach(function(s){ obs.observe(s); });
+  }
+
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)');
+
+  /* Arrow keys page through, the way a book should. Ignored while a
+     link has focus, so arrowing the contents list stays the reader's. */
+  document.addEventListener('keydown',function(ev){
+    if(ev.metaKey||ev.ctrlKey||ev.altKey||ev.shiftKey) return;
+    var el=document.activeElement;
+    if(el&&el!==document.body&&el.closest&&el.closest('a,button,input,select,textarea,[contenteditable]')) return;
+    var d=0;
+    if(ev.key==='ArrowRight'||ev.key==='PageDown') d=1;
+    if(ev.key==='ArrowLeft'||ev.key==='PageUp') d=-1;
+    if(!d) return;
+    /* Which element scrolls depends on the view: the bound sheet
+       scrolls inside the book, the unbound reading view scrolls the
+       document. Measuring against the viewport centre sidesteps the
+       difference entirely, and keeps working across a resize. */
+    var mid=window.innerHeight/2, cur=0, best=Infinity;
+    spreads.forEach(function(s,i){
+      var r=s.getBoundingClientRect();
+      var dist=Math.abs((r.top+r.bottom)/2-mid);
+      if(dist<best){ best=dist; cur=i; }
+    });
+    var next=spreads[Math.min(spreads.length-1,Math.max(0,cur+d))];
+    if(next){
+      ev.preventDefault();
+      next.scrollIntoView({block:'center',behavior:reduce.matches?'auto':'smooth'});
+    }
+  });
+})();
+</script>
+</body>
+</html>
