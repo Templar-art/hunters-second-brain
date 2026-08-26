@@ -189,6 +189,9 @@ img,svg{ max-width:100%; }
 .folio{
   position:absolute; left:var(--pad-x); right:var(--pad-x); bottom:2.5em;
   display:flex; justify-content:space-between; align-items:baseline;
+  /* The longest section title and the page number meet in the middle of
+     a phone-width panel, so the gap is set rather than assumed. */
+  gap:.6em 1.6em; flex-wrap:wrap;
   font-size:1.05em; letter-spacing:.24em; text-transform:uppercase;
   font-weight:500; color:var(--ink-3);
   font-variant-numeric:tabular-nums;
@@ -228,6 +231,7 @@ strong{ font-weight:500; color:var(--ink); }
 }
 .grid.fill{ flex:1; }
 .grid.mid{ align-items:center; }
+.grid.center-y{ align-content:center; }
 .grid.end{ align-items:end; }
 .c2{ grid-column:span 2; }
 .c3{ grid-column:span 3; }
@@ -341,6 +345,10 @@ strong{ font-weight:500; color:var(--ink); }
 }
 .pairs b{ font-weight:500; }
 .pairs .val{ font-size:.86em; letter-spacing:.16em; text-transform:uppercase; font-variant-numeric:tabular-nums; }
+/* The failing rows are unreadable on purpose: that is the demonstration.
+   The verdict beside them is not, so it drops back to Basalt, which
+   measures 8.2:1 on Stone and 6.1:1 on Sage Grey. */
+.pairs li.fail .val{ color:var(--basalt); font-weight:600; }
 
 /* ---------- 14. TYPE SPECIMEN ---------- */
 .spec{ display:grid; grid-template-columns:11em 1fr; gap:1.4em 2.4em; align-items:baseline; margin:0; }
@@ -349,11 +357,14 @@ strong{ font-weight:500; color:var(--ink); }
   color:var(--ink-2); padding-top:.5em;
 }
 .spec dd{ margin:0; }
+/* Four labels on a two-column grid, one of which wraps. The rows align
+   on the label rather than on the line count. */
+.scen .kicker{ min-height:2.7em; }
 .spec .lab{ font-size:.98em; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); display:block; margin-top:.35em; font-weight:500; }
 
 /* ---------- 15. CLEAR SPACE DIAGRAM ---------- */
-.cs{ background:var(--stone); padding:4.5em; position:relative; }
-.cs__inner{ position:relative; padding:3.4em; }
+.cs{ background:var(--stone); padding:3.2em; position:relative; }
+.cs__inner{ position:relative; padding:3.1em; }
 .cs__guide{ position:absolute; inset:0; border:var(--hair-w) dashed rgba(58,58,58,.34); }
 .cs__o{ position:absolute; font-family:var(--display); font-size:2.2em; color:rgba(58,58,58,.55); }
 .cs__o.l{ left:1.1em; top:50%; transform:translateY(-50%); }
@@ -362,7 +373,7 @@ strong{ font-weight:500; color:var(--ink); }
 .cs__o.b{ bottom:.5em; left:50%; transform:translateX(-50%); }
 
 /* ---------- 16. CORRECT / INCORRECT ---------- */
-.examples{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2.2em 2.4em; }
+.examples{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2.2em 2.4em; margin-block:auto; }
 .ex__frame{
   background:var(--paper); padding:2.2em;
   display:flex; align-items:center; justify-content:center;
@@ -370,6 +381,7 @@ strong{ font-weight:500; color:var(--ink); }
 }
 .ex__frame .mark{ width:74%; }
 .ex__cap{ font-size:1.05em; margin-top:.75em; line-height:1.45; color:var(--ink-2); font-weight:300; padding-top:.65em; border-top:var(--hair-w) solid var(--hair); }
+.ex__cap{ letter-spacing:0; text-transform:none; }
 .ex__cap b{ display:block; font-weight:600; color:var(--ink); letter-spacing:.02em; }
 .ex.ok .ex__cap{ border-top:var(--marker-w) solid var(--marker); }
 
@@ -400,9 +412,16 @@ strong{ font-weight:500; color:var(--ink); }
 .nine .s{ font-size:1em; line-height:1.45; color:var(--ink-2); margin-top:.35em; font-weight:300; }
 
 /* ---------- 20. CONTENTS ---------- */
-.toc{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:5em; list-style:none; margin:0; padding:0; }
+.toc{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  /* Column flow, not row flow. A contents list that reads 01, 03, 05
+     down the left is not a contents list. Twelve rows takes 01-12 to
+     the foot of the first column and 13-23 down the second. */
+  grid-auto-flow:column; grid-template-rows:repeat(12,auto);
+  column-gap:5em; list-style:none; margin:0; padding:0;
+}
 .toc a{
-  display:flex; align-items:baseline; gap:1em; padding:.6em 0;
+  display:flex; align-items:baseline; gap:1em; padding:.85em 0;
   border-top:var(--hair-w) solid var(--hair); color:inherit; text-decoration:none; font-size:1.2em;
 }
 .toc .n{ font-size:.82em; font-weight:600; letter-spacing:.16em; color:var(--ink-2); font-variant-numeric:tabular-nums; width:2.6em; flex:none; }
@@ -421,6 +440,11 @@ figure{ margin:0; }
 figcaption{
   font-size:1em; letter-spacing:.2em; text-transform:uppercase;
   color:var(--ink-2); font-weight:600; margin-top:.85em;
+}
+/* A figcaption carrying a sentence rather than a label reverts to prose. */
+.cap-prose{
+  letter-spacing:0; text-transform:none; font-weight:300;
+  font-size:1.08em; line-height:1.55;
 }
 /* Collateral: the supplied artwork, placed rather than redrawn. Each
    frame carries its own label, so a reader whose browser cannot load
@@ -478,9 +502,14 @@ figcaption{
 .cover__foot{ padding-bottom:4.2em; display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gut); align-items:end; }
 .cover__band{ position:relative; overflow:hidden; }
 .divider{ grid-template-rows:1fr auto; }
+.divider .cover__foot{ padding-bottom:6.8em; }
 .cover__band img{ width:100%; height:100%; object-fit:cover; object-position:50% 55%; display:block; }
 .cover__wm{ position:absolute; right:-6em; bottom:-9em; width:34em; color:rgba(226,218,209,.07); pointer-events:none; }
-.meta{ font-size:1.1em; font-weight:600; letter-spacing:.2em; text-transform:uppercase; line-height:1.9; color:var(--ink-2); }
+.meta{ font-size:1.1em; font-weight:600; letter-spacing:.2em; text-transform:uppercase; line-height:1.9; color:var(--ink-2); max-width:none; }
+/* Ranged right on the sheet, where it hangs off a column edge. Unbound
+   it is a shrink-wrapped flex item, where ranging right just looks
+   arbitrary, so the reading view sets it back to left. */
+.ta-r{ text-align:right; }
 
 /* ---------- 25. PROGRESS CHIP ---------- */
 .hud{
@@ -532,7 +561,33 @@ figcaption{
 }
 
 /* ============================================================
-   27. THE UNBOUND READING VIEW  —  screen only, under 1024px
+   27. PER SPREAD FIT
+   A spread is a fixed A4 landscape page, so content that runs past the
+   bottom is a fault, not a scroll. The shared scale holds on twenty-one
+   of the twenty-three sheets; these two are the densest, and they are
+   trimmed by tightening rows rather than by shrinking type.
+
+   Measured across viewport widths, not assumed: the em scale is
+   proportional but line breaking is not, so a paragraph that sets in
+   three lines at 1500px can take four at 1280px. Both sheets below now
+   carry several em of headroom at every width the bound view is used at.
+   ============================================================ */
+
+/* 12 sets seven specimens over a three-note foot. The display specimen
+   is the largest thing on the sheet after the head, so it takes a wider
+   gap from it than the shared step gives. */
+#s12 .spec{ gap:.55em 2.4em; margin-top:3.1em; }
+#s12 .notes{ padding-top:1.1em; }
+#s12 .spec dt{ padding-top:.35em; }
+#s12 .spec .lab{ margin-top:.18em; }
+
+/* 20 sets a four-row token table and a correction panel against six
+   implementation rules. */
+#s20 .rules > li{ padding:.78em 0; }
+#s20 .note{ padding:1.5em 1.8em; }
+
+/* ============================================================
+   28. THE UNBOUND READING VIEW  —  screen only, under 1024px
    ------------------------------------------------------------
    Under 1024px the sheet stops being a page and becomes a postage
    stamp. The spread scale is derived from viewport width, so at 375px
@@ -603,10 +658,11 @@ figcaption{
   .eyebrow{ font-size:1em; gap:1em; }
   .eyebrow::before{ width:2.4em; }
   p, .head__lede p{ max-width:none; }
+  .ta-r{ text-align:left; }
   /* The sheet runs three prose tiers because it has three column
      widths. One column needs two, and both clear 16px. */
   p.sm, p.xs{ font-size:1.16em; line-height:1.62; }
-  .rules > li, .check li, .nine .s, .sw .us, .ex__cap{ font-size:1.12em; line-height:1.5; }
+  .rules > li, .check li, .nine .s, .sw .us, .ex__cap, .cap-prose{ font-size:1.12em; line-height:1.5; }
   /* Tracking scales with measure. A label tracked for a 1500px sheet
      is tracked too loose for a 375px column. */
   .kicker{ letter-spacing:.16em; }
@@ -620,7 +676,7 @@ figcaption{
   .notes{ row-gap:clamp(1.25rem,4.5vw,2rem); }
 
   /* ---- contents: 44px targets, one column ---- */
-  .toc{ column-gap:0; }
+  .toc{ column-gap:0; grid-auto-flow:row; grid-template-rows:none; }
   .toc a{ min-height:44px; align-items:center; padding-block:.5em; font-size:1.1em; }
   .toc .n{ width:2.4em; }
   .toc .d{ transform:none; }
@@ -723,7 +779,7 @@ figcaption{
   <div class="cover">
     <div class="cover__rail">
       <svg viewBox="0 0 1884.25 724.11" class="mark mark-stone" style="width:19em" role="img" aria-label="O'Neill Property"><use href="#lg-primary"/></svg>
-      <p class="meta" style="text-align:right;max-width:none">Brand Book<br>Edition One<br>August 2026</p>
+      <p class="meta ta-r">Brand Book<br>Edition One<br>August 2026</p>
     </div>
 
     <div class="cover__band">
@@ -751,7 +807,7 @@ figcaption{
 <section class="spread is-sage" id="contents" aria-label="Contents">
   <div class="pad">
     <div class="eyebrow">Contents</div>
-    <div class="grid fill mt" style="--gut:6em">
+    <div class="grid fill center-y mt" style="--gut:6em">
       <div class="c4">
         <h2>What is<br>in here</h2>
         <p class="sm mt">Twenty-three spreads. The first four say what the brand is. The rest say how to build it, in the order you will need them, and the last three say what is still open and what to check before anything goes out.</p>
@@ -915,7 +971,7 @@ figcaption{
             <span class="cs__o b" aria-hidden="true">O</span>
           </div>
         </div>
-        <figcaption style="letter-spacing:0;text-transform:none;font-weight:300;font-size:1.08em;line-height:1.55">The dashed line is the boundary, not artwork. It never prints.</figcaption>
+        <figcaption class="cap-prose">The dashed line is the boundary, not artwork. It never prints.</figcaption>
       </figure>
     </div>
   </div>
@@ -1102,8 +1158,8 @@ figcaption{
           <li style="background:var(--stone);color:var(--basalt)"><b>Basalt on Stone</b><span class="val">8.2 : 1 &nbsp;&middot;&nbsp; all text</span></li>
           <li style="background:var(--basalt);color:var(--stone)"><b>Stone on Basalt</b><span class="val">8.2 : 1 &nbsp;&middot;&nbsp; all text</span></li>
           <li style="background:var(--sage);color:var(--basalt);box-shadow:inset 0 0 0 1px rgba(58,58,58,.2)"><b>Basalt on Sage Grey</b><span class="val">6.1 : 1 &nbsp;&middot;&nbsp; all text</span></li>
-          <li style="background:var(--stone);color:var(--deep)"><b>Deep Sage on Stone</b><span class="val">2.2 : 1 &nbsp;&middot;&nbsp; do not set type</span></li>
-          <li style="background:var(--sage);color:var(--stone);box-shadow:inset 0 0 0 1px rgba(58,58,58,.2)"><b>Stone on Sage Grey</b><span class="val">1.3 : 1 &nbsp;&middot;&nbsp; do not set type</span></li>
+          <li class="fail" style="background:var(--stone);color:var(--deep)"><b>Deep Sage on Stone</b><span class="val">2.2 : 1 &nbsp;&middot;&nbsp; do not set type</span></li>
+          <li class="fail" style="background:var(--sage);color:var(--stone);box-shadow:inset 0 0 0 1px rgba(58,58,58,.2)"><b>Stone on Sage Grey</b><span class="val">1.3 : 1 &nbsp;&middot;&nbsp; do not set type</span></li>
         </ul>
         <p class="xs mt-s flag"><strong>The sage rule.</strong> No sage in this palette can carry body copy: not Sage Grey, not Deep Sage. If words have to be read, set them in Basalt, or put them on Basalt.</p>
       </div>
@@ -1118,6 +1174,7 @@ figcaption{
 <section class="spread is-basalt" id="s11" aria-label="Typography">
   <div class="pad">
     <div class="eyebrow">Typography</div>
+    <h2 class="vh">Typography</h2>
     <div class="grid mid fill mt-s" style="--gut:5em">
       <div class="c6">
         <div aria-hidden="true" style="font-family:var(--display);font-size:9em;line-height:.86;color:var(--stone)">Aa</div>
@@ -1191,7 +1248,7 @@ figcaption{
         <h2>An agent<br>speaking,<br>not a brochure</h2>
         <p class="mt">Knowledgeable, warm, decisive and brief. Lead with what matters to the client, prefer a specific fact to an inflated adjective, and write like a person rather than a corporation. Australian English throughout.</p>
         <hr class="hr mt">
-        <div class="grid mt-s" style="--cols:2;--gut:2.4em">
+        <div class="grid scen mt-s" style="--cols:2;--gut:2.4em">
           <div><div class="kicker kicker-q">A price reduction</div><p class="xs mt-s">Direct and unapologetic.</p></div>
           <div><div class="kicker kicker-q">A missed result</div><p class="xs mt-s">Honest, brief, forward looking.</p></div>
           <div class="mt-s"><div class="kicker kicker-q">Market commentary</div><p class="xs mt-s">Plain, useful, unspun.</p></div>
@@ -1377,7 +1434,7 @@ figcaption{
       </div>
     </div>
 
-    <div class="grid fill mt">
+    <div class="grid fill center-y mt">
       <div class="c4">
         <div class="kicker" style="color:var(--sage)">Do</div>
         <ul class="rules mt-s">
@@ -1468,6 +1525,7 @@ figcaption{
     <div class="cover__foot" style="padding-top:3.4em">
       <div class="c7">
         <div class="eyebrow">The test</div>
+        <h2 class="vh">The property is the hero</h2>
         <p class="pull mt-s">Is the property the hero? If the answer is the agency, start again.</p>
       </div>
       <div class="start9">
@@ -1532,7 +1590,7 @@ figcaption{
 <section class="spread is-basalt" id="s21" aria-label="Non-negotiables">
   <div class="pad">
     <div class="eyebrow">Non-negotiables</div>
-    <div class="grid fill mt-s" style="--gut:5em">
+    <div class="grid fill center-y mt-s" style="--gut:5em">
       <div class="c5">
         <h2 class="h2-sm">When in doubt,<br>take something<br>away</h2>
         <p class="mt-s">This brand is built on restraint. Almost every way it can go wrong is an addition: one more colour, one more typeface, one more badge, one more adjective.</p>
@@ -1691,10 +1749,10 @@ figcaption{
     </div>
 
     <footer class="grid end push" style="padding-top:1.6em;border-top:var(--hair-w) solid var(--hair)">
-      <div class="c4">
+      <div class="c5">
         <svg viewBox="0 0 1884.25 724.11" class="mark" style="width:12em" role="img" aria-label="O'Neill Property"><use href="#lg-primary"/></svg>
       </div>
-      <p class="meta start9" style="text-align:right;max-width:none">Brand Book, Edition One &middot; August 2026<br>Prepared by 10xVisuals for O&rsquo;Neill Property</p>
+      <p class="meta ta-r start7">Brand Book, Edition One &middot; August 2026<br>Prepared by 10xVisuals for O&rsquo;Neill Property</p>
     </footer>
   </div>
   <div class="folio"><span>Quick reference</span><span>23 / 23</span></div>

@@ -826,3 +826,24 @@ launch her own agency. 10x is doing full branding (logo, colours) + website from
 brief uses 10x colours ([[brand-system]]), WhiteFox site structure as UX base, plus the wider
 research pool. All prior pattern/audit research moved to [[real-estate-design-refs]] (now a
 source page, not a client page) since it's reusable beyond one client.
+
+## [2026-08-26] ingest | O'Neill Property Brand Book, Edition One — rebuilt and filed
+Hunter supplied the existing 18-spread brand book HTML plus four frames from the 37 Southaven
+shoot and asked for a creative-director pass. Rebuilt as **23 spreads** at
+`projects/oneill-brand-book/oneill-property-brand-book.html`: real photography (the source had
+none), a 12-column editorial grid replacing per-spread inline flex bases, reusable components for
+rules/callouts/tables/checklists, and three sections the source only had scattered in footnotes —
+Website and digital, Open decisions, Quick reference. Source document treated as authority: no
+brand fact, measurement or rule invented, and the six unresolved items are labelled rather than
+silently resolved.
+
+Verified rather than assumed: the six contrast ratios the source prints all check out
+(6.12/8.22/8.22/6.12/2.15/1.34), and every sheet was measured for overflow at 390/1060/1180/1280/
+1366/1440/1512/1600/1920 px — two dense spreads (type scale, digital) needed trims.
+
+Knowledge captured in [[oneill-brand-book-edition-one]]. **[[oneill-group]] was stale**: it
+recorded the working direction as 10x's own #61a8d8/Poppins palette, and the real brand is Sage
+Grey/Basalt/Stone/Deep Sage with Sinhala MN + Inter. The trading name is O'Neill *Property*;
+`oneillgroup.com.au` is retired and still on the printed card and photo board. Flagged inline on
+the client page with the dated trail kept.
+
