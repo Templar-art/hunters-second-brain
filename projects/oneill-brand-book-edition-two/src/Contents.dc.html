@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{ --sage:#B7C1B3; --basalt:#3A3A3A; --stone:#E2DAD1; --deepsage:#839C83; }
+  /* Display stack. Sinhala MN is Apple-only; Antic Didone is the nominated
+     substitute for Windows / Android / web. ONP Display Fallback pins Georgia
+     to Sinhala MN's measured metrics so the line breaks never move. */
+  @font-face{ font-family:'ONP Display Fallback'; src:local('Georgia');
+    size-adjust:107.4%; ascent-override:89%; descent-override:28%; }
+  :root{
+    --display-stack:'Sinhala MN','Antic Didone','ONP Display Fallback',Georgia,serif;
+    --text-stack:Inter,'Helvetica Neue',Arial,sans-serif;
+    --t-display:132px; --t-title:44px; --t-subhead:28px;
+    --t-lede:19px; --t-body:16px; --t-caption:12px; --t-label:11px;
+  }
+
+  /* Vertical stops. Every page-level block lands on the 8px grid; the named
+     stops below are the shared entry rhythm so pages differ by intent, not drift. */
+  :root{
+    --mx:96px;            /* side margin */
+    --stop-mast:56px; --stop-title:152px; --stop-lede:224px; --stop-body:296px;
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  }
+  * { box-sizing:border-box; }
+  h1,h2,h3{ margin:0; font-size:inherit; font-weight:inherit; }
+  body{ margin:0; }
+  a{ color:#3A3A3A; }
+  .page{ width:1600px; height:1131px; position:relative; overflow:hidden;
+    font-family:Inter,'Helvetica Neue',Arial,sans-serif; color:var(--basalt); background:var(--stone); }
+  .display{ font-family:var(--display-stack); font-weight:400; }
+  .mast{ position:absolute; left:96px; right:96px; top:56px; height:36px; display:flex; align-items:center; justify-content:space-between; }
+  .mast-mark{ width:34px; flex:none; }
+  .mast-mark img{ width:34px; display:block; }
+  .mast-index{ font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:flex; align-items:center; gap:10px; }
+  .mast-page{ font-size:11px; font-weight:600; letter-spacing:.1em; }
+  .foot{ position:absolute; left:96px; right:96px; bottom:56px; display:flex; justify-content:space-between; font-size:11px; letter-spacing:.04em; opacity:.78; border-top:1px solid rgba(58,58,58,.25); padding-top:16px; }
+  .title{ position:absolute; left:96px; top:152px; font-size:44px;  line-height:1.15;}
+  .list{ position:absolute; left:96px; top:336px; width:1408px; display:grid; grid-template-columns:1fr 1fr; column-gap:128px; }
+  .col{ display:flex; flex-direction:column; }
+  .row{ display:flex; align-items:baseline; gap:32px; padding:30px 0; border-bottom:1px solid rgba(58,58,58,.22); }
+  .num{ font-size:28px; width:52px; flex:none; font-family:var(--display-stack); opacity:.78; }
+  .rowtext{ flex:1; }
+  .rowtitle{ font-size:19px; font-weight:600;  line-height:1.25;}
+  .rowdesc{ font-size:16px; font-weight:300; margin-top:4px; opacity:.85;  line-height:1.5;}
+  .rowpage{ font-size:11px; font-weight:600; letter-spacing:.06em; opacity:.78; flex:none; }
+</style>
+</helmet>
+<div class="page">
+  <div class="mast">
+    <div class="mast-mark"><img src="icon-basalt.png" alt="O&rsquo;Neill Property"></div>
+    <div class="mast-index"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Contents</div>
+    <div class="mast-page">02 / 13</div>
+  </div>
+
+  <h1 class="title display">Contents</h1>
+
+  <div class="list">
+    <div class="col">
+      <div class="row"><div class="num">01</div><div class="rowtext"><div class="rowtitle">The brand</div><div class="rowdesc">Overview, promise, audience, the nine rules</div></div><div class="rowpage">P.03</div></div>
+      <div class="row"><div class="num">02</div><div class="rowtext"><div class="rowtitle">The mark</div><div class="rowdesc">Lockups, clear space, size, colourways, misuse</div></div><div class="rowpage">P.04</div></div>
+      <div class="row"><div class="num">03</div><div class="rowtext"><div class="rowtitle">Colour</div><div class="rowdesc">The four values, their proportions, approved text pairs</div></div><div class="rowpage">P.05</div></div>
+      <div class="row"><div class="num">04</div><div class="rowtext"><div class="rowtitle">Type</div><div class="rowdesc">The two families, the scale, how to set them</div></div><div class="rowpage">P.06</div></div>
+      <div class="row"><div class="num">05</div><div class="rowtext"><div class="rowtitle">Voice</div><div class="rowdesc">Tone, on brand vs off brand, the word book</div></div><div class="rowpage">P.07&ndash;08</div></div>
+    </div>
+    <div class="col">
+      <div class="row"><div class="num">06</div><div class="rowtext"><div class="rowtitle">Signage and print</div><div class="rowdesc">Boards, cards, stock, finish</div></div><div class="rowpage">P.09</div></div>
+      <div class="row"><div class="num">07</div><div class="rowtext"><div class="rowtitle">Photography</div><div class="rowdesc">What a shoot must and must not do</div></div><div class="rowpage">P.10</div></div>
+      <div class="row"><div class="num">08</div><div class="rowtext"><div class="rowtitle">Website and digital</div><div class="rowdesc">Build spec and known fixes</div></div><div class="rowpage">P.11</div></div>
+      <div class="row"><div class="num">09</div><div class="rowtext"><div class="rowtitle">Quick reference</div><div class="rowdesc">The one page to check before anything goes out</div></div><div class="rowpage">P.12</div></div>
+      <div class="row"><div class="num">10</div><div class="rowtext"><div class="rowtitle">Open decisions and contact</div><div class="rowdesc">&nbsp;</div></div><div class="rowpage">P.13</div></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>O&rsquo;Neill Property &mdash; Brand Guidelines</span><span>Edition Two</span></div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{
+    --sage:#B7C1B3; --basalt:#3A3A3A; --stone:#E2DAD1; --deepsage:#839C83;
+  }
+  /* Display stack. Sinhala MN is Apple-only; Antic Didone is the nominated
+     substitute for Windows / Android / web. ONP Display Fallback pins Georgia
+     to Sinhala MN's measured metrics so the line breaks never move. */
+  @font-face{ font-family:'ONP Display Fallback'; src:local('Georgia');
+    size-adjust:107.4%; ascent-override:89%; descent-override:28%; }
+  :root{
+    --display-stack:'Sinhala MN','Antic Didone','ONP Display Fallback',Georgia,serif;
+    --text-stack:Inter,'Helvetica Neue',Arial,sans-serif;
+    --t-display:132px; --t-title:44px; --t-subhead:28px;
+    --t-lede:19px; --t-body:16px; --t-caption:12px; --t-label:11px;
+  }
+
+  /* Vertical stops. Every page-level block lands on the 8px grid; the named
+     stops below are the shared entry rhythm so pages differ by intent, not drift. */
+  :root{
+    --mx:96px;            /* side margin */
+    --stop-mast:56px; --stop-title:152px; --stop-lede:224px; --stop-body:296px;
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  }
+  * { box-sizing: border-box; }
+  h1,h2,h3{ margin:0; font-size:inherit; font-weight:inherit; }
+  body { margin:0; }
+  a { color:#3A3A3A; } a:hover{ color:#3A3A3A; }
+  .page {
+    width:1600px; height:1131px; position:relative; overflow:hidden;
+    background:var(--sage); color:var(--basalt);
+    font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
+  }
+  .display{ font-family:var(--display-stack);
+    font-weight:400;
+  }
+  /* The supplied "cut" mark, used as a large tonal device. Framed on the O and
+     the apostrophe only - a decisive crop reads as intent, where a crop landing
+     mid-word ("O'NEII") reads as a mistake. */
+  .cut-motif{
+    position:absolute; right:-232px; bottom:-176px;
+    width:1180px; height:600px; overflow:hidden;
+    opacity:.42; pointer-events:none;
+  }
+  .cut-motif img{
+    width:3400px; max-width:none; height:auto; display:block;
+    margin-left:-96px;
+  }
+  .cover-logo{ position:absolute; left:96px; top:88px; width:230px; }
+  .cover-logo img{ width:100%; display:block; }
+  .headline{
+    position:absolute; left:96px; top:400px; width:1180px;
+    font-size:132px; line-height:0.95; letter-spacing:-.01em;
+  }
+  .standfirst{
+    position:absolute; left:100px; top:680px; width:640px;
+    font-weight:300; font-size:19px; line-height:1.7;
+  }
+  .edition-line{
+    position:absolute; right:96px; top:104px;
+    font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase;
+    text-align:right; line-height:1.9;
+  }
+  .prepared{
+    position:absolute; left:96px; bottom:76px;
+    font-size:12px; letter-spacing:.02em;
+  }
+  .rule{
+    position:absolute; left:96px; top:352px; width:64px; height:2px; background:var(--deepsage);
+  }
+</style>
+</helmet>
+<div class="page">
+  <div class="cut-motif"><img src="oneill-cut.png" alt=""></div>
+  <div class="cover-logo"><img src="basalt-logo.png" alt="O'Neill Property"></div>
+  <div class="edition-line">Brand Guidelines<br>Edition&nbsp;Two</div>
+  <div class="rule"></div>
+  <h1 class="headline display">Property is<br>personal.</h1>
+  <div class="standfirst">One standard, from the first appraisal to the last signature. This document is what makes a board, a listing, a card and the website look like they came from the same agency.</div>
+  <div class="prepared">Prepared by 10x Visuals for O&rsquo;Neill Property.</div>
+</div>
+</x-dc>
+</body>
+</html>

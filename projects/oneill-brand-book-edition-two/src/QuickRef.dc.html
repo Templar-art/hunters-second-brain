@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{ --sage:#B7C1B3; --basalt:#3A3A3A; --stone:#E2DAD1; --deepsage:#839C83; }
+  /* Display stack. Sinhala MN is Apple-only; Antic Didone is the nominated
+     substitute for Windows / Android / web. ONP Display Fallback pins Georgia
+     to Sinhala MN's measured metrics so the line breaks never move. */
+  @font-face{ font-family:'ONP Display Fallback'; src:local('Georgia');
+    size-adjust:107.4%; ascent-override:89%; descent-override:28%; }
+  :root{
+    --display-stack:'Sinhala MN','Antic Didone','ONP Display Fallback',Georgia,serif;
+    --text-stack:Inter,'Helvetica Neue',Arial,sans-serif;
+    --t-display:132px; --t-title:44px; --t-subhead:28px;
+    --t-lede:19px; --t-body:16px; --t-caption:12px; --t-label:11px;
+  }
+
+  /* Vertical stops. Every page-level block lands on the 8px grid; the named
+     stops below are the shared entry rhythm so pages differ by intent, not drift. */
+  :root{
+    --mx:96px;            /* side margin */
+    --stop-mast:56px; --stop-title:152px; --stop-lede:224px; --stop-body:296px;
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  }
+  * { box-sizing:border-box; }
+  h1,h2,h3{ margin:0; font-size:inherit; font-weight:inherit; }
+  body{ margin:0; }
+  .page{ width:1600px; height:1131px; position:relative; overflow:hidden;
+    font-family:Inter,'Helvetica Neue',Arial,sans-serif; color:var(--basalt); background:var(--stone); }
+  .display{ font-family:var(--display-stack); font-weight:400; }
+  .mast{ position:absolute; left:96px; right:96px; top:56px; height:36px; display:flex; align-items:center; justify-content:space-between; }
+  .mast-mark{ width:34px; flex:none; }
+  .mast-mark img{ width:34px; display:block; }
+  .mast-index{ font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:flex; align-items:center; gap:10px; }
+  .mast-page{ font-size:11px; font-weight:600; letter-spacing:.1em; }
+  .foot{ position:absolute; left:96px; right:96px; bottom:36px; display:flex; justify-content:space-between; font-size:11px; letter-spacing:.04em; opacity:.78; border-top:1px solid rgba(58,58,58,.25); padding-top:16px; }
+  .title{ position:absolute; left:96px; top:152px; font-size:44px;  line-height:1.15;}
+  .lede{ position:absolute; left:96px; top:224px; width:1100px; font-size:19px; font-weight:300; line-height:1.7; }
+
+  .cols{ position:absolute; left:96px; top:344px; width:1408px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:88px; }
+  .col{ border-top:2px solid var(--basalt); padding-top:16px; }
+  .colname{ font-size:19px; font-weight:600; margin-bottom:28px; line-height:1.25; }
+  .chk{ display:flex; gap:20px; padding:22px 0; border-bottom:1px solid rgba(58,58,58,.2); }
+  .chk:last-child{ border-bottom:none; }
+  .chknum{ font-family:var(--display-stack); font-size:19px; opacity:.78; width:34px; flex:none; }
+  .chktext{ font-size:16px; line-height:1.5; padding-top:3px; }
+</style>
+</helmet>
+<div class="page">
+  <div class="mast">
+    <div class="mast-mark"><img src="icon-basalt.png" alt="O&rsquo;Neill Property"></div>
+    <div class="mast-index"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>09&nbsp;&mdash;&nbsp;Quick Reference</div>
+    <div class="mast-page">12 / 13</div>
+  </div>
+  <h1 class="title display">Quick reference</h1>
+  <div class="lede">Nothing new on this page, every line is a rule from an earlier one, in the order a piece of work usually breaks.</div>
+
+  <div class="cols">
+    <div class="col">
+      <h2 class="colname">The mark and the field</h2>
+      <div class="chk"><div class="chknum">01</div><div class="chktext">One of the three supplied lockups, unmodified.</div></div>
+      <div class="chk"><div class="chknum">02</div><div class="chktext">Clear space on all four sides is the cap height of the O.</div></div>
+      <div class="chk"><div class="chknum">03</div><div class="chktext">At or above minimum size (40&nbsp;mm / 150&nbsp;px primary).</div></div>
+      <div class="chk"><div class="chknum">04</div><div class="chktext">Colourway chosen for contrast against the ground behind it.</div></div>
+      <div class="chk"><div class="chknum">05</div><div class="chktext">Sage Grey carrying the piece, not accenting it.</div></div>
+    </div>
+    <div class="col">
+      <h2 class="colname">Type and words</h2>
+      <div class="chk"><div class="chknum">01</div><div class="chktext">Two families only: Sinhala MN for display, Inter for the rest.</div></div>
+      <div class="chk"><div class="chknum">02</div><div class="chktext">One display size in the layout.</div></div>
+      <div class="chk"><div class="chknum">03</div><div class="chktext">No type set in any sage, at any size.</div></div>
+      <div class="chk"><div class="chknum">04</div><div class="chktext">Body copy at 4.5:1 against its ground, large text 3:1.</div></div>
+      <div class="chk"><div class="chknum">05</div><div class="chktext">Australian English, no superlatives, no dash as punctuation.</div></div>
+    </div>
+    <div class="col">
+      <h2 class="colname">Image and production</h2>
+      <div class="chk"><div class="chknum">01</div><div class="chktext">Natural light, squared verticals, honest colour, no replaced sky.</div></div>
+      <div class="chk"><div class="chknum">02</div><div class="chktext">No type across the middle of a photograph.</div></div>
+      <div class="chk"><div class="chknum">03</div><div class="chktext">Uncoated stock, Stone as the paper, rich black for large Basalt.</div></div>
+      <div class="chk"><div class="chknum">04</div><div class="chktext">No gloss, foil, gradient, bevel or shadow anywhere.</div></div>
+      <div class="chk"><div class="chknum">05</div><div class="chktext">oneillgroup.com.au does not appear anywhere.</div></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>O&rsquo;Neill Property &mdash; Brand Guidelines</span><span>Edition Two</span></div>
+</div>
+</x-dc>
+</body>
+</html>

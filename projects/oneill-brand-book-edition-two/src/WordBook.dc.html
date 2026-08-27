@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{ --sage:#B7C1B3; --basalt:#3A3A3A; --stone:#E2DAD1; --deepsage:#839C83; }
+  /* Display stack. Sinhala MN is Apple-only; Antic Didone is the nominated
+     substitute for Windows / Android / web. ONP Display Fallback pins Georgia
+     to Sinhala MN's measured metrics so the line breaks never move. */
+  @font-face{ font-family:'ONP Display Fallback'; src:local('Georgia');
+    size-adjust:107.4%; ascent-override:89%; descent-override:28%; }
+  :root{
+    --display-stack:'Sinhala MN','Antic Didone','ONP Display Fallback',Georgia,serif;
+    --text-stack:Inter,'Helvetica Neue',Arial,sans-serif;
+    --t-display:132px; --t-title:44px; --t-subhead:28px;
+    --t-lede:19px; --t-body:16px; --t-caption:12px; --t-label:11px;
+  }
+
+  /* Vertical stops. Every page-level block lands on the 8px grid; the named
+     stops below are the shared entry rhythm so pages differ by intent, not drift. */
+  :root{
+    --mx:96px;            /* side margin */
+    --stop-mast:56px; --stop-title:152px; --stop-lede:224px; --stop-body:296px;
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  }
+  * { box-sizing:border-box; }
+  h1,h2,h3{ margin:0; font-size:inherit; font-weight:inherit; }
+  body{ margin:0; }
+  .page{ width:1600px; height:1131px; position:relative; overflow:hidden;
+    font-family:Inter,'Helvetica Neue',Arial,sans-serif; color:var(--basalt); background:var(--stone); }
+  .display{ font-family:var(--display-stack); font-weight:400; }
+  .mast{ position:absolute; left:96px; right:96px; top:56px; height:36px; display:flex; align-items:center; justify-content:space-between; }
+  .mast-mark{ width:34px; flex:none; }
+  .mast-mark img{ width:34px; display:block; }
+  .mast-index{ font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:flex; align-items:center; gap:10px; }
+  .mast-page{ font-size:11px; font-weight:600; letter-spacing:.1em; }
+  .foot{ position:absolute; left:96px; right:96px; bottom:36px; display:flex; justify-content:space-between; font-size:11px; letter-spacing:.04em; opacity:.78; border-top:1px solid rgba(58,58,58,.25); padding-top:16px; }
+  .title{ position:absolute; left:96px; top:152px; font-size:44px;  line-height:1.15;}
+  .lede{ position:absolute; left:96px; top:224px; width:1200px; font-size:19px; font-weight:300; line-height:1.7; }
+
+  .thead{ position:absolute; left:96px; top:296px; width:1408px; display:flex; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; opacity:.78; border-bottom:1px solid rgba(58,58,58,.4); padding-bottom:10px; }
+  .th1{ width:300px; } .th2{ width:400px; } .th3{ flex:1; }
+
+  .trows{ position:absolute; left:96px; top:328px; width:1408px; }
+  .trow{ display:flex; align-items:center; padding:12px 0; border-bottom:1px solid rgba(58,58,58,.18); font-size:16px; }
+  .t1{ width:300px; opacity:.78; }
+  .t2{ width:400px; display:flex; align-items:center; gap:10px; font-weight:600; }
+  .t2 svg{ flex:none; }
+  .t3{ flex:1; font-size:12px; opacity:.78; font-style:italic;  line-height:1.45;}
+
+  .bottom{ position:absolute; left:96px; top:920px; width:1408px; display:grid; grid-template-columns:1fr 1fr; gap:60px; border-top:1px solid rgba(58,58,58,.3); padding-top:16px; }
+  .b-title{ font-size:16px; font-weight:600; margin-bottom:8px; }
+  .b-text{ font-size:16px; line-height:1.55; }
+  .b-text.note{ font-style:italic; opacity:.8; }
+</style>
+</helmet>
+<div class="page">
+  <div class="mast">
+    <div class="mast-mark"><img src="icon-basalt.png" alt="O&rsquo;Neill Property"></div>
+    <div class="mast-index"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>05&nbsp;&mdash;&nbsp;The Word Book</div>
+    <div class="mast-page">08 / 13</div>
+  </div>
+  <h1 class="title display">The word book</h1>
+  <div class="lede">A consistent vocabulary costs nothing to print and makes every touchpoint recognisably O&rsquo;Neill. The branded term is a device, not a replacement, run it beside the plain word wherever status must be instant (a portal, a footpath, a legal notice).</div>
+
+  <div class="thead"><div class="th1">Instead of</div><div class="th2">O&rsquo;Neill says</div><div class="th3">Why</div></div>
+  <div class="trows">
+    <div class="trow"><div class="t1">For Sale</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Own It</div><div class="t3">Hero campaign device, use it selectively</div></div>
+    <div class="trow"><div class="t1">Coming Soon</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Preparing It</div><div class="t3">Pre-market and soft launch</div></div>
+    <div class="trow"><div class="t1">Sold</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Sold It</div><div class="t3">Corrected from &ldquo;Achieved&rdquo; in Edition One, see note below</div></div>
+    <div class="trow"><div class="t1">For Lease</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Lease It</div><div class="t3">Rental campaign device</div></div>
+    <div class="trow"><div class="t1">Open Home</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Open</div><div class="t3">The date and time are the hero, not the label</div></div>
+    <div class="trow"><div class="t1">Listing</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Property, Residence or Home</div><div class="t3">By context</div></div>
+    <div class="trow"><div class="t1">Key Features</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>The Details</div><div class="t3">Editorial, less generic</div></div>
+    <div class="trow"><div class="t1">Recent Sales</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Recent Results</div><div class="t3">Preferred on collateral</div></div>
+    <div class="trow"><div class="t1">Vendor</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Seller</div><div class="t3">Client-facing language, not industry language</div></div>
+    <div class="trow"><div class="t1">Buyer database</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Buyer Network</div><div class="t3">More human, more premium</div></div>
+    <div class="trow"><div class="t1">Team</div><div class="t2"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>Our People</div><div class="t3">&ldquo;Team&rdquo; stays acceptable in navigation</div></div>
+  </div>
+
+  <div class="bottom">
+    <div><h3 class="b-title">Two words the brand does not own</h3><div class="b-text">Property Management and Property Appraisal. Both are searched for by name, branding them would cost enquiries, so they stay plain.</div></div>
+    <div><h3 class="b-title">Note</h3><div class="b-text note">Edition One used &ldquo;Achieved&rdquo; for Sold. That conflicted with an earlier confirmed direction to use Sold It. This draft applies Sold It. Flag if Achieved should stand instead.</div></div>
+  </div>
+
+  <div class="foot"><span>O&rsquo;Neill Property &mdash; Brand Guidelines</span><span>Edition Two</span></div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -850,3 +850,49 @@ Grey/Basalt/Stone/Deep Sage with Sinhala MN + Inter. The trading name is O'Neill
 `oneillgroup.com.au` is retired and still on the printed card and photo board. Flagged inline on
 the client page with the dated trail kept.
 
+## [2026-08-27] ingest | O'Neill Property Brand Guidelines, Edition Two — designed, verified, filed
+
+Hunter supplied locked copy (26 spreads condensed to 16 sections, 13 pages) and asked for visual
+design only, explicitly no reference to Edition One's look. Built as 13 fixed landscape artboards
+on a Claude Design canvas, plus a print PDF at 423x299 mm — the sheet ratio is 1.4152 so it drops
+onto A3/A4 landscape without letterboxing.
+
+Copy fidelity checked word-by-word against the source draft after build. The only text removed
+anywhere was scaffolding 10x had added itself: a "SECTION 0X" eyebrow on 10 pages, which is
+kicker-as-grammar — the same tell the [[oneill-group]] site critique caught in August. One
+near-miss worth recording: a script deleting those eyebrows also stripped the cover's
+"Brand Guidelines / Edition Two" line, which is real locked content. Caught by diffing visible
+text against the pre-edit files, restored.
+
+Four rounds of design review (audit, polish, typeset, layout). What they actually found:
+
+- **The masthead was a mutilated logo on 12 of 13 pages.** The secondary lockup does not exist as
+  artwork, so the build had CSS-cropped the primary — slicing the wordmark's letterforms in half,
+  on a book whose own rule is "never crop the mark". Now the intact icon at 34 px, and page 4's
+  secondary slot holds a placeholder. **Client action: supply the wordmark-only SVG.**
+- **The four-value palette has no tint ramp**, so `opacity` had been used as one and broke contrast
+  in ~40 places (worst 2.76:1 on real copy, on a page that prints "body copy needs 4.5:1").
+  Computed the minimum alpha per ground — 0.76 Stone / 0.86 Sage / 0.66 Basalt — and set 0.78/0.88/0.70.
+- **The book published a 7-step type scale on page 6 and set itself in 26 sizes**, seven of them
+  inside a 3 px band. Now 8 sizes, every one a published step. `font-weight:700` appeared 23 times
+  against a spec that says "nothing heavier" than 600 — all gone.
+- **Page 6 mislabelled its own specimens** (labelled 64/44/28, rendered 60/42/27). Now exact.
+- **Inter was never rendering.** Not installed on this Mac, so the first PDF set the whole book in
+  Helvetica Neue and every artifact viewer without Inter saw Arial. Served as a webfont now; the
+  PDF embeds real Sinhala MN + Inter 300/400/500/600.
+- Four `border-left:2px` accent stripes rewritten with different structure.
+
+Display-face substitute (Edition One's open item 2, still open in the Edition Two copy) is now
+**nominated: Antic Didone** — chosen on measured metrics, not vibes. Sinhala MN measures x/cap
+0.787 at 64 px, the widest and largest-x-height of every candidate, so its Latin is a Scotch Roman
+rather than a Didone. Prata matched width best (+1.6%) but was the reflex pick and its caps
+dominate. Also shipped a metric-pinned Georgia fallback that renders 611 px against Sinhala MN's
+611 px, so line breaks never move off Apple. **Awaiting Hunter's sign-off.**
+
+Verified rather than assumed: all 13 pages measured in-browser — zero contrast failures, zero text
+under 11 px, zero overflow, zero clipped boxes, zero block collisions at 0 px tolerance, zero
+broken images. The six contrast ratios page 5 prints were independently re-checked and hold.
+
+Knowledge captured in [[oneill-brand-book-edition-two]]. Deliverable and artboard source filed to
+`projects/oneill-brand-book-edition-two/` — it had been sitting in session-temp only, which is how
+four passes of work goes missing.

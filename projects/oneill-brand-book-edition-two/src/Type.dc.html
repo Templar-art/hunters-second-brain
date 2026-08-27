@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{ --sage:#B7C1B3; --basalt:#3A3A3A; --stone:#E2DAD1; --deepsage:#839C83; }
+  /* Display stack. Sinhala MN is Apple-only; Antic Didone is the nominated
+     substitute for Windows / Android / web. ONP Display Fallback pins Georgia
+     to Sinhala MN's measured metrics so the line breaks never move. */
+  @font-face{ font-family:'ONP Display Fallback'; src:local('Georgia');
+    size-adjust:107.4%; ascent-override:89%; descent-override:28%; }
+  :root{
+    --display-stack:'Sinhala MN','Antic Didone','ONP Display Fallback',Georgia,serif;
+    --text-stack:Inter,'Helvetica Neue',Arial,sans-serif;
+    --t-display:132px; --t-title:44px; --t-subhead:28px;
+    --t-lede:19px; --t-body:16px; --t-caption:12px; --t-label:11px;
+  }
+
+  /* Vertical stops. Every page-level block lands on the 8px grid; the named
+     stops below are the shared entry rhythm so pages differ by intent, not drift. */
+  :root{
+    --mx:96px;            /* side margin */
+    --stop-mast:56px; --stop-title:152px; --stop-lede:224px; --stop-body:296px;
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  }
+  * { box-sizing:border-box; }
+  h1,h2,h3{ margin:0; font-size:inherit; font-weight:inherit; }
+  body{ margin:0; }
+  .page{ width:1600px; height:1131px; position:relative; overflow:hidden;
+    font-family:Inter,'Helvetica Neue',Arial,sans-serif; color:var(--basalt); background:var(--stone); }
+  .display{ font-family:var(--display-stack); font-weight:400; }
+  .mast{ position:absolute; left:96px; right:96px; top:56px; height:36px; display:flex; align-items:center; justify-content:space-between; }
+  .mast-mark{ width:34px; flex:none; }
+  .mast-mark img{ width:34px; display:block; }
+  .mast-index{ font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:flex; align-items:center; gap:10px; }
+  .mast-page{ font-size:11px; font-weight:600; letter-spacing:.1em; }
+  .foot{ position:absolute; left:96px; right:96px; bottom:36px; display:flex; justify-content:space-between; font-size:11px; letter-spacing:.04em; opacity:.78; border-top:1px solid rgba(58,58,58,.25); padding-top:16px; }
+  .title{ position:absolute; left:96px; top:152px; font-size:44px;  line-height:1.15;}
+  .sub{ position:absolute; left:96px; top:216px; font-size:19px; font-weight:300;  line-height:1.7;}
+
+  .fams{ position:absolute; left:96px; top:288px; width:380px; }
+  .fam{ padding-bottom:26px; margin-bottom:26px; border-bottom:1px solid rgba(58,58,58,.25); }
+  .fam:last-child{ border-bottom:none; }
+  .fam-aa{ font-size:64px; line-height:1; }
+  .fam-name{ font-size:16px; font-weight:600; margin-top:8px; }
+  .fam-desc{ font-size:16px; line-height:1.5; margin-top:6px; opacity:.85; }
+
+  .specimen{ position:absolute; left:520px; top:288px; width:984px; }
+  .srow{ padding:14px 0; border-bottom:1px solid rgba(58,58,58,.2); display:flex; align-items:baseline; gap:24px; }
+  .srow:first-child{ padding-top:0; }
+  .slabel{ width:190px; flex:none; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; opacity:.78; line-height:1.5; }
+  /* no overflow clip: this page's job is showing the type, uncut */
+  .sexample{ flex:1; min-width:0; white-space:nowrap; }
+  .s-display{ font-size:64px; line-height:0.95; padding-bottom:.08em; }
+  .s-heading{ font-size:44px; line-height:1.15; }
+  .s-subhead{ font-size:28px; line-height:1.25; }
+  .s-eyebrow{ font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; }
+  .s-bodylarge{ font-size:19px; font-weight:300; line-height:1.7; }
+  .s-body{ font-size:16px; font-weight:400; line-height:1.75; }
+  .s-caption{ font-size:12px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
+
+  .setting{ position:absolute; left:520px; top:960px; width:984px; font-size:16px; line-height:1.55; opacity:.85; border-top:1px solid rgba(58,58,58,.3); padding-top:16px; }
+</style>
+</helmet>
+<div class="page">
+  <div class="mast">
+    <div class="mast-mark"><img src="icon-basalt.png" alt="O&rsquo;Neill Property"></div>
+    <div class="mast-index"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>04&nbsp;&mdash;&nbsp;Type</div>
+    <div class="mast-page">06 / 13</div>
+  </div>
+  <h1 class="title display">Type</h1>
+  <div class="sub">Two families, never a third.</div>
+
+  <div class="fams">
+    <div class="fam">
+      <div class="fam-aa display">Aa</div>
+      <h3 class="fam-name">Sinhala MN &mdash; display</h3>
+      <div class="fam-desc">Headlines, campaign statements, board addresses. One weight, never below 18&nbsp;px, otherwise its contrast breaks down. Apple&#8209;only: a restrained high&#8209;contrast serif substitute and a CSS fallback still need to be nominated before launch (see Open decisions).</div>
+    </div>
+    <div class="fam">
+      <div class="fam-aa" style="font-weight:400;">Aa</div>
+      <h3 class="fam-name">Inter &mdash; text</h3>
+      <div class="fam-desc">Everything that has to work: body copy, navigation, agent details, captions, forms, signage information. Weights 300, 400, 500, 600. Nothing heavier.</div>
+    </div>
+  </div>
+
+  <div class="specimen">
+    <div class="srow"><div class="slabel">Display<br>Sinhala MN &middot; 64/.95</div><div class="sexample s-display display">Property is personal</div></div>
+    <div class="srow"><div class="slabel">Heading<br>Sinhala MN &middot; 44/1.15</div><div class="sexample s-heading display">A considered approach</div></div>
+    <div class="srow"><div class="slabel">Subhead<br>Sinhala MN &middot; 28/1.25</div><div class="sexample s-subhead display">Northern Gold Coast</div></div>
+    <div class="srow"><div class="slabel">Eyebrow<br>Inter 600 &middot; 11/.24em, tracked</div><div class="sexample s-eyebrow">Recent Results</div></div>
+    <div class="srow"><div class="slabel">Body large<br>Inter 300 &middot; 19/1.7</div><div class="sexample s-bodylarge">A rare north-facing residence on a quiet Hope Island street</div></div>
+    <div class="srow"><div class="slabel">Body<br>Inter 400 &middot; 16/1.75</div><div class="sexample s-body">Four bedrooms and direct boating access from a private pontoon</div></div>
+    <div class="srow"><div class="slabel">Caption<br>Inter 500 &middot; 12/.12em, tracked</div><div class="sexample s-caption">4 Bed &middot; 3 Bath &middot; 2 Car &middot; 812 m&sup2;</div></div>
+  </div>
+
+  <div class="setting"><b style="font-weight:600;">Setting rules:</b> one display size per layout, two headline sizes read as a template. Measure to about 65 characters. Never justify, hyphenate or track body copy. Capitals are reserved for lockups, eyebrows and captions, never a paragraph. A headline over three lines is too long.</div>
+
+  <div class="foot"><span>O&rsquo;Neill Property &mdash; Brand Guidelines</span><span>Edition Two</span></div>
+</div>
+</x-dc>
+</body>
+</html>

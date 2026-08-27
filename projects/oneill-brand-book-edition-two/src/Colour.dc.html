@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{ --sage:#B7C1B3; --basalt:#3A3A3A; --stone:#E2DAD1; --deepsage:#839C83; }
+  /* Display stack. Sinhala MN is Apple-only; Antic Didone is the nominated
+     substitute for Windows / Android / web. ONP Display Fallback pins Georgia
+     to Sinhala MN's measured metrics so the line breaks never move. */
+  @font-face{ font-family:'ONP Display Fallback'; src:local('Georgia');
+    size-adjust:107.4%; ascent-override:89%; descent-override:28%; }
+  :root{
+    --display-stack:'Sinhala MN','Antic Didone','ONP Display Fallback',Georgia,serif;
+    --text-stack:Inter,'Helvetica Neue',Arial,sans-serif;
+    --t-display:132px; --t-title:44px; --t-subhead:28px;
+    --t-lede:19px; --t-body:16px; --t-caption:12px; --t-label:11px;
+  }
+
+  /* Vertical stops. Every page-level block lands on the 8px grid; the named
+     stops below are the shared entry rhythm so pages differ by intent, not drift. */
+  :root{
+    --mx:96px;            /* side margin */
+    --stop-mast:56px; --stop-title:152px; --stop-lede:224px; --stop-body:296px;
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  }
+  * { box-sizing:border-box; }
+  h1,h2,h3{ margin:0; font-size:inherit; font-weight:inherit; }
+  body{ margin:0; }
+  .page{ width:1600px; height:1131px; position:relative; overflow:hidden;
+    font-family:Inter,'Helvetica Neue',Arial,sans-serif; color:var(--basalt); background:var(--stone); }
+  .display{ font-family:var(--display-stack); font-weight:400; }
+  .mast{ position:absolute; left:96px; right:96px; top:56px; height:36px; display:flex; align-items:center; justify-content:space-between; }
+  .mast-mark{ width:34px; flex:none; }
+  .mast-mark img{ width:34px; display:block; }
+  .mast-index{ font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:flex; align-items:center; gap:10px; }
+  .mast-page{ font-size:11px; font-weight:600; letter-spacing:.1em; }
+  .foot{ position:absolute; left:96px; right:96px; bottom:40px; display:flex; justify-content:space-between; font-size:11px; letter-spacing:.04em; opacity:.78; border-top:1px solid rgba(58,58,58,.25); padding-top:16px; }
+  .title{ position:absolute; left:96px; top:152px; font-size:44px; width:900px;  line-height:1.15;}
+  .sub{ position:absolute; left:96px; top:224px; font-size:19px; font-weight:300; max-width:760px; line-height:1.7; }
+
+  .bar{ position:absolute; left:96px; top:296px; width:1408px; height:96px; display:flex; }
+  .seg1{ width:50%; background:var(--sage); }
+  .seg2{ width:30%; background:var(--basalt); }
+  .seg3{ width:15%; background:var(--stone); border-top:1px solid rgba(58,58,58,.3); border-bottom:1px solid rgba(58,58,58,.3);}
+  .seg4{ width:5%; background:var(--deepsage); }
+  .caps{ position:absolute; left:96px; top:400px; width:1408px; display:flex; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; opacity:.78; }
+  .capseg{ text-align:left; }
+  .cap1{ width:50%; } .cap2{ width:30%; } .cap3{ width:15%; } .cap4{ width:5%; white-space:nowrap; }
+
+  .rows{ position:absolute; left:96px; top:448px; width:830px; }
+  .row{ display:flex; align-items:center; gap:22px; padding:20px 0; border-bottom:1px solid rgba(58,58,58,.22); }
+  .row:first-child{ border-top:1px solid rgba(58,58,58,.22); }
+  .chip{ width:44px; height:44px; flex:none; border:1px solid rgba(58,58,58,.2); }
+  .rname{ width:120px; flex:none; font-size:16px; font-weight:600; }
+  .rhex{ width:88px; flex:none; font-size:12px; font-weight:500; opacity:.78; }
+  .rrole{ flex:1; font-size:16px; line-height:1.45; }
+  .rshare{ width:52px; flex:none; text-align:right; font-size:19px; font-weight:400; font-family:var(--display-stack); }
+
+  .pairs{ position:absolute; left:986px; top:448px; width:518px; }
+  .pairs-title{ font-size:19px; font-weight:600; margin-bottom:6px;  line-height:1.25;}
+  .pairs-sub{ font-size:11px; opacity:.78; margin-bottom:16px;  line-height:1.5;}
+  .pair{ display:flex; align-items:center; justify-content:space-between; padding:11px 0; border-bottom:1px solid rgba(58,58,58,.2); }
+  .pair-name{ font-size:16px; }
+  .pair-right{ display:flex; align-items:center; gap:10px; }
+  .pair-ratio{ font-size:16px; font-weight:600; width:44px; text-align:right; }
+  .pair-tag{ font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; padding:3px 7px; }
+  .pair-tag.ok{ background:var(--basalt); color:var(--stone); }
+  .pair-tag.no{ border:1px solid rgba(58,58,58,.45); opacity:.78; }
+
+  .rule-final{ position:absolute; left:96px; top:920px; width:1408px; border-top:1px solid rgba(58,58,58,.3); padding-top:16px; font-size:16px; line-height:1.6; }
+  .rule-final b{ font-weight:600; }
+</style>
+</helmet>
+<div class="page">
+  <div class="mast">
+    <div class="mast-mark"><img src="icon-basalt.png" alt="O&rsquo;Neill Property"></div>
+    <div class="mast-index"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>03&nbsp;&mdash;&nbsp;Colour</div>
+    <div class="mast-page">05 / 13</div>
+  </div>
+  <h1 class="title display">Colour</h1>
+  <div class="sub">Four values. Sage Grey is the ground the brand is built on, not an accent on a white one.</div>
+
+  <div class="bar"><div class="seg1"></div><div class="seg2"></div><div class="seg3"></div><div class="seg4"></div></div>
+  <div class="caps">
+    <div class="capseg cap1">Sage Grey &middot; 50%</div>
+    <div class="capseg cap2">Basalt &middot; 30%</div>
+    <div class="capseg cap3">Stone &middot; 15%</div>
+    <div class="capseg cap4">Deep Sage &middot; 5%</div>
+  </div>
+
+  <div class="rows">
+    <div class="row"><div class="chip" style="background:#B7C1B3"></div><div class="rname">Sage Grey</div><div class="rhex">#B7C1B3</div><div class="rrole">Signature field: boards, covers, campaign panels, stationery</div><div class="rshare">50%</div></div>
+    <div class="row"><div class="chip" style="background:#3A3A3A"></div><div class="rname">Basalt</div><div class="rhex">#3A3A3A</div><div class="rrole">Anchor: all type, frames, fascias, footers</div><div class="rshare">30%</div></div>
+    <div class="row"><div class="chip" style="background:#E2DAD1"></div><div class="rname">Stone</div><div class="rhex">#E2DAD1</div><div class="rrole">Neutral: long-reading ground, mark reversed out of dark photography</div><div class="rshare">15%</div></div>
+    <div class="row"><div class="chip" style="background:#839C83"></div><div class="rname">Deep Sage</div><div class="rhex">#839C83</div><div class="rrole">Graphic only: rules, markers, icon strokes. Never carries text</div><div class="rshare">5%</div></div>
+  </div>
+  <div style="position:absolute; left:96px; top:816px; width:830px; font-size:12px; line-height:1.6; opacity:.78;">Hex values come from the master artwork, never a screenshot. Stone should usually be the paper stock, not an ink.</div>
+
+  <div class="pairs">
+    <h2 class="pairs-title">Approved text pairs</h2>
+    <div class="pairs-sub">WCAG 2.1 &middot; body copy needs 4.5:1, large text needs 3:1</div>
+    <div class="pair"><div class="pair-name">Sage Grey on Basalt</div><div class="pair-right"><div class="pair-ratio">6.1:1</div><div class="pair-tag ok">All text</div></div></div>
+    <div class="pair"><div class="pair-name">Basalt on Sage Grey</div><div class="pair-right"><div class="pair-ratio">6.1:1</div><div class="pair-tag ok">All text</div></div></div>
+    <div class="pair"><div class="pair-name">Basalt on Stone</div><div class="pair-right"><div class="pair-ratio">8.2:1</div><div class="pair-tag ok">All text</div></div></div>
+    <div class="pair"><div class="pair-name">Stone on Basalt</div><div class="pair-right"><div class="pair-ratio">8.2:1</div><div class="pair-tag ok">All text</div></div></div>
+    <div class="pair"><div class="pair-name">Deep Sage on Stone</div><div class="pair-right"><div class="pair-ratio">2.2:1</div><div class="pair-tag no">Do not set</div></div></div>
+    <div class="pair"><div class="pair-name">Stone on Sage Grey</div><div class="pair-right"><div class="pair-ratio">1.3:1</div><div class="pair-tag no">Do not set</div></div></div>
+  </div>
+
+  <div class="rule-final"><b>The one rule that matters most:</b> no sage, Grey or Deep Sage, ever carries body copy. If words have to be read, set them in Basalt, or set them on Basalt.</div>
+
+  <div class="foot"><span>O&rsquo;Neill Property &mdash; Brand Guidelines</span><span>Edition Two</span></div>
+</div>
+</x-dc>
+</body>
+</html>

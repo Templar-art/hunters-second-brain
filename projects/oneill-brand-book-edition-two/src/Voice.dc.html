@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{ --sage:#B7C1B3; --basalt:#3A3A3A; --stone:#E2DAD1; --deepsage:#839C83; }
+  /* Display stack. Sinhala MN is Apple-only; Antic Didone is the nominated
+     substitute for Windows / Android / web. ONP Display Fallback pins Georgia
+     to Sinhala MN's measured metrics so the line breaks never move. */
+  @font-face{ font-family:'ONP Display Fallback'; src:local('Georgia');
+    size-adjust:107.4%; ascent-override:89%; descent-override:28%; }
+  :root{
+    --display-stack:'Sinhala MN','Antic Didone','ONP Display Fallback',Georgia,serif;
+    --text-stack:Inter,'Helvetica Neue',Arial,sans-serif;
+    --t-display:132px; --t-title:44px; --t-subhead:28px;
+    --t-lede:19px; --t-body:16px; --t-caption:12px; --t-label:11px;
+  }
+
+  /* Vertical stops. Every page-level block lands on the 8px grid; the named
+     stops below are the shared entry rhythm so pages differ by intent, not drift. */
+  :root{
+    --mx:96px;            /* side margin */
+    --stop-mast:56px; --stop-title:152px; --stop-lede:224px; --stop-body:296px;
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  }
+  * { box-sizing:border-box; }
+  h1,h2,h3{ margin:0; font-size:inherit; font-weight:inherit; }
+  body{ margin:0; }
+  .page{ width:1600px; height:1131px; position:relative; overflow:hidden;
+    font-family:Inter,'Helvetica Neue',Arial,sans-serif; color:var(--basalt); background:var(--stone); }
+  .display{ font-family:var(--display-stack); font-weight:400; }
+  .mast{ position:absolute; left:96px; right:96px; top:56px; height:36px; display:flex; align-items:center; justify-content:space-between; }
+  .mast-mark{ width:34px; flex:none; }
+  .mast-mark img{ width:34px; display:block; }
+  .mast-index{ font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:flex; align-items:center; gap:10px; }
+  .mast-page{ font-size:11px; font-weight:600; letter-spacing:.1em; }
+  .foot{ position:absolute; left:96px; right:96px; bottom:56px; display:flex; justify-content:space-between; font-size:11px; letter-spacing:.04em; opacity:.78; border-top:1px solid rgba(58,58,58,.25); padding-top:16px; }
+  .title{ position:absolute; left:96px; top:152px; font-size:44px;  line-height:1.15;}
+  .lede{ position:absolute; left:96px; top:224px; width:900px; font-size:19px; font-weight:300; line-height:1.7; }
+
+  /* The page argues that one of these two lines wins. Matched columns said they
+     were equal; the weight now says which is the brand. No accent stripes. */
+  .quotes{ position:absolute; left:96px; top:336px; width:1408px;
+    display:grid; grid-template-columns:800px 424px; gap:96px; align-items:start; }
+  .qtag{ font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-bottom:16px; }
+  .qcol.on .qtext{ font-size:28px; font-weight:300; line-height:1.4; font-style:italic; }
+  .qcol.off{ padding-top:40px; }
+  .qcol.off .qtag{ opacity:.78; }
+  .qcol.off .qtext{ font-size:16px; font-weight:300; line-height:1.55; font-style:italic; opacity:.78;
+    text-decoration:line-through; text-decoration-thickness:1px; text-decoration-color:rgba(58,58,58,.55); }
+
+  .situations{ position:absolute; left:96px; top:568px; width:1408px; border-top:1px solid rgba(58,58,58,.3); padding-top:24px; }
+  .sit-label{ font-size:19px; font-weight:600; margin-bottom:16px;  line-height:1.25;}
+  .sit-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:40px; }
+  .sit-name{ font-size:16px; font-weight:600; margin-bottom:6px; }
+  .sit-desc{ font-size:16px; line-height:1.5; opacity:.85; }
+
+  .avoid{ position:absolute; left:96px; top:768px; width:1408px; border-top:1px solid rgba(58,58,58,.3); padding-top:24px; }
+  .avoid-label{ font-size:19px; font-weight:600; margin-bottom:14px;  line-height:1.25;}
+  .avoid-words{ font-size:19px; line-height:1.9; }
+  .avoid-words span{ text-decoration:line-through; text-decoration-color:var(--deepsage); text-decoration-thickness:1.5px; margin-right:26px; font-style:italic; font-weight:300; }
+  .avoid-note{ font-size:16px; line-height:1.55; margin-top:16px; max-width:1000px; }
+</style>
+</helmet>
+<div class="page">
+  <div class="mast">
+    <div class="mast-mark"><img src="icon-basalt.png" alt="O&rsquo;Neill Property"></div>
+    <div class="mast-index"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>05&nbsp;&mdash;&nbsp;Voice</div>
+    <div class="mast-page">07 / 13</div>
+  </div>
+  <h1 class="title display">Voice</h1>
+  <div class="lede">An agent speaking, not a brochure. Knowledgeable, warm, decisive, brief. Lead with what matters to the client, prefer a specific fact to an inflated adjective. Australian English throughout, no dash used as punctuation, no exclamation marks.</div>
+
+  <div class="quotes">
+    <div class="qcol on"><h3 class="qtag">On brand</h3><div class="qtext">&ldquo;North facing, 812&nbsp;m&sup2;, and the only home on the street with a private pontoon. We think it sells in three weeks.&rdquo;</div></div>
+    <div class="qcol off"><h3 class="qtag">Off brand</h3><div class="qtext">&ldquo;An absolutely breathtaking, once in a lifetime masterpiece that will take your breath away. A true must see!&rdquo;</div></div>
+  </div>
+
+  <div class="situations">
+    <h2 class="sit-label">By situation</h2>
+    <div class="sit-grid">
+      <div><div class="sit-name">Price reduction</div><div class="sit-desc">Direct and unapologetic.</div></div>
+      <div><div class="sit-name">Missed result</div><div class="sit-desc">Honest, brief, forward-looking.</div></div>
+      <div><div class="sit-name">Market commentary</div><div class="sit-desc">Plain, useful, unspun.</div></div>
+      <div><div class="sit-name">Complaint</div><div class="sit-desc">Human first, process second.</div></div>
+    </div>
+  </div>
+
+  <div class="avoid">
+    <h2 class="avoid-label">Words to avoid on principle</h2>
+    <div class="avoid-words"><span>breathtaking</span><span>stunning</span><span>must&#8209;see</span><span>dream home</span><span>rare gem</span><span>wow factor</span><span>once&#8209;in&#8209;a&#8209;lifetime</span></div>
+    <div class="avoid-note">If a line could describe any agency&rsquo;s listing without changing a fact, rewrite it.</div>
+  </div>
+
+  <div class="foot"><span>O&rsquo;Neill Property &mdash; Brand Guidelines</span><span>Edition Two</span></div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{ --sage:#B7C1B3; --basalt:#3A3A3A; --stone:#E2DAD1; --deepsage:#839C83; }
+  /* Display stack. Sinhala MN is Apple-only; Antic Didone is the nominated
+     substitute for Windows / Android / web. ONP Display Fallback pins Georgia
+     to Sinhala MN's measured metrics so the line breaks never move. */
+  @font-face{ font-family:'ONP Display Fallback'; src:local('Georgia');
+    size-adjust:107.4%; ascent-override:89%; descent-override:28%; }
+  :root{
+    --display-stack:'Sinhala MN','Antic Didone','ONP Display Fallback',Georgia,serif;
+    --text-stack:Inter,'Helvetica Neue',Arial,sans-serif;
+    --t-display:132px; --t-title:44px; --t-subhead:28px;
+    --t-lede:19px; --t-body:16px; --t-caption:12px; --t-label:11px;
+  }
+
+  /* Vertical stops. Every page-level block lands on the 8px grid; the named
+     stops below are the shared entry rhythm so pages differ by intent, not drift. */
+  :root{
+    --mx:96px;            /* side margin */
+    --stop-mast:56px; --stop-title:152px; --stop-lede:224px; --stop-body:296px;
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-6:48px; --sp-8:64px; --sp-12:96px;
+  }
+  * { box-sizing:border-box; }
+  h1,h2,h3{ margin:0; font-size:inherit; font-weight:inherit; }
+  body{ margin:0; }
+  .page{ width:1600px; height:1131px; position:relative; overflow:hidden;
+    font-family:Inter,'Helvetica Neue',Arial,sans-serif; color:var(--basalt); background:var(--stone); }
+  .display{ font-family:var(--display-stack); font-weight:400; }
+  .mast{ position:absolute; left:96px; right:96px; top:424px; height:36px; display:flex; align-items:center; justify-content:space-between; }
+  .mast-mark{ width:34px; flex:none; }
+  .mast-mark img{ width:34px; display:block; }
+  .mast-index{ font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:flex; align-items:center; gap:10px; }
+  .mast-page{ font-size:11px; font-weight:600; letter-spacing:.1em; }
+  .foot{ position:absolute; left:96px; right:96px; bottom:32px; display:flex; justify-content:space-between; font-size:11px; letter-spacing:.04em; opacity:.78; border-top:1px solid rgba(58,58,58,.25); padding-top:16px; }
+  /* The only page in the book that breaks the 96px margin. Its own rule is
+     "the property is the hero", so here the photography leads and the title
+     follows it - one deliberate accent, not a system. */
+  .strip{ position:absolute; left:0; top:0; width:1600px; height:384px;
+    display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:8px; }
+  .strip .ph{ overflow:hidden; }
+  .strip img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .title{ position:absolute; left:96px; top:488px; font-size:44px; line-height:1.15; }
+  .lede{ position:absolute; left:96px; top:560px; width:1100px; font-size:19px; font-weight:300; line-height:1.7; }
+
+  .twocol{ position:absolute; left:96px; top:656px; width:1408px; display:grid; grid-template-columns:1fr 1fr; gap:60px; border-top:1px solid rgba(58,58,58,.3); padding-top:24px; }
+  .h2{ font-size:19px; font-weight:600; margin-bottom:12px;  line-height:1.25;}
+  .blist{ font-size:16px; line-height:1.55; }
+  .blist .item{ display:flex; gap:10px; padding:6px 0; }
+  .blist svg{ flex:none; margin-top:6px; }
+  .dnot span{ opacity:.78; }
+
+  .typeonphoto{ position:absolute; left:96px; top:984px; width:1408px; border-top:1px solid rgba(58,58,58,.3); padding-top:16px; font-size:16px; line-height:1.55; }
+  .typeonphoto b{ font-weight:600; }
+</style>
+</helmet>
+<div class="page">
+  <div class="mast">
+    <div class="mast-mark"><img src="icon-basalt.png" alt="O&rsquo;Neill Property"></div>
+    <div class="mast-index"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>07&nbsp;&mdash;&nbsp;Photography</div>
+    <div class="mast-page">10 / 13</div>
+  </div>
+  <h1 class="title display">Photography</h1>
+  <div class="lede">Natural light, honest colour, architectural framing. The property is the hero, if a viewer notices the photography before the house, the shoot has failed.</div>
+
+  <div class="strip">
+    <div class="ph"><img src="southaven-31.jpg" alt="37 Southaven"></div>
+    <div class="ph"><img src="southaven-4.jpg" alt="37 Southaven"></div>
+    <div class="ph"><img src="southaven-7.jpg" alt="37 Southaven"></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h2 class="h2">Do</h2>
+      <div class="blist">
+        <div class="item"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg><div>Shoot early or late (long shadows and warm light suit the palette, midday sun blows out water).</div></div>
+        <div class="item"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg><div>Square the verticals.</div></div>
+        <div class="item"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg><div>Leave the room breathing (fewer props, nothing that won&rsquo;t be there on inspection day).</div></div>
+        <div class="item"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg><div>Keep colour honest (grass is not emerald, the Broadwater is not turquoise).</div></div>
+      </div>
+    </div>
+    <div class="dnot">
+      <h2 class="h2">Do not</h2>
+      <div class="blist">
+        <div class="item"><span>Composite a sunset or sky that wasn&rsquo;t there.</span></div>
+        <div class="item"><span>Run a filter, vignette or heavy graduated wash.</span></div>
+        <div class="item"><span>Set type across the middle of a photograph.</span></div>
+        <div class="item"><span>Use a stock image of a house that is not the house, ever.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="typeonphoto"><b>Type on photography:</b> where Stone type must sit on an image, measure the scrim against the actual pixels behind it, to 4.5:1. A flat sage wash cannot deliver that at any opacity. Where possible, prefer a solid Basalt, Sage Grey or Stone panel beside the picture over type fighting the picture.</div>
+
+  <div class="foot"><span>O&rsquo;Neill Property &mdash; Brand Guidelines</span><span>Edition Two</span></div>
+</div>
+</x-dc>
+</body>
+</html>
