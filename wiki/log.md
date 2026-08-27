@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title`
 
+## [2026-08-27] ingest | Per-camera job-folder labeling — non-negotiable standard
+Hunter set a hard standing rule from a live example (Shape | Westside HQ job): every job folder gets one subfolder per camera device (`{Camera Model} - {N} Files ({Unit} {Value})`, e.g. `A7R5 - 370 Files (GB 47)`) plus a `Selects` folder, always. Documented in [[archiving-and-backup]]. Also built `ssd-drive-upload` skill (`~/.claude/skills/ssd-drive-upload/`) for the SSD→gdrive rclone upload workflow, and re-ordered a live 11-zip/~975GB upload batch smallest-first on request.
+
 ## [2026-07-10] migrate | Genesis — vault restructured to LLM-wiki pattern
 Converted the vault to the Karpathy LLM-wiki structure (spec: `docs/superpowers/specs/2026-07-10-llm-wiki-restructure-design.md`). `memory/` retired and translated into `wiki/` (5 people, 5 clients, 6 projects/concepts pages); CLC pack PDFs + capability statement moved to `raw/clc/`; CLC pack markdown, audit, field research, and swipe file became `wiki/sources/` pages; CONTEXT.md → [[music-taxonomy]]; root notes → wiki/projects/; working artifacts (scroll demo, CVA breakdown, dashboard, TASKS) → top-level `projects/`; CLAUDE.md rewritten as the schema.
 
