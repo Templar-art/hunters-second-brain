@@ -896,3 +896,36 @@ broken images. The six contrast ratios page 5 prints were independently re-check
 Knowledge captured in [[oneill-brand-book-edition-two]]. Deliverable and artboard source filed to
 `projects/oneill-brand-book-edition-two/` — it had been sitting in session-temp only, which is how
 four passes of work goes missing.
+
+## [2026-08-27] migrate | Correction — the O'Neill secondary lockup does exist; book rebuilt on master SVGs
+
+Filed the Edition Two write-up saying no wordmark-only artwork existed and that the client had to
+supply it. **Wrong.** It was in Drive the whole time at
+`Clients/O'Neill Property/Branding/Logos/Secondary Logo/SVG/`, four colourways, next to complete
+primary and icon sets. The wrong conclusion came from treating the handful of URLs pasted at
+briefing as the whole asset set instead of checking the client folder. Found only because Hunter
+asked for the PDF to go to Drive, which put me in the folder.
+
+Consequences, all now fixed:
+
+- Page 4's secondary slot held an "Artwork to be supplied" placeholder. Real lockup in.
+- The whole book ran on downscaled PNGs whose bounding boxes differ from the masters (primary
+  2.31 vs **2.60**, icon 1.19 vs **1.47**), so every logo band was sized against the wrong
+  proportion. All 13 pages now use the master SVGs — which is what page 4 itself instructs:
+  "Supplied as SVG. Always use the supplied artwork, unmodified."
+- The fourth colourway swatch was a plain sage dot standing in for "Sage Grey on Basalt". It shows
+  the real primary in Sage Grey now, so all four colourways display the actual mark.
+
+Also removed the decorative cropped wordmark bleeding off the cover. Hunter called it messed up and
+he was right — it read as a blob with a detached apostrophe. The brand's own rules 7 and 8
+(protect whitespace; premium comes from restraint, not decoration) argue against it existing at
+all, so it is gone rather than reframed a second time.
+
+Re-verified after the swap with a deeper check than before — every sibling pair in every container,
+plus children spilling fixed-height parents, not just page-level blocks. That deeper check is what
+caught two element-level overlaps on page 4 earlier the same day, which the page-level check could
+not see. 0 overlaps, 0 spills, 0 broken images across all 13 pages.
+
+Deliverable PDF (13 pages, 423x299 mm, real Sinhala MN + Inter subsets embedded) uploaded to
+`Clients/O'Neill Property/Branding/` on the client Drive. Only open items are now the four
+decisions on page 13 — none of them 10x's to make.

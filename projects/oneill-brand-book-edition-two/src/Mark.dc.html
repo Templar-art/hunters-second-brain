@@ -50,11 +50,7 @@
   .lock-imgwrap img{ display:block; }
   .lock.primary img{ width:166px; }
   .lock.icon img{ width:52px; }
-  /* Secondary artwork was never supplied. Showing a crop of the primary would
-     break this page's own rule ("never crop the mark"), so the slot is held. */
-  .await{ width:196px; height:44px; border:1px dashed rgba(58,58,58,.55);
-    display:flex; align-items:center; justify-content:center; }
-  .await span{ font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
+  .lock.secondary img{ width:196px; }
   .lockname{ font-size:16px; font-weight:600; letter-spacing:.04em; margin-top:16px; }
   .lockdesc{ font-size:16px; line-height:1.5; margin-top:6px; max-width:420px; }
   .lockmin{ font-size:11px; font-weight:600; letter-spacing:.06em; opacity:.78; margin-top:8px; text-transform:uppercase; }
@@ -81,7 +77,7 @@
   .cw img{ }
   .cw.light img{ width:100px; }
   .cw.dark img.stone{ width:100px; }
-  .cw-dot{ width:16px; height:16px; border-radius:50%; background:var(--sage); }
+  .cw.dark img.sage{ width:100px; }
   .cw-caption{ font-size:11px; font-weight:600; letter-spacing:.02em; line-height:1.4; }
   .cw.dark .cw-caption{ color:var(--stone); }
   .cw-photonote{ font-size:16px; line-height:1.5; margin-top:16px; }
@@ -95,7 +91,7 @@
 </helmet>
 <div class="page">
   <div class="mast">
-    <div class="mast-mark"><img src="icon-basalt.png" alt="O&rsquo;Neill Property"></div>
+    <div class="mast-mark"><img src="logo-icon-basalt.svg" alt="O&rsquo;Neill Property"></div>
     <div class="mast-index"><svg width="7" height="7" viewBox="0 0 10 10"><path d="M2 1 L7 5 L2 9" fill="none" stroke="#839C83" stroke-width="1.6"/></svg>02&nbsp;&mdash;&nbsp;The Mark</div>
     <div class="mast-page">04 / 13</div>
   </div>
@@ -104,19 +100,19 @@
 
   <div class="lockups">
     <div class="lock primary">
-      <div class="lock-imgwrap"><img src="basalt-logo.png" alt="Primary lockup"></div>
+      <div class="lock-imgwrap"><img src="logo-primary-basalt.svg" alt="Primary lockup"></div>
       <h3 class="lockname">Primary</h3>
       <div class="lockdesc">Wordmark over PROPERTY. Default for boards, covers, stationery, the site header.</div>
       <div class="lockmin">Minimum 40&nbsp;mm / 150&nbsp;px wide</div>
     </div>
     <div class="lock secondary">
-      <div class="lock-imgwrap"><div class="await"><span>Artwork to be supplied</span></div></div>
+      <div class="lock-imgwrap"><img src="logo-secondary-basalt.svg" alt="Secondary lockup"></div>
       <h3 class="lockname">Secondary</h3>
       <div class="lockdesc">Wordmark alone. For tight horizontal bands: email footers, ad bars, vehicle livery, sponsor rows.</div>
       <div class="lockmin">Minimum 28&nbsp;mm / 110&nbsp;px</div>
     </div>
     <div class="lock icon">
-      <div class="lock-imgwrap"><img src="icon-basalt.png" alt="Icon lockup"></div>
+      <div class="lock-imgwrap"><img src="logo-icon-basalt.svg" alt="Icon lockup"></div>
       <h3 class="lockname">Icon</h3>
       <div class="lockdesc">The O and N monogram. Avatars, favicons, stamps, watermarks, or anywhere the full name already appears nearby.</div>
       <div class="lockmin">Minimum 8&nbsp;mm / 32&nbsp;px</div>
@@ -130,17 +126,17 @@
         <div class="cs-box"></div>
         <div class="cs-brk cs-top">cap height of the O</div>
         <div class="cs-brk cs-left">cap height of the O</div>
-        <div class="cs-logo"><img src="basalt-logo.png" alt=""></div>
+        <div class="cs-logo"><img src="logo-primary-basalt.svg" alt=""></div>
       </div>
       <div class="cs-note">The cap height of the O, on every side, on all three lockups. Nothing enters it: type, rules, a photo edge, another logo, a portal badge. On a vehicle or fascia, measure from the physical panel edge, not the artwork box.</div>
     </div>
     <div class="colourways">
       <h2 class="cw-label">Four colourways, chosen for contrast, never a fifth</h2>
       <div class="cw-grid">
-        <div class="cw light"><img src="basalt-logo.png" alt=""><div class="cw-caption">Basalt on light &mdash; the default, any Stone, paper or pale ground</div></div>
-        <div class="cw dark"><img class="stone" src="stone-logo.png" alt=""><div class="cw-caption">Stone on Basalt &mdash; dark grounds, night photography, footers</div></div>
-        <div class="cw light"><img src="basalt-logo.png" alt=""><div class="cw-caption">Basalt on Stone &mdash; print, stationery, card-weight pieces</div></div>
-        <div class="cw dark"><div class="cw-dot"></div><div class="cw-caption">Sage Grey on Basalt &mdash; the social avatar, where full Stone reads too stark</div></div>
+        <div class="cw light"><img src="logo-primary-basalt.svg" alt=""><div class="cw-caption">Basalt on light &mdash; the default, any Stone, paper or pale ground</div></div>
+        <div class="cw dark"><img class="stone" src="logo-primary-stone.svg" alt=""><div class="cw-caption">Stone on Basalt &mdash; dark grounds, night photography, footers</div></div>
+        <div class="cw light"><img src="logo-primary-basalt.svg" alt=""><div class="cw-caption">Basalt on Stone &mdash; print, stationery, card-weight pieces</div></div>
+        <div class="cw dark"><img class="sage" src="logo-primary-sage.svg" alt=""><div class="cw-caption">Sage Grey on Basalt &mdash; the social avatar, where full Stone reads too stark</div></div>
       </div>
       <div class="cw-photonote">Over photography: use Stone, place it on the quietest part of the frame, or put it on a solid band beside the picture. Never a drop shadow.</div>
     </div>

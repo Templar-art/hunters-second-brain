@@ -64,17 +64,35 @@ Verified: the pinned fallback renders 611 px against Sinhala MN's 611 px (raw Ge
 
 **Inter is served as a webfont in every artboard.** It is not installed on Hunter's Mac, so the first PDF silently set the whole book in Helvetica Neue. The shipped PDF embeds real Sinhala MN plus Inter 300/400/500/600 subsets.
 
-## The mark — an asset gap that is still open
+## The mark — all three lockups, from the master SVGs
 
-The content specifies three lockups. **Only two exist.** Measured aspect ratios of the supplied files:
+**⚠️ Supersedes an earlier claim on this page.** The first pass recorded that no secondary
+(wordmark-only) artwork existed, because it was not among the URLs supplied at briefing. It does
+exist, and always did — in Drive at
+`Clients/O'Neill Property/Branding/Logos/Secondary Logo/SVG/`, in all four colourways, alongside
+primary and icon sets. Nothing needed to be commissioned.
 
-- `basalt-logo.png` / `white-logo.png` — 2.31 — primary (wordmark over PROPERTY)
-- `stone-logo.png` — 2.56 — primary, Stone
-- `icon-basalt.png` / `white-logo-alt.png` — 1.19 — the O′N icon. **`white-logo-alt.png` is the icon in white, not a wordmark**, despite being supplied labelled as a wordmark export.
+The book now uses the master SVGs throughout, which is what its own page 4 instructs
+("Supplied as SVG. Always use the supplied artwork, unmodified"). Measured viewBox ratios confirm
+three genuinely distinct lockups, with exact brand fills baked in:
 
-There is no wordmark-only (secondary) artwork. The first build faked it by CSS-cropping the primary, which mutilated the letterforms and broke the book's own rule ("never crop, box or draw a rule around it") on the secondary demo *and* on the running masthead of all 12 interior pages. Both are fixed: the masthead now uses the intact icon at 34 px (clears the 32 px minimum, with clear space well beyond the O's cap height), and page 4's secondary slot holds a dashed "Artwork to be supplied" placeholder rather than a crop.
+| Lockup | viewBox | Ratio | Fills available |
+|---|---|---|---|
+| Primary | 1884.25 × 724.11 | 2.60 | Basalt, Stone, Sage Grey, White |
+| Secondary | 1884.25 × 608.91 | 3.09 | Basalt, Stone, Sage Grey, White |
+| Icon | 1054 × 719.27 | 1.47 | Basalt, Stone, Sage Grey, White |
 
-**Action on the client: supply the wordmark-only SVG,** or the content's "three lockups, no fourth" ships showing two.
+Two consequences worth recording:
+
+- The PNGs used in the first pass had **different bounding boxes** to the masters (primary 2.31 vs
+  2.60, icon 1.19 vs 1.47), so every logo band in the book was sized against the wrong proportion.
+  Re-verified after the swap.
+- Page 4's fourth colourway swatch showed a **plain sage dot** as a stand-in for "Sage Grey on
+  Basalt". It now shows the real primary in Sage Grey, so all four colourways display the actual
+  mark.
+
+The running masthead uses the icon at 34 px wide — above the 32 px minimum, with clear space well
+beyond the O's cap height, and no rule entering it.
 
 ## Design decisions worth recording
 
@@ -112,7 +130,7 @@ Still outstanding from Edition One and *not* covered by the Edition Two content:
 ## Known limits of the deliverable
 
 - **PNG/PDF export from the canvas cannot embed Google Fonts** — exported pages fall back to the metric-pinned Georgia. This is why the metric override exists. The committed PDF was rendered through headless Chrome on a Mac with Sinhala MN installed, so it carries the real face; regenerating it on a machine without Sinhala MN will produce Antic Didone instead.
-- **Page 4 (The mark) is airless** — 9 px of slack against the footer, the densest page in the book. It carries three lockups, clear space, four colourways and six misuse rules. The structural fix is splitting it across a spread; the brief allowed 13–16 pages.
+- **Page 4 (The mark) is airless** — the densest page in the book, carrying three lockups, clear space, four colourways and six misuse rules. The structural fix is splitting it across a spread; the brief allowed 13–16 pages.
 - Body leading deviates from the published table (see *The type system*).
 
 ## Related

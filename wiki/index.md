@@ -77,7 +77,7 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 - [[zidane-meta-ads-tips]] — mate's Meta operator tips 29 Jul: CBO, long VSL, creative enhancements OFF, dataset early, dynamic UTMs
 - [[real-estate-design-refs]] — luxury/boutique real-estate web design pattern research (20+ sites audited); feeds [[oneill-group]]
 - [[oneill-brand-book-edition-one]] — O'Neill Property Brand Book, Edition One: the delivered identity manual (palette + hexes, type, logo minimums, campaign words, print, photography, and the six open items)
-- [[oneill-brand-book-edition-two]] — O'Neill Property Brand Guidelines, Edition Two: 26 spreads condensed to 13 print pages (A3 landscape PDF + editable canvas). Locked client copy, 10x design only. Nominates **Antic Didone** as the non-Apple display substitute; flags that the **secondary wordmark artwork does not exist**
+- [[oneill-brand-book-edition-two]] — O'Neill Property Brand Guidelines, Edition Two: 26 spreads condensed to 13 print pages (A3 landscape PDF + editable canvas). Locked client copy, 10x design only. Nominates **Antic Didone** as the non-Apple display substitute. Built from the master logo SVGs in Drive (`Branding/Logos/`) — all three lockups
 
 ## Sources (from `raw/clc/` — CLC Fable 5 pack + research)
 - [[clc-profile-audit]] — the audit all CLC decisions trace to (6 Jul 2026)
