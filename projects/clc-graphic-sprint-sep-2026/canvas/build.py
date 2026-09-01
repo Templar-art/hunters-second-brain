@@ -410,7 +410,7 @@ def _ink_for(variant, ground):
 def _logo_for(variant):
     # The real two-tone colour mark on light grounds, the official white master on deep.
     # Never a flat single-colour silhouette — that has been rejected before.
-    return "cl-colour.png" if variant in ("light", "grey", "paper") else "cl-white.png"
+    return "cl-black.png" if variant in ("light", "grey", "paper") else "cl-white.png"
 
 
 def _tint(hex_ground, l=0.955, sat=0.10):
