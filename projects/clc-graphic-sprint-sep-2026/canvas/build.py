@@ -299,7 +299,7 @@ def close_graphic(s):
 
 def slot(w, h, label, note="", on_dark=False):
     """A marked placeholder frame. Never a stand-in photo — it says what shot is missing."""
-    hatch_a, hatch_b = ("#33363a", "#2b2e31") if on_dark else ("#e6e6e6", "#dedede")
+    hatch_a, hatch_b = ("#33363a", "#2b2e31") if on_dark else ("#d6d6d6", "#cfcfcf")
     line = "rgba(255,255,255,0.45)" if on_dark else "rgba(17,18,20,0.30)"
     lab = "rgba(255,255,255,0.75)" if on_dark else "rgba(17,18,20,0.62)"
     note_c = "rgba(255,255,255,0.45)" if on_dark else "rgba(17,18,20,0.42)"
@@ -346,7 +346,7 @@ def detail_spread(s):
 # photograph itself. Mechanism only — no reference asset, mark or wording is used.
 
 BRAND_HUE = 211 / 360      # between the logo's #1884c7 and #2a4f8d
-PAPER = "#f0f0f0"          # the flat light grey ground
+PAPER = "#c8c8c8"          # the flat mid-grey ground
 _GROUND_CACHE = {}
 
 def ground_from(photo, variant='blue'):
@@ -798,20 +798,45 @@ def _variant_slides(tag):
                   "Gold Coast · QBCC licensed · Master Builders Queensland"]),
     ]
 
-# ---- Photography -----------------------------------------------------------
-# Four frames confirmed unpublished by Hunter (1 Sep 2026). Everything else in
-# the Mondaro set ran on 4 Aug and 23 Jul; the website and capability-statement
-# sets are published too. So: four images, two black-and-white, two colour.
+# ---- Photography and matched captions --------------------------------------
+# The caption belongs to the PHOTOGRAPH, not to the slide. Each plate therefore
+# describes the image directly above it, which is how the reference works and the
+# only way text and picture can agree when a small image set carries a whole month.
 #
-# A carousel is four plates, so each one uses all four — no repeat inside a post.
-# The starting frame rotates per post, so covers differ down the grid.
+# Consequence: the service messaging now lives entirely in the post caption
+# (the `caption` field on each post), not on the plates.
 
-# Interleaved colour / black-and-white, so no two neighbouring plates share a
-# treatment. The list alternates, so every rotation of it alternates too.
-ROTATION = ["mondaro-helmet.jpg",  # col  welding helmet on the gloves
-            "mondaro-joists.jpg",  # B&W  engineered joists, stacked
-            "mondaro-ply.jpg",     # col  ply wall in raked light
-            "mondaro-studs.jpg"]   # B&W  studs and diagonal brace
+ROTATION = ["mondaro-ply.jpg",       # bracing ply in raked light
+            "mondaro-frame.jpg",     # frame interior, looking out through the studs
+            "mondaro-chippy.jpg",    # one of the crew fixing off the bracing
+            "mondaro-harness.jpg"]   # frame interior, harness and ladder
+
+CAPTIONS = {
+    "mondaro-ply.jpg": [
+        "Light across the bracing before a single finish goes on.",
+        "Bracing ply, fixed and set out to the drawing.",
+        "The wall nobody sees again once it is lined.",
+        "Set-out marks and fixings, checked before lining.",
+    ],
+    "mondaro-frame.jpg": [
+        "Framed openings set where the light and the outlook are.",
+        "Structure first. Every opening decided before it is built.",
+        "The frame decides where the house looks.",
+        "Rooms exist before the walls do.",
+    ],
+    "mondaro-chippy.jpg": [
+        "Fixing off the bracing, sheet by sheet.",
+        "Trade at work, not staged for the camera.",
+        "The work that happens before anything looks finished.",
+        "Every sheet fixed to the set-out, by hand.",
+    ],
+    "mondaro-harness.jpg": [
+        "The house in outline, before anything is lined.",
+        "Openings framed and braced, roof structure already over.",
+        "Harness on the frame, ladder where the work is.",
+        "Every doorway a decision made months earlier.",
+    ],
+}
 
 # Positions with no suitable frame stay briefed slots rather than taking a stand-in.
 SLOT_ONLY = {"P11": "Portrait of Rob"}
@@ -862,13 +887,12 @@ def to_plate(post):
                          note=sl.get("primary", {}).get("note", ""))
             else:
                 p.update(photo=(spare.pop(0) if spare else hero))
+        pick = rot[idx % 4]
         if post["id"] in SLOT_ONLY:
-            p["photo"] = None
-            p["label"] = SLOT_ONLY[post["id"]]
-            p["note"] = SLOT_NOTE
+            p["photo"], p["label"], p["note"] = None, SLOT_ONLY[post["id"]], SLOT_NOTE
         else:
-            p["photo"] = rot[idx % 4]
-            p["focus"] = "center"
+            p["photo"], p["focus"] = pick, "center"
+            p["caption"] = CAPTIONS[pick][(order + idx) % 4]
         out.append(p)
     return out
 
