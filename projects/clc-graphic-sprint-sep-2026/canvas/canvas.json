@@ -37,15 +37,6 @@
       "title": "P00 \u00b7 Slide 04"
     },
     {
-      "file": "P00S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-1",
-      "title": "P00 \u00b7 Slide 05"
-    },
-    {
       "file": "P01Cover.dc.html",
       "x": 0,
       "y": 0,
@@ -80,15 +71,6 @@
       "h": 1440,
       "page": "page-2",
       "title": "P01 \u00b7 Slide 04"
-    },
-    {
-      "file": "P01S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-2",
-      "title": "P01 \u00b7 Slide 05"
     },
     {
       "file": "P02Warranty.dc.html",
@@ -136,15 +118,6 @@
       "title": "P03 \u00b7 Slide 04"
     },
     {
-      "file": "P03S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-4",
-      "title": "P03 \u00b7 Slide 05"
-    },
-    {
       "file": "P04Cover.dc.html",
       "x": 0,
       "y": 0,
@@ -179,15 +152,6 @@
       "h": 1440,
       "page": "page-5",
       "title": "P04 \u00b7 Slide 04"
-    },
-    {
-      "file": "P04S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-5",
-      "title": "P04 \u00b7 Slide 05"
     },
     {
       "file": "P05Review.dc.html",
@@ -235,15 +199,6 @@
       "title": "P06 \u00b7 Slide 04"
     },
     {
-      "file": "P06S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-7",
-      "title": "P06 \u00b7 Slide 05"
-    },
-    {
       "file": "P07Cover.dc.html",
       "x": 0,
       "y": 0,
@@ -278,15 +233,6 @@
       "h": 1440,
       "page": "page-8",
       "title": "P07 \u00b7 Slide 04"
-    },
-    {
-      "file": "P07S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-8",
-      "title": "P07 \u00b7 Slide 05"
     },
     {
       "file": "P08ServiceArea.dc.html",
@@ -334,15 +280,6 @@
       "title": "P09 \u00b7 Slide 04"
     },
     {
-      "file": "P09S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-10",
-      "title": "P09 \u00b7 Slide 05"
-    },
-    {
       "file": "P10Cover.dc.html",
       "x": 0,
       "y": 0,
@@ -377,15 +314,6 @@
       "h": 1440,
       "page": "page-11",
       "title": "P10 \u00b7 Slide 04"
-    },
-    {
-      "file": "P10S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-11",
-      "title": "P10 \u00b7 Slide 05"
     },
     {
       "file": "P11MeetRob.dc.html",
@@ -433,15 +361,6 @@
       "title": "P12 \u00b7 Slide 04"
     },
     {
-      "file": "P12S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-13",
-      "title": "P12 \u00b7 Slide 05"
-    },
-    {
       "file": "P13Cover.dc.html",
       "x": 0,
       "y": 0,
@@ -476,15 +395,6 @@
       "h": 1440,
       "page": "page-14",
       "title": "P13 \u00b7 Slide 04"
-    },
-    {
-      "file": "P13S05.dc.html",
-      "x": 4960,
-      "y": 0,
-      "w": 1080,
-      "h": 1440,
-      "page": "page-14",
-      "title": "P13 \u00b7 Slide 05"
     }
   ],
   "annotations": [

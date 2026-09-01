@@ -844,10 +844,7 @@ def to_plate(post):
     for idx, sl in enumerate(post["slides"]):
         k = sl["kind"]
         if k in ("close_graphic", "cta"):
-            meta = " · ".join(sl.get("lines", [])) if sl.get("lines") else sl.get("meta", "")
-            out.append(dict(kind="plate_text", name=sl.get("name"), caption=sl["headline"],
-                            meta=meta, ground=ground, variant=v))
-            continue
+            continue        # no CTA slide — the ask lives in the caption
         if k in ("photo_cover", "deep_cover", "light_cover"):
             cap = sl["headline"]
         elif k == "quote":
