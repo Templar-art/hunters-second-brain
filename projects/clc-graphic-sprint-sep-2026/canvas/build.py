@@ -11,6 +11,7 @@ W, H = 1080, 1350
 MX = 112                      # side margin
 CW = W - MX * 2               # 856 content width
 PANEL_Y, PANEL_H = 52, 760    # photo window
+TALL_H = 880                  # image-dominant window for service slides
 FOOT_B = 72                   # footer baseline
 LOGO_W, LOGO_H = 200, 71
 
@@ -98,14 +99,18 @@ def photo_cover(s):
     """HERO — full bleed, edge to edge. Deliberately unlike the framed base slides.
     Build stays fully visible above ~58%; type lives in the gradient, per Rob's approved card."""
     size = s.get('hero_size') or hero_size(s['headline'])
+    kick = (f'<div style="font-size: 25px; font-weight: 600; letter-spacing: 0.24em; '
+            f'text-transform: uppercase; color: {SKY};">{s["kicker"]}</div>') if s.get("kicker") else ""
+    tint = (f'<div style="position: absolute; inset: 0; background: rgba(16,47,65,{s["tint"]});"></div>') if s.get("tint") else ""
     sub = (f'<div style="font-size: 34px; font-weight: 400; color: rgba(255,255,255,0.72); '
            f'max-width: 720px;">{s["sub"]}</div>') if s.get("sub") else ""
     body = f"""  <img src="{s['photo']}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {s.get('focus','center')}; display: block;">
-  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,31,44,0.44) 0%, rgba(10,31,44,0) 24%);"></div>
-  <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,26,38,0.95) 0%, rgba(8,26,38,0.86) 26%, rgba(9,29,42,0.42) 46%, rgba(10,31,44,0) 62%);"></div>
-  <div style="position: absolute; left: {MX}px; right: {MX}px; bottom: {FOOT_B}px; display: flex; flex-direction: column; gap: 26px;">
+  {tint}
+  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,31,44,0.40) 0%, rgba(10,31,44,0) 22%);"></div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,26,38,0.93) 0%, rgba(8,26,38,0.80) 22%, rgba(9,29,42,0.34) 42%, rgba(10,31,44,0) 58%);"></div>
+  <div style="position: absolute; left: {MX}px; right: {MX}px; bottom: {FOOT_B}px; display: flex; flex-direction: column; gap: 24px;">
     <div style="width: 96px; height: 3px; background: {BLUE};"></div>
-    <div style="font-size: 25px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: {SKY};">{s['kicker']}</div>
+    {kick}
     <h1 style="margin: 0; font-size: {size}px; line-height: 1.04; font-weight: 300; color: #ffffff; letter-spacing: -0.012em; max-width: {CW}px; text-wrap: balance;">{s['headline']}</h1>
     {sub}
     <div style="margin-top: 26px; display: flex; align-items: center; justify-content: space-between;">
@@ -232,8 +237,8 @@ def cta(s):
 
 def quote(s):
     deep = False
-    body = f"""  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 230px; display: flex; flex-direction: column; gap: 52px;">
-    <blockquote style="margin: 0; font-size: 66px; line-height: 1.2; font-weight: 300; color: {INK}; letter-spacing: -0.005em; text-wrap: pretty;">{s['headline']}</blockquote>
+    body = f"""  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 50%; transform: translateY(-54%); display: flex; flex-direction: column; gap: 56px;">
+    <blockquote style="margin: 0; font-size: 74px; line-height: 1.2; font-weight: 300; color: {INK}; letter-spacing: -0.005em; text-wrap: pretty;">{s['headline']}</blockquote>
     <div style="display: flex; flex-direction: column; gap: 20px;">
       {rule(deep, w=200)}
       <div style="font-size: 30px; font-weight: 500; color: {STEEL};">{s['attrib']}</div>
@@ -250,15 +255,14 @@ def stack(s):
         f'<div style="font-size: 64px; line-height: 1.3; font-weight: {400 if it.get("soft") else 500}; '
         f'color: {"rgba(22,36,46,0.5)" if it.get("soft") else INK}; letter-spacing: -0.01em;">{it["t"]}</div>'
         for it in s['items'])
-    body = f"""  {s.get('svg','')}
-  {kicker(s['kicker'], deep, top=140)}
-  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 210px;">
-    {head(s['headline'], deep, size=84, weight=300)}
+    body = f"""  {kicker(s['kicker'], deep, top=210)}
+  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 240px;">
+    {head(s['headline'], deep, size=88, weight=300)}
   </div>
-  <div style="position: absolute; left: {MX}px; top: 400px; display: flex; flex-direction: column;">{items}</div>
-  <div style="position: absolute; left: {MX}px; bottom: 250px; display: flex; flex-direction: column; gap: 22px;">
+  <div style="position: absolute; left: {MX}px; top: 480px; display: flex; flex-direction: column;">{items}</div>
+  <div style="position: absolute; left: {MX}px; bottom: 210px; display: flex; flex-direction: column; gap: 20px;">
     {rule(deep, w=200)}
-    {para(s['sub'], deep, size=34, maxw=640)}
+    {para(s['sub'], deep, size=36, maxw=680)}
   </div>
 {footer(None, deep)}"""
     return shell(body, BG_LIGHT, NAVY)
@@ -268,12 +272,12 @@ def stack(s):
 def service(s):
     """Photo on every slide; the service name IS the headline — no eyebrow, no numeral."""
     deep = False
-    body = f"""  <div style="position: absolute; left: {MX}px; top: {PANEL_Y}px; width: {CW}px; height: {PANEL_H}px; overflow: hidden; background: #dfe5ea;">
+    body = f"""  <div style="position: absolute; left: {MX}px; top: {PANEL_Y}px; width: {CW}px; height: {TALL_H}px; overflow: hidden; background: #dfe5ea;">
     <img src="{s['photo']}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: {s.get('focus','center')}; display: block;">
   </div>
-  <div style="position: absolute; left: {MX}px; right: {MX}px; top: {PANEL_Y + PANEL_H + 54}px; display: flex; flex-direction: column; gap: 24px;">
-    {head(s['headline'], deep, size=s.get('size', 88), weight=300)}
-    {para(s['body'][0], deep, size=38, maxw=760)}
+  <div style="position: absolute; left: {MX}px; right: {MX}px; top: {PANEL_Y + TALL_H + 42}px; display: flex; flex-direction: column; gap: 16px;">
+    {head(s['headline'], deep, size=s.get('size', 72), weight=300)}
+    {para(s['body'][0], deep, size=34, maxw=800)}
   </div>
 {footer(s.get('num'), deep)}"""
     return shell(body, BG_LIGHT, NAVY)
@@ -283,10 +287,10 @@ def close_graphic(s):
     """The one slide with no photograph — it has to earn the swipe on type alone."""
     deep = True
     body = f"""  <div style="position: absolute; inset: 0; background: radial-gradient(115% 80% at 84% 88%, rgba(24,132,199,0.32) 0%, rgba(24,132,199,0) 62%);"></div>
-  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 50%; transform: translateY(-56%); display: flex; flex-direction: column; gap: 46px;">
-    {head(s['headline'], deep, size=s.get('size', 82), weight=300, maxw=780)}
+  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 44px;">
+    {head(s['headline'], deep, size=s.get('size', 92), weight=300, maxw=800)}
     <div style="display: flex; flex-direction: column; gap: 12px;">
-      {''.join(f'<div style="font-size: 34px; font-weight: 400; color: rgba(255,255,255,0.72);">{l}</div>' for l in s['lines'])}
+      {''.join(f'<div style="font-size: 36px; font-weight: 400; line-height: 1.4; color: rgba(255,255,255,0.76);">{l}</div>' for l in s['lines'])}
     </div>
   </div>
 {footer(s.get('num'), deep)}"""
@@ -350,7 +354,7 @@ P(id="P00", page="Lead · Who we service", date="Carousel", pillar="Services & p
   tags="#CoastLifeConstructions #GoldCoastBuilder #CustomHomes #HomeRenovation #HomeExtension #GoldCoastHomes #CustomHomeBuilder #DesignAndBuild #QLDBuilder #Burleigh #Bonogin #VarsityLakes #ResidentialConstruction",
   approve="Confirm which service each of the three photos actually belongs to — new build, extension or renovation. Their site only confirms Gundara Street as a renovation.",
   slides=[
-    dict(kind="photo_cover", name="Main", kicker="What we take on", photo="hero-crew.jpg", focus="center 38%",
+    dict(kind="photo_cover", name="Main", photo="hero-crew.jpg", focus="center 38%",
          headline="New builds, extensions, renovations.",
          sub="Three kinds of job. One builder, start to finish.", num=n(1, 5)),
     dict(kind="service", photo="newbuild-frame.jpg", focus="center 46%", headline="New builds", num=n(2, 5),
@@ -390,9 +394,9 @@ P(id="P02", page="Post 2 · Warranty", date="Thu 10 Sep · Static", pillar="Trus
   tags="#CoastLifeConstructions #GoldCoastBuilder #QBCC #MasterBuildersQLD #CustomHomes #HomeRenovation #HomeWarranty #GoldCoastHomes #QLDBuilder #ResidentialConstruction",
   approve="Warranty wording is verbatim from their process page — confirm it is still current for 2026 contracts. Highest-risk claim in the sprint.",
   slides=[
-    dict(kind="photo_static", name="P02Warranty", kicker="Every job, same cover", photo="living.jpg", focus="center 50%",
+    dict(kind="photo_cover", name="P02Warranty", photo="living.jpg", focus="center 46%",
          headline="One year of maintenance cover, on top of the seven-year QBCC structural warranty.",
-         size=44, sub="New builds · Extensions · Renovations"),
+         hero_size=58, sub="New builds · Extensions · Renovations"),
 ])
 
 P(id="P03", page="Post 3 · Extensions", date="Sun 13 Sep · Carousel", pillar="Services & positioning",
@@ -421,7 +425,7 @@ P(id="P04", page="Post 4 · Renovations", date="Tue 15 Sep · Carousel", pillar=
   tags="#CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #RenovationGoldCoast #KitchenRenovation #BathroomRenovation #GoldCoastHomes #CustomHomeBuilder #QLDBuilder #Bonogin #ResidentialConstruction",
   approve="Points condense their own 'what adds the most value when renovating' article. No ROI, percentage or dollar claim of any kind.",
   slides=[
-    dict(kind="photo_cover", name="P04Cover", kicker="Renovations", photo="bathroom.jpg", focus="center 45%",
+    dict(kind="photo_cover", name="P04Cover", kicker="Renovations", photo="reno-portrait.jpg", focus="center 45%",
          headline="What we look at first, before anyone mentions tiles",
          sub="Three questions, in this order.", num=n(1, 5)),
     dict(kind="point", kicker="First", headline="What is the house getting wrong?", size=70, num=n(2, 5),
@@ -453,7 +457,7 @@ P(id="P06", page="Post 6 · Which one is yours", date="Sun 20 Sep · Carousel", 
   tags="#CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #HomeExtension #KnockdownRebuild #CustomHomeBuilder #GoldCoastHomes #DesignAndBuild #QLDBuilder #Burleigh #ResidentialConstruction",
   approve="Condensed from their own 'where to start' article. Never imply an approval timeframe or a council outcome.",
   slides=[
-    dict(kind="photo_cover", name="P06Cover", kicker="Which one is yours", photo="drawings.jpg", focus="center 40%",
+    dict(kind="photo_cover", name="P06Cover", photo="drawings.jpg", focus="center 42%", tint=0.55,
          headline="Renovate, extend, or start again?",
          sub="Start with the problem, not the solution.", num=n(1, 5)),
     dict(kind="step", numeral="01", headline="Renovate", num=n(2, 5),
@@ -473,7 +477,7 @@ P(id="P07", page="Post 7 · Secondary dwellings", date="Tue 22 Sep · Carousel",
   tags="#CoastLifeConstructions #GoldCoastBuilder #SecondaryDwelling #GrannyFlatQLD #HomeExtension #MultigenerationalLiving #GoldCoastHomes #CustomHomeBuilder #QLDBuilder #ResidentialConstruction",
   approve="Do NOT publish a floor-area figure, a zoning rule, or any suggestion that approval is likely. Their blog cites general council guidance only. Also confirm 'asked about most often lately' with Rob — drop the line if he can't back it.",
   slides=[
-    dict(kind="photo_cover", name="P07Cover", kicker="Secondary dwellings", photo="rear-dwelling.jpg", focus="center 55%",
+    dict(kind="photo_cover", name="P07Cover", kicker="Secondary dwellings", photo="rear-dwelling.jpg", focus="62% 58%",
          headline="A second home on the block you already own",
          sub="Family, guests, or rental.", num=n(1, 5)),
     dict(kind="point", kicker="What it is", headline="Self-contained, on the same lot", size=70, num=n(2, 5),
@@ -525,7 +529,7 @@ P(id="P10", page="Post 10 · One builder", date="Tue 29 Sep · Carousel", pillar
   tags="#CoastLifeConstructions #GoldCoastBuilder #FamilyOwnedBusiness #CustomHomeBuilder #HomeRenovation #GoldCoastHomes #DesignAndBuild #QLDBuilder #VarsityLakes #ResidentialConstruction",
   approve="Rob is the point of contact from first chat to handover — their own published claim. Do NOT say Rob is on site every stage or every day; that wording is unconfirmed and previously flagged.",
   slides=[
-    dict(kind="photo_cover", name="P10Cover", kicker="However big the job", photo="team.jpg", focus="center 45%",
+    dict(kind="photo_cover", name="P10Cover", photo="team.jpg", focus="42% 36%",
          headline="Same builder, first call to handover",
          sub="Whichever of the three it is.", num=n(1, 5)),
     dict(kind="point", kicker="On a new build", headline="Rob walks the block with you", size=70, num=n(2, 5),
@@ -557,12 +561,12 @@ P(id="P12", page="Post 12 · One or two at a time", date="Sun 4 Oct · Carousel"
   tags="#CoastLifeConstructions #GoldCoastBuilder #CustomHomes #HomeRenovation #HomeExtension #SecondaryDwelling #GoldCoastHomes #CustomHomeBuilder #DesignAndBuild #QLDBuilder #Burleigh #ResidentialConstruction",
   approve="Confirm the four service lines are what Rob wants enquiries for right now, particularly secondary dwellings. Never publish the internal builds-per-year figure — public framing stays 'one or two projects at a time'.",
   slides=[
-    dict(kind="photo_cover", name="P12Cover", kicker="How we work", photo="kitchen2.jpg", focus="center 50%",
+    dict(kind="photo_cover", name="P12Cover", photo="kitchen2.jpg", focus="center 36%",
          headline="One or two builds at a time. On purpose.",
          sub="Fewer builds, better results.", num=n(1, 5)),
     dict(kind="point", kicker="What it means", headline="Your job isn’t queued behind six others", size=68, num=n(2, 5),
          body=["The attention it gets is the attention it needs."]),
-    dict(kind="point", deep=True, kicker="What we take on", headline="New builds, extensions, renovations, secondary dwellings", size=56, num=n(3, 5),
+    dict(kind="point", deep=True, headline="New builds, extensions, renovations, secondary dwellings", size=56, num=n(3, 5),
          body=["Four kinds of job, one standard across all of them."]),
     dict(kind="point", kicker="Honestly", headline="It means we can’t always start straight away", size=64, num=n(4, 5),
          body=["It also means the job in front of us is the one that matters."]),
