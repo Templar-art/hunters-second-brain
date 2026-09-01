@@ -798,35 +798,34 @@ def _variant_slides(tag):
                   "Gold Coast · QBCC licensed · Master Builders Queensland"]),
     ]
 
-# ---- Detail-shot assignment -------------------------------------------------
-# Constraint: unpublished frames only. Everything sourced from the website or the
-# capability statement has already run on the account, so the whole Mondaro detail
-# set carries the feed. Each post mixes black-and-white with colour.
+# ---- Image slots -----------------------------------------------------------
+# Every Mondaro detail frame turned out to be published already (the 4 Aug
+# "Light, shadow, and structure" carousel and the 23 Jul "Texture. Depth.
+# Character." pair). With the website set and the capability-statement set also
+# published, there is currently NO verified-unpublished photography.
 #
-# Black and white: slab · corner · truss · studs · cables · joists
-# Colour:          ply · helmet · saw · sandstone
+# So the layouts ship with marked slots instead of stand-in images. Each names
+# the shot required and its crop. Swap a slot for a filename in one line the
+# moment a clean frame exists.
 
-BW = dict(slab="mondaro-slab.jpg", corner="mondaro-corner.jpg", truss="mondaro-truss.jpg",
-          studs="mondaro-studs.jpg", cables="mondaro-cables.jpg", joists="mondaro-joists.jpg")
-CO = dict(ply="mondaro-ply.jpg", helmet="mondaro-helmet.jpg", saw="mondaro-saw.jpg",
-          sandstone="mondaro-sandstone.jpg")
-
-DETAIL_ASSIGN = {
-    "P00": [BW["truss"],   BW["corner"], CO["sandstone"], CO["ply"],    None],
-    "P01": [BW["studs"],   BW["slab"],   BW["truss"],     CO["ply"],    None],
-    "P02": [CO["saw"]],
-    "P03": [CO["sandstone"], BW["slab"], BW["truss"],     BW["corner"], None],
-    "P04": [CO["ply"],     BW["cables"], BW["joists"],    BW["studs"],  None],
-    "P05": [CO["helmet"]],
-    "P06": [BW["joists"],  BW["corner"], CO["sandstone"], BW["truss"],  None],
-    "P07": [CO["sandstone"], BW["slab"], CO["ply"],       BW["cables"], None],
-    "P08": [BW["truss"]],
-    "P09": [BW["cables"],  BW["joists"], BW["slab"],      CO["saw"],    None],
-    "P10": [CO["saw"],     CO["helmet"], BW["studs"],     BW["joists"], None],
-    "P11": [None],
-    "P12": [CO["helmet"],  BW["truss"],  CO["sandstone"], CO["ply"],    None],
-    "P13": [BW["truss"],   BW["slab"],   CO["ply"],       BW["studs"],  None],
+SLOT = {
+    "P00": ["Frame junction, close",  "New build — structure",   "Extension — under-house",  "Renovation — interior detail", None],
+    "P01": ["Set-out / level check",  "Block and levels",        "Layout, framed opening",   "Material selection, close",    None],
+    "P02": ["Handover detail"],
+    "P03": ["Extension, exterior",    "Ground-floor addition",   "Second storey",            "Under-house build-in",         None],
+    "P04": ["Renovation, before",     "Layout opened up",        "Junction or finish detail","Material palette flat-lay",    None],
+    "P05": ["Finished room, quiet"],
+    "P06": ["Drawings or plans",    "Existing home, tired",    "Extension in progress",    "Site cleared, rebuild",   None],
+    "P07": ["Secondary dwelling",   "Self-contained interior", "Second dwelling exterior", "Block, showing setback",  None],
+    "P08": ["Site, wide"],
+    "P09": ["Finishes, close",        "Behind the wall",         "Scope written down",       "Site conversation",            None],
+    "P10": ["Rob on site",            "Rob at the block",        "Site meeting",             "Tool or hand detail",          None],
+    "P11": ["Portrait of Rob"],
+    "P12": ["Signature project",      "One site, focused",       "Four services montage",   "Programme board or diary",      None],
+    "P13": ["Frame junction",         "Set-out marks",           "Joists or material stack", "Braced frame, plumb check",    None],
 }
+
+SLOT_NOTE = "1080 x 1440 or 4:5 portrait · unpublished frame"
 
 
 def to_plate(post):
@@ -835,11 +834,8 @@ def to_plate(post):
     One ground per post, sampled from its hero photograph, so a carousel reads as
     one object on swipe and the grid reads as one book.
     """
-    assign = DETAIL_ASSIGN.get(post["id"])
-    if assign:
-        hero = next((q for q in assign if q), None)
-    else:
-        hero = post.get("hero") or next((sl.get("photo") for sl in post["slides"] if sl.get("photo")), None)
+    assign = SLOT.get(post["id"])
+    hero = None
     pool = [sl.get("photo") for sl in post["slides"] if sl.get("photo")]
     spare = [q for q in pool if q != hero]
     v = post.get("variant", "paper")
@@ -873,13 +869,11 @@ def to_plate(post):
                          note=sl.get("primary", {}).get("note", ""))
             else:
                 p.update(photo=(spare.pop(0) if spare else hero))
-        if assign and idx < len(assign):
-            tgt = assign[idx]
-            if tgt:
-                p["photo"], p["focus"] = tgt, "center"
-                p.pop("label", None); p.pop("note", None)
-            elif k == "ph_static":
-                p["photo"] = None
+        # no verified-unpublished photography exists, so every position is a slot
+        p["photo"] = None
+        p["label"] = (assign[idx] if assign and idx < len(assign) and assign[idx]
+                      else "Image required")
+        p["note"] = SLOT_NOTE
         out.append(p)
     return out
 
