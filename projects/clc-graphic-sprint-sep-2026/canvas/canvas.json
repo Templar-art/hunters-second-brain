@@ -5,7 +5,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-1",
       "title": "P00 \u00b7 Cover"
     },
@@ -14,7 +14,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-1",
       "title": "P00 \u00b7 Slide 02"
     },
@@ -23,7 +23,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-1",
       "title": "P00 \u00b7 Slide 03"
     },
@@ -32,7 +32,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-1",
       "title": "P00 \u00b7 Slide 04"
     },
@@ -41,7 +41,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-1",
       "title": "P00 \u00b7 Slide 05"
     },
@@ -50,7 +50,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-2",
       "title": "P01 \u00b7 Cover"
     },
@@ -59,7 +59,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-2",
       "title": "P01 \u00b7 Slide 02"
     },
@@ -68,7 +68,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-2",
       "title": "P01 \u00b7 Slide 03"
     },
@@ -77,7 +77,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-2",
       "title": "P01 \u00b7 Slide 04"
     },
@@ -86,7 +86,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-2",
       "title": "P01 \u00b7 Slide 05"
     },
@@ -95,7 +95,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-3",
       "title": "P02 \u00b7 Static"
     },
@@ -104,7 +104,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-4",
       "title": "P03 \u00b7 Cover"
     },
@@ -113,7 +113,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-4",
       "title": "P03 \u00b7 Slide 02"
     },
@@ -122,7 +122,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-4",
       "title": "P03 \u00b7 Slide 03"
     },
@@ -131,7 +131,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-4",
       "title": "P03 \u00b7 Slide 04"
     },
@@ -140,7 +140,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-4",
       "title": "P03 \u00b7 Slide 05"
     },
@@ -149,7 +149,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-5",
       "title": "P04 \u00b7 Cover"
     },
@@ -158,7 +158,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-5",
       "title": "P04 \u00b7 Slide 02"
     },
@@ -167,7 +167,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-5",
       "title": "P04 \u00b7 Slide 03"
     },
@@ -176,7 +176,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-5",
       "title": "P04 \u00b7 Slide 04"
     },
@@ -185,7 +185,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-5",
       "title": "P04 \u00b7 Slide 05"
     },
@@ -194,7 +194,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-6",
       "title": "P05 \u00b7 Static"
     },
@@ -203,7 +203,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-7",
       "title": "P06 \u00b7 Cover"
     },
@@ -212,7 +212,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-7",
       "title": "P06 \u00b7 Slide 02"
     },
@@ -221,7 +221,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-7",
       "title": "P06 \u00b7 Slide 03"
     },
@@ -230,7 +230,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-7",
       "title": "P06 \u00b7 Slide 04"
     },
@@ -239,7 +239,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-7",
       "title": "P06 \u00b7 Slide 05"
     },
@@ -248,7 +248,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-8",
       "title": "P07 \u00b7 Cover"
     },
@@ -257,7 +257,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-8",
       "title": "P07 \u00b7 Slide 02"
     },
@@ -266,7 +266,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-8",
       "title": "P07 \u00b7 Slide 03"
     },
@@ -275,7 +275,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-8",
       "title": "P07 \u00b7 Slide 04"
     },
@@ -284,7 +284,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-8",
       "title": "P07 \u00b7 Slide 05"
     },
@@ -293,7 +293,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-9",
       "title": "P08 \u00b7 Static"
     },
@@ -302,7 +302,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-10",
       "title": "P09 \u00b7 Cover"
     },
@@ -311,7 +311,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-10",
       "title": "P09 \u00b7 Slide 02"
     },
@@ -320,7 +320,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-10",
       "title": "P09 \u00b7 Slide 03"
     },
@@ -329,7 +329,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-10",
       "title": "P09 \u00b7 Slide 04"
     },
@@ -338,7 +338,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-10",
       "title": "P09 \u00b7 Slide 05"
     },
@@ -347,7 +347,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-11",
       "title": "P10 \u00b7 Cover"
     },
@@ -356,7 +356,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-11",
       "title": "P10 \u00b7 Slide 02"
     },
@@ -365,7 +365,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-11",
       "title": "P10 \u00b7 Slide 03"
     },
@@ -374,7 +374,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-11",
       "title": "P10 \u00b7 Slide 04"
     },
@@ -383,7 +383,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-11",
       "title": "P10 \u00b7 Slide 05"
     },
@@ -392,7 +392,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-12",
       "title": "P11 \u00b7 Static"
     },
@@ -401,7 +401,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-13",
       "title": "P12 \u00b7 Cover"
     },
@@ -410,7 +410,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-13",
       "title": "P12 \u00b7 Slide 02"
     },
@@ -419,7 +419,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-13",
       "title": "P12 \u00b7 Slide 03"
     },
@@ -428,7 +428,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-13",
       "title": "P12 \u00b7 Slide 04"
     },
@@ -437,7 +437,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-13",
       "title": "P12 \u00b7 Slide 05"
     },
@@ -446,7 +446,7 @@
       "x": 0,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-14",
       "title": "P13 \u00b7 Cover"
     },
@@ -455,7 +455,7 @@
       "x": 1240,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-14",
       "title": "P13 \u00b7 Slide 02"
     },
@@ -464,7 +464,7 @@
       "x": 2480,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-14",
       "title": "P13 \u00b7 Slide 03"
     },
@@ -473,7 +473,7 @@
       "x": 3720,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-14",
       "title": "P13 \u00b7 Slide 04"
     },
@@ -482,7 +482,7 @@
       "x": 4960,
       "y": 0,
       "w": 1080,
-      "h": 1350,
+      "h": 1440,
       "page": "page-14",
       "title": "P13 \u00b7 Slide 05"
     }
@@ -494,7 +494,7 @@
       "y": -210,
       "w": 860,
       "page": "page-1",
-      "text": "LEAD \u00b7 WHO WE SERVICE \u2014 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "LEAD \u00b7 WHO WE SERVICE \u2014 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-2",
@@ -502,7 +502,7 @@
       "y": -210,
       "w": 860,
       "page": "page-2",
-      "text": "POST 1 \u00b7 NEW BUILDS \u2014 Tue 8 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 1 \u00b7 NEW BUILDS \u2014 Tue 8 Sep \u00b7 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-3",
@@ -510,7 +510,7 @@
       "y": -210,
       "w": 860,
       "page": "page-3",
-      "text": "POST 2 \u00b7 WARRANTY \u2014 Thu 10 Sep \u00b7 Static\n1 artboard at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 2 \u00b7 WARRANTY \u2014 Thu 10 Sep \u00b7 Static\n1 artboard at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-4",
@@ -518,7 +518,7 @@
       "y": -210,
       "w": 860,
       "page": "page-4",
-      "text": "POST 3 \u00b7 EXTENSIONS \u2014 Sun 13 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 3 \u00b7 EXTENSIONS \u2014 Sun 13 Sep \u00b7 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-5",
@@ -526,7 +526,7 @@
       "y": -210,
       "w": 860,
       "page": "page-5",
-      "text": "POST 4 \u00b7 RENOVATIONS \u2014 Tue 15 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 4 \u00b7 RENOVATIONS \u2014 Tue 15 Sep \u00b7 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-6",
@@ -534,7 +534,7 @@
       "y": -210,
       "w": 860,
       "page": "page-6",
-      "text": "POST 5 \u00b7 CLIENT REVIEW \u2014 Thu 17 Sep \u00b7 Static\n1 artboard at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 5 \u00b7 CLIENT REVIEW \u2014 Thu 17 Sep \u00b7 Static\n1 artboard at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-7",
@@ -542,7 +542,7 @@
       "y": -210,
       "w": 860,
       "page": "page-7",
-      "text": "POST 6 \u00b7 WHICH ONE IS YOURS \u2014 Sun 20 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 6 \u00b7 WHICH ONE IS YOURS \u2014 Sun 20 Sep \u00b7 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-8",
@@ -550,7 +550,7 @@
       "y": -210,
       "w": 860,
       "page": "page-8",
-      "text": "POST 7 \u00b7 SECONDARY DWELLINGS \u2014 Tue 22 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 7 \u00b7 SECONDARY DWELLINGS \u2014 Tue 22 Sep \u00b7 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-9",
@@ -558,7 +558,7 @@
       "y": -210,
       "w": 860,
       "page": "page-9",
-      "text": "POST 8 \u00b7 SERVICE AREA \u2014 Thu 24 Sep \u00b7 Static\n1 artboard at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 8 \u00b7 SERVICE AREA \u2014 Thu 24 Sep \u00b7 Static\n1 artboard at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-10",
@@ -566,7 +566,7 @@
       "y": -210,
       "w": 860,
       "page": "page-10",
-      "text": "POST 9 \u00b7 RENOVATION MISTAKES \u2014 Sun 27 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 9 \u00b7 RENOVATION MISTAKES \u2014 Sun 27 Sep \u00b7 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-11",
@@ -574,7 +574,7 @@
       "y": -210,
       "w": 860,
       "page": "page-11",
-      "text": "POST 10 \u00b7 ONE BUILDER \u2014 Tue 29 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 10 \u00b7 ONE BUILDER \u2014 Tue 29 Sep \u00b7 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-12",
@@ -582,7 +582,7 @@
       "y": -210,
       "w": 860,
       "page": "page-12",
-      "text": "POST 11 \u00b7 MEET ROB \u2014 Thu 1 Oct \u00b7 Static\n1 artboard at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 11 \u00b7 MEET ROB \u2014 Thu 1 Oct \u00b7 Static\n1 artboard at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-13",
@@ -590,7 +590,7 @@
       "y": -210,
       "w": 860,
       "page": "page-13",
-      "text": "POST 12 \u00b7 ONE OR TWO AT A TIME \u2014 Sun 4 Oct \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 12 \u00b7 ONE OR TWO AT A TIME \u2014 Sun 4 Oct \u00b7 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-14",
@@ -598,7 +598,7 @@
       "y": -210,
       "w": 860,
       "page": "page-14",
-      "text": "LADDS RIDGE \u00b7 PROJECT JOURNAL \u2014 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "LADDS RIDGE \u00b7 PROJECT JOURNAL \u2014 Carousel\n5 artboards at 1080 x 1440 (3:4). Copy is verbatim from the four-week plan; captions and hashtags live there."
     }
   ],
   "pages": [

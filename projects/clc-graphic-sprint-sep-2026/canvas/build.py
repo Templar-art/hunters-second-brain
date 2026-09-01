@@ -8,6 +8,7 @@ Edit POSTS below and re-run; then re-seed the canvas.
 import json, os, re
 
 W, H = 1080, 1350
+H_PLATE = 1440                # 3:4 editorial plate
 MX = 112                      # side margin
 CW = W - MX * 2               # 856 content width
 PANEL_Y, PANEL_H = 52, 760    # photo window
@@ -28,7 +29,7 @@ FONTS = ("https://fonts.googleapis.com/css2?"
          "family=Poppins:wght@300;400;500;600&display=swap")
 
 
-def shell(body, ground, link):
+def shell(body, ground, link, h=None):
     return f"""<!doctype html>
 <html>
 <head>
@@ -44,7 +45,7 @@ def shell(body, ground, link):
     a {{ color: {link}; }} a:hover {{ color: {BLUE}; }}
   </style>
 </helmet>
-<div style="position: relative; width: {W}px; height: {H}px; background: {ground}; overflow: hidden;">
+<div style="position: relative; width: {W}px; height: {h or H}px; background: {ground}; overflow: hidden;">
 {body}
 </div>
 </x-dc>
@@ -334,7 +335,90 @@ def detail_spread(s):
 {footer(s.get('num'), deep)}"""
     return shell(body, BG_LIGHT, NAVY)
 
-KINDS = {"service": service, "detail_spread": detail_spread, "close_graphic": close_graphic, "photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
+
+# ---------------------------------------------------------------- editorial plate
+# Structure extracted from a supplied reference: brand mark top, inset image,
+# tracked caption bottom, even vertical rhythm, ground tone drawn from the
+# photograph itself. Mechanism only — no reference asset, mark or wording is used.
+
+_GROUND_CACHE = {}
+
+def ground_from(photo):
+    """A muted mid-tone pulled from the photograph. This is what unifies the grid."""
+    if not photo:
+        return "#8e9298"
+    if photo in _GROUND_CACHE:
+        return _GROUND_CACHE[photo]
+    from PIL import Image
+    import colorsys
+    im = Image.open(photo).convert("RGB")
+    im.thumbnail((60, 60))
+    px = list(im.get_flattened_data()) if hasattr(im, "get_flattened_data") else list(im.getdata())
+    r = sum(p[0] for p in px) / len(px) / 255
+    g = sum(p[1] for p in px) / len(px) / 255
+    b = sum(p[2] for p in px) / len(px) / 255
+    h, l, sat = colorsys.rgb_to_hls(r, g, b)
+    sat = min(max(sat, 0.06), 0.16)      # hold it muted
+    l = 0.575 + (l - 0.5) * 0.22          # pull to a consistent mid value
+    l = min(max(l, 0.50), 0.64)
+    rr, gg, bb = colorsys.hls_to_rgb(h, l, sat)
+    out = "#%02x%02x%02x" % (int(rr * 255), int(gg * 255), int(bb * 255))
+    _GROUND_CACHE[photo] = out
+    return out
+
+
+def _tint(hex_ground, l=0.945, sat=0.06):
+    import colorsys
+    r, g, b = (int(hex_ground[i:i+2], 16) / 255 for i in (1, 3, 5))
+    h, _, _ = colorsys.rgb_to_hls(r, g, b)
+    rr, gg, bb = colorsys.hls_to_rgb(h, l, sat)
+    return "#%02x%02x%02x" % (int(rr * 255), int(gg * 255), int(bb * 255))
+
+
+# plate geometry on 1080 x 1440
+PL_TOP      = 150
+PL_LOGO_W   = 340
+PL_LOGO_H   = 120
+PL_IMG_W    = 636
+PL_IMG_H    = 696
+PL_IMG_Y    = 396
+PL_CAP_Y    = 1238
+
+
+def plate_text(s):
+    """Close plate: no photograph. The statement occupies the image band."""
+    ground = s.get("ground") or "#8e9298"
+    ink = _tint(ground)
+    return shell(f"""  <img src="cl-white.png" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: 0.9;">
+  <div style="position: absolute; left: 50%; top: {PL_IMG_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 40}px; height: {PL_IMG_H}px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; text-align: center;">
+    <div style="font-size: 58px; line-height: 1.18; font-weight: 300; color: {ink}; letter-spacing: -0.005em; text-wrap: balance;">{s['caption']}</div>
+    <div style="width: 76px; height: 2px; background: {ink}; opacity: 0.5;"></div>
+  </div>
+  <div style="position: absolute; left: 50%; top: {PL_CAP_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 60}px; text-align: center;
+       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: 0.82;">{s.get('meta','').upper()}</div>""",
+                 ground, ink, h=H_PLATE)
+
+
+def plate(s):
+    ground = s.get("ground") or ground_from(s.get("photo"))
+    ink = _tint(ground)
+    cap = s["caption"].upper()
+    if s.get("photo"):
+        tint = (f'<div style="position: absolute; inset: 0; background: {ground}; opacity: {s["tint"]};"></div>'
+                if s.get("tint") else "")
+        art = (f'<img src="{s["photo"]}" alt="" style="width: 100%; height: 100%; object-fit: cover; '
+               f'object-position: {s.get("focus","center")}; display: block;">{tint}')
+    else:
+        art = slot(PL_IMG_W, PL_IMG_H, s.get("label", "Image required"), s.get("note", ""))
+    body = f"""  <img src="cl-white.png" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: 0.9;">
+  <div style="position: absolute; left: 50%; top: {PL_IMG_Y}px; transform: translateX(-50%); width: {PL_IMG_W}px; height: {PL_IMG_H}px; overflow: hidden; background: rgba(0,0,0,0.06); position: absolute;">
+{art}
+  </div>
+  <div style="position: absolute; left: 50%; top: {PL_CAP_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 60}px; text-align: center;
+       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: 0.9; text-wrap: balance;">{cap}</div>"""
+    return shell(body, ground, ink, h=H_PLATE)
+
+KINDS = {"plate": plate, "plate_text": plate_text, "service": service, "detail_spread": detail_spread, "close_graphic": close_graphic, "photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
          "deep_cover": deep_cover, "light_cover": light_cover, "qa": qa, "step": step,
          "point": point, "cta": cta, "quote": quote, "stack": stack}
 
@@ -476,7 +560,7 @@ P(id="P04", page="Post 4 · Renovations", date="Tue 15 Sep · Carousel", pillar=
                 "Renovations and extensions · Gold Coast"]),
 ])
 
-P(id="P05", page="Post 5 · Client review", date="Thu 17 Sep · Static", pillar="Social proof",
+P(id="P05", hero="kitchen.jpg", page="Post 5 · Client review", date="Thu 17 Sep · Static", pillar="Social proof",
   objective="Trust", cta="More client reviews are on our website.",
   caption="Naomi's renovation, Bonogin.\n\nThe part of her review that stayed with us was not about the finish. It was about being kept informed throughout. That is the part within our control every day, on every project.\n\nThank you Naomi.",
   tags="#CoastLifeConstructions #GoldCoastBuilder #ClientReview #HomeRenovation #Bonogin #GoldCoastHomes #CustomHomeBuilder #QLDBuilder #RenovationGoldCoast",
@@ -488,7 +572,7 @@ P(id="P05", page="Post 5 · Client review", date="Thu 17 Sep · Static", pillar=
          note="Verbatim wording, service type and written permission to be confirmed before publishing."),
 ])
 
-P(id="P06", page="Post 6 · Which one is yours", date="Sun 20 Sep · Carousel", pillar="Educational",
+P(id="P06", hero="drawings.jpg", hero_tint=0.30, page="Post 6 · Which one is yours", date="Sun 20 Sep · Carousel", pillar="Educational",
   objective="Saves", cta="Ready to get started?",
   caption="Renovate, extend, or start again.\n\nBegin with the problem, not the solution. Is it space, layout, condition, or a combination? The answer generally makes the decision for you.\n\nRenovations and extensions can appear cheaper initially and carry more unknowns. New builds are more predictable but require full design and a longer approval process. Neither is automatically correct.",
   tags="#CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #HomeExtension #KnockdownRebuild #CustomHomeBuilder #GoldCoastHomes #DesignAndBuild #QLDBuilder #Burleigh #ResidentialConstruction",
@@ -528,7 +612,7 @@ P(id="P07", page="Post 7 · Secondary dwellings", date="Tue 22 Sep · Carousel",
                 "Secondary dwellings · Gold Coast"]),
 ])
 
-P(id="P08", page="Post 8 · Service area", date="Thu 24 Sep · Static", pillar="Services & positioning",
+P(id="P08", hero="chambers.jpg", page="Post 8 · Service area", date="Thu 24 Sep · Static", pillar="Services & positioning",
   objective="Local awareness", cta="If you're nearby and thinking about a project, we're easy to get hold of.",
   caption="Where we build.\n\nBurleigh, Bonogin, Varsity Lakes and across the Gold Coast. New builds, extensions and renovations.\n\nIf you are in the area and considering a project, we are straightforward to reach.",
   tags="#CoastLifeConstructions #GoldCoastBuilder #GoldCoastHomes #Burleigh #Bonogin #VarsityLakes #CustomHomeBuilder #HomeRenovation #HomeExtension #QLDBuilder #ResidentialConstruction",
@@ -540,7 +624,7 @@ P(id="P08", page="Post 8 · Service area", date="Thu 24 Sep · Static", pillar="
          sub="New builds, extensions and renovations."),
 ])
 
-P(id="P09", page="Post 9 · Renovation mistakes", date="Sun 27 Sep · Carousel", pillar="Educational",
+P(id="P09", hero="reno-portrait.jpg", page="Post 9 · Renovation mistakes", date="Sun 27 Sep · Carousel", pillar="Educational",
   objective="Saves", cta="Ready to get started?",
   caption="Three renovation planning errors we see every year. Each is easier to avoid at planning stage than to correct once work has started.\n\nFinishes selected too late. No contingency for what sits behind the wall. Expectations that were never stated.\n\nNone of them are dramatic. They are simply expensive.",
   tags="#CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #RenovationPlanning #RenovationGoldCoast #CustomHomeBuilder #GoldCoastHomes #QLDBuilder #Burleigh #ResidentialConstruction",
@@ -620,7 +704,7 @@ P(id="P13", page="Ladds Ridge · Project journal", date="Carousel", pillar="Trus
   tags="#CoastLifeConstructions #GoldCoastBuilder #LaddsRidge #CustomHomes #CustomHomeBuilder #TimberFrame #BuildingAHome #ResidentialConstruction #QLDBuilder #GoldCoastHomes #UnderConstruction",
   approve="Confirm the suburb before publishing — 'Ladds Ridge' is the project name; the location is not verified. Confirm client permission to publish the project by name. No timeline, engineering or compliance claim anywhere: describe practice, never certify an outcome.",
   slides=[
-    dict(kind="photo_cover", name="P13Cover", kicker="Ladds Ridge", photo="ladds-aerial.jpg", focus="center 50%",
+    dict(kind="photo_cover", name="P13Cover", kicker="Ladds Ridge", photo="ladds-frame.jpg", focus="center 42%",
          headline="Structure decides everything that follows", hero_size=84,
          sub="Project journal · Frame stage", num=n(1, 5)),
     dict(kind="detail_spread", headline="Set-out, and the tolerances that follow it", num=n(2, 5),
@@ -629,13 +713,56 @@ P(id="P13", page="Ladds Ridge · Project journal", date="Carousel", pillar="Trus
          secondary=dict(label="Detail shot", note="Close crop: fixing, bracket or plate")),
     dict(kind="point", deep=True, kicker="Why it matters", headline="Every later trade inherits this stage", size=70, num=n(3, 5),
          body=["Cabinetry, glazing and linings all sit off the accuracy established in the frame."]),
-    dict(kind="service", photo="ladds-frame.jpg", focus="center 45%", headline="Braced, plumb, checked", num=n(4, 5),
+    dict(kind="service", photo="ladds-aerial.jpg", focus="center 52%", headline="Braced, plumb, checked", num=n(4, 5),
          body=["Verified before anything is lined, because after that it is concealed."]),
     dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
          lines=["We take on one or two projects at a time.",
                 "Gold Coast · QBCC licensed · Master Builders Queensland"]),
 ])
 
+
+
+def to_plate(post):
+    """Recast an authored post into the editorial-plate system.
+
+    One ground per post, sampled from its hero photograph, so a carousel reads as
+    one object on swipe and the grid reads as one book.
+    """
+    hero = post.get("hero") or next((sl.get("photo") for sl in post["slides"] if sl.get("photo")), None)
+    pool = [sl.get("photo") for sl in post["slides"] if sl.get("photo")]
+    spare = [q for q in pool if q != hero]
+    ground = ground_from(hero)
+    out = []
+    for sl in post["slides"]:
+        k = sl["kind"]
+        if k in ("close_graphic", "cta"):
+            meta = " · ".join(sl.get("lines", [])) if sl.get("lines") else sl.get("meta", "")
+            out.append(dict(kind="plate_text", name=sl.get("name"), caption=sl["headline"],
+                            meta=meta, ground=ground))
+            continue
+        if k in ("photo_cover", "deep_cover", "light_cover"):
+            cap = sl["headline"]
+        elif k == "quote":
+            cap = sl["headline"].strip("\u201c\u201d") + "  —  " + sl.get("attrib", "")
+        elif k == "stack":
+            cap = sl["sub"]
+        elif k == "ph_static":
+            cap = sl["headline"]
+        else:
+            cap = (sl.get("body") or [sl.get("headline", "")])[0]
+        p = dict(kind="plate", name=sl.get("name"), caption=cap, ground=ground,
+                 photo=sl.get("photo"), focus=sl.get("focus", "center"), tint=post.get("hero_tint"))
+        if not p["photo"]:
+            if k == "ph_static":
+                p.update(label="Portrait of Rob required", note=sl.get("note", ""))
+            elif k in ("detail_spread",):
+                p.update(photo=sl.get("primary", {}).get("photo"),
+                         label=sl.get("primary", {}).get("label", "Detail shot required"),
+                         note=sl.get("primary", {}).get("note", ""))
+            else:
+                p.update(photo=(spare.pop(0) if spare else hero))
+        out.append(p)
+    return out
 
 # ---------------------------------------------------------------------- build
 def main():
@@ -644,21 +771,22 @@ def main():
     for pi, post in enumerate(POSTS, start=1):
         pid = f"page-{pi}"
         pages.append({"id": pid, "name": post["page"]})
-        for si, s in enumerate(post["slides"], start=1):
+        slides = to_plate(post)
+        for si, s in enumerate(slides, start=1):
             name = s.get("name") or f"{post['id']}S{si:02d}"
             fn = f"{name}.dc.html"
             with open(fn, "w") as fh:
                 fh.write(KINDS[s["kind"]](s))
             written.append(fn)
             artboards.append({
-                "file": fn, "x": (si - 1) * 1240, "y": 0, "w": W, "h": H,
+                "file": fn, "x": (si - 1) * 1240, "y": 0, "w": W, "h": H_PLATE,
                 "page": pid,
-                "title": f"{post['id']} · {'Cover' if si == 1 and len(post['slides']) > 1 else ('Static' if len(post['slides']) == 1 else f'Slide {si:02d}')}",
+                "title": f"{post['id']} · {'Cover' if si == 1 and len(slides) > 1 else ('Static' if len(slides) == 1 else f'Slide {si:02d}')}",
             })
         notes.append({
             "id": f"note-{pi}", "x": 0, "y": -210, "w": 860, "page": pid,
             "text": f"{post['page'].upper()} — {post['date']}\n"
-                    f"{len(post['slides'])} artboard{'s' if len(post['slides']) > 1 else ''} at 1080 x 1350. "
+                    f"{len(post['slides'])} artboard{'s' if len(post['slides']) > 1 else ''} at 1080 x 1440 (3:4). "
                     f"Copy is verbatim from the four-week plan; captions and hashtags live there.",
         })
 

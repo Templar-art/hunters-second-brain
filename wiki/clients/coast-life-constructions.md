@@ -168,3 +168,12 @@ Hunter's call on the sprint canvas: rewrite everything **more professional and d
 **Rule:** a brand kit written *inside a brief* is a placeholder until checked against the logo artwork and the shipped work. Verify, don't inherit. Framework worth keeping (IP rules, asset template, review checklist) → reconciled into `projects/clc-graphic-sprint-sep-2026/SPEC-FIGMA.md`.
 
 Also: **Ladds Ridge site photos are frame/scaffold stage** (`LaddsRidge-2.jpg` 1080×1920, `LaddsRidge-4.jpg` 2560×1440) — no slab-pour stills exist outside the March 2026 IG post. A slab carousel needs that original footage first.
+
+## Barlow's actual layout system — measured, not guessed (1 Sep 2026)
+Hunter supplied a @barlowbuilding carousel as the reference. Measured off the source files by pixel-scanning, not eyeballed. Full write-up: `projects/clc-graphic-sprint-sep-2026/REFERENCE-ANALYSIS.md`.
+- **They post 3:4 (1080×1440), not 4:5.** ⚠️ Supersedes the 1080×1350 assumption in [[clc-brand-voice]] §11 and every earlier CLC graphic. They're taking the extra feed height.
+- **The ground colour is sampled from each post's own photograph** and held muted (desaturated, mid value). Measured: `#ada79b` greige · `#3d4d42` deep green · `#788097` blue-grey · `#6c7079` slate · `#8e7b5a` tan · `#222931` near-black. **This is the single mechanism that makes their grid read as one book** — not a fixed palette, a production rule. It was never identified in the July field research, which called it "one consistent grade".
+- **Hierarchy is inverted:** brand mark on top (large, tone-on-tone), image inset second, tiny tracked all-caps caption third. No headline, no counters, no eyebrows, no CTA slide. Every slide in a carousel is identical bar photo + caption.
+- **Rhythm:** image 636×696 inset with 20.6% side margins, and four near-equal ~150px vertical rests. The surround is what makes it read as a plate.
+- Copy voice on this post: long sensory caption ending in a brand line ("Built with intention. Always.").
+CLC canvas rebuilt on these mechanics in CLC's own brand (white master, Poppins, grounds sampled from CLC photography). Old 4:5 generator preserved at `canvas/build-4x5.py.bak`.
