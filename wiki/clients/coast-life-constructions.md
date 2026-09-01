@@ -129,3 +129,19 @@ Built the 12-post sprint canvas ([artboards](../../projects/clc-graphic-sprint-s
 - ⚠️ **Trap:** `~/Desktop/Coast-Life-Constructions-Brand-Uplift.pdf` and its HTML source use `--blue:#61a8d8` — that is **10x Visuals'** brand blue (the deck is our own pitch document about CLC), NOT Coast Life's. Don't sample a client palette out of our own deck about them.
 - Type: **Poppins** (300 Light headlines / 500 / 600 kickers). Montserrat is the secondary face in the deck but the local .ttf are corrupt — see [[reference-corrupt-montserrat-fonts]].
 - **Real finished-home photography exists** at `~/Desktop/_Brand & Tools/Coast-Life-Constructions/CLC Brand Kit/img/` — chambers (Chambers Lane façade, "9 Chambers Lane" legible), aerial (drone + pool), bath, garden, rear (self-contained rear dwelling), team (two crew on site, branded polos). Extracted from the capability statement; the only finished-build files on disk. No portrait of Rob anywhere — still the blocker for any "meet the builder" post.
+
+## ⚠️ Princess Street image on the CLC website — check this (1 Sep 2026)
+While pulling hero images off coastlifeconstructions.com.au for the sprint canvas, found this in their uploads:
+`/wp-content/uploads/2025/05/Princess-Street-House-by-Owen-Architecture-AJ5286CSimonDevitt.jpg`
+The filename credits **Owen Architecture** (Brisbane practice) and **Simon Devitt** (architectural photographer). Houzz also lists "Princess Street" as a Coast Life project. Either CLC built it and the file is the architect's press photo used uncredited, or it is inspiration imagery sitting where a portfolio image reads as their own work. **Ask Rob before any Princess Street content runs**, and never use that file in a graphic — it is not ours to publish either way. Excluded from the sprint canvas.
+
+## Real website photography — the good source (1 Sep 2026)
+Better than the capability-statement extractions in `CLC Brand Kit/img/` (those cap at ~1600px). The site carries 2048–2560px originals under `/wp-content/uploads/`:
+- `DSC05397_HiRes.jpg` — **9 Chambers Lane street façade**, number legible on the fence. The best hero they own.
+- `ProjectCoast.jpg` (2500px) — modern home, tree, lawn, blue sky. Aspirational wide.
+- `Copy-of-DSC09005-HDR.jpg` — white render + timber garage, palms. Reads new-build.
+- `DSC05524_HiRes.jpg` — standalone rear dwelling with deck + green wall. The secondary-dwelling shot.
+- `32-Garden-Grove-*.jpg` (02/06/09/10/11/13/14/17) — a **named project not in the §14 register**: marble kitchens, marble bathroom, alfresco undercroft. Add *32 Garden Grove* to the named-project list.
+- `DSC05486/05564/05639/05655/05691_HiRes.jpg` — kitchens, living, bathrooms.
+- `DesignDrawings.jpg` (2500²) — **real architectural drawings**. Perfect for design-process and planning content; used as the P06 cover instead of a drawn motif.
+Twelve of these are processed into `projects/clc-graphic-sprint-sep-2026/canvas/` at ~1400px. Still no portrait of Rob anywhere.
