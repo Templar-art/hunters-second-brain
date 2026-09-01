@@ -272,9 +272,7 @@ def stack(s):
 def service(s):
     """Photo on every slide; the service name IS the headline — no eyebrow, no numeral."""
     deep = False
-    body = f"""  <div style="position: absolute; left: {MX}px; top: {PANEL_Y}px; width: {CW}px; height: {TALL_H}px; overflow: hidden; background: #dfe5ea;">
-    <img src="{s['photo']}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: {s.get('focus','center')}; display: block;">
-  </div>
+    body = f"""  <div style="position: absolute; left: {MX}px; top: {PANEL_Y}px;">{_fill(s, CW, TALL_H)}</div>
   <div style="position: absolute; left: {MX}px; right: {MX}px; top: {PANEL_Y + TALL_H + 42}px; display: flex; flex-direction: column; gap: 16px;">
     {head(s['headline'], deep, size=s.get('size', 72), weight=300)}
     {para(s['body'][0], deep, size=34, maxw=800)}
@@ -297,7 +295,46 @@ def close_graphic(s):
     return shell(body, BG_DEEP, "#ffffff")
 
 
-KINDS = {"service": service, "close_graphic": close_graphic, "photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
+
+def slot(w, h, label, note=""):
+    """A marked placeholder frame. Never a stand-in photo — it says what shot is missing."""
+    sub = f'<div style="font-size: 20px; color: rgba(22,36,46,0.5); text-align: center; max-width: {w-80}px;">{note}</div>' if note else ""
+    return f"""<div style="width: {w}px; height: {h}px; overflow: hidden;
+       background: repeating-linear-gradient(135deg, #e4e9ee 0px, #e4e9ee 2px, #dbe2e8 2px, #dbe2e8 14px);
+       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;">
+    <div style="width: {min(88, h//4)}px; height: {min(88, h//4)}px; border: 2px solid rgba(47,102,144,0.4);"></div>
+    <div style="font-size: 21px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: {STEEL}; text-align: center;">{label}</div>
+    {sub}
+  </div>"""
+
+
+def _fill(spec, w, h):
+    """Either a real photo or a marked slot, same footprint."""
+    if spec.get("photo"):
+        return (f'<div style="width: {w}px; height: {h}px; overflow: hidden; background: #dfe5ea;">'
+                f'<img src="{spec["photo"]}" alt="" style="width: 100%; height: 100%; object-fit: cover; '
+                f'object-position: {spec.get("focus","center")}; display: block;"></div>')
+    return slot(w, h, spec.get("label", "Image required"), spec.get("note", ""))
+
+
+def detail_spread(s):
+    """Two-image detail spread: large primary, small secondary, caption in the remaining column."""
+    deep = False
+    PRIM_H, SEC_H = 700, 340
+    ROW_Y = PANEL_Y + PRIM_H + 24
+    COL = (CW - 32) // 2
+    body = f"""  <div style="position: absolute; left: {MX}px; top: {PANEL_Y}px;">{_fill(s['primary'], CW, PRIM_H)}</div>
+  <div style="position: absolute; left: {MX}px; right: {MX}px; top: {ROW_Y}px; display: flex; gap: 32px; align-items: flex-start;">
+    {_fill(s['secondary'], COL, SEC_H)}
+    <div style="width: {COL}px; display: flex; flex-direction: column; gap: 18px; padding-top: 4px;">
+      <h2 style="margin: 0; font-size: 46px; line-height: 1.14; font-weight: 300; color: {INK}; letter-spacing: -0.005em; text-wrap: balance;">{s['headline']}</h2>
+      <p style="margin: 0; font-size: 28px; line-height: 1.45; font-weight: 400; color: {INK_SOFT};">{s['body'][0]}</p>
+    </div>
+  </div>
+{footer(s.get('num'), deep)}"""
+    return shell(body, BG_LIGHT, NAVY)
+
+KINDS = {"service": service, "detail_spread": detail_spread, "close_graphic": close_graphic, "photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
          "deep_cover": deep_cover, "light_cover": light_cover, "qa": qa, "step": step,
          "point": point, "cta": cta, "quote": quote, "stack": stack}
 
@@ -572,6 +609,30 @@ P(id="P12", page="Post 12 · One or two at a time", date="Sun 4 Oct · Carousel"
          body=["It also means the project in front of us receives full attention."]),
     dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
          lines=["Planning a project for next year? Now is the time to begin the conversation.",
+                "Gold Coast · QBCC licensed · Master Builders Queensland"]),
+])
+
+
+# ---- Ladds Ridge — project journal ------------------------------------------
+P(id="P13", page="Ladds Ridge · Project journal", date="Carousel", pillar="Trust & process",
+  objective="Trust", cta="Ready to get started?",
+  caption="Ladds Ridge, frame stage.\\n\\nThe frame is where tolerance is either established or lost. Every trade that follows inherits it: cabinetry, glazing, linings and finishes all sit off the accuracy set here.\\n\\nIt is the least photogenic stage of a build and the one that determines the most.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #LaddsRidge #CustomHomes #CustomHomeBuilder #TimberFrame #BuildingAHome #ResidentialConstruction #QLDBuilder #GoldCoastHomes #UnderConstruction",
+  approve="Confirm the suburb before publishing — 'Ladds Ridge' is the project name; the location is not verified. Confirm client permission to publish the project by name. No timeline, engineering or compliance claim anywhere: describe practice, never certify an outcome.",
+  slides=[
+    dict(kind="photo_cover", name="P13Cover", kicker="Ladds Ridge", photo="ladds-aerial.jpg", focus="center 50%",
+         headline="Structure decides everything that follows", hero_size=84,
+         sub="Project journal · Frame stage", num=n(1, 5)),
+    dict(kind="detail_spread", headline="Set-out, and the tolerances that follow it", num=n(2, 5),
+         body=["Every dimension downstream is measured from this stage."],
+         primary=dict(label="Detail shot required", note="Set-out marks, string lines or level check — landscape, 856 x 640"),
+         secondary=dict(label="Detail shot", note="Close crop: fixing, bracket or plate")),
+    dict(kind="point", deep=True, kicker="Why it matters", headline="Every later trade inherits this stage", size=70, num=n(3, 5),
+         body=["Cabinetry, glazing and linings all sit off the accuracy established in the frame."]),
+    dict(kind="service", photo="ladds-frame.jpg", focus="center 45%", headline="Braced, plumb, checked", num=n(4, 5),
+         body=["Verified before anything is lined, because after that it is concealed."]),
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["We take on one or two projects at a time.",
                 "Gold Coast · QBCC licensed · Master Builders Queensland"]),
 ])
 

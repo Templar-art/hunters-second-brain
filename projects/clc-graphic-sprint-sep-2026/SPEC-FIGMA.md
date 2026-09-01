@@ -77,6 +77,7 @@ colour; the system stays out of its way.
 | Photo window — hero | Full bleed, 1080 × 1350 |
 | Photo window — service/base | 856 × 880 at y = 52 |
 | Photo window — static | 856 × 760 at y = 52 |
+| Detail spread | primary 856 × 700 at y = 52 · secondary 412 × 340 at y = 776 |
 | Spacing scale | 16 / 24 / 26 / 36 / 44 px |
 | Ground light | `#f5f7f9` cool off-white, faint navy tint |
 | Ground deep | `#102f41` |
@@ -212,6 +213,33 @@ SHAPES:
 - None. A rule and a coastline motif were both tried here and both read as noise.
 EXPORT: {POST}S05@2x.png
 ```
+
+
+```
+FRAME: Base / Detail Spread (two-image)
+CANVAS: 1080 x 1350
+BACKGROUND: #f5f7f9
+GRID: 112px side margins · 32px inner gutter · two 412px columns
+LAYER STACK:
+1. Primary image or slot — 856 x 700 at x112 y52
+2. Row at y776, height 340:
+   a. Secondary image or slot — 412 x 340, left
+   b. Caption column — 412px wide, right: headline then body
+3. Footer row — counter left, colour logo right
+TEXT:
+- Headline | 46px Light | 1.14 | #16242e | caption column only
+- Body | 28px Regular | 1.45 | rgba(22,36,46,0.78)
+IMAGE:
+- Primary landscape 856 x 700 (≈1.22:1) · Secondary square-ish 412 x 340
+SHAPES:
+- None. Square corners, no radius, no shadow.
+EXPORT: {POST}S{NN}@2x.png
+```
+
+**Slot system.** Any image position accepts a marked placeholder instead of a photograph:
+a hatched field carrying the shot name and the exact crop required. It is never a stand-in
+image — it states what is missing, so a slide can be laid out and approved before the shoot.
+Swap `label`/`note` for `photo`/`focus` in `build.py` when the file arrives.
 
 ## E. Content / asset requirements
 

@@ -440,6 +440,51 @@
       "h": 1350,
       "page": "page-13",
       "title": "P12 \u00b7 Slide 05"
+    },
+    {
+      "file": "P13Cover.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1080,
+      "h": 1350,
+      "page": "page-14",
+      "title": "P13 \u00b7 Cover"
+    },
+    {
+      "file": "P13S02.dc.html",
+      "x": 1240,
+      "y": 0,
+      "w": 1080,
+      "h": 1350,
+      "page": "page-14",
+      "title": "P13 \u00b7 Slide 02"
+    },
+    {
+      "file": "P13S03.dc.html",
+      "x": 2480,
+      "y": 0,
+      "w": 1080,
+      "h": 1350,
+      "page": "page-14",
+      "title": "P13 \u00b7 Slide 03"
+    },
+    {
+      "file": "P13S04.dc.html",
+      "x": 3720,
+      "y": 0,
+      "w": 1080,
+      "h": 1350,
+      "page": "page-14",
+      "title": "P13 \u00b7 Slide 04"
+    },
+    {
+      "file": "P13S05.dc.html",
+      "x": 4960,
+      "y": 0,
+      "w": 1080,
+      "h": 1350,
+      "page": "page-14",
+      "title": "P13 \u00b7 Slide 05"
     }
   ],
   "annotations": [
@@ -546,6 +591,14 @@
       "w": 860,
       "page": "page-13",
       "text": "POST 12 \u00b7 ONE OR TWO AT A TIME \u2014 Sun 4 Oct \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+    },
+    {
+      "id": "note-14",
+      "x": 0,
+      "y": -210,
+      "w": 860,
+      "page": "page-14",
+      "text": "LADDS RIDGE \u00b7 PROJECT JOURNAL \u2014 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     }
   ],
   "pages": [
@@ -600,6 +653,10 @@
     {
       "id": "page-13",
       "name": "Post 12 \u00b7 One or two at a time"
+    },
+    {
+      "id": "page-14",
+      "name": "Ladds Ridge \u00b7 Project journal"
     }
   ],
   "launch": {
