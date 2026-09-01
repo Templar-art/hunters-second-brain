@@ -808,9 +808,9 @@ def _variant_slides(tag):
 
 # Interleaved colour / black-and-white, so no two neighbouring plates share a
 # treatment. The list alternates, so every rotation of it alternates too.
-ROTATION = ["mondaro-ply.jpg",     # col  ply wall in raked light
+ROTATION = ["mondaro-helmet.jpg",  # col  welding helmet on the gloves
             "mondaro-joists.jpg",  # B&W  engineered joists, stacked
-            "mondaro-helmet.jpg",  # col  welding helmet on the gloves
+            "mondaro-ply.jpg",     # col  ply wall in raked light
             "mondaro-studs.jpg"]   # B&W  studs and diagonal brace
 
 # Positions with no suitable frame stay briefed slots rather than taking a stand-in.
