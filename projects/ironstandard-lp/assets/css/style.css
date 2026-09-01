@@ -1,0 +1,153 @@
+:root {
+  --bg: #0a0a0a;
+  --fg: #ffffff;
+  --fg-dim: #b8b8b8;
+  --accent: #F4502A;
+  --font-display: 'TASA Orbiter', sans-serif;
+  --max-width: 1200px;
+  --space-lg: clamp(3rem, 8vw, 8rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .kicker {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+h1 { font-weight: 700; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05; }
+h2 { font-weight: 700; font-size: clamp(1.75rem, 4vw, 3rem); }
+.kicker { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.75rem; display: block; }
+
+.section { padding: var(--space-lg) 1.5rem; max-width: var(--max-width); margin: 0 auto; }
+
+.section p:not(.kicker) { color: var(--fg-dim); max-width: 640px; margin-top: 1rem; font-size: 1.05rem; }
+
+a { color: inherit; }
+a.accent-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+a.accent-link:hover { border-color: var(--accent); }
+
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: #0a0a0a;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.btn-primary:hover { opacity: 0.85; }
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  max-width: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 700px;
+  padding: 0 1.5rem;
+}
+.hero-logo {
+  width: 220px;
+  max-width: 60vw;
+  margin: 0 auto 1.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.hero-logo.is-visible { opacity: 1; transform: translateY(0); }
+.hero-sub { color: var(--fg-dim); margin: 1rem auto 2rem; font-size: 1.1rem; max-width: 560px; }
+.hero .kicker { text-align: center; }
+
+/* Pillars */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.pillar h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.02em; }
+.pillar p { color: var(--fg-dim); margin-top: 0; }
+@media (max-width: 640px) {
+  .pillars { grid-template-columns: 1fr; }
+}
+
+/* Section images */
+.section-img {
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+  border-radius: 2px;
+  filter: grayscale(0.1) contrast(1.05);
+  display: block;
+}
+
+/* Founding member */
+.founding-member {
+  border-top: 1px solid rgba(244, 80, 42, 0.3);
+  border-bottom: 1px solid rgba(244, 80, 42, 0.3);
+}
+
+/* Waitlist form */
+.waitlist form { display: flex; flex-direction: column; gap: 1rem; max-width: 420px; margin-top: 2rem; }
+.waitlist label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-dim); }
+.waitlist input {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--fg);
+  padding: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  min-height: 44px;
+}
+.waitlist input:focus { outline: none; border-color: var(--accent); }
+.waitlist button { margin-top: 0.5rem; align-self: flex-start; }
+#waitlist-status { color: var(--accent); min-height: 1.2em; font-size: 0.9rem; margin-top: 0; }
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--fg-dim);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.footer-logo { width: 140px; margin-bottom: 1rem; opacity: 0.8; }
+.footer-copyright { margin-top: 1rem; font-size: 0.8rem; }
+.site-footer p { margin-top: 0.35rem; }
