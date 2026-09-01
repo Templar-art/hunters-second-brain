@@ -340,10 +340,20 @@ def n(i, total):
 
 POSTS = []
 
-# ---- Post 0 — the new lead: who we service ---------------------------------
-POSTS.append(dict(id="P00", page="Lead · Who we service", date="New lead post · Carousel", slides=[
+def P(**kw):
+    POSTS.append(kw)
+
+# Every post is anchored to a service: new builds, extensions, renovations,
+# secondary dwellings. Copy is grounded in Coast Life's own published pages.
+
+P(id="P00", page="Lead · Who we service", date="Carousel", pillar="Services & positioning",
+  objective="Profile visits", cta="Ready to get started?",
+  caption="New builds, extensions, renovations.\n\nThree kinds of job, and one builder across all of them — from the first chat through to handover.\n\nIf you're weighing up which one your place needs, that's a conversation worth having early.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #CustomHomes #HomeRenovation #HomeExtension #GoldCoastHomes #CustomHomeBuilder #DesignAndBuild #QLDBuilder #Burleigh #Bonogin #VarsityLakes #ResidentialConstruction",
+  approve="Confirm which service each of the three photos actually belongs to — new build, extension or renovation. Their site only confirms Gundara Street as a renovation.",
+  slides=[
     dict(kind="photo_cover", name="Main", kicker="What we take on", photo="aerial.jpg", focus="center 50%",
-         headline="New builds, extensions, renovations.", size=64,
+         headline="New builds, extensions, renovations.",
          sub="Three kinds of job. One builder, start to finish.", num=n(1, 5)),
     dict(kind="service", photo="chambers.jpg", focus="center 58%", headline="New builds", num=n(2, 5),
          body=["Designed around your block, your orientation, and how you actually live."]),
@@ -351,75 +361,102 @@ POSTS.append(dict(id="P00", page="Lead · Who we service", date="New lead post �
          body=["More house without moving. Ground floor, second storey, or in underneath."]),
     dict(kind="service", photo="bath.jpg", focus="center 50%", headline="Renovations", num=n(4, 5),
          body=["When the bones are good and it’s the layout that’s wrong."]),
-    dict(kind="close_graphic", headline="Not sure which one yours is?", num=n(5, 5),
-         lines=["That’s what the first chat is for.",
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["Tell us which one yours is and we’ll take it from there.",
                 "Gold Coast · QBCC licensed · Master Builders Queensland"]),
-]))
+])
 
-# ---- Post 1 -----------------------------------------------------------------
-POSTS.append(dict(id="P01", page="Post 1 · Ask a builder", date="Tue 8 Sep · Carousel", slides=[
-    dict(kind="photo_cover", name="P01Cover", kicker="Before you sign", photo="chambers.jpg", focus="center 58%",
-         headline="Three questions to ask a builder before you sign", size=62,
-         sub="Worth screenshotting.", num=n(1, 5)),
-    dict(kind="qa", kicker="One", headline="“Who will I actually be dealing with?”", num=n(2, 5),
-         body=["The builder, or a project manager you haven’t met?"]),
-    dict(kind="qa", deep=True, kicker="Two", headline="“Is the quote itemised?”", num=n(3, 5),
-         body=["A lump sum tells you nothing about what’s included."]),
-    dict(kind="qa", kicker="Three", headline="“How many builds are you running right now?”", size=70, num=n(4, 5),
-         body=["It tells you how much attention yours will get."]),
-    dict(kind="cta", headline="Ask us all three. We’d rather you did.", num=n(5, 5),
-         meta="Gold Coast · QBCC licensed · Master Builders Queensland"),
-]))
+P(id="P01", page="Post 1 · New builds", date="Tue 8 Sep · Carousel", pillar="Services & positioning",
+  objective="Enquiries", cta="Ready to get started?",
+  caption="A custom build is mostly decisions, and the early ones carry the most weight.\n\nThe block, the layout, the materials. Get those three settled properly and the rest of the build is a lot calmer than people expect.\n\nSimple, well chosen materials often make a more timeless result. That one's worth sitting with.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #CustomHomes #CustomHomeBuilder #NewBuild #BuildingAHome #GoldCoastHomes #DesignAndBuild #QLDBuilder #Burleigh #ResidentialConstruction",
+  approve="All three points condense their own blog article on early custom-build decisions. No approval timeframe or council outcome may be implied.",
+  slides=[
+    dict(kind="photo_cover", name="P01Cover", kicker="New builds", photo="chambers.jpg", focus="center 58%",
+         headline="A custom build is decided long before it’s started",
+         sub="The three that matter most.", num=n(1, 5)),
+    dict(kind="point", kicker="One", headline="The block decides more than you think", size=70, num=n(2, 5),
+         body=["Levels, drainage, soil, orientation and access all shape what’s worth building."]),
+    dict(kind="point", deep=True, kicker="Two", headline="The layout is the house", num=n(3, 5),
+         body=["Flow, light, and how the inside meets the outside. Everything else is finish."]),
+    dict(kind="point", kicker="Three", headline="Choose materials early", num=n(4, 5),
+         body=["Late selections are the most common cause of delays that didn’t need to happen."]),
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["Bring your block and a rough idea. We’ll tell you what’s realistic.",
+                "Custom homes · Gold Coast"]),
+])
 
-# ---- Post 2 -----------------------------------------------------------------
-POSTS.append(dict(id="P02", page="Post 2 · Warranty", date="Thu 10 Sep · Static", slides=[
-    dict(kind="photo_static", name="P02Warranty", kicker="At handover", photo="garden.jpg", focus="center 55%",
+P(id="P02", page="Post 2 · Warranty", date="Thu 10 Sep · Static", pillar="Trust & process",
+  objective="Trust", cta="Our full process is on the website — link in bio.",
+  caption="Handover isn't the end of the job.\n\nNew build, extension or renovation — every one comes with a one-year maintenance warranty on top of the seven-year QBCC structural guarantee. Twelve months to live in the place, notice the small things, and have us come back and sort them.\n\nIt's on our process page in writing, same as everything else.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #QBCC #MasterBuildersQLD #CustomHomes #HomeRenovation #HomeWarranty #GoldCoastHomes #QLDBuilder #ResidentialConstruction",
+  approve="Warranty wording is verbatim from their process page — confirm it is still current for 2026 contracts. Highest-risk claim in the sprint.",
+  slides=[
+    dict(kind="photo_static", name="P02Warranty", kicker="Every job, same cover", photo="garden.jpg", focus="center 55%",
          headline="One year of maintenance cover, on top of the seven-year QBCC structural warranty.",
-         size=44, sub="Coast Life Constructions · QBCC licensed"),
-]))
+         size=44, sub="New builds · Extensions · Renovations"),
+])
 
-# ---- Post 3 -----------------------------------------------------------------
-POSTS.append(dict(id="P03", page="Post 3 · Our process", date="Sun 13 Sep · Carousel", slides=[
-    dict(kind="photo_cover", name="P03Cover", kicker="Our process", photo="aerial.jpg", focus="center 52%",
-         headline="How a Coast Life build actually runs", size=64,
-         sub="Seven stages. Three conversations.", num=n(1, 5)),
-    dict(kind="step", numeral="01", headline="Talk, then look", num=n(2, 5),
-         body=["An obligation-free chat, then we come and read the site."]),
-    dict(kind="step", deep=True, numeral="02", headline="Plan, price, sign", num=n(3, 5),
-         body=["Design with your architect or ours, then a fully itemised quote."]),
-    dict(kind="step", numeral="03", headline="Build, then hand over", num=n(4, 5),
-         body=["Every stage managed, then the keys and a maintenance warranty."]),
-    dict(kind="cta", headline="Stage one is just a chat.", num=n(5, 5),
-         meta="Custom homes, renovations and extensions · Gold Coast"),
-]))
+P(id="P03", page="Post 3 · Extensions", date="Sun 13 Sep · Carousel", pillar="Services & positioning",
+  objective="Saves", cta="Ready to get started?",
+  caption="Three ways to add space without leaving the street you like.\n\nOut the back, up a storey, or in underneath. Which one suits comes down to your block, your levels and how much disruption you can live with.\n\nAn extension can often be staged so you stay living there while it happens.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #HomeExtension #HomeRenovation #SecondStorey #GoldCoastHomes #CustomHomeBuilder #DesignAndBuild #QLDBuilder #Burleigh #Bonogin #ResidentialConstruction",
+  approve="Three extension types are taken from their own blog. Do not state that any given option is available on a reader's block — that depends on council and the site.",
+  slides=[
+    dict(kind="photo_cover", name="P03Cover", kicker="Extensions", photo="rear.jpg", focus="center 50%",
+         headline="Three ways to add space without moving",
+         sub="Out the back, up, or underneath.", num=n(1, 5)),
+    dict(kind="point", kicker="Out the back", headline="Ground-floor addition", num=n(2, 5),
+         body=["The simplest when there’s room on the block and the levels allow it."]),
+    dict(kind="point", deep=True, kicker="Up", headline="Second storey", num=n(3, 5),
+         body=["More house on the same footprint. The structure below decides what’s possible."]),
+    dict(kind="point", kicker="Underneath", headline="Build in under the house", num=n(4, 5),
+         body=["Common on a sloping Gold Coast block, and often the least disruptive."]),
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["Send us your address and what you’re hoping to add.",
+                "Extensions and additions · Gold Coast"]),
+])
 
-# ---- Post 4 -----------------------------------------------------------------
-POSTS.append(dict(id="P04", page="Post 4 · Reading a quote", date="Tue 15 Sep · Carousel", slides=[
-    dict(kind="deep_cover", name="P04Cover", kicker="Reading a quote", svg=SVG_DOC,
-         headline="Why two quotes for the same house look nothing alike", size=70,
-         sub="It’s usually not the builder’s margin.", num=n(1, 5)),
-    dict(kind="point", kicker="One", headline="Inclusions aren’t standard", num=n(2, 5),
-         body=["Site costs, allowances and finishes — in one quote, priced later in the other."]),
-    dict(kind="point", deep=True, kicker="Two", headline="Allowances hide the difference", size=70, num=n(3, 5),
-         body=["Two tiling allowances, double apart, read as the same line item."]),
-    dict(kind="point", kicker="Three", headline="Check the drawing revision", num=n(4, 5),
-         body=["Priced off an older set? You’re comparing two different houses."]),
-    dict(kind="cta", headline="Comparing quotes? Happy to walk you through ours.", size=68, num=n(5, 5),
-         meta="We quote fully itemised. You see what’s in and what isn’t."),
-]))
+P(id="P04", page="Post 4 · Renovations", date="Tue 15 Sep · Carousel", pillar="Services & positioning",
+  objective="Saves", cta="Ready to get started?",
+  caption="What we look at first on a renovation, before anyone talks about tiles.\n\nWhat the house is actually getting wrong, what the layout could be, and what's realistic for the budget you're working with.\n\nKitchens and bathrooms get the attention, but it's usually the layout that changes how a house feels to live in.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #RenovationGoldCoast #KitchenRenovation #BathroomRenovation #GoldCoastHomes #CustomHomeBuilder #QLDBuilder #Bonogin #ResidentialConstruction",
+  approve="Points condense their own 'what adds the most value when renovating' article. No ROI, percentage or dollar claim of any kind.",
+  slides=[
+    dict(kind="photo_cover", name="P04Cover", kicker="Renovations", photo="bath.jpg", focus="center 50%",
+         headline="What we look at first, before anyone mentions tiles",
+         sub="Three questions, in this order.", num=n(1, 5)),
+    dict(kind="point", kicker="First", headline="What is the house getting wrong?", size=70, num=n(2, 5),
+         body=["Space, layout, condition, or all three. The answer sets the scope."]),
+    dict(kind="point", deep=True, kicker="Second", headline="What could the layout be?", num=n(3, 5),
+         body=["Opening up living areas, better flow, more light. That’s what changes daily life."]),
+    dict(kind="point", kicker="Third", headline="What’s realistic for the budget?", size=70, num=n(4, 5),
+         body=["Said plainly and early, so nothing gets designed that can’t be built."]),
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["A walk through the house is the fastest way to answer all three.",
+                "Renovations and extensions · Gold Coast"]),
+])
 
-# ---- Post 5 -----------------------------------------------------------------
-POSTS.append(dict(id="P05", page="Post 5 · Client review", date="Thu 17 Sep · Static", slides=[
+P(id="P05", page="Post 5 · Client review", date="Thu 17 Sep · Static", pillar="Social proof",
+  objective="Trust", cta="More client reviews are on our website.",
+  caption="Naomi's renovation, Bonogin.\n\nThe part of her review that stuck with us wasn't about the finish — it was about being kept informed the whole way through. That's the part that's actually within our control every single day, on every job.\n\nThanks Naomi.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #ClientReview #HomeRenovation #Bonogin #GoldCoastHomes #CustomHomeBuilder #QLDBuilder #RenovationGoldCoast",
+  approve="HIGHEST SENSITIVITY. The quote shown is a paraphrase and must be replaced with the verbatim published review. Get Naomi's written permission for name and suburb in a graphic. Confirm the job was a renovation before labelling it one.",
+  slides=[
     dict(kind="quote", name="P05Review",
          headline="“We were kept fully informed the whole way through.”",
-         attrib="Naomi Ortado · Bonogin",
-         note="Verbatim review wording and written permission to be confirmed before publishing."),
-]))
+         attrib="Naomi Ortado · Renovation, Bonogin",
+         note="Verbatim wording, service type and written permission to be confirmed before publishing."),
+])
 
-# ---- Post 6 -----------------------------------------------------------------
-POSTS.append(dict(id="P06", page="Post 6 · Renovate or rebuild", date="Sun 20 Sep · Carousel", slides=[
-    dict(kind="photo_cover", name="P06Cover", kicker="Where to start", photo="bath.jpg", focus="center 50%",
-         headline="Renovate, extend, or start again?", size=64,
+P(id="P06", page="Post 6 · Which one is yours", date="Sun 20 Sep · Carousel", pillar="Educational",
+  objective="Saves", cta="Ready to get started?",
+  caption="Renovate, extend, or start again.\n\nThe way we'd approach it: start with the problem, not the solution. Is it space, layout, condition, or all three? The answer usually makes the decision for you.\n\nRenovations and extensions can look cheaper up front and carry more unknowns. New builds are more predictable but ask for more design and a longer approval run. Neither is automatically right.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #HomeExtension #KnockdownRebuild #CustomHomeBuilder #GoldCoastHomes #DesignAndBuild #QLDBuilder #Burleigh #ResidentialConstruction",
+  approve="Condensed from their own 'where to start' article. Never imply an approval timeframe or a council outcome.",
+  slides=[
+    dict(kind="deep_cover", name="P06Cover", kicker="Which one is yours", svg=SVG_PLAN,
+         headline="Renovate, extend, or start again?",
          sub="Start with the problem, not the solution.", num=n(1, 5)),
     dict(kind="step", numeral="01", headline="Renovate", num=n(2, 5),
          body=["When the bones are good and it’s the layout that’s wrong."]),
@@ -427,37 +464,51 @@ POSTS.append(dict(id="P06", page="Post 6 · Renovate or rebuild", date="Sun 20 S
          body=["When the house works, there just isn’t enough of it."]),
     dict(kind="step", numeral="03", headline="Start again", num=n(4, 5),
          body=["When repair costs start creeping toward a new build."]),
-    dict(kind="cta", headline="Not sure which one you’re looking at?", size=70, num=n(5, 5),
-         meta="That’s what the first chat is for. Longer version on our blog."),
-]))
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["Not sure which one yours is? That’s a good first conversation.",
+                "Longer version on our blog · link in bio"]),
+])
 
-# ---- Post 7 -----------------------------------------------------------------
-POSTS.append(dict(id="P07", page="Post 7 · First meeting", date="Tue 22 Sep · Carousel", slides=[
-    dict(kind="light_cover", name="P07Cover", kicker="First meeting", svg=SVG_PLAN,
-         headline="Bring three things to your first builder meeting", size=70,
-         sub="It makes the first hour worth ten.", num=n(1, 5)),
-    dict(kind="step", numeral="01", headline="Whatever plans you have", num=n(2, 5),
-         body=["Sketches on paper count. None of it has to be finished."]),
-    dict(kind="step", deep=True, numeral="02", headline="A real budget range", num=n(3, 5),
-         body=["Not a number you’re guarding. It changes what we can honestly recommend."]),
-    dict(kind="step", numeral="03", headline="Must-haves, separated from nice-to-haves", size=62, num=n(4, 5),
-         body=["The separating is the useful part. Also the hardest."]),
-    dict(kind="cta", headline="Got those three? Let’s have the first chat.", size=70, num=n(5, 5),
-         meta="Obligation-free. Phone, email or in person."),
-]))
+P(id="P07", page="Post 7 · Secondary dwellings", date="Tue 22 Sep · Carousel", pillar="Services & positioning",
+  objective="Enquiries", cta="Ready to get started?",
+  caption="Secondary dwellings — the one we get asked about most often lately.\n\nSelf-contained living on the same block. Family, guests, or rental. Its own kitchen, bathroom and living space.\n\nWhat's possible comes down to your lot, your zoning and your council, so it's worth checking before you get attached to a plan.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #SecondaryDwelling #GrannyFlatQLD #HomeExtension #MultigenerationalLiving #GoldCoastHomes #CustomHomeBuilder #QLDBuilder #ResidentialConstruction",
+  approve="Do NOT publish a floor-area figure, a zoning rule, or any suggestion that approval is likely. Their blog cites general council guidance only. Also confirm 'asked about most often lately' with Rob — drop the line if he can't back it.",
+  slides=[
+    dict(kind="photo_cover", name="P07Cover", kicker="Secondary dwellings", photo="rear.jpg", focus="center 62%",
+         headline="A second home on the block you already own",
+         sub="Family, guests, or rental.", num=n(1, 5)),
+    dict(kind="point", kicker="What it is", headline="Self-contained, on the same lot", size=70, num=n(2, 5),
+         body=["Its own kitchen, bathroom, bedroom and living space."]),
+    dict(kind="point", deep=True, kicker="What it’s for", headline="Family close by, not on top of you", size=66, num=n(3, 5),
+         body=["Multi-generational living, guests, or an income from the same block."]),
+    dict(kind="point", kicker="What decides it", headline="Your lot, your zoning, your council", size=66, num=n(4, 5),
+         body=["Worth checking what’s possible before you get attached to a plan."]),
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["Send us your address and we’ll tell you what’s worth exploring.",
+                "Secondary dwellings · Gold Coast"]),
+])
 
-# ---- Post 8 -----------------------------------------------------------------
-POSTS.append(dict(id="P08", page="Post 8 · Service area", date="Thu 24 Sep · Static", slides=[
+P(id="P08", page="Post 8 · Service area", date="Thu 24 Sep · Static", pillar="Services & positioning",
+  objective="Local awareness", cta="If you're nearby and thinking about a project, we're easy to get hold of.",
+  caption="Where we've been building.\n\nBurleigh, Bonogin, Varsity Lakes and across the Gold Coast — new builds, extensions and renovations.\n\nIf you're in the area and thinking about a project, we're easy to get hold of.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #GoldCoastHomes #Burleigh #Bonogin #VarsityLakes #CustomHomeBuilder #HomeRenovation #HomeExtension #QLDBuilder #ResidentialConstruction",
+  approve="Only Burleigh, Bonogin and Varsity Lakes are supported by public evidence. Do not add a suburb Rob hasn't confirmed. Northern NSW and Brisbane stay off until he confirms licensing and appetite.",
+  slides=[
     dict(kind="stack", name="P08ServiceArea", kicker="Service area", headline="Where we build", svg=SVG_COAST,
          items=[dict(t="Burleigh"), dict(t="Bonogin"), dict(t="Varsity Lakes"),
                 dict(t="and across the Gold Coast", soft=True)],
-         sub="Custom homes, renovations and extensions."),
-]))
+         sub="New builds, extensions and renovations."),
+])
 
-# ---- Post 9 -----------------------------------------------------------------
-POSTS.append(dict(id="P09", page="Post 9 · Planning mistakes", date="Sun 27 Sep · Carousel", slides=[
-    dict(kind="deep_cover", name="P09Cover", kicker="Planning", svg=SVG_DOC,
-         headline="Three renovation mistakes we see every year", size=70,
+P(id="P09", page="Post 9 · Renovation mistakes", date="Sun 27 Sep · Carousel", pillar="Educational",
+  objective="Saves", cta="Ready to get started?",
+  caption="Three renovation mistakes we see every year — and every one of them is easier to avoid before the job starts than to fix once it has.\n\nFinishes chosen too late. No contingency for what's behind the wall. And expectations nobody said out loud.\n\nNone of them are dramatic. They're just expensive.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #RenovationPlanning #RenovationGoldCoast #CustomHomeBuilder #GoldCoastHomes #QLDBuilder #Burleigh #ResidentialConstruction",
+  approve="'Simple, well chosen materials often create a more timeless result' is near-verbatim from their blog — confirm Rob is happy for it to become a signature line.",
+  slides=[
+    dict(kind="deep_cover", name="P09Cover", kicker="Renovations", svg=SVG_DOC,
+         headline="Three renovation mistakes we see every year",
          sub="All three are avoidable before you start.", num=n(1, 5)),
     dict(kind="point", kicker="One", headline="Choosing finishes last", num=n(2, 5),
          body=["The most common cause of delays that didn’t need to happen."]),
@@ -465,47 +516,62 @@ POSTS.append(dict(id="P09", page="Post 9 · Planning mistakes", date="Sun 27 Sep
          body=["Every existing home has something nobody has seen yet."]),
     dict(kind="point", kicker="Three", headline="Leaving expectations unspoken", size=70, num=n(4, 5),
          body=["Scope, timing, how you’ll talk. Agreed early, or argued about later."]),
-    dict(kind="cta", headline="Planning something for next year?", size=72, num=n(5, 5),
-         meta="Now’s the right time to talk it through."),
-]))
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["Planning something for next year? Now’s the right time to talk it through.",
+                "Renovations · Gold Coast"]),
+])
 
-# ---- Post 10 ----------------------------------------------------------------
-POSTS.append(dict(id="P10", page="Post 10 · Communication", date="Tue 29 Sep · Carousel", slides=[
-    dict(kind="photo_cover", name="P10Cover", kicker="On communication", photo="team.jpg", focus="center 45%",
-         headline="Most build stress is not knowing what’s next", size=62,
-         sub="So we try to remove that part.", num=n(1, 5)),
-    dict(kind="point", kicker="One", headline="Agree the update rhythm in week one", size=70, num=n(2, 5),
-         body=["Weekly call, site meeting, email. Whichever suits — decided early."]),
-    dict(kind="point", deep=True, kicker="Two", headline="One point of contact", num=n(3, 5),
-         body=["You deal with Rob, first chat through to handover. No relay."]),
-    dict(kind="point", kicker="Three", headline="Bad news early beats good news late", size=68, num=n(4, 5),
-         body=["Something behind a wall is normal. Hearing about it a fortnight later isn’t."]),
-    dict(kind="cta", headline="That’s how we try to run it.", num=n(5, 5),
-         meta="Coast Life Constructions · Gold Coast"),
-]))
+P(id="P10", page="Post 10 · One builder", date="Tue 29 Sep · Carousel", pillar="Trust & process",
+  objective="Trust", cta="Ready to get started?",
+  caption="New build, extension or renovation — it's the same bloke either way.\n\nRob takes the first call, walks the site, prices it, runs it and hands it over. There's no relay, and no project manager you meet once.\n\nIt's the main reason we only take on one or two projects at a time.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #FamilyOwnedBusiness #CustomHomeBuilder #HomeRenovation #GoldCoastHomes #DesignAndBuild #QLDBuilder #VarsityLakes #ResidentialConstruction",
+  approve="Rob is the point of contact from first chat to handover — their own published claim. Do NOT say Rob is on site every stage or every day; that wording is unconfirmed and previously flagged.",
+  slides=[
+    dict(kind="photo_cover", name="P10Cover", kicker="However big the job", photo="team.jpg", focus="center 45%",
+         headline="Same builder, first call to handover",
+         sub="Whichever of the three it is.", num=n(1, 5)),
+    dict(kind="point", kicker="On a new build", headline="Rob walks the block with you", size=70, num=n(2, 5),
+         body=["Before there’s a plan, let alone a price."]),
+    dict(kind="point", deep=True, kicker="On an extension", headline="One person owns the disruption", size=66, num=n(3, 5),
+         body=["You’re living there while it happens. Somebody has to be accountable for that."]),
+    dict(kind="point", kicker="On a renovation", headline="No relay, no handballing", num=n(4, 5),
+         body=["The person who quoted it is the person who finishes it."]),
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["Rob takes the first call himself.",
+                "Coast Life Constructions · Gold Coast"]),
+])
 
-# ---- Post 11 ----------------------------------------------------------------
-POSTS.append(dict(id="P11", page="Post 11 · Meet Rob", date="Thu 1 Oct · Static", slides=[
+P(id="P11", page="Post 11 · Meet Rob", date="Thu 1 Oct · Static", pillar="People & brand story",
+  objective="Profile visits", cta="Say hello — details are in the bio.",
+  caption="Rob Williamson — builder and director, and the person you'll actually be dealing with.\n\nFirst chat, site visit, quote, contract, construction, handover. Same bloke the whole way through, whether it's a new build, an extension or a renovation.\n\nOver twenty years in construction, and still the one answering the phone.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #MeetTheBuilder #FamilyOwnedBusiness #CustomHomeBuilder #GoldCoastHomes #QLDBuilder #HomeRenovation #ResidentialConstruction",
+  approve="Needs Rob's photo and permission. 'Over twenty years' is Rob personally, never the company (business 2020, company entity 2023). No homes-completed number. Do not ship on the placeholder.",
+  slides=[
     dict(kind="ph_static", name="P11MeetRob", kicker="The builder",
          headline="You’ll deal with Rob. First chat to handover.", size=50,
          sub="Rob Williamson · Builder & Director",
          note="A phone portrait on site in good light is enough"),
-]))
+])
 
-# ---- Post 12 ----------------------------------------------------------------
-POSTS.append(dict(id="P12", page="Post 12 · How we work", date="Sun 4 Oct · Carousel", slides=[
-    dict(kind="photo_cover", name="P12Cover", kicker="How we work", photo="rear.jpg", focus="center 50%",
-         headline="One or two builds at a time. On purpose.", size=64,
+P(id="P12", page="Post 12 · One or two at a time", date="Sun 4 Oct · Carousel", pillar="Services & positioning",
+  objective="Enquiries", cta="Ready to get started?",
+  caption="Fewer builds, better results.\n\nWe take on one or two projects at a time so every build gets our full focus. It's not a marketing line — it's the reason the work looks the way it does, and the reason we sometimes can't start straight away.\n\nNew builds. Extensions. Renovations. Secondary dwellings. Gold Coast.",
+  tags="#CoastLifeConstructions #GoldCoastBuilder #CustomHomes #HomeRenovation #HomeExtension #SecondaryDwelling #GoldCoastHomes #CustomHomeBuilder #DesignAndBuild #QLDBuilder #Burleigh #ResidentialConstruction",
+  approve="Confirm the four service lines are what Rob wants enquiries for right now, particularly secondary dwellings. Never publish the internal builds-per-year figure — public framing stays 'one or two projects at a time'.",
+  slides=[
+    dict(kind="photo_cover", name="P12Cover", kicker="How we work", photo="chambers.jpg", focus="center 42%",
+         headline="One or two builds at a time. On purpose.",
          sub="Fewer builds, better results.", num=n(1, 5)),
     dict(kind="point", kicker="What it means", headline="Your job isn’t queued behind six others", size=68, num=n(2, 5),
          body=["The attention it gets is the attention it needs."]),
-    dict(kind="point", deep=True, kicker="What we build", headline="Homes, renovations, extensions, secondary dwellings", size=58, num=n(3, 5),
-         body=["New builds, full renovations, second storeys, self-contained living."]),
-    dict(kind="point", kicker="Honestly", headline="It means we can’t always start straight away", size=66, num=n(4, 5),
+    dict(kind="point", deep=True, kicker="What we take on", headline="New builds, extensions, renovations, secondary dwellings", size=56, num=n(3, 5),
+         body=["Four kinds of job, one standard across all of them."]),
+    dict(kind="point", kicker="Honestly", headline="It means we can’t always start straight away", size=64, num=n(4, 5),
          body=["It also means the job in front of us is the one that matters."]),
-    dict(kind="cta", headline="Planning something for next year?", size=72, num=n(5, 5),
-         meta="Gold Coast · QBCC licensed · Master Builders Queensland"),
-]))
+    dict(kind="close_graphic", headline="Ready to get started?", num=n(5, 5),
+         lines=["Planning something for next year? Now’s a good time to talk.",
+                "Gold Coast · QBCC licensed · Master Builders Queensland"]),
+])
 
 
 # ---------------------------------------------------------------------- build
