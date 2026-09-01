@@ -72,7 +72,7 @@ def kicker(text, deep, top=None, abs_pos=True):
 def head(text, deep, size=60, weight=300, maxw=CW):
     col = "#ffffff" if deep else INK
     return (f'<h2 style="margin: 0; font-size: {size}px; line-height: 1.12; font-weight: {weight}; '
-            f'color: {col}; letter-spacing: -0.005em; max-width: {maxw}px; text-wrap: pretty;">{text}</h2>')
+            f'color: {col}; letter-spacing: -0.005em; max-width: {maxw}px; text-wrap: balance;">{text}</h2>')
 
 
 def para(text, deep, size=40, maxw=740):
@@ -248,7 +248,38 @@ def stack(s):
     return shell(body, BG_LIGHT, NAVY)
 
 
-KINDS = {"photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
+
+def service(s):
+    """Photo on every slide; the service name IS the headline — no eyebrow, no numeral."""
+    deep = False
+    body = f"""  <div style="position: absolute; left: {MX}px; top: {PANEL_Y}px; width: {CW}px; height: {PANEL_H}px; overflow: hidden; background: #dfe5ea;">
+    <img src="{s['photo']}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: {s.get('focus','center')}; display: block;">
+  </div>
+  <div style="position: absolute; left: {MX}px; right: {MX}px; top: {PANEL_Y + PANEL_H + 54}px; display: flex; flex-direction: column; gap: 24px;">
+    {head(s['headline'], deep, size=s.get('size', 88), weight=300)}
+    {para(s['body'][0], deep, size=38, maxw=760)}
+  </div>
+{footer(s.get('num'), deep)}"""
+    return shell(body, BG_LIGHT, NAVY)
+
+
+def close_graphic(s):
+    """The one slide with no photograph — it has to earn the swipe on type alone."""
+    deep = True
+    body = f"""  <div style="position: absolute; inset: 0; background: radial-gradient(115% 80% at 84% 88%, rgba(24,132,199,0.32) 0%, rgba(24,132,199,0) 62%);"></div>
+  {SVG_COAST_DEEP}
+  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 50%; transform: translateY(-56%); display: flex; flex-direction: column; gap: 40px;">
+    {head(s['headline'], deep, size=s.get('size', 82), weight=300, maxw=780)}
+    {rule(deep, w=120)}
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      {''.join(f'<div style="font-size: 34px; font-weight: 400; color: rgba(255,255,255,0.72);">{l}</div>' for l in s['lines'])}
+    </div>
+  </div>
+{footer(s.get('num'), deep)}"""
+    return shell(body, BG_DEEP, "#ffffff")
+
+
+KINDS = {"service": service, "close_graphic": close_graphic, "photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
          "deep_cover": deep_cover, "light_cover": light_cover, "qa": qa, "step": step,
          "point": point, "cta": cta, "quote": quote, "stack": stack}
 
@@ -272,6 +303,11 @@ SVG_COAST = f'''<svg style="position: absolute; right: 30px; top: 0; width: 340p
     <path d="M112 0c-8 26-6 44 3 62 10 20 7 35-7 51-15 17-19 32-10 49 9 19 6 35-9 51-14 15-17 30-9 47 9 19 5 36-10 52-13 14-16 29-8 45 8 17 6 34-7 49-12 13-15 27-9 42" opacity="0.55"/>
   </svg>'''
 
+SVG_COAST_DEEP = f'''<svg style="position: absolute; right: 20px; top: 0; width: 330px; height: 1350px; opacity: 0.2;" viewBox="0 0 120 450" fill="none" stroke="{SKY}" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M92 0c-6 22-4 38 4 54 9 18 6 32-6 46-14 16-18 30-10 46 9 18 6 33-8 48-13 14-16 28-8 44 9 18 5 34-9 49-12 13-15 27-8 42 8 17 6 33-7 47-11 12-14 25-8 39 5 12 4 22-2 35"/>
+    <path d="M112 0c-8 26-6 44 3 62 10 20 7 35-7 51-15 17-19 32-10 49 9 19 6 35-9 51-14 15-17 30-9 47 9 19 5 36-10 52-13 14-16 29-8 45 8 17 6 34-7 49-12 13-15 27-9 42" opacity="0.55"/>
+  </svg>'''
+
 SVG_DOC = f'''<svg style="position: absolute; right: 60px; bottom: 210px; width: 460px; height: 460px; opacity: 0.16;" viewBox="0 0 200 200" fill="none" stroke="{SKY}" stroke-width="1.4">
     <rect x="30" y="24" width="104" height="140"/>
     <rect x="58" y="46" width="104" height="140"/>
@@ -288,9 +324,25 @@ def n(i, total):
 
 POSTS = []
 
+# ---- Post 0 — the new lead: who we service ---------------------------------
+POSTS.append(dict(id="P00", page="Lead · Who we service", date="New lead post · Carousel", slides=[
+    dict(kind="photo_cover", name="Main", kicker="What we take on", photo="aerial.jpg", focus="center 50%",
+         headline="New builds, extensions, renovations.", size=64,
+         sub="Three kinds of job. One builder, start to finish.", num=n(1, 5)),
+    dict(kind="service", photo="chambers.jpg", focus="center 58%", headline="New builds", num=n(2, 5),
+         body=["Designed around your block, your orientation, and how you actually live."]),
+    dict(kind="service", photo="rear.jpg", focus="center 50%", headline="Extensions", num=n(3, 5),
+         body=["More house without moving. Ground floor, second storey, or in underneath."]),
+    dict(kind="service", photo="bath.jpg", focus="center 50%", headline="Renovations", num=n(4, 5),
+         body=["When the bones are good and it’s the layout that’s wrong."]),
+    dict(kind="close_graphic", headline="Not sure which one yours is?", num=n(5, 5),
+         lines=["That’s what the first chat is for.",
+                "Gold Coast · QBCC licensed · Master Builders Queensland"]),
+]))
+
 # ---- Post 1 -----------------------------------------------------------------
 POSTS.append(dict(id="P01", page="Post 1 · Ask a builder", date="Tue 8 Sep · Carousel", slides=[
-    dict(kind="photo_cover", name="Main", kicker="Before you sign", photo="chambers.jpg", focus="center 58%",
+    dict(kind="photo_cover", name="P01Cover", kicker="Before you sign", photo="chambers.jpg", focus="center 58%",
          headline="Three questions to ask a builder before you sign", size=62,
          sub="Worth screenshotting.", num=n(1, 5)),
     dict(kind="qa", kicker="One", headline="“Who will I actually be dealing with?”", num=n(2, 5),
