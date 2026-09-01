@@ -5,8 +5,9 @@ Artboards are static HTML, so they render outside the canvas runtime: inline the
 images as data URIs, set the body to exactly 1080 x 1440, and screenshot headless
 at 2x for 2160 x 2880 masters.
 
-    python3 export_png.py            # 2x masters
-    python3 export_png.py --scale 1  # 1080 x 1440
+    python3 export_png.py             # every page, 2x masters
+    python3 export_png.py --scale 1   # 1080 x 1440
+    python3 export_png.py --page 1    # one page only
 """
 import base64, json, mimetypes, os, re, shutil, subprocess, sys, tempfile
 
@@ -17,6 +18,7 @@ FONTS = ("https://fonts.googleapis.com/css2?"
          "family=Poppins:wght@300;400;500;600&display=swap")
 
 scale = 1 if "--scale" in sys.argv and sys.argv[sys.argv.index("--scale") + 1] == "1" else 2
+only = int(sys.argv[sys.argv.index("--page") + 1]) if "--page" in sys.argv else None
 _cache = {}
 
 
@@ -57,13 +59,17 @@ def main():
     for ab in canvas["artboards"]:
         by_page.setdefault(ab.get("page", "page-1"), []).append(ab)
 
-    if os.path.isdir(OUT):
+    if only is None and os.path.isdir(OUT):
         shutil.rmtree(OUT)
     total = 0
     tmp = tempfile.mkdtemp()
     for pid, boards in by_page.items():
+        if only is not None and order[pid] != only:
+            continue
         boards.sort(key=lambda a: a["x"])
         folder = os.path.join(OUT, f"{order[pid]:02d}-{slug(pages[pid])}")
+        if os.path.isdir(folder):
+            shutil.rmtree(folder)
         os.makedirs(folder, exist_ok=True)
         for i, ab in enumerate(boards, start=1):
             dc = ab["file"]
