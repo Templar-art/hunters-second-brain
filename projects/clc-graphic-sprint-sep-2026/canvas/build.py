@@ -88,18 +88,32 @@ def rule(deep, w=180):
 
 # ---------------------------------------------------------------- slide kinds
 
+def hero_size(text):
+    """Heroes are set as large as the copy allows — scale is the whole point."""
+    n = len(text)
+    return 96 if n <= 40 else (84 if n <= 62 else 72)
+
+
 def photo_cover(s):
-    deep = False
-    sub = f'\n    <div style="font-size: 32px; font-weight: 400; color: {STEEL};">{s["sub"]}</div>' if s.get("sub") else ""
-    body = f"""  <div style="position: absolute; left: {MX}px; top: {PANEL_Y}px; width: {CW}px; height: {PANEL_H}px; overflow: hidden; background: #dfe5ea;">
-    <img src="{s['photo']}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: {s.get('focus','center')}; display: block;">
-  </div>
-  <div style="position: absolute; left: {MX}px; right: {MX}px; top: {PANEL_Y + PANEL_H + 54}px; display: flex; flex-direction: column; gap: 20px;">
-    {kicker(s['kicker'], deep, abs_pos=False)}
-    {head(s['headline'], deep, size=s.get('size', 60))}{sub}
-  </div>
-{footer(s.get('num'), deep)}"""
-    return shell(body, BG_LIGHT, NAVY)
+    """HERO — full bleed, edge to edge. Deliberately unlike the framed base slides.
+    Build stays fully visible above ~58%; type lives in the gradient, per Rob's approved card."""
+    size = s.get('hero_size') or hero_size(s['headline'])
+    sub = (f'<div style="font-size: 34px; font-weight: 400; color: rgba(255,255,255,0.72); '
+           f'max-width: 720px;">{s["sub"]}</div>') if s.get("sub") else ""
+    body = f"""  <img src="{s['photo']}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {s.get('focus','center')}; display: block;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,31,44,0.44) 0%, rgba(10,31,44,0) 24%);"></div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,26,38,0.95) 0%, rgba(8,26,38,0.86) 26%, rgba(9,29,42,0.42) 46%, rgba(10,31,44,0) 62%);"></div>
+  <div style="position: absolute; left: {MX}px; right: {MX}px; bottom: {FOOT_B}px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="width: 96px; height: 3px; background: {BLUE};"></div>
+    <div style="font-size: 25px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: {SKY};">{s['kicker']}</div>
+    <h1 style="margin: 0; font-size: {size}px; line-height: 1.04; font-weight: 300; color: #ffffff; letter-spacing: -0.012em; max-width: {CW}px; text-wrap: balance;">{s['headline']}</h1>
+    {sub}
+    <div style="margin-top: 26px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="font-size: 22px; letter-spacing: 0.16em; font-weight: 500; color: rgba(151,200,232,0.8);">{s.get('num','')}</div>
+      <img src="cl-white.png" alt="Coast Life Constructions" style="width: {LOGO_W}px; height: auto; display: block;">
+    </div>
+  </div>"""
+    return shell(body, BG_DEEP, "#ffffff")
 
 
 def photo_static(s):
@@ -138,11 +152,12 @@ def ph_static(s):
 def deep_cover(s):
     deep = True
     sub = f'\n    <div style="font-size: 32px; font-weight: 400; color: rgba(255,255,255,0.66);">{s["sub"]}</div>' if s.get("sub") else ""
-    body = f"""  <div style="position: absolute; inset: 0; background: radial-gradient(120% 85% at 18% 8%, rgba(24,132,199,0.34) 0%, rgba(24,132,199,0) 62%);"></div>
+    body = f"""  <div style="position: absolute; inset: 0; background: radial-gradient(130% 90% at 14% 4%, rgba(24,132,199,0.42) 0%, rgba(24,132,199,0) 64%);"></div>
   {s.get('svg','')}
-  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 300px; display: flex; flex-direction: column; gap: 30px;">
+  <div style="position: absolute; left: {MX}px; right: {MX}px; bottom: 260px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="width: 96px; height: 3px; background: {BLUE};"></div>
     {kicker(s['kicker'], deep, abs_pos=False)}
-    {head(s['headline'], deep, size=s.get('size', 74))}{sub}
+    {head(s['headline'], deep, size=s.get('hero_size') or hero_size(s['headline']))}{sub}
   </div>
 {footer(s.get('num'), deep)}"""
     return shell(body, BG_DEEP, "#ffffff")
@@ -152,9 +167,10 @@ def light_cover(s):
     deep = False
     sub = f'\n    <div style="font-size: 32px; font-weight: 400; color: {STEEL};">{s["sub"]}</div>' if s.get("sub") else ""
     body = f"""  {s.get('svg','')}
-  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 300px; display: flex; flex-direction: column; gap: 30px;">
+  <div style="position: absolute; left: {MX}px; right: {MX}px; bottom: 260px; display: flex; flex-direction: column; gap: 26px;">
+    <div style="width: 96px; height: 3px; background: {BLUE};"></div>
     {kicker(s['kicker'], deep, abs_pos=False)}
-    {head(s['headline'], deep, size=s.get('size', 74))}{sub}
+    {head(s['headline'], deep, size=s.get('hero_size') or hero_size(s['headline']))}{sub}
   </div>
 {footer(s.get('num'), deep)}"""
     return shell(body, BG_LIGHT, NAVY)
@@ -291,7 +307,7 @@ SVG_ROOFS = f'''<svg style="position: absolute; right: 74px; top: 700px; width: 
     <path d="M216 104 L256 62 L296 104 M216 104 v68 h80 v-68 M240 172 v-40 h32 v40"/>
   </svg>'''
 
-SVG_PLAN = f'''<svg style="position: absolute; right: -40px; bottom: 200px; width: 520px; height: 520px; opacity: 0.22;" viewBox="0 0 200 200" fill="none" stroke="{NAVY}" stroke-width="1.4">
+SVG_PLAN = f'''<svg style="position: absolute; right: -70px; top: 80px; width: 720px; height: 720px; opacity: 0.26;" viewBox="0 0 200 200" fill="none" stroke="{NAVY}" stroke-width="1.4">
     <rect x="16" y="40" width="150" height="112"/>
     <path d="M16 96h150M92 40v112"/>
     <rect x="30" y="112" width="30" height="40"/>
@@ -308,7 +324,7 @@ SVG_COAST_DEEP = f'''<svg style="position: absolute; right: 20px; top: 0; width:
     <path d="M112 0c-8 26-6 44 3 62 10 20 7 35-7 51-15 17-19 32-10 49 9 19 6 35-9 51-14 15-17 30-9 47 9 19 5 36-10 52-13 14-16 29-8 45 8 17 6 34-7 49-12 13-15 27-9 42" opacity="0.55"/>
   </svg>'''
 
-SVG_DOC = f'''<svg style="position: absolute; right: 60px; bottom: 210px; width: 460px; height: 460px; opacity: 0.16;" viewBox="0 0 200 200" fill="none" stroke="{SKY}" stroke-width="1.4">
+SVG_DOC = f'''<svg style="position: absolute; right: -30px; top: 90px; width: 660px; height: 660px; opacity: 0.2;" viewBox="0 0 200 200" fill="none" stroke="{SKY}" stroke-width="1.4">
     <rect x="30" y="24" width="104" height="140"/>
     <rect x="58" y="46" width="104" height="140"/>
     <path d="M74 78h72M74 100h72M74 122h50"/>
