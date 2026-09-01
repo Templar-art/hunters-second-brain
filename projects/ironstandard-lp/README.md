@@ -36,5 +36,5 @@ Before retiring `ironstandard.no`'s current "Launching Soon" page, log into GoDa
 
 - Real opening date (currently placeholder "Oslo · Opening 2027" text in the hero).
 - An image for the "Who it's for" section — free stock search kept surfacing bright, heavily-branded CrossFit-box photography that clashed with the dark/premium direction. Worth a real shoot or a paid stock license rather than more free-stock searching.
-- Optional: swap `assets/video/hero-woman.mp4` / `hero-man.mp4` for full HD/4K downloads from the same Pexels source pages (currently SD preview-quality files, fine for v1, upgradeable via Pexels' own "Free Download" button).
+- Hero currently plays a single clip (`assets/video/hero-woman.mp4`, SD preview-quality — fine for v1, upgradeable to Pexels' HD/4K download later). A second, heavier-load male clip from Adobe Stock (Hunter's call — free stock kept surfacing outdoor/light-weight/CrossFit-style content, not the heavy indoor powerlifting look wanted) is planned: once you have that file, add it back as `assets/video/hero-man.mp4` and reintroduce a crossfade between the two `<video>` elements in `index.html`'s `#hero` section (same pattern as the current single video, duplicated with a second `<source>` and a CSS crossfade animation).
 - Analytics if wanted (Plausible or GA4 — not wired in yet).
