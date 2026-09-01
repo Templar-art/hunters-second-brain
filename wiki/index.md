@@ -29,6 +29,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[akmal]] — 1007/180 Marine Parade full ZED restyle; delivered 14 Jul, 14cr
 - [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 - [[oneill-group]] — client; full rebrand + website. Identity landed 2026-08 as **O'Neill Property** (Sage Grey/Basalt/Stone/Deep Sage, Sinhala MN + Inter) — the earlier 10x-palette brief on that page is superseded
+- [[iron-standard]] — Anthony McCoy's Oslo powerlifting gym, pre-launch; waitlist landing page built 2 Sep (Brevo email capture, Netlify hosting) — not the unrelated [[anthony]] lead page
 
 ## Projects
 - [[lead-gen-engine]] — ads + landing pages for MVX, CVA and 10x itself; per-niche strategy, 3 pages built 28 Jul

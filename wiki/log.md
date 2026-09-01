@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title`
 
+## [2026-09-02] build | Iron Standard waitlist landing page
+New client, Anthony McCoy's Oslo powerlifting gym (pre-launch). Built a static waitlist landing page — Brevo for email capture (investor-exportable list, added as a list under 10x's existing Brevo account), Netlify hosting with GoDaddy DNS repoint. Caught and fixed a real security issue mid-build: the first pass would have exposed a Brevo API key in public page JavaScript; corrected to a plain form POST against Brevo's hosted Forms endpoint instead. Spec: `docs/superpowers/specs/2026-09-02-ironstandard-landing-page-design.md`. Plan: `docs/superpowers/plans/2026-09-02-ironstandard-landing-page.md`. Page: [[iron-standard]].
+
 ## [2026-08-27] ingest | Per-camera job-folder labeling — non-negotiable standard
 Hunter set a hard standing rule from a live example (Shape | Westside HQ job): every job folder gets one subfolder per camera device (`{Camera Model} - {N} Files ({Unit} {Value})`, e.g. `A7R5 - 370 Files (GB 47)`) plus a `Selects` folder, always. Documented in [[archiving-and-backup]]. Also built `ssd-drive-upload` skill (`~/.claude/skills/ssd-drive-upload/`) for the SSD→gdrive rclone upload workflow, and re-ordered a live 11-zip/~975GB upload batch smallest-first on request.
 
