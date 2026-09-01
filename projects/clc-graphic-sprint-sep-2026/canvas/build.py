@@ -346,6 +346,7 @@ def detail_spread(s):
 # photograph itself. Mechanism only — no reference asset, mark or wording is used.
 
 BRAND_HUE = 211 / 360      # between the logo's #1884c7 and #2a4f8d
+PAPER = "#f0f0f0"          # the flat light grey ground
 _GROUND_CACHE = {}
 
 def ground_from(photo, variant='blue'):
@@ -356,6 +357,8 @@ def ground_from(photo, variant='blue'):
     blue family, so only the value moves. Sampling the photo's hue produced sage,
     tan and greige — a different brand's world.
     """
+    if variant == "paper":
+        return PAPER            # flat: one ground across the whole account
     key = (photo, variant)
     if not photo:
         return {"light": "#e8eaec", "grey": "#a9adb1", "dark": "#232629"}.get(variant, "#1d3a52")
@@ -399,7 +402,7 @@ def ground_from(photo, variant='blue'):
 
 def _ink_for(variant, ground):
     """Pale tint on the deep ground; the brand dark ink on light and grey."""
-    if variant in ("light", "grey"):
+    if variant in ("light", "grey", "paper"):
         return "#16242e"
     return _tint(ground)
 
@@ -407,7 +410,7 @@ def _ink_for(variant, ground):
 def _logo_for(variant):
     # The real two-tone colour mark on light grounds, the official white master on deep.
     # Never a flat single-colour silhouette — that has been rejected before.
-    return "cl-colour.png" if variant in ("light", "grey") else "cl-white.png"
+    return "cl-colour.png" if variant in ("light", "grey", "paper") else "cl-white.png"
 
 
 def _tint(hex_ground, l=0.955, sat=0.10):
@@ -430,21 +433,21 @@ PL_CAP_Y    = 1238
 
 def plate_text(s):
     """Close plate: no photograph. The statement occupies the image band."""
-    v = s.get("variant", "dark")
+    v = s.get("variant", "paper")
     ground = s.get("ground") or ground_from(None, v)
     ink = _ink_for(v, ground)
-    return shell(f"""  <img src="{_logo_for(v)}" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: {0.96 if v in ("light","grey") else 0.9};">
+    return shell(f"""  <img src="{_logo_for(v)}" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: {0.96 if v in ("light","grey","paper") else 0.9};">
   <div style="position: absolute; left: 50%; top: {PL_IMG_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 40}px; height: {PL_IMG_H}px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; text-align: center;">
     <div style="font-size: 58px; line-height: 1.18; font-weight: 300; color: {ink}; letter-spacing: -0.005em; text-wrap: balance;">{s['caption']}</div>
     <div style="width: 76px; height: 2px; background: {ink}; opacity: 0.5;"></div>
   </div>
   <div style="position: absolute; left: 50%; top: {PL_CAP_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 60}px; text-align: center;
-       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: {0.7 if v in ('light','grey') else 0.82};">{s.get('meta','').upper()}</div>""",
+       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: {0.7 if v in ('light','grey','paper') else 0.82};">{s.get('meta','').upper()}</div>""",
                  ground, ink, h=H_PLATE)
 
 
 def plate(s):
-    v = s.get("variant", "dark")
+    v = s.get("variant", "paper")
     ground = s.get("ground") or ground_from(s.get("photo"), v)
     ink = _ink_for(v, ground)
     cap = s["caption"].upper()
@@ -455,13 +458,13 @@ def plate(s):
                f'object-position: {s.get("focus","center")}; display: block;">{tint}')
     else:
         art = slot(PL_IMG_W, PL_IMG_H, s.get("label", "Image required"), s.get("note", ""),
-                   on_dark=v not in ("light", "grey"))
-    body = f"""  <img src="{_logo_for(v)}" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: {0.96 if v in ("light","grey") else 0.9};">
+                   on_dark=v not in ("light", "grey", "paper"))
+    body = f"""  <img src="{_logo_for(v)}" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: {0.96 if v in ("light","grey","paper") else 0.9};">
   <div style="position: absolute; left: 50%; top: {PL_IMG_Y}px; transform: translateX(-50%); width: {PL_IMG_W}px; height: {PL_IMG_H}px; overflow: hidden; background: rgba(0,0,0,0.06); position: absolute;">
 {art}
   </div>
   <div style="position: absolute; left: 50%; top: {PL_CAP_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 60}px; text-align: center;
-       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: {0.78 if v in ("light","grey") else 0.9}; text-wrap: balance;">{cap}</div>"""
+       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: {0.78 if v in ("light","grey","paper") else 0.9}; text-wrap: balance;">{cap}</div>"""
     return shell(body, ground, ink, h=H_PLATE)
 
 KINDS = {"plate": plate, "plate_text": plate_text, "service": service, "detail_spread": detail_spread, "close_graphic": close_graphic, "photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
@@ -839,7 +842,7 @@ def to_plate(post):
         hero = post.get("hero") or next((sl.get("photo") for sl in post["slides"] if sl.get("photo")), None)
     pool = [sl.get("photo") for sl in post["slides"] if sl.get("photo")]
     spare = [q for q in pool if q != hero]
-    v = post.get("variant", "dark")
+    v = post.get("variant", "paper")
     ground = ground_from(hero, v)
     out = []
     for idx, sl in enumerate(post["slides"]):
