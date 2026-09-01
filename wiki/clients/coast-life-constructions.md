@@ -161,3 +161,10 @@ Five images is not an accident — it is a gallery. Either CLC built the project
 ## Copy register — Rob's plain voice vs "professional and direct" (1 Sep 2026)
 Hunter's call on the sprint canvas: rewrite everything **more professional and direct**. Applied across all 49 slides + 13 captions. Practically: declarative sentences, no colloquialism ("same bloke" → "the same builder", "handballing" → "handover between staff", "getting wrong" → "failing to do"), "commence" over "start straight away".
 ⚠️ Reconciles with — does not overturn — the 8 Jul ROB'S BRAND VERDICT. That rule banned *clever* agency lines and aphorisms, not formality. Formal-and-plain is still Rob's register; the banned failure mode was editorial cleverness. Keep both tests: no aphorisms, and no colloquialism.
+
+## ⚠️ Beware invented CLC brand kits in briefs (1 Sep 2026)
+`~/Downloads/claude-instagram-layout-reconstruction-brief.md` — a generally sound layout-reconstruction framework — closes with an example CLC brief specifying **Paper #F2EFE9 · Ink #242522 · Eucalypt #34443A · Sandstone #CBBEAA · Clay #AE7256 · "editorial serif" + Inter · 72px margins · 6 slides.**
+**None of that is Coast Life.** No green, no sand, no clay anywhere in their identity; they are navy `#2a4f8d` + blue `#1884c7` + cool off-white `#f5f7f9` + **Poppins**, sampled from their own logo and shipped carousels. It reads as an LLM filling a template placeholder with a plausible warm-neutral palette — the exact cream/sand default. Anyone building to it discards the brand.
+**Rule:** a brand kit written *inside a brief* is a placeholder until checked against the logo artwork and the shipped work. Verify, don't inherit. Framework worth keeping (IP rules, asset template, review checklist) → reconciled into `projects/clc-graphic-sprint-sep-2026/SPEC-FIGMA.md`.
+
+Also: **Ladds Ridge site photos are frame/scaffold stage** (`LaddsRidge-2.jpg` 1080×1920, `LaddsRidge-4.jpg` 2560×1440) — no slab-pour stills exist outside the March 2026 IG post. A slab carousel needs that original footage first.
