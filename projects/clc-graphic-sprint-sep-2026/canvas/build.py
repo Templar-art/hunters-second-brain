@@ -352,10 +352,10 @@ P(id="P00", page="Lead · Who we service", date="Carousel", pillar="Services & p
   tags="#CoastLifeConstructions #GoldCoastBuilder #CustomHomes #HomeRenovation #HomeExtension #GoldCoastHomes #CustomHomeBuilder #DesignAndBuild #QLDBuilder #Burleigh #Bonogin #VarsityLakes #ResidentialConstruction",
   approve="Confirm which service each of the three photos actually belongs to — new build, extension or renovation. Their site only confirms Gundara Street as a renovation.",
   slides=[
-    dict(kind="photo_cover", name="Main", kicker="What we take on", photo="hero-project.jpg", focus="center 62%",
+    dict(kind="photo_cover", name="Main", kicker="What we take on", photo="hero-crew.jpg", focus="center 38%",
          headline="New builds, extensions, renovations.",
          sub="Three kinds of job. One builder, start to finish.", num=n(1, 5)),
-    dict(kind="service", photo="house-white.jpg", focus="center 58%", headline="New builds", num=n(2, 5),
+    dict(kind="service", photo="newbuild-frame.jpg", focus="center 46%", headline="New builds", num=n(2, 5),
          body=["Designed around your block, your orientation, and how you actually live."]),
     dict(kind="service", photo="alfresco.jpg", focus="center 55%", headline="Extensions", num=n(3, 5),
          body=["More house without moving. Ground floor, second storey, or in underneath."]),

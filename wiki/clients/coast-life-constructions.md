@@ -145,3 +145,10 @@ Better than the capability-statement extractions in `CLC Brand Kit/img/` (those 
 - `DSC05486/05564/05639/05655/05691_HiRes.jpg` — kitchens, living, bathrooms.
 - `DesignDrawings.jpg` (2500²) — **real architectural drawings**. Perfect for design-process and planning content; used as the P06 cover instead of a drawn motif.
 Twelve of these are processed into `projects/clc-graphic-sprint-sep-2026/canvas/` at ~1400px. Still no portrait of Rob anywhere.
+
+## Mondaro Project — a named build not yet in the register (1 Sep 2026)
+`~/Downloads/Coastlife Construction _ Mondaro Project _ 14th of Jly -3.JPG` (7920×6336, 10x shoot, 14 Jul) — two-storey timber frame up on a steep treed block, Gold Coast skyline on the horizon. **Add "Mondaro" to the named-project register in [[clc-brand-voice]] §14** alongside Chambers Lane, Burleigh, Gundara, Winship, Ladds Ridge and 32 Garden Grove. Confirm the suburb and whether it is a new build or a rebuild.
+
+Also in Downloads from the same drop: `Laddridge June-6.jpg` (3895×5842) — two of the crew lining out an internal wall, one on the gun, one holding the sheet. Best people shot we have; now the hero of the "who we service" lead post. `Fixed Photos Revisions -3.JPG` is a second Mondaro frame.
+
+⚠️ These are 10x's own shoots and vastly better than the website extractions — **the raw shoot folders are the real photo library, not the website.** Ask Rob/check the SSD for the full Mondaro and Ladds Ridge sets before commissioning any new shoot.
