@@ -798,34 +798,27 @@ def _variant_slides(tag):
                   "Gold Coast · QBCC licensed · Master Builders Queensland"]),
     ]
 
-# ---- Image slots -----------------------------------------------------------
-# Every Mondaro detail frame turned out to be published already (the 4 Aug
-# "Light, shadow, and structure" carousel and the 23 Jul "Texture. Depth.
-# Character." pair). With the website set and the capability-statement set also
-# published, there is currently NO verified-unpublished photography.
+# ---- Photography -----------------------------------------------------------
+# Four frames confirmed unpublished by Hunter (1 Sep 2026). Everything else in
+# the Mondaro set ran on 4 Aug and 23 Jul; the website and capability-statement
+# sets are published too. So: four images, two black-and-white, two colour.
 #
-# So the layouts ship with marked slots instead of stand-in images. Each names
-# the shot required and its crop. Swap a slot for a filename in one line the
-# moment a clean frame exists.
+# A carousel is four plates, so each one uses all four — no repeat inside a post.
+# The starting frame rotates per post, so covers differ down the grid.
 
-SLOT = {
-    "P00": ["Frame junction, close",  "New build — structure",   "Extension — under-house",  "Renovation — interior detail", None],
-    "P01": ["Set-out / level check",  "Block and levels",        "Layout, framed opening",   "Material selection, close",    None],
-    "P02": ["Handover detail"],
-    "P03": ["Extension, exterior",    "Ground-floor addition",   "Second storey",            "Under-house build-in",         None],
-    "P04": ["Renovation, before",     "Layout opened up",        "Junction or finish detail","Material palette flat-lay",    None],
-    "P05": ["Finished room, quiet"],
-    "P06": ["Drawings or plans",    "Existing home, tired",    "Extension in progress",    "Site cleared, rebuild",   None],
-    "P07": ["Secondary dwelling",   "Self-contained interior", "Second dwelling exterior", "Block, showing setback",  None],
-    "P08": ["Site, wide"],
-    "P09": ["Finishes, close",        "Behind the wall",         "Scope written down",       "Site conversation",            None],
-    "P10": ["Rob on site",            "Rob at the block",        "Site meeting",             "Tool or hand detail",          None],
-    "P11": ["Portrait of Rob"],
-    "P12": ["Signature project",      "One site, focused",       "Four services montage",   "Programme board or diary",      None],
-    "P13": ["Frame junction",         "Set-out marks",           "Joists or material stack", "Braced frame, plumb check",    None],
-}
+ROTATION = ["mondaro-joists.jpg",  # B&W  engineered joists, stacked
+            "mondaro-studs.jpg",   # B&W  studs and diagonal brace
+            "mondaro-ply.jpg",     # col  ply wall in raked light
+            "mondaro-helmet.jpg"]  # col  welding helmet on the gloves
 
-SLOT_NOTE = "1080 x 1440 or 4:5 portrait · unpublished frame"
+# Positions with no suitable frame stay briefed slots rather than taking a stand-in.
+SLOT_ONLY = {"P11": "Portrait of Rob"}
+SLOT_NOTE = "1080 x 1440 or 4:5 portrait \u00b7 unpublished frame"
+
+
+POST_ORDER = {pid: i for i, pid in enumerate(
+    ["P00", "P01", "P02", "P03", "P04", "P05", "P06",
+     "P07", "P08", "P09", "P10", "P11", "P12", "P13"])}
 
 
 def to_plate(post):
@@ -834,8 +827,9 @@ def to_plate(post):
     One ground per post, sampled from its hero photograph, so a carousel reads as
     one object on swipe and the grid reads as one book.
     """
-    assign = SLOT.get(post["id"])
-    hero = None
+    order = POST_ORDER.get(post["id"], 0)
+    rot = ROTATION[order % 4:] + ROTATION[:order % 4]
+    hero = rot[0]
     pool = [sl.get("photo") for sl in post["slides"] if sl.get("photo")]
     spare = [q for q in pool if q != hero]
     v = post.get("variant", "paper")
@@ -866,11 +860,13 @@ def to_plate(post):
                          note=sl.get("primary", {}).get("note", ""))
             else:
                 p.update(photo=(spare.pop(0) if spare else hero))
-        # no verified-unpublished photography exists, so every position is a slot
-        p["photo"] = None
-        p["label"] = (assign[idx] if assign and idx < len(assign) and assign[idx]
-                      else "Image required")
-        p["note"] = SLOT_NOTE
+        if post["id"] in SLOT_ONLY:
+            p["photo"] = None
+            p["label"] = SLOT_ONLY[post["id"]]
+            p["note"] = SLOT_NOTE
+        else:
+            p["photo"] = rot[idx % 4]
+            p["focus"] = "center"
         out.append(p)
     return out
 

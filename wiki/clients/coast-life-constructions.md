@@ -202,3 +202,15 @@ Canvas now ships with every image position as a **briefed slot** naming the shot
 ## Black logo — Hunter's call, overrides the two-tone rule for light grounds (1 Sep 2026)
 Hunter asked twice for a black mark. Built `cl-black.png` by taking the **1203×448 white master** and driving its RGB to `#111214` while keeping the alpha, so the anti-aliased edges survive — 900px wide, far cleaner than recolouring the 269×95 colour PNG would have been. Now used on all light/grey/paper grounds; the white master stays for dark grounds.
 ⚠️ This is a flattened mono derivation, not supplied artwork. The standing rule from 8 Jul (two-tone colour mark, never a flat single-colour silhouette) was written about a **flat-navy** recolour on light grounds, which read muddy. Black reads clean, and the icon separates from the wordmark by whitespace rather than by hue, so nothing is lost. Still worth asking Rob for a proper black lockup — and for an **SVG**, since every mark we hold is raster.
+
+## The four usable frames (1 Sep 2026)
+Hunter confirmed which of the Mondaro set are **unpublished** — the four that were not in the 4 Aug or 23 Jul carousels:
+| File | Source | Look |
+|---|---|---|
+| `mondaro-joists.jpg` | `Fixed Photos Revisions -7.JPG` | B&W · engineered joists stacked, "SMART JOIST" legible |
+| `mondaro-studs.jpg` | `Fixed Photos Revisions -23.JPG` | B&W · studs and diagonal brace, pencil set-out marks |
+| `mondaro-ply.jpg` | `Fixed Photos Revisions -25.JPG` | Colour · ply wall in raked light |
+| `mondaro-helmet.jpg` | `Fixed Photos Revisions -29.JPG` | Colour · welding helmet on the gloves |
+Two black-and-white, two colour. **Burned** (published): the cable/shadow slab, the shadow-diagonals slab, the frame junction, the sandstone wall, the drop saw, plus the frame corner shot.
+**How the canvas uses them:** a carousel is four plates, so each post uses all four — no repeat inside a post. The starting frame rotates per post so covers differ down the grid. `ROTATION` + `POST_ORDER` in `canvas/build.py`. Post 11 stays a briefed slot; there is still no portrait of Rob.
+Ground is flat **`#f0f0f0`** with the black mark (`cl-black.png`, derived from the 1203×448 white master).
