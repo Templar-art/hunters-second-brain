@@ -22,7 +22,7 @@ Before retiring `ironstandard.no`'s current "Launching Soon" page, log into GoDa
 ## 3. Deploy to Netlify
 
 1. Create a free account at netlify.com.
-2. Drag-and-drop the `ironstandard-lp` folder onto Netlify's deploy area (or connect it to a git repo for auto-deploys).
+2. Drag-and-drop the `ironstandard-lp` folder onto Netlify's deploy area (or connect it to a git repo for auto-deploys). `netlify.toml` is already in the folder — it sets security headers and long-cache rules for the video/image assets, no extra config needed.
 3. Netlify gives you a temporary `*.netlify.app` URL immediately — check the site there first.
 
 ## 4. Point ironstandard.no at Netlify
@@ -36,5 +36,6 @@ Before retiring `ironstandard.no`'s current "Launching Soon" page, log into GoDa
 
 - Real opening date (currently placeholder "Oslo · Opening 2027" text in the hero).
 - An image for the "Who it's for" section — free stock search kept surfacing bright, heavily-branded CrossFit-box photography that clashed with the dark/premium direction. Worth a real shoot or a paid stock license rather than more free-stock searching.
-- Hero currently plays a single clip (`assets/video/hero-woman.mp4`, SD preview-quality — fine for v1, upgradeable to Pexels' HD/4K download later). A second, heavier-load male clip is still wanted for the crossfade, but neither free stock (Pexels — outdoor/light-weight/generic-CrossFit only) nor Adobe Stock turned up the right heavy indoor powerlifting look. **Best remaining option: footage of Anthony himself** — he's a competitive powerlifter, so a real clip of him pulling heavy is both on-brand and solves the "real emotion, real weight" ask better than any stock library will. Once a file exists, add it as `assets/video/hero-man.mp4` and reintroduce a crossfade between two `<video>` elements in `index.html`'s `#hero` section (duplicate the current single-video markup, add a second `<source>`, and add a CSS crossfade animation on `.hero-video`).
+- Hero currently plays a single clip (`assets/video/hero-woman.mp4`, SD preview-quality — fine for v1, upgradeable to a full HD/4K download later). A second, heavier-load male clip is still wanted for the crossfade — Pexels and Adobe Stock both came up short on "heavy indoor powerlifting with real emotion," Hunter is now checking Freepik. Once a file exists, add it as `assets/video/hero-man.mp4` and reintroduce a crossfade between two `<video>` elements in `index.html`'s `#hero` section (duplicate the current single-video markup, add a second `<source>`, and add a CSS crossfade animation on `.hero-video`).
+- No favicon yet — the only logo files on hand are the 3165x370 extended wordmark, and Iron Standard's own brand guidelines forbid cropping or altering the brandmark. Their monogram mark (the compact square version made for exactly this) is listed as "Work In Progress" in their guidelines — add a favicon once that ships.
 - Analytics if wanted (Plausible or GA4 — not wired in yet).
