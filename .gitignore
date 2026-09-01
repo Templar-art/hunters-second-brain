@@ -31,3 +31,7 @@ projects/bespoke-sold-popups/preview/frames/
 
 # impeccable detector cache
 **/.impeccable/hook.cache.json
+
+# CLC sprint PNG exports — derived, regenerate with canvas/export_png.py
+projects/clc-graphic-sprint-sep-2026/exports/
+projects/clc-graphic-sprint-sep-2026/canvas/__pycache__/
