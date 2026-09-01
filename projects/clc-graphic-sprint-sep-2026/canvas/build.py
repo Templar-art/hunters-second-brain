@@ -297,14 +297,18 @@ def close_graphic(s):
 
 
 
-def slot(w, h, label, note=""):
+def slot(w, h, label, note="", on_dark=False):
     """A marked placeholder frame. Never a stand-in photo — it says what shot is missing."""
-    sub = f'<div style="font-size: 20px; color: rgba(22,36,46,0.5); text-align: center; max-width: {w-80}px;">{note}</div>' if note else ""
+    hatch_a, hatch_b = ("#33363a", "#2b2e31") if on_dark else ("#e4e9ee", "#dbe2e8")
+    line = "rgba(255,255,255,0.45)" if on_dark else "rgba(47,102,144,0.4)"
+    lab = "rgba(255,255,255,0.75)" if on_dark else STEEL
+    note_c = "rgba(255,255,255,0.45)" if on_dark else "rgba(22,36,46,0.5)"
+    sub = f'<div style="font-size: 20px; color: {note_c}; text-align: center; max-width: {w-80}px;">{note}</div>' if note else ""
     return f"""<div style="width: {w}px; height: {h}px; overflow: hidden;
-       background: repeating-linear-gradient(135deg, #e4e9ee 0px, #e4e9ee 2px, #dbe2e8 2px, #dbe2e8 14px);
+       background: repeating-linear-gradient(135deg, {hatch_a} 0px, {hatch_a} 2px, {hatch_b} 2px, {hatch_b} 14px);
        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;">
-    <div style="width: {min(88, h//4)}px; height: {min(88, h//4)}px; border: 2px solid rgba(47,102,144,0.4);"></div>
-    <div style="font-size: 21px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: {STEEL}; text-align: center;">{label}</div>
+    <div style="width: {min(88, h//4)}px; height: {min(88, h//4)}px; border: 2px solid {line};"></div>
+    <div style="font-size: 21px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: {lab}; text-align: center;">{label}</div>
     {sub}
   </div>"""
 
@@ -354,7 +358,7 @@ def ground_from(photo, variant='blue'):
     """
     key = (photo, variant)
     if not photo:
-        return {"light": "#e8eaec", "grey": "#a9adb1"}.get(variant, "#1d3a52")
+        return {"light": "#e8eaec", "grey": "#a9adb1", "dark": "#232629"}.get(variant, "#1d3a52")
     if key in _GROUND_CACHE:
         return _GROUND_CACHE[key]
     from PIL import Image
@@ -370,7 +374,11 @@ def ground_from(photo, variant='blue'):
     # hue: Coast Life blue, nudged a few degrees by the image so posts differ subtly
     h = (BRAND_HUE + (ph - 0.5) * 0.035) % 1.0
     # value from the photograph; hue stays Coast Life's. Ranges per variant.
-    if variant == 'light':
+    if variant == 'dark':
+        l = 0.105 + pl * 0.115
+        l = min(max(l, 0.100), 0.220)
+        sat = 0.055 - (l - 0.100) * 0.15
+    elif variant == 'light':
         l = 0.855 + pl * 0.085
         l = min(max(l, 0.850), 0.940)
         sat = 0.105 - (l - 0.850) * 0.50
@@ -422,7 +430,7 @@ PL_CAP_Y    = 1238
 
 def plate_text(s):
     """Close plate: no photograph. The statement occupies the image band."""
-    v = s.get("variant", "blue")
+    v = s.get("variant", "dark")
     ground = s.get("ground") or ground_from(None, v)
     ink = _ink_for(v, ground)
     return shell(f"""  <img src="{_logo_for(v)}" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: {0.96 if v in ("light","grey") else 0.9};">
@@ -436,7 +444,7 @@ def plate_text(s):
 
 
 def plate(s):
-    v = s.get("variant", "blue")
+    v = s.get("variant", "dark")
     ground = s.get("ground") or ground_from(s.get("photo"), v)
     ink = _ink_for(v, ground)
     cap = s["caption"].upper()
@@ -446,7 +454,8 @@ def plate(s):
         art = (f'<img src="{s["photo"]}" alt="" style="width: 100%; height: 100%; object-fit: cover; '
                f'object-position: {s.get("focus","center")}; display: block;">{tint}')
     else:
-        art = slot(PL_IMG_W, PL_IMG_H, s.get("label", "Image required"), s.get("note", ""))
+        art = slot(PL_IMG_W, PL_IMG_H, s.get("label", "Image required"), s.get("note", ""),
+                   on_dark=v not in ("light", "grey"))
     body = f"""  <img src="{_logo_for(v)}" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: {0.96 if v in ("light","grey") else 0.9};">
   <div style="position: absolute; left: 50%; top: {PL_IMG_Y}px; transform: translateX(-50%); width: {PL_IMG_W}px; height: {PL_IMG_H}px; overflow: hidden; background: rgba(0,0,0,0.06); position: absolute;">
 {art}
@@ -786,18 +795,35 @@ def _variant_slides(tag):
                   "Gold Coast · QBCC licensed · Master Builders Queensland"]),
     ]
 
-P(id="P90", variant="light", page="Variant · Light ground, colour mark", date="Comparison",
-  pillar="—", objective="—", cta="—", caption="Variant comparison sheet — not for publication.",
-  tags="", approve="Comparison only.", slides=_variant_slides("V1S"))
+# ---- Detail-shot assignment -------------------------------------------------
+# Constraint: unpublished frames only. Everything sourced from the website or the
+# capability statement has already run on the account, so the whole Mondaro detail
+# set carries the feed. Each post mixes black-and-white with colour.
+#
+# Black and white: slab · corner · truss · studs · cables · joists
+# Colour:          ply · helmet · saw · sandstone
 
-P(id="P91", variant="grey", page="Variant · Grey ground, colour mark", date="Comparison",
-  pillar="—", objective="—", cta="—", caption="Variant comparison sheet — not for publication.",
-  tags="", approve="Comparison only.", slides=_variant_slides("V2S"))
+BW = dict(slab="mondaro-slab.jpg", corner="mondaro-corner.jpg", truss="mondaro-truss.jpg",
+          studs="mondaro-studs.jpg", cables="mondaro-cables.jpg", joists="mondaro-joists.jpg")
+CO = dict(ply="mondaro-ply.jpg", helmet="mondaro-helmet.jpg", saw="mondaro-saw.jpg",
+          sandstone="mondaro-sandstone.jpg")
 
-P(id="P92", variant="blue", page="Variant · Blue ground, white mark", date="Comparison",
-  pillar="—", objective="—", cta="—", caption="Variant comparison sheet — not for publication.",
-  tags="", approve="Comparison only.", slides=_variant_slides("V3S"))
-
+DETAIL_ASSIGN = {
+    "P00": [BW["truss"],   BW["corner"], CO["sandstone"], CO["ply"],    None],
+    "P01": [BW["studs"],   BW["slab"],   BW["truss"],     CO["ply"],    None],
+    "P02": [CO["saw"]],
+    "P03": [CO["sandstone"], BW["slab"], BW["truss"],     BW["corner"], None],
+    "P04": [CO["ply"],     BW["cables"], BW["joists"],    BW["studs"],  None],
+    "P05": [CO["helmet"]],
+    "P06": [BW["joists"],  BW["corner"], CO["sandstone"], BW["truss"],  None],
+    "P07": [CO["sandstone"], BW["slab"], CO["ply"],       BW["cables"], None],
+    "P08": [BW["truss"]],
+    "P09": [BW["cables"],  BW["joists"], BW["slab"],      CO["saw"],    None],
+    "P10": [CO["saw"],     CO["helmet"], BW["studs"],     BW["joists"], None],
+    "P11": [None],
+    "P12": [CO["helmet"],  BW["truss"],  CO["sandstone"], CO["ply"],    None],
+    "P13": [BW["truss"],   BW["slab"],   CO["ply"],       BW["studs"],  None],
+}
 
 
 def to_plate(post):
@@ -806,13 +832,17 @@ def to_plate(post):
     One ground per post, sampled from its hero photograph, so a carousel reads as
     one object on swipe and the grid reads as one book.
     """
-    hero = post.get("hero") or next((sl.get("photo") for sl in post["slides"] if sl.get("photo")), None)
+    assign = DETAIL_ASSIGN.get(post["id"])
+    if assign:
+        hero = next((q for q in assign if q), None)
+    else:
+        hero = post.get("hero") or next((sl.get("photo") for sl in post["slides"] if sl.get("photo")), None)
     pool = [sl.get("photo") for sl in post["slides"] if sl.get("photo")]
     spare = [q for q in pool if q != hero]
-    v = post.get("variant", "blue")
+    v = post.get("variant", "dark")
     ground = ground_from(hero, v)
     out = []
-    for sl in post["slides"]:
+    for idx, sl in enumerate(post["slides"]):
         k = sl["kind"]
         if k in ("close_graphic", "cta"):
             meta = " · ".join(sl.get("lines", [])) if sl.get("lines") else sl.get("meta", "")
@@ -840,11 +870,21 @@ def to_plate(post):
                          note=sl.get("primary", {}).get("note", ""))
             else:
                 p.update(photo=(spare.pop(0) if spare else hero))
+        if assign and idx < len(assign):
+            tgt = assign[idx]
+            if tgt:
+                p["photo"], p["focus"] = tgt, "center"
+                p.pop("label", None); p.pop("note", None)
+            elif k == "ph_static":
+                p["photo"] = None
         out.append(p)
     return out
 
 # ---------------------------------------------------------------------- build
 def main():
+    import glob
+    for stale in glob.glob("*.dc.html"):
+        os.remove(stale)
     artboards, pages, notes = [], [], []
     written = []
     for pi, post in enumerate(POSTS, start=1):
@@ -870,7 +910,7 @@ def main():
         })
 
     canvas = {"artboards": artboards, "annotations": notes, "pages": pages,
-              "launch": {"view": "canvas", "page": next((f"page-{i}" for i, po in enumerate(POSTS, 1) if po.get("variant")), "page-1")}}
+              "launch": {"view": "canvas", "page": "page-1"}}
     with open("canvas.json", "w") as fh:
         json.dump(canvas, fh, indent=2)
     print(f"{len(written)} artboards, {len(pages)} pages")
