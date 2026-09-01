@@ -109,3 +109,15 @@ Superseded the dimmed-photo bubbles: Hunter's call is **material backgrounds lik
 ## Related
 - CLC monthly carousel generator: auto-memory `template-clc-social-graphics.md` — apply the named-project + editorial-caption rules to future runs
 - CLC raw assets: ~/Downloads `CLC Exsc-*.jpg`, CLC reels, Coast Life zip (Jun 2026)
+
+## NEW VERIFIED FINDINGS — public-source sweep (1 Sep 2026)
+Run for the 4-week graphic sprint ([plan](../../projects/clc-graphic-sprint-sep-2026/PLAN.md)). All from public registers/sites, not the capability statement:
+- **⚠️ The ABN published on coastlifeconstructions.com.au (88 383 865 646) is CANCELLED** — it belongs to *Williamson, Robert Alexander*, sole trader, cancelled 19 May 2026, postcode QLD 4061. **Supersedes** any assumption the site's compliance block is accurate.
+- **Active entity: COAST LIFE CONSTRUCTIONS QLD PTY LTD, ABN 81 667 565 782 / ACN 667 565 782**, active from 1 May 2023, GST-registered, QLD 4213 (Mudgeeraba/Bonogin). ⚠️ Contradicts the "established 2020" line — 2020 is the *business*, 2023 is the *company*.
+- **Website structure is richer than the vault recorded:** `/our-process` publishes all 7 stages verbatim (Initial Chat → Site Visit → Planning → Full Quote → Contracts → Construction → Handover) and the warranty line. `/blogs` has **7 educational articles** (slab pre-pour checks, garage positioning, early custom-build decisions, GC build stages, renovation value, QLD secondary dwellings, where to start) — the single most under-used asset they own, and the source material for the sprint's educational carousels.
+- **Website testimonials are named with suburbs:** Thea Sonter (Bilambil Heights, NSW), Isaac & Ann Valmadre (Brisbane), Naomi Ortado (Bonogin). Distinct from the Matt C. / Helen O. pair on file.
+- **Houzz:** Varsity Lakes 4227, 5.0 from **only 3 reviews**, **Best of Houzz 2021 – Service** award (⚠️ supersedes "no awards claimed" in [[clc-brand-voice]] §8), projects incl. **Princess Street** — a fifth project name not in the §14 register.
+- **Stale ServiceSeeking profile** (Burleigh Heads, "over 10 years carpentry", member 2019, last quoted ~6 yrs ago) contradicts the website's "Over 20 Years of Experience". Kill or update it.
+- **Indexed duplicate site live** at `coastlifeconstructions.jenocabrera.tech` (footer: Web Design by Gold Coast Design Studio) — staging build left crawlable, splits SEO and serves stale claims.
+- **Name collision:** *Coast Life Homes* (coastlifehomes.com.au) is a separate **Sunshine Coast** builder. CLC is **Gold Coast** — correct anyone who conflates them.
+- **IG as at 1 Sep 2026:** 308 followers, 43 following, posting resumed Jul–Aug 2026, **bio is literally `#coastlifeconstructions`** — no service, no location, no CTA. Worst single asset in the business; re-raise the bio fix with Rob (it needs no handle or brand-mark change).
