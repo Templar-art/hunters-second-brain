@@ -183,7 +183,7 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 
 ⚠️ Also do not borrow `#61a8d8` from `Coast-Life-Constructions-Brand-Uplift.pdf` — that deck is 10x Visuals' own pitch document and carries **10x's** blue, not Coast Life's.
 
-**Logo.** The real **two-tone colour mark** (blue icon + navy wordmark) on light grounds; the official **white master** on navy grounds. Never recolour either into a flat single-colour silhouette — Rob has rejected that repeatedly. Bottom-right, 300px wide at 1×, on **every** slide: their shipped system places it on all slides, not only the last.
+**Logo.** The real **two-tone colour mark** (blue icon + navy wordmark) on light grounds; the official **white master** on navy grounds. Never recolour either into a flat single-colour silhouette — Rob has rejected that repeatedly. Bottom-right, 150px wide at 1×, on **every** slide: their shipped system places it on all slides, not only the last.
 
 **Backgrounds, in order of preference.** (1) a real Coast Life project photograph in the 856 × 760 window, (2) the deep navy ground with a faint blue radial lift, (3) the cool off-white ground with a thin blue architectural line drawing, (4) flat colour. Never a photo behind body copy, never a drop shadow.
 
