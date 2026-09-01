@@ -12,7 +12,7 @@ MX = 112                      # side margin
 CW = W - MX * 2               # 856 content width
 PANEL_Y, PANEL_H = 52, 760    # photo window
 FOOT_B = 72                   # footer baseline
-LOGO_W, LOGO_H = 150, 53
+LOGO_W, LOGO_H = 200, 71
 
 BG_LIGHT = "#f5f7f9"          # cool off-white, faint navy tint (never warm cream)
 BG_DEEP  = "#102f41"          # CLC deep navy ground
