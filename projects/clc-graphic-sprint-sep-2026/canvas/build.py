@@ -344,7 +344,7 @@ def detail_spread(s):
 BRAND_HUE = 211 / 360      # between the logo's #1884c7 and #2a4f8d
 _GROUND_CACHE = {}
 
-def ground_from(photo):
+def ground_from(photo, variant='blue'):
     """A Coast Life ground, varied per post.
 
     The mechanism is borrowed — one ground per post, derived from its photograph,
@@ -352,10 +352,11 @@ def ground_from(photo):
     blue family, so only the value moves. Sampling the photo's hue produced sage,
     tan and greige — a different brand's world.
     """
+    key = (photo, variant)
     if not photo:
-        return "#1d3a52"
-    if photo in _GROUND_CACHE:
-        return _GROUND_CACHE[photo]
+        return {"light": "#e8eaec", "grey": "#a9adb1"}.get(variant, "#1d3a52")
+    if key in _GROUND_CACHE:
+        return _GROUND_CACHE[key]
     from PIL import Image
     import colorsys
     im = Image.open(photo).convert("RGB")
@@ -368,16 +369,37 @@ def ground_from(photo):
 
     # hue: Coast Life blue, nudged a few degrees by the image so posts differ subtly
     h = (BRAND_HUE + (ph - 0.5) * 0.035) % 1.0
-    # value: the photograph's own lightness, mapped into a range the white mark survives
-    l = 0.24 + pl * 0.24
-    l = min(max(l, 0.22), 0.46)
-    # saturation: deeper grounds carry more chroma, lighter ones less
-    sat = 0.30 - (l - 0.22) * 0.42
+    # value from the photograph; hue stays Coast Life's. Ranges per variant.
+    if variant == 'light':
+        l = 0.855 + pl * 0.085
+        l = min(max(l, 0.850), 0.940)
+        sat = 0.105 - (l - 0.850) * 0.50
+    elif variant == 'grey':
+        l = 0.600 + pl * 0.150
+        l = min(max(l, 0.600), 0.750)
+        sat = 0.040
+    else:
+        l = 0.19 + pl * 0.32
+        l = min(max(l, 0.17), 0.42)   # ceiling holds the white caption at >=4.5:1
+        sat = 0.36 - (l - 0.17) * 0.40
 
     rr, gg, bb = colorsys.hls_to_rgb(h, l, sat)
     out = "#%02x%02x%02x" % (int(rr * 255), int(gg * 255), int(bb * 255))
-    _GROUND_CACHE[photo] = out
+    _GROUND_CACHE[key] = out
     return out
+
+
+def _ink_for(variant, ground):
+    """Pale tint on the deep ground; the brand dark ink on light and grey."""
+    if variant in ("light", "grey"):
+        return "#16242e"
+    return _tint(ground)
+
+
+def _logo_for(variant):
+    # The real two-tone colour mark on light grounds, the official white master on deep.
+    # Never a flat single-colour silhouette — that has been rejected before.
+    return "cl-colour.png" if variant in ("light", "grey") else "cl-white.png"
 
 
 def _tint(hex_ground, l=0.955, sat=0.10):
@@ -400,21 +422,23 @@ PL_CAP_Y    = 1238
 
 def plate_text(s):
     """Close plate: no photograph. The statement occupies the image band."""
-    ground = s.get("ground") or "#8e9298"
-    ink = _tint(ground)
-    return shell(f"""  <img src="cl-white.png" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: 0.9;">
+    v = s.get("variant", "blue")
+    ground = s.get("ground") or ground_from(None, v)
+    ink = _ink_for(v, ground)
+    return shell(f"""  <img src="{_logo_for(v)}" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: {0.96 if v in ("light","grey") else 0.9};">
   <div style="position: absolute; left: 50%; top: {PL_IMG_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 40}px; height: {PL_IMG_H}px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; text-align: center;">
     <div style="font-size: 58px; line-height: 1.18; font-weight: 300; color: {ink}; letter-spacing: -0.005em; text-wrap: balance;">{s['caption']}</div>
     <div style="width: 76px; height: 2px; background: {ink}; opacity: 0.5;"></div>
   </div>
   <div style="position: absolute; left: 50%; top: {PL_CAP_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 60}px; text-align: center;
-       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: 0.82;">{s.get('meta','').upper()}</div>""",
+       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: {0.7 if v in ('light','grey') else 0.82};">{s.get('meta','').upper()}</div>""",
                  ground, ink, h=H_PLATE)
 
 
 def plate(s):
-    ground = s.get("ground") or ground_from(s.get("photo"))
-    ink = _tint(ground)
+    v = s.get("variant", "blue")
+    ground = s.get("ground") or ground_from(s.get("photo"), v)
+    ink = _ink_for(v, ground)
     cap = s["caption"].upper()
     if s.get("photo"):
         tint = (f'<div style="position: absolute; inset: 0; background: {ground}; opacity: {s["tint"]};"></div>'
@@ -423,12 +447,12 @@ def plate(s):
                f'object-position: {s.get("focus","center")}; display: block;">{tint}')
     else:
         art = slot(PL_IMG_W, PL_IMG_H, s.get("label", "Image required"), s.get("note", ""))
-    body = f"""  <img src="cl-white.png" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: 0.9;">
+    body = f"""  <img src="{_logo_for(v)}" alt="Coast Life Constructions" style="position: absolute; left: 50%; top: {PL_TOP}px; transform: translateX(-50%); width: {PL_LOGO_W}px; height: auto; display: block; opacity: {0.96 if v in ("light","grey") else 0.9};">
   <div style="position: absolute; left: 50%; top: {PL_IMG_Y}px; transform: translateX(-50%); width: {PL_IMG_W}px; height: {PL_IMG_H}px; overflow: hidden; background: rgba(0,0,0,0.06); position: absolute;">
 {art}
   </div>
   <div style="position: absolute; left: 50%; top: {PL_CAP_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 60}px; text-align: center;
-       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: 0.9; text-wrap: balance;">{cap}</div>"""
+       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: {0.78 if v in ("light","grey") else 0.9}; text-wrap: balance;">{cap}</div>"""
     return shell(body, ground, ink, h=H_PLATE)
 
 KINDS = {"plate": plate, "plate_text": plate_text, "service": service, "detail_spread": detail_spread, "close_graphic": close_graphic, "photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
@@ -738,6 +762,44 @@ P(id="P13", page="Mondaro · Project journal", date="Carousel", pillar="Trust & 
 
 
 
+# ---- Variant comparison pages ----------------------------------------------
+# Same eight plates, three grounds. Pick one and it rolls across all 14 posts.
+
+def _variant_slides(tag):
+    return [
+      dict(kind="photo_cover", name=f"{tag}01", photo="hero-crew.jpg", focus="center 38%",
+           headline="New builds, extensions, renovations."),
+      dict(kind="point", name=f"{tag}02", photo="newbuild-frame.jpg", focus="center 46%",
+           headline="New builds", body=["Designed to the block, the orientation and the way you intend to live."]),
+      dict(kind="point", name=f"{tag}03", photo="mondaro-truss.jpg", focus="center 50%",
+           headline="Structure", body=["Structure decides everything that follows."]),
+      dict(kind="point", name=f"{tag}04", photo="mondaro-slab.jpg", focus="center 55%",
+           headline="Set-out", body=["Levels and set-out established before a single stud is stood."]),
+      dict(kind="point", name=f"{tag}05", photo="kitchen.jpg", focus="center 50%",
+           headline="Renovations", body=["For homes that are structurally sound but no longer laid out well."]),
+      dict(kind="point", name=f"{tag}06", photo="chambers.jpg", focus="center 62%",
+           headline="Custom", body=["A custom build is determined long before it begins."]),
+      dict(kind="point", name=f"{tag}07", photo="mondaro-sandstone.jpg", focus="center 50%",
+           headline="Material", body=["Common on sloping Gold Coast blocks, and typically the least disruptive."]),
+      dict(kind="close_graphic", name=f"{tag}08", headline="Ready to get started?",
+           lines=["We take on one or two projects at a time.",
+                  "Gold Coast · QBCC licensed · Master Builders Queensland"]),
+    ]
+
+P(id="P90", variant="light", page="Variant · Light ground, colour mark", date="Comparison",
+  pillar="—", objective="—", cta="—", caption="Variant comparison sheet — not for publication.",
+  tags="", approve="Comparison only.", slides=_variant_slides("V1S"))
+
+P(id="P91", variant="grey", page="Variant · Grey ground, colour mark", date="Comparison",
+  pillar="—", objective="—", cta="—", caption="Variant comparison sheet — not for publication.",
+  tags="", approve="Comparison only.", slides=_variant_slides("V2S"))
+
+P(id="P92", variant="blue", page="Variant · Blue ground, white mark", date="Comparison",
+  pillar="—", objective="—", cta="—", caption="Variant comparison sheet — not for publication.",
+  tags="", approve="Comparison only.", slides=_variant_slides("V3S"))
+
+
+
 def to_plate(post):
     """Recast an authored post into the editorial-plate system.
 
@@ -747,14 +809,15 @@ def to_plate(post):
     hero = post.get("hero") or next((sl.get("photo") for sl in post["slides"] if sl.get("photo")), None)
     pool = [sl.get("photo") for sl in post["slides"] if sl.get("photo")]
     spare = [q for q in pool if q != hero]
-    ground = ground_from(hero)
+    v = post.get("variant", "blue")
+    ground = ground_from(hero, v)
     out = []
     for sl in post["slides"]:
         k = sl["kind"]
         if k in ("close_graphic", "cta"):
             meta = " · ".join(sl.get("lines", [])) if sl.get("lines") else sl.get("meta", "")
             out.append(dict(kind="plate_text", name=sl.get("name"), caption=sl["headline"],
-                            meta=meta, ground=ground))
+                            meta=meta, ground=ground, variant=v))
             continue
         if k in ("photo_cover", "deep_cover", "light_cover"):
             cap = sl["headline"]
@@ -767,7 +830,7 @@ def to_plate(post):
         else:
             cap = (sl.get("body") or [sl.get("headline", "")])[0]
         p = dict(kind="plate", name=sl.get("name"), caption=cap, ground=ground,
-                 photo=sl.get("photo"), focus=sl.get("focus", "center"), tint=post.get("hero_tint"))
+                 photo=sl.get("photo"), focus=sl.get("focus", "center"), tint=post.get("hero_tint"), variant=v)
         if not p["photo"]:
             if k == "ph_static":
                 p.update(label="Portrait of Rob required", note=sl.get("note", ""))
@@ -807,7 +870,7 @@ def main():
         })
 
     canvas = {"artboards": artboards, "annotations": notes, "pages": pages,
-              "launch": {"view": "canvas", "page": "page-1"}}
+              "launch": {"view": "canvas", "page": next((f"page-{i}" for i, po in enumerate(POSTS, 1) if po.get("variant")), "page-1")}}
     with open("canvas.json", "w") as fh:
         json.dump(canvas, fh, indent=2)
     print(f"{len(written)} artboards, {len(pages)} pages")
