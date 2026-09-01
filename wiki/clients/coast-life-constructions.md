@@ -177,3 +177,10 @@ Hunter supplied a @barlowbuilding carousel as the reference. Measured off the so
 - **Rhythm:** image 636×696 inset with 20.6% side margins, and four near-equal ~150px vertical rests. The surround is what makes it read as a plate.
 - Copy voice on this post: long sensory caption ending in a brand line ("Built with intention. Always.").
 CLC canvas rebuilt on these mechanics in CLC's own brand (white master, Poppins, grounds sampled from CLC photography). Old 4:5 generator preserved at `canvas/build-4x5.py.bak`.
+
+## Mondaro detail shots — the best CLC craft library we have (1 Sep 2026)
+`~/Downloads/Detail shots/` — 11 frames from the Mondaro shoot, 6336×7920 (~20–25MB each), several graded **black and white**. Slab shadow-play, frame corners, roof truss diagonals, studs, SmartJoist stacks, cable runs, ply wall in raked light, drop saw, welding helmet on sandstone, sandstone block wall, plus the wide frame.
+These are the strongest craft images in the whole CLC library and exactly what the plate system wants — abstract, tonal, close-cropped. Ten processed into `projects/clc-graphic-sprint-sep-2026/canvas/` as `mondaro-*.jpg` at ~1200px.
+- ⚠️ **The journal post was retargeted from Ladds Ridge to Mondaro** — the detail shots are Mondaro, and captioning them as Ladds Ridge would have been a factual error. Ladds Ridge keeps its own website frames (`ladds-frame`, `ladds-aerial`).
+- The B&W frames sample to warm-grey grounds under the plate system, which reads genuinely editorial. Worth requesting more B&W craft detail on every future shoot — it is the cheapest premium signal available and needs no finished home.
+- Still outstanding on Mondaro: suburb, whether it is a new build or rebuild, and client permission to name it publicly.
