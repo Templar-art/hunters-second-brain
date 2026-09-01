@@ -24,6 +24,18 @@
         "projects/10x-site"
       ],
       "port": 8130
+    },
+    {
+      "name": "ironstandard-lp",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8140",
+        "--directory",
+        "projects/ironstandard-lp"
+      ],
+      "port": 8140
     }
   ]
 }

@@ -76,6 +76,21 @@ a.accent-link:hover { border-color: var(--accent); }
   height: 100%;
   object-fit: cover;
   filter: brightness(0.55);
+  opacity: 0;
+  animation: hero-crossfade 16s infinite;
+}
+.hero-video-a { animation-delay: 0s; }
+.hero-video-b { animation-delay: -8s; }
+
+@keyframes hero-crossfade {
+  0%, 42% { opacity: 1; }
+  50%, 92% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { animation: none; opacity: 1; }
+  .hero-video-b { display: none; }
 }
 .hero-content {
   position: relative;
