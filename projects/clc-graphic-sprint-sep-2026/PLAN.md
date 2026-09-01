@@ -172,28 +172,28 @@ Three pillars, all already true and already published:
 
 ## 5. Design system (applies to all 12)
 
-**Canvas.** 1080 × 1350. Outer margin 88px. 12-column grid, 24px gutters. Story adaptation 1080 × 1920, safe zone 250px top / 320px bottom.
+**Canvas.** 1080 × 1350. Side margins 112px → 856px content column. Photo window 856 × 760 at y = 52. Footer row on the baseline 72px from the bottom: slide counter left, logo right. Story adaptation 1080 × 1920, safe zone 250px top / 320px bottom.
 
-**Type hierarchy.**
-- Eyebrow — 26px, all caps, +180 tracking, charcoal at 60% opacity
-- Headline — 76–92px, tight leading (0.95), sentence case, charcoal
-- Body — 34px, 1.45 leading, max 46 characters per line
-- Caption/footnote — 22px, 55% opacity
-- Typeface: confirm from Coast Life's brand files first. Until then use a neutral grotesk at two weights only (Medium for headlines, Regular for body). **No script, no slab, no condensed, no italics.** One typeface across all twelve posts.
+**Type.** Kicker 25px Poppins SemiBold, uppercase, +0.22em tracking, steel `#2f6690` · Headline 58–74px Poppins **Light (300)**, leading 1.12 · Body 40px Poppins Regular, 1.45 leading · Slide counter 22px bottom-left. **Poppins only, three weights (300/500/600)** — confirmed as Coast Life's typeface from their own shipped graphics system. Montserrat is the secondary face in their brand deck, but the local .ttf files are corrupt, so Poppins carries everything.
 
-**Palette.** Off-white `#F4F1EC` · sand `#E3DBCF` · concrete grey `#B8B4AE` · charcoal `#2A2A28`. Optional muted coastal green-grey `#46595A` for a single accent rule or number — **only if it appears in Coast Life's existing brand files. Verify before use.** Maximum three tones per slide.
+**Palette — corrected 1 Sep 2026 against the real logo artwork.**
+Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · deep navy ground `#102f41` · wordmark navy `#2a4f8d` · icon blue `#1884c7` · steel kicker `#2f6690` · sky on navy `#97c8e8` · ink `#16242e`.
 
-**Backgrounds, in order of preference.** (1) approved project photograph, (2) material macro — timber grain, honed concrete, limestone, terrazzo, (3) flat off-white or sand with an architectural line drawing, (4) flat colour. Never a gradient, never a drop shadow, never a photo behind body copy.
+⚠️ **Supersedes** the warm off-white / sand / concrete / charcoal palette originally specified here. That was wrong — Coast Life's identity is cool navy-and-blue, not warm neutral. Do not use `#F4F1EC`, `#E3DBCF`, `#B8B4AE`, `#2A2A28` or `#46595A` on any Coast Life asset.
 
-**The approved photo treatment (Rob's July-approved style — use it exactly).** Photo fully visible, no global dim. A soft bottom-up gradient occupying the lower 32% only. Type sits inside that gradient as a lower-third: eyebrow, statement, kicker. Nothing over the build itself.
+⚠️ Also do not borrow `#61a8d8` from `Coast-Life-Constructions-Brand-Uplift.pdf` — that deck is 10x Visuals' own pitch document and carries **10x's** blue, not Coast Life's.
 
-**Logo.** Bottom-left, consistent optical size, on the final slide of every carousel and the single slide of every static. Nowhere else.
+**Logo.** The real **two-tone colour mark** (blue icon + navy wordmark) on light grounds; the official **white master** on navy grounds. Never recolour either into a flat single-colour silhouette — Rob has rejected that repeatedly. Bottom-right, 300px wide at 1×, on **every** slide: their shipped system places it on all slides, not only the last.
+
+**Backgrounds, in order of preference.** (1) a real Coast Life project photograph in the 856 × 760 window, (2) the deep navy ground with a faint blue radial lift, (3) the cool off-white ground with a thin blue architectural line drawing, (4) flat colour. Never a photo behind body copy, never a drop shadow.
+
+**The approved photo treatment — revised 1 Sep 2026 to match their shipped system.** The photo sits **in the window, undimmed and uncovered**, with the kicker and headline in the off-white frame *below* it. This is the locked-grid system Coast Life's own carousels already use, and it satisfies Rob's rule (never cover or dim the build) more completely than a lower-third does. Never crop or re-grade a supplied photo — the window is fixed so every slide matches on swipe.
 
 **Iconography.** None, except thin 1.5px architectural line drawings (plan fragments, section lines, elevation outlines). No badges, no ticks, no emoji, no arrows other than a single slide-advance chevron bottom-right at 40% opacity.
 
 **Carousel grammar.** Slide 1 cover · slides 2–6 one idea per slide · final slide CTA. Number every content slide `01 / 05` in the top-right at 22px. Consistent slide count discipline beats variety.
 
-**Grid rhythm.** Across the four weeks the feed should alternate photo-led → material-led → light-ground so no three consecutive tiles read the same.
+**Grid rhythm.** Across the four weeks the feed alternates photo-led → navy → light-ground so no three consecutive tiles read the same. Inside each carousel, one mid slide inverts to navy to break the run, and the CTA slide is always navy.
 
 **AI imagery rule.** No AI-generated homes, rooms, exteriors or site scenes anywhere in this sprint. Generative use is limited to abstract material textures (stone, timber, concrete surfaces) that could never be mistaken for a Coast Life project. If a texture could read as a room, it doesn't ship.
 
@@ -224,7 +224,7 @@ Three pillars, all already true and already published:
 > Coast Life Constructions — Gold Coast. QBCC licensed, Master Builders Queensland member.
 
 **CTA:** "Save it for your first builder meeting."
-**Design:** Cover = approved project photo, lower-third treatment. Slides 2–7 = off-white ground, question in headline size top-left, answer body beneath, thin charcoal rule at 240px from the top, slide numbers top-right. Final slide = sand ground, centred statement, logo bottom-left. No project image required beyond the cover.
+**Design:** Built — 8 artboards. Cover uses the **Chambers Lane façade** in the photo window, kicker and headline in the off-white frame below. Slides 2–7 are the Q&A template on the cool off-white ground, with slide 05 inverted to navy to break the run. Slide 08 navy CTA. Logo bottom-right, slide counter bottom-left, every slide.
 **Approve before publishing:** the QBCC register reference (accurate, but Rob should be comfortable inviting licence checks); implicit warranty framing on slide 6 — keep it as a question, never as a Coast Life promise.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #GoldCoastHomes #CustomHomeBuilder #HomeRenovation #RenovationGoldCoast #QLDBuilder #BuildingAHome #ResidentialConstruction #Burleigh #VarsityLakes #DesignAndBuild
 
@@ -243,7 +243,7 @@ Three pillars, all already true and already published:
 > It's on our process page in writing, same as everything else.
 
 **CTA:** "Our full process is on the website — link in bio."
-**Design:** Approved photo treatment over a finished-build photo (Winship Street interior or Chambers Lane façade). Photo fully visible. Gradient lower 32%. Statement in headline size, two lines maximum, kicker below at caption size. Logo bottom-left. **A project image is required.**
+**Design:** Built — 1 artboard. **Garden / alfresco** photo in the window, undimmed. Statement in the frame beneath at 46px Poppins Light, kicker above, credential line below. Project image required — supplied.
 **Approve before publishing:** the warranty wording is lifted verbatim from their own process page — confirm it is still current for 2026 contracts before it runs as a graphic. This is the single highest-risk claim in the sprint.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #QBCC #MasterBuildersQLD #CustomHomes #HomeWarranty #BuildingAHome #GoldCoastHomes #QLDBuilder #ResidentialConstruction #Burleigh
 
@@ -272,7 +272,7 @@ Three pillars, all already true and already published:
 > Stage one is a chat. No obligation, no pressure.
 
 **CTA:** "Stage one is a conversation — start there when you're ready."
-**Design:** Cover = site or in-progress photo, lower-third. Slides 2–7 = alternating off-white and sand grounds, large stage numeral `01` at 160px in concrete grey behind the text as a watermark, stage name in headline size, body beneath. Thin line-drawing plan fragment bleeding off the right edge on slides 3 and 5 only. Final slide charcoal ground, off-white type, logo reversed.
+**Design:** Built — 8 artboards. Cover uses the **drone aerial**. Slides 2–7 are the numbered-step template: oversized stage numeral as a pale watermark, stage name in Poppins Light, body beneath; slide 05 (Full quote) inverted to navy. Slide 08 navy CTA.
 **Approve before publishing:** all seven stage descriptions are condensed from their own live process page — confirm the condensation still reads accurately to Rob. Confirm the warranty line again here.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #BuildingProcess #CustomHomeBuilder #HomeRenovation #DesignAndBuild #GoldCoastHomes #QLDBuilder #Burleigh #Bonogin #ResidentialConstruction #BuildingAHome
 
@@ -299,7 +299,7 @@ Three pillars, all already true and already published:
 > We quote fully itemised for exactly this reason. You can see what's in and what isn't.
 
 **CTA:** "Comparing quotes at the moment? We're happy to talk you through how to read them."
-**Design:** Cover = material macro (honed concrete or stone) with headline reversed in off-white, no photo of a home. Slides 2–7 = off-white ground; each slide carries a single thin architectural line-drawing motif at 12% opacity in the lower right; headline top, body below, generous whitespace centre. Slide 7 uses sand ground to signal the turn. Final slide charcoal. **No project image required.**
+**Design:** Built — 8 artboards. No home imagery: the cover is the **navy ground** with a faint blue radial lift and a thin line drawing of two stacked quote documents. Slides 2–7 on cool off-white, slide 05 inverted to navy. Slide 08 navy CTA. **No project image required.**
 **Approve before publishing:** nothing here should name a dollar figure, a percentage, or a competitor practice. Confirm Rob is comfortable that "we quote fully itemised" matches current practice — it is on their process page, but it's a claim about *their* documents.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #BuildingQuotes #CustomHomeBuilder #RenovationPlanning #HomeRenovation #GoldCoastHomes #QLDBuilder #DesignAndBuild #ResidentialConstruction #BuildingAHome #Burleigh
 
@@ -318,7 +318,7 @@ Three pillars, all already true and already published:
 > Thanks Naomi.
 
 **CTA:** "More client reviews are on our website."
-**Design:** Sand ground. No photograph. Quote set in headline size, ranged left, occupying the upper two-thirds, with a single thin charcoal rule above the attribution. Enormous whitespace below. Logo bottom-left. This is the most restrained tile in the sprint and it should feel it. **No project image required.**
+**Design:** Built — 1 artboard. Cool off-white ground, no photograph. Quote at 66px Poppins Light in the upper two-thirds, thin blue rule, attribution in steel, then a visible line stating the wording and permission are still to be confirmed. The most restrained tile in the sprint. **No project image required.**
 **Approve before publishing — highest sensitivity in the sprint.** (a) Confirm the exact review wording with Rob and quote it **verbatim** — the wording above is a paraphrase drawn from their published testimonials and **must be replaced with the real sentence before design.** (b) Get Naomi's written permission to use her name in a graphic, even though the testimonial is already public on their site. (c) Confirm Bonogin is correct. If any of the three can't be confirmed in time, swap to a Google review with the reviewer's first name and initial only, or hold the post.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #ClientReview #HomeRenovation #Bonogin #GoldCoastHomes #CustomHomeBuilder #QLDBuilder #RenovationGoldCoast #ResidentialConstruction
 
@@ -347,7 +347,7 @@ Three pillars, all already true and already published:
 > There's a longer version of this on our blog if you want to read it properly.
 
 **CTA:** "Full version on our blog — link in bio."
-**Design:** Cover = sand ground with a thin architectural line drawing of three roof profiles (existing / extended / new) as the only graphic element — a genuinely ownable cover. Slides 2–5 = off-white grounds each carrying one line-drawing motif. Slides 6–7 = concrete-grey ground, reversed type. Final slide charcoal. **No project image required.** This post can carry the sprint on its own if the line drawings are good — invest the most drawing time here.
+**Design:** Built — 8 artboards. Cover uses the **renovated bathroom** — the clearest single 'renovate' signal in the photo set. Slides 2–7 on off-white with slide 05 (start again) inverted to navy. Slide 08 navy CTA.
 **Approve before publishing:** all content is condensed from their own published blog article; confirm the condensation with Rob. Never state or imply an approval timeframe or a council outcome.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #HomeExtension #KnockdownRebuild #RenovationPlanning #CustomHomeBuilder #GoldCoastHomes #QLDBuilder #DesignAndBuild #Burleigh #ResidentialConstruction
 
@@ -374,7 +374,7 @@ Three pillars, all already true and already published:
 > None of it has to be polished. Half-finished sketches and a rough range are plenty to work with.
 
 **CTA:** "When you've got those five together, we're happy to have the first chat."
-**Design:** Cover = flat-lay of drawings, a scale rule, a pencil and material samples on an off-white surface — **shot on a phone on a table, not a stock image, not AI.** If a flat-lay isn't achievable this week, fall back to a sand ground with a line-drawing plan fragment. Slides 2–6 = off-white grounds with large numerals `01`–`05` in concrete grey. Slide 7 = sand, to flip the perspective. Final slide charcoal.
+**Design:** Built — 8 artboards. No flat-lay was available, so the cover is the **off-white ground with a thin blue floor-plan line drawing** bleeding off the right edge. Slides 2–6 use the numbered-step template, slide 05 inverted to navy, slide 07 flips to the builder's perspective. Slide 08 navy CTA. A phone-shot flat-lay can replace the cover later.
 **Approve before publishing:** the flat-lay must contain no identifiable client drawings, addresses or names. Blur or reshoot if in doubt.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #BuildingAHome #RenovationPlanning #CustomHomeBuilder #HomeRenovation #GoldCoastHomes #DesignAndBuild #QLDBuilder #VarsityLakes #ResidentialConstruction
 
@@ -393,7 +393,7 @@ Three pillars, all already true and already published:
 > If you're in the area and thinking about a project, we're easy to get hold of.
 
 **CTA:** "If you're nearby and thinking about a build, we're easy to get hold of."
-**Design:** Off-white ground. The suburbs set as a large typographic stack — this is a **type composition, not a map**. A single thin coastline line-drawing (Gold Coast coast profile) running vertically at 15% opacity down the right third. Charcoal type. Logo bottom-left. **No project image required.**
+**Design:** Built — 1 artboard. Off-white ground, **type composition, not a map** — suburbs stacked at 64px, the out-of-scope line dropped to 50% ink. A thin blue Gold Coast coastline runs the full height of the right third. **No project image required.**
 **Approve before publishing — do not skip.** Only Burleigh, Bonogin and Varsity Lakes are supported by public evidence (project pages, testimonials, Houzz listing). **Do not add a suburb Rob hasn't confirmed.** Specifically: hold Bilambil Heights and Northern NSW until Rob confirms he services NSW under the correct licensing; hold Brisbane unless he wants Brisbane enquiries. Ask Rob for the definitive service-area list — this post is the reason to ask.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #GoldCoastHomes #Burleigh #Bonogin #VarsityLakes #CustomHomeBuilder #HomeRenovation #QLDBuilder #ResidentialConstruction #RenovationGoldCoast
 
@@ -420,7 +420,7 @@ Three pillars, all already true and already published:
 > Simple, well-chosen materials often make a more timeless result. That one's worth sitting with.
 
 **CTA:** "Planning something for next year? Now's the time to talk it through."
-**Design:** Cover = material macro (timber grain, warm) with headline reversed. Slides 2–7 = off-white and sand alternating; each headline gets a thin charcoal rule beneath it; body copy sits in the left seven columns leaving a deliberate empty right column. Final slide charcoal. **No project image required.**
+**Design:** Built — 8 artboards. Cover on the **navy ground** with the document line drawing — the deep ground suits a mistakes list and varies the grid against Post 6. Slides 2–7 off-white, slide 05 (no contingency) inverted to navy. Slide 08 navy CTA. **No project image required.**
 **Approve before publishing:** "Simple, well chosen materials often create a more timeless result" is close to a verbatim line from their own blog — good, but confirm Rob is happy to have it as a signature line, because it will get reused.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #RenovationPlanning #HomeRenovation #RenovationMistakes #CustomHomeBuilder #GoldCoastHomes #DesignAndBuild #QLDBuilder #Burleigh #ResidentialConstruction #BuildingAHome
 
@@ -447,7 +447,7 @@ Three pillars, all already true and already published:
 > So we agree the update rhythm in week one, you deal with Rob the whole way through, and anything unexpected gets raised early rather than tidied up later. It doesn't make a build effortless. It does take a lot of the noise out of it.
 
 **CTA:** "That's how we try to run it — happy to talk you through it."
-**Design:** Cover = photo of drawings or a site conversation with the lower-third treatment. **No stock hard-hat imagery.** If no suitable photo exists, use a concrete texture ground. Slides 2–7 = off-white grounds, headline sentence in headline size, body beneath, one slide (04) inverted to charcoal to break the rhythm. Final slide sand with logo.
+**Design:** Built — 8 artboards. Cover uses the **team photo — two Coast Life crew talking on site**, which is the literal subject of the post. No stock hard-hat imagery anywhere. Slides 2–7 off-white, slide 04 inverted to navy. Slide 08 navy CTA.
 **Approve before publishing — read carefully.** Every line must stay descriptive, never a guarantee. "We try to run it this way," never "your build will be stress-free," never a promised response time, never "no surprises." Slide 3 must say Rob is the point of contact from first chat to handover (their own published claim) and must **not** say Rob is on site at every stage — that wording is unconfirmed and previously flagged.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #BuildingProcess #CustomHomeBuilder #HomeRenovation #GoldCoastHomes #DesignAndBuild #QLDBuilder #ResidentialConstruction #BuildingAHome #VarsityLakes
 
@@ -466,7 +466,7 @@ Three pillars, all already true and already published:
 > Over twenty years in construction, and still the one answering the phone.
 
 **CTA:** "Say hello — details are in the bio."
-**Design:** **This post needs a real photograph of Rob.** Approved treatment: photo fully visible, lower-third gradient, type inside it. A phone portrait taken on site in good light is entirely acceptable and will outperform anything designed. If no photo can be obtained this week, **move this post to week 5 rather than substituting a text card** — a "meet the builder" post with no builder in it is the exact cheap-tradie signal we're avoiding. **Project/person image required.**
+**Design:** Built — 1 artboard, **held on a placeholder**. There is no portrait of Rob in the asset set, so the photo window carries a marked 'portrait of Rob required' frame rather than a substitute face. A phone portrait on site in good light drops straight in. Do not ship this post until it does.
 **Approve before publishing:** Rob's photo permission. The "over twenty years" line must be phrased as Rob's personal experience in construction — never as the company's age (the company entity dates from 2023 and the business from 2020). Do not add a homes-completed number. Do not add "on site every day."
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #MeetTheBuilder #FamilyOwnedBusiness #CustomHomeBuilder #GoldCoastHomes #QLDBuilder #HomeRenovation #ResidentialConstruction #Burleigh #VarsityLakes
 
@@ -495,7 +495,7 @@ Three pillars, all already true and already published:
 > Gold Coast. QBCC licensed, Master Builders Queensland member.
 
 **CTA:** "Planning something for next year? Now's a good time to have the conversation."
-**Design:** Cover = the strongest finished-build photo available, lower-third treatment — this is the sprint's closing statement and should be the most photographic tile. Slides 2–7 = alternating off-white and sand, service name in headline size with a thin rule, one-line description beneath, thin architectural line motif per slide. Slide 7 (the honest trade-off) on charcoal with off-white type. Final slide sand, logo. **Project image required for the cover.**
+**Design:** Built — 8 artboards. Cover uses the **self-contained rear dwelling** — it reads as both a finished build and the secondary-dwelling service named on slide 06. Slides 2–7 off-white, slide 07 (the honest trade-off) inverted to navy. Slide 08 navy CTA.
 **Approve before publishing:** confirm the four service lines match what Rob actually wants enquiries for right now — particularly secondary dwellings, which will generate enquiries. Slide 6 must not state a floor-area limit, a council outcome or an approval pathway; keep it at "council requirements to work through first."
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #CustomHomes #HomeRenovation #HomeExtension #SecondaryDwelling #GrannyFlatQLD #GoldCoastHomes #CustomHomeBuilder #DesignAndBuild #QLDBuilder #Burleigh #Bonogin #ResidentialConstruction
 
@@ -517,35 +517,16 @@ Rank order for design this week. Ranked on speed to produce, quality ceiling, an
 
 ## 8. B. Template system — six masters
 
-Build in Figma with components and variants; export a Canva-Brand-Kit equivalent only if Coast Life need to post without us.
+**These are built, not proposed.** All 68 artboards are generated from one grid definition in `canvas/build.py`, so every slide is pixel-identical on swipe — which is the whole point of a locked system. Rebuild any post by editing its copy in `POSTS` and re-running. Recreate them as Figma components from the same numbers when Coast Life need to post without us.
 
-1. **CL-01 · Photo Lower-Third (static + carousel cover).**
- The Rob-approved treatment. Full-bleed photo frame, bottom-up gradient locked to 32% height, three stacked text slots (eyebrow / statement / kicker), logo bottom-left. Variants: light photo, dark photo.
- *Produces:* Posts 2, 11, covers of 1, 3, 10, 12. The most-used template in the system.
+1. **CL-01 · Photo frame (cover + static).** Photo undimmed in the 856 × 760 window at y = 52; kicker, headline and sub-line in the off-white frame below; logo bottom-right. → *Posts 1, 2, 3, 6, 10, 12 covers.* The most-used template, and the one that satisfies Rob's "never cover the build" rule outright.
+2. **CL-02 · Numbered step.** Oversized stage numeral as a pale watermark, stage name in Poppins Light, blue rule, body. Light or navy variant. → *Posts 3 and 7; any future stage, checklist or countdown post.*
+3. **CL-03 · Question & answer.** Kicker, hairline rule at y = 210, question at 62px Light, answer anchored 300px off the bottom. Light or navy variant. → *Post 1; every future FAQ or objection-handling post.*
+4. **CL-04 · Navy statement ground.** Deep navy with a faint blue radial lift and an optional thin line drawing. Replaces the warm material-macro cover in the original spec — it is on-brand, costs nothing, and needs no generation spend. → *Posts 4 and 9 covers, and any cover with no usable photograph.* This is what stops the sprint stalling when photography is unavailable.
+5. **CL-05 · Pull-quote.** Quote at 66px Light in the upper two-thirds, blue rule, attribution in steel, a permission-status line beneath. Allows no photograph — the restraint is the point. → *Post 5, and every future review as it arrives.*
+6. **CL-06 · Type stack.** A stacked typographic list with an optional line drawing on one third of the canvas. → *Post 8, plus future service lists, material lists and project indexes.*
 
-2. **CL-02 · Numbered Step Slide.**
- Oversized stage numeral watermark in concrete grey, headline, body block, slide counter, optional line-drawing bleed. Variants: off-white / sand / charcoal ground.
- *Produces:* Posts 3, 7, 9, and the service slides of 12.
-
-3. **CL-03 · Question & Answer Slide.**
- Question set in headline size with a thin charcoal rule beneath, answer body in the left seven columns, deliberate empty right column. Variants: light / inverted.
- *Produces:* Posts 1, 4, 10 — and every future FAQ, objection-handling or "ask a builder" post.
-
-4. **CL-04 · Material Ground Cover.**
- A texture frame with a reversed-type headline lockup and a legibility scrim controlled by one opacity slider. Ship it with the five approved textures already made for the highlight covers (travertine, honey oak, cream limewash, charcoal microcement, terrazzo) so no new generation spend is needed.
- *Produces:* Covers of 4, 9, and any post with no usable photograph. This template is what stops the sprint stalling when photography is unavailable.
-
-5. **CL-05 · Pull-Quote / Review.**
- Quote in headline size ranged left in the upper two-thirds, thin rule, attribution, vast whitespace below, logo. Variants: sand / off-white / charcoal. Deliberately allows no photograph — the restraint is the point.
- *Produces:* Post 5, and every future review as they arrive. Build this to be filled in ninety seconds.
-
-6. **CL-06 · Type-Stack Statement.**
- A pure typographic composition — a stacked list (suburbs, services, materials, stages) with an optional 15% opacity line-drawing element on one third of the canvas.
- *Produces:* Post 8, plus future service lists, material lists, project indexes and highlight-cover title cards.
-
-**Plus, not a template but a system rule:** one Figma page named `CL-STORY`, 1080×1920, containing an auto-layout frame that ingests any 1080×1350 export, centres it with correct safe-zone padding on a sand ground, and adds the "read the full post" sticker zone. Every feed post gets a story adaptation in under a minute.
-
----
+**Plus two system rules, not templates:** every slide carries the logo bottom-right and the slide counter bottom-left; and one Figma page `CL-STORY` at 1080 × 1920 ingests any 1080 × 1350 export, centres it on the cool off-white ground with correct safe-zone padding, and adds the "read the full post" sticker zone.
 
 ## 9. C. Missing asset list — what to request from Coast Life
 
