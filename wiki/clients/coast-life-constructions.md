@@ -152,3 +152,12 @@ Twelve of these are processed into `projects/clc-graphic-sprint-sep-2026/canvas/
 Also in Downloads from the same drop: `Laddridge June-6.jpg` (3895×5842) — two of the crew lining out an internal wall, one on the gun, one holding the sheet. Best people shot we have; now the hero of the "who we service" lead post. `Fixed Photos Revisions -3.JPG` is a second Mondaro frame.
 
 ⚠️ These are 10x's own shoots and vastly better than the website extractions — **the raw shoot folders are the real photo library, not the website.** Ask Rob/check the SSD for the full Mondaro and Ladds Ridge sets before commissioning any new shoot.
+
+## ⚠️ Princess Street — now FIVE images on their site (1 Sep 2026)
+Follow-up to the flag above. A deeper scrape of the services/blog pages found five files, all credited in the filename to **Owen Architecture** and photographer **Simon Devitt**:
+`Princess-Street-House-by-Owen-Architecture-AJ5286C…`, `…AJ5297C…`, `…AJ5588_89_90C…`, `…AJ5627C…`, `…AJ5677C…`
+Five images is not an accident — it is a gallery. Either CLC built the project (and is using the architect's press set uncredited) or another practice's award-winning home is presented as portfolio. **Raise with Rob directly.** Never use these files. Also found on the site: `LaddsRidge-2.jpg` / `LaddsRidge-4.jpg` (2026/05) — genuine Ladds Ridge photos worth pulling.
+
+## Copy register — Rob's plain voice vs "professional and direct" (1 Sep 2026)
+Hunter's call on the sprint canvas: rewrite everything **more professional and direct**. Applied across all 49 slides + 13 captions. Practically: declarative sentences, no colloquialism ("same bloke" → "the same builder", "handballing" → "handover between staff", "getting wrong" → "failing to do"), "commence" over "start straight away".
+⚠️ Reconciles with — does not overturn — the 8 Jul ROB'S BRAND VERDICT. That rule banned *clever* agency lines and aphorisms, not formality. Formal-and-plain is still Rob's register; the banned failure mode was editorial cleverness. Keep both tests: no aphorisms, and no colloquialism.
