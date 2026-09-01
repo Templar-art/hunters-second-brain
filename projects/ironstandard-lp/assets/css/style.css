@@ -139,7 +139,6 @@ a.accent-link:hover { border-color: var(--accent); }
 }
 .waitlist input:focus { outline: none; border-color: var(--accent); }
 .waitlist button { margin-top: 0.5rem; align-self: flex-start; }
-#waitlist-status { color: var(--accent); min-height: 1.2em; font-size: 0.9rem; margin-top: 0; }
 
 /* Footer */
 .site-footer {
