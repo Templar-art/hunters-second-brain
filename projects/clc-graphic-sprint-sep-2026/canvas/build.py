@@ -283,11 +283,9 @@ def close_graphic(s):
     """The one slide with no photograph — it has to earn the swipe on type alone."""
     deep = True
     body = f"""  <div style="position: absolute; inset: 0; background: radial-gradient(115% 80% at 84% 88%, rgba(24,132,199,0.32) 0%, rgba(24,132,199,0) 62%);"></div>
-  {SVG_COAST_DEEP}
-  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 50%; transform: translateY(-56%); display: flex; flex-direction: column; gap: 40px;">
+  <div style="position: absolute; left: {MX}px; right: {MX}px; top: 50%; transform: translateY(-56%); display: flex; flex-direction: column; gap: 46px;">
     {head(s['headline'], deep, size=s.get('size', 82), weight=300, maxw=780)}
-    {rule(deep, w=120)}
-    <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
       {''.join(f'<div style="font-size: 34px; font-weight: 400; color: rgba(255,255,255,0.72);">{l}</div>' for l in s['lines'])}
     </div>
   </div>
