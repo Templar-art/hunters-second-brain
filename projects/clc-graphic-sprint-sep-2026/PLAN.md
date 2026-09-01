@@ -152,17 +152,17 @@ Three pillars, all already true and already published:
 
 | # | Date | Day | Format | Pillar | Objective | Headline |
 |---|---|---|---|---|---|---|
-| 1 | 8 Sep | Tue | Carousel | Educational | Saves | Seven questions to ask a builder before you sign |
-| 2 | 10 Sep | Thu | Static | Trust & process | Trust | The warranty we hand over with the keys |
-| 3 | 13 Sep | Sun | Carousel | Trust & process | Enquiries | How a Coast Life build actually runs, start to finish |
+| 1 | 8 Sep | Tue | Carousel | Educational | Saves | Three questions to ask a builder before you sign |
+| 2 | 10 Sep | Thu | Static | Trust & process | Trust | One year of maintenance cover, on top of the seven-year QBCC structural warranty. |
+| 3 | 13 Sep | Sun | Carousel | Trust & process | Enquiries | How a Coast Life build actually runs |
 | 4 | 15 Sep | Tue | Carousel | Educational | Saves | Why two quotes for the same house look nothing alike |
-| 5 | 17 Sep | Thu | Static | Social proof | Trust | "We were kept fully informed the whole way through" |
-| 6 | 20 Sep | Sun | Carousel | Educational | Saves | Renovate, extend, or start again: how to decide |
-| 7 | 22 Sep | Tue | Carousel | Educational | Enquiries | Bring these five things to your first builder meeting |
-| 8 | 24 Sep | Thu | Static | Services & positioning | Local awareness | Where we build on the Gold Coast |
-| 9 | 27 Sep | Sun | Carousel | Educational | Saves | Six renovation planning mistakes we see every year |
-| 10 | 29 Sep | Tue | Carousel | Trust & process | Trust | Most build stress comes from not knowing what's next |
-| 11 | 1 Oct | Thu | Static | People & brand story | Profile visits | You'll deal with Rob. That's the whole model. |
+| 5 | 17 Sep | Thu | Static | Social proof | Trust | “We were kept fully informed the whole way through.” |
+| 6 | 20 Sep | Sun | Carousel | Educational | Saves | Renovate, extend, or start again? |
+| 7 | 22 Sep | Tue | Carousel | Educational | Enquiries | Bring three things to your first builder meeting |
+| 8 | 24 Sep | Thu | Static | Services & positioning | Local awareness | Where we build |
+| 9 | 27 Sep | Sun | Carousel | Educational | Saves | Three renovation mistakes we see every year |
+| 10 | 29 Sep | Tue | Carousel | Trust & process | Trust | Most build stress is not knowing what’s next |
+| 11 | 1 Oct | Thu | Static | People & brand story | Profile visits | You’ll deal with Rob. First chat to handover. |
 | 12 | 4 Oct | Sun | Carousel | Services & positioning | Enquiries | One or two builds at a time. On purpose. |
 
 **Ratio check:** educational 5/12 (42%) · trust & process 3/12 (25%) · services & positioning 2/12 (17%) · social proof & people 2/12 (17%). Formats: 8 carousels, 4 statics.
@@ -202,36 +202,33 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 ## 6. The twelve posts
 
 ### Post 1 — Tue 8 Sep — Carousel — Educational — Objective: saves
-**Cover headline:** Seven questions to ask a builder before you sign
+**Cover headline:** Three questions to ask a builder before you sign
 
-**Slides**
-1. *Cover.* Eyebrow: BEFORE YOU SIGN. Headline: "Seven questions to ask a builder before you sign." Kicker: "Worth screenshotting."
-2. **"Who will I actually be dealing with?"** Ask whether you'll speak to the builder or a project manager you haven't met. It changes every conversation that follows.
-3. **"Is the quote itemised?"** A fully itemised quote lets you compare like for like. A single lump sum tells you nothing about what's included.
-4. **"What's your licence number, and can I look it up?"** Every Queensland builder should answer this without hesitating. You can check it on the QBCC register yourself.
-5. **"How many projects are you running right now?"** Not a trick question. It tells you how much attention your build will get.
-6. **"What's covered after handover?"** Ask what the builder provides beyond the statutory QBCC structural warranty.
-7. **"How and when will I hear from you?"** Weekly call, site meeting, email update — agree on it before the first delivery arrives, not after.
-8. *CTA.* "Ask us all seven. We'd rather you did." Logo.
+**Slides** — five, capped for Instagram
+1. *Cover.* Kicker: BEFORE YOU SIGN. Headline: “Three questions to ask a builder before you sign”. Sub-line: “Worth screenshotting.”
+2. **“Who will I actually be dealing with?”** — The builder, or a project manager you haven’t met?
+3. **“Is the quote itemised?”** — A lump sum tells you nothing about what’s included.
+4. **“How many builds are you running right now?”** — It tells you how much attention yours will get.
+5. *Close.* “Ask us all three. We’d rather you did.” — Gold Coast · QBCC licensed · Master Builders Queensland
 
 **Caption**
-> Seven questions worth asking any builder before you sign anything.
+> Three questions worth asking any builder before you sign anything.
 >
 > None of them are difficult. If a builder gets uncomfortable with one, that's the answer.
 >
-> We'd rather you asked us all seven up front than found out six months in. Save this one for your first meeting.
+> We'd rather you asked us all three up front than found out six months in. Save this one for your first meeting.
 >
 > Coast Life Constructions — Gold Coast. QBCC licensed, Master Builders Queensland member.
 
 **CTA:** "Save it for your first builder meeting."
-**Design:** Built — 8 artboards. Cover uses the **Chambers Lane façade** in the photo window, kicker and headline in the off-white frame below. Slides 2–7 are the Q&A template on the cool off-white ground, with slide 05 inverted to navy to break the run. Slide 08 navy CTA. Logo bottom-right, slide counter bottom-left, every slide.
+**Design:** Built — 5 artboards. Cover uses the **Chambers Lane façade** in the photo window, kicker and headline in the off-white frame below. Slides 2–4 are the Q&A template, one question and one line each, with slide 03 inverted to navy to break the run. Slide 05 is a soft navy close. Logo bottom-right, slide counter bottom-left, every slide.
 **Approve before publishing:** the QBCC register reference (accurate, but Rob should be comfortable inviting licence checks); implicit warranty framing on slide 6 — keep it as a question, never as a Coast Life promise.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #GoldCoastHomes #CustomHomeBuilder #HomeRenovation #RenovationGoldCoast #QLDBuilder #BuildingAHome #ResidentialConstruction #Burleigh #VarsityLakes #DesignAndBuild
 
 ---
 
 ### Post 2 — Thu 10 Sep — Static — Trust & process — Objective: trust
-**Cover headline:** The warranty we hand over with the keys
+**Cover headline:** One year of maintenance cover, on top of the seven-year QBCC structural warranty.
 
 **Copy on slide:** Eyebrow: AT HANDOVER. Statement: "A one-year maintenance warranty, on top of the seven-year QBCC structural guarantee." Kicker: "Coast Life Constructions · QBCC licensed."
 
@@ -250,17 +247,14 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 ---
 
 ### Post 3 — Sun 13 Sep — Carousel — Trust & process — Objective: enquiries
-**Cover headline:** How a Coast Life build actually runs, start to finish
+**Cover headline:** How a Coast Life build actually runs
 
-**Slides**
-1. *Cover.* Eyebrow: OUR PROCESS. Headline: "How a Coast Life build actually runs, start to finish." Kicker: "Seven stages. No surprises in between."
-2. **01 · Initial chat.** A relaxed, obligation-free conversation about the scope. Phone, email or in person — whatever suits.
-3. **02 · Site visit.** We come to you. Levels, access, constraints, the things that don't show up on a plan.
-4. **03 · Planning.** We work with one of our designers, or with your architect. Already have plans? We'll work with those.
-5. **04 · Full quote.** Detailed and fully itemised, so you can see exactly what's in and what isn't.
-6. **05 · Contracts, then construction.** Timelines, costs and inclusions confirmed in writing before a single delivery arrives on site.
-7. **06 · Handover.** We walk you through the finished home, then back it with a one-year maintenance warranty on top of the seven-year QBCC structural guarantee.
-8. *CTA.* "Stage one is just a chat. Start there." Logo.
+**Slides** — five, capped for Instagram
+1. *Cover.* Kicker: OUR PROCESS. Headline: “How a Coast Life build actually runs”. Sub-line: “Seven stages. Three conversations.”
+2. **01 · Talk, then look** — An obligation-free chat, then we come and read the site.
+3. **02 · Plan, price, sign** — Design with your architect or ours, then a fully itemised quote.
+4. **03 · Build, then hand over** — Every stage managed, then the keys and a maintenance warranty.
+5. *Close.* “Stage one is just a chat.” — Custom homes, renovations and extensions · Gold Coast
 
 **Caption**
 > This is the whole thing, start to finish.
@@ -272,7 +266,7 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 > Stage one is a chat. No obligation, no pressure.
 
 **CTA:** "Stage one is a conversation — start there when you're ready."
-**Design:** Built — 8 artboards. Cover uses the **drone aerial**. Slides 2–7 are the numbered-step template: oversized stage numeral as a pale watermark, stage name in Poppins Light, body beneath; slide 05 (Full quote) inverted to navy. Slide 08 navy CTA.
+**Design:** Built — 5 artboards. Cover uses the **drone aerial**. Slides 2–4 carry one idea and one line each, with the middle slide inverted to navy. Slide 05 is a soft navy close.
 **Approve before publishing:** all seven stage descriptions are condensed from their own live process page — confirm the condensation still reads accurately to Rob. Confirm the warranty line again here.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #BuildingProcess #CustomHomeBuilder #HomeRenovation #DesignAndBuild #GoldCoastHomes #QLDBuilder #Burleigh #Bonogin #ResidentialConstruction #BuildingAHome
 
@@ -281,15 +275,12 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 ### Post 4 — Tue 15 Sep — Carousel — Educational — Objective: saves
 **Cover headline:** Why two quotes for the same house look nothing alike
 
-**Slides**
-1. *Cover.* Eyebrow: READING A QUOTE. Headline: "Why two quotes for the same house look nothing alike." Kicker: "It's usually not the builder's margin."
-2. **Inclusions aren't standard.** One quote might carry site costs, allowances and finishes. Another might leave all three to be priced later. Same house, different documents.
-3. **Allowances hide the difference.** A tiling allowance of one figure and another of double will read as the same line item until you get to selections.
-4. **Site conditions get priced differently.** Levels, drainage, soil and access can be surveyed properly or estimated. One approach shows up early, the other shows up later.
-5. **Preliminaries are often invisible.** Scaffolding, temporary services, waste, insurances and supervision — some quotes itemise them, some absorb them.
-6. **Scope creeps between versions.** If one quote is priced off an earlier set of drawings, you're comparing two different houses.
-7. **How to compare properly.** Ask for both quotes itemised to the same scope and the same drawing revision. Then the numbers mean something.
-8. *CTA.* "Comparing quotes? Happy to walk you through what's in ours." Logo.
+**Slides** — five, capped for Instagram
+1. *Cover.* Kicker: READING A QUOTE. Headline: “Why two quotes for the same house look nothing alike”. Sub-line: “It’s usually not the builder’s margin.”
+2. **Inclusions aren’t standard** — Site costs, allowances and finishes — in one quote, priced later in the other.
+3. **Allowances hide the difference** — Two tiling allowances, double apart, read as the same line item.
+4. **Check the drawing revision** — Priced off an older set? You’re comparing two different houses.
+5. *Close.* “Comparing quotes? Happy to walk you through ours.” — We quote fully itemised. You see what’s in and what isn’t.
 
 **Caption**
 > If you've got two quotes with a large gap between them, the gap is usually in what's included — not in what someone's making.
@@ -299,14 +290,14 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 > We quote fully itemised for exactly this reason. You can see what's in and what isn't.
 
 **CTA:** "Comparing quotes at the moment? We're happy to talk you through how to read them."
-**Design:** Built — 8 artboards. No home imagery: the cover is the **navy ground** with a faint blue radial lift and a thin line drawing of two stacked quote documents. Slides 2–7 on cool off-white, slide 05 inverted to navy. Slide 08 navy CTA. **No project image required.**
+**Design:** Built — 5 artboards. No home imagery: the cover is the **navy ground** with a faint blue radial lift and a thin line drawing of two stacked quote documents. Slides 2–4 carry one idea and one line each, with the middle slide inverted to navy. Slide 05 is a soft navy close. **No project image required.**
 **Approve before publishing:** nothing here should name a dollar figure, a percentage, or a competitor practice. Confirm Rob is comfortable that "we quote fully itemised" matches current practice — it is on their process page, but it's a claim about *their* documents.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #BuildingQuotes #CustomHomeBuilder #RenovationPlanning #HomeRenovation #GoldCoastHomes #QLDBuilder #DesignAndBuild #ResidentialConstruction #BuildingAHome #Burleigh
 
 ---
 
 ### Post 5 — Thu 17 Sep — Static — Social proof — Objective: trust
-**Cover headline:** "We were kept fully informed the whole way through"
+**Cover headline:** “We were kept fully informed the whole way through.”
 
 **Copy on slide:** Pull-quote in headline size. Attribution beneath: "Naomi Ortado · Bonogin." Kicker: "Published on coastlifeconstructions.com.au."
 
@@ -325,17 +316,14 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 ---
 
 ### Post 6 — Sun 20 Sep — Carousel — Educational — Objective: saves
-**Cover headline:** Renovate, extend, or start again: how to decide
+**Cover headline:** Renovate, extend, or start again?
 
-**Slides**
-1. *Cover.* Eyebrow: WHERE TO START. Headline: "Renovate, extend, or start again: how to decide." Kicker: "Start with the problem, not the solution."
-2. **First, name the actual problem.** Not enough space? Wrong layout? Tired finishes? Failing structure? The honest answer usually points straight at one of the three options.
-3. **Renovate when the bones are good.** Best suited to homes that work structurally but need layout changes and updating — opening up living areas, kitchens, bathrooms.
-4. **Extend when the house works but it's too small.** Ground-floor additions, second storeys, building in underneath. Often able to be staged so you can stay living there.
-5. **Start again when repair costs approach a new build.** If the existing structure is poor, a knockdown-rebuild lets the design respond to the block, the orientation and the way you actually live.
-6. **The honest trade-off.** Renovations and extensions can look cheaper at the start and carry more unknowns. New builds are more predictable but need full design and a longer approval process.
-7. **Either way, allow for contingencies.** Every existing home has something behind the wall that nobody has seen yet.
-8. *CTA.* "Not sure which one you're looking at? That's what the first chat is for." Logo.
+**Slides** — five, capped for Instagram
+1. *Cover.* Kicker: WHERE TO START. Headline: “Renovate, extend, or start again?”. Sub-line: “Start with the problem, not the solution.”
+2. **01 · Renovate** — When the bones are good and it’s the layout that’s wrong.
+3. **02 · Extend** — When the house works, there just isn’t enough of it.
+4. **03 · Start again** — When repair costs start creeping toward a new build.
+5. *Close.* “Not sure which one you’re looking at?” — That’s what the first chat is for. Longer version on our blog.
 
 **Caption**
 > Renovate, extend, or knock down and start again.
@@ -347,41 +335,38 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 > There's a longer version of this on our blog if you want to read it properly.
 
 **CTA:** "Full version on our blog — link in bio."
-**Design:** Built — 8 artboards. Cover uses the **renovated bathroom** — the clearest single 'renovate' signal in the photo set. Slides 2–7 on off-white with slide 05 (start again) inverted to navy. Slide 08 navy CTA.
+**Design:** Built — 5 artboards. Cover uses the **renovated bathroom** — the clearest single 'renovate' signal in the photo set. Slides 2–4 carry one idea and one line each, with the middle slide inverted to navy. Slide 05 is a soft navy close.
 **Approve before publishing:** all content is condensed from their own published blog article; confirm the condensation with Rob. Never state or imply an approval timeframe or a council outcome.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #HomeRenovation #HomeExtension #KnockdownRebuild #RenovationPlanning #CustomHomeBuilder #GoldCoastHomes #QLDBuilder #DesignAndBuild #Burleigh #ResidentialConstruction
 
 ---
 
 ### Post 7 — Tue 22 Sep — Carousel — Educational — Objective: enquiries
-**Cover headline:** Bring these five things to your first builder meeting
+**Cover headline:** Bring three things to your first builder meeting
 
-**Slides**
-1. *Cover.* Eyebrow: FIRST MEETING. Headline: "Bring these five things to your first builder meeting." Kicker: "It makes the first hour worth ten."
-2. **01 · Whatever plans you have.** Concept sketches, an architect's set, or a rough drawing on paper. All of it helps. None of it has to be finished.
-3. **02 · A realistic budget range.** Not a number you're guarding — a range you're actually working within. It changes what we can honestly recommend.
-4. **03 · Your must-haves and your nice-to-haves, separated.** The separation is the useful part. It's also the hardest homework.
-5. **04 · Photos of what you like.** And, just as usefully, photos of what you don't. Both tell us more than adjectives do.
-6. **05 · Your timing.** When you'd like to start, and anything fixed around it — a lease ending, a baby, a sale.
-7. **What we bring.** Questions about the block, the levels, the access, and an honest read on what's realistic.
-8. *CTA.* "When you've got those five, we're happy to have the first chat." Logo.
+**Slides** — five, capped for Instagram
+1. *Cover.* Kicker: FIRST MEETING. Headline: “Bring three things to your first builder meeting”. Sub-line: “It makes the first hour worth ten.”
+2. **01 · Whatever plans you have** — Sketches on paper count. None of it has to be finished.
+3. **02 · A real budget range** — Not a number you’re guarding. It changes what we can honestly recommend.
+4. **03 · Must-haves, separated from nice-to-haves** — The separating is the useful part. Also the hardest.
+5. *Close.* “Got those three? Let’s have the first chat.” — Obligation-free. Phone, email or in person.
 
 **Caption**
-> If you're about to have a first conversation with a builder — any builder — these five things will make it worth ten times as much.
+> If you're about to have a first conversation with a builder — any builder — these three things will make it worth ten times as much.
 >
-> Plans, a real budget range, must-haves separated from nice-to-haves, photos of what you like and don't, and your timing.
+> Plans, a real budget range, and your must-haves separated from your nice-to-haves.
 >
 > None of it has to be polished. Half-finished sketches and a rough range are plenty to work with.
 
-**CTA:** "When you've got those five together, we're happy to have the first chat."
-**Design:** Built — 8 artboards. No flat-lay was available, so the cover is the **off-white ground with a thin blue floor-plan line drawing** bleeding off the right edge. Slides 2–6 use the numbered-step template, slide 05 inverted to navy, slide 07 flips to the builder's perspective. Slide 08 navy CTA. A phone-shot flat-lay can replace the cover later.
+**CTA:** "When you've got those three together, we're happy to have the first chat."
+**Design:** Built — 5 artboards. No flat-lay was available, so the cover is the **off-white ground with a thin blue floor-plan line drawing** bleeding off the right edge. Slides 2–4 carry one idea and one line each, with the middle slide inverted to navy. Slide 05 is a soft navy close. A phone-shot flat-lay can replace the cover later.
 **Approve before publishing:** the flat-lay must contain no identifiable client drawings, addresses or names. Blur or reshoot if in doubt.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #BuildingAHome #RenovationPlanning #CustomHomeBuilder #HomeRenovation #GoldCoastHomes #DesignAndBuild #QLDBuilder #VarsityLakes #ResidentialConstruction
 
 ---
 
 ### Post 8 — Thu 24 Sep — Static — Services & positioning — Objective: local awareness
-**Cover headline:** Where we build on the Gold Coast
+**Cover headline:** Where we build
 
 **Copy on slide:** Eyebrow: SERVICE AREA. Headline: "Where we build." Suburb list set as a clean typographic stack: Burleigh · Bonogin · Varsity Lakes · and across the Gold Coast. Kicker: "Custom homes, renovations and extensions."
 
@@ -400,44 +385,38 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 ---
 
 ### Post 9 — Sun 27 Sep — Carousel — Educational — Objective: saves
-**Cover headline:** Six renovation planning mistakes we see every year
+**Cover headline:** Three renovation mistakes we see every year
 
-**Slides**
-1. *Cover.* Eyebrow: PLANNING. Headline: "Six renovation planning mistakes we see every year." Kicker: "All six are avoidable before you start."
-2. **Choosing finishes last.** Flooring, joinery, tiles and fixtures picked late are the most common cause of avoidable delays. Selecting early keeps the whole thing consistent.
-3. **Designing around today only.** The layout has to work for how you'll live in five years, not just this one.
-4. **Ignoring what the block is telling you.** Levels, drainage, soil, orientation and access shape the design more than most people expect.
-5. **Leaving no contingency.** Every existing home has something nobody has seen yet. Plan for it before you find it.
-6. **Chasing complexity.** Simple, well-chosen materials usually age better than a lot of different ones doing a lot of different things.
-7. **Leaving expectations unspoken.** Scope, timing and how you'll communicate — agreed early, or argued about later.
-8. *CTA.* "Planning something for next year? Now's the right time to talk it through." Logo.
+**Slides** — five, capped for Instagram
+1. *Cover.* Kicker: PLANNING. Headline: “Three renovation mistakes we see every year”. Sub-line: “All three are avoidable before you start.”
+2. **Choosing finishes last** — The most common cause of delays that didn’t need to happen.
+3. **Leaving no contingency** — Every existing home has something nobody has seen yet.
+4. **Leaving expectations unspoken** — Scope, timing, how you’ll talk. Agreed early, or argued about later.
+5. *Close.* “Planning something for next year?” — Now’s the right time to talk it through.
 
 **Caption**
-> Six planning mistakes we see every year — and every one of them is easier to avoid before the job starts than to fix once it has.
+> Three planning mistakes we see every year — and every one of them is easier to avoid before the job starts than to fix once it has.
 >
-> Finishes chosen too late. Layouts designed for right now. Blocks that were never properly read. No contingency. Too many materials doing too many things. And expectations nobody said out loud.
+> Finishes chosen too late. No contingency for what's behind the wall. And expectations nobody said out loud.
 >
 > Simple, well-chosen materials often make a more timeless result. That one's worth sitting with.
 
 **CTA:** "Planning something for next year? Now's the time to talk it through."
-**Design:** Built — 8 artboards. Cover on the **navy ground** with the document line drawing — the deep ground suits a mistakes list and varies the grid against Post 6. Slides 2–7 off-white, slide 05 (no contingency) inverted to navy. Slide 08 navy CTA. **No project image required.**
+**Design:** Built — 5 artboards. Cover on the **navy ground** with the document line drawing — the deep ground suits a mistakes list and varies the grid against Post 6. Slides 2–4 carry one idea and one line each, with the middle slide inverted to navy. Slide 05 is a soft navy close. **No project image required.**
 **Approve before publishing:** "Simple, well chosen materials often create a more timeless result" is close to a verbatim line from their own blog — good, but confirm Rob is happy to have it as a signature line, because it will get reused.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #RenovationPlanning #HomeRenovation #RenovationMistakes #CustomHomeBuilder #GoldCoastHomes #DesignAndBuild #QLDBuilder #Burleigh #ResidentialConstruction #BuildingAHome
 
 ---
 
 ### Post 10 — Tue 29 Sep — Carousel — Trust & process — Objective: trust
-**Cover headline:** Most build stress comes from not knowing what's next
+**Cover headline:** Most build stress is not knowing what’s next
 
-**Slides**
-1. *Cover.* Eyebrow: ON COMMUNICATION. Headline: "Most build stress comes from not knowing what's next." Kicker: "So we try to remove that part."
-2. **Agree the update rhythm up front.** Weekly call, site meeting, email — whichever suits. Decided in week one, not week nine.
-3. **One point of contact.** You deal with Rob, the builder and director, from the first chat through to handover. No relay.
-4. **Say what's coming, not just what happened.** Knowing next week's stage is worth more than a recap of last week's.
-5. **Bad news early beats good news late.** Something unexpected behind a wall is normal. Finding out about it a fortnight later isn't.
-6. **Decisions have a "by when".** Selections and approvals sit on the critical path. Knowing the date takes the pressure off.
-7. **Write it down.** Scope, inclusions, timelines and costs in the contract, so the conversation is always against the same document.
-8. *CTA.* "That's how we try to run it. Happy to talk you through it." Logo.
+**Slides** — five, capped for Instagram
+1. *Cover.* Kicker: ON COMMUNICATION. Headline: “Most build stress is not knowing what’s next”. Sub-line: “So we try to remove that part.”
+2. **Agree the update rhythm in week one** — Weekly call, site meeting, email. Whichever suits — decided early.
+3. **One point of contact** — You deal with Rob, first chat through to handover. No relay.
+4. **Bad news early beats good news late** — Something behind a wall is normal. Hearing about it a fortnight later isn’t.
+5. *Close.* “That’s how we try to run it.” — Coast Life Constructions · Gold Coast
 
 **Caption**
 > Almost every difficult building story we hear comes back to the same thing — the owner didn't know what was happening next.
@@ -447,14 +426,14 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 > So we agree the update rhythm in week one, you deal with Rob the whole way through, and anything unexpected gets raised early rather than tidied up later. It doesn't make a build effortless. It does take a lot of the noise out of it.
 
 **CTA:** "That's how we try to run it — happy to talk you through it."
-**Design:** Built — 8 artboards. Cover uses the **team photo — two Coast Life crew talking on site**, which is the literal subject of the post. No stock hard-hat imagery anywhere. Slides 2–7 off-white, slide 04 inverted to navy. Slide 08 navy CTA.
+**Design:** Built — 5 artboards. Cover uses the **team photo — two Coast Life crew talking on site**, which is the literal subject of the post. No stock hard-hat imagery anywhere. Slides 2–4 carry one idea and one line each, with the middle slide inverted to navy. Slide 05 is a soft navy close.
 **Approve before publishing — read carefully.** Every line must stay descriptive, never a guarantee. "We try to run it this way," never "your build will be stress-free," never a promised response time, never "no surprises." Slide 3 must say Rob is the point of contact from first chat to handover (their own published claim) and must **not** say Rob is on site at every stage — that wording is unconfirmed and previously flagged.
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #BuildingProcess #CustomHomeBuilder #HomeRenovation #GoldCoastHomes #DesignAndBuild #QLDBuilder #ResidentialConstruction #BuildingAHome #VarsityLakes
 
 ---
 
 ### Post 11 — Thu 1 Oct — Static — People & brand story — Objective: profile visits
-**Cover headline:** You'll deal with Rob. That's the whole model.
+**Cover headline:** You’ll deal with Rob. First chat to handover.
 
 **Copy on slide:** Eyebrow: THE BUILDER. Statement: "You'll deal with Rob. From the first chat to handover." Kicker: "Rob Williamson · Builder & Director · Coast Life Constructions."
 
@@ -475,15 +454,12 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 ### Post 12 — Sun 4 Oct — Carousel — Services & positioning — Objective: enquiries
 **Cover headline:** One or two builds at a time. On purpose.
 
-**Slides**
-1. *Cover.* Eyebrow: HOW WE WORK. Headline: "One or two builds at a time. On purpose." Kicker: "Fewer builds, better results."
-2. **What that actually means.** Your job isn't queued behind six others. The attention it gets is the attention it needs.
-3. **Custom homes.** New builds designed around the block, the orientation and the way you want to live.
-4. **Renovations & extensions.** Full renovations, ground-floor additions, second storeys, building in underneath.
-5. **Home improvements.** The smaller lifestyle work — done to the same standard as everything else.
-6. **Secondary dwellings.** Self-contained living on the same block. Useful for family, guests or rental, with council requirements to work through first.
-7. **The trade-off, honestly.** It means we can't start everything straight away. It also means the job in front of us is the one that matters.
-8. *CTA.* "If you're planning something for next year, now's a good time to talk." Logo.
+**Slides** — five, capped for Instagram
+1. *Cover.* Kicker: HOW WE WORK. Headline: “One or two builds at a time. On purpose.”. Sub-line: “Fewer builds, better results.”
+2. **Your job isn’t queued behind six others** — The attention it gets is the attention it needs.
+3. **Homes, renovations, extensions, secondary dwellings** — New builds, full renovations, second storeys, self-contained living.
+4. **It means we can’t always start straight away** — It also means the job in front of us is the one that matters.
+5. *Close.* “Planning something for next year?” — Gold Coast · QBCC licensed · Master Builders Queensland
 
 **Caption**
 > Fewer builds, better results.
@@ -495,7 +471,7 @@ Cool off-white ground `#f5f7f9` (faint navy tint — **never warm cream**) · de
 > Gold Coast. QBCC licensed, Master Builders Queensland member.
 
 **CTA:** "Planning something for next year? Now's a good time to have the conversation."
-**Design:** Built — 8 artboards. Cover uses the **self-contained rear dwelling** — it reads as both a finished build and the secondary-dwelling service named on slide 06. Slides 2–7 off-white, slide 07 (the honest trade-off) inverted to navy. Slide 08 navy CTA.
+**Design:** Built — 5 artboards. Cover uses the **self-contained rear dwelling** — it reads as both a finished build and the secondary-dwelling service named on slide 03. Slides 2–4 carry one idea and one line each, with the middle slide inverted to navy. Slide 05 is a soft navy close.
 **Approve before publishing:** confirm the four service lines match what Rob actually wants enquiries for right now — particularly secondary dwellings, which will generate enquiries. Slide 6 must not state a floor-area limit, a council outcome or an approval pathway; keep it at "council requirements to work through first."
 **Hashtags:** #CoastLifeConstructions #GoldCoastBuilder #CustomHomes #HomeRenovation #HomeExtension #SecondaryDwelling #GrannyFlatQLD #GoldCoastHomes #CustomHomeBuilder #DesignAndBuild #QLDBuilder #Burleigh #Bonogin #ResidentialConstruction
 

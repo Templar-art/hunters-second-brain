@@ -46,33 +46,6 @@
       "title": "P01 \u00b7 Slide 05"
     },
     {
-      "file": "P01S06.dc.html",
-      "x": 6200,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-1",
-      "title": "P01 \u00b7 Slide 06"
-    },
-    {
-      "file": "P01S07.dc.html",
-      "x": 7440,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-1",
-      "title": "P01 \u00b7 Slide 07"
-    },
-    {
-      "file": "P01S08.dc.html",
-      "x": 8680,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-1",
-      "title": "P01 \u00b7 Slide 08"
-    },
-    {
       "file": "P02Warranty.dc.html",
       "x": 0,
       "y": 0,
@@ -127,33 +100,6 @@
       "title": "P03 \u00b7 Slide 05"
     },
     {
-      "file": "P03S06.dc.html",
-      "x": 6200,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-3",
-      "title": "P03 \u00b7 Slide 06"
-    },
-    {
-      "file": "P03S07.dc.html",
-      "x": 7440,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-3",
-      "title": "P03 \u00b7 Slide 07"
-    },
-    {
-      "file": "P03S08.dc.html",
-      "x": 8680,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-3",
-      "title": "P03 \u00b7 Slide 08"
-    },
-    {
       "file": "P04Cover.dc.html",
       "x": 0,
       "y": 0,
@@ -197,33 +143,6 @@
       "h": 1350,
       "page": "page-4",
       "title": "P04 \u00b7 Slide 05"
-    },
-    {
-      "file": "P04S06.dc.html",
-      "x": 6200,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-4",
-      "title": "P04 \u00b7 Slide 06"
-    },
-    {
-      "file": "P04S07.dc.html",
-      "x": 7440,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-4",
-      "title": "P04 \u00b7 Slide 07"
-    },
-    {
-      "file": "P04S08.dc.html",
-      "x": 8680,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-4",
-      "title": "P04 \u00b7 Slide 08"
     },
     {
       "file": "P05Review.dc.html",
@@ -280,33 +199,6 @@
       "title": "P06 \u00b7 Slide 05"
     },
     {
-      "file": "P06S06.dc.html",
-      "x": 6200,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-6",
-      "title": "P06 \u00b7 Slide 06"
-    },
-    {
-      "file": "P06S07.dc.html",
-      "x": 7440,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-6",
-      "title": "P06 \u00b7 Slide 07"
-    },
-    {
-      "file": "P06S08.dc.html",
-      "x": 8680,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-6",
-      "title": "P06 \u00b7 Slide 08"
-    },
-    {
       "file": "P07Cover.dc.html",
       "x": 0,
       "y": 0,
@@ -350,33 +242,6 @@
       "h": 1350,
       "page": "page-7",
       "title": "P07 \u00b7 Slide 05"
-    },
-    {
-      "file": "P07S06.dc.html",
-      "x": 6200,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-7",
-      "title": "P07 \u00b7 Slide 06"
-    },
-    {
-      "file": "P07S07.dc.html",
-      "x": 7440,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-7",
-      "title": "P07 \u00b7 Slide 07"
-    },
-    {
-      "file": "P07S08.dc.html",
-      "x": 8680,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-7",
-      "title": "P07 \u00b7 Slide 08"
     },
     {
       "file": "P08ServiceArea.dc.html",
@@ -433,33 +298,6 @@
       "title": "P09 \u00b7 Slide 05"
     },
     {
-      "file": "P09S06.dc.html",
-      "x": 6200,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-9",
-      "title": "P09 \u00b7 Slide 06"
-    },
-    {
-      "file": "P09S07.dc.html",
-      "x": 7440,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-9",
-      "title": "P09 \u00b7 Slide 07"
-    },
-    {
-      "file": "P09S08.dc.html",
-      "x": 8680,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-9",
-      "title": "P09 \u00b7 Slide 08"
-    },
-    {
       "file": "P10Cover.dc.html",
       "x": 0,
       "y": 0,
@@ -503,33 +341,6 @@
       "h": 1350,
       "page": "page-10",
       "title": "P10 \u00b7 Slide 05"
-    },
-    {
-      "file": "P10S06.dc.html",
-      "x": 6200,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-10",
-      "title": "P10 \u00b7 Slide 06"
-    },
-    {
-      "file": "P10S07.dc.html",
-      "x": 7440,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-10",
-      "title": "P10 \u00b7 Slide 07"
-    },
-    {
-      "file": "P10S08.dc.html",
-      "x": 8680,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-10",
-      "title": "P10 \u00b7 Slide 08"
     },
     {
       "file": "P11MeetRob.dc.html",
@@ -584,33 +395,6 @@
       "h": 1350,
       "page": "page-12",
       "title": "P12 \u00b7 Slide 05"
-    },
-    {
-      "file": "P12S06.dc.html",
-      "x": 6200,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-12",
-      "title": "P12 \u00b7 Slide 06"
-    },
-    {
-      "file": "P12S07.dc.html",
-      "x": 7440,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-12",
-      "title": "P12 \u00b7 Slide 07"
-    },
-    {
-      "file": "P12S08.dc.html",
-      "x": 8680,
-      "y": 0,
-      "w": 1080,
-      "h": 1350,
-      "page": "page-12",
-      "title": "P12 \u00b7 Slide 08"
     }
   ],
   "annotations": [
@@ -620,7 +404,7 @@
       "y": -210,
       "w": 860,
       "page": "page-1",
-      "text": "POST 1 \u00b7 ASK A BUILDER \u2014 Tue 8 Sep \u00b7 Carousel\n8 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 1 \u00b7 ASK A BUILDER \u2014 Tue 8 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-2",
@@ -636,7 +420,7 @@
       "y": -210,
       "w": 860,
       "page": "page-3",
-      "text": "POST 3 \u00b7 OUR PROCESS \u2014 Sun 13 Sep \u00b7 Carousel\n8 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 3 \u00b7 OUR PROCESS \u2014 Sun 13 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-4",
@@ -644,7 +428,7 @@
       "y": -210,
       "w": 860,
       "page": "page-4",
-      "text": "POST 4 \u00b7 READING A QUOTE \u2014 Tue 15 Sep \u00b7 Carousel\n8 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 4 \u00b7 READING A QUOTE \u2014 Tue 15 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-5",
@@ -660,7 +444,7 @@
       "y": -210,
       "w": 860,
       "page": "page-6",
-      "text": "POST 6 \u00b7 RENOVATE OR REBUILD \u2014 Sun 20 Sep \u00b7 Carousel\n8 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 6 \u00b7 RENOVATE OR REBUILD \u2014 Sun 20 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-7",
@@ -668,7 +452,7 @@
       "y": -210,
       "w": 860,
       "page": "page-7",
-      "text": "POST 7 \u00b7 FIRST MEETING \u2014 Tue 22 Sep \u00b7 Carousel\n8 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 7 \u00b7 FIRST MEETING \u2014 Tue 22 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-8",
@@ -684,7 +468,7 @@
       "y": -210,
       "w": 860,
       "page": "page-9",
-      "text": "POST 9 \u00b7 PLANNING MISTAKES \u2014 Sun 27 Sep \u00b7 Carousel\n8 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 9 \u00b7 PLANNING MISTAKES \u2014 Sun 27 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-10",
@@ -692,7 +476,7 @@
       "y": -210,
       "w": 860,
       "page": "page-10",
-      "text": "POST 10 \u00b7 COMMUNICATION \u2014 Tue 29 Sep \u00b7 Carousel\n8 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 10 \u00b7 COMMUNICATION \u2014 Tue 29 Sep \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     },
     {
       "id": "note-11",
@@ -708,7 +492,7 @@
       "y": -210,
       "w": 860,
       "page": "page-12",
-      "text": "POST 12 \u00b7 HOW WE WORK \u2014 Sun 4 Oct \u00b7 Carousel\n8 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
+      "text": "POST 12 \u00b7 HOW WE WORK \u2014 Sun 4 Oct \u00b7 Carousel\n5 artboards at 1080 x 1350. Copy is verbatim from the four-week plan; captions and hashtags live there."
     }
   ],
   "pages": [
