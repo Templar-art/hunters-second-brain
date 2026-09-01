@@ -77,14 +77,19 @@ Same mechanics, entirely Coast Life's own expression.
 | Canvas | 3:4 | **3:4, 1080 × 1440** — adopted |
 | Top mark | Wordmark, tone-on-tone | **Coast Life white master**, 340px, 90% opacity |
 | Image window | 636 × 696 inset | **636 × 696 at y396** — same proportions |
-| Ground | Sampled from photo | **Sampled from Coast Life's own photo**, hue held, saturation clamped 0.06–0.16, lightness pulled to 0.50–0.64 |
+| Ground | Hue + value sampled from photo | **Hue LOCKED to Coast Life blue (211°)**; only value and chroma move, driven by the photograph. Range `#3e5768` → `#5d798c`. |
 | Caption | Tracked caps, 2 lines | **23px Poppins Medium, +0.15em, centred** |
 | Typeface | Theirs | **Poppins** — already Coast Life's |
 | Close slide | — | **Type plate**: statement in the image band, meta beneath. Our addition; the reference has no CTA slide. |
 | Rhythm | ~150px intervals | 150 / 126 / 146 / 150 |
 
-Grounds now computed from Coast Life photography come out cool grey-blue, sage, tan and warm
-grey — which sits naturally with the navy-and-blue identity rather than fighting it.
+⚠️ **Corrected 1 Sep 2026.** The first build sampled the photograph's *hue* as well as its value,
+exactly as the reference does. That produced sage, tan and greige grounds — structurally right and
+brand-wrong, because it imported the reference's warm world. The mechanism is kept; the hue is not.
+Hue is now pinned to Coast Life's blue (211°, between the logo's `#1884c7` and `#2a4f8d`), nudged
+only a few degrees by the image so posts still differ. Value comes from the photograph's own
+lightness, mapped to 0.17–0.42 so the white mark and caption always clear 4.5:1 (worst measured
+4.59:1). Every ground now reads unmistakably Coast Life.
 
 **What was dropped from the previous build:** full-bleed heroes, the off-white framed slides,
 navy punctuation slides, kickers, slide counters, section rules, the 4:5 canvas. The plate

@@ -341,12 +341,19 @@ def detail_spread(s):
 # tracked caption bottom, even vertical rhythm, ground tone drawn from the
 # photograph itself. Mechanism only — no reference asset, mark or wording is used.
 
+BRAND_HUE = 211 / 360      # between the logo's #1884c7 and #2a4f8d
 _GROUND_CACHE = {}
 
 def ground_from(photo):
-    """A muted mid-tone pulled from the photograph. This is what unifies the grid."""
+    """A Coast Life ground, varied per post.
+
+    The mechanism is borrowed — one ground per post, derived from its photograph,
+    so the grid reads as one book. The HUE is not: it is locked to Coast Life's own
+    blue family, so only the value moves. Sampling the photo's hue produced sage,
+    tan and greige — a different brand's world.
+    """
     if not photo:
-        return "#8e9298"
+        return "#1d3a52"
     if photo in _GROUND_CACHE:
         return _GROUND_CACHE[photo]
     from PIL import Image
@@ -357,17 +364,23 @@ def ground_from(photo):
     r = sum(p[0] for p in px) / len(px) / 255
     g = sum(p[1] for p in px) / len(px) / 255
     b = sum(p[2] for p in px) / len(px) / 255
-    h, l, sat = colorsys.rgb_to_hls(r, g, b)
-    sat = min(max(sat, 0.06), 0.16)      # hold it muted
-    l = 0.575 + (l - 0.5) * 0.22          # pull to a consistent mid value
-    l = min(max(l, 0.50), 0.64)
+    ph, pl, ps = colorsys.rgb_to_hls(r, g, b)
+
+    # hue: Coast Life blue, nudged a few degrees by the image so posts differ subtly
+    h = (BRAND_HUE + (ph - 0.5) * 0.035) % 1.0
+    # value: the photograph's own lightness, mapped into a range the white mark survives
+    l = 0.24 + pl * 0.24
+    l = min(max(l, 0.22), 0.46)
+    # saturation: deeper grounds carry more chroma, lighter ones less
+    sat = 0.30 - (l - 0.22) * 0.42
+
     rr, gg, bb = colorsys.hls_to_rgb(h, l, sat)
     out = "#%02x%02x%02x" % (int(rr * 255), int(gg * 255), int(bb * 255))
     _GROUND_CACHE[photo] = out
     return out
 
 
-def _tint(hex_ground, l=0.945, sat=0.06):
+def _tint(hex_ground, l=0.955, sat=0.10):
     import colorsys
     r, g, b = (int(hex_ground[i:i+2], 16) / 255 for i in (1, 3, 5))
     h, _, _ = colorsys.rgb_to_hls(r, g, b)

@@ -15,8 +15,9 @@ all-white (reads as a template).
 
 | Token | Value | Role |
 |---|---|---|
-| Ground light | `#f5f7f9` | Cool off-white, faint navy tint. **Never warm cream.** |
-| Ground deep | `#102f41` | Navy punctuation: close slides, one mid-slide per carousel |
+| Plate ground | `#3e5768` → `#5d798c` | **Generated per post.** Hue locked to Coast Life blue (211°); value from the photograph. Never sample the photo's hue — that is how you end up with someone else's warm palette. |
+| Ground light | `#f5f7f9` | Cool off-white (4:5 system, preserved in `build-4x5.py.bak`) |
+| Ground deep | `#102f41` | Navy (4:5 system) |
 | Navy | `#2a4f8d` | Wordmark navy, from the logo |
 | Blue | `#1884c7` | Icon/wave blue, from the logo. Rules and radial lifts. |
 | Steel | `#2f6690` | Kicker on light grounds |

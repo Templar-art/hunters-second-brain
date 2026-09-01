@@ -184,3 +184,8 @@ These are the strongest craft images in the whole CLC library and exactly what t
 - ⚠️ **The journal post was retargeted from Ladds Ridge to Mondaro** — the detail shots are Mondaro, and captioning them as Ladds Ridge would have been a factual error. Ladds Ridge keeps its own website frames (`ladds-frame`, `ladds-aerial`).
 - The B&W frames sample to warm-grey grounds under the plate system, which reads genuinely editorial. Worth requesting more B&W craft detail on every future shoot — it is the cheapest premium signal available and needs no finished home.
 - Still outstanding on Mondaro: suburb, whether it is a new build or rebuild, and client permission to name it publicly.
+
+## Ground-colour rule — borrow the mechanism, never the hue (1 Sep 2026)
+Applying Barlow's sampled-ground mechanism verbatim sampled the photograph's **hue** as well as its value, and produced sage/tan/greige plates. Structurally correct, brand wrong — it imported Barlow's warm world into a navy brand. Hunter called it immediately.
+**The rule:** hue is pinned to Coast Life blue (**211°**, between the logo's `#1884c7` and `#2a4f8d`), nudged only a few degrees by the image so posts still differ; **value** comes from the photograph's own lightness, mapped to L 0.17–0.42; chroma falls as value rises. Grounds now run `#3e5768` → `#5d798c`. White mark and caption clear 4.5:1 on every one (worst measured 4.59:1 on the drawings plate).
+**Generalises:** when lifting a production mechanism off a reference, separate the *rule* from the *values it happens to produce*. Take the rule, substitute the brand's own inputs. Same trap as the invented brand kit logged above — plausible output is not verified output.
