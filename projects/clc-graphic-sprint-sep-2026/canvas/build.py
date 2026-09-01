@@ -806,10 +806,12 @@ def _variant_slides(tag):
 # A carousel is four plates, so each one uses all four — no repeat inside a post.
 # The starting frame rotates per post, so covers differ down the grid.
 
-ROTATION = ["mondaro-joists.jpg",  # B&W  engineered joists, stacked
-            "mondaro-studs.jpg",   # B&W  studs and diagonal brace
-            "mondaro-ply.jpg",     # col  ply wall in raked light
-            "mondaro-helmet.jpg"]  # col  welding helmet on the gloves
+# Interleaved colour / black-and-white, so no two neighbouring plates share a
+# treatment. The list alternates, so every rotation of it alternates too.
+ROTATION = ["mondaro-ply.jpg",     # col  ply wall in raked light
+            "mondaro-joists.jpg",  # B&W  engineered joists, stacked
+            "mondaro-helmet.jpg",  # col  welding helmet on the gloves
+            "mondaro-studs.jpg"]   # B&W  studs and diagonal brace
 
 # Positions with no suitable frame stay briefed slots rather than taking a stand-in.
 SLOT_ONLY = {"P11": "Portrait of Rob"}
