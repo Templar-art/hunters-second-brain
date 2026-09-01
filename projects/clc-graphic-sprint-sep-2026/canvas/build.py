@@ -299,10 +299,10 @@ def close_graphic(s):
 
 def slot(w, h, label, note="", on_dark=False):
     """A marked placeholder frame. Never a stand-in photo — it says what shot is missing."""
-    hatch_a, hatch_b = ("#33363a", "#2b2e31") if on_dark else ("#e4e9ee", "#dbe2e8")
-    line = "rgba(255,255,255,0.45)" if on_dark else "rgba(47,102,144,0.4)"
-    lab = "rgba(255,255,255,0.75)" if on_dark else STEEL
-    note_c = "rgba(255,255,255,0.45)" if on_dark else "rgba(22,36,46,0.5)"
+    hatch_a, hatch_b = ("#33363a", "#2b2e31") if on_dark else ("#e6e6e6", "#dedede")
+    line = "rgba(255,255,255,0.45)" if on_dark else "rgba(17,18,20,0.30)"
+    lab = "rgba(255,255,255,0.75)" if on_dark else "rgba(17,18,20,0.62)"
+    note_c = "rgba(255,255,255,0.45)" if on_dark else "rgba(17,18,20,0.42)"
     sub = f'<div style="font-size: 20px; color: {note_c}; text-align: center; max-width: {w-80}px;">{note}</div>' if note else ""
     return f"""<div style="width: {w}px; height: {h}px; overflow: hidden;
        background: repeating-linear-gradient(135deg, {hatch_a} 0px, {hatch_a} 2px, {hatch_b} 2px, {hatch_b} 14px);
@@ -403,7 +403,7 @@ def ground_from(photo, variant='blue'):
 def _ink_for(variant, ground):
     """Pale tint on the deep ground; the brand dark ink on light and grey."""
     if variant in ("light", "grey", "paper"):
-        return "#16242e"
+        return "#111214"   # the same black as cl-black.png
     return _tint(ground)
 
 
@@ -442,7 +442,7 @@ def plate_text(s):
     <div style="width: 76px; height: 2px; background: {ink}; opacity: 0.5;"></div>
   </div>
   <div style="position: absolute; left: 50%; top: {PL_CAP_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 60}px; text-align: center;
-       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: {0.7 if v in ('light','grey','paper') else 0.82};">{s.get('meta','').upper()}</div>""",
+       font-size: 24px; font-weight: 400; letter-spacing: 0.13em; line-height: 1.66; color: {ink}; opacity: {0.7 if v in ('light','grey','paper') else 0.82};">{s.get('meta','').upper()}</div>""",
                  ground, ink, h=H_PLATE)
 
 
@@ -464,7 +464,7 @@ def plate(s):
 {art}
   </div>
   <div style="position: absolute; left: 50%; top: {PL_CAP_Y}px; transform: translateX(-50%); width: {PL_IMG_W + 60}px; text-align: center;
-       font-size: 23px; font-weight: 500; letter-spacing: 0.15em; line-height: 1.62; color: {ink}; opacity: {0.78 if v in ("light","grey","paper") else 0.9}; text-wrap: balance;">{cap}</div>"""
+       font-size: 24px; font-weight: 400; letter-spacing: 0.13em; line-height: 1.66; color: {ink}; opacity: {0.82 if v in ("light","grey","paper") else 0.9}; text-wrap: balance;">{cap}</div>"""
     return shell(body, ground, ink, h=H_PLATE)
 
 KINDS = {"plate": plate, "plate_text": plate_text, "service": service, "detail_spread": detail_spread, "close_graphic": close_graphic, "photo_cover": photo_cover, "photo_static": photo_static, "ph_static": ph_static,
