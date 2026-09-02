@@ -55,10 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     realLogo.style.opacity = '0';
     const restoreRealLogoSafety = setTimeout(() => { realLogo.style.opacity = '1'; }, 5000);
 
-    // The opening "Coming soon" text card holds noticeably longer than the
-    // quick photo flashes that follow it — it needs to actually be read.
+    // "Coming soon" overlays the photo flashes from the very first frame.
+    if (caption) caption.classList.add('is-visible');
+
     const PHOTO_STEP_MS = 70;
-    const TEXT_STEP_MS = 550;
     let flashIndex = 0;
     function advanceFlash() {
       flashFrames[flashIndex]?.classList.remove('is-active');
@@ -68,14 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       flashFrames[flashIndex].classList.add('is-active');
-      const isText = flashFrames[flashIndex].classList.contains('intro-flash-text');
-      // "Coming soon" carries its own copy on the opening black card; once
-      // we move past it into the photo flashes, overlay the same words on
-      // top of them too, so the copy reads through the whole sequence.
-      if (caption && !isText && flashIndex === 1) caption.classList.add('is-visible');
-      setTimeout(advanceFlash, isText ? TEXT_STEP_MS : PHOTO_STEP_MS);
+      setTimeout(advanceFlash, PHOTO_STEP_MS);
     }
-    setTimeout(advanceFlash, TEXT_STEP_MS);
+    setTimeout(advanceFlash, PHOTO_STEP_MS);
 
     function popWhiteFlash() {
       // Kill the image flash instantly, pop to solid white instantly, and
