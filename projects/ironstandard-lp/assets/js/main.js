@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const splash = document.querySelector('.intro-splash');
   const flashFrames = splash ? Array.from(splash.querySelectorAll('.intro-flash')) : [];
   const flashStack = splash ? splash.querySelector('.intro-flash-stack') : null;
+  const caption = splash ? splash.querySelector('.intro-caption') : null;
   const cloneLogo = splash ? splash.querySelector('.intro-logo') : null;
   const whiteFlash = splash ? splash.querySelector('.intro-whiteflash') : null;
   const realLogo = document.querySelector('.hero-logo');
@@ -68,6 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       flashFrames[flashIndex].classList.add('is-active');
       const isText = flashFrames[flashIndex].classList.contains('intro-flash-text');
+      // "Coming soon" carries its own copy on the opening black card; once
+      // we move past it into the photo flashes, overlay the same words on
+      // top of them too, so the copy reads through the whole sequence.
+      if (caption && !isText && flashIndex === 1) caption.classList.add('is-visible');
       setTimeout(advanceFlash, isText ? TEXT_STEP_MS : PHOTO_STEP_MS);
     }
     setTimeout(advanceFlash, TEXT_STEP_MS);
@@ -78,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // the veil sits on top at full opacity, the logo is completely hidden
       // ("on the white but you shouldn't see it"), not just color-matched.
       flashStack.style.opacity = '0';
+      if (caption) caption.classList.remove('is-visible');
       whiteFlash.style.transition = 'none';
       whiteFlash.style.opacity = '1';
       cloneLogo.style.transition = 'none';
