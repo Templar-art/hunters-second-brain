@@ -1,12 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Content is already visible in the DOM without this script running —
-  // this only adds a fade/rise polish on top. Never gate content on it.
-  const heroLogo = document.querySelector('.hero-logo');
-  if (heroLogo) {
-    requestAnimationFrame(() => {
-      setTimeout(() => heroLogo.classList.add('is-visible'), 150);
-    });
-  }
+  // The load-in logo moment lives entirely in CSS now (.intro-splash /
+  // .intro-logo keyframes) so it still plays correctly even if this script
+  // never runs — it was never gating any content, just an overlay on top.
 
   // The waitlist form itself posts straight to Brevo's hosted Forms endpoint
   // (see the form's action/hidden fields in index.html and README.md) — it
