@@ -26,6 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (splash && cloneLogo && realLogo && !reducedMotion) {
     splash.classList.add('js-driven');
 
+    // Hide the real logo only for the duration of this same animation —
+    // otherwise it's visible underneath the clone the whole time, which
+    // reads as two logos instead of one dragging into place. A hard
+    // timeout below guarantees it's restored even if something above throws.
+    realLogo.style.opacity = '0';
+    const restoreRealLogoSafety = setTimeout(() => { realLogo.style.opacity = '1'; }, 4000);
+
     const FLASH_STEP_MS = 150;
     let flashIndex = 0;
     const flashTimer = setInterval(() => {
@@ -61,6 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
       cloneLogo.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
 
       setTimeout(() => {
+        // Reveal the real logo and fade the clone out at the same moment —
+        // a seamless crossfade between two identical, identically-placed images.
+        clearTimeout(restoreRealLogoSafety);
+        realLogo.style.transition = 'opacity 0.15s ease';
+        realLogo.style.opacity = '1';
         cloneLogo.style.transition = 'opacity 0.15s ease';
         cloneLogo.style.opacity = '0';
         setTimeout(() => {

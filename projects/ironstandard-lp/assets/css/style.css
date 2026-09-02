@@ -85,7 +85,7 @@ a.accent-link:hover { border-color: var(--accent); }
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  filter: brightness(0.7);
+  filter: grayscale(1) contrast(1.15) brightness(0.85);
 }
 .intro-flash.is-active { opacity: 1; }
 /* Fallback only: no JS means the flash stack never gets its cycling
