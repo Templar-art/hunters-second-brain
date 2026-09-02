@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     realLogo.style.opacity = '0';
     const restoreRealLogoSafety = setTimeout(() => { realLogo.style.opacity = '1'; }, 5000);
 
-    const FLASH_STEP_MS = 150;
+    const FLASH_STEP_MS = 70;
     let flashIndex = 0;
     const flashTimer = setInterval(() => {
       flashFrames[flashIndex]?.classList.remove('is-active');
@@ -68,7 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
         whiteFlash.style.opacity = '0';
       }, 120);
 
-      setTimeout(dragLogoIntoPlace, 120 + 450 + 300);
+      // Hold on black a good while once the logo's revealed, so it has
+      // time to actually register before the page underneath takes over.
+      setTimeout(dragLogoIntoPlace, 120 + 450 + 1300);
     }
 
     function dragLogoIntoPlace() {
