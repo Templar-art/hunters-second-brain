@@ -62,25 +62,35 @@
     </section>
 
     <section id="waitlist" class="section waitlist">
-      <p class="kicker">Join the waitlist</p>
-      <h2>Be a founding member.</h2>
-      <!--
-        This form posts directly to Brevo's hosted Forms endpoint — no API key
-        ever touches this page. Replace the action URL and the two hidden
-        fields below with the exact ones Brevo generates for your list (see
-        README.md, "Set up Brevo"). Do not swap this for a raw API fetch call:
-        that pattern requires an API key in the page's own JavaScript, which
-        anyone can read via "view source" — a real credential leak.
-      -->
-      <form id="waitlist-form" method="POST" action="REPLACE_WITH_BREVO_FORM_ACTION_URL">
-        <input type="hidden" name="REPLACE_WITH_BREVO_LIST_FIELD" value="REPLACE_WITH_LIST_ID">
-        <input type="hidden" name="locale" value="en">
-        <label for="wl-name">Name</label>
-        <input type="text" id="wl-name" name="FIRSTNAME" required autocomplete="name">
-        <label for="wl-email">Email</label>
-        <input type="email" id="wl-email" name="EMAIL" required autocomplete="email">
-        <button type="submit" class="btn-primary">Join the waitlist</button>
-      </form>
+      <img src="assets/img/flash-1.jpg" alt="" class="waitlist-bg">
+      <div class="waitlist-content">
+        <p class="kicker">Join the waitlist</p>
+        <h2>Be a founding member.</h2>
+        <p class="waitlist-sub">No payment, no obligation — just first word when doors open, and priority on founding-member terms.</p>
+        <!--
+          This form posts directly to Brevo's hosted Forms endpoint — no API key
+          ever touches this page. Replace the action URL and the two hidden
+          fields below with the exact ones Brevo generates for your list (see
+          README.md, "Set up Brevo"). Do not swap this for a raw API fetch call:
+          that pattern requires an API key in the page's own JavaScript, which
+          anyone can read via "view source" — a real credential leak.
+        -->
+        <form id="waitlist-form" method="POST" action="REPLACE_WITH_BREVO_FORM_ACTION_URL">
+          <input type="hidden" name="REPLACE_WITH_BREVO_LIST_FIELD" value="REPLACE_WITH_LIST_ID">
+          <input type="hidden" name="locale" value="en">
+          <div class="waitlist-row">
+            <div class="field">
+              <label for="wl-name">Name</label>
+              <input type="text" id="wl-name" name="FIRSTNAME" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="wl-email">Email</label>
+              <input type="email" id="wl-email" name="EMAIL" required autocomplete="email">
+            </div>
+          </div>
+          <button type="submit" class="btn-primary">Join the waitlist</button>
+        </form>
+      </div>
     </section>
   </main>
   <footer id="footer" class="site-footer">
