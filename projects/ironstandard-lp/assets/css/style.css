@@ -58,7 +58,10 @@ a.accent-link:hover { border-color: var(--accent); }
 }
 .btn-primary:hover { opacity: 0.85; }
 
-/* Intro splash — pure CSS, no JS dependency, never blocks interaction */
+/* Intro splash — CSS keyframes are the no-JS fallback (logo fade-in, then
+   the whole overlay fades out on a fixed timer). When main.js runs, it adds
+   .js-driven to take over with the flash sequence + logo drag-into-place;
+   the fallback below is what plays if that script never executes. */
 .intro-splash {
   position: fixed;
   inset: 0;
@@ -68,16 +71,40 @@ a.accent-link:hover { border-color: var(--accent); }
   justify-content: center;
   z-index: 999;
   pointer-events: none;
+  overflow: hidden;
   animation: intro-splash-out 0.6s ease forwards;
   animation-delay: 1.4s;
 }
+.intro-splash.js-driven { animation: none; }
+
+.intro-flash-stack { position: absolute; inset: 0; }
+.intro-flash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: brightness(0.7);
+}
+.intro-flash.is-active { opacity: 1; }
+/* Fallback only: no JS means the flash stack never gets its cycling
+   class toggled, so keep it invisible and let the logo-only fallback play. */
+.intro-splash:not(.js-driven) .intro-flash { display: none; }
+
 .intro-logo {
+  position: relative;
   width: 280px;
   max-width: 55vw;
   opacity: 0;
   transform: scale(0.9);
   animation: intro-logo-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.1s;
+}
+.intro-splash.js-driven .intro-logo {
+  animation: none;
+  opacity: 0;
+  transform: scale(0.9);
 }
 @keyframes intro-logo-in {
   to { opacity: 1; transform: scale(1); }
