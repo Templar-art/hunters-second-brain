@@ -54,18 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
     realLogo.style.opacity = '0';
     const restoreRealLogoSafety = setTimeout(() => { realLogo.style.opacity = '1'; }, 5000);
 
-    const FLASH_STEP_MS = 70;
+    // The opening "Coming soon" text card holds noticeably longer than the
+    // quick photo flashes that follow it — it needs to actually be read.
+    const PHOTO_STEP_MS = 70;
+    const TEXT_STEP_MS = 550;
     let flashIndex = 0;
-    const flashTimer = setInterval(() => {
+    function advanceFlash() {
       flashFrames[flashIndex]?.classList.remove('is-active');
       flashIndex += 1;
       if (flashIndex >= flashFrames.length) {
-        clearInterval(flashTimer);
         popWhiteFlash();
         return;
       }
       flashFrames[flashIndex].classList.add('is-active');
-    }, FLASH_STEP_MS);
+      const isText = flashFrames[flashIndex].classList.contains('intro-flash-text');
+      setTimeout(advanceFlash, isText ? TEXT_STEP_MS : PHOTO_STEP_MS);
+    }
+    setTimeout(advanceFlash, TEXT_STEP_MS);
 
     function popWhiteFlash() {
       // Kill the image flash instantly, pop to solid white instantly, and
