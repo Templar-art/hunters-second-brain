@@ -39,15 +39,15 @@
       <video class="hero-video is-active" autoplay muted loop playsinline poster="assets/img/hero-poster.jpg">
         <source src="assets/video/hero-1-weightlifting-man.mp4" type="video/mp4">
       </video>
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="assets/video/hero-4-weight-lifter.mp4" type="video/mp4">
-      </video>
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="assets/video/hero-2-female-woman.mp4" type="video/mp4">
-      </video>
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="assets/video/hero-6-weightlifting-gym.mp4" type="video/mp4">
-      </video>
+      <!--
+        These 3 stay preload="none" with no autoplay/source at first — main.js
+        primes each one (assigns its real source, then loads + plays it) a
+        full rotation cycle before it's due on screen, instead of the browser
+        downloading and decoding all 4 clips upfront regardless of visibility.
+      -->
+      <video class="hero-video" muted loop playsinline preload="none" data-src="assets/video/hero-4-weight-lifter.mp4"></video>
+      <video class="hero-video" muted loop playsinline preload="none" data-src="assets/video/hero-2-female-woman.mp4"></video>
+      <video class="hero-video" muted loop playsinline preload="none" data-src="assets/video/hero-6-weightlifting-gym.mp4"></video>
       <div class="hero-content">
         <img src="assets/img/logo-white.png" alt="Iron Standard" class="hero-logo">
         <p class="kicker">Coming soon</p>
