@@ -30,6 +30,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 - [[oneill-group]] — client; full rebrand + website. Identity landed 2026-08 as **O'Neill Property** (Sage Grey/Basalt/Stone/Deep Sage, Sinhala MN + Inter) — the earlier 10x-palette brief on that page is superseded
 - [[iron-standard]] — Anthony McCoy's Oslo powerlifting gym, pre-launch; waitlist landing page built 2 Sep (Brevo email capture, Netlify hosting) — not the unrelated [[anthony]] lead page
+- [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])
 
 ## Projects
 - [[lead-gen-engine]] — ads + landing pages for MVX, CVA and 10x itself; per-niche strategy, 3 pages built 28 Jul
@@ -79,6 +80,8 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 - [[real-estate-design-refs]] — luxury/boutique real-estate web design pattern research (20+ sites audited); feeds [[oneill-group]]
 - [[oneill-brand-book-edition-one]] — O'Neill Property Brand Book, Edition One: the delivered identity manual (palette + hexes, type, logo minimums, campaign words, print, photography, and the six open items)
 - [[oneill-brand-book-edition-two]] — O'Neill Property Brand Guidelines, Edition Two: 26 spreads condensed to 13 print pages (A3 landscape PDF + editable canvas). Locked client copy, 10x design only. Nominates **Antic Didone** as the non-Apple display substitute. Built from the master logo SVGs in Drive (`Branding/Logos/`) — all three lockups
+
+- [[salt-pm-brand-scrub]] — Salt PM site + IG scrub (2 Sep): verbatim bio/captions, two-register voice profile for the planned chatbot
 
 ## Sources (from `raw/clc/` — CLC Fable 5 pack + research)
 - [[clc-profile-audit]] — the audit all CLC decisions trace to (6 Jul 2026)

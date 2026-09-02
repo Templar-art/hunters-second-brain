@@ -932,3 +932,6 @@ not see. 0 overlaps, 0 spills, 0 broken images across all 13 pages.
 Deliverable PDF (13 pages, 423x299 mm, real Sinhala MN + Inter subsets embedded) uploaded to
 `Clients/O'Neill Property/Branding/` on the client Drive. Only open items are now the four
 decisions on page 13 — none of them 10x's to make.
+
+## [2026-09-02] ingest | Salt PM brand-voice scrub — new client, site+IG scrub for chatbot spec
+Site (saltpm.com.au) + IG (@saltpropertymgt) scrubbed: bio, hero copy, 2 sample captions. Two-register voice found — data-led landlord/investor tone vs coastal holiday-guest tone, brand words (considered/tailored/hybrid/stress-free), no hashtags, soft CTAs. Filed [[salt-pm-brand-scrub]], new client page [[salt-pm]], indexed. Chatbot build itself not started.
