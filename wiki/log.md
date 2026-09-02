@@ -938,3 +938,6 @@ Site (saltpm.com.au) + IG (@saltpropertymgt) scrubbed: bio, hero copy, 2 sample 
 
 ## [2026-09-02] update | Salt PM handoff doc written for Lach
 Condensed the brand scrub into a practical caption-writing brief — two-register rule (landlord/investor vs holiday/guest), brand words, dos/don-ts. `projects/salt-pm-brand-voice-handoff.md`, linked from [[salt-pm]]. Full verbatim scraping of all 259 posts ruled out — no bulk API access without their own IG login, and storing 259 captions verbatim is not something the wiki should hold anyway.
+
+## [2026-09-02] update | Salt PM scrub deepened — 9 posts pulled, four-format model replaces two-register model
+Pulled 9 distinct posts via direct URLs (grid clicks were unreliable). Structure sharpened from 2 registers to 4 formats: authority/landlord, team/trust, rigid For-Lease/Leased listing template, and holiday/lifestyle reels (loosest, most voice-driven). Updated [[salt-pm-brand-scrub]] and `projects/salt-pm-brand-voice-handoff.md`. Still 9/259 sampled — bulk export not available (no working API/scraping login) and not appropriate to do wholesale regardless.

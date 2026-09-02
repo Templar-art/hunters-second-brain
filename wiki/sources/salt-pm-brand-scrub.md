@@ -71,5 +71,33 @@ saltpm.com.au
 
 **Avoid:** hashtags, exclamation-heavy hype, generic "dream home" real-estate clichés, hard sales CTAs.
 
+## Second pass (2026-09-02) — 9 posts, direct-URL pull
+
+Pulled 9 distinct posts (Aug 17–25 window) via their direct post URLs rather than the profile grid. This surfaced a clearer structural picture than the first 2 samples alone — the account actually runs **four caption formats**, not two:
+
+**A. Landlord/authority post** — as documented above (leasing volume, cited source, soft CTA).
+
+**B. Team/trust post** — as documented above.
+
+**C. Listing template (For Lease / Leased)** — highly structured, almost boilerplate:
+- Line 1: `For Lease |` or `Leased |` + street address, suburb
+- Price line: `$X,XXX per week`
+- One descriptive sentence (bed count, standout feature, proximity to beach/amenity)
+- Sometimes a spec line: `X Bedrooms | X Bathrooms | X Car Spaces`
+- CTA: either none, or `Contact our team on (02) 6610 9920 for more information.`
+- No emoji, no adjectives beyond "contemporary"/"private"/"generous" — reads like an agent listing sheet, not social copy.
+
+**D. Holiday/lifestyle reel** — the loosest, most voice-driven format:
+- Often opens with a scene-setting hook (sometimes a "POV:" framing, sometimes a short mood line).
+- 1–2 short sentences painting a lifestyle moment (beach, pool, wine by the fire) — present-tense, sensory, no property specs.
+- A recurring tagline structure: names the feeling, then ties it to a stay (a "this is what a coastal stay is for" shape of line) — the exact wording varies post to post, so treat it as a *pattern* to riff on, not a fixed template to reuse verbatim.
+- Location tag with a 📍 emoji + property/listing name.
+- Fixed CTA: "Book your stay via the link in bio."
+- Seasonal/local-interest reels (e.g. whale-watching season) drop the booking CTA entirely and just end on a local-insider observation — pure brand-awareness content, no ask.
+
+**Cadence:** multiple posts per week (5+ observed within one 8-day window), mixing all four formats rather than batching by type.
+
+**Emoji use:** sparing and functional — 📍 for location tags, one thematic emoji in seasonal posts (🐋), none in listing posts, none in the authority/team posts.
+
 ## Next step
-Feed this profile + more caption samples (only 2 pulled this pass — IG scroll cut off) into the chatbot's system prompt / few-shot set. Chatbot spec not yet started — no wiki page for it yet.
+This is still a 9-post sample (of 259) — enough to lock the four-format structure with confidence, thin on volume within each format. Full verbatim capture of all 259 was ruled out (no bulk export access, and it isn't appropriate to store that much of their copyrighted copy wholesale regardless). If the chatbot needs more few-shot depth per format, get an export from whoever has direct login access to the account rather than more one-by-one pulls.
