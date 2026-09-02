@@ -26,6 +26,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const realLogo = document.querySelector('.hero-logo');
 
   if (splash && cloneLogo && whiteFlash && realLogo && !reducedMotion) {
+    // Wait for the web font to finish loading before doing anything that
+    // measures layout. TASA Orbiter swaps in async (Google Fonts) — if it
+    // lands mid-intro, the real logo's text above/around it reflows and
+    // the position we measured earlier goes stale, so the dragged clone
+    // lands slightly off from the real logo and visibly flickers/jumps at
+    // the crossfade. Gating the whole sequence on fonts.ready means layout
+    // is already final by the time we ever call getBoundingClientRect().
+    const fontsReady = document.fonts && document.fonts.ready
+      ? document.fonts.ready
+      : Promise.resolve();
+    fontsReady.then(runIntro).catch(runIntro);
+  } else {
+    // No-JS-equivalent path (reduced motion, or missing elements): don't
+    // wait on an intro that isn't playing.
+    if (splash) splash.remove();
+    startHeroRotation();
+  }
+
+  function runIntro() {
     splash.classList.add('js-driven');
 
     // Hide the real logo only for the duration of this same animation —
@@ -101,10 +120,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
       }, 600);
     }
-  } else {
-    // No-JS-equivalent path (reduced motion, or missing elements): don't
-    // wait on an intro that isn't playing.
-    if (splash) splash.remove();
-    startHeroRotation();
   }
 });
