@@ -21,16 +21,17 @@ Real guidelines: `raw/` doesn't hold a copy yet — sourced directly from the PD
 
 Static single-page site: [projects/ironstandard-lp/](../../projects/ironstandard-lp/). Spec: [2026-09-02 design](../../docs/superpowers/specs/2026-09-02-ironstandard-landing-page-design.md). Plan: [2026-09-02 implementation](../../docs/superpowers/plans/2026-09-02-ironstandard-landing-page.md).
 
+**Final structure is deliberately minimal:** hero (video reel + intro animation + waitlist CTA + scroll arrow) → waitlist form → footer. Hunter cut the What-it-is / Who's-it-for / What's-different / Founding-member sections entirely partway through — the brief's original urgency ("landing page asap, just collect emails") won out over a fuller pitch page. Hero kicker reads "Coming soon" rather than a specific date.
+
 - **Email capture → Brevo** (free tier, no contact-cap, created under Hunter's 10x Brevo account as a separate "Iron Standard Waitlist" list — not a new Brevo account). This is the list Anthony shows investors, exportable to CSV anytime.
 - **Security fix mid-build:** the first pass wired the waitlist form to POST directly to Brevo's contacts API with an API key inside the page's own JavaScript — that would have exposed the key to anyone viewing source. Corrected to a plain HTML form posting straight to Brevo's hosted Forms endpoint, which needs no client-side credential at all. Worth remembering for any future client site with an ESP integration: never put an API key in public-facing JS: use the vendor's hosted-form pattern instead.
 - **Hosting:** Netlify (free), DNS repointed from GoDaddy (registrar stays GoDaddy).
-- **Hero:** rotates through 7 clips of Hunter's own licensed 4K footage (`/Volumes/10X SSD3/Videos for Website/`), transcoded to web weight, under the wordmark load-in animation. Superseded two earlier stock attempts: a single Pexels clip (kept only briefly), and a rejected free-stock male clip that read as light-weight/generic CrossFit — Pexels and Adobe Stock both came up short on "heavy indoor powerlifting with real emotion." The real footage opens on a woman deadlifting and includes a mixed-gender coaching/spotting shot, which answers the brand's "not male-only" brief more convincingly than any stock search did.
-- **Imagery gap:** the "who it's for" section shipped text-only — same pattern as the male hero clip, this niche's stock libraries (free and paid) skew bright/commercial/outdoor rather than dark serious-training. Real photography is the actual fix, not more stock searching.
-- Copy (all sections) written from scratch — client had none ready.
+- **Hero:** rotates through 4 clips of Hunter's own licensed 4K footage (`/Volumes/10X SSD3/Videos for Website/`, from a larger 7-clip batch — 3 were cut as off-brand/generic), transcoded to web weight. Opens on a woman deadlifting, includes a mixed-gender coaching/spotting shot — answers the brand's "not male-only, equal seriousness at real loads" brief with real footage rather than stock, after Pexels/Adobe Stock searches for that specific look came up short.
+- **Intro animation:** ~10 B&W still-frame flash (Freepik stock, chalk/barbell/silhouette imagery, 70ms/frame) → instant white flash (occludes the logo, which spawns underneath it) → veil recedes to black, revealing the logo purely through the backdrop contrast change → hold ~1.3s so it registers → logo drags (computed FLIP transform) into its exact on-page position → crossfades into the real logo already there. Iterated several times on user feedback (subtlety, double-logo-visible bug, pacing).
+- Copy written from scratch — client had none ready — though most of it was cut in the later simplification pass above.
 
 ## Open items before go-live
 
 1. Fill in the real Brevo Forms action URL + hidden field names in `index.html` (placeholders left in place, exact steps in the project's `README.md`).
 2. Export any leads already sitting in the current GoDaddy Website Builder form before retiring it.
-3. Confirm real opening date (placeholder "Opening 2027" in the hero).
-4. "Who it's for" section imagery.
+3. Confirm whether "Coming soon" needs a real date once Anthony has one.
