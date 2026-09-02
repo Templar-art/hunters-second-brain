@@ -20,10 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // still never blocks any content underneath (pointer-events: none throughout).
   const splash = document.querySelector('.intro-splash');
   const flashFrames = splash ? Array.from(splash.querySelectorAll('.intro-flash')) : [];
+  const flashStack = splash ? splash.querySelector('.intro-flash-stack') : null;
   const cloneLogo = splash ? splash.querySelector('.intro-logo') : null;
+  const whiteFlash = splash ? splash.querySelector('.intro-whiteflash') : null;
   const realLogo = document.querySelector('.hero-logo');
 
-  if (splash && cloneLogo && realLogo && !reducedMotion) {
+  if (splash && cloneLogo && whiteFlash && realLogo && !reducedMotion) {
     splash.classList.add('js-driven');
 
     // Hide the real logo only for the duration of this same animation —
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // reads as two logos instead of one dragging into place. A hard
     // timeout below guarantees it's restored even if something above throws.
     realLogo.style.opacity = '0';
-    const restoreRealLogoSafety = setTimeout(() => { realLogo.style.opacity = '1'; }, 4000);
+    const restoreRealLogoSafety = setTimeout(() => { realLogo.style.opacity = '1'; }, 5000);
 
     const FLASH_STEP_MS = 150;
     let flashIndex = 0;
@@ -40,17 +42,33 @@ document.addEventListener('DOMContentLoaded', () => {
       flashIndex += 1;
       if (flashIndex >= flashFrames.length) {
         clearInterval(flashTimer);
-        beginLogoReveal();
+        popWhiteFlash();
         return;
       }
       flashFrames[flashIndex].classList.add('is-active');
     }, FLASH_STEP_MS);
 
-    function beginLogoReveal() {
-      cloneLogo.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+    function popWhiteFlash() {
+      // Kill the image flash instantly, pop to solid white instantly, and
+      // spawn the logo underneath the white veil in the same tick — since
+      // the veil sits on top at full opacity, the logo is completely hidden
+      // ("on the white but you shouldn't see it"), not just color-matched.
+      flashStack.style.opacity = '0';
+      whiteFlash.style.transition = 'none';
+      whiteFlash.style.opacity = '1';
+      cloneLogo.style.transition = 'none';
       cloneLogo.style.opacity = '1';
       cloneLogo.style.transform = 'scale(1)';
-      setTimeout(dragLogoIntoPlace, 700);
+
+      // Hold the flash for a beat, then let it recede — the logo becomes
+      // visible purely because the white veil in front of it fades away,
+      // revealing it against the splash's black backdrop underneath.
+      setTimeout(() => {
+        whiteFlash.style.transition = 'opacity 0.45s ease-out';
+        whiteFlash.style.opacity = '0';
+      }, 120);
+
+      setTimeout(dragLogoIntoPlace, 120 + 450 + 300);
     }
 
     function dragLogoIntoPlace() {

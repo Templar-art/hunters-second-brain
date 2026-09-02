@@ -106,6 +106,15 @@ a.accent-link:hover { border-color: var(--accent); }
   opacity: 0;
   transform: scale(0.9);
 }
+
+/* Sits above the logo so a full-opacity flash completely hides it —
+   occlusion, not color-matching, so it works regardless of exact whites. */
+.intro-whiteflash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+}
 @keyframes intro-logo-in {
   to { opacity: 1; transform: scale(1); }
 }
