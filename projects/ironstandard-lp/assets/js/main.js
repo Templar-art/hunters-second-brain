@@ -24,6 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
       heroVideos[activeIndex].classList.remove('is-active');
       activeIndex = (activeIndex + 1) % heroVideos.length;
       heroVideos[activeIndex].classList.add('is-active');
-    }, 6000);
+    }, 2200);
   }
 });
