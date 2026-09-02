@@ -935,3 +935,6 @@ decisions on page 13 — none of them 10x's to make.
 
 ## [2026-09-02] ingest | Salt PM brand-voice scrub — new client, site+IG scrub for chatbot spec
 Site (saltpm.com.au) + IG (@saltpropertymgt) scrubbed: bio, hero copy, 2 sample captions. Two-register voice found — data-led landlord/investor tone vs coastal holiday-guest tone, brand words (considered/tailored/hybrid/stress-free), no hashtags, soft CTAs. Filed [[salt-pm-brand-scrub]], new client page [[salt-pm]], indexed. Chatbot build itself not started.
+
+## [2026-09-02] update | Salt PM handoff doc written for Lach
+Condensed the brand scrub into a practical caption-writing brief — two-register rule (landlord/investor vs holiday/guest), brand words, dos/don-ts. `projects/salt-pm-brand-voice-handoff.md`, linked from [[salt-pm]]. Full verbatim scraping of all 259 posts ruled out — no bulk API access without their own IG login, and storing 259 captions verbatim is not something the wiki should hold anyway.
