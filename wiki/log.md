@@ -1,6 +1,9 @@
 # Log
 
-Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title`
+Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title
+
+## [2026-09-08] ingest | Iron Standard client feedback contradicts minimal-page direction
+Anthony emailed Lachlan real messaging direction: specific facts cleared for the page (800m², 24/7, coaching/PT/physio, competing-or-not), exact location/date/pricing still off-limits, and a new FOMO/scarcity requirement for the waitlist (founding-member priority access, first-come-first-served, capped total spots) — none of which exists on the built page yet. This directly contradicts the 2 Sep build session's later simplification to hero+waitlist-only, which was Hunter's call at the time, not the client's. Separate email: Anthony flagged SATS also uses orange, opening the brand accent colour (`#F4502A`) up for reconsideration, explicitly deferred to 10x's judgement. Logged to [[iron-standard]]; three real decisions now block go-live (content restoration scope, FOMO copy, colour), not just remaining setup steps.`
 
 ## [2026-09-02] build | Iron Standard waitlist landing page
 New client, Anthony McCoy's Oslo powerlifting gym (pre-launch). Built a static waitlist landing page — Brevo for email capture (investor-exportable list, added as a list under 10x's existing Brevo account), Netlify hosting with GoDaddy DNS repoint. Caught and fixed a real security issue mid-build: the first pass would have exposed a Brevo API key in public page JavaScript; corrected to a plain form POST against Brevo's hosted Forms endpoint instead. Spec: `docs/superpowers/specs/2026-09-02-ironstandard-landing-page-design.md`. Plan: `docs/superpowers/plans/2026-09-02-ironstandard-landing-page.md`. Page: [[iron-standard]].
