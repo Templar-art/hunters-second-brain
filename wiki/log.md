@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title
 
+## [2026-09-08] ingest | Iron Standard: hyped the accordion labels too
+Follow-up: Hunter wanted the collapsed accordion (kicker + 4 summary labels, the only thing visible before clicking) punched up too. "More details" → "What you're getting"; "The facility" → "Inside the facility"; "Who it's for" → "Is this you?"; "What's different" → "Why it's different"; "Founding members" → "Get in first". Body copy underneath unchanged. Logged to [[iron-standard]].
+
 ## [2026-09-08] ingest | Iron Standard: hyped copy up without new claims
 Hunter wanted more hype/FOMO ("what you're missing") without sounding cocky. Reworked hero-sub, who's-it-for, what's-different pillars, founding-member and waitlist-sub copy to lead with the gap it fills (fighting for a rack, running between three addresses, being the odd one out) rather than superlatives about the gym itself. No new factual claims added, still limited to what Anthony's actually cleared. Logged to [[iron-standard]].
 
