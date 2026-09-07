@@ -1,7 +1,7 @@
 ---
 type: client
 tags: [web-client, landing-page, gym, oslo, pre-launch]
-status: full content + FOMO copy restored, accent switched to gold 8 Sep 2026 — Brevo/DNS handoff steps are the only things left before go-live
+status: full content + FOMO copy restored, accent reverted to orange 8 Sep 2026 (gold + green tested and rejected by Hunter) — Brevo/DNS handoff steps are the only things left before go-live
 updated: 2026-09-08
 ---
 
@@ -17,7 +17,7 @@ Not to be confused with [[anthony]] (a different, unrelated lead named Anthony �
 
 Real guidelines: `raw/` doesn't hold a copy yet — sourced directly from the PDF the client sent (`260831_IRONSTNDRD-Guidelines.pdf`), not from the earlier auto-fetched summary of the intake-form URL, which turned out to be thin/wrong. Wordmark **IRONSTNDRD.** in **TASA Orbiter** (free on Google Fonts — confirmed via search, no licensing cost). Photography direction, in the brand's own words: "balance between grit, strength & a subtle elegance," motion over static posing, mixed smiles/serious expressions, equipment shots avoid faces. Reference sites: Equinox (target tier), ironforgegymtx (authenticity, too "gym bro"), EBT/Gymshark (inclusive strength for both genders — the balance Anthony wants). Direct Oslo competitors to visibly outclass: SATS, EVO, Pumphouse — bright/busy/promo-driven, the opposite of this build.
 
-**Accent colour changed 8 Sep 2026: `#F4502A` (orange) → `#C9A227` (gold/amber).** The guidelines' original palette was black + white + orange as an accent ("doesn't over-saturate the environment," also the colour of their equipment/lighting) — but Anthony flagged that SATS, the exact competitor this build outclasses, also brands in orange, and explicitly deferred the choice ("happy for you guys to play around with whatever you think is best"). Tested live against the actual built page: steel blue (`#4A7A96`, read too tech/SaaS), bronze (`#B5651D`, still too close to orange), olive green (`#4A6B3A`, tactical but muted/surplus-y), emerald (`#2E6B4A`, leaned corporate). Gold won — visually distinct from SATS (navy/red), EVO (magenta), and Pumphouse, and the "gold tier" association reinforces the founding-member/exclusivity framing below. Single CSS custom property (`--accent` in `assets/css/style.css`), so it was a one-line change once decided.
+**Accent colour: tested alternatives 8 Sep 2026, landed back on the original `#F4502A` orange.** Anthony flagged that SATS, the exact competitor this build outclasses, also brands in orange, and deferred the choice to 10x's judgement. Tested live against the actual built page: steel blue (`#4A7A96`, too tech/SaaS), bronze (`#B5651D`, still read as orange), olive green (`#4A6B3A`, muted/surplus-y), emerald (`#2E6B4A`, corporate), gold (`#C9A227`, first pick — Hunter rejected it once seen live, read as "AI generated"), deep forest green (`#1B5E3F`, rejected — also read as an off-brand fix). None of the alternatives landed, so the call is to keep the original brand-guideline orange and accept the SATS overlap rather than force a swap nobody's happy with. Single CSS custom property (`--accent` in `assets/css/style.css`), so any future change stays a one-line edit.
 
 ## Landing page build (2 Sep 2026)
 
@@ -41,7 +41,7 @@ Anthony sent real messaging direction plus a brand-colour flag, both now built.
 
 **FOMO/scarcity mechanic — new copy, now live in its own Founding-member section and folded into the waitlist subhead:** founding-member benefits + priority access (never the actual discount figure — Anthony hasn't finalised numbers), first-come-first-served with unclaimed offers passed to the next person on the list, and capped total membership spots.
 
-**Brand colour resolved:** `#F4502A` → `#C9A227` gold, see Brand section above for the comparison process.
+**Brand colour tested, kept as-is:** tried gold, blue, bronze, olive, emerald, forest green against the built page — none beat the original orange, so it stayed `#F4502A` despite the SATS overlap. See Brand section above.
 
 ## Open items before go-live
 

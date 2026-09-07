@@ -2,7 +2,7 @@
   --bg: #0a0a0a;
   --fg: #ffffff;
   --fg-dim: #b8b8b8;
-  --accent: #C9A227;
+  --accent: #F4502A;
   --font-display: 'TASA Orbiter', sans-serif;
   --max-width: 1200px;
   --space-lg: clamp(3rem, 8vw, 8rem);
@@ -198,8 +198,8 @@ a.accent-link:hover { border-color: var(--accent); }
 
 /* Founding member (FOMO) */
 .founding-member {
-  border-top: 1px solid rgba(201, 162, 39, 0.3);
-  border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+  border-top: 1px solid rgba(244, 80, 42, 0.3);
+  border-bottom: 1px solid rgba(244, 80, 42, 0.3);
 }
 
 .scroll-arrow {

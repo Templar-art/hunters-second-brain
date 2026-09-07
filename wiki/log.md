@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title
 
+## [2026-09-08] ingest | Iron Standard: accent colour reverted to original orange
+Follow-up to the same-day feedback pass below: after landing on gold `#C9A227`, Hunter saw it live and rejected it ("looks like it came from Claude"). Tried deep forest green `#1B5E3F` next, also rejected. Landed back on the original brand-guideline orange `#F4502A` — accepting the SATS overlap rather than force an alternative nobody likes. `assets/css/style.css` `--accent` reverted, cache-bust bumped to `?v=3`. Logged to [[iron-standard]].
+
 ## [2026-09-08] ingest | Iron Standard: client feedback actioned same day
 Anthony emailed Lachlan real messaging direction, contradicting the 2 Sep build's simplification to hero+waitlist-only. Restored full page structure (What-it-is / Who's-it-for / What's-different / Founding-member) with copy limited to what he actually cleared (800m², 24/7, top-tier equipment, posing room, coaching/PT/physio, competing-or-not), an explicit location/date/pricing-still-coming line, and new FOMO/scarcity copy that didn't exist before (founding-member priority access, first-come-first-served, capped total spots). Separate email: Anthony flagged SATS also uses orange and deferred the accent colour to 10x's judgement — tested steel-blue/bronze/olive/emerald live against the built page before landing on gold `#C9A227`, which also reinforces the founding-member "tier" framing. Also fixed a stale-CSS-cache issue discovered mid-session (browser was serving an old style.css across reloads; `location.reload(true)` no longer force-bypasses cache in modern engines — added a `?v=` cache-bust param instead). Logged to [[iron-standard]].`
 
