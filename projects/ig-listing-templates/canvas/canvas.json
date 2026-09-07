@@ -1,0 +1,19 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Just Listed", "x": 0, "y": 0, "w": 1080, "h": 1080 },
+    { "file": "ComingSoon.dc.html", "title": "Coming Soon", "x": 1180, "y": 0, "w": 1080, "h": 1080 },
+    { "file": "JustSold.dc.html", "title": "Just Sold", "x": 2360, "y": 0, "w": 1080, "h": 1080 },
+    { "file": "SoldOffMarket.dc.html", "title": "Sold Off Market", "x": 0, "y": 1240, "w": 1080, "h": 1080 },
+    { "file": "OpenHome.dc.html", "title": "Open Home", "x": 1180, "y": 1240, "w": 1080, "h": 1080 }
+  ],
+  "annotations": [
+    {
+      "id": "notes",
+      "x": 0,
+      "y": -210,
+      "w": 900,
+      "text": "Harcourts Property Hub listing posts, 1080x1080. Full-bleed photo, type over a soft navy scrim, Harcourts wordmark top right.\nSwap per listing: the photo, the status line, the address, and the price or times line. Hero shots here are Stonehaven frames standing in for the real listing photography."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

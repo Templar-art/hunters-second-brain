@@ -7,7 +7,9 @@ Usage:
 Outputs <stem>.html and <stem>.pdf beside the JSON. Stdlib only.
 """
 
+import base64
 import json
+import mimetypes
 import re
 import subprocess
 import sys
@@ -56,6 +58,26 @@ def render_rows(items):
     return "\n        ".join(rows)
 
 
+def brand_block(cfg):
+    """Header-band brand: an embedded logo image if the config names one
+    (path relative to this script, e.g. "assets/harcourts-primary-logo.png"),
+    otherwise the original stacked brand-name/sub-line text."""
+    logo = cfg.get("brand_logo")
+    if logo:
+        logo_path = HERE / logo
+        if not logo_path.exists():
+            raise SystemExit(f"brand_logo not found: {logo_path}")
+        mime = mimetypes.guess_type(logo_path.name)[0] or "image/png"
+        data = base64.b64encode(logo_path.read_bytes()).decode()
+        return f'<img class="brand-logo" src="data:{mime};base64,{data}" alt="{cfg.get("brand", "")}">'
+    brand = cfg.get("brand", cfg["from"]["name"].split()[0].upper())
+    brand_sub = cfg.get("brand_sub", "— M E D I A —")
+    return (
+        f'<div><div class="brand">{brand}</div>'
+        f'<div class="brand-sub">{brand_sub}</div></div>'
+    )
+
+
 def build_html(cfg):
     items = cfg["items"]
     subtotal = sum(i.get("total", i.get("qty", 1) * i["rate"]) for i in items)
@@ -68,8 +90,8 @@ def build_html(cfg):
     sender, client = cfg["from"], cfg["to"]
     swaps = {
         "__TITLE__": f'{cfg["invoice_no"]} · {sender["name"]}',
-        "__BRAND__": cfg.get("brand", sender["name"].split()[0].upper()),
-        "__BRAND_SUB__": cfg.get("brand_sub", "— M E D I A —"),
+        "__BRAND_BLOCK__": brand_block(cfg),
+        "__BAND_COLOR__": cfg.get("band_color", "#2563eb"),
         "__INVOICE_NO__": cfg["invoice_no"],
         "__DATE__": cfg["date"],
         "__DUE__": cfg.get("due", "On Receipt"),

@@ -8,7 +8,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
   :root {
-    --blue: #2563eb;
+    --blue: __BAND_COLOR__;
     --ink: #1e293b;
     --ink-soft: #334155;
     --grey: #64748b;
@@ -40,6 +40,8 @@
   }
   .brand    { font-size: 30pt; font-weight: normal; letter-spacing: 1pt; line-height: 1; margin-top: 4.8mm; }
   .brand-sub{ font-size: 9.5pt; letter-spacing: 3.2pt; margin-top: 3.9mm; }
+  .brand-block { display: flex; align-items: flex-start; margin-top: 4.8mm; }
+  .brand-logo { height: 18mm; width: auto; display: block; }
   .doctype  { font-size: 31pt; font-weight: bold; line-height: 1; letter-spacing: 0.5pt; }
   .band-right { text-align: right; }
   .band-meta  { font-size: 8.5pt; font-weight: bold; margin-top: 5.4mm; }
@@ -111,10 +113,7 @@
 <body>
 
   <div class="band">
-    <div>
-      <div class="brand">__BRAND__</div>
-      <div class="brand-sub">__BRAND_SUB__</div>
-    </div>
+    <div class="brand-block">__BRAND_BLOCK__</div>
     <div class="band-right">
       <div class="doctype">INVOICE</div>
       <div class="band-meta">Invoice Number: __INVOICE_NO__</div>
