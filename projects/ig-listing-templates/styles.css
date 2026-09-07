@@ -1,0 +1,144 @@
+/* IG listing post templates — shared visual system
+   1080x1080. Swap the hero photo + two text lines per listing, nothing else moves. */
+
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Nunito+Sans:wght@400;600;700&display=swap');
+
+:root {
+  --light-blue: #3ba0e8;
+  --dark-blue: #0a1c3e;
+  --white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 1080px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--dark-blue);
+}
+
+.frame {
+  position: relative;
+  width: 1080px;
+  height: 1080px;
+}
+
+/* hero photo layer — replace this element's background-image per listing */
+.hero {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+/* placeholder look only — delete when a real listing photo is dropped in */
+.hero--placeholder {
+  background:
+    linear-gradient(180deg, #7fb8e0 0%, #bcd9ec 38%, #e9edea 55%, #d7cfc2 100%);
+}
+.hero--placeholder .placeholder-mark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10, 28, 62, 0.28);
+}
+
+/* bottom scrim — dark navy fading up to transparent, photo stays visible */
+.scrim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 62%;
+  background: linear-gradient(180deg,
+    rgba(10, 28, 62, 0) 0%,
+    rgba(10, 28, 62, 0.55) 48%,
+    rgba(10, 28, 62, 0.92) 100%
+  );
+}
+
+.content {
+  position: absolute;
+  left: 64px;
+  right: 64px;
+  bottom: 58px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.35));
+}
+
+.kicker {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--light-blue);
+}
+
+.headline {
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: 66px;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  text-wrap: balance;
+  max-width: 820px;
+}
+
+.subtext {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 780px;
+}
+
+.times {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.times .slot {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--white);
+}
+
+.times .slot span {
+  color: var(--light-blue);
+  font-weight: 700;
+  margin-right: 14px;
+}
+
+/* client logo slot — bottom right, white artwork only (icon or long-form) */
+.logo-slot {
+  position: absolute;
+  right: 64px;
+  bottom: 58px;
+  max-height: 84px;
+  max-width: 280px;
+  display: flex;
+  align-items: flex-end;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.35));
+}
+
+.logo-slot img {
+  max-height: 84px;
+  max-width: 280px;
+  object-fit: contain;
+  object-position: right bottom;
+}

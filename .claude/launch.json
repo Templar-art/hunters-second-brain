@@ -36,6 +36,15 @@
         "projects/ironstandard-lp"
       ],
       "port": 8140
+    },
+    {
+      "name": "ig-listing-templates",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "projects/ig-listing-templates/serve.mjs",
+        "8774"
+      ],
+      "port": 8774
     }
   ]
 }
