@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title
 
+## [2026-09-08] ingest | Iron Standard: hyped copy up without new claims
+Hunter wanted more hype/FOMO ("what you're missing") without sounding cocky. Reworked hero-sub, who's-it-for, what's-different pillars, founding-member and waitlist-sub copy to lead with the gap it fills (fighting for a rack, running between three addresses, being the odd one out) rather than superlatives about the gym itself. No new factual claims added, still limited to what Anthony's actually cleared. Logged to [[iron-standard]].
+
 ## [2026-09-08] ingest | Iron Standard: condensed info sections into an accordion, stripped em dashes
 The 4 restored content sections (facility/who's-it-for/what's-different/founding-member) read too long once actually built, per Hunter. Collapsed them into a single "More details" section using native `<details>/<summary>` (no JS needed), copy trimmed to one short paragraph each, first item open by default so the page doesn't look empty. Also removed every em dash from on-page copy (title, hero sub, waitlist sub, founding-member text) per Hunter's request, swapped for periods/commas. Cache-bust bumped to `?v=4`. Logged to [[iron-standard]].
 
