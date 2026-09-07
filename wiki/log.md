@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title
 
+## [2026-09-08] ingest | Iron Standard: condensed info sections into an accordion, stripped em dashes
+The 4 restored content sections (facility/who's-it-for/what's-different/founding-member) read too long once actually built, per Hunter. Collapsed them into a single "More details" section using native `<details>/<summary>` (no JS needed), copy trimmed to one short paragraph each, first item open by default so the page doesn't look empty. Also removed every em dash from on-page copy (title, hero sub, waitlist sub, founding-member text) per Hunter's request, swapped for periods/commas. Cache-bust bumped to `?v=4`. Logged to [[iron-standard]].
+
 ## [2026-09-08] ingest | Iron Standard: accent colour reverted to original orange
 Follow-up to the same-day feedback pass below: after landing on gold `#C9A227`, Hunter saw it live and rejected it ("looks like it came from Claude"). Tried deep forest green `#1B5E3F` next, also rejected. Landed back on the original brand-guideline orange `#F4502A` — accepting the SATS overlap rather than force an alternative nobody likes. `assets/css/style.css` `--accent` reverted, cache-bust bumped to `?v=3`. Logged to [[iron-standard]].
 
