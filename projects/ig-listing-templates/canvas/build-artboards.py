@@ -6,6 +6,8 @@ would otherwise be hand-copied five times (it drifted twice already). Edit this
 file, rerun it, then re-seed the canvas.
 """
 
+from html import escape
+
 LIGHT_BLUE = "#3ba0e8"
 NAVY = "#0a1c3e"
 WHITE = "#ffffff"
@@ -23,7 +25,7 @@ SPEC = {
     "ComingSoon": ("Coming Soon", "terrace", "To market [MONTH]"),
     "JustSold": ("Sold", "aerial", None),
     "SoldOffMarket": ("Sold Off Market", "terrace", "Ask us about off-market opportunities"),
-    "OpenHome": ("Open Home", "aerial", ["Saturday 10:00 &ndash; 10:30am", "Sunday 11:00 &ndash; 11:30am"]),
+    "OpenHome": ("Open Home", "aerial", ["Saturday 10:00 – 10:30am", "Sunday 11:00 – 11:30am"]),
 }
 
 TEMPLATE = """<!doctype html>
@@ -57,7 +59,7 @@ TEMPLATE = """<!doctype html>
   </div>
 </div>
 </x-dc>
-<script data-dc-script data-props='{{"accent":{{"editor":"color","default":"{light_blue}","options":["{light_blue}","{white}","{navy}"]}},"scrim":{{"editor":"range","default":0.86,"min":0.4,"max":1,"step":0.02}},"$preview":{{"width":1080,"height":1080}}}}'>
+<script data-dc-script data-props='{{"accent":{{"editor":"color","default":"{light_blue}","options":["{light_blue}","{white}"]  # {navy} deliberately excluded: chip text is hardcoded navy, so a navy fill would be invisible}},"scrim":{{"editor":"range","default":0.86,"min":0.4,"max":1,"step":0.02}},"$preview":{{"width":1080,"height":1080}}}}'>
 class Component extends DCLogic {{
   renderVals() {{
     const s = this.props.scrim ?? 0.86;
@@ -79,12 +81,16 @@ TIMES_CLOSE = '      </div>'
 
 
 def detail_markup(detail):
+    # Real per-listing copy (address, price, times) is typed by a person and may
+    # contain &, <, >, or quotes (e.g. "Smith & Sons Court") - escape it so it can
+    # never break the surrounding markup. Spec strings use a literal Unicode en dash
+    # (not the &ndash; entity) so a plain escape() is exact, no placeholder needed.
     if detail is None:
         return ""
     if isinstance(detail, list):
-        rows = [TIMES_ROW.format(text=t) for t in detail]
+        rows = [TIMES_ROW.format(text=escape(t)) for t in detail]
         return "\n".join([TIMES_OPEN, *rows, TIMES_CLOSE])
-    return DETAIL_LINE.format(text=detail)
+    return DETAIL_LINE.format(text=escape(detail))
 
 
 for stem, (status, hero_key, detail) in SPEC.items():
@@ -92,7 +98,7 @@ for stem, (status, hero_key, detail) in SPEC.items():
     html = TEMPLATE.format(
         light_blue=LIGHT_BLUE, navy=NAVY, white=WHITE,
         hero_file=hero_file, hero_alt=hero_alt,
-        status=status, address=ADDRESS,
+        status=status, address=escape(ADDRESS),
         detail=detail_markup(detail),
     )
     # collapse the blank line left when an artboard has no detail row

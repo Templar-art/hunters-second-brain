@@ -28,7 +28,7 @@
   </div>
 </div>
 </x-dc>
-<script data-dc-script data-props='{"accent":{"editor":"color","default":"#3ba0e8","options":["#3ba0e8","#ffffff","#0a1c3e"]},"scrim":{"editor":"range","default":0.86,"min":0.4,"max":1,"step":0.02},"$preview":{"width":1080,"height":1080}}'>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#3ba0e8","options":["#3ba0e8","#ffffff"]  # #0a1c3e deliberately excluded: chip text is hardcoded navy, so a navy fill would be invisible},"scrim":{"editor":"range","default":0.86,"min":0.4,"max":1,"step":0.02},"$preview":{"width":1080,"height":1080}}'>
 class Component extends DCLogic {
   renderVals() {
     const s = this.props.scrim ?? 0.86;
