@@ -50,8 +50,8 @@ TEMPLATE = """<!doctype html>
 
   <img src="harcourts-wordmark.png" alt="Harcourts" style="position: absolute; top: 68px; right: 72px; width: 196px; height: auto;">
 
-  <div style="position: absolute; left: 76px; right: 76px; bottom: 84px; display: flex; flex-direction: column; align-items: flex-start; gap: 30px;">
-    <div style="background: {{{{accent}}}}; color: {navy}; font-size: 24px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 11px 20px;">{status}</div>
+  <div style="position: absolute; left: 76px; right: 76px; bottom: 84px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px;">
+    <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {white};">{status}</div>
     <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px;">
       <div style="font-size: 56px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; color: {white}; text-wrap: balance;">{address}</div>
 {detail}
@@ -59,12 +59,11 @@ TEMPLATE = """<!doctype html>
   </div>
 </div>
 </x-dc>
-<script data-dc-script data-props='{{"accent":{{"editor":"color","default":"{light_blue}","options":["{light_blue}","{white}"]  # {navy} deliberately excluded: chip text is hardcoded navy, so a navy fill would be invisible}},"scrim":{{"editor":"range","default":0.86,"min":0.4,"max":1,"step":0.02}},"$preview":{{"width":1080,"height":1080}}}}'>
+<script data-dc-script data-props='{{"scrim":{{"editor":"range","default":0.86,"min":0.4,"max":1,"step":0.02}},"$preview":{{"width":1080,"height":1080}}}}'>
 class Component extends DCLogic {{
   renderVals() {{
     const s = this.props.scrim ?? 0.86;
     return {{
-      accent: this.props.accent ?? '{light_blue}',
       scrimFill: `linear-gradient(180deg, rgba(10,28,62,0) 0%, rgba(10,28,62,${{(s * 0.46).toFixed(3)}}) 42%, rgba(10,28,62,${{s.toFixed(3)}}) 100%)`
     }};
   }}
