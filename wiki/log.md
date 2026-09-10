@@ -965,3 +965,6 @@ Condensed the brand scrub into a practical caption-writing brief — two-registe
 
 ## [2026-09-02] update | Salt PM scrub deepened — 9 posts pulled, four-format model replaces two-register model
 Pulled 9 distinct posts via direct URLs (grid clicks were unreliable). Structure sharpened from 2 registers to 4 formats: authority/landlord, team/trust, rigid For-Lease/Leased listing template, and holiday/lifestyle reels (loosest, most voice-driven). Updated [[salt-pm-brand-scrub]] and `projects/salt-pm-brand-voice-handoff.md`. Still 9/259 sampled — bulk export not available (no working API/scraping login) and not appropriate to do wholesale regardless.
+
+## [2026-09-10] update | ZED staging style superseded — white/cream → warm taupe/olive
+Zed sent a new listing-photo reference set and confirmed it's the standing style, replacing the white/cream/gold/no-timber spec. New: warm taupe/olive/stone neutrals, bouclé, fluted/reeded timber, oak herringbone floors, black now allowed, emerald velvet living accent. Updated [[zed-style]] (old piece-list kept below as superseded record) and `feedback-zed-outdoor-staging.md` in auto-memory (patio palette flagged TBC pending confirmation with Zed).
