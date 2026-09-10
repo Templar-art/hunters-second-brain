@@ -968,3 +968,6 @@ Pulled 9 distinct posts via direct URLs (grid clicks were unreliable). Structure
 
 ## [2026-09-10] update | ZED staging style superseded — white/cream → warm taupe/olive
 Zed sent a new listing-photo reference set and confirmed it's the standing style, replacing the white/cream/gold/no-timber spec. New: warm taupe/olive/stone neutrals, bouclé, fluted/reeded timber, oak herringbone floors, black now allowed, emerald velvet living accent. Updated [[zed-style]] (old piece-list kept below as superseded record) and `feedback-zed-outdoor-staging.md` in auto-memory (patio palette flagged TBC pending confirmation with Zed).
+
+## [2026-09-10] update | Bed orientation lock added to staging rules
+Hunter caught a bedroom prompt that never named which wall the headboard was against (side-wall bed, not back-wall) — models drift to default placement without an explicit lock. Added standing rule to [[staging-rules]] + `feedback-bed-orientation-lock.md` in auto-memory. Also confirmed and applied the ZED style flip from earlier today across two real master/secondary bedroom raws for [[zed-full-house]].
