@@ -129,21 +129,16 @@
       </div>
     </section>
 
-    <section id="waitlist" class="section waitlist" data-reveal>
-      <img src="assets/img/flash-1.jpg" alt="" class="waitlist-bg" loading="lazy">
-      <div class="waitlist-content">
-        <p class="kicker">Join the waitlist</p>
-        <h2>Be a founding member.</h2>
-        <p class="waitlist-sub">Priority access and founding-member benefits. First come, first served, and membership spots are limited, don't miss your spot.</p>
-        <!--
-          Waitlist form removed 10 Sep, added back in manually once Brevo's
-          set up. Paste the exact <form> snippet Brevo generates for the
-          "Iron Standard Waitlist" list here (see README.md, "Set up Brevo").
-          Do not swap it for a fetch() call with an API key instead, that
-          exposes the key to anyone who views source, a real credential leak.
-        -->
-      </div>
-    </section>
+    <!--
+      Waitlist section removed 11 Sep, going back in manually once Brevo's
+      set up. Whatever replaces it should keep id="waitlist": the hero's
+      "Join the waitlist" button and the scroll arrow both point at it, and
+      they scroll nowhere until that id exists again. The .waitlist styles
+      are still in style.css ready for it (background photo, vignette,
+      centred content, side-by-side name/email row). See README.md,
+      "Set up Brevo", and never swap the form POST for a fetch() call with
+      an API key, that exposes the key to anyone who views source.
+    -->
   </main>
   <footer id="footer" class="site-footer">
     <img src="assets/img/logo-white.png" alt="Iron Standard" class="footer-logo">
