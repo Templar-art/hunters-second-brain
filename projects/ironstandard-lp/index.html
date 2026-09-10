@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
 </head>
 <body>
   <div class="intro-splash" aria-hidden="true">
@@ -64,66 +64,84 @@
 
     <section id="details" class="section details-accordion">
       <p class="kicker">What you're getting</p>
-      <details class="info-item" open>
-        <summary><span>Inside the facility</span></summary>
-        <div class="info-body">
-          <p>800m², purpose-built for serious training. 24/7 access, top-tier equipment, a dedicated posing room, plus on-site coaching, PT and physio. Location, opening date and pricing still being finalised, we'll share them here first.</p>
+      <div class="details-grid">
+        <div class="details-list">
+          <details class="info-item" name="ironstandard-details" data-panel="facility" data-reveal open>
+            <summary>
+              <span class="info-label">
+                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="4" width="6" height="16" rx="1"/><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="9" width="4" height="6" rx="1"/></svg>
+                <span>Inside the facility</span>
+              </span>
+            </summary>
+            <div class="info-body">
+              <img src="assets/img/flash-3.jpg" alt="" class="info-thumb" loading="lazy">
+              <p>800m², purpose-built for serious training. 24/7 access, top-tier equipment, a dedicated posing room, plus on-site coaching, PT and physio. Location, opening date and pricing still being finalised, we'll share them here first.</p>
+            </div>
+          </details>
+          <details class="info-item" name="ironstandard-details" data-panel="who" data-reveal>
+            <summary>
+              <span class="info-label">
+                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3.2"/><path d="M4.5 20c1.2-4 4-6 7.5-6s6.3 2 7.5 6"/></svg>
+                <span>Is this you?</span>
+              </span>
+            </summary>
+            <div class="info-body">
+              <img src="assets/img/flash-5.jpg" alt="" class="info-thumb" loading="lazy">
+              <p>Strength and physique athletes training seriously, competing or not, plus the coaches, PTs and physios who work with them. If you've ever fought for a rack, waited on a bench, or trained around a crowd instead of a plan, you already know what's missing. This is it.</p>
+            </div>
+          </details>
+          <details class="info-item" name="ironstandard-details" data-panel="different" data-reveal>
+            <summary>
+              <span class="info-label">
+                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 4 14h6l-1 7 9-11h-6l1-7Z"/></svg>
+                <span>Why it's different</span>
+              </span>
+            </summary>
+            <div class="info-body">
+              <img src="assets/img/flash-7.jpg" alt="" class="info-thumb" loading="lazy">
+              <ul class="pillars">
+                <li><strong>Built for load:</strong> proper platforms and calibrated plates, not a token squat rack squeezed into a corner.</li>
+                <li><strong>Coaching on-site:</strong> PTs and a physiotherapist in the same building, no running between three different addresses.</li>
+                <li><strong>A membership base to match:</strong> everyone training to the same standard, so you're never the odd one out.</li>
+                <li><strong>Run by the industry:</strong> founded by a competitive powerlifter, not an investor group chasing a franchise model.</li>
+              </ul>
+            </div>
+          </details>
+          <details class="info-item" name="ironstandard-details" data-panel="founding" data-reveal>
+            <summary>
+              <span class="info-label">
+                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v18M6 4h11l-2.5 3.5L17 11H6"/></svg>
+                <span>Get in first</span>
+              </span>
+            </summary>
+            <div class="info-body">
+              <img src="assets/img/flash-2.jpg" alt="" class="info-thumb" loading="lazy">
+              <p>Get in early and you get in first. Everyone on this list gets founding-member benefits at launch: priority access and a discounted rate for a limited period. First come, first served, and total membership spots are capped, so the earlier you're on this list, the better your position.</p>
+            </div>
+          </details>
         </div>
-      </details>
-      <details class="info-item">
-        <summary><span>Is this you?</span></summary>
-        <div class="info-body">
-          <p>Strength and physique athletes training seriously, competing or not, plus the coaches, PTs and physios who work with them. If you've ever fought for a rack, waited on a bench, or trained around a crowd instead of a plan, you already know what's missing. This is it.</p>
+        <div class="details-visual" data-reveal aria-hidden="true">
+          <img data-panel="facility" class="detail-visual-img" src="assets/img/flash-3.jpg" alt="">
+          <img data-panel="who" class="detail-visual-img" src="assets/img/flash-5.jpg" alt="">
+          <img data-panel="different" class="detail-visual-img" src="assets/img/flash-7.jpg" alt="">
+          <img data-panel="founding" class="detail-visual-img" src="assets/img/flash-2.jpg" alt="">
         </div>
-      </details>
-      <details class="info-item">
-        <summary><span>Why it's different</span></summary>
-        <div class="info-body">
-          <ul class="pillars">
-            <li><strong>Built for load:</strong> proper platforms and calibrated plates, not a token squat rack squeezed into a corner.</li>
-            <li><strong>Coaching on-site:</strong> PTs and a physiotherapist in the same building, no running between three different addresses.</li>
-            <li><strong>A membership base to match:</strong> everyone training to the same standard, so you're never the odd one out.</li>
-            <li><strong>Run by the industry:</strong> founded by a competitive powerlifter, not an investor group chasing a franchise model.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="info-item">
-        <summary><span>Get in first</span></summary>
-        <div class="info-body">
-          <p>Get in early and you get in first. Everyone on this list gets founding-member benefits at launch: priority access and a discounted rate for a limited period. First come, first served, and total membership spots are capped, so the earlier you're on this list, the better your position.</p>
-        </div>
-      </details>
+      </div>
     </section>
 
-    <section id="waitlist" class="section waitlist">
+    <section id="waitlist" class="section waitlist" data-reveal>
       <img src="assets/img/flash-1.jpg" alt="" class="waitlist-bg" loading="lazy">
       <div class="waitlist-content">
         <p class="kicker">Join the waitlist</p>
         <h2>Be a founding member.</h2>
         <p class="waitlist-sub">Priority access and founding-member benefits. First come, first served, and membership spots are limited, don't miss your spot.</p>
         <!--
-          This form posts directly to Brevo's hosted Forms endpoint — no API key
-          ever touches this page. Replace the action URL and the two hidden
-          fields below with the exact ones Brevo generates for your list (see
-          README.md, "Set up Brevo"). Do not swap this for a raw API fetch call:
-          that pattern requires an API key in the page's own JavaScript, which
-          anyone can read via "view source" — a real credential leak.
+          Waitlist form removed 10 Sep, added back in manually once Brevo's
+          set up. Paste the exact <form> snippet Brevo generates for the
+          "Iron Standard Waitlist" list here (see README.md, "Set up Brevo").
+          Do not swap it for a fetch() call with an API key instead, that
+          exposes the key to anyone who views source, a real credential leak.
         -->
-        <form id="waitlist-form" method="POST" action="REPLACE_WITH_BREVO_FORM_ACTION_URL">
-          <input type="hidden" name="REPLACE_WITH_BREVO_LIST_FIELD" value="REPLACE_WITH_LIST_ID">
-          <input type="hidden" name="locale" value="en">
-          <div class="waitlist-row">
-            <div class="field">
-              <label for="wl-name">Name</label>
-              <input type="text" id="wl-name" name="FIRSTNAME" required autocomplete="name">
-            </div>
-            <div class="field">
-              <label for="wl-email">Email</label>
-              <input type="email" id="wl-email" name="EMAIL" required autocomplete="email">
-            </div>
-          </div>
-          <button type="submit" class="btn-primary">Join the waitlist</button>
-        </form>
       </div>
     </section>
   </main>

@@ -1,8 +1,8 @@
 ---
 type: client
 tags: [web-client, landing-page, gym, oslo, pre-launch]
-status: full content + FOMO copy restored, accent reverted to orange 8 Sep 2026 (gold + green tested and rejected by Hunter) — Brevo/DNS handoff steps are the only things left before go-live
-updated: 2026-09-08
+status: UI/UX polish pass done 10 Sep 2026 (interactive details section, scroll reveals, faster intro, waitlist form pulled pending Brevo, footer partial split out) — Brevo/DNS handoff steps are the only things left before go-live
+updated: 2026-09-10
 ---
 
 # Iron Standard
@@ -43,8 +43,18 @@ Anthony sent real messaging direction plus a brand-colour flag, both now built.
 
 **Brand colour tested, kept as-is:** tried gold, blue, bronze, olive, emerald, forest green against the built page — none beat the original orange, so it stayed `#F4502A` despite the SATS overlap. See Brand section above.
 
+## UI/UX polish pass (10 Sep 2026)
+
+Hunter reviewed the live build and asked for a round of polish, all actioned same day:
+
+- **Intro logo-reveal held too long.** The "hold on black" beat before the logo drags into place was cut 35% (1300ms → 845ms in `assets/js/main.js`); the flash sequence and drag itself are unchanged.
+- **The info section read flat.** Rebuilt "What you're getting" from a plain accordion into an interactive tab-and-image layout: each of the 4 items (facility, who it's for, what's different, founding members) now has a small line icon, an animated underline on hover/open, and on desktop a photo panel on the right that crossfades to match whichever item is open, pure CSS via `:has()`, no JS. Mobile shows the same photo inline above each item's copy instead of the side panel. Native `<details name="...">` groups them so opening one auto-closes the others.
+- **Waitlist form removed for now.** Hunter wants to add the real thing back in manually once Brevo's set up, so the `<form>` (name/email fields + submit) was pulled from `#waitlist` in `index.html`, leaving the section heading/copy/background photo in place plus an HTML comment marking where to paste it back in. README's Brevo section updated to match.
+- **Footer split into its own file.** `partials/footer.html` is a standalone, styled copy of the footer so it can be grabbed for another Iron Standard page without opening the full `index.html`. It's a copy, not a live include, editing one doesn't update the other.
+- **General animate-in polish.** Added a scroll-reveal system (`data-reveal` + `IntersectionObserver` in `main.js`): sections fade/rise into place as they enter view, staggered across the 4 details items. Built so a no-JS load never hides content, the reveal class is only added at runtime right before observing.
+
 ## Open items before go-live
 
-1. Fill in the real Brevo Forms action URL + hidden field names in `index.html` (placeholders left in place, exact steps in the project's `README.md`).
+1. Fill in the real Brevo Forms action URL + hidden field names, then paste a `<form>` back into `#waitlist` in `index.html` (exact steps in the project's `README.md`).
 2. Export any leads already sitting in the current GoDaddy Website Builder form before retiring it.
-3. Send Anthony the updated build for sign-off on the restored copy + gold accent before pointing DNS at it.
+3. Send Anthony the updated build for sign-off on the restored copy + colour + this polish pass before pointing DNS at it.

@@ -112,9 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
         whiteFlash.style.opacity = '0';
       }, 120);
 
-      // Hold on black a good while once the logo's revealed, so it has
-      // time to actually register before the page underneath takes over.
-      setTimeout(dragLogoIntoPlace, 120 + 450 + 1300);
+      // Hold on black once the logo's revealed, so it has time to register
+      // before the page underneath takes over (trimmed 35% per feedback,
+      // the original 1300ms felt like a stall rather than a beat).
+      setTimeout(dragLogoIntoPlace, 120 + 450 + 845);
     }
 
     function dragLogoIntoPlace() {
@@ -145,5 +146,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
       }, 600);
     }
+  }
+
+  // --- Scroll reveal: sections animate in as they enter view. The reveal
+  // class is only ever added here, at runtime, right before observing —
+  // so if JS never runs (disabled, crawler, headless render), every
+  // [data-reveal] element stays at its default, fully-visible CSS state.
+  // Never gate visibility on the class itself.
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    revealEls.forEach((el) => el.classList.add('reveal-pending'));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+    );
+    revealEls.forEach((el) => io.observe(el));
   }
 });

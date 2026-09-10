@@ -6,12 +6,12 @@ Static page, no build step. Open `index.html` directly, or serve the folder with
 
 A Brevo account already exists under 10x's account. Add Iron Standard as its own list there — no new Brevo signup needed.
 
+**Note (10 Sep):** the waitlist `<form>` itself was pulled out of `index.html`'s `#waitlist` section per Hunter's request, to be added back in manually once the real Brevo values are in hand. There's an HTML comment in that section marking where it goes.
+
 1. In Brevo: **Contacts > Lists > Create a list**, name it "Iron Standard Waitlist".
 2. **Contacts > Forms > Create a form** (classic form), select the "Iron Standard Waitlist" list, add Name + Email fields.
 3. Brevo generates an embed snippet — copy its `<form>` `action` URL and the hidden `<input>` field names/values it includes for the list ID.
-4. In `index.html`, find the `#waitlist-form` element and replace:
-   - `action="REPLACE_WITH_BREVO_FORM_ACTION_URL"` → the real action URL from Brevo's snippet.
-   - the two hidden inputs (`REPLACE_WITH_BREVO_LIST_FIELD` / `REPLACE_WITH_LIST_ID`) → whatever hidden fields Brevo's snippet actually includes (names vary slightly per account).
+4. In `index.html`, inside `#waitlist`, paste back a form built the same way the old one was: a `<form method="POST" action="...">` pointing at that real action URL, with the two hidden inputs set to whatever field names/values Brevo's snippet actually includes (names vary slightly per account), then Name + Email fields and a submit button.
 5. **Do not** switch this to a `fetch()` call against Brevo's REST API with an API key in the JavaScript — that exposes the key to anyone who views the page source. The form-POST pattern above is what Brevo intends for public sites and needs no secret client-side.
 6. Anytime you want to show investors the list: Brevo dashboard > Contacts > that list > Export as CSV.
 
@@ -32,7 +32,11 @@ Before retiring `ironstandard.no`'s current "Launching Soon" page, log into GoDa
 3. Log into GoDaddy > My Products > DNS (for ironstandard.no) and add those records. GoDaddy stays your domain registrar — you're only changing where the domain *points*, not who you bought it from.
 4. DNS changes can take a few hours to propagate.
 
-## 5. What's still needed
+## 5. Footer partial
+
+`partials/footer.html` is a standalone copy of `index.html`'s footer (self-contained, loads the same font/CSS with adjusted relative paths) so it can be grabbed and reused on another Iron Standard page without digging through the full page markup. It's a copy, not an include: editing one doesn't update the other, so if the footer changes on the real page, copy the change over manually.
+
+## 6. What's still needed
 
 - Real opening date (currently placeholder "Oslo · Opening 2027" text in the hero).
 - An image for the "Who it's for" section — free stock search kept surfacing bright, heavily-branded CrossFit-box photography that clashed with the dark/premium direction. Worth a real shoot or a paid stock license rather than more free-stock searching.

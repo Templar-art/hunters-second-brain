@@ -183,8 +183,14 @@ a.accent-link:hover { border-color: var(--accent); }
 .hero-sub { color: var(--fg-dim); margin: 1rem auto 2rem; font-size: 1.1rem; max-width: 560px; }
 .hero .kicker { text-align: center; }
 
-/* More-details accordion */
+/* More-details: interactive tab list + side image that swaps per panel */
 .details-accordion { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
 .info-item {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -201,26 +207,128 @@ a.accent-link:hover { border-color: var(--accent); }
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  color: var(--fg-dim);
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .info-item summary::-webkit-details-marker { display: none; }
-.info-item summary::after {
+.info-item[open] summary,
+.info-item summary:hover { color: var(--fg); }
+
+.info-label { display: flex; align-items: center; gap: 0.9rem; }
+.info-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.info-label span:last-child {
+  position: relative;
+}
+.info-label span:last-child::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  right: 100%;
+  background: var(--accent);
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.info-item[open] summary .info-label span:last-child::after,
+.info-item summary:hover .info-label span:last-child::after {
+  right: 0;
+}
+
+.info-item summary::before {
   content: '+';
   color: var(--accent);
   font-size: 1.4rem;
   font-weight: 400;
   margin-left: 1rem;
   flex-shrink: 0;
-  transition: transform 0.2s ease;
+  order: 2;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.info-item[open] summary::after { transform: rotate(45deg); }
-.info-body { padding-bottom: 1.5rem; }
+.info-item[open] summary::before { transform: rotate(45deg); }
+
+.info-body {
+  padding-bottom: 1.75rem;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@starting-style {
+  .info-item[open] .info-body { opacity: 0; transform: translateY(-6px); }
+}
 .info-body p { color: var(--fg-dim); margin-top: 0; max-width: 640px; }
+.info-thumb {
+  display: none;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  filter: grayscale(1) contrast(1.1) brightness(0.6);
+}
+
+/* The side panel: a real photo swaps to match whichever item is open,
+   pure CSS via :has(), no JS needed. Mobile shows .info-thumb inline
+   instead (same image, reused from cache), see breakpoint below. */
+.details-visual {
+  display: none;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #050505;
+}
+.detail-visual-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: grayscale(1) contrast(1.15) brightness(0.55);
+  transform: scale(1.08);
+  transition: opacity 0.7s ease, transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.details-grid:has(details[data-panel="facility"][open]) .detail-visual-img[data-panel="facility"],
+.details-grid:has(details[data-panel="who"][open]) .detail-visual-img[data-panel="who"],
+.details-grid:has(details[data-panel="different"][open]) .detail-visual-img[data-panel="different"],
+.details-grid:has(details[data-panel="founding"][open]) .detail-visual-img[data-panel="founding"] {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (min-width: 880px) {
+  .details-grid { grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .details-visual { display: block; position: sticky; top: 6rem; height: 480px; }
+}
 
 /* Pillars (What's different), inside the accordion */
 .pillars { list-style: none; color: var(--fg-dim); max-width: 640px; }
 .pillars li { margin-top: 0.75rem; }
 .pillars li:first-child { margin-top: 0; }
 .pillars strong { color: var(--fg); font-weight: 600; }
+
+/* Scroll reveal: default state is fully visible. .reveal-pending is only
+   ever added by JS right before observing, so a no-JS load never hides
+   content behind a transition that will never fire. */
+.reveal-pending[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-pending[data-reveal].is-revealed { opacity: 1; transform: none; }
+.details-list .info-item:nth-child(1) { transition-delay: 0s; }
+.details-list .info-item:nth-child(2) { transition-delay: 0.08s; }
+.details-list .info-item:nth-child(3) { transition-delay: 0.16s; }
+.details-list .info-item:nth-child(4) { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .info-body, .detail-visual-img, .reveal-pending[data-reveal] { transition: none; }
+}
+
+@media (max-width: 879px) {
+  .info-thumb { display: block; }
+}
 
 .scroll-arrow {
   display: flex;

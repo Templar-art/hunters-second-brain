@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title
 
+## [2026-09-10] ingest | Iron Standard: UI/UX polish pass (impeccable)
+Hunter reviewed the zip he'd sent to Lach and came back with 5 items: intro hold pause too long, "More details" section flat/boring, pull the waitlist form (adding it back manually once Brevo's live), split the footer into its own file for reuse, and an overall animate-in/premium-feel bump. Used the impeccable skill (brand register) to action all 5: cut the intro's post-reveal hold 35% (1300ms → 845ms), rebuilt the details section as an interactive tab list with a photo panel that crossfades per item via CSS `:has()` (no JS, native `<details name>` grouping for single-open behaviour, inline thumbnail fallback on mobile), pulled the `<form>` out of `#waitlist` leaving a placeholder comment, split `partials/footer.html` out as a standalone reusable copy, and added a scroll-reveal system (IntersectionObserver, content stays visible with JS off). Kept the existing brand identity (dark, orange `#F4502A`, TASA Orbiter) rather than the skill's own DESIGN.md defaults, those belong to 10x's own brand, not a client's. Logged to [[iron-standard]].
+
 ## [2026-09-08] ingest | Iron Standard: hyped the accordion labels too
 Follow-up: Hunter wanted the collapsed accordion (kicker + 4 summary labels, the only thing visible before clicking) punched up too. "More details" → "What you're getting"; "The facility" → "Inside the facility"; "Who it's for" → "Is this you?"; "What's different" → "Why it's different"; "Founding members" → "Get in first". Body copy underneath unchanged. Logged to [[iron-standard]].
 
