@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title
 
+## [2026-09-10] lint | Iron Standard: audit fully cleared (clarify, harden, polish)
+Worked through the remaining 3 findings from the 10 Sep `/impeccable audit` (14/20) one command at a time: `/impeccable clarify` reworded the scroll-arrow's stale aria-label ("...waitlist form" → "...join the waitlist", the form doesn't exist right now); `/impeccable harden` gave the details-visual image crossfade a real default (facility's photo shows even without `:has()` support, instead of an empty box); `/impeccable polish` swapped the one hardcoded `#050505` for `var(--bg)`. All verified live in Chrome. Logged to [[iron-standard]].
+
 ## [2026-09-10] lint | Iron Standard: optimize pass, one real fix + one corrected false positive
 Ran `/impeccable audit` then `/impeccable optimize` on the polish pass above. The audit's P1 finding (lazy-load the accordion's 4 duplicate photo refs) turned out to be a false alarm on measurement: those URLs are already loaded eagerly by the intro flash sequence (10 images, always eager by design), and browsers dedupe identical URLs regardless of how many `<img>` tags reference them, confirmed via network trace (10 requests fired for 10 files despite 3x reuse in markup). No fix made there. The real, measured issue: `flash-8.jpg` was 594KB, 3-8x its siblings, because it was the one full-color stock photo in a set that's grayscale-filtered everywhere it's shown. Re-encoded it to true grayscale via ffmpeg, 594KB → 228KB, visually identical, verified live. Logged to [[iron-standard]].
 

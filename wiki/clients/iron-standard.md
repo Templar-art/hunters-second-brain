@@ -1,7 +1,7 @@
 ---
 type: client
 tags: [web-client, landing-page, gym, oslo, pre-launch]
-status: UI/UX polish pass done 10 Sep 2026 (interactive details section, scroll reveals, faster intro, waitlist form pulled pending Brevo, footer partial split out) — Brevo/DNS handoff steps are the only things left before go-live
+status: UI/UX polish pass + full /impeccable audit cleared 10 Sep 2026 (interactive details section, scroll reveals, faster intro, waitlist form pulled pending Brevo, footer partial split out, image/a11y/fallback/token fixes) — Brevo/DNS handoff steps are the only things left before go-live
 updated: 2026-09-10
 ---
 
