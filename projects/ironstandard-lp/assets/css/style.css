@@ -290,12 +290,23 @@ a.accent-link:hover { border-color: var(--accent); }
   transform: scale(1.08);
   transition: opacity 0.7s ease, transform 6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.details-grid:has(details[data-panel="facility"][open]) .detail-visual-img[data-panel="facility"],
+/* Base fallback: "facility" is the panel open by default in the markup, so
+   its photo shows without needing :has() at all. Browsers without :has()
+   support (rare, but real) get a static correct photo instead of an empty
+   box; browsers with support get the full crossfade below, including
+   re-hiding "facility" once a different panel takes over. */
+.detail-visual-img[data-panel="facility"] { opacity: 1; transform: scale(1); }
+
 .details-grid:has(details[data-panel="who"][open]) .detail-visual-img[data-panel="who"],
 .details-grid:has(details[data-panel="different"][open]) .detail-visual-img[data-panel="different"],
 .details-grid:has(details[data-panel="founding"][open]) .detail-visual-img[data-panel="founding"] {
   opacity: 1;
   transform: scale(1);
+}
+.details-grid:has(details[data-panel="who"][open]) .detail-visual-img[data-panel="facility"],
+.details-grid:has(details[data-panel="different"][open]) .detail-visual-img[data-panel="facility"],
+.details-grid:has(details[data-panel="founding"][open]) .detail-visual-img[data-panel="facility"] {
+  opacity: 0;
 }
 @media (min-width: 880px) {
   .details-grid { grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
