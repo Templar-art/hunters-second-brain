@@ -45,6 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const whiteFlash = splash ? splash.querySelector('.intro-whiteflash') : null;
   const realLogo = document.querySelector('.hero-logo');
 
+  // Claim the splash synchronously, before waiting on fonts or images. The
+  // CSS fallback (for when this script never runs) starts fading the logo in
+  // shortly after paint, and .js-driven is what cancels it. Leaving that
+  // until the gate below resolves means that on a cold first load the
+  // fallback plays first: logo appears, vanishes, photo sequence runs, logo
+  // returns. A warm reload hid it because the gate resolved instantly.
+  // Only the sequence waits for the gate, never the claim.
+  if (splash && !reducedMotion) splash.classList.add('js-driven');
+
   if (splash && cloneLogo && whiteFlash && realLogo && !reducedMotion) {
     // Wait for the web font to finish loading before doing anything that
     // measures layout. TASA Orbiter swaps in async (Google Fonts) — if it

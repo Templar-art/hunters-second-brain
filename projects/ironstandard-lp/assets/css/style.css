@@ -120,7 +120,9 @@ a.accent-link:hover { border-color: var(--accent); }
   opacity: 0;
   transform: scale(0.9);
   animation: intro-logo-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.1s;
+  /* Deliberately not instant: this is only the no-JS fallback, and the
+     delay gives main.js time to claim the splash first. */
+  animation-delay: 0.4s;
 }
 .intro-splash.js-driven .intro-logo {
   animation: none;
