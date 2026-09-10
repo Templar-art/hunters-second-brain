@@ -277,7 +277,7 @@ a.accent-link:hover { border-color: var(--accent); }
   position: relative;
   border-radius: 8px;
   overflow: hidden;
-  background: #050505;
+  background: var(--bg);
 }
 .detail-visual-img {
   position: absolute;
