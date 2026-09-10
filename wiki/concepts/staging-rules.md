@@ -21,7 +21,7 @@ Standing rules for AI staging of listing photos, distilled from job feedback (ca
 - **No wall art by default** — don't add paintings or framed art above beds; Nano Banana defaults to it, so phrase the bare wall positively and expect to mask residuals.
 - **One bedside lamp** — Nano Banana Pro spawns a second floating lamp; enforce the count with geometry and a positive number, never negation.
 - **No detail vignettes in wide frames** — desks, laptops and small props read as "past the couch" in a wide; save them for the close-up.
-- **Lock bed orientation** — every bedroom prompt names which wall the headboard is against and which way the foot extends ("headboard against the same wall, footboard extending toward camera, no rotation or relocation"); don't skip it because the room looks obvious.
+- **Lock placement with three anchors** — every major piece (bed, sofa, dining table) gets: same footprint as the piece it replaces, axis tied to a named fixed feature ("back parallel to the left-hand window wall"), and a directional cue ("chaise extending toward the camera", "not rotated or squared to the camera"). A bare wall label alone has failed twice; don't skip it because the layout looks obvious.
 - **Matching angles need a reference** — every room angle after the first must pass the approved frame as `@reference`; standalone prompts only for the first frame of a room.
 - **Token the images** — multi-image staging/transfer prompts use `@original` / `@reference` tokens plus a legend, so images can be swapped without reading the prompt body.
 - **Outdoor = outdoor furniture** — patios get weatherproof pieces in the client palette (never indoor furniture), and fences are pinned with "nothing new built".
