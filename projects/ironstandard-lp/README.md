@@ -2,6 +2,8 @@
 
 Static page, no build step. Open `index.html` directly, or serve the folder with any static host (`.claude/launch.json` has a local preview server registered as `ironstandard-lp` on port 8140).
 
+**Images are remote (11 Sep).** Every `<img>` and the video poster now point at the WordPress media library at `https://iron.standard.10xstudios.co/wp-content/uploads/2026/09/`, not at `assets/img/`. The local files in `assets/img/` are still the originals and are worth keeping as the source, but nothing on the page references them any more. Two consequences: the page needs a network connection to look right (opening `index.html` offline shows a page with no imagery), and if those media items are ever deleted or renamed in WordPress, the page breaks silently. The videos in `assets/video/` are still local.
+
 ## 1. Set up Brevo (email storage — this is what you show investors)
 
 A Brevo account already exists under 10x's account. Add Iron Standard as its own list there — no new Brevo signup needed.
