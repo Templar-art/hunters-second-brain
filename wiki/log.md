@@ -971,3 +971,7 @@ Zed sent a new listing-photo reference set and confirmed it's the standing style
 
 ## [2026-09-10] update | Bed orientation lock added to staging rules
 Hunter caught a bedroom prompt that never named which wall the headboard was against (side-wall bed, not back-wall) — models drift to default placement without an explicit lock. Added standing rule to [[staging-rules]] + `feedback-bed-orientation-lock.md` in auto-memory. Also confirmed and applied the ZED style flip from earlier today across two real master/secondary bedroom raws for [[zed-full-house]].
+
+## [2026-09-11] update | Iron Standard revision round — hero video rotation replaced with a fixed still
+Hunter's feedback list actioned end to end. The big one: the 4-clip hero rotation read as the page fading to black and back, so it's now a single fixed photo. That change cascades — a fixed backdrop paints over everything below it, so the accordion and footer needed opaque bands (`.page-rest`, `.site-footer`). Also: headline split to two fixed lines (hero column widened 700→1000px to fit), hero copy rewritten toward mystery rather than repeating the accordion, CTA anchor moved `#waitlist` → `#form`, three accordion photos swapped to client-supplied media-library images, footer logo +50% with a location pin. Verified two-line/no-overflow at 8 breakpoints in both the site build and the WordPress widget (widget checked inside a deliberately hostile fake theme). Updated [[iron-standard]] + project README.
+

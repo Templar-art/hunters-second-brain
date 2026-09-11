@@ -1,36 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const heroVideos = document.querySelectorAll('.hero-video');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Assigns a deferred video's real source and starts it loading/playing.
-  // Videos beyond the first ship with no <source> and preload="none", so
-  // the browser doesn't download and decode all 4 clips on page load
-  // regardless of whether they're ever seen — only the one currently on
-  // screen, plus whichever one is coming up next, are ever fetched.
-  function primeHeroVideo(video) {
-    if (!video || video.dataset.primed) return;
-    const src = video.dataset.src;
-    if (!src) return; // the first video already has a real <source>
-    video.dataset.primed = 'true';
-    video.preload = 'auto';
-    video.src = src;
-    video.play().catch(() => {});
-  }
-
-  function startHeroRotation() {
-    if (heroVideos.length <= 1 || reducedMotion) return;
-    let activeIndex = Array.from(heroVideos).findIndex(v => v.classList.contains('is-active'));
-    if (activeIndex === -1) activeIndex = 0;
-    // Give the next clip a full rotation cycle (2.2s) to buffer before it's
-    // due on screen, rather than waiting until the moment it needs to show.
-    primeHeroVideo(heroVideos[(activeIndex + 1) % heroVideos.length]);
-    setInterval(() => {
-      heroVideos[activeIndex].classList.remove('is-active');
-      activeIndex = (activeIndex + 1) % heroVideos.length;
-      heroVideos[activeIndex].classList.add('is-active');
-      primeHeroVideo(heroVideos[(activeIndex + 1) % heroVideos.length]);
-    }, 2200);
-  }
+  // The hero is a single fixed still now, not a 4-clip rotation, so there's
+  // nothing left to rotate or lazily prime here. See .hero-bg in style.css.
 
   // --- Intro splash: quick photo flash, then the logo drags into the exact
   // spot it sits at on the real page. CSS keyframes (.intro-splash /
@@ -70,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // No-JS-equivalent path (reduced motion, or missing elements): don't
     // wait on an intro that isn't playing.
     if (splash) splash.remove();
-    startHeroRotation();
   }
 
   function runIntro() {
@@ -151,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cloneLogo.style.opacity = '0';
         setTimeout(() => {
           splash.remove();
-          startHeroRotation();
         }, 150);
       }, 600);
     }

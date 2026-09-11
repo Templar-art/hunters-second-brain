@@ -2,7 +2,7 @@
 type: client
 tags: [web-client, landing-page, gym, oslo, pre-launch]
 status: UI/UX polish pass + full /impeccable audit cleared 10 Sep 2026 (interactive details section, scroll reveals, faster intro, waitlist form pulled pending Brevo, footer partial split out, image/a11y/fallback/token fixes) — Brevo/DNS handoff steps are the only things left before go-live
-updated: 2026-09-10
+updated: 2026-09-11
 ---
 
 # Iron Standard
@@ -53,8 +53,19 @@ Hunter reviewed the live build and asked for a round of polish, all actioned sam
 - **Footer split into its own file.** `partials/footer.html` is a standalone, styled copy of the footer so it can be grabbed for another Iron Standard page without opening the full `index.html`. It's a copy, not a live include, editing one doesn't update the other.
 - **General animate-in polish.** Added a scroll-reveal system (`data-reveal` + `IntersectionObserver` in `main.js`): sections fade/rise into place as they enter view, staggered across the 4 details items. Built so a no-JS load never hides content, the reveal class is only added at runtime right before observing.
 
+## Revision round (11 Sep 2026)
+
+Hunter sent a short list of changes after reviewing the WordPress-ready build. All actioned in `index.html`, `assets/css/style.css`, `assets/js/main.js`, `partials/footer.html` and both widget files in Downloads.
+
+- **Hero is now one fixed photo, not a video rotation.** The hero cycled 4 clips every 2.2s, which Hunter read as the page "fading to black then coming back" long after the intro had finished. Replaced with a single client-supplied still (`young-man-sportswear-exercise-class-gym-scaled.jpg`) at `position: fixed`, so it holds steady while the content scrolls over it. The rotation and lazy-priming code is gone from both `main.js` and the widget script, and the 4 clips in `assets/video/` are no longer referenced by anything. Side effect worth knowing: a fixed backdrop paints over everything below it, so the accordion now sits inside a `.page-rest` wrapper with an opaque background and the footer got one too. Removing either brings the bug back.
+- **Headline forced to two lines.** "A different standard" / "For serious training", as two block `<span>`s rather than a `<br>`. The hero content column had to widen from 700px to 1000px to fit line one at its 4.5rem ceiling, and the h1 got its own `clamp(1.3rem, 5.9vw, 4.5rem)`. Verified as exactly two lines with no horizontal overflow at 1440/1280/1024/880/768/414/375/360px, in both the site build and the widget.
+- **Hero copy rewritten** toward mystery over specification: the old paragraph was a near-duplicate of the "Inside the facility" accordion copy. New version teases the build without naming location or date, which are still not public.
+- **CTA anchor changed from `#waitlist` to `#form`.** Hunter is pasting his own form block in. The hero button and the scroll arrow both point there, and both scroll nowhere until an element with `id="form"` exists — noted in the README and in the placeholder comment.
+- **Accordion photography swapped** to client-supplied media-library images: "Inside the facility" → `19535.jpg`, "Is this you?" → `23876.jpg`, "Why it's different" → `9063.jpg`. "Get in first" still borrows `flash-2.jpg` from the intro sequence. The intro flash stack keeps its original 10 frames.
+- **Footer:** logo up 50% (140px → 210px) and a small accent-coloured location pin added beside "Oslo, Norway", in all three copies of the footer (page, partial, widget).
+
 ## Open items before go-live
 
-1. Fill in the real Brevo Forms action URL + hidden field names, then paste a `<form>` back into `#waitlist` in `index.html` (exact steps in the project's `README.md`).
+1. Fill in the real Brevo Forms action URL + hidden field names, then paste a `<form>` back in with `id="form"` on its wrapper (exact steps in the project's `README.md`).
 2. Export any leads already sitting in the current GoDaddy Website Builder form before retiring it.
 3. Send Anthony the updated build for sign-off on the restored copy + colour + this polish pass before pointing DNS at it.
