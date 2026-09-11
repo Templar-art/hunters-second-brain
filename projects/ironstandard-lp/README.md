@@ -4,6 +4,11 @@ Static page, no build step. Open `index.html` directly, or serve the folder with
 
 **The hero is a single fixed photo (11 Sep).** It used to rotate through 4 clips every 2.2s, which read as the page fading to black and back long after the intro had finished. It's now one still (`young-man-sportswear-exercise-class-gym-scaled.jpg`) at `position: fixed`, so it holds steady while the content scrolls up over it. The clips in `assets/video/` are no longer referenced by anything and the rotation code is gone from `main.js`. Because the photo is fixed, everything below the hero has to sit on an opaque band or the photo shows through it — that's what the `.page-rest` wrapper and the `background` on `.site-footer` are for. Don't remove them.
 
+**Mobile hero rules (11 Sep).** Three things in the hero are viewport-dependent and easy to break by "tidying":
+- The h1 is one sentence with two sets of `<br>`. `.br-d` shows above 640px (two lines), `.br-m` shows at 640px and below (three lines: "A different / standard for / serious training"). Don't replace them with duplicated headings.
+- `.hero-bg` uses `height: 100lvh`, never `100vh` or `100%`. On a phone the URL bar collapses on first scroll, which changes the viewport height, which makes `object-fit: cover` re-crop the photo. It looks exactly like the image popping and zooming. `lvh` is the largest viewport height and never changes, so the crop is computed once.
+- `.hero` uses `min-height: 100svh` for the opposite reason: `svh` is the smallest viewport height, so the hero's own content always fits above the fold with the URL bar showing.
+
 **Images are remote (11 Sep).** Every `<img>` and the video poster now point at the WordPress media library at `https://iron.standard.10xstudios.co/wp-content/uploads/2026/09/`, not at `assets/img/`. The local files in `assets/img/` are still the originals and are worth keeping as the source, but nothing on the page references them any more. Two consequences: the page needs a network connection to look right (opening `index.html` offline shows a page with no imagery), and if those media items are ever deleted or renamed in WordPress, the page breaks silently. The videos in `assets/video/` are still local.
 
 ## 1. Set up Brevo (email storage — this is what you show investors)

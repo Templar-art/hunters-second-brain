@@ -151,7 +151,11 @@ a.accent-link:hover { border-color: var(--accent); }
 /* Hero */
 .hero {
   position: relative;
+  /* svh, not vh: on phones vh is the height with the URL bar hidden, so
+     a 100vh hero pushes its own bottom content out of sight until you
+     scroll. svh is the smallest viewport height, which always fits. */
   min-height: 100vh;
+  min-height: 100svh;
   max-width: none;
   padding: 0;
   display: flex;
@@ -169,10 +173,21 @@ a.accent-link:hover { border-color: var(--accent); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  /* NOT height:100% / 100vh. On phones the URL bar collapses the moment
+     you start scrolling, which changes the viewport height, which makes
+     object-fit:cover re-crop the photo: it reads as the image popping and
+     zooming in on the first scroll. lvh is the LARGEST viewport height
+     and never changes, so the crop is computed once and holds. The plain
+     vh above it is the fallback for browsers without lvh. */
+  height: 100vh;
+  height: 100lvh;
   object-fit: cover;
   filter: brightness(0.5);
   z-index: 0;
+  /* Own compositor layer: keeps the fixed photo off the repaint path
+     while the content scrolls over it. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 /* Opaque bands over the fixed photo. Without these, a fixed element with
    z-index 0 keeps painting over the accordion and footer as you scroll
@@ -200,14 +215,28 @@ a.accent-link:hover { border-color: var(--accent); }
   max-width: 60vw;
   margin: 0 auto 1.5rem;
 }
-/* Two fixed lines, by structure rather than a <br>. The break points are
-   the copy's, not the browser's. Sized off vw so "A different standard"
-   still fits one line on a 360px phone instead of overflowing; if a
-   viewport ever gets narrower than that it wraps rather than spills. */
-.hero h1 { font-size: clamp(1.3rem, 5.9vw, 4.5rem); }
-.hero h1 span { display: block; }
+/* The break points are the copy's, not the browser's. Desktop reads as
+   two lines, mobile as three. Sized off vw so the longest line always
+   fits rather than wrapping into an extra one. */
+.hero-title { font-size: clamp(1.3rem, 5.9vw, 4.5rem); }
+.hero-title .br-m { display: none; }
 .hero-sub { color: var(--fg-dim); margin: 1rem auto 2rem; font-size: 1.1rem; max-width: 560px; }
 .hero .kicker { text-align: center; }
+
+@media (max-width: 640px) {
+  /* Three lines here: "A different" / "standard for" / "serious training".
+     The longest line drops from 20 characters to 16, which is exactly what
+     pays for the 25% size bump (5.9vw to 7.4vw) without anything wrapping. */
+  .hero-title .br-d { display: none; }
+  .hero-title .br-m { display: inline; }
+  .hero-title { font-size: clamp(1.5rem, 7.4vw, 2.8rem); }
+  /* 4px down from the 16.8px it renders at everywhere else, so the
+     paragraph sits back and lets the bigger headline lead. Needs the
+     extra specificity: a bare .hero-sub loses to the .section
+     p:not(.kicker) rule above, which is why the 1.1rem declared up there
+     has never actually applied either. */
+  .hero p.hero-sub { font-size: 0.8rem; }
+}
 
 /* More-details: interactive tab list + side image that swaps per panel */
 .details-accordion { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
