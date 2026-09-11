@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [virtual-staging, style, zed]
-updated: 2026-09-10
+updated: 2026-09-11
 ---
 
 # ZED Style (staging piece-list)
@@ -12,11 +12,13 @@ This page is the single source for the piece-list. Job files (`projects/akmal/JO
 
 ## Piece-list (current, 2026-09-10)
 
-**Palette** — warm taupe / olive / stone neutrals, not cool sage-blue. Black is now allowed (dining chair legs, side tables, marble). Timber is now allowed (herringbone oak floors, fluted/reeded timber joinery, walnut-tone bedsides) — this reverses the old "no timber" rule.
+**Palette** — warm taupe / olive / stone neutrals, not cool sage-blue. Black is now allowed (dining chair legs, side tables, marble). Timber is allowed for joinery and bedsides (fluted/reeded timber joinery, walnut-tone bedsides, timber floors as fixtures).
+
+**⚠️ Dining tables are the exception — never timber (Zed, 2026-09-11).** This contradicts the 2026-09-10 entry below, which specified a "light-wood table with black legs/base"; Zed corrected it during the hyper-real pass on the Zillow-style set. Dining table = honed pale stone / travertine-toned top on a matching stone base. Timber elsewhere is still fine — the no-timber rule applies to the dining table only, not to sideboards, coffee tables, bedsides or floors.
 
 **Living** — deep emerald-green tubular/channel-tufted velvet modular sofa; low black/wood-mix coffee table stack; textured neutral (not shag) area rug; one bouclé rounded accent chair (Pacific-style); brass/bronze table lamp; warm-toned landscape art (not cool abstract).
 
-**Dining** — light-wood table with black legs/base; bouclé or fabric dining chairs on black metal legs.
+**Dining** — honed pale stone / travertine-toned table top on a matching stone base — **never timber** (corrected 2026-09-11, supersedes the light-wood table specified 2026-09-10); bouclé or fabric dining chairs on black metal legs.
 
 **Bedroom** — upholstered bed in warm neutral fabric, headboard same tone; layered white/beige/taupe linen with an olive-green accent cushion or two, folded taupe/tan throw; bedsides can be walnut-timber (not just white-gloss) or white with brass hardware — mixed left/right is fine; warm mushroom-style or dome table lamps in brass/bronze; bouclé rounded chair or bench (Pacific-style) at the foot; textured neutral rug under the bed; warm-toned landscape/abstract art (earth tones, not blue-green).
 
