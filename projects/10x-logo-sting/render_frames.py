@@ -16,7 +16,11 @@ MARK_W = 720                      # rendered mark width in the 1920x1080 frame
 CSS_MARK_W = 240                  # mark width the CSS was authored against
 K = MARK_W / CSS_MARK_W           # px scale factor for offsets and blurs
 FPS = 60
-DURATION_MS = 3550                # ends exactly where the glow returns to zero
+DURATION_MS = int(os.environ.get("DURATION_MS", 2400))
+GLOW = os.environ.get("GLOW", "0") == "1"       # off: a wide low-alpha halo breaks
+                                                # under premultiplied interpretation
+PREMULT = os.environ.get("PREMULT", "0") == "1" # premultiplied-alpha variant
+OUT = os.environ.get("OUTDIR", OUT)
 
 VB_W, VB_H = 349.575, 262.074
 TILE_W = MARK_W
@@ -137,7 +141,29 @@ def glow_params(t):
     return 20.0 * v, 0.30 * v          # css radius px, alpha
 
 
+def premultiply(im):
+    a = im.getchannel("A")
+    r, g, b, _ = im.split()
+    f = lambda ch: Image.eval(Image.merge("L", (ch,)), lambda v: v)
+    px_a = a.load()
+    out = Image.new("RGBA", im.size)
+    src = im.load(); dst = out.load()
+    w, h = im.size
+    for y in range(h):
+        for x in range(w):
+            rr, gg, bb, aa = src[x, y]
+            if aa == 255:
+                dst[x, y] = (rr, gg, bb, aa)
+            elif aa == 0:
+                dst[x, y] = (0, 0, 0, 0)
+            else:
+                k = aa / 255.0
+                dst[x, y] = (round(rr * k), round(gg * k), round(bb * k), aa)
+    return out
+
+
 def main():
+    os.makedirs(OUT, exist_ok=True)
     tiles = [render_tile(NUM_ONE), render_tile(STROKE_UPPER),
              render_tile(NUM_ZERO), render_tile(STROKE_LOWER)]
     for i, tl in enumerate(tiles):
@@ -145,7 +171,7 @@ def main():
             print(f"FATAL: tile {i} rendered empty", file=sys.stderr); sys.exit(1)
 
     layers = [
-        Layer(tiles[0], 500, 950, -165, 5),   # numOne   (the "10", moves as one)
+        Layer(tiles[0], 500, 950, -165, 5),   # numOne  (the "10", moves as one)
         Layer(tiles[1], 100, 1000, 120, 4),   # strokeUpper — right chevron
         Layer(tiles[2], 500, 950, -165, 5),   # numZero
         Layer(tiles[3], 100, 1000, -120, 4),  # strokeLower — left chevron
@@ -154,20 +180,21 @@ def main():
     n = round(DURATION_MS / 1000 * FPS)
     for f in range(n):
         t = f * 1000.0 / FPS
-        logo = compose(layers, t)
-        radius, alpha = glow_params(t)
-        if alpha > 0.002 and radius > 0.05:
-            std = (radius / 2.0) * K                      # drop-shadow: stdDev = radius/2
-            shadow = Image.new("RGBA", (W, H), (97, 168, 216, 0))
-            a = logo.getchannel("A").filter(ImageFilter.GaussianBlur(std))
-            shadow.putalpha(a.point(lambda v: round(v * alpha)))
-            frame = Image.alpha_composite(shadow, logo)
-        else:
-            frame = logo
+        frame = compose(layers, t)
+        if GLOW:
+            radius, alpha = glow_params(t)
+            if alpha > 0.002 and radius > 0.05:
+                std = (radius / 2.0) * K
+                shadow = Image.new("RGBA", (W, H), (97, 168, 216, 0))
+                a = frame.getchannel("A").filter(ImageFilter.GaussianBlur(std))
+                shadow.putalpha(a.point(lambda v: round(v * alpha)))
+                frame = Image.alpha_composite(shadow, frame)
+        if PREMULT:
+            frame = premultiply(frame)
         frame.save(os.path.join(OUT, f"f{f:05d}.png"))
         if f % 30 == 0:
             print(f"  frame {f}/{n}  t={t:.0f}ms", flush=True)
-    print(f"done: {n} frames -> {OUT}")
+    print(f"done: {n} frames -> {OUT}  (glow={GLOW} premult={PREMULT})")
 
 
 if __name__ == "__main__":
