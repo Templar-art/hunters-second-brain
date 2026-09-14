@@ -363,6 +363,25 @@ a.accent-link:hover { border-color: var(--accent); }
 .details-grid:has(details[data-panel="founding"][open]) .detail-visual-img[data-panel="facility"] {
   opacity: 0;
 }
+
+/* The two client-supplied panel photos are exempt from the grayscale above.
+   The facility shot is a selective-colour frame whose entire character is
+   the red equipment, and grayscale(1) turns it back into exactly the
+   generic dark gym the client objected to. The posing room is carried by
+   its warm wood and hex lighting for the same reason. The other two panels
+   stay grayscale: "Is this you" is bright colour stock that reads as stock
+   in colour, and "Get in first" is a true black-and-white photo, so the
+   filter changes nothing for it either way. Panels crossfade one at a time
+   and are never seen side by side, so the mixed treatment never shows. */
+.detail-visual-img[data-panel="facility"],
+.detail-visual-img[data-panel="different"] {
+  filter: saturate(1.02) contrast(1.06) brightness(0.82);
+}
+.info-thumb[data-thumb="facility"],
+.info-thumb[data-thumb="different"] {
+  filter: saturate(1.02) contrast(1.06) brightness(0.82);
+}
+
 @media (min-width: 880px) {
   .details-grid { grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
   .details-visual { display: block; position: sticky; top: 6rem; height: 480px; }
