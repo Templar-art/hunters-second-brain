@@ -151,6 +151,7 @@ def main():
         layers.append((tile, delay, dur, travel, blur, EASES[ease], op_end))
 
     # stop one frame after the glow stops changing — never ship dead frames
+    written = 0
     n = 1
     while True:
         t_end = (n - 1) * 1000.0 / FPS
@@ -192,10 +193,14 @@ def main():
                                          ImageChops.multiply(g, a),
                                          ImageChops.multiply(b, a), a))
 
-        frame.save(os.path.join(OUT, f"f{f:05d}.png"))
-        if f % 60 == 0:
-            print(f"  {MARK} frame {f}/{n} t={t:.0f}ms", flush=True)
-    print(f"done: {n} frames -> {OUT} (mark={MARK} glow={GLOW} premult={PREMULT})")
+        # skip the empty lead-in so frame 0 already has content
+        if written == 0 and frame.getbbox() is None:
+            continue
+        frame.save(os.path.join(OUT, f"f{written:05d}.png"))
+        written += 1
+        if written % 60 == 1:
+            print(f"  {MARK} frame {written}/{n} t={t:.0f}ms", flush=True)
+    print(f"done: {written} frames -> {OUT} (mark={MARK} glow={GLOW} premult={PREMULT})")
 
 
 if __name__ == "__main__":
