@@ -4,56 +4,76 @@ tags: [virtual-staging, style, zed]
 updated: 2026-09-15
 ---
 
-# ZED Style (staging piece-list)
+# ZED Style — "Option 01" (canonical staging library)
 
-Zed's style has now moved three times in three weeks. **Only the top section is live** — everything below it is kept as a dated trail so old job frames stay explainable.
+**This is now the canonical, locked spec.** Zed ran a formal research/asset pass (Perplexity deep research → `raw/zed/option-01-full-staging-library.md` + `raw/zed/option-01-full-staging-asset-library.html`) and named it **Option 01**. It supersedes both prior eras below. Unlike the two earlier changes, this one isn't a fresh vibe swap — it's largely a formalisation of the "sand & walnut" boards from 2026-09-15 (same ivory/oatmeal/walnut/olive/brass direction), now with hex codes, per-room reference images, exclusions and a colour-hierarchy ratio. Read the raw file for the full per-room prompt blocks and reference-image filenames before writing a ZED prompt.
 
-- 2026-09-15 — **sand & walnut** (current)
-- 2026-09-10 — taupe/olive/boucle/black-legs (superseded)
-- pre-2026-09-10 — white/cream/gold, no timber, no black (superseded)
+## Identity
+Warm organic contemporary, with restrained Australian coastal and Mediterranean-resort influences. Quiet, premium, architectural — not flashy. Low-profile sculptural furniture, matte/honed materials, sparse deliberate styling, soft natural daylight.
 
-This page is the single source for the piece-list. Job files (`projects/akmal/JOB.md`, `projects/zed-full-house/JOB.md`) should reference it rather than restate it.
+## Palette (colour hierarchy: 70% / 20% / 7% / 3%)
+| Use | Direction | Hex |
+|---|---|---|
+| Main walls/upholstery (70% incl. stone) | Warm ivory | `#E9E2D6` |
+| Secondary linen/curtains | Oatmeal | `#D8D0C2` |
+| Timber (20%) | Dark smoked walnut | `#4A3326` |
+| Stone | Honed travertine / warm limestone | `#C9B79B` |
+| Accent (7%) | Muted eucalyptus olive | `#6B7257` |
+| Metal (3%) | Subdued aged brass | `#9A7445` |
+| Dark detail | Soft charcoal | `#4D4A43` |
 
-## Piece-list (current — "sand & walnut", 2026-09-15)
+## Exclusions — never introduce
+Hamptons styling, blue-and-white coastal, farmhouse furniture, whitewashed timber, generic beige-on-beige with no timber contrast, excess indoor rattan/cane, high-gloss gold or chrome, black marble, orange timber, bright green cushions/plants, heavy decorative clutter, artificial orange golden-hour light, distorted furniture/floating objects/incorrect shadows.
 
-From a reference set Zed sent 2026-09-15 (three 3-panel boards: interiors, outdoor, bedroom/study/entry) plus the approved 10x living-room frame in the same language. Hunter is running a deeper research pass separately — treat the flagged items below as provisional until that lands.
+## Resolved contradictions (previously flagged, now settled by the Option 01 library)
+- **Dining tables ARE timber** — dark-oak/walnut oval pedestal table, default six oatmeal bouclé armchairs. This resolves the 2026-09-11 "stone only, never timber" rule in favour of timber; that rule is now marked superseded in auto-memory (`feedback-zed-no-timber-dining-table`), not deleted.
+- **Bedroom DOES get large wall art** — one oversized tonal abstract (taupe/putty/warm grey/limestone/olive/charcoal) in a thin oak frame, centred over the headboard, aligned to room perspective. This is a ZED-specific override of the general no-wall-art-default rule in [[staging-rules]] — the general rule still applies to other clients.
 
-**Palette** — warm sand / cream / greige base with **dark walnut timber** as the structural contrast, olive-green as the only accent colour, aged stone and ceramic, antique brass. Light and airy, sun-warmed, Mediterranean-adjacent.
+## Room-by-room piece-list (see the raw library for exact prompt-block wording and reference filenames)
+- **Living** — low warm-ivory/oatmeal modular sofa, rounded arms, tailored deep seats; 1–2 compact ivory-bouclé occasional chairs; oversized low dark-smoked-walnut coffee table; large ivory woven-wool rug; walnut media console only if appropriate; 2–4 muted-olive cushions; one aged-brass lamp accent max; one large tonal artwork; one ceramic vessel with olive branches.
+- **Dining** — long oval dark-walnut/matt-dark-oak pedestal table; six compact oatmeal-bouclé dining armchairs (default; 4 or 8 only if room size demands); large sculptural linen/paper pendant centred over the table; ceramic vessel with olive branches; one large warm-neutral artwork.
+- **Kitchen** — 2–3 counter stools sized to the actual island (dark-walnut frame, oatmeal bouclé curved back, restrained aged-brass foot rail); one ceramic vessel with olive branches, one small stone bowl, one timber board. Fixed cabinetry/benchtop/splashback/appliances/tapware/windows/floor stay untouched in strict staging.
+- **Bedroom** — low upholstered king bed, warm oatmeal/ivory linen, wide straight or gently softened two-panel headboard; crisp layered off-white bedding; 2 muted-olive lumbar cushions; one oatmeal throw; 2 compact dark-walnut bedsides with matte ceramic lamps; large ivory wool rug beneath the bed; slim walnut bench at the foot only if circulation permits; one oversized warm-neutral abstract centred over the headboard.
+- **Office/study** — sculptural deep-walnut desk, oval/bullnose top, substantial rounded legs; one compact oatmeal-upholstered desk chair; low walnut credenza or shelving only if room supports it; aged-brass dome lamp; ivory textured rug; one tonal artwork; olive branches + minimal books.
+- **Entry/hallway** — narrow dark-walnut console, oval/bullnose top, rounded legs; one aged-brass dome lamp; large tonal artwork or mirror where wall permits; long ivory runner; compact ivory-bouclé bench only if width permits; stoneware vessel with olive branches.
+- **Outdoor lounge** — aged-teak sofa; two matching teak lounge chairs; thick warm-ivory cushions; natural rope/woven side details; max 2 muted-olive cushions; low teak or limestone coffee table; natural outdoor woven rug where suitable; large matte stoneware planters with olive trees/subtropical greenery.
+- **Outdoor dining** — long aged-teak table (rounded-rectangle top, thick cylindrical legs, or classic straight rectangular alternative); 6–8 teak-and-rope dining chairs per actual space; sand/warm-ivory cushions; one ceramic vessel with olive branches; very restrained table styling. **Never invent a pool, outdoor kitchen, pergola, deck, view or landscaped garden that doesn't exist** unless the job is explicitly an architectural-rerender/concept visualisation.
 
-**⚠️ Gone from the 2026-09-10 spec:** emerald-green velvet, black metal legs, fluted light-oak, taupe boucle as the hero fabric. Furniture legs are now timber or brass, not black.
+## Global styling kit (apply after the main furniture is right)
+One oversized tonal abstract in a thin oak frame (taupe/putty/warm grey/limestone/olive/charcoal palette) · one textured stoneware vessel with olive branches · max 2 neutral hardcover books · one small honed-stone bowl · full-height warm-white linen sheers where physically possible · ivory wool/woven rugs, minimal visible pattern · 2–4 muted-olive cushions max · one oatmeal throw max · one aged-brass dome lamp as an accent, not in every room · matte ceramic bedside lamps · large outdoor stoneware planters with olive trees/mature subtropical greenery.
 
-**Living** — oversized low cream/ivory linen modular sectional (deep seats, soft rolled cushions); chunky low dark-walnut block coffee table; large pale wool or viscose rug; curved cream boucle swivel armchairs; brass drum side table; long low dark-walnut media console; olive branches in aged stone or ceramic urns; sheer linen curtains to the floor; oversized abstract art in sage/beige plaster tones.
+## Lighting direction
+Follow the real window/door/opening direction in the source photo. Soft natural daylight, controlled highlights, open shadows. Whites/ivory should read warm-neutral, not yellow. Walnut deep brown, not orange. Greenery desaturated olive/eucalyptus, not bright green. Final grade happens in Lightroom/ACR, not heavy AI relighting — consistent with [[feedback-staging-brightness-default]].
 
-**Dining** — oval or round **dark walnut pedestal table**; cream boucle dining chairs on timber legs; jute or wool textured rug beneath; oversized linen/paper pendant above; a single large stone or ceramic vessel with olive branches centred.
-**⚠️ Contradicts the 2026-09-11 "ZED dining tables are stone/travertine, never timber" rule** — every dining table in the new reference set is dark walnut. Confirm with Zed before running a dining frame; the auto-memory rule `feedback-zed-no-timber-dining-table` is flagged contested, not deleted.
-
-**Kitchen** — walnut cabinetry with travertine/stone benchtops; antique-brass dome pendants; bar stools with cream boucle seats on timber legs with a brass footrest; olive branches and ceramic vessels as bench styling. (Existing cabinetry is a fixture — preserve as shot; this describes added styling only.)
-
-**Bedroom** — cream linen upholstered bed with a wide low headboard; ivory and cream bedding, olive-green cushions; long dark-walnut bench at the foot; bedsides mixing stone/travertine and walnut; ceramic or alabaster table lamps with linen shades; textured wool rug; curved cream boucle armchair with a small brass side table.
-**⚠️ Large abstract art above the bed is standard in this reference set** — that contradicts the standing no-wall-art default in [[staging-rules]]. Confirm before adding art; do not assume it.
-
-**Study / entry** — dark walnut desk or curved walnut console; cream boucle chair; brass dome lamp; textured runner; oversized plaster-tone abstract art; olive branches in a stone vessel.
-
-**Outdoor** — teak timber lounge and dining furniture with thick cream cushions and olive accent pillows; woven rope dining chairs; teak sun lounges; travertine or limestone paving; olive trees in aged stone pots; timber pergola. Weatherproof only, indoor pieces never go outside, and exteriors stay pinned with "nothing new built".
+## Project modes (new concept from this library — not used before on ZED jobs)
+- **STRICT_VIRTUAL_STAGING** — preserve walls, openings, fixed joinery, flooring, ceiling, exterior view and camera angle; add loose furniture/styling only. This is the mode every ZED job has run in so far.
+- **RENOVATION_VISUALISATION** — walls/openings/finishes/joinery can change; must stay recognisable and be labelled conceptual.
+- **ARCHITECTURAL_RERENDER** — new camera angle, changed wall layout or idealised room; generate a new scene informed by the original, never presented as literal listing photography.
+Never combine "preserve the exact camera angle and architecture" with "change the walls/windows/openings/camera angle" in one prompt — pick the mode that matches what's actually being asked.
 
 ## Rules that still ride with it
-- Plants rotate between rooms — but olive branches/olive trees are now the house greenery, so vary the vessel and scale rather than the species if the whole listing runs olive.
-- Secondary bedrooms styled a tier below the primary.
-- Fixtures preserved everywhere: floors, windows and the view, cabinetry, stone, appliances, curtains, tapware, built-ins.
+- Plants rotate between rooms — olive branches/trees are the house greenery; vary vessel and scale rather than species.
+- Secondary bedrooms styled a tier below the primary (still applies within Option 01).
+- Fixtures preserved everywhere in STRICT_VIRTUAL_STAGING mode: floors, windows and the view, cabinetry, stone, appliances, curtains, tapware, built-ins.
 - Placement locks (footprint + axis vs a named fixed feature + direction cue) apply to every hero piece — see [[staging-rules]].
+- Round dining table fallback for end-chair risk is superseded for ZED specifically — Option 01's oval pedestal table is itself end-chair-proof (rounded ends, no flat end to seat someone at); the general round-table fallback still applies to other clients.
 
-Full standing rules: [[staging-rules]]. Pipeline routing and models: [[higgsfield-pipelines]].
+Full standing rules: [[staging-rules]]. Pipeline routing and models: [[higgsfield-pipelines]]. Raw source: `raw/zed/option-01-full-staging-library.md` and `raw/zed/option-01-full-staging-asset-library.html`.
 
 ## Used by
 [[akmal]] · [[zed-full-house]]
 
 ---
 
+## Piece-list (superseded 2026-09-15, same session — "sand & walnut" board era)
+
+Warm sand/cream/greige base, dark walnut contrast, olive-green only accent, aged stone/ceramic, antique brass — cream linen sectionals, boucle on timber legs, walnut block coffee tables, sheer linen curtains, olive branches in stone urns, plaster-tone abstract art. This was correct in direction but informal; **Option 01 above is the same style, now formalised with hex codes and per-room kits** — no rooms were actually staged to this exact intermediate spec, so nothing needs re-running from it specifically.
+
 ## Piece-list (superseded 2026-09-10 — taupe / olive / boucle era)
 
-Warm taupe / olive / stone neutrals; black allowed (chair legs, side tables); fluted light-oak joinery and walnut bedsides; emerald-green channel-tufted velvet modular sofa in the living room; taupe boucle beds, benches and armchairs; brass mushroom-dome lamps; textured neutral rugs. Dining table corrected 2026-09-11 to honed pale stone/travertine on a stone base, never timber. Kitchen: stone benchtops, fluted cream/taupe fronts. Outdoor: rope/cord chairs, warm-grey cushions.
+Warm taupe / olive / stone neutrals; black allowed (chair legs, side tables); fluted light-oak joinery and walnut bedsides; emerald-green channel-tufted velvet modular sofa in the living room; taupe boucle beds, benches and armchairs; brass mushroom-dome lamps; textured neutral rugs. Kitchen: stone benchtops, fluted cream/taupe fronts. Outdoor: rope/cord chairs, warm-grey cushions.
 
-The whole `zed-full-house` job (green sofa living/dining frames, taupe boucle rumpus, deck dining set, master bedroom) was staged to this spec.
+The whole `zed-full-house` job so far (green sofa living/dining frames, taupe boucle rumpus, deck dining set, master bedroom) was staged to **this** spec and now needs review against Option 01 — see the note on [[zed-full-house]].
 
 ## Piece-list (superseded pre-2026-09-10 — white / cream era)
 

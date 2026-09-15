@@ -43,14 +43,14 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[music-library]] — tagged track library for scoring edits
 - [[board-committee-headshots]] — 127 RAW portraits + BTS edit plan; headshot retouch delivered 3 Aug, BTS edit still open
 - [[open-arms-header]] — reusable Elementor-widget header shell (`.oa-x`, token-driven); built for Open Arms Australia
-- [[zed-full-house]] — 23-frame whole-listing ZED restyle, hinterland two-storey; in client revisions
+- [[zed-full-house]] — 23-frame whole-listing ZED restyle, hinterland two-storey; in client revisions; style changed 3x since open, re-run decision pending
 - [[elevra-invoices]] — JSON → A4 PDF invoice generator (EM- numbering, no-GST rule, 1.3mm fidelity)
 - [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
 
 ## Concepts
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
-- [[zed-style]] — the ZED piece-list: white/cream restyle set, single source for both ZED jobs
+- [[zed-style]] — ZED's canonical staging style, now "Option 01" (warm ivory/oatmeal/walnut/olive/brass); 3rd style change, dated trail of older eras kept
 - [[brand-system]] — 10x brand + standing design rules for all graphics
 - [[typography]] — choosing type *for a client*: **display vs text is the split that gets missed**, serif vs sans, the three sans families, no-serif systems, licensing, never-Poppins rule; O'Neill Group 29-face shortlist 10 Aug
 - [[ig-caption-voice]] — per-account caption voice discipline (10x modes, Rob, Jason)
