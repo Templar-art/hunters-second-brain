@@ -9,12 +9,17 @@
     --sheet: #f7f9fa;
     --ink: #141821;
     --ink-2: #4a5462;
-    --mid: #8994a3;
+    --mid: #626a75;         /* was #8994a3 (2.69:1). Solved against all four
+                               surfaces it lands on: --sheet, --ground, and the
+                               two composited soft tints. Worst case 4.58:1. */
     --hair: #c3ccd6;
     --hair-soft: #d9e0e7;
-    --accent: #f4502a;   /* Iron Standard's own orange, annotation use only */
+    --accent: #f4502a;      /* Iron Standard's orange. NON-TEXT only: borders, fills. */
+    --accent-ink: #be3e20;  /* accent-as-text. Solved against the COMPOSITED
+                               --accent-soft tint (#f7eae7), not bare --sheet:
+                               the tint is what these labels actually sit on. */
     --accent-soft: rgba(244, 80, 42, 0.09);
-    --pending: #8a6d1f;
+    --pending: #81661d;   /* same: solved against the composited tint */
     --pending-soft: rgba(138, 109, 31, 0.1);
 
     --f-display: 'TASA Orbiter', 'Helvetica Neue', Arial, sans-serif;
@@ -28,24 +33,28 @@
       --sheet: #151a21;
       --ink: #e6eaef;
       --ink-2: #a7b2c0;
-      --mid: #737f8d;
+      --mid: #8c96a1;       /* same four-surface solve on dark. Worst case 4.60:1. */
       --hair: #333d49;
       --hair-soft: #262e38;
       --accent: #ff6a45;
+      --accent-ink: #ff6a45; /* already 6.16:1 on dark, no darkening needed */
       --accent-soft: rgba(255, 106, 69, 0.13);
       --pending: #d4ac4a;
       --pending-soft: rgba(212, 172, 74, 0.13);
     }
   }
+  /* Same values as the media block above. These two must stay in step: this
+     one is the explicit toggle, that one is the OS preference. */
   :root[data-theme="dark"] {
     --ground: #0e1116;
     --sheet: #151a21;
     --ink: #e6eaef;
     --ink-2: #a7b2c0;
-    --mid: #737f8d;
+    --mid: #8c96a1;
     --hair: #333d49;
     --hair-soft: #262e38;
     --accent: #ff6a45;
+    --accent-ink: #ff6a45;
     --accent-soft: rgba(255, 106, 69, 0.13);
     --pending: #d4ac4a;
     --pending-soft: rgba(212, 172, 74, 0.13);
@@ -170,7 +179,7 @@
   .sheet-url {
     font-family: var(--f-mono);
     font-size: 0.78rem;
-    color: var(--accent);
+    color: var(--accent-ink);
   }
 
   .sheet-body {
@@ -185,6 +194,7 @@
 
   /* ---- The wireframe stack itself ---- */
   .wf {
+    min-width: 0;
     background: var(--sheet);
     border: 1px solid var(--hair);
     padding: 0.75rem;
@@ -212,7 +222,7 @@
     gap: 0.75rem;
     align-items: baseline;
   }
-  .blk.is-new > .blk-label { color: var(--accent); }
+  .blk.is-new > .blk-label { color: var(--accent-ink); }
   .blk.is-pending > .blk-label { color: var(--pending); }
   .ref {
     font-family: var(--f-mono);
@@ -238,7 +248,9 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     background: var(--accent);
-    color: #fff;
+    /* Matches the real site's .btn-primary, which puts near-black on the
+       orange. White measured 3.48:1 light / 2.84:1 dark and failed AA. */
+    color: #0a0a0a;
     padding: 0.32rem 0.7rem;
     border-radius: 2px;
   }
@@ -267,10 +279,16 @@
   .img.short { height: 62px; }
 
   .row { display: grid; gap: 0.5rem; margin-top: 0.55rem; }
-  .row.c2 { grid-template-columns: 1fr 1fr; }
-  .row.c3 { grid-template-columns: repeat(3, 1fr); }
+  /* auto-fit, not a fixed count: at 360px a hard 3-up left the
+     Coaching / PT / Physio cells about 90px wide each. */
+  .row.c2 { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .row.c3 { grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); }
   .row.c4 { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
-  .cell { border: 1px solid var(--hair-soft); padding: 0.5rem; min-height: 56px; }
+  /* min-width:0 lets grid children shrink below their content; without it a
+     long unbroken token (a filename, a URL) pushes the track wider than the
+     screen. overflow-wrap is the second line of defence. */
+  .cell { border: 1px solid var(--hair-soft); padding: 0.5rem; min-height: 56px;
+          min-width: 0; overflow-wrap: break-word; }
   .cell-t {
     font-family: var(--f-mono);
     font-size: 0.6rem;
@@ -300,6 +318,9 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
+  /* .navlinks span (0,1,1) outranks .btn (0,1,0), so without this the nav
+     button inherits --ink-2 and sits at 2.20:1 on the orange fill. */
+  .navlinks span.btn { color: #0a0a0a; }
 
   /* ---- Annotations ---- */
   .notes { align-self: start; }
@@ -314,7 +335,7 @@
     margin-bottom: 0.9rem;
   }
   .notes ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.95rem; }
-  .notes li { display: grid; grid-template-columns: 2.1rem 1fr; gap: 0.6rem; font-size: 0.87rem; color: var(--ink-2); }
+  .notes li { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); gap: 0.6rem; font-size: 0.87rem; color: var(--ink-2); overflow-wrap: break-word; }
   .notes .n {
     font-family: var(--f-mono);
     font-size: 0.64rem;
@@ -338,6 +359,7 @@
     border-radius: 2px;
     padding: 0.05em 0.3em;
     color: var(--ink);
+    overflow-wrap: break-word;
   }
 
   /* ---- Closing blocks ---- */
@@ -383,9 +405,18 @@
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
   }
+
+  /* Windows high-contrast strips background tints, and the tint is how the
+     legend separates "new" from "blocked". The border STYLE has to carry
+     that meaning instead, so pin solid vs dashed explicitly. */
+  @media (forced-colors: active) {
+    .swatch, .blk { border-style: solid; }
+    .swatch.is-pending, .blk.is-pending, .gate { border-style: dashed; }
+    .btn { border: 1px solid; }
+  }
 </style>
 
-<div class="wrap">
+<main class="wrap">
 
   <header class="titleblock">
     <div class="titleblock-main">
@@ -664,4 +695,4 @@
     </div>
   </section>
 
-</div>
+</main>
