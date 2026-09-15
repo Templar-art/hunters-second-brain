@@ -1,0 +1,667 @@
+<title>Iron Standard Wireframes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root {
+    /* Drafting-paper ground, cool blue bias. Deliberately not the site's
+       own black-and-orange: a wireframe that looks like the finished site
+       invites comment on colour instead of structure. */
+    --ground: #edf0f3;
+    --sheet: #f7f9fa;
+    --ink: #141821;
+    --ink-2: #4a5462;
+    --mid: #8994a3;
+    --hair: #c3ccd6;
+    --hair-soft: #d9e0e7;
+    --accent: #f4502a;   /* Iron Standard's own orange, annotation use only */
+    --accent-soft: rgba(244, 80, 42, 0.09);
+    --pending: #8a6d1f;
+    --pending-soft: rgba(138, 109, 31, 0.1);
+
+    --f-display: 'TASA Orbiter', 'Helvetica Neue', Arial, sans-serif;
+    --f-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --f-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --ground: #0e1116;
+      --sheet: #151a21;
+      --ink: #e6eaef;
+      --ink-2: #a7b2c0;
+      --mid: #737f8d;
+      --hair: #333d49;
+      --hair-soft: #262e38;
+      --accent: #ff6a45;
+      --accent-soft: rgba(255, 106, 69, 0.13);
+      --pending: #d4ac4a;
+      --pending-soft: rgba(212, 172, 74, 0.13);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0e1116;
+    --sheet: #151a21;
+    --ink: #e6eaef;
+    --ink-2: #a7b2c0;
+    --mid: #737f8d;
+    --hair: #333d49;
+    --hair-soft: #262e38;
+    --accent: #ff6a45;
+    --accent-soft: rgba(255, 106, 69, 0.13);
+    --pending: #d4ac4a;
+    --pending-soft: rgba(212, 172, 74, 0.13);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-serif);
+    line-height: 1.6;
+    margin: 0;
+    padding-block: 2.5rem 5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1140px; margin: 0 auto; }
+
+  /* ---- Title block: borrowed from a drawing sheet, where the corner
+         block carries project / revision / date rather than a banner. ---- */
+  .titleblock {
+    border: 1px solid var(--hair);
+    background: var(--sheet);
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .titleblock-main { padding: 1.75rem 1.5rem 1.5rem; }
+  .titleblock h1 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: clamp(1.5rem, 4.4vw, 2.4rem);
+    line-height: 1.08;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  .titleblock .standfirst {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--ink-2);
+    font-size: 1rem;
+  }
+  .meta {
+    border-top: 1px solid var(--hair);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .meta div {
+    padding: 0.7rem 1.5rem 0.8rem;
+    border-right: 1px solid var(--hair-soft);
+  }
+  .meta div:last-child { border-right: 0; }
+  .meta dt {
+    font-family: var(--f-mono);
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    margin: 0 0 0.15rem;
+  }
+  .meta dd {
+    margin: 0;
+    font-family: var(--f-mono);
+    font-size: 0.82rem;
+    color: var(--ink);
+  }
+
+  /* ---- Legend ---- */
+  .legend {
+    margin-top: 1.5rem;
+    border: 1px solid var(--hair);
+    background: var(--sheet);
+    padding: 1rem 1.5rem 1.15rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .legend-title {
+    font-family: var(--f-mono);
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    width: 100%;
+  }
+  .key { display: flex; align-items: center; gap: 0.55rem; font-size: 0.85rem; color: var(--ink-2); }
+  .swatch { width: 26px; height: 14px; flex: none; border: 1px solid var(--hair); background: transparent; }
+  .swatch.is-new { border-color: var(--accent); background: var(--accent-soft); }
+  .swatch.is-pending { border-color: var(--pending); background: var(--pending-soft); border-style: dashed; }
+
+  /* ---- Sheets ---- */
+  .sheet { margin-top: 3rem; }
+  .sheet-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .sheet-no {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--mid);
+    text-transform: uppercase;
+  }
+  .sheet-head h2 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    letter-spacing: 0.01em;
+    margin: 0;
+    flex: 1 1 auto;
+  }
+  .sheet-url {
+    font-family: var(--f-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+
+  .sheet-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    margin-top: 1.5rem;
+  }
+  @media (min-width: 860px) {
+    .sheet-body { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 2.5rem; }
+  }
+
+  /* ---- The wireframe stack itself ---- */
+  .wf {
+    background: var(--sheet);
+    border: 1px solid var(--hair);
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .blk {
+    border: 1px solid var(--hair);
+    padding: 0.7rem 0.8rem;
+    position: relative;
+    min-height: 44px;
+  }
+  .blk.is-new { border-color: var(--accent); background: var(--accent-soft); }
+  .blk.is-pending { border-color: var(--pending); border-style: dashed; background: var(--pending-soft); }
+
+  .blk-label {
+    font-family: var(--f-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--mid);
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .blk.is-new > .blk-label { color: var(--accent); }
+  .blk.is-pending > .blk-label { color: var(--pending); }
+  .ref {
+    font-family: var(--f-mono);
+    font-size: 0.64rem;
+    color: var(--ink);
+    background: var(--ground);
+    border: 1px solid var(--hair);
+    border-radius: 2px;
+    padding: 0 0.3rem;
+    flex: none;
+  }
+
+  /* Placeholder primitives */
+  .ln { height: 7px; background: var(--hair-soft); margin-top: 0.5rem; }
+  .ln.w80 { width: 80%; } .ln.w65 { width: 65%; } .ln.w45 { width: 45%; } .ln.w30 { width: 30%; }
+  .hd { height: 15px; background: var(--hair); margin-top: 0.55rem; width: 70%; }
+  .hd.sm { height: 11px; width: 50%; }
+  .btn {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-family: var(--f-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.32rem 0.7rem;
+    border-radius: 2px;
+  }
+  .btn.ghost { background: transparent; color: var(--ink-2); border: 1px solid var(--hair); }
+
+  .img {
+    margin-top: 0.55rem;
+    border: 1px solid var(--hair);
+    background-color: transparent;
+    background-image:
+      linear-gradient(to top right, transparent calc(50% - 0.5px), var(--hair-soft) calc(50% - 0.5px), var(--hair-soft) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+      linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--hair-soft) calc(50% - 0.5px), var(--hair-soft) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    display: flex;
+    align-items: flex-end;
+    padding: 0.4rem;
+  }
+  .img span {
+    font-family: var(--f-mono);
+    font-size: 0.6rem;
+    color: var(--mid);
+    background: var(--sheet);
+    padding: 0 0.25rem;
+  }
+  .img.tall { height: 150px; }
+  .img.mid { height: 96px; }
+  .img.short { height: 62px; }
+
+  .row { display: grid; gap: 0.5rem; margin-top: 0.55rem; }
+  .row.c2 { grid-template-columns: 1fr 1fr; }
+  .row.c3 { grid-template-columns: repeat(3, 1fr); }
+  .row.c4 { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
+  .cell { border: 1px solid var(--hair-soft); padding: 0.5rem; min-height: 56px; }
+  .cell-t {
+    font-family: var(--f-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--mid);
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .navbar .brandmark {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+  .navlinks { display: flex; gap: 0.55rem; align-items: center; flex-wrap: wrap; }
+  .navlinks span {
+    font-family: var(--f-mono);
+    font-size: 0.63rem;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ---- Annotations ---- */
+  .notes { align-self: start; }
+  .notes-title {
+    font-family: var(--f-mono);
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    border-bottom: 1px solid var(--hair);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.9rem;
+  }
+  .notes ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.95rem; }
+  .notes li { display: grid; grid-template-columns: 2.1rem 1fr; gap: 0.6rem; font-size: 0.87rem; color: var(--ink-2); }
+  .notes .n {
+    font-family: var(--f-mono);
+    font-size: 0.64rem;
+    color: var(--ink);
+    border: 1px solid var(--hair);
+    border-radius: 2px;
+    height: 1.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sheet);
+  }
+  .notes strong { color: var(--ink); font-weight: 600; }
+  .notes em { font-style: italic; }
+
+  code {
+    font-family: var(--f-mono);
+    font-size: 0.85em;
+    background: var(--sheet);
+    border: 1px solid var(--hair-soft);
+    border-radius: 2px;
+    padding: 0.05em 0.3em;
+    color: var(--ink);
+  }
+
+  /* ---- Closing blocks ---- */
+  .panel {
+    margin-top: 3rem;
+    border: 1px solid var(--hair);
+    background: var(--sheet);
+    padding: 1.5rem;
+  }
+  .panel h3 {
+    font-family: var(--f-display);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.9rem;
+  }
+  .panel ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.55rem; }
+  .panel li { color: var(--ink-2); font-size: 0.92rem; }
+  .panel li strong { color: var(--ink); font-weight: 600; }
+
+  /* Full dashed border, matching the "blocked" key in the legend, rather
+     than a coloured stripe down one edge. The dash is doing the work. */
+  .gate {
+    border: 1px dashed var(--pending);
+    background: var(--pending-soft);
+    padding: 1rem 1.1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--ink-2);
+  }
+  .gate strong { color: var(--ink); }
+  .gate-label {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--pending);
+    margin-bottom: 0.4rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="titleblock">
+    <div class="titleblock-main">
+      <h1>Iron Standard &mdash; Site Wireframes</h1>
+      <p class="standfirst">Structure only. Nothing here is styled to the final design, deliberately: a wireframe that looks like the finished site collects notes on colour instead of on what goes where. Every block below is drawn from facts Anthony has already cleared. Nothing is invented.</p>
+    </div>
+    <dl class="meta">
+      <div><dt>Project</dt><dd>ironstandard.no</dd></div>
+      <div><dt>Stage</dt><dd>Pre-launch</dd></div>
+      <div><dt>Build</dt><dd>Static, 3 pages</dd></div>
+      <div><dt>Issued</dt><dd>15 Sep 2026</dd></div>
+      <div><dt>Revision</dt><dd>A</dd></div>
+    </dl>
+  </header>
+
+  <div class="legend">
+    <span class="legend-title">Legend</span>
+    <span class="key"><span class="swatch"></span> Exists, carries over as-is</span>
+    <span class="key"><span class="swatch is-new"></span> New in this build</span>
+    <span class="key"><span class="swatch is-pending"></span> Blocked on a fact or on Brevo</span>
+  </div>
+
+  <!-- ============================ SHEET 01 ============================ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <span class="sheet-no">Sheet 01</span>
+      <h2>Home</h2>
+      <span class="sheet-url">/index.html</span>
+    </div>
+
+    <div class="sheet-body">
+      <div class="wf">
+        <div class="blk is-new">
+          <div class="blk-label"><span>Nav bar</span><span class="ref">1</span></div>
+          <div class="navbar">
+            <span class="brandmark">IRONSTNDRD.</span>
+            <span class="navlinks">
+              <span>The Facility</span><span>Founding</span>
+              <span class="btn">Join the waitlist</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="blk">
+          <div class="blk-label"><span>Hero &mdash; fixed photo</span><span class="ref">2</span></div>
+          <div class="img tall"><span>young-man-sportswear&hellip;.jpg</span></div>
+          <div class="hd"></div>
+          <div class="ln w80"></div>
+          <div class="ln w65"></div>
+          <span class="btn">Join the waitlist</span>
+        </div>
+
+        <div class="blk">
+          <div class="blk-label"><span>&ldquo;What you&rsquo;re getting&rdquo; accordion</span><span class="ref">3</span></div>
+          <div class="row c2">
+            <div class="cell">
+              <div class="cell-t">Inside the facility &#9660;</div>
+              <div class="ln w80"></div><div class="ln w65"></div>
+              <div class="cell-t" style="margin-top:.5rem">Is this you?</div>
+              <div class="cell-t" style="margin-top:.35rem">Why it&rsquo;s different</div>
+              <div class="cell-t" style="margin-top:.35rem">Get in first</div>
+            </div>
+            <div class="img mid" style="margin-top:0"><span>panel, crossfades</span></div>
+          </div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>Go deeper &mdash; link block</span><span class="ref">4</span></div>
+          <div class="row c2">
+            <div class="cell"><div class="cell-t">The Facility &rarr;</div><div class="ln w80"></div></div>
+            <div class="cell"><div class="cell-t">Founding Members &rarr;</div><div class="ln w80"></div></div>
+          </div>
+        </div>
+
+        <div class="blk">
+          <div class="blk-label"><span>Footer</span><span class="ref">5</span></div>
+          <div class="hd sm"></div><div class="ln w30"></div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="notes-title">Notes</div>
+        <ol>
+          <li><span class="n">1</span><span><strong>The only structural change to this page.</strong> <code>&lt;header class="site-header"&gt;</code> already exists in the markup and is currently empty. It gets filled rather than added. Transparent over the hero, solid once you scroll, full-screen overlay on mobile. Sits <em>under</em> the intro splash, not over it.</span></li>
+          <li><span class="n">2</span><span>Unchanged. Fixed background photo, two-line headline on desktop and three on mobile, intro sequence ahead of it.</span></li>
+          <li><span class="n">3</span><span>Unchanged. Four items, one open at a time, photo panel crossfades to match on desktop and sits inline above the copy on mobile.</span></li>
+          <li><span class="n">4</span><span>New. Two cards, the only thing on Home pointing at the new pages besides the nav. Without this, someone who scrolls past the nav never learns the other pages exist.</span></li>
+          <li><span class="n">5</span><span>Unchanged. Logo, Oslo with the location pin, email, copyright.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SHEET 02 ============================ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <span class="sheet-no">Sheet 02</span>
+      <h2>The Facility</h2>
+      <span class="sheet-url">/facility.html</span>
+    </div>
+
+    <div class="sheet-body">
+      <div class="wf">
+        <div class="blk is-new">
+          <div class="blk-label"><span>Nav bar &mdash; solid state</span><span class="ref">1</span></div>
+          <div class="navbar">
+            <span class="brandmark">IRONSTNDRD.</span>
+            <span class="navlinks">
+              <span>The Facility</span><span>Founding</span>
+              <span class="btn">Join the waitlist</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>Page header &mdash; short, not full-height</span><span class="ref">2</span></div>
+          <div class="hd"></div>
+          <div class="ln w65"></div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>The space &mdash; 800m&sup2;</span><span class="ref">3</span></div>
+          <div class="row c2">
+            <div class="cell"><div class="cell-t">Copy</div><div class="ln w80"></div><div class="ln w80"></div><div class="ln w45"></div></div>
+            <div class="img mid" style="margin-top:0"><span>video: hero-6-weightlifting-gym.mp4</span></div>
+          </div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>The equipment</span><span class="ref">4</span></div>
+          <div class="row c2">
+            <div class="img mid" style="margin-top:0"><span>video: hero-1-weightlifting-man.mp4</span></div>
+            <div class="cell"><div class="cell-t">Platforms &middot; calibrated plates</div><div class="ln w80"></div><div class="ln w65"></div></div>
+          </div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>The posing room</span><span class="ref">5</span></div>
+          <div class="img mid"><span>posing-room.jpg</span></div>
+          <div class="ln w80"></div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>24/7 access</span><span class="ref">6</span></div>
+          <div class="ln w80"></div><div class="ln w45"></div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>On-site support</span><span class="ref">7</span></div>
+          <div class="row c3">
+            <div class="cell"><div class="cell-t">Coaching</div><div class="ln w80"></div></div>
+            <div class="cell"><div class="cell-t">PT</div><div class="ln w80"></div></div>
+            <div class="cell"><div class="cell-t">Physio</div><div class="ln w80"></div></div>
+          </div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>CTA band</span><span class="ref">8</span></div>
+          <div class="hd sm"></div>
+          <span class="btn">Join the waitlist</span>
+        </div>
+
+        <div class="blk">
+          <div class="blk-label"><span>Footer</span><span class="ref">&mdash;</span></div>
+          <div class="hd sm"></div><div class="ln w30"></div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="notes-title">Notes</div>
+        <ol>
+          <li><span class="n">1</span><span>Solid from the top here. There is no full-bleed hero behind it to be transparent over.</span></li>
+          <li><span class="n">2</span><span><strong>Deliberately not a 100vh hero.</strong> Home earns a full-height opener because it has the intro sequence behind it. Repeating that on an inner page just delays the content someone clicked through for.</span></li>
+          <li><span class="n">3&ndash;4</span><span><strong>This is where the four licensed clips go.</strong> Your own 4K footage, already paid for, currently sitting unused in <code>assets/video/</code> since the hero rotation was pulled. Muted, looping, no controls. Better than any stock we&rsquo;d buy, and it solves the imagery problem for this page on its own.</span></li>
+          <li><span class="n">5</span><span>Reuses the posing room photo Anthony just supplied. It is only 638px wide, so it will be soft if stretched full width &mdash; sized as a contained block rather than a full-bleed band to stay sharp.</span></li>
+          <li><span class="n">6&ndash;7</span><span>Text-led, no imagery. We have no photos of the real coaching space and won&rsquo;t fake them with stock.</span></li>
+          <li><span class="n">8</span><span>Points at <code>founding.html#form</code>, not at a section on this page.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SHEET 03 ============================ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <span class="sheet-no">Sheet 03</span>
+      <h2>Founding Members</h2>
+      <span class="sheet-url">/founding.html</span>
+    </div>
+
+    <div class="sheet-body">
+      <div class="wf">
+        <div class="blk is-new">
+          <div class="blk-label"><span>Nav bar &mdash; solid state</span><span class="ref">1</span></div>
+          <div class="navbar">
+            <span class="brandmark">IRONSTNDRD.</span>
+            <span class="navlinks">
+              <span>The Facility</span><span>Founding</span>
+              <span class="btn">Join the waitlist</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>Page header</span><span class="ref">2</span></div>
+          <div class="hd"></div>
+          <div class="ln w65"></div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>The offer &mdash; four points</span><span class="ref">3</span></div>
+          <div class="row c4">
+            <div class="cell"><div class="cell-t">Priority access</div><div class="ln w80"></div></div>
+            <div class="cell"><div class="cell-t">Discounted rate</div><div class="ln w80"></div></div>
+            <div class="cell"><div class="cell-t">Capped spots</div><div class="ln w80"></div></div>
+            <div class="cell"><div class="cell-t">First come, first served</div><div class="ln w80"></div></div>
+          </div>
+        </div>
+
+        <div class="blk is-new">
+          <div class="blk-label"><span>Why now</span><span class="ref">4</span></div>
+          <div class="ln w80"></div><div class="ln w80"></div><div class="ln w45"></div>
+        </div>
+
+        <div class="blk is-pending">
+          <div class="blk-label"><span>Waitlist form &mdash; id="form"</span><span class="ref">5</span></div>
+          <div class="row c2">
+            <div class="cell"><div class="cell-t">Name</div></div>
+            <div class="cell"><div class="cell-t">Email</div></div>
+          </div>
+          <span class="btn">Join the waitlist</span>
+        </div>
+
+        <div class="blk">
+          <div class="blk-label"><span>Footer</span><span class="ref">&mdash;</span></div>
+          <div class="hd sm"></div><div class="ln w30"></div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="notes-title">Notes</div>
+        <ol>
+          <li><span class="n">1&ndash;2</span><span>Same treatment as Sheet 02.</span></li>
+          <li><span class="n">3</span><span>All four points are Anthony&rsquo;s own cleared wording. <strong>No figure on the discount</strong> &mdash; he hasn&rsquo;t set one, and inventing a number on a founding-member offer is the one thing on this site we can&rsquo;t walk back.</span></li>
+          <li><span class="n">4</span><span>The scarcity argument: spots are capped, unclaimed offers pass to the next person on the list.</span></li>
+          <li><span class="n">5</span><span><strong>This block fixes a live bug.</strong> Home&rsquo;s button and scroll arrow currently point at <code>#form</code>, which exists nowhere on the site &mdash; they scroll into a void today. This becomes the real destination, so both start working the moment the Brevo block lands. The section gets built with the insertion point marked; only the <code>&lt;form&gt;</code> itself waits.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ GLOBALS ============================ -->
+  <section class="panel">
+    <h3>Carried across all three pages</h3>
+    <ul>
+      <li><strong>One stylesheet, one script.</strong> <code>assets/css/style.css</code> and <code>assets/js/main.js</code> grow rather than fork. A design change stays a one-file edit.</li>
+      <li><strong>Header and footer are hand-duplicated.</strong> At three pages that beats introducing a build step, but it will drift &mdash; <code>partials/footer.html</code> already has. Worth revisiting past five pages.</li>
+      <li><strong>Intro sequence plays once per session,</strong> on whichever page they land on first. Clicking between pages goes straight in. A new tab plays it again.</li>
+      <li><strong>Existing design language throughout:</strong> the <code>#F4502A</code> accent, TASA Orbiter, black-and-white photography, the scroll-reveal already built. Nothing new invented.</li>
+      <li><strong>The WordPress widget route retires</strong> once this lands. Two deliverables maintained in parallel is how they drift apart.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h3>Not in this build, and why</h3>
+    <ul>
+      <li><strong>Pricing or membership tiers</strong> &mdash; Anthony hasn&rsquo;t set them.</li>
+      <li><strong>Address or map</strong> &mdash; location isn&rsquo;t public yet.</li>
+      <li><strong>Opening date</strong> &mdash; not confirmed. The site still says &ldquo;Coming soon&rdquo;.</li>
+      <li><strong>Timetable or class booking</strong> &mdash; nothing to schedule before the doors open.</li>
+      <li><strong>Coach bios or an About page</strong> &mdash; we have &ldquo;founded by a competitive powerlifter&rdquo; and no coach lineup. An About page built on that would be padding, and padding is what makes a site read like the budget chains this one is meant to outclass.</li>
+    </ul>
+    <div class="gate">
+      <span class="gate-label">Blocked</span>
+      <strong>One dependency sits outside the build.</strong> No sign-ups are being collected anywhere today &mdash; there is no form on the site and no Brevo list. Until that exists, every waitlist button on all three pages is decoration. Worth saying plainly to Anthony rather than describing the dashboard he&rsquo;ll eventually get.
+    </div>
+  </section>
+
+</div>
