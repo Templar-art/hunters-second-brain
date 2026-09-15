@@ -20,6 +20,7 @@ from pathlib import Path
 HERE = Path(__file__).parent
 ASSETS = HERE / "assets"
 OUT = HERE / "output"
+BRAND_FONTS = ASSETS / "fonts"
 FONTS = Path("/Users/10xhunter/.claude/skills/canvas-design/canvas-fonts")
 CHROME = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
@@ -32,6 +33,10 @@ DARK_BLUE = "#0a1c3e"
 
 def font_b64(name):
     return base64.b64encode((FONTS / name).read_bytes()).decode()
+
+
+def brand_font_b64(name):
+    return base64.b64encode((BRAND_FONTS / name).read_bytes()).decode()
 
 
 def icon_b64():
@@ -104,11 +109,11 @@ def build_svg(headline, kicker, detail):
     </g>
 
     <g transform="translate(64,{H-64})">
-      <text x="0" y="-108" font-family="Outfit" font-weight="700" font-size="66"
+      <text x="0" y="-108" font-family="Bw Vivant" font-size="66"
         fill="{WHITE}" letter-spacing="0.5">{headline}</text>
-      <text x="0" y="-64" font-family="Work Sans" font-size="21" fill="{WHITE}"
+      <text x="0" y="-64" font-family="Circular Std Book" font-size="21" fill="{WHITE}"
         opacity="0.92" letter-spacing="1.2">{kicker}</text>
-      <text x="0" y="-32" font-family="Work Sans" font-size="17" fill="{WHITE}"
+      <text x="0" y="-32" font-family="Circular Std Book" font-size="17" fill="{WHITE}"
         opacity="0.72" letter-spacing="1">{detail}</text>
     </g>
   </svg>
@@ -116,15 +121,15 @@ def build_svg(headline, kicker, detail):
 
 
 def build_html(headline, kicker, detail):
-    outfit = font_b64("Outfit-Bold.ttf")
-    work_sans = font_b64("WorkSans-Regular.ttf")
+    bw_vivant = brand_font_b64("BwVivant-Black.ttf")
+    circular_std = brand_font_b64("CircularStd-Book.ttf")
     dm_mono = font_b64("DMMono-Regular.ttf")
     svg = build_svg(headline, kicker, detail)
     return f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8">
 <style>
-  @font-face {{ font-family: 'Outfit'; font-weight:700; src: url(data:font/ttf;base64,{outfit}) format('truetype'); }}
-  @font-face {{ font-family: 'Work Sans'; src: url(data:font/ttf;base64,{work_sans}) format('truetype'); }}
+  @font-face {{ font-family: 'Bw Vivant'; src: url(data:font/ttf;base64,{bw_vivant}) format('truetype'); }}
+  @font-face {{ font-family: 'Circular Std Book'; src: url(data:font/ttf;base64,{circular_std}) format('truetype'); }}
   @font-face {{ font-family: 'DM Mono'; src: url(data:font/ttf;base64,{dm_mono}) format('truetype'); }}
   @page {{ size: {W/96}in {H/96}in; margin: 0; }}
   * {{ margin:0; padding:0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
