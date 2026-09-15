@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [virtual-staging, workflow, rules]
-updated: 2026-07-27
+updated: 2026-09-15
 ---
 
 # Virtual Staging Rules
@@ -22,6 +22,7 @@ Standing rules for AI staging of listing photos, distilled from job feedback (ca
 - **One bedside lamp** — Nano Banana Pro spawns a second floating lamp; enforce the count with geometry and a positive number, never negation.
 - **No detail vignettes in wide frames** — desks, laptops and small props read as "past the couch" in a wide; save them for the close-up.
 - **Lock placement with three anchors** — every major piece (bed, sofa, dining table) gets: same footprint as the piece it replaces, axis tied to a named fixed feature ("back parallel to the left-hand window wall"), and a directional cue ("chaise extending toward the camera", "not rotated or squared to the camera"). A bare wall label alone has failed twice; don't skip it because the layout looks obvious.
+- **Curtains by default, frame-locked** — every stage/restyle prompt checks each visible window and glass door for existing curtains; any bare one gets full-height sheers added without being asked. Anchor each panel to its own frame explicitly ("width matching only its own frame's width... no fabric spanning between separate frames or extending onto the plain wall") — an un-anchored curtain instruction bled a single sheer across an entire wall on the first attempt. See [[feedback-curtains-default-and-anchor]].
 - **Matching angles need a reference** — every room angle after the first must pass the approved frame as `@reference`; standalone prompts only for the first frame of a room.
 - **Token the images** — multi-image staging/transfer prompts use `@original` / `@reference` tokens plus a legend, so images can be swapped without reading the prompt body.
 - **Outdoor = outdoor furniture** — patios get weatherproof pieces in the client palette (never indoor furniture), and fences are pinned with "nothing new built".

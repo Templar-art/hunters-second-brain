@@ -2,6 +2,9 @@
 
 Append-only record of wiki operations. Entry format: `## [YYYY-MM-DD] ingest|query|lint|migrate | Title
 
+## [2026-09-15] lint | Curtains made a default, not an ask
+On the zed-full-house living/dining/kitchen frame, Hunter had to ask twice for curtains before I added them — the rule was already in [[zed-style]]'s global kit but wasn't reaching the actual prompts. Also the first curtain attempt bled one sheer panel across the entire wall instead of per-window, because the instruction wasn't anchored to a frame. Added a standing rule to [[staging-rules]] (check every bare window/door, add sheers unasked, anchor each panel to its own frame width) and a matching auto-memory file `feedback-curtains-default-and-anchor`.
+
 ## [2026-09-10] lint | Iron Standard: audit fully cleared (clarify, harden, polish)
 Worked through the remaining 3 findings from the 10 Sep `/impeccable audit` (14/20) one command at a time: `/impeccable clarify` reworded the scroll-arrow's stale aria-label ("...waitlist form" → "...join the waitlist", the form doesn't exist right now); `/impeccable harden` gave the details-visual image crossfade a real default (facility's photo shows even without `:has()` support, instead of an empty box); `/impeccable polish` swapped the one hardcoded `#050505` for `var(--bg)`. All verified live in Chrome. Logged to [[iron-standard]].
 
