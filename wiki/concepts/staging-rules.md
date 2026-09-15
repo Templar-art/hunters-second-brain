@@ -10,6 +10,7 @@ Standing rules for AI staging of listing photos, distilled from job feedback (ca
 
 - **Preserve fixtures** — never change taps, windows, vanities, or any fixed element; only movable furniture, décor, declutter.
 - **One-shot staging** — must land in one pass (volume work); pick self-enforcing geometry (e.g. round dining table when end-chairs are the risk).
+- **No end chairs, every dining table, by default** — never rely on saying "no end chairs" (negation is unenforced on Nano Banana). Default to a round or oval/pedestal table shape with no flat end to seat someone at, and when chairs are still needed spell out the count and placement explicitly ("N chairs evenly spaced around it, none at the ends"). Apply this on every dining prompt without being asked. See [[feedback-no-end-chairs-positive]].
 - **Phrase positively** — "open/empty ends + exact count"; negation alone fails on Nano Banana.
 - **Default model:** Nano Banana Pro for full-frame staging.
 - **Vary plants** — never the same plant across rooms in one listing (fig/kentia/rubber/olive/monstera rotation, white pots).
