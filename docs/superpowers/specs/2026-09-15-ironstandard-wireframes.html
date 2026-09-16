@@ -12,6 +12,8 @@
     --accent: #f4502a;
     --accent-ink: #be3e20;
     --accent-soft: rgba(244, 80, 42, 0.09);
+    --wait: #81661d;
+    --wait-soft: rgba(138, 109, 31, 0.1);
 
     --f-display: 'TASA Orbiter', 'Helvetica Neue', Arial, sans-serif;
     --f-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
@@ -30,6 +32,8 @@
       --accent: #ff6a45;
       --accent-ink: #ff6a45;
       --accent-soft: rgba(255, 106, 69, 0.13);
+      --wait: #d4ac4a;
+      --wait-soft: rgba(212, 172, 74, 0.13);
     }
   }
   :root[data-theme="dark"] {
@@ -43,6 +47,8 @@
     --accent: #ff6a45;
     --accent-ink: #ff6a45;
     --accent-soft: rgba(255, 106, 69, 0.13);
+    --wait: #d4ac4a;
+    --wait-soft: rgba(212, 172, 74, 0.13);
   }
 
   * { box-sizing: border-box; }
@@ -59,9 +65,9 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .wrap { max-width: 1180px; margin: 0 auto; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
 
-  .lede { max-width: 58ch; margin: 0 0 2.5rem; }
+  .lede { max-width: 60ch; margin: 0 0 1.75rem; }
   .lede h1 {
     font-family: var(--f-display);
     font-weight: 700;
@@ -74,113 +80,94 @@
   }
   .lede p { margin: 0; color: var(--ink-2); font-size: 1.02rem; }
 
-  /* Three pages side by side, stacking on narrow screens. */
+  .keys { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.75rem; }
+  .key { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--ink-2); }
+  .swatch { width: 24px; height: 13px; flex: none; border: 1px solid var(--hair); }
+  .swatch.b { border-color: var(--accent); background: var(--accent-soft); }
+  .swatch.w { border-color: var(--wait); background: var(--wait-soft); border-style: dashed; }
+
   .pages {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    gap: 1.25rem;
     align-items: start;
   }
 
-  .page {
-    background: var(--sheet);
-    border: 1px solid var(--hair);
-    min-width: 0;
-  }
+  .page { background: var(--sheet); border: 1px solid var(--hair); min-width: 0; }
 
-  .page-head {
-    padding: 1.1rem 1.25rem 1rem;
-    border-bottom: 2px solid var(--ink);
+  .page-head { padding: 1rem 1.15rem 0.9rem; border-bottom: 2px solid var(--ink); }
+  .num {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--mid);
   }
   .page-head h2 {
     font-family: var(--f-display);
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     letter-spacing: 0.01em;
-    margin: 0 0 0.3rem;
+    margin: 0.15rem 0 0.35rem;
   }
-  .page-url {
-    font-family: var(--f-mono);
-    font-size: 0.75rem;
-    color: var(--accent-ink);
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  .page-head p { margin: 0; font-size: 0.92rem; color: var(--ink-2); }
+  .purpose { margin: 0; font-size: 0.9rem; color: var(--ink-2); }
 
-  .stack { padding: 1rem 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .stack { padding: 0.9rem 1.15rem 1.25rem; display: flex; flex-direction: column; gap: 0.45rem; }
 
   .row {
     border: 1px solid var(--hair);
-    padding: 0.7rem 0.85rem;
+    padding: 0.62rem 0.8rem;
     min-width: 0;
     overflow-wrap: break-word;
   }
-  .row.is-new { border-color: var(--accent); background: var(--accent-soft); }
+  .row.b { border-color: var(--accent); background: var(--accent-soft); }
+  .row.w { border-color: var(--wait); border-style: dashed; background: var(--wait-soft); }
 
   .row h3 {
     font-family: var(--f-mono);
     font-weight: 500;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.07em;
     color: var(--mid);
     margin: 0;
   }
-  .row.is-new h3 { color: var(--accent-ink); }
-  .row p { margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--ink-2); }
-
-  .row ul { margin: 0.4rem 0 0; padding-left: 1.05rem; }
-  .row li { font-size: 0.9rem; color: var(--ink-2); margin-top: 0.15rem; }
+  .row.b h3 { color: var(--accent-ink); }
+  .row.w h3 { color: var(--wait); }
+  .row p { margin: 0.28rem 0 0; font-size: 0.88rem; color: var(--ink-2); }
+  .row ul { margin: 0.3rem 0 0; padding-left: 1rem; }
+  .row li { font-size: 0.88rem; color: var(--ink-2); margin-top: 0.12rem; }
 
   .btn {
     display: inline-block;
-    margin-top: 0.5rem;
+    margin-top: 0.45rem;
     font-family: var(--f-mono);
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     background: var(--accent);
     color: #0a0a0a;
-    padding: 0.3rem 0.65rem;
+    padding: 0.28rem 0.6rem;
     border-radius: 2px;
   }
 
-  .key {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.88rem;
-    color: var(--ink-2);
-    margin-bottom: 1.5rem;
-  }
-  .swatch {
-    width: 24px; height: 13px; flex: none;
-    border: 1px solid var(--accent);
-    background: var(--accent-soft);
-  }
-
-  .tail {
-    margin-top: 2.5rem;
-    border: 1px solid var(--hair);
-    background: var(--sheet);
-    padding: 1.35rem 1.5rem 1.5rem;
-  }
-  .tail h2 {
+  .tail { margin-top: 2.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+  .panel { border: 1px solid var(--hair); background: var(--sheet); padding: 1.25rem 1.4rem 1.4rem; min-width: 0; }
+  .panel h2 {
     font-family: var(--f-display);
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 0.98rem;
     letter-spacing: 0.02em;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.7rem;
   }
-  .tail ul { margin: 0; padding-left: 1.1rem; }
-  .tail li { color: var(--ink-2); margin-top: 0.4rem; font-size: 0.95rem; }
-  .tail li strong { color: var(--ink); font-weight: 600; }
+  .panel ul { margin: 0; padding-left: 1.05rem; }
+  .panel li { color: var(--ink-2); margin-top: 0.4rem; font-size: 0.93rem; }
+  .panel li strong { color: var(--ink); font-weight: 600; }
 
   @media (forced-colors: active) {
     .row, .swatch { border-style: solid; }
+    .row.w, .swatch.w { border-style: dashed; }
     .btn { border: 1px solid; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -192,121 +179,225 @@
 
   <div class="lede">
     <h1>The pages we need</h1>
-    <p>Three pages. The home page already exists. The other two are new. Everything on them comes from what Anthony has already signed off, so nothing here is made up.</p>
+    <p>Seven pages, built from Anthony's brief of 16 September. Everything below is his own content direction. The home page exists already and gets reworked; the rest are new.</p>
   </div>
 
-  <p class="key"><span class="swatch"></span> Orange means it doesn't exist yet</p>
+  <div class="keys">
+    <span class="key"><span class="swatch b"></span> We build it</span>
+    <span class="key"><span class="swatch w"></span> Anthony is sending the words</span>
+  </div>
 
   <div class="pages">
 
-    <!-- ================= HOME ================= -->
+    <!-- 1 HOME -->
     <section class="page">
       <div class="page-head">
+        <span class="num">01</span>
         <h2>Home</h2>
-        <span class="page-url">ironstandard.no</span>
-        <p>Already built. It only gains a menu and links out to the two new pages.</p>
+        <p class="purpose">Set the tone, name the gap, push to the waitlist.</p>
       </div>
       <div class="stack">
-        <div class="row is-new">
+        <div class="row b">
           <h3>Menu</h3>
-          <p>Logo, the two other pages, and a waitlist button.</p>
+          <p>Logo, the six other pages, waitlist button.</p>
         </div>
-        <div class="row">
+        <div class="row b">
           <h3>Opening screen</h3>
-          <p>Full-screen photo, logo, "A different standard for serious training", and the waitlist button.</p>
+          <p>"Built by discipline. Driven by community." Replaces the current headline.</p>
+        </div>
+        <div class="row b">
+          <h3>The gap we fill</h3>
+          <p>Between the big chains, built for volume rather than people who train hard, and the niche strength gyms with great kit but no room for anyone else.</p>
         </div>
         <div class="row">
           <h3>What you're getting</h3>
-          <p>The four dropdowns, with a photo that changes as you click through them.</p>
-          <ul>
-            <li>Inside the facility</li>
-            <li>Is this you?</li>
-            <li>Why it's different</li>
-            <li>Get in first</li>
-          </ul>
+          <p>The existing four dropdowns, reworked to point at the new pages.</p>
         </div>
-        <div class="row is-new">
-          <h3>Go deeper</h3>
-          <p>Two links, one to each new page. Without this, anyone who scrolls past the menu never finds them.</p>
-        </div>
-        <div class="row">
-          <h3>Footer</h3>
-          <p>Logo, Oslo, email.</p>
-        </div>
+        <div class="row b"><h3>Waitlist CTA</h3><span class="btn">Join the waitlist</span></div>
+        <div class="row"><h3>Footer</h3></div>
       </div>
     </section>
 
-    <!-- ================= FACILITY ================= -->
+    <!-- 2 ABOUT -->
     <section class="page">
       <div class="page-head">
-        <h2>The Facility</h2>
-        <span class="page-url">ironstandard.no/facility</span>
-        <p>The full version of what's only a paragraph on the home page.</p>
+        <span class="num">02</span>
+        <h2>About Us</h2>
+        <p class="purpose">The founder story, and why this exists at all.</p>
       </div>
       <div class="stack">
-        <div class="row is-new"><h3>Menu</h3></div>
-        <div class="row is-new">
-          <h3>Page title</h3>
-          <p>Short. No second full-screen photo, they've already seen one.</p>
+        <div class="row b"><h3>Menu</h3></div>
+        <div class="row w">
+          <h3>Anthony's story</h3>
+          <p>Anthony is writing this narrative himself.</p>
         </div>
-        <div class="row is-new">
+        <div class="row b">
+          <h3>His background</h3>
+          <ul>
+            <li>Ten years coaching, beginner to national level</li>
+            <li>Three-time national athlete</li>
+            <li>Sports Management background</li>
+            <li>Worked inside SATS Fagerborg, Oslo</li>
+          </ul>
+        </div>
+        <div class="row b">
+          <h3>The Oslo gap</h3>
+          <p>One of the highest gym participation rates in the world, and almost nothing built for people who train seriously.</p>
+        </div>
+        <div class="row b">
+          <h3>Thomas Lilley, advisor</h3>
+          <p>Founder of Zero Weakness, eleven locations across Australia, New Zealand and Europe. Iron Standard brings that model to Oslo.</p>
+        </div>
+        <div class="row b"><h3>Waitlist CTA</h3></div>
+        <div class="row"><h3>Footer</h3></div>
+      </div>
+    </section>
+
+    <!-- 3 FACILITY -->
+    <section class="page">
+      <div class="page-head">
+        <span class="num">03</span>
+        <h2>The Facility</h2>
+        <p class="purpose">What the space actually offers.</p>
+      </div>
+      <div class="stack">
+        <div class="row b"><h3>Menu</h3></div>
+        <div class="row b">
           <h3>The space</h3>
-          <p>800m², built for this and nothing else.</p>
+          <p>800 m² in central Oslo.</p>
         </div>
-        <div class="row is-new">
+        <div class="row b">
           <h3>The equipment</h3>
-          <p>Proper platforms and calibrated plates, not a squat rack in a corner.</p>
+          <p>Competition-grade platforms and racks, plus specialist strength kit built to the same spec as the equipment partners.</p>
         </div>
-        <div class="row is-new">
-          <h3>The posing room</h3>
-          <p>A dedicated room, using the photo Anthony sent.</p>
+        <div class="row b">
+          <h3>Equipment partners</h3>
+          <p>Zero Weakness and Texas Power Bars, named.</p>
         </div>
-        <div class="row is-new">
-          <h3>Open 24/7</h3>
-          <p>Train when you actually train.</p>
+        <div class="row b"><h3>The posing room</h3></div>
+        <div class="row b"><h3>24/7 member access</h3></div>
+        <div class="row b">
+          <h3>Who trains here</h3>
+          <ul>
+            <li>Powerlifting</li>
+            <li>Bodybuilding</li>
+            <li>Street lifting</li>
+            <li>Hyrox</li>
+            <li>Serious lifters generally</li>
+          </ul>
+          <p>Broad on purpose, not one discipline.</p>
         </div>
-        <div class="row is-new">
-          <h3>Coaching on site</h3>
-          <p>PTs and a physio in the same building.</p>
+        <div class="row w">
+          <h3>Photos and renders</h3>
+          <p>Following once the fit-out starts. Stock stands in until then.</p>
         </div>
-        <div class="row is-new">
-          <h3>Join the waitlist</h3>
+        <div class="row b"><h3>Waitlist CTA</h3></div>
+        <div class="row"><h3>Footer</h3></div>
+      </div>
+    </section>
+
+    <!-- 4 COACHING -->
+    <section class="page">
+      <div class="page-head">
+        <span class="num">04</span>
+        <h2>Coaching</h2>
+        <p class="purpose">What makes the coaching model different.</p>
+      </div>
+      <div class="stack">
+        <div class="row b"><h3>Menu</h3></div>
+        <div class="row b">
+          <h3>Programming at scale</h3>
+          <p>Online coaching and nutrition programming.</p>
+        </div>
+        <div class="row b">
+          <h3>Independent trainers</h3>
+          <p>PTs operating out of the facility with their own client bases.</p>
+        </div>
+        <div class="row b">
+          <h3>Competitions and events</h3>
+          <p>A hosted calendar. The part that makes it a community rather than a room you lift alone in.</p>
+        </div>
+        <div class="row b"><h3>Waitlist CTA</h3></div>
+        <div class="row"><h3>Footer</h3></div>
+      </div>
+    </section>
+
+    <!-- 5 WAITLIST -->
+    <section class="page">
+      <div class="page-head">
+        <span class="num">05</span>
+        <h2>Join the Waitlist</h2>
+        <p class="purpose">The whole point of the launch site.</p>
+      </div>
+      <div class="stack">
+        <div class="row b"><h3>Menu</h3></div>
+        <div class="row w">
+          <h3>The offer wording</h3>
+          <p>Anthony is workshopping this himself.</p>
+        </div>
+        <div class="row b">
+          <h3>Founding member framing</h3>
+          <ul>
+            <li>Early access</li>
+            <li>A temporary discounted rate</li>
+            <li>Capped, not open-ended</li>
+          </ul>
+          <p>Structured to read as a real opportunity, not a generic sign-up.</p>
+        </div>
+        <div class="row b">
+          <h3>The form</h3>
+          <p>Submissions go to a Google Sheet. Anthony owns the sheet and can export it any time.</p>
           <span class="btn">Join the waitlist</span>
         </div>
         <div class="row"><h3>Footer</h3></div>
       </div>
     </section>
 
-    <!-- ================= FOUNDING ================= -->
+    <!-- 6 FAQ -->
     <section class="page">
       <div class="page-head">
-        <h2>Founding Members</h2>
-        <span class="page-url">ironstandard.no/founding</span>
-        <p>The offer, and where people actually sign up.</p>
+        <span class="num">06</span>
+        <h2>FAQ</h2>
+        <p class="purpose">Head off the same four questions.</p>
       </div>
       <div class="stack">
-        <div class="row is-new"><h3>Menu</h3></div>
-        <div class="row is-new">
-          <h3>Page title</h3>
+        <div class="row b"><h3>Menu</h3></div>
+        <div class="row w">
+          <h3>The questions and answers</h3>
+          <p>Anthony is sending these.</p>
         </div>
-        <div class="row is-new">
-          <h3>What you get</h3>
+        <div class="row b">
+          <h3>Expected to cover</h3>
           <ul>
-            <li>Priority access</li>
-            <li>A discounted rate</li>
-            <li>Limited spots</li>
-            <li>First come, first served</li>
+            <li>Opening timeline</li>
+            <li>Location</li>
+            <li>Who it's for</li>
+            <li>How founding membership works</li>
           </ul>
-          <p>No price shown. Anthony hasn't set one.</p>
         </div>
-        <div class="row is-new">
-          <h3>Why join now</h3>
-          <p>Spots are capped, and anything unclaimed goes to the next person on the list.</p>
+        <div class="row b"><h3>Waitlist CTA</h3></div>
+        <div class="row"><h3>Footer</h3></div>
+      </div>
+    </section>
+
+    <!-- 7 CONTACT -->
+    <section class="page">
+      <div class="page-head">
+        <span class="num">07</span>
+        <h2>Contact Us</h2>
+        <p class="purpose">A way to reach him that isn't the waitlist.</p>
+      </div>
+      <div class="stack">
+        <div class="row b"><h3>Menu</h3></div>
+        <div class="row b">
+          <h3>Contact form</h3>
+          <p>Goes to the same Google Sheet, on its own tab so enquiries don't pollute the waitlist.</p>
         </div>
-        <div class="row is-new">
-          <h3>Sign-up form</h3>
-          <p>Name and email. This is the one thing on the site that collects anything.</p>
-          <span class="btn">Join the waitlist</span>
+        <div class="row b"><h3>Email</h3></div>
+        <div class="row b"><h3>Social links</h3></div>
+        <div class="row b">
+          <h3>Address block</h3>
+          <p>Built but left empty, ready to switch on the day the location is locked.</p>
         </div>
         <div class="row"><h3>Footer</h3></div>
       </div>
@@ -315,11 +406,24 @@
   </div>
 
   <div class="tail">
-    <h2>Two things before it can go live</h2>
-    <ul>
-      <li><strong>The sign-up form isn't connected yet.</strong> Until it is, nothing is being collected anywhere, and every waitlist button on the site does nothing. This is the one that actually matters.</li>
-      <li><strong>Still not public:</strong> the location, the opening date, and prices. Nothing on these pages mentions any of them, so none of this has to be rewritten once Anthony confirms them.</li>
-    </ul>
+    <div class="panel">
+      <h2>Coming from Anthony</h2>
+      <ul>
+        <li><strong>About Us narrative</strong> — he's writing it.</li>
+        <li><strong>Waitlist offer wording</strong> — he's workshopping it.</li>
+        <li><strong>FAQ questions and answers</strong> — he's sending them.</li>
+        <li><strong>Facility photos and renders</strong> — once the fit-out begins.</li>
+        <li><strong>Social account links</strong> — needed for Contact.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Two things that changed</h2>
+      <ul>
+        <li><strong>Google Sheet, not Brevo.</strong> Both forms write straight to a sheet Anthony owns. Simpler for him, and he can export or filter it himself without another login.</li>
+        <li><strong>We host it.</strong> The domain stays where it is and gets pointed at our hosting, so there's no separate account for him to manage.</li>
+        <li><strong>Central Oslo can now be said.</strong> It couldn't before. The exact address still can't.</li>
+      </ul>
+    </div>
   </div>
 
 </main>
