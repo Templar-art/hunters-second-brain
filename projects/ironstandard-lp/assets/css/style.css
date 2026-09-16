@@ -38,6 +38,21 @@ h2 { font-weight: 700; font-size: clamp(1.75rem, 4vw, 3rem); }
 
 .section p:not(.kicker) { color: var(--fg-dim); max-width: 640px; margin-top: 1rem; font-size: 1.05rem; }
 
+/* Bare content sections (About/Coaching/parts of Facility/Waitlist/Contact)
+   were inheriting --space-lg (up to 8rem) on BOTH edges of every section,
+   so two short paragraphs in a row left up to 16rem of dead black space
+   between them -- invisible on Home/FAQ, where images and accordions fill
+   that space, but bare on pages that are 2-3 short text blocks. Tightened
+   just these, and added a hairline between consecutive ones so a section
+   boundary reads as a deliberate break, not an empty gap. */
+.section:not(.details-accordion):not(.form-panel):not(.explore-links):not(.hero) {
+  padding-block: clamp(2.25rem, 5.5vw, 3.75rem);
+}
+.section:not(.details-accordion):not(.form-panel):not(.explore-links):not(.hero)
+  + .section:not(.details-accordion):not(.form-panel):not(.explore-links):not(.hero) {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 a { color: inherit; }
 a.accent-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
 a.accent-link:hover { border-color: var(--accent); }
