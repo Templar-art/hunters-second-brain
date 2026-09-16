@@ -13,7 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // one of the site's 7 pages replays the full ~2.3s flash-and-logo-drag
   // sequence on every click between them. A new tab (fresh sessionStorage)
   // sees it again, same as a first visit should.
-  const introAlreadyPlayed = sessionStorage.getItem('isl-intro-played') === '1';
+  let introAlreadyPlayed = true;
+  try {
+    introAlreadyPlayed = sessionStorage.getItem('isl-intro-played') === '1';
+  } catch (err) {
+    // sessionStorage can throw (privacy settings, sandboxed iframes, some
+    // enterprise policies). The intro is decorative — fail toward NOT
+    // showing it rather than let this abort the rest of the callback below
+    // (nav toggle, scroll reveal, form submit all depend on it continuing).
+    introAlreadyPlayed = true;
+  }
   const splash = document.querySelector('.intro-splash');
   const flashFrames = splash ? Array.from(splash.querySelectorAll('.intro-flash')) : [];
   const flashStack = splash ? splash.querySelector('.intro-flash-stack') : null;
@@ -51,7 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function runIntro() {
     splash.classList.add('js-driven');
-    sessionStorage.setItem('isl-intro-played', '1');
+    try {
+      sessionStorage.setItem('isl-intro-played', '1');
+    } catch (err) {
+      // No-op: if we can't persist the flag, the intro may replay on the
+      // next page, but that's cosmetic and must never block this function.
+    }
 
     // Hide the real logo only for the duration of this same animation —
     // otherwise it's visible underneath the clone the whole time, which
@@ -164,17 +178,20 @@ document.addEventListener('DOMContentLoaded', () => {
     navToggle.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     });
     navLinks.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
       });
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
         navLinks.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
       }
     });
   }

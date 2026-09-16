@@ -579,9 +579,14 @@ a.accent-link:hover { border-color: var(--accent); }
     justify-content: center;
     gap: 2rem;
     transform: translateY(-100%);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.35s;
   }
-  .nav-links.is-open { transform: translateY(0); }
+  .nav-links.is-open {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+  }
   .nav-links a { font-size: 1.4rem; }
 }
 @media (prefers-reduced-motion: reduce) {
