@@ -621,3 +621,23 @@ a.accent-link:hover { border-color: var(--accent); }
   font-size: 0.95rem;
   max-width: none;
 }
+
+/* Short title band for the 6 inner pages, none of which get a full-height
+   hero — Home already spent that treatment on the intro sequence, and
+   repeating it would delay content someone deliberately clicked through
+   for. Top padding clears the fixed nav; unlike .hero-sub this doesn't
+   need the .section p:not(.kicker) specificity fight, because it isn't
+   nested inside .section at all. */
+.page-header {
+  padding: clamp(7rem, 14vw, 9rem) 1.5rem 2.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+.page-header .kicker { text-align: center; }
+.page-header p:not(.kicker) {
+  color: var(--fg-dim);
+  max-width: 640px;
+  margin: 1rem auto 0;
+  font-size: 1.05rem;
+}
