@@ -641,3 +641,17 @@ a.accent-link:hover { border-color: var(--accent); }
   margin: 1rem auto 0;
   font-size: 1.05rem;
 }
+
+/* A single full-width photo inside a .section, reusing the same
+   grayscale treatment as every other photo on the site. Not the same
+   component as .detail-visual-img (that one crossfades between 4 stacked
+   images by CSS :has(); this is just one static photo per section). */
+.section-media {
+  width: 100%;
+  max-width: 640px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  filter: grayscale(1) contrast(1.1) brightness(0.6);
+}
