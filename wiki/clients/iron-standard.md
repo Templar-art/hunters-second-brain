@@ -1,8 +1,8 @@
 ---
 type: client
 tags: [web-client, landing-page, gym, oslo, pre-launch]
-status: UI/UX polish pass + full /impeccable audit cleared 10 Sep 2026 (interactive details section, scroll reveals, faster intro, waitlist form pulled pending Brevo, footer partial split out, image/a11y/fallback/token fixes) — Brevo/DNS handoff steps are the only things left before go-live
-updated: 2026-09-11
+status: Expanded from single-page waitlist to full 7-page site 16 Sep 2026 (Home, About Us, The Facility, Coaching, Join the Waitlist, FAQ, Contact Us), built via subagent-driven-development against a written plan, all 10 tasks + final whole-branch review clean, pushed to main — Apps Script deployment (Anthony's Google account), his final copy for 3 pages, facility photography, social links, and the hosting target are the only things left before go-live
+updated: 2026-09-16
 ---
 
 # Iron Standard
@@ -64,8 +64,32 @@ Hunter sent a short list of changes after reviewing the WordPress-ready build. A
 - **Accordion photography swapped** to client-supplied media-library images: "Inside the facility" → `19535.jpg`, "Is this you?" → `23876.jpg`, "Why it's different" → `9063.jpg`. "Get in first" still borrows `flash-2.jpg` from the intro sequence. The intro flash stack keeps its original 10 frames.
 - **Footer:** logo up 50% (140px → 210px) and a small accent-coloured location pin added beside "Oslo, Norway", in all three copies of the footer (page, partial, widget).
 
+## Full 7-page site build (16 Sep 2026)
+
+Anthony's 16 Sep email replaced the single-page waitlist scope with a full 7-page brief, content direction included, and settled two standing questions from the 2 Sep build: **Google Sheets replaces Brevo** for form storage, and **10x hosts** the site instead of Anthony's own Netlify account. Spec: [2026-09-16 design](../../docs/superpowers/specs/2026-09-16-ironstandard-full-site-design.md), superseding the [2026-09-02 design](../../docs/superpowers/specs/2026-09-02-ironstandard-landing-page-design.md). Plan: [2026-09-16 implementation](../../docs/superpowers/plans/2026-09-16-ironstandard-full-site.md). Wireframe (all 7 pages, colour-keyed ready/pending): `docs/superpowers/specs/2026-09-15-ironstandard-wireframes.html`.
+
+Executed via `superpowers:subagent-driven-development` — a fresh implementer subagent per task, a task-scoped reviewer after each, and a final whole-branch review at the end — directly on `main` (no worktree; Hunter chose that over an isolated branch since this is a solo repo and git is cheap to revert). All 10 tasks landed clean:
+
+1. Site-wide nav bar + a semantic z-index scale (`--z-nav`, `--z-intro`), hand-duplicated into every page per the project's existing "copy, not include" pattern (`partials/footer.html`'s own precedent).
+2. Intro flash-and-logo sequence gated to once per browser session (`sessionStorage`), not once per page load — a real requirement from the original wireframe round that never made it into the written spec, caught by the plan's own self-review before six more pages could inherit the replay bug.
+3. Home reworked: new hero line ("Built by discipline. Driven by community."), a positioning paragraph placing Iron Standard between big commercial chains and inaccessible niche gyms, and the CTA/scroll-arrow retargeted from a dead `#form` anchor (a real live bug since 11 Sep) to the new `waitlist.html`.
+4. **About Us** (new) — founder story: ten years coaching, three-time national athlete, SATS Fagerborg background, and strategic advisor Thomas Lilley of Zero Weakness (eleven locations across Australia/NZ/Europe). Narrative is placeholder copy built only from Anthony's own cleared facts; he's writing the final version himself.
+5. **The Facility** (new) — 800m² central Oslo, equipment partners Zero Weakness and Texas Power Bars, posing room, 24/7 access, built for powerlifting/bodybuilding/street lifting/hyrox/general serious lifters. Uses the two existing client stills; more photography follows once the fit-out begins.
+6. **Coaching** (new) — online/nutrition programming at scale, independent PTs with their own client bases (a marketplace model, not staff), a hosted competitions/events calendar.
+7. **FAQ** (new) — reuses Home's `<details>` accordion pattern standalone, 4 placeholder Q&As on the topics Anthony flagged (opening timeline, location, audience, founding membership) pending his real answers.
+8. **Join the Waitlist** (new, the real conversion target) + the Google Apps Script backend. Forms POST via a hidden-iframe pattern (Apps Script Web Apps don't return CORS headers for `fetch()`) to a `doPost(e)` script bound to a Sheet Anthony owns, with a honeypot field and an email notification on every submission, writing to separate Waitlist/Contact tabs. Deployment is manual, inside Anthony's own Google account (`google-apps-script/README.md`) — cannot be scripted from outside it.
+9. **Contact Us** (new) — reuses the waitlist page's form styling with zero changes plus a message textarea; no invented social links ("Social links are coming soon" instead) and no address block until one's confirmed (HTML-commented placeholder, not a visibly empty section).
+10. README rewrite for the 7-page structure and the new data flow, including a live `curl` check that confirmed the two facility photos are no longer missing from the media library (a stale note from the 2 Sep build, deleted rather than carried forward).
+
+**Final whole-branch review caught one real cross-task bug and fixed three more:** the Apps Script's `MailApp` notification call reads `Session.getActiveUser().getEmail()`, which returns empty for anonymous form submitters under the exact "Execute as: Me / Anyone" deployment config the project's own README instructs — so under real deployment, the notification email silently never fires while the visitor still sees a success message. This is baked into the plan's own literal code; **Hunter reviewed it and chose to ship as-is** rather than have it patched, so notifications are a known gap until someone (Anthony or a follow-up job) catches and fixes it post-deployment. Three other findings were fixed in the same pass: a mobile-nav accessibility bug (closed nav links stayed keyboard-focusable while visually off-screen, and the toggle button's `aria-label` never updated), missing Open Graph tags on all 6 inner pages (only Home had them, so sharing a `waitlist.html` link rendered as a bare image-less preview), and a fragile `sessionStorage` read in `main.js` that could have silently aborted the nav-toggle/scroll-reveal/form-submit bindings if session storage access ever threw. A narrow follow-on regression from the nav-accessibility fix (opening the mobile nav ignored `prefers-reduced-motion`, though closing still respected it) was caught in the fix wave's own re-review and closed with Hunter's go-ahead.
+
+Also caught: `projects/ironstandard-lp/preview-local.html` is a stale 15 Sep standalone snapshot with the old dead `#form` links, sitting entirely outside this plan's scope — flagged as a separate cleanup job rather than folded into this build.
+
 ## Open items before go-live
 
-1. Fill in the real Brevo Forms action URL + hidden field names, then paste a `<form>` back in with `id="form"` on its wrapper (exact steps in the project's `README.md`).
-2. Export any leads already sitting in the current GoDaddy Website Builder form before retiring it.
-3. Send Anthony the updated build for sign-off on the restored copy + colour + this polish pass before pointing DNS at it.
+1. **Deploy the Apps Script** inside Anthony's own Google account (`google-apps-script/README.md`) — every "Join the waitlist"/"Send" button is inert until then, same caveat that applied to the single-page build's `#waitlist` anchor.
+2. **Anthony still owes:** the About Us narrative, the Waitlist founding-offer wording, the FAQ's real Q&As, and social-media links for Contact — all currently shipped as clearly-flagged, factually-grounded placeholder copy.
+3. **Hosting target** — which of 10x's existing arrangements this lands on; domain stays at GoDaddy as registrar regardless.
+4. **Image hosting risk** (flagged by the final review, not yet decided): every image on all 7 pages still hotlinks to the WordPress staging subdomain (`iron.standard.10xstudios.co`) rather than local assets — two of those images have no local counterpart at all. Worth resolving alongside the hosting-target decision, not after DNS cuts over.
+5. Export any leads already sitting in the current GoDaddy Website Builder form before retiring it.
+6. Send Anthony the full 7-page build for sign-off before pointing DNS at it.
