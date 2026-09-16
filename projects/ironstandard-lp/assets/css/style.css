@@ -590,7 +590,8 @@ a.accent-link:hover { border-color: var(--accent); }
   .nav-links a { font-size: 1.4rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav-links { transition: none; }
+  .nav-links,
+  .nav-links.is-open { transition: none; }
 }
 
 /* Explore-links: Home's only link out to the other 6 pages besides the
