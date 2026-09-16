@@ -653,3 +653,9 @@ a.accent-link:hover { border-color: var(--accent); }
   margin-top: 1.5rem;
   filter: grayscale(1) contrast(1.1) brightness(0.6);
 }
+
+/* Contact page: social links aren't supplied yet (per Anthony's 16 Sep
+   brief, "needed for Contact, not yet supplied"). Rather than ship dead
+   '#' links or invent URLs, this renders one honest line of real text
+   until real links exist. */
+.social-links-note { color: var(--fg-dim); }
