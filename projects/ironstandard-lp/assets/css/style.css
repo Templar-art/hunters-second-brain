@@ -418,47 +418,24 @@ a.accent-link:hover { border-color: var(--accent); }
   .scroll-arrow { animation: none; }
 }
 
-/* Waitlist */
-.waitlist {
-  position: relative;
-  max-width: none;
-  padding: 0;
-  min-height: 640px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+/* Form panel — used by both waitlist.html and contact.html. This replaces
+   the old .waitlist rules from the single-page build's full-bleed,
+   background-photo waitlist section, which hasn't been used since that
+   section was pulled out of index.html on 11 Sep. The photo/vignette
+   half of that pattern (.waitlist-bg, .waitlist::before) is gone for
+   good, since both new pages use the plain .page-header band like every
+   other inner page instead. The form/row/field/input rules underneath
+   were already exactly right, just renamed off "waitlist" since Contact
+   needs them too. */
+.form-panel-content {
+  max-width: 520px;
+  margin: 0 auto;
   text-align: center;
 }
-.waitlist-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  filter: grayscale(1) contrast(1.1) brightness(0.5);
-}
-.waitlist::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.88) 65%, var(--bg) 100%);
-}
-.waitlist-content {
-  position: relative;
-  z-index: 1;
-  max-width: 520px;
-  padding: var(--space-lg) 1.5rem;
-  margin: 0 auto;
-}
-.waitlist .kicker { text-align: center; }
-.waitlist-sub { color: var(--fg-dim); max-width: 440px; margin: 1rem auto 0; font-size: 1.05rem; }
-
-.waitlist form { display: flex; flex-direction: column; gap: 1.25rem; margin: 2rem auto 0; }
-.waitlist-row { display: flex; gap: 1rem; }
-.waitlist .field { flex: 1; text-align: left; }
-.waitlist label {
+.form-panel form { display: flex; flex-direction: column; gap: 1.25rem; margin: 2rem auto 0; }
+.form-row { display: flex; gap: 1rem; }
+.form-panel .field { flex: 1; text-align: left; }
+.form-panel label {
   display: block;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -466,7 +443,8 @@ a.accent-link:hover { border-color: var(--accent); }
   color: var(--fg-dim);
   margin-bottom: 0.5rem;
 }
-.waitlist input {
+.form-panel input,
+.form-panel textarea {
   width: 100%;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -477,15 +455,35 @@ a.accent-link:hover { border-color: var(--accent); }
   min-height: 48px;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
-.waitlist input:focus {
+.form-panel textarea { min-height: 120px; resize: vertical; }
+.form-panel input:focus,
+.form-panel textarea:focus {
   outline: none;
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.07);
 }
-.waitlist button { align-self: center; padding: 1rem 2.5rem; }
+.form-panel button { align-self: center; padding: 1rem 2.5rem; border: none; cursor: pointer; }
 @media (max-width: 560px) {
-  .waitlist-row { flex-direction: column; gap: 1.25rem; }
+  .form-row { flex-direction: column; gap: 1.25rem; }
 }
+
+/* Honeypot: invisible to a real visitor (off-screen, not display:none —
+   some bots skip display:none fields specifically but still fill
+   off-screen ones, so this is the more effective of the two cheap
+   options). Not bulletproof, just enough to filter unsophisticated bot
+   traffic without adding a reCAPTCHA dependency for a marginal gain at
+   this site's traffic scale. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-success { display: none; }
+.form-panel.is-submitted form { display: none; }
+.form-panel.is-submitted .form-success { display: block; }
 
 /* Footer */
 .site-footer {

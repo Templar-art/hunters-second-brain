@@ -178,4 +178,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // --- Forms: POST to a hidden iframe so the page never navigates away,
+  // then swap the form for a success message once the iframe finishes
+  // loading (which happens right after the Apps Script backend responds).
+  // This works without a fetch() call and without a CORS-enabled endpoint
+  // — Apps Script Web Apps don't return CORS headers for cross-origin
+  // fetch(), but a classic form POST with a hidden iframe target doesn't
+  // need them, since the page never reads the response body. See the
+  // <noscript> next to each form for what a non-JS visitor sees instead:
+  // the submission still succeeds (the browser POSTs regardless of JS),
+  // they just don't get the friendly on-page confirmation.
+  document.querySelectorAll('form[data-form-name]').forEach((form) => {
+    const targetName = form.getAttribute('target');
+    const iframe = targetName ? document.querySelector(`iframe[name="${targetName}"]`) : null;
+    const panel = form.closest('.form-panel');
+    if (!iframe || !panel) return;
+    let submitted = false;
+    form.addEventListener('submit', () => { submitted = true; });
+    iframe.addEventListener('load', () => {
+      // The iframe's own initial blank load also fires 'load' — ignore it,
+      // only react once an actual form submission has happened.
+      if (!submitted) return;
+      panel.classList.add('is-submitted');
+    });
+  });
 });
