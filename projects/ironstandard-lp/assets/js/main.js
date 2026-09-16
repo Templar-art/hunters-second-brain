@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // .intro-logo without .js-driven) are the no-JS fallback — if this script
   // never runs, that simpler fade-only version still plays correctly and
   // still never blocks any content underneath (pointer-events: none throughout).
+  // Plays once per browser session, not once per page. Without this, every
+  // one of the site's 7 pages replays the full ~2.3s flash-and-logo-drag
+  // sequence on every click between them. A new tab (fresh sessionStorage)
+  // sees it again, same as a first visit should.
+  const introAlreadyPlayed = sessionStorage.getItem('isl-intro-played') === '1';
   const splash = document.querySelector('.intro-splash');
   const flashFrames = splash ? Array.from(splash.querySelectorAll('.intro-flash')) : [];
   const flashStack = splash ? splash.querySelector('.intro-flash-stack') : null;
@@ -26,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Only the sequence waits for the gate, never the claim.
   if (splash && !reducedMotion) splash.classList.add('js-driven');
 
-  if (splash && cloneLogo && whiteFlash && realLogo && !reducedMotion) {
+  if (splash && cloneLogo && whiteFlash && realLogo && !reducedMotion && !introAlreadyPlayed) {
     // Wait for the web font to finish loading before doing anything that
     // measures layout. TASA Orbiter swaps in async (Google Fonts) — if it
     // lands mid-intro, the real logo's text above/around it reflows and
@@ -46,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function runIntro() {
     splash.classList.add('js-driven');
+    sessionStorage.setItem('isl-intro-played', '1');
 
     // Hide the real logo only for the duration of this same animation —
     // otherwise it's visible underneath the clone the whole time, which
