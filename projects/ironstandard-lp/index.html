@@ -69,10 +69,10 @@
           three. The words themselves are never duplicated, so screen
           readers and search engines see one heading either way.
         -->
-        <h1 class="hero-title">A different <br class="br-m">standard <br class="br-d">for <br class="br-m">serious training</h1>
-        <p class="hero-sub">Something is being built in Oslo. 800m² of it, made for people who train like they mean it, and nothing like the gym you're standing in right now. The location stays quiet a little longer. Get on the list and you'll hear it first.</p>
-        <a href="#form" class="btn-primary">Join the waitlist</a>
-        <a href="#form" class="scroll-arrow" aria-label="Scroll to join the waitlist">
+        <h1 class="hero-title">Built by discipline. <br class="br-d">Driven by <br class="br-m">community.</h1>
+        <p class="hero-sub">Iron Standard is a performance training facility in Oslo, for people who train seriously. Not a commercial chain built for volume. Not a niche strength gym that only works if you already belong. Somewhere in between, built properly, for both.</p>
+        <a href="waitlist.html" class="btn-primary">Join the waitlist</a>
+        <a href="waitlist.html" class="scroll-arrow" aria-label="Go to the waitlist">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 4V20M12 20L5 13M12 20L19 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -153,16 +153,27 @@
       </div>
     </section>
 
-    <!--
-      Waitlist section removed 11 Sep, going back in manually once Brevo's
-      set up. Whatever replaces it must carry id="form": the hero's
-      "Join the waitlist" button and the scroll arrow both point at #form,
-      and they scroll nowhere until that id exists. The .waitlist styles
-      are still in style.css ready for it (background photo, vignette,
-      centred content, side-by-side name/email row). See README.md,
-      "Set up Brevo", and never swap the form POST for a fetch() call with
-      an API key, that exposes the key to anyone who views source.
-    -->
+    <section class="section explore-links" data-reveal>
+      <p class="kicker">Go deeper</p>
+      <div class="explore-grid">
+        <a href="about.html" class="explore-card">
+          <span>About Us</span>
+          <p>Why this exists, and who's building it.</p>
+        </a>
+        <a href="facility.html" class="explore-card">
+          <span>The Facility</span>
+          <p>800m² in central Oslo, built for one thing.</p>
+        </a>
+        <a href="coaching.html" class="explore-card">
+          <span>Coaching</span>
+          <p>Programming, independent PTs, and a real community.</p>
+        </a>
+        <a href="faq.html" class="explore-card">
+          <span>FAQ</span>
+          <p>Opening timeline, location, and how founding membership works.</p>
+        </a>
+      </div>
+    </section>
     </div>
   </main>
   <footer id="footer" class="site-footer">
