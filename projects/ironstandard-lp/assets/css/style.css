@@ -6,6 +6,8 @@
   --font-display: 'TASA Orbiter', sans-serif;
   --max-width: 1200px;
   --space-lg: clamp(3rem, 8vw, 8rem);
+  --z-nav: 100;
+  --z-intro: 999;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -69,7 +71,7 @@ a.accent-link:hover { border-color: var(--accent); }
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+  z-index: var(--z-intro);
   pointer-events: none;
   overflow: hidden;
   animation: intro-splash-out 0.6s ease forwards;
@@ -503,3 +505,87 @@ a.accent-link:hover { border-color: var(--accent); }
   gap: 0.4rem;
 }
 .location-icon { width: 15px; height: 15px; flex-shrink: 0; color: var(--accent); }
+
+/* Nav — fixed on every page, translucent gradient rather than a solid
+   fill or scroll-triggered state. The whole site sits on --bg except the
+   hero photo, and white nav text/logo already reads fine over both a
+   near-black background and the hero's brightness(0.5) photo, so there's
+   no scroll-position logic to write or a stacking-context transition to
+   get wrong. The gradient exists only to guarantee legibility over the
+   brighter patches of the hero photo specifically. */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem 1.5rem;
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.65), rgba(10, 10, 10, 0));
+}
+.nav-logo-link { display: block; line-height: 0; }
+.nav-logo { height: 28px; width: auto; display: block; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+.nav-links a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: var(--fg-dim);
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"] { color: var(--fg); }
+.nav-links a.btn-primary { padding: 0.55rem 1.2rem; font-size: 0.8rem; }
+.nav-links a.btn-primary:hover { color: #0a0a0a; }
+
+.nav-toggle {
+  display: none;
+  position: relative;
+  /* .nav-toggle and .nav-links are both plain DOM children of
+     .site-header, which is the nearest positioned ancestor and therefore
+     the stacking context they're compared within — so this z-index only
+     has to beat .nav-links' z-index (set below), not var(--z-nav) or
+     anything else on the page. That's what keeps the close button
+     tappable on top of the full-screen mobile overlay. */
+  z-index: 1;
+  background: none;
+  border: none;
+  color: var(--fg);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.nav-toggle svg { width: 24px; height: 24px; display: block; }
+.nav-toggle .icon-close { display: none; }
+.nav-toggle[aria-expanded="true"] .icon-open { display: none; }
+.nav-toggle[aria-expanded="true"] .icon-close { display: block; }
+
+@media (max-width: 860px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-links.is-open { transform: translateY(0); }
+  .nav-links a { font-size: 1.4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-links { transition: none; }
+}
