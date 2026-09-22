@@ -12,6 +12,7 @@
   /* functional interface greys only, not brand colours */
   --grey-900:#0B0B0B;
   --grey-800:#171717;
+  --grey-700:#2A2A2A;
   --rule:rgba(255,255,255,.16);
   --rule-dark:rgba(0,0,0,.14);
 
@@ -138,7 +139,6 @@ p:last-child{ margin-bottom:0; }
   text-decoration:none; border:0; cursor:pointer;
   transition:background var(--t) var(--ease), transform var(--t) var(--ease);
 }
-.btn:hover{ background:#ff6440; }
 .btn:active{ transform:translateY(1px); }
 .btn--ghost{
   background:transparent; color:var(--white);
@@ -260,7 +260,7 @@ p:last-child{ margin-bottom:0; }
 }
 .hero-media::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.05) 38%, rgba(0,0,0,.92) 92%, #000 100%);
+  background:linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.05) 38%, rgba(0,0,0,.92) 92%, var(--black) 100%);
 }
 .hero-body{
   grid-area:2/1;
@@ -292,7 +292,7 @@ p:last-child{ margin-bottom:0; }
   }
   .hero-media img{ object-position:46% 28%; }
   .hero-media::after{
-    background:linear-gradient(to right, #000 0%, rgba(0,0,0,.55) 22%, rgba(0,0,0,0) 62%),
+    background:linear-gradient(to right, var(--black) 0%, rgba(0,0,0,.55) 22%, rgba(0,0,0,0) 62%),
                linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 40%);
   }
   .hero-body{
@@ -847,7 +847,7 @@ html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
 ::-webkit-scrollbar{ width:11px; }
 ::-webkit-scrollbar-track{ background:var(--black); }
 ::-webkit-scrollbar-thumb{ background:var(--grey-800); border:3px solid var(--black); }
-::-webkit-scrollbar-thumb:hover{ background:#2a2a2a; }
+::-webkit-scrollbar-thumb:hover{ background:var(--grey-700); }
 
 /* ---- 8. Uneven vertical rhythm ------------------------------
    Equal spacing down a page is itself a template tell. */
@@ -923,13 +923,15 @@ html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
   .header-cta{
     display:inline-flex;
     min-height:40px; padding:0 16px;
-    font-size:11px; letter-spacing:.1em;
+    font-size:11px; letter-spacing:.08em;
+    white-space:nowrap;            /* it wrapped to two lines at 375 */
     margin-left:auto; margin-right:12px;
   }
 }
-@media (max-width:379px){
-  .header-cta{ padding:0 11px; font-size:10px; }
-  .logo img{ width:108px; }
+@media (max-width:520px){
+  .logo img{ width:112px; }        /* make room for the persistent CTA */
+  .header-cta{ padding:0 12px; letter-spacing:.06em; }
+  .nav-toggle{ width:40px; margin-right:-8px; }
 }
 
 
