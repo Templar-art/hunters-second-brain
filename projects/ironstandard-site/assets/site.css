@@ -5,6 +5,15 @@
    and the approved Website Strategy & Creative Direction.
    ============================================================ */
 
+@font-face{
+  font-family:"TASA Fallback";
+  src:local("Arial"), local("Helvetica"), local("Liberation Sans");
+  size-adjust:93.6%;
+  ascent-override:92%;
+  descent-override:24%;
+  line-gap-override:0%;
+}
+
 :root{
   --black:#000000;
   --white:#FFFFFF;
@@ -42,10 +51,11 @@
   --ease:cubic-bezier(.22,.61,.36,1);
 
   /* type scale */
-  --display:clamp(48px, 7vw, 110px);
-  --display-sm:clamp(36px, 8.5vw, 72px);
-  --statement:clamp(26px, 5.2vw, 52px);
-  --stat:clamp(40px, 9vw, 76px);
+  --display:clamp(48px, 9.2vw, 110px);      /* home hero, the one loudest voice */
+  --display-page:clamp(34px, 6.4vw, 76px);  /* inner-page h1                     */
+  --display-sm:clamp(30px, 5.4vw, 64px);    /* section h2                        */
+  --stat:clamp(34px, 5.4vw, 64px);          /* stat figure, a section-level role */
+  --statement:clamp(24px, 4.3vw, 50px);     /* pull quote / position statement   */
   --body:clamp(16px, 1.05vw, 18px);
   --eyebrow:clamp(11px, .78vw, 13px);
 }
@@ -59,10 +69,11 @@ body{
   margin:0;
   background:var(--black);
   color:var(--white);
-  font-family:"TASA Orbiter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family:"TASA Orbiter", "TASA Fallback", system-ui, sans-serif;
   font-weight:400;
   font-size:var(--body);
   line-height:1.6;
+  letter-spacing:.006em;   /* light-on-dark compensation */
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
@@ -98,6 +109,7 @@ a{ color:inherit; }
 .eyebrow{
   font-size:var(--eyebrow);
   font-weight:600;
+  line-height:1.25;
   letter-spacing:.22em;
   text-transform:uppercase;
   color:var(--muted);
@@ -182,7 +194,7 @@ p:last-child{ margin-bottom:0; }
 
 .nav{ display:none; }
 .nav a{
-  font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  font-size:12px; font-weight:600; line-height:1.25; letter-spacing:.16em; text-transform:uppercase;
   text-decoration:none; color:var(--ink-2);
   transition:color var(--t) var(--ease);
 }
@@ -337,6 +349,7 @@ p:last-child{ margin-bottom:0; }
 }
 .stat dd{
   margin:6px 0 0;
+  line-height:1.25;
   font-size:var(--eyebrow); font-weight:600; letter-spacing:.2em; text-transform:uppercase;
   color:var(--muted);
 }
@@ -389,12 +402,12 @@ p:last-child{ margin-bottom:0; }
 .who-pair .fig-a img{ aspect-ratio:4/5; }
 .who-pair .fig-b img{ aspect-ratio:4/5; }
 .who-pair figcaption{
-  margin-top:12px; font-size:var(--eyebrow); font-weight:600;
+  margin-top:12px; line-height:1.25; font-size:var(--eyebrow); font-weight:600;
   letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
 }
 .who-pull{
   font-size:clamp(21px,2.6vw,34px); font-weight:700; text-transform:uppercase;
-  line-height:1.08; margin:clamp(36px,5vw,56px) 0 0; max-width:20ch;
+  line-height:1.08; letter-spacing:-.01em; margin:clamp(36px,5vw,56px) 0 0; max-width:20ch;
 }
 
 @media (min-width:1024px){
@@ -488,14 +501,14 @@ p:last-child{ margin-bottom:0; }
 .footer-top{ display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; align-items:start; }
 .footer-nav{ display:flex; flex-wrap:wrap; gap:14px 28px; }
 .footer-nav a{
-  font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  font-size:12px; font-weight:600; line-height:1.25; letter-spacing:.16em; text-transform:uppercase;
   text-decoration:none; color:var(--ink-2);
 }
 .footer-nav a:hover{ color:var(--white); }
 .footer-bottom{
   margin-top:clamp(40px,6vw,64px); padding-top:24px; border-top:1px solid var(--rule);
   display:flex; flex-wrap:wrap; gap:16px 32px; justify-content:space-between;
-  color:var(--ink-quiet); font-size:12px; letter-spacing:.06em;
+  color:var(--ink-quiet); font-size:12px;
 }
 .footer-bottom a{ text-decoration:none; }
 .footer-bottom a:hover{ color:var(--white); }
@@ -512,11 +525,11 @@ p:last-child{ margin-bottom:0; }
   padding-top:clamp(120px,17vw,190px);
   padding-bottom:clamp(48px,8vw,90px);
 }
-.page-head h1{ font-size:var(--display-sm); margin-top:18px; }
+.page-head h1{ font-size:var(--display-page); margin-top:18px; }
 .page-head .lede{ margin-top:24px; }
 @media (min-width:1024px){
   .page-head .ph-title{ grid-column:1/8; }
-  .page-head .lede{ grid-column:9/13; align-self:end; margin-top:0; }
+  .page-head .lede{ grid-column:8/13; align-self:end; margin-top:0; }
 }
 
 /* section shell reused across inner pages */
@@ -732,6 +745,7 @@ body::after{
   position:relative;
   font-size:var(--eyebrow);
   font-weight:600;
+  line-height:1.25;
   letter-spacing:.22em;
   text-transform:uppercase;
   padding-bottom:12px;
