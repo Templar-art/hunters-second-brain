@@ -17,12 +17,11 @@
 
   /* Text ramp on dark. Measured against #000 and #171717, the two grounds
      these actually land on, per the Surface-Not-Token rule. Every value
-     below clears 4.5:1 on both; --ink-faint is large-text only at 3:1. */
+     below clears 4.5:1 on both grounds. */
   --ink:rgba(255,255,255,1);          /* 21:1  */
   --ink-2:rgba(255,255,255,.80);      /* 12.6:1 on #000, 10.8:1 on #171717 */
   --muted:rgba(255,255,255,.62);      /*  7.9:1 on #000,  6.7:1 on #171717 */
   --ink-quiet:rgba(255,255,255,.58);  /*  6.9:1 on #000,  5.9:1 on #171717 */
-  --ink-faint:rgba(255,255,255,.42);  /*  3.8:1 - LARGE TEXT ONLY          */
   --muted-dark:rgba(0,0,0,.62);       /*  6.2:1 on white                   */
 
   /* semantic z-index scale */
@@ -334,6 +333,7 @@ p:last-child{ margin-bottom:0; }
 .stat:last-of-type{ border-bottom:1px solid var(--rule); }
 .stat dt{
   font-size:var(--stat); font-weight:700; line-height:.9; letter-spacing:-.02em;
+  text-transform:uppercase;
 }
 .stat dd{
   margin:6px 0 0;
@@ -446,7 +446,7 @@ p:last-child{ margin-bottom:0; }
 .founder{ background:var(--grey-900); padding-block:clamp(80px,13vw,160px); overflow:hidden; }
 .founder-media img{ width:100%; aspect-ratio:4/5; object-fit:cover; }
 .founder-media figcaption{
-  margin-top:12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  margin-top:12px; font-size:13px; letter-spacing:.02em;
   color:var(--ink-quiet);
 }
 .founder-copy{ margin-top:40px; }
@@ -653,7 +653,7 @@ p:last-child{ margin-bottom:0; }
 .media-r,.media-l{ margin-top:36px; }
 .media-r img,.media-l img{ width:100%; aspect-ratio:3/4; object-fit:cover; }
 .media-r figcaption,.media-l figcaption{
-  margin-top:12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  margin-top:12px; font-size:13px; letter-spacing:.02em;
   color:var(--ink-quiet);
 }
 @media (min-width:1024px){
@@ -720,14 +720,14 @@ body::after{
 }
 .mark::after{ display:none; }          /* rule moves under the label */
 .mark-n{
-  font-size:clamp(30px,3.6vw,52px);
+  font-size:clamp(20px,2vw,30px);
   font-weight:700;
-  line-height:.85;
-  letter-spacing:-.03em;
-  color:var(--white);
+  line-height:.9;
+  letter-spacing:-.02em;
+  color:var(--muted);
   font-variant-numeric:tabular-nums;
 }
-.mark--dark .mark-n{ color:var(--black); }
+.mark--dark .mark-n{ color:var(--muted-dark); }
 .mark-t{
   position:relative;
   font-size:var(--eyebrow);
@@ -877,11 +877,11 @@ html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
    WCAG 2.2 SC 2.5.8 sets a 24px floor at AA. These were 14-22px.
    Padding carries the target without changing the visual mark.
    ============================================================ */
-.nav a{ padding-block:12px; }                         /* 19 -> 43px  */
+.nav a{ padding-block:12px; }
 .footer-nav a{ display:inline-block; padding-block:11px; }
-.footer-bottom a{ display:inline-block; padding-block:9px; }  /* 14 -> 32px */
+.footer-bottom a{ display:inline-block; padding-block:9px; }
 .logo{ padding-block:10px; }
-.textlink{ padding-top:10px; }                        /* 28 -> 44px  */
+.textlink{ padding-top:10px; }
 .faq summary{ min-height:44px; }
 
 /* the header's own rhythm absorbs the extra padding */
@@ -930,4 +930,21 @@ html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
 @media (max-width:379px){
   .header-cta{ padding:0 11px; font-size:10px; }
   .logo img{ width:108px; }
+}
+
+
+/* ============================================================
+   COMPOSITION: shaping the empty space
+   Negative space only reads as luxury when it is shaped. Left
+   unshaped it reads as content that has not arrived.
+   ============================================================ */
+@media (min-width:1024px){
+  /* the close section left its entire right half black */
+  .close h2{ grid-column:1/8; }
+  .close p{ grid-column:9/13; align-self:end; margin-top:0; }
+  .close .hero-actions{ grid-column:1/8; }
+
+  /* the contact aside was top-aligned and ran out of content
+     ~700px above the form's bottom edge */
+  .sec-copy-r{ align-self:center; }
 }
