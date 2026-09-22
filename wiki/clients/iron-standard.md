@@ -113,6 +113,15 @@ Iron-Standard-specific decisions:
   because the facility is not built and presenting proposals as finished creates liability.
 - **Contact routes seven enquiry types to different recipients** so trainer and partnership
   leads never land in the member inbox.
+- **⚠️ Numbered section marks and per-section eyebrows: kept, deliberately.**
+  `01 / The position` style marks and wide-tracked caps labels sit above every
+  section. Both are banned by the impeccable skill's absolute bans and by 10x's own
+  [[premium-web-build]] and DESIGN.md (the No-Numbers and No-Eyebrow rules), and 10x
+  stripped exactly this pattern from its own homepage in July 2026 on the grounds that
+  the numbered-eyebrow combination is the most saturated AI landing-page pattern of
+  2026. The approved Iron Standard strategy explicitly instructs it, borrowed from the
+  client's own print guidelines. **Hunter's call, 22 Sep 2026: keep it.** Do not strip
+  these in a future polish or audit pass without going back to the client first.
 - **Imagery is all placeholder.** Extracted from the moodboard inside the brand guidelines
   PDF, so it is on-brand and approved in spirit, but low resolution (588px at widest) since
   those images were cropped for print layout. The named Desktop asset folder the brief
