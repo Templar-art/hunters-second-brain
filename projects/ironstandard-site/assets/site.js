@@ -2,17 +2,41 @@
   "use strict";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  /* ---- reveals: IntersectionObserver, one idea per reveal ---- */
+  /* ---- reveals ----
+     Content is visible in the stylesheet. JS opts elements INTO the
+     animation, and only ones that start below the fold, so nothing above
+     it is ever gated and a failed observer can never blank the page. */
   var items = document.querySelectorAll(".rv");
-  if (!("IntersectionObserver" in window)) {
-    items.forEach(function (el) { el.classList.add("is-in"); });
-  } else {
+  var canAnimate =
+    "IntersectionObserver" in window &&
+    !reduced.matches &&
+    document.visibilityState === "visible";
+
+  if (canAnimate) {
+    var pending = [];
+    items.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight * 0.92) {
+        el.classList.add("will-reveal");
+        pending.push(el);
+      }
+    });
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.remove("will-reveal");
+          io.unobserve(e.target);
+        }
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    items.forEach(function (el) { io.observe(el); });
+    pending.forEach(function (el) { io.observe(el); });
+
+    /* Failsafe. If the observer never fires (an off-screen frame, a
+       renderer that does not scroll), everything still resolves. These
+       elements are below the fold, so this is invisible to a real reader. */
+    window.setTimeout(function () {
+      pending.forEach(function (el) { el.classList.remove("will-reveal"); });
+    }, 5000);
   }
 
   /* ---- header condenses on scroll, via a sentinel not a listener ---- */
