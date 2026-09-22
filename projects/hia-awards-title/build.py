@@ -2,19 +2,23 @@
 """
 2026 HIA Gold Coast & Northern Rivers Housing Awards — animated title card.
 
-Renders a transparent-alpha title sequence: the HIA logo assembles from its
-layers, then the type builds in on a stagger.
+Three modes, same lockup and timing:
 
-Logo source: raw/assets/hia/hia-logo.svg
-If that file is missing a clearly-marked placeholder shield is drawn instead,
-so layout and timing can be approved before the real artwork lands.
+  green   deep HIA-green field, type knocked out in white. Self-contained,
+          instantly HIA without needing the logo.
+  punch   green field with the type cut OUT of it as real alpha holes, so
+          whatever you lay underneath in FCP plays inside the letters.
+  alpha   type on transparency, to comp over your own dark footage.
 
-    python3 build.py            # 25 and 30 fps ProRes 4444 + preview gif
+Layout is centred. A yellow rule draws outward from the centre to the width
+of the hero line; type arrives by mask reveal from its own baseline, with a
+light vertical parallax so the hold breathes.
+
+    python3 build.py            # renders all three modes
 """
 
 import math
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -23,15 +27,15 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-VAULT = os.path.abspath(os.path.join(HERE, "..", ".."))
-SVG = os.path.join(VAULT, "raw", "assets", "hia", "hia-logo.svg")
 OUT = os.path.join(HERE, "out")
 
 W, H = 1920, 1080
-SS = 2                      # supersample factor; subpixel-clean transforms
-DUR = 4.0
+SS = 2
+DUR = 4.6
+FPS_SET = (25, 30)
+MODES = ("green", "punch", "alpha")
 
-GREEN = (0, 88, 61)
+HIA_GREEN = (0, 88, 61)
 YELLOW = (255, 213, 32)
 WHITE = (255, 255, 255)
 
@@ -40,188 +44,147 @@ F_SEMI = os.path.join(FONTS, "Poppins-SemiBold.ttf")
 F_MED = os.path.join(FONTS, "Poppins-Medium.ttf")
 F_BOLD = os.path.join(FONTS, "Poppins-Bold.ttf")
 
-LINES = [
-    ("2026", F_SEMI, 46, 0.34, YELLOW),
-    ("HIA GOLD COAST & NORTHERN RIVERS", F_MED, 40, 0.20, WHITE),
-    ("HOUSING AWARDS", F_BOLD, 92, 0.06, WHITE),
-]
+YEAR = ("2026", F_SEMI, 32, 0.52)
+HERO = ("HOUSING AWARDS", F_BOLD, 112, 0.02)
+REGION = ("HIA GOLD COAST & NORTHERN RIVERS", F_MED, 37, 0.30)
+
 
 
 # ---------------------------------------------------------------- easing ----
-
-def spring(t, z=0.50, w=26.0):
-    """Damped spring, 0 -> 1, one soft overshoot (~5%)."""
-    if t <= 0:
-        return 0.0
-    wd = w * math.sqrt(1 - z * z)
-    return 1 - math.exp(-z * w * t) * (math.cos(wd * t) + (z * w / wd) * math.sin(wd * t))
-
 
 def ease_out(t, d, p=3):
     return 1 - (1 - min(max(t / d, 0.0), 1.0)) ** p
 
 
-# ---------------------------------------------------------------- layers ----
-
-def render_svg_layer(svg_text, viewbox, colour, path, width):
-    import cairosvg
-    groups = re.findall(r'<g[^>]*fill="%s".*?</g>' % colour, svg_text, re.S)
-    if not groups:
-        return None
-    tmp = os.path.join(OUT, "_layer.svg")
-    with open(tmp, "w") as fh:
-        fh.write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{viewbox}">{groups[0]}</svg>')
-    cairosvg.svg2png(url=tmp, write_to=path, output_width=width)
-    return np.asarray(Image.open(path).convert("RGBA"))
-
-
-def build_layers(res=2400):
-    """Return dict of RGBA arrays: shield, hand, slats, letters, roof."""
-    if not os.path.exists(SVG):
-        return placeholder_layers(res), True
-
-    from scipy import ndimage
-    svg = open(SVG).read()
-    vb = re.search(r'viewBox="([^"]+)"', svg).group(1)
-    shield = render_svg_layer(svg, vb, "#00583D", os.path.join(OUT, "lay-shield.png"), res)
-    white = render_svg_layer(svg, vb, "#FFFFFF", os.path.join(OUT, "lay-white.png"), res)
-    roof = render_svg_layer(svg, vb, "#FFD520", os.path.join(OUT, "lay-roof.png"), res)
-
-    h, w = white.shape[:2]
-    lab, n = ndimage.label(white[..., 3] > 128)
-    sizes = ndimage.sum(np.ones_like(lab), lab, range(1, n + 1))
-    hand_id = int(np.argmax(sizes)) + 1
-    slices = ndimage.find_objects(lab)
-
-    letters = np.zeros((h, w), bool)
-    slats = np.zeros((h, w), bool)
-    for i, sl in enumerate(slices, 1):
-        if i == hand_id:
-            continue
-        # the HIA lettering lives in the top third of the shield
-        (letters if sl[0].stop < h * 0.32 else slats)[lab == i] = True
-
-    def cut(mask):
-        o = np.zeros((h, w, 4), "uint8")
-        o[..., :3] = WHITE
-        o[..., 3] = np.where(mask, white[..., 3], 0)
-        return o
-
-    return {
-        "shield": shield,
-        "hand": cut(lab == hand_id),
-        "slats": cut(slats),
-        "letters": cut(letters),
-        "roof": roof,
-    }, False
-
-
-def placeholder_layers(res):
-    """Marked stand-in so layout/timing can be judged without the artwork."""
-    h = int(res * 476 / 420)
-    def blank():
-        return np.zeros((h, res, 4), "uint8")
-
-    shield = Image.new("RGBA", (res, h), (0, 0, 0, 0))
-    d = ImageDraw.Draw(shield)
-    d.rounded_rectangle([res * 0.04, h * 0.03, res * 0.96, h * 0.97],
-                        radius=int(res * 0.18), fill=GREEN + (255,))
-    f = ImageFont.truetype(F_BOLD, int(res * 0.13))
-    d.text((res / 2, h * 0.42), "LOGO", font=f, fill=WHITE + (255,), anchor="mm")
-    f2 = ImageFont.truetype(F_MED, int(res * 0.055))
-    d.text((res / 2, h * 0.56), "placeholder", font=f2, fill=YELLOW + (255,), anchor="mm")
-
-    return {"shield": np.asarray(shield), "hand": blank(),
-            "slats": blank(), "letters": blank(), "roof": blank()}
+def ease_in_out(t, d):
+    u = min(max(t / d, 0.0), 1.0)
+    return u * u * (3 - 2 * u)
 
 
 # ------------------------------------------------------------------ type ----
 
-def tracked_text(text, font_path, px, tracking_em, colour):
-    """Render letterspaced text to a tight RGBA image (tracking in em)."""
+def tracked_text(text, font_path, px, tracking_em):
+    """Letterspaced text as a white-on-transparent stencil, cropped to ink."""
+    px = int(px)
     font = ImageFont.truetype(font_path, px)
     gap = px * tracking_em
     widths = [font.getlength(c) for c in text]
     total = sum(widths) + gap * (len(text) - 1)
     asc, desc = font.getmetrics()
-    img = Image.new("RGBA", (int(total) + 4, asc + desc + 4), (0, 0, 0, 0))
+    img = Image.new("L", (int(total) + 4, asc + desc + 4), 0)
     d = ImageDraw.Draw(img)
     x = 2.0
-    for c, adv in zip(text, widths):
-        d.text((x, 2), c, font=font, fill=colour + (255,))
+    for ch, adv in zip(text, widths):
+        d.text((x, 2), ch, font=font, fill=255)
         x += adv + gap
-    return img.crop(img.getbbox())      # tight to the ink, so stacking is predictable
+    return img.crop(img.getbbox())
 
 
-# --------------------------------------------------------------- compose ----
+def spec(s):
+    text, fp, px, tr = s
+    return tracked_text(text, fp, px * SS, tr)
 
-def place(canvas, layer_img, cx, cy, scale, opacity, dy=0.0):
-    """Composite layer_img centred at (cx, cy) with subpixel scale/offset."""
-    if opacity <= 0.001 or scale <= 0.001:
+
+# --------------------------------------------------------------- stencil ----
+
+def stamp(mask, stencil, left, top, scale=1.0):
+    """Add a stencil into an L-mode mask at float position/scale."""
+    if scale <= 0.001:
         return
-    sw, sh = layer_img.size
-    dw, dh = sw * scale, sh * scale
-    # inverse affine: canvas -> source, so nothing snaps to whole pixels
-    m = (1 / scale, 0, (-(cx - dw / 2)) / scale,
-         0, 1 / scale, (-(cy + dy - dh / 2)) / scale)
-    warped = layer_img.transform(canvas.size, Image.AFFINE, m, resample=Image.BICUBIC)
-    if opacity < 1:
-        a = np.asarray(warped).astype(float).copy()
-        a[..., 3] *= opacity
-        warped = Image.fromarray(a.clip(0, 255).astype("uint8"), "RGBA")
-    canvas.alpha_composite(warped)
+    dw = stencil.width * scale
+    m = (1 / scale, 0, -left / scale, 0, 1 / scale, -top / scale)
+    warped = stencil.transform(mask.size, Image.AFFINE, m, resample=Image.BICUBIC)
+    mask.paste(ImageChops_lighter(mask, warped))
 
 
-def frame(t, layers, type_imgs, rule_w, lay):
-    c = Image.new("RGBA", (W * SS, H * SS), (0, 0, 0, 0))
+def ImageChops_lighter(a, b):
+    from PIL import ImageChops
+    return ImageChops.lighter(a, b)
 
-    logo_h = lay["logo_h"]
-    lx, ly = W * SS / 2, lay["logo_cy"]
-    src_h = layers["shield"].height
-    fit = logo_h / src_h
 
-    # shield — the pop
-    s = 0.65 + 0.35 * spring(t)
-    place(c, layers["shield"], lx, ly, fit * s, ease_out(t, 0.15))
+def reveal_up(mask, stencil, left, baseline, t, start, dur=0.66, scale=1.0):
+    """Wipe type up from its baseline; the baseline itself never moves."""
+    tt = t - start
+    if tt <= 0:
+        return
+    p = ease_out(tt, dur, p=4)
+    keep = max(1, int(round(stencil.height * p)))
+    strip = stencil.crop((0, stencil.height - keep, stencil.width, stencil.height))
+    lift = (1 - ease_out(tt, dur * 1.2, p=3)) * 12 * SS
+    stamp(mask, strip, left, baseline - strip.height * scale + lift, scale)
 
-    # hand rises from below, clipped to the shield silhouette
-    th = t - 0.18
-    if th > 0:
-        rise = (1 - ease_out(th, 0.45)) * logo_h * 0.22
-        place(c, layers["hand"], lx, ly, fit * s, ease_out(th, 0.25), dy=rise)
-        place(c, layers["slats"], lx, ly, fit * s, ease_out(th - 0.04, 0.25), dy=rise * 0.6)
 
-    # lettering fades up
-    place(c, layers["letters"], lx, ly, fit * s, ease_out(t - 0.26, 0.30))
+# ----------------------------------------------------------------- layout ----
 
-    # roof settles on
-    tr = t - 0.32
-    if tr > 0:
-        rs = 0.88 + 0.12 * spring(tr, z=0.55, w=24.0)
-        place(c, layers["roof"], lx, ly, fit * s * rs, ease_out(tr, 0.22),
-              dy=-(1 - ease_out(tr, 0.4)) * logo_h * 0.05)
+def layout(year, hero, region):
+    """Everything centres on the frame's vertical axis."""
+    gap_year = H * SS * 0.058
+    gap_hero = H * SS * 0.046
 
-    # rule wipes from centre
-    tw = t - 0.55
+    total = year.height + gap_year + hero.height + gap_hero + region.height
+    y = (H * SS - total) / 2
+
+    lay = {"cx": W * SS / 2, "hero_w": hero.width, "year_w": year.width}
+    lay["year_base"] = y + year.height
+    lay["rule_y"] = lay["year_base"] + gap_year * 0.34
+    lay["hero_base"] = lay["year_base"] + gap_year + hero.height
+    lay["region_base"] = lay["hero_base"] + gap_hero + region.height
+    return lay
+
+
+# ------------------------------------------------------------------ frame ----
+
+def frame(t, mode, year, hero, region, lay, bg=None):
+    size = (W * SS, H * SS)
+    cx = lay["cx"]
+
+    # gentle vertical parallax so the hold breathes without a fake zoom
+    drift = ease_in_out(t, DUR) * 9 * SS
+
+    def left_of(img):
+        return cx - img.width / 2
+
+    # 1. the type stencil for this frame
+    ink = Image.new("L", size, 0)
+    ya = ease_out(t, 0.45)
+    if ya > 0:
+        tmp = Image.new("L", size, 0)
+        stamp(tmp, year, left_of(year), lay["year_base"] - year.height - drift * 0.30)
+        ink = tmp if ya >= 1 else tmp.point(lambda v: int(v * ya))
+    reveal_up(ink, hero, left_of(hero), lay["hero_base"] - drift * 0.55,
+              t, 0.22, dur=0.72)
+    reveal_up(ink, region, left_of(region), lay["region_base"] - drift * 0.80,
+              t, 0.44, dur=0.60)
+
+    # 2. the field
+    if mode == "alpha":
+        c = Image.new("RGBA", size, (0, 0, 0, 0))
+        col = Image.new("RGBA", size, WHITE + (255,))
+        c.paste(col, (0, 0), ink)
+    else:
+        field_a = ease_out(t, 0.55, p=4)
+        c = Image.new("RGBA", size, HIA_GREEN + (int(255 * field_a),))
+        if mode == "green":
+            col = Image.new("RGBA", size, WHITE + (255,))
+            c.paste(col, (0, 0), ink)
+        else:                                   # punch: type becomes holes
+            a = np.asarray(c).astype(np.int16).copy()
+            a[..., 3] = np.clip(a[..., 3] - np.asarray(ink).astype(np.int16), 0, 255)
+            c = Image.fromarray(a.astype("uint8"), "RGBA")
+
+    # 3. yellow furniture on top — rule off the right edge, then the roof
+    d = ImageDraw.Draw(c)
+    tw = t - 0.10
     if tw > 0:
-        frac = ease_out(tw, 0.5)
-        half = rule_w * frac / 2
-        y = lay["rule_y"]
-        d = ImageDraw.Draw(c)
-        d.rectangle([W * SS / 2 - half, y, W * SS / 2 + half, y + 2 * SS],
-                    fill=YELLOW + (int(255 * min(frac * 2, 1)),))
+        p = ease_out(tw, 1.0, p=4)
+        half = lay["hero_w"] / 2 * p
+        y = lay["rule_y"] - drift * 0.42
+        d.rectangle([cx - half, y, cx + half, y + 2 * SS],
+                    fill=YELLOW + (int(255 * min(tw / 0.2, 1.0)),))
 
-    # type stagger
-    for img, start, y in type_imgs:
-        tt = t - start
-        if tt <= 0:
-            continue
-        o = ease_out(tt, 0.35)
-        place(c, img, W * SS / 2, y, 1.0, o, dy=(1 - o) * 22 * SS)
-
-    # exit
-    if t > 3.6:
-        k = ease_out(t - 3.6, 0.4)
+    # 4. exit
+    if t > DUR - 0.55:
+        k = ease_in_out(t - (DUR - 0.55), 0.55)
         a = np.asarray(c).astype(float).copy()
         a[..., 3] *= (1 - k)
         c = Image.fromarray(a.clip(0, 255).astype("uint8"), "RGBA")
@@ -229,57 +192,39 @@ def frame(t, layers, type_imgs, rule_w, lay):
     return c.resize((W, H), Image.LANCZOS)
 
 
+def encode(mode, fps, n):
+    d = os.path.join(OUT, "fr_%s_%d" % (mode, fps))
+    mov = os.path.join(OUT, "hia-awards-%s-1080p%d.mov" % (mode, fps))
+    subprocess.run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+                    "-framerate", str(fps), "-i", "%s/f%%04d.png" % d,
+                    "-c:v", "prores_ks", "-profile:v", "4444",
+                    "-pix_fmt", "yuva444p10le", "-alpha_bits", "16",
+                    "-vendor", "apl0", mov], check=True)
+    print("wrote", os.path.basename(mov), n, "frames")
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
-    layers, placeholder = build_layers()
-    if placeholder:
-        print("!! raw/assets/hia/hia-logo.svg not found — PLACEHOLDER shield in use")
-    layers = {k: Image.fromarray(v, "RGBA") for k, v in layers.items()}
+    year, hero, region = spec(YEAR), spec(HERO), spec(REGION)
+    lay = layout(year, hero, region)
 
-    # --- layout: one centred stack, logo / rule / three type lines ----------
-    starts = [0.65, 0.78, 0.90]
-    imgs = [tracked_text(text, fp, px * SS, tr, col) for text, fp, px, tr, col in LINES]
+    for mode in MODES:
+        for fps in FPS_SET:
+            d = os.path.join(OUT, "fr_%s_%d" % (mode, fps))
+            shutil.rmtree(d, ignore_errors=True)
+            os.makedirs(d)
+            n = int(round(fps * DUR))
+            for i in range(n):
+                frame(i / fps, mode, year, hero, region, lay).save("%s/f%04d.png" % (d, i))
+            encode(mode, fps, n)
 
-    logo_h = H * SS * 0.30
-    gap_logo_rule = H * SS * 0.058
-    gap_rule_type = H * SS * 0.042
-    leading = [H * SS * 0.030, H * SS * 0.034]      # between line 1-2 and 2-3
-
-    type_h = sum(i.height for i in imgs) + sum(leading)
-    total = logo_h + gap_logo_rule + gap_rule_type + type_h
-    top = (H * SS - total) / 2
-
-    lay = {"logo_h": logo_h, "logo_cy": top + logo_h / 2,
-           "rule_y": top + logo_h + gap_logo_rule}
-
-    type_imgs = []
-    y = lay["rule_y"] + gap_rule_type
-    for k, (img, st) in enumerate(zip(imgs, starts)):
-        type_imgs.append((img, st, y + img.height / 2))
-        y += img.height + (leading[k] if k < len(leading) else 0)
-
-    rule_w = max(i.width for i in imgs) * 1.02
-
-    for fps in (25, 30):
-        d = os.path.join(OUT, f"fr{fps}")
-        shutil.rmtree(d, ignore_errors=True)
-        os.makedirs(d)
-        n = int(fps * DUR)
-        for i in range(n):
-            frame(i / fps, layers, type_imgs, rule_w, lay).save(f"{d}/f{i:04d}.png")
-        mov = os.path.join(OUT, f"hia-awards-title-1080p{fps}.mov")
+    for mode in MODES:
         subprocess.run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
-                        "-framerate", str(fps), "-i", f"{d}/f%04d.png",
-                        "-c:v", "prores_ks", "-profile:v", "4444",
-                        "-pix_fmt", "yuva444p10le", "-alpha_bits", "16",
-                        "-vendor", "apl0", mov], check=True)
-        print("wrote", os.path.basename(mov), n, "frames")
-
-    subprocess.run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
-                    "-i", f"{OUT}/fr25/f%04d.png", "-filter_complex",
-                    "[0:v]scale=640:-1,fps=25,split[a][b];[a]palettegen[p];[b][p]paletteuse",
-                    os.path.join(OUT, "preview.gif")], check=True)
-    print("wrote preview.gif")
+                        "-i", "%s/fr_%s_25/f%%04d.png" % (OUT, mode),
+                        "-filter_complex",
+                        "[0:v]scale=720:-1,fps=25,split[a][b];[a]palettegen[p];[b][p]paletteuse",
+                        os.path.join(OUT, "preview-%s.gif" % mode)], check=True)
+    print("wrote previews")
 
 
 if __name__ == "__main__":
