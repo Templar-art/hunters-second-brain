@@ -31,8 +31,9 @@ OUT = os.path.join(HERE, "out")
 
 W, H = 1920, 1080
 SS = 2
-DUR = 4.6
-FPS_SET = (25, 30)
+DUR = 4.6                   # seconds
+EXIT = 0.55                 # seconds of fade-out at the tail
+FPS_SET = (50, 25)          # 50p first; 25 kept for a 25p timeline
 MODES = ("green", "punch", "alpha")
 
 HIA_GREEN = (0, 88, 61)
@@ -183,8 +184,8 @@ def frame(t, mode, year, hero, region, lay, bg=None):
                     fill=YELLOW + (int(255 * min(tw / 0.2, 1.0)),))
 
     # 4. exit
-    if t > DUR - 0.55:
-        k = ease_in_out(t - (DUR - 0.55), 0.55)
+    if t > DUR - EXIT:
+        k = ease_in_out(t - (DUR - EXIT), EXIT)
         a = np.asarray(c).astype(float).copy()
         a[..., 3] *= (1 - k)
         c = Image.fromarray(a.clip(0, 255).astype("uint8"), "RGBA")
