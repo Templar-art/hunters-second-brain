@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us | Iron Standard</title>
+<meta name="description" content="Make a membership, coaching, trainer, physiotherapy or partnership enquiry.">
+<meta property="og:title" content="Contact Us | Iron Standard">
+<meta property="og:description" content="Make a membership, coaching, trainer, physiotherapy or partnership enquiry.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a class="logo" href="index.html" aria-label="Iron Standard, return to home">
+      <img src="assets/logo-white.png" alt="Iron Standard" width="3165" height="370">
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="about.html">About Us</a>
+      <a href="facility.html">The Facility</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html" aria-current="page">Contact Us</a>
+    </nav>
+
+    <a class="btn header-cta" href="contact.html">Make an enquiry</a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="nav-panel" id="navPanel" data-open="false" aria-label="Primary, mobile">
+  <a href="about.html">About Us</a>
+  <a href="facility.html">The Facility</a>
+  <a href="coaching.html">Coaching</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html" aria-current="page">Contact Us</a>
+  <a class="btn" href="contact.html">Make an enquiry</a>
+</nav>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="container grid">
+      <div class="ph-title">
+        <p class="mark rv">Contact us</p>
+        <h1 class="rv">Tell us how you train</h1>
+      </div>
+      <p class="lede rv">Choose the type of enquiry and it goes straight to the person best placed to answer it.</p>
+    </div>
+  </section>
+
+
+  <section class="sec sec--dark sec--tight">
+    <div class="container grid">
+      <div class="sec-copy">
+        <p class="mark rv">01 / Enquiry</p>
+
+        <form class="form rv" id="enquiryForm" method="post" target="enquirySink"
+                data-endpoint="PASTE_WEB_APP_URL_HERE" novalidate>
+          <div class="field">
+            <label for="enquiryType">What is your enquiry about?</label>
+            <select id="enquiryType" name="enquiryType">
+              <option value="membership">Membership</option>
+              <option value="coaching">Coaching</option>
+              <option value="trainer">Independent trainer opportunity</option>
+              <option value="physiotherapy">Physiotherapy</option>
+              <option value="partnership">Partnership or supplier</option>
+              <option value="media">Media</option>
+              <option value="general">General</option>
+            </select>
+          </div>
+
+          <p class="routing" id="routingNote" hidden></p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="field" id="extraField" hidden>
+            <label for="extraInput" id="extraLabel">Detail</label>
+            <input type="text" id="extraInput" name="extra">
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Anything that helps us answer properly."></textarea>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn" type="submit">Send enquiry</button>
+          <p class="routing" id="formStatus" role="status" hidden></p>
+          <p class="form-note">
+            We use your details only to answer this enquiry. Nothing is added to a mailing
+            list without your consent.
+          </p>
+        </form>
+        <iframe name="enquirySink" title="Enquiry submission target"
+                style="position:absolute;left:-9999px;width:1px;height:1px;border:0"
+                aria-hidden="true" tabindex="-1"></iframe>
+      </div>
+
+      <div class="sec-copy-r rv" style="margin-top:48px">
+        <h2 style="font-size:clamp(22px,2.4vw,30px);margin-bottom:20px">What happens next</h2>
+        <div class="stack">
+          <p style="color:rgba(255,255,255,.78)">
+            Each enquiry type is routed to the person who can actually answer it, so member,
+            trainer and partnership questions are not answered from the same inbox.
+          </p>
+          <p style="color:rgba(255,255,255,.78)">
+            Membership terms, pricing and the opening date are shared as soon as they are
+            confirmed. We would rather answer late than answer wrongly.
+          </p>
+          <p class="note-block">
+            The enquiry route is connected before launch. Until then this form does not send.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location block stays out of the page until the address is approved.
+       Restore this section once the address is confirmed for publication.
+  <section class="sec sec--light">
+    <div class="container grid">
+      <p class="mark mark--dark">02 / Find us</p>
+      <h2 class="sec-head">Where we are</h2>
+      <div class="sec-copy"><p>Address, transport and access details go here.</p></div>
+    </div>
+  </section>
+  -->
+
+  <section class="sec sec--dark">
+    <div class="container grid">
+      <p class="mark rv">02 / Elsewhere</p>
+      <h2 class="sec-full rv" style="font-size:var(--display-sm)">Read first, ask second.</h2>
+      <p class="sec-copy rv" style="margin-top:28px;color:var(--muted)">The facility and coaching pages answer most of what comes through this form.</p>
+      <div class="cta-row sec-full rv">
+        <a class="btn" href="facility.html">View the facility</a>
+        <a class="btn btn--ghost" href="faq.html">Read the FAQ</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <a class="logo" href="index.html" aria-label="Iron Standard, return to home">
+        <img src="assets/logo-white.png" alt="Iron Standard" width="3165" height="370" loading="lazy">
+      </a>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="about.html">About Us</a>
+        <a href="facility.html">The Facility</a>
+        <a href="coaching.html">Coaching</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Iron Standard, Oslo</span>
+      <span>
+        <a href="privacy.html">Privacy</a> &middot;
+        <a href="cookies.html">Cookies</a> &middot;
+        <a href="terms.html">Terms of use</a> &middot;
+        <a href="accessibility.html">Accessibility</a>
+      </span>
+      <span class="footer-note">Imagery is indicative and will be replaced by photography of the completed facility.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

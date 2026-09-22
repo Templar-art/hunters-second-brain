@@ -47,14 +47,14 @@
       "port": 8774
     },
     {
-      "name": "ironstandard-homepage",
+      "name": "ironstandard-site",
       "runtimeExecutable": "python3",
       "runtimeArgs": [
         "-m",
         "http.server",
         "8145",
         "--directory",
-        "/Users/10xhunter/Desktop/10xVisuals Output/Iron Standard - Homepage"
+        "projects/ironstandard-site"
       ],
       "port": 8145
     }

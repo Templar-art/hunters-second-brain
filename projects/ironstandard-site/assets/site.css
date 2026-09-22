@@ -1,0 +1,651 @@
+/* ============================================================
+   IRON STANDARD - HOMEPAGE
+   Reference implementation of the design system.
+   Palette, type and motion per IRONSTNDRD Guidelines 2026
+   and the approved Website Strategy & Creative Direction.
+   ============================================================ */
+
+:root{
+  --black:#000000;
+  --white:#FFFFFF;
+  --orange:#F4502A;
+  /* functional interface greys only, not brand colours */
+  --grey-900:#0B0B0B;
+  --grey-800:#171717;
+  --rule:rgba(255,255,255,.16);
+  --rule-dark:rgba(0,0,0,.14);
+  --muted:rgba(255,255,255,.62);
+  --muted-dark:rgba(0,0,0,.62);
+
+  --pad:24px;
+  --maxw:1560px;
+  --gap:20px;
+  /* distance from the container's content edge out to the viewport edge,
+     so an element can bleed past the grid and off screen */
+  --edge:calc((100vw - min(100vw, var(--maxw))) / 2 + var(--pad));
+
+  --t:260ms;
+  --ease:cubic-bezier(.22,.61,.36,1);
+
+  /* type scale */
+  --display:clamp(48px, 11vw, 110px);
+  --display-sm:clamp(36px, 8.5vw, 72px);
+  --statement:clamp(26px, 5.2vw, 52px);
+  --stat:clamp(40px, 9vw, 76px);
+  --body:clamp(16px, 1.05vw, 18px);
+  --eyebrow:clamp(11px, .78vw, 13px);
+}
+@media (min-width:1024px){ :root{ --pad:48px; --gap:28px; } }
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ overflow-x:hidden; scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--white);
+  font-family:"TASA Orbiter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight:400;
+  font-size:var(--body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+img{ display:block; max-width:100%; height:auto; }
+figure{ margin:0; }
+a{ color:inherit; }
+
+:focus-visible{
+  outline:2px solid var(--orange);
+  outline-offset:3px;
+}
+
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:200;
+  background:var(--orange); color:var(--black);
+  padding:12px 20px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  font-size:13px; text-decoration:none;
+}
+.skip:focus{ left:0; }
+
+/* ---------- layout primitives ---------- */
+.container{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad); }
+/* mobile first: one column. The 12-column editorial grid is a desktop layer. */
+.grid{ display:grid; grid-template-columns:1fr; gap:0; }
+@media (min-width:1024px){
+  .grid{ grid-template-columns:repeat(12,1fr); gap:var(--gap); }
+}
+.bleed-r{ margin-right:calc(-1 * var(--edge)); }
+.bleed-l{ margin-left:calc(-1 * var(--edge)); }
+
+/* ---------- type ---------- */
+.eyebrow{
+  font-size:var(--eyebrow);
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0;
+}
+.eyebrow--dark{ color:var(--muted-dark); }
+
+.mark{
+  display:flex; align-items:center; gap:16px;
+  font-size:var(--eyebrow); font-weight:600; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 clamp(28px,5vw,64px);
+}
+.mark--dark{ color:var(--muted-dark); }
+.mark::after{ content:""; flex:0 0 56px; height:2px; background:var(--orange); }
+
+h1,h2,h3{
+  font-weight:700;
+  text-transform:uppercase;
+  line-height:.94;
+  letter-spacing:-.015em;
+  margin:0;
+  text-wrap:balance;
+}
+h1{ font-size:var(--display); }
+h2{ font-size:var(--display-sm); }
+h3{ font-size:clamp(19px,1.5vw,24px); line-height:1.1; letter-spacing:.01em; }
+
+p{ margin:0 0 1.1em; max-width:64ch; }
+p:last-child{ margin-bottom:0; }
+.lede{ font-size:clamp(17px,1.35vw,21px); line-height:1.5; color:rgba(255,255,255,.86); }
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:52px; padding:0 30px;
+  background:var(--orange);
+  color:var(--black);              /* black on orange = 6.03:1, passes AA */
+  font-weight:700; font-size:14px; letter-spacing:.14em; text-transform:uppercase;
+  text-decoration:none; border:0; cursor:pointer;
+  transition:background var(--t) var(--ease), transform var(--t) var(--ease);
+}
+.btn:hover{ background:#ff6440; }
+.btn:active{ transform:translateY(1px); }
+.btn--ghost{
+  background:transparent; color:var(--white);
+  box-shadow:inset 0 0 0 1px var(--rule);
+}
+.btn--ghost:hover{ background:rgba(255,255,255,.07); }
+
+.textlink{
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:13px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  text-decoration:none; padding-bottom:6px;
+  border-bottom:1px solid var(--rule);
+  transition:border-color var(--t) var(--ease);
+}
+.textlink span{ display:inline-block; transition:transform var(--t) var(--ease); }
+.textlink:hover{ border-color:var(--orange); }
+.textlink:hover span{ transform:translateX(6px); }
+.textlink--dark{ border-bottom-color:var(--rule-dark); }
+
+/* ---------- header ---------- */
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  /* condense is expressed with transform and opacity only, never layout */
+  transition:background var(--t) var(--ease), border-color var(--t) var(--ease);
+  border-bottom:1px solid transparent;
+  padding-block:18px;
+}
+.site-header.is-stuck{
+  background:rgba(0,0,0,.92);
+  backdrop-filter:blur(10px);
+  border-bottom-color:var(--rule);
+}
+.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.logo{ display:block; line-height:0; }
+.logo img{
+  width:clamp(132px,13vw,186px);
+  transform-origin:left center;
+  transition:transform var(--t) var(--ease);
+}
+.site-header:not(.is-stuck) .logo img{ transform:scale(1.1); }
+
+.nav{ display:none; }
+.nav a{
+  font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  text-decoration:none; color:rgba(255,255,255,.78);
+  transition:color var(--t) var(--ease);
+}
+.nav a:hover,.nav a[aria-current="page"]{ color:var(--white); }
+.header-cta{ display:none; }
+
+.nav-toggle{
+  width:46px; height:46px; margin-right:-10px;
+  background:none; border:0; cursor:pointer; padding:0;
+  display:grid; place-content:center; gap:6px;
+}
+.nav-toggle span{
+  display:block; width:24px; height:2px; background:var(--white);
+  transition:transform var(--t) var(--ease), opacity var(--t) var(--ease);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+
+.nav-panel{
+  position:fixed; inset:0; z-index:99;
+  background:var(--black);
+  padding:120px var(--pad) 48px;
+  display:flex; flex-direction:column; gap:4px;
+  /* visibility keeps closed links out of the tab order */
+  visibility:hidden; opacity:0;
+  transition:opacity var(--t) var(--ease), visibility 0s linear var(--t);
+}
+.nav-panel[data-open="true"]{ visibility:visible; opacity:1; transition-delay:0s; }
+.nav-panel a:not(.btn){
+  font-size:clamp(28px,8vw,40px); font-weight:700; text-transform:uppercase;
+  text-decoration:none; padding:12px 0; border-bottom:1px solid var(--rule);
+  line-height:1;
+}
+.nav-panel .btn{ margin-top:32px; align-self:flex-start; }
+
+@media (min-width:1024px){
+  .nav{ display:flex; gap:clamp(20px,2.4vw,40px); }
+  .header-cta{ display:inline-flex; }
+  .nav-toggle{ display:none; }
+  .nav-panel{ display:none; }
+}
+
+/* ---------- reveal ---------- */
+.rv{
+  opacity:0; transform:translateY(16px);
+  transition:opacity 300ms var(--ease), transform 300ms var(--ease);
+}
+.rv.is-in{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion:reduce){
+  /* transitions resolve instantly rather than being removed */
+  *,*::before,*::after{
+    transition-duration:.01ms !important;
+    transition-delay:0s !important;
+    animation-duration:.01ms !important;
+  }
+  .rv{ transform:none; }
+}
+
+/* ============================================================
+   01 HERO - full-bleed image, type anchored low left.
+   Copy never crosses the athlete.
+   ============================================================ */
+.hero{ position:relative; background:var(--black); overflow:hidden; }
+.hero-grid{ display:grid; min-height:100svh; }
+.hero-media{
+  grid-area:1/1;
+  position:relative;
+  height:58svh; min-height:320px;
+}
+.hero-media img{
+  width:100%; height:100%; object-fit:cover; object-position:50% 22%;
+}
+.hero-media::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.05) 38%, rgba(0,0,0,.92) 92%, #000 100%);
+}
+.hero-body{
+  grid-area:2/1;
+  padding:0 var(--pad) clamp(48px,9vw,96px);
+  position:relative; z-index:2;
+  margin-top:-10svh;
+}
+.hero h1{ margin:18px 0 0; }
+.hero h1 .l2{ display:block; }
+.hero-sub{
+  margin:24px 0 0;
+  font-size:clamp(17px,1.5vw,22px); font-weight:500; line-height:1.35;
+  color:rgba(255,255,255,.88); max-width:30ch;
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:clamp(28px,4vw,40px); }
+
+@media (min-width:1024px){
+  .hero-grid{
+    grid-template-columns:repeat(12,1fr);
+    gap:var(--gap);
+    align-content:end;
+    max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad);
+  }
+  .hero-media{
+    grid-area:1/7/2/13;
+    height:100svh;
+    margin-right:calc(-1 * var(--edge));
+    align-self:start;
+  }
+  .hero-media img{ object-position:46% 28%; }
+  .hero-media::after{
+    background:linear-gradient(to right, #000 0%, rgba(0,0,0,.55) 22%, rgba(0,0,0,0) 62%),
+               linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 40%);
+  }
+  .hero-body{
+    grid-area:1/1/2/8;
+    align-self:center;
+    padding:0 0 clamp(40px,5vw,72px);
+    margin-top:0;
+  }
+}
+
+/* ============================================================
+   02 THE POSITION - type only. No image. Maximum negative space.
+   ============================================================ */
+.position{ background:var(--black); padding-block:clamp(90px,16vw,200px); }
+.position-statement{
+  font-size:var(--statement);
+  font-weight:700; text-transform:uppercase; line-height:1.02; letter-spacing:-.01em;
+  margin:0; max-width:19ch;
+  border-left:2px solid var(--orange);
+  padding-left:clamp(20px,3vw,40px);
+}
+.position-statement em{ font-style:normal; color:var(--orange); }
+.position-foot{ margin-top:clamp(40px,6vw,72px); color:var(--muted); }
+@media (min-width:1024px){
+  .position-statement{ grid-column:2/11; max-width:none; }
+  .position-foot{ grid-column:2/8; }
+  .position .mark{ grid-column:1/-1; }
+}
+
+/* ============================================================
+   03 THE PROOF - asymmetric split. Stats stack vertically as
+   ruled rows. Image bleeds off the right edge.
+   ============================================================ */
+.proof{ background:var(--grey-900); padding-block:clamp(80px,13vw,160px); overflow:hidden; }
+.stat{
+  display:grid; gap:4px;
+  padding:clamp(22px,3vw,30px) 0;
+  border-top:1px solid var(--rule);
+}
+.stat:last-of-type{ border-bottom:1px solid var(--rule); }
+.stat dt{
+  font-size:var(--stat); font-weight:700; line-height:.9; letter-spacing:-.02em;
+}
+.stat dd{
+  margin:6px 0 0;
+  font-size:var(--eyebrow); font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted);
+}
+.stat .note{
+  margin-top:10px; font-size:15px; letter-spacing:0; text-transform:none;
+  color:rgba(255,255,255,.72); font-weight:400; max-width:46ch;
+}
+.proof-media{ margin-top:48px; }
+.proof-media img{ width:100%; aspect-ratio:3/4; object-fit:cover; }
+.proof-outro{ margin-top:40px; }
+
+@media (min-width:1024px){
+  .proof-copy{ grid-column:1/7; }
+  .proof-media{
+    grid-column:8/13; grid-row:1/3;
+    margin:0; margin-right:calc(-1 * var(--edge));
+    align-self:stretch;
+  }
+  .proof-media img{ height:100%; aspect-ratio:auto; min-height:560px; }
+  .proof .mark{ grid-column:1/7; }
+  .proof-outro{ grid-column:1/7; }
+}
+
+/* ============================================================
+   04 THE BAND - one full-bleed image, one sentence. A breather.
+   ============================================================ */
+.band{ position:relative; height:clamp(420px,72svh,720px); overflow:hidden; }
+.band img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.band::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.88) 6%, rgba(0,0,0,.2) 60%, rgba(0,0,0,.5) 100%);
+}
+.band-copy{
+  position:absolute; inset:auto 0 0 0; z-index:2;
+  padding-bottom:clamp(40px,7vw,80px);
+}
+.band-copy p{
+  font-size:clamp(24px,4.4vw,48px); font-weight:700; text-transform:uppercase;
+  line-height:1.02; letter-spacing:-.01em; margin:0; max-width:16ch;
+}
+
+/* ============================================================
+   05 WHO TRAINS HERE - offset image pair, different sizes,
+   different vertical offsets. Text sits to the side.
+   ============================================================ */
+.who{ background:var(--black); padding-block:clamp(80px,13vw,160px); }
+.who-pair{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap); margin-bottom:48px; }
+.who-pair figure{ margin:0; }
+.who-pair img{ width:100%; object-fit:cover; }
+.who-pair .fig-a img{ aspect-ratio:4/5; }
+.who-pair .fig-b img{ aspect-ratio:4/5; }
+.who-pair figcaption{
+  margin-top:12px; font-size:var(--eyebrow); font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
+}
+.who-pull{
+  font-size:clamp(21px,2.6vw,34px); font-weight:700; text-transform:uppercase;
+  line-height:1.08; margin:clamp(36px,5vw,56px) 0 0; max-width:20ch;
+}
+
+@media (min-width:1024px){
+  .who .mark{ grid-column:1/-1; }
+  .who-pair{ grid-column:1/7; grid-template-columns:repeat(2,1fr); margin-bottom:0; }
+  .who-pair .fig-a{ margin-top:0; }
+  .who-pair .fig-b{ margin-top:88px; }      /* the offset */
+  .who-pair .fig-a img{ aspect-ratio:3/4; }
+  .who-pair .fig-b img{ aspect-ratio:4/5; }
+  .who-copy{ grid-column:8/12; align-self:center; }
+  .who-pull{ grid-column:8/13; margin-top:clamp(48px,6vw,72px); }
+}
+
+/* ============================================================
+   06 UNDER ONE ROOF - the deliberate light section.
+   Numbered editorial index. No cards. No icons.
+   ============================================================ */
+.support{ background:var(--white); color:var(--black); padding-block:clamp(80px,13vw,160px); }
+.support h2{ margin-bottom:clamp(32px,5vw,56px); }
+.support-intro{ color:var(--muted-dark); }
+.index-row{
+  display:grid; gap:6px;
+  padding:clamp(24px,3.4vw,34px) 0;
+  border-top:1px solid var(--rule-dark);
+}
+.index-row:last-of-type{ border-bottom:1px solid var(--rule-dark); }
+.index-row .n{
+  font-size:13px; font-weight:700; letter-spacing:.18em;
+  color:var(--black);   /* orange on white fails AA for small text, so black */
+}
+.index-row h3{ margin:2px 0 0; }
+.index-row p{ margin:8px 0 0; color:var(--muted-dark); max-width:56ch; }
+.support-cta{ margin-top:clamp(36px,5vw,56px); }
+
+@media (min-width:1024px){
+  .support h2{ grid-column:1/8; }
+  .support .mark{ grid-column:1/-1; }
+  .support-intro{ grid-column:9/13; align-self:end; margin-bottom:clamp(32px,5vw,56px); }
+  .support-list{ grid-column:1/-1; }
+  .index-row{ grid-template-columns:80px 3fr 5fr; gap:var(--gap); align-items:start; }
+  .index-row .n{ padding-top:6px; }
+  .index-row p{ margin:6px 0 0; }
+  .support-cta{ grid-column:1/-1; }
+}
+
+/* ============================================================
+   07 THE FOUNDER - the mirror of 03. Image bleeds off the LEFT.
+   ============================================================ */
+.founder{ background:var(--grey-900); padding-block:clamp(80px,13vw,160px); overflow:hidden; }
+.founder-media img{ width:100%; aspect-ratio:4/5; object-fit:cover; }
+.founder-media figcaption{
+  margin-top:12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(255,255,255,.44);
+}
+.founder-copy{ margin-top:40px; }
+.founder-copy h2{ margin-bottom:24px; }
+.founder-copy p{ color:rgba(255,255,255,.78); }
+.founder-copy .textlink{ margin-top:28px; }
+
+@media (min-width:1024px){
+  .founder-media{
+    grid-column:1/6; grid-row:1/3;
+    margin-left:calc(-1 * var(--edge));
+    align-self:stretch;
+  }
+  .founder-media img{ height:calc(100% - 32px); aspect-ratio:auto; min-height:520px; }
+  .founder .mark{ grid-column:7/13; }
+  .founder-copy{ grid-column:7/13; margin-top:0; align-self:center; }
+}
+
+/* ============================================================
+   08 THE CLOSE - oversized type, one dominant action.
+   ============================================================ */
+.close{ background:var(--black); padding-block:clamp(90px,15vw,190px); text-align:left; }
+.close h2{ font-size:var(--display); }
+.close p{ margin-top:28px; color:var(--muted); max-width:46ch; }
+.close .hero-actions{ margin-top:clamp(32px,5vw,48px); }
+@media (min-width:1024px){
+  .close .mark{ grid-column:1/-1; }
+  .close h2{ grid-column:1/10; }
+  .close p{ grid-column:1/6; }
+  .close .hero-actions{ grid-column:1/-1; }
+}
+
+/* ---------- footer ---------- */
+.site-footer{
+  background:var(--black); border-top:1px solid var(--rule);
+  padding-block:clamp(48px,7vw,72px);
+  font-size:14px;
+}
+.footer-top{ display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; align-items:start; }
+.footer-nav{ display:flex; flex-wrap:wrap; gap:14px 28px; }
+.footer-nav a{
+  font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  text-decoration:none; color:rgba(255,255,255,.72);
+}
+.footer-nav a:hover{ color:var(--white); }
+.footer-bottom{
+  margin-top:clamp(40px,6vw,64px); padding-top:24px; border-top:1px solid var(--rule);
+  display:flex; flex-wrap:wrap; gap:16px 32px; justify-content:space-between;
+  color:rgba(255,255,255,.44); font-size:12px; letter-spacing:.06em;
+}
+.footer-bottom a{ text-decoration:none; }
+.footer-bottom a:hover{ color:var(--white); }
+.footer-note{ flex-basis:100%; color:rgba(255,255,255,.3); }
+
+/* ============================================================
+   INNER PAGE PATTERNS
+   Subordinate to the homepage: the page head is type only, so
+   no inner page competes with the hero.
+   ============================================================ */
+
+.page-head{
+  background:var(--black);
+  padding-top:clamp(120px,17vw,190px);
+  padding-bottom:clamp(48px,8vw,90px);
+}
+.page-head h1{ font-size:var(--display-sm); margin-top:18px; }
+.page-head .lede{ margin-top:24px; }
+@media (min-width:1024px){
+  .page-head .ph-title{ grid-column:1/8; }
+  .page-head .lede{ grid-column:9/13; align-self:end; margin-top:0; }
+}
+
+/* section shell reused across inner pages */
+.sec{ padding-block:clamp(72px,12vw,150px); }
+.sec--dark{ background:var(--black); }
+.sec--raise{ background:var(--grey-900); }
+.sec--light{ background:var(--white); color:var(--black); }
+.sec--light .lede{ color:rgba(0,0,0,.78); }
+.sec--tight{ padding-block:clamp(56px,9vw,110px); }
+
+.sec-head{ margin-bottom:clamp(32px,5vw,56px); }
+@media (min-width:1024px){
+  .sec-head{ grid-column:1/8; }
+  .sec-aside{ grid-column:9/13; align-self:end; margin-bottom:clamp(32px,5vw,56px); }
+  .sec-full{ grid-column:1/-1; }
+  .sec-copy{ grid-column:1/7; }
+  .sec-copy-r{ grid-column:7/13; }
+}
+
+/* ---- status rows: confirmed vs planned -------------------- */
+.spec{
+  display:grid; gap:8px;
+  padding:clamp(22px,3.2vw,30px) 0;
+  border-top:1px solid var(--rule);
+}
+.spec:last-of-type{ border-bottom:1px solid var(--rule); }
+.spec h3{ margin:0; }
+.spec p{ margin:0; color:rgba(255,255,255,.7); max-width:56ch; }
+.chip{
+  display:inline-flex; align-items:center; align-self:start;
+  font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+  padding:5px 10px; white-space:nowrap;
+}
+.chip--confirmed{ box-shadow:inset 0 0 0 1px rgba(255,255,255,.85); color:var(--white); }
+.chip--planned{ box-shadow:inset 0 0 0 1px var(--rule); color:var(--muted); }
+.chip-key{
+  display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center;
+  margin-bottom:clamp(28px,4vw,40px); color:var(--muted); font-size:14px;
+}
+@media (min-width:1024px){
+  .spec{ grid-template-columns:3fr 5fr 150px; gap:var(--gap); align-items:start; }
+  .chip{ justify-self:end; }
+}
+
+/* ---- alternating asymmetric rows --------------------------- */
+.alt-row{ padding-block:clamp(44px,7vw,84px); border-top:1px solid var(--rule); }
+.alt-row img{ width:100%; aspect-ratio:4/5; object-fit:cover; }
+.alt-copy h2{ margin:0 0 16px; font-size:clamp(22px,2.6vw,34px); }
+.alt-copy p{ color:rgba(255,255,255,.78); }
+.alt-media{ margin-bottom:28px; }
+@media (min-width:1024px){
+  .alt-row{ display:grid; grid-template-columns:repeat(12,1fr); gap:var(--gap); align-items:center; }
+  .alt-media{ margin-bottom:0; }
+  .alt-row:nth-of-type(odd) .alt-media{ grid-column:1/6; grid-row:1; }
+  .alt-row:nth-of-type(odd) .alt-copy{ grid-column:7/12; grid-row:1; }
+  .alt-row:nth-of-type(even) .alt-media{ grid-column:8/13; grid-row:1; }
+  .alt-row:nth-of-type(even) .alt-copy{ grid-column:2/7; grid-row:1; }
+}
+
+/* ---- FAQ: native details, answers stay in the DOM ---------- */
+.faq-group{ margin-bottom:clamp(40px,6vw,72px); }
+.faq-group > h2{ margin-bottom:20px; font-size:clamp(22px,2.4vw,30px); }
+.faq details{ border-top:1px solid var(--rule); }
+.faq details:last-of-type{ border-bottom:1px solid var(--rule); }
+.faq summary{
+  list-style:none; cursor:pointer;
+  display:flex; align-items:baseline; justify-content:space-between; gap:24px;
+  padding:22px 0;
+  font-weight:600; font-size:clamp(17px,1.4vw,20px); line-height:1.3;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::after{
+  content:"+"; flex:0 0 auto; font-weight:400; font-size:22px; line-height:1;
+  color:var(--orange); transition:transform var(--t) var(--ease);
+}
+.faq details[open] summary::after{ content:"\2212"; }
+.faq .answer{ padding:0 0 24px; color:rgba(255,255,255,.76); max-width:68ch; }
+@media (min-width:1024px){
+  .faq-group{ display:grid; grid-template-columns:repeat(12,1fr); gap:var(--gap); }
+  .faq-group > h2{ grid-column:1/4; margin:0; }
+  .faq-group > .faq{ grid-column:5/13; }
+}
+
+/* ---- forms ------------------------------------------------- */
+.form{ max-width:660px; }
+.field{ display:grid; gap:8px; margin-bottom:20px; }
+.field label{
+  font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted);
+}
+.field input,.field select,.field textarea{
+  background:var(--grey-800);
+  border:1px solid var(--rule);
+  color:var(--white);
+  font-family:inherit; font-size:16px;   /* 16px stops mobile browsers zooming */
+  padding:14px 16px; min-height:52px; width:100%;
+  border-radius:0;
+}
+.field textarea{ min-height:150px; resize:vertical; line-height:1.5; }
+.field select{ appearance:none; background-image:none; cursor:pointer; }
+.field input::placeholder,.field textarea::placeholder{ color:rgba(255,255,255,.34); }
+.field input:hover,.field select:hover,.field textarea:hover{ border-color:rgba(255,255,255,.3); }
+.field .hint{ font-size:13px; color:var(--muted); letter-spacing:0; text-transform:none; }
+.field-row{ display:grid; gap:20px; }
+@media (min-width:640px){ .field-row{ grid-template-columns:1fr 1fr; } }
+.routing{
+  border-left:2px solid var(--orange);
+  padding:14px 0 14px 18px; margin:4px 0 24px;
+  font-size:15px; color:rgba(255,255,255,.8);
+}
+.form .btn{ margin-top:8px; }
+.form-note{ margin-top:22px; font-size:13px; color:rgba(255,255,255,.44); max-width:60ch; }
+.hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+/* ---- small utilities --------------------------------------- */
+.note-block{
+  border-left:2px solid var(--rule);
+  padding-left:20px; color:var(--muted); font-size:15px; max-width:60ch;
+}
+.sec--light .note-block{ border-left-color:var(--rule-dark); color:var(--muted-dark); }
+.stack > * + *{ margin-top:clamp(20px,3vw,32px); }
+.cta-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:clamp(32px,5vw,48px); }
+
+/* ---- generic bleeding media, mirrored either way ----------- */
+.sec--bleed{ overflow:hidden; }
+.media-r,.media-l{ margin-top:36px; }
+.media-r img,.media-l img{ width:100%; aspect-ratio:3/4; object-fit:cover; }
+.media-r figcaption,.media-l figcaption{
+  margin-top:12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(255,255,255,.44);
+}
+@media (min-width:1024px){
+  .media-r{ grid-column:8/13; margin:0 calc(-1 * var(--edge)) 0 0; align-self:stretch; }
+  .media-l{ grid-column:1/6; margin:0 0 0 calc(-1 * var(--edge)); align-self:stretch; }
+  .media-r img,.media-l img{ height:100%; aspect-ratio:auto; min-height:520px; }
+}
+
+/* Section marks and stray notes are direct children of the 12-column
+   grid on inner pages, so they need an explicit span or they collapse
+   into a single column and wrap. */
+@media (min-width:1024px){
+  .sec > .container > .mark{ grid-column:1/-1; }
+  .sec > .container > .note-block{ grid-column:1/8; }
+  .sec > .container > .cta-row{ grid-column:1/-1; }
+}
