@@ -1,13 +1,13 @@
 ---
 type: client
-tags: [web-client, landing-page, gym, oslo, pre-launch]
-status: Expanded from single-page waitlist to full 7-page site 16 Sep 2026 (Home, About Us, The Facility, Coaching, Join the Waitlist, FAQ, Contact Us), built via subagent-driven-development against a written plan, all 10 tasks + final whole-branch review clean, pushed to main — Apps Script deployment (Anthony's Google account), his final copy for 3 pages, facility photography, social links, and the hosting target are the only things left before go-live
-updated: 2026-09-16
+tags: [web-client, website, gym, oslo, pre-launch]
+status: Six-page website built 22 Sep 2026 against the approved strategy doc, in projects/ironstandard-site/, pushed to main. The waitlist scope is dead: the strategy removes it entirely and makes an enquiry the primary action. Outstanding before launch = enquiry endpoint deployment, Anthony's founder copy, legal copy, real photography.
+updated: 2026-09-22
 ---
 
 # Iron Standard
 
-Anthony McCoy (anthonygmccoy@gmail.com, +47 41369929), a competitive powerlifter, is opening **Iron Standard**: an 800m² purpose-built strength and performance training facility in Oslo, Norway. Positioned between budget chains (SATS, EVO, Pumphouse) and small niche gyms — proper platforms, calibrated plates, a posing room, 24/7 access, plus on-site coaching and physiotherapy. Full site with membership sign-up and booking is a later, separate build; this engagement is the pre-launch waitlist page only.
+Anthony McCoy (anthonygmccoy@gmail.com, +47 41369929), a competitive powerlifter, is opening **Iron Standard**: an 800m² purpose-built strength and performance training facility in Oslo, Norway. Positioned between budget chains (SATS, EVO, Pumphouse) and small niche gyms: proper platforms, calibrated plates, a posing room, 24/7 access, plus on-site coaching and physiotherapy. Engagement has run through three scopes — single-page waitlist (2 Sep), 7-page site with waitlist (16 Sep), and the current six-page enquiry-led site (22 Sep).
 
 Existing site `ironstandard.no` is GoDaddy's free Website Builder "Launching Soon" placeholder — Anthony doesn't manage separate hosting beyond that ("Need help with this" on the intake form), so the domain stays at GoDaddy as registrar while hosting moves elsewhere.
 
@@ -43,28 +43,28 @@ Anthony sent real messaging direction plus a brand-colour flag, both now built.
 
 **Brand colour tested, kept as-is:** tried gold, blue, bronze, olive, emerald, forest green against the built page — none beat the original orange, so it stayed `#F4502A` despite the SATS overlap. See Brand section above.
 
-## UI/UX polish pass (10 Sep 2026)
+## Waitlist era, Sept 2026 — **⚠️ superseded 22 Sep 2026**
 
-Hunter reviewed the live build and asked for a round of polish, all actioned same day:
+The 2–16 Sep work built a waitlist page, then a 7-page site around it, in
+[projects/ironstandard-lp/](../../projects/ironstandard-lp/). The approved strategy
+document kills the waitlist entirely, so that build is history, not the current site.
+It is kept intact and untouched for reference. Durable learnings from it:
 
-- **Intro logo-reveal held too long.** The "hold on black" beat before the logo drags into place was cut 35% (1300ms → 845ms in `assets/js/main.js`); the flash sequence and drag itself are unchanged.
-- **The info section read flat.** Rebuilt "What you're getting" from a plain accordion into an interactive tab-and-image layout: each of the 4 items (facility, who it's for, what's different, founding members) now has a small line icon, an animated underline on hover/open, and on desktop a photo panel on the right that crossfades to match whichever item is open, pure CSS via `:has()`, no JS. Mobile shows the same photo inline above each item's copy instead of the side panel. Native `<details name="...">` groups them so opening one auto-closes the others.
-- **Waitlist form removed for now.** Hunter wants to add the real thing back in manually once Brevo's set up, so the `<form>` (name/email fields + submit) was pulled from `#waitlist` in `index.html`, leaving the section heading/copy/background photo in place plus an HTML comment marking where to paste it back in. README's Brevo section updated to match.
-- **Footer split into its own file.** `partials/footer.html` is a standalone, styled copy of the footer so it can be grabbed for another Iron Standard page without opening the full `index.html`. It's a copy, not a live include, editing one doesn't update the other.
-- **General animate-in polish.** Added a scroll-reveal system (`data-reveal` + `IntersectionObserver` in `main.js`): sections fade/rise into place as they enter view, staggered across the 4 details items. Built so a no-JS load never hides content, the reveal class is only added at runtime right before observing.
+- **Never put an ESP API key in public-facing JS.** The first pass POSTed to Brevo's
+  contacts API with the key in page source. Corrected to the vendor's hosted-form
+  endpoint, which needs no client-side credential.
+- **Anthony wants detail, not mystery.** The 2 Sep build stripped the page to hero plus
+  form; his own instruction was the opposite, that people need enough detail to want to
+  sign up. Specific converts, vague does not. That still holds on the new site.
+- **Accent colour was contested and settled.** Gold, steel blue, bronze, olive, emerald
+  and forest green were all tested live against the built page after Anthony flagged that
+  SATS also brands in orange. None beat the brand orange, so `#F4502A` stayed and the
+  SATS overlap is accepted rather than forced away. Do not reopen this.
+- **A `position: fixed` hero backdrop paints over everything below it.** Content after it
+  needs an opaque wrapper or the layout appears to break.
+- A known shipped bug in that build's Apps Script is now fixed in the new one. See below.
 
-## Revision round (11 Sep 2026)
-
-Hunter sent a short list of changes after reviewing the WordPress-ready build. All actioned in `index.html`, `assets/css/style.css`, `assets/js/main.js`, `partials/footer.html` and both widget files in Downloads.
-
-- **Hero is now one fixed photo, not a video rotation.** The hero cycled 4 clips every 2.2s, which Hunter read as the page "fading to black then coming back" long after the intro had finished. Replaced with a single client-supplied still (`young-man-sportswear-exercise-class-gym-scaled.jpg`) at `position: fixed`, so it holds steady while the content scrolls over it. The rotation and lazy-priming code is gone from both `main.js` and the widget script, and the 4 clips in `assets/video/` are no longer referenced by anything. Side effect worth knowing: a fixed backdrop paints over everything below it, so the accordion now sits inside a `.page-rest` wrapper with an opaque background and the footer got one too. Removing either brings the bug back.
-- **Headline forced to two lines.** "A different standard" / "For serious training", as two block `<span>`s rather than a `<br>`. The hero content column had to widen from 700px to 1000px to fit line one at its 4.5rem ceiling, and the h1 got its own `clamp(1.3rem, 5.9vw, 4.5rem)`. Verified as exactly two lines with no horizontal overflow at 1440/1280/1024/880/768/414/375/360px, in both the site build and the widget.
-- **Hero copy rewritten** toward mystery over specification: the old paragraph was a near-duplicate of the "Inside the facility" accordion copy. New version teases the build without naming location or date, which are still not public.
-- **CTA anchor changed from `#waitlist` to `#form`.** Hunter is pasting his own form block in. The hero button and the scroll arrow both point there, and both scroll nowhere until an element with `id="form"` exists — noted in the README and in the placeholder comment.
-- **Accordion photography swapped** to client-supplied media-library images: "Inside the facility" → `19535.jpg`, "Is this you?" → `23876.jpg`, "Why it's different" → `9063.jpg`. "Get in first" still borrows `flash-2.jpg` from the intro sequence. The intro flash stack keeps its original 10 frames.
-- **Footer:** logo up 50% (140px → 210px) and a small accent-coloured location pin added beside "Oslo, Norway", in all three copies of the footer (page, partial, widget).
-
-## Full 7-page site build (16 Sep 2026)
+### The 7-page expansion (16 Sep 2026), also superseded
 
 Anthony's 16 Sep email replaced the single-page waitlist scope with a full 7-page brief, content direction included, and settled two standing questions from the 2 Sep build: **Google Sheets replaces Brevo** for form storage, and **10x hosts** the site instead of Anthony's own Netlify account. Spec: [2026-09-16 design](../../docs/superpowers/specs/2026-09-16-ironstandard-full-site-design.md), superseding the [2026-09-02 design](../../docs/superpowers/specs/2026-09-02-ironstandard-landing-page-design.md). Plan: [2026-09-16 implementation](../../docs/superpowers/plans/2026-09-16-ironstandard-full-site.md). Wireframe (all 7 pages, colour-keyed ready/pending): `docs/superpowers/specs/2026-09-15-ironstandard-wireframes.html`.
 
@@ -85,11 +85,61 @@ Executed via `superpowers:subagent-driven-development` — a fresh implementer s
 
 Also caught: `projects/ironstandard-lp/preview-local.html` is a stale 15 Sep standalone snapshot with the old dead `#form` links, sitting entirely outside this plan's scope — flagged as a separate cleanup job rather than folded into this build.
 
+## Current site: six pages, enquiry-led (22 Sep 2026)
+
+Built from the approved **Website Strategy & Creative Direction** (27pp, Sept 2026) plus the
+**IRONSTNDRD Guidelines 2026**, both supplied by the client. Lives in
+[projects/ironstandard-site/](../../projects/ironstandard-site/), pushed to `main`. The old
+build is untouched beside it pending Hunter's call on retiring it.
+
+**The strategy changed the job.** No waitlist anywhere, no pricing, no address, no opening
+date, no named equipment brands or quantities, no competitor names. Six core pages — Home,
+About Us, The Facility, Coaching, FAQ, Contact Us — with a single enquiry as the primary
+action. Message order is fixed and must not be reordered: brand belief → market difference
+→ proof → culture → support.
+
+Positioning in one line: specialist enough for serious athletes, considered enough to
+welcome anyone who trains with intent. Hero is *Built by discipline. Driven by community.*,
+supported by *A different standard for serious training.*
+
+Technique and the anti-template discipline behind the build are on [[premium-web-build]].
+Iron-Standard-specific decisions:
+
+- **Orange is rationed and never a label colour on white.** `#F4502A` on white is 3.48:1
+  and fails WCAG AA; black on orange is 6.03:1 and passes, so every orange button carries a
+  black label. This is why the site is dark by default: it is the condition where the brand
+  accent is both strongest and compliant. The client's own strategy document states this.
+- **The Facility page separates confirmed from planned** with an outlined chip system,
+  because the facility is not built and presenting proposals as finished creates liability.
+- **Contact routes seven enquiry types to different recipients** so trainer and partnership
+  leads never land in the member inbox.
+- **Imagery is all placeholder.** Extracted from the moodboard inside the brand guidelines
+  PDF, so it is on-brand and approved in spirit, but low resolution (588px at widest) since
+  those images were cropped for print layout. The named Desktop asset folder the brief
+  pointed at did not exist. Everything gets replaced by the real shoot.
+- Men and women appear in equal numbers and with equal seriousness. Stated brand principle,
+  not a preference.
+
+**Enquiry backend rewritten.** See [[premium-web-build]] and
+`projects/ironstandard-site/google-apps-script/` — this fixes the silent notification
+failure that the 16 Sep build knowingly shipped.
+
 ## Open items before go-live
 
-1. **Deploy the Apps Script** inside Anthony's own Google account (`google-apps-script/README.md`) — every "Join the waitlist"/"Send" button is inert until then, same caveat that applied to the single-page build's `#waitlist` anchor.
-2. **Anthony still owes:** the About Us narrative, the Waitlist founding-offer wording, the FAQ's real Q&As, and social-media links for Contact — all currently shipped as clearly-flagged, factually-grounded placeholder copy.
-3. **Hosting target** — which of 10x's existing arrangements this lands on; domain stays at GoDaddy as registrar regardless.
-4. **Image hosting risk** (flagged by the final review, not yet decided): every image on all 7 pages still hotlinks to the WordPress staging subdomain (`iron.standard.10xstudios.co`) rather than local assets — two of those images have no local counterpart at all. Worth resolving alongside the hosting-target decision, not after DNS cuts over.
-5. Export any leads already sitting in the current GoDaddy Website Builder form before retiring it.
-6. Send Anthony the full 7-page build for sign-off before pointing DNS at it.
+1. **Deploy the enquiry handler** in the client's Google account and paste the Web App URL
+   into `contact.html`. The form is deliberately inert until then and tells the visitor so,
+   rather than appearing to send and discarding the enquiry.
+2. **Anthony still owes** the founder narrative, his real credentials and the advisory
+   relationship. Shipped as visible placeholder notes on the page, not invented copy.
+   Naming SATS Fagerborg as his background is a problem the strategy created for itself:
+   the site is not allowed to name competitors, so his history needs rewording.
+3. **Legal copy** for the four footer stubs, which need actual legal review.
+4. **Real photography.** Every image is a low-resolution stand-in.
+5. **Restore the location block** in `contact.html` (currently commented out) once the
+   address is approved for publication.
+6. **Language decision still open** — English, Norwegian or bilingual. The strategy says
+   this must be settled before content production because it changes navigation, search
+   visibility and form consent, and retrofitting means rebuilding the structure.
+7. **Retire or keep `projects/ironstandard-lp/`?** It still contains the waitlist the
+   strategy kills. Undecided.
+8. Hosting target, and export any leads sitting in the GoDaddy Website Builder form.

@@ -30,7 +30,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[akmal]] — 1007/180 Marine Parade full ZED restyle; delivered 14 Jul, 14cr
 - [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 - [[oneill-group]] — client; full rebrand + website. Identity landed 2026-08 as **O'Neill Property** (Sage Grey/Basalt/Stone/Deep Sage, Sinhala MN + Inter) — the earlier 10x-palette brief on that page is superseded
-- [[iron-standard]] — Anthony McCoy's Oslo powerlifting gym, pre-launch; expanded 16 Sep to a full 7-page site (Google Sheets/Apps Script forms, 10x hosting) — not the unrelated [[anthony]] lead page
+- [[iron-standard]] — Anthony McCoy, 800m² strength facility in Oslo. Six-page enquiry-led site built 22 Sep 2026 from the approved strategy doc; the waitlist scope is dead. Build discipline on [[premium-web-build]]
 - [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])
 
 ## Projects
@@ -62,6 +62,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
 - [[claude-code-setup]] — the Claude install mapped: settings, skills, MCP, permissions posture; 10 Aug audit (LAN-exposed dashboard, every scheduled loop dead on TCC)
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
+- [[premium-web-build]] — how a client site avoids reading as a template: vary every section's layout, test the accent against both grounds before choosing light or dark, the fixed-position and grid gotchas, and verify by measurement not screenshot
 - [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)
 - [[mac-performance]] — what actually slows the MacBook (RAM ceiling, 3 displays, Adobe stack); never delete the Camera Raw cache
 
