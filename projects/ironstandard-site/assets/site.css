@@ -887,3 +887,47 @@ html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
 /* the header's own rhythm absorbs the extra padding */
 .site-header{ padding-block:8px; }
 .footer-bottom{ gap:6px 32px; }
+
+/* ============================================================
+   CRITIQUE FIXES
+   ============================================================ */
+
+/* P1. .field{display:grid} was overriding the UA [hidden] rule, so the
+   conditional "Detail" input rendered for Membership, Media and General.
+   Membership is the default, so most visitors met a mystery field. */
+.field[hidden]{ display:none; }
+
+/* P2. The informational routing note and the error message were pixel
+   identical, so the form's first feedback on load read as an error and a
+   real error was indistinguishable from help. Split them. */
+.routing{
+  border:0; background:none;
+  padding:10px 0 10px 16px;
+  border-left:1px solid var(--rule);   /* 1px: a hairline, not a side stripe */
+  color:var(--muted);
+}
+.form-status{
+  border:1px solid rgba(244,80,42,.45);
+  background:rgba(244,80,42,.10);
+  padding:14px 16px; margin:0 0 20px;
+  font-size:15px; color:var(--ink);
+}
+.field-invalid input,.field-invalid select,.field-invalid textarea{
+  border-color:var(--orange);
+}
+.req{ color:var(--muted); font-weight:400; letter-spacing:0; text-transform:none; }
+
+/* P1 (Casey). The header CTA was display:none below 1024px, so the phone
+   had no persistent route to an enquiry after the hero. */
+@media (max-width:1023px){
+  .header-cta{
+    display:inline-flex;
+    min-height:40px; padding:0 16px;
+    font-size:11px; letter-spacing:.1em;
+    margin-left:auto; margin-right:12px;
+  }
+}
+@media (max-width:379px){
+  .header-cta{ padding:0 11px; font-size:10px; }
+  .logo img{ width:108px; }
+}

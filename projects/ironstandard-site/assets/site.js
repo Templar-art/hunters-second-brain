@@ -189,29 +189,54 @@
     status.hidden = false;
   }
 
-  form.addEventListener("submit", function (e) {
-    var endpoint = form.getAttribute("data-endpoint");
-    var live = endpoint && endpoint !== PLACEHOLDER;
+  /* Pre-commitment disclosure: if the endpoint is not live, say so BEFORE
+     the visitor fills anything in, not after they press send. */
+  (function preflight() {
+    var ep = form.getAttribute("data-endpoint");
+    if (!ep || ep === PLACEHOLDER) {
+      var pre = document.createElement("p");
+      pre.className = "form-status";
+      pre.textContent = "This form is not connected yet. Nothing sent here reaches us, and the enquiry route goes live before launch.";
+      form.insertBefore(pre, form.firstElementChild);
+    }
+  })();
 
-    if (!live) {
-      e.preventDefault();
-      say("This form is not connected yet. The enquiry route is set up before launch.");
+  function fieldError(id, msg) {
+    var el = document.getElementById(id);
+    el.closest(".field").classList.add("field-invalid");
+    el.setAttribute("aria-invalid", "true");
+    say(msg);
+    el.focus();
+  }
+
+  function clearErrors() {
+    form.querySelectorAll(".field-invalid").forEach(function (f) {
+      f.classList.remove("field-invalid");
+      var i = f.querySelector("input,select,textarea");
+      if (i) i.removeAttribute("aria-invalid");
+    });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearErrors();
+
+    /* Validation runs FIRST. It used to sit inside the live-endpoint branch,
+       which meant an empty form submitted cleanly whenever the endpoint was
+       still a placeholder. */
+    var name = document.getElementById("name");
+    var email = document.getElementById("email");
+    if (!name.value.trim()) { fieldError("name", "Please add your name so we know who we are replying to."); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+      fieldError("email", "Please check your email address. We reply to this, so a typo means you hear nothing."); return;
+    }
+
+    var endpoint = form.getAttribute("data-endpoint");
+    if (!endpoint || endpoint === PLACEHOLDER) {
+      say("This form is not connected yet, so nothing was sent. The enquiry route goes live before launch.");
       return;
     }
 
-    /* Minimal client-side checks so a mistyped address is caught here
-       rather than becoming an enquiry nobody can reply to. */
-    var email = document.getElementById("email");
-    var name = document.getElementById("name");
-    if (!name.value.trim()) {
-      e.preventDefault(); say("Please add your name."); name.focus(); return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-      e.preventDefault(); say("Please check your email address."); email.focus(); return;
-    }
-
-    /* The POST targets a hidden iframe, because Apps Script Web Apps do
-       not return CORS headers for fetch(). Let the native submit run. */
     form.action = endpoint;
     say("Sending your enquiry.");
     window.setTimeout(function () {
