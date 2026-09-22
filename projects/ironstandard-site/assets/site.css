@@ -649,3 +649,206 @@ p:last-child{ margin-bottom:0; }
   .sec > .container > .note-block{ grid-column:1/8; }
   .sec > .container > .cta-row{ grid-column:1/-1; }
 }
+
+/* ============================================================
+   CRAFT PASS
+   Answering "it reads like a template" without reaching for the
+   patterns the strategy bans. No cards, no shadows, no hover-lift,
+   no icons, no carousels. Distinctiveness comes from editorial
+   structure, filmic image treatment and state feedback.
+   ============================================================ */
+
+/* ---- 1. Film grain -----------------------------------------
+   A single fixed noise layer over the whole page. This is what
+   stops dark photography reading as stock: it unifies the page
+   into one filmic surface. Generated, so no image request. */
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:90;
+  pointer-events:none;
+  opacity:.035;   /* low enough to read as film, not dirt, on white too */
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+/* the light section needs less, or the grain reads as dirt */
+.sec--light{ position:relative; }
+
+/* ---- 2. Photography treatment ------------------------------
+   Slight contrast lift and desaturation pulls the moodboard
+   stock toward one deliberate grade. */
+.hero-media img,
+.proof-media img,
+.band img,
+.who-pair img,
+.media-r img,
+.media-l img,
+.alt-row img,
+.founder-media img{
+  filter:contrast(1.06) saturate(.92) brightness(.98);
+}
+
+/* ---- 3. Hung section numerals ------------------------------
+   The mark was a flat string. Now the numeral is a display
+   element in its own right, which is the brand guideline's own
+   layout logic. */
+.mark{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:baseline;
+  gap:0 18px;
+}
+.mark::after{ display:none; }          /* rule moves under the label */
+.mark-n{
+  font-size:clamp(30px,3.6vw,52px);
+  font-weight:700;
+  line-height:.85;
+  letter-spacing:-.03em;
+  color:var(--white);
+  font-variant-numeric:tabular-nums;
+}
+.mark--dark .mark-n{ color:var(--black); }
+.mark-t{
+  position:relative;
+  font-size:var(--eyebrow);
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  padding-bottom:12px;
+}
+.mark-t::after{
+  content:"";
+  position:absolute; left:0; bottom:0;
+  width:64px; height:2px;
+  background:var(--orange);
+  transform-origin:left;
+}
+/* a mark with no numeral keeps the label flush */
+.mark:not(:has(.mark-n)){ grid-template-columns:1fr; }
+
+/* ---- 4. The grid, made visible ------------------------------
+   Hairlines on the editorial grid. A designed page shows its
+   structure; a template hides that it has none. */
+@media (min-width:1024px){
+  .sec--ruled{ position:relative; }
+  .sec--ruled::before{
+    content:"";
+    position:absolute; inset:0;
+    pointer-events:none;
+    max-width:var(--maxw);
+    margin-inline:auto;
+    left:var(--pad); right:var(--pad);
+    background-image:repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,.038) 0 1px,
+      transparent 1px calc(100% / 12)
+    );
+  }
+  .sec--light.sec--ruled::before{
+    background-image:repeating-linear-gradient(
+      to right,
+      rgba(0,0,0,.045) 0 1px,
+      transparent 1px calc(100% / 12)
+    );
+  }
+}
+
+/* ---- 5. Scroll depth, in the header -------------------------
+   The "more UI" the page actually needed: orientation, not
+   ornament. A hairline, not a bar. */
+.scroll-line{
+  position:absolute; left:0; bottom:-1px;
+  height:2px; width:100%;
+  background:var(--orange);
+  transform:scaleX(0); transform-origin:left;
+  opacity:0;
+  transition:opacity var(--t) var(--ease);
+}
+.site-header.is-stuck .scroll-line{ opacity:1; }
+
+/* ---- 6. State feedback --------------------------------------
+   Every interactive thing now answers when touched. Fills and
+   wipes only: no lift, no shadow, no scale. */
+.btn{ position:relative; overflow:hidden; isolation:isolate; }
+.btn::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:var(--white);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t) var(--ease);
+}
+.btn:hover::before{ transform:scaleX(1); }
+.btn:hover{ background:var(--orange); color:var(--black); }
+.btn--ghost::before{ background:var(--white); }
+.btn--ghost:hover{ background:transparent; color:var(--black); }
+
+.textlink{ position:relative; border-bottom-color:transparent; }
+.textlink::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background:var(--rule);
+}
+.textlink::before{
+  content:""; position:absolute; left:0; bottom:0; height:1px; width:100%;
+  background:var(--orange);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t) var(--ease);
+  z-index:1;
+}
+.textlink:hover::before{ transform:scaleX(1); }
+.textlink--dark::after{ background:var(--rule-dark); }
+
+/* rows answer on hover: hairline warms, content steps right */
+.spec,.index-row,.stat{
+  transition:border-color var(--t) var(--ease);
+}
+.spec > *,.index-row > *{
+  transition:transform var(--t) var(--ease), color var(--t) var(--ease);
+}
+.spec:hover,.index-row:hover{ border-top-color:var(--orange); }
+.spec:hover > *,.index-row:hover > *{ transform:translateX(6px); }
+.index-row:hover .n{ color:var(--orange); }
+
+.faq summary{ transition:color var(--t) var(--ease); }
+.faq details:hover summary{ color:var(--orange); }
+.faq summary::after{ transition:transform var(--t) var(--ease); }
+.faq details[open] summary::after{ transform:rotate(180deg); }
+
+.nav a{ position:relative; }
+.nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px;
+  background:var(--orange);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t) var(--ease);
+}
+.nav a:hover::after,.nav a[aria-current="page"]::after{ transform:scaleX(1); }
+
+/* ---- 7. Small signals of care -------------------------------- */
+::selection{ background:var(--orange); color:var(--black); }
+html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
+::-webkit-scrollbar{ width:11px; }
+::-webkit-scrollbar-track{ background:var(--black); }
+::-webkit-scrollbar-thumb{ background:var(--grey-800); border:3px solid var(--black); }
+::-webkit-scrollbar-thumb:hover{ background:#2a2a2a; }
+
+/* ---- 8. Uneven vertical rhythm ------------------------------
+   Equal spacing down a page is itself a template tell. */
+.sec--tall{ padding-block:clamp(100px,18vw,230px); }
+
+/* ---- 9. Image reveal ----------------------------------------
+   A settle, not a performance. Within the 200-300ms rule. */
+.media-r,.media-l,.proof-media,.who-pair figure,.alt-media{ overflow:hidden; }
+.media-r img,.media-l img,.proof-media img,.who-pair img,.alt-media img{
+  transform:scale(1.05);
+  transition:transform 300ms var(--ease), filter 300ms var(--ease);
+}
+.rv.is-in .media-r img,.rv.is-in .media-l img,
+.is-in.media-r img,.is-in.media-l img,
+.is-in.proof-media img,.is-in .who-pair img,
+.who-pair.is-in img,.is-in.alt-media img{
+  transform:scale(1);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .media-r img,.media-l img,.proof-media img,.who-pair img,.alt-media img{
+    transform:none;
+  }
+  .scroll-line{ transition:none; }
+}

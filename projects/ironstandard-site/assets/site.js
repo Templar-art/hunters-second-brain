@@ -26,6 +26,27 @@
     }).observe(sentinel);
   }
 
+  /* ---- scroll depth: a hairline in the header, not a progress bar ----
+     rAF-throttled. Orientation is the one piece of interface the page
+     was genuinely missing. */
+  var line = document.createElement("div");
+  line.className = "scroll-line";
+  header.appendChild(line);
+  var lineTicking = false;
+  function drawLine() {
+    if (lineTicking) return;
+    lineTicking = true;
+    requestAnimationFrame(function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+      line.style.transform = "scaleX(" + pct.toFixed(4) + ")";
+      lineTicking = false;
+    });
+  }
+  window.addEventListener("scroll", drawLine, { passive: true });
+  window.addEventListener("resize", drawLine, { passive: true });
+  drawLine();
+
   /* ---- mobile nav ---- */
   var toggle = document.getElementById("navToggle");
   var panel = document.getElementById("navPanel");
