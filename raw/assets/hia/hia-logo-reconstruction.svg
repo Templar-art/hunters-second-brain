@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 476" width="420" height="476">
+  <!-- RECONSTRUCTION of the HIA mark, redrawn from a 420px reference.
+       Not the official artwork. Replace with HIA's supplied logo pack
+       before anything goes to air. -->
+
+  <!-- shield -->
+  <path fill="#00583D" d="
+    M210 6
+    C296 6 358 16 386 30
+    C404 39 410 52 412 78
+    C416 138 416 330 410 392
+    C407 424 400 446 386 456
+    C356 470 292 476 210 476
+    C128 476 64 470 34 456
+    C20 446 13 424 10 392
+    C4 330 4 138 8 78
+    C10 52 16 39 34 30
+    C62 16 124 6 210 6 Z"/>
+
+  <!-- HIA lettering -->
+  <g fill="#FFFFFF">
+    <!-- H -->
+    <path d="M115 43 h24 v26 h20 v-26 h24 v74 h-24 v-27 h-20 v27 h-24 z"/>
+    <!-- I -->
+    <path d="M198 43 h27 v74 h-27 z"/>
+    <!-- A -->
+    <path d="M234 117 l26 -74 h29 l26 74 h-26 l-4 -14 h-21 l-4 14 z
+             M269 84 h13 l-6 -23 z"/>
+  </g>
+
+  <!-- fence / frame slats behind the roof -->
+  <g fill="#FFFFFF">
+    <path d="M107 160 a13 13 0 0 1 25 0 v58 h-25 z"/>
+    <path d="M142 143 a15 15 0 0 1 29 0 v45 h-29 z"/>
+    <path d="M180 151 a15 12 0 0 1 29 0 v12 h-29 z"/>
+  </g>
+
+  <!-- yellow roof -->
+  <path fill="#FFD520" d="
+    M262 116
+    l70 0 l0 22 l16 -14 l0 44
+    l42 46 l-46 0 l0 -16 l-30 0
+    l0 34 l-70 0
+    l-52 -44 l-70 22 l48 -50 z"/>
+
+  <!-- hand -->
+  <g fill="#FFFFFF">
+    <!-- fingers -->
+    <path d="M63 214 a17 17 0 0 1 34 0 v96 h-34 z"/>
+    <path d="M104 200 a16 16 0 0 1 32 0 v104 h-32 z"/>
+    <path d="M143 196 a16 16 0 0 1 32 0 v104 h-32 z"/>
+    <path d="M182 200 a16 16 0 0 1 32 0 v98 h-32 z"/>
+    <!-- palm + wrist -->
+    <path d="M63 286 h190 l0 40 l-60 46 l0 97 h-96 l0 -103 l-34 -32 z"/>
+    <!-- thumb -->
+    <path d="M253 262 a24 24 0 0 1 44 14 l0 78 l-42 34 l0 -60 z"/>
+  </g>
+</svg>
