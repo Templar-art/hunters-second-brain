@@ -5,6 +5,7 @@ p0_count: 1
 p1_count: 3
 timestamp: 2026-09-22T22-44-47Z
 slug: projects-ironstandard-site-index-html
+closed: true
 ---
 # Design Critique: Iron Standard site
 
