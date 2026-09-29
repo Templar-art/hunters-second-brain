@@ -1003,3 +1003,19 @@ html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
   color:var(--white); text-decoration:underline; text-underline-offset:3px;
   text-decoration-color:var(--orange); text-decoration-thickness:1px;
 }
+
+/* ---- Hardening ------------------------------------------------
+   Norwegian compounds ("styrketreningsfasilitet") are far longer than
+   any English word here. At display sizes one can outrun a 375px screen,
+   so headings may break inside a word rather than overflow. */
+h1,h2,h3,.position-statement,.who-pull,.band-copy p,.stat dt{
+  overflow-wrap:anywhere;   /* unlike break-word, also shrinks min-content, so grid tracks cannot be pushed wide */
+  hyphens:auto;
+}
+.grid > *,.hero-grid > *,.field,.field-row > *{ min-width:0; }
+input,textarea,select{ caret-color:var(--orange); }
+.btn[aria-busy="true"]{ cursor:progress; }
+.btn:disabled{ pointer-events:none; }
+/* The longest display word ("COMMUNITY.") is 6.23em wide. Below ~362px the
+   48px floor no longer fits the column, so size to the word, not the floor. */
+.hero h1,.close h2{ font-size:min(var(--display), calc((100vw - 64px) / 6.4)); }

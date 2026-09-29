@@ -95,22 +95,22 @@
           <div class="field-row">
             <div class="field">
               <label for="name">Name <span class="req">(required)</span></label>
-              <input type="text" id="name" name="name" autocomplete="name" required>
+              <input type="text" id="name" name="name" autocomplete="name" maxlength="120" required>
             </div>
             <div class="field">
               <label for="email">Email <span class="req">(required)</span></label>
-              <input type="email" id="email" name="email" autocomplete="email" required>
+              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" maxlength="254" required>
             </div>
           </div>
 
           <div class="field" id="extraField" hidden>
             <label for="extraInput" id="extraLabel">Detail</label>
-            <input type="text" id="extraInput" name="extra">
+            <input type="text" id="extraInput" name="extra" maxlength="200">
           </div>
 
           <div class="field">
             <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Anything that helps us answer properly."></textarea>
+            <textarea id="message" name="message" maxlength="5000" placeholder="Anything that helps us answer properly."></textarea>
           </div>
 
           <div class="hp" aria-hidden="true">
@@ -118,7 +118,8 @@
             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
           </div>
 
-          <p class="form-status" id="formStatus" role="alert" hidden></p>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
+          <noscript><p class="form-status">This form needs JavaScript to send. Please enable it, or come back from a browser that has it on.</p></noscript>
           <button class="btn" type="submit">Send enquiry</button>
           <p class="form-note">
             We use your details only to answer this enquiry. Nothing is added to a mailing

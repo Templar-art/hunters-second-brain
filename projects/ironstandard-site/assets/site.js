@@ -222,8 +222,60 @@
     });
   }
 
+  var button = form.querySelector('button[type="submit"]');
+  var sink = document.querySelector('iframe[name="enquirySink"]');
+  var sending = false;
+  var timer = null;
+
+  function setSending(on) {
+    sending = on;
+    button.disabled = on;
+    button.setAttribute("aria-busy", on ? "true" : "false");
+    button.textContent = on ? "Sending\u2026" : "Send enquiry";
+  }
+
+  function finish(ok) {
+    window.clearTimeout(timer);
+    if (!sending) return;
+    setSending(false);
+    if (ok) {
+      say("Thank you. Your enquiry has reached us and goes to the right person.");
+      form.reset();
+      sync();
+    } else {
+      /* Input is kept, so trying again costs nothing. */
+      say("That did not go through. Your details are still here, so please try again in a moment.");
+    }
+  }
+
+  /* Apps Script sends no CORS headers, so the response body cannot be read.
+     The handler posts a message back to this window instead (see
+     enquiry-handler.gs reply()). No answer in 20s is a failure. */
+  window.addEventListener("message", function (e) {
+    if (!/^https:\/\/([a-z0-9-]+\.)*(google\.com|googleusercontent\.com)$/.test(e.origin)) return;
+    var d = e.data;
+    if (!d || d.source !== "iron-standard-enquiry") return;
+    if (d.ok) { finish(true); return; }
+    if (d.error === "invalid") {
+      window.clearTimeout(timer);
+      setSending(false);
+      say("We could not accept those details. Please check your name and email and send again.");
+      return;
+    }
+    finish(false);
+  });
+
+  /* Fallback for a handler that does not post a message: a load means the
+     server answered. Give the message a moment to arrive first. */
+  if (sink) {
+    sink.addEventListener("load", function () {
+      if (sending) window.setTimeout(function () { finish(true); }, 3000);
+    });
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    if (sending) return;              /* no double submission */
     clearErrors();
 
     /* Validation runs FIRST. It used to sit inside the live-endpoint branch,
@@ -231,8 +283,10 @@
        still a placeholder. */
     var name = document.getElementById("name");
     var email = document.getElementById("email");
-    if (!name.value.trim()) { fieldError("name", "Please add your name so we know who we are replying to."); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+    name.value = name.value.trim();
+    email.value = email.value.trim();
+    if (!name.value) { fieldError("name", "Please add your name so we know who we are replying to."); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value)) {
       fieldError("email", "Please check your email address. We reply to this, so a typo means you hear nothing."); return;
     }
 
@@ -242,13 +296,20 @@
       return;
     }
 
+    if (navigator.onLine === false) {
+      say("You appear to be offline. Your details are still here, so send again once you have a connection.");
+      return;
+    }
+
+    /* preventDefault() above stops the native submit, so it has to be
+       re-issued explicitly. The earlier version set form.action and never
+       submitted, then showed a success message on a timer: every enquiry
+       would have been lost the day the endpoint went live. */
     form.action = endpoint;
+    setSending(true);
     say("Sending your enquiry.");
-    window.setTimeout(function () {
-      say("Thank you. Your enquiry has been sent and goes to the right person.");
-      form.reset();
-      sync();
-    }, 900);
+    timer = window.setTimeout(function () { finish(false); }, 20000);
+    HTMLFormElement.prototype.submit.call(form);
   });
 })();
 

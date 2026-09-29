@@ -1021,3 +1021,7 @@ Hunter re-sent the strategy PDF (byte-identical to the approved one). Audited th
 ## [2026-09-29] query | Iron Standard: launch packaging
 
 Coming-soon page is live on WordPress/Elementor; Hunter needs the real site live. Added favicon (client's existing), canonical tags, 404, robots, sitemap, Netlify and Apache configs; upload zip on Desktop. Go-live blocked only on host access. Detail on [[iron-standard]].
+
+## [2026-09-29] query | Iron Standard: harden pass
+
+Found the enquiry form never actually submitted (preventDefault with no re-submit, success faked on a timer). Fixed with explicit submit, postMessage confirmation, busy state, offline and timeout handling; hardened the Apps Script (validation, length caps, formula-injection guard, write lock). Long-word protection for Norwegian compounds and a 320px hero fix. Lessons on [[premium-web-build]].

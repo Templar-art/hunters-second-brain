@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [web, design, build, client-sites, accessibility]
-updated: 2026-09-22
+updated: 2026-09-29
 ---
 
 # Premium web build
@@ -127,6 +127,22 @@ See [[iron-standard]] and the auto-memory reference on Apps Script form handlers
 short version: Apps Script Web Apps return no CORS headers, so POST through a hidden
 iframe; never notify via `Session.getActiveUser()`; and until the endpoint is live, make
 the form **say** it is not connected rather than appearing to send.
+
+**The hidden-iframe submit bug (Iron Standard, found 29 Sep 2026).** A submit handler that
+calls `preventDefault()` for validation must re-issue the submit explicitly
+(`HTMLFormElement.prototype.submit.call(form)`). The shipped version set `form.action` and
+never submitted, then showed "Thank you" on a timer: invisible while the endpoint was a
+placeholder, total silent loss the day it went live. Never fake success on a timer. Have the
+Apps Script answer with `HtmlService` + `ALLOWALL` and a `window.top.postMessage({ok})`, listen
+for it with an origin check, keep the visitor's input until it arrives, and treat 20s of
+silence as failure. Also prefix cell values starting `= + - @` with `'` or a message can run as
+a Sheets formula.
+
+**Norwegian (and German) compounds break display type.** `overflow-wrap:break-word` does not
+reduce min-content, so a single long word still pushes a grid track wider and gets clipped
+by an `overflow:hidden` hero. Use `overflow-wrap:anywhere` plus `min-width:0` on grid
+children, and size the hero to its longest real word (`min(var(--display), calc((100vw -
+64px) / 6.4))`) so small phones shrink the type instead of breaking a word mid-way.
 
 ## Honesty in a pre-launch build
 

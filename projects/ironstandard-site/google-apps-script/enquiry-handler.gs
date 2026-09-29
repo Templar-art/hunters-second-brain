@@ -53,8 +53,23 @@ function doPost(e) {
     // fills every input does. Accept the request so the bot sees success,
     // but never write a row.
     if (p.website) {
-      return jsonResponse({ ok: true });
+      return reply({ ok: true });
     }
+
+    // Never trust the browser. Trim, cap every field at the same limits the
+    // form sets, and refuse a request with no usable name or email.
+    var name = clean(p.name, 120);
+    var email = clean(p.email, 254);
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      return reply({ ok: false, error: 'invalid' });
+    }
+    p = {
+      enquiryType: p.enquiryType,
+      name: name,
+      email: email,
+      extra: clean(p.extra, 200),
+      message: clean(p.message, 5000)
+    };
 
     var type = String(p.enquiryType || 'general').toLowerCase();
     if (!ROUTES.hasOwnProperty(type)) {
@@ -64,25 +79,43 @@ function doPost(e) {
     var recipient = resolveRecipient(type);
     var timestamp = new Date();
 
-    appendRow([
-      timestamp,
-      type,
-      p.name || '',
-      p.email || '',
-      p.extra || '',
-      p.message || '',
-      recipient
-    ]);
+    // Serialise writes so two enquiries arriving together cannot collide.
+    var lock = LockService.getScriptLock();
+    lock.waitLock(10000);
+    try {
+      appendRow([
+        timestamp,
+        type,
+        cell(p.name),
+        cell(p.email),
+        cell(p.extra),
+        cell(p.message),
+        recipient
+      ]);
+    } finally {
+      lock.releaseLock();
+    }
 
     notify(recipient, type, p, timestamp);
 
-    return jsonResponse({ ok: true });
+    return reply({ ok: true });
   } catch (err) {
     // Log rather than throw, so a notification failure never costs us the
     // row that was already written.
     console.error('Enquiry handler failed: ' + err);
-    return jsonResponse({ ok: false });
+    return reply({ ok: false });
   }
+}
+
+function clean(value, max) {
+  return String(value || '').trim().slice(0, max);
+}
+
+// A value starting with = + - @ is run as a formula by Sheets. A leading
+// apostrophe stores it as plain text, so a message like "=IMPORTXML(...)"
+// can never execute inside the enquiry sheet.
+function cell(value) {
+  return /^[=+\-@\t\r]/.test(value) ? "'" + value : value;
 }
 
 function doGet() {
@@ -128,6 +161,18 @@ function notify(recipient, type, p, timestamp) {
     replyTo: p.email || undefined,
     name: 'Iron Standard website'
   });
+}
+
+// The form posts into a hidden iframe, so the page cannot read a JSON body
+// (no CORS). Instead answer with a tiny page that tells the parent window
+// whether the enquiry was stored. The site listens for this message; without
+// it, the only signal is that *something* loaded, which a server error also
+// produces.
+function reply(obj) {
+  var msg = JSON.stringify({ source: 'iron-standard-enquiry', ok: !!obj.ok, error: obj.error || null });
+  return HtmlService
+    .createHtmlOutput('<script>window.top.postMessage(' + msg + ', "*");</script>')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 function jsonResponse(obj) {

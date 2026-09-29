@@ -52,6 +52,28 @@ version never calls `getActiveUser()`. It uses an explicit `OWNER` constant and
 falls back to `getEffectiveUser()`, which resolves correctly when the script runs
 as its owner.
 
+## How the site knows it worked
+
+The handler answers with a one-line page that calls `window.top.postMessage`
+with `{ source: "iron-standard-enquiry", ok }`. The contact page listens for it
+(from `*.google.com` / `*.googleusercontent.com` only) and only then shows
+"Thank you". A server error shows a retry message with the visitor's input kept;
+no answer within 20 seconds is treated as a failure. If you ever edit the script,
+**Deploy → Manage deployments → New version**, or the live URL keeps serving the
+old code.
+
+## What the handler refuses
+
+- Requests with no name or an invalid email (the form checks too; this is the
+  check that cannot be bypassed).
+- Anything past the form's own limits: name 120, email 254, detail 200,
+  message 5,000 characters. Longer input is cut, not rejected.
+- Honeypot hits are acknowledged but never written.
+- Cell values starting with `=`, `+`, `-` or `@` are stored as plain text, so a
+  message cannot run as a formula inside the enquiry sheet.
+- Writes are serialised with a script lock so simultaneous enquiries do not
+  collide.
+
 ## Data handling
 
 Only the fields the form collects are stored: enquiry type, name, email, the
