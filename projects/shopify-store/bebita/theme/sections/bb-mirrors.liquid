@@ -1,28 +1,57 @@
-<section class="bb bb-mirrors" aria-labelledby="bb-mirrors-title-{{ section.id }}">
+{%- liquid
+  assign has_swim = false
+  for b in section.blocks
+    if b.settings.line == 'swim'
+      assign has_swim = true
+    endif
+  endfor
+-%}
+<section class="bb bb-mirrors" aria-labelledby="bb-mirrors-title-{{ section.id }}" data-bb-lines>
   <h1 id="bb-mirrors-title-{{ section.id }}" class="bb-mirrors__title">{{ section.settings.heading | newline_to_br }}</h1>
-  <ul class="bb-mirrors__row" role="list">
-    {%- for block in section.blocks -%}
-      <li class="bb-mirror bb-mirror--{{ forloop.index }}" {{ block.shopify_attributes }}>
-        <a href="{{ block.settings.link | default: routes.all_products_collection_url }}">
-          {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'eager', widths: '280, 420, 560, 700', sizes: '(min-width: 900px) 20vw, 36vw', alt: block.settings.image.alt | default: block.settings.label }}
-          {%- endif -%}
-          <span class="bb-mirror__label">{{ block.settings.label }}</span>
-        </a>
-      </li>
-    {%- endfor -%}
-  </ul>
-  <nav class="bb-mirrors__links" aria-label="Shop">
-    {%- if section.settings.link_1_label != blank -%}<a href="{{ section.settings.link_1 }}">{{ section.settings.link_1_label }}</a>{%- endif -%}
-    {%- if section.settings.link_2_label != blank -%}<a href="{{ section.settings.link_2 }}">{{ section.settings.link_2_label }}</a>{%- endif -%}
-  </nav>
-  {%- if section.settings.button_label != blank -%}<a class="bb-pill" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{%- endif -%}
+
+  {%- if has_swim -%}
+    <div class="bb-switch" role="tablist" aria-label="Choose a line">
+      <button type="button" role="tab" id="bb-tab-active-{{ section.id }}" aria-controls="bb-row-active-{{ section.id }}" aria-selected="true" data-bb-line="active">Active</button>
+      <button type="button" role="tab" id="bb-tab-swim-{{ section.id }}" aria-controls="bb-row-swim-{{ section.id }}" aria-selected="false" tabindex="-1" data-bb-line="swim">Swim</button>
+    </div>
+  {%- endif -%}
+
+  {%- assign bb_lines = 'active,swim' | split: ',' -%}
+  {%- for line in bb_lines -%}
+    {%- assign n = 0 -%}
+    <ul class="bb-mirrors__row" role="{% if has_swim %}tabpanel{% else %}list{% endif %}" id="bb-row-{{ line }}-{{ section.id }}"
+        {% if has_swim %}aria-labelledby="bb-tab-{{ line }}-{{ section.id }}"{% endif %} data-bb-row="{{ line }}" {% if line == 'swim' %}hidden{% endif %}>
+      {%- for block in section.blocks -%}
+        {%- if block.settings.line == line -%}
+          {%- assign n = n | plus: 1 -%}
+          <li class="bb-mirror bb-mirror--{{ n }}" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link | default: routes.all_products_collection_url }}">
+              {%- if block.settings.image != blank -%}
+                {%- if line == 'active' -%}{%- assign load = 'eager' -%}{%- else -%}{%- assign load = 'lazy' -%}{%- endif -%}
+                {%- if line == 'active' and n == 1 -%}{%- assign prio = 'high' -%}{%- else -%}{%- assign prio = 'auto' -%}{%- endif -%}
+                {{ block.settings.image | image_url: width: 700 | image_tag: loading: load, fetchpriority: prio, widths: '280, 420, 560, 700', sizes: '(min-width: 900px) 20vw, 36vw', alt: block.settings.alt }}
+              {%- endif -%}
+              <span class="bb-mirror__label">{{ block.settings.label }}</span>
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endfor -%}
+
+  <div class="bb-mirrors__actions">
+    <nav class="bb-mirrors__links" aria-label="Shop">
+      {%- if section.settings.link_1_label != blank -%}<a href="{{ section.settings.link_1 }}">{{ section.settings.link_1_label }}</a>{%- endif -%}
+      {%- if section.settings.link_2_label != blank -%}<a href="{{ section.settings.link_2 }}">{{ section.settings.link_2_label }}</a>{%- endif -%}
+    </nav>
+    {%- if section.settings.button_label != blank -%}<a class="bb-pill" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{%- endif -%}
+  </div>
 </section>
 
 {% schema %}
 {
   "name": "Bebita mirrors",
-  "max_blocks": 3,
+  "max_blocks": 6,
   "settings": [
     { "type": "textarea", "id": "heading", "label": "Heading", "default": "Build\nyour set." },
     { "type": "text", "id": "link_1_label", "label": "Link 1", "default": "Shop tops" },
@@ -34,8 +63,10 @@
   ],
   "blocks": [
     { "type": "mirror", "name": "Mirror", "settings": [
+      { "type": "select", "id": "line", "label": "Line", "default": "active", "options": [ { "value": "active", "label": "Active" }, { "value": "swim", "label": "Swim" } ] },
       { "type": "image_picker", "id": "image", "label": "Mirror image (arched mirror plate)" },
       { "type": "text", "id": "label", "label": "Colour name", "default": "Colour" },
+      { "type": "text", "id": "alt", "label": "Image description", "default": "Mirror selfie in a Bebita set" },
       { "type": "url", "id": "link", "label": "Link" }
     ] }
   ],

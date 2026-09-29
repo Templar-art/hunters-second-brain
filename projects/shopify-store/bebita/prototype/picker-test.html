@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Picker test</title>
+<style>@font-face{font-family:'Parkinsans';font-weight:800;src:url('../theme/assets/bebita-parkinsans-800.woff2') format('woff2')}@font-face{font-family:'Public Sans';font-weight:100 900;src:url('../theme/assets/bebita-publicsans-var.woff2') format('woff2')}</style>
+<link rel="stylesheet" href="../theme/assets/bebita.css"></head><body><section class="bb bb-picker" id="picker" aria-labelledby="bb-picker-title-t" data-bb-picker
+  data-money-format="${{amount}}" data-cart-url="/cart" data-cart-add="/cart/add.js">
+  <div class="bb-picker__head">
+    <h2 id="bb-picker-title-t" class="bb-h2">Build it<br>here.</h2>
+    <div class="bb-switch bb-switch--picker" role="radiogroup" aria-label="Line">
+      <button type="button" role="radio" aria-checked="true" data-bb-pick-line="active">Active</button>
+      <button type="button" role="radio" aria-checked="false" data-bb-pick-line="swim">Swim</button>
+    </div>
+  </div>
+
+  <div class="bb-picker__slots">
+    
+      <fieldset class="bb-slot" data-bb-slot="top">
+        <legend class="bb-slot__legend">Top</legend>
+        <div class="bb-slot__media"><img alt="" width="720" height="900" data-bb-slot-img hidden></div>
+        <div class="bb-slot__controls">
+          <div class="bb-slot__group" data-bb-group="style"><span class="bb-slot__label">Style</span><div class="bb-chips" data-bb-chips="style"></div></div>
+          <div class="bb-slot__group" data-bb-group="colour"><span class="bb-slot__label">Colour <em data-bb-value="colour"></em></span><div class="bb-chips bb-chips--swatch" data-bb-chips="colour"></div></div>
+          <div class="bb-slot__group" data-bb-group="size"><span class="bb-slot__label">Size</span><div class="bb-chips" data-bb-chips="size"></div></div>
+          <p class="bb-slot__stock" data-bb-stock aria-live="polite"></p>
+        </div>
+        <p class="bb-slot__empty" data-bb-empty hidden>Pieces are being added now. Check back soon.</p>
+      </fieldset><fieldset class="bb-slot" data-bb-slot="bottom">
+        <legend class="bb-slot__legend">Bottom</legend>
+        <div class="bb-slot__media"><img alt="" width="720" height="900" data-bb-slot-img hidden></div>
+        <div class="bb-slot__controls">
+          <div class="bb-slot__group" data-bb-group="style"><span class="bb-slot__label">Style</span><div class="bb-chips" data-bb-chips="style"></div></div>
+          <div class="bb-slot__group" data-bb-group="colour"><span class="bb-slot__label">Colour <em data-bb-value="colour"></em></span><div class="bb-chips bb-chips--swatch" data-bb-chips="colour"></div></div>
+          <div class="bb-slot__group" data-bb-group="size"><span class="bb-slot__label">Size</span><div class="bb-chips" data-bb-chips="size"></div></div>
+          <p class="bb-slot__stock" data-bb-stock aria-live="polite"></p>
+        </div>
+        <p class="bb-slot__empty" data-bb-empty hidden>Pieces are being added now. Check back soon.</p>
+      </fieldset>
+    
+  </div>
+
+  <div class="bb-picker__bar">
+    <p class="bb-picker__summary" data-bb-summary aria-live="polite">Pick a top and a bottom to see your set.</p>
+    <p class="bb-picker__total"><span data-bb-total></span><small></small></p>
+    <button class="bb-pill bb-pill--static" type="button" data-bb-add disabled>Add set to bag</button>
+    <p class="bb-picker__error" data-bb-error role="alert" hidden></p>
+  </div>
+
+  <script type="application/json" data-bb-products>[{"id": 1, "title": "Minimal Bra", "handle": "minimal-bra", "url": "#", "role": "top", "line": "active", "image": "../assets/photos/room-1.jpg", "options": [{"name": "Colour", "values": ["Baby pink", "Lilac", "Cobalt"]}, {"name": "Size", "values": ["XS", "S", "M", "L"]}], "variants": [{"id": 101, "options": ["Baby pink", "XS"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 102, "options": ["Baby pink", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 103, "options": ["Baby pink", "M"], "price": 5500, "available": true, "left": 2, "image": null}, {"id": 104, "options": ["Baby pink", "L"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 105, "options": ["Lilac", "XS"], "price": 5500, "available": false, "left": 12, "image": null}, {"id": 106, "options": ["Lilac", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 107, "options": ["Lilac", "M"], "price": 5500, "available": true, "left": 2, "image": null}, {"id": 108, "options": ["Lilac", "L"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 109, "options": ["Cobalt", "XS"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 110, "options": ["Cobalt", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 111, "options": ["Cobalt", "M"], "price": 5500, "available": true, "left": 2, "image": null}, {"id": 112, "options": ["Cobalt", "L"], "price": 5500, "available": true, "left": 12, "image": null}]}, {"id": 2, "title": "Strong Bra", "handle": "strong-bra", "url": "#", "role": "top", "line": "active", "image": "../assets/photos/mix-duo.jpg", "options": [{"name": "Colour", "values": ["Cobalt", "Red"]}, {"name": "Size", "values": ["S", "M", "L"]}], "variants": [{"id": 201, "options": ["Cobalt", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 202, "options": ["Cobalt", "M"], "price": 5500, "available": true, "left": null, "image": null}, {"id": 203, "options": ["Cobalt", "L"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 204, "options": ["Red", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 205, "options": ["Red", "M"], "price": 5500, "available": true, "left": null, "image": null}, {"id": 206, "options": ["Red", "L"], "price": 5500, "available": true, "left": 12, "image": null}]}, {"id": 3, "title": "Minimal Shorts", "handle": "minimal-shorts", "url": "#", "role": "bottom", "line": "active", "image": "../assets/photos/active-group.jpg", "options": [{"name": "Colour", "values": ["Baby pink", "Lilac", "Cobalt"]}, {"name": "Size", "values": ["XS", "S", "M", "L"]}], "variants": [{"id": 301, "options": ["Baby pink", "XS"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 302, "options": ["Baby pink", "S"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 303, "options": ["Baby pink", "M"], "price": 5000, "available": true, "left": 3, "image": null}, {"id": 304, "options": ["Baby pink", "L"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 305, "options": ["Lilac", "XS"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 306, "options": ["Lilac", "S"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 307, "options": ["Lilac", "M"], "price": 5000, "available": true, "left": 3, "image": null}, {"id": 308, "options": ["Lilac", "L"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 309, "options": ["Cobalt", "XS"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 310, "options": ["Cobalt", "S"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 311, "options": ["Cobalt", "M"], "price": 5000, "available": true, "left": 3, "image": null}, {"id": 312, "options": ["Cobalt", "L"], "price": 5000, "available": true, "left": 12, "image": null}]}, {"id": 4, "title": "Triangle Top", "handle": "triangle-top", "url": "#", "role": "top", "line": "swim", "image": "../assets/photos/swim-beach.jpg", "options": [{"name": "Colour", "values": ["Cobalt", "Red", "Chocolate"]}, {"name": "Size", "values": ["S", "M", "L"]}], "variants": [{"id": 401, "options": ["Cobalt", "S"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 402, "options": ["Cobalt", "M"], "price": 4500, "available": true, "left": null, "image": null}, {"id": 403, "options": ["Cobalt", "L"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 404, "options": ["Red", "S"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 405, "options": ["Red", "M"], "price": 4500, "available": true, "left": null, "image": null}, {"id": 406, "options": ["Red", "L"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 407, "options": ["Chocolate", "S"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 408, "options": ["Chocolate", "M"], "price": 4500, "available": true, "left": null, "image": null}, {"id": 409, "options": ["Chocolate", "L"], "price": 4500, "available": true, "left": 12, "image": null}]}]</script>
+  <script type="application/json" data-bb-colours>"Baby pink: #f7c5d0\nHot pink: #e8479a\nLilac: #b9a6e8\nCobalt: #2f5fd8\nRed: #d8283a\nChocolate: #5b3a2e"</script>
+</section><script src="../theme/assets/bebita-picker.js"></script></body></html>

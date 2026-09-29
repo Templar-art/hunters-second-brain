@@ -1,0 +1,72 @@
+{%- liquid
+  assign tops = section.settings.tops.products
+  assign bottoms = section.settings.bottoms.products
+-%}
+<section class="bb bb-picker" id="picker" aria-labelledby="bb-picker-title-{{ section.id }}" data-bb-picker
+  data-money-format="{{ shop.money_format | escape }}" data-cart-url="{{ routes.cart_url }}" data-cart-add="{{ routes.cart_add_url }}.js">
+  <div class="bb-picker__head">
+    <h2 id="bb-picker-title-{{ section.id }}" class="bb-h2">{{ section.settings.heading | newline_to_br }}</h2>
+    <div class="bb-switch bb-switch--picker" role="radiogroup" aria-label="Line">
+      <button type="button" role="radio" aria-checked="true" data-bb-pick-line="active">Active</button>
+      <button type="button" role="radio" aria-checked="false" data-bb-pick-line="swim">Swim</button>
+    </div>
+  </div>
+
+  {%- assign bb_count = tops.size | plus: bottoms.size -%}
+  {%- if bb_count == 0 -%}
+    <div class="bb-picker__soon" data-reveal>
+      <p>{{ section.settings.empty_text }}</p>
+      <a class="bb-arrow" href="{{ section.settings.soon_link | default: routes.all_products_collection_url }}">{{ section.settings.soon_label }}</a>
+    </div>
+  {%- else -%}
+  <div class="bb-picker__slots">
+    {%- assign bb_slots = 'top,bottom' | split: ',' -%}
+    {%- for slot in bb_slots -%}
+      <fieldset class="bb-slot" data-bb-slot="{{ slot }}">
+        <legend class="bb-slot__legend">{% if slot == 'top' %}{{ section.settings.top_label }}{% else %}{{ section.settings.bottom_label }}{% endif %}</legend>
+        <div class="bb-slot__media" data-bb-slot-media></div>
+        <div class="bb-slot__controls">
+          <div class="bb-slot__group" data-bb-group="style"><span class="bb-slot__label">Style</span><div class="bb-chips" data-bb-chips="style"></div></div>
+          <div class="bb-slot__group" data-bb-group="colour"><span class="bb-slot__label">Colour <em data-bb-value="colour"></em></span><div class="bb-chips bb-chips--swatch" data-bb-chips="colour"></div></div>
+          <div class="bb-slot__group" data-bb-group="size"><span class="bb-slot__label">Size</span><div class="bb-chips" data-bb-chips="size"></div></div>
+          <p class="bb-slot__stock" data-bb-stock aria-live="polite"></p>
+        </div>
+        <p class="bb-slot__empty" data-bb-empty hidden>{{ section.settings.empty_text }}</p>
+      </fieldset>
+    {%- endfor -%}
+  </div>
+
+  <div class="bb-picker__bar">
+    <p class="bb-picker__summary" data-bb-summary aria-live="polite">{{ section.settings.prompt_text }}</p>
+    <p class="bb-picker__total"><span data-bb-total></span>{%- if section.settings.bundle_note != blank -%}<small>{{ section.settings.bundle_note }}</small>{%- endif -%}</p>
+    <button class="bb-pill bb-pill--static" type="button" data-bb-add disabled>{{ section.settings.button_label }}</button>
+    <p class="bb-picker__error" data-bb-error role="alert" hidden></p>
+  </div>
+  {%- endif -%}
+
+  <script type="application/json" data-bb-products>
+    [{%- assign sep = '' -%}{%- for product in tops -%}{{ sep }}{%- render 'bb-product-json', product: product -%}{%- assign sep = ',' -%}{%- endfor -%}{%- for product in bottoms -%}{{ sep }}{%- render 'bb-product-json', product: product -%}{%- assign sep = ',' -%}{%- endfor -%}]
+  </script>
+  <script type="application/json" data-bb-colours>{{ section.settings.colour_map | json }}</script>
+</section>
+
+{% schema %}
+{
+  "name": "Bebita set picker",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Build it\nhere." },
+    { "type": "collection", "id": "tops", "label": "Tops collection" },
+    { "type": "collection", "id": "bottoms", "label": "Bottoms collection" },
+    { "type": "text", "id": "top_label", "label": "Top label", "default": "Top" },
+    { "type": "text", "id": "bottom_label", "label": "Bottom label", "default": "Bottom" },
+    { "type": "text", "id": "prompt_text", "label": "Prompt", "default": "Pick a top and a bottom to see your set." },
+    { "type": "text", "id": "bundle_note", "label": "Bundle note (leave blank until a set discount exists)" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Add set to bag" },
+    { "type": "text", "id": "empty_text", "label": "Shown when a slot has no products", "default": "Pieces are being added now. Check back soon." },
+    { "type": "text", "id": "soon_label", "label": "Link shown before any products exist", "default": "See the change room" },
+    { "type": "url", "id": "soon_link", "label": "Link target" },
+    { "type": "textarea", "id": "colour_map", "label": "Colour swatches (one per line, Name: #hex)", "default": "Baby pink: #f7c5d0\nHot pink: #e8479a\nLilac: #b9a6e8\nBaby blue: #a9cdf0\nCobalt: #2f5fd8\nRed: #d8283a\nBlack: #1c1a1b\nChocolate: #5b3a2e\nWhite: #f7f4f1\nAqua: #57c9d8\nCoral: #ef7b6c" }
+  ],
+  "presets": [{ "name": "Bebita set picker" }]
+}
+{% endschema %}

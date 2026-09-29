@@ -1,0 +1,228 @@
+{
+ "sections": {
+  "bb_mirrors": {
+   "type": "bb-mirrors",
+   "settings": {
+    "heading": "Build\nyour set.",
+    "link_1_label": "Shop tops",
+    "link_1": "shopify://collections/tops",
+    "link_2_label": "Shop bottoms",
+    "link_2": "shopify://collections/bottoms",
+    "button_label": "Start building",
+    "button_link": "#picker"
+   },
+   "blocks": {
+    "m1": {
+     "type": "mirror",
+     "settings": {
+      "line": "active",
+      "image": "shopify://shop_images/bebita-mirror-1.jpg",
+      "label": "Hot pink",
+      "alt": "Mirror selfie in the hot pink Bebita Active set",
+      "link": "shopify://collections/active"
+     }
+    },
+    "m2": {
+     "type": "mirror",
+     "settings": {
+      "line": "active",
+      "image": "shopify://shop_images/bebita-mirror-2.jpg",
+      "label": "Lilac",
+      "alt": "Mirror selfie in the lilac Bebita Active set with leggings",
+      "link": "shopify://collections/active"
+     }
+    },
+    "m3": {
+     "type": "mirror",
+     "settings": {
+      "line": "active",
+      "image": "shopify://shop_images/bebita-mirror-3.jpg",
+      "label": "Cobalt",
+      "alt": "Mirror selfie in the cobalt Bebita Active set",
+      "link": "shopify://collections/active"
+     }
+    },
+    "m4": {
+     "type": "mirror",
+     "settings": {
+      "line": "swim",
+      "image": "shopify://shop_images/bebita-swim-mirror-1.jpg",
+      "label": "Cobalt",
+      "alt": "Mirror selfie in a cobalt Bebita Swim bikini and sarong",
+      "link": "shopify://collections/swim"
+     }
+    },
+    "m5": {
+     "type": "mirror",
+     "settings": {
+      "line": "swim",
+      "image": "shopify://shop_images/bebita-swim-mirror-2.jpg",
+      "label": "Red",
+      "alt": "Mirror selfie in a red Bebita Swim bikini and sarong",
+      "link": "shopify://collections/swim"
+     }
+    },
+    "m6": {
+     "type": "mirror",
+     "settings": {
+      "line": "swim",
+      "image": "shopify://shop_images/bebita-swim-mirror-3.jpg",
+      "label": "Chocolate",
+      "alt": "Mirror selfie in a chocolate Bebita Swim bikini",
+      "link": "shopify://collections/swim"
+     }
+    }
+   },
+   "block_order": [
+    "m1",
+    "m2",
+    "m3",
+    "m4",
+    "m5",
+    "m6"
+   ]
+  },
+  "bb_build": {
+   "type": "bb-build",
+   "settings": {
+    "image": "shopify://shop_images/bebita-mix-duo.jpg",
+    "heading": "Pick a top.\nPick a bottom.",
+    "text": "<p>Every top and every bottom is sold on its own, in its own size. Match them, or mix the colours. The set is yours to build.</p>",
+    "link_label": "Build yours below",
+    "link": "#picker"
+   },
+   "blocks": {
+    "s1": {
+     "type": "step",
+     "settings": {
+      "label": "Top",
+      "text": "Choose the bra and your size"
+     }
+    },
+    "s2": {
+     "type": "step",
+     "settings": {
+      "label": "Bottom",
+      "text": "Choose the shorts or leggings and your size"
+     }
+    },
+    "s3": {
+     "type": "step",
+     "settings": {
+      "label": "Bag",
+      "text": "Both go in together"
+     }
+    }
+   },
+   "block_order": [
+    "s1",
+    "s2",
+    "s3"
+   ]
+  },
+  "bb_active": {
+   "type": "bb-line",
+   "settings": {
+    "side": "active",
+    "image": "shopify://shop_images/bebita-active-group.jpg",
+    "title": "Active",
+    "text": "<p>Seamless scrunch shorts, sports bras and leggings, made for the gym and everything after it.</p>",
+    "link_label": "Shop Active",
+    "link": "shopify://collections/active"
+   }
+  },
+  "bb_swim": {
+   "type": "bb-line",
+   "settings": {
+    "side": "swim",
+    "image": "shopify://shop_images/bebita-swim-beach.jpg",
+    "title": "Swim",
+    "text": "<p>Triangle bikinis sold as separates, so the top and the bottom are each in your size.</p>",
+    "link_label": "Shop Swim",
+    "link": "shopify://collections/swim"
+   }
+  },
+  "bb_statement": {
+   "type": "bb-statement",
+   "settings": {
+    "line": "The original run is back. When it\u2019s gone, it\u2019s gone.",
+    "sub": "What\u2019s left is what\u2019s listed. No countdown clocks."
+   }
+  },
+  "bb_room": {
+   "type": "bb-room",
+   "settings": {
+    "heading": "Straight from\nthe change room.",
+    "image_a": "shopify://shop_images/bebita-room-1.jpg",
+    "image_b": "shopify://shop_images/bebita-room-2.jpg",
+    "handle_1": "@bebitaactive",
+    "url_1": "https://www.instagram.com/bebitaactive/",
+    "handle_2": "@bebitaswim",
+    "url_2": "https://www.instagram.com/bebitaswim/"
+   }
+  },
+  "bb_promise": {
+   "type": "bb-promise",
+   "blocks": {
+    "p1": {
+     "type": "item",
+     "settings": {
+      "title": "Sent from the Gold Coast",
+      "text": "Packed and posted by us"
+     }
+    },
+    "p2": {
+     "type": "item",
+     "settings": {
+      "title": "Free delivery over $100",
+      "text": "Standard post Australia-wide"
+     }
+    },
+    "p3": {
+     "type": "item",
+     "settings": {
+      "title": "Size swaps",
+      "text": "Email us and we\u2019ll sort it"
+     }
+    },
+    "p4": {
+     "type": "item",
+     "settings": {
+      "title": "30-day returns",
+      "text": "On unworn pieces, tags on"
+     }
+    }
+   },
+   "block_order": [
+    "p1",
+    "p2",
+    "p3",
+    "p4"
+   ]
+  },
+  "bb_picker": {
+   "type": "bb-picker",
+   "settings": {
+    "heading": "Build it\nhere.",
+    "tops": "tops",
+    "bottoms": "bottoms",
+    "top_label": "Top",
+    "bottom_label": "Bottom",
+    "prompt_text": "Pick a top and a bottom to see your set.",
+    "bundle_note": "",
+    "button_label": "Add set to bag",
+    "empty_text": "Pieces are being added now. Check back soon."
+   }
+  }
+ },
+ "order": [
+  "bb_mirrors",
+  "bb_build",
+  "bb_picker",
+  "bb_active",
+  "bb_swim",
+  "bb_statement",
+  "bb_room",
+  "bb_promise"
+ ]
+}

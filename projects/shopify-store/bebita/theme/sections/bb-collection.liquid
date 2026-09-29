@@ -1,0 +1,65 @@
+{%- paginate collection.products by 24 -%}
+<section class="bb bb-collection" aria-labelledby="bb-col-title">
+  <div class="bb-collection__head">
+    <h1 id="bb-col-title" class="bb-collection__title">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}<div class="bb-collection__intro">{{ collection.description }}</div>{%- endif -%}
+    <p class="bb-collection__count">{{ collection.products_count }} {{ collection.products_count | pluralize: 'piece', 'pieces' }}</p>
+  </div>
+
+  {%- if collection.products.size > 0 -%}
+    <ul class="bb-grid" role="list">
+      {%- for product in collection.products -%}
+        {%- liquid
+          assign colours = nil
+          for o in product.options_with_values
+            assign on = o.name | downcase
+            if on contains 'colo'
+              assign colours = o.values
+            endif
+          endfor
+        -%}
+        <li class="bb-card">
+          <a href="{{ product.url }}">
+            <div class="bb-card__media">
+              {%- if product.featured_image -%}
+                {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300, 500, 700, 900', sizes: '(min-width: 900px) 25vw, 50vw', alt: product.featured_image.alt | default: product.title }}
+              {%- endif -%}
+              {%- if product.media[1] and product.media[1].media_type == 'image' -%}
+                {{ product.media[1] | image_url: width: 900 | image_tag: loading: 'lazy', class: 'bb-card__alt', widths: '300, 500, 700, 900', sizes: '(min-width: 900px) 25vw, 50vw', alt: '' }}
+              {%- endif -%}
+              {%- unless product.available -%}<span class="bb-card__flag">Sold out</span>{%- endunless -%}
+            </div>
+            <p class="bb-card__title">{{ product.title }}</p>
+            <p class="bb-card__meta">
+              <span>{{ product.price_min | money }}{% if product.price_varies %}+{% endif %}</span>
+              {%- if colours and colours.size > 1 -%}<span>{{ colours.size }} colours</span>{%- endif -%}
+            </p>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if paginate.pages > 1 -%}
+      <nav class="bb-pages" aria-label="Pages">
+        {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">Previous</a>{%- endif -%}
+        <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+        {%- if paginate.next -%}<a href="{{ paginate.next.url }}">Next</a>{%- endif -%}
+      </nav>
+    {%- endif -%}
+  {%- else -%}
+    <div class="bb-collection__empty">
+      <p>{{ section.settings.empty_text }}</p>
+      <a class="bb-arrow" href="{{ routes.root_url }}">{{ section.settings.empty_link }}</a>
+    </div>
+  {%- endif -%}
+</section>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Bebita collection",
+  "settings": [
+    { "type": "text", "id": "empty_text", "label": "Empty collection text", "default": "Nothing here yet. New pieces from the original run are being added." },
+    { "type": "text", "id": "empty_link", "label": "Empty collection link", "default": "Back to the change room" }
+  ]
+}
+{% endschema %}

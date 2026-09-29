@@ -1,0 +1,112 @@
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign is_top = false
+  if product.tags contains 'top'
+    assign is_top = true
+  endif
+  assign partner_pool = section.settings.bottoms.products
+  assign partner_slot = 'bottom'
+  assign self_slot = 'top'
+  unless is_top
+    assign partner_pool = section.settings.tops.products
+    assign partner_slot = 'top'
+    assign self_slot = 'bottom'
+  endunless
+  assign set_word = product.title | split: ' ' | first
+  assign partner = nil
+  for p in partner_pool
+    assign pw = p.title | split: ' ' | first
+    if pw == set_word
+      assign partner = p
+      break
+    endif
+  endfor
+-%}
+<section class="bb bb-product" data-bb-product data-money-format="{{ shop.money_format | escape }}">
+  <div class="bb-product__gallery">
+    {%- for media in product.media -%}
+      {%- if media.media_type == 'image' -%}
+        {%- if forloop.first -%}{%- assign load = 'eager' -%}{%- else -%}{%- assign load = 'lazy' -%}{%- endif -%}
+        <figure class="bb-product__shot{% if forloop.first %} bb-product__shot--lead{% endif %}" data-media-id="{{ media.id }}">
+          {{ media | image_url: width: 1400 | image_tag: loading: load, widths: '500, 800, 1100, 1400', sizes: '(min-width: 900px) 55vw, 100vw', alt: media.alt | default: product.title }}
+        </figure>
+      {%- endif -%}
+    {%- else -%}
+      <figure class="bb-product__shot bb-product__shot--lead bb-product__shot--empty" aria-hidden="true"></figure>
+    {%- endfor -%}
+  </div>
+
+  <div class="bb-product__info">
+    <h1 class="bb-product__title">{{ product.title }}</h1>
+    <p class="bb-product__price" data-bb-price>
+      {{ current.price | money }}
+      {%- if current.compare_at_price > current.price -%}<s>{{ current.compare_at_price | money }}</s>{%- endif -%}
+    </p>
+
+    {%- form 'product', product, class: 'bb-product__form', data-bb-form: '' -%}
+      <input type="hidden" name="id" value="{{ current.id }}" data-bb-variant-id>
+      {%- for option in product.options_with_values -%}
+        {%- assign is_colour = false -%}
+        {%- assign oname = option.name | downcase -%}
+        {%- if oname contains 'colo' -%}{%- assign is_colour = true -%}{%- endif -%}
+        <fieldset class="bb-option{% if is_colour %} bb-option--colour{% endif %}" data-bb-option="{{ forloop.index0 }}">
+          <legend>{{ option.name }} <em data-bb-option-value>{{ option.selected_value }}</em></legend>
+          <div class="bb-chips{% if is_colour %} bb-chips--swatch{% endif %}">
+            {%- for value in option.values -%}
+              <label class="bb-chip">
+                <input type="radio" class="visually-hidden" name="option-{{ forloop.parentloop.index0 }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                {%- if is_colour -%}
+                  <span class="bb-swatch" data-bb-swatch="{{ value | downcase | escape }}" aria-hidden="true"></span><span class="visually-hidden">{{ value }}</span>
+                {%- else -%}<span>{{ value }}</span>{%- endif -%}
+              </label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+      {%- endfor -%}
+
+      <p class="bb-product__stock" data-bb-stock aria-live="polite">
+        {%- if current.available == false -%}Sold out in this size
+        {%- elsif current.inventory_management == 'shopify' and current.inventory_quantity <= 5 and current.inventory_quantity > 0 -%}Only {{ current.inventory_quantity }} left
+        {%- endif -%}
+      </p>
+      <button class="bb-pill bb-pill--static bb-product__add" type="submit" name="add" data-bb-add {% unless current.available %}disabled{% endunless %}>
+        {%- if current.available -%}Add to bag{%- else -%}Sold out{%- endif -%}
+      </button>
+    {%- endform -%}
+
+    {%- if partner -%}
+      <div class="bb-pair">
+        <p class="bb-pair__label">Complete the set</p>
+        <a class="bb-pair__card" href="{{ partner.url }}">
+          {%- if partner.featured_image -%}{{ partner.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', widths: '150, 300', sizes: '96px', alt: '' }}{%- endif -%}
+          <span><strong>{{ partner.title }}</strong> {{ partner.price | money }}</span>
+        </a>
+        <a class="bb-arrow" href="{{ routes.root_url }}?{{ self_slot }}={{ product.handle }}&amp;{{ partner_slot }}={{ partner.handle }}#picker">Build the set</a>
+      </div>
+    {%- endif -%}
+
+    <div class="bb-details">
+      {%- if product.description != blank -%}
+        <details open><summary>Details</summary><div class="bb-rte">{{ product.description }}</div></details>
+      {%- endif -%}
+      <details><summary>Size and fit</summary><div class="bb-rte">{{ product.metafields.custom.size_fit | default: section.settings.size_fit }}</div></details>
+      <details><summary>Delivery and returns</summary><div class="bb-rte">{{ section.settings.delivery }}</div></details>
+    </div>
+  </div>
+
+  <script type="application/json" data-bb-product-json>{%- render 'bb-product-json', product: product -%}</script>
+  <script type="application/json" data-bb-colours>{{ section.settings.colour_map | json }}</script>
+</section>
+
+{% schema %}
+{
+  "name": "Bebita product",
+  "settings": [
+    { "type": "collection", "id": "tops", "label": "Tops collection (for Complete the set)" },
+    { "type": "collection", "id": "bottoms", "label": "Bottoms collection (for Complete the set)" },
+    { "type": "richtext", "id": "size_fit", "label": "Size and fit (used when the product has no size_fit metafield)", "default": "<p>Tops and bottoms are sold separately, so choose each in your own size. Unsure between two sizes? Email us before you order and we'll help.</p>" },
+    { "type": "richtext", "id": "delivery", "label": "Delivery and returns", "default": "<p>Sent from the Gold Coast. $9.95 standard, free over $100, Express $14.95. 30-day returns on unworn pieces with tags on; swimwear only with the hygiene liner in place.</p>" },
+    { "type": "textarea", "id": "colour_map", "label": "Colour swatches (one per line, Name: #hex)", "default": "Baby pink: #f7c5d0\nHot pink: #e8479a\nLilac: #b9a6e8\nBaby blue: #a9cdf0\nCobalt: #2f5fd8\nRed: #d8283a\nBlack: #1c1a1b\nChocolate: #5b3a2e\nWhite: #f7f4f1\nAqua: #57c9d8\nCoral: #ef7b6c" }
+  ]
+}
+{% endschema %}

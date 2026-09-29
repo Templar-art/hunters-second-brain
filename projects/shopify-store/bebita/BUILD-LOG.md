@@ -19,6 +19,25 @@ Budget: 1,000 credits approved 2026-09-30, on top of the direction-round comps.
 - Theme palette: blush #F6D7DD, plum #39242A, pill buttons. Parkinsans and Public Sans apply site-wide.
 - Stated copy changes from the comp: "Build your set.", "Shop tops" and "Shop bottoms", "Start building", and "Hot pink" for mirror 1 to match the real photo.
 
+## v2 (2026-09-30): picker, product page, collection page, audit fixes
+- New sections:
+  - `bb-picker`: the build-your-set picker. Choose a top and a bottom by style, colour and size, see the live total, then add both to the bag in one `cart/add.js` call. It shows real "only N left" counts and handles sold-out sizes. It reads the Tops and Bottoms collections and the `top`, `bottom`, `active` and `swim` tags. Until any products exist it shows a single "being added" message.
+  - `bb-product`: gallery, colour swatches and size chips, honest stock counts, a "Complete the set" link to the matching piece (same first word in the title, opposite role) that deep-links into the picker, and fold-out details.
+  - `bb-collection`: arched product cards with a hover image and colour counts, plus an empty state.
+- Home page: an Active/Swim switch on the mirrors, with three Swim mirror selfies (swim 017 cobalt, 079 red, 018 chocolate). The mobile hero is now a flowing layout instead of absolute positioning. The desktop hero stacks the switch and actions in the left column. The logo is plum for contrast.
+- `/impeccable audit` scored 14/20 before fixes. Fixed:
+  - control outlines raised from 1.6:1 to 3.7:1
+  - every tap target at least 44px (was 8 under)
+  - disabled-button contrast raised from 2.3:1 to 6:1
+  - colours tokenised
+  - hero image loads first
+  - variant images at 1200px
+  - picker empty state, and no image tags without a source
+  - header "COLLECTIVE" legible again
+
+  Remaining detector notes are deliberate: the logotype size, the edge-to-edge mirror row, and display leading. Verified at 390, 1280, 1440 and 1600 with no horizontal overflow.
+- Test harnesses: `prototype/home-test.html` and `prototype/picker-test.html` (sample data, local only).
+
 ## State
 - Positioning: Build your set. Brand: Bebita Collective, with Active and Swim as sections.
 - Approved comp: `.impeccable/mocks/home-comp-b-mirror-row.png`. Build phase: review (finish review and DESIGN.md still to run).

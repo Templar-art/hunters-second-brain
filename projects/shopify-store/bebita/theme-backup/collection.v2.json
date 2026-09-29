@@ -1,0 +1,11 @@
+{
+ "sections": {
+  "main": {
+   "type": "bb-collection",
+   "settings": {}
+  }
+ },
+ "order": [
+  "main"
+ ]
+}

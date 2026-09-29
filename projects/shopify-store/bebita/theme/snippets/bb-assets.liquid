@@ -6,3 +6,5 @@
 <link rel="preload" href="{{ 'bebita-parkinsans-800.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 {{ 'bebita.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'bebita.js' | asset_url }}" defer></script>
+<script src="{{ 'bebita-picker.js' | asset_url }}" defer></script>
+{%- if template.name == 'product' -%}<script src="{{ 'bebita-product.js' | asset_url }}" defer></script>{%- endif -%}

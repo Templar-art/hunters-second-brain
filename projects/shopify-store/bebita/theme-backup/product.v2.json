@@ -1,0 +1,14 @@
+{
+ "sections": {
+  "main": {
+   "type": "bb-product",
+   "settings": {
+    "tops": "tops",
+    "bottoms": "bottoms"
+   }
+  }
+ },
+ "order": [
+  "main"
+ ]
+}

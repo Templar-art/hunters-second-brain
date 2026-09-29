@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bebita Collective | Build your set</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>@font-face{font-family:"Parkinsans";font-weight:800;src:url("../theme/assets/bebita-parkinsans-800.woff2") format("woff2")}@font-face{font-family:"Public Sans";font-weight:100 900;src:url("../theme/assets/bebita-publicsans-var.woff2") format("woff2")}</style><link rel="stylesheet" href="../theme/assets/bebita.css">
+</head>
+<body>
+<header class="bb bb-head">
+  <button class="bb-head__menu" type="button">Menu</button>
+  <a class="bb-head__mark" href="/" aria-label="Bebita Collective home">
+    <img src="../web/bebita-logo-plum.png" alt="" width="700" height="436"><span class="bb-head__sub">Collective</span>
+  </a>
+  <a class="bb-head__bag" href="/cart" aria-label="Bag, 0 items">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8.5h13l-1 12h-11z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>
+  </a>
+</header>
+
+<main>
+  <section class="bb bb-mirrors" data-bb-lines aria-labelledby="bb-mirrors-title">
+    <h1 id="bb-mirrors-title" class="bb-mirrors__title">Build<br>your set.</h1>
+    <div class="bb-switch" role="tablist" aria-label="Choose a line"><button type="button" role="tab" aria-selected="true" data-bb-line="active">Active</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-bb-line="swim">Swim</button></div>
+    <ul class="bb-mirrors__row" role="tabpanel" data-bb-row="active">
+      <li class="bb-mirror bb-mirror--1">
+        <a href="/collections/active">
+          <img src="../assets/plates/mirror-1.png" width="830" height="1850" alt="Mirror selfie in the hot pink Bebita set">
+          <span class="bb-mirror__label">Hot pink</span>
+        </a>
+      </li>
+      <li class="bb-mirror bb-mirror--2">
+        <a href="/collections/active">
+          <img src="../assets/plates/mirror-2.png" width="775" height="1940" alt="Mirror selfie in the lilac Bebita set with leggings">
+          <span class="bb-mirror__label">Lilac</span>
+        </a>
+      </li>
+      <li class="bb-mirror bb-mirror--3">
+        <a href="/collections/active">
+          <img src="../assets/plates/mirror-3.png" width="830" height="1800" alt="Mirror selfie in the cobalt Bebita set">
+          <span class="bb-mirror__label">Cobalt</span>
+        </a>
+      </li>
+    </ul>
+<ul class="bb-mirrors__row" role="tabpanel" data-bb-row="swim" hidden>
+      <li class="bb-mirror bb-mirror--1"><a href="#"><img src="../web/bebita-swim-mirror-1.jpg" width="700" height="1560" alt=""><span class="bb-mirror__label">Cobalt</span></a></li>
+      <li class="bb-mirror bb-mirror--2"><a href="#"><img src="../web/bebita-swim-mirror-2.jpg" width="700" height="1560" alt=""><span class="bb-mirror__label">Red</span></a></li>
+      <li class="bb-mirror bb-mirror--3"><a href="#"><img src="../web/bebita-swim-mirror-3.jpg" width="700" height="1560" alt=""><span class="bb-mirror__label">Chocolate</span></a></li>
+    </ul>
+    <div class="bb-mirrors__actions">
+    <nav class="bb-mirrors__links" aria-label="Sets">
+      <a href="/collections/tops">Shop tops</a>
+      <a href="/collections/bottoms">Shop bottoms</a>
+    </nav>
+    <a class="bb-pill" href="#picker">Start building</a>
+    </div>
+  </section>
+
+  <section class="bb bb-build" id="build" aria-labelledby="bb-build-title">
+    <figure class="bb-build__media">
+      <img src="../assets/photos/mix-duo.jpg" width="1440" height="1800" loading="lazy" alt="Two women in the gym wearing different-coloured Bebita sets">
+    </figure>
+    <div class="bb-build__text" data-reveal>
+      <h2 id="bb-build-title" class="bb-h2">Pick a top.<br>Pick a bottom.</h2>
+      <p>Every top and every bottom is sold on its own, in its own size. Match them, or mix the colours. The set is yours to build.</p>
+      <ol class="bb-steps">
+        <li><span>Top</span> Choose the bra and your size</li>
+        <li><span>Bottom</span> Choose the shorts or leggings and your size</li>
+        <li><span>Bag</span> Both go in together</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="bb bb-picker" id="picker" aria-labelledby="bb-picker-title-t" data-bb-picker
+  data-money-format="${{amount}}" data-cart-url="/cart" data-cart-add="/cart/add.js">
+  <div class="bb-picker__head">
+    <h2 id="bb-picker-title-t" class="bb-h2">Build it<br>here.</h2>
+    <div class="bb-switch bb-switch--picker" role="radiogroup" aria-label="Line">
+      <button type="button" role="radio" aria-checked="true" data-bb-pick-line="active">Active</button>
+      <button type="button" role="radio" aria-checked="false" data-bb-pick-line="swim">Swim</button>
+    </div>
+  </div>
+
+  <div class="bb-picker__slots">
+    
+      <fieldset class="bb-slot" data-bb-slot="top">
+        <legend class="bb-slot__legend">Top</legend>
+        <div class="bb-slot__media"><img alt="" width="720" height="900" data-bb-slot-img hidden></div>
+        <div class="bb-slot__controls">
+          <div class="bb-slot__group" data-bb-group="style"><span class="bb-slot__label">Style</span><div class="bb-chips" data-bb-chips="style"></div></div>
+          <div class="bb-slot__group" data-bb-group="colour"><span class="bb-slot__label">Colour <em data-bb-value="colour"></em></span><div class="bb-chips bb-chips--swatch" data-bb-chips="colour"></div></div>
+          <div class="bb-slot__group" data-bb-group="size"><span class="bb-slot__label">Size</span><div class="bb-chips" data-bb-chips="size"></div></div>
+          <p class="bb-slot__stock" data-bb-stock aria-live="polite"></p>
+        </div>
+        <p class="bb-slot__empty" data-bb-empty hidden>Pieces are being added now. Check back soon.</p>
+      </fieldset><fieldset class="bb-slot" data-bb-slot="bottom">
+        <legend class="bb-slot__legend">Bottom</legend>
+        <div class="bb-slot__media"><img alt="" width="720" height="900" data-bb-slot-img hidden></div>
+        <div class="bb-slot__controls">
+          <div class="bb-slot__group" data-bb-group="style"><span class="bb-slot__label">Style</span><div class="bb-chips" data-bb-chips="style"></div></div>
+          <div class="bb-slot__group" data-bb-group="colour"><span class="bb-slot__label">Colour <em data-bb-value="colour"></em></span><div class="bb-chips bb-chips--swatch" data-bb-chips="colour"></div></div>
+          <div class="bb-slot__group" data-bb-group="size"><span class="bb-slot__label">Size</span><div class="bb-chips" data-bb-chips="size"></div></div>
+          <p class="bb-slot__stock" data-bb-stock aria-live="polite"></p>
+        </div>
+        <p class="bb-slot__empty" data-bb-empty hidden>Pieces are being added now. Check back soon.</p>
+      </fieldset>
+    
+  </div>
+
+  <div class="bb-picker__bar">
+    <p class="bb-picker__summary" data-bb-summary aria-live="polite">Pick a top and a bottom to see your set.</p>
+    <p class="bb-picker__total"><span data-bb-total></span><small></small></p>
+    <button class="bb-pill bb-pill--static" type="button" data-bb-add disabled>Add set to bag</button>
+    <p class="bb-picker__error" data-bb-error role="alert" hidden></p>
+  </div>
+
+  <script type="application/json" data-bb-products>[{"id": 1, "title": "Minimal Bra", "handle": "minimal-bra", "url": "#", "role": "top", "line": "active", "image": "../assets/photos/room-1.jpg", "options": [{"name": "Colour", "values": ["Baby pink", "Lilac", "Cobalt"]}, {"name": "Size", "values": ["XS", "S", "M", "L"]}], "variants": [{"id": 101, "options": ["Baby pink", "XS"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 102, "options": ["Baby pink", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 103, "options": ["Baby pink", "M"], "price": 5500, "available": true, "left": 2, "image": null}, {"id": 104, "options": ["Baby pink", "L"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 105, "options": ["Lilac", "XS"], "price": 5500, "available": false, "left": 12, "image": null}, {"id": 106, "options": ["Lilac", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 107, "options": ["Lilac", "M"], "price": 5500, "available": true, "left": 2, "image": null}, {"id": 108, "options": ["Lilac", "L"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 109, "options": ["Cobalt", "XS"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 110, "options": ["Cobalt", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 111, "options": ["Cobalt", "M"], "price": 5500, "available": true, "left": 2, "image": null}, {"id": 112, "options": ["Cobalt", "L"], "price": 5500, "available": true, "left": 12, "image": null}]}, {"id": 2, "title": "Strong Bra", "handle": "strong-bra", "url": "#", "role": "top", "line": "active", "image": "../assets/photos/mix-duo.jpg", "options": [{"name": "Colour", "values": ["Cobalt", "Red"]}, {"name": "Size", "values": ["S", "M", "L"]}], "variants": [{"id": 201, "options": ["Cobalt", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 202, "options": ["Cobalt", "M"], "price": 5500, "available": true, "left": null, "image": null}, {"id": 203, "options": ["Cobalt", "L"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 204, "options": ["Red", "S"], "price": 5500, "available": true, "left": 12, "image": null}, {"id": 205, "options": ["Red", "M"], "price": 5500, "available": true, "left": null, "image": null}, {"id": 206, "options": ["Red", "L"], "price": 5500, "available": true, "left": 12, "image": null}]}, {"id": 3, "title": "Minimal Shorts", "handle": "minimal-shorts", "url": "#", "role": "bottom", "line": "active", "image": "../assets/photos/active-group.jpg", "options": [{"name": "Colour", "values": ["Baby pink", "Lilac", "Cobalt"]}, {"name": "Size", "values": ["XS", "S", "M", "L"]}], "variants": [{"id": 301, "options": ["Baby pink", "XS"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 302, "options": ["Baby pink", "S"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 303, "options": ["Baby pink", "M"], "price": 5000, "available": true, "left": 3, "image": null}, {"id": 304, "options": ["Baby pink", "L"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 305, "options": ["Lilac", "XS"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 306, "options": ["Lilac", "S"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 307, "options": ["Lilac", "M"], "price": 5000, "available": true, "left": 3, "image": null}, {"id": 308, "options": ["Lilac", "L"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 309, "options": ["Cobalt", "XS"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 310, "options": ["Cobalt", "S"], "price": 5000, "available": true, "left": 12, "image": null}, {"id": 311, "options": ["Cobalt", "M"], "price": 5000, "available": true, "left": 3, "image": null}, {"id": 312, "options": ["Cobalt", "L"], "price": 5000, "available": true, "left": 12, "image": null}]}, {"id": 4, "title": "Triangle Top", "handle": "triangle-top", "url": "#", "role": "top", "line": "swim", "image": "../assets/photos/swim-beach.jpg", "options": [{"name": "Colour", "values": ["Cobalt", "Red", "Chocolate"]}, {"name": "Size", "values": ["S", "M", "L"]}], "variants": [{"id": 401, "options": ["Cobalt", "S"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 402, "options": ["Cobalt", "M"], "price": 4500, "available": true, "left": null, "image": null}, {"id": 403, "options": ["Cobalt", "L"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 404, "options": ["Red", "S"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 405, "options": ["Red", "M"], "price": 4500, "available": true, "left": null, "image": null}, {"id": 406, "options": ["Red", "L"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 407, "options": ["Chocolate", "S"], "price": 4500, "available": true, "left": 12, "image": null}, {"id": 408, "options": ["Chocolate", "M"], "price": 4500, "available": true, "left": null, "image": null}, {"id": 409, "options": ["Chocolate", "L"], "price": 4500, "available": true, "left": 12, "image": null}]}]</script>
+  <script type="application/json" data-bb-colours>"Baby pink: #f7c5d0\nHot pink: #e8479a\nLilac: #b9a6e8\nCobalt: #2f5fd8\nRed: #d8283a\nChocolate: #5b3a2e"</script>
+</section>
+
+  <section class="bb bb-line bb-line--active" aria-labelledby="bb-active-title">
+    <figure class="bb-line__media">
+      <img src="../assets/photos/active-group.jpg" width="1440" height="1640" loading="lazy" alt="Four women in Bebita Active sets in pink, blue, red and black">
+    </figure>
+    <div class="bb-line__text" data-reveal>
+      <h2 id="bb-active-title" class="bb-line__title">Active</h2>
+      <p>Seamless scrunch shorts, sports bras and leggings, made for the gym and everything after it.</p>
+      <a class="bb-arrow" href="/collections/active">Shop Active</a>
+    </div>
+  </section>
+
+  <section class="bb bb-line bb-line--swim" aria-labelledby="bb-swim-title">
+    <figure class="bb-line__media">
+      <img src="../assets/photos/swim-beach.jpg" width="1440" height="1581" loading="lazy" alt="A woman on the beach in a Bebita Swim bikini">
+    </figure>
+    <div class="bb-line__text" data-reveal>
+      <h2 id="bb-swim-title" class="bb-line__title">Swim</h2>
+      <p>Triangle bikinis sold as separates, so the top and the bottom are each in your size.</p>
+      <a class="bb-arrow" href="/collections/swim">Shop Swim</a>
+    </div>
+  </section>
+
+  <section class="bb bb-statement" aria-label="The original run">
+    <p class="bb-statement__line" data-reveal>The original run is back. When it&rsquo;s gone, it&rsquo;s gone.</p>
+    <p class="bb-statement__sub" data-reveal>What&rsquo;s left is what&rsquo;s listed. No countdown clocks.</p>
+  </section>
+
+  <section class="bb bb-room" aria-labelledby="bb-room-title">
+    <h2 id="bb-room-title" class="bb-room__title" data-reveal>Straight from<br>the change room.</h2>
+    <figure class="bb-room__a"><img src="../assets/photos/room-1.jpg" width="1080" height="1920" loading="lazy" alt="Mirror selfie in a Bebita set in a gym change room"></figure>
+    <figure class="bb-room__b"><img src="../assets/photos/room-2.jpg" width="1440" height="1800" loading="lazy" alt="Mirror selfie in a red Bebita set"></figure>
+    <p class="bb-room__handles" data-reveal><a href="https://www.instagram.com/bebitaactive/">@bebitaactive</a> <a href="https://www.instagram.com/bebitaswim/">@bebitaswim</a></p>
+  </section>
+
+  <section class="bb bb-promise" aria-label="Delivery and returns">
+    <ul role="list">
+      <li><strong>Sent from the Gold Coast</strong> Packed and posted by us</li>
+      <li><strong>Free delivery over $100</strong> Standard post Australia-wide</li>
+      <li><strong>Size swaps</strong> Email us and we&rsquo;ll sort it</li>
+      <li><strong>30-day returns</strong> On unworn pieces, tags on</li>
+    </ul>
+  </section>
+</main>
+<script src="../theme/assets/bebita.js" defer></script><script src="../theme/assets/bebita-picker.js" defer></script>
+</body>
+</html>
