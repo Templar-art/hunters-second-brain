@@ -2,10 +2,12 @@
 type: project
 tags: [shopify, ecommerce, activewear, swimwear]
 status: setup
-updated: 2026-09-29
+updated: 2026-09-30
 ---
 
-# Bebita Lifestyle (Shopify store)
+# Bebita Collective (Shopify store)
+
+**⚠️ Renamed 2026-09-30:** was Bebita Lifestyle. Hunter's call: "Collective" sounds more premium and lets the store sell beyond activewear and swim. The page filename keeps the old slug so existing links still resolve.
 
 Activewear and swimwear brand from Hunter's sister, run by Hunter as a separate Shopify store from [[one-percent-standard-store]]. Stock is already in hand.
 

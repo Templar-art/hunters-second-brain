@@ -1,0 +1,922 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-09-29T14:06:12.389Z",
+  "comp": ".impeccable/mocks/home-comp-b-mirror-row.png",
+  "warnings": [
+    "region bag: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region mirror-3: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)",
+    "region rule: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)"
+  ],
+  "uncoveredInkCells": [],
+  "compSize": {
+    "width": 1536,
+    "height": 2752
+  },
+  "aspect": 0.5581,
+  "orientation": "portrait",
+  "palette": [
+    {
+      "hex": "#f6d7dd",
+      "coverage": 0.6722
+    },
+    {
+      "hex": "#cac3bb",
+      "coverage": 0.1399
+    },
+    {
+      "hex": "#39242a",
+      "coverage": 0.0894
+    },
+    {
+      "hex": "#f3efed",
+      "coverage": 0.0569
+    },
+    {
+      "hex": "#97624b",
+      "coverage": 0.0416
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.1485,
+      "strength": 0.5441
+    },
+    {
+      "y": 0.1878,
+      "strength": 0.4912
+    },
+    {
+      "y": 0.2227,
+      "strength": 0.3198
+    },
+    {
+      "y": 0.2576,
+      "strength": 0.5689
+    },
+    {
+      "y": 0.7511,
+      "strength": 0.5609
+    },
+    {
+      "y": 0.8559,
+      "strength": 0.5441
+    },
+    {
+      "y": 0.9083,
+      "strength": 1
+    },
+    {
+      "y": 0.9301,
+      "strength": 0.27
+    },
+    {
+      "y": 0.9694,
+      "strength": 1
+    }
+  ],
+  "regions": [
+    {
+      "id": "nav-menu",
+      "kind": "text",
+      "note": "MENU link, plum caps",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.05,
+        "y": 0.045,
+        "w": 0.11,
+        "h": 0.022
+      },
+      "px": {
+        "x": 77,
+        "y": 124,
+        "w": 169,
+        "h": 61
+      },
+      "aspect": 2.7705,
+      "palette": [
+        {
+          "hex": "#f8d9e0",
+          "coverage": 0.7694
+        },
+        {
+          "hex": "#45202b",
+          "coverage": 0.1646
+        },
+        {
+          "hex": "#c1a2ad",
+          "coverage": 0.0317
+        },
+        {
+          "hex": "#967479",
+          "coverage": 0.0209
+        },
+        {
+          "hex": "#7a5966",
+          "coverage": 0.0134
+        }
+      ],
+      "detail": {
+        "energy": 25.2835
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 4,
+          "capHeightPx": 38.3,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.6013,
+          "advTall": 0.6013,
+          "advX": null,
+          "gap": 0.4444,
+          "xRatio": null,
+          "stemW": 0.1203,
+          "contrast": 0.9936,
+          "serif": 1.0148,
+          "densTall": 0.3777,
+          "densX": null,
+          "weight": 0.3777
+        },
+        "widthClass": "condensed",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "logo",
+      "kind": "image",
+      "note": "white script Bebita Active logo",
+      "grid": null,
+      "box": {
+        "x": 0.38,
+        "y": 0.015,
+        "w": 0.245,
+        "h": 0.085
+      },
+      "px": {
+        "x": 584,
+        "y": 41,
+        "w": 376,
+        "h": 234
+      },
+      "aspect": 1.6068,
+      "palette": [
+        {
+          "hex": "#f8d8dc",
+          "coverage": 0.8775
+        },
+        {
+          "hex": "#f8f5f5",
+          "coverage": 0.1225
+        }
+      ],
+      "detail": {
+        "energy": 5.1867
+      },
+      "medium": "raster",
+      "plate": "assets/plates/logo.png",
+      "text": null
+    },
+    {
+      "id": "bag",
+      "kind": "control",
+      "note": "bag outline icon, plum",
+      "grid": null,
+      "codeDrawn": true,
+      "box": {
+        "x": 0.885,
+        "y": 0.037,
+        "w": 0.065,
+        "h": 0.037
+      },
+      "px": {
+        "x": 1359,
+        "y": 102,
+        "w": 100,
+        "h": 102
+      },
+      "aspect": 0.9804,
+      "palette": [
+        {
+          "hex": "#f8d8de",
+          "coverage": 0.8106
+        },
+        {
+          "hex": "#482130",
+          "coverage": 0.1289
+        },
+        {
+          "hex": "#987887",
+          "coverage": 0.045
+        },
+        {
+          "hex": "#6d4951",
+          "coverage": 0.0121
+        },
+        {
+          "hex": "#c4a0a4",
+          "coverage": 0.0035
+        }
+      ],
+      "detail": {
+        "energy": 11.2766
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "note": "Find your colour. heavy plum sans, two lines",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.055,
+        "y": 0.125,
+        "w": 0.6,
+        "h": 0.142
+      },
+      "px": {
+        "x": 84,
+        "y": 344,
+        "w": 922,
+        "h": 391
+      },
+      "aspect": 2.3581,
+      "palette": [
+        {
+          "hex": "#f8d8dc",
+          "coverage": 0.736
+        },
+        {
+          "hex": "#3b252f",
+          "coverage": 0.2528
+        },
+        {
+          "hex": "#694c59",
+          "coverage": 0.0042
+        },
+        {
+          "hex": "#997d89",
+          "coverage": 0.0041
+        },
+        {
+          "hex": "#c3a7b3",
+          "coverage": 0.0029
+        }
+      ],
+      "detail": {
+        "energy": 30.6864
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 14,
+          "capHeightPx": 143,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.7007,
+          "advTall": 0.3738,
+          "advX": 0.7347,
+          "gap": 0.1151,
+          "xRatio": 0.7212,
+          "stemW": 0.2318,
+          "contrast": 1.1443,
+          "serif": 0.9916,
+          "densTall": 0.774,
+          "densX": 0.6435,
+          "weight": 0.774
+        },
+        "widthClass": "wide",
+        "weightClass": "black",
+        "chosen": {
+          "family": "Parkinsans",
+          "weight": 700,
+          "fontSizePx": 178,
+          "source": "index",
+          "fp": {
+            "lines": 1,
+            "glyphs": 8,
+            "capHeightPx": 143.6,
+            "inkIsDark": true,
+            "allCaps": false,
+            "advance": 0.6892,
+            "advTall": 0.4734,
+            "advX": 0.6892,
+            "gap": 0.1462,
+            "xRatio": 0.6831,
+            "stemW": 0.2167,
+            "contrast": 1.1696,
+            "serif": 0.9949,
+            "densTall": 0.7622,
+            "densX": 0.6779,
+            "weight": 0.7622
+          },
+          "stamp": "802d32e32337"
+        }
+      }
+    },
+    {
+      "id": "mirror-1",
+      "kind": "image",
+      "note": "arched chrome floor mirror with a mirror selfie of a woman in a baby pink scrunch shorts and sports bra set",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.028,
+        "y": 0.305,
+        "w": 0.36,
+        "h": 0.448
+      },
+      "px": {
+        "x": 43,
+        "y": 839,
+        "w": 553,
+        "h": 1233
+      },
+      "aspect": 0.4485,
+      "palette": [
+        {
+          "hex": "#e9d0d5",
+          "coverage": 0.3985
+        },
+        {
+          "hex": "#cac1b4",
+          "coverage": 0.2471
+        },
+        {
+          "hex": "#f0eeec",
+          "coverage": 0.1968
+        },
+        {
+          "hex": "#915b46",
+          "coverage": 0.086
+        },
+        {
+          "hex": "#938683",
+          "coverage": 0.0716
+        }
+      ],
+      "detail": {
+        "energy": 22.0747
+      },
+      "medium": "raster",
+      "plate": "assets/plates/mirror-1.png",
+      "text": null
+    },
+    {
+      "id": "mirror-2",
+      "kind": "image",
+      "note": "arched chrome floor mirror with a mirror selfie of a woman in a lilac set",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.418,
+        "y": 0.284,
+        "w": 0.335,
+        "h": 0.469
+      },
+      "px": {
+        "x": 642,
+        "y": 782,
+        "w": 515,
+        "h": 1291
+      },
+      "aspect": 0.3989,
+      "palette": [
+        {
+          "hex": "#c9c4bb",
+          "coverage": 0.4142
+        },
+        {
+          "hex": "#edd4d9",
+          "coverage": 0.305
+        },
+        {
+          "hex": "#f3f0ec",
+          "coverage": 0.1046
+        },
+        {
+          "hex": "#9a654c",
+          "coverage": 0.0943
+        },
+        {
+          "hex": "#928684",
+          "coverage": 0.082
+        }
+      ],
+      "detail": {
+        "energy": 22.2777
+      },
+      "medium": "raster",
+      "plate": "assets/plates/mirror-2.png",
+      "text": null
+    },
+    {
+      "id": "mirror-3",
+      "kind": "image",
+      "note": "arched chrome floor mirror cropped by the right edge, mirror selfie of a woman in a cobalt set",
+      "grid": null,
+      "bleed": true,
+      "snap": false,
+      "box": {
+        "x": 0.772,
+        "y": 0.348,
+        "w": 0.228,
+        "h": 0.405
+      },
+      "px": {
+        "x": 1186,
+        "y": 958,
+        "w": 350,
+        "h": 1115
+      },
+      "aspect": 0.3139,
+      "palette": [
+        {
+          "hex": "#cfcbc5",
+          "coverage": 0.3945
+        },
+        {
+          "hex": "#f6d8e0",
+          "coverage": 0.2388
+        },
+        {
+          "hex": "#92614b",
+          "coverage": 0.1614
+        },
+        {
+          "hex": "#16418f",
+          "coverage": 0.1112
+        },
+        {
+          "hex": "#f3eeea",
+          "coverage": 0.094
+        }
+      ],
+      "detail": {
+        "energy": 20.2308
+      },
+      "medium": "raster",
+      "plate": "assets/plates/mirror-3.png",
+      "text": null
+    },
+    {
+      "id": "label-1",
+      "kind": "text",
+      "note": "BABY PINK caption",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.13,
+        "y": 0.759,
+        "w": 0.175,
+        "h": 0.024
+      },
+      "px": {
+        "x": 200,
+        "y": 2089,
+        "w": 269,
+        "h": 66
+      },
+      "aspect": 4.0758,
+      "palette": [
+        {
+          "hex": "#f8d9e5",
+          "coverage": 0.8268
+        },
+        {
+          "hex": "#371a26",
+          "coverage": 0.1066
+        },
+        {
+          "hex": "#83646f",
+          "coverage": 0.0303
+        },
+        {
+          "hex": "#c0a4aa",
+          "coverage": 0.0293
+        },
+        {
+          "hex": "#594145",
+          "coverage": 0.0071
+        }
+      ],
+      "detail": {
+        "energy": 35.8776
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 7,
+          "capHeightPx": 33.5,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.6866,
+          "advTall": 0.7015,
+          "advX": null,
+          "gap": 0.209,
+          "xRatio": null,
+          "stemW": 0.1229,
+          "contrast": 0.9476,
+          "serif": 1.0013,
+          "densTall": 0.3941,
+          "densX": null,
+          "weight": 0.3941
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "label-2",
+      "kind": "text",
+      "note": "LILAC caption",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.535,
+        "y": 0.759,
+        "w": 0.095,
+        "h": 0.024
+      },
+      "px": {
+        "x": 822,
+        "y": 2089,
+        "w": 146,
+        "h": 66
+      },
+      "aspect": 2.2121,
+      "palette": [
+        {
+          "hex": "#f8d9e5",
+          "coverage": 0.8479
+        },
+        {
+          "hex": "#371b25",
+          "coverage": 0.0863
+        },
+        {
+          "hex": "#c6acb4",
+          "coverage": 0.0343
+        },
+        {
+          "hex": "#644651",
+          "coverage": 0.0186
+        },
+        {
+          "hex": "#93767f",
+          "coverage": 0.013
+        }
+      ],
+      "detail": {
+        "energy": 16.7518
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 4,
+          "capHeightPx": 33.8,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.6944,
+          "advTall": 0.6944,
+          "advX": null,
+          "gap": 0.1477,
+          "xRatio": null,
+          "stemW": 0.122,
+          "contrast": 1.0494,
+          "serif": null,
+          "densTall": 0.3055,
+          "densX": null,
+          "weight": 0.3055
+        },
+        "widthClass": "normal",
+        "weightClass": "light"
+      }
+    },
+    {
+      "id": "label-3",
+      "kind": "text",
+      "note": "COBALT caption",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.86,
+        "y": 0.759,
+        "w": 0.135,
+        "h": 0.024
+      },
+      "px": {
+        "x": 1321,
+        "y": 2089,
+        "w": 207,
+        "h": 66
+      },
+      "aspect": 3.1364,
+      "palette": [
+        {
+          "hex": "#f8dae3",
+          "coverage": 0.8443
+        },
+        {
+          "hex": "#351923",
+          "coverage": 0.0934
+        },
+        {
+          "hex": "#bc9ea4",
+          "coverage": 0.0417
+        },
+        {
+          "hex": "#563a43",
+          "coverage": 0.0146
+        },
+        {
+          "hex": "#766464",
+          "coverage": 0.006
+        }
+      ],
+      "detail": {
+        "energy": 26.1808
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 5,
+          "capHeightPx": 33.9,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.8248,
+          "advTall": 0.8248,
+          "advX": null,
+          "gap": 0.162,
+          "xRatio": null,
+          "stemW": 0.122,
+          "contrast": 1.0304,
+          "serif": null,
+          "densTall": 0.3337,
+          "densX": null,
+          "weight": 0.3337
+        },
+        "widthClass": "wide",
+        "weightClass": "light"
+      }
+    },
+    {
+      "id": "link-minimal",
+      "kind": "text",
+      "note": "SHOP THE MINIMAL SET link",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.05,
+        "y": 0.838,
+        "w": 0.415,
+        "h": 0.024
+      },
+      "px": {
+        "x": 77,
+        "y": 2306,
+        "w": 637,
+        "h": 66
+      },
+      "aspect": 9.6515,
+      "palette": [
+        {
+          "hex": "#f8dae4",
+          "coverage": 0.8265
+        },
+        {
+          "hex": "#351824",
+          "coverage": 0.1244
+        },
+        {
+          "hex": "#795d69",
+          "coverage": 0.0214
+        },
+        {
+          "hex": "#c4a8b0",
+          "coverage": 0.0158
+        },
+        {
+          "hex": "#50373b",
+          "coverage": 0.0119
+        }
+      ],
+      "detail": {
+        "energy": 66.4139
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 18,
+          "capHeightPx": 37.6,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5986,
+          "advTall": 0.6119,
+          "advX": null,
+          "gap": 0.2261,
+          "xRatio": 0.5687,
+          "stemW": 0.1216,
+          "contrast": 1.0511,
+          "serif": 1.0061,
+          "densTall": 0.3933,
+          "densX": null,
+          "weight": 0.3933
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "link-strong",
+      "kind": "text",
+      "note": "SHOP THE STRONG SET link",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.543,
+        "y": 0.838,
+        "w": 0.405,
+        "h": 0.024
+      },
+      "px": {
+        "x": 834,
+        "y": 2306,
+        "w": 622,
+        "h": 66
+      },
+      "aspect": 9.4242,
+      "palette": [
+        {
+          "hex": "#f8d9e5",
+          "coverage": 0.8221
+        },
+        {
+          "hex": "#351925",
+          "coverage": 0.124
+        },
+        {
+          "hex": "#715161",
+          "coverage": 0.0208
+        },
+        {
+          "hex": "#614d4d",
+          "coverage": 0.017
+        },
+        {
+          "hex": "#c7aab4",
+          "coverage": 0.0161
+        }
+      ],
+      "detail": {
+        "energy": 68.7611
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 15,
+          "capHeightPx": 37.6,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.7188,
+          "advTall": 0.7188,
+          "advX": null,
+          "gap": 0.213,
+          "xRatio": 0.5767,
+          "stemW": 0.1238,
+          "contrast": 1.0643,
+          "serif": 0.9967,
+          "densTall": 0.3826,
+          "densX": null,
+          "weight": 0.3826
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "rule",
+      "kind": "chrome",
+      "note": "thin blush-rose rule under the links",
+      "grid": null,
+      "codeDrawn": true,
+      "snap": false,
+      "box": {
+        "x": 0.05,
+        "y": 0.869,
+        "w": 0.9,
+        "h": 0.004
+      },
+      "px": {
+        "x": 77,
+        "y": 2391,
+        "w": 1382,
+        "h": 11
+      },
+      "aspect": 125.6364,
+      "palette": [
+        {
+          "hex": "#f8d8e5",
+          "coverage": 0.7511
+        },
+        {
+          "hex": "#e6a8b7",
+          "coverage": 0.2489
+        }
+      ],
+      "detail": {
+        "energy": 12.3438
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "cta",
+      "kind": "control",
+      "note": "plum rounded pill button SHOP ALL SETS",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.05,
+        "y": 0.905,
+        "w": 0.9,
+        "h": 0.064
+      },
+      "px": {
+        "x": 77,
+        "y": 2491,
+        "w": 1382,
+        "h": 176
+      },
+      "aspect": 7.8523,
+      "palette": [
+        {
+          "hex": "#382428",
+          "coverage": 0.9129
+        },
+        {
+          "hex": "#f2d4de",
+          "coverage": 0.0844
+        },
+        {
+          "hex": "#684858",
+          "coverage": 0.0026
+        }
+      ],
+      "detail": {
+        "energy": 21.5805
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 13,
+          "capHeightPx": 37.1,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.7538,
+          "advTall": 0.7538,
+          "advX": null,
+          "gap": 0.1885,
+          "xRatio": 0.5609,
+          "stemW": 0.203,
+          "contrast": 1.1951,
+          "serif": 1.4852,
+          "densTall": 0.5383,
+          "densX": null,
+          "weight": 0.5383
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    }
+  ]
+}

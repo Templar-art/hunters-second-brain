@@ -1033,3 +1033,7 @@ Set up Claude access to Hunter's new white-label store: Shopify Dev MCP at user 
 ## [2026-09-29] ingest | One Percent Standard live-prep + Bebita Lifestyle connected
 
 One Percent Standard: supplier specs and corrected unit cost (US$6.63 not $5.60), shipping rates, policies, About/FAQ, menus and home page published via the API; store still password-locked pending photos, payments and a plan. Bebita Lifestyle (sister's activewear/swimwear) created as a second store with its own Claude app; the helper now switches stores with `STORE=bebita`. Detail on [[one-percent-standard-store]] and [[bebita-lifestyle-store]].
+
+## [2026-09-30] ingest | Pain-point research: Bebita activewear + One Percent straps
+
+Two research passes to find positioning. Bebita: see-through/sweat on pastels and sizing fear top the complaints; recommended "build your set" + local dispatch for the sell-off, filmed squat/sweat tests for a relaunch. One Percent: cuffed D-ring straps fail at the ring and stitching; recommended "the cuffed strap that doesn't quit", conditional on testing our own construction first. Bebita store renamed Bebita Collective; its home page comp (row of mirrors) approved. Detail on [[research-activewear-pain-points]] and [[research-lifting-strap-pain-points]].

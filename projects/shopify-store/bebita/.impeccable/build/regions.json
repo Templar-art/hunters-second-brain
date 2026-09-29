@@ -1,0 +1,16 @@
+{"regions":[
+ {"id":"nav-menu","kind":"text","box":{"x":0.05,"y":0.045,"w":0.11,"h":0.022},"snap":false,"note":"MENU link, plum caps"},
+ {"id":"logo","kind":"image","box":{"x":0.38,"y":0.015,"w":0.245,"h":0.085},"note":"white script Bebita Active logo"},
+ {"id":"bag","kind":"control","box":{"x":0.885,"y":0.037,"w":0.065,"h":0.037},"note":"bag outline icon, plum","codeDrawn":true},
+ {"id":"headline","kind":"text","box":{"x":0.055,"y":0.125,"w":0.6,"h":0.142},"snap":false,"note":"Find your colour. heavy plum sans, two lines"},
+ {"id":"mirror-1","kind":"image","box":{"x":0.028,"y":0.305,"w":0.36,"h":0.448},"snap":false,"note":"arched chrome floor mirror with a mirror selfie of a woman in a baby pink scrunch shorts and sports bra set"},
+ {"id":"mirror-2","kind":"image","box":{"x":0.418,"y":0.284,"w":0.335,"h":0.469},"snap":false,"note":"arched chrome floor mirror with a mirror selfie of a woman in a lilac set"},
+ {"id":"mirror-3","kind":"image","box":{"x":0.772,"y":0.348,"w":0.228,"h":0.405},"snap":false,"bleed":true,"note":"arched chrome floor mirror cropped by the right edge, mirror selfie of a woman in a cobalt set"},
+ {"id":"label-1","kind":"text","box":{"x":0.13,"y":0.759,"w":0.175,"h":0.024},"snap":false,"note":"BABY PINK caption"},
+ {"id":"label-2","kind":"text","box":{"x":0.535,"y":0.759,"w":0.095,"h":0.024},"snap":false,"note":"LILAC caption"},
+ {"id":"label-3","kind":"text","box":{"x":0.86,"y":0.759,"w":0.135,"h":0.024},"snap":false,"note":"COBALT caption"},
+ {"id":"link-minimal","kind":"text","box":{"x":0.05,"y":0.838,"w":0.415,"h":0.024},"snap":false,"note":"SHOP THE MINIMAL SET link"},
+ {"id":"link-strong","kind":"text","box":{"x":0.543,"y":0.838,"w":0.405,"h":0.024},"snap":false,"note":"SHOP THE STRONG SET link"},
+ {"id":"rule","kind":"chrome","box":{"x":0.05,"y":0.869,"w":0.9,"h":0.004},"snap":false,"codeDrawn":true,"note":"thin blush-rose rule under the links"},
+ {"id":"cta","kind":"control","box":{"x":0.05,"y":0.905,"w":0.9,"h":0.064},"snap":false,"note":"plum rounded pill button SHOP ALL SETS"}
+]}

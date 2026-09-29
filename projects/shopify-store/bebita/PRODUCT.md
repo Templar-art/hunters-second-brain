@@ -31,6 +31,7 @@ Sell through Bebita's remaining activewear and swimwear stock now; if it sells w
 - Undecided: product list, sizes, stock counts, costs and prices; whether the brand is presented as a sale or as a brand.
 
 ## Brand Commitments
+- **Store brand: Bebita Collective** (renamed from Bebita Lifestyle on 2026-09-30, to sound more premium and to carry more than activewear and swim later). Active and Swim become lines inside the Collective.
 - Blush-pink circle mark with a white script "Bebita" wordmark (from Instagram).
 
 ## Evidence on Hand

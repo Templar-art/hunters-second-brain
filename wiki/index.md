@@ -48,7 +48,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[elevra-invoices]] — JSON → A4 PDF invoice generator (EM- numbering, no-GST rule, 1.3mm fidelity)
 - [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
 - [[one-percent-standard-store]] — Hunter's own white-label Shopify store (100 units in hand, self-fulfilled); Claude connected via Admin API 29 Sep
-- [[bebita-lifestyle-store]] — sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
+- [[bebita-lifestyle-store]] — **Bebita Collective** (renamed from Lifestyle 30 Sep): sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
 
 ## Concepts
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
@@ -78,6 +78,8 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 - [[business-craft]] — MOC: [[pricing-and-packaging]] · [[client-onboarding]] · [[lead-gen-and-sales]] (proposal recipe stays in [[proposal-playbook]])
 
 ## Sources (ops)
+- [[research-activewear-pain-points]] — women's activewear complaints + AU competitors; Bebita positioning angles (30 Sep)
+- [[research-lifting-strap-pain-points]] — strap complaints + competitors; One Percent 'doesn't quit' angle (30 Sep)
 - [[weekly-review-2026-07-17]] — 7-day review: shipped/moved/stalled/learned, next focus = clear stalled client queue
 - [[strategic-investing-qld-brief]] — Brian O'Neill / Quiet Equity source brief behind [[strategic-investing-qld]]
 - [[zidane-meta-ads-tips]] — mate's Meta operator tips 29 Jul: CBO, long VSL, creative enhancements OFF, dataset early, dynamic UTMs
