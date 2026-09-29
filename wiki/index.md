@@ -48,6 +48,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[elevra-invoices]] — JSON → A4 PDF invoice generator (EM- numbering, no-GST rule, 1.3mm fidelity)
 - [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
 - [[one-percent-standard-store]] — Hunter's own white-label Shopify store (100 units in hand, self-fulfilled); Claude connected via Admin API 29 Sep
+- [[bebita-lifestyle-store]] — sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
 
 ## Concepts
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate

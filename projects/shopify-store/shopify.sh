@@ -3,7 +3,11 @@
 #   SHOPIFY_STORE, SHOPIFY_CLIENT_ID, SHOPIFY_CLIENT_SECRET
 # Usage: ./shopify.sh '{ shop { name } }'            (query string)
 #        ./shopify.sh -f query.graphql [vars.json]  (query file + optional variables)
+#        STORE=bebita ./shopify.sh ...              (Bebita Lifestyle: uses BEBITA_* vars)
 set -euo pipefail
+if [[ "${STORE:-}" == "bebita" ]]; then
+  SHOPIFY_STORE="${BEBITA_STORE:?}" SHOPIFY_CLIENT_ID="${BEBITA_CLIENT_ID:?}" SHOPIFY_CLIENT_SECRET="${BEBITA_CLIENT_SECRET:?}"
+fi
 : "${SHOPIFY_STORE:?set in ~/.zshrc}" "${SHOPIFY_CLIENT_ID:?}" "${SHOPIFY_CLIENT_SECRET:?}"
 API_VERSION="${SHOPIFY_API_VERSION:-2026-07}"
 CACHE="${TMPDIR:-/tmp}/shopify-token-${SHOPIFY_STORE}"

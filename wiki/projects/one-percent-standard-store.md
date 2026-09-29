@@ -34,7 +34,7 @@ Hunter's own white-label e-commerce store, separate from 10x client work. 100 un
 Drafts in [content/](../../projects/shopify-store/content/): refund policy (30-day change of mind, ACL faulty cover), shipping policy, home/About/FAQ copy. The copy deliberately claims no founder story, testing or customer counts. Privacy and terms use Shopify's built-in generators. **Published 2026-09-29** by [publish_content.py](../../projects/shopify-store/publish_content.py) (fills [EMAIL] from the store's contact email at publish time; re-runnable): refund + shipping policies, About + FAQ pages, main menu (Home, Shop, About, FAQ, Contact) and footer (Search, FAQ, policies, Contact). Home page (Horizon theme `templates/index.json`): headline hero, "Shop the range" product list, brand statement band; original kept in [theme-backup/](../../projects/shopify-store/theme-backup/). Terms of service still to generate from Shopify's template. App now on `claude-3` with 26 scopes; a new version only takes effect after the store approves it (re-run Install app).
 
 ## Related
-Hunter's sister's activewear and swimwear brand, Bebita Lifestyle, is a second store to set up (stock already in hand).
+Hunter's sister's activewear and swimwear brand, Bebita Lifestyle, is a second store: [[bebita-lifestyle-store]].
 
 ## Shipping (set 2026-09-29)
 Domestic: Standard $9.95 under $75, free Standard at $75+ (two pairs ship free), Express $14.95. International disabled: a $20 flat rate loses money against AusPost international.

@@ -1029,3 +1029,7 @@ Found the enquiry form never actually submitted (preventDefault with no re-submi
 ## [2026-09-29] ingest | One Percent Standard: Shopify store connected
 
 Set up Claude access to Hunter's new white-label store: Shopify Dev MCP at user scope, Dev Dashboard app with scopes (second version, the first had none), credentials in a new ~/.zshrc, and a token-swapping GraphQL helper. Read-only test passed. Detail on [[one-percent-standard-store]].
+
+## [2026-09-29] ingest | One Percent Standard live-prep + Bebita Lifestyle connected
+
+One Percent Standard: supplier specs and corrected unit cost (US$6.63 not $5.60), shipping rates, policies, About/FAQ, menus and home page published via the API; store still password-locked pending photos, payments and a plan. Bebita Lifestyle (sister's activewear/swimwear) created as a second store with its own Claude app; the helper now switches stores with `STORE=bebita`. Detail on [[one-percent-standard-store]] and [[bebita-lifestyle-store]].
