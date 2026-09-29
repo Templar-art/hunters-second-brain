@@ -30,6 +30,9 @@ All products and brand content live on Instagram: [@bebitaactive](https://www.in
 ## Home page build
 Impeccable comp-led build, direction "gym mirror selfie". Hunter chose the approved comp: a row of arched chrome mirrors, one colourway each ([comp](../../projects/shopify-store/bebita/.impeccable/mocks/home-comp-b-mirror-row.png)). The spec is measured, and the headline face ranks as Parkinsans 700. The next step is the mirror photos. Instagram captures proved unusable (about 600px, video play buttons baked in), so the build waits for the original files. Spend so far: 225 Magnific credits.
 
+## Live build (2026-09-30)
+The custom home page is live on the store theme: a row of mirrors with "Build your set.", pick a top and pick a bottom, Active and Swim as mirrored full-bleed lines, "the original run is back", a change-room image pair, and a promise strip. The header has the script logo with "Collective" and a menu drawer. Built from Bebita's own Instagram photos: 789 were saved into `raw/bebita/` (git-ignored). Tag-driven collections, About and FAQ pages, and the main menu are set up. Details, the photo map and the credit tally are in [BUILD-LOG.md](../../projects/shopify-store/bebita/BUILD-LOG.md). The store has since been renamed to Bebita Collective in the admin, and its handle is now `bebitacollective`.
+
 ## Open
 - Product list: styles, sizes, colours, stock counts, cost and price.
 - Photos, logo, brand colours.

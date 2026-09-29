@@ -1,0 +1,28 @@
+<section class="bb bb-line bb-line--{{ section.settings.side }}" aria-labelledby="bb-line-title-{{ section.id }}">
+  <figure class="bb-line__media">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '500, 800, 1100, 1400', sizes: '(min-width: 900px) 58vw, 82vw' }}
+    {%- endif -%}
+  </figure>
+  <div class="bb-line__text" data-reveal>
+    <h2 id="bb-line-title-{{ section.id }}" class="bb-line__title">{{ section.settings.title }}</h2>
+    {{ section.settings.text }}
+    {%- if section.settings.link_label != blank -%}<a class="bb-arrow" href="{{ section.settings.link }}">{{ section.settings.link_label }}</a>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bebita line",
+  "settings": [
+    { "type": "select", "id": "side", "label": "Image bleeds off the", "default": "active", "options": [
+      { "value": "active", "label": "Left edge" }, { "value": "swim", "label": "Right edge" } ] },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Active" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "link_label", "label": "Link", "default": "Shop Active" },
+    { "type": "url", "id": "link", "label": "Link target" }
+  ],
+  "presets": [{ "name": "Bebita line" }]
+}
+{% endschema %}

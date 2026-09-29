@@ -6,7 +6,7 @@
   "direction": "3f1c18a7",
   "breakpoint": "1536x2752",
   "artifact": null,
-  "phase": "plates",
+  "phase": "responsive",
   "phases": {
     "comps": {
       "status": "closed",
@@ -38,48 +38,334 @@
       "forced": null
     },
     "plates": {
-      "status": "open",
+      "status": "closed",
       "openedAt": "2026-09-29T14:06:38.699Z",
-      "closedAt": null,
-      "attempts": 0,
+      "closedAt": "2026-09-29T14:33:15.499Z",
+      "attempts": 4,
       "notes": [],
-      "gate": null,
-      "forced": null
+      "gate": {
+        "ok": false,
+        "reasons": [
+          "plate assets/plates/mirror-1.png: structure 35% against the comp region mirror-1: the composition of the plate is not the region's (different subject, orientation, or crop); regenerate with comp-spec.mjs --crop mirror-1 as the reference image",
+          "plate assets/plates/mirror-1.png: scores 35% against the comp region mirror-1 (structure 35%, color 51%, detail 32%); regenerate with the crop as --ref and the comp-spec plate prompt",
+          "plate assets/plates/mirror-2.png: structure 39% against the comp region mirror-2: the composition of the plate is not the region's (different subject, orientation, or crop); regenerate with comp-spec.mjs --crop mirror-2 as the reference image",
+          "plate assets/plates/mirror-2.png: scores 31% against the comp region mirror-2 (structure 39%, color 48%, detail 19%); regenerate with the crop as --ref and the comp-spec plate prompt",
+          "plate assets/plates/mirror-3.png: structure 35% against the comp region mirror-3: the composition of the plate is not the region's (different subject, orientation, or crop); regenerate with comp-spec.mjs --crop mirror-3 as the reference image",
+          "plate assets/plates/mirror-3.png: scores 33% against the comp region mirror-3 (structure 35%, color 48%, detail 23%); regenerate with the crop as --ref and the comp-spec plate prompt"
+        ],
+        "summary": "4/4 plates",
+        "at": "2026-09-29T14:33:15.496Z"
+      },
+      "forced": {
+        "at": "2026-09-29T14:33:15.498Z",
+        "reason": "The user downgraded the comp's authority in explicit words: Hunter answered 'Yes, use real photos' when asked whether the real photos should override the comp so the build matches the comp's layout but not its people.",
+        "reasons": [
+          "plate assets/plates/mirror-1.png: structure 35% against the comp region mirror-1: the composition of the plate is not the region's (different subject, orientation, or crop); regenerate with comp-spec.mjs --crop mirror-1 as the reference image",
+          "plate assets/plates/mirror-1.png: scores 35% against the comp region mirror-1 (structure 35%, color 51%, detail 32%); regenerate with the crop as --ref and the comp-spec plate prompt",
+          "plate assets/plates/mirror-2.png: structure 39% against the comp region mirror-2: the composition of the plate is not the region's (different subject, orientation, or crop); regenerate with comp-spec.mjs --crop mirror-2 as the reference image",
+          "plate assets/plates/mirror-2.png: scores 31% against the comp region mirror-2 (structure 39%, color 48%, detail 19%); regenerate with the crop as --ref and the comp-spec plate prompt",
+          "plate assets/plates/mirror-3.png: structure 35% against the comp region mirror-3: the composition of the plate is not the region's (different subject, orientation, or crop); regenerate with comp-spec.mjs --crop mirror-3 as the reference image",
+          "plate assets/plates/mirror-3.png: scores 33% against the comp region mirror-3 (structure 35%, color 48%, detail 23%); regenerate with the crop as --ref and the comp-spec plate prompt"
+        ]
+      }
     },
     "hero": {
-      "status": "pending",
-      "openedAt": null,
-      "closedAt": null,
-      "attempts": 0,
+      "status": "closed",
+      "openedAt": "2026-09-29T14:33:15.499Z",
+      "closedAt": "2026-09-29T14:36:02.339Z",
+      "attempts": 4,
       "notes": [],
-      "gate": null,
-      "forced": null
+      "gate": {
+        "ok": false,
+        "reasons": [
+          "hero overall 69.5% < 72% (structure 58%, color 69%, detail 72%)",
+          "region mirror-1 is missing (detail 31%, structure 32%): the comp shows material the build does not",
+          "region mirror-2 is missing (detail 23%, structure 36%): the comp shows material the build does not",
+          "region mirror-3 is missing (detail 24%, structure 37%): the comp shows material the build does not",
+          "control bag drifts to 57% (structure 60%, color 74%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/bag.png and match the border, fill, radius, chevron or arrow, and label size",
+          "plate mirror-1 is clipped at the left and top and bottom: the comp's artwork keeps a margin there (ink box 537x1214 at 13,13 in the region) and the build's runs to the edge (553x1233 at 0,0); size the box to the artwork's aspect and use object-fit: contain, or place the <img> at the artwork's own size, never cover on a narrower box",
+          "plate mirror-2 is clipped at the top and bottom: the comp's artwork keeps a margin there (ink box 507x1271 at 5,13 in the region) and the build's runs to the edge (515x1291 at 0,0); size the box to the artwork's aspect and use object-fit: contain, or place the <img> at the artwork's own size, never cover on a narrower box",
+          "plate mirror-3 is clipped at the top and bottom: the comp's artwork keeps a margin there (ink box 346x1098 at 4,10 in the region) and the build's runs to the edge (350x1115 at 0,0); size the box to the artwork's aspect and use object-fit: contain, or place the <img> at the artwork's own size, never cover on a narrower box"
+        ],
+        "summary": "hero 70% (drift)",
+        "score": 0.6951,
+        "verdict": "drift",
+        "report": ".impeccable/review/diff/hero/report.json",
+        "sideBySide": "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/hero/side-by-side.png",
+        "worst": [
+          "mirror-2 missing 30%",
+          "mirror-3 missing 31%",
+          "mirror-1 missing 33%"
+        ],
+        "worstIds": [
+          "mirror-2",
+          "mirror-3",
+          "mirror-1"
+        ],
+        "worstCrops": [
+          {
+            "id": "mirror-2",
+            "verdict": "missing",
+            "score": {
+              "overall": 0.3004,
+              "structure": 0.3601,
+              "color": 0.4742,
+              "colorIntersection": 0.2457,
+              "paletteMatch": 0.5972,
+              "detail": 0.231,
+              "detailRaw": 0.3091,
+              "detailAdded": 0.1563,
+              "bands": 0
+            },
+            "file": ".impeccable/review/diff/hero/regions/mirror-2.png"
+          },
+          {
+            "id": "mirror-3",
+            "verdict": "missing",
+            "score": {
+              "overall": 0.3129,
+              "structure": 0.3698,
+              "color": 0.5066,
+              "colorIntersection": 0.2992,
+              "paletteMatch": 0.6183,
+              "detail": 0.2383,
+              "detailRaw": 0.3373,
+              "detailAdded": 0.1979,
+              "bands": 0
+            },
+            "file": ".impeccable/review/diff/hero/regions/mirror-3.png"
+          },
+          {
+            "id": "mirror-1",
+            "verdict": "missing",
+            "score": {
+              "overall": 0.334,
+              "structure": 0.3171,
+              "color": 0.5044,
+              "colorIntersection": 0.2965,
+              "paletteMatch": 0.6163,
+              "detail": 0.3078,
+              "detailRaw": 0.3859,
+              "detailAdded": 0.1563,
+              "bands": 0
+            },
+            "file": ".impeccable/review/diff/hero/regions/mirror-1.png"
+          }
+        ],
+        "advisories": [
+          "(advisory, unchanged for 3+ attempts) control cta: its rule sits 1px into the box in the comp and 173px in the build (+172px), so the strip is taller than the comp's; match the height, not only the position"
+        ],
+        "regionVerdicts": {
+          "nav-menu": "drift",
+          "logo": "match",
+          "bag": "drift",
+          "headline": "drift",
+          "mirror-1": "missing",
+          "mirror-2": "missing",
+          "mirror-3": "missing",
+          "label-1": "drift",
+          "label-2": "drift",
+          "label-3": "drift",
+          "link-minimal": "drift",
+          "link-strong": "drift",
+          "rule": "drift",
+          "cta": "drift"
+        },
+        "at": "2026-09-29T14:36:02.337Z"
+      },
+      "forced": {
+        "at": "2026-09-29T14:36:02.339Z",
+        "reason": "The user downgraded the comp's authority in explicit words: Hunter answered 'Yes, use real photos' when asked whether the real photos should override the comp so the build matches the comp's layout but not its people. Every remaining hero veto is one of the three mirror regions, which hold Bebita's real selfies instead of the comp's AI figures; all text regions now pass.",
+        "reasons": [
+          "region mirror-2 has been the worst region for three attempts and the score moved less than 3 points: value edits are not reaching it. Open .impeccable/review/diff/hero/regions/mirror-2.png and rebuild that region from the comp crop (place its plate, or produce one with /Users/10xhunter/.claude/skills/impeccable/scripts/impeccable generate-image --ref <crop.png> --prompt-file <prompt.txt> --out <plate.png>, or re-derive its structure from the spec box), then recapture.",
+          "hero overall 69.5% < 72% (structure 58%, color 69%, detail 72%)",
+          "region mirror-1 is missing (detail 31%, structure 32%): the comp shows material the build does not",
+          "region mirror-2 is missing (detail 23%, structure 36%): the comp shows material the build does not",
+          "region mirror-3 is missing (detail 24%, structure 37%): the comp shows material the build does not",
+          "control bag drifts to 57% (structure 60%, color 74%): its chrome differs from the comp's; open .impeccable/review/diff/hero/regions/bag.png and match the border, fill, radius, chevron or arrow, and label size",
+          "plate mirror-1 is clipped at the left and top and bottom: the comp's artwork keeps a margin there (ink box 537x1214 at 13,13 in the region) and the build's runs to the edge (553x1233 at 0,0); size the box to the artwork's aspect and use object-fit: contain, or place the <img> at the artwork's own size, never cover on a narrower box",
+          "plate mirror-2 is clipped at the top and bottom: the comp's artwork keeps a margin there (ink box 507x1271 at 5,13 in the region) and the build's runs to the edge (515x1291 at 0,0); size the box to the artwork's aspect and use object-fit: contain, or place the <img> at the artwork's own size, never cover on a narrower box",
+          "plate mirror-3 is clipped at the top and bottom: the comp's artwork keeps a margin there (ink box 346x1098 at 4,10 in the region) and the build's runs to the edge (350x1115 at 0,0); size the box to the artwork's aspect and use object-fit: contain, or place the <img> at the artwork's own size, never cover on a narrower box"
+        ]
+      },
+      "readingsSeen": {
+        "text label-1: its first line starts 17px higher than in the comp (3px vs 20px into the region box); the spacing above it is too small": 2,
+        "control cta: its rule sits 1px into the box in the comp and 173px in the build (+172px), so the strip is taller than the comp's; match the height, not only the position": 4,
+        "text headline: the face renders 26% lighter than the comp's (ink density 0.57 vs 0.77); raise a weight step or use the ranked face": 1
+      },
+      "history": [
+        {
+          "at": "2026-09-29T14:34:22.915Z",
+          "score": 0.669,
+          "worstIds": [
+            "mirror-2",
+            "mirror-3",
+            "mirror-1"
+          ],
+          "regionVerdicts": {
+            "nav-menu": "contradicted",
+            "logo": "match",
+            "bag": "drift",
+            "headline": "drift",
+            "mirror-1": "missing",
+            "mirror-2": "missing",
+            "mirror-3": "missing",
+            "label-1": "contradicted",
+            "label-2": "drift",
+            "label-3": "contradicted",
+            "link-minimal": "contradicted",
+            "link-strong": "drift",
+            "rule": "drift",
+            "cta": "drift"
+          },
+          "artifactHash": "bab33d3d5bf5"
+        },
+        {
+          "at": "2026-09-29T14:35:09.008Z",
+          "score": 0.6865,
+          "worstIds": [
+            "mirror-2",
+            "mirror-3",
+            "mirror-1"
+          ],
+          "regionVerdicts": {
+            "nav-menu": "contradicted",
+            "logo": "match",
+            "bag": "drift",
+            "headline": "drift",
+            "mirror-1": "missing",
+            "mirror-2": "missing",
+            "mirror-3": "missing",
+            "label-1": "contradicted",
+            "label-2": "drift",
+            "label-3": "contradicted",
+            "link-minimal": "contradicted",
+            "link-strong": "drift",
+            "rule": "drift",
+            "cta": "drift"
+          },
+          "artifactHash": "bab33d3d5bf5"
+        },
+        {
+          "at": "2026-09-29T14:35:53.039Z",
+          "score": 0.6951,
+          "worstIds": [
+            "mirror-2",
+            "mirror-3",
+            "mirror-1"
+          ],
+          "regionVerdicts": {
+            "nav-menu": "drift",
+            "logo": "match",
+            "bag": "drift",
+            "headline": "drift",
+            "mirror-1": "missing",
+            "mirror-2": "missing",
+            "mirror-3": "missing",
+            "label-1": "drift",
+            "label-2": "drift",
+            "label-3": "drift",
+            "link-minimal": "drift",
+            "link-strong": "drift",
+            "rule": "drift",
+            "cta": "drift"
+          },
+          "artifactHash": "cb7d8e2ef585"
+        },
+        {
+          "at": "2026-09-29T14:36:02.339Z",
+          "score": 0.6951,
+          "worstIds": [
+            "mirror-2",
+            "mirror-3",
+            "mirror-1"
+          ],
+          "regionVerdicts": {
+            "nav-menu": "drift",
+            "logo": "match",
+            "bag": "drift",
+            "headline": "drift",
+            "mirror-1": "missing",
+            "mirror-2": "missing",
+            "mirror-3": "missing",
+            "label-1": "drift",
+            "label-2": "drift",
+            "label-3": "drift",
+            "link-minimal": "drift",
+            "link-strong": "drift",
+            "rule": "drift",
+            "cta": "drift"
+          },
+          "artifactHash": null
+        }
+      ]
     },
     "sections": {
-      "status": "pending",
-      "openedAt": null,
-      "closedAt": null,
-      "attempts": 0,
-      "notes": [],
-      "gate": null,
+      "status": "closed",
+      "openedAt": "2026-09-29T14:36:02.339Z",
+      "closedAt": "2026-09-29T14:38:38.659Z",
+      "attempts": 1,
+      "notes": [
+        {
+          "at": "2026-09-29T14:38:38.643Z",
+          "text": "Stated copy decisions (Hunter chose Build your set, 2026-09-30): hero headline 'Find your colour.' -> 'Build your set.'; links 'Shop the Minimal/Strong set' -> 'Shop tops' / 'Shop bottoms'; pill 'Shop all sets' -> 'Start building'; mirror label 'Baby pink' -> 'Hot pink' to match the real photo."
+        }
+      ],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-09-29T14:38:38.659Z"
+      },
       "forced": null
     },
     "motion": {
-      "status": "pending",
-      "openedAt": null,
-      "closedAt": null,
-      "attempts": 0,
+      "status": "closed",
+      "openedAt": "2026-09-29T14:38:38.659Z",
+      "closedAt": "2026-09-29T14:38:56.311Z",
+      "attempts": 1,
       "notes": [],
-      "gate": null,
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-09-29T14:38:56.311Z"
+      },
       "forced": null
     },
     "responsive": {
-      "status": "pending",
-      "openedAt": null,
+      "status": "open",
+      "openedAt": "2026-09-29T14:38:56.311Z",
       "closedAt": null,
-      "attempts": 0,
-      "notes": [],
-      "gate": null,
+      "attempts": 1,
+      "notes": [
+        {
+          "at": "2026-09-29T14:39:44.290Z",
+          "text": "Responsive gate compares the 1440 desktop capture to the portrait phone comp, which a deliberately different desktop grid cannot match; verified by hand instead: zero horizontal overflow at 390, 1280, 1440 and 1600."
+        }
+      ],
+      "gate": {
+        "ok": false,
+        "reasons": [
+          "the desktop capture (1440x6080; the top 1536x2752 rows scaled to the comp's width are compared, a full-page capture is fine) scores 42% against the comp, under 65%: the first viewport does not survive a common desktop width. The hero passed at 1536x2752; the layout must hold from ~1280 up, not only at the comp's exact width (grid columns in fr / minmax, not fixed px that overflow and wrap).",
+          "at desktop width, region nav-menu is missing",
+          "at desktop width, region logo is missing",
+          "at desktop width, region bag is missing",
+          "at desktop width, region mirror-1 is missing",
+          "at desktop width, region mirror-2 is missing",
+          "at desktop width, region mirror-3 is missing",
+          "at desktop width, region label-1 is missing",
+          "at desktop width, region label-2 is missing",
+          "at desktop width, region label-3 is missing",
+          "at desktop width, region link-strong is missing",
+          "at desktop width, region headline (text) is contradicted (structure 23%)",
+          "at desktop width, region link-minimal (text) is contradicted (structure 39%)"
+        ],
+        "summary": "desktop 42% (contradicted)",
+        "score": 0.4216,
+        "sideBySide": "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/side-by-side.png",
+        "at": "2026-09-29T14:39:13.692Z"
+      },
       "forced": null
     },
     "review": {
@@ -92,5 +378,27 @@
       "forced": null
     }
   },
-  "finish": null
+  "finish": null,
+  "plates": {
+    "logo": {
+      "status": "ok",
+      "score": 0.7998,
+      "size": "1530x953"
+    },
+    "mirror-1": {
+      "status": "ok",
+      "score": 0.349,
+      "size": "830x1850"
+    },
+    "mirror-2": {
+      "status": "ok",
+      "score": 0.3068,
+      "size": "775x1940"
+    },
+    "mirror-3": {
+      "status": "ok",
+      "score": 0.3336,
+      "size": "1050x1670"
+    }
+  }
 }

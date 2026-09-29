@@ -35,3 +35,6 @@ projects/bespoke-sold-popups/preview/frames/
 # CLC sprint PNG exports — derived, regenerate with canvas/export_png.py
 projects/clc-graphic-sprint-sep-2026/exports/
 projects/clc-graphic-sprint-sep-2026/canvas/__pycache__/
+
+# Bebita Instagram rips (hundreds of MB of images; kept local, not in git)
+raw/bebita/instagram-*/

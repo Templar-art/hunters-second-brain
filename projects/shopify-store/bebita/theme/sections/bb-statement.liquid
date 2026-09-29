@@ -1,0 +1,15 @@
+<section class="bb bb-statement" aria-label="{{ section.settings.line | strip_html | escape }}">
+  <p class="bb-statement__line" data-reveal>{{ section.settings.line }}</p>
+  {%- if section.settings.sub != blank -%}<p class="bb-statement__sub" data-reveal>{{ section.settings.sub }}</p>{%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Bebita statement",
+  "settings": [
+    { "type": "text", "id": "line", "label": "Statement", "default": "The original run is back. When it’s gone, it’s gone." },
+    { "type": "text", "id": "sub", "label": "Small line", "default": "What’s left is what’s listed. No countdown clocks." }
+  ],
+  "presets": [{ "name": "Bebita statement" }]
+}
+{% endschema %}

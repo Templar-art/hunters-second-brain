@@ -1,0 +1,8 @@
+{%- comment -%} Bebita Collective: fonts, stylesheet and script shared by every bb- section. Rendered once from the header. {%- endcomment -%}
+<style>
+  @font-face { font-family: 'Parkinsans'; font-style: normal; font-weight: 800; font-display: swap; src: url('{{ 'bebita-parkinsans-800.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('{{ 'bebita-publicsans-var.woff2' | asset_url }}') format('woff2'); }
+</style>
+<link rel="preload" href="{{ 'bebita-parkinsans-800.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+{{ 'bebita.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bebita.js' | asset_url }}" defer></script>

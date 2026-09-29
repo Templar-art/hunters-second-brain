@@ -746,7 +746,32 @@
           "weight": 0.3933
         },
         "widthClass": "normal",
-        "weightClass": "regular"
+        "weightClass": "regular",
+        "chosen": {
+          "family": "Livvic",
+          "weight": 400,
+          "fontSizePx": 53,
+          "source": "index",
+          "fp": {
+            "lines": 1,
+            "glyphs": 18,
+            "capHeightPx": 37.5,
+            "inkIsDark": true,
+            "allCaps": false,
+            "advance": 0.6128,
+            "advTall": 0.6128,
+            "advX": null,
+            "gap": 0.1599,
+            "xRatio": 0.5477,
+            "stemW": 0.1248,
+            "contrast": 1.0805,
+            "serif": 1,
+            "densTall": 0.3972,
+            "densX": null,
+            "weight": 0.3972
+          },
+          "stamp": "e179be5ecbb2"
+        }
       }
     },
     {

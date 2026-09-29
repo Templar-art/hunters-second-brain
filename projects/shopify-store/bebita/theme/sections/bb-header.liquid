@@ -1,0 +1,42 @@
+{%- render 'bb-assets' -%}
+<header class="bb bb-head" data-bb-head>
+  <button class="bb-head__menu" type="button" aria-controls="bb-menu" aria-expanded="false" data-bb-menu-open>Menu</button>
+  <a class="bb-head__mark" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }} home">
+    {%- if section.settings.logo != blank -%}
+      {{ section.settings.logo | image_url: width: 480 | image_tag: alt: '', widths: '240, 360, 480', sizes: '(min-width: 900px) 118px, 90px' }}
+    {%- else -%}<span class="bb-head__wordmark">{{ shop.name }}</span>{%- endif -%}
+    {%- if section.settings.sub_mark != blank -%}<span class="bb-head__sub">{{ section.settings.sub_mark }}</span>{%- endif -%}
+  </a>
+  <a class="bb-head__bag" href="{{ routes.cart_url }}" aria-label="Bag, {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8.5h13l-1 12h-11z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>
+    {%- if cart.item_count > 0 -%}<span class="bb-head__count">{{ cart.item_count }}</span>{%- endif -%}
+  </a>
+</header>
+
+<dialog class="bb bb-menu" id="bb-menu" aria-label="Menu" data-bb-menu>
+  <div class="bb-menu__top">
+    <span class="bb-menu__title">Menu</span>
+    <button class="bb-menu__close" type="button" data-bb-menu-close aria-label="Close menu">Close</button>
+  </div>
+  <nav aria-label="Main">
+    <ul class="bb-menu__list" role="list">
+      {%- for link in section.settings.menu.links -%}
+        <li><a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+  <p class="bb-menu__foot">{{ section.settings.menu_note }}</p>
+</dialog>
+
+{% schema %}
+{
+  "name": "Bebita header",
+  "class": "bb-head-section",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Script logo (white, transparent)" },
+    { "type": "text", "id": "sub_mark", "label": "Word under the logo", "default": "Collective" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "menu_note", "label": "Menu footnote", "default": "Sent from the Gold Coast" }
+  ]
+}
+{% endschema %}

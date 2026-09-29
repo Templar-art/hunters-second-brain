@@ -1,0 +1,547 @@
+{
+  "tool": "comp-diff",
+  "version": 1,
+  "createdAt": "2026-09-29T14:39:13.691Z",
+  "label": "desktop",
+  "comp": ".impeccable/mocks/home-comp-b-mirror-row.png",
+  "build": ".impeccable/review/desktop.png",
+  "spec": ".impeccable/build/spec.json",
+  "compSize": "1536x2752",
+  "buildSize": "1440x6080",
+  "align": "top",
+  "overall": 0.4216,
+  "verdict": "contradicted",
+  "scores": {
+    "overall": 0.4216,
+    "structure": 0.3692,
+    "color": 0.6836,
+    "colorIntersection": 0.5229,
+    "paletteMatch": 0.77,
+    "detail": 0.2788,
+    "detailRaw": 0.3934,
+    "detailAdded": 0.2292,
+    "bands": 0.3455
+  },
+  "palette": {
+    "comp": [
+      {
+        "hex": "#f6d7dd",
+        "coverage": 0.654
+      },
+      {
+        "hex": "#cac3bb",
+        "coverage": 0.1361
+      },
+      {
+        "hex": "#39242a",
+        "coverage": 0.087
+      },
+      {
+        "hex": "#f3efed",
+        "coverage": 0.0554
+      },
+      {
+        "hex": "#97624b",
+        "coverage": 0.0405
+      },
+      {
+        "hex": "#938785",
+        "coverage": 0.0271
+      }
+    ],
+    "build": [
+      {
+        "hex": "#f4d8d8",
+        "coverage": 0.806
+      },
+      {
+        "hex": "#b07354",
+        "coverage": 0.0492
+      },
+      {
+        "hex": "#5d5f61",
+        "coverage": 0.046
+      },
+      {
+        "hex": "#392a27",
+        "coverage": 0.0457
+      },
+      {
+        "hex": "#a28468",
+        "coverage": 0.0268
+      },
+      {
+        "hex": "#683f2d",
+        "coverage": 0.0263
+      }
+    ]
+  },
+  "regions": [
+    {
+      "id": "nav-menu",
+      "x": 0.05,
+      "y": 0.045,
+      "w": 0.11,
+      "h": 0.022,
+      "kind": "text",
+      "score": {
+        "overall": 0.3839,
+        "structure": 0.4444,
+        "color": 0.643,
+        "colorIntersection": 0.4,
+        "paletteMatch": 0.7738,
+        "detail": 0.0061,
+        "detailRaw": 0.027,
+        "detailAdded": 0.0417,
+        "bands": 0
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 11,
+          "y": 13,
+          "w": 150,
+          "h": 40
+        },
+        "build": {
+          "x": 110,
+          "y": 49,
+          "w": 51,
+          "h": 11
+        }
+      }
+    },
+    {
+      "id": "logo",
+      "x": 0.38,
+      "y": 0.015,
+      "w": 0.245,
+      "h": 0.085,
+      "kind": "image",
+      "score": {
+        "overall": 0.3873,
+        "structure": 0.7668,
+        "color": 0.828,
+        "colorIntersection": 0.6838,
+        "paletteMatch": 0.9056,
+        "detail": 0,
+        "detailRaw": 0.1086,
+        "detailAdded": 0.25,
+        "bands": 0.6
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": null,
+        "build": {
+          "x": 14,
+          "y": 87,
+          "w": 362,
+          "h": 147
+        }
+      }
+    },
+    {
+      "id": "bag",
+      "x": 0.885,
+      "y": 0.037,
+      "w": 0.065,
+      "h": 0.037,
+      "kind": "control",
+      "score": {
+        "overall": 0.5426,
+        "structure": 0.7008,
+        "color": 0.6491,
+        "colorIntersection": 0.5141,
+        "paletteMatch": 0.7218,
+        "detail": 0,
+        "detailRaw": 0,
+        "detailAdded": 0,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 15,
+          "y": 7,
+          "w": 75,
+          "h": 90
+        },
+        "build": null
+      }
+    },
+    {
+      "id": "headline",
+      "x": 0.055,
+      "y": 0.125,
+      "w": 0.6,
+      "h": 0.142,
+      "kind": "text",
+      "score": {
+        "overall": 0.3317,
+        "structure": 0.2345,
+        "color": 0.737,
+        "colorIntersection": 0.5585,
+        "paletteMatch": 0.8332,
+        "detail": 0.2012,
+        "detailRaw": 0.3366,
+        "detailAdded": 0.2708,
+        "bands": 0
+      },
+      "verdict": "contradicted",
+      "inkBox": {
+        "comp": {
+          "x": 12,
+          "y": 20,
+          "w": 879,
+          "h": 347
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 922,
+          "h": 391
+        }
+      }
+    },
+    {
+      "id": "mirror-1",
+      "x": 0.028,
+      "y": 0.305,
+      "w": 0.36,
+      "h": 0.448,
+      "kind": "image",
+      "score": {
+        "overall": 0.3522,
+        "structure": 0.356,
+        "color": 0.5121,
+        "colorIntersection": 0.2801,
+        "paletteMatch": 0.6369,
+        "detail": 0.2559,
+        "detailRaw": 0.3392,
+        "detailAdded": 0.1667,
+        "bands": 0.6571
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 13,
+          "y": 13,
+          "w": 537,
+          "h": 1214
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 553,
+          "h": 1233
+        }
+      }
+    },
+    {
+      "id": "mirror-2",
+      "x": 0.418,
+      "y": 0.284,
+      "w": 0.335,
+      "h": 0.469,
+      "kind": "image",
+      "score": {
+        "overall": 0.3289,
+        "structure": 0.4902,
+        "color": 0.4756,
+        "colorIntersection": 0.1462,
+        "paletteMatch": 0.6529,
+        "detail": 0.1533,
+        "detailRaw": 0.2054,
+        "detailAdded": 0.1042,
+        "bands": 0.6923
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 5,
+          "y": 13,
+          "w": 507,
+          "h": 1271
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 515,
+          "h": 1240
+        }
+      }
+    },
+    {
+      "id": "mirror-3",
+      "x": 0.772,
+      "y": 0.348,
+      "w": 0.228,
+      "h": 0.405,
+      "kind": "image",
+      "score": {
+        "overall": 0.2526,
+        "structure": 0.5348,
+        "color": 0.2944,
+        "colorIntersection": 0.0757,
+        "paletteMatch": 0.4121,
+        "detail": 0.0801,
+        "detailRaw": 0.0957,
+        "detailAdded": 0.0313,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 4,
+          "y": 10,
+          "w": 346,
+          "h": 1098
+        },
+        "build": {
+          "x": 0,
+          "y": 411,
+          "w": 241,
+          "h": 351
+        }
+      }
+    },
+    {
+      "id": "label-1",
+      "x": 0.13,
+      "y": 0.759,
+      "w": 0.175,
+      "h": 0.024,
+      "kind": "text",
+      "score": {
+        "overall": 0.4117,
+        "structure": 0.5181,
+        "color": 0.4506,
+        "colorIntersection": 0.1316,
+        "paletteMatch": 0.6223,
+        "detail": 0,
+        "detailRaw": 0,
+        "detailAdded": 0,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 15,
+          "y": 20,
+          "w": 235,
+          "h": 35
+        },
+        "build": null
+      }
+    },
+    {
+      "id": "label-2",
+      "x": 0.535,
+      "y": 0.759,
+      "w": 0.095,
+      "h": 0.024,
+      "kind": "text",
+      "score": {
+        "overall": 0.4961,
+        "structure": 0.6658,
+        "color": 0.4929,
+        "colorIntersection": 0.1901,
+        "paletteMatch": 0.6559,
+        "detail": 0,
+        "detailRaw": 0,
+        "detailAdded": 0,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 9,
+          "y": 20,
+          "w": 122,
+          "h": 35
+        },
+        "build": null
+      }
+    },
+    {
+      "id": "label-3",
+      "x": 0.86,
+      "y": 0.759,
+      "w": 0.135,
+      "h": 0.024,
+      "kind": "text",
+      "score": {
+        "overall": 0.4669,
+        "structure": 0.5891,
+        "color": 0.5296,
+        "colorIntersection": 0.2465,
+        "paletteMatch": 0.6821,
+        "detail": 0,
+        "detailRaw": 0,
+        "detailAdded": 0,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 9,
+          "y": 20,
+          "w": 176,
+          "h": 35
+        },
+        "build": null
+      }
+    },
+    {
+      "id": "link-minimal",
+      "x": 0.05,
+      "y": 0.838,
+      "w": 0.415,
+      "h": 0.024,
+      "kind": "text",
+      "score": {
+        "overall": 0.3328,
+        "structure": 0.3905,
+        "color": 0.3026,
+        "colorIntersection": 0.0357,
+        "paletteMatch": 0.4462,
+        "detail": 0.1463,
+        "detailRaw": 0.2244,
+        "detailAdded": 0.1563,
+        "bands": 0.4
+      },
+      "verdict": "contradicted",
+      "inkBox": {
+        "comp": {
+          "x": 5,
+          "y": 11,
+          "w": 623,
+          "h": 39
+        },
+        "build": {
+          "x": 63,
+          "y": 0,
+          "w": 536,
+          "h": 66
+        }
+      }
+    },
+    {
+      "id": "link-strong",
+      "x": 0.543,
+      "y": 0.838,
+      "w": 0.405,
+      "h": 0.024,
+      "kind": "text",
+      "score": {
+        "overall": 0.4073,
+        "structure": 0.5065,
+        "color": 0.4558,
+        "colorIntersection": 0.1473,
+        "paletteMatch": 0.6219,
+        "detail": 0.0005,
+        "detailRaw": 0.0005,
+        "detailAdded": 0,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 6,
+          "y": 11,
+          "w": 613,
+          "h": 39
+        },
+        "build": null
+      }
+    },
+    {
+      "id": "rule",
+      "x": 0.05,
+      "y": 0.869,
+      "w": 0.9,
+      "h": 0.004,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.4754,
+        "structure": 0.7394,
+        "color": 0.505,
+        "colorIntersection": 0.2197,
+        "paletteMatch": 0.6586,
+        "detail": 0.1214,
+        "detailRaw": 0.3401,
+        "detailAdded": 0.4375,
+        "bands": 0.4
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 5,
+          "y": 26,
+          "w": 1371,
+          "h": 2
+        },
+        "build": {
+          "x": 41,
+          "y": 0,
+          "w": 573,
+          "h": 48
+        }
+      }
+    },
+    {
+      "id": "cta",
+      "x": 0.05,
+      "y": 0.905,
+      "w": 0.9,
+      "h": 0.064,
+      "kind": "control",
+      "score": {
+        "overall": 0.2122,
+        "structure": 0.2512,
+        "color": 0.2464,
+        "colorIntersection": 0.0281,
+        "paletteMatch": 0.3639,
+        "detail": 0.0644,
+        "detailRaw": 0.2258,
+        "detailAdded": 0.3229,
+        "bands": 0.4
+      },
+      "verdict": "contradicted",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 1382,
+          "h": 176
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 726,
+          "h": 176
+        }
+      }
+    }
+  ],
+  "files": {
+    "sideBySide": "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/side-by-side.png",
+    "heatmap": "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/heatmap.png",
+    "regionFiles": [
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/nav-menu.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/logo.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/bag.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/headline.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/mirror-1.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/mirror-2.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/mirror-3.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/label-1.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/label-2.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/label-3.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/link-minimal.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/link-strong.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/rule.png",
+      "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/bebita/.impeccable/review/diff/desktop/regions/cta.png"
+    ]
+  }
+}

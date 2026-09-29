@@ -1,0 +1,44 @@
+<section class="bb bb-mirrors" aria-labelledby="bb-mirrors-title-{{ section.id }}">
+  <h1 id="bb-mirrors-title-{{ section.id }}" class="bb-mirrors__title">{{ section.settings.heading | newline_to_br }}</h1>
+  <ul class="bb-mirrors__row" role="list">
+    {%- for block in section.blocks -%}
+      <li class="bb-mirror bb-mirror--{{ forloop.index }}" {{ block.shopify_attributes }}>
+        <a href="{{ block.settings.link | default: routes.all_products_collection_url }}">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'eager', widths: '280, 420, 560, 700', sizes: '(min-width: 900px) 20vw, 36vw', alt: block.settings.image.alt | default: block.settings.label }}
+          {%- endif -%}
+          <span class="bb-mirror__label">{{ block.settings.label }}</span>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+  <nav class="bb-mirrors__links" aria-label="Shop">
+    {%- if section.settings.link_1_label != blank -%}<a href="{{ section.settings.link_1 }}">{{ section.settings.link_1_label }}</a>{%- endif -%}
+    {%- if section.settings.link_2_label != blank -%}<a href="{{ section.settings.link_2 }}">{{ section.settings.link_2_label }}</a>{%- endif -%}
+  </nav>
+  {%- if section.settings.button_label != blank -%}<a class="bb-pill" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Bebita mirrors",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Build\nyour set." },
+    { "type": "text", "id": "link_1_label", "label": "Link 1", "default": "Shop tops" },
+    { "type": "url", "id": "link_1", "label": "Link 1 target" },
+    { "type": "text", "id": "link_2_label", "label": "Link 2", "default": "Shop bottoms" },
+    { "type": "url", "id": "link_2", "label": "Link 2 target" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Start building" },
+    { "type": "url", "id": "button_link", "label": "Button target" }
+  ],
+  "blocks": [
+    { "type": "mirror", "name": "Mirror", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Mirror image (arched mirror plate)" },
+      { "type": "text", "id": "label", "label": "Colour name", "default": "Colour" },
+      { "type": "url", "id": "link", "label": "Link" }
+    ] }
+  ],
+  "presets": [{ "name": "Bebita mirrors", "blocks": [{ "type": "mirror" }, { "type": "mirror" }, { "type": "mirror" }] }]
+}
+{% endschema %}

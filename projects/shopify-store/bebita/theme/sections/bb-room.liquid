@@ -1,0 +1,25 @@
+<section class="bb bb-room" aria-labelledby="bb-room-title-{{ section.id }}">
+  <h2 id="bb-room-title-{{ section.id }}" class="bb-room__title" data-reveal>{{ section.settings.heading | newline_to_br }}</h2>
+  <figure class="bb-room__a">{%- if section.settings.image_a != blank -%}{{ section.settings.image_a | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300, 600, 900', sizes: '(min-width: 900px) 24vw, 45vw' }}{%- endif -%}</figure>
+  <figure class="bb-room__b">{%- if section.settings.image_b != blank -%}{{ section.settings.image_b | image_url: width: 1100 | image_tag: loading: 'lazy', widths: '300, 700, 1100', sizes: '(min-width: 900px) 32vw, 45vw' }}{%- endif -%}</figure>
+  <p class="bb-room__handles" data-reveal>
+    {%- if section.settings.handle_1 != blank -%}<a href="{{ section.settings.url_1 }}">{{ section.settings.handle_1 }}</a>{%- endif -%}
+    {%- if section.settings.handle_2 != blank -%}<a href="{{ section.settings.url_2 }}">{{ section.settings.handle_2 }}</a>{%- endif -%}
+  </p>
+</section>
+
+{% schema %}
+{
+  "name": "Bebita change room",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Straight from\nthe change room." },
+    { "type": "image_picker", "id": "image_a", "label": "Arched image" },
+    { "type": "image_picker", "id": "image_b", "label": "Second image" },
+    { "type": "text", "id": "handle_1", "label": "Handle 1", "default": "@bebitaactive" },
+    { "type": "url", "id": "url_1", "label": "Handle 1 link" },
+    { "type": "text", "id": "handle_2", "label": "Handle 2", "default": "@bebitaswim" },
+    { "type": "url", "id": "url_2", "label": "Handle 2 link" }
+  ],
+  "presets": [{ "name": "Bebita change room" }]
+}
+{% endschema %}

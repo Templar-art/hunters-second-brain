@@ -1,0 +1,35 @@
+<section class="bb bb-build" id="build" aria-labelledby="bb-build-title-{{ section.id }}">
+  <figure class="bb-build__media">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '500, 800, 1100, 1400', sizes: '(min-width: 900px) 50vw, 84vw' }}
+    {%- endif -%}
+  </figure>
+  <div class="bb-build__text" data-reveal>
+    <h2 id="bb-build-title-{{ section.id }}" class="bb-h2">{{ section.settings.heading | newline_to_br }}</h2>
+    {{ section.settings.text }}
+    {%- if section.blocks.size > 0 -%}
+      <ol class="bb-steps">
+        {%- for block in section.blocks -%}<li {{ block.shopify_attributes }}><span>{{ block.settings.label }}</span> {{ block.settings.text }}</li>{%- endfor -%}
+      </ol>
+    {%- endif -%}
+    {%- if section.settings.link_label != blank -%}<a class="bb-arrow" href="{{ section.settings.link }}">{{ section.settings.link_label }}</a>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bebita build your set",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Pick a top.\nPick a bottom." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Every top and every bottom is sold on its own, in its own size. Match them, or mix the colours. The set is yours to build.</p>" },
+    { "type": "text", "id": "link_label", "label": "Link" },
+    { "type": "url", "id": "link", "label": "Link target" }
+  ],
+  "blocks": [{ "type": "step", "name": "Step", "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Top" },
+    { "type": "text", "id": "text", "label": "Text", "default": "Choose the bra and your size" }
+  ] }],
+  "presets": [{ "name": "Bebita build your set" }]
+}
+{% endschema %}
