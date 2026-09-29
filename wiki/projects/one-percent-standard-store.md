@@ -17,16 +17,23 @@ Hunter's own white-label e-commerce store, separate from 10x client work. 100 un
 - Shopify Dev MCP (`@shopify/dev-mcp`) added at user scope for docs and schema lookups.
 
 ## Product
-**Cuffed D-Ring Lifting Straps** (SKU `OPS-STRAP-DR-01`), one size, sold as a pair. Created 2026-09-29 as a **draft** at A$39.95, 100 in stock at the Upper Coomera location, cost US$5.60 (≈A$8.50 at an assumed 0.66). Copy source: [product.json](../../projects/shopify-store/product.json).
-- Margin at $39.95: about $19.50 (49%) if shipping is free, about $29.40 if $9.95 shipping is charged; breakeven on the 100 units is about 45 sales. Not GST-registered (under $75k), so the variant is set non-taxable.
+**Cuffed D-Ring Lifting Straps** (SKU `OPS-STRAP-DR-01`), one size, sold as a pair. Created 2026-09-29 as a **draft** at A$39.95, 100 in stock at the Upper Coomera location. Copy source: [product.json](../../projects/shopify-store/product.json).
+- Supplier: Alibaba, Guangdong (contact Sharon Huang), model LM-WLS260303. Neoprene cuff, hook-and-loop closure, 30cm strap, 1.8mm, 120g gross, "1% One Percent" logo on the cuff, MOQ 100, 25–30 day delivery. Supplier offered a longer velcro tab for thinner wrists (recommended yes).
+- **⚠️ Cost corrected:** quoted US$5.60/unit, but the order total was US$663 → US$6.63/unit ≈ A$10.05 (assumed 0.66). Shopify cost set to 10.05, weight 150g packed. The order showed "waiting for supplier to ship" in one screenshot; confirm the stock has actually landed before going live.
+- Margin at $39.95 with $9.95 shipping charged: about $27.50 per single order; breakeven on the 100 units about 38 sales. Not GST-registered (under $75k), so the variant is set non-taxable.
 - Compliance: low risk, no known AU mandatory standard for lifting straps; Consumer Law accuracy only. Trademark search for the brand name still to do.
 
 ## Open
 - Weight is a 250g placeholder: weigh one packed unit.
 - Strap material and length unconfirmed, so the copy avoids them.
 - No photos yet; the product can't go live without them.
-- Shipping rates, Store details address, and a competitor price check.
+- Store details address and a competitor price check.
+- Range: ask the same supplier for logo'd complements (figure-8, lasso, wrist wraps, belt) rather than dropshipping unbranded stock under the brand.
+
+## Shipping (set 2026-09-29)
+Domestic: Standard $9.95 under $75, free Standard at $75+ (two pairs ship free), Express $14.95. International disabled: a $20 flat rate loses money against AusPost international.
 
 ## Lessons (API)
 - The app needs `write_locations` to edit a location; `read_locations` only reads it.
 - Admin API `2026-07`: `inventorySetQuantities` no longer takes `ignoreCompareQuantity`; `inventoryAdjustQuantities` requires `changeFromQuantity` on each change and an `@idempotent(key:)` directive. `totalInventory` lags a few seconds after an adjustment.
+- The default "Standard" rate with a free-over rule is an admin-only multi-condition method; `deliveryProfileUpdate` can't edit its condition. Delete the method and recreate it as two methods with `priceConditionsToCreate` instead.

@@ -1,10 +1,20 @@
-{"product":{
- "title":"Cuffed D-Ring Lifting Straps",
- "handle":"cuffed-d-ring-lifting-straps",
- "status":"DRAFT",
- "vendor":"One Percent Standard",
- "productType":"Lifting Straps",
- "tags":["lifting straps","deadlift","gym accessories","grip"],
- "descriptionHtml":"<p><strong>Your grip should never be the reason a set ends.</strong></p><p>The One Percent Standard Cuffed D-Ring Lifting Straps lock around your wrist with a padded cuff and a steel D-ring, so the load sits on the strap, not your fingers. Deadlifts, rows, shrugs and pulls: keep the bar moving long after your grip would have quit.</p><ul><li><strong>Cuffed wrist design.</strong> Padded cuff spreads the load and stays put, so no re-wrapping between sets.</li><li><strong>D-ring closure.</strong> Thread, pull tight, lift. On and off in seconds.</li><li><strong>One size.</strong> Adjustable cuff fits most wrists.</li><li><strong>Sold as a pair.</strong></li></ul><p>Built for people who train like the last one percent is the part that counts.</p>",
- "seo":{"title":"Cuffed D-Ring Lifting Straps | One Percent Standard","description":"Padded cuff lifting straps with a steel D-ring. Lock in your grip on deadlifts, rows and pulls. Shipped from the Gold Coast."}
-}}
+{
+ "product": {
+  "title": "Cuffed D-Ring Lifting Straps",
+  "handle": "cuffed-d-ring-lifting-straps",
+  "status": "DRAFT",
+  "vendor": "One Percent Standard",
+  "productType": "Lifting Straps",
+  "tags": [
+   "lifting straps",
+   "deadlift",
+   "gym accessories",
+   "grip"
+  ],
+  "descriptionHtml": "<p><strong>Your grip should never be the reason a set ends.</strong></p><p>The One Percent Standard Cuffed D-Ring Lifting Straps lock around your wrist with a neoprene cuff, so the load sits on the strap, not your fingers. Deadlifts, rows, shrugs and pulls: keep the bar moving long after your grip would have quit.</p><ul><li><strong>Neoprene wrist cuff.</strong> Soft, breathable and non-slip. Spreads the load and stays put between sets.</li><li><strong>Hook and loop closure.</strong> Wrap, fasten, lift. Adjusts to fit most wrists.</li><li><strong>D-ring anchored strap.</strong> 30cm strap rides on the D-ring, so it wraps the bar clean and holds.</li><li><strong>One size, sold as a pair.</strong></li></ul><p>Built for people who train like the last one percent is the part that counts.</p>",
+  "seo": {
+   "title": "Cuffed D-Ring Lifting Straps | One Percent Standard",
+   "description": "Neoprene cuff lifting straps with D-ring and hook and loop closure. Lock in your grip on deadlifts, rows and pulls. Shipped from the Gold Coast."
+  }
+ }
+}
