@@ -15,6 +15,9 @@ Activewear and swimwear brand from Hunter's sister, run by Hunter as a separate 
 - Same helper as One Percent: `STORE=bebita ./shopify.sh …` in [projects/shopify-store/](../../projects/shopify-store/shopify.sh). The token cache is per store, so they can't cross.
 - Hunter has an ABN, so a `.com.au` domain is possible.
 
+## Sources
+All products and brand content live on Instagram: [@bebitaactive](https://www.instagram.com/bebitaactive/) and [@bebitaswim](https://www.instagram.com/bebitaswim/). Automated reads failed on 2026-09-29 (OpenCLI 429 without an Instagram login; Jina reader blocked), so they need a logged-in Chrome session or exported images.
+
 ## Open
 - Product list: styles, sizes, colours, stock counts, cost and price.
 - Photos, logo, brand colours.

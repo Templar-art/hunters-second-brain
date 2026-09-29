@@ -30,6 +30,16 @@ Hunter's own white-label e-commerce store, separate from 10x client work. 100 un
 - Store details address and a competitor price check.
 - Range: ask the same supplier for logo'd complements (figure-8, lasso, wrist wraps, belt) rather than dropshipping unbranded stock under the brand.
 
+## Brand (from Hunter's packaging blueprint + spec sheet, 2026-09-29)
+- Mark: "1%" in a circle with a purple arc, wordmark **ONE PERCENT**, tagline **BETTER DAILY**. Store/domain name stays One Percent Standard (`onepercentstandard.com`, social handle `@onepercentstandard` on the packaging, not yet verified as live accounts).
+- Colour: black + purple **#9B5DE5** (Pantone 2655 C). Type: Montserrat, all caps. No logo file supplied yet; the header uses the store name as text.
+- Packaging: clear resealable 16 × 24cm bag, printed front, barcode sticker back (model `1P-LS-BLK`, "1% Silicone Lifting Straps").
+- **⚠️ Product spec supersedes the supplier listing:** the strap is **silicone** with anti-slip dots (not the listing's plain strap), 5mm neoprene wrist padding, double D-rings, cuff 38.5 × 5cm. Strap length conflicts: spec sheet 25.4cm (10in) vs supplier chat photo 30cm. Copy omits the length until a sample is measured. Real samples are in hand (photo 2026-09-29).
+
+## Theme (restyled 2026-09-29)
+Horizon: near-black palette (#0B0B0C background, #F4F4F5 text), purple primary buttons, Montserrat throughout, uppercase H1–H3, square corners. Purple announcement bar ("Free shipping on orders over $75"), uppercase menu. Home hero has a purple "Better daily" eyebrow over the headline; the brand band sits on #141416. Placeholder social links cleared. Product retitled **Silicone Grip D-Ring Lifting Straps**, spec-sheet infographic as the first image, status ACTIVE (store still password-locked). All pre-change files in [theme-backup/](../../projects/shopify-store/theme-backup/).
+- Horizon (this version) has a flat `color_palette` (background/foreground/color1/color2), not colour schemes, and its default hero text is bound to the *background* colour, so a dark palette turns hero text black on black until the blocks are rebound to foreground.
+
 ## Store copy (drafted 2026-09-29)
 Drafts in [content/](../../projects/shopify-store/content/): refund policy (30-day change of mind, ACL faulty cover), shipping policy, home/About/FAQ copy. The copy deliberately claims no founder story, testing or customer counts. Privacy and terms use Shopify's built-in generators. **Published 2026-09-29** by [publish_content.py](../../projects/shopify-store/publish_content.py) (fills [EMAIL] from the store's contact email at publish time; re-runnable): refund + shipping policies, About + FAQ pages, main menu (Home, Shop, About, FAQ, Contact) and footer (Search, FAQ, policies, Contact). Home page (Horizon theme `templates/index.json`): headline hero, "Shop the range" product list, brand statement band; original kept in [theme-backup/](../../projects/shopify-store/theme-backup/). Terms of service still to generate from Shopify's template. App now on `claude-3` with 26 scopes; a new version only takes effect after the store approves it (re-run Install app).
 
