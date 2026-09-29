@@ -30,6 +30,12 @@ Hunter's own white-label e-commerce store, separate from 10x client work. 100 un
 - Store details address and a competitor price check.
 - Range: ask the same supplier for logo'd complements (figure-8, lasso, wrist wraps, belt) rather than dropshipping unbranded stock under the brand.
 
+## Store copy (drafted 2026-09-29)
+Drafts in [content/](../../projects/shopify-store/content/): refund policy (30-day change of mind, ACL faulty cover), shipping policy, home/About/FAQ copy. The copy deliberately claims no founder story, testing or customer counts. Privacy and terms use Shopify's built-in generators. Publishing them needs extra app scopes (themes, pages, navigation, legal policies).
+
+## Related
+Hunter's sister's activewear and swimwear brand, Bebita Lifestyle, is a second store to set up (stock already in hand).
+
 ## Shipping (set 2026-09-29)
 Domestic: Standard $9.95 under $75, free Standard at $75+ (two pairs ship free), Express $14.95. International disabled: a $20 flat rate loses money against AusPost international.
 
