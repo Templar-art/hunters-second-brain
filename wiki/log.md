@@ -1025,3 +1025,7 @@ Coming-soon page is live on WordPress/Elementor; Hunter needs the real site live
 ## [2026-09-29] query | Iron Standard: harden pass
 
 Found the enquiry form never actually submitted (preventDefault with no re-submit, success faked on a timer). Fixed with explicit submit, postMessage confirmation, busy state, offline and timeout handling; hardened the Apps Script (validation, length caps, formula-injection guard, write lock). Long-word protection for Norwegian compounds and a 320px hero fix. Lessons on [[premium-web-build]].
+
+## [2026-09-29] ingest | One Percent Standard: Shopify store connected
+
+Set up Claude access to Hunter's new white-label store: Shopify Dev MCP at user scope, Dev Dashboard app with scopes (second version, the first had none), credentials in a new ~/.zshrc, and a token-swapping GraphQL helper. Read-only test passed. Detail on [[one-percent-standard-store]].
