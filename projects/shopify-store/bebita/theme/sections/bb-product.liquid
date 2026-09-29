@@ -46,6 +46,7 @@
     {%- form 'product', product, class: 'bb-product__form', data-bb-form: '' -%}
       <input type="hidden" name="id" value="{{ current.id }}" data-bb-variant-id>
       {%- for option in product.options_with_values -%}
+        {%- assign option_index = forloop.index0 -%}
         {%- assign is_colour = false -%}
         {%- assign oname = option.name | downcase -%}
         {%- if oname contains 'colo' -%}{%- assign is_colour = true -%}{%- endif -%}
@@ -54,7 +55,7 @@
           <div class="bb-chips{% if is_colour %} bb-chips--swatch{% endif %}">
             {%- for value in option.values -%}
               <label class="bb-chip">
-                <input type="radio" class="visually-hidden" name="option-{{ forloop.parentloop.index0 }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                <input type="radio" class="visually-hidden" name="option-{{ option_index }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
                 {%- if is_colour -%}
                   <span class="bb-swatch" data-bb-swatch="{{ value | downcase | escape }}" aria-hidden="true"></span><span class="visually-hidden">{{ value }}</span>
                 {%- else -%}<span>{{ value }}</span>{%- endif -%}
@@ -106,7 +107,7 @@
     { "type": "collection", "id": "bottoms", "label": "Bottoms collection (for Complete the set)" },
     { "type": "richtext", "id": "size_fit", "label": "Size and fit (used when the product has no size_fit metafield)", "default": "<p>Tops and bottoms are sold separately, so choose each in your own size. Unsure between two sizes? Email us before you order and we'll help.</p>" },
     { "type": "richtext", "id": "delivery", "label": "Delivery and returns", "default": "<p>Sent from the Gold Coast. $9.95 standard, free over $100, Express $14.95. 30-day returns on unworn pieces with tags on; swimwear only with the hygiene liner in place.</p>" },
-    { "type": "textarea", "id": "colour_map", "label": "Colour swatches (one per line, Name: #hex)", "default": "Baby pink: #f7c5d0\nHot pink: #e8479a\nLilac: #b9a6e8\nBaby blue: #a9cdf0\nCobalt: #2f5fd8\nRed: #d8283a\nBlack: #1c1a1b\nChocolate: #5b3a2e\nWhite: #f7f4f1\nAqua: #57c9d8\nCoral: #ef7b6c" }
+    { "type": "textarea", "id": "colour_map", "label": "Colour swatches (one per line, Name: #hex)", "default": "Baby pink: #f7c5d0\nHot pink: #e8479a\nLilac: #b9a6e8\nBaby blue: #a9cdf0\nCobalt: #2f5fd8\nRed: #d8283a\nBlack: #1c1a1b\nChocolate: #5b3a2e\nWhite: #f7f4f1\nAqua: #57c9d8\nCoral: #ef7b6c\nPink: #f28ab2\nPeach: #f6b39a" }
   ]
 }
 {% endschema %}

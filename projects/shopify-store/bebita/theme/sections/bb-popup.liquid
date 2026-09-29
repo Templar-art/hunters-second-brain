@@ -1,0 +1,66 @@
+{%- comment -%}
+  Welcome pop-up: email sign-up that reveals a first-order code. Shopify's own customer form, so every
+  sign-up lands in Customers with email marketing consent and the tags below. Shown once per visitor
+  (bebita.js keeps the timer and the "seen" flag), never on the cart or checkout.
+{%- endcomment -%}
+{%- if section.settings.enabled and template.name != 'cart' and template.name != 'password' -%}
+<dialog class="bb bb-popup" data-bb-popup data-delay="{{ section.settings.delay }}" data-days="{{ section.settings.snooze_days }}" aria-labelledby="bb-popup-title">
+  <div class="bb-popup__inner">
+    {%- if section.settings.image -%}
+      <figure class="bb-popup__media">{{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 760px) 360px, 100vw', alt: '' }}</figure>
+    {%- endif -%}
+    <div class="bb-popup__body">
+      <button type="button" class="bb-popup__close" data-bb-popup-close aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      {%- form 'customer', class: 'bb-popup__form' -%}
+        {%- if form.posted_successfully? -%}
+          <div data-bb-popup-state="done">
+            <h2 id="bb-popup-title" class="bb-popup__title" tabindex="-1" autofocus>{{ section.settings.done_heading }}</h2>
+            <p class="bb-popup__text">{{ section.settings.done_text }}</p>
+            <p class="bb-popup__code"><span>{{ section.settings.code }}</span></p>
+            <a class="bb-pill bb-pill--static" href="{{ routes.root_url }}#picker" data-bb-popup-close>{{ section.settings.done_button }}</a>
+          </div>
+        {%- else -%}
+          <p class="bb-popup__kicker">{{ section.settings.kicker }}</p>
+          <h2 id="bb-popup-title" class="bb-popup__title" tabindex="-1" autofocus>{{ section.settings.heading | newline_to_br }}</h2>
+          <p class="bb-popup__text">{{ section.settings.text }}</p>
+          <input type="hidden" name="contact[tags]" value="{{ section.settings.tags | escape }}">
+          <input type="hidden" name="contact[accepts_marketing]" value="true">
+          <div class="bb-popup__row">
+            <label class="visually-hidden" for="bb-popup-email">Email</label>
+            <input class="bb-popup__input" id="bb-popup-email" type="email" name="contact[email]" autocomplete="email" placeholder="Your email" required>
+            <button class="bb-pill bb-pill--static" type="submit">{{ section.settings.button }}</button>
+          </div>
+          {%- if form.errors -%}<p class="bb-popup__error" role="alert" data-bb-popup-state="error">That email didn&rsquo;t go through. Check it and try again.</p>{%- endif -%}
+          <button type="button" class="bb-popup__skip" data-bb-popup-close>{{ section.settings.decline }}</button>
+          <p class="bb-popup__fine">{{ section.settings.fine_print }}</p>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</dialog>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Bebita welcome pop-up",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Show the pop-up", "default": true },
+    { "type": "range", "id": "delay", "label": "Open after (seconds)", "min": 2, "max": 30, "step": 1, "default": 7 },
+    { "type": "range", "id": "snooze_days", "label": "Wait before showing again (days)", "min": 1, "max": 60, "step": 1, "default": 14 },
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "kicker", "label": "Small line", "default": "First set" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "10% off\nyour first set." },
+    { "type": "text", "id": "text", "label": "Text", "default": "Join the list for the code, plus first word on restocks and new colours." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Get my code" },
+    { "type": "text", "id": "decline", "label": "Decline link", "default": "No thanks" },
+    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "One code per customer. Unsubscribe any time." },
+    { "type": "text", "id": "tags", "label": "Customer tags", "default": "newsletter, welcome-popup" },
+    { "type": "text", "id": "code", "label": "Discount code shown after sign-up", "default": "FIRSTSET10" },
+    { "type": "text", "id": "done_heading", "label": "Thank-you heading", "default": "You're in." },
+    { "type": "text", "id": "done_text", "label": "Thank-you text", "default": "Use this code at checkout for 10% off your first order." },
+    { "type": "text", "id": "done_button", "label": "Thank-you button", "default": "Build your set" }
+  ]
+}
+{% endschema %}
