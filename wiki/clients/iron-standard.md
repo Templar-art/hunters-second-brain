@@ -172,4 +172,10 @@ gaps did not, all fixed:
    visibility and form consent, and retrofitting means rebuilding the structure.
 7. **Retire or keep `projects/ironstandard-lp/`?** It still contains the waitlist the
    strategy kills. Undecided.
-8. Hosting target, and export any leads sitting in the GoDaddy Website Builder form.
+8. **Hosting / go-live.** ⚠️ The live `ironstandard.no` coming-soon page (checked 29 Sep) is
+   **WordPress 7.1 + Elementor** on a host at 110.232.143.108, DNS at GoDaddy
+   (domaincontrol.com), not the Netlify LP described above. The six-page site is
+   launch-packaged (favicon reused from the live site, canonical tags, 404, robots, sitemap,
+   `netlify.toml` and `.htaccess`) as `Desktop/10xVisuals Output/Iron Standard - Website (upload).zip`.
+   Either upload into that host's `public_html` (back up WordPress first) or deploy to Netlify
+   and repoint the GoDaddy A record. Needs whoever holds the host login.

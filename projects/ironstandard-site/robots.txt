@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /google-apps-script/
+
+Sitemap: https://ironstandard.no/sitemap.xml

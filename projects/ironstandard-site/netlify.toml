@@ -1,0 +1,22 @@
+# Netlify: drag this whole folder onto app.netlify.com/drop, or link the repo
+# with publish directory set to this folder. No build step.
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Old WordPress URLs land on the new home page rather than a 404
+[[redirects]]
+  from = "/wp-*"
+  to = "/"
+  status = 301

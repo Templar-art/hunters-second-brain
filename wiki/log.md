@@ -1017,3 +1017,7 @@ Two root causes, both fixed: there was **no muted-text token**, so muted colour 
 ## [2026-09-29] query | Iron Standard: strategy compliance pass
 
 Hunter re-sent the strategy PDF (byte-identical to the approved one). Audited the site against every page requirement: fixed the Home primary action, removed invented founder credentials, added online programming, nutrition and events to Coaching with a reusable coach-profile template, gave the FAQ a category index and per-answer anchors, and wired Coaching journeys to preselect the enquiry route. Detail on [[iron-standard]].
+
+## [2026-09-29] query | Iron Standard: launch packaging
+
+Coming-soon page is live on WordPress/Elementor; Hunter needs the real site live. Added favicon (client's existing), canonical tags, 404, robots, sitemap, Netlify and Apache configs; upload zip on Desktop. Go-live blocked only on host access. Detail on [[iron-standard]].
