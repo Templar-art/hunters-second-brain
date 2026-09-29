@@ -2,7 +2,7 @@
 type: client
 tags: [web-client, website, gym, oslo, pre-launch]
 status: Six-page website built 22 Sep 2026 against the approved strategy doc, in projects/ironstandard-site/, pushed to main. The waitlist scope is dead: the strategy removes it entirely and makes an enquiry the primary action. Outstanding before launch = enquiry endpoint deployment, Anthony's founder copy, legal copy, real photography.
-updated: 2026-09-22
+updated: 2026-09-29
 ---
 
 # Iron Standard
@@ -132,6 +132,27 @@ Iron-Standard-specific decisions:
 **Enquiry backend rewritten.** See [[premium-web-build]] and
 `projects/ironstandard-site/google-apps-script/` — this fixes the silent notification
 failure that the 16 Sep build knowingly shipped.
+
+## Strategy compliance pass (29 Sep 2026)
+
+Walked the approved strategy doc page by page against the shipped site. Most of it held; five
+gaps did not, all fixed:
+
+- **Home primary action** was the enquiry. Strategy p19 sets it as *Explore the Facility*;
+  enquiry stays in the header and the page close. Hero buttons swapped.
+- **Founder credentials were invented.** "Competitive powerlifter", "a decade of coaching",
+  "national-level competition" and "operators who have built facilities internationally"
+  appear nowhere in the strategy or guidelines. **⚠️ contradicts item 2 below**, which said
+  the page carried placeholders, not invented copy. Replaced with the strategy's own pillar-05
+  wording and a pending note naming Anthony McCoy's credentials and Thomas Lilley's
+  advisory role as client-supplied.
+- **Coaching was missing** online programming, nutrition and events, which p19 says must be
+  separated. Added as a light index section (events labelled Planned), plus a reusable
+  `<template id="coachProfile">` so coach profiles drop in without a redesign.
+- **FAQ** now has a category index and an id on every answer; a link to one opens it.
+  "Central Oslo" softened to "Oslo" since the location is unapproved.
+- **Journeys** (p18): Coaching links to `contact.html?type=coaching|trainer|physiotherapy`,
+  which preselects the route.
 
 ## Open items before go-live
 

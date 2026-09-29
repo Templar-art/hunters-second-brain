@@ -61,7 +61,7 @@
         <p class="mark rv"><span class="mark-t">Coaching</span></p>
         <h1 class="rv">Expertise on the floor</h1>
       </div>
-      <p class="lede rv">Coaching, independent trainers and physiotherapy operate inside the same building as the training floor.</p>
+      <p class="lede rv">Coaching, programming, independent trainers and physiotherapy operate inside the same building as the training floor.</p>
     </div>
   </section>
 
@@ -75,7 +75,7 @@
         <figure class="alt-media rv">
           <img src="assets/coaching-a.jpg" alt="An athlete at the top of a box jump under overhead lighting." width="438" height="550" loading="lazy" decoding="async">
         </figure>
-        <div class="alt-copy stack rv">
+        <div class="alt-copy stack rv" id="one-to-one">
           <h2>One-to-one coaching</h2>
           <p>
             Direct work with a coach for lifters with a competition date, a lift that has
@@ -89,7 +89,7 @@
         <figure class="alt-media rv">
           <img src="assets/coaching-b.jpg" alt="Close detail of a lifter's shoulder and upper back under a padded bar." width="440" height="535" loading="lazy" decoding="async">
         </figure>
-        <div class="alt-copy stack rv">
+        <div class="alt-copy stack rv" id="small-group">
           <h2>Semi-private and small group</h2>
           <p>
             Programmed training in small numbers with a coach on the floor beside you, not a
@@ -103,13 +103,14 @@
         <figure class="alt-media rv">
           <img src="assets/detail-b.jpg" alt="A rack of dumbbells on the training floor." width="439" height="551" loading="lazy" decoding="async">
         </figure>
-        <div class="alt-copy stack rv">
+        <div class="alt-copy stack rv" id="independent-trainers">
           <h2>Independent trainers</h2>
           <p>
             Facilities for self-employed coaches who want a professional room and an aligned
             member base. Trainer enquiries are handled separately from member enquiries so
             each is answered by the right person.
           </p>
+          <a class="textlink" href="contact.html?type=trainer#enquiryForm">Trainer enquiry <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
 
@@ -117,22 +118,56 @@
         <figure class="alt-media rv">
           <img src="assets/detail-a.jpg" alt="Hands loading a plate onto a barbell." width="436" height="535" loading="lazy" decoding="async">
         </figure>
-        <div class="alt-copy stack rv">
+        <div class="alt-copy stack rv" id="physiotherapy">
           <h2>On-site physiotherapy</h2>
           <p>
             Assessment, rehabilitation and performance support from practitioners who
             understand loading. Working in the same building as the training floor means
             rehabilitation and programming stay connected.
           </p>
+          <a class="textlink" href="contact.html?type=physiotherapy#enquiryForm">Physiotherapy enquiry <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 02 HOW IT WORKS: light informational passage -->
-  <section class="sec sec--light sec--ruled">
+  <!-- 02 BEYOND THE FLOOR: light index list, same system as the homepage support block -->
+  <section class="support" aria-labelledby="beyond-h">
     <div class="container grid">
-      <p class="mark mark--dark rv"><span class="mark-n">02</span><span class="mark-t">How it works</span></p>
+      <p class="mark mark--dark rv"><span class="mark-n">02</span><span class="mark-t">Beyond the floor</span></p>
+      <h2 id="beyond-h" class="rv">Programming, nutrition and events</h2>
+      <p class="support-intro rv">
+        Each is arranged on its own terms, so nobody buys a package to get the one part they need.
+      </p>
+
+      <div class="support-list">
+        <div class="index-row rv" id="online-programming">
+          <span class="n">01</span>
+          <h3>Online programming</h3>
+          <p>Written programmes for lifters who train on their own schedule, reviewed against how the training is actually going.</p>
+        </div>
+        <div class="index-row rv" id="nutrition">
+          <span class="n">02</span>
+          <h3>Nutrition</h3>
+          <p>Nutrition support built around the training, from a normal training block to competition preparation.</p>
+        </div>
+        <div class="index-row rv" id="events">
+          <span class="n">03</span>
+          <h3>Events and competitions</h3>
+          <p>Meets, workshops, seminars and courses, announced once the facility is open. <span class="chip chip--planned">Planned</span></p>
+        </div>
+      </div>
+
+      <p class="support-cta rv">
+        <a class="textlink textlink--dark" href="contact.html?type=coaching#enquiryForm">Coaching enquiry <span aria-hidden="true">&rarr;</span></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 03 HOW IT WORKS: dark editorial passage -->
+  <section class="sec sec--dark sec--ruled">
+    <div class="container grid">
+      <p class="mark rv"><span class="mark-n">03</span><span class="mark-t">How it works</span></p>
       <h2 class="sec-head rv">Start with a conversation</h2>
       <div class="sec-copy stack rv">
         <p class="lede">
@@ -140,9 +175,8 @@
           Tell us what you train for and what you are trying to fix, and the enquiry goes to
           the person best placed to answer it.
         </p>
-        <p style="color:var(--muted-dark)">
-          Programming, nutrition support and competition preparation are arranged
-          individually. Nothing here is sold as a package before the requirement is understood.
+        <p style="color:var(--muted)">
+          Nothing here is sold as a package before the requirement is understood.
         </p>
       </div>
       <div class="sec-copy-r rv" style="margin-top:32px">
@@ -150,17 +184,30 @@
           Individual coach and practitioner profiles will be published as the team is
           confirmed.
         </p>
+        <!-- Coach profiles: reusable template (strategy p19). Clone into #coachList
+             for each confirmed coach, fill the slots, and remove the note above.
+             Nothing renders until a profile is added. -->
+        <div class="coach-list" id="coachList"></div>
+        <template id="coachProfile">
+          <article class="coach">
+            <figure class="coach-media"><img src="" alt="" width="440" height="550" loading="lazy" decoding="async"></figure>
+            <p class="coach-role"></p>
+            <h3 class="coach-name"></h3>
+            <p class="coach-bio"></p>
+            <a class="textlink" href="contact.html?type=coaching#enquiryForm">Enquire <span aria-hidden="true">&rarr;</span></a>
+          </article>
+        </template>
       </div>
     </div>
   </section>
 
   <section class="sec sec--dark sec--ruled">
     <div class="container grid">
-      <p class="mark rv"><span class="mark-n">03</span><span class="mark-t">Next</span></p>
+      <p class="mark rv"><span class="mark-n">04</span><span class="mark-t">Next</span></p>
       <h2 class="sec-full rv" style="font-size:var(--display-sm)">Tell us how you train.</h2>
       <p class="sec-copy rv" style="margin-top:28px;color:var(--muted)">Coaching, trainer and physiotherapy enquiries are all routed separately so the right person answers.</p>
       <div class="cta-row sec-full rv">
-        <a class="btn" href="contact.html">Enquire</a>
+        <a class="btn" href="contact.html?type=coaching#enquiryForm">Enquire</a>
         <a class="btn btn--ghost" href="faq.html">Read the FAQ</a>
       </div>
     </div>

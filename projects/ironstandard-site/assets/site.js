@@ -172,6 +172,11 @@
     }
   }
 
+  /* Journeys from Coaching land with the right route already chosen
+     (strategy p18: Coaching > Coaching enquiry / Trainer enquiry). */
+  var wanted = new URLSearchParams(window.location.search).get("type");
+  if (wanted && MAP[wanted]) select.value = wanted;
+
   select.addEventListener("change", sync);
   sync();
 
@@ -245,4 +250,20 @@
       sync();
     }, 900);
   });
+})();
+
+/* ============================================================
+   FAQ: a link to an individual answer opens it.
+   Answers are native <details>, so the text stays crawlable.
+   ============================================================ */
+(function () {
+  "use strict";
+  function openTarget() {
+    var id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (el && el.tagName === "DETAILS") el.open = true;
+  }
+  openTarget();
+  window.addEventListener("hashchange", openTarget);
 })();
