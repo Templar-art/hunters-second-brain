@@ -16,7 +16,11 @@ Activewear and swimwear brand from Hunter's sister, run by Hunter as a separate 
 - Hunter has an ABN, so a `.com.au` domain is possible.
 
 ## Sources
-All products and brand content live on Instagram: [@bebitaactive](https://www.instagram.com/bebitaactive/) and [@bebitaswim](https://www.instagram.com/bebitaswim/). Automated reads failed on 2026-09-29 (OpenCLI 429 without an Instagram login; Jina reader blocked), so they need a logged-in Chrome session or exported images.
+All products and brand content live on Instagram: [@bebitaactive](https://www.instagram.com/bebitaactive/) and [@bebitaswim](https://www.instagram.com/bebitaswim/). OpenCLI and Jina both failed on 2026-09-29 (429 / blocked); **Claude in Chrome with Hunter's logged-in session worked**.
+- **@bebitaactive**: 279 posts, ~3.5k followers, bio "CLOSED DOWN". Seamless scrunch shorts, sports bras and leggings in pastel pink, lilac, baby blue, cobalt and hot pink; gym-shot content; last posts push a 50% off sale.
+- **@bebitaswim**: 537 posts, ~7.1k followers, bio "CLOSED DOWN". Triangle bikinis (red, pink, white, peach, cobalt, aqua, brown/metallic); highlights for Drop 1–3, FAQs, "Amarni" and events; also ended on a 50% off sale.
+- Brand look: blush-pink circle avatar with a white script "Bebita" wordmark.
+- Both accounts say closed down, so the Shopify store is either a relaunch or a sell-through of remaining stock. That decides how much to build.
 
 ## Open
 - Product list: styles, sizes, colours, stock counts, cost and price.
