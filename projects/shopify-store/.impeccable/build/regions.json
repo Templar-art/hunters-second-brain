@@ -1,0 +1,113 @@
+{
+ "regions": [
+  {
+   "id": "logo",
+   "kind": "image",
+   "grid": "A0:B0",
+   "note": "1% circle logo mark, white ring with purple arc"
+  },
+  {
+   "id": "nav-menu",
+   "kind": "text",
+   "grid": "G0:H0",
+   "note": "MENU link, wide-tracked caps"
+  },
+  {
+   "id": "nav-cart",
+   "kind": "text",
+   "grid": "I0:J0",
+   "note": "CART (0) link, wide-tracked caps"
+  },
+  {
+   "id": "header-rule",
+   "kind": "chrome",
+   "grid": "A0:J0",
+   "note": "hairline white rule under the header",
+   "snap": false,
+   "codeDrawn": true
+  },
+  {
+   "id": "headline",
+   "kind": "text",
+   "note": "BUILT TO THE LAST 1% heavy white caps, two lines",
+   "snap": false,
+   "box": {
+    "x": 0.035,
+    "y": 0.118,
+    "w": 0.89,
+    "h": 0.145
+   }
+  },
+  {
+   "id": "grid-texture",
+   "kind": "texture",
+   "grid": "D3:E3",
+   "note": "faint graphite drafting grid on black, clean patch"
+  },
+  {
+   "id": "strap-plate",
+   "kind": "plate",
+   "grid": "A3:J6",
+   "note": "black silicone-dotted lifting strap laid flat horizontally with the padded D-ring cuff at right, white leader lines to callouts",
+   "snap": false
+  },
+  {
+   "id": "callout-silicone",
+   "kind": "text",
+   "grid": "B3:C4",
+   "note": "SILICONE ANTI-SLIP GRIP callout label, mono caps"
+  },
+  {
+   "id": "callout-neoprene",
+   "kind": "text",
+   "grid": "F3:G3",
+   "note": "5MM NEOPRENE PADDING callout label"
+  },
+  {
+   "id": "callout-dring",
+   "kind": "text",
+   "grid": "D6:F6",
+   "note": "DOUBLE D-RING CUFF callout label"
+  },
+  {
+   "id": "dimension-line",
+   "kind": "chrome",
+   "grid": "A6:J6",
+   "note": "purple dimension line with arrowheads and end ticks spanning the strap",
+   "snap": false,
+   "codeDrawn": true
+  },
+  {
+   "id": "hex-artefact",
+   "kind": "text",
+   "grid": "H6:I6",
+   "note": "stray #9B5DE5 label, a generation artefact the approval said to drop"
+  },
+  {
+   "id": "dim-label",
+   "kind": "text",
+   "grid": "D7:G7",
+   "note": "30CM large purple numerals"
+  },
+  {
+   "id": "title-block",
+   "kind": "text",
+   "grid": "D7:J8",
+   "note": "title block table: DWG 1P-LS-BLK, REV A, SCALE 1:1, PAIR in hairline-ruled cells",
+   "container": true,
+   "codeDrawn": true
+  },
+  {
+   "id": "price",
+   "kind": "text",
+   "grid": "A8:D8",
+   "note": "$39.95 AUD white"
+  },
+  {
+   "id": "atc",
+   "kind": "control",
+   "grid": "A9:J9",
+   "note": "full-width flat purple ADD TO CART button, black caps"
+  }
+ ]
+}

@@ -1,0 +1,1162 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-09-29T08:48:24.238Z",
+  "comp": ".impeccable/mocks/home-comp-a-flat-strap.png",
+  "warnings": [
+    "region header-rule: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region dimension-line: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region title-block: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region title-block: \"container\": true set in the regions file (the region-size refusal is overridden: one undivided element)"
+  ],
+  "uncoveredInkCells": [],
+  "compSize": {
+    "width": 1536,
+    "height": 2752
+  },
+  "aspect": 0.5581,
+  "orientation": "portrait",
+  "palette": [
+    {
+      "hex": "#0c0c0c",
+      "coverage": 0.8828
+    },
+    {
+      "hex": "#9758da",
+      "coverage": 0.0597
+    },
+    {
+      "hex": "#f7f7f7",
+      "coverage": 0.0431
+    },
+    {
+      "hex": "#3c3c3c",
+      "coverage": 0.0103
+    },
+    {
+      "hex": "#c2c2c2",
+      "coverage": 0.004
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.0961,
+      "strength": 0.756
+    },
+    {
+      "y": 0.131,
+      "strength": 0.7338
+    },
+    {
+      "y": 0.179,
+      "strength": 0.6257
+    },
+    {
+      "y": 0.2009,
+      "strength": 1
+    },
+    {
+      "y": 0.2227,
+      "strength": 0.3873
+    },
+    {
+      "y": 0.2533,
+      "strength": 1
+    },
+    {
+      "y": 0.3319,
+      "strength": 0.2157
+    },
+    {
+      "y": 0.3843,
+      "strength": 0.2249
+    },
+    {
+      "y": 0.4716,
+      "strength": 0.2149
+    },
+    {
+      "y": 0.5328,
+      "strength": 0.2965
+    },
+    {
+      "y": 0.6332,
+      "strength": 0.2188
+    },
+    {
+      "y": 0.6638,
+      "strength": 0.6153
+    },
+    {
+      "y": 0.7511,
+      "strength": 0.4633
+    },
+    {
+      "y": 0.786,
+      "strength": 0.2924
+    },
+    {
+      "y": 0.821,
+      "strength": 0.4302
+    },
+    {
+      "y": 0.8603,
+      "strength": 0.2851
+    },
+    {
+      "y": 0.8865,
+      "strength": 0.3668
+    },
+    {
+      "y": 0.9127,
+      "strength": 0.9884
+    },
+    {
+      "y": 0.9345,
+      "strength": 0.2724
+    },
+    {
+      "y": 0.9738,
+      "strength": 1
+    }
+  ],
+  "regions": [
+    {
+      "id": "logo",
+      "kind": "image",
+      "note": "1% circle logo mark, white ring with purple arc",
+      "grid": "A0:B0",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "px": {
+        "x": 0,
+        "y": 0,
+        "w": 307,
+        "h": 275
+      },
+      "aspect": 1.1164,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.9363
+        },
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.0484
+        },
+        {
+          "hex": "#9055d4",
+          "coverage": 0.006
+        },
+        {
+          "hex": "#c0c0c0",
+          "coverage": 0.0053
+        },
+        {
+          "hex": "#474747",
+          "coverage": 0.0039
+        }
+      ],
+      "detail": {
+        "energy": 17.9352
+      },
+      "medium": "raster",
+      "plate": "assets/plates/logo.png",
+      "text": null
+    },
+    {
+      "id": "nav-menu",
+      "kind": "text",
+      "note": "MENU link, wide-tracked caps",
+      "grid": "G0:H0",
+      "coverBox": {
+        "x": 0.6,
+        "y": 0,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.6602,
+        "y": 0.0385,
+        "w": 0.1035,
+        "h": 0.0171
+      },
+      "px": {
+        "x": 1014,
+        "y": 106,
+        "w": 159,
+        "h": 47
+      },
+      "aspect": 3.383,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.8499
+        },
+        {
+          "hex": "#f3f3f3",
+          "coverage": 0.1005
+        },
+        {
+          "hex": "#c2c1c3",
+          "coverage": 0.0213
+        },
+        {
+          "hex": "#3a3a3a",
+          "coverage": 0.0201
+        },
+        {
+          "hex": "#838383",
+          "coverage": 0.0083
+        }
+      ],
+      "detail": {
+        "energy": 30.3284
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 5,
+          "capHeightPx": 27.7,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.6505,
+          "advTall": 0.6505,
+          "advX": null,
+          "gap": 0.506,
+          "xRatio": null,
+          "stemW": 0.1137,
+          "contrast": 1.1124,
+          "serif": 0.8233,
+          "densTall": 0.3469,
+          "densX": null,
+          "weight": 0.3469
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "nav-cart",
+      "kind": "text",
+      "note": "CART (0) link, wide-tracked caps",
+      "grid": "I0:J0",
+      "coverBox": {
+        "x": 0.8,
+        "y": 0,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.8099,
+        "y": 0.0385,
+        "w": 0.0944,
+        "h": 0.0171
+      },
+      "px": {
+        "x": 1244,
+        "y": 106,
+        "w": 145,
+        "h": 47
+      },
+      "aspect": 3.0851,
+      "palette": [
+        {
+          "hex": "#080909",
+          "coverage": 0.8711
+        },
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.0747
+        },
+        {
+          "hex": "#363736",
+          "coverage": 0.0219
+        },
+        {
+          "hex": "#cbcccb",
+          "coverage": 0.0206
+        },
+        {
+          "hex": "#939393",
+          "coverage": 0.0116
+        }
+      ],
+      "detail": {
+        "energy": 26.1134
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 3,
+          "capHeightPx": 27.7,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.8651,
+          "advTall": 0.8651,
+          "advX": null,
+          "gap": 0.3244,
+          "xRatio": null,
+          "stemW": 0.1162,
+          "contrast": 1.1552,
+          "serif": null,
+          "densTall": 0.2596,
+          "densX": null,
+          "weight": 0.2596
+        },
+        "widthClass": "wide",
+        "weightClass": "light"
+      }
+    },
+    {
+      "id": "header-rule",
+      "kind": "chrome",
+      "note": "hairline white rule under the header",
+      "grid": "A0:J0",
+      "codeDrawn": true,
+      "snap": false,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 0.1
+      },
+      "px": {
+        "x": 0,
+        "y": 0,
+        "w": 1536,
+        "h": 275
+      },
+      "aspect": 5.5855,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.9755
+        },
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.0223
+        },
+        {
+          "hex": "#bfbfbf",
+          "coverage": 0.0014
+        },
+        {
+          "hex": "#383838",
+          "coverage": 0.0009
+        }
+      ],
+      "detail": {
+        "energy": 16.008
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "note": "BUILT TO THE LAST 1% heavy white caps, two lines",
+      "grid": null,
+      "snap": false,
+      "box": {
+        "x": 0.035,
+        "y": 0.118,
+        "w": 0.89,
+        "h": 0.145
+      },
+      "px": {
+        "x": 54,
+        "y": 325,
+        "w": 1367,
+        "h": 399
+      },
+      "aspect": 3.4261,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 0.7262
+        },
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.2601
+        },
+        {
+          "hex": "#373737",
+          "coverage": 0.0068
+        },
+        {
+          "hex": "#c0c0c0",
+          "coverage": 0.0041
+        },
+        {
+          "hex": "#8a8a8a",
+          "coverage": 0.0028
+        }
+      ],
+      "detail": {
+        "energy": 56.5105
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 15,
+          "capHeightPx": 144.5,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.7864,
+          "advTall": 0.7864,
+          "advX": null,
+          "gap": 0.2221,
+          "xRatio": null,
+          "stemW": 0.2338,
+          "contrast": 1.2092,
+          "serif": 1.0002,
+          "densTall": 0.6632,
+          "densX": null,
+          "weight": 0.6632
+        },
+        "widthClass": "wide",
+        "weightClass": "black",
+        "chosen": {
+          "family": "Montserrat",
+          "weight": 700,
+          "fontSizePx": 206,
+          "source": "index",
+          "fp": {
+            "lines": 1,
+            "glyphs": 7,
+            "capHeightPx": 144.7,
+            "inkIsDark": true,
+            "allCaps": true,
+            "advance": 0.7393,
+            "advTall": 0.7393,
+            "advX": null,
+            "gap": 0.228,
+            "xRatio": null,
+            "stemW": 0.2345,
+            "contrast": 1.2074,
+            "serif": 1,
+            "densTall": 0.711,
+            "densX": null,
+            "weight": 0.711
+          },
+          "stamp": "0c7bd11f6a58"
+        }
+      }
+    },
+    {
+      "id": "grid-texture",
+      "kind": "texture",
+      "note": "faint graphite drafting grid on black, clean patch",
+      "grid": "D3:E3",
+      "box": {
+        "x": 0.3,
+        "y": 0.3,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "px": {
+        "x": 461,
+        "y": 826,
+        "w": 307,
+        "h": 275
+      },
+      "aspect": 1.1164,
+      "palette": [
+        {
+          "hex": "#0b0b0b",
+          "coverage": 0.999
+        },
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.001
+        }
+      ],
+      "detail": {
+        "energy": 5.5331
+      },
+      "medium": "raster",
+      "plate": "assets/plates/grid-texture.png",
+      "text": null
+    },
+    {
+      "id": "strap-plate",
+      "kind": "plate",
+      "note": "black silicone-dotted lifting strap laid flat horizontally with the padded D-ring cuff at right, white leader lines to callouts",
+      "grid": "A3:J6",
+      "snap": false,
+      "box": {
+        "x": 0,
+        "y": 0.3,
+        "w": 1,
+        "h": 0.4
+      },
+      "px": {
+        "x": 0,
+        "y": 826,
+        "w": 1536,
+        "h": 1101
+      },
+      "aspect": 1.3951,
+      "palette": [
+        {
+          "hex": "#101010",
+          "coverage": 0.9583
+        },
+        {
+          "hex": "#3a3938",
+          "coverage": 0.0249
+        },
+        {
+          "hex": "#efefef",
+          "coverage": 0.0081
+        },
+        {
+          "hex": "#9858e0",
+          "coverage": 0.005
+        },
+        {
+          "hex": "#bababa",
+          "coverage": 0.0037
+        }
+      ],
+      "detail": {
+        "energy": 15.5592
+      },
+      "medium": "raster",
+      "plate": "assets/plates/strap-plate.png",
+      "text": null
+    },
+    {
+      "id": "callout-silicone",
+      "kind": "text",
+      "note": "SILICONE ANTI-SLIP GRIP callout label, mono caps",
+      "grid": "B3:C4",
+      "coverBox": {
+        "x": 0.1,
+        "y": 0.3,
+        "w": 0.2,
+        "h": 0.2
+      },
+      "box": {
+        "x": 0.1172,
+        "y": 0.3706,
+        "w": 0.1829,
+        "h": 0.048
+      },
+      "px": {
+        "x": 180,
+        "y": 1020,
+        "w": 281,
+        "h": 132
+      },
+      "aspect": 2.1288,
+      "palette": [
+        {
+          "hex": "#0b0b0b",
+          "coverage": 0.8758
+        },
+        {
+          "hex": "#f4f4f4",
+          "coverage": 0.0611
+        },
+        {
+          "hex": "#4d4d4d",
+          "coverage": 0.0266
+        },
+        {
+          "hex": "#909090",
+          "coverage": 0.019
+        },
+        {
+          "hex": "#c7c7c7",
+          "coverage": 0.0175
+        }
+      ],
+      "detail": {
+        "energy": 40.4782
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 3,
+          "glyphs": 20,
+          "capHeightPx": 27.2,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6182,
+          "advTall": 0.6182,
+          "advX": null,
+          "gap": 0.2182,
+          "xRatio": 0.6439,
+          "stemW": 0.1214,
+          "contrast": 1.2134,
+          "serif": 0.9966,
+          "densTall": 0.3627,
+          "densX": null,
+          "weight": 0.3627
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "callout-neoprene",
+      "kind": "text",
+      "note": "5MM NEOPRENE PADDING callout label",
+      "grid": "F3:G3",
+      "coverBox": {
+        "x": 0.5,
+        "y": 0.3,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.528,
+        "y": 0.3183,
+        "w": 0.1719,
+        "h": 0.0349
+      },
+      "px": {
+        "x": 811,
+        "y": 876,
+        "w": 264,
+        "h": 96
+      },
+      "aspect": 2.75,
+      "palette": [
+        {
+          "hex": "#0b0b0b",
+          "coverage": 0.8181
+        },
+        {
+          "hex": "#f4f4f4",
+          "coverage": 0.0906
+        },
+        {
+          "hex": "#a8a8a8",
+          "coverage": 0.0444
+        },
+        {
+          "hex": "#515151",
+          "coverage": 0.0422
+        },
+        {
+          "hex": "#78787a",
+          "coverage": 0.0047
+        }
+      ],
+      "detail": {
+        "energy": 53.3279
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 20,
+          "capHeightPx": 27.2,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.6241,
+          "advTall": 0.6241,
+          "advX": null,
+          "gap": 0.1853,
+          "xRatio": null,
+          "stemW": 0.1243,
+          "contrast": 1.1608,
+          "serif": 0.7235,
+          "densTall": 0.4232,
+          "densX": null,
+          "weight": 0.4232
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "callout-dring",
+      "kind": "text",
+      "note": "DOUBLE D-RING CUFF callout label",
+      "grid": "D6:F6",
+      "coverBox": {
+        "x": 0.3,
+        "y": 0.6,
+        "w": 0.3,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.4512,
+        "y": 0.6791,
+        "w": 0.1491,
+        "h": 0.0207
+      },
+      "px": {
+        "x": 693,
+        "y": 1869,
+        "w": 229,
+        "h": 57
+      },
+      "aspect": 4.0175,
+      "palette": [
+        {
+          "hex": "#09090b",
+          "coverage": 0.6035
+        },
+        {
+          "hex": "#985ae6",
+          "coverage": 0.2765
+        },
+        {
+          "hex": "#9160ce",
+          "coverage": 0.0498
+        },
+        {
+          "hex": "#7750a4",
+          "coverage": 0.0421
+        },
+        {
+          "hex": "#18092a",
+          "coverage": 0.0281
+        }
+      ],
+      "detail": {
+        "energy": 15.033
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 5,
+          "capHeightPx": 47.1,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.5737,
+          "advTall": 0.5737,
+          "advX": null,
+          "gap": 0.2975,
+          "xRatio": null,
+          "stemW": 0.2485,
+          "contrast": 1.1,
+          "serif": 1.011,
+          "densTall": 0.6661,
+          "densX": null,
+          "weight": 0.6661
+        },
+        "widthClass": "condensed",
+        "weightClass": "black"
+      }
+    },
+    {
+      "id": "dimension-line",
+      "kind": "chrome",
+      "note": "purple dimension line with arrowheads and end ticks spanning the strap",
+      "grid": "A6:J6",
+      "codeDrawn": true,
+      "snap": false,
+      "box": {
+        "x": 0,
+        "y": 0.6,
+        "w": 1,
+        "h": 0.1
+      },
+      "px": {
+        "x": 0,
+        "y": 1651,
+        "w": 1536,
+        "h": 275
+      },
+      "aspect": 5.5855,
+      "palette": [
+        {
+          "hex": "#0b0b0b",
+          "coverage": 0.9517
+        },
+        {
+          "hex": "#9759e0",
+          "coverage": 0.0229
+        },
+        {
+          "hex": "#5f3e92",
+          "coverage": 0.0145
+        },
+        {
+          "hex": "#9062cc",
+          "coverage": 0.007
+        },
+        {
+          "hex": "#b1b1b1",
+          "coverage": 0.0039
+        }
+      ],
+      "detail": {
+        "energy": 15.2761
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "hex-artefact",
+      "kind": "text",
+      "note": "stray #9B5DE5 label, a generation artefact the approval said to drop",
+      "grid": "H6:I6",
+      "coverBox": {
+        "x": 0.7,
+        "y": 0.6,
+        "w": 0.2,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.6999,
+        "y": 0.6639,
+        "w": 0.1999,
+        "h": 0.0247
+      },
+      "px": {
+        "x": 1075,
+        "y": 1827,
+        "w": 307,
+        "h": 68
+      },
+      "aspect": 4.5147,
+      "palette": [
+        {
+          "hex": "#0b0a0c",
+          "coverage": 0.8127
+        },
+        {
+          "hex": "#975bde",
+          "coverage": 0.0825
+        },
+        {
+          "hex": "#180930",
+          "coverage": 0.0821
+        },
+        {
+          "hex": "#3f245e",
+          "coverage": 0.012
+        },
+        {
+          "hex": "#875bbe",
+          "coverage": 0.0107
+        }
+      ],
+      "detail": {
+        "energy": 21.662
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-09-29T08:48:24.627Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    },
+    {
+      "id": "dim-label",
+      "kind": "text",
+      "note": "30CM large purple numerals",
+      "grid": "D7:G7",
+      "coverBox": {
+        "x": 0.3,
+        "y": 0.7,
+        "w": 0.4,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.3965,
+        "y": 0.6999,
+        "w": 0.2038,
+        "h": 0.02
+      },
+      "px": {
+        "x": 609,
+        "y": 1926,
+        "w": 313,
+        "h": 55
+      },
+      "aspect": 5.6909,
+      "palette": [
+        {
+          "hex": "#09090a",
+          "coverage": 0.6834
+        },
+        {
+          "hex": "#985be5",
+          "coverage": 0.215
+        },
+        {
+          "hex": "#9060ca",
+          "coverage": 0.047
+        },
+        {
+          "hex": "#1a092e",
+          "coverage": 0.0301
+        },
+        {
+          "hex": "#7856a4",
+          "coverage": 0.0245
+        }
+      ],
+      "detail": {
+        "energy": 18.1922
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 5,
+          "capHeightPx": 45,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 1.2889,
+          "advTall": 1.2889,
+          "advX": null,
+          "gap": 0.4,
+          "xRatio": 0.5379,
+          "stemW": 0.3002,
+          "contrast": 1.31,
+          "serif": null,
+          "densTall": 0.5178,
+          "densX": null,
+          "weight": 0.5178
+        },
+        "widthClass": "wide",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "title-block",
+      "kind": "text",
+      "note": "title block table: DWG 1P-LS-BLK, REV A, SCALE 1:1, PAIR in hairline-ruled cells",
+      "grid": "D7:J8",
+      "codeDrawn": true,
+      "container": true,
+      "coverBox": {
+        "x": 0.3,
+        "y": 0.7,
+        "w": 0.7,
+        "h": 0.2
+      },
+      "box": {
+        "x": 0.3053,
+        "y": 0.7485,
+        "w": 0.6641,
+        "h": 0.0756
+      },
+      "px": {
+        "x": 469,
+        "y": 2060,
+        "w": 1020,
+        "h": 208
+      },
+      "aspect": 4.9038,
+      "palette": [
+        {
+          "hex": "#090908",
+          "coverage": 0.9055
+        },
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.0388
+        },
+        {
+          "hex": "#646464",
+          "coverage": 0.0331
+        },
+        {
+          "hex": "#bdbdbd",
+          "coverage": 0.0185
+        },
+        {
+          "hex": "#868686",
+          "coverage": 0.0042
+        }
+      ],
+      "detail": {
+        "energy": 41.0336
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 29,
+          "capHeightPx": 34.4,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.641,
+          "advTall": 0.641,
+          "advX": null,
+          "gap": 0.1845,
+          "xRatio": null,
+          "stemW": 0.1291,
+          "contrast": 1.1743,
+          "serif": 1.0049,
+          "densTall": 0.4116,
+          "densX": null,
+          "weight": 0.4116
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "price",
+      "kind": "text",
+      "note": "$39.95 AUD white",
+      "grid": "A8:D8",
+      "coverBox": {
+        "x": 0,
+        "y": 0.8,
+        "w": 0.4,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.0371,
+        "y": 0.8539,
+        "w": 0.1947,
+        "h": 0.0374
+      },
+      "px": {
+        "x": 57,
+        "y": 2350,
+        "w": 299,
+        "h": 103
+      },
+      "aspect": 2.9029,
+      "palette": [
+        {
+          "hex": "#0a0a0a",
+          "coverage": 0.7776
+        },
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.184
+        },
+        {
+          "hex": "#808080",
+          "coverage": 0.0149
+        },
+        {
+          "hex": "#454544",
+          "coverage": 0.0126
+        },
+        {
+          "hex": "#b9bbb9",
+          "coverage": 0.0109
+        }
+      ],
+      "detail": {
+        "energy": 39.4918
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 5,
+          "capHeightPx": 66,
+          "inkIsDark": false,
+          "allCaps": false,
+          "advance": 0.6367,
+          "advTall": 0.6367,
+          "advX": null,
+          "gap": 0.1667,
+          "xRatio": 0.8293,
+          "stemW": 0.1359,
+          "contrast": 1.0874,
+          "serif": null,
+          "densTall": 0.4272,
+          "densX": null,
+          "weight": 0.4272
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "atc",
+      "kind": "control",
+      "note": "full-width flat purple ADD TO CART button, black caps",
+      "grid": "A9:J9",
+      "coverBox": {
+        "x": 0,
+        "y": 0.9,
+        "w": 1,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.0371,
+        "y": 0.9081,
+        "w": 0.9284,
+        "h": 0.0705
+      },
+      "px": {
+        "x": 57,
+        "y": 2499,
+        "w": 1426,
+        "h": 194
+      },
+      "aspect": 7.3505,
+      "palette": [
+        {
+          "hex": "#9758d9",
+          "coverage": 0.8512
+        },
+        {
+          "hex": "#09080a",
+          "coverage": 0.1114
+        },
+        {
+          "hex": "#8159b1",
+          "coverage": 0.0341
+        },
+        {
+          "hex": "#482868",
+          "coverage": 0.002
+        },
+        {
+          "hex": "#180828",
+          "coverage": 0.0013
+        }
+      ],
+      "detail": {
+        "energy": 16.8622
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": null,
+        "measuredAt": "2026-09-29T08:48:24.842Z",
+        "note": "no separable lettering in the crop; size by the region box"
+      }
+    }
+  ]
+}
