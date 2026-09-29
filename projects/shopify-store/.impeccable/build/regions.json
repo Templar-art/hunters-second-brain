@@ -66,8 +66,14 @@
   {
    "id": "callout-dring",
    "kind": "text",
-   "grid": "D6:F6",
-   "note": "DOUBLE D-RING CUFF callout label"
+   "note": "DOUBLE D-RING CUFF callout label",
+   "box": {
+    "x": 0.402,
+    "y": 0.578,
+    "w": 0.205,
+    "h": 0.032
+   },
+   "snap": false
   },
   {
    "id": "dimension-line",
@@ -78,16 +84,16 @@
    "codeDrawn": true
   },
   {
-   "id": "hex-artefact",
-   "kind": "text",
-   "grid": "H6:I6",
-   "note": "stray #9B5DE5 label, a generation artefact the approval said to drop"
-  },
-  {
    "id": "dim-label",
    "kind": "text",
-   "grid": "D7:G7",
-   "note": "30CM large purple numerals"
+   "note": "30CM large purple numerals",
+   "box": {
+    "x": 0.395,
+    "y": 0.676,
+    "w": 0.21,
+    "h": 0.045
+   },
+   "snap": false
   },
   {
    "id": "title-block",

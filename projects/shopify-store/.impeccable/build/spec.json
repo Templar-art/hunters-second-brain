@@ -1,7 +1,7 @@
 {
   "tool": "comp-spec",
   "version": 1,
-  "createdAt": "2026-09-29T08:48:24.238Z",
+  "createdAt": "2026-09-29T10:28:40.617Z",
   "comp": ".impeccable/mocks/home-comp-a-flat-strap.png",
   "warnings": [
     "region header-rule: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
@@ -219,29 +219,7 @@
       },
       "medium": "semantic",
       "plate": null,
-      "text": null,
-      "type": {
-        "comp": {
-          "lines": 1,
-          "glyphs": 5,
-          "capHeightPx": 27.7,
-          "inkIsDark": false,
-          "allCaps": true,
-          "advance": 0.6505,
-          "advTall": 0.6505,
-          "advX": null,
-          "gap": 0.506,
-          "xRatio": null,
-          "stemW": 0.1137,
-          "contrast": 1.1124,
-          "serif": 0.8233,
-          "densTall": 0.3469,
-          "densX": null,
-          "weight": 0.3469
-        },
-        "widthClass": "normal",
-        "weightClass": "regular"
-      }
+      "text": null
     },
     {
       "id": "nav-cart",
@@ -294,29 +272,7 @@
       },
       "medium": "semantic",
       "plate": null,
-      "text": null,
-      "type": {
-        "comp": {
-          "lines": 1,
-          "glyphs": 3,
-          "capHeightPx": 27.7,
-          "inkIsDark": false,
-          "allCaps": true,
-          "advance": 0.8651,
-          "advTall": 0.8651,
-          "advX": null,
-          "gap": 0.3244,
-          "xRatio": null,
-          "stemW": 0.1162,
-          "contrast": 1.1552,
-          "serif": null,
-          "densTall": 0.2596,
-          "densX": null,
-          "weight": 0.2596
-        },
-        "widthClass": "wide",
-        "weightClass": "light"
-      }
+      "text": null
     },
     {
       "id": "header-rule",
@@ -409,54 +365,7 @@
       },
       "medium": "semantic",
       "plate": null,
-      "text": null,
-      "type": {
-        "comp": {
-          "lines": 2,
-          "glyphs": 15,
-          "capHeightPx": 144.5,
-          "inkIsDark": false,
-          "allCaps": true,
-          "advance": 0.7864,
-          "advTall": 0.7864,
-          "advX": null,
-          "gap": 0.2221,
-          "xRatio": null,
-          "stemW": 0.2338,
-          "contrast": 1.2092,
-          "serif": 1.0002,
-          "densTall": 0.6632,
-          "densX": null,
-          "weight": 0.6632
-        },
-        "widthClass": "wide",
-        "weightClass": "black",
-        "chosen": {
-          "family": "Montserrat",
-          "weight": 700,
-          "fontSizePx": 206,
-          "source": "index",
-          "fp": {
-            "lines": 1,
-            "glyphs": 7,
-            "capHeightPx": 144.7,
-            "inkIsDark": true,
-            "allCaps": true,
-            "advance": 0.7393,
-            "advTall": 0.7393,
-            "advX": null,
-            "gap": 0.228,
-            "xRatio": null,
-            "stemW": 0.2345,
-            "contrast": 1.2074,
-            "serif": 1,
-            "densTall": 0.711,
-            "densX": null,
-            "weight": 0.711
-          },
-          "stamp": "0c7bd11f6a58"
-        }
-      }
+      "text": null
     },
     {
       "id": "grid-texture",
@@ -592,29 +501,7 @@
       },
       "medium": "semantic",
       "plate": null,
-      "text": null,
-      "type": {
-        "comp": {
-          "lines": 3,
-          "glyphs": 20,
-          "capHeightPx": 27.2,
-          "inkIsDark": false,
-          "allCaps": false,
-          "advance": 0.6182,
-          "advTall": 0.6182,
-          "advX": null,
-          "gap": 0.2182,
-          "xRatio": 0.6439,
-          "stemW": 0.1214,
-          "contrast": 1.2134,
-          "serif": 0.9966,
-          "densTall": 0.3627,
-          "densX": null,
-          "weight": 0.3627
-        },
-        "widthClass": "normal",
-        "weightClass": "regular"
-      }
+      "text": null
     },
     {
       "id": "callout-neoprene",
@@ -667,78 +554,51 @@
       },
       "medium": "semantic",
       "plate": null,
-      "text": null,
-      "type": {
-        "comp": {
-          "lines": 2,
-          "glyphs": 20,
-          "capHeightPx": 27.2,
-          "inkIsDark": false,
-          "allCaps": true,
-          "advance": 0.6241,
-          "advTall": 0.6241,
-          "advX": null,
-          "gap": 0.1853,
-          "xRatio": null,
-          "stemW": 0.1243,
-          "contrast": 1.1608,
-          "serif": 0.7235,
-          "densTall": 0.4232,
-          "densX": null,
-          "weight": 0.4232
-        },
-        "widthClass": "normal",
-        "weightClass": "regular"
-      }
+      "text": null
     },
     {
       "id": "callout-dring",
       "kind": "text",
       "note": "DOUBLE D-RING CUFF callout label",
-      "grid": "D6:F6",
-      "coverBox": {
-        "x": 0.3,
-        "y": 0.6,
-        "w": 0.3,
-        "h": 0.1
-      },
+      "grid": null,
+      "snap": false,
       "box": {
-        "x": 0.4512,
-        "y": 0.6791,
-        "w": 0.1491,
-        "h": 0.0207
+        "x": 0.402,
+        "y": 0.578,
+        "w": 0.205,
+        "h": 0.032
       },
       "px": {
-        "x": 693,
-        "y": 1869,
-        "w": 229,
-        "h": 57
+        "x": 617,
+        "y": 1591,
+        "w": 315,
+        "h": 88
       },
-      "aspect": 4.0175,
+      "aspect": 3.5795,
       "palette": [
         {
-          "hex": "#09090b",
-          "coverage": 0.6035
+          "hex": "#0b0b0b",
+          "coverage": 0.8719
         },
         {
-          "hex": "#985ae6",
-          "coverage": 0.2765
+          "hex": "#f5f5f5",
+          "coverage": 0.0792
         },
         {
-          "hex": "#9160ce",
-          "coverage": 0.0498
+          "hex": "#b8b8b8",
+          "coverage": 0.024
         },
         {
-          "hex": "#7750a4",
-          "coverage": 0.0421
+          "hex": "#888888",
+          "coverage": 0.0198
         },
         {
-          "hex": "#18092a",
-          "coverage": 0.0281
+          "hex": "#404040",
+          "coverage": 0.0051
         }
       ],
       "detail": {
-        "energy": 15.033
+        "energy": 48.4943
       },
       "medium": "semantic",
       "plate": null,
@@ -746,24 +606,24 @@
       "type": {
         "comp": {
           "lines": 1,
-          "glyphs": 5,
-          "capHeightPx": 47.1,
+          "glyphs": 12,
+          "capHeightPx": 27.6,
           "inkIsDark": false,
-          "allCaps": true,
-          "advance": 0.5737,
-          "advTall": 0.5737,
+          "allCaps": false,
+          "advance": 0.6519,
+          "advTall": 0.6519,
           "advX": null,
-          "gap": 0.2975,
-          "xRatio": null,
-          "stemW": 0.2485,
-          "contrast": 1.1,
-          "serif": 1.011,
-          "densTall": 0.6661,
+          "gap": 0.1811,
+          "xRatio": 0.4898,
+          "stemW": 0.1297,
+          "contrast": 1.1254,
+          "serif": 1.8786,
+          "densTall": 0.4383,
           "densX": null,
-          "weight": 0.6661
+          "weight": 0.4383
         },
-        "widthClass": "condensed",
-        "weightClass": "black"
+        "widthClass": "normal",
+        "weightClass": "regular"
       }
     },
     {
@@ -816,111 +676,48 @@
       "text": null
     },
     {
-      "id": "hex-artefact",
-      "kind": "text",
-      "note": "stray #9B5DE5 label, a generation artefact the approval said to drop",
-      "grid": "H6:I6",
-      "coverBox": {
-        "x": 0.7,
-        "y": 0.6,
-        "w": 0.2,
-        "h": 0.1
-      },
-      "box": {
-        "x": 0.6999,
-        "y": 0.6639,
-        "w": 0.1999,
-        "h": 0.0247
-      },
-      "px": {
-        "x": 1075,
-        "y": 1827,
-        "w": 307,
-        "h": 68
-      },
-      "aspect": 4.5147,
-      "palette": [
-        {
-          "hex": "#0b0a0c",
-          "coverage": 0.8127
-        },
-        {
-          "hex": "#975bde",
-          "coverage": 0.0825
-        },
-        {
-          "hex": "#180930",
-          "coverage": 0.0821
-        },
-        {
-          "hex": "#3f245e",
-          "coverage": 0.012
-        },
-        {
-          "hex": "#875bbe",
-          "coverage": 0.0107
-        }
-      ],
-      "detail": {
-        "energy": 21.662
-      },
-      "medium": "semantic",
-      "plate": null,
-      "text": null,
-      "type": {
-        "comp": null,
-        "measuredAt": "2026-09-29T08:48:24.627Z",
-        "note": "no separable lettering in the crop; size by the region box"
-      }
-    },
-    {
       "id": "dim-label",
       "kind": "text",
       "note": "30CM large purple numerals",
-      "grid": "D7:G7",
-      "coverBox": {
-        "x": 0.3,
-        "y": 0.7,
-        "w": 0.4,
-        "h": 0.1
-      },
+      "grid": null,
+      "snap": false,
       "box": {
-        "x": 0.3965,
-        "y": 0.6999,
-        "w": 0.2038,
-        "h": 0.02
+        "x": 0.395,
+        "y": 0.676,
+        "w": 0.21,
+        "h": 0.045
       },
       "px": {
-        "x": 609,
-        "y": 1926,
-        "w": 313,
-        "h": 55
+        "x": 607,
+        "y": 1860,
+        "w": 323,
+        "h": 124
       },
-      "aspect": 5.6909,
+      "aspect": 2.6048,
       "palette": [
         {
           "hex": "#09090a",
-          "coverage": 0.6834
+          "coverage": 0.7069
         },
         {
-          "hex": "#985be5",
-          "coverage": 0.215
+          "hex": "#985ae5",
+          "coverage": 0.2099
         },
         {
-          "hex": "#9060ca",
-          "coverage": 0.047
+          "hex": "#9161cc",
+          "coverage": 0.0353
         },
         {
-          "hex": "#1a092e",
-          "coverage": 0.0301
+          "hex": "#623e8c",
+          "coverage": 0.0269
         },
         {
-          "hex": "#7856a4",
-          "coverage": 0.0245
+          "hex": "#351f55",
+          "coverage": 0.021
         }
       ],
       "detail": {
-        "energy": 18.1922
+        "energy": 17.2729
       },
       "medium": "semantic",
       "plate": null,
@@ -928,24 +725,24 @@
       "type": {
         "comp": {
           "lines": 1,
-          "glyphs": 5,
-          "capHeightPx": 45,
+          "glyphs": 4,
+          "capHeightPx": 92,
           "inkIsDark": false,
           "allCaps": false,
-          "advance": 1.2889,
-          "advTall": 1.2889,
+          "advance": 0.6738,
+          "advTall": 0.6738,
           "advX": null,
-          "gap": 0.4,
-          "xRatio": 0.5379,
-          "stemW": 0.3002,
-          "contrast": 1.31,
+          "gap": 0.1522,
+          "xRatio": 0.8088,
+          "stemW": 0.137,
+          "contrast": 1.0833,
           "serif": null,
-          "densTall": 0.5178,
+          "densTall": 0.4604,
           "densX": null,
-          "weight": 0.5178
+          "weight": 0.4604
         },
-        "widthClass": "wide",
-        "weightClass": "medium"
+        "widthClass": "normal",
+        "weightClass": "regular"
       }
     },
     {
@@ -1001,29 +798,7 @@
       },
       "medium": "semantic",
       "plate": null,
-      "text": null,
-      "type": {
-        "comp": {
-          "lines": 2,
-          "glyphs": 29,
-          "capHeightPx": 34.4,
-          "inkIsDark": false,
-          "allCaps": true,
-          "advance": 0.641,
-          "advTall": 0.641,
-          "advX": null,
-          "gap": 0.1845,
-          "xRatio": null,
-          "stemW": 0.1291,
-          "contrast": 1.1743,
-          "serif": 1.0049,
-          "densTall": 0.4116,
-          "densX": null,
-          "weight": 0.4116
-        },
-        "widthClass": "normal",
-        "weightClass": "regular"
-      }
+      "text": null
     },
     {
       "id": "price",
@@ -1076,29 +851,7 @@
       },
       "medium": "semantic",
       "plate": null,
-      "text": null,
-      "type": {
-        "comp": {
-          "lines": 1,
-          "glyphs": 5,
-          "capHeightPx": 66,
-          "inkIsDark": false,
-          "allCaps": false,
-          "advance": 0.6367,
-          "advTall": 0.6367,
-          "advX": null,
-          "gap": 0.1667,
-          "xRatio": 0.8293,
-          "stemW": 0.1359,
-          "contrast": 1.0874,
-          "serif": null,
-          "densTall": 0.4272,
-          "densX": null,
-          "weight": 0.4272
-        },
-        "widthClass": "normal",
-        "weightClass": "regular"
-      }
+      "text": null
     },
     {
       "id": "atc",
@@ -1151,12 +904,7 @@
       },
       "medium": "semantic",
       "plate": null,
-      "text": null,
-      "type": {
-        "comp": null,
-        "measuredAt": "2026-09-29T08:48:24.842Z",
-        "note": "no separable lettering in the crop; size by the region box"
-      }
+      "text": null
     }
   ]
 }

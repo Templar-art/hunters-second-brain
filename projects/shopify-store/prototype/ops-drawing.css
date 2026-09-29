@@ -1,0 +1,120 @@
+/* One Percent: the drawing sheet. Mobile measurements are authored at a 390px frame
+   and scale with the viewport through --u (1 unit = 1px at 390 wide). */
+:root {
+  --ops-ink: #0b0b0c;
+  --ops-paper-line: #f4f4f5;
+  --ops-muted: #a1a1aa;
+  --ops-rule: #3a3a3f;
+  --ops-accent: #9b5de5;
+  --ops-accent-ink: #0b0b0c;
+  --u: calc(min(100vw, 480px) / 390);
+  --ops-face: 'Montserrat', var(--font-body--family, sans-serif);
+}
+
+.ops {
+  margin: 0;
+  background: var(--ops-ink);
+  color: var(--ops-paper-line);
+  font-family: var(--ops-face);
+  -webkit-font-smoothing: antialiased;
+}
+.ops ::selection { background: var(--ops-accent); color: var(--ops-accent-ink); }
+.ops :focus-visible { outline: 2px solid var(--ops-accent); outline-offset: 3px; }
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Header: a title-block strip ruled off from the sheet */
+.ops-head {
+  position: relative;
+  height: calc(65 * var(--u));
+  border-bottom: 1px solid var(--ops-paper-line);
+}
+.ops-head__mark {
+  position: absolute; left: calc(15 * var(--u)); top: calc(9 * var(--u));
+  width: calc(48 * var(--u)); display: block;
+}
+.ops-head__mark img { display: block; width: 100%; height: auto; }
+.ops-head__nav {
+  position: absolute; right: calc(14.5 * var(--u)); top: calc(28 * var(--u));
+  display: flex; gap: calc(19 * var(--u));
+}
+.ops-head__nav a {
+  color: var(--ops-paper-line); text-decoration: none; text-transform: uppercase;
+  font-size: calc(10 * var(--u)); font-weight: 400; letter-spacing: 0.2em; line-height: 1;
+}
+
+/* The sheet */
+.ops-sheet { position: relative; height: calc(634 * var(--u)); }
+.ops-sheet__title {
+  position: absolute; left: calc(15 * var(--u)); top: calc(24 * var(--u)); margin: 0;
+  font-size: calc(52 * var(--u)); font-weight: 700; line-height: 0.9;
+  letter-spacing: -0.005em; text-transform: uppercase; color: var(--ops-paper-line);
+}
+
+.ops-sheet__drawing { position: absolute; inset: calc(144 * var(--u)) 0 auto 0; height: calc(300 * var(--u)); margin: 0; }
+.ops-sheet__grid {
+  position: absolute; left: calc(17 * var(--u)); right: calc(17 * var(--u)); top: 0; bottom: 0;
+  background: url('../assets/plates/grid-texture.png') 0 0 / calc(78 * var(--u)) auto repeat;
+}
+.ops-sheet__plate {
+  position: absolute; left: 0; top: 0; width: 100%; height: calc(280 * var(--u));
+  object-fit: contain; object-position: 50% 50%;
+}
+.ops-callout {
+  position: absolute; text-transform: uppercase; font-size: calc(9.6 * var(--u));
+  font-weight: 500; letter-spacing: 0.08em; line-height: 1.2; color: var(--ops-paper-line);
+}
+.ops-callout--silicone { left: calc(47 * var(--u)); top: calc(50 * var(--u)); }
+.ops-callout--neoprene { left: calc(206 * var(--u)); top: calc(14 * var(--u)); text-align: right; }
+.ops-callout--dring { left: calc(158 * var(--u)); top: calc(196 * var(--u)); }
+
+/* Dimension: purple line with arrowheads and extension ticks, the one accent on the drawing */
+.ops-dim { position: absolute; left: calc(17 * var(--u)); right: calc(17 * var(--u)); top: calc(166 * var(--u)); height: calc(98 * var(--u)); }
+.ops-dim::before, .ops-dim::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ops-accent);
+}
+.ops-dim::before { left: 0; }
+.ops-dim::after { right: 0; }
+.ops-dim__line { position: absolute; left: 0; right: 0; bottom: calc(6 * var(--u)); height: 1px; background: var(--ops-accent); }
+.ops-dim__line::before, .ops-dim__line::after {
+  content: ''; position: absolute; top: calc(-4 * var(--u));
+  border-top: calc(4.5 * var(--u)) solid transparent; border-bottom: calc(4.5 * var(--u)) solid transparent;
+}
+.ops-dim__line::before { left: 0; border-right: calc(9 * var(--u)) solid var(--ops-accent); }
+.ops-dim__line::after { right: 0; border-left: calc(9 * var(--u)) solid var(--ops-accent); }
+.ops-dim__label {
+  position: absolute; left: 0; right: 0; top: calc(261 * var(--u)); margin: 0; text-align: center;
+  font-size: calc(33 * var(--u)); font-weight: 500; letter-spacing: 0.02em; line-height: 1;
+  color: var(--ops-accent); text-transform: uppercase; font-variant-numeric: tabular-nums;
+}
+
+/* Title block */
+.ops-titleblock {
+  position: absolute; left: calc(124 * var(--u)); top: calc(458 * var(--u));
+  width: calc(250 * var(--u)); height: calc(46 * var(--u)); margin: 0;
+  display: grid; grid-template-columns: 43.4fr 14.6fr 19.6fr 22.4fr;
+  border: 1px solid var(--ops-paper-line);
+}
+.ops-titleblock > div { border-left: 1px solid var(--ops-paper-line); padding: calc(7 * var(--u)) calc(8 * var(--u)) 0; }
+.ops-titleblock > div:first-child { border-left: 0; }
+.ops-titleblock dt { font-size: calc(9.5 * var(--u)); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; }
+.ops-titleblock dd { margin: calc(4 * var(--u)) 0 0; font-size: calc(12.5 * var(--u)); letter-spacing: 0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.ops-titleblock > div:not(.ops-titleblock__solo) { text-align: left; }
+.ops-titleblock > div:nth-child(2), .ops-titleblock > div:nth-child(3) { text-align: center; }
+.ops-titleblock__solo { display: flex; align-items: center; justify-content: center; padding-top: 0 !important; }
+.ops-titleblock__solo dd { margin: 0; text-transform: uppercase; font-size: calc(12.5 * var(--u)); }
+
+/* Buy */
+.ops-buy { position: absolute; left: calc(14.5 * var(--u)); right: calc(14 * var(--u)); top: calc(532 * var(--u)); margin: 0; }
+.ops-buy__price { margin: 0 0 0 calc(3 * var(--u)); font-size: calc(23.5 * var(--u)); font-weight: 500; letter-spacing: -0.035em; line-height: 1; font-variant-numeric: tabular-nums; }
+.ops-buy__atc {
+  display: block; width: 100%; margin-top: calc(16.5 * var(--u)); height: calc(49 * var(--u));
+  border: 0; border-radius: 0; background: var(--ops-accent); color: var(--ops-accent-ink);
+  font: 700 calc(15 * var(--u)) / 1 var(--ops-face); letter-spacing: 0.02em; text-transform: uppercase;
+  cursor: pointer; transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ops-buy__atc:hover { background: #ad7aea; }
+.ops-buy__atc:active { background: #8a4fd6; }
+.ops-buy__atc[disabled] { background: var(--ops-rule); color: var(--ops-muted); cursor: not-allowed; }

@@ -6,7 +6,7 @@
   "direction": "1df0f9fe",
   "breakpoint": "1536x2752",
   "artifact": null,
-  "phase": "plates",
+  "phase": "sections",
   "phases": {
     "comps": {
       "status": "closed",
@@ -38,26 +38,244 @@
       "forced": null
     },
     "plates": {
-      "status": "open",
+      "status": "closed",
       "openedAt": "2026-09-29T08:48:38.555Z",
-      "closedAt": null,
-      "attempts": 0,
+      "closedAt": "2026-09-29T08:51:15.903Z",
+      "attempts": 1,
       "notes": [],
-      "gate": null,
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "3/3 plates",
+        "at": "2026-09-29T08:51:15.902Z"
+      },
       "forced": null
     },
     "hero": {
-      "status": "pending",
-      "openedAt": null,
-      "closedAt": null,
-      "attempts": 0,
+      "status": "closed",
+      "openedAt": "2026-09-29T08:51:15.903Z",
+      "closedAt": "2026-09-29T10:28:46.293Z",
+      "attempts": 5,
       "notes": [],
-      "gate": null,
-      "forced": null
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "hero 86% (match)",
+        "score": 0.8571,
+        "verdict": "match",
+        "report": ".impeccable/review/diff/hero/report.json",
+        "sideBySide": "/Users/10xhunter/Documents/Hunters Second Brain/projects/shopify-store/.impeccable/review/diff/hero/side-by-side.png",
+        "worst": [
+          "callout-dring drift 47%",
+          "callout-neoprene drift 50%",
+          "callout-silicone drift 52%"
+        ],
+        "worstIds": [
+          "callout-dring",
+          "callout-neoprene",
+          "callout-silicone"
+        ],
+        "worstCrops": [
+          {
+            "id": "callout-dring",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.4742,
+              "structure": 0.428,
+              "color": 0.6048,
+              "colorIntersection": 0.2632,
+              "paletteMatch": 0.7887,
+              "detail": 0.3518,
+              "detailRaw": 0.4768,
+              "detailAdded": 0.25,
+              "bands": 0.5631
+            },
+            "file": ".impeccable/review/diff/hero/regions/callout-dring.png"
+          },
+          {
+            "id": "callout-neoprene",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.5048,
+              "structure": 0.3659,
+              "color": 0.7318,
+              "colorIntersection": 0.4673,
+              "paletteMatch": 0.8742,
+              "detail": 0.4131,
+              "detailRaw": 0.4964,
+              "detailAdded": 0.1667,
+              "bands": 0.7692
+            },
+            "file": ".impeccable/review/diff/hero/regions/callout-neoprene.png"
+          },
+          {
+            "id": "callout-silicone",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.5221,
+              "structure": 0.4769,
+              "color": 0.6042,
+              "colorIntersection": 0.254,
+              "paletteMatch": 0.7928,
+              "detail": 0.4483,
+              "detailRaw": 0.5629,
+              "detailAdded": 0.2292,
+              "bands": 0.6533
+            },
+            "file": ".impeccable/review/diff/hero/regions/callout-silicone.png"
+          }
+        ],
+        "advisories": [
+          "(advisory, above the 72% bar; fix in the polish pass before responsive) 1 reading:",
+          "  text callout-dring: letter-spacing is wider than the comp's (gap 0.334 vs 0.181 of the cap height); set letter-spacing to close it by about 4px"
+        ],
+        "regionVerdicts": {
+          "logo": "drift",
+          "nav-menu": "drift",
+          "nav-cart": "match",
+          "header-rule": "match",
+          "headline": "drift",
+          "grid-texture": "drift",
+          "strap-plate": "drift",
+          "callout-silicone": "drift",
+          "callout-neoprene": "drift",
+          "callout-dring": "drift",
+          "dimension-line": "drift",
+          "dim-label": "drift",
+          "title-block": "drift",
+          "price": "drift",
+          "atc": "drift"
+        },
+        "at": "2026-09-29T10:28:46.292Z"
+      },
+      "forced": null,
+      "readingsSeen": {
+        "text headline: cap height 176.5px in the build, 144.5px in the comp (+22%); set font-size so the cap height renders at 144.5px (font-match ranked Montserrat 700 at 206px)": 1,
+        "text headline: 1 line in the build, 2 in the comp; the measure (max-width, font-size, letter-spacing) wraps it differently, so the block is a different shape": 1,
+        "text hex-artefact: ink is #f8f8f8 in the build, #975bde in the comp; use the comp's colour": 1,
+        "text dim-label: ink is #b7b7b9 in the build, #985be5 in the comp; use the comp's colour": 1,
+        "text headline: its first line starts 99px lower than in the comp (125px vs 26px into the region box); the spacing above it is too large": 1,
+        "control atc: its rule sits 5px into the box in the comp and 37px in the build (+32px), so the strip is taller than the comp's; match the height, not only the position": 1,
+        "text nav-menu: ink is #515151 in the build, #f3f3f3 in the comp; use the comp's colour": 1,
+        "text hex-artefact: ink is #683898 in the build, #975bde in the comp; use the comp's colour": 1,
+        "control atc: its rule sits 5px into the box in the comp and 20px in the build (+15px), so the strip is taller than the comp's; match the height, not only the position": 1,
+        "text callout-dring: letter-spacing is wider than the comp's (gap 0.334 vs 0.181 of the cap height); set letter-spacing to close it by about 4px": 1
+      },
+      "records": 2,
+      "history": [
+        {
+          "at": "2026-09-29T09:25:42.564Z",
+          "score": 0.8468,
+          "worstIds": [
+            "callout-dring",
+            "callout-neoprene",
+            "callout-silicone"
+          ],
+          "regionVerdicts": {
+            "logo": "drift",
+            "nav-menu": "drift",
+            "nav-cart": "contradicted",
+            "header-rule": "match",
+            "headline": "drift",
+            "grid-texture": "drift",
+            "strap-plate": "drift",
+            "callout-silicone": "drift",
+            "callout-neoprene": "drift",
+            "callout-dring": "drift",
+            "dimension-line": "drift",
+            "dim-label": "drift",
+            "title-block": "drift",
+            "price": "contradicted",
+            "atc": "drift"
+          },
+          "artifactHash": "89395d588524"
+        },
+        {
+          "at": "2026-09-29T09:41:32.811Z",
+          "score": 0.8548,
+          "worstIds": [
+            "callout-dring",
+            "callout-neoprene",
+            "callout-silicone"
+          ],
+          "regionVerdicts": {
+            "logo": "drift",
+            "nav-menu": "contradicted",
+            "nav-cart": "match",
+            "header-rule": "match",
+            "headline": "drift",
+            "grid-texture": "drift",
+            "strap-plate": "drift",
+            "callout-silicone": "drift",
+            "callout-neoprene": "drift",
+            "callout-dring": "drift",
+            "dimension-line": "drift",
+            "dim-label": "drift",
+            "title-block": "drift",
+            "price": "contradicted",
+            "atc": "drift"
+          },
+          "artifactHash": "89395d588524"
+        },
+        {
+          "at": "2026-09-29T10:12:59.924Z",
+          "score": 0.8615,
+          "worstIds": [
+            "callout-dring",
+            "callout-neoprene",
+            "callout-silicone"
+          ],
+          "regionVerdicts": {
+            "logo": "drift",
+            "nav-menu": "drift",
+            "nav-cart": "match",
+            "header-rule": "match",
+            "headline": "drift",
+            "grid-texture": "drift",
+            "strap-plate": "drift",
+            "callout-silicone": "drift",
+            "callout-neoprene": "drift",
+            "callout-dring": "drift",
+            "dimension-line": "drift",
+            "dim-label": "drift",
+            "title-block": "drift",
+            "price": "contradicted",
+            "atc": "drift"
+          },
+          "artifactHash": "89395d588524"
+        },
+        {
+          "at": "2026-09-29T10:28:46.292Z",
+          "score": 0.8571,
+          "worstIds": [
+            "callout-dring",
+            "callout-neoprene",
+            "callout-silicone"
+          ],
+          "regionVerdicts": {
+            "logo": "drift",
+            "nav-menu": "drift",
+            "nav-cart": "match",
+            "header-rule": "match",
+            "headline": "drift",
+            "grid-texture": "drift",
+            "strap-plate": "drift",
+            "callout-silicone": "drift",
+            "callout-neoprene": "drift",
+            "callout-dring": "drift",
+            "dimension-line": "drift",
+            "dim-label": "drift",
+            "title-block": "drift",
+            "price": "drift",
+            "atc": "drift"
+          },
+          "artifactHash": "89395d588524"
+        }
+      ]
     },
     "sections": {
-      "status": "pending",
-      "openedAt": null,
+      "status": "open",
+      "openedAt": "2026-09-29T10:28:46.293Z",
       "closedAt": null,
       "attempts": 0,
       "notes": [],
@@ -92,5 +310,22 @@
       "forced": null
     }
   },
-  "finish": null
+  "finish": null,
+  "plates": {
+    "logo": {
+      "status": "ok",
+      "score": 0.762,
+      "size": "1230x1102"
+    },
+    "grid-texture": {
+      "status": "ok",
+      "score": 0.7598,
+      "size": "614x550"
+    },
+    "strap-plate": {
+      "status": "ok",
+      "score": 0.8149,
+      "size": "4800x3584"
+    }
+  }
 }
