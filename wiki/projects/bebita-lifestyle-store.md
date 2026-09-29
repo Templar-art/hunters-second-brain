@@ -18,4 +18,9 @@ Activewear and swimwear brand from Hunter's sister, run by Hunter as a separate 
 ## Open
 - Product list: styles, sizes, colours, stock counts, cost and price.
 - Photos, logo, brand colours.
-- Ship-from address, shipping rates, policies (swimwear hygiene rules for returns), pages, theme.
+- Pages (About needs the real brand story from Hunter's sister), home page, theme.
+
+## Done 2026-09-29
+- Ship-from location copied from the One Percent address (Upper Coomera QLD 4209).
+- Shipping: Standard $9.95 under $100, free Standard at $100+, Express $14.95, international off. Threshold is higher than One Percent's $75 because apparel orders run bigger.
+- Refund policy (30-day change of mind, unworn with tags; swimwear only with the hygiene liner intact; sale items exchange-only; ACL faulty cover) and shipping policy, drafts in [bebita/content/](../../projects/shopify-store/bebita/content/). Footer menu links the policies.

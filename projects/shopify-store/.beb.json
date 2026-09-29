@@ -1,0 +1,123 @@
+{
+    "data": {
+        "locations": {
+            "nodes": [
+                {
+                    "id": "gid://shopify/Location/90998997075"
+                }
+            ]
+        },
+        "shop": {
+            "contactEmail": "cd5njndwvj@privaterelay.appleid.com"
+        },
+        "deliveryProfiles": {
+            "nodes": [
+                {
+                    "id": "gid://shopify/DeliveryProfile/109387055187",
+                    "profileLocationGroups": [
+                        {
+                            "locationGroup": {
+                                "id": "gid://shopify/DeliveryLocationGroup/108501434451"
+                            },
+                            "locationGroupZones": {
+                                "nodes": [
+                                    {
+                                        "zone": {
+                                            "id": "gid://shopify/DeliveryZone/514537390163",
+                                            "name": "Domestic"
+                                        },
+                                        "methodDefinitions": {
+                                            "nodes": [
+                                                {
+                                                    "id": "gid://shopify/DeliveryMethodDefinition/931368960083",
+                                                    "name": "Standard",
+                                                    "rateProvider": {
+                                                        "price": {
+                                                            "amount": "11.0"
+                                                        }
+                                                    },
+                                                    "methodConditions": []
+                                                },
+                                                {
+                                                    "id": "gid://shopify/DeliveryMethodDefinition/931368960083?source=RateRangeCondition&source_id=276266713171",
+                                                    "name": "Standard",
+                                                    "rateProvider": {
+                                                        "price": {
+                                                            "amount": "0.0"
+                                                        }
+                                                    },
+                                                    "methodConditions": [
+                                                        {
+                                                            "conditionCriteria": {
+                                                                "amount": "100.0"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "gid://shopify/DeliveryMethodDefinition/931368992851",
+                                                    "name": "Express",
+                                                    "rateProvider": {
+                                                        "price": {
+                                                            "amount": "15.0"
+                                                        }
+                                                    },
+                                                    "methodConditions": []
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "zone": {
+                                            "id": "gid://shopify/DeliveryZone/514537422931",
+                                            "name": "International"
+                                        },
+                                        "methodDefinitions": {
+                                            "nodes": [
+                                                {
+                                                    "id": "gid://shopify/DeliveryMethodDefinition/931369025619",
+                                                    "name": "Standard international",
+                                                    "rateProvider": {
+                                                        "price": {
+                                                            "amount": "20.0"
+                                                        }
+                                                    },
+                                                    "methodConditions": []
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "pages": {
+            "nodes": [
+                {
+                    "handle": "contact"
+                }
+            ]
+        },
+        "shopPolicies": {
+            "shopPolicies": [
+                {
+                    "type": "PRIVACY_POLICY"
+                }
+            ]
+        }
+    },
+    "extensions": {
+        "cost": {
+            "requestedQueryCost": 99,
+            "actualQueryCost": 22,
+            "throttleStatus": {
+                "maximumAvailable": 2000.0,
+                "currentlyAvailable": 1978,
+                "restoreRate": 100.0
+            }
+        }
+    }
+}
