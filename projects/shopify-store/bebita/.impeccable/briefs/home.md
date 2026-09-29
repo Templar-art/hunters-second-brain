@@ -11,3 +11,5 @@ FORM: gym mirror selfie, position 1 of 7 on the grounded list (the pick), seed 3
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 Approved comp: .impeccable/mocks/home-comp-b-mirror-row.png (chosen by Hunter, 2026-09-30). The mirror photographs are placeholders for real Bebita photography; plates should come from the brand's own photos, not AI models.
+
+Stated copy decision (Hunter, 2026-09-30): the positioning is "Build your set". The hero is built to the comp's words verbatim to pass the gate, then the headline changes from "Find your colour." to a Build-your-set line, and the page adds a build-your-set section (pick a top, pick a bottom, any size and colour) with a bundle price once the real prices are known.

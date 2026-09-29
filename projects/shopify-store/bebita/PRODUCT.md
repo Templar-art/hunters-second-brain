@@ -18,7 +18,8 @@ Shopify Online Store 2.0, Horizon theme, edited remotely through the Admin Graph
 Sell through Bebita's remaining activewear and swimwear stock now; if it sells well, relaunch the brand. Success now is clearing stock at a fair price; success later is a store that can carry new drops without a rebuild.
 
 ## Positioning
-**Undecided.** The brand has real product and real content from its first run, but no confirmed claim beyond that. Don't invent one.
+**Build your set** (chosen by Hunter 2026-09-30, from [research](../../../wiki/sources/research-activewear-pain-points.md)). Tops and bottoms are sold separately, in any size and any colour, so a customer builds her own set instead of buying a fixed matching pair. This answers two things the research found: mismatched top and bottom sizes, and Gen Z moving off strict matching sets. Supporting it: fast dispatch from the Gold Coast with easy size swaps, and the honest voice of "the original run is back, and when it's gone it's gone", with real stock counts and no fake countdowns.
+- Relaunch angle held in reserve: "pastels you can actually squat in", backed by a squat and sweat test filmed for every colour. Squat-proof, sweat-proof or no-camel-toe claims are banned until that footage exists.
 
 ## Operating Context
 - Two lines: Active (seamless scrunch shorts, sports bras, leggings in pastel pink, lilac, baby blue, cobalt, hot pink) and Swim (triangle bikinis, sold as separates, in red, pink, white, peach, cobalt, aqua, brown).

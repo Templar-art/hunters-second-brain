@@ -24,6 +24,12 @@ All products and brand content live on Instagram: [@bebitaactive](https://www.in
 - Brand look: blush-pink circle avatar with a white script "Bebita" wordmark.
 - Both accounts say closed down, so the Shopify store is either a relaunch or a sell-through of remaining stock. That decides how much to build.
 
+## Positioning (decided 2026-09-30)
+**Build your set.** Tops and bottoms are sold as separate products in any size and colour, with a bundle discount when she buys both (a Shopify automatic discount, set up once the prices are known). The research is in [[research-activewear-pain-points]]. Supporting points: dispatch from the Gold Coast, easy size swaps, and real stock counts. The relaunch angle, a squat and sweat test filmed per colour, waits until that footage exists.
+
+## Home page build
+Impeccable comp-led build, direction "gym mirror selfie". Hunter chose the approved comp: a row of arched chrome mirrors, one colourway each ([comp](../../projects/shopify-store/bebita/.impeccable/mocks/home-comp-b-mirror-row.png)). The spec is measured, and the headline face ranks as Parkinsans 700. The next step is the mirror photos. Instagram captures proved unusable (about 600px, video play buttons baked in), so the build waits for the original files. Spend so far: 225 Magnific credits.
+
 ## Open
 - Product list: styles, sizes, colours, stock counts, cost and price.
 - Photos, logo, brand colours.
