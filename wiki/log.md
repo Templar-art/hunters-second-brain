@@ -1041,3 +1041,7 @@ Two research passes to find positioning. Bebita: see-through/sweat on pastels an
 ## [2026-10-02] query | GetHookd connected + first product-research pass
 
 Connected the GetHookd ad-intelligence MCP (user scope, Starter plan, 60 credits) and started its profile survey. Ran a US-winners sweep (4–5 stars, 100–400 active ads), then web research on six candidates (MeasurePro, ToolBox Widget, Camel City socks, EZARC step drills, Muravai shower head, Tumbler sharpener). All scored 3–4/10: each is already in AU via Bunnings/Kmart or an AU clone. About 1.3 credits spent. Detail on [[product-research-gethookd]].
+
+## [2026-10-02] query | GetHookd second pass: 100-point scorecard
+
+Swept 43 tradie keywords (~2.5 credits) and scored 11 more products on a weighted 100-point card (AU gap, margin with a GP ≥ A$30 floor, US proof, demo, shipping, compliance, AOV). Best results: wire fault finder 70, Bolthero offset extension 67, recip pruning blades 62. Nothing reached TEST; US winners are usually already cloned on eBay/Amazon AU. Detail on [[product-research-gethookd]].

@@ -39,3 +39,24 @@ Web research on six candidates, against four tests (retail ≥ 3× landed cost, 
 - Cyber Power Tools' longest-running ad is a stud finder ("drilled into a live wire once"), running 99 days.
 
 Both still need the AU check.
+
+## Second pass (2026-10-02, ~2.5 credits spent, 56.2 left)
+A GetHookd sweep of 43 tradie product keywords, using the same filters, then nine web-research agents scoring candidates on a 100-point scorecard. The scorecard weights: AU gap 25, margin 20 (≥3× landed **and** gross profit ≥ A$30 to fund a Meta CPA of A$25–40), US proof 15, demo 10, shipping 10, compliance/IP 10, repeat/AOV 10.
+
+| Product | Score | Verdict | Key fact |
+|---|---|---|---|
+| Wire break / short finder (SolderStick, generic EM415PRO), 6–42V DC | 70 | MAYBE | Landed ~A$18. No Bunnings equivalent (Power Probe A$579 at Supercheap). eBay AU A$19 clones, and the model number printed on the unit lets buyers find them |
+| Chain offset extension (Bolthero), for ratchets, not drills | 67 | MAYBE | Landed ~A$21, GP ~A$36 at A$69. Not at Bunnings or Total Tools. eBay AU clones from A$19.95 |
+| Japanese-tooth recip pruning blades (EZARC) | 62 | MAYBE | 8+ US sellers. GP ~A$25 on a 5-pack fails the A$30 bar. Milwaukee 5-pack A$55.95 at Total Tools |
+| Spanner-to-socket adapter (Olsa "stubby clip") | 59 | MAYBE | GP ~A$19. Mechanics' niche |
+| Rugged job-site smartwatch (Njord) | 59 | SKIP | 7+ AU sellers already, including Hard Hat Foreman A$199.95 |
+| Bluetooth hearing-protection earbuds | 54 | SKIP | Bunnings Citeco AS/NZS 1270 Class 5 at A$60.77 |
+| Stylish safety glasses | 54 | SKIP | SafeStyle (founded by a Perth plumber) at Total Tools. Needs AS/NZS 1337.1 |
+| Drill-tap combo bits (FixionTools) | 54 | SKIP | A$9–12 on eBay and Amazon AU |
+| Portable drill guide (SpeTool) | 52 | SKIP | The brand itself sells on Amazon AU at A$405 |
+| Stud finder (Cyber Power Tools) | 46 | SKIP | 20 SKUs at Bunnings. Useless on brick walls |
+| Socket rails (Olsa) | 41 | SKIP | Kincrome at Bunnings ~A$18 |
+
+**Nothing scored TEST.** Across 17 products, the pattern held: a US Meta winner is almost always a Chinese white label that is already on eBay or Amazon AU, so the AU price ceiling is set by the A$20 clone. The best scores went to products where **big-box stores don't stock them and the only competition is marketplace junk**. That gap can only be held with a branded bundle that a buyer can't search their way around.
+
+Gotchas: a GetHookd landing-page URL often 404s (find the live page by search). The `rubric.txt` handed to research agents has to live in the session scratchpad, not `$TMPDIR`.
