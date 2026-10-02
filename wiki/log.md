@@ -1037,3 +1037,7 @@ One Percent Standard: supplier specs and corrected unit cost (US$6.63 not $5.60)
 ## [2026-09-30] ingest | Pain-point research: Bebita activewear + One Percent straps
 
 Two research passes to find positioning. Bebita: see-through/sweat on pastels and sizing fear top the complaints; recommended "build your set" + local dispatch for the sell-off, filmed squat/sweat tests for a relaunch. One Percent: cuffed D-ring straps fail at the ring and stitching; recommended "the cuffed strap that doesn't quit", conditional on testing our own construction first. Bebita store renamed Bebita Collective; its home page comp (row of mirrors) approved. Detail on [[research-activewear-pain-points]] and [[research-lifting-strap-pain-points]].
+
+## [2026-10-02] query | GetHookd connected + first product-research pass
+
+Connected the GetHookd ad-intelligence MCP (user scope, Starter plan, 60 credits) and started its profile survey. Ran a US-winners sweep (4–5 stars, 100–400 active ads), then web research on six candidates (MeasurePro, ToolBox Widget, Camel City socks, EZARC step drills, Muravai shower head, Tumbler sharpener). All scored 3–4/10: each is already in AU via Bunnings/Kmart or an AU clone. About 1.3 credits spent. Detail on [[product-research-gethookd]].
