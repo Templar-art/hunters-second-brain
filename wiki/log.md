@@ -1053,3 +1053,7 @@ Swept 36 lifestyle keywords (4WD, caravan, camping, garden, pool) and scored 9 m
 ## [2026-10-03] query | GetHookd fourth pass: AU-running ads in Hunter's niches
 
 Hunter asked to drop the 4WD/caravan drift. Swept ads running in AU (min 20 active ads) and scored 6 products in his niches. Best: SuperGrip magnetic desk arm 69 and Fivalo hinge jig 66, both sold in AU by overseas shippers with slow delivery. Detail on [[product-research-gethookd]].
+
+## [2026-10-03] query | GetHookd fifth pass: camera, fitness, home on brief
+
+Brief locked (100–400 ads, 4–5 stars, Hunter's niches, problem line required). 7 more products scored 39–59, all skip: Kmart A$6–45 copies or brands already in AU. Detail on [[product-research-gethookd]].

@@ -93,3 +93,18 @@ Searched with `geo: AU`. Only 6 brands matched 100–400 active ads, so the mini
 | Countersink bit set (Fivalo) | 52 | SKIP | Ryobi A$9.98 at Bunnings |
 
 **Overall top 5 after 32 products:** 12V wire fault finder 70 (auto, outside the core niches), SuperGrip arm 69, Bolthero offset extension 67, hinge jig 66, GlowRight system 64. None is a clean TEST yet. The next validation step is a physical sample plus a filmed demo, not more desk research.
+
+## Fifth pass: back on brief (2026-10-03, ~1.3 credits, 51.8 left)
+**Locked brief:** US data, brands running 100–400 active ads, 4–5 star ads, problem-solving (col 2) or essentials (col 3), only in camera/video, fitness/wellness, home/interiors, tradie/construction, nothing Bunnings sells. Every product gets a "problem it fixes" line. Swept 31 camera, fitness and home keywords.
+
+| Product | Score | Problem it fixes | Why not |
+|---|---|---|---|
+| Horizum Tap-To-Snap magnetic pop-up tripod | 59 | Phone tripods are fiddly; clamps slip, legs wobble | Ulanzi MT85 at A$30 on Amazon AU, Kmart magnetic A$39 |
+| Cotton Carrier camera chest harness | 55 | Neck-strap pain, swinging camera | Brand already sold by AU camera stores; A$35 generics |
+| Neck phone holder (Moonighty) | 54 | Arm fatigue holding a phone; hands-free POV filming | Kmart A$6 |
+| DrainWig shower hair catcher | 52 | Hair clogging the shower drain | Already in AU (Grays); Bunnings/Kmart A$12–20 |
+| Octobuddy suction phone mount | 49 | Nowhere to put the phone when filming in a bathroom or gym | Kmart A$6 |
+| GLASSGUARD mould gel | 39 | Black mould in shower silicone | Already an Australian brand shipping from Sydney; chemical DG |
+| Chiclify anti-snap bands | 39 | Cheap bands snap mid-rep | Kmart/Rebel; the advertiser is a churned dropshipper |
+
+40 products scored so far. Pattern: low-ticket problem-solvers (<A$30 retail) always lose to Kmart's A$6–20 copy. The only workable shape is a **higher-ticket product (A$60–120) or a bundle**, where the US premium version hasn't landed in AU and Kmart's version is visibly worse.
