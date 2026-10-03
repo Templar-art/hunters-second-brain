@@ -131,3 +131,34 @@ Camera accessory searches only returned big brands (Neewer, Amaran, SIRUI, SANDM
 | Mini 1-person sauna (Peak) | 37 | Real sauna in a corner, no electrician | 120V only, 140kg crate; Jarli AU A$1,709 |
 
 Total scored: 47.
+
+## Eighth pass: tradie/DIY jigs + wall fixes, with traffic (2026-10-03, ~2.6 credits, 45.6 left)
+Traffic comes from SimilarWeb free pages (Aug 2026), so treat it as approximate.
+
+**Traffic on the earlier top products**
+
+| Site | Visits/mo | Trend | AU share | Main source | Read |
+|---|---|---|---|---|---|
+| glowright.co | ~34K | +45% | 8.6% | Paid social 32% → direct → organic search | Healthiest: brand search exists, AU already buying |
+| solderstick.com | ~30K | +10% | 6.1% | Paid social 44% → direct → paid search | Real demand, also buys Google ads |
+| ezarctools.com | ~34K | +24% | 4.4% | Paid social 59% | Meta-dependent; the pruning blade is a side SKU |
+| cyber-vintage.com | ~15K | +24% | 8.4% | Direct 29% → display | Small, 74% bounce |
+| fivalo.com | ? | +64% | not top 5 | Paid social 37% → organic | EU-focused (DE/IT/ES/FR); not chasing AU |
+| getbolthero.com | small | −34% | not top 5 | Paid social 38% | Fading |
+
+**New products**
+
+| Product | Score | Problem it fixes | Key fact |
+|---|---|---|---|
+| Aluminium adjustable hinge mortise jig | 66 MAYBE | Matching hinge recesses on every door without marking/chiselling | Open AU middle (A$69–79) between eBay A$36–45 and Carbatec/Timbecon A$99–140. GP ~A$44. **US inch sizing vs AU 100mm square-corner hinges: needs a metric version.** The advertiser store is near-dead (221 visits/3mo) |
+| Plasterboard patch clips | 54 MAYBE (bundle only) | Patching a big plasterboard hole with no backing | GP ~A$11 solo. Bundle idea: a "renter's bond-back kit" (clips + patches + anchors + filler) at A$59, GP ~A$35 |
+| Plastic hinge template (Copenrain) | 52 | Hinge recesses by router | Ryobi version A$29.98 at Bunnings |
+| Self-drilling plasterboard anchors (FixionTools) | 52 | Hanging on plasterboard without missing studs | Ramset at Bunnings. **But fixiontools.com: 226K visits/mo, 75% paid social, 19% AU.** A tradie-gadget store is already winning AU via Meta |
+| Caulk tape (Varitino) | 51 | Resealing a bath/sink without a caulk gun | Big W 3-pack A$9.73 |
+| Hidden-fastener slotting jig | 49 | Screw-free joints | Amazon AU A$25 |
+| Router groove bracket | 47 | Circles/grooves with a trim router | Amazon AU A$25–32 |
+| Drill sheet-metal cutter | 45 | Clean sheet-metal cuts vs a grinder | Bunnings Craftright A$39.98. norbbshop.com gets 15.5% AU traffic |
+
+**Big signal from traffic:** fixiontools.com (19% AU) and norbbshop.com (15.5% AU) are general tradie/DIY gadget stores already pulling real Australian traffic off Meta ads. The working model in AU may be a **multi-product tradie-gadget store** (rotating proven SKUs), not one hero product.
+
+Total scored: 55.

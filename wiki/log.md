@@ -1057,3 +1057,7 @@ Hunter asked to drop the 4WD/caravan drift. Swept ads running in AU (min 20 acti
 ## [2026-10-03] query | GetHookd fifth pass: camera, fitness, home on brief
 
 Brief locked (100–400 ads, 4–5 stars, Hunter's niches, problem line required). 7 more products scored 39–59, all skip: Kmart A$6–45 copies or brands already in AU. Detail on [[product-research-gethookd]].
+
+## [2026-10-03] query | GetHookd eighth pass: tradie jigs, wall fixes + SimilarWeb traffic
+
+Brief narrowed: no camera/fitness. Added a traffic step (SimilarWeb). Best new: aluminium hinge mortise jig 66 (needs a metric AU version). Key signal: fixiontools.com (19% AU) and norbbshop.com (15.5% AU) are tradie-gadget stores already winning Aussie traffic off Meta. Detail on [[product-research-gethookd]].
