@@ -190,3 +190,17 @@ Price at A$29–39 with 1/2/3-pack tiers; AU 3PL + postage ~A$9–12/parcel (UNV
 | Housewor tile/stone repair kit | 38 SKIP | Chipped tiles/benchtops | ~50K/mo, 96% US | Generic; MagicEzy and Rust-Oleum at Bunnings |
 
 **Lesson:** the US-only filter works better than raw "winning ad" sweeps. Real US *brands* with organic search demand and no AU shipping (MirrorMate, Murphy Door) leave genuine gaps; Facebook-only dropship stores almost never do.
+
+## Tenth pass: more US-only brands (2026-10-03, ~3.8 credits, 35.4 left)
+US-only sweep across 40 home-upgrade + tradie keywords (187 new brands), plus leftovers from pass 9. Screened 18 domains on SimilarWeb (failed: ozarke, American Tin Ceilings, cartivra and seuslighting ship to AU; thewoodveneerhub has a .com.au; wenche, piventra and bicycleglass too small). Six scored:
+
+| Brand | Score | Problem it fixes | Key fact |
+|---|---|---|---|
+| **Barnakl** (barnakl.com) | **72 MAYBE→TEST** | Dust, pet hair and smells; filter pads stick to the ceiling fan you already own, so it works as an air purifier | ~24K/mo, 96% US, US-only shipping. AU: only unbranded Amazon AU pads (A$11–29), no AU brand. Landed ~A$5/kit (flat 6g pads, cheap post); GP ~A$33 at A$49; monthly refills = subscription. Risks: Amazon price anchor; **no allergy claims** (ACCC A$185k precedent), use dust/odour wording. White-label route (Barnakl is US-made, no intl wholesale) |
+| Porte + Hall (porteandhall.com) | 61 SKIP | Thick, ugly doormats that catch the door | 2,829 reviews; but Kmart thin mats A$9, Ruggable AU; patterns patented |
+| Rorra (rorra.com) | 59 MAYBE→SKIP | PFAS/lead worry in tap water | GP ~A$200 + refills, but Phoenix gravity filter already in AU (A$470), PFAS claim needs lab data, invisible on camera |
+| House of Noa (thehouseofnoa.com) | 53 SKIP | Grotty play/bath mats | Hero is the EVA play mat; Kmart A$25–49 + Luxe at Play, Audrey & Me etc. |
+| Adoorn (adoorn.com) | 41 SKIP | Parcel theft + ugly letterboxes | Sandleford at Bunnings A$179–449, Milkcan, AU designer brands; bulky steel freight |
+| Semihandmade (semihandmade.com) | 40 SKIP | IKEA kitchens look flat-pack | Fits SEKTION, not AU METOD; Customea / Kitchen Door Co / Ren Studio already make METOD fronts |
+
+**Current top 2: MirrorMate 77, Barnakl 72.** Both are real US brands, US-only shipping, no AU brand, with a demonstrable visual problem.

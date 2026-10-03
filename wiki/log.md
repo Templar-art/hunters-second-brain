@@ -1069,3 +1069,7 @@ fixiontools.com (19% AU traffic, Trustpilot 1.5) shows a multi-SKU tradie-gadget
 ## [2026-10-03] query | GetHookd ninth pass: US-only brands
 
 Filtered to US-only ads, then SimilarWeb AU share <2%. MirrorMate stick-on bathroom mirror frames scored 77 (highest yet): no AU seller, GP ~A$91. Murphy Door is a distributor play for builder clients. Detail on [[product-research-gethookd]].
+
+## [2026-10-03] query | GetHookd tenth pass: more US-only brands
+
+Screened 18 more US-only domains, scored 6. Barnakl ceiling-fan air filters 72 (no AU brand, cheap to ship, refill subscription). Others skipped. Detail on [[product-research-gethookd]].
