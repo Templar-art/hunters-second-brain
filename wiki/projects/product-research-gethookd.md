@@ -119,3 +119,15 @@ The `price_point: mid,premium` filter only covers a small share of ads (mostly r
 | LED anti-fog mirror cabinet (Wellfor) | 37 | Foggy mirror, bad light, cluttered vanity | Bunnings Attica, Temple & Webster; bulky glass; electrician needed |
 
 Total scored: 43.
+
+## Seventh pass: fitness + camera accessories (2026-10-03, ~2.3 credits, 47.3 left)
+Camera accessory searches only returned big brands (Neewer, Amaran, SIRUI, SANDMARC), with nothing to white-label. An Ekko lifting-straps ad (4–5 stars) surfaced as a reference for [[one-percent-standard-store]].
+
+| Product | Score | Problem it fixes | Why |
+|---|---|---|---|
+| Cordless (ropeless) battle ropes, Ekoh/BattleFlex white label | 66 | Battle-rope cardio without a 15m rope, anchor or garage | MAYBE: not at Kmart/Big W/Rebel (rope only); AU has only eBay/Stacks junk at A$42–51. GP ~A$28 at A$69, just under the bar. Air freight on 1.8kg hurts; sea freight would fix it |
+| Sauna blanket (Hydragun HeatPod) | 49 | Sauna heat at home without a sauna | Hydragun ships free to AU; Mihigh A$259 |
+| Adjustable kettlebell (Freak Athlete) | 35 | One bell replaces a rack | FA AU store, Bells of Steel AU A$280; 33kg freight |
+| Mini 1-person sauna (Peak) | 37 | Real sauna in a corner, no electrician | 120V only, 140kg crate; Jarli AU A$1,709 |
+
+Total scored: 47.
