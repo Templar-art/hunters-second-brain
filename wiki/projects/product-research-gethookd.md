@@ -205,4 +205,4 @@ US-only sweep across 40 home-upgrade + tradie keywords (187 new brands), plus le
 
 **⚠️ Barnakl downgraded by Hunter (2026-10-03):** US$49–70 per fan plus monthly refills is poor value against a ~A$100 standalone air purifier that lasts longer, and Aussie buyers would do the same maths. Treat as SKIP.
 
-**Current top: MirrorMate 77.** Both are real US brands, US-only shipping, no AU brand, with a demonstrable visual problem.
+**⚠️ MirrorMate also rejected by Hunter (2026-10-03):** doesn't feel like it would work. Scope widened to ALL trending categories (not just tradie/home): recently launched US-only ads already scoring 4–5★. Both are real US brands, US-only shipping, no AU brand, with a demonstrable visual problem.
