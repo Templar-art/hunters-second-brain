@@ -49,7 +49,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
 - [[one-percent-standard-store]] — Hunter's own white-label Shopify store (100 units in hand, self-fulfilled); Claude connected via Admin API 29 Sep
 - [[bebita-lifestyle-store]] — **Bebita Collective** (renamed from Lifestyle 30 Sep): sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
-- [[product-research-gethookd]] — finding a product via GetHookd (US + AU Meta winners); 55 scored across 8 passes + traffic checks 2–3 Oct; top: SuperGrip desk arm 69, hinge jig 66; none TEST; stay in Hunter's niches
+- [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 61 scored over 9 passes; **top: MirrorMate stick-on mirror frames 77 (US-only brand, no AU seller)**; FixionTools AU-store model noted
 
 ## Concepts
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate

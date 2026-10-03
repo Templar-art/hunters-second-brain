@@ -176,3 +176,17 @@ Candidate launch SKUs (no cheap Bunnings/Kmart equivalent):
 5. Optional: folding 90°-lock brackets as a fold-down garage bench kit.
 
 Price at A$29–39 with 1/2/3-pack tiers; AU 3PL + postage ~A$9–12/parcel (UNVERIFIED).
+
+## Ninth pass: US-only brands with no AU presence (2026-10-03, ~5.4 credits, 39.2 left)
+**Hunter's steer:** find companies selling only or mostly to America, with little or no AU presence. Method: (1) GetHookd sweep of 36 tradie/home keywords keeping ads whose `countries == ["US"]` (408 of 498 brands); (2) SimilarWeb screen for real traffic, US-majority, AU <2%, not shipping to or targeting AU; (3) AU shelf check + scorecard + route (white-label vs become their AU distributor). Shortlisted 6 of 14 screened (Giraffe Tools and Auria Light already target AU; Frame It All 2.9% AU).
+
+| Brand | Score | Problem it fixes | Traffic | Key fact |
+|---|---|---|---|---|
+| **MirrorMate** (mirrormate.com) | **77 MAYBE→TEST** | Builder-grade frameless bathroom mirror looks cheap; a frame sticks on in ~30 min, no removal | ~19K/mo, +41%, 85.5% US, no AU | US$99–120, ~4.2K Trustpilot reviews. **No AU seller found**; a Bunnings Workshop thread says the US kits don't ship to AU. GP ~A$91 at A$149 (4.5× landed). Catch: cut-to-size per mirror plus oversize freight. Best route: import moulding in bulk and cut to order in AU. MirrorMate also has a Dealer Program (terms unknown) |
+| Murphy Door (murphydoor.com) | 62 SKIP (for this budget) | Hidden bookcase door: pantry, office, safe room | ~64K/mo, 91% US, 31% organic search | No AU kit seller (only custom quote joiners). But US$1,000–3,250, 60–113kg freight, patented hinge. **Better as a distributor deal pitched to builder clients** than a Meta test |
+| Shelfology (shelfology.com) | 52 SKIP | Floating shelves sag after install | ~33K/mo, 85% US, 43% organic | Bunnings Carinya brackets A$10–14 |
+| WAS Home hose quick-connect | 42 SKIP | Weak or arthritic hands can't screw hose fittings | 100% US | US GHT thread doesn't fit AU BSP taps; Hoselink owns the arthritis angle at A$13.50 |
+| FullStop/Beest spray foam kit | 40 SKIP | Draughty gaps | ~11K/mo, 96% US | UN1950 aerosol dangerous goods + isocyanate labelling; Soudal/Sika at Bunnings |
+| Housewor tile/stone repair kit | 38 SKIP | Chipped tiles/benchtops | ~50K/mo, 96% US | Generic; MagicEzy and Rust-Oleum at Bunnings |
+
+**Lesson:** the US-only filter works better than raw "winning ad" sweeps. Real US *brands* with organic search demand and no AU shipping (MirrorMate, Murphy Door) leave genuine gaps; Facebook-only dropship stores almost never do.
