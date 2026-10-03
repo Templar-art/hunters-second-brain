@@ -95,7 +95,7 @@ Searched with `geo: AU`. Only 6 brands matched 100–400 active ads, so the mini
 **Overall top 5 after 32 products:** 12V wire fault finder 70 (auto, outside the core niches), SuperGrip arm 69, Bolthero offset extension 67, hinge jig 66, GlowRight system 64. None is a clean TEST yet. The next validation step is a physical sample plus a filmed demo, not more desk research.
 
 ## Fifth pass: back on brief (2026-10-03, ~1.3 credits, 51.8 left)
-**Locked brief:** US data, brands running 100–400 active ads, 4–5 star ads, problem-solving (col 2) or essentials (col 3), only in camera/video, fitness/wellness, home/interiors, tradie/construction, nothing Bunnings sells. Every product gets a "problem it fixes" line. Swept 31 camera, fitness and home keywords.
+**Locked brief (updated 2026-10-03):** NO camera/video or fitness — Hunter doesn't think there's a market; tradie/DIY + home/interiors only. Every MAYBE+ gets a traffic check (visits + source mix via SimilarWeb-type estimators). Original brief: US data, brands running 100–400 active ads, 4–5 star ads, problem-solving (col 2) or essentials (col 3), only in camera/video, fitness/wellness, home/interiors, tradie/construction, nothing Bunnings sells. Every product gets a "problem it fixes" line. Swept 31 camera, fitness and home keywords.
 
 | Product | Score | Problem it fixes | Why not |
 |---|---|---|---|
