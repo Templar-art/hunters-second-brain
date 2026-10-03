@@ -1073,3 +1073,7 @@ Filtered to US-only ads, then SimilarWeb AU share <2%. MirrorMate stick-on bathr
 ## [2026-10-03] query | GetHookd tenth pass: more US-only brands
 
 Screened 18 more US-only domains, scored 6. Barnakl ceiling-fan air filters 72 (no AU brand, cheap to ship, refill subscription). Others skipped. Detail on [[product-research-gethookd]].
+
+## [2026-10-03] query | Construction shortlist page
+
+Swept 50 construction keywords, built a 42-product shareable list for Hunter's mate (ratchet-strap seller) with GetHookd ad links. Detail on [[product-research-gethookd]].
