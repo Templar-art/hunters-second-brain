@@ -108,3 +108,14 @@ Searched with `geo: AU`. Only 6 brands matched 100–400 active ads, so the mini
 | Chiclify anti-snap bands | 39 | Cheap bands snap mid-rep | Kmart/Rebel; the advertiser is a churned dropshipper |
 
 40 products scored so far. Pattern: low-ticket problem-solvers (<A$30 retail) always lose to Kmart's A$6–20 copy. The only workable shape is a **higher-ticket product (A$60–120) or a bundle**, where the US premium version hasn't landed in AU and Kmart's version is visibly worse.
+
+## Sixth pass: home/interiors + price filter (2026-10-03, ~2.2 credits, 49.6 left)
+The `price_point: mid,premium` filter only covers a small share of ads (mostly recent), so it can't be used as a primary filter. A home/interiors sweep of 25 keywords followed.
+
+| Product | Score | Problem it fixes | Why not |
+|---|---|---|---|
+| Frame For TV snap-on frame | 60 | A wall TV looks like a TV, not art | **Fits Samsung The Frame only**, despite the "any TV" ad. Deco TV Frames AU (Sydney) A$599–949; Samsung bezel A$149 at Harvey Norman. GP ~A$186 at A$299, but a tiny audience and a 1.5m box |
+| Invisible under-desk wireless charger | 41 | Cable and pad clutter on the desk | IKEA SJÖMÄRKE A$55; Deskup AU |
+| LED anti-fog mirror cabinet (Wellfor) | 37 | Foggy mirror, bad light, cluttered vanity | Bunnings Attica, Temple & Webster; bulky glass; electrician needed |
+
+Total scored: 43.
