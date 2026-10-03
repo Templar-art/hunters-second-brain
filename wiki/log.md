@@ -1045,3 +1045,7 @@ Connected the GetHookd ad-intelligence MCP (user scope, Starter plan, 60 credits
 ## [2026-10-02] query | GetHookd second pass: 100-point scorecard
 
 Swept 43 tradie keywords (~2.5 credits) and scored 11 more products on a weighted 100-point card (AU gap, margin with a GP ≥ A$30 floor, US proof, demo, shipping, compliance, AOV). Best results: wire fault finder 70, Bolthero offset extension 67, recip pruning blades 62. Nothing reached TEST; US winners are usually already cloned on eBay/Amazon AU. Detail on [[product-research-gethookd]].
+
+## [2026-10-03] query | GetHookd third pass: AU lifestyle categories
+
+Swept 36 lifestyle keywords (4WD, caravan, camping, garden, pool) and scored 9 more products. All skipped (42–63): AU incumbents or Bunnings/Kmart already cover each. 26 products scored in total, none TEST; the US-winner-copy method itself is the problem. Detail on [[product-research-gethookd]].

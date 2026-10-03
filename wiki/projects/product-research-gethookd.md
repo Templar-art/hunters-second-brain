@@ -60,3 +60,20 @@ A GetHookd sweep of 43 tradie product keywords, using the same filters, then nin
 **Nothing scored TEST.** Across 17 products, the pattern held: a US Meta winner is almost always a Chinese white label that is already on eBay or Amazon AU, so the AU price ceiling is set by the A$20 clone. The best scores went to products where **big-box stores don't stock them and the only competition is marketplace junk**. That gap can only be held with a branded bundle that a buyer can't search their way around.
 
 Gotchas: a GetHookd landing-page URL often 404s (find the live page by search). The `rubric.txt` handed to research agents has to live in the session scratchpad, not `$TMPDIR`.
+
+## Third pass (2026-10-03, ~1.5 credits, 54.7 left)
+A GetHookd sweep of 36 Australian lifestyle keywords (4WD, caravan, camping, ute, garage, garden, pool, BBQ, fishing), then 9 products scored on the same 100-point card. Six of the research agents hit the Claude session limit partway through and were resumed. The pool thermometer report is thinner as a result.
+
+| Product | Score | Verdict | Key fact |
+|---|---|---|---|
+| Drill-chuck fence wire twister | 63 | SKIP | Only twists pre-formed 9-gauge chain-link ties; no AU supply of those ties. GP ~A$23 |
+| Flatpack grill / stove / pit (Bigfoot) | 59 | SKIP | Kmart folding pit A$49, Bunnings A$65, Winnerwell AU. Fire-ban season |
+| Stick-on caravan door catch | 53 | SKIP | Camec catch (A$12.95) already fitted on most AU vans. 6+ on Amazon AU |
+| Auto-stop tyre inflator (LockNLube) | 52 | SKIP | LockNLube has its own .com.au. Tracker 4x4 and iCheck A$229–249. Ozito preset A$60 |
+| Trailer "GPS" tracker (Add-On Design) | 45 | SKIP | It's a Bluetooth Find My tag; Kmart sells them at A$12. A real 4G tracker is a separate idea |
+| Magnetic UHF mic mount | 44 | SKIP | Uniden, GME and Oricom sell their own at A$40 (Supercheap, Repco, BCF) |
+| Collapsible fire pit (Chiasson) | 44 | SKIP | 20kg; ARB flat pack A$349 |
+| Camping rope tensioners (Hydrava) | 42 | SKIP | Hydrava is itself Australian. Bunnings Grunt 2-pack A$14.87 |
+| Wireless pool thermometer | 42 | SKIP | Inkbird AU store A$30–46 caps the price |
+
+**After 26 products across three passes, none scored TEST.** The method is the problem. A US brand running 100–400 ads with 4–5 star performance is, almost by definition, selling a generic white label, and by then that item is already on Amazon or eBay AU, at Bunnings or Kmart, or with an AU distributor. In AU lifestyle categories, specialist incumbents (ARB, GME, Camec, Inkbird) own the shelf as well. Next: flip the method (AU demand first, or GetHookd with `geo: AU` to see what's winning *here*), or build a differentiated bundle around the best "maybe" (the 12V fault-finding kit).
