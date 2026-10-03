@@ -162,3 +162,17 @@ Traffic comes from SimilarWeb free pages (Aug 2026), so treat it as approximate.
 **Big signal from traffic:** fixiontools.com (19% AU) and norbbshop.com (15.5% AU) are general tradie/DIY gadget stores already pulling real Australian traffic off Meta ads. The working model in AU may be a **multi-product tradie-gadget store** (rotating proven SKUs), not one hero product.
 
 Total scored: 55.
+
+## The FixionTools model (2026-10-03)
+fixiontools.com gets ~226K visits/mo, 75% paid social, **19% AU**, yet GetHookd shows none of its ads geo-tagged AU, so Aussies are reached by its non-AU-targeted ads. Its ads have run 300–465 days. It's a China dropship catalogue (~177 SKUs, including off-niche): USD prices, YunExpress/Yanwen shipping, no company name, **Trustpilot 1.5/5 (103 reviews, 80% one-star, many Australian)**. Complaints are 3–8+ week delivery, lost parcels and ignored emails. Base price US$12.95 with 1/2/3-pack tiers ($12.95/$19.95/$26.95), est. AOV US$22–30. It wins on video ads and pack tiers despite terrible fulfilment. norbbshop.com is similar (250+ SKUs, mostly non-tools, Trustpilot ~2.5–3).
+
+**Opening:** an AU store (AUD, 2–4 day local delivery, AU returns/ABN, Hunter-shot demo video) beats them on trust and speed. The catch: half of Fixion's best sellers are cheaper at Bunnings or Kmart once searched (anchors, clips, discs, extractors, cloths). Avoid those.
+
+Candidate launch SKUs (no cheap Bunnings/Kmart equivalent):
+1. **Double-headed skirting nails.** Fixes visible nail holes and damage when fitting skirting. No Bunnings equivalent found.
+2. **Titanium tap-drill bit set.** Drill and thread in one step. Sutton is A$45.70 per *single size* at Bunnings.
+3. **"Fix stripped particleboard" kit:** screw-in sleeved shelf pegs + hinge repair plates. Fixes sagging cabinet doors and loose shelf pins. The bundle dodges a like-for-like Bunnings comparison (Bunnings only has push-in pins and a A$9.98 plate).
+4. **Battery disconnect switch** (caravan/4WD). Fixes a battery draining in storage. Narva A$38 at Bunnings; check the Projecta price.
+5. Optional: folding 90°-lock brackets as a fold-down garage bench kit.
+
+Price at A$29–39 with 1/2/3-pack tiers; AU 3PL + postage ~A$9–12/parcel (UNVERIFIED).

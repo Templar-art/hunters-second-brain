@@ -1061,3 +1061,7 @@ Brief locked (100–400 ads, 4–5 stars, Hunter's niches, problem line required
 ## [2026-10-03] query | GetHookd eighth pass: tradie jigs, wall fixes + SimilarWeb traffic
 
 Brief narrowed: no camera/fitness. Added a traffic step (SimilarWeb). Best new: aluminium hinge mortise jig 66 (needs a metric AU version). Key signal: fixiontools.com (19% AU) and norbbshop.com (15.5% AU) are tradie-gadget stores already winning Aussie traffic off Meta. Detail on [[product-research-gethookd]].
+
+## [2026-10-03] query | FixionTools model teardown
+
+fixiontools.com (19% AU traffic, Trustpilot 1.5) shows a multi-SKU tradie-gadget store selling to Aussies from China with awful fulfilment. Opening for an AU-stocked version; 3–5 candidate launch SKUs listed on [[product-research-gethookd]].
