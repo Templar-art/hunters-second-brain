@@ -203,4 +203,6 @@ US-only sweep across 40 home-upgrade + tradie keywords (187 new brands), plus le
 | Adoorn (adoorn.com) | 41 SKIP | Parcel theft + ugly letterboxes | Sandleford at Bunnings A$179–449, Milkcan, AU designer brands; bulky steel freight |
 | Semihandmade (semihandmade.com) | 40 SKIP | IKEA kitchens look flat-pack | Fits SEKTION, not AU METOD; Customea / Kitchen Door Co / Ren Studio already make METOD fronts |
 
-**Current top 2: MirrorMate 77, Barnakl 72.** Both are real US brands, US-only shipping, no AU brand, with a demonstrable visual problem.
+**⚠️ Barnakl downgraded by Hunter (2026-10-03):** US$49–70 per fan plus monthly refills is poor value against a ~A$100 standalone air purifier that lasts longer, and Aussie buyers would do the same maths. Treat as SKIP.
+
+**Current top: MirrorMate 77.** Both are real US brands, US-only shipping, no AU brand, with a demonstrable visual problem.
