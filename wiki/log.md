@@ -1049,3 +1049,7 @@ Swept 43 tradie keywords (~2.5 credits) and scored 11 more products on a weighte
 ## [2026-10-03] query | GetHookd third pass: AU lifestyle categories
 
 Swept 36 lifestyle keywords (4WD, caravan, camping, garden, pool) and scored 9 more products. All skipped (42–63): AU incumbents or Bunnings/Kmart already cover each. 26 products scored in total, none TEST; the US-winner-copy method itself is the problem. Detail on [[product-research-gethookd]].
+
+## [2026-10-03] query | GetHookd fourth pass: AU-running ads in Hunter's niches
+
+Hunter asked to drop the 4WD/caravan drift. Swept ads running in AU (min 20 active ads) and scored 6 products in his niches. Best: SuperGrip magnetic desk arm 69 and Fivalo hinge jig 66, both sold in AU by overseas shippers with slow delivery. Detail on [[product-research-gethookd]].

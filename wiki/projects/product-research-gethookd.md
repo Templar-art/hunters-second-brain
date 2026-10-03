@@ -77,3 +77,19 @@ A GetHookd sweep of 36 Australian lifestyle keywords (4WD, caravan, camping, ute
 | Wireless pool thermometer | 42 | SKIP | Inkbird AU store A$30–46 caps the price |
 
 **After 26 products across three passes, none scored TEST.** The method is the problem. A US brand running 100–400 ads with 4–5 star performance is, almost by definition, selling a generic white label, and by then that item is already on Amazon or eBay AU, at Bunnings or Kmart, or with an AU distributor. In AU lifestyle categories, specialist incumbents (ARB, GME, Camec, Inkbird) own the shelf as well. Next: flip the method (AU demand first, or GetHookd with `geo: AU` to see what's winning *here*), or build a differentiated bundle around the best "maybe" (the 12V fault-finding kit).
+
+## Fourth pass: AU-running ads (2026-10-03, ~1.6 credits, 53.1 left)
+**Hunter's steer: stay in his niches (tradie/construction, home/interiors, fitness/wellness, camera/video gear). No more 4WD/caravan drift.**
+
+Searched with `geo: AU`. Only 6 brands matched 100–400 active ads, so the minimum was lowered to 20. AU winners run far longer (380–750 days), so AU demand is already proven. The scorecard was adjusted accordingly (`rubric_au.txt`): "AU gap" now asks whether the competition is one overseas dropshipper (beatable with local stock and better video) or many sellers plus big-box.
+
+| Product | Score | Verdict | Key fact |
+|---|---|---|---|
+| SuperGrip magnetic phone/tablet desk arm (Cyber Vintage) | 69 | MAYBE | No premium AU seller; the advertiser ships from Dongguan/US (~14 days). GP ~A$52 at A$89. Cheap A$32 arms on Amazon AU |
+| Concealed hinge jig (Fivalo) | 66 | MAYBE | Fivalo is an overseas dropshipper (9-day delivery). Kreg at Bunnings A$63 caps the price; GP ~A$30 at A$59. Bundle needed |
+| GlowRight multi-light sensor system | 64 | MAYBE | 10.7k reviews, ships in 10–12 days. Single bars are A$15–17 at Kmart and Bunnings; only the "one sensor, whole room" system is a gap. Lithium + RCM |
+| Pilates bar kit (Stretched Fusion) | 64 | MAYBE→SKIP | The advertiser really sells a video subscription. The bar is A$10–70 everywhere |
+| Lumbar/seat cushion (Nordic Comforts) | 56 | SKIP | Kmart and Big W A$20–47. TGA bans the "back pain" hook |
+| Countersink bit set (Fivalo) | 52 | SKIP | Ryobi A$9.98 at Bunnings |
+
+**Overall top 5 after 32 products:** 12V wire fault finder 70 (auto, outside the core niches), SuperGrip arm 69, Bolthero offset extension 67, hinge jig 66, GlowRight system 64. None is a clean TEST yet. The next validation step is a physical sample plus a filmed demo, not more desk research.
