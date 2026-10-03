@@ -206,3 +206,6 @@ US-only sweep across 40 home-upgrade + tradie keywords (187 new brands), plus le
 **⚠️ Barnakl downgraded by Hunter (2026-10-03):** US$49–70 per fan plus monthly refills is poor value against a ~A$100 standalone air purifier that lasts longer, and Aussie buyers would do the same maths. Treat as SKIP.
 
 **⚠️ MirrorMate also rejected by Hunter (2026-10-03):** doesn't feel like it would work. Scope widened to ALL trending categories (not just tradie/home): recently launched US-only ads already scoring 4–5★. Both are real US brands, US-only shipping, no AU brand, with a demonstrable visual problem.
+
+## Brief reset (2026-10-03): construction
+Hunter's mate sells **retractable ratchet straps**; that's the model. Focus: **construction**, meaning products that make tradies'/builders' days easier, or materials/products people need to build houses. Sell into **AU, CA, US, NZ** (not AU-only, so US-only competition matters less; the question is a proven product plus room for a new brand). Trending all-category sweep (2026-10-03, 273 US-only brands) was parked: mostly fashion, food, beauty and games.
