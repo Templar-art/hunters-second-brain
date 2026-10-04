@@ -9,6 +9,7 @@ Budget: 1,000 credits approved 2026-09-30, on top of the direction-round comps.
 |---|---|---|---|
 | 2026-09-30 | 3 home-page comps (direction round) | 225 | 225 |
 | 2026-09-30 | Bebita / COLLECTIVE logo lockup (budget 1/1000) | 75 | 300 |
+| 2026-10-04 | Face replacement test, a175 (Nano Banana 2 retouch, 2K) | 75 | 375 |
 
 ## Built and live on the store (2026-09-30)
 - Custom theme sections, all editable in the theme editor: `bb-header` (script logo, "Collective", menu drawer, bag count), `bb-mirrors`, `bb-build`, `bb-line` (Active and Swim, mirrored), `bb-statement`, `bb-room` and `bb-promise`. Shared CSS and JS are in `theme/assets/`, with self-hosted Parkinsans 800 and Public Sans. Originals of every theme file are in `theme-backup/`.

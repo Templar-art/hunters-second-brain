@@ -79,6 +79,9 @@ def photo(ref, h, colour):
     acc = "active" if ref[0] == "a" else "swim"
     folder = os.path.join(RAW, f"instagram-{acc}")
     src = next(f for f in os.listdir(folder) if f.startswith(f"bebita{acc}_{ref[1:]}_"))
+    edited = os.path.join(HERE, "edited", f"{ref}.jpg")   # face-replaced versions win over the originals
+    if os.path.exists(edited):
+        folder, src = os.path.dirname(edited), os.path.basename(edited)
     dst = os.path.join(OUT, f"bebita-{h}-{handle(colour)}.jpg")
     if not os.path.exists(dst):
         im = Image.open(os.path.join(folder, src)).convert("RGB")
