@@ -1,0 +1,4 @@
+{%- comment -%} Store-wide stylesheet and script for the vx- sections. Rendered once from vx-header. {%- endcomment -%}
+{{ 'vx.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'vx.js' | asset_url }}" defer></script>
+<script>document.body && document.body.classList.add('vx-body');document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('vx-body')});</script>

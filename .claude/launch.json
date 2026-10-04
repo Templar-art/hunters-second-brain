@@ -57,6 +57,18 @@
         "projects/ironstandard-site"
       ],
       "port": 8145
+    },
+    {
+      "name": "bebita-vx",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8150",
+        "--directory",
+        "projects/shopify-store/bebita"
+      ],
+      "port": 8150
     }
   ]
 }

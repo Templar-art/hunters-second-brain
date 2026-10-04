@@ -1,0 +1,99 @@
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign colour_index = nil
+  assign size_index = nil
+  for o in product.options_with_values
+    assign on = o.name | downcase
+    if on contains 'colo'
+      assign colour_index = forloop.index0
+    elsif on contains 'size'
+      assign size_index = forloop.index0
+    endif
+  endfor
+-%}
+<section class="vx vx-pdp" data-vx-pdp>
+  <script type="application/json" data-vx-json>{%- render 'bb-product-json', product: product -%}</script>
+  <div class="vx-pdp__gallery" data-vx-gallery>
+    {%- for media in product.media -%}{%- if media.media_type == 'image' -%}
+      <figure data-media-id="{{ media.id }}" data-src="{{ media | image_url: width: 1200 }}">
+        {{ media | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '500, 800, 1100, 1400', sizes: '(min-width: 990px) 30vw, 100vw', alt: media.alt | default: product.title }}
+      </figure>
+    {%- endif -%}{%- endfor -%}
+  </div>
+
+  <div class="vx-pdp__info">
+    <div class="vx-pdp__row">
+      <h1 class="vx-pdp__title">{{ product.title }}<span data-vx-colour-title>{% if colour_index %} - {{ current.options[colour_index] }}{% endif %}</span></h1>
+      <span class="vx-pdp__price" data-vx-price>{{ current.price | money }}{% if current.compare_at_price > current.price %}<s>{{ current.compare_at_price | money }}</s>{% endif %}</span>
+    </div>
+
+    {%- form 'product', product, data-vx-form: '' -%}
+      <input type="hidden" name="id" value="{{ current.id }}" data-vx-id>
+      {%- if colour_index -%}
+        {%- assign copt = product.options_with_values[colour_index] -%}
+        <fieldset style="border:0;margin:0;padding:0">
+          <legend class="vx-pdp__label">Colour: <span data-vx-colour-name>{{ current.options[colour_index] }}</span></legend>
+          <div class="vx-swatches">
+            {%- for value in copt.values -%}
+              {%- assign vimg = nil -%}{%- assign c_avail = false -%}
+              {%- for v in product.variants -%}{%- if v.options[colour_index] == value -%}{%- if v.featured_image and vimg == nil -%}{%- assign vimg = v.featured_image -%}{%- endif -%}{%- if v.available -%}{%- assign c_avail = true -%}{%- endif -%}{%- endif -%}{%- endfor -%}
+              <label class="vx-swatch{% unless c_avail %} is-out{% endunless %}" title="{{ value | escape }}{% unless c_avail %} (sold out){% endunless %}">
+                {%- if vimg -%}{{ vimg | image_url: width: 120 | image_tag: alt: '', loading: 'lazy' }}{%- endif -%}
+                <input type="radio" name="vx-colour" value="{{ value | escape }}" {% if value == current.options[colour_index] %}checked{% endif %} aria-label="{{ value | escape }}{% unless c_avail %}, sold out{% endunless %}" data-vx-opt="{{ colour_index }}">
+              </label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+      {%- endif -%}
+      {%- if size_index -%}
+        {%- assign sopt = product.options_with_values[size_index] -%}
+        <fieldset style="border:0;margin:0;padding:0">
+          <legend class="vx-pdp__label">Size</legend>
+          <div class="vx-sizes">
+            {%- for value in sopt.values -%}
+              <label class="vx-size" data-vx-size="{{ value | escape }}"><input type="radio" name="vx-size" value="{{ value | escape }}" {% if value == current.options[size_index] %}checked{% endif %} data-vx-opt="{{ size_index }}"><span>{{ value }}</span></label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+      {%- endif -%}
+      <p class="vx-stock" data-vx-stock aria-live="polite"></p>
+      <p class="vx-urgent" data-vx-urgent hidden></p>
+      <button class="vx-buy" type="submit" name="add" data-vx-buy {% unless current.available %}disabled{% endunless %}>{% if current.available %}Add to bag{% else %}Sold out{% endif %}</button>
+    {%- endform -%}
+    <p class="vx-note">{{ section.settings.note }}</p>
+
+    <div class="vx-acc">
+      <details open><summary>Details &amp; fit</summary><div class="vx-acc__body">{{ product.description }}</div></details>
+      <details><summary>Size guide</summary><div class="vx-acc__body">{{ section.settings.size_guide }}</div></details>
+      <details><summary>Delivery &amp; returns</summary><div class="vx-acc__body">{{ section.settings.delivery }}</div></details>
+    </div>
+  </div>
+</section>
+
+{%- liquid
+  assign line_handle = 'active'
+  if product.tags contains 'swim'
+    assign line_handle = 'swim'
+  endif
+  assign pool = collections[line_handle].products
+  if section.settings.related != blank
+    assign pool = section.settings.related.products
+  endif
+-%}
+{%- if pool.size > 0 -%}
+<section class="vx">
+  <div class="vx-sechead"><h2>{{ section.settings.related_heading }}</h2></div>
+  <ul class="vx-grid" role="list">
+    {%- assign shown = 0 -%}
+    {%- for p in pool -%}{%- if p.id != product.id and p.available and shown < 4 -%}<li>{%- render 'vx-card', product: p -%}</li>{%- assign shown = shown | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  </ul>
+</section>
+{%- endif -%}
+{% schema %}
+{ "name": "Product page", "settings": [
+  { "type": "text", "id": "note", "label": "Note under the button", "default": "Free shipping over $100. Sent from the Gold Coast in 1–2 business days." },
+  { "type": "richtext", "id": "size_guide", "label": "Size guide", "default": "<p>XS 6 · S 8 · M 10 · L 12 · XL 14 (AU sizes). Between sizes? Size up for leggings and one pieces, true to size for tops and shorts.</p>" },
+  { "type": "richtext", "id": "delivery", "label": "Delivery and returns", "default": "<p>$9.95 standard, free over $100, $14.95 express. Australia only. Easy size swaps within 30 days on unworn items with tags. Swimwear only with the hygiene liner intact.</p>" },
+  { "type": "collection", "id": "related", "label": "Override: pull suggestions from this collection (blank = same line)" },
+  { "type": "text", "id": "related_heading", "label": "Heading", "default": "Complete the set" } ] }
+{% endschema %}

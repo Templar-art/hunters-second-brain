@@ -1,0 +1,21 @@
+{
+ "sections": {
+  "main": {
+   "type": "vx-cart",
+   "settings": {
+    "free_threshold": 100,
+    "addons": [
+     "sarong",
+     "triangle-bikini-top",
+     "bikini-skirt",
+     "halter-top",
+     "scrunch-halter-top",
+     "triangle-top"
+    ]
+   }
+  }
+ },
+ "order": [
+  "main"
+ ]
+}

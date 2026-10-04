@@ -1,0 +1,13 @@
+{
+ "sections": {
+  "main": {
+   "type": "vx-collection",
+   "settings": {
+    "chips": "main-menu"
+   }
+  }
+ },
+ "order": [
+  "main"
+ ]
+}

@@ -1,0 +1,39 @@
+{%- render 'vx-assets' -%}
+<header class="vx vx-head">
+  <div class="vx-head__left">
+    <button class="vx-icon vx-hide-desk" type="button" aria-label="Menu" aria-controls="vx-menu" aria-expanded="false" data-vx-menu-open>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="vx-head__nav" aria-label="Main">
+      <ul role="list">
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+  <a class="vx-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }} home">
+    {%- if section.settings.logo != blank -%}{{ section.settings.logo | image_url: height: 60 | image_tag: alt: '' }}{%- else -%}{{ section.settings.wordmark | default: 'Bebita' }}{%- endif -%}
+  </a>
+  <div class="vx-head__right">
+    <a class="vx-icon" href="{{ routes.search_url }}" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></a>
+    {%- if shop.customer_accounts_enabled -%}
+      <a class="vx-icon" href="{{ routes.account_url }}" aria-label="Account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
+    {%- endif -%}
+    <a class="vx-icon" href="{{ routes.cart_url }}" aria-label="Bag, {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l-1.5 12h-13z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
+      {%- if cart.item_count > 0 -%}<span class="vx-icon__count">{{ cart.item_count }}</span>{%- endif -%}
+    </a>
+  </div>
+</header>
+<dialog class="vx vx-drawer" id="vx-menu" aria-label="Menu" data-vx-menu>
+  <div class="vx-drawer__top"><span class="vx-logo">{{ section.settings.wordmark | default: 'Bebita' }}</span>
+    <button class="vx-icon" type="button" aria-label="Close menu" data-vx-menu-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div>
+  <ul role="list">{%- for link in section.settings.menu.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
+</dialog>
+{% schema %}
+{ "name": "Header", "settings": [
+  { "type": "text", "id": "wordmark", "label": "Wordmark", "default": "Bebita" },
+  { "type": "image_picker", "id": "logo", "label": "Logo image (optional, replaces the wordmark)" },
+  { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" } ] }
+{% endschema %}

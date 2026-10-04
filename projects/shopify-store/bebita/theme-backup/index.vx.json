@@ -1,0 +1,90 @@
+{
+ "sections": {
+  "hero": {
+   "type": "vx-hero",
+   "settings": {
+    "image": "shopify://shop_images/bebita-vx-hero.jpg",
+    "title": "Shop Active",
+    "sub": "The original run. Final stock.",
+    "link": "shopify://collections/active",
+    "image_2": "shopify://shop_images/bebita-vx-hero-swim.jpg",
+    "title_2": "Shop Swim",
+    "sub_2": "Bikinis, one pieces, sarongs",
+    "link_2": "shopify://collections/swim"
+   }
+  },
+  "grid_active": {
+   "type": "vx-grid",
+   "settings": {
+    "heading": "Active",
+    "collection": "active",
+    "limit": 8
+   }
+  },
+  "tiles_split": {
+   "type": "vx-tiles",
+   "blocks": {
+    "t1": {
+     "type": "tile",
+     "settings": {
+      "image": "shopify://shop_images/bebita-vx-tile-tops.jpg",
+      "label": "Shop tops",
+      "link": "shopify://collections/tops"
+     }
+    },
+    "t2": {
+     "type": "tile",
+     "settings": {
+      "image": "shopify://shop_images/bebita-vx-tile-bottoms.jpg",
+      "label": "Shop bottoms",
+      "link": "shopify://collections/bottoms"
+     }
+    }
+   },
+   "block_order": [
+    "t1",
+    "t2"
+   ]
+  },
+  "grid_swim": {
+   "type": "vx-grid",
+   "settings": {
+    "heading": "Swim",
+    "collection": "swim",
+    "limit": 4
+   }
+  },
+  "tiles_lines": {
+   "type": "vx-tiles",
+   "blocks": {
+    "t1": {
+     "type": "tile",
+     "settings": {
+      "image": "shopify://shop_images/bebita-vx-tile-active.jpg",
+      "label": "Shop active",
+      "link": "shopify://collections/active"
+     }
+    },
+    "t2": {
+     "type": "tile",
+     "settings": {
+      "image": "shopify://shop_images/bebita-vx-tile-swim.jpg",
+      "label": "Shop swim",
+      "link": "shopify://collections/swim"
+     }
+    }
+   },
+   "block_order": [
+    "t1",
+    "t2"
+   ]
+  }
+ },
+ "order": [
+  "hero",
+  "grid_active",
+  "tiles_split",
+  "grid_swim",
+  "tiles_lines"
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "type": "header",
+ "name": "Header group",
+ "sections": {
+  "announce": {
+   "type": "vx-announce",
+   "settings": {
+    "text": "Final stock: when it's gone, it's gone \u00b7 Free shipping over $100",
+    "link": "shopify://collections/all"
+   }
+  },
+  "header": {
+   "type": "vx-header",
+   "settings": {
+    "wordmark": "Bebita",
+    "menu": "main-menu"
+   }
+  }
+ },
+ "order": [
+  "announce",
+  "header"
+ ]
+}

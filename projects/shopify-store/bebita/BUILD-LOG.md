@@ -55,3 +55,22 @@ Interpretations to confirm with Hunter:
 - Names cleaned up: "Weird Scrunch" became Scrunch Shorts and Scrunch Pants, and "Badazzled" became Bedazzled.
 
 Still blocked on prices before loading.
+
+## v3 (2026-10-04): black-and-white storefront redesign, real stock, urgency, pop-up, cart add-ons
+Hunter asked for the store to look like velocityactivewear.com.au (a Shopify Symmetry theme) while carrying both Active and Swim. Only the layout and feel were copied; no logo, text or photos.
+- **Layout:**
+  - black announcement bar
+  - header with the nav on the left, a spaced BEBITA wordmark in the centre, and search and bag on the right
+  - full-bleed hero, split Active | Swim on desktop
+  - edge-to-edge 2/4-column product grid with 2:3 photos, uppercase titles, price on the right and a colour count
+  - Shop tops / Shop bottoms image tiles
+  - black footer with newsletter
+- **Product page:** gallery (a swipe carousel on phones) beside a sticky panel with photo colour swatches, size buttons, a black "Add to bag" button and fold-outs (details, size guide, delivery).
+- **Sections:** `vx-announce`, `vx-header`, `vx-hero`, `vx-grid`, `vx-tiles`, `vx-footer`, `vx-collection`, `vx-product`, `vx-cart` and `vx-popup`; snippets `vx-card` and `vx-assets`; assets `vx.css` and `vx.js`. Templates are in `theme-backup/*.vx.json`. The previous bb- look stays in `*.v2.json` for rollback.
+- **Prices** (set by Claude, approved by Hunter): shorts $45; leggings, pants and flares $59; tops $39–42 (Open Back $45); 2-in-1 long sleeve $59; zip jacket $69; flare set $95; active one pieces $65 (short) and $75 (long); triangle bikini top $39; Brazilian set $79; V-front one piece $75; bikini skirt $35; sarong $29; bedazzled cover-up $49. Single prices, no fake "was" prices.
+- **Products:** `load_stock.py` creates one product per style with Colour × Size variants. Every size of every colour exists, and missing ones have stock 0, so they show as sold out. Colours with nothing left show a struck-through swatch. Photos are matched by eye from the Instagram archive (`PHOTOS` map). Yellow jacket, Navy/Black two-tone and Purple/Teal fall back to the product's main photo; Hunter should shoot or swap these.
+- **Urgency:** every label comes from the real stock count. Card badges: "Only N left" (3 or fewer) and "Selling fast" (8 or fewer). The product page says "Selling fast: only N left in <colour>" or "N sizes have already sold out in <colour>". The announcement bar reads "Final stock: when it's gone, it's gone". There are no fake timers.
+- **Pop-up:** 25% off the first order, code **BEBITA25** (one use per customer, created by the go-live script). It opens once a week per visitor, after 6 seconds, at 40% scroll or on exit intent. Sign-ups land in Customers tagged newsletter and welcome-popup.
+- **Cart add-ons:** below the free-shipping threshold, the bag page shows "Add $X for free shipping" with sarong, triangle top, bikini skirt and halter tops, each with a colour/size picker and an Add button. Checkout itself can't be edited below Shopify Plus.
+- **Local preview** with the real data: `prototype/vx/build.py` writes the `prototype/vx/*.html` pages (launch config `bebita-vx`, port 8150). Verified on a phone-width viewport: hero, grid, product page (variant switching, sold-out sizes, stock messages, colour photo first), bag (add-ons, no overflow) and pop-up.
+- **⚠️ Blocked:** the store API returned "Unavailable Shop" and the storefront HTTP 402 on 2026-10-04, meaning the trial has ended and a plan is needed. Once Hunter picks a plan, run `STORE=bebita python3 bebita/go_live_vx.py`.

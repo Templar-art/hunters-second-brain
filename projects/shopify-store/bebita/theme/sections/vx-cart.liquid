@@ -1,0 +1,74 @@
+{%- liquid
+  assign threshold = section.settings.free_threshold | times: 100
+  assign remaining = threshold | minus: cart.total_price
+  assign progress = cart.total_price | times: 100 | divided_by: threshold
+  if progress > 100
+    assign progress = 100
+  endif
+-%}
+<section class="vx vx-cart">
+  <h1>Your bag</h1>
+  {%- if cart.item_count > 0 -%}
+    <ul class="vx-cart__lines" role="list">
+      {%- for item in cart.items -%}
+        <li class="vx-line">
+          <a class="vx-line__img" href="{{ item.url }}">{%- if item.image -%}{{ item.image | image_url: width: 300 | image_tag: alt: item.product.title, loading: 'lazy' }}{%- endif -%}</a>
+          <div>
+            <p class="vx-line__title"><a href="{{ item.url }}">{{ item.product.title }}</a></p>
+            {%- unless item.product.has_only_default_variant -%}<p class="vx-line__opts">{{ item.variant.title }}</p>{%- endunless -%}
+            <div class="vx-qty">
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" aria-label="One less">&minus;</a>
+              <span aria-label="Quantity">{{ item.quantity }}</span>
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" aria-label="One more">+</a>
+            </div>
+            <a class="vx-line__remove" href="{{ item.url_to_remove }}">Remove</a>
+          </div>
+          <span>{{ item.final_line_price | money }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if remaining > 0 and section.settings.addons.size > 0 -%}
+      <div class="vx-addons">
+        <h2>Add {{ remaining | money }} for free shipping</h2>
+        <p>Easy add-ons to get you there.</p>
+        <ul role="list">
+          {%- assign shown = 0 -%}
+          {%- for p in section.settings.addons -%}
+            {%- assign in_cart = false -%}
+            {%- for item in cart.items -%}{%- if item.product_id == p.id -%}{%- assign in_cart = true -%}{%- endif -%}{%- endfor -%}
+            {%- if p.available and in_cart == false and shown < 4 -%}
+              {%- assign shown = shown | plus: 1 -%}
+              <li class="vx-addon">
+                <a class="vx-addon__img" href="{{ p.url }}">{{ p.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: p.title }}</a>
+                <p><span>{{ p.title }}</span><span>{{ p.price | money }}</span></p>
+                {%- form 'product', p -%}
+                  <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+                  {%- if p.has_only_default_variant -%}<input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+                  {%- else -%}
+                    <label class="vx-sr" for="addon-{{ p.id }}">Option for {{ p.title }}</label>
+                    <select id="addon-{{ p.id }}" name="id">{%- for v in p.variants -%}{%- if v.available -%}<option value="{{ v.id }}">{{ v.title }}</option>{%- endif -%}{%- endfor -%}</select>
+                  {%- endif -%}
+                  <button class="vx-buy" type="submit">Add</button>
+                {%- endform -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    <aside class="vx-cart__sum">
+      {%- if remaining > 0 -%}<p class="vx-cart__ship">{{ remaining | money }} away from free shipping</p>{%- else -%}<p class="vx-cart__ship">You've got free shipping</p>{%- endif -%}
+      <div class="vx-bar" aria-hidden="true"><i style="width:{{ progress }}%"></i></div>
+      <p><span>Subtotal</span><span>{{ cart.total_price | money }}</span></p>
+      <p class="vx-cart__ship">Shipping calculated at checkout</p>
+      <form action="{{ routes.cart_url }}" method="post"><button class="vx-buy" type="submit" name="checkout">Checkout</button></form>
+    </aside>
+  {%- else -%}
+    <p class="vx-empty" style="grid-column:1/-1">Your bag is empty. <a href="{{ routes.all_products_collection_url }}">Shop all</a></p>
+  {%- endif -%}
+</section>
+{% schema %}
+{ "name": "Cart", "settings": [
+  { "type": "number", "id": "free_threshold", "label": "Free shipping from ($)", "default": 100 },
+  { "type": "product_list", "id": "addons", "label": "Add-ons shown when under free shipping", "limit": 8 } ] }
+{% endschema %}

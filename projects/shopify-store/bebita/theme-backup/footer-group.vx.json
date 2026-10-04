@@ -1,0 +1,41 @@
+{
+ "type": "footer",
+ "name": "Footer group",
+ "sections": {
+  "footer": {
+   "type": "vx-footer",
+   "blocks": {
+    "m1": {
+     "type": "menu",
+     "settings": {
+      "title": "Shop",
+      "menu": "main-menu"
+     }
+    },
+    "m2": {
+     "type": "menu",
+     "settings": {
+      "title": "Help",
+      "menu": "footer"
+     }
+    }
+   },
+   "block_order": [
+    "m1",
+    "m2"
+   ],
+   "settings": {}
+  },
+  "popup": {
+   "type": "vx-popup",
+   "settings": {
+    "image": "shopify://shop_images/bebita-vx-popup.jpg",
+    "code": "BEBITA25"
+   }
+  }
+ },
+ "order": [
+  "footer",
+  "popup"
+ ]
+}

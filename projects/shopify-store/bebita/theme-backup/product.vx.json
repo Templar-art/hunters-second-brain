@@ -1,0 +1,13 @@
+{
+ "sections": {
+  "main": {
+   "type": "vx-product",
+   "settings": {
+    "related_heading": "Complete the set"
+   }
+  }
+ },
+ "order": [
+  "main"
+ ]
+}

@@ -1,0 +1,30 @@
+{%- paginate collection.products by 24 -%}
+<section class="vx" aria-labelledby="vx-col-title">
+  <div class="vx-colhead">
+    <h1 id="vx-col-title">{{ collection.title }}</h1>
+    <p>{{ collection.products_count }} {{ collection.products_count | pluralize: 'style', 'styles' }}</p>
+  </div>
+  {%- if section.settings.chips.links.size > 0 -%}
+    <nav class="vx-chips" aria-label="Collections">
+      {%- for link in section.settings.chips.links -%}<a href="{{ link.url }}"{% if link.url == collection.url %} aria-current="page"{% endif %}>{{ link.title }}</a>{%- endfor -%}
+    </nav>
+  {%- endif -%}
+  {%- if collection.products.size > 0 -%}
+    <ul class="vx-grid" role="list">
+      {%- for product in collection.products -%}<li>{%- render 'vx-card', product: product -%}</li>{%- endfor -%}
+    </ul>
+    {%- if paginate.pages > 1 -%}
+      <nav class="vx-pager" aria-label="Pages">
+        {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">Previous</a>{%- endif -%}
+        <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+        {%- if paginate.next -%}<a href="{{ paginate.next.url }}">Next</a>{%- endif -%}
+      </nav>
+    {%- endif -%}
+  {%- else -%}
+    <p class="vx-empty">Nothing here right now.</p>
+  {%- endif -%}
+</section>
+{%- endpaginate -%}
+{% schema %}
+{ "name": "Collection", "settings": [ { "type": "link_list", "id": "chips", "label": "Quick links above the grid" } ] }
+{% endschema %}

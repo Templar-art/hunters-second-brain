@@ -1,0 +1,32 @@
+<footer class="vx vx-foot">
+  <div class="vx-foot__cols">
+    {%- for block in section.blocks -%}
+      <div {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.menu.title | default: block.settings.title }}</h3>
+        <ul role="list">{%- for link in block.settings.menu.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
+      </div>
+    {%- endfor -%}
+    <div class="vx-foot__news">
+      <h3>{{ section.settings.news_title }}</h3>
+      <p>{{ section.settings.news_text }}</p>
+      {%- form 'customer', class: 'vx-foot__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="vx-sr" for="vx-news-email">Email</label>
+        <input id="vx-news-email" type="email" name="contact[email]" placeholder="Email address" autocomplete="email" required>
+        <button type="submit">Join</button>
+      {%- endform -%}
+      {%- if form.posted_successfully? -%}<p class="vx-foot__note" role="status">You're on the list.</p>{%- endif -%}
+    </div>
+  </div>
+  <div class="vx-foot__base"><span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span><span>{{ section.settings.base_note }}</span></div>
+</footer>
+{% schema %}
+{ "name": "Footer", "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "news_title", "label": "Newsletter heading", "default": "Stay in the loop" },
+    { "type": "text", "id": "news_text", "label": "Newsletter text", "default": "Hear first when sizes come back or new colours drop." },
+    { "type": "text", "id": "base_note", "label": "Bottom note", "default": "Sent from the Gold Coast" } ],
+  "blocks": [{ "type": "menu", "name": "Menu column", "settings": [
+    { "type": "text", "id": "title", "label": "Heading" },
+    { "type": "link_list", "id": "menu", "label": "Menu" } ] }] }
+{% endschema %}

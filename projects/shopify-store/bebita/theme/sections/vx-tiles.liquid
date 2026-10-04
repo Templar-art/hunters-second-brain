@@ -1,0 +1,16 @@
+<div class="vx vx-tiles">
+  {%- for block in section.blocks -%}
+    <a class="vx-tile" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+      {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '500, 800, 1100, 1400', sizes: '50vw', alt: '' }}{%- endif -%}
+      <span>{{ block.settings.label }}</span>
+    </a>
+  {%- endfor -%}
+</div>
+{% schema %}
+{ "name": "Image tiles", "max_blocks": 4,
+  "blocks": [{ "type": "tile", "name": "Tile", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Shop tops" },
+    { "type": "url", "id": "link", "label": "Link" } ] }],
+  "presets": [{ "name": "Image tiles" }] }
+{% endschema %}

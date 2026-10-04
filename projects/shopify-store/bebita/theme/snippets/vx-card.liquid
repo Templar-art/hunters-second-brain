@@ -1,0 +1,40 @@
+{%- comment -%} One product card for the vx grid. Pass product. {%- endcomment -%}
+{%- liquid
+  assign colours = nil
+  for o in product.options_with_values
+    assign on = o.name | downcase
+    if on contains 'colo'
+      assign colours = o.values
+    endif
+  endfor
+  assign left = 0
+  assign sold_sizes = 0
+  for v in product.variants
+    if v.inventory_quantity > 0
+      assign left = left | plus: v.inventory_quantity
+    else
+      assign sold_sizes = sold_sizes | plus: 1
+    endif
+  endfor
+-%}
+<a class="vx-card" href="{{ product.url }}">
+  <div class="vx-card__media">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300, 450, 600, 900', sizes: '(min-width: 990px) 25vw, 50vw', alt: product.featured_image.alt | default: product.title }}
+    {%- endif -%}
+    {%- if product.media[1] and product.media[1].media_type == 'image' -%}
+      {{ product.media[1] | image_url: width: 900 | image_tag: loading: 'lazy', class: 'vx-card__alt', widths: '300, 450, 600, 900', sizes: '(min-width: 990px) 25vw, 50vw', alt: '' }}
+    {%- endif -%}
+    {%- comment -%} Honest urgency: every label comes from the real stock count. {%- endcomment -%}
+    {%- if product.available == false -%}<span class="vx-badge vx-badge--sold">Sold out</span>
+    {%- elsif left <= 3 -%}<span class="vx-badge vx-badge--low">Only {{ left }} left</span>
+    {%- elsif left <= 8 -%}<span class="vx-badge vx-badge--low">Selling fast</span>
+    {%- elsif product.compare_at_price > product.price -%}<span class="vx-badge">Sale</span>{%- endif -%}
+  </div>
+  <div class="vx-card__meta">
+    <h3 class="vx-card__title">{{ product.title }}</h3>
+    <span class="vx-card__price">{% if product.price_varies %}From {% endif %}{{ product.price | money }}</span>
+    {%- if colours and colours.size > 1 -%}<span class="vx-card__sub">{{ colours.size }} colours</span>
+    {%- elsif colours -%}<span class="vx-card__sub">{{ colours.first }}</span>{%- endif -%}
+  </div>
+</a>
