@@ -6,7 +6,7 @@ We ship from the Gold Coast, Queensland, with Australia Post. We currently ship 
 | Service | Cost | Estimated delivery after dispatch |
 |---|---|---|
 | Standard | $9.95 | 2–6 business days |
-| Standard, orders $100 and over | Free | 2–6 business days |
+| Standard, orders $150 and over | Free | 2–6 business days |
 | Express | $14.95 | 1–3 business days |
 
 Delivery times are Australia Post estimates, not guarantees, and remote areas can take longer.

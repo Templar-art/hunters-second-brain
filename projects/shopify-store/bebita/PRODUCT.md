@@ -24,7 +24,7 @@ Sell through Bebita's remaining activewear and swimwear stock now; if it sells w
 ## Operating Context
 - Two lines: Active (seamless scrunch shorts, sports bras, leggings in pastel pink, lilac, baby blue, cobalt, hot pink) and Swim (triangle bikinis, sold as separates, in red, pink, white, peach, cobalt, aqua, brown).
 - Both Instagram accounts currently say "CLOSED DOWN" and ended on 50% off sales.
-- Shipping from the Gold Coast: $9.95, free over $100, Express $14.95, Australia only.
+- Shipping from the Gold Coast: $9.95, free over $150, Express $14.95, Australia only.
 - Returns: 30-day change of mind, unworn with tags; swimwear only with the hygiene liner intact; sale items exchange-only.
 
 ## Capabilities and Constraints

@@ -3,7 +3,7 @@
   "main": {
    "type": "vx-cart",
    "settings": {
-    "free_threshold": 100,
+    "free_threshold": 150,
     "addons": [
      "sarong",
      "triangle-bikini-top",
