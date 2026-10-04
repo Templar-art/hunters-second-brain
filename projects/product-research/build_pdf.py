@@ -46,6 +46,7 @@ def card(r):
         links += f'<a class="btn ghost" href="{e(r["site"])}">Product page</a>'
     days = f'<span class="days">{r["days"]} days running</span>' if r.get("days") else ""
     note = f'<p class="note">{e(r["note"])}</p>' if r.get("note") else ""
+    him = f'<p class="him"><b>For you</b>{e(r["for_him"])}</p>' if r.get("for_him") else ""
     return f'''<article class="card s-{r["status"]}">
   <div class="pic">{img_tag(r["key"])}<span class="tag">{LABEL[r["status"]]}</span></div>
   <div class="info">
@@ -53,6 +54,7 @@ def card(r):
     <h3>{e(r["product"])}</h3>
     {days}
     <p class="fix"><b>Fixes</b>{e(r["problem"])}</p>
+    {him}
     {note}
     <div class="links">{links}</div>
   </div>
@@ -110,6 +112,8 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);f
 .days{font-family:var(--mono);font-size:7pt;color:var(--orange)}
 .fix{margin:0;font-size:8.6pt}
 .fix b{display:block;font-family:var(--mono);font-size:6.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);font-weight:500}
+.him{margin:0;font-size:8.3pt;background:#f1efe8;padding:1.6mm 2mm;border-radius:1mm}
+.him b{display:block;font-family:var(--mono);font-size:6.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
 .note{margin:0;font-size:7.8pt;color:var(--muted);border-left:2px solid var(--c);padding-left:2mm}
 .links{margin-top:auto;display:flex;gap:2mm;flex-wrap:wrap;padding-top:1mm}
 .btn{font-family:var(--display);font-weight:700;font-size:9pt;text-transform:uppercase;letter-spacing:.03em;text-decoration:none;background:var(--ink);color:#fff;padding:1.3mm 3mm;border-radius:1mm}
@@ -125,7 +129,7 @@ doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
   <div class="stripes top"></div>
   <div class="kicker">Product research · GetHookd ad library · {e(REPORT_DATE)}</div>
   <h1>Construction<br>product <em>shortlist</em></h1>
-  <p class="lede">Products that make a tradie's or builder's day easier, or that people need to build and fix houses. Every one is advertising right now on Facebook and Instagram in the US, with ads rated 4 to 5 stars, from brands running 100 to 400 active ads. Tap any card to watch the ad or open the product page.</p>
+  <p class="lede">Products that make a tradie's or builder's day easier, or that people need to build and fix houses. Every one is advertising right now on Facebook and Instagram in the US, with ads rated 4 to 5 stars, from brands running 100 to 400 active ads. Each card shows the problem it fixes for the buyer, and what it means for your business. Tap any card to watch the ad or open the product page.</p>
   <div class="stats">
     <div class="stat"><b>{n_total}</b><span>Products</span></div>
     <div class="stat"><b>{n_new}</b><span>Not yet checked</span></div>
