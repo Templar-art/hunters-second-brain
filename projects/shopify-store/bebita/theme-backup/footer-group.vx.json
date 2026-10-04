@@ -24,13 +24,15 @@
     "m1",
     "m2"
    ],
-   "settings": {}
+   "settings": {
+    "news_text": "Subscribe for 10% off your first order, plus first word when sizes come back."
+   }
   },
   "popup": {
    "type": "vx-popup",
    "settings": {
     "image": "shopify://shop_images/bebita-vx-popup.jpg",
-    "code": "BEBITA25"
+    "code": "BEBITA10"
    }
   }
  },
