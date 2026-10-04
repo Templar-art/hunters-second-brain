@@ -1078,3 +1078,4 @@ Screened 18 more US-only domains, scored 6. Barnakl ceiling-fan air filters 72 (
 
 Swept 50 construction keywords, built a 42-product shareable list for Hunter's mate (ratchet-strap seller) with GetHookd ad links. Detail on [[product-research-gethookd]].
 ## [2026-10-04] query | Construction product sweep 5 — 81 products
+## [2026-10-04] query | Google Ads AU check on 30 construction keywords (Chrome)

@@ -46,6 +46,7 @@ def card(r):
         links += f'<a class="btn ghost" href="{e(r["site"])}">Product page</a>'
     days = f'<span class="days">{r["days"]} days running</span>' if r.get("days") else ""
     note = f'<p class="note">{e(r["note"])}</p>' if r.get("note") else ""
+    goo = f'<p class="goo"><b>On Google AU now</b>{e(r["google"])}</p>' if r.get("google") else ""
     him = f'<p class="him"><b>Why it could work</b>{e(r["for_him"])}</p>' if r.get("for_him") else ""
     return f'''<article class="card s-{r["status"]}">
   <div class="pic">{img_tag(r["key"])}<span class="tag">{LABEL[r["status"]]}</span></div>
@@ -55,6 +56,7 @@ def card(r):
     {days}
     <p class="fix"><b>Fixes</b>{e(r["problem"])}</p>
     {him}
+    {goo}
     {note}
     <div class="links">{links}</div>
     <div class="vote"><span>Your call</span><i></i>Good<i></i>Maybe<i></i>No</div>
@@ -95,19 +97,19 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);f
 .howto{margin-top:auto;margin-bottom:16mm;padding-top:6mm;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;font-size:8.5pt;color:#b9bdc2}
 .howto b{display:block;font-family:var(--mono);font-size:7.5pt;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1mm}
 .k-new b{color:#5fc28f}.k-maybe b{color:#e0b04a}.k-ref b{color:#7aa6e8}.k-skip b{color:#9aa0a6}
-.cat{padding:12mm 12mm 6mm;page-break-before:always}
+.cat{padding:10mm 10mm 4mm;page-break-before:always}
 .cathead{display:flex;align-items:baseline;gap:5mm;border-bottom:3px solid var(--ink);padding-bottom:3mm;margin-bottom:6mm}
 .num{font-family:var(--mono);font-size:10pt;color:var(--orange)}
 .cathead h2{font-family:var(--display);font-weight:800;font-size:28pt;text-transform:uppercase;margin:0;line-height:1}
 .cnt{margin-left:auto;font-family:var(--mono);font-size:8.5pt;color:var(--muted)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
-.card{background:#fff;border:1px solid var(--line);border-radius:2mm;display:grid;grid-template-columns:34mm 1fr;overflow:hidden;break-inside:avoid;page-break-inside:avoid}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.card{background:#fff;border:1px solid var(--line);border-radius:2mm;display:grid;grid-template-columns:26mm 1fr;overflow:hidden;break-inside:avoid;page-break-inside:avoid}
 .pic{position:relative;background:var(--steel);min-height:48mm}
 .pic img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
 .noimg{color:#9aa0a6;font-family:var(--mono);font-size:7pt;padding:4mm}
 .tag{position:absolute;left:0;bottom:0;right:0;font-family:var(--mono);font-size:6.5pt;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:1.2mm 2mm;background:var(--c)}
 .s-new{--c:var(--new)}.s-maybe{--c:var(--maybe)}.s-ref{--c:var(--ref)}.s-skip{--c:var(--skip)}
-.info{padding:3.5mm 4mm;display:flex;flex-direction:column;gap:1.4mm;min-width:0}
+.info{padding:3mm 3.2mm;display:flex;flex-direction:column;gap:1.4mm;min-width:0}
 .brand{font-family:var(--mono);font-size:7pt;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .info h3{font-family:var(--display);font-weight:700;font-size:13.5pt;line-height:1.05;margin:0;text-transform:uppercase}
 .days{font-family:var(--mono);font-size:7pt;color:var(--orange)}
@@ -115,13 +117,16 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);f
 .fix b{display:block;font-family:var(--mono);font-size:6.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);font-weight:500}
 .him{margin:0;font-size:8.3pt;background:#f1efe8;padding:1.6mm 2mm;border-radius:1mm}
 .him b{display:block;font-family:var(--mono);font-size:6.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.goo{margin:0;font-size:7.9pt;border-left:2px solid #2f5fa8;padding-left:2mm}
+.goo b{display:block;font-family:var(--mono);font-size:6.5pt;letter-spacing:.08em;text-transform:uppercase;color:#2f5fa8;font-weight:500}
 .note{margin:0;font-size:7.8pt;color:var(--muted);border-left:2px solid var(--c);padding-left:2mm}
 .links{margin-top:auto;display:flex;gap:2mm;flex-wrap:wrap;padding-top:1mm}
-.btn{font-family:var(--display);font-weight:700;font-size:9pt;text-transform:uppercase;letter-spacing:.03em;text-decoration:none;background:var(--ink);color:#fff;padding:1.3mm 3mm;border-radius:1mm}
+.btn{font-family:var(--display);font-weight:700;font-size:8pt;text-transform:uppercase;letter-spacing:.03em;text-decoration:none;background:var(--ink);color:#fff;padding:1mm 2.2mm;border-radius:1mm}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
-.vote{display:flex;align-items:center;gap:1.4mm;font-family:var(--mono);font-size:7pt;text-transform:uppercase;letter-spacing:.05em;border-top:1px dashed var(--line);padding-top:1.6mm;margin-top:.6mm}
-.vote span{color:var(--orange);margin-right:1.5mm;white-space:nowrap}
-.vote i{display:inline-block;width:3.2mm;height:3.2mm;border:1.2px solid var(--ink);border-radius:.6mm;margin-left:1.6mm}
+.vote{display:flex;flex-wrap:wrap;row-gap:1mm;align-items:center;gap:1.4mm;font-family:var(--mono);font-size:7pt;text-transform:uppercase;letter-spacing:.05em;border-top:1px dashed var(--line);padding-top:1.6mm;margin-top:.6mm}
+.vote span{color:var(--orange);width:100%}
+.vote i{display:inline-block;flex:none;width:3.2mm;height:3.2mm;border:1.2px solid var(--ink);border-radius:.6mm;margin-left:0;margin-right:.6mm}
+.vote i~i{margin-left:3mm}
 .foot{padding:4mm 12mm 12mm;font-size:7.5pt;color:var(--muted)}
 """
 
@@ -133,7 +138,7 @@ doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
   <div class="stripes top"></div>
   <div class="kicker">Product research · GetHookd ad library · {e(REPORT_DATE)}</div>
   <h1>Construction<br>product <em>shortlist</em></h1>
-  <p class="lede">Products that make a tradie's or builder's day easier, or that people need to build and fix houses. Every one is advertising right now on Facebook and Instagram in the US, with ads rated 4 to 5 stars, from brands running 100 to 400 active ads. Each card shows the problem it fixes for the buyer and why it could work as a product. Tap any card to watch the ad or open the product page, and tick Good, Maybe or No.</p>
+  <p class="lede">Products that make a tradie's or builder's day easier, or that people need to build and fix houses. Every one is advertising right now on Facebook and Instagram in the US, with ads rated 4 to 5 stars, from brands running 100 to 400 active ads. Each card shows the problem it fixes for the buyer and why it could work as a product. Where checked, cards also show who is already selling it through Google Ads in Australia. Tap any card to watch the ad or open the product page, and tick Good, Maybe or No.</p>
   <div class="stats">
     <div class="stat"><b>{n_total}</b><span>Products</span></div>
     <div class="stat"><b>{n_new}</b><span>Not yet checked</span></div>

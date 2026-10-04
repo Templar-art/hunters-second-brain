@@ -236,3 +236,15 @@ General words like "construction", "builder" and "contractor" are close to usele
 
 ### 2026-10-04 — Reframed for review by the mate
 The PDF is for **Hunter** to sell from. The mate (RATCHD) reviews it and says which products are good. Each card's fit line is now **"Why it could work"**, written from the seller's side (who buys it, ticket size, shipping, whether people rebuy, how crowded AU is), and has **Good / Maybe / No** tick boxes. The fit text lives in `why.json`, keyed by row key. Materials coverage is thin (about 13 items, with no timber, cladding, membranes or fixings) because building materials mostly sell through trade suppliers, not Meta ads. A materials-only sweep was offered but has not been run.
+
+### 2026-10-04 — Google Ads check (AU)
+The mate sells only through Google Ads ("better for tradie stuff"). GetHookd covers Meta only, so Google was checked directly. The built-in browser hit a Google CAPTCHA, and Google Ads Transparency Center domain search was unreliable: it showed 0 ads for both ratchdgear.com and rhinousa.com. The working method was Google.com.au searches in Hunter's own Chrome via the extension, extracting the Shopping ads (seller and price) and text-ad domains for about 30 keywords. Results are stored in `google_au.json` and shown as an "On Google AU now" line on 32 cards.
+
+Findings:
+- **Retractable ratchet straps:** 33 Shopping ads. The main rival is **Tiger Australia** (4-pack A$130, also runs text ads). RATCHD's own Google ads didn't appear in this search.
+- **Commodity (only works as an add-on):** tarp clips, glove clips, markers, tyre plugs, key lock boxes, magnetic lights, recip blades, drill sharpeners and pallet forks. Temu, Amazon and AliExpress dominate these at A$2–40.
+- **Premium AU brands exist (so tradies pay for quality):** tool belts (Build Pro, Diamondback and Obvious Tool Co at A$130–700) and hinge jigs (Fast Hinge at A$250–480).
+- **Gaps:** Boulder Buddy (only 6 Shopping ads, Vevor and Scintex) and Concrete FormExtenders (no AU ads at all; search volume still needs checking). Steel-hook work suspenders also look open: braces are mostly fashion items, with no work-specific brand.
+- **Mid-market with room for a better-made version:** the hitch anti-rattle clamp (A$10–65).
+
+Lesson: most US Meta winners are already sold on AU Google Shopping by Temu, Amazon and AliExpress. The RATCHD model is a premium AU-branded version of a commodity, competing on Google against one or two local brands.
