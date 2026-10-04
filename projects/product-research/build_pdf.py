@@ -17,7 +17,7 @@ rows = json.load(open(os.path.join(DATA, "rows_all.json")))
 CAT_ORDER = [
     "Loads, ute & trailer", "Concrete, site & machinery", "Fencing & outdoor build",
     "Tools & tool belts", "Measuring & marking", "Electrical & plumbing",
-    "Welding & metal", "Build & repair materials", "Safety & site gear",
+    "Welding & metal", "Doors, cabinets & finishing", "Build & repair materials", "Safety & site gear",
 ]
 for r in rows:
     if r["cat"] == "Safety gear":
