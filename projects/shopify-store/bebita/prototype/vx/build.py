@@ -68,11 +68,11 @@ FOOT = """<footer class="vx vx-foot"><div class="vx-foot__cols">
 POP = """<dialog class="vx vx-pop" data-vx-popup data-delay="6" data-days="7" aria-labelledby="vx-pop-title"><div class="vx-pop__inner">
 <figure class="vx-pop__media"><img src="../../assets/bebita-vx-popup.jpg" alt=""></figure>
 <div class="vx-pop__body"><button type="button" class="vx-icon vx-pop__close" data-vx-popup-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-<form class="vx-pop__form" onsubmit="return false"><p class="vx-pop__kicker">Final stock</p><h2 id="vx-pop-title" class="vx-pop__title" tabindex="-1" autofocus>10% off your first order</h2>
+<form class="vx-pop__form" onsubmit="this.hidden=true;this.nextElementSibling.hidden=false;this.nextElementSibling.querySelector('h2').focus();return false"><p class="vx-pop__kicker">Final stock</p><h2 id="vx-pop-title" class="vx-pop__title" tabindex="-1" autofocus>10% off your first order</h2>
 <p class="vx-pop__text">Subscribe for 10% off your first order. Once this run is gone, it's gone, so grab your size first.</p>
 <label class="vx-sr" for="vx-pop-email">Email</label><input class="vx-pop__input" id="vx-pop-email" type="email" placeholder="Email address" required>
 <button class="vx-buy" type="submit">Get 10% off</button><button type="button" class="vx-pop__skip" data-vx-popup-close>No thanks, I'll pay full price</button>
-<p class="vx-pop__fine">One use per customer. Unsubscribe any time.</p></form></div></div></dialog>"""
+<p class="vx-pop__fine">One use per customer. Unsubscribe any time.</p></form><div hidden><h2 class="vx-pop__title" tabindex="-1">You're in. Here's 10% off.</h2><p class="vx-pop__text">Use this code at checkout on your first order.</p><p class="vx-pop__code">BEBITA10</p><a class="vx-buy vx-pop__btn" href="collection-all.html">Shop now</a></div></div></div></dialog>"""
 
 def page(title, body):
     return head(title).replace("{NAV}", NAV) + body + FOOT + POP + f'<script src="{JS}"></script></body></html>'

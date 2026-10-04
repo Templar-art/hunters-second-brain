@@ -224,3 +224,4 @@ body.vx-body{margin:0;background:var(--vx-paper);color:var(--vx-ink);font:400 15
 .vx-addon .vx-buy{height:40px;margin-top:6px;font-size:13px}
 .vx-line__title a{text-decoration:none}
 @media (max-width:480px){.vx-announce{font-size:11px;letter-spacing:.01em;padding:11px 10px;line-height:1.3}}
+.vx a.vx-buy{color:#fff;text-decoration:none}

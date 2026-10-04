@@ -94,7 +94,7 @@
   const open = () => { if (!dlg.open && !document.querySelector('dialog[open]')) { dlg.showModal(); store.set(); } };
   dlg.querySelectorAll('[data-vx-popup-close]').forEach((b) => b.addEventListener('click', () => dlg.close()));
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
-  if (dlg.querySelector('[data-vx-popup-state]') || /customer_posted=true/.test(location.search)) { open(); return; }
+  if (dlg.querySelector('[data-vx-popup-state]') || /customer_posted=true|[?&]popup/.test(location.search)) { open(); return; }
   if (Date.now() - store.get() < days * 864e5) return;
   let armed = true;
   const fire = () => { if (!armed) return; armed = false; window.removeEventListener('scroll', onScroll); open(); };
