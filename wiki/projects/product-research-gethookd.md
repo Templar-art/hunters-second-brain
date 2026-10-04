@@ -248,3 +248,15 @@ Findings:
 - **Mid-market with room for a better-made version:** the hitch anti-rattle clamp (A$10–65).
 
 Lesson: most US Meta winners are already sold on AU Google Shopping by Temu, Amazon and AliExpress. The RATCHD model is a premium AU-branded version of a commodity, competing on Google against one or two local brands.
+
+### 2026-10-04 — Deep check of the top 3 picks (suspenders, hitch clamp, rock lifter)
+**Supplier cost (Alibaba, AU delivery):**
+- Heavy-duty 4-swivel-hook suspenders: **US$4–6** each (MOQ 2–10). Leather tool-belt suspenders: US$36.50 (MOQ 10).
+- Hitch clamp: Alibaba hit a CAPTCHA. US eBay retail is US$12–40, so the factory price is probably US$3–6 (unverified).
+- **Boulder Buddy:** a **non-hydraulic ballistic-nylon webbing sling**, 6–15 lb, US$319 for every size (BB4000/8000/12000), which makes it a strap product. "Boulder Buddy" is a trademark owned by Link Masters LLC (filed 2015). No patent was found on the product page; older expired rock-lifter patents exist (e.g. US4506924). In AU, lifting slings must meet the rated lifting-gear standards (the AS 1353 / AS 4497 family), so compliance is required.
+
+**Google demand in AU (Google Trends):**
+- Over 5 years, against "ratchet straps" (average 36), "work suspenders", "hitch tightener", "boulder lifter", "towbar rattle" and "lifting sling(s)" all average **0**. "Braces" is polluted by orthodontic braces.
+- Over 12 months, relative to ratchet straps = 1.0: tool belt ≈1.75×, tool bag ≈2×, knee pads ≈1.75×, reversing camera ≈0.9×, work light ≈4.9×, tie-down straps ≈0.6×, hitch pin ≈0.4×.
+
+**Conclusion:** all three picks are **discovery products**. People don't search for them, so Google Ads (which only captures existing searches) won't sell them; they need Meta or TikTok demo-video ads. RATCHD works on Google because people already search "ratchet straps". For a Google-led store, pick a searched category (tool bags, tool belts, knee pads, work lights) and sell a better-made Aussie-branded version. For the discovery picks, Hunter's videography skill is the edge on Meta.
