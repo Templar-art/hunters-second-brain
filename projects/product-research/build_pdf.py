@@ -46,7 +46,7 @@ def card(r):
         links += f'<a class="btn ghost" href="{e(r["site"])}">Product page</a>'
     days = f'<span class="days">{r["days"]} days running</span>' if r.get("days") else ""
     note = f'<p class="note">{e(r["note"])}</p>' if r.get("note") else ""
-    him = f'<p class="him"><b>For you</b>{e(r["for_him"])}</p>' if r.get("for_him") else ""
+    him = f'<p class="him"><b>Why it could work</b>{e(r["for_him"])}</p>' if r.get("for_him") else ""
     return f'''<article class="card s-{r["status"]}">
   <div class="pic">{img_tag(r["key"])}<span class="tag">{LABEL[r["status"]]}</span></div>
   <div class="info">
@@ -57,6 +57,7 @@ def card(r):
     {him}
     {note}
     <div class="links">{links}</div>
+    <div class="vote"><span>Your call</span><i></i>Good<i></i>Maybe<i></i>No</div>
   </div>
 </article>'''
 
@@ -118,6 +119,9 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);f
 .links{margin-top:auto;display:flex;gap:2mm;flex-wrap:wrap;padding-top:1mm}
 .btn{font-family:var(--display);font-weight:700;font-size:9pt;text-transform:uppercase;letter-spacing:.03em;text-decoration:none;background:var(--ink);color:#fff;padding:1.3mm 3mm;border-radius:1mm}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.vote{display:flex;align-items:center;gap:1.4mm;font-family:var(--mono);font-size:7pt;text-transform:uppercase;letter-spacing:.05em;border-top:1px dashed var(--line);padding-top:1.6mm;margin-top:.6mm}
+.vote span{color:var(--orange);margin-right:1.5mm;white-space:nowrap}
+.vote i{display:inline-block;width:3.2mm;height:3.2mm;border:1.2px solid var(--ink);border-radius:.6mm;margin-left:1.6mm}
 .foot{padding:4mm 12mm 12mm;font-size:7.5pt;color:var(--muted)}
 """
 
@@ -129,7 +133,7 @@ doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
   <div class="stripes top"></div>
   <div class="kicker">Product research · GetHookd ad library · {e(REPORT_DATE)}</div>
   <h1>Construction<br>product <em>shortlist</em></h1>
-  <p class="lede">Products that make a tradie's or builder's day easier, or that people need to build and fix houses. Every one is advertising right now on Facebook and Instagram in the US, with ads rated 4 to 5 stars, from brands running 100 to 400 active ads. Each card shows the problem it fixes for the buyer, and what it means for your business. Tap any card to watch the ad or open the product page.</p>
+  <p class="lede">Products that make a tradie's or builder's day easier, or that people need to build and fix houses. Every one is advertising right now on Facebook and Instagram in the US, with ads rated 4 to 5 stars, from brands running 100 to 400 active ads. Each card shows the problem it fixes for the buyer and why it could work as a product. Tap any card to watch the ad or open the product page, and tick Good, Maybe or No.</p>
   <div class="stats">
     <div class="stat"><b>{n_total}</b><span>Products</span></div>
     <div class="stat"><b>{n_new}</b><span>Not yet checked</span></div>
