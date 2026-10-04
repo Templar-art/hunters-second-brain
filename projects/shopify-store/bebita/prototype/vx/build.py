@@ -41,13 +41,13 @@ def head(title):
     <button class="vx-icon vx-hide-desk" type="button" aria-label="Menu" aria-controls="vx-menu" aria-expanded="false" data-vx-menu-open><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     <nav class="vx-head__nav" aria-label="Main"><ul role="list">{NAV}</ul></nav>
   </div>
-  <a class="vx-logo" href="index.html" aria-label="Bebita home">Bebita</a>
+  <a class="vx-logo" href="index.html" aria-label="Bebita home"><img class="vx-logo__img" src="../../assets/bebita-vx-logo.png" alt="Bebita"></a>
   <div class="vx-head__right">
     <a class="vx-icon" href="#" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></a>
     <a class="vx-icon" href="cart.html" aria-label="Bag, 1 item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l-1.5 12h-13z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg><span class="vx-icon__count">1</span></a>
   </div>
 </header>
-<dialog class="vx vx-drawer" id="vx-menu" aria-label="Menu" data-vx-menu><div class="vx-drawer__top"><span class="vx-logo">Bebita</span>
+<dialog class="vx vx-drawer" id="vx-menu" aria-label="Menu" data-vx-menu><div class="vx-drawer__top"><span class="vx-logo"><img class="vx-logo__img" src="../../assets/bebita-vx-logo.png" alt="Bebita"></span>
 <button class="vx-icon" type="button" aria-label="Close menu" data-vx-menu-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div>
 <ul role="list">{NAV}</ul></dialog>
 """
