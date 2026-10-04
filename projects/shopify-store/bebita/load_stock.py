@@ -29,9 +29,10 @@ PRICE = {
  "V-Front Cheeky One Piece": 75, "Bikini Skirt": 35, "Sarong": 29, "Bedazzled Cover Up": 49,
 }
 
+# Photos of a former team member (a218, a222, a092, a143, a220, a260, a089 and the a221 group) are deliberately excluded.
 # Instagram photo per colour: a### = @bebitaactive, s### = @bebitaswim. "_" = the product's fallback photo.
 PHOTOS = {
- "Scrunch Shorts": {"Red": "a087", "Light Blue": "a223", "Dark Blue": "a005", "Highlighter Pink": "a092", "Peach": "a220", "Black": "a250", "Pink": "a080"},
+ "Scrunch Shorts": {"Red": "a087", "Light Blue": "a223", "Dark Blue": "a005", "Highlighter Pink": "a084", "Peach": "a246", "Black": "a250", "Pink": "a080"},
  "Dynamic Seamless Shorts": {"Grey": "a173", "Teal": "a249", "Blue": "a010", "Pink": "a015", "Lilac": "a025", "Coral": "a006", "Baby Blue": "a019", "Baby Pink": "a003"},
  "V-Back Shorts": {"Blue": "a205", "Pink": "a187", "Black": "a203", "Brown": "a196"},
  "V-Back Leggings": {"Blue": "a189", "Brown": "a190", "Pink": "a179", "Black": "a200", "Highlighter Pink": "a204"},
@@ -46,13 +47,13 @@ PHOTOS = {
  "Halter Neck Triangle Top": {"_": "a164"},
  "Dynamic Top": {"Blush Pink": "a013", "Baby Blue": "a019", "Lilac": "a025", "Coral": "a006"},
  "Scrunch Halter Top": {"_": "a014"},
- "Cross Back Twist Triangle Top": {"Red": "a270", "Highlighter Pink": "a143", "Teal": "a249", "Pink": "a227", "Black": "a250", "Blue": "a260"},
+ "Cross Back Twist Triangle Top": {"Red": "a270", "Highlighter Pink": "a084", "Teal": "a249", "Pink": "a227", "Black": "a250", "Blue": "a226"},
  "Cross Back Thin Strap Triangle Top": {"_": "a198"},
  "Two Tone Halter Top": {"_": "a075", "Brown/White": "a069"},
  "2-in-1 Layered Long Sleeve Crop Top": {"Brown/White": "a065", "Navy/White": "a056", "Black/White": "a057"},
  "Cropped Zip Jacket": {"_": "a016", "Lilac": "a071", "Blue": "a047"},
  "Cross Back Flare Set": {"_": "a048"},
- "One Piece Short": {"Blue": "a085", "Red": "a089", "Pink": "a082", "Black": "a125"},
+ "One Piece Short": {"Blue": "a085", "Red": "a148", "Pink": "a082", "Black": "a125"},
  "One Piece Long": {"Blue": "a086", "Red": "a127", "Pink": "a078", "Black": "a131"},
  "Triangle Bikini Top": {"White": "s074", "Hot Pink": "s043", "Black": "s070", "Brown": "s026", "Teal": "s048", "Blue": "s067", "Coral": "s028"},
  "Brazilian Bikini Set": {"_": "s085", "White": "s117", "Coral": "s049", "Blue": "s044", "Red": "s046", "Black": "s070", "Teal": "s053", "Hot Pink": "s052", "Brown": "s001"},
