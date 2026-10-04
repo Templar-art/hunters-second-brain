@@ -2,7 +2,7 @@
 type: project
 tags: [ecommerce, product-research, gethookd, meta-ads, tradies]
 status: research
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # Product research via GetHookd (tradie / problem-solving products)
@@ -218,3 +218,18 @@ GetHookd sweep of 50 construction keywords (US, 4–5★, brands with 100–400 
 **Update 2026-10-04 (third construction sweep):** 50 more keywords (roofing, HVAC, flooring, tiling, doors, lifting, demolition, ute racks, electrical, plumbing, landscaping). Mostly services/irrelevant; 9 added for **65 total**, with a new "Doors, cabinets & finishing" section: Fivalo cabinet door hanging jig (282 days, EU-focused), solo door hanging tool, door lock install kit (159 days), locking contour gauge, floor transition strip, diamond tile hole saw, conduit bender, Pitch Hopper roof tool (Christmas-light/roofing contractors), low-temp metal repair rods. PDF and page regenerated. 19.3 credits left.
 
 **Update 2026-10-04 (fourth sweep: the mate's own lane):** 40 load-restraint/towing/ute keywords. Strap, tie-down and recovery searches returned mostly watch/gym/fashion straps; **RHINO USA is effectively the only ratchet-strap advertiser at scale on Meta**, which is good news for the mate. Added 6 (71 total): Mroace magnetic solar wireless trailer camera, wireless backup camera, self-sealing tyre puncture repair (site screws), WUBEN magnetic work light, portable smart key lock box, DV8 rated D-ring shackles (reference). Every product now carries a **"For you"** line on how it fits his ratchet-strap business (same buyer, bundle, shipping, repeat). Fit notes live in `projects/product-research/for_him.json`. 14.7 credits left.
+
+### 2026-10-04 — Construction sweep 5 (81 products)
+Forty new keywords covering general trade and tool terms: scaffold, clamp, caulk, knee pad, cooling vest, cord reel, drill bit, saw blade, jig, insulation, hard hat, work gloves, contractor, carpenter, plumber, roofer, and others. It cost about 4 credits. Most results were noise from fashion and other categories (for example, searching "carpenter" returns jeans). Ten products were added:
+- Steel glove clamp (Job Town Tools)
+- Steel-hook work suspenders (Dinosaurized)
+- BEEST DIY spray foam insulation kit (maybe: dangerous-goods freight)
+- Camel City Mill merino work socks (a repeat purchase)
+- Varaletti cooling hi-vis shirt (maybe: must meet AS/NZS 4602.1)
+- Seagche hinge mortise jig
+- FixionTools curved recip blade
+- SpeTool panel clamp
+- Angle-grinder drill bit sharpener (451-day ad)
+- LockNLube LockNFlate hose reel. This is a reference: an Australian-made brand selling into the US, the reverse of the route his straps could take.
+
+General words like "construction", "builder" and "contractor" are close to useless on GetHookd, while specific tool nouns work.
