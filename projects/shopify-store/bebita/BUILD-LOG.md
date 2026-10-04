@@ -43,3 +43,15 @@ Budget: 1,000 credits approved 2026-09-30, on top of the direction-round comps.
 - Approved comp: `.impeccable/mocks/home-comp-b-mirror-row.png`. Build phase: review (finish review and DESIGN.md still to run).
 - Photos: 789 Instagram images in `raw/bebita/` (git-ignored).
 - Waiting on Hunter: stock list (pieces, colours, sizes, counts, prices), payments, a paid plan, domain.
+
+## Stock take received (2026-10-04)
+Hunter's stock count has been transcribed into `stock.py`, which is the source of truth and also writes `stock.csv`. It covers **339 pieces across 29 products**: Active 226, Swim 113. The biggest lines are Brazilian Bikini Sets (47), Sarongs (39), Cross Back Straight Top (32), Scrunch Shorts (28), Cross Back Twist Triangle Top (22) and V-Back Leggings (21).
+
+Interpretations to confirm with Hunter:
+- Cropped Zip Jacket: "Lilac M 1" was listed twice, so counted as M ×2.
+- One Piece Short: "Blue 1 S 3 M" read as S ×1 and M ×3.
+- Cross Back Flare Set: Yellow S, quantity 1 assumed.
+- Bikini Skirt sizes are XS-S and M-L.
+- Names cleaned up: "Weird Scrunch" became Scrunch Shorts and Scrunch Pants, and "Badazzled" became Bedazzled.
+
+Still blocked on prices before loading.
