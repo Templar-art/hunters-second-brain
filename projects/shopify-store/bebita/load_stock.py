@@ -90,6 +90,17 @@ def flats():
     return {k: [p for _, p in sorted(v)] for k, v in out.items()}
 
 
+def ai_shots():
+    """AI product photos (ai_shots.tsv -> products/ai): {(product, colour): {"model": path, "studio": path}}."""
+    out = {}
+    for line in open(os.path.join(HERE, "ai_shots.tsv")):
+        _, prod, col, kind = line.rstrip("\n").split("\t")
+        path = os.path.join(OUT, "ai", f"bebita-{handle(prod)}-{handle(col)}-ai-{kind}.jpg")
+        if os.path.exists(path):
+            out.setdefault((prod, col), {})[kind] = path
+    return out
+
+
 def handle(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
@@ -134,6 +145,8 @@ def main():
         delete_placeholders()
     reset = "--reset-stock" in sys.argv
     FLAT = flats()
+    AI = ai_shots()
+    AI_URLS = set()
     for name, line, role, cols in STOCK:
         h = handle(name)
         pid = existing(h)
@@ -144,12 +157,20 @@ def main():
         for colour in cols:
             ref = refs.get(colour, fallback)
             url = None
+            ai = AI.get((name, colour), {})
+            if not pid and ai.get("model"):
+                # AI studio set leads: model shot (also the variant photo), then the ghost-mannequin shot
+                url = stage(ai["model"])
+                AI_URLS.add(url)
+                files.append({"originalSource": url, "alt": f"{name} in {colour}", "contentType": "IMAGE"})
+                if ai.get("studio"):
+                    files.append({"originalSource": stage(ai["studio"]), "alt": f"{name} in {colour}, studio", "contentType": "IMAGE"})
             if ref and not pid:
                 key = ref
                 if key not in uploaded:
                     uploaded[key] = stage(photo(ref, h, colour))
                     files.append({"originalSource": uploaded[key], "alt": f"{name} in {colour}", "contentType": "IMAGE"})
-                url = uploaded[key]
+                url = url or uploaded[key]
             if not pid:
                 for fp in FLAT.get((name, colour), []):
                     files.append({"originalSource": stage(fp), "alt": f"{name} in {colour}, flat lay", "contentType": "IMAGE"})
@@ -163,6 +184,8 @@ def main():
                 if pid and not reset:
                     v.pop("inventoryQuantities")
                 variants.append(v)
+        # lead with an AI studio shot when the product has one, so the shop grid looks consistent
+        files.sort(key=lambda f: 0 if f["originalSource"] in AI_URLS else 1)
         tags = [line, role] + (["top"] if role == "set" else [])
         inp = {"handle": h, "title": name, "vendor": "Bebita Collective",
                "descriptionHtml": f"<p>From the original Bebita {line.title()} run. {BLURB[role]} Once these are gone, they're gone.</p>",

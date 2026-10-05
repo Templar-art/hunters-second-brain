@@ -14,6 +14,7 @@ Budget: 1,000 credits approved 2026-09-30, on top of the direction-round comps.
 | 2026-10-05 | Glam redo (full makeup) after Hunter said the first face looked plain: a175, a177, a203, s112, s113 succeeded; s024 was blocked by the filter (photo swapped to s078) | 375 | 1,200 |
 | 2026-10-05 | Flat-lay background removal, 46 photos | 138 | 1,338 |
 | 2026-10-06 | AI product shot test, Muse Scrunch Shorts Light Blue: ghost mannequin + on-model (Nano Banana Pro 2K, 2 × 75) | 150 | 1,488 |
+| 2026-10-06 | AI product shots, 25 colourways: ghost-mannequin studio shot + glam on-model shot each (Nano Banana Pro 2K, 49 × 75) | 3,675 | 5,163 |
 | 2026-10-05 | s071 face replacement failed twice ("no image content", likely the model's filter); failed jobs should be refunded, so verify on the dashboard | 0–150 | 825–975 |
 
 ## Built and live on the store (2026-09-30)
@@ -89,3 +90,5 @@ Hunter asked for the store to look like velocityactivewear.com.au (a Shopify Sym
 - 2026-10-05: Cross Back Thin Strap Triangle Top sold out (Hunter) and removed from stock.py; 28 products / 338 pieces. 46 flat-lay photos mapped in photo_map.json; Hunter's real names applied (see renames there).
 - 2026-10-05: Scrunch Halter Top and Cross Back Flare Set also gone (Hunter); removed. 26 products / 336 pieces.
 - 2026-10-05: Hunter's 46 flat-lay photos had their backgrounds removed (Magnific, 46 × 3 = 138 credits) and were composited onto #F3F3F3 at 2:3 with a soft shadow (`products/flat/`). Hanger and hand were stripped from the 6 hanging shots with a free local colour-key pass; faint rod lines remain on two backs. 1662 (duplicate) and 1664 (blurry) are skipped. `load_stock.py` adds each colour's flat-lays after its model photo, so the card hover shows the flat-lay. 44 flat-lays cover 25 colourways.
+
+- 2026-10-06: Hunter wanted the product photos redone with AI, not just cut out. For each of the 25 photographed colourways there is now an AI ghost-mannequin studio shot and an AI on-model shot (glam blonde model on a light grey studio background), referenced from his flat-lay cut-outs. The IDs are in `ai_shots.tsv` and the files in `products/ai/`. `load_stock.py` leads each product with its AI model shot (also the colour's variant photo), then the studio shot, then the IG photo and the flat-lays. Three studio shots came back with a black band at the bottom and were rebuilt locally on clean grey. The test's back-view studio shot put the logo on the back; all studio prompts now ask for the front view.

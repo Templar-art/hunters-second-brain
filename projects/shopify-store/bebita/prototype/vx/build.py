@@ -8,8 +8,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 BB = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, BB)
 from stock import STOCK  # noqa: E402
-from load_stock import PRICE, PHOTOS, handle, SIZE_ORDER, flats  # noqa: E402
+from load_stock import PRICE, PHOTOS, handle, SIZE_ORDER, flats, ai_shots  # noqa: E402
 FLAT = flats()
+AI = ai_shots()
 
 E = html.escape
 CSS, JS = "../../theme/assets/vx.css", "../../theme/assets/vx.js"
@@ -23,12 +24,16 @@ for name, line, role, cols in STOCK:
     variants, images, seen = [], [], set()
     for c in cols:
         ref = refs.get(c, fb)
+        ai = AI.get((name, c), {})
+        for k in ('model', 'studio'):
+            if ai.get(k): images.append(('../../products/ai/' + os.path.basename(ai[k]), c))
         images.append((img(h, c), c))
         for fp in FLAT.get((name, c), []): images.append(('../../products/flat/' + os.path.basename(fp), c))
         for s in sizes:
             vid += 1; q = cols[c].get(s, 0)
             variants.append({"id": vid, "options": [c, s], "price": PRICE[name] * 100, "available": q > 0, "left": q,
-                             "image": img(h, c) if ref else None})
+                             "image": ("../../products/ai/" + os.path.basename(AI[(name, c)]["model"])) if AI.get((name, c), {}).get("model") else (img(h, c) if ref else None)})
+    images.sort(key=lambda im: 0 if '/products/ai/' in im[0] and im[0].endswith('ai-model.jpg') else 1)
     products.append(dict(name=name, handle=h, line=line, role=role, price=PRICE[name], colours=list(cols), sizes=sizes,
                          variants=variants, images=images, left=sum(sum(v.values()) for v in cols.values()),
                          sold=sum(1 for v in variants if not v["available"])))
