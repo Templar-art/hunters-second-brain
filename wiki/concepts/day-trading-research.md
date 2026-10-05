@@ -57,3 +57,5 @@ Source: [stockbrokers.com](https://www.stockbrokers.com/review/tools/trendspider
 6. **Keep tax records** from the first trade and speak to an accountant.
 
 Related: [[overview]]
+
+- **Apple Note (2026-10-05):** "Day Trading – Step-by-Step Starter Guide" is the easy-read version of this page: a 7-step roadmap (learn → tools → plan → backtest → paper trade → small real money → tax), a glossary, AI prompts, a scam checklist and a journal template.
