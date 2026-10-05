@@ -13,6 +13,7 @@ Budget: 1,000 credits approved 2026-09-30, on top of the direction-round comps.
 | 2026-10-05 | Face replacement batch: a177, a203, a131, s024, s112, s113 succeeded (a131 came out warped and is unused) | 450 | 825 |
 | 2026-10-05 | Glam redo (full makeup) after Hunter said the first face looked plain: a175, a177, a203, s112, s113 succeeded; s024 was blocked by the filter (photo swapped to s078) | 375 | 1,200 |
 | 2026-10-05 | Flat-lay background removal, 46 photos | 138 | 1,338 |
+| 2026-10-06 | AI product shot test, Muse Scrunch Shorts Light Blue: ghost mannequin + on-model (Nano Banana Pro 2K, 2 × 75) | 150 | 1,488 |
 | 2026-10-05 | s071 face replacement failed twice ("no image content", likely the model's filter); failed jobs should be refunded, so verify on the dashboard | 0–150 | 825–975 |
 
 ## Built and live on the store (2026-09-30)
