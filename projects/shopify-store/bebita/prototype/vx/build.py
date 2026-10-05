@@ -137,13 +137,13 @@ for p in products:
     open(os.path.join(HERE, f"product-{p['handle']}.html"), "w").write(page(p["name"], body))
 
 # cart preview: one pair of shorts in the bag, $105 short of free shipping
-item = by["scrunch-shorts"]; addons = [by[h] for h in ("sarong", "triangle-bikini-top", "bikini-skirt", "halter-top")]
+item = by["muse-scrunch-shorts"]; addons = [by[h] for h in ("sarong", "triangle-bikini-top", "ruched-swim-skirt", "signature-halter")]
 adds = "".join(f"""<li class="vx-addon"><a class="vx-addon__img" href="product-{a['handle']}.html"><img src="{a['images'][0]}" alt="{E(a['name'])}"></a>
 <p><span>{E(a['name'])}</span><span>{money(a['price'])}</span></p><form onsubmit="return false"><select aria-label="Option for {E(a['name'])}">{''.join(f'<option>{E(v["options"][0])} / {E(v["options"][1])}</option>' for v in a['variants'] if v['available'])}</select>
 <button class="vx-buy" type="submit">Add</button></form></li>""" for a in addons)
 cart = f"""<section class="vx vx-cart"><h1>Your bag</h1><ul class="vx-cart__lines" role="list"><li class="vx-line">
-<a class="vx-line__img" href="product-scrunch-shorts.html"><img src="{item['images'][0]}" alt="Scrunch Shorts"></a>
-<div><p class="vx-line__title"><a href="product-scrunch-shorts.html">Scrunch Shorts</a></p><p class="vx-line__opts">Red / M</p>
+<a class="vx-line__img" href="product-muse-scrunch-shorts.html"><img src="{item['images'][0]}" alt="Muse Scrunch Shorts"></a>
+<div><p class="vx-line__title"><a href="product-muse-scrunch-shorts.html">Muse Scrunch Shorts</a></p><p class="vx-line__opts">Red / M</p>
 <div class="vx-qty"><a href="#" aria-label="One less">&minus;</a><span>1</span><a href="#" aria-label="One more">+</a></div><a class="vx-line__remove" href="#">Remove</a></div><span>$45.00</span></li></ul>
 <div class="vx-addons"><h2>Add $105.00 for free shipping</h2><p>Easy add-ons to get you there.</p><ul role="list">{adds}</ul></div><aside class="vx-cart__sum"><p class="vx-cart__ship">$105.00 away from free shipping</p><div class="vx-bar" aria-hidden="true"><i style="width:30%"></i></div>
 <p><span>Subtotal</span><span>$45.00</span></p><p class="vx-cart__ship">Shipping calculated at checkout</p><button class="vx-buy" type="button">Checkout</button></aside>

@@ -1,0 +1,227 @@
+{
+ "_note": "Hunter's flat-lay product photos (raw/bebita/product-photos-2026-10) mapped to products, as Hunter confirms them. Renames are applied to stock.py when the list is complete.",
+ "renames": {
+  "V-Back Leggings": "V-Back Scrunch Leggings",
+  "V-Back Shorts": "V-Back Scrunch Shorts",
+  "Scrunch Pants": "Muse Scrunch Leggings",
+  "Scrunch Shorts": "Muse Scrunch Shorts",
+  "Dynamic Seamless Shorts": "Dynamic Shorts",
+  "Halter Neck Triangle Top": "Signature Triangle Halter",
+  "Two Tone Halter Top": "Two Tone Halter",
+  "Dynamic Top": "Dynamic Bra",
+  "Triangle Top": "Signature Triangle Bralette",
+  "Halter Top": "Signature Halter",
+  "Cropped Zip Jacket": "Signature Cropped Zip",
+  "Cross Back Twist Triangle Top": "Signature Twist Bra",
+  "Cross Back Top": "Signature Cross Back Bralette",
+  "Brazilian Bikini Set": "Triangle Bikini Top With Cheeky Brazilian Bottom",
+  "V-Front Cheeky One Piece": "V-Front Cheeky Brazilian One Piece",
+  "Bikini Skirt": "Ruched Swim Skirt",
+  "2-in-1 Layered Long Sleeve Crop Top": "Two Tone Layered Long Sleeve Crop"
+ },
+ "photos": {
+  "1646": [
+   "Dynamic Leggings",
+   "Blue",
+   "front"
+  ],
+  "1647": [
+   "Dynamic Leggings",
+   "Blue",
+   "back"
+  ],
+  "1648": [
+   "V-Back Scrunch Leggings",
+   "Black",
+   "front"
+  ],
+  "1649": [
+   "V-Back Scrunch Leggings",
+   "Black",
+   "back"
+  ],
+  "1650": [
+   "Muse Scrunch Leggings",
+   "Pink",
+   "back"
+  ],
+  "1651": [
+   "Muse Scrunch Leggings",
+   "Pink",
+   "front"
+  ],
+  "1652": [
+   "Muse Scrunch Shorts",
+   "Light Blue",
+   "front"
+  ],
+  "1653": [
+   "Muse Scrunch Shorts",
+   "Light Blue",
+   "back"
+  ],
+  "1654": [
+   "Dynamic Flares",
+   "Lilac",
+   "front"
+  ],
+  "1655": [
+   "Dynamic Flares",
+   "Lilac",
+   "back"
+  ],
+  "1656": [
+   "Dynamic Shorts",
+   "Baby Pink",
+   "front"
+  ],
+  "1657": [
+   "Dynamic Shorts",
+   "Baby Pink",
+   "back"
+  ],
+  "1661": [
+   "Signature Triangle Halter",
+   "Blue",
+   "front"
+  ],
+  "1662": [
+   "Signature Triangle Halter",
+   "Blue",
+   "front-alt"
+  ],
+  "1663": [
+   "Signature Triangle Halter",
+   "Blue",
+   "back"
+  ],
+  "1664": [
+   "Two Tone Halter",
+   "Navy/White",
+   "back"
+  ],
+  "1665": [
+   "Two Tone Halter",
+   "Navy/White",
+   "front"
+  ],
+  "1666": [
+   "Dynamic Bra",
+   "Baby Blue",
+   "front"
+  ],
+  "1667": [
+   "Dynamic Bra",
+   "Baby Blue",
+   "back"
+  ],
+  "1668": [
+   "Signature Triangle Bralette",
+   "Bone Grey",
+   "front"
+  ],
+  "1669": [
+   "Signature Triangle Bralette",
+   "Bone Grey",
+   "back"
+  ],
+  "1670": [
+   "Signature Halter",
+   "Blue",
+   "front"
+  ],
+  "1671": [
+   "Signature Halter",
+   "Blue",
+   "back"
+  ],
+  "1672": [
+   "Signature Bra",
+   "Blue",
+   "front"
+  ],
+  "1673": [
+   "Signature Bra",
+   "Blue",
+   "back"
+  ],
+  "1674": [
+   "Signature Cropped Zip",
+   "Black",
+   "front"
+  ],
+  "1676": [
+   "Signature Cropped Zip",
+   "Black",
+   "back"
+  ],
+  "1677": [
+   "Signature Twist Bra",
+   "Blue",
+   "front"
+  ],
+  "1678": [
+   "Signature Twist Bra",
+   "Blue",
+   "back"
+  ],
+  "1679": [
+   "Signature Cross Back Bralette",
+   "Blue",
+   "front"
+  ],
+  "1681": [
+   "Signature Cross Back Bralette",
+   "Blue",
+   "back"
+  ],
+  "1682": [
+   "V-Back Scrunch Shorts",
+   "Brown",
+   "back"
+  ],
+  "1683": [
+   "V-Back Scrunch Shorts",
+   "Brown",
+   "front"
+  ],
+  "1684": [
+   "Triangle Bikini Top With Cheeky Brazilian Bottom",
+   "Coral",
+   "front"
+  ],
+  "1685": [
+   "V-Front Cheeky Brazilian One Piece",
+   "Teal",
+   "front"
+  ],
+  "1687": [
+   "Sarong",
+   "Teal",
+   "folded"
+  ],
+  "1688": [
+   "Bedazzled Cover Up",
+   "Pink",
+   "front"
+  ],
+  "1689": [
+   "Ruched Swim Skirt",
+   "Hot Pink",
+   "front"
+  ],
+  "1691": [
+   "Two Tone Layered Long Sleeve Crop",
+   "Brown/White",
+   "back"
+  ],
+  "1692": [
+   "Two Tone Layered Long Sleeve Crop",
+   "Brown/White",
+   "front"
+  ]
+ },
+ "unresolved": {
+  "Signature Bra": "which stock line? (Open Back Top / Cross Back Straight Top)"
+ }
+}
