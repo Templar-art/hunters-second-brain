@@ -31,7 +31,7 @@ PRICE = {
 
 # Former team members are kept off the site: the pink-twist-set blonde (a218, a222, a092, a143, a220, a260, a089, a221 group) and the
 # platinum-blonde-with-dark-roots model, whose face was AI-replaced in edited/ (a175, a177, a203, s024, s112, s113) or whose shots were
-# swapped (a201 and a104 cropped to the right half, a131, a077, a206, s071, s085, s099).
+# swapped (a201 and a104 cropped to the right half, a131, a077, a075, a078, a082, a085, a086, a048, s044, s050, s067, s084, s085, s117, a206, s071, s085, s099).
 # Instagram photo per colour: a### = @bebitaactive, s### = @bebitaswim. "_" = the product's fallback photo.
 PHOTOS = {
  "Scrunch Shorts": {"Red": "a087", "Light Blue": "a223", "Dark Blue": "a005", "Highlighter Pink": "a084", "Peach": "a246", "Black": "a250", "Pink": "a080"},
@@ -40,7 +40,7 @@ PHOTOS = {
  "V-Back Leggings": {"Blue": "a189", "Brown": "a190", "Pink": "a179", "Black": "a200", "Highlighter Pink": "a204"},
  "Scrunch Pants": {"Pink": "a155", "Navy": "a191", "Brown": "a147"},
  "Dynamic Leggings": {"_": "a018"},
- "Dynamic Flares": {"Lilac": "a048", "Black": "a041", "Blue": "a068"},
+ "Dynamic Flares": {"Lilac": "a071", "Black": "a041", "Blue": "a068"},
  "Cross Back Top": {"Lilac": "a014", "Blue": "a026", "Black": "a176"},
  "Open Back Top": {"Blue": "a056", "Pink": "a046", "Brown": "a065", "Black": "a076"},
  "Cross Back Straight Top": {"Brown": "a175", "Blue": "a201R", "Highlighter Pink": "a177", "Black": "a203"},
@@ -51,17 +51,17 @@ PHOTOS = {
  "Scrunch Halter Top": {"_": "a014"},
  "Cross Back Twist Triangle Top": {"Red": "a270", "Highlighter Pink": "a084", "Teal": "a249", "Pink": "a227", "Black": "a250", "Blue": "a226"},
  "Cross Back Thin Strap Triangle Top": {"_": "a198"},
- "Two Tone Halter Top": {"_": "a075", "Brown/White": "a069"},
+ "Two Tone Halter Top": {"_": "a069", "Brown/White": "a069"},
  "2-in-1 Layered Long Sleeve Crop Top": {"Brown/White": "a065", "Navy/White": "a056", "Black/White": "a057"},
  "Cropped Zip Jacket": {"_": "a016", "Lilac": "a071", "Blue": "a047"},
- "Cross Back Flare Set": {"_": "a048"},
- "One Piece Short": {"Blue": "a085", "Red": "a148", "Pink": "a082", "Black": "a125"},
- "One Piece Long": {"Blue": "a086", "Red": "a127", "Pink": "a078", "Black": "a104R"},
- "Triangle Bikini Top": {"White": "s074", "Hot Pink": "s043", "Black": "s070", "Brown": "s026", "Teal": "s048", "Blue": "s067", "Coral": "s028"},
- "Brazilian Bikini Set": {"_": "s085", "White": "s117", "Coral": "s049", "Blue": "s044", "Red": "s046", "Black": "s070", "Teal": "s053", "Hot Pink": "s052", "Brown": "s001"},
+ "Cross Back Flare Set": {"_": "a071"},
+ "One Piece Short": {"Blue": "a149", "Red": "a148", "Pink": "a093", "Black": "a125"},
+ "One Piece Long": {"Blue": "a156", "Red": "a127", "Pink": "a095", "Black": "a104R"},
+ "Triangle Bikini Top": {"White": "s074", "Hot Pink": "s043", "Black": "s070", "Brown": "s026", "Teal": "s048", "Blue": "s110", "Coral": "s028"},
+ "Brazilian Bikini Set": {"_": "s053", "White": "s074", "Coral": "s049", "Blue": "s114", "Red": "s046", "Black": "s070", "Teal": "s053", "Hot Pink": "s052", "Brown": "s001"},
  "V-Front Cheeky One Piece": {"_": "s112", "Black": "s116"},
  "Bikini Skirt": {"Teal": "s113", "Hot Pink": "s093", "Black": "s102"},
- "Sarong": {"Red": "s024", "Black": "s070", "Blue": "s050", "White": "s074", "Coral": "s084", "Hot Pink": "s040", "Teal": "s053", "Brown": "s007"},
+ "Sarong": {"Red": "s024", "Black": "s070", "Blue": "s068", "White": "s074", "Coral": "s049", "Hot Pink": "s040", "Teal": "s053", "Brown": "s007"},
  "Bedazzled Cover Up": {"_": "s081"},
 }
 
