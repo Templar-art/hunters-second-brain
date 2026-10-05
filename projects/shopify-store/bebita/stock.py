@@ -29,7 +29,6 @@ STOCK = [
  ("Scrunch Halter Top", "active", "top", {"Lilac":{"S":1}}),
  ("Signature Twist Bra", "active", "top", {"Red":{"S":1,"M":2,"L":2},"Highlighter Pink":{"S":1,"M":3},"Teal":{"S":1},
    "Pink":{"S":1,"M":1,"L":1},"Black":{"S":2,"M":1,"L":1},"Blue":{"S":2,"M":2,"L":1}}),
- ("Cross Back Thin Strap Triangle Top", "active", "top", {"Highlighter Pink":{"S":1}}),
  ("Two Tone Halter", "active", "top", {"Pink/White":{"S":1},"Black/White":{"S":1},"Brown/White":{"S":1},"Navy/White":{"S":1}}),
  ("Two Tone Layered Long Sleeve Crop", "active", "top", {"Brown/White":{"S":3,"M":1},"Navy/White":{"M":1},"Black/White":{"M":1}}),
  # ---- ACTIVE: layers, sets, one-pieces
