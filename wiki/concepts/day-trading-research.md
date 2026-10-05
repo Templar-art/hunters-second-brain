@@ -59,3 +59,8 @@ Source: [stockbrokers.com](https://www.stockbrokers.com/review/tools/trendspider
 Related: [[overview]]
 
 - **Apple Note (2026-10-05):** "Day Trading – Step-by-Step Starter Guide" is the easy-read version of this page: a 7-step roadmap (learn → tools → plan → backtest → paper trade → small real money → tax), a glossary, AI prompts, a scam checklist and a journal template.
+
+## What makes a market good to learn on (2026-10-05)
+Beginners do best with liquid, tight-spread, well-known markets, focusing on one at a time. Stocks/ETFs or forex (without leverage) are the usual starting points; CFDs, futures, options, crypto and penny stocks are the riskiest choices. ([Macroption](https://www.macroption.com/what-to-trade-as-beginner/), [DayTrading.com](https://www.daytrading.com/markets), [SelfWealth on AU brokerage](https://www.selfwealth.com.au/blog/best-trading-account-for-beginners-australia))
+- **Hours in AU time:** the ASX trades 10am–4pm; the US market is overnight, about 12:30am–7am AEDT in summer and 11:30pm–6am AEST in winter. Hunter shoots during the day, so the plan uses **swing trading** (daily candles, checked in the evening) rather than intraday trading.
+- **Plan v1** is in Apple Notes as "My Trading Plan – v1 (PAPER TRADING ONLY)". It uses one setup (a pullback to the 20-day moving average in an uptrend above a rising 50-day), 1% risk on a $10k paper account, a 2R target, a 10-day time stop and a maximum of 3 open trades, plus criteria for moving to real money.
