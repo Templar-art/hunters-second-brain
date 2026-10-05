@@ -8,7 +8,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 BB = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, BB)
 from stock import STOCK  # noqa: E402
-from load_stock import PRICE, PHOTOS, handle, SIZE_ORDER  # noqa: E402
+from load_stock import PRICE, PHOTOS, handle, SIZE_ORDER, flats  # noqa: E402
+FLAT = flats()
 
 E = html.escape
 CSS, JS = "../../theme/assets/vx.css", "../../theme/assets/vx.js"
@@ -23,6 +24,7 @@ for name, line, role, cols in STOCK:
     for c in cols:
         ref = refs.get(c, fb)
         if ref not in seen: seen.add(ref); images.append(img(h, c))
+        for fp in FLAT.get((name, c), []): images.append('../../products/flat/' + os.path.basename(fp))
         for s in sizes:
             vid += 1; q = cols[c].get(s, 0)
             variants.append({"id": vid, "options": [c, s], "price": PRICE[name] * 100, "available": q > 0, "left": q,

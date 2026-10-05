@@ -73,6 +73,23 @@ BLURB = {
 }
 
 
+ORDER = {"front": 0, "folded": 0, "front-alt": 1, "back": 2}
+
+
+def flats():
+    """Hunter's flat-lay product shots (photo_map.json -> products/flat), per (product, colour), front first."""
+    import json
+    d = json.load(open(os.path.join(HERE, "photo_map.json")))
+    out = {}
+    for n, (prod, col, view) in d["photos"].items():
+        if n in d.get("skip", []):
+            continue
+        path = os.path.join(OUT, "flat", f"bebita-{handle(prod)}-{handle(col)}-{view}.jpg")
+        if os.path.exists(path):
+            out.setdefault((prod, col), []).append((ORDER.get(view, 3), path))
+    return {k: [p for _, p in sorted(v)] for k, v in out.items()}
+
+
 def handle(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
@@ -116,6 +133,7 @@ def main():
     if "--delete-placeholders" in sys.argv:
         delete_placeholders()
     reset = "--reset-stock" in sys.argv
+    FLAT = flats()
     for name, line, role, cols in STOCK:
         h = handle(name)
         pid = existing(h)
@@ -132,6 +150,9 @@ def main():
                     uploaded[key] = stage(photo(ref, h, colour))
                     files.append({"originalSource": uploaded[key], "alt": f"{name} in {colour}", "contentType": "IMAGE"})
                 url = uploaded[key]
+            if not pid:
+                for fp in FLAT.get((name, colour), []):
+                    files.append({"originalSource": stage(fp), "alt": f"{name} in {colour}, flat lay", "contentType": "IMAGE"})
             for s in sizes:
                 q = cols[colour].get(s, 0)
                 v = {"optionValues": [{"optionName": "Colour", "name": colour}, {"optionName": "Size", "name": s}],

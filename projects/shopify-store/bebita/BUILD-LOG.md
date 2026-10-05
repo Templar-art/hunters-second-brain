@@ -12,6 +12,7 @@ Budget: 1,000 credits approved 2026-09-30, on top of the direction-round comps.
 | 2026-10-04 | Face replacement test, a175 (Nano Banana 2 retouch, 2K) | 75 | 375 |
 | 2026-10-05 | Face replacement batch: a177, a203, a131, s024, s112, s113 succeeded (a131 came out warped and is unused) | 450 | 825 |
 | 2026-10-05 | Glam redo (full makeup) after Hunter said the first face looked plain: a175, a177, a203, s112, s113 succeeded; s024 was blocked by the filter (photo swapped to s078) | 375 | 1,200 |
+| 2026-10-05 | Flat-lay background removal, 46 photos | 138 | 1,338 |
 | 2026-10-05 | s071 face replacement failed twice ("no image content", likely the model's filter); failed jobs should be refunded, so verify on the dashboard | 0–150 | 825–975 |
 
 ## Built and live on the store (2026-09-30)
@@ -86,3 +87,4 @@ Hunter asked for the store to look like velocityactivewear.com.au (a Shopify Sym
 - 2026-10-05: prepared without store access: footer Instagram links, store-styled search/page/policy/404 templates (pushed by go_live_vx.py), launch copy (`content/launch-copy.md`), and Hunter's to-do list in Apple Notes ("Bebita – Hunter's to-do list").
 - 2026-10-05: Cross Back Thin Strap Triangle Top sold out (Hunter) and removed from stock.py; 28 products / 338 pieces. 46 flat-lay photos mapped in photo_map.json; Hunter's real names applied (see renames there).
 - 2026-10-05: Scrunch Halter Top and Cross Back Flare Set also gone (Hunter); removed. 26 products / 336 pieces.
+- 2026-10-05: Hunter's 46 flat-lay photos had their backgrounds removed (Magnific, 46 × 3 = 138 credits) and were composited onto #F3F3F3 at 2:3 with a soft shadow (`products/flat/`). Hanger and hand were stripped from the 6 hanging shots with a free local colour-key pass; faint rod lines remain on two backs. 1662 (duplicate) and 1664 (blurry) are skipped. `load_stock.py` adds each colour's flat-lays after its model photo, so the card hover shows the flat-lay. 44 flat-lays cover 25 colourways.
