@@ -1081,3 +1081,4 @@ Swept 50 construction keywords, built a 42-product shareable list for Hunter's m
 ## [2026-10-04] query | Google Ads AU check on 30 construction keywords (Chrome)
 ## [2026-10-05] ingest | Bebita store v3: black-and-white redesign, real stock (339 pcs), former model removed (1,200 Magnific credits); blocked on Shopify plan
 ## [2026-10-05] query | Day trading + AI-assisted trading research → concepts/day-trading-research
+## [2026-10-06] ingest | Bebita AI product shots: 50 images for 25 colourways (3,675 credits), stock now 336 pcs / 26 products

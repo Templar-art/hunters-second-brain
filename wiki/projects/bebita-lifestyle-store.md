@@ -2,7 +2,7 @@
 type: project
 tags: [shopify, ecommerce, activewear, swimwear]
 status: setup
-updated: 2026-10-05
+updated: 2026-10-06
 ---
 
 # Bebita Collective (Shopify store)
@@ -45,6 +45,7 @@ The custom home page is live on the store theme: a row of mirrors with "Build yo
 
 ## 2026-10-05: v3 storefront (ready, waiting on a Shopify plan)
 - **Redesign:** the store now follows velocityactivewear.com.au's layout in black and white, keeping the original Bebita script logo. Single prices, a 10% sign-up offer (BEBITA10), free shipping over $150, add-ons in the bag below the threshold, and stock-based "Only N left" / "Selling fast" labels. A request for fake +15% "was" prices was declined as misleading under the ACL.
-- **Stock:** the real stock take is loaded (339 pieces across 29 products) via `load_stock.py`.
+- **Stock:** the real stock take is loaded via `load_stock.py`. ⚠️ Updated 2026-10-06: now 336 pieces across 26 products. Thin Strap Triangle Top, Scrunch Halter and Cross Back Flare Set were dropped, and Hunter's real product names were applied (the rename table is in `photo_map.json` and the Apple Note "Bebita – Product Name Changes").
 - **Photos:** a former model has been removed from every photo where her face shows. Her shots were either swapped for the dark-haired model's or had the face AI-replaced with a glam invented face (Magnific Nano Banana 2 retouch, about 1,200 credits in total). Details are in [BUILD-LOG](../../projects/shopify-store/bebita/BUILD-LOG.md).
+- **AI product shots (2026-10-06):** each of the 25 colourways Hunter photographed flat now has a Nano Banana Pro on-model shot and a ghost-mannequin studio shot: 50 images in `products/ai/`, 3,675 credits. The model shot leads the product page and the studio shot shows on hover. The other roughly 75 colourways still use their Instagram photos. Bebita's Magnific total is about 5,163 credits. Lesson: Hunter expected generated product photography, not cleaned-up versions of his own photos, so ask which one is wanted before any "fix the photos" job.
 - **Launch:** the store returned 402 (trial ended). Once a plan is picked, run `STORE=bebita python3 bebita/go_live_vx.py`.
