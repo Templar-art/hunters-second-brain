@@ -26,14 +26,12 @@ STOCK = [
  ("Signature Triangle Bralette", "active", "top", {"Blue":{"S":1},"Bone Grey":{"S":1},"Grey":{"S":1}}),
  ("Signature Triangle Halter", "active", "top", {"Blue":{"S":1,"M":2}}),
  ("Dynamic Bra", "active", "top", {"Blush Pink":{"XS":2},"Baby Blue":{"XS":1,"L":1},"Lilac":{"XS":1,"S":2},"Coral":{"XS":2,"S":1,"L":1}}),
- ("Scrunch Halter Top", "active", "top", {"Lilac":{"S":1}}),
  ("Signature Twist Bra", "active", "top", {"Red":{"S":1,"M":2,"L":2},"Highlighter Pink":{"S":1,"M":3},"Teal":{"S":1},
    "Pink":{"S":1,"M":1,"L":1},"Black":{"S":2,"M":1,"L":1},"Blue":{"S":2,"M":2,"L":1}}),
  ("Two Tone Halter", "active", "top", {"Pink/White":{"S":1},"Black/White":{"S":1},"Brown/White":{"S":1},"Navy/White":{"S":1}}),
  ("Two Tone Layered Long Sleeve Crop", "active", "top", {"Brown/White":{"S":3,"M":1},"Navy/White":{"M":1},"Black/White":{"M":1}}),
  # ---- ACTIVE: layers, sets, one-pieces
  ("Signature Cropped Zip", "active", "layer", {"Lilac":{"M":2},"Black":{"S":1,"M":1,"L":1},"Blue":{"M":2},"Yellow":{"M":1}}),
- ("Cross Back Flare Set", "active", "set", {"Yellow":{"S":1}}),
  ("Sculpt Zip One Piece", "active", "one-piece", {"Blue":{"S":1,"M":3},"Red":{"S":1},"Pink":{"S":1},"Black":{"S":1}}),
  ("Sculpt Zip Jumpsuit", "active", "one-piece", {"Blue":{"S":3},"Red":{"M":2},"Pink":{"M":1},"Black":{"M":1}}),
  # ---- SWIM
