@@ -35,8 +35,8 @@ STOCK = [
  # ---- ACTIVE: layers, sets, one-pieces
  ("Signature Cropped Zip", "active", "layer", {"Lilac":{"M":2},"Black":{"S":1,"M":1,"L":1},"Blue":{"M":2},"Yellow":{"M":1}}),
  ("Cross Back Flare Set", "active", "set", {"Yellow":{"S":1}}),
- ("One Piece Short", "active", "one-piece", {"Blue":{"S":1,"M":3},"Red":{"S":1},"Pink":{"S":1},"Black":{"S":1}}),
- ("One Piece Long", "active", "one-piece", {"Blue":{"S":3},"Red":{"M":2},"Pink":{"M":1},"Black":{"M":1}}),
+ ("Sculpt Zip One Piece", "active", "one-piece", {"Blue":{"S":1,"M":3},"Red":{"S":1},"Pink":{"S":1},"Black":{"S":1}}),
+ ("Sculpt Zip Jumpsuit", "active", "one-piece", {"Blue":{"S":3},"Red":{"M":2},"Pink":{"M":1},"Black":{"M":1}}),
  # ---- SWIM
  ("Triangle Bikini Top", "swim", "top", {"White":{"XS":1},"Hot Pink":{"S":1},"Black":{"S":1,"M":1},"Brown":{"S":1},
    "Teal":{"XS":2,"M":1},"Blue":{"XS":1},"Coral":{"XS":1}}),

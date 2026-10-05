@@ -17,7 +17,9 @@
   "Brazilian Bikini Set": "Triangle Bikini Top With Cheeky Brazilian Bottom",
   "V-Front Cheeky One Piece": "V-Front Cheeky Brazilian One Piece",
   "Bikini Skirt": "Ruched Swim Skirt",
-  "2-in-1 Layered Long Sleeve Crop Top": "Two Tone Layered Long Sleeve Crop"
+  "2-in-1 Layered Long Sleeve Crop Top": "Two Tone Layered Long Sleeve Crop",
+  "One Piece Short": "Sculpt Zip One Piece",
+  "One Piece Long": "Sculpt Zip Jumpsuit"
  },
  "photos": {
   "1646": [
@@ -219,6 +221,26 @@
    "Two Tone Layered Long Sleeve Crop",
    "Brown/White",
    "front"
+  ],
+  "1693": [
+   "Sculpt Zip One Piece",
+   "Blue",
+   "front"
+  ],
+  "1694": [
+   "Sculpt Zip One Piece",
+   "Blue",
+   "back"
+  ],
+  "1695": [
+   "Sculpt Zip Jumpsuit",
+   "Blue",
+   "front"
+  ],
+  "1696": [
+   "Sculpt Zip Jumpsuit",
+   "Blue",
+   "back"
   ]
  },
  "unresolved": {

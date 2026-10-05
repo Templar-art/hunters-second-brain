@@ -25,7 +25,7 @@ PRICE = {
  "Signature Halter": 39, "Signature Triangle Bralette": 39, "Signature Triangle Halter": 39, "Dynamic Bra": 42, "Scrunch Halter Top": 39,
  "Signature Twist Bra": 42, "Cross Back Thin Strap Triangle Top": 39, "Two Tone Halter": 42,
  "Two Tone Layered Long Sleeve Crop": 59, "Signature Cropped Zip": 69, "Cross Back Flare Set": 95,
- "One Piece Short": 65, "One Piece Long": 75, "Triangle Bikini Top": 39, "Triangle Bikini Top With Cheeky Brazilian Bottom": 79,
+ "Sculpt Zip One Piece": 65, "Sculpt Zip Jumpsuit": 75, "Triangle Bikini Top": 39, "Triangle Bikini Top With Cheeky Brazilian Bottom": 79,
  "V-Front Cheeky Brazilian One Piece": 75, "Ruched Swim Skirt": 35, "Sarong": 29, "Bedazzled Cover Up": 49,
 }
 
@@ -55,8 +55,8 @@ PHOTOS = {
  "Two Tone Layered Long Sleeve Crop": {"Brown/White": "a065", "Navy/White": "a056", "Black/White": "a057"},
  "Signature Cropped Zip": {"_": "a016", "Lilac": "a071", "Blue": "a047"},
  "Cross Back Flare Set": {"_": "a071"},
- "One Piece Short": {"Blue": "a149", "Red": "a148", "Pink": "a093", "Black": "a125"},
- "One Piece Long": {"Blue": "a156", "Red": "a127", "Pink": "a095", "Black": "a104R"},
+ "Sculpt Zip One Piece": {"Blue": "a149", "Red": "a148", "Pink": "a093", "Black": "a125"},
+ "Sculpt Zip Jumpsuit": {"Blue": "a156", "Red": "a127", "Pink": "a095", "Black": "a104R"},
  "Triangle Bikini Top": {"White": "s074", "Hot Pink": "s043", "Black": "s070", "Brown": "s026", "Teal": "s048", "Blue": "s110", "Coral": "s028"},
  "Triangle Bikini Top With Cheeky Brazilian Bottom": {"_": "s053", "White": "s074", "Coral": "s049", "Blue": "s114", "Red": "s046", "Black": "s070", "Teal": "s053", "Hot Pink": "s052", "Brown": "s001"},
  "V-Front Cheeky Brazilian One Piece": {"_": "s112", "Black": "s116"},
