@@ -69,6 +69,8 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)
 - [[mac-performance]] — what actually slows the MacBook (RAM ceiling, 3 displays, Adobe stack); never delete the Camera Raw cache
 
+- [[day-trading-research]]: day trading odds, AU tax and rules, AI trading tools and scams (Oct 2026 research)
+
 ## Craft (reference)
 The durable how-to layer — standing technique, distinct from client/ops pages. Hub: [[craft]].
 - [[architectural-photography]] — MOC (22): [[arch-composition]] · [[perspective-correction]] · [[tilt-shift-technique]] · [[photo-gear-and-settings]] · [[metering-and-dynamic-range]] · [[exposure-blending]] · [[strobe-lighting]] · [[hdr-software]] · [[light-and-timing]] · [[focus-stacking]] · [[panorama-stitching]] · [[film-large-format]] · [[interior-photography]] · [[exterior-architecture]] · [[architectural-details]] · [[shot-list-and-planning]] · [[deliverables-and-export]] · [[archiving-and-backup]] · [[releases-and-permissions]] · [[real-estate-vs-architectural]] · [[matterport-3d-tours]] · [[awards-and-competitions]]
