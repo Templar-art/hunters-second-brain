@@ -30,6 +30,7 @@ files = ["assets/vx.css", "assets/vx.js", "snippets/vx-assets.liquid", "snippets
         [f"sections/{f}" for f in sorted(os.listdir(os.path.join(HERE, "theme", "sections"))) if f.startswith("vx-")]
 run(os.path.join(HERE, "push_theme.py"), *files)
 run(os.path.join(HERE, "push_theme.py"), "templates/index.json=theme-backup/index.vx.json", "templates/product.json=theme-backup/product.vx.json",
-    "templates/collection.json=theme-backup/collection.vx.json", "templates/cart.json=theme-backup/cart.vx.json",
+    "templates/collection.json=theme-backup/collection.vx.json", "templates/cart.json=theme-backup/cart.vx.json", "templates/page.json=theme-backup/page.vx.json",
+    "templates/search.json=theme-backup/search.vx.json", "templates/404.json=theme-backup/404.vx.json",
     "sections/header-group.json=theme-backup/header-group.vx.json", "sections/footer-group.json=theme-backup/footer-group.vx.json")
 print("live. Roll back: push the *.v2.json backups the same way.")

@@ -1,0 +1,6 @@
+{%- comment -%} Plain content page (About, FAQ, Contact text) and policies, in the store look. {%- endcomment -%}
+<section class="vx vx-page">
+  <h1>{{ page.title | default: policy.title }}</h1>
+  <div class="vx-page__body">{{ page.content | default: policy.body }}</div>
+</section>
+{% schema %}{ "name": "Page" }{% endschema %}

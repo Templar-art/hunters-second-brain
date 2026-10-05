@@ -1,0 +1,20 @@
+<section class="vx" aria-labelledby="vx-search-title">
+  <div class="vx-colhead">
+    <h1 id="vx-search-title">Search</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="vx-searchbar">
+      <label class="vx-sr" for="vx-q">Search the store</label>
+      <input id="vx-q" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Shorts, bikini, black…" autocomplete="off">
+      <input type="hidden" name="type" value="product">
+      <button type="submit" class="vx-buy">Search</button>
+    </form>
+    {%- if search.performed -%}<p>{{ search.results_count }} {{ search.results_count | pluralize: 'result', 'results' }} for "{{ search.terms | escape }}"</p>{%- endif -%}
+  </div>
+  {%- if search.performed and search.results_count > 0 -%}
+    <ul class="vx-grid" role="list">
+      {%- for item in search.results -%}{%- if item.object_type == 'product' -%}<li>{%- render 'vx-card', product: item -%}</li>{%- endif -%}{%- endfor -%}
+    </ul>
+  {%- elsif search.performed -%}
+    <p class="vx-empty">Nothing matched. Try "shorts", "bikini" or a colour. <a href="{{ routes.all_products_collection_url }}">Shop all</a></p>
+  {%- endif -%}
+</section>
+{% schema %}{ "name": "Search" }{% endschema %}

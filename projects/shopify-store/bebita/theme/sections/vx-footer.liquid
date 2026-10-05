@@ -6,6 +6,12 @@
         <ul role="list">{%- for link in block.settings.menu.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
       </div>
     {%- endfor -%}
+    {%- if section.settings.ig_active != blank or section.settings.ig_swim != blank -%}
+      <div><h3>Follow</h3><ul role="list">
+        {%- if section.settings.ig_active != blank -%}<li><a href="{{ section.settings.ig_active }}" rel="noopener" target="_blank">Instagram · Active</a></li>{%- endif -%}
+        {%- if section.settings.ig_swim != blank -%}<li><a href="{{ section.settings.ig_swim }}" rel="noopener" target="_blank">Instagram · Swim</a></li>{%- endif -%}
+      </ul></div>
+    {%- endif -%}
     <div class="vx-foot__news">
       <h3>{{ section.settings.news_title }}</h3>
       <p>{{ section.settings.news_text }}</p>
@@ -25,7 +31,9 @@
   "settings": [
     { "type": "text", "id": "news_title", "label": "Newsletter heading", "default": "Stay in the loop" },
     { "type": "text", "id": "news_text", "label": "Newsletter text", "default": "Subscribe for 10% off your first order, plus first word when sizes come back." },
-    { "type": "text", "id": "base_note", "label": "Bottom note", "default": "Sent from the Gold Coast" } ],
+    { "type": "text", "id": "base_note", "label": "Bottom note", "default": "Sent from the Gold Coast" },
+    { "type": "url", "id": "ig_active", "label": "Instagram (Active)", "default": "https://www.instagram.com/bebitaactive/" },
+    { "type": "url", "id": "ig_swim", "label": "Instagram (Swim)", "default": "https://www.instagram.com/bebitaswim/" } ],
   "blocks": [{ "type": "menu", "name": "Menu column", "settings": [
     { "type": "text", "id": "title", "label": "Heading" },
     { "type": "link_list", "id": "menu", "label": "Menu" } ] }] }
