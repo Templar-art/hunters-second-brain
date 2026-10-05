@@ -19,8 +19,8 @@ STOCK = [
  ("Dynamic Flares", "active", "bottom", {"Lilac":{"S":2,"M":2},"Black":{"S":1},"Blue":{"S":2,"M":1}}),
  # ---- ACTIVE: tops
  ("Signature Cross Back Bralette", "active", "top", {"Lilac":{"S":3,"M":1},"Blue":{"S":2,"L":1},"Black":{"S":5,"M":1}}),
- ("Open Back Top", "active", "top", {"Blue":{"XS":1},"Pink":{"XS":1},"Brown":{"XS":1},"Black":{"XS":1}}),
- ("Cross Back Straight Top", "active", "top", {"Brown":{"XS":3,"S":2,"M":2,"L":1},"Blue":{"XS":3,"S":4,"M":3,"L":1},
+ ("Signature Open Back Bralette", "active", "top", {"Blue":{"XS":1},"Pink":{"XS":1},"Brown":{"XS":1},"Black":{"XS":1}}),
+ ("Signature Bra", "active", "top", {"Brown":{"XS":3,"S":2,"M":2,"L":1},"Blue":{"XS":3,"S":4,"M":3,"L":1},
    "Highlighter Pink":{"XS":2,"S":2,"M":3,"L":2},"Black":{"XS":1,"S":1,"M":1,"L":1}}),
  ("Signature Halter", "active", "top", {"Teal":{"S":1},"Blue":{"S":1}}),
  ("Signature Triangle Bralette", "active", "top", {"Blue":{"S":1},"Bone Grey":{"S":1},"Grey":{"S":1}}),

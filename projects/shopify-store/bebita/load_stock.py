@@ -21,7 +21,7 @@ SIZE_ORDER = ["XS", "S", "M", "L", "XL", "XS-S", "M-L", "One size"]
 
 PRICE = {
  "Muse Scrunch Shorts": 45, "Dynamic Shorts": 45, "V-Back Scrunch Shorts": 45, "V-Back Scrunch Leggings": 59, "Muse Scrunch Leggings": 59,
- "Dynamic Leggings": 59, "Dynamic Flares": 59, "Signature Cross Back Bralette": 42, "Open Back Top": 45, "Cross Back Straight Top": 42,
+ "Dynamic Leggings": 59, "Dynamic Flares": 59, "Signature Cross Back Bralette": 42, "Signature Open Back Bralette": 45, "Signature Bra": 42,
  "Signature Halter": 39, "Signature Triangle Bralette": 39, "Signature Triangle Halter": 39, "Dynamic Bra": 42, "Scrunch Halter Top": 39,
  "Signature Twist Bra": 42, "Cross Back Thin Strap Triangle Top": 39, "Two Tone Halter": 42,
  "Two Tone Layered Long Sleeve Crop": 59, "Signature Cropped Zip": 69, "Cross Back Flare Set": 95,
@@ -42,8 +42,8 @@ PHOTOS = {
  "Dynamic Leggings": {"_": "a018"},
  "Dynamic Flares": {"Lilac": "a071", "Black": "a041", "Blue": "a068"},
  "Signature Cross Back Bralette": {"Lilac": "a014", "Blue": "a026", "Black": "a176"},
- "Open Back Top": {"Blue": "a056", "Pink": "a046", "Brown": "a065", "Black": "a076"},
- "Cross Back Straight Top": {"Brown": "a175", "Blue": "a201R", "Highlighter Pink": "a177", "Black": "a203"},
+ "Signature Open Back Bralette": {"Blue": "a056", "Pink": "a046", "Brown": "a065", "Black": "a076"},
+ "Signature Bra": {"Brown": "a175", "Blue": "a201R", "Highlighter Pink": "a177", "Black": "a203"},
  "Signature Halter": {"Teal": "a174", "Blue": "a164"},
  "Signature Triangle Bralette": {"Blue": "a008", "Bone Grey": "a053", "Grey": "a170"},
  "Signature Triangle Halter": {"_": "a164"},

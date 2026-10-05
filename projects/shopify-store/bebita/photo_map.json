@@ -19,7 +19,9 @@
   "Bikini Skirt": "Ruched Swim Skirt",
   "2-in-1 Layered Long Sleeve Crop Top": "Two Tone Layered Long Sleeve Crop",
   "One Piece Short": "Sculpt Zip One Piece",
-  "One Piece Long": "Sculpt Zip Jumpsuit"
+  "One Piece Long": "Sculpt Zip Jumpsuit",
+  "Open Back Top": "Signature Open Back Bralette",
+  "Cross Back Straight Top": "Signature Bra"
  },
  "photos": {
   "1646": [
@@ -241,9 +243,17 @@
    "Sculpt Zip Jumpsuit",
    "Blue",
    "back"
+  ],
+  "1697": [
+   "Signature Open Back Bralette",
+   "Blue",
+   "front"
+  ],
+  "1698": [
+   "Signature Open Back Bralette",
+   "Blue",
+   "back"
   ]
  },
- "unresolved": {
-  "Signature Bra": "which stock line? (Open Back Top / Cross Back Straight Top)"
- }
+ "unresolved": {}
 }
