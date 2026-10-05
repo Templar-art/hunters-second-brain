@@ -2,7 +2,7 @@
 type: project
 tags: [shopify, ecommerce, activewear, swimwear]
 status: setup
-updated: 2026-09-30
+updated: 2026-10-05
 ---
 
 # Bebita Collective (Shopify store)
@@ -42,3 +42,9 @@ The custom home page is live on the store theme: a row of mirrors with "Build yo
 - Ship-from location copied from the One Percent address (Upper Coomera QLD 4209).
 - Shipping: Standard $9.95 under $100, free Standard at $100+, Express $14.95, international off. Threshold is higher than One Percent's $75 because apparel orders run bigger.
 - Refund policy (30-day change of mind, unworn with tags; swimwear only with the hygiene liner intact; sale items exchange-only; ACL faulty cover) and shipping policy, drafts in [bebita/content/](../../projects/shopify-store/bebita/content/). Footer menu links the policies.
+
+## 2026-10-05: v3 storefront (ready, waiting on a Shopify plan)
+- **Redesign:** the store now follows velocityactivewear.com.au's layout in black and white, keeping the original Bebita script logo. Single prices, a 10% sign-up offer (BEBITA10), free shipping over $150, add-ons in the bag below the threshold, and stock-based "Only N left" / "Selling fast" labels. A request for fake +15% "was" prices was declined as misleading under the ACL.
+- **Stock:** the real stock take is loaded (339 pieces across 29 products) via `load_stock.py`.
+- **Photos:** a former model has been removed from every photo where her face shows. Her shots were either swapped for the dark-haired model's or had the face AI-replaced with a glam invented face (Magnific Nano Banana 2 retouch, about 1,200 credits in total). Details are in [BUILD-LOG](../../projects/shopify-store/bebita/BUILD-LOG.md).
+- **Launch:** the store returned 402 (trial ended). Once a plan is picked, run `STORE=bebita python3 bebita/go_live_vx.py`.
