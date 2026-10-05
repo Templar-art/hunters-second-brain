@@ -29,7 +29,9 @@ PRICE = {
  "V-Front Cheeky One Piece": 75, "Bikini Skirt": 35, "Sarong": 29, "Bedazzled Cover Up": 49,
 }
 
-# Photos of a former team member (a218, a222, a092, a143, a220, a260, a089 and the a221 group) are deliberately excluded.
+# Former team members are kept off the site: the pink-twist-set blonde (a218, a222, a092, a143, a220, a260, a089, a221 group) and the
+# platinum-blonde-with-dark-roots model, whose face was AI-replaced in edited/ (a175, a177, a203, s024, s112, s113) or whose shots were
+# swapped (a201 and a104 cropped to the right half, a131, a077, a206, s071, s085, s099).
 # Instagram photo per colour: a### = @bebitaactive, s### = @bebitaswim. "_" = the product's fallback photo.
 PHOTOS = {
  "Scrunch Shorts": {"Red": "a087", "Light Blue": "a223", "Dark Blue": "a005", "Highlighter Pink": "a084", "Peach": "a246", "Black": "a250", "Pink": "a080"},
@@ -41,7 +43,7 @@ PHOTOS = {
  "Dynamic Flares": {"Lilac": "a048", "Black": "a041", "Blue": "a068"},
  "Cross Back Top": {"Lilac": "a014", "Blue": "a026", "Black": "a176"},
  "Open Back Top": {"Blue": "a056", "Pink": "a046", "Brown": "a065", "Black": "a076"},
- "Cross Back Straight Top": {"Brown": "a175", "Blue": "a201", "Highlighter Pink": "a177", "Black": "a203"},
+ "Cross Back Straight Top": {"Brown": "a175", "Blue": "a201R", "Highlighter Pink": "a177", "Black": "a203"},
  "Halter Top": {"Teal": "a174", "Blue": "a164"},
  "Triangle Top": {"Blue": "a008", "Bone Grey": "a053", "Grey": "a170"},
  "Halter Neck Triangle Top": {"_": "a164"},
@@ -54,12 +56,12 @@ PHOTOS = {
  "Cropped Zip Jacket": {"_": "a016", "Lilac": "a071", "Blue": "a047"},
  "Cross Back Flare Set": {"_": "a048"},
  "One Piece Short": {"Blue": "a085", "Red": "a148", "Pink": "a082", "Black": "a125"},
- "One Piece Long": {"Blue": "a086", "Red": "a127", "Pink": "a078", "Black": "a131"},
+ "One Piece Long": {"Blue": "a086", "Red": "a127", "Pink": "a078", "Black": "a104R"},
  "Triangle Bikini Top": {"White": "s074", "Hot Pink": "s043", "Black": "s070", "Brown": "s026", "Teal": "s048", "Blue": "s067", "Coral": "s028"},
  "Brazilian Bikini Set": {"_": "s085", "White": "s117", "Coral": "s049", "Blue": "s044", "Red": "s046", "Black": "s070", "Teal": "s053", "Hot Pink": "s052", "Brown": "s001"},
  "V-Front Cheeky One Piece": {"_": "s112", "Black": "s116"},
  "Bikini Skirt": {"Teal": "s113", "Hot Pink": "s093", "Black": "s102"},
- "Sarong": {"Red": "s024", "Black": "s070", "Blue": "s050", "White": "s074", "Coral": "s084", "Hot Pink": "s040", "Teal": "s071", "Brown": "s007"},
+ "Sarong": {"Red": "s024", "Black": "s070", "Blue": "s050", "White": "s074", "Coral": "s084", "Hot Pink": "s040", "Teal": "s053", "Brown": "s007"},
  "Bedazzled Cover Up": {"_": "s081"},
 }
 
@@ -76,6 +78,8 @@ def handle(name):
 
 
 def photo(ref, h, colour):
+    half = ref[4:] if len(ref) > 4 else ""     # "a201R" = right half of a201 (keeps one person out of shot)
+    ref = ref[:4]
     acc = "active" if ref[0] == "a" else "swim"
     folder = os.path.join(RAW, f"instagram-{acc}")
     src = next(f for f in os.listdir(folder) if f.startswith(f"bebita{acc}_{ref[1:]}_"))
@@ -85,6 +89,9 @@ def photo(ref, h, colour):
     dst = os.path.join(OUT, f"bebita-{h}-{handle(colour)}.jpg")
     if not os.path.exists(dst):
         im = Image.open(os.path.join(folder, src)).convert("RGB")
+        if half:
+            w0, h0 = im.size
+            im = im.crop((w0 // 2, 0, w0, h0) if half == "R" else (0, 0, w0 // 2, h0))
         w, hgt = im.size; tw = min(w, int(hgt * 2 / 3)); th = int(tw * 3 / 2)   # centre-crop to 2:3 portrait
         left, top = (w - tw) // 2, max(0, (hgt - th) // 3)
         im = im.crop((left, top, left + tw, top + th)); im.thumbnail((1200, 1800))

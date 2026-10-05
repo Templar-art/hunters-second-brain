@@ -10,6 +10,8 @@ Budget: 1,000 credits approved 2026-09-30, on top of the direction-round comps.
 | 2026-09-30 | 3 home-page comps (direction round) | 225 | 225 |
 | 2026-09-30 | Bebita / COLLECTIVE logo lockup (budget 1/1000) | 75 | 300 |
 | 2026-10-04 | Face replacement test, a175 (Nano Banana 2 retouch, 2K) | 75 | 375 |
+| 2026-10-05 | Face replacement batch: a177, a203, a131, s024, s112, s113 succeeded (a131 came out warped and is unused) | 450 | 825 |
+| 2026-10-05 | s071 face replacement failed twice ("no image content", likely the model's filter); failed jobs should be refunded, so verify on the dashboard | 0–150 | 825–975 |
 
 ## Built and live on the store (2026-09-30)
 - Custom theme sections, all editable in the theme editor: `bb-header` (script logo, "Collective", menu drawer, bag count), `bb-mirrors`, `bb-build`, `bb-line` (Active and Swim, mirrored), `bb-statement`, `bb-room` and `bb-promise`. Shared CSS and JS are in `theme/assets/`, with self-hosted Parkinsans 800 and Public Sans. Originals of every theme file are in `theme-backup/`.
@@ -78,3 +80,5 @@ Hunter asked for the store to look like velocityactivewear.com.au (a Shopify Sym
 
 - 2026-10-04 changes: the email offer is now **10% off the first order, code BEBITA10** (pop-up and footer sign-up), replacing 25%. Free shipping is now **over $150**. The header uses the original Bebita script logo in black (`assets/bebita-vx-logo.png`). Hunter asked for fake +15% "was" prices; Claude declined (misleading under the ACL), so prices stay single.
 - 2026-10-04: a former team member (the blonde in the pink twist set with a gold name necklace) left the business, so her photos were removed from the site. Excluded: a218 (old hero, swapped for a201), a221 (bottoms tile, swapped for a204), a092 and a143 (hot pink, swapped for a084), a260 (blue twist top, swapped for a226), a089 (red one piece short, swapped for a148) and a220 (peach shorts, swapped for a246). The list is recorded in `load_stock.py`. Never reuse a213–a270 group shots without checking for her.
+
+- 2026-10-05: face replacement for the platinum-blonde former model. AI faces are in `edited/` (one consistent invented face, natural skin texture, tan matched, necklace removed); `load_stock.py` prefers `edited/<ref>.jpg`. Swapped instead of edited: hero (now edited a177), swim hero (s049), active tile (a196), swim tile (s044), Straight Top Blue (a201 right half), One Piece Long Black (a104 right half), Teal sarong (s053). Prompt lessons: tight face masks (a loose mask on a131 warped the face), and say "exactly the same deep golden tan" plus "pores, never airbrushed" for realism.
