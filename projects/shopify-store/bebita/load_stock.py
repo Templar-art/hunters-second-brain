@@ -61,7 +61,7 @@ PHOTOS = {
  "Brazilian Bikini Set": {"_": "s053", "White": "s074", "Coral": "s049", "Blue": "s114", "Red": "s046", "Black": "s070", "Teal": "s053", "Hot Pink": "s052", "Brown": "s001"},
  "V-Front Cheeky One Piece": {"_": "s112", "Black": "s116"},
  "Bikini Skirt": {"Teal": "s113", "Hot Pink": "s093R", "Black": "s102"},
- "Sarong": {"Red": "s024", "Black": "s070", "Blue": "s068", "White": "s074", "Coral": "s049", "Hot Pink": "s040", "Teal": "s053", "Brown": "s007"},
+ "Sarong": {"Red": "s078", "Black": "s070", "Blue": "s068", "White": "s074", "Coral": "s049", "Hot Pink": "s040", "Teal": "s053", "Brown": "s007"},
  "Bedazzled Cover Up": {"_": "s081"},
 }
 
