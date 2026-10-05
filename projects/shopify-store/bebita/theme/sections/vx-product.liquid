@@ -15,7 +15,8 @@
   <script type="application/json" data-vx-json>{%- render 'bb-product-json', product: product -%}</script>
   <div class="vx-pdp__gallery" data-vx-gallery>
     {%- for media in product.media -%}{%- if media.media_type == 'image' -%}
-      <figure data-media-id="{{ media.id }}" data-src="{{ media | image_url: width: 1200 }}">
+      {%- assign fig_colour = media.alt | split: ' in ' | last | split: ',' | first | strip -%}
+      <figure data-media-id="{{ media.id }}" data-src="{{ media | image_url: width: 1200 }}" data-colour="{{ fig_colour | escape }}">
         {{ media | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '500, 800, 1100, 1400', sizes: '(min-width: 990px) 30vw, 100vw', alt: media.alt | default: product.title }}
       </figure>
     {%- endif -%}{%- endfor -%}

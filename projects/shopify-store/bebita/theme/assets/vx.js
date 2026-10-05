@@ -47,6 +47,11 @@
     buy.textContent = v.available ? 'Add to bag' : 'Sold out';
     stock.classList.toggle('is-low', v.available && v.left !== null && v.left <= 3);
     stock.textContent = !v.available ? `Sold out in ${size}. Try another colour.` : (v.left !== null && v.left <= 3 ? `Only ${v.left} left in ${size}` : 'In stock');
+    // only the chosen colour's photos (model shot + flat-lays); fall back to everything if none are tagged
+    if (ci > -1 && figs.length) {
+      const mine = figs.filter((f) => f.dataset.colour === colour);
+      figs.forEach((f) => { f.hidden = mine.length > 0 && !mine.includes(f); });
+    }
     // colour's photo first
     if (v.image && figs.length) {
       const base = (u) => (u || '').split('?')[0].replace(/_\d+x\d*(?=\.)/, '');

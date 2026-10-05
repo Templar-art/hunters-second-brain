@@ -23,8 +23,8 @@ for name, line, role, cols in STOCK:
     variants, images, seen = [], [], set()
     for c in cols:
         ref = refs.get(c, fb)
-        if ref not in seen: seen.add(ref); images.append(img(h, c))
-        for fp in FLAT.get((name, c), []): images.append('../../products/flat/' + os.path.basename(fp))
+        images.append((img(h, c), c))
+        for fp in FLAT.get((name, c), []): images.append(('../../products/flat/' + os.path.basename(fp), c))
         for s in sizes:
             vid += 1; q = cols[c].get(s, 0)
             variants.append({"id": vid, "options": [c, s], "price": PRICE[name] * 100, "available": q > 0, "left": q,
@@ -80,13 +80,13 @@ def page(title, body):
     return head(title).replace("{NAV}", NAV) + body + FOOT + POP + f'<script src="{JS}"></script></body></html>'
 
 def card(p):
-    alt = f'<img class="vx-card__alt" src="{p["images"][1]}" alt="" loading="lazy">' if len(p["images"]) > 1 else ""
+    alt = f'<img class="vx-card__alt" src="{p["images"][1][0]}" alt="" loading="lazy">' if len(p["images"]) > 1 else ""
     if p["left"] == 0: badge = '<span class="vx-badge vx-badge--sold">Sold out</span>'
     elif p["left"] <= 3: badge = f'<span class="vx-badge vx-badge--low">Only {p["left"]} left</span>'
     elif p["left"] <= 8: badge = '<span class="vx-badge vx-badge--low">Selling fast</span>'
     else: badge = ""
     sub = f'{len(p["colours"])} colours' if len(p["colours"]) > 1 else p["colours"][0]
-    return f"""<a class="vx-card" href="product-{p['handle']}.html"><div class="vx-card__media"><img src="{p['images'][0]}" alt="{E(p['name'])}" loading="lazy">{alt}{badge}</div>
+    return f"""<a class="vx-card" href="product-{p['handle']}.html"><div class="vx-card__media"><img src="{p['images'][0][0]}" alt="{E(p['name'])}" loading="lazy">{alt}{badge}</div>
 <div class="vx-card__meta"><h3 class="vx-card__title">{E(p['name'])}</h3><span class="vx-card__price">{money(p['price'])}</span><span class="vx-card__sub">{E(sub)}</span></div></a>"""
 
 grid = lambda ps: '<ul class="vx-grid" role="list">' + "".join(f"<li>{card(p)}</li>" for p in ps) + "</ul>"
@@ -115,7 +115,7 @@ for k, (t, ps) in COLS.items():
 for p in products:
     first = next((v for v in p["variants"] if v["available"]), p["variants"][0])
     data = {"options": [{"name": "Colour", "values": p["colours"]}, {"name": "Size", "values": p["sizes"]}], "variants": p["variants"]}
-    figs = "".join(f'<figure data-src="{u}"><img src="{u}" alt="{E(p["name"])}"></figure>' for u in p["images"])
+    figs = "".join(f'<figure data-src="{u}" data-colour="{E(c)}"><img src="{u}" alt="{E(p["name"])}"></figure>' for u, c in p["images"])
     sw = ""
     for c in p["colours"]:
         avail = any(v["available"] for v in p["variants"] if v["options"][0] == c)
@@ -140,11 +140,11 @@ for p in products:
 
 # cart preview: one pair of shorts in the bag, $105 short of free shipping
 item = by["muse-scrunch-shorts"]; addons = [by[h] for h in ("sarong", "triangle-bikini-top", "ruched-swim-skirt", "signature-halter")]
-adds = "".join(f"""<li class="vx-addon"><a class="vx-addon__img" href="product-{a['handle']}.html"><img src="{a['images'][0]}" alt="{E(a['name'])}"></a>
+adds = "".join(f"""<li class="vx-addon"><a class="vx-addon__img" href="product-{a['handle']}.html"><img src="{a['images'][0][0]}" alt="{E(a['name'])}"></a>
 <p><span>{E(a['name'])}</span><span>{money(a['price'])}</span></p><form onsubmit="return false"><select aria-label="Option for {E(a['name'])}">{''.join(f'<option>{E(v["options"][0])} / {E(v["options"][1])}</option>' for v in a['variants'] if v['available'])}</select>
 <button class="vx-buy" type="submit">Add</button></form></li>""" for a in addons)
 cart = f"""<section class="vx vx-cart"><h1>Your bag</h1><ul class="vx-cart__lines" role="list"><li class="vx-line">
-<a class="vx-line__img" href="product-muse-scrunch-shorts.html"><img src="{item['images'][0]}" alt="Muse Scrunch Shorts"></a>
+<a class="vx-line__img" href="product-muse-scrunch-shorts.html"><img src="{item['images'][0][0]}" alt="Muse Scrunch Shorts"></a>
 <div><p class="vx-line__title"><a href="product-muse-scrunch-shorts.html">Muse Scrunch Shorts</a></p><p class="vx-line__opts">Red / M</p>
 <div class="vx-qty"><a href="#" aria-label="One less">&minus;</a><span>1</span><a href="#" aria-label="One more">+</a></div><a class="vx-line__remove" href="#">Remove</a></div><span>$45.00</span></li></ul>
 <div class="vx-addons"><h2>Add $105.00 for free shipping</h2><p>Easy add-ons to get you there.</p><ul role="list">{adds}</ul></div><aside class="vx-cart__sum"><p class="vx-cart__ship">$105.00 away from free shipping</p><div class="vx-bar" aria-hidden="true"><i style="width:30%"></i></div>
