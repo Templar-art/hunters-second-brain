@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [virtual-staging, workflow, rules]
-updated: 2026-09-15
+updated: 2026-10-07
 ---
 
 # Virtual Staging Rules
@@ -12,7 +12,12 @@ Standing rules for AI staging of listing photos, distilled from job feedback (ca
 - **One-shot staging** — must land in one pass (volume work); pick self-enforcing geometry (e.g. round dining table when end-chairs are the risk).
 - **No end chairs, every dining table, by default** — never rely on saying "no end chairs" (negation is unenforced on Nano Banana). Default to a round or oval/pedestal table shape with no flat end to seat someone at, and when chairs are still needed spell out the count and placement explicitly ("N chairs evenly spaced around it, none at the ends"). Apply this on every dining prompt without being asked. See [[feedback-no-end-chairs-positive]].
 - **Phrase positively** — "open/empty ends + exact count"; negation alone fails on Nano Banana.
-- **Default model:** Nano Banana Pro for full-frame staging.
+- **Default model:** none confirmed — ask (see below). Nano Banana Pro was the assumed default until 2026-09-15.
+- **Two bedsides always** — a table + lamp on both sides of every bed, master or secondary; the secondary tier-down applies to bedding and styling, never to dropping a bedside. See [[feedback-two-bedsides-always]].
+- **TV front only** — wall-mount the TV with only its screen visible, no cables or rear panel. See [[feedback-tv-never-show-back]].
+- **Restrained light, balanced exposure** — "soft natural window light, gentle directional shadows, subtle warmth, no dramatic light beams or haze", and "natural true-to-life exposure, neither dark/moody nor blown-out". Streaming-rays wording blows out and mesh-shadows; golden/editorial reads moody, bright/airy overshoots. See [[feedback-sun-ray-restraint]], [[feedback-staging-brightness-default]].
+- **Explain + score every prompt** — each prompt handed over carries a plain-English "what this changes" summary and a pass-confidence score. See [[feedback-prompt-explain-and-score]].
+- **No default model** — Nano Banana Pro was assumed, not confirmed; zed-full-house actually ran on GPT Image 2.5 Sunburst. Ask which model before writing the prompt. Sunburst: standalone full-text restyles work, reference transfer is unreliable. See [[feedback-gpt-image-sunburst]].
 - **Vary plants** — never the same plant across rooms in one listing (fig/kentia/rubber/olive/monstera rotation, white pots).
 - **Vary bed styling** — no two beds dressed identically; vary ≥2 of cushions/throw/coverlet/pillow stack.
 - **Room hierarchy** — secondary bedrooms one step below primary (bed-width headboard, single bedside, ≤3 cushions).

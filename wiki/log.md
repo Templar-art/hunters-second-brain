@@ -1092,3 +1092,6 @@ Swept 50 construction keywords, built a 42-product shareable list for Hunter's m
 ## [2026-10-07] query | Iron Standard: unified photo grade
 
 ui-ux-pro-max pass. Its generated system (Inter, green accent, glass, bounce) conflicted with the locked brand, so only the diagnosis was used. Applied one warm-monochrome grade to all photography, aligned the founder caption, replaced guideline-speak pull quote. Detail on [[iron-standard]].
+
+## [2026-10-07] lint | Skills audit and update
+Audited every skill and plugin against upstream. Updated Impeccable 4.3.1 to 4.5.0 (project + global), Superpowers 6.2.0 to 6.4.1 (removed the duplicate obra-marketplace install and stale settings entry), UI/UX Pro Max 2.11.0 to 2.13.0, nine Emil Kowalski skills, and the Caveman family (added `ultracave`; upstream now forbids arrows and invented abbreviations, which CLAUDE.md still asks for, so the CLAUDE.md house style wins). Higgsfield skills and CLI already current. Patched `staging-engine` and `staging-redo` with the standing rules they lacked (no confirmed default model, camera-framing lock, exact inventory, two bedsides, TV, light/exposure, mirrors, curtains, explain + score) and synced the missing ones into [[staging-rules]].
