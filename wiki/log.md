@@ -1095,3 +1095,7 @@ ui-ux-pro-max pass. Its generated system (Inter, green accent, glass, bounce) co
 
 ## [2026-10-07] lint | Skills audit and update
 Audited every skill and plugin against upstream. Updated Impeccable 4.3.1 to 4.5.0 (project + global), Superpowers 6.2.0 to 6.4.1 (removed the duplicate obra-marketplace install and stale settings entry), UI/UX Pro Max 2.11.0 to 2.13.0, nine Emil Kowalski skills, and the Caveman family (added `ultracave`; upstream now forbids arrows and invented abbreviations, which CLAUDE.md still asks for, so the CLAUDE.md house style wins). Higgsfield skills and CLI already current. Patched `staging-engine` and `staging-redo` with the standing rules they lacked (no confirmed default model, camera-framing lock, exact inventory, two bedsides, TV, light/exposure, mirrors, curtains, explain + score) and synced the missing ones into [[staging-rules]].
+
+## [2026-10-07] query | Iron Standard: polish (impeccable 4.5)
+
+Type converted px to rem (default render identical, now honours text-size settings), repeated colours promoted to tokens and two drifting orange tints unified, mk healthhub photo replaced, theme-color, overflow-x clip, empty template src removed. Audit 4.5 had scored 18/20.

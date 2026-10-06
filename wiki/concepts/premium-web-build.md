@@ -120,6 +120,10 @@ Checks worth running on every build, at 375px and at desktop width:
   not by checking `offsetParent`, which does not detect `visibility: hidden`
 - form inputs at 16px, or mobile browsers zoom on focus
 - every `<label>` bound to a real input id
+- type set in `rem`, not `px`: set the root to 200% and confirm text grows. Pixel type ignores a
+  visitor's browser or Android text-size setting entirely (page zoom still works, so it is not a
+  hard WCAG fail, but low-vision visitors get nothing). Converting `px/16` keeps the default
+  render pixel-identical. Iron Standard shipped px until the 7 Oct 2026 polish.
 
 ## Client-site form backends
 

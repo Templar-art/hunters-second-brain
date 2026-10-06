@@ -168,7 +168,7 @@ visitor copy) with the strategy's own "clean, engineered and tactile" wording.
 is not a problem: it's a gym, and equipment carries its maker's name. The strategy's "no named
 equipment brands" rule applies to copy claims, not to what's printed on plates in a photo. Stop
 flagging it. Another *gym's* branding in a photo (e.g. "mk healthhub" on dumbbells in
-`detail-b.jpg`) is a different case: it can read as borrowing another facility's photos.
+`detail-b.jpg`) is a different case: it can read as borrowing another facility's photos. Replaced 7 Oct 2026 with an unused, unbranded bench frame from the guideline moodboard (`trainers.jpg`).
 
 ## Open items before go-live
 
