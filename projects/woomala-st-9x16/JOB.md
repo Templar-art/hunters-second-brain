@@ -28,7 +28,8 @@
 | Realism pass 13 × NBP 4k (#02–#14, incl. #04 redo w/ crisp views) | 52 |
 | Video: Kling 3.0 Pro test #03, 5s 9:16 | 12.5 |
 | Video: Kling 3.0 Pro × 13 clips | 162.5 |
-| **Total** | **50 Magnific + 324 Higgsfield** |
+| Topaz video 4K upscale × 14 clips (~5 cr each, measured by balance) | 75 |
+| **Total** | **50 Magnific + 399 Higgsfield** |
 
 ## Batch result (2026-10-06)
 - PASS (original pasted back 1:1, seams clean): #03 #04 #06 #07 #12 #13 #14 → `deliver/`. #01 is a plain crop with the caption re-set.
@@ -42,3 +43,4 @@
 - 2026-10-06: realism pass on #02–#14 (NBP 4k, edit-style, window views pinned crisp), 52 cr. Layout held on all 13. #01 is a real photo, so no pass. `deliver/` = realism versions, `deliver-v1-no-realism/` = previous set.
 - 2026-10-06: Hunter asked for a video. Chose Kling 3.0 Pro (12.5 cr / 5s clip), no music (he adds it in FCP). Test #03 pool push-in was smooth and stable. Batch of 13 launched. Edit: ~45s 9:16 reel with crossfades → `video/`.
 - 2026-10-06: clips done (#12 hit a Higgsfield 503 on the first run and was retried). Reel `video/woomala-reel-9x16.mp4`: 44s, 1080×1920, 24fps, silent, 14 × 3.6s with 0.5s crossfades. Order: tower → street → living → dining → kitchen → yoga → gym → boardroom → rooftop dining → pools → river → drone view → sunset. Trimmed to 3.6s to drop end-of-clip drift (#05 chair, #14 curtain). mp4s are git-ignored (60MB).
+- 2026-10-06: Hunter wanted an upscale "in freepik". Magnific video upscale quoted ~2,300 cr per 5s clip (~32k for 14), so I didn't run it. Higgsfield Topaz video 2160p: ~5 cr/clip (no estimate API; measured via the balance, 550→475). All 14 clips → 2160×3840 (`video/clips-4k-named/`), reel re-cut in 4K `video/woomala-reel-9x16-4k.mp4` (44s, 176MB). Higgsfield balance now 475 cr.

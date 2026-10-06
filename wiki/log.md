@@ -1087,3 +1087,4 @@ Swept 50 construction keywords, built a 42-product shareable list for Hunter's m
 ## [2026-10-06] ingest | Woomala St 9:16 reframe: 14 images delivered; pad-canvas + NBP 4k + original pasted back 1:1 (88 Higgsfield cr; 50 Magnific cr wasted on Ideogram expand). Higgsfield CLI → 1.1.26, skills synced
 ## [2026-10-06] ingest | Woomala 9:16 round 2: #11 tower off-frame re-roll, realism pass on 13 (NBP edit-style; Seedream re-composed so dropped), total 149 Higgsfield cr
 ## [2026-10-06] ingest | Woomala 9:16 reel: 14 Kling 3.0 Pro clips (175 cr) cut into a 44s silent reel; job total 324 Higgsfield cr
+## [2026-10-06] ingest | Woomala clips + reel upscaled to 4K via Higgsfield Topaz (~5 cr/clip, 75 cr); Magnific video upscale rejected (~2.3k cr/clip). Job total 399 Higgsfield cr

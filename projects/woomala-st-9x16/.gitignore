@@ -8,3 +8,5 @@ __pycache__/
 real/
 video/clips/
 video/*.mp4
+video/clips-4k/
+video/clips-4k-named/

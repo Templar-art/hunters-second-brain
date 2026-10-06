@@ -26,6 +26,8 @@ updated: 2026-10-06
 ## Reel
 Kling 3.0 Pro image-to-video on all 14 finals (5s, 9:16, sound off, 12.5 cr each = 175 cr). The prompt is one camera move + small natural motion + "architecture stays exactly the same". Kling held the geometry on 14/14; some clips drift in the last ~1.5s, so cut at 3.6s. Cut with ffmpeg xfade into a 44s silent reel (Hunter adds music in FCP): `video/woomala-reel-9x16.mp4`.
 
+**4K upscale:** Higgsfield `topaz_video --resolution 2160p` costs ~5 cr per 5s clip (no cost estimate, measure from the balance). Cleaner edges, nothing invented. Magnific/Freepik video upscale is ~2,300 cr per 5s clip, never worth it for this. Upscale the clips, then re-cut the reel locally, so the reel isn't paid for twice.
+
 ## What failed
 - **Magnific `images_expand` (Ideogram mode), 50 cr:** it treated the long prompt as text to draw and filled the new bands with fake UI and gibberish. Classic mode is 10 cr but untested.
 - **NBP with the raw landscape ref + 9:16:** reframed or zoomed 6 of 13 renders (the street entry became a shot of the upper floors), so paste-back couldn't line up. Pre-padding fixed it 8/8.
@@ -33,7 +35,7 @@ Kling 3.0 Pro image-to-video on all 14 finals (5s, 9:16, sound off, 12.5 cr each
 - **Tone-matching a bad seam** (#03 paving) didn't fix a stone-scale mismatch; a padded re-roll did.
 
 ## Cost
-324 Higgsfield cr (reframe 88, #11 redo 4, realism tests 5, realism batch 52, reel 175) + 50 Magnific cr (wasted). Working method: ~4 cr per image to reframe + 4 cr for the realism pass.
+399 Higgsfield cr (reframe 88, #11 redo 4, realism tests 5, realism batch 52, reel 175, Topaz 4K 75) + 50 Magnific cr (wasted). Working method: ~4 cr per image to reframe + 4 cr for the realism pass.
 
 ## Related
 [[higgsfield-pipelines]] · [[cva-architects]] (same render-enhance family) · [[10x-scroll-build]] (Salisbury NBP stills)
