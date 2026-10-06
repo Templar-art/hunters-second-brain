@@ -3,7 +3,7 @@
 - **Client:** TBC (12-16 Woomala Street development, architect renders)
 - **Brief:** 14 landscape renders → 9:16 vertical. Use AI outpaint. Original render must stay untouched (no distortion).
 - **Method:** Higgsfield Nano Banana Pro (`nano_banana_2`, 4k, 9:16, render as image ref, prompt names every element + what continues above/below). Then the original pixels are pasted back 1:1 over the AI frame (`composite.py`) with a 10px seam feather.
-- **Status:** DELIVERED 2026-10-06
+- **Status:** DELIVERED 2026-10-06 (stills + reel)
 
 ## Log
 - 2026-10-06: free side-crops made (`crop-9x16/`). Hunter rejected them; wants AI expansion instead.
@@ -26,7 +26,9 @@
 | Realism test #04 Seedream 4.5 (FAIL: re-composed the room) | 1 |
 | Realism test #04 NBP edit-style (PASS: layout held) | 4 |
 | Realism pass 13 × NBP 4k (#02–#14, incl. #04 redo w/ crisp views) | 52 |
-| **Total** | **50 Magnific + 149 Higgsfield** |
+| Video: Kling 3.0 Pro test #03, 5s 9:16 | 12.5 |
+| Video: Kling 3.0 Pro × 13 clips | 162.5 |
+| **Total** | **50 Magnific + 324 Higgsfield** |
 
 ## Batch result (2026-10-06)
 - PASS (original pasted back 1:1, seams clean): #03 #04 #06 #07 #12 #13 #14 → `deliver/`. #01 is a plain crop with the caption re-set.
@@ -38,3 +40,5 @@
 - 2026-10-06: #03 bottom seam showed a paving scale/tone line → re-rolled on padded canvas, 4 cr, clean. Heavy intermediates (nbp/, nbp2/, clean/, padded/, final/) git-ignored; deliver/ is the source of truth.
 - 2026-10-06: Hunter feedback: #11 apartment too small → re-rolled, tower now runs off frame top. Wants realism passes (sun etc) on the whole image. Seedream 4.5 full-frame on a 9:16 composite re-composed the room (fail). NBP 4k with edit-style wording ('edit into a real photograph, keep composition, change only light') held the layout. Awaiting go on the other 13.
 - 2026-10-06: realism pass on #02–#14 (NBP 4k, edit-style, window views pinned crisp), 52 cr. Layout held on all 13. #01 is a real photo, so no pass. `deliver/` = realism versions, `deliver-v1-no-realism/` = previous set.
+- 2026-10-06: Hunter asked for a video. Chose Kling 3.0 Pro (12.5 cr / 5s clip), no music (he adds it in FCP). Test #03 pool push-in was smooth and stable. Batch of 13 launched. Edit: ~45s 9:16 reel with crossfades → `video/`.
+- 2026-10-06: clips done (#12 hit a Higgsfield 503 on the first run and was retried). Reel `video/woomala-reel-9x16.mp4`: 44s, 1080×1920, 24fps, silent, 14 × 3.6s with 0.5s crossfades. Order: tower → street → living → dining → kitchen → yoga → gym → boardroom → rooftop dining → pools → river → drone view → sunset. Trimmed to 3.6s to drop end-of-clip drift (#05 chair, #14 curtain). mp4s are git-ignored (60MB).

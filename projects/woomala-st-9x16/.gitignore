@@ -6,3 +6,5 @@ clean/
 final/
 __pycache__/
 real/
+video/clips/
+video/*.mp4
