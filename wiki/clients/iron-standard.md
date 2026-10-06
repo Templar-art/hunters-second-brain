@@ -164,6 +164,12 @@ token back to a light correction once the real shoot is graded. Also replaced th
 quote "Orange is the accent, never the whole room" (internal guideline language leaking into
 visitor copy) with the strategy's own "clean, engineered and tactile" wording.
 
+**Equipment brands in photos are fine (Hunter, 7 Oct 2026).** ELEIKO legible on the hero plates
+is not a problem: it's a gym, and equipment carries its maker's name. The strategy's "no named
+equipment brands" rule applies to copy claims, not to what's printed on plates in a photo. Stop
+flagging it. Another *gym's* branding in a photo (e.g. "mk healthhub" on dumbbells in
+`detail-b.jpg`) is a different case: it can read as borrowing another facility's photos.
+
 ## Open items before go-live
 
 1. **Deploy the enquiry handler** in the client's Google account and paste the Web App URL
