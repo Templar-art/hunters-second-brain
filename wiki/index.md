@@ -34,6 +34,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])
 
 ## Projects
+- [[woomala-st-9x16-reframe]] — 14 Woomala St renders → 9:16 via pad-canvas + Nano Banana Pro + 1:1 paste-back (88 cr); method for any render reframe
 - [[lead-gen-engine]] — ads + landing pages for MVX, CVA and 10x itself; per-niche strategy, 3 pages built 28 Jul
 - [[10x-ig-repositioning]] — own-brand IG overhaul: credit loop, premium kit, craft series
 - [[10x-social-engine]] — unified graphics engine (tenx.py), gap audit, content-flow SOPs, reel + ad formats

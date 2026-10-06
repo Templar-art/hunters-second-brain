@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [ai-generation, workflow, higgsfield, magnific]
-updated: 2026-07-10
+updated: 2026-10-06
 ---
 
 # Higgsfield Pipelines (AI generation routing)
@@ -21,6 +21,7 @@ How 10x routes real-estate AI image/video work. Full KB with T1–T10 prompt tem
 ## The two pipelines — route before generating
 1. **Full-frame generative** (Higgsfield generate / Magnific reimagine / Seedream) — interiors, staging, renders, tight exteriors.
 2. **Masked inpaint** (Freepik Magnific Retouch / Higgsfield `/image-editing`) — any targeted edit on a detail-heavy exterior: sky, declutter, object removal.
+3. **Aspect reframe / outpaint** (e.g. landscape render → 9:16): pad the original onto a grey canvas at the target ratio yourself → Nano Banana Pro 4k fills only the bands → paste the original back 1:1. Never feed the raw landscape ref with a new ratio (NBP reframes ~half the time), and never use Magnific expand in Ideogram mode with a long prompt (it draws the text). Real photos: anchor to an edge so only sky gets added. See [[woomala-st-9x16-reframe]].
 
 ❌ **Never run full-frame on a drone wide** — it regenerates the ground and wrecks fine detail.
 ❌ **Never full-frame-generate real photos** — faithful only on renders; real photos get Topaz upscale (auto-memory `feedback-generate-vs-real-photos`).

@@ -1083,3 +1083,5 @@ Swept 50 construction keywords, built a 42-product shareable list for Hunter's m
 ## [2026-10-05] query | Day trading + AI-assisted trading research → concepts/day-trading-research
 ## [2026-10-06] ingest | Bebita AI product shots: 50 images for 25 colourways (3,675 credits), stock now 336 pcs / 26 products
 ## [2026-10-06] ingest | Bebita AI shot redo: 13 shots, 975 credits (V-back waistbands, scrunch back views, blue shades)
+
+## [2026-10-06] ingest | Woomala St 9:16 reframe: 14 images delivered; pad-canvas + NBP 4k + original pasted back 1:1 (88 Higgsfield cr; 50 Magnific cr wasted on Ideogram expand). Higgsfield CLI → 1.1.26, skills synced
