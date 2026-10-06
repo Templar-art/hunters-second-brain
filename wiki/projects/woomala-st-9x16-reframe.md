@@ -18,6 +18,11 @@ updated: 2026-10-06
 4. **Paste the original back 1:1** over the AI frame (`composite.py` auto-aligns, 16–70px seam feather). Every original pixel survives, and the AI only owns the new bands.
 5. Real photo (#01): anchor it to the **bottom** edge so the AI only adds sky. A bottom seam through real rooftops can't be blended.
 
+## Realism pass (Hunter: "needs realism passes like sun")
+- Run on the finished 9:16 composite, whole frame. **Nano Banana Pro 4k with edit-style wording** ("Edit this image into a real photograph. Keep the exact same composition… change only the realism and light") held the layout on 13/13. Pin window views "crisp, clear, not hazy, not blown out", or NBP washes them out.
+- **Seedream 4.5 fails here:** given a scene description, it re-composed the boardroom with a new angle and a different table.
+- #11 feedback: the AI-built tower was too short. Prompt the building to run off the top of the frame with no roofline.
+
 ## What failed
 - **Magnific `images_expand` (Ideogram mode), 50 cr:** it treated the long prompt as text to draw and filled the new bands with fake UI and gibberish. Classic mode is 10 cr but untested.
 - **NBP with the raw landscape ref + 9:16:** reframed or zoomed 6 of 13 renders (the street entry became a shot of the upper floors), so paste-back couldn't line up. Pre-padding fixed it 8/8.
@@ -25,7 +30,7 @@ updated: 2026-10-06
 - **Tone-matching a bad seam** (#03 paving) didn't fix a stone-scale mismatch; a padded re-roll did.
 
 ## Cost
-88 Higgsfield cr + 50 Magnific cr (wasted). The working method costs about 4 cr per image.
+149 Higgsfield cr (reframe 88, #11 redo 4, realism tests 5, realism batch 52) + 50 Magnific cr (wasted). Working method: ~4 cr per image to reframe + 4 cr for the realism pass.
 
 ## Related
 [[higgsfield-pipelines]] · [[cva-architects]] (same render-enhance family) · [[10x-scroll-build]] (Salisbury NBP stills)
