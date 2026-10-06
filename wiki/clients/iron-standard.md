@@ -2,7 +2,7 @@
 type: client
 tags: [web-client, website, gym, oslo, pre-launch]
 status: Six-page website built 22 Sep 2026 against the approved strategy doc, in projects/ironstandard-site/, pushed to main. The waitlist scope is dead: the strategy removes it entirely and makes an enquiry the primary action. Outstanding before launch = enquiry endpoint deployment, Anthony's founder copy, legal copy, real photography.
-updated: 2026-09-29
+updated: 2026-10-07
 ---
 
 # Iron Standard
@@ -153,6 +153,16 @@ gaps did not, all fixed:
   "Central Oslo" softened to "Oslo" since the location is unapproved.
 - **Journeys** (p18): Coaching links to `contact.html?type=coaching|trainer|physiotherapy`,
   which preselects the route.
+
+## Unified photo grade (7 Oct 2026)
+
+Every photograph now runs through one `--grade` token: warm monochrome
+(`grayscale(1) sepia(.14) contrast(1.12) brightness(.9)`). The stand-in stock came from many
+sources (purple kit, green light, orange racks) and the mismatch was a big part of the
+"template" read. One grade makes it one shoot and leaves orange to the buttons alone. Swap the
+token back to a light correction once the real shoot is graded. Also replaced the facility pull
+quote "Orange is the accent, never the whole room" (internal guideline language leaking into
+visitor copy) with the strategy's own "clean, engineered and tactile" wording.
 
 ## Open items before go-live
 

@@ -58,6 +58,8 @@
   --statement:clamp(24px, 4.3vw, 50px);     /* pull quote / position statement   */
   --body:clamp(16px, 1.05vw, 18px);
   --eyebrow:clamp(11px, .78vw, 13px);
+
+  --grade:grayscale(1) sepia(.14) contrast(1.12) brightness(.9);
 }
 @media (min-width:1024px){ :root{ --pad:48px; --gap:28px; } }
 
@@ -474,6 +476,7 @@ p:last-child{ margin-bottom:0; }
     align-self:stretch;
   }
   .founder-media img{ height:calc(100% - 32px); aspect-ratio:auto; min-height:520px; }
+  .founder-media figcaption{ padding-left:var(--edge); }
   .founder .mark{ grid-column:7/13; }
   .founder-copy{ grid-column:7/13; margin-top:0; align-self:center; }
 }
@@ -741,8 +744,12 @@ body::after{
 .sec--light{ position:relative; }
 
 /* ---- 2. Photography treatment ------------------------------
-   Slight contrast lift and desaturation pulls the moodboard
-   stock toward one deliberate grade. */
+   One grade for every photograph: warm monochrome. The stand-in
+   imagery comes from many sources (purple kit, green light, orange
+   racks); a single grade makes it read as one shoot, keeps orange
+   for actions only, and echoes the guideline's "soft warm lighting
+   where orange is absent". Swap --grade back to a light correction
+   once the real shoot is graded. */
 .hero-media img,
 .proof-media img,
 .band img,
@@ -751,7 +758,7 @@ body::after{
 .media-l img,
 .alt-row img,
 .founder-media img{
-  filter:contrast(1.06) saturate(.92) brightness(.98);
+  filter:var(--grade);
 }
 
 /* ---- 3. Hung section numerals ------------------------------
