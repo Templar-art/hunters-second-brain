@@ -1099,3 +1099,7 @@ Audited every skill and plugin against upstream. Updated Impeccable 4.3.1 to 4.5
 ## [2026-10-07] query | Iron Standard: polish (impeccable 4.5)
 
 Type converted px to rem (default render identical, now honours text-size settings), repeated colours promoted to tokens and two drifting orange tints unified, mk healthhub photo replaced, theme-color, overflow-x clip, empty template src removed. Audit 4.5 had scored 18/20.
+
+## [2026-10-07] query | Iron Standard: polish, large-text wrapping
+
+Text links and section marks now wrap at 200% text on a 320px screen instead of overflowing (64 page/width/scale combos, zero overflow). Default render unchanged.
