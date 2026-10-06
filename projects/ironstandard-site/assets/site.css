@@ -1018,4 +1018,8 @@ input,textarea,select{ caret-color:var(--orange); }
 .btn:disabled{ pointer-events:none; }
 /* The longest display word ("COMMUNITY.") is 6.23em wide. Below ~362px the
    48px floor no longer fits the column, so size to the word, not the floor. */
-.hero h1,.close h2{ font-size:min(var(--display), calc((100vw - 64px) / 6.4)); }
+.close h2{ font-size:min(var(--display), calc((100vw - 64px) / 6.4)); }
+/* The hero headline sits in a half-width column on split layouts, so size
+   it to that column (container query), not to the viewport. */
+.hero-body{ container-type:inline-size; }
+.hero h1{ font-size:min(var(--display), calc(100cqi / 6.4)); }

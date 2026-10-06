@@ -142,7 +142,7 @@ a Sheets formula.
 reduce min-content, so a single long word still pushes a grid track wider and gets clipped
 by an `overflow:hidden` hero. Use `overflow-wrap:anywhere` plus `min-width:0` on grid
 children, and size the hero to its longest real word (`min(var(--display), calc((100vw -
-64px) / 6.4))`) so small phones shrink the type instead of breaking a word mid-way.
+64px) / 6.4))`, or `100cqi` with `container-type:inline-size` when the headline sits in a split column, since a viewport formula misses that case) so small phones shrink the type instead of breaking a word mid-way.
 
 ## Honesty in a pre-launch build
 
