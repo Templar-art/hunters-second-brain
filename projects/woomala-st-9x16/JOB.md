@@ -22,7 +22,10 @@
 | Re-roll 7 × NBP 4k padded | 28 |
 | Re-roll #01 bottom-anchored | 4 |
 | Re-roll #03 padded (seam fix) | 4 |
-| **Total** | **50 Magnific + 88 Higgsfield** |
+| Re-roll #11, tower off frame top (Hunter: apartment too small) | 4 |
+| Realism test #04 Seedream 4.5 (FAIL: re-composed the room) | 1 |
+| Realism test #04 NBP edit-style (PASS: layout held) | 4 |
+| **Total** | **50 Magnific + 97 Higgsfield** |
 
 ## Batch result (2026-10-06)
 - PASS (original pasted back 1:1, seams clean): #03 #04 #06 #07 #12 #13 #14 → `deliver/`. #01 is a plain crop with the caption re-set.
@@ -32,3 +35,4 @@
 
 **Lesson:** NBP with a raw landscape ref + 9:16 reframes/zooms ~half the time. Pre-padding the ref onto a 9:16 grey canvas locks position (7/7). For real photos, anchor the photo to a frame edge so the AI only fills sky.
 - 2026-10-06: #03 bottom seam showed a paving scale/tone line → re-rolled on padded canvas, 4 cr, clean. Heavy intermediates (nbp/, nbp2/, clean/, padded/, final/) git-ignored; deliver/ is the source of truth.
+- 2026-10-06: Hunter feedback: #11 apartment too small → re-rolled, tower now runs off frame top. Wants realism passes (sun etc) on the whole image. Seedream 4.5 full-frame on a 9:16 composite re-composed the room (fail). NBP 4k with edit-style wording ('edit into a real photograph, keep composition, change only light') held the layout. Awaiting go on the other 13.
