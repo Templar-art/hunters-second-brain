@@ -69,6 +69,15 @@
   --body:clamp(1rem, 1.05vw, 1.125rem);
   --eyebrow:clamp(0.6875rem, .78vw, 0.8125rem);
 
+  /* Vertical rhythm. Each side of a section; two sides meet at every join.
+     The old values reached their max by ~1000px wide (12-18vw slopes) and
+     stacked to 300-430px of nothing between sections on a desktop screen. */
+  --sp-section:clamp(64px, 6.5vw, 104px);
+  --sp-section-tall:clamp(80px, 7.5vw, 120px);   /* deliberate uneven rhythm, kept */
+  --sp-section-tight:clamp(48px, 4.5vw, 72px);
+  --sp-statement:clamp(72px, 7.5vw, 120px);      /* position + close: type-led sections */
+  --sp-mark:clamp(24px, 3vw, 44px);              /* section mark to its content */
+
   --grade:grayscale(1) sepia(.14) contrast(1.12) brightness(.9);
 }
 @media (min-width:1024px){ :root{ --pad:48px; --gap:28px; } }
@@ -132,7 +141,7 @@ a{ color:inherit; }
 .mark{
   display:flex; align-items:center; gap:16px;
   font-size:var(--eyebrow); font-weight:600; letter-spacing:.22em;
-  text-transform:uppercase; color:var(--muted); margin:0 0 clamp(28px,5vw,64px);
+  text-transform:uppercase; color:var(--muted); margin:0 0 var(--sp-mark);
 }
 .mark--dark{ color:var(--muted-dark); }
 .mark::after{ content:""; flex:0 0 56px; height:2px; background:var(--orange); }
@@ -331,7 +340,7 @@ p:last-child{ margin-bottom:0; }
 /* ============================================================
    02 THE POSITION - type only. No image. Maximum negative space.
    ============================================================ */
-.position{ background:var(--black); padding-block:clamp(90px,16vw,200px); }
+.position{ background:var(--black); padding-block:var(--sp-statement); }
 .position-statement{
   font-size:var(--statement);
   font-weight:700; text-transform:uppercase; line-height:1.02; letter-spacing:-.01em;
@@ -349,7 +358,7 @@ p:last-child{ margin-bottom:0; }
    03 THE PROOF - asymmetric split. Stats stack vertically as
    ruled rows. Image bleeds off the right edge.
    ============================================================ */
-.proof{ background:var(--grey-900); padding-block:clamp(80px,13vw,160px); overflow:hidden; }
+.proof{ background:var(--grey-900); padding-block:var(--sp-section); overflow:hidden; }
 .stat{
   display:grid; gap:4px;
   padding:clamp(22px,3vw,30px) 0;
@@ -384,6 +393,11 @@ p:last-child{ margin-bottom:0; }
   .proof-media img{ height:100%; aspect-ratio:auto; min-height:560px; }
   .proof .mark{ grid-column:1/7; }
   .proof-outro{ grid-column:1/7; }
+  /* The band photo follows directly. Instead of a dead strip of padding
+     between two images, the proof photo runs flush down into the band and
+     the copy column keeps its own breathing room. */
+  .proof.sec--tall{ padding-bottom:0; }
+  .proof-copy{ padding-bottom:var(--sp-section); }
 }
 
 /* ============================================================
@@ -408,7 +422,7 @@ p:last-child{ margin-bottom:0; }
    05 WHO TRAINS HERE - offset image pair, different sizes,
    different vertical offsets. Text sits to the side.
    ============================================================ */
-.who{ background:var(--black); padding-block:clamp(80px,13vw,160px); }
+.who{ background:var(--black); padding-block:var(--sp-section); }
 .who-pair{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap); margin-bottom:48px; }
 .who-pair figure{ margin:0; }
 .who-pair img{ width:100%; object-fit:cover; }
@@ -425,20 +439,23 @@ p:last-child{ margin-bottom:0; }
 
 @media (min-width:1024px){
   .who .mark{ grid-column:1/-1; }
-  .who-pair{ grid-column:1/7; grid-template-columns:repeat(2,1fr); margin-bottom:0; }
+  /* The pair takes more of the width and spans both text rows, so the
+     copy and the pull quote sit beside the photographs instead of the
+     quote floating alone under an empty left half. */
+  .who-pair{ grid-column:1/8; grid-row:2/4; grid-template-columns:repeat(2,1fr); margin-bottom:0; }
   .who-pair .fig-a{ margin-top:0; }
   .who-pair .fig-b{ margin-top:88px; }      /* the offset */
   .who-pair .fig-a img{ aspect-ratio:3/4; }
   .who-pair .fig-b img{ aspect-ratio:4/5; }
-  .who-copy{ grid-column:8/12; align-self:center; }
-  .who-pull{ grid-column:8/13; margin-top:clamp(48px,6vw,72px); }
+  .who-copy{ grid-column:9/13; grid-row:2; align-self:end; }
+  .who-pull{ grid-column:9/13; grid-row:3; align-self:start; margin-top:clamp(40px,4vw,56px); }
 }
 
 /* ============================================================
    06 UNDER ONE ROOF - the deliberate light section.
    Numbered editorial index. No cards. No icons.
    ============================================================ */
-.support{ background:var(--white); color:var(--black); padding-block:clamp(80px,13vw,160px); }
+.support{ background:var(--white); color:var(--black); padding-block:var(--sp-section); }
 .support h2{ margin-bottom:clamp(32px,5vw,56px); }
 .support-intro{ color:var(--muted-dark); }
 .index-row{
@@ -469,7 +486,8 @@ p:last-child{ margin-bottom:0; }
 /* ============================================================
    07 THE FOUNDER - the mirror of 03. Image bleeds off the LEFT.
    ============================================================ */
-.founder{ background:var(--grey-900); padding-block:clamp(80px,13vw,160px); overflow:hidden; }
+.founder{ background:var(--grey-900); padding-block:var(--sp-section); overflow:hidden; }
+.founder-media{ max-width:30rem; }   /* stacked layouts: a portrait, not a full-width wall on tablets */
 .founder-media img{ width:100%; aspect-ratio:4/5; object-fit:cover; }
 .founder-media figcaption{
   margin-top:0.75rem; font-size:0.8125rem; letter-spacing:.02em;
@@ -481,21 +499,25 @@ p:last-child{ margin-bottom:0; }
 .founder-copy .textlink{ margin-top:28px; }
 
 @media (min-width:1024px){
+  /* A fixed 4:5 portrait. It used to stretch to the grid row and fall back
+     to the source's tall 308x536 shape, rendering over 1,000px tall with the
+     copy centred halfway down. Now the copy sits level with its foot. */
   .founder-media{
-    grid-column:1/6; grid-row:1/3;
+    grid-column:1/5; grid-row:1/3;
     margin-left:calc(-1 * var(--edge));
-    align-self:stretch;
+    max-width:none;
+    align-self:start;
   }
-  .founder-media img{ height:calc(100% - 32px); aspect-ratio:auto; min-height:520px; }
+  .founder-media img{ height:auto; aspect-ratio:4/5; }
   .founder-media figcaption{ padding-left:var(--edge); }
-  .founder .mark{ grid-column:7/13; }
-  .founder-copy{ grid-column:7/13; margin-top:0; align-self:center; }
+  .founder .mark{ grid-column:6/13; grid-row:1; align-self:start; }
+  .founder-copy{ grid-column:6/12; grid-row:2; margin-top:0; align-self:end; padding-bottom:40px; }
 }
 
 /* ============================================================
    08 THE CLOSE - oversized type, one dominant action.
    ============================================================ */
-.close{ background:var(--black); padding-block:clamp(90px,15vw,190px); text-align:left; }
+.close{ background:var(--black); padding-block:var(--sp-statement); text-align:left; }
 .close h2{ font-size:var(--display); }
 .close p{ margin-top:28px; color:var(--muted); max-width:46ch; }
 .close .hero-actions{ margin-top:clamp(32px,5vw,48px); }
@@ -536,8 +558,8 @@ p:last-child{ margin-bottom:0; }
 
 .page-head{
   background:var(--black);
-  padding-top:clamp(120px,17vw,190px);
-  padding-bottom:clamp(48px,8vw,90px);
+  padding-top:clamp(120px,11vw,168px);   /* clears the fixed header */
+  padding-bottom:clamp(40px,4.5vw,64px);
 }
 .page-head h1{ font-size:var(--display-page); margin-top:1.125rem; }
 .page-head .lede{ margin-top:24px; }
@@ -547,12 +569,12 @@ p:last-child{ margin-bottom:0; }
 }
 
 /* section shell reused across inner pages */
-.sec{ padding-block:clamp(72px,12vw,150px); }
+.sec{ padding-block:var(--sp-section); }
 .sec--dark{ background:var(--black); }
 .sec--raise{ background:var(--grey-900); }
 .sec--light{ background:var(--white); color:var(--black); }
 .sec--light .lede{ color:var(--ink-2-dark); }
-.sec--tight{ padding-block:clamp(56px,9vw,110px); }
+.sec--tight{ padding-block:var(--sp-section-tight); }
 
 .sec-head{ margin-bottom:clamp(32px,5vw,56px); }
 @media (min-width:1024px){
@@ -589,7 +611,7 @@ p:last-child{ margin-bottom:0; }
 }
 
 /* ---- alternating asymmetric rows --------------------------- */
-.alt-row{ padding-block:clamp(44px,7vw,84px); border-top:1px solid var(--rule); }
+.alt-row{ padding-block:clamp(40px,4.5vw,64px); border-top:1px solid var(--rule); }
 .alt-row img{ width:100%; aspect-ratio:4/5; object-fit:cover; }
 .alt-copy h2{ margin:0 0 1rem; font-size:clamp(1.375rem,2.6vw,2.125rem); }
 .alt-copy p{ color:var(--ink-2); }
@@ -915,7 +937,7 @@ html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
 
 /* ---- 8. Uneven vertical rhythm ------------------------------
    Equal spacing down a page is itself a template tell. */
-.sec--tall{ padding-block:clamp(100px,18vw,230px); }
+.sec--tall{ padding-block:var(--sp-section-tall); }
 
 /* ---- 9. Image reveal ----------------------------------------
    A settle, not a performance. Within the 200-300ms rule. */

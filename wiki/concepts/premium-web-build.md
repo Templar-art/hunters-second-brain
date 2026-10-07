@@ -103,6 +103,17 @@ it never performs.
 If the hero image is fixed rather than scrolling, every section after it needs an opaque
 background wrapper or the page appears to break. Learned on the earlier Iron Standard build.
 
+## Desktop spacing is its own scale
+
+Section padding written as `clamp(80px, 13vw, 160px)` hits its max by ~1000px wide and then
+just sits there; two of those meet at every join, so a desktop page fills with 300-430px
+bands of nothing. Iron Standard's client read it as "only optimised for phone" (7 Oct 2026).
+Use spacing tokens with shallow slopes (`clamp(64px, 6.5vw, 104px)` standard, a slightly
+taller and a tighter step for rhythm), and measure it: walk every text and image rect, merge
+the y-intervals, and list full-width empty bands over ~200px at 1440 and 1920. Also give
+portraits a fixed aspect ratio: an image left to size from a tall source (308x536) in a
+stretched grid cell renders 1,000px+ tall with its copy centred halfway down.
+
 ## Verify by measurement, not by screenshot
 
 The in-app preview pane produces **stale, corrupted composites when a page with a fixed
