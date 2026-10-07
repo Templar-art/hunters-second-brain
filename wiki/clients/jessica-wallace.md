@@ -2,7 +2,7 @@
 type: client
 tags: [client, real-estate, staging, harcourts]
 status: active
-updated: 2026-09-17
+updated: 2026-10-07
 ---
 
 # Jessica Wallace — Harcourts Property Hub
@@ -37,5 +37,18 @@ Also confirmed: **a piece assigned to an occupied wall makes the model delete th
 **Open limitation:** these models have no depth map — they paint furniture onto a flat image rather than solving the floor plane. Wide real-estate lenses make it worse. Prompt anchors help but don't fully solve it; Hunter finished the set with manual Photoshop transforms and a raw-over-staged composite for a distorted wall. Worth watching for a depth-aware staging tool if this becomes regular work.
 
 **Expectation to set with clients like this:** the mood board is a new build with ocean views; the house is not. Fixtures are locked, so staging delivers *nicely furnished dated home*, not the sheet. Say it before delivery, not after.
+
+## Office staging — 7 Oct 2026
+
+Single extra room: a small office with a white-painted louvre window, frosted glass door, two **built-in** floating oak shelves, polished concrete floor, and an existing oak L-desk with a tan leather chair. Jessica did not like how it was already staged, but Hunter liked the desk — it needed *more*, not replacing.
+
+**Model:** Nano Banana 2.1 (`nano_banana_2_1`, 2 credits at 2k) — first run of it in the vault. Held the exact framing, kept every fixture, square rug, one lamp. Better first-pass fidelity than expected.
+
+**What the job taught us (client rules, apply to all her rooms):**
+- ❌ **No standing plants, none in corners.** Dried stems in a vase on a surface are fine. Overrides greenery-by-default in her Coastal Luxury style.
+- **Replace the existing staging, keep what Hunter says is good.** Built-in shelves are fixtures — lock them by name ("built-in", same timber/size/position); restyle only the props on them.
+- Run 1 (olive tree, armchair + side table, laptop screen toward camera) was rejected: the armchair and plant were too much, and the laptop must face the chair, so the camera sees the plain lid back with no logo.
+- Run 2 (desk + leather chair kept, jute rug, open laptop facing the chair, sage lamp, shelf props in the palette) was the keeper. Remaining nits: rug oversized and cropped by the frame edge, books overlapping the laptop corner.
+- Chair/laptop orientation: name the person's seat and turn the screen to it — models default to screen-to-camera otherwise.
 
 Related: [[staging-rules]], [[higgsfield-pipelines]].

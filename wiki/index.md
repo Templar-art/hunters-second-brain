@@ -22,7 +22,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[bespoke-estate-agents]] — Jason Ward prestige agent; live site (Elementor HTML paste) getting real photos in / fake listings out (4 Aug), source at `projects/bespoke-elementor-source/`; About still a Services duplicate
 - [[belle-property]] — Lot 48 house-into-lot composite; delivered 21 Jul
 - [[cva-architects]] — render enhancement delivered Jun 2026; feasibility-offer landing page built 28 Jul, awaiting Cameron
-- [[jessica-wallace]] — Harcourts Property Hub agent; 9-room "Coastal Luxury" staging redo, 17 Sep — no curtains, Sunburst, five new staging rules came out of it
+- [[jessica-wallace]] — Harcourts Property Hub agent; 9-room "Coastal Luxury" staging redo, 17 Sep — no curtains, Sunburst, five new staging rules came out of it; office added 7 Oct (Nano Banana 2.1, no standing plants)
 - [[jang-studio]] — vendor contact: offshore architectural photo editor
 - [[mvx-electrical]] — web client (Matt); 2 live Google Ads LPs + hot water page; General Electrical *calls* campaign built 10 Aug off the 3 Aug shoot; hot water still blocked on plumbing-licence call
 - [[open-arms-australia]] — web client; NDIS support provider (QLD/NSW/VIC); site header redesigned + handed to Lach 23 Jul

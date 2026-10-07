@@ -1111,3 +1111,7 @@ Client: "feels only optimised for phone". Section padding moved to desktop-scale
 ## [2026-10-07] query | Iron Standard: handoff folder
 
 Built `Desktop/10xVisuals Output/Iron Standard - Handoff/` (website, upload zip, form setup, previews, HANDOFF.md). README brought up to date. Copy of HANDOFF.md kept in the project folder.
+
+## [2026-10-07] query | Jessica Wallace office staging, Nano Banana 2.1
+
+Office restaged in her Coastal Luxury style on `nano_banana_2_1` (2cr/run, 3 runs incl. rejected). New client rules: no standing or corner plants, replace existing staging but keep the desk, laptop faces the chair. First read on 2.1: held framing and fixtures. Logged on [[jessica-wallace]] and [[staging-rules]].
