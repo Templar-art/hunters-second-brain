@@ -25,7 +25,9 @@
     "m2"
    ],
    "settings": {
-    "news_text": "Subscribe for 10% off your first order, plus first word when sizes come back."
+    "news_text": "Subscribe for 10% off your first order, plus first word when sizes come back.",
+    "ig_active": "https://www.instagram.com/bebitaactive/",
+    "ig_swim": "https://www.instagram.com/bebitaswim/"
    }
   },
   "popup": {

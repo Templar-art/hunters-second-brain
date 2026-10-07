@@ -1115,3 +1115,4 @@ Built `Desktop/10xVisuals Output/Iron Standard - Handoff/` (website, upload zip,
 ## [2026-10-07] query | Jessica Wallace office staging, Nano Banana 2.1
 
 Office restaged in her Coastal Luxury style on `nano_banana_2_1` (2cr/run, 3 runs incl. rejected). New client rules: no standing or corner plants, replace existing staging but keep the desk, laptop faces the chair. First read on 2.1: held framing and fixtures. Logged on [[jessica-wallace]] and [[staging-rules]].
+## [2026-10-08] ingest | Bebita went live on the Basic plan: products, stock, theme, BEBITA10, shipping threshold $150; password page still on
