@@ -9,7 +9,7 @@ No build step. Plain HTML, one shared stylesheet, one shared script.
 
 | File | Primary action |
 |---|---|
-| `index.html` | Make an enquiry |
+| `index.html` | Explore the facility |
 | `about.html` | View the facility |
 | `facility.html` | Explore coaching |
 | `coaching.html` | Enquire |
@@ -17,7 +17,10 @@ No build step. Plain HTML, one shared stylesheet, one shared script.
 | `contact.html` | Send enquiry |
 
 Plus four legal stubs (`privacy`, `cookies`, `terms`, `accessibility`) that need
-real copy from legal review before launch.
+real copy from legal review before launch, and a `404.html`.
+
+Primary actions follow the strategy's page table (p19). The header button on
+every page is always "Make an enquiry".
 
 ## Design system
 
@@ -28,6 +31,18 @@ orange is 6.03:1 and passes. Type is TASA Orbiter from Google Fonts.
 
 No two consecutive sections share a layout pattern. That is deliberate and is the
 main thing to preserve when adding pages.
+
+Tokens worth knowing:
+
+- `--grade`: one warm-monochrome treatment applied to every photograph so the
+  stand-in imagery reads as one shoot. Swap it for a light correction once the
+  real shoot is graded.
+- `--sp-section` / `--sp-section-tall` / `--sp-section-tight` / `--sp-statement`:
+  vertical rhythm, scaled for desktop.
+- All type is in `rem`, so it follows a visitor's text-size setting.
+
+Numbered section marks (01, 02...) are a client decision from the approved
+strategy and print guidelines. Design linters flag them; keep them.
 
 ## Local preview
 
@@ -43,10 +58,14 @@ Or `ironstandard-site` in `.claude/launch.json`.
    notes are visible on the page where this is outstanding.
 3. Replace all imagery. Everything in `assets/` is low-resolution moodboard
    material from the brand guidelines, standing in until the facility is
-   photographed.
+   photographed. Equipment brand names visible on plates are fine; another
+   gym's branding is not.
 4. Legal copy for the four stub pages.
 5. Restore the location block in `contact.html` (currently commented out) once
    the address is approved for publication.
+
+6. Confirm the domain: `og:url`, canonical tags and `sitemap.xml` assume
+   `https://ironstandard.no/`.
 
 ## Not on this site, deliberately
 

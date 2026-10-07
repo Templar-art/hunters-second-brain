@@ -1107,3 +1107,7 @@ Text links and section marks now wrap at 200% text on a 320px screen instead of 
 ## [2026-10-07] query | Iron Standard: desktop spacing pass
 
 Client: "feels only optimised for phone". Section padding moved to desktop-scaled tokens (joins 300-430px down to ~190px, pages 600-900px shorter), proof photo runs flush into the band, Who-trains-here and Founder recomposed, founder portrait fixed at 4:5 and capped on tablets. 96 combos regression-clean. Lesson on [[premium-web-build]].
+
+## [2026-10-07] query | Iron Standard: handoff folder
+
+Built `Desktop/10xVisuals Output/Iron Standard - Handoff/` (website, upload zip, form setup, previews, HANDOFF.md). README brought up to date. Copy of HANDOFF.md kept in the project folder.
