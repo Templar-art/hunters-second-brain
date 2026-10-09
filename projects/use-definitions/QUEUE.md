@@ -20,7 +20,7 @@ Skipped:
 | 08 | saas | Definition | v1 boss-passed, sent |
 | 09 | gpu | Definition | v1 boss-passed, sent |
 | 10 | cpu | Definition | v1 boss-passed, sent |
-| 11 | git | Definition | |
+| 11 | git | Definition | v1 boss-passed, sent |
 | 12 | docker | Definition | |
 | 14 | webhooks | Definition | |
 | 15 | state-management | Definition | |
