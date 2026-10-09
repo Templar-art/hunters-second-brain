@@ -31,6 +31,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 - [[oneill-group]] — client; full rebrand + website. Identity landed 2026-08 as **O'Neill Property** (Sage Grey/Basalt/Stone/Deep Sage, Sinhala MN + Inter) — the earlier 10x-palette brief on that page is superseded
 - [[iron-standard]] — Anthony McCoy, 800m² strength facility in Oslo. Six-page enquiry-led site built 22 Sep 2026 from the approved strategy doc; the waitlist scope is dead. Build discipline on [[premium-web-build]]
+- [[use-software]] — Gold Coast/Brisbane tech consultancy (Sam Bruhn, Founder & CEO); "Definitions" talking-head series; CRUD episode v5 in review 9 Oct, reusable template built
 - [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])
 
 ## Projects
@@ -50,6 +51,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
 - [[one-percent-standard-store]] — Hunter's own white-label Shopify store (100 units in hand, self-fulfilled); Claude connected via Admin API 29 Sep
 - [[bebita-lifestyle-store]] — **Bebita Collective** (renamed from Lifestyle 30 Sep): sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
+- [[use-definitions-series]] — USE Software Definitions episodes: CRUD v5 (0cr, local canvas render) + `projects/use-definitions/` template; lesson: get the client's own past episodes before styling
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
 
 ## Concepts

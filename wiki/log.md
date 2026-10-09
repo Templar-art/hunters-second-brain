@@ -1132,3 +1132,11 @@ Four 10-room style boards (Options 01–04) on Magnific GPT 2.5 Sunburst, 720cr,
 ## [2026-10-09] ingest | Deep research round 2: AU furniture houses
 
 Jardan/Cosh Living products mapped to ZED directions; every AU staging price-lift stat refuted, so none go in client copy. Appended to [[deep-research-2026-10-luxury-staging-prompting]].
+
+## [2026-10-09] harvest | USE Software Definitions: CRUD episode + template
+
+Five rounds on the CRUD talking head. v1/v2 copied the wrong reference (an Empire Technologies ad); v3–v5 matched USE's own MCP/API episodes. Built a reusable episode template at `projects/use-definitions/`. New pages: [[use-software]], [[use-definitions-series]].
+
+## [2026-10-09] harvest | USE: CRUD v6 + bus case study v1 from the template
+
+CRUD rebuilt through `projects/use-definitions/` (v6). The new 22 Oct clip (bus on-time tracking story) became `episodes/bus-network` v1. SFX engine upgraded to stereo with reverb. Logged on [[use-definitions-series]].
