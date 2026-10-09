@@ -30,4 +30,4 @@ Skipped:
 | 19 | scope-myth | Q&A | v1 boss-passed, sent |
 | 20 | promises | Q&A | v1 boss-passed, sent |
 | 21 | ask-the-vision | Q&A | v1 boss-passed, sent |
-| 23 | handover | Q&A | |
+| 23 | handover | Q&A | v1 boss-passed, sent |
