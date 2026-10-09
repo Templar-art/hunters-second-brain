@@ -9,7 +9,7 @@ Skipped:
 | # | Episode | Type | Status |
 |---|---|---|---|
 | 03 | cli | Definition | v1 sent |
-| 04 | json | Definition | |
+| 04 | json | Definition | v1 sent |
 | 05 | sdk | Definition | |
 | 06 | ui-ux | Definition | |
 | 07 | ide | Definition | |
