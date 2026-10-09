@@ -15,7 +15,7 @@ Client: [[use-software]]. Brief from Hunter, 9 Oct 2026: take a raw talking-head
 
 **Template:** `projects/use-definitions/`. See its README.
 
-**Cost:** 0 credits. Everything runs locally: Chrome canvas driven by Playwright, ffmpeg, faster-whisper for word timings, rembg for the person cut-out, and sound effects synthesised in Python. Magnific music/SFX were quoted (80cr per 30s track, 20cr per SFX type ×4 takes) but not run.
+**Cost:** 120 credits (Magnific SFX library, 9 Oct, approved by Hunter); everything else is 0. Everything runs locally: Chrome canvas driven by Playwright, ffmpeg, faster-whisper for word timings, rembg for the person cut-out, and sound effects synthesised in Python. Magnific music/SFX were quoted (80cr per 30s track, 20cr per SFX type ×4 takes) but not run.
 
 ## The series look (what "very similar" means)
 Measured from the MCP/API reference episodes:
@@ -41,13 +41,13 @@ Measured from the MCP/API reference episodes:
 - **Draw the talking head inside the canvas** (pre-extracted frames plus mattes) instead of compositing graphics over video in ffmpeg. That unlocked text behind the head, inset/circle crops, zoom cuts and true motion blur (8 subframes, full-frame shutter).
 - **SFX cues should come from the components**, so the sound always matches the motion. That's built into the template.
 - **Don't let an episode repeat the same three moves.** v1 of the bus episode reused rise-in, shards and panel for every beat, and Hunter asked for different animations and layouts. Pick a different move and layout per beat from the kit.
-- **SFX engine v2** (`tools/sfx.py`): stereo, layered transients, room reverb, plus risers, chimes and an end-card swell. Still synthesised; a Magnific SFX pack is the upgrade path (about 120cr).
+- **SFX engine v2** (`tools/sfx.py`): stereo, layered transients, room reverb, plus risers, chimes and an end-card swell. Upgraded the same day with a real sample library: 6 sound types × 4 takes on Magnific, 120cr, in `sfx-lib/` and reused by every episode. Magnific bills SFX at 5cr per take-second, so 1s takes keep a pack cheap.
 - **Mattes only where needed.** A full-clip person matte runs about 1s per frame. Pass second ranges to `prep.sh` so only the title and behind-the-head shots get cut out.
 - Source clips end a few frames after the last word. The template ping-pongs the final 12 frames so Sam never freezes under the end-of-clip graphics.
 
 ## Open
 - Bus episode: the trip-log rows, before/after bar lengths, trend line and "ONGOING" tag are illustrative, not client data. Check them with USE. The end-card title "Case Study" is a placeholder until they confirm the series name.
-- Music bed: none yet. Waiting for the series track, or a go-ahead to spend Magnific credits.
+- Music bed: none yet (Magnific music is 80cr per 30s track).
 - USE to approve the invented content: table names, `api.example.com`, and "say: see · are · you · dee".
 
 ## Links

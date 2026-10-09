@@ -8,6 +8,7 @@ import json, sys, wave
 import numpy as np
 
 ep, DUR = sys.argv[1], float(sys.argv[2]); SR = 48000
+import glob, os
 N = int(SR * DUR) + SR
 dry = np.zeros((N, 2)); wet = np.zeros((N, 2)); rs = np.random.default_rng(5)
 
@@ -84,23 +85,54 @@ def swell(d=1.5):
     pad = sum(np.sin(2 * np.pi * f * t + rs.random() * 6) for f in (110, 164.8, 220, 329.6)) / 4
     return (pad * .5 + onepole(rs.standard_normal(n), np.full(n, .02)) * .8) * np.sin(np.pi * u) ** 2
 
+# ---------- sample library (sfx-lib/<type>_N.wav, Magnific/ElevenLabs takes) ----------
+# Takes are trimmed to their first transient, normalised, and skipped if near-silent.
+# Placement anchor per type: 'onset' (hits) or 'peak' (whoosh, riser).
+LIB, ANCHOR = {}, {"whoosh": "peak", "riser": "peak"}
+for f in sorted(glob.glob(os.path.join(os.path.dirname(__file__), "..", "sfx-lib", "*.wav"))):
+    kind = os.path.basename(f).rsplit("_", 1)[0]
+    w = wave.open(f); x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float).reshape(-1, w.getnchannels()) / 32768
+    m = x.mean(1); pk = np.abs(m).max()
+    if pk < 10 ** (-30 / 20): continue                                  # dead take
+    on = int(np.argmax(np.abs(m) > pk * .1))
+    if ANCHOR.get(kind) != "peak": m = m[max(0, on - int(.004 * SR)):]
+    m = m / pk; n = len(m); fade = int(.03 * SR); m[-fade:] *= np.linspace(1, 0, fade)
+    LIB.setdefault(kind, []).append(m)
+def sample(kind, rate=1.0):
+    """Random take of kind, pitch-shifted by rate (resample). Returns (signal, anchor offset in seconds)."""
+    takes = LIB.get(kind)
+    if not takes: return None, 0
+    m = takes[rs.integers(len(takes))]
+    idx = np.arange(0, len(m) - 1, rate); m = np.interp(idx, np.arange(len(m)), m)
+    a = int(np.argmax(np.abs(m))) / SR if ANCHOR.get(kind) == "peak" else 0
+    return m, a
+def placeS(kind, t, gain, pan, send, rate=None, fallback=None):
+    """Place a library sample (anchored) or the synth fallback."""
+    m, a = sample(kind, rate or (.94 + rs.random() * .12))
+    if m is None: place(t, fallback, gain, pan, send); return
+    place(t - a, m, gain, pan, send)
+
 for c in json.load(open(f"{ep}/build/cues.json")):
     t, k, g = c["t"], c["type"], c.get("gain")
     pan = c.get("pan", (rs.random() - .5) * .5)
-    if k == "whoosh": place(t, whoosh(c.get("d", .45), c.get("bright", .25)), (g or .4) * 1.1, pan, .25)
-    elif k == "pop": place(t, pop(c.get("f", 900), c.get("d", .07)), (g or .2) * 1.2, pan, .2)
-    elif k == "click": place(t, click(c.get("f", 2400)), g or .3, pan, .12)
-    elif k == "thud": place(t, thud(c.get("f", 55), c.get("d", .4)), g or .4, 0, .3)
+    if k == "whoosh":                                   # synth peaks at d/2 → anchor sample peak there
+        d = c.get("d", .45); placeS("whoosh", t + d / 2, (g or .4) * .9, pan, .2, rate=1.0 / max(.35, min(1.4, d / .5)) ** .5,
+                                    fallback=whoosh(d, c.get("bright", .25)))
+    elif k == "pop": placeS("pop", t, (g or .2) * 1.1, pan, .18, rate=.85 + c.get("f", 900) / 3000, fallback=pop(c.get("f", 900), c.get("d", .07)))
+    elif k == "click": placeS("click", t, (g or .3) * 1.1, pan, .1, fallback=click(c.get("f", 2400)))
+    elif k == "thud": placeS("thud", t, (g or .4) * 1.1, 0, .25, rate=.9 + c.get("f", 55) / 600, fallback=thud(c.get("f", 55), c.get("d", .4)))
     elif k == "typing":
         for i in range(int(c["n"])): place(t + i / c.get("cps", 30) + rs.random() * .008, key(), (g or .28) * .55, pan + (rs.random() - .5) * .2, .08)
     elif k == "ticks":
-        for i in range(int(c["n"])): place(t + i * c.get("gap", .035), click(2000 + i * 120), (g or .4) * .6, pan, .1)
+        for i in range(int(c["n"])): placeS("click", t + i * c.get("gap", .035), (g or .4) * .55, pan, .1, rate=1 + i * .03, fallback=click(2000 + i * 120))
+    elif k == "glass" and "glass" in LIB:              # one real shatter replaces the cloud of synth ticks
+        placeS("glass", t, min(.6, (g or .05) * c["n"] * .25), (rs.random() - .5) * .4, .3)
     elif k == "glass":
         for _ in range(int(c["n"])): place(t + rs.random() * c.get("span", .4), glass(2200 + rs.random() * 2400), (g or .05) * 2.2, (rs.random() - .5) * 1.6, .35)
     elif k == "shards":
-        place(t, whoosh(.35, .35), .25, pan, .25)
-        for i in range(int(c["n"])): place(t + .05 + i * .03, glass(1600 + rs.random() * 1800), .1, (rs.random() - .5) * 1.4, .3)
-    elif k == "riser": place(t - c.get("d", .8), riser(c.get("d", .8)), g or .25, 0, .3)
+        placeS("whoosh", t + .17, .22, pan, .2, rate=1.3, fallback=whoosh(.35, .35))
+        for i in range(int(c["n"])): place(t + .05 + i * .03, glass(1600 + rs.random() * 1800), .08, (rs.random() - .5) * 1.4, .3)
+    elif k == "riser": placeS("riser", t, (g or .25) * .9, 0, .3, rate=1.0, fallback=riser(c.get("d", .8))) if "riser" in LIB else place(t - c.get("d", .8), riser(c.get("d", .8)), g or .25, 0, .3)
     elif k == "chime": place(t, chime(c.get("f", 880)), g or .12, pan, .45)
     elif k == "swell": place(t, swell(c.get("d", 1.5)), g or .2, 0, .5)
 

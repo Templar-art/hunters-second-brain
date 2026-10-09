@@ -1140,3 +1140,7 @@ Five rounds on the CRUD talking head. v1/v2 copied the wrong reference (an Empir
 ## [2026-10-09] harvest | USE: CRUD v6 + bus case study v1 from the template
 
 CRUD rebuilt through `projects/use-definitions/` (v6). The new 22 Oct clip (bus on-time tracking story) became `episodes/bus-network` v1. SFX engine upgraded to stereo with reverb. Logged on [[use-definitions-series]].
+
+## [2026-10-09] ingest | USE: Magnific SFX library (120cr)
+
+Hunter approved real SFX: 24 takes (whoosh, pop, click, impact, shatter, riser) in `projects/use-definitions/sfx-lib/`, used by `tools/sfx.py`. Bus v2 and CRUD v6 re-mixed with effects about 8 LU under the voice. Hunter is happy with bus v2 and has another clip coming.

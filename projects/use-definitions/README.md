@@ -23,6 +23,9 @@ tools/prep.sh ~/Downloads/<clip>.mp4 <name> [0-4 19-21]   # frames, words.json, 
    ```
    Drop a `music.wav` in the episode folder and it gets ducked under the voice automatically.
 
+## Sound
+`sfx-lib/` holds 23 real SFX takes: whoosh, pop, click, thud (impact), glass (shatter), riser. Generated on Magnific (ElevenLabs SFX), 120cr, 9 Oct 2026; one silent click take was dropped. `tools/sfx.py` plays a random take with slight pitch variation, lines each up on its transient (hits) or peak (whoosh, riser), and falls back to synthesis for anything not in the library (typing, chime, swell). Effects sit about 8 LU under the voice (`volume=0.63` in build.sh). To add a sound, drop `<type>_N.wav` into sfx-lib.
+
 ## Components (engine/engine.js)
 Each component has a matching `.cue(...)` that registers its sound effects, so audio always follows motion.
 
