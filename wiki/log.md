@@ -1116,3 +1116,7 @@ Built `Desktop/10xVisuals Output/Iron Standard - Handoff/` (website, upload zip,
 
 Office restaged in her Coastal Luxury style on `nano_banana_2_1` (2cr/run, 3 runs incl. rejected). New client rules: no standing or corner plants, replace existing staging but keep the desk, laptop faces the chair. First read on 2.1: held framing and fixtures. Logged on [[jessica-wallace]] and [[staging-rules]].
 ## [2026-10-08] ingest | Bebita went live on the Basic plan: products, stock, theme, BEBITA10, shipping threshold $150; password page still on
+
+## [2026-10-09] query | ZED modern-luxury style guide
+
+Drafted three proposed modern-luxury directions (02 Gallery Stone, 03 Smoked Oak Suite, 04 Riviera Resort) beside locked Option 01, with palettes, room kits and example prompts. Published as an artifact, logged on [[zed-style]]. Not approved; Option 01 still canonical.

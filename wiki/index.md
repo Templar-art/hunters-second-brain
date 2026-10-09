@@ -55,7 +55,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 ## Concepts
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
-- [[zed-style]] — ZED's canonical staging style, now "Option 01" (warm ivory/oatmeal/walnut/olive/brass); 3rd style change, dated trail of older eras kept
+- [[zed-style]] — ZED's canonical staging style, now "Option 01" (warm ivory/oatmeal/walnut/olive/brass); 3rd style change, dated trail of older eras kept; + proposed modern-luxury Options 02–04 (2026-10-09)
 - [[brand-system]] — 10x brand + standing design rules for all graphics
 - [[typography]] — choosing type *for a client*: **display vs text is the split that gets missed**, serif vs sans, the three sans families, no-serif systems, licensing, never-Poppins rule; O'Neill Group 29-face shortlist 10 Aug
 - [[ig-caption-voice]] — per-account caption voice discipline (10x modes, Rob, Jason)

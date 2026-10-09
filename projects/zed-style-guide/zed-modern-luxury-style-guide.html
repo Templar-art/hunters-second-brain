@@ -1,0 +1,285 @@
+<title>ZED Modern Luxury Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column; each direction is a full-width section with swatch strip, kit grid, prompt block */
+:root{
+  --bg:#F6F3EE; --surface:#FFFFFF; --fg:#2A2825; --muted:#6E6A63; --line:#DDD6CB; --accent:#61a8d8; --code:#F0ECE5;
+  --display:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1B1A18; --surface:#24221F; --fg:#ECE7DF; --muted:#A39D93; --line:#3A3631; --accent:#7DB9E2; --code:#2C2925; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1B1A18; --surface:#24221F; --fg:#ECE7DF; --muted:#A39D93; --line:#3A3631; --accent:#7DB9E2; --code:#2C2925; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:48px 80px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-weight:300;font-size:clamp(2rem,5vw,3.1rem);letter-spacing:-.01em;line-height:1.1}
+h2{font-weight:400;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.15}
+h3{font-weight:500;font-size:1rem;margin-bottom:6px}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--display);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);font-size:1.05rem;margin-top:14px}
+header{display:grid;gap:10px;padding-bottom:36px;border-bottom:1px solid var(--line)}
+.status{display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pill{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted)}
+.pill.locked{border-color:var(--accent);color:var(--accent)}
+nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:20px;font-size:.85rem}
+nav a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line)}
+nav a:hover,nav a:focus-visible{border-color:var(--accent);outline:none}
+
+section.dir{padding-block:56px;border-bottom:1px solid var(--line);display:grid;gap:26px}
+.dir-head{display:grid;gap:8px}
+.dir-head p{color:var(--muted)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px}
+.sw{display:grid;gap:6px;font-size:.75rem}
+.chip{height:72px;border-radius:4px;border:1px solid rgba(0,0,0,.08)}
+.sw b{font-weight:600;font-size:.78rem}
+.sw span{color:var(--muted);font-family:var(--mono);font-size:.72rem}
+.ratio{display:flex;height:12px;border-radius:2px;overflow:hidden;border:1px solid var(--line)}
+.ratio-label{font-size:.75rem;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
+
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.kit > div{background:var(--surface);padding:18px 20px;min-width:0}
+.kit ul{margin:0;padding-left:18px}
+.kit li{margin-bottom:4px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.two > div{min-width:0}
+.never li{color:var(--muted)}
+
+.prompt{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px;display:grid;gap:14px}
+.prompt-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.prompt pre{white-space:pre-wrap;word-wrap:break-word;font-family:var(--mono);font-size:.82rem;line-height:1.6;background:var(--code);padding:16px;border-radius:4px;margin:0}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;font-size:.88rem}
+.score{font-family:var(--display);font-size:1.6rem;font-weight:300;font-variant-numeric:tabular-nums}
+button.copy{font-family:var(--body);font-size:.78rem;background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:6px 12px;cursor:pointer}
+button.copy:hover,button.copy:focus-visible{border-color:var(--accent);outline:none}
+
+.compare{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.86rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-weight:500;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rules{display:grid;gap:10px;margin-top:18px}
+.rules li{margin-bottom:6px}
+footer{padding-top:40px;color:var(--muted);font-size:.82rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">ZED · Virtual staging · 10x Visuals</div>
+  <h1>Modern luxury furnishing directions</h1>
+  <p class="lead">Option 01 is the locked house style. Options 02, 03 and 04 are example modern-luxury directions to show Zed. Each keeps the ZED rules (quiet, matte, low-profile, sparse styling, true daylight) and changes the palette, the furniture silhouettes and the mood.</p>
+  <div class="status"><span class="pill locked">01 locked</span><span class="pill">02 to 04 proposals</span><span class="pill">October 2026</span></div>
+  <nav>
+    <a href="#opt01">01 Warm Organic</a>
+    <a href="#opt02">02 Gallery Stone</a>
+    <a href="#opt03">03 Smoked Oak Suite</a>
+    <a href="#opt04">04 Riviera Resort</a>
+    <a href="#compare">Side by side</a>
+    <a href="#rules">Rules on every option</a>
+  </nav>
+</header>
+
+<!-- OPTION 01 -->
+<section class="dir" id="opt01">
+  <div class="dir-head">
+    <div class="eyebrow">Option 01 · current, locked</div>
+    <h2>Warm Organic Contemporary</h2>
+    <p>Restrained Australian coastal with Mediterranean-resort warmth. Ivory linen, oatmeal bouclé and dark smoked walnut, with olive as the only colour. This is the baseline the other three are measured against.</p>
+  </div>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#E9E2D6"></div><b>Warm ivory</b><span>#E9E2D6</span></div>
+    <div class="sw"><div class="chip" style="background:#D8D0C2"></div><b>Oatmeal</b><span>#D8D0C2</span></div>
+    <div class="sw"><div class="chip" style="background:#4A3326"></div><b>Smoked walnut</b><span>#4A3326</span></div>
+    <div class="sw"><div class="chip" style="background:#C9B79B"></div><b>Travertine</b><span>#C9B79B</span></div>
+    <div class="sw"><div class="chip" style="background:#6B7257"></div><b>Eucalyptus olive</b><span>#6B7257</span></div>
+    <div class="sw"><div class="chip" style="background:#9A7445"></div><b>Aged brass</b><span>#9A7445</span></div>
+  </div>
+  <div>
+    <div class="ratio"><div style="flex:70;background:#E9E2D6"></div><div style="flex:20;background:#4A3326"></div><div style="flex:7;background:#6B7257"></div><div style="flex:3;background:#9A7445"></div></div>
+    <div class="ratio-label">70 ivory, oatmeal, stone · 20 walnut · 7 olive · 3 brass and charcoal</div>
+  </div>
+  <div class="kit">
+    <div><h3>Living</h3><ul><li>Low ivory linen modular sofa, rounded arms</li><li>1 to 2 compact ivory bouclé chairs</li><li>Oversized low smoked-walnut coffee table</li><li>Ivory woven-wool rug, 2 to 4 olive cushions</li></ul></div>
+    <div><h3>Dining</h3><ul><li>Oval smoked-walnut pedestal table</li><li>Six oatmeal bouclé armchairs</li><li>Sculptural linen pendant centred on the table</li></ul></div>
+    <div><h3>Bedroom</h3><ul><li>Low oatmeal upholstered king, two-panel headboard</li><li>Walnut bedsides, matte ceramic lamps, both sides</li><li>Oversized tonal abstract over the bed (ZED only)</li></ul></div>
+  </div>
+  <p style="color:var(--muted);font-size:.88rem">Full kit, reference filenames and exclusions live in the Option 01 library. Nothing on this page changes it.</p>
+</section>
+
+<!-- OPTION 02 -->
+<section class="dir" id="opt02">
+  <div class="dir-head">
+    <div class="eyebrow">Option 02 · proposal</div>
+    <h2>Gallery Stone</h2>
+    <p>Modern luxury at its quietest. Chalk, plaster and honed stone with very little timber, curved sculptural seating and solid stone tables. It reads like a private gallery or a design-hotel lobby. Best for new builds, white-walled apartments and architect homes with good light.</p>
+  </div>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#ECE8E1"></div><b>Chalk</b><span>#ECE8E1</span></div>
+    <div class="sw"><div class="chip" style="background:#D3CBBF"></div><b>Plaster greige</b><span>#D3CBBF</span></div>
+    <div class="sw"><div class="chip" style="background:#BFA98C"></div><b>Honed travertine</b><span>#BFA98C</span></div>
+    <div class="sw"><div class="chip" style="background:#5C4A3B"></div><b>Smoked oak</b><span>#5C4A3B</span></div>
+    <div class="sw"><div class="chip" style="background:#7A6650"></div><b>Brushed bronze</b><span>#7A6650</span></div>
+    <div class="sw"><div class="chip" style="background:#3E3C38"></div><b>Graphite</b><span>#3E3C38</span></div>
+  </div>
+  <div>
+    <div class="ratio"><div style="flex:75;background:#ECE8E1"></div><div style="flex:15;background:#BFA98C"></div><div style="flex:7;background:#5C4A3B"></div><div style="flex:3;background:#7A6650"></div></div>
+    <div class="ratio-label">75 chalk and plaster · 15 stone · 7 smoked oak · 3 bronze and graphite</div>
+  </div>
+  <div class="kit">
+    <div><h3>Living</h3><ul><li>Low curved four-seat sofa in chalk bouclé</li><li>Solid honed-travertine block coffee table, softened edges</li><li>One sculptural lounge chair, greige linen on a smoked-oak frame</li><li>Pale stone flat-weave wool rug</li><li>Travertine plinth side table, one bronze floor lamp</li></ul></div>
+    <div><h3>Dining</h3><ul><li>Round travertine pedestal table (end-chair proof)</li><li>Four or six curved chalk bouclé chairs</li><li>Cluster pendant in frosted glass and bronze</li></ul></div>
+    <div><h3>Bedroom</h3><ul><li>Low platform bed, wide chalk bouclé wraparound headboard</li><li>Floating plaster-finish bedsides, both sides</li><li>Sculptural alabaster table lamps</li><li>Stone-white linen bedding, one greige throw</li></ul></div>
+    <div><h3>Kitchen</h3><ul><li>2 to 3 counter stools, chalk bouclé on slim bronze bases</li><li>One travertine bowl, one tall stoneware vase with a single branch</li></ul></div>
+    <div><h3>Entry</h3><ul><li>Travertine block console</li><li>Round bronze-framed mirror</li><li>One sculptural stoneware vessel</li></ul></div>
+    <div><h3>Outdoor</h3><ul><li>Concrete-look low lounge, chalk weatherproof cushions</li><li>Round stone-composite dining table, curved resin chairs</li><li>Large textured planters with clipped olives</li></ul></div>
+  </div>
+  <div class="two">
+    <div><h3>Styling kit</h3><ul><li>Large minimal abstract, chalk and warm grey, slim bronze frame</li><li>Stone and stoneware objects in groups of one or two</li><li>One sculptural branch per room, no leafy plants</li><li>Sheers in warm white</li></ul></div>
+    <div class="never"><h3>Never</h3><ul><li>Cool grey or blue-white (it turns clinical)</li><li>Polished marble, gloss lacquer, chrome</li><li>More than two timber pieces per room</li><li>Busy patterned rugs or coloured cushions</li></ul></div>
+  </div>
+  <div class="prompt">
+    <div class="prompt-top"><div class="eyebrow">Example prompt · living room · prose for Sunburst or Nano Banana Pro</div><button class="copy" type="button" data-target="p02">Copy prompt</button></div>
+<pre id="p02">A bright, calm modern luxury living room in soft natural daylight from the existing windows, keeping the exact camera position, focal length, framing and perspective of the original, identical composition and crop. The room contains exactly these pieces and nothing more: one low curved four-seat sofa in chalk-white boucle on the same footprint as the original seating zone, its back parallel to the [named wall] and facing the [named window or feature]; one solid honed travertine block coffee table with softened edges, centred on the sofa about 40 cm from the seat; one sculptural lounge chair in greige linen on a dark smoked-oak frame, angled toward the sofa; one slim brushed-bronze floor lamp beside the sofa's left arm; and a large pale stone-coloured flat-weave wool rug with its edges parallel to the walls, running under the sofa's front legs and the chair. The coffee table holds exactly two objects: one matte stoneware vessel holding a single olive branch and a stack of two neutral hardcover books. One large minimal abstract in chalk and warm-grey tones hangs centred and level above the sofa in a thin bronze frame. Full-height warm-white linen sheers hang at each window, each panel covering only its own frame width. Every piece stands square to the walls with real contact shadows. Natural true-to-life exposure with gentle directional shadows and subtle warmth. All existing taps, tapware, fixtures, windows, doors, vanities, cabinetry and tiles unchanged.</pre>
+    <div class="meta">
+      <div><h3>What this changes</h3><p>Adds a curved chalk sofa, a stone block coffee table, one lounge chair, one lamp, a rug, two table objects, one artwork and sheers. Walls, floor, windows and camera stay as shot.</p></div>
+      <div><h3>Pass confidence</h3><div class="score">70%</div><p style="color:var(--muted);font-size:.85rem">Risk: an all-pale room can read flat. If it does, the redo darkens the chair frame, not the walls.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 03 -->
+<section class="dir" id="opt03">
+  <div class="dir-head">
+    <div class="eyebrow">Option 03 · proposal</div>
+    <h2>Smoked Oak Suite</h2>
+    <p>Five-star hotel suite. Mushroom and taupe upholstery, espresso oak, cognac leather and smoked glass with bronze detailing. It has more contrast and weight than 01, so the photography must still be shot bright. Best for prestige houses, dark-floored homes and buyers at the top of the market.</p>
+  </div>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#E4DDD3"></div><b>Soft linen</b><span>#E4DDD3</span></div>
+    <div class="sw"><div class="chip" style="background:#A89A8A"></div><b>Mushroom</b><span>#A89A8A</span></div>
+    <div class="sw"><div class="chip" style="background:#3B2C22"></div><b>Espresso oak</b><span>#3B2C22</span></div>
+    <div class="sw"><div class="chip" style="background:#8C5A3A"></div><b>Cognac leather</b><span>#8C5A3A</span></div>
+    <div class="sw"><div class="chip" style="background:#5A5550"></div><b>Smoked glass</b><span>#5A5550</span></div>
+    <div class="sw"><div class="chip" style="background:#7D6145"></div><b>Antique bronze</b><span>#7D6145</span></div>
+  </div>
+  <div>
+    <div class="ratio"><div style="flex:60;background:#E4DDD3"></div><div style="flex:25;background:#3B2C22"></div><div style="flex:10;background:#A89A8A"></div><div style="flex:5;background:#8C5A3A"></div></div>
+    <div class="ratio-label">60 linen and walls · 25 espresso oak · 10 mushroom · 5 cognac and bronze</div>
+  </div>
+  <div class="kit">
+    <div><h3>Living</h3><ul><li>Long low mushroom bouclé sofa, tight back, plinth base</li><li>Two cognac leather lounge chairs on espresso oak frames</li><li>Rectangular espresso oak coffee table with a smoked-glass inset</li><li>Taupe hand-knotted wool rug, very subtle tonal texture</li></ul></div>
+    <div><h3>Dining</h3><ul><li>Long espresso oak racetrack table</li><li>Six or eight mushroom upholstered chairs</li><li>Linear bronze and smoked-glass pendant</li></ul></div>
+    <div><h3>Bedroom</h3><ul><li>Taupe channel-stitched upholstered king, tall headboard</li><li>Espresso oak bedsides with bronze pulls, both sides</li><li>Smoked-glass table lamps with linen shades</li><li>Ivory bedding, mushroom bed runner, two cognac lumbar cushions</li></ul></div>
+    <div><h3>Kitchen</h3><ul><li>2 to 3 counter stools, cognac leather seats on espresso oak</li><li>One dark stoneware bowl, one oak board</li></ul></div>
+    <div><h3>Study</h3><ul><li>Espresso oak desk, bronze detailing</li><li>Cognac leather desk chair</li><li>Smoked-glass desk lamp</li></ul></div>
+    <div><h3>Outdoor</h3><ul><li>Charcoal powder-coat and teak lounge, taupe cushions</li><li>Dark teak dining table, rope chairs in taupe</li><li>Charcoal stoneware planters, olives</li></ul></div>
+  </div>
+  <div class="two">
+    <div><h3>Styling kit</h3><ul><li>One large textural artwork in taupe, umber and charcoal</li><li>Bronze and dark stoneware objects, never more than two per surface</li><li>Leather-bound books, one smoked-glass decanter on a console</li><li>Greenery stays muted olive</li></ul></div>
+    <div class="never"><h3>Never</h3><ul><li>Moody or dim exposure (shoot bright, grade in Lightroom)</li><li>Black marble, gold, chrome, velvet in saturated colours</li><li>Orange or red-toned leather</li><li>Dark rugs on dark floors</li></ul></div>
+  </div>
+  <div class="prompt">
+    <div class="prompt-top"><div class="eyebrow">Example prompt · master bedroom · prose</div><button class="copy" type="button" data-target="p03">Copy prompt</button></div>
+<pre id="p03">A bright, refined master bedroom in the style of a five-star hotel suite, lit by soft natural daylight from the existing window, keeping the exact camera position, focal length, framing and perspective of the original, identical composition and crop. The room contains exactly these pieces and nothing more: one low king bed upholstered in taupe linen with a tall vertically channel-stitched headboard, its headboard flat against the [named wall], centred between [left feature] and [right feature], the foot of the bed pointing toward the [named window or door]; one espresso oak bedside table on each side of the bed, each holding exactly one smoked-glass table lamp with an ivory linen shade and nothing else; a large taupe wool rug with its edges parallel to the walls, extending well past both sides of the bed. The bed is dressed in crisp ivory linen with a mushroom-coloured runner across the foot and exactly two cognac leather lumbar cushions in front of two ivory pillows. One large textural artwork in taupe, umber and charcoal hangs centred and level above the headboard in a slim dark oak frame. Full-height warm-white linen sheers hang at the window, each panel covering only its own frame width. Every piece stands square to the walls with real contact shadows. Natural true-to-life exposure, neither moody nor blown out, gentle directional shadows. All existing taps, tapware, fixtures, windows, doors, vanities, cabinetry and tiles unchanged.</pre>
+    <div class="meta">
+      <div><h3>What this changes</h3><p>Adds a taupe channel-stitched king, two matching oak bedsides with one lamp each, a taupe rug, ivory bedding with runner and two cognac cushions, one artwork and sheers. Architecture and camera stay as shot.</p></div>
+      <div><h3>Pass confidence</h3><div class="score">65%</div><p style="color:var(--muted);font-size:.85rem">Risk: the dark palette pulls exposure down, and Nano Banana Pro may add a second lamp. The counts are pinned for that.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 04 -->
+<section class="dir" id="opt04">
+  <div class="dir-head">
+    <div class="eyebrow">Option 04 · proposal</div>
+    <h2>Riviera Resort</h2>
+    <p>Mediterranean resort luxury, closest in spirit to 01 but lighter and sunnier. Limewash white, sand linen, travertine and natural oak, with a muted clay accent in place of olive. Outdoor rooms get woven teak. Best for coastal homes, pool houses and anything with big glass to the outside.</p>
+  </div>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#F1ECE3"></div><b>Limewash white</b><span>#F1ECE3</span></div>
+    <div class="sw"><div class="chip" style="background:#DCCFBB"></div><b>Sand linen</b><span>#DCCFBB</span></div>
+    <div class="sw"><div class="chip" style="background:#C8B392"></div><b>Travertine</b><span>#C8B392</span></div>
+    <div class="sw"><div class="chip" style="background:#8A6A4C"></div><b>Natural oak</b><span>#8A6A4C</span></div>
+    <div class="sw"><div class="chip" style="background:#A9745A"></div><b>Muted clay</b><span>#A9745A</span></div>
+    <div class="sw"><div class="chip" style="background:#7E8467"></div><b>Sage olive</b><span>#7E8467</span></div>
+  </div>
+  <div>
+    <div class="ratio"><div style="flex:70;background:#F1ECE3"></div><div style="flex:18;background:#8A6A4C"></div><div style="flex:8;background:#C8B392"></div><div style="flex:4;background:#A9745A"></div></div>
+    <div class="ratio-label">70 limewash and sand · 18 natural oak · 8 travertine · 4 clay and sage</div>
+  </div>
+  <div class="kit">
+    <div><h3>Living</h3><ul><li>Deep sand linen slipcover sofa, loose cushions</li><li>Two oak and woven-cord armchairs</li><li>Round travertine coffee table on a drum base</li><li>Jute and wool rug in natural sand</li></ul></div>
+    <div><h3>Dining</h3><ul><li>Oval natural oak table on two rounded trestle legs</li><li>Six oak chairs with woven paper-cord seats</li><li>Oversized woven rattan or linen drum pendant</li></ul></div>
+    <div><h3>Bedroom</h3><ul><li>Low natural oak bed with a sand linen padded headboard</li><li>Oak bedsides with rounded tops, both sides</li><li>Clay-glazed ceramic lamps</li><li>Washed white linen, one clay-toned throw</li></ul></div>
+    <div><h3>Kitchen</h3><ul><li>2 to 3 oak counter stools with woven cord seats</li><li>Bowl of lemons, one oak board, one clay jug</li></ul></div>
+    <div><h3>Entry</h3><ul><li>Oak console with a travertine top</li><li>Arched mirror in natural oak</li><li>Large terracotta-toned vessel with dried branches</li></ul></div>
+    <div><h3>Outdoor</h3><ul><li>Aged teak and woven-cord lounge, sand cushions</li><li>Long teak table, rope chairs</li><li>Large clay planters with olives and bougainvillea-free greenery</li></ul></div>
+  </div>
+  <div class="two">
+    <div><h3>Styling kit</h3><ul><li>Large sun-washed abstract in sand, clay and sage</li><li>Clay and stoneware vessels, linen in washed textures</li><li>Lemons or olives as the only food styling</li><li>Sheers in washed white</li></ul></div>
+    <div class="never"><h3>Never</h3><ul><li>Blue-and-white coastal or Hamptons</li><li>Bright terracotta or orange timber (clay stays muted)</li><li>Rattan inside beyond one pendant</li><li>Bunting, shells, nautical props</li></ul></div>
+  </div>
+  <div class="prompt">
+    <div class="prompt-top"><div class="eyebrow">Example prompt · dining · prose</div><button class="copy" type="button" data-target="p04">Copy prompt</button></div>
+<pre id="p04">A bright Mediterranean resort-style dining room in soft natural daylight from the existing glass doors, keeping the exact camera position, focal length, framing and perspective of the original, identical composition and crop. The room contains exactly these pieces and nothing more: one oval natural oak dining table on two rounded trestle legs, standing on the same footprint as the original dining zone, its long axis parallel to the [named wall or glass doors] and centred under the existing ceiling light point; six natural oak dining chairs with woven paper-cord seats, three spaced evenly along each long side, all pushed in and square to the table. The table holds exactly one object: a wide matte clay-glazed bowl of fresh lemons, centred. One oversized woven linen drum pendant hangs centred over the table. One large sun-washed abstract in sand, clay and sage tones hangs centred and level on the [named wall] in a thin natural oak frame. Full-height washed-white linen sheers hang at each glass door, each panel covering only its own frame width. Every chair leg sits on the floor with real contact shadows. Natural true-to-life exposure, gentle directional shadows, subtle warmth. All existing taps, tapware, fixtures, windows, doors, vanities, cabinetry and tiles unchanged.</pre>
+    <div class="meta">
+      <div><h3>What this changes</h3><p>Adds an oval oak table, six chairs on the long sides only, one bowl of lemons, a drum pendant, one artwork and sheers. The oval ends have nowhere to seat a seventh chair.</p></div>
+      <div><h3>Pass confidence</h3><div class="score">75%</div><p style="color:var(--muted);font-size:.85rem">Risk: the pendant can be swapped for the real light fitting. If a fixture exists there, drop the pendant line.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="dir" id="compare">
+  <div class="dir-head"><div class="eyebrow">Side by side</div><h2>Which direction fits which listing</h2></div>
+  <div class="compare">
+    <table>
+      <thead><tr><th>Option</th><th>Mood</th><th>Hero timber</th><th>Accent</th><th>Signature piece</th><th>Best listing</th></tr></thead>
+      <tbody>
+        <tr><td><b>01 Warm Organic</b></td><td>Calm, earthy</td><td>Smoked walnut</td><td>Eucalyptus olive</td><td>Walnut oval pedestal table</td><td>Family homes, most of the ZED book</td></tr>
+        <tr><td><b>02 Gallery Stone</b></td><td>Quiet, sculptural</td><td>Minimal smoked oak</td><td>Bronze</td><td>Travertine block coffee table</td><td>New builds, apartments, architect homes</td></tr>
+        <tr><td><b>03 Smoked Oak Suite</b></td><td>Rich, hotel</td><td>Espresso oak</td><td>Cognac leather</td><td>Channel-stitched king</td><td>Prestige, dark floors, top of market</td></tr>
+        <tr><td><b>04 Riviera Resort</b></td><td>Sunny, relaxed</td><td>Natural oak</td><td>Muted clay</td><td>Oak trestle oval table</td><td>Coastal, pool houses, big glass</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RULES -->
+<section class="dir" id="rules" style="border-bottom:0">
+  <div class="dir-head"><div class="eyebrow">Applies to every option</div><h2>Staging rules that do not change</h2></div>
+  <div class="two">
+    <div><ul class="rules">
+      <li>Fixtures stay exactly as shot: tapware, joinery, benchtops, tiles, windows, doors, lights.</li>
+      <li>Camera framing is locked in every prompt. No re-crop, no new angle.</li>
+      <li>Each prompt lists the exact pieces in the room and the exact objects on each surface.</li>
+      <li>Hero pieces get three anchors: footprint, axis to a named wall, and a direction.</li>
+      <li>Furniture sits square to the walls; rug edges follow the walls and floor lines.</li>
+    </ul></div>
+    <div><ul class="rules">
+      <li>Both sides of every bed get a table and a lamp. Secondary bedrooms step down one tier.</li>
+      <li>Sheers on every bare window, each panel the width of its own frame.</li>
+      <li>TVs wall-mounted, screen side only. Mirrors show the staged room.</li>
+      <li>Soft natural daylight, true exposure. Final grade happens in Lightroom.</li>
+      <li>Every pass runs from the original photo, never from an AI output.</li>
+    </ul></div>
+  </div>
+  <footer>Prepared by 10x Visuals for ZED. Options 02 to 04 are examples for discussion. Once a direction is chosen, it gets a full room library with reference images like Option 01.</footer>
+</section>
+</div>
+
+<script>
+document.querySelectorAll('button.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=document.getElementById(b.dataset.target);
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy prompt'},1600)};
+    try{navigator.clipboard.writeText(el.textContent).then(done,function(){sel(el)})}catch(e){sel(el)}
+  });
+});
+function sel(el){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
+</script>

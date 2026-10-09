@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [virtual-staging, style, zed]
-updated: 2026-09-15
+updated: 2026-10-09
 ---
 
 # ZED Style — "Option 01" (canonical staging library)
@@ -57,6 +57,13 @@ Never combine "preserve the exact camera angle and architecture" with "change th
 - Fixtures preserved everywhere in STRICT_VIRTUAL_STAGING mode: floors, windows and the view, cabinetry, stone, appliances, curtains, tapware, built-ins.
 - Placement locks (footprint + axis vs a named fixed feature + direction cue) apply to every hero piece — see [[staging-rules]].
 - Round dining table fallback for end-chair risk is superseded for ZED specifically — Option 01's oval pedestal table is itself end-chair-proof (rounded ends, no flat end to seat someone at); the general round-table fallback still applies to other clients.
+
+## Proposed modern-luxury alternatives (2026-10-09, not approved)
+Example directions drafted to show Zed, deliverable at [zed-modern-luxury-style-guide.html](../../projects/zed-style-guide/zed-modern-luxury-style-guide.html) (artifact: https://claude.ai/artifact/G4GcAynouMDafi4zVLJLEU). **Option 01 above stays canonical**; none of these is used on a job until Zed picks one and it gets its own full room library.
+- **02 Gallery Stone** — chalk/plaster/honed travertine, minimal smoked oak, bronze; curved chalk-bouclé sofa, travertine block coffee table, round travertine pedestal dining. New builds, apartments.
+- **03 Smoked Oak Suite** — hotel-suite: mushroom/taupe, espresso oak, cognac leather, smoked glass, antique bronze; channel-stitched king. Prestige listings. Exposure risk: dark palette pulls the frame moody, so prompts pin true exposure.
+- **04 Riviera Resort** — limewash/sand linen/travertine/natural oak, muted clay accent instead of olive; oak trestle oval table with cord chairs. Coastal, pool houses.
+Each has palette hexes + ratio, per-room kit, exclusions and one Sunburst-style prose prompt with pass-confidence score.
 
 Full standing rules: [[staging-rules]]. Pipeline routing and models: [[higgsfield-pipelines]]. Raw source: `raw/zed/option-01-full-staging-library.md` and `raw/zed/option-01-full-staging-asset-library.html`.
 
