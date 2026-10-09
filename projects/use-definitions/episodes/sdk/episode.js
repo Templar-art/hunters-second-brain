@@ -31,7 +31,7 @@ function scenePrev(T) {
   th(FULL, zoomAt(T)); lowerThird(T, 2.4, 3.6); captions(T);
   const p = back((T - 3.3) / .6); if (p <= 0) return;
   const x = 600, y = 140, w = 420, h = 520;
-  g.save(); g.translate(890, 330); g.scale(.72, .72); g.translate(-(x + w / 2), -(y + h / 2)); g.translate(x + w / 2, y + h / 2); g.rotate(.06 + (1 - clamp(p)) * .5); g.scale(p, p); g.translate(-(x + w / 2), -(y + h / 2));
+  g.save(); g.translate(935, 300); g.scale(.6, .6); g.translate(-(x + w / 2), -(y + h / 2)); g.translate(x + w / 2, y + h / 2); g.rotate(.06 + (1 - clamp(p)) * .5); g.scale(p, p); g.translate(-(x + w / 2), -(y + h / 2));
   card(x, y, w, h, NAVY, 24, .45);
   typeOn('Previously on', x + 34, y + 70, T - 3.5, { size: 22, col: GREY, track: 4, upper: true, cps: 40 });
   font(800, 64, COND); g.fillStyle = WHITE; g.fillText('Definitions', x + 34, y + 140);

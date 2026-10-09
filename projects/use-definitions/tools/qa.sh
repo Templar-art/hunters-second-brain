@@ -5,7 +5,7 @@ set -e; ROOT="${0:a:h:h}"; EP="$ROOT/episodes/$1"; export NODE_PATH="$ROOT/tools
 node "$ROOT/tools/render.cjs" "$EP" facecheck | tail -1
 DUR=$(python3 -c "import json;print(json.load(open('$EP/build/render.json'))['dur'])")
 TS=$(python3 -c "print(','.join(f'{t+.5:.1f}' for t in range(int($DUR))))")
-rm -f "$EP"/build/qa/s_*.png
+setopt nullglob; rm -f "$EP"/build/qa/s_*.png
 node "$ROOT/tools/render.cjs" "$EP" stills "$TS" >/dev/null
 python3 - "$EP" "$TS" <<'PY'
 import sys

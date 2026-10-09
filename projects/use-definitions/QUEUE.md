@@ -16,7 +16,7 @@ Skipped:
 | 04 | json | Definition | v2 boss-passed, sent |
 | 05 | sdk | Definition | v2 boss-passed, sent |
 | 06 | ui-ux | Definition | |
-| 07 | ide | Definition | |
+| 07 | ide | Definition | v1 boss-passed, sent |
 | 08 | saas | Definition | |
 | 09 | gpu | Definition | |
 | 10 | cpu | Definition | |

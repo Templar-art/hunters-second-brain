@@ -13,6 +13,7 @@ ffmpeg -v error -y -i "$EP/source.mp4" -vf "fps=30,scale=1080:1920:force_origina
 echo "{\"frames\": $(ls "$EP/build/frames" | wc -l | tr -d ' ')}" > "$EP/build/meta.json"
 ffmpeg -v error -y -i "$EP/source.mp4" -ar 16000 -ac 1 "$EP/build/vo16k.wav"
 [[ -f "$EP/words.json" ]] || "$VENV/bin/python" "$ROOT/tools/transcribe.py" "$EP/build/vo16k.wav" "$EP/words.json"
+"$VENV/bin/python" "$ROOT/tools/facetrack.py" "$EP/build"
 "$VENV/bin/python" "$ROOT/tools/matte.py" "$EP/build" "${@:3}"
 [[ -f "$EP/episode.js" ]] || cp "$ROOT/episodes/crud/episode.js" "$EP/episode.js"
 echo "ready: $EP  (edit episode.js, then tools/build.sh $2)"

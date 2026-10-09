@@ -3,7 +3,8 @@ const ORBIT_IN = 2.9, PHONE_IN = 6.7, FEEL_IN = 12.25, FLOW_IN = 18.7, DRAG_IN =
 window.EP = {
   dur: 35.2, voEnd: 31.8,
   punchIns: [[4.9, 6.7]],
-  captions: [[ORBIT_IN, PHONE_IN, 1240], [FLOW_IN, DRAG_IN, 1760], [DRAG_IN, END_MOS, 1240]],
+  captions: [[ORBIT_IN, PHONE_IN, 1240], [FLOW_IN, DRAG_IN, 1760], [DRAG_IN, END_MOS, 1010]],
+  cuts: [ORBIT_IN, PHONE_IN, FLOW_IN, DRAG_IN, END_IN],
   frame(T) {
     if (T < ORBIT_IN) titleCard(T, 'UI/UX', 2.6);
     else if (T < PHONE_IN) sceneOrbit(T);
@@ -20,7 +21,7 @@ window.EP = {
     [9.6, 10.0, 10.46].forEach((t, i) => cue(t, 'pop', { f: 900 + i * 150, gain: .18 }));
     cue(FEEL_IN, 'whoosh', { d: .4, gain: .25 }); cue(15.16, 'click', { gain: .4 }); cue(16.12, 'pop', { f: 1200, gain: .2 }); cue(16.72, 'click', { f: 1800, gain: .4 }); cue(17.94, 'pop', { f: 900, gain: .25 }); burst.cue(17.94);
     cue(FLOW_IN - .1, 'whoosh', { d: .5, gain: .4 }); SCREENS.forEach(([, at]) => { cue(at - .15, 'whoosh', { d: .25, bright: .5, gain: .2 }); cue(at, 'click', { gain: .3 }); });
-    cue(DRAG_IN, 'whoosh', { d: .3, gain: .3 }); behindHead.cue(28.34, null);
+    cue(DRAG_IN, 'whoosh', { d: .3, gain: .3 }); behindHead.cue(27.48, null);
     DIALOGS.forEach(([, at]) => cue(at, 'thud', { f: 110, d: .15, gain: .22 }));
     mosaic.cue(END_MOS); endCard.cue(END_IN);
   },
@@ -47,10 +48,12 @@ function fingertip(x, y, press) {          // press 0..1 → shrinks + ripple
 const CHIPS = ['Visual design', 'Layout', 'Typography', 'Motion', 'Accessibility', 'Research', 'Interaction'];
 function sceneOrbit(T) {
   th(FULL, zoomAt(T)); lowerThird(T, 3.0, 4.2);
-  CHIPS.forEach((c, i) => { const p = back((T - 4.22 - i * .12) / .45); if (p <= 0) return;
-    const a = i / CHIPS.length * 6.283 + (T - 4) * .5, x = 540 + Math.cos(a) * 400, y = 560 + Math.sin(a) * 300 * .6, front = Math.sin(a) > 0;
+  CHIPS.forEach((c, i) => { const p = back((T - 3.85 - i * .1) / .4); if (p <= 0) return;
+    const f = faceScreen(zoomAt(T)), fc = f.x + f.w / 2, a = i / CHIPS.length * 6.283 + (T - 4) * .5;
+    // orbit ring sized to clear the tracked face: chips pass beside / below it, never across it
+    const x = fc + Math.cos(a) * (f.w / 2 + 230), y = f.y + f.h * .55 + Math.sin(a) * (f.h / 2 + 120), front = Math.sin(a) > 0;
     font(700, 42, COND); const w = g.measureText(c).width + 48;
-    g.save(); g.translate(x, y); g.scale(p * (front ? 1 : .82), p * (front ? 1 : .82)); g.globalAlpha = front ? 1 : .7;
+    g.save(); g.translate(x, y); g.scale(p, p);
     g.fillStyle = i % 2 ? WHITE : CYAN; g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 20; g.beginPath(); g.roundRect(-w / 2, -32, w, 64, 32); g.fill();
     g.shadowColor = 'transparent'; g.fillStyle = NAVY; g.textAlign = 'center'; g.fillText(c, 0, 14); g.textAlign = 'left'; g.restore(); });
   captions(T); iris(T, PHONE_IN - .5, 540, 900, scenePhone);
@@ -90,11 +93,11 @@ function lerpCol(a, b, p) { const pa = [1, 3, 5].map(i => parseInt(a.slice(i, i 
   return `rgb(${pa.map((v, i) => Math.round(lerp(v, pb[i], clamp(p)))).join(',')})`; }
 function scenePhone(T) {
   g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
-  const p = expo((T - 6.9) / .6), feel = inOut((T - FEEL_IN) / .7);
+  const p = expo((T - 6.2) / .6), feel = inOut((T - FEEL_IN) / .7);
   const cx = lerp(540, 580, feel), cy = lerp(1080, 1130, feel) + (1 - p) * 900, s = lerp(1, 1.04, feel);
-  typeOn(T < FEEL_IN ? 'User interface' : 'User experience', 60, 250, T - (T < FEEL_IN ? 7.0 : FEEL_IN + .1), { size: 30, col: BLUE, track: 6, upper: true, cps: 30 });
+  typeOn(T < FEEL_IN ? 'User interface' : 'User experience', 60, 250, T - (T < FEEL_IN ? 6.3 : FEEL_IN + .1), { size: 30, col: BLUE, track: 6, upper: true, cps: 30 });
   if (T < FEEL_IN) { rise('Looks good.', 54, 430, T - 7.48, { size: 150, w: 800, col: INK, dur: .45, exitAt: FEEL_IN - .1, T }); }
-  else { rise('Feels good.', 54, 430, T - 17.72, { size: 150, w: 800, col: INK, dur: .45 }); rise('Quick. Responsive.', 54, 430, T - 16.0, { size: 110, w: 800, col: BLUE, dur: .4, exitAt: 17.6, T }); }
+  else { rise('Feels good.', 54, 430, T - 17.72, { size: 150, w: 800, col: INK, dur: .45 }); rise('Quick. Responsive.', 54, 430, T - 13.0, { size: 110, w: 800, col: BLUE, dur: .4, exitAt: 17.6, T }); }
   phone(cx, cy, 560 * s, 1120 * s, phoneScreen(T), lerp(0, -.04, feel));
   // fingertip choreography during the "feel" beat
   if (T > 14.6 && T < 18.6) { const tx = T < 16.4 ? cx : cx + 150 * s, ty = T < 16.4 ? cy + 400 * s : cy + 270 * s;
@@ -131,19 +134,21 @@ function sceneFlow(T) {
 }
 
 // "An absolute drag": DRAG behind the head, then bad-software dialogs pile up.
-const DIALOGS = [['Please wait…', 29.42], ['Error 0x80004005', 29.78], ['Are you sure?', 30.1], ['Session expired', 30.32], ['Loading…', 30.66]];
+const DIALOGS = [['Please wait…', 29.15], ['Error 0x80004005', 29.78], ['Are you sure?', 30.1], ['Session expired', 30.32], ['Loading…', 30.66]];
 function sceneDrag(T) {
   th(FULL, zoomAt(T));
-  if (T >= 28.34 && T < 29.5) { rise('DRAG', 40, 560, T - 28.34, { size: 330, w: 800, dur: .4 }); cutout(zoomAt(T)); }
+  if (T >= 27.48 && T < 29.5) { const f = faceScreen(zoomAt(T)); font(800, 100, COND); const w100 = g.measureText('DRAG').width;
+    const sz = clamp((f.x - 100) / w100 * 100, 110, 250);   // fits fully left of the face with a 60px gap
+    rise('DRAG', 30, 560, T - 27.48, { size: sz, w: 800, dur: .4 }); cutout(zoomAt(T)); }
   DIALOGS.forEach(([msg, at], i) => { const p = back((T - at) / .3); if (p <= 0) return; const r = rng(i + 4);
-    const x = 120 + r() * 360, y = 220 + i * 150 + r() * 40;
+    const x = 120 + r() * 360, y = 1080 + i * 120 + r() * 30;
     g.save(); g.translate(x + 230, y + 90); g.rotate((r() - .5) * .12); g.scale(p, p); g.translate(-(x + 230), -(y + 90));
     card(x, y, 460, 180, '#ECECEC', 6, .35); g.fillStyle = '#C8C8C8'; g.fillRect(x, y, 460, 40);
     font(500, 20, MONO); g.fillStyle = '#555'; g.fillText('Legacy App', x + 16, y + 27); g.fillText('✕', x + 430, y + 27);
     font(600, 32, BODY); g.fillStyle = '#222'; g.fillText(msg, x + 30, y + 105);
     g.strokeStyle = '#999'; g.lineWidth = 2; g.strokeRect(x + 330, y + 128, 100, 36); font(500, 20, MONO); g.fillStyle = '#222'; g.fillText('OK', x + 365, y + 153);
     g.restore(); });
-  if (T > 30.66) { g.save(); g.translate(540, 1020); g.rotate(T * 6); g.strokeStyle = WHITE; g.lineWidth = 12; g.lineCap = 'round';
+  if (T > 30.66) { g.save(); g.translate(900, 1500); g.rotate(T * 6); g.strokeStyle = WHITE; g.lineWidth = 12; g.lineCap = 'round';
     g.beginPath(); g.arc(0, 0, 60, 0, 4.5); g.stroke(); g.restore(); }
   captions(T);
 }

@@ -31,7 +31,7 @@ const cue = (t, type, opts = {}) => CUES.push({ t, type, ...opts });
 
 // ---------- footage ----------
 const img = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = src; });
-let FR = null, MT = null, LOGO = null, META = { frames: 1 }, EP_DIR = '';
+let FR = null, MT = null, LOGO = null, META = { frames: 1 }, EP_DIR = '', TRACK = null, FBOX = null;
 // Past the last source frame, ping-pong the final 12 frames so the speaker never freezes.
 function fidx(T) {
   const n = META.frames; let i = Math.floor(T * FPS) + 1;
@@ -43,6 +43,8 @@ async function load(T) {
   const i = fidx(T);
   FR = await img(`${EP_DIR}/build/frames/f${pad(i)}.jpg`);
   MT = await img(`${EP_DIR}/build/matte/m${pad(i)}.png`);
+  // tracked face for this frame (falls back to the fixed box); FACE follows it so crops stay centred
+  if (TRACK) { const b = TRACK[i - 1]; FBOX = { x: b[0], y: b[1], w: b[2], h: b[3] }; FACE = { x: b[0] + b[2] / 2, y: b[1] + b[3] * .5 }; }
 }
 // FACE: where the face sits in the 1080x1920 source. Episodes can override (EP.face).
 let FACE = { x: 545, y: 540 };
@@ -61,7 +63,7 @@ let FACE_SNAPS = [], FACE_CHECK = false;
 function th(rect = FULL, zoom = BZ, ay = BAY) {
   if (!FR) return; const r = xf(rect, zoom, ay); g.drawImage(FR, ...r);
   if (!FACE_CHECK) return;
-  snapBox(r, rect, FACE_BOX, 'face'); snapBox(r, rect, BODY_BOX, 'body');
+  snapBox(r, rect, FBOX || FACE_BOX, 'face'); snapBox(r, rect, BODY_BOX, 'body');
 }
 function snapBox(r, rect, B, kind) {
   const s = r[2] / W, fx = r[0] + B.x * s, fy = r[1] + B.y * s, fw = B.w * s, fh = B.h * s;
@@ -94,7 +96,12 @@ function cutout(zoom = BZ, ay = BAY) {
   x.globalCompositeOperation = 'source-over'; x.clearRect(0, 0, W, H);
   x.drawImage(FR, ...r); x.globalCompositeOperation = 'destination-in'; x.drawImage(MT, ...r);
   g.drawImage(c, 0, 0);
+  // face is back on top: re-baseline the face check so only overlays drawn after this count
+  if (FACE_CHECK) FACE_SNAPS.forEach(f => { f.d = g.getImageData(f.bx, f.by, f.bw, f.bh).data; });
 }
+// Screen-space face box for the current frame under a full-frame th(zoom, ay).
+function faceScreen(zoom = BZ, ay = BAY) { const r = xf(FULL, zoom, ay), s = r[2] / W, b = FBOX || FACE_BOX;
+  return { x: r[0] + b.x * s, y: r[1] + b.y * s, w: b.w * s, h: b.h * s }; }
 // Punch-in cuts: zoomAt(T) returns BZ, or BZ*1.12 inside any EP.punchIns window.
 let BASE_T = 0;   // centre time of the frame being drawn (subframes share it for cut decisions)
 const zoomAt = T => (EP.punchIns || []).some(([a, b]) => win(BASE_T, a, b)) ? BZ * 1.12 : BZ;
@@ -162,6 +169,8 @@ mosaic.cue = a => { cue(a + .05, 'riser', { d: .6, gain: .2 }); cue(a - .08, 'wh
 // Chunk rules: break on punctuation, a pause > .35s, 3 words, or 20 characters.
 let CHUNKS = [];
 function chunkWords(words) {
+  // whisper splits hyphenated words ("third -party") → join them back
+  words = words.reduce((acc, w) => { if (w.w.startsWith('-') && acc.length) acc[acc.length - 1] = { ...acc[acc.length - 1], w: acc[acc.length - 1].w + w.w, e: w.e }; else acc.push({ ...w }); return acc; }, []);
   const out = []; let cur = [];
   words.forEach((w, i) => {
     cur.push(w);
@@ -172,10 +181,11 @@ function chunkWords(words) {
 }
 // Draw the active chunk if T sits inside a caption window [a, b, y].
 function captions(T) {
+  T = BASE_T;   // captions are sharp: drawn at the frame centre, never blended across a chunk switch
   const wnd = (EP.captions || []).find(([a, b]) => win(T, a, b)); if (!wnd) return;
   const [wa, wb, yy, style] = wnd, SZ = 66, y = typeof yy === 'function' ? yy(T) : yy, dark = style === 'dark';
   for (let c = 0; c < CHUNKS.length; c++) {
-    const ch = CHUNKS[c], st = Math.max(ch[0].s, wa), last = ch[ch.length - 1];
+    const ch = CHUNKS[c], carried = ch[0].s < wa, st = carried ? wa : Math.max(ch[0].s, wa + .15), last = ch[ch.length - 1];   // mid-sentence cut: chunk carries over settled; otherwise first caption after a cut waits .15s
     const en = Math.min(CHUNKS[c + 1] ? CHUNKS[c + 1][0].s : 1e9, last.e + .45, wb);
     if (!win(T, st, en) || ch[0].s >= wb) continue;
     font(800, SZ, COND); g.letterSpacing = '0.5px';
@@ -184,7 +194,7 @@ function captions(T) {
     let a = 0; ch.forEach((w, i) => { if (T >= w.s) a = i; });
     const pa = Math.max(0, a - 1), k = a === 0 ? 1 : expo((T - ch[a].s) / .16);
     const hx = lerp(xs[pa], xs[a], k) - 10, hw = lerp(ws[pa], ws[a], k) + 20;
-    const p = expo((T - st) / .32), dy = (1 - p) * SZ * 1.2;
+    const p = carried ? 1 : expo((T - st) / .32), dy = (1 - p) * SZ * 1.2;
     g.save(); g.beginPath(); g.rect(0, y - SZ * 1.1, W, SZ * 1.5); g.clip();
     g.fillStyle = CYAN; g.beginPath(); g.roundRect(hx, y - SZ * .82 + dy, hw, SZ * 1.0, 8); g.fill();
     if (!dark) { g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 10; g.shadowOffsetY = 2; }
@@ -320,7 +330,9 @@ function behindHead(T, a, b, word, tag, z = BZ * 1.14) {
   if (T < a || T >= b) return;
   rise(word, 40, 560, T - a, { size: Math.min(360, 1300 / word.length), w: 800, dur: .5, exitAt: b - .15, T });
   cutout(z);
-  if (tag && T > a + .16) { const p = back((T - a - .16) / .45); g.save(); g.translate(860, 300); g.scale(p, p); g.rotate(-.06);
+  if (tag && T > a + .16) { const p = back((T - a - .16) / .45), f = faceScreen(z); font(800, 70, COND);
+    const tw0 = g.measureText(tag).width + 50, tx = Math.min(W - tw0 / 2 - 20, f.x + f.w + tw0 / 2 + 30), ty = Math.max(70, f.y - 10);
+    g.save(); g.translate(tx, ty); g.scale(p, p); g.rotate(-.06);
     font(800, 70, COND); const tw = g.measureText(tag).width + 50;
     g.fillStyle = CYAN; g.beginPath(); g.roundRect(-tw / 2, -45, tw, 90, 14); g.fill();
     g.fillStyle = NAVY; g.textAlign = 'center'; g.fillText(tag, 0, 25); g.textAlign = 'left'; g.restore(); }
@@ -502,7 +514,7 @@ function card(x, y, w, h, col = WHITE, r = 20, sh = .12) {
 // RUNTIME
 // =====================================================================================
 // Motion blur: average SUB subframes across a full-frame shutter.
-const SUB = 8;
+const SUB = +(new URLSearchParams(location.search).get("sub") || 8);
 function draw(T) {
   out.globalAlpha = 1; BASE_T = T;
   for (let k = 0; k < SUB; k++) {
@@ -526,6 +538,7 @@ window.ready = (async () => {
     '500 40px "JetBrains Mono"', '400 40px "JetBrains Mono"'].map(f => document.fonts.load(f)));
   LOGO = await img('../brand/use-logo-short.png');
   META = await fetch(`${EP_DIR}/build/meta.json`).then(r => r.json());
+  TRACK = await fetch(`${EP_DIR}/build/face.json`).then(r => r.ok ? r.json() : null).catch(() => null);
   const words = await fetch(`${EP_DIR}/words.json`).then(r => r.json());
   await new Promise((res, rej) => { const s = document.createElement('script'); s.src = `${EP_DIR}/episode.js`; s.onload = res; s.onerror = rej; document.body.appendChild(s); });
   if (EP.face) FACE = EP.face;
