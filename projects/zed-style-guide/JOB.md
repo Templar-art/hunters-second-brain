@@ -18,6 +18,10 @@ cost: { credits: 720, aud: 0 }
 | 4 | Option 04 Riviera Resort board | same | review | 180cr. Dining table round-ish not oval trestle; outdoor lounge is chair + ottoman, no sofa |
 | 5 | Master sheet (2×2 of the four boards) | local PIL composite | review | free; zed-master-style-guide.png (6384×4776) + -web.jpg |
 
+## Purpose
+
+Client-facing: goes to Zed so he can **pick one style** for a furnished home. Not an internal staging doc. Final deliverable drops prompts, credit costs, confidence scores, staging rules and locked/proposed wording.
+
 ## Log
 
 - 2026-10-09 intake: HTML style guide (Options 01–04) published as artifact
@@ -26,3 +30,4 @@ cost: { credits: 720, aud: 0 }
 
 ---
 _Vault: [[jarvis]]_
+- 2026-10-09 Hunter: deliverable is for Zed to pick a style → master sheet header reworded client-facing ("Choose your furnishing style"); deep research running to deepen room kits before rebuild
