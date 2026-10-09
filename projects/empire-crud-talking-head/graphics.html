@@ -1,194 +1,206 @@
 <!doctype html>
 <html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@500;600&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet">
 <style>html,body{margin:0;background:transparent}canvas{display:block}</style>
 </head><body>
 <canvas id="c" width="1080" height="1920"></canvas>
 <script>
-// Empire Technologies — CRUD talking-head graphics. Style matched to the Empire "AI Defence" reference.
-const W = 1080, H = 1920, DUR = 22.5, X = 80, RW = 860;
+// USE Software: CRUD talking head. Layout + motion grammar matched to the AI Defence reference,
+// colour + type from usesoftware.com.au (blue #009BEB → cyan #01E5EE, Barlow Condensed / Barlow).
+// Transparent pixels show the talking-head layer underneath: full frame in the hook, PiP hole after.
+const W = 1080, H = 1920, DUR = 22.5, X = 80, RW = 920;
 const g = document.getElementById('c').getContext('2d');
-const BG = '#0A0908', CREAM = '#F2EFE8', ORANGE = '#F47A2A', GREY = '#A8A398', RULE = '#3A3833';
-const SANS = '"DM Sans", sans-serif', MONO = '"JetBrains Mono", monospace';
+const BG = '#070B12', WHITE = '#F3F6FA', B1 = '#009BEB', B2 = '#01E5EE', GREY = '#8B95A5', RULE = '#1E2836';
+const HEAD = '"Barlow Condensed", sans-serif', BODY = 'Barlow, sans-serif', MONO = '"JetBrains Mono", monospace';
+const PIP = { x: 660, y: 1380, w: 340, h: 440, r: 30 };           // must match the ffmpeg overlay in build.sh
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
-const easeInOut = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
-function spring(t, k = 170, d = 26) {
-  if (t <= 0) return 0;
-  const w0 = Math.sqrt(k), z = d / (2 * w0);
-  if (z < 1) { const wd = w0 * Math.sqrt(1 - z * z);
-    return 1 - Math.exp(-z * w0 * t) * (Math.cos(wd * t) + (z * w0 / wd) * Math.sin(wd * t)); }
-  return 1 - Math.exp(-w0 * t) * (1 + w0 * t);
-}
+const expo = x => { x = clamp(x); return x === 1 ? 1 : 1 - Math.pow(2, -10 * x); };   // reference rise curve
+const inOut = x => { x = clamp(x); return x < .5 ? 16 * x ** 5 : 1 - Math.pow(-2 * x + 2, 5) / 2; };
 function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0;
   let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
   t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function grad(x0, x1) { const q = g.createLinearGradient(x0, 0, x1, 0); q.addColorStop(0, B1); q.addColorStop(1, B2); return q; }
+const LOGO = new Image(); LOGO.src = 'assets/use-logo-long-white.png';
 
-// ---------- primitives ----------
-function mono(txt, x, y, t, { col = GREY, size = 30, track = 6 } = {}) {      // tracked mono label, typed on
-  const n = Math.floor(clamp(t * 28, 0, txt.length));
-  g.font = `500 ${size}px ${MONO}`; g.fillStyle = col; g.letterSpacing = track + 'px';
+// ---------- primitives (all pure functions of t) ----------
+// Mono label: types on at 26 cps, uppercase, tracked — same as the reference.
+function label(txt, y, t, col = GREY, x = X, size = 28) {
+  if (t <= 0) return; const n = Math.floor(clamp(t * 26, 0, txt.length));
+  g.font = `500 ${size}px ${MONO}`; g.letterSpacing = '5px'; g.fillStyle = col;
   g.fillText(txt.slice(0, n).toUpperCase(), x, y); g.letterSpacing = '0px';
-  return n;
 }
-function rule(y, t, col = RULE) { g.fillStyle = col; g.fillRect(X, y, RW * easeOut(t * 2.5), 2); }
-function head(txt, x, y, t, { size = 120, col = CREAM, w = 600 } = {}) {      // slide-up masked headline
-  const p = easeOut(t * 3);
-  g.save(); g.beginPath(); g.rect(0, y - size * 1.05, W, size * 1.35); g.clip();
-  g.font = `${w} ${size}px ${SANS}`; g.fillStyle = col; g.letterSpacing = (-size * 0.012) + 'px';
-  g.fillText(txt, x, y + (1 - p) * size * 1.2); g.letterSpacing = '0px'; g.restore();
+// Hairline rule draws left→right.
+function rule(y, t, x = X, w = RW) { if (t <= 0) return; g.fillStyle = RULE; g.fillRect(x, y, w * expo(t / .6), 2); }
+// Headline: each line rises out of its own mask on an expo-out, lines staggered 70ms.
+// Segments: [[text, accent?], ...] per line.
+function head(lines, y, t, { size = 150, lh = .92, x = X, w = 700, font = HEAD } = {}) {
+  lines.forEach((segs, i) => {
+    const p = expo((t - i * .07) / .55); if (p <= 0) return;
+    const ly = y + i * size * lh;
+    g.save(); g.beginPath(); g.rect(0, ly - size * .95, W, size * 1.22); g.clip();
+    g.font = `${w} ${size}px ${font}`; let cx = x; const dy = (1 - p) * size * 1.15;
+    for (const [txt, acc] of segs) { const tw = g.measureText(txt).width;
+      g.fillStyle = acc ? grad(cx, cx + tw) : WHITE; g.fillText(txt, cx, ly + dy); cx += tw; }
+    g.restore();
+  });
 }
-function typed(txt, x, y, t, { size = 40, col = CREAM, font = SANS, w = 500, cps = 30, cursor = true } = {}) {
-  const n = Math.floor(clamp(t * cps, 0, txt.length));
-  g.font = `${w} ${size}px ${font}`; g.fillStyle = col; g.fillText(txt.slice(0, n), x, y);
-  if (cursor && t > 0 && (n < txt.length || Math.floor(t * 2.5) % 2 === 0)) {
+function typed(txt, x, y, t, { size = 56, cps = 22, col = WHITE } = {}) {
+  if (t <= 0) return; const n = Math.floor(clamp(t * cps, 0, txt.length));
+  g.font = `500 ${size}px ${MONO}`; g.fillStyle = col; g.fillText(txt.slice(0, n), x, y);
+  if (n < txt.length || Math.floor(t * 2.4) % 2 === 0) {
     const cx = x + g.measureText(txt.slice(0, n)).width + 6;
-    g.fillStyle = ORANGE; g.fillRect(cx, y - size * 0.78, size * 0.42, size * 0.92);
+    g.fillStyle = grad(cx, cx + size * .5); g.fillRect(cx, y - size * .78, size * .48, size * .92);
   }
 }
 function check(cx, cy, r, t) {
-  const p = easeOut(t * 2.2); if (p <= 0) return;
-  g.strokeStyle = ORANGE; g.lineWidth = 5; g.lineCap = 'round';
+  if (t <= 0) return; const p = expo(t / .5), q = expo((t - .2) / .4);
+  g.strokeStyle = grad(cx - r, cx + r); g.lineWidth = 5; g.lineCap = 'round';
   g.beginPath(); g.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * p); g.stroke();
-  const q = easeOut(t * 2.2 - 0.6);
-  if (q > 0) { g.beginPath(); g.moveTo(cx - r * .42, cy);
-    const a = [cx - r * .1, cy + r * .32], b = [cx + r * .45, cy - r * .32];
-    if (q < .4) g.lineTo(cx - r * .42 + (a[0] - cx + r * .42) * q / .4, cy + (a[1] - cy) * q / .4);
-    else { g.lineTo(...a); const k = (q - .4) / .6; g.lineTo(a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k); }
+  if (q > 0) { const pts = [[cx - r * .42, cy + r * .02], [cx - r * .1, cy + r * .32], [cx + r * .45, cy - r * .3]];
+    const L1 = Math.hypot(pts[1][0] - pts[0][0], pts[1][1] - pts[0][1]), L2 = Math.hypot(pts[2][0] - pts[1][0], pts[2][1] - pts[1][1]);
+    let d = q * (L1 + L2); g.beginPath(); g.moveTo(...pts[0]);
+    if (d <= L1) g.lineTo(pts[0][0] + (pts[1][0] - pts[0][0]) * d / L1, pts[0][1] + (pts[1][1] - pts[0][1]) * d / L1);
+    else { g.lineTo(...pts[1]); d -= L1; g.lineTo(pts[1][0] + (pts[2][0] - pts[1][0]) * d / L2, pts[1][1] + (pts[2][1] - pts[1][1]) * d / L2); }
     g.stroke(); }
 }
-function fadeOut(t, end) { return 1 - clamp((t - end + 0.25) / 0.25); }
+// Arrow draws out like the reference "transfer →".
+function arrow(x, y, len, t) {
+  if (t <= 0) return; const p = expo(t / .6), e = x + len * p;
+  g.strokeStyle = grad(x, x + len); g.lineWidth = 3; g.lineCap = 'round';
+  g.beginPath(); g.moveTo(x, y); g.lineTo(e, y); g.stroke();
+  if (p > .6) { const a = (p - .6) / .4 * 16; g.beginPath(); g.moveTo(e - a, y - a * .7); g.lineTo(e, y); g.lineTo(e - a, y + a * .7); g.stroke(); }
+}
 
-// ---------- background constellation (drifting, like the reference) ----------
-const NODES = (() => { const r = rng(42), a = [];
-  for (let i = 0; i < 46; i++) a.push({ x: 120 + r() * 880, y: r() * H, vx: (r() - .5) * 6, vy: (r() - .5) * 6, ph: r() * 6 });
+// ---------- background: drifting blue network (brand-tinted version of the reference) ----------
+const NODES = (() => { const r = rng(11), a = [];
+  for (let i = 0; i < 50; i++) a.push({ x: 60 + r() * 960, y: r() * H, ph: r() * 6, s: .5 + r() });
   return a; })();
-function constellation(t, alpha) {
-  const P = NODES.map(n => ({ x: n.x + n.vx * t + Math.sin(t * .4 + n.ph) * 10, y: n.y + n.vy * t + Math.cos(t * .3 + n.ph) * 10 }));
-  g.globalAlpha = alpha; g.lineWidth = 1.2;
+function network(t) {
+  const P = NODES.map(n => ({ x: n.x + Math.sin(t * .25 * n.s + n.ph) * 26, y: n.y + Math.cos(t * .2 * n.s + n.ph) * 26 - t * 6 }));
+  g.lineWidth = 1.2;
   for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) {
     const d = Math.hypot(P[i].x - P[j].x, P[i].y - P[j].y);
-    if (d < 230) { g.strokeStyle = `rgba(150,145,135,${0.16 * (1 - d / 230)})`; g.beginPath(); g.moveTo(P[i].x, P[i].y); g.lineTo(P[j].x, P[j].y); g.stroke(); }
+    if (d < 220) { g.strokeStyle = `rgba(0,155,235,${.13 * (1 - d / 220)})`; g.beginPath(); g.moveTo(P[i].x, P[i].y); g.lineTo(P[j].x, P[j].y); g.stroke(); }
   }
-  g.fillStyle = 'rgba(150,145,135,0.35)'; for (const p of P) { g.beginPath(); g.arc(p.x, p.y, 3, 0, 7); g.fill(); }
-  g.globalAlpha = 1;
+  g.fillStyle = 'rgba(0,175,235,.28)'; for (const p of P) { g.beginPath(); g.arc(p.x, p.y, 2.6, 0, 7); g.fill(); }
 }
 
-// ---------- Empire Technologies mark (vector redraw of the logo) ----------
-const LN = [[40,40,6],[105,22,6],[18,75,6],[90,62,9],[140,50,7],[198,48,7],[175,72,5],[60,95,14],[140,102,11],[92,113,7],[40,124,6],[165,124,6],[195,103,5]];
-const LE = [[0,3],[1,3],[1,4],[4,6],[5,6],[6,12],[2,7],[3,7],[7,9],[7,10],[4,8],[8,11],[3,8]];
-function logo(x, y, s, t) {
-  g.save(); g.translate(x, y); g.scale(s, s);
-  g.strokeStyle = ORANGE; g.lineWidth = 3;
-  LE.forEach(([a, b], i) => { const p = easeOut(t * 3 - i * .06); if (p <= 0) return;
-    const A = LN[a], B = LN[b]; g.beginPath(); g.moveTo(A[0], A[1]); g.lineTo(A[0] + (B[0] - A[0]) * p, A[1] + (B[1] - A[1]) * p); g.stroke(); });
-  g.fillStyle = ORANGE;
-  LN.forEach(([nx, ny, r], i) => { const p = spring(t - i * .04, 300, 16); if (p <= 0) return;
-    g.beginPath(); g.arc(nx, ny, r * p, 0, 7); g.fill(); });
-  const tp = easeOut(t * 2.5 - .5);
-  g.globalAlpha = tp; g.fillStyle = CREAM;
-  g.font = `600 52px ${SANS}`; g.fillText('Empire', 262 + (1 - tp) * 30, 70);
-  g.font = `400 40px ${SANS}`; g.letterSpacing = '2px'; g.fillText('Technologies', 262 + (1 - tp) * 30, 118); g.letterSpacing = '0px';
-  g.restore(); g.globalAlpha = 1;
+// ---------- PiP: punch a hole so the face layer shows through, plus frame + tag ----------
+function pip(t, out) {                       // t = time since in, out = time until gone (negative = leaving)
+  const pin = expo(t / .6), pout = out < 0 ? 0 : expo(out / .4);   // pout: 1 while shown
+  const s = Math.min(pin, out === Infinity ? 1 : pout); if (s <= 0) return;
+  const { x, y, w, h, r } = PIP, cx = x + w / 2, cy = y + h / 2;
+  const sw = w * (.6 + .4 * s), sh = h * (.6 + .4 * s);
+  g.save(); g.globalAlpha = 1;
+  g.globalCompositeOperation = 'destination-out';
+  g.globalAlpha = clamp(s * 1.6); g.beginPath(); g.roundRect(cx - sw / 2, cy - sh / 2, sw, sh, r); g.fill();
+  g.restore();
+  // outer frame + gradient keyline
+  g.save(); g.globalAlpha = clamp(s * 1.6);
+  g.strokeStyle = grad(cx - sw / 2, cx + sw / 2); g.lineWidth = 3;
+  g.beginPath(); g.roundRect(cx - sw / 2, cy - sh / 2, sw, sh, r); g.stroke();
+  // tag under the frame
+  g.font = `500 22px ${MONO}`; g.letterSpacing = '4px'; g.fillStyle = GREY;
+  g.fillText('USE SOFTWARE', cx - sw / 2 + 4, cy + sh / 2 + 42); g.letterSpacing = '0px';
+  g.fillStyle = grad(0, 0); g.fillStyle = B2; g.beginPath(); g.arc(cx + sw / 2 - 10, cy + sh / 2 + 34, 7, 0, 7); g.fill();
+  g.restore();
 }
 
-// ---------- scenes (times are VO word timestamps) ----------
+// ---------- scenes. T = global seconds; word times from the VO transcript ----------
 const SCENES = [
-  { from: 0, to: 5.4, bg: false, draw(t) {          // over the talking head: hook card at the bottom
-      const a = fadeOut(t, 5.0) * easeOut(t * 4);
-      g.globalAlpha = a;
-      const y0 = 1430; g.fillStyle = 'rgba(10,9,8,0.88)';
-      g.beginPath(); g.roundRect(X - 30, y0, RW + 60, 300, 18); g.fill();
-      g.strokeStyle = RULE; g.lineWidth = 2; g.stroke();
-      mono('Dev terms', X, y0 + 62, t - .1, { col: GREY, size: 28 });
-      mono('CRUD', X + RW - 110, y0 + 62, t - .1, { col: ORANGE, size: 28 });
-      g.fillStyle = RULE; g.fillRect(X, y0 + 90, RW, 2);
-      head('Sounds bad.', X, y0 + 190, t - .3, { size: 84 });
-      if (t > 2.76) {                                 // strike through on "very good"
-        const p = easeOut((t - 2.76) * 4); g.fillStyle = ORANGE;
-        g.font = `600 84px ${SANS}`; g.fillRect(X, y0 + 160, g.measureText('Sounds bad.').width * p, 7);
-      }
-      if (t > 4.1) head('Built well.', X, y0 + 268, t - 4.1, { size: 64, col: ORANGE });
-      g.globalAlpha = 1;
-  }},
-  { from: 5.0, to: 8.0, draw(t, T) {                // C-R-U-D stands for
-      mono('C-R-U-D stands for', X, 400, T - 5.42);
-      rule(450, T - 5.5);
-      const rows = [['C', 'Create.', 6.40], ['R', 'Read.', 6.60], ['U', 'Update.', 7.12], ['D', 'Delete.', 7.68]];
-      rows.forEach(([L, word, at], i) => {
-        const y = 600 + i * 170, s = spring(T - 5.42 - i * .1, 320, 18);
-        g.save(); g.translate(X + 50, y - 40); g.scale(s, s);
-        g.strokeStyle = ORANGE; g.lineWidth = 4; g.beginPath(); g.roundRect(-50, -50, 100, 100, 14); g.stroke();
-        g.fillStyle = ORANGE; g.font = `500 64px ${MONO}`; g.textAlign = 'center'; g.fillText(L, 0, 22); g.restore();
-        g.textAlign = 'left';
-        head(word, X + 160, y, T - at, { size: 110 });
-        g.fillStyle = RULE; g.fillRect(X, y + 50, RW * easeOut((T - at) * 3), 2);
+  { from: 5.0, to: 8.0, draw(T) {                     // C-R-U-D stands for
+      label('C-R-U-D stands for', 400, T - 5.42);
+      rule(450, T - 5.55);
+      [['C', 'reate.', 6.40], ['R', 'ead.', 6.60], ['U', 'pdate.', 7.12], ['D', 'elete.', 7.68]].forEach(([L, rest, at], i) => {
+        const y = 650 + i * 200;
+        head([[[L, true]]], y, T - 5.45 - i * .08, { size: 190 });          // letters land with the spelling
+        g.font = `700 190px ${HEAD}`; const lw = g.measureText(L).width;
+        head([[[rest, false]]], y, T - at, { size: 190, x: X + lw });       // rest of the word on the spoken word
+        rule(y + 40, T - at - .1);
       });
   }},
-  { from: 8.0, to: 10.45, draw(t, T) {              // a methodology for REST APIs
-      mono('A methodology for', X, 400, T - 8.04);
+  { from: 8.0, to: 10.45, pip: true, draw(T) {        // a methodology for building a REST API
+      label('A methodology for', 400, T - 8.04);
       rule(450, T - 8.2);
-      head('Building', X, 600, T - 8.62, { size: 150 });
-      head('a REST API.', X, 760, T - 9.72, { size: 150, col: ORANGE });
-      g.fillStyle = RULE; g.fillRect(X, 830, RW * easeOut((T - 9.9) * 3), 2);
-      mono('Endpoint', X, 900, T - 9.95, { size: 26 });
-      typed('/api', X, 980, T - 10.0, { font: MONO, size: 56, cps: 14 });
+      head([[['Building', false]]], 640, T - 8.62, { size: 190 });
+      head([[['a ', false], ['REST API.', true]]], 815, T - 9.72, { size: 190 });
+      rule(880, T - 9.9);
+      label('Endpoint', 950, T - 9.95);
+      arrow(X, 1030, 300, T - 9.95);
+      typed('/api', X + 330, 1050, T - 10.05, { size: 60, cps: 14 });
   }},
-  { from: 10.45, to: 15.0, draw(t, T) {             // for any endpoint, e.g. users
-      mono('For any endpoint', X, 400, T - 10.76);
+  { from: 10.45, to: 15.0, pip: true, draw(T) {       // for any endpoint, e.g. users
+      label('For any endpoint', 400, T - 10.76);
       rule(450, T - 10.9);
-      head("Let's say", X, 590, T - 12.3, { size: 120 });
-      head('Users.', X, 730, T - 14.3, { size: 150, col: ORANGE });
-      const y0 = 850, a = easeOut((T - 11.5) * 3);       // endpoint card, like the policy card in the reference
-      g.globalAlpha = a; g.strokeStyle = RULE; g.lineWidth = 2;
-      g.beginPath(); g.roundRect(X, y0 + (1 - a) * 30, RW, 240, 16); g.stroke();
-      mono('Endpoint', X + 34, y0 + 60, T - 11.5, { size: 26 });
-      mono('REST', X + RW - 110, y0 + 60, T - 11.5, { size: 26, col: ORANGE });
-      g.fillStyle = RULE; g.fillRect(X + 34, y0 + 86, RW - 68, 2);
-      typed('/api/users', X + 34, y0 + 170, T - 13.84, { font: MONO, size: 60, cps: 22 });
-      g.globalAlpha = 1;
+      head([[["Let's say", false]]], 620, T - 12.3, { size: 190 });
+      head([[['Users.', true]]], 830, T - 13.84, { size: 220 });
+      const y0 = 940, a = expo((T - 11.5) / .6);          // endpoint card (reference: payments-policy card)
+      if (a > 0) { g.save(); g.globalAlpha = a; g.translate(0, (1 - a) * 40);
+        g.fillStyle = 'rgba(14,20,30,.85)'; g.strokeStyle = RULE; g.lineWidth = 2;
+        g.beginPath(); g.roundRect(X, y0, 540, 250, 18); g.fill(); g.stroke();
+        label('Endpoint', y0 + 60, T - 11.55, GREY, X + 32, 24);
+        label('REST', y0 + 60, T - 11.7, B1, X + 420, 24);
+        g.fillStyle = RULE; g.fillRect(X + 32, y0 + 86, 476, 2);
+        typed('/api/users', X + 32, y0 + 175, T - 13.84, { size: 58, cps: 24 });
+        g.restore(); }
   }},
-  { from: 15.0, to: 19.8, draw(t, T) {              // four actions on one endpoint
-      mono('One endpoint · four actions', X, 400, T - 15.02);
+  { from: 15.0, to: 19.8, pip: true, draw(T) {        // four actions on one endpoint
+      label('/api/users · four actions', 400, T - 15.02);
       rule(450, T - 15.1);
-      const rows = [['POST', 'Create user.', 15.38], ['GET', 'Read user.', 16.62], ['PUT', 'Update user.', 17.58], ['DELETE', 'Delete user.', 18.38]];
-      rows.forEach(([verb, label, at], i) => {
-        const y = 560 + i * 150, a = easeOut((T - at) * 4);
-        g.globalAlpha = a;
-        g.font = `500 30px ${MONO}`; g.letterSpacing = '4px'; g.fillStyle = ORANGE; g.fillText(verb, X, y - 62); g.letterSpacing = '0px';
-        g.globalAlpha = 1;
-        head(label, X, y + 24, T - at, { size: 76, w: 600 });
-        check(X + RW - 36, y, 30, T - at - .25);
-        g.fillStyle = RULE; g.fillRect(X, y + 58, RW * a, 2);
+      [['POST', 'Create user.', 15.38], ['GET', 'Read user.', 16.62], ['PUT', 'Update user.', 17.58], ['DELETE', 'Delete user.', 18.38]].forEach(([verb, txt, at], i) => {
+        const y = 600 + i * 170;
+        label(verb, y - 78, T - at, B1, X, 26);
+        head([[[txt, false]]], y + 20, T - at, { size: 104 });
+        check(X + RW - 46, y - 18, 32, T - at - .3);
+        rule(y + 54, T - at - .05);
       });
-      mono('Every action you can take', X, 1200, T - 19.0, { col: ORANGE, size: 28 });
+      label('Every action you can take', 1300, T - 19.0, B2);
   }},
-  { from: 19.8, to: 22.5, draw(t, T) {              // end card
-      const a = 1 - clamp((T - 22.1) / 0.4);
-      g.globalAlpha = a;
-      mono('Create · Read · Update · Delete', X, 400, T - 19.85);
-      rule(450, T - 19.9);
-      head('Built', X, 640, T - 20.0, { size: 190 });
-      head('properly.', X, 830, T - 20.15, { size: 190, col: ORANGE });
-      logo(X, 1000, 1.0, T - 20.5);
-      g.globalAlpha = 1;
+  { from: 19.8, to: 22.5, draw(T) {                   // end card
+      label('Create · Read · Update · Delete', 400, T - 19.85);
+      rule(450, T - 19.95);
+      head([[['Built', false]], [['properly.', true]]], 700, T - 20.05, { size: 230 });
+      const p = expo((T - 20.6) / .8);                   // logo wipes in left→right
+      if (p > 0 && LOGO.complete) { const lw = 620, lh = lw * LOGO.height / LOGO.width;
+        g.save(); g.beginPath(); g.rect(X, 1040, lw * p, lh + 20); g.clip();
+        g.drawImage(LOGO, X, 1050, lw, lh); g.restore(); }
+      label('usesoftware.com.au', 1200, T - 21.0);
   }},
 ];
 
+// Hook card over the full-frame talking head (0–5s).
+function hook(T) {
+  const a = expo(T / .5) * (1 - clamp((T - 4.75) / .2)); if (a <= 0) return;
+  const y0 = 1440; g.save(); g.globalAlpha = a; g.translate(0, (1 - expo(T / .6)) * 60);
+  g.fillStyle = 'rgba(7,11,18,.9)'; g.beginPath(); g.roundRect(X - 30, y0, RW + 60 - 80, 320, 22); g.fill();
+  g.fillStyle = grad(X - 30, X + RW - 50); g.fillRect(X - 30 + 22, y0, RW - 80 + 16, 4);
+  label('Dev terms', y0 + 66, T - .15, GREY, X + 10, 26);
+  label('CRUD', y0 + 66, T - .3, B1, X + RW - 210, 26);
+  g.fillStyle = RULE; g.fillRect(X + 10, y0 + 92, RW - 100, 2);
+  head([[['Sounds bad.', false]]], y0 + 200, T - .35, { size: 110, x: X + 10 });
+  if (T > 2.76) { g.font = `700 110px ${HEAD}`; g.fillStyle = grad(X, X + 500);
+    g.fillRect(X + 10, y0 + 162, g.measureText('Sounds bad.').width * expo((T - 2.76) / .35), 8); }
+  head([[['Built well.', true]]], y0 + 290, T - 4.18, { size: 84, x: X + 10 });
+  g.restore();
+}
+
 function draw(T) {
   g.clearRect(0, 0, W, H);
-  // dark panel wipes up over the talking head at 4.9–5.35s, stays opaque after
-  const wipe = easeInOut((T - 4.9) / 0.45);
-  if (wipe > 0) { g.fillStyle = BG; g.fillRect(0, H * (1 - wipe), W, H * wipe); constellation(T, wipe); }
-  for (const s of SCENES) if (T >= s.from && T < s.to) {
-    if (s.from > 0 && T < s.from + 0.0001) continue;
-    // hard-cut feel: content of the outgoing scene fades in its last 0.2s
-    g.globalAlpha = s.from === 0 ? 1 : 1 - clamp((T - s.to + 0.2) / 0.2);
-    s.draw(T - s.from, T); g.globalAlpha = 1;
+  if (T < 5.0) { hook(T); }
+  // panel wipes up over the talking head 4.85–5.3s (quint in-out), opaque afterwards
+  const wipe = inOut((T - 4.85) / .45);
+  if (wipe > 0) { g.save(); g.beginPath(); g.rect(0, H * (1 - wipe), W, H * wipe); g.clip();
+    g.fillStyle = BG; g.fillRect(0, 0, W, H); network(T); g.restore(); }
+  for (const s of SCENES) if (T >= s.from && T < s.to) {        // hard cuts between scenes, like the reference
+    s.draw(T);
   }
+  // PiP stays up continuously across the three scenes that use it (8.0–19.8)
+  if (T >= 8.0 && T < 19.8) pip(T - 8.15, 19.8 - T - .05);
 }
 window.seek = (t) => { draw(t); return true; };
-window.ready = document.fonts.ready.then(() => document.fonts.load(`600 40px "DM Sans"`)).then(() => document.fonts.load(`500 40px "JetBrains Mono"`));
+window.ready = document.fonts.ready
+  .then(() => Promise.all([`700 40px "Barlow Condensed"`, `500 40px "JetBrains Mono"`, `600 40px Barlow`].map(f => document.fonts.load(f))))
+  .then(() => LOGO.complete ? 0 : new Promise(r => LOGO.onload = r));
 if (!navigator.webdriver) { window.ready.then(() => { const t0 = performance.now();
   (function loop() { draw(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); })(); }); }
 </script>
