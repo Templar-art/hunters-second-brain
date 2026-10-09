@@ -10,7 +10,7 @@ Skipped:
 |---|---|---|---|
 | 03 | cli | Definition | v1 sent |
 | 04 | json | Definition | v1 sent |
-| 05 | sdk | Definition | |
+| 05 | sdk | Definition | v1 sent |
 | 06 | ui-ux | Definition | |
 | 07 | ide | Definition | |
 | 08 | saas | Definition | |
