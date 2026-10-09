@@ -196,7 +196,7 @@ function captions(T) {
     const hx = lerp(xs[pa], xs[a], k) - 10, hw = lerp(ws[pa], ws[a], k) + 20;
     const p = carried ? 1 : expo((T - st) / .32), dy = (1 - p) * SZ * 1.2;
     g.save(); g.beginPath(); g.rect(0, y - SZ * 1.1, W, SZ * 1.5); g.clip();
-    g.fillStyle = CYAN; g.beginPath(); g.roundRect(hx, y - SZ * .82 + dy, hw, SZ * 1.0, 8); g.fill();
+    if (p > .35) { g.fillStyle = CYAN; g.beginPath(); g.roundRect(hx, y - SZ * .82 + dy, hw, SZ * 1.0, 8); g.fill(); }   // no orphan highlight bar before the words are up
     if (!dark) { g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 10; g.shadowOffsetY = 2; }
     ch.forEach((w, i) => { g.fillStyle = dark ? (i === a ? NAVY : INK) : WHITE; g.fillText(w.w, xs[i], y + dy); });   // dark: light slides
     g.restore(); g.letterSpacing = '0px';
@@ -387,13 +387,28 @@ okCard.cue = (a, sh, json) => { cue(a, 'whoosh', { d: .3, bright: .4, gain: .3 }
   cue(a + .15, 'ticks', { n: 10, gap: .035 }); cue(a + .5, 'chime', { f: 1175, gain: .1 }); cue(a + .4, 'typing', { n: json.length, cps: 60 });
   cue(sh, 'thud', { f: 45, d: .5, gain: .5 }); cue(sh, 'glass', { n: 60, span: .35 }); };
 
+// Q&A opener: navy slide, "QUESTION" tag, the question types in big, speaker circle. Shown a → b.
+function qOpener(T, a, b, question, lines) {
+  g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
+  const t = T - a; cluster(81, 930, 170, 6, 120, 90, t - .1, { from: [300, -260] });
+  const tg = back(t / .4); if (tg > 0) { g.save(); g.translate(70, 380); g.scale(tg, tg); g.fillStyle = CYAN; g.beginPath(); g.roundRect(0, -42, 250, 64, 32); g.fill();
+    font(500, 28, MONO); g.letterSpacing = '5px'; g.fillStyle = NAVY; g.fillText('QUESTION', 28, 0); g.letterSpacing = '0px'; g.restore(); }
+  // the question types word by word, wrapped into the given lines
+  const words = lines.join(' ').split(' '), per = (b - a - .6) / words.length; let shown = Math.floor(clamp((t - .3) / per, 0, words.length));
+  lines.forEach((ln, i) => { const ws = ln.split(' '), n = Math.min(ws.length, shown); shown -= ws.length; if (n <= 0) return;
+    font(800, 104, COND); g.fillStyle = WHITE; g.fillText(ws.slice(0, n).join(' '), 70, 560 + i * 112); });
+  faceCircle(880, 1620, 150, back((t - .2) / .6));
+  typeOn('Sam Bruhn · Founder & CEO', 70, 1640, t - .5, { size: 26, col: GREY, track: 4, upper: true, cps: 40 });
+}
+qOpener.cue = (a, b) => { cue(a, 'whoosh', { d: .4, gain: .35 }); cue(a + .1, 'shards', { n: 6 }); cue(a + .3, 'typing', { n: 8, cps: 6, gain: .25 }); };
+
 // White end card: logo, "Definitions", tagline, URL. Fades to white over the last .4s.
 function endCard(T, a, dur, title = 'Definitions') {
   const t = T - a; g.fillStyle = WHITE; g.fillRect(0, 0, W, H);
   if (LOGO) { const p = expo(t / .6), lw = 620, lh = lw * LOGO.height / LOGO.width;
     g.save(); g.beginPath(); g.rect(70, 600, lw * p + 4, lh + 10); g.clip(); g.drawImage(LOGO, 70, 605, lw, lh); g.restore(); }
   rise(title, 76, 1010, t - .2, { size: 150, w: 700, col: INK, dur: .5 });
-  typeOn('understand · solve · execute', 82, 1110, t - .25, { size: 38, col: '#0B6FA8', track: 5, w: 500, cps: 30 });
+  typeOn('understand · solve · execute', 82, 1110, t - .05, { size: 38, col: '#0B6FA8', track: 5, w: 500, cps: 48 });
   typeOn('usesoftware.com.au', 82, 1175, t - .6, { size: 32, col: '#555A60', track: 2, w: 400, cps: 30 });
   cluster(51, 900, 160, 7, 180, 120, t - .05, { from: [300, -300] });
   cluster(52, 760, 1620, 4, 140, 150, t - .15, { from: [200, 400] });

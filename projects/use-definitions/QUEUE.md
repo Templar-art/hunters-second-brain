@@ -26,7 +26,7 @@ Skipped:
 | 15 | state-management | Definition | v1 boss-passed, sent |
 | 16 | sql | Definition | v1 boss-passed, sent |
 | 17 | erd | Definition | v1 boss-passed, sent |
-| 18 | excel-wince | Q&A | |
+| 18 | excel-wince | Q&A | v1 boss-passed, sent |
 | 19 | scope-myth | Q&A | |
 | 20 | promises | Q&A | |
 | 21 | ask-the-vision | Q&A | |
