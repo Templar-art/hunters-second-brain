@@ -1124,3 +1124,7 @@ Drafted three proposed modern-luxury directions (02 Gallery Stone, 03 Smoked Oak
 ## [2026-10-09] query | ZED style boards generated
 
 Four 10-room style boards (Options 01–04) on Magnific GPT 2.5 Sunburst, 720cr, stitched into one master sheet. JOB.md in `projects/zed-style-guide/`. Logged on [[zed-style]].
+
+## [2026-10-09] ingest | Deep research: luxury staging trends + AI board prompting
+
+18 of 25 claims survived verification. Room-by-room furniture and price-lift evidence not found. Filed as [[deep-research-2026-10-luxury-staging-prompting]].

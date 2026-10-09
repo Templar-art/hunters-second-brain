@@ -1,0 +1,72 @@
+---
+type: source
+tags: [research, virtual-staging, zed, prompting, trends]
+updated: 2026-10-09
+---
+
+# Deep research: modern luxury staging trends + AI board prompting (2026-10-09)
+
+Fan-out web research run for the [[zed-style]] client style guide: 21 sources fetched, 25 claims verified by 3-vote adversarial check, 18 survived. Feeds [[zed-style]] and [[staging-rules]].
+
+## Summary
+
+The verified evidence answers only two parts of the question: the 2026 Australian colour direction, and how to prompt AI image models for consistent staging and style boards. It does not support a room-by-room luxury styling spec. Australian palettes are moving away from cool grey, stark white and greige toward warm earthy neutrals: clay, sand, oat or caramel, rich timber, and olive or eucalyptus greens, with terracotta or bronze accents. The oversized white bouclé statement sofa is one specific piece flagged as dating a room. On prompting, the sources agree on a few points. Treat the original photo as the record of the room. Name what must be preserved (camera position, perspective, walls, windows, doors, flooring, lighting) and what should change. Repeat that preserve list on every pass, and chain an approved output back in as the reference for the next panel or angle. Do not rely on vague instructions like "properly scaled", because the models do not measure the room and can redraw the architecture. No verified claim covered signature furniture, props and quantities per room, the four sub-direction palettes, or what stylists say lifts sale price. That part of the guide still has to come from the 10x/ZED Option 01 library and further research.
+
+## Verified findings
+
+- **2026 Australian palette direction: cool grey, stark white and greige are fading as the default. Warm earthy neutrals are replacing them: clay, sand, oat/caramel, rich timber, plus olive greens and terracotta/bronze accents.** (medium, vote 3-0 (x3 merged))
+  - Merges claims 2, 3 and 5, each verified 3-0. The named sources are designer Georgina Redenbach (Olive and Pear Designs) in an ACM-syndicated piece, a Home Beautiful piece sponsored by Phoenix Tapware (Aug 2026), and a Ray White New Farm agency blog. Henley and Dulux forecasts, cited by the verifiers, back the same warming direction. The exact colour names (caramel, oat, bronze) come from the sponsored piece. Terracotta is the least corroborated. Light soft neutrals still form the base layer.
+  - Sources: https://www.canberratimes.com.au/story/9096246/interior-design-trends-in-australian-homes-for-2026/, https://www.homebeautiful.com.au/home-ideas/style-forecast/bronze-and-caramel-tones-2026/, https://rwnf.com.au/news/the-home-trends-australians-are-leaving-behind-in-2026
+- **Green is coming back in eucalyptus, khaki and soft sage, mainly in rugs and carpets for bedrooms and living areas. This suits the ZED living, master bedroom and secondary bedroom palettes.** (medium, vote 3-0)
+  - Claim 2. Redenbach calls the return of green in carpets and rugs one of the most interesting colour shifts, after green's run in kitchens. This is one designer's view, published as a general-homes trend piece and not about prestige listings.
+  - Sources: https://www.canberratimes.com.au/story/9096246/interior-design-trends-in-australian-homes-for-2026/
+- **Avoid the oversized white bouclé statement sofa because it now reads as dated. Durable fabrics, timeless silhouettes and richer colours replace it. Warm-toned or tighter-weave textured fabrics, including warm bouclé, are still fine.** (medium, vote 3-0)
+  - Claim 6, verified 3-0. The source is an agency blog. Verifiers found US-leaning trend pieces agreeing that all-white bouclé has peaked and is shifting to oat, camel, olive and charcoal, and to low-slung organic shapes. Bouclé itself is not dated, only the oversized high-maintenance white version.
+  - Sources: https://rwnf.com.au/news/the-home-trends-australians-are-leaving-behind-in-2026
+- **Treat the original photo as the record of the room. General-purpose models (Nano Banana 2/Pro, GPT Image 2/2.5) regenerate the whole frame. They can misread reflections, reshape doorways, move or invent doors and windows, invent flooring, or shift wall and floor transitions, even on small edits.** (medium, vote 3-0 / 2-1)
+  - Merges claims 13 (2-1) and 16 (3-0). Runway's cautionary wording works against its own interest as a vendor. rangy.ai, cited by the verifiers, reports the same window-to-door swaps. Nano Banana Pro mostly holds walls when told to. OpenAI recommends compositing regions that must stay pixel-exact. This matches the vault rules preserve-fixtures, generate-vs-real-photos, lock-camera-framing and composite-raw-window-views.
+  - Sources: https://runway.com/resources/ai-virtual-staging, https://www.virtualstaging.art/articles/nano-banana-gpt-image-virtual-staging
+- **Staging prompts should name every preserved element explicitly: camera position, perspective, room dimensions, walls, windows, doors, flooring, ceiling, trim, fixtures and exterior view. They should state separately what changes. A generic 'don't change anything else' still drifts.** (high, vote 3-0 (x3 merged))
+  - Merges claims 0, 8 and 17, all verified 3-0. OpenAI's own cookbook interior example says to preserve camera angle, room lighting, floor shadows and surrounding objects, and to keep everything else unchanged. OpenAI's GPT Image 2.5 guide says to separate change from preserve and to make one change at a time. Primary vendor docs plus several secondary guides agree.
+  - Sources: https://runway.com/resources/ai-virtual-staging, https://lumalabs.ai/learning-center/articles/gpt-image-2-complete-guide, https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide
+- **Repeat the preserve list on every iteration. For consistency across panels or angles, generate one approved reference and feed it back as the input for later images, restating palette and key features when they drift.** (high, vote 3-0)
+  - Claims 0 and 1, verified 3-0. These are primary OpenAI docs dated 21 Apr 2026, covering gpt-image-2/1.5/1. The advice is written for GPT Image, so applying it to Nano Banana, Seedream or Magnific is an inference, though a common practice. It matches the vault rule matching-angles-need-reference.
+  - Sources: https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide
+- **Recommended order for a staging prompt: (1) name the room; (2) say the uploaded photo is the source of truth; (3) list the architecture that must not change; (4) give the style; (5) set furniture scale and walking paths; (6) rule out renovation-style changes. For a general GPT Image prompt, go from wide context to narrow specifics: Scene, Subject, Important details, Use case, Constraints.** (medium, vote 3-0)
+  - Merges claims 7 and 15, verified 3-0. OpenAI's gpt-image-1.5 guide independently gives the background → subject → details → constraints order and recommends stating the use case. The 5-part labelled template and the 6-step staging order are practitioner heuristics with no benchmark behind them. For Sunburst, keep the vault rule prompt-prose-not-checklist: apply the order inside flowing prose, not as labelled headings.
+  - Sources: https://www.virtualstaging.art/articles/nano-banana-gpt-image-virtual-staging, https://lumalabs.ai/learning-center/articles/gpt-image-2-complete-guide
+- **Furniture scale is a major failure mode. 'Properly scaled' is unreliable because the model does not measure the room. Pin scale to fixed anchors (named walls, footprint, counts) instead.** (medium, vote 3-0)
+  - Claim 14, verified 3-0. PhotoUp, cited by the verifiers, lists oversized sectionals, a king bed where only a queen fits, and a dining table for 8 in a nook. 'Biggest' is an unranked opinion from a vendor with a conflict of interest. This matches the vault rule placement three-anchor lock.
+  - Sources: https://www.virtualstaging.art/articles/nano-banana-gpt-image-virtual-staging
+- **Multi-reference capacity for style-board consistency differs by model. Nano Banana Pro takes up to 14 reference images per request; the original Nano Banana (2.5 Flash Image) takes about 3. Seedream 4.0 takes up to 6 references for replacement, composition or style transfer, and has a batch mode that returns a coherent series (up to about 9-10 images) with consistent style. For each reference, state what to take from it, separately from the new scene.** (medium, vote 3-0 / 2-1)
+  - Merges claims 9 (3-0), 11 (2-1) and 12 (3-0). The NBP 14-image and 2.5 Flash 3-image limits are confirmed by Google Vertex docs. The Seedream figure of 6 references is confirmed by Freepik docs. Seedream 4.0 has been followed by 4.5 and 5.0 Lite. Batch consistency applies to separate panels, not to grids generated as a single image.
+  - Sources: https://visualizee.ai/blog/nano-banana-vs-nano-banana-pro-comparison, https://www.promptus.ai/blog/seedream-4-0
+- **For multi-panel boards, state outright that lighting, props, scale and background stay identical in every panel (e.g. 'four-angle set, consistent scale and lighting'). Wording alone is not enough: lock a seed where the model allows it, or pass the approved panel as a reference.** (low, vote 2-1 / 3-0 (weak))
+  - Merges claim 10 (2-1, Segmind vendor templates that also lock the seed) and claim 4 (3-0, a TechRadar user tip that defined labels act as stable containers in Nano Banana Pro). The stronger form of the labelled-variable claim was refuted 0-3, and labelled variables conflict with the Sunburst prose rule. Treat both as anecdotal.
+  - Sources: https://blog.segmind.com/mastering-seedream-prompt-engineering-guide/, https://www.techradar.com/ai-platforms-assistants/gemini/3-advanced-strategies-for-making-the-most-of-nano-banana-pro
+
+## Refuted (do not cite)
+
+- Brushed bronze tapware is positioned as the 2026 metal finish for kitchens and bathrooms. It reads warmer than chrome and softer than matte black, and it pairs with timber, natural stone and textured surfaces. (0-3, https://www.homebeautiful.com.au/home-ideas/style-forecast/bronze-and-caramel-tones-2026/)
+- Defining named variables in a Nano Banana Pro prompt (e.g. OBJECT_A, TEXTURE_B, LIGHTING_C) and referring back to them reduces attribute drift and merging, which helps keep elements consistent in complex multi-object or sequential images. (0-3, https://www.techradar.com/ai-platforms-assistants/gemini/3-advanced-strategies-for-making-the-most-of-nano-banana-pro)
+- Australian stylists forecast for 2026 that cooler palettes give way to earthy tones, softer greens and matte finishes, with Bleached Hemp given as a soft-neutral example (Georgina Redenbach, Olive and Pear Designs). (0-3, https://www.theleader.com.au/story/9132147/interior-design-trends-2026-australian-style-forecast)
+- Amber Phillips (Fenton & Fenton with Wattyl) recommends a soft, warm neutral base, citing Pantone's 2026 Colour of the Year Cloud Dancer, with sculptural furniture and richer tones layered on top and tactile, grounded materials. (1-2, https://www.theleader.com.au/story/9132147/interior-design-trends-2026-australian-style-forecast)
+- GPT Image 2 output quality degrades across chained edits; upscale between successive edits. (1-2, https://lumalabs.ai/learning-center/articles/gpt-image-2-complete-guide)
+- For Seedream 4, the order of prompt cues matters more than prompt length. The guide gives a six-layer order: subject/action, scene/composition, lighting/lens, style/references, technical controls, negative prompts. (0-3, https://blog.segmind.com/mastering-seedream-prompt-engineering-guide/)
+- Reliable listing-quality Nano Banana staging output needs at least three spatial cues in the prompt: furniture position, light source location and camera angle. This is the author's informal testing, not a controlled study. (0-3, https://morphed.app/blog/nano-banana-prompts-for-real-estate)
+
+## Caveats
+
+Coverage gap: no verified claim covers per-room signature furniture, silhouettes, materials, prop quantities, the four sub-directions (warm organic/quiet luxury, gallery stone, hotel-suite dark timber and leather, Riviera resort), or stylist/buyer evidence on what lifts sale price. Those sections of the ZED guide cannot be grounded in this research and should lean on ZED Option 01 canonical plus new sourcing. The palette sources are weak: one designer quote, an agency blog, and a sponsored tapware piece that may be partly AI-generated. They cover Australian homes in general, not prestige listings. Brushed bronze as the 2026 tapware finish was refuted 0-3, so do not cite it. Most prompting sources are vendor blogs with conflicts of interest. Only the OpenAI cookbook is primary, and it is written for GPT Image. Model versions move fast: Nano Banana 2, GPT Image 2.5 Sunburst and Seedream 4.5/5 supersede several of the models cited. Preserve-lists and references reduce drift but do not lock geometry, so check every output against the raw photo. The Sunburst prose-not-checklist rule overrides the labelled-template advice.
+
+## Open questions
+
+- What do Australian prestige stylists and agents (e.g. Sydney/Melbourne/Gold Coast luxury agencies) actually cite as price-lifting staging moves, with any sale-price or days-on-market data?
+- Room-by-room signature pieces, silhouettes and prop counts for each of the four sub-directions. Which current Australian luxury furniture houses (e.g. Jardan, Grazia&Co, Fanuli, Cosh Living) define each look?
+- Does single-image grid generation (one call making a 10-panel board) hold consistency better or worse than batched separate panels plus a reference, on GPT Image 2.5 Sunburst vs Nano Banana Pro/2 vs Seedream 4.5?
+- Do labelled-variable or structured prompts measurably help Nano Banana 2 / Seedream for multi-panel boards, given Hunter's finding that Sunburst prefers prose?
+
+## What it changed
+
+- Option 02 Gallery Stone: the chalk-white boucle statement sofa matches the one piece flagged as dated. Shift it to warm oat textured linen or boucle.
+- Board method: batched separate panels plus an approved reference hold consistency; one-image 10-panel grids are not what the evidence covers. Better boards come from generating rooms individually and assembling them locally.

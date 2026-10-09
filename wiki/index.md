@@ -81,7 +81,8 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 - [[content-systems]] — MOC: [[reel-formats]] · [[posting-cadence]] (voice/design stay in [[ig-caption-voice]] · [[brand-system]])
 - [[business-craft]] — MOC: [[pricing-and-packaging]] · [[client-onboarding]] · [[lead-gen-and-sales]] (proposal recipe stays in [[proposal-playbook]])
 
-## Sources (ops)
+## Sources
+- [[deep-research-2026-10-luxury-staging-prompting]] — 2026 AU warm-earthy palette shift, white boucle sofa dated, AI board/staging prompting best practice (verified, cited) (ops)
 - [[research-activewear-pain-points]] — women's activewear complaints + AU competitors; Bebita positioning angles (30 Sep)
 - [[research-lifting-strap-pain-points]] — strap complaints + competitors; One Percent 'doesn't quit' angle (30 Sep)
 - [[weekly-review-2026-07-17]] — 7-day review: shipped/moved/stalled/learned, next focus = clear stalled client queue
