@@ -24,7 +24,7 @@ Skipped:
 | 12 | docker | Definition | v1 boss-passed, sent |
 | 14 | webhooks | Definition | v1 boss-passed, sent |
 | 15 | state-management | Definition | v1 boss-passed, sent |
-| 16 | sql | Definition | |
+| 16 | sql | Definition | v1 boss-passed, sent |
 | 17 | erd | Definition | |
 | 18 | excel-wince | Q&A | |
 | 19 | scope-myth | Q&A | |
