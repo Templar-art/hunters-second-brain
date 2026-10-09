@@ -5,7 +5,7 @@ const DIR = __dirname, FPS = 30, DUR = 23.0;
   const b = await chromium.launch({ channel: 'chrome', args: ['--allow-file-access-from-files'] });
   const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   p.on('console', m => m.type() === 'error' && console.error('PAGE', m.text()));
-  await p.goto('file://' + path.join(DIR, 'v3.html')); await p.evaluate(() => window.ready);
+  await p.goto('file://' + path.join(DIR, '' + (process.env.PAGE || 'v3.html') + '')); await p.evaluate(() => window.ready);
   const shot = () => p.locator('canvas').screenshot({ type: 'png' });
   if (process.argv[2] === 'stills') {
     for (const t of process.argv[3].split(',')) { await p.evaluate(t => window.seek(+t), t);
