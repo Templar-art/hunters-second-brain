@@ -394,7 +394,7 @@ function endCard(T, a, dur, title = 'Definitions') {
     g.save(); g.beginPath(); g.rect(70, 600, lw * p + 4, lh + 10); g.clip(); g.drawImage(LOGO, 70, 605, lw, lh); g.restore(); }
   rise(title, 76, 1010, t - .2, { size: 150, w: 700, col: INK, dur: .5 });
   typeOn('understand · solve · execute', 82, 1110, t - .25, { size: 38, col: '#0B6FA8', track: 5, w: 500, cps: 30 });
-  typeOn('usesoftware.com.au', 82, 1175, t - 1.1, { size: 32, col: '#555A60', track: 2, w: 400, cps: 30 });
+  typeOn('usesoftware.com.au', 82, 1175, t - .6, { size: 32, col: '#555A60', track: 2, w: 400, cps: 30 });
   cluster(51, 900, 160, 7, 180, 120, t - .05, { from: [300, -300] });
   cluster(52, 760, 1620, 4, 140, 150, t - .15, { from: [200, 400] });
   cluster(53, 620, 1920, 6, 260, 110, t - .25, { from: [0, 300] });

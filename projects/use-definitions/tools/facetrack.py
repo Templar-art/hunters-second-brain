@@ -17,6 +17,16 @@ for i, f in enumerate(frames):
         raw[i] = b; prev = b
 idx = sorted(raw)
 if not idx: raise SystemExit("no face found")
+# reject outliers: size far from the median face, or centre jumping away from the local median
+A = np.array([raw[i] for i in idx]); mw = np.median(A[:, 2]); cx = A[:, 0] + A[:, 2] / 2; cy = A[:, 1] + A[:, 3] / 2
+keep = []
+for k, i in enumerate(idx):
+    lo, hi = max(0, k - 7), min(len(idx), k + 8)
+    if not (.75 * mw <= A[k, 2] <= 1.3 * mw): continue
+    if abs(cx[k] - np.median(cx[lo:hi])) > .35 * mw or abs(cy[k] - np.median(cy[lo:hi])) > .35 * mw: continue
+    keep.append(i)
+print(f"rejected {len(idx) - len(keep)} outlier detections")
+idx = keep
 arr = np.array([raw[i] for i in idx]); out = []
 for k in range(4): arr[:, k] = np.convolve(np.pad(arr[:, k], 2, mode="edge"), np.ones(5) / 5, mode="valid")
 for i in range(len(frames)):
