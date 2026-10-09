@@ -25,7 +25,7 @@ Skipped:
 | 14 | webhooks | Definition | v1 boss-passed, sent |
 | 15 | state-management | Definition | v1 boss-passed, sent |
 | 16 | sql | Definition | v1 boss-passed, sent |
-| 17 | erd | Definition | |
+| 17 | erd | Definition | v1 boss-passed, sent |
 | 18 | excel-wince | Q&A | |
 | 19 | scope-myth | Q&A | |
 | 20 | promises | Q&A | |

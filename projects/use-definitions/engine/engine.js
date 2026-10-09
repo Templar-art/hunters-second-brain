@@ -259,9 +259,9 @@ titleCard.cue = (term, out = 2.0, label = 'Definitions') => { cue(.1, 'typing', 
   cue(.25, 'shards', { n: 7 }); cue(.4, 'shards', { n: 3 }); cue(out, 'whoosh', { d: .35, gain: .3 }); };
 
 // Lower third: logo | name / role. Shown a → b.
-function lowerThird(T, a, b, name = 'Sam Bruhn', role = 'Founder & CEO') {
+function lowerThird(T, a, b, name = 'Sam Bruhn', role = 'Founder & CEO', y = 1330) {
   const p = expo((T - a) / .55), q = expoIn((T - b) / .3); if (p <= 0 || q >= 1) return;
-  const x = 64 - (1 - p) * 120 - q * 700, y = 1330, w = 640, h = 180;
+  const x = 64 - (1 - p) * 120 - q * 700, w = 640, h = 180;
   g.save(); g.globalAlpha = clamp(p * 2) * (1 - q);
   g.shadowColor = 'rgba(0,0,0,.18)'; g.shadowBlur = 30; g.shadowOffsetY = 10;
   g.fillStyle = WHITE; g.beginPath(); g.roundRect(x, y, w * lerp(.5, 1, p), h, 14); g.fill(); g.restore();
