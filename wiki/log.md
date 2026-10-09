@@ -1120,3 +1120,7 @@ Office restaged in her Coastal Luxury style on `nano_banana_2_1` (2cr/run, 3 run
 ## [2026-10-09] query | ZED modern-luxury style guide
 
 Drafted three proposed modern-luxury directions (02 Gallery Stone, 03 Smoked Oak Suite, 04 Riviera Resort) beside locked Option 01, with palettes, room kits and example prompts. Published as an artifact, logged on [[zed-style]]. Not approved; Option 01 still canonical.
+
+## [2026-10-09] query | ZED style boards generated
+
+Four 10-room style boards (Options 01–04) on Magnific GPT 2.5 Sunburst, 720cr, stitched into one master sheet. JOB.md in `projects/zed-style-guide/`. Logged on [[zed-style]].

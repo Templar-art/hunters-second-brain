@@ -65,6 +65,8 @@ Example directions drafted to show Zed, deliverable at [zed-modern-luxury-style-
 - **04 Riviera Resort** — limewash/sand linen/travertine/natural oak, muted clay accent instead of olive; oak trestle oval table with cord chairs. Coastal, pool houses.
 Each has palette hexes + ratio, per-room kit, exclusions and one Sunburst-style prose prompt with pass-confidence score.
 
+**Visual boards (2026-10-09):** one 10-room board per option on Magnific GPT 2.5 Sunburst (2k medium, 180cr each, 720cr total), stitched into one master sheet: [zed-master-style-guide-web.jpg](../../projects/zed-style-guide/zed-master-style-guide-web.jpg). Learned: Sunburst holds a 5×2 captioned grid + swatch row in one text-to-image pass with readable labels, but it adds footer taglines nobody asked for and can drop a letter in spaced caps. Concept boards only, not listing staging. Price check: `gpt-2-mini` + `variant: sunburst` is the real Sunburst; plain `gpt-2` prices at 100cr and is a different model.
+
 Full standing rules: [[staging-rules]]. Pipeline routing and models: [[higgsfield-pipelines]]. Raw source: `raw/zed/option-01-full-staging-library.md` and `raw/zed/option-01-full-staging-asset-library.html`.
 
 ## Used by
