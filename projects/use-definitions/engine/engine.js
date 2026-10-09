@@ -389,18 +389,22 @@ okCard.cue = (a, sh, json) => { cue(a, 'whoosh', { d: .3, bright: .4, gain: .3 }
 
 // Q&A opener: navy slide, "QUESTION" tag, the question types in big, speaker circle. Shown a → b.
 function qOpener(T, a, b, question, lines) {
+  // exits with a whip up to the speaker (series move), question fully typed 0.8s before the exit
+  const wy = whip(T, b - .25, .25); if (wy < 0) th(FULL, BZ);
+  g.save(); g.translate(0, wy);
   g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
   const t = T - a; cluster(81, 930, 170, 6, 120, 90, t - .1, { from: [300, -260] });
   const tg = back(t / .4); if (tg > 0) { g.save(); g.translate(70, 380); g.scale(tg, tg); g.fillStyle = CYAN; g.beginPath(); g.roundRect(0, -42, 250, 64, 32); g.fill();
     font(500, 28, MONO); g.letterSpacing = '5px'; g.fillStyle = NAVY; g.fillText('QUESTION', 28, 0); g.letterSpacing = '0px'; g.restore(); }
   // the question types word by word, wrapped into the given lines
-  const words = lines.join(' ').split(' '), per = (b - a - .6) / words.length; let shown = Math.floor(clamp((t - .3) / per, 0, words.length));
+  const words = lines.join(' ').split(' '), per = (b - a - 1.4) / words.length; let shown = Math.floor(clamp((t - .3) / per, 0, words.length));
   lines.forEach((ln, i) => { const ws = ln.split(' '), n = Math.min(ws.length, shown); shown -= ws.length; if (n <= 0) return;
     font(800, 104, COND); g.fillStyle = WHITE; g.fillText(ws.slice(0, n).join(' '), 70, 560 + i * 112); });
   faceCircle(880, 1620, 150, back((t - .2) / .6));
   typeOn('Sam Bruhn · Founder & CEO', 70, 1640, t - .5, { size: 26, col: GREY, track: 4, upper: true, cps: 40 });
+  g.restore();
 }
-qOpener.cue = (a, b) => { cue(a, 'whoosh', { d: .4, gain: .35 }); cue(a + .1, 'shards', { n: 6 }); cue(a + .3, 'typing', { n: 8, cps: 6, gain: .25 }); };
+qOpener.cue = (a, b) => { whip.cue(b - .25); cue(a, 'whoosh', { d: .4, gain: .35 }); cue(a + .1, 'shards', { n: 6 }); cue(a + .3, 'typing', { n: 8, cps: 6, gain: .25 }); };
 
 // White end card: logo, "Definitions", tagline, URL. Fades to white over the last .4s.
 function endCard(T, a, dur, title = 'Definitions') {
