@@ -40,6 +40,10 @@ Each component has a matching `.cue(...)` that registers its sound effects, so a
 | `panel(top)`, `faceCircle`, `pill`, `iconUser`, `iconDB`, `whip(T, a)` | building blocks for custom slides |
 | `endCard(T, a, dur)` | white USE / Definitions end card |
 
+**Animation kit v2** (use these so episodes don't repeat themselves): `letterDrop`, `letterPop`, `bubble` (speech bubble), `flipCard` (3D flip), `iris` (circle reveal), `zoomThrough`, `glitch(T, k, fn)`, `progress` (race-to-100% bar), `cardStack`, `burst` (triangle explosion), `card`.
+
+**Layouts beyond talking head + panel** (see `episodes/bus-network`): navy stage with a floating tilted speaker card (`sceneNetwork`), a bento grid with the speaker as one tile (`sceneResults`), a full-slide map with a camera push (`sceneOffTrack`).
+
 Helpers: `th(rect, zoom, ay)` draws the speaker, `cutout(zoom, ay)` draws him on top (text behind head), `rise()` and `typeOn()` are the two text entrances, `expo` is the series curve.
 
 ## Rules that keep it on-brand

@@ -11,7 +11,7 @@ Client: [[use-software]]. Brief from Hunter, 9 Oct 2026: take a raw talking-head
 
 **Deliverables:**
 - CRUD: `projects/use-definitions/episodes/crud/crud-v6.mp4` (23.6s, 1080x1920, 30fps; template build, stereo SFX, no end freeze). v1–v5 are in `projects/use-crud-talking-head/`.
-- Bus case study (22 Oct clip, 46s): `projects/use-definitions/episodes/bus-network/bus-network-v1.mp4` (49.8s). Sam's "favourite build": an on-time tracking rebuild for an unnamed transport operator. The job log is `projects/use-crud-talking-head/JOB.md`.
+- Bus case study (22 Oct clip, 46s): `projects/use-definitions/episodes/bus-network/bus-network-v2.mp4` (49.8s). v2 replaced v1 after Hunter's "it has to do other animations… different layouts": animation kit v2 plus new layouts (floating card stage, bento grid). Sam's "favourite build": an on-time tracking rebuild for an unnamed transport operator. The job log is `projects/use-crud-talking-head/JOB.md`.
 
 **Template:** `projects/use-definitions/`. See its README.
 
@@ -40,6 +40,7 @@ Measured from the MCP/API reference episodes:
 - **Match the references side by side, not from memory.** Each round that improved (v3→v5) came from putting reference and render frames next to each other and from 25fps frame strips of the reference motion. That's how the framing, whip-blur, 200 OK shatter and name-card details were found.
 - **Draw the talking head inside the canvas** (pre-extracted frames plus mattes) instead of compositing graphics over video in ffmpeg. That unlocked text behind the head, inset/circle crops, zoom cuts and true motion blur (8 subframes, full-frame shutter).
 - **SFX cues should come from the components**, so the sound always matches the motion. That's built into the template.
+- **Don't let an episode repeat the same three moves.** v1 of the bus episode reused rise-in, shards and panel for every beat, and Hunter asked for different animations and layouts. Pick a different move and layout per beat from the kit.
 - **SFX engine v2** (`tools/sfx.py`): stereo, layered transients, room reverb, plus risers, chimes and an end-card swell. Still synthesised; a Magnific SFX pack is the upgrade path (about 120cr).
 - **Mattes only where needed.** A full-clip person matte runs about 1s per frame. Pass second ranges to `prep.sh` so only the title and behind-the-head shots get cut out.
 - Source clips end a few frames after the last word. The template ping-pongs the final 12 frames so Sam never freezes under the end-of-clip graphics.

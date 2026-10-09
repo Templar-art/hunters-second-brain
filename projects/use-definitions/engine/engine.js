@@ -5,7 +5,7 @@
 const W = 1080, H = 1920, FPS = 30;
 const out = document.getElementById('c').getContext('2d');
 const off = Object.assign(document.createElement('canvas'), { width: W, height: H });
-const g = off.getContext('2d');
+let g = off.getContext('2d');
 
 // ---------- brand ----------
 const NAVY = '#001C2E', LIGHT = '#F3F3F3', BLUE = '#009BE8', CYAN = '#12DDEB', INK = '#2E3134', GREY = '#8A9099', WHITE = '#FFFFFF';
@@ -354,6 +354,117 @@ function endCard(T, a, dur, title = 'Definitions') {
   const f = clamp((T - dur + .4) / .4); if (f > 0) { g.fillStyle = `rgba(255,255,255,${f})`; g.fillRect(0, 0, W, H); }
 }
 endCard.cue = a => { cue(a + .1, 'swell', { d: 2.2, gain: .18 }); cue(a + .45, 'typing', { n: 28, cps: 30 }); cue(a + 1.1, 'typing', { n: 18, cps: 30 }); cue(a, 'shards', { n: 8 }); };
+
+// =====================================================================================
+// ANIMATION KIT v2: more vocabulary, so episodes don't repeat the same moves.
+// =====================================================================================
+// Per-letter drop: each glyph falls from above with overshoot + slight rotation, staggered.
+function letterDrop(txt, x, y, t, { size = 300, w = 800, col = WHITE, stagger = .05, exitAt = Infinity, T = 0 } = {}) {
+  font(w, size, COND); let cx = x; const q = inOut((T - exitAt) / .3);
+  [...txt].forEach((ch, i) => {
+    const p = back((t - i * stagger) / .55), cw = g.measureText(ch).width; if (p <= 0) { cx += cw; return; }
+    g.save(); g.translate(cx + cw / 2, y - size * .35); g.rotate((1 - clamp(p)) * (i % 2 ? .35 : -.35) + q * (i % 2 ? .6 : -.6));
+    g.translate(0, -(1 - p) * size * 1.4 - q * size * 2); g.globalAlpha *= clamp(p * 3) * (1 - q);
+    g.fillStyle = col; g.fillText(ch, -cw / 2, size * .35); g.restore(); cx += cw;
+  });
+}
+letterDrop.cue = (a, n, stagger = .05) => { for (let i = 0; i < n; i++) cue(a + i * stagger + .2, 'pop', { f: 500 + i * 60, d: .06, gain: .16 }); };
+// Per-letter pop: glyphs scale up from 0 one by one (springy). For short punchy words.
+function letterPop(txt, x, y, t, { size = 300, w = 800, col = WHITE, stagger = .06 } = {}) {
+  font(w, size, COND); let cx = x;
+  [...txt].forEach((ch, i) => { const p = back((t - i * stagger) / .4), cw = g.measureText(ch).width;
+    if (p > 0) { g.save(); g.translate(cx + cw / 2, y - size * .35); g.scale(p, p); g.fillStyle = col; g.fillText(ch, -cw / 2, size * .35); g.restore(); }
+    cx += cw; });
+}
+letterPop.cue = (a, n, stagger = .06) => { for (let i = 0; i < n; i++) cue(a + i * stagger, 'pop', { f: 800 + i * 90, d: .05, gain: .15 }); };
+// Speech bubble near the head; text types in, bubble springs from its tail.
+function bubble(T, a, b, txt, x, y, { size = 40 } = {}) {
+  const p = back((T - a) / .45), q = expoIn((T - b) / .25); if (p <= 0 || q >= 1) return;
+  font(600, size, BODY); const tw = Math.min(g.measureText(txt).width, 760), w = tw + 60, h = size + 50;
+  g.save(); g.translate(x, y + h); g.scale(p * (1 - q), p * (1 - q)); g.translate(-x, -(y + h));
+  g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 30; g.shadowOffsetY = 10; g.fillStyle = WHITE;
+  g.beginPath(); g.roundRect(x - w / 2, y, w, h, h / 2); g.fill();
+  g.beginPath(); g.moveTo(x - 18, y + h - 2); g.lineTo(x, y + h + 26); g.lineTo(x + 18, y + h - 2); g.fill(); g.restore();
+  g.save(); g.globalAlpha = 1 - q; typeOn(txt, x - w / 2 + 30, y + h / 2 + size * .35, T - a - .15, { size, col: INK, w: 600, fam: BODY, track: 0, cps: 40 }); g.restore();
+}
+bubble.cue = (a, txt) => { cue(a, 'pop', { f: 700, d: .08, gain: .25 }); cue(a + .15, 'typing', { n: Math.min(txt.length, 40), cps: 40, gain: .2 }); };
+// 3D flip: draws front() then back() on a card that rotates around its vertical axis at time a.
+function flipCard(T, a, cx, cy, w, h, front, backFn, col = NAVY) {
+  const p = inOut((T - a) / .5), ang = p * Math.PI, sx = Math.abs(Math.cos(ang)), showBack = ang > Math.PI / 2;
+  g.save(); g.translate(cx, cy); g.scale(Math.max(sx, .001), 1 + Math.sin(ang) * .06);
+  g.shadowColor = 'rgba(0,0,0,.3)'; g.shadowBlur = 40; g.shadowOffsetY = 14; g.fillStyle = showBack ? CYAN : col;
+  g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, 18); g.fill(); g.shadowColor = 'transparent';
+  (showBack ? backFn : front)(-w / 2, -h / 2, w, h); g.restore();
+}
+flipCard.cue = a => { cue(a, 'whoosh', { d: .4, bright: .5, gain: .25 }); cue(a + .5, 'click', { f: 1600, gain: .3 }); };
+// Iris: a growing circle reveals `inner` (drawn by a callback) over the current frame.
+function iris(T, a, cx, cy, inner, d = .55) {
+  const p = inOut((T - a) / d); if (p <= 0) return false;
+  g.save(); g.beginPath(); g.arc(cx, cy, p * Math.hypot(W, H), 0, 7); g.clip(); inner(T); g.restore();
+  if (p < 1) { g.strokeStyle = CYAN; g.lineWidth = 10 * (1 - p); g.beginPath(); g.arc(cx, cy, p * Math.hypot(W, H), 0, 7); g.stroke(); }
+  return p >= 1;
+}
+iris.cue = a => { cue(a, 'riser', { d: .4, gain: .15 }); cue(a, 'whoosh', { d: .55, bright: .3, gain: .4 }); };
+// Zoom-through: scale the outgoing layer up hard toward (cx,cy) and fade, revealing `under`.
+function zoomThrough(T, a, cx, cy, outgoing, under, d = .4) {
+  const p = expoIn((T - a) / d); if (p <= 0) { outgoing(T); return; }
+  under(T); if (p >= 1) return;
+  g.save(); g.globalAlpha = 1 - p; g.translate(cx, cy); g.scale(1 + p * 5, 1 + p * 5); g.translate(-cx, -cy); outgoing(T); g.restore();
+}
+zoomThrough.cue = a => { cue(a, 'whoosh', { d: .45, bright: .6, gain: .5 }); cue(a + .38, 'thud', { f: 60, d: .3, gain: .35 }); };
+// Glitch: draws fn three times with RGB offsets + horizontal slice tears, intensity k (0..1).
+function glitch(T, k, fn) {
+  if (k <= 0) { fn(); return; }
+  const c = glitch.c || (glitch.c = Object.assign(document.createElement('canvas'), { width: W, height: H })), x = c.getContext('2d');
+  const sv = g; x.clearRect(0, 0, W, H);
+  // render fn into the temp canvas
+  const gg = g; g = x; fn(); g = gg;
+  const r = rng(Math.floor(T * 24)), off = 14 * k;
+  g.save(); g.globalCompositeOperation = 'lighter'; g.globalAlpha = .55;
+  g.filter = 'sepia(1) saturate(8) hue-rotate(160deg)'; g.drawImage(c, -off, 0);
+  g.filter = 'sepia(1) saturate(8) hue-rotate(-40deg)'; g.drawImage(c, off, 0); g.restore(); g.filter = 'none';
+  for (let i = 0; i < 7; i++) { const y = r() * H, h = 10 + r() * 50, dx = (r() - .5) * 80 * k; g.drawImage(c, 0, y, W, h, dx, y, W, h); }
+  g.drawImage(c, 0, 0);
+}
+// Progress race: a bar fills with an eased ticker + label, shimmer sweep on completion.
+function progress(T, a, d, x, y, w, label) {
+  const p = expo((T - a) / d); if (T < a) return;
+  typeOn(label, x, y - 24, T - a, { size: 26, col: GREY, track: 5, upper: true, cps: 40 });
+  g.fillStyle = '#163A55'; g.beginPath(); g.roundRect(x, y, w, 30, 15); g.fill();
+  const gr = g.createLinearGradient(x, 0, x + w, 0); gr.addColorStop(0, BLUE); gr.addColorStop(1, CYAN);
+  g.fillStyle = gr; g.beginPath(); g.roundRect(x, y, Math.max(30, w * p), 30, 15); g.fill();
+  if (p > .98) { const s = ((T - a - d) * 1.2) % 1.5; const sx = x + w * s; const sg = g.createLinearGradient(sx - 80, 0, sx + 80, 0);
+    sg.addColorStop(0, 'rgba(255,255,255,0)'); sg.addColorStop(.5, 'rgba(255,255,255,.7)'); sg.addColorStop(1, 'rgba(255,255,255,0)');
+    g.save(); g.beginPath(); g.roundRect(x, y, w, 30, 15); g.clip(); g.fillStyle = sg; g.fillRect(sx - 80, y, 160, 30); g.restore(); }
+  font(800, 64, COND); g.fillStyle = WHITE; g.textAlign = 'right'; g.fillText(Math.round(p * 100) + '%', x + w, y - 18); g.textAlign = 'left';
+}
+progress.cue = (a, d) => { for (let i = 0; i < 16; i++) cue(a + d * (1 - Math.pow(1 - i / 16, 3)), 'click', { f: 1200 + i * 60, gain: .14 }); cue(a + d * .9, 'chime', { f: 1318, gain: .12 }); };
+// Card stack: cards slide in from the right one after another and stack with depth (ref "REST API / HTTP / TCP" stack).
+function cardStack(T, items, x, y, w, h, gap = 22) {
+  items.forEach(([title, sub, at, dark], i) => {
+    const p = expo((T - at) / .5); if (p <= 0) return;
+    const yy = y + i * (h + gap), xx = x + (1 - p) * 900;
+    g.save(); g.globalAlpha = clamp(p * 2); card(xx, yy, w, h, dark ? '#2B2E33' : WHITE, 16, .2);
+    font(800, h * .48, COND); g.fillStyle = dark ? WHITE : INK; g.fillText(title, xx + 32, yy + h * .66);
+    typeOn(sub, xx + w - 32 - sub.length * 17, yy + h * .6, T - at - .2, { size: 24, col: dark ? CYAN : BLUE, track: 4, upper: true, cps: 40 });
+    g.restore();
+  });
+}
+cardStack.cue = items => items.forEach(([, , at]) => { cue(at, 'whoosh', { d: .3, bright: .45, gain: .3 }); cue(at + .3, 'click', { f: 1400, gain: .25 }); });
+// Triangle burst: shards explode radially from a point (celebration / emphasis).
+function burst(T, a, cx, cy, n = 22, seed = 9) {
+  const t = T - a; if (t <= 0 || t > 1.2) return; const r = rng(seed);
+  for (let i = 0; i < n; i++) { const ang = r() * 6.28, sp = 300 + r() * 700, s = 14 + r() * 26, col = TRI[Math.floor(r() * TRI.length)];
+    const d = sp * expo(t / .9), x = cx + Math.cos(ang) * d, y = cy + Math.sin(ang) * d + 300 * t * t;
+    g.save(); g.globalAlpha = 1 - clamp((t - .6) / .6); g.translate(x, y); g.rotate(r() * 6 + t * 8); g.scale(s, s); g.fillStyle = col;
+    g.beginPath(); g.moveTo(0, -1); g.lineTo(.95, .7); g.lineTo(-.85, .55); g.closePath(); g.fill(); g.restore(); }
+}
+burst.cue = a => { cue(a, 'thud', { f: 70, d: .25, gain: .3 }); cue(a, 'glass', { n: 24, span: .3 }); };
+// Shared card helper (rounded, soft shadow).
+function card(x, y, w, h, col = WHITE, r = 20, sh = .12) {
+  g.save(); g.shadowColor = `rgba(0,0,0,${sh})`; g.shadowBlur = 40; g.shadowOffsetY = 14; g.fillStyle = col;
+  g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); g.restore();
+}
 
 // =====================================================================================
 // RUNTIME
