@@ -187,7 +187,7 @@ function captions(T) {
   for (let c = 0; c < CHUNKS.length; c++) {
     const ch = CHUNKS[c], carried = ch[0].s < wa, st = carried ? wa : Math.max(ch[0].s, wa + .15), last = ch[ch.length - 1];   // mid-sentence cut: chunk carries over settled; otherwise first caption after a cut waits .15s
     const en = Math.min(CHUNKS[c + 1] ? CHUNKS[c + 1][0].s : 1e9, last.e + .45, wb);
-    if (!win(T, st, en) || ch[0].s >= wb) continue;
+    if (!win(T, st, en) || ch[0].s >= wb || (carried && last.e < wa)) continue;   // finished lines don't carry across a cut
     font(800, SZ, COND); g.letterSpacing = '0.5px';
     const sp = 16, ws = ch.map(w => g.measureText(w.w).width), total = ws.reduce((a, b) => a + b, 0) + sp * (ch.length - 1);
     const xs = []; let x = W / 2 - total / 2; ws.forEach(w => { xs.push(x); x += w + sp; });
