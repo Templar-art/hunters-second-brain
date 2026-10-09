@@ -1128,3 +1128,7 @@ Four 10-room style boards (Options 01–04) on Magnific GPT 2.5 Sunburst, 720cr,
 ## [2026-10-09] ingest | Deep research: luxury staging trends + AI board prompting
 
 18 of 25 claims survived verification. Room-by-room furniture and price-lift evidence not found. Filed as [[deep-research-2026-10-luxury-staging-prompting]].
+
+## [2026-10-09] ingest | Deep research round 2: AU furniture houses
+
+Jardan/Cosh Living products mapped to ZED directions; every AU staging price-lift stat refuted, so none go in client copy. Appended to [[deep-research-2026-10-luxury-staging-prompting]].
