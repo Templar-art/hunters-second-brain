@@ -1144,3 +1144,7 @@ CRUD rebuilt through `projects/use-definitions/` (v6). The new 22 Oct clip (bus 
 ## [2026-10-09] ingest | USE: Magnific SFX library (120cr)
 
 Hunter approved real SFX: 24 takes (whoosh, pop, click, impact, shatter, riser) in `projects/use-definitions/sfx-lib/`, used by `tools/sfx.py`. Bus v2 and CRUD v6 re-mixed with effects about 8 LU under the voice. Hunter is happy with bus v2 and has another clip coming.
+
+## [2026-10-10] harvest | USE: 19-episode batch complete
+
+14 Definitions and 5 Q&A episodes were built through the template. Every one passed the tracked face check and the boss-review loop before sending. The Q&A series name is still a placeholder. Logged on [[use-definitions-series]].

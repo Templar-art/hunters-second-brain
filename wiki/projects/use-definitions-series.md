@@ -35,6 +35,19 @@ Measured from the MCP/API reference episodes:
   - White end card: logo, "Definitions", "understand · solve · execute", URL.
 - **Motion:** expo-out entrances (~0.45–0.6s), quick in-out exits, and heavy motion blur on anything fast.
 
+## Batch (9–10 Oct 2026): 19 episodes delivered
+Every episode passed the face check and the boss review. Latest file per episode is under `projects/use-definitions/episodes/<name>/`; `QUEUE.md` is the master list.
+- **Definitions (14):** CLI, JSON, SDK, UI/UX, IDE, SaaS, GPU, CPU, Git, Docker, Webhooks, State management, SQL, ERD.
+- **Q&A (5):** Excel wince, scope myth, promises, ask the vision, handover. These use the new `qOpener` (QUESTION card). The end card reads "Q&A", a **placeholder series name to confirm with Hunter**.
+- **Skipped:** 01 API and 02 MCP (raw clips of the published reference episodes), plus duplicates and the Alex Keith zips.
+- **Pipeline added:** OpenCV face tracking with outlier rejection, which drives both framing and the face check. Also `tools/qa.sh`, the `tools/BOSS.md` reviewer loop, `EP.cuts` (motion blur never dissolves across a cut), and frame-centre captions.
+- **Lesson:** an early tracker without outlier rejection jumped the framing up to ~700px for a few frames in 5 delivered episodes. They were rebuilt and re-sent. Always smooth and outlier-filter any per-frame tracking that drives the camera.
+
+## Standing rules (Hunter, 9 Oct 2026)
+- **Never cover Sam's face.** No overlay may touch his face at any frame. Text behind his head via the matte is fine.
+- **Boss review loop on every episode.** An independent reviewer checks the stills and contact sheet (face clear, variety, brand, no invented facts, captions) and the episode is fixed until it passes, before it's sent.
+- **SFX quality:** Hunter rates the current effects poor (synth plus Magnific 1s takes). Needs a rethink.
+
 ## What it taught us
 - **Ask which brand, and ask for the series' own past episodes up front.** v1 and v2 were built off the wrong reference: an Empire Technologies ad that Hunter sent only for its motion feel. v1 copied Empire's colours and logo, v2 swapped in USE colours but kept the wrong style. Both were rejected ("dog shit"). The fix was the client's own MCP/API episodes, so ask for those first next time.
 - **Match the references side by side, not from memory.** Each round that improved (v3→v5) came from putting reference and render frames next to each other and from 25fps frame strips of the reference motion. That's how the framing, whip-blur, 200 OK shatter and name-card details were found.
