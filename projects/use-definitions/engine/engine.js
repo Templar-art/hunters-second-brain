@@ -397,7 +397,7 @@ function qOpener(T, a, b, question, lines) {
   const tg = back(t / .4); if (tg > 0) { g.save(); g.translate(70, 380); g.scale(tg, tg); g.fillStyle = CYAN; g.beginPath(); g.roundRect(0, -42, 250, 64, 32); g.fill();
     font(500, 28, MONO); g.letterSpacing = '5px'; g.fillStyle = NAVY; g.fillText('QUESTION', 28, 0); g.letterSpacing = '0px'; g.restore(); }
   // the question types word by word, wrapped into the given lines
-  const words = lines.join(' ').split(' '), per = (b - a - 1.4) / words.length; let shown = Math.floor(clamp((t - .3) / per, 0, words.length));
+  const words = lines.join(' ').split(' '), per = (b - a - 1.4) / words.length; let shown = Math.floor(clamp((t + per * .9) / per, 0, words.length));   // first word on frame one
   lines.forEach((ln, i) => { const ws = ln.split(' '), n = Math.min(ws.length, shown); shown -= ws.length; if (n <= 0) return;
     font(800, 104, COND); g.fillStyle = WHITE; g.fillText(ws.slice(0, n).join(' '), 70, 560 + i * 112); });
   faceCircle(880, 1620, 150, back((t - .2) / .6));

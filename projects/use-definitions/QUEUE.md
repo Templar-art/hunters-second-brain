@@ -29,5 +29,5 @@ Skipped:
 | 18 | excel-wince | Q&A | v1 boss-passed, sent |
 | 19 | scope-myth | Q&A | v1 boss-passed, sent |
 | 20 | promises | Q&A | v1 boss-passed, sent |
-| 21 | ask-the-vision | Q&A | |
+| 21 | ask-the-vision | Q&A | v1 boss-passed, sent |
 | 23 | handover | Q&A | |
