@@ -328,10 +328,13 @@ standsFor.cue = (a, b, label, words) => { cue(a + .4, 'typing', { n: label.lengt
 // Big word behind the head on the talking head (e.g. "REST"), optional cyan tag pill.
 function behindHead(T, a, b, word, tag, z = BZ * 1.14) {
   if (T < a || T >= b) return;
-  rise(word, 40, 560, T - a, { size: Math.min(360, 1300 / word.length), w: 800, dur: .5, exitAt: b - .15, T });
+  // fit the word fully left of the tracked face (60px gap) so it reads whole behind the head
+  const fs = faceScreen(z); font(800, 100, COND); const w100 = g.measureText(word).width;
+  const size = clamp((fs.x - 100) / w100 * 100, 120, Math.min(360, 1300 / word.length));
+  rise(word, 40, 560, T - a, { size, w: 800, dur: .5, exitAt: b - .15, T });
   cutout(z);
   if (tag && T > a + .16) { const p = back((T - a - .16) / .45), f = faceScreen(z); font(800, 70, COND);
-    const tw0 = g.measureText(tag).width + 50, tx = Math.min(W - tw0 / 2 - 20, f.x + f.w + tw0 / 2 + 30), ty = Math.max(70, f.y - 10);
+    const tw0 = g.measureText(tag).width + 50, tx = Math.min(W - tw0 / 2 - 20, f.x + f.w + tw0 / 2 + 50), ty = Math.max(70, f.y - 30);
     g.save(); g.translate(tx, ty); g.scale(p, p); g.rotate(-.06);
     font(800, 70, COND); const tw = g.measureText(tag).width + 50;
     g.fillStyle = CYAN; g.beginPath(); g.roundRect(-tw / 2, -45, tw, 90, 14); g.fill();

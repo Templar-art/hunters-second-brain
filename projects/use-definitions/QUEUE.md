@@ -18,7 +18,7 @@ Skipped:
 | 06 | ui-ux | Definition | v1 boss-passed, sent |
 | 07 | ide | Definition | v1 boss-passed, sent |
 | 08 | saas | Definition | v1 boss-passed, sent |
-| 09 | gpu | Definition | |
+| 09 | gpu | Definition | v1 boss-passed, sent |
 | 10 | cpu | Definition | |
 | 11 | git | Definition | |
 | 12 | docker | Definition | |
