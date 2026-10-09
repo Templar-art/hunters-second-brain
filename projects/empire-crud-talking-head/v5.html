@@ -1,0 +1,469 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@500;600&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>html,body{margin:0;background:#000}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// USE Software "Definitions" series: CRUD episode. Matches the house style of the MCP / API episodes:
+// full-frame talking head, word captions with a sliding cyan highlight, title behind the speaker,
+// triangle shards, Sam Bruhn lower third, light / navy slides, triangle mosaic wipes, white end card.
+// The talking head is drawn from pre-extracted frames (build/frames) + person mattes (build/matte).
+const W = 1080, H = 1920, FPS = 30, DUR = 23.6, NFR = 601;
+const out = document.getElementById('c').getContext('2d');
+const off = Object.assign(document.createElement('canvas'), { width: W, height: H });
+const g = off.getContext('2d');
+const NAVY = '#001C2E', LIGHT = '#F3F3F3', BLUE = '#009BE8', CYAN = '#12DDEB', INK = '#2E3134', GREY = '#8A9099', WHITE = '#FFFFFF';
+const TRI = ['#0B5E91', '#0A86CC', '#009BE8', '#00B9EE', '#12DDEB'];
+const COND = '"Barlow Condensed", sans-serif', BODY = 'Barlow, sans-serif', MONO = '"JetBrains Mono", monospace';
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const expo = x => { x = clamp(x); return x === 1 ? 1 : 1 - Math.pow(2, -10 * x); };
+const expoIn = x => { x = clamp(x); return x === 0 ? 0 : Math.pow(2, 10 * x - 10); };
+const inOut = x => { x = clamp(x); return x < .5 ? 16 * x ** 5 : 1 - Math.pow(-2 * x + 2, 5) / 2; };
+const back = x => { x = clamp(x); const c = 1.5; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+  let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const win = (T, a, b) => T >= a && T < b;
+
+// ---------- images ----------
+const img = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = src; });
+let FR = null, MT = null, LOGO_S = null, LOGO_L = null;
+const fidx = T => clamp(Math.floor(T * FPS) + 1, 1, NFR);
+const pad = n => String(n).padStart(4, '0');
+async function load(T) {
+  const i = fidx(T);
+  FR = await img(`build/frames/f${pad(i)}.jpg`);
+  MT = await img(`build/matte/m${pad(i)}.png`);       // only exists where text sits behind him
+}
+
+// ---------- talking head ----------
+// Draw the frame into rect (cover-fit) with a zoom around the face.
+const FACE = { x: 545, y: 540 };
+const BZ = 1.22, BAY = .25;              // series framing: tighter, face a quarter down
+const zoomAt = T => (T >= 3.6 && T < 5.0) || (T >= 12.3 && T < 14.95) ? BZ * 1.12 : BZ;   // punch-in cuts on phrase starts
+// Transform that puts the face at (rect.x + w/2, rect.y + h*ay), cover-fit, clamped so no edge shows.
+function xf(rect, zoom, ay) {
+  const s = Math.max(rect.w / W, rect.h / H) * zoom;
+  let ox = rect.x + rect.w / 2 - FACE.x * s, oy = rect.y + rect.h * ay - FACE.y * s;
+  ox = clamp(ox, rect.x + rect.w - W * s, rect.x); oy = clamp(oy, rect.y + rect.h - H * s, rect.y);
+  return [ox, oy, W * s, H * s];
+}
+function th(rect = { x: 0, y: 0, w: W, h: H }, zoom = 1, ay = FACE.y / H) { if (FR) g.drawImage(FR, ...xf(rect, zoom, ay)); }
+// Person cutout on top of everything drawn so far (title behind head). Same transform as th().
+function cutout(zoom = 1, ay = FACE.y / H) {
+  if (!MT || !FR) return;
+  const c = cutout.c || (cutout.c = Object.assign(document.createElement('canvas'), { width: W, height: H }));
+  const x = c.getContext('2d'), r = xf({ x: 0, y: 0, w: W, h: H }, zoom, ay);
+  x.globalCompositeOperation = 'source-over'; x.clearRect(0, 0, W, H);
+  x.drawImage(FR, ...r); x.globalCompositeOperation = 'destination-in'; x.drawImage(MT, ...r);
+  g.drawImage(c, 0, 0);
+}
+
+// ---------- text helpers ----------
+function font(w, size, fam) { g.font = `${w} ${size}px ${fam}`; }
+// Masked rise (the series' standard text entrance). dir -1 = exit upward.
+function rise(txt, x, y, t, { size, w = 800, fam = COND, col = WHITE, dur = .5, exitAt = Infinity, T = 0, align = 'left', track = 0 }) {
+  const p = expo(t / dur); if (p <= 0) return 0;
+  const q = inOut((T - exitAt) / .24);
+  font(w, size, fam); g.letterSpacing = track + 'px'; g.textAlign = align;
+  g.save(); g.beginPath(); g.rect(0, y - size * 1.0, W, size * 1.25); g.clip();
+  g.fillStyle = col; g.fillText(txt, x, y + (1 - p) * size * 1.1 - q * size * 1.2);
+  g.restore(); g.letterSpacing = '0px'; g.textAlign = 'left';
+  return g.measureText(txt).width;
+}
+function typeOn(txt, x, y, t, { size = 30, col = WHITE, w = 500, cps = 24, track = 4, fam = MONO, caret = false, upper = false }) {
+  if (t <= 0) return; const n = Math.floor(clamp(t * cps, 0, txt.length));
+  font(w, size, fam); g.letterSpacing = track + 'px'; g.fillStyle = col;
+  const s = upper ? txt.toUpperCase() : txt; g.fillText(s.slice(0, n), x, y);
+  if (caret && (n < s.length || Math.floor(t * 2.4) % 2 === 0)) { const cw = g.measureText(s.slice(0, n)).width;
+    g.fillStyle = CYAN; g.fillRect(x + cw + 4, y - size * .8, size * .55, size); }
+  g.letterSpacing = '0px';
+}
+
+// ---------- triangle shards ----------
+// A shard: centre, size, rotation, colour; flies in from (dx,dy) offset, slow idle spin.
+function shard(cx, cy, s, rot, col, t, { from = [300, -200], spin = .25, dur = .7, exitAt = Infinity, T = 0, to = [400, -300] } = {}) {
+  const p = expo(t / dur); if (p <= 0) return;
+  const q = expoIn((T - exitAt) / .4); if (q >= 1) return;
+  const x = cx + from[0] * (1 - p) + to[0] * q, y = cy + from[1] * (1 - p) + to[1] * q;
+  const r = rot + (1 - p) * 2.2 + t * spin * .2 + q * 2;
+  g.save(); g.translate(x, y); g.rotate(r); g.scale(s, s); g.fillStyle = col;
+  g.beginPath(); g.moveTo(0, -1); g.lineTo(.95, .7); g.lineTo(-.85, .55); g.closePath(); g.fill(); g.restore();
+}
+function cluster(seed, cx, cy, n, spread, size, t, opts = {}) {
+  const r = rng(seed);
+  for (let i = 0; i < n; i++) {
+    const a = r() * 6.283, d = Math.sqrt(r()) * spread;
+    shard(cx + Math.cos(a) * d, cy + Math.sin(a) * d * .9, size * (.45 + r() * .75), r() * 6.28, TRI[Math.floor(r() * TRI.length)],
+      t - i * .03, { ...opts, from: [(opts.from || [320, -260])[0] * (.6 + r()), (opts.from || [320, -260])[1] * (.6 + r())] });
+  }
+}
+
+// ---------- triangle mosaic wipe (the series' scene transition) ----------
+function mosaic(t, seed = 3) {                 // t: 0→1 cover, 1→2 uncover
+  if (t <= 0 || t >= 2) return;
+  const r = rng(seed), C = 135, cols = Math.ceil(W / C), rows = Math.ceil(H / C);
+  for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) for (let k = 0; k < 2; k++) {
+    const d = (i / cols * .35 + j / rows * .65) * .55 + r() * .25, col = TRI[Math.floor(r() * TRI.length)];
+    const p = t < 1 ? expo((t - d) / .35) : 1 - expo((t - 1 - d) / .35); if (p <= 0) continue;
+    const x = i * C, y = j * C, flip = (i + j) % 2;
+    const pts = k ? (flip ? [[x, y], [x + C, y], [x, y + C]] : [[x, y], [x + C, y], [x + C, y + C]])
+                  : (flip ? [[x + C, y], [x + C, y + C], [x, y + C]] : [[x, y], [x + C, y + C], [x, y + C]]);
+    const mx = (pts[0][0] + pts[1][0] + pts[2][0]) / 3, my = (pts[0][1] + pts[1][1] + pts[2][1]) / 3;
+    g.fillStyle = col; g.beginPath();
+    pts.forEach(([px, py], n) => { const X = mx + (px - mx) * p * 1.02, Y = my + (py - my) * p * 1.02; n ? g.lineTo(X, Y) : g.moveTo(X, Y); });
+    g.closePath(); g.fill();
+  }
+}
+
+// ---------- captions: chunked words, sliding cyan highlight ----------
+const CAP = [
+  [[2.22, "isn't"], [2.54, 'very'], [2.76, 'good.']],
+  [[3.18, 'No,'], [3.34, 'it'], [3.36, 'actually']],
+  [[3.60, 'means'], [3.80, "something's"], [4.18, 'built']],
+  [[4.36, 'probably'], [4.70, 'pretty'], [4.92, 'well.']],
+  [[8.04, 'is'], [8.42, 'a'], [8.62, 'methodology']],
+  [[9.04, 'of'], [9.38, 'implementing']],
+  [[9.72, 'a'], [9.88, 'REST'], [10.04, 'API']],
+  [[10.46, 'where'], [10.76, 'typically']],
+  [[11.08, 'for'], [11.32, 'any'], [11.50, 'endpoint,']],
+  [[12.30, "let's"], [12.48, 'say,'], [12.74, 'for'], [12.96, 'example,']],
+  [[13.42, 'you'], [13.68, 'are'], [13.84, 'creating']],
+  [[14.30, 'users.']],
+];
+const CAP_END = { 3: 4.95, 6: 10.42, 11: 14.85 };     // chunks that end on a scene change
+function captions(T, y) {
+  const SZ = 66;
+  for (let c = 0; c < CAP.length; c++) {
+    const ch = CAP[c], st = ch[0][0], en = CAP_END[c] ?? (c + 1 < CAP.length ? Math.min(CAP[c + 1][0][0], ch[ch.length - 1][0] + 1.2) : 99);
+    if (!win(T, st, en)) continue;
+    font(800, SZ, COND); g.letterSpacing = '0.5px';
+    const sp = 16, ws = ch.map(([, w]) => g.measureText(w).width), total = ws.reduce((a, b) => a + b, 0) + sp * (ch.length - 1);
+    const xs = []; let x = W / 2 - total / 2; ws.forEach(w => { xs.push(x); x += w + sp; });
+    let a = 0; ch.forEach(([wt], i) => { if (T >= wt) a = i; });
+    const pa = Math.max(0, a - 1), k = a === 0 ? 1 : expo((T - ch[a][0]) / .16);
+    const hx = lerp(xs[pa], xs[a], k) - 10, hw = lerp(ws[pa], ws[a], k) + 20;
+    const p = expo((T - st) / .32);
+    g.save(); g.beginPath(); g.rect(0, y - SZ * 1.1, W, SZ * 1.5); g.clip();
+    const dy = (1 - p) * SZ * 1.2;
+    if (T >= ch[0][0]) { g.fillStyle = CYAN; g.beginPath(); g.roundRect(hx, y - SZ * .82 + dy, hw, SZ * 1.0, 8); g.fill(); }
+    g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 10; g.shadowOffsetY = 2; g.fillStyle = WHITE;
+    ch.forEach(([, w], i) => g.fillText(w, xs[i], y + dy));
+    g.restore(); g.letterSpacing = '0px';
+  }
+}
+
+// ---------- icons ----------
+function iconUser(cx, cy, r, p) {
+  g.save(); g.globalAlpha *= p; g.translate(cx, cy); g.scale(lerp(.6, 1, back(p)), lerp(.6, 1, back(p)));
+  g.fillStyle = WHITE; g.strokeStyle = BLUE; g.lineWidth = 4; g.beginPath(); g.arc(0, 0, r, 0, 7); g.fill(); g.stroke();
+  g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.arc(0, -r * .18, r * .22, 0, 7); g.stroke();
+  g.beginPath(); g.arc(0, r * .55, r * .42, Math.PI * 1.1, Math.PI * 1.9); g.stroke(); g.restore();
+}
+function iconDB(cx, cy, r, p) {
+  g.save(); g.globalAlpha *= p; g.translate(cx, cy); g.scale(lerp(.6, 1, back(p)), lerp(.6, 1, back(p)));
+  g.fillStyle = WHITE; g.strokeStyle = BLUE; g.lineWidth = 4; g.beginPath(); g.roundRect(-r, -r, r * 2, r * 2, 22); g.fill(); g.stroke();
+  g.strokeStyle = INK; g.lineWidth = 4; const w = r * .5, h = r * .16;
+  for (const yy of [-r * .32, 0, r * .32]) { g.beginPath(); g.ellipse(0, yy, w, h, 0, 0, Math.PI * (yy === -r * .32 ? 2 : 1)); g.stroke(); }
+  g.beginPath(); g.moveTo(-w, -r * .32); g.lineTo(-w, r * .32); g.moveTo(w, -r * .32); g.lineTo(w, r * .32); g.stroke(); g.restore();
+}
+function pill(txt, x, y, { active = 0, size = 28, padX = 18, h = 52, fam = MONO, w = 500 } = {}) {
+  font(w, size, fam); g.letterSpacing = '2px'; const tw = g.measureText(txt).width + padX * 2;
+  g.lineWidth = 2.5; g.strokeStyle = active > .5 ? CYAN : '#C9CDD2'; g.fillStyle = WHITE;
+  g.beginPath(); g.roundRect(x, y, tw, h, h / 2); g.fill(); g.stroke();
+  g.fillStyle = INK; g.fillText(txt, x + padX, y + h * .68); g.letterSpacing = '0px'; return tw;
+}
+
+// =====================================================================================
+// SCENES (T in seconds; word times from the VO transcript)
+// =====================================================================================
+function sceneTitle(T) {                                   // 0–2.3: Definitions / CRUD behind head
+  th(undefined, BZ + T * .012, BAY);
+  typeOn('Definitions', 44, 140, T - .1, { size: 34, track: 2, w: 500, cps: 22 });
+  rise('CRUD', 26, 470, T - .15, { size: 330, w: 800, dur: .6, exitAt: 2.0, T });
+  cutout(BZ + T * .012, BAY);                                     // head in front of the title
+  cluster(21, 900, 520, 7, 150, 95, T - .25, { from: [420, -120], exitAt: 2.05, T, to: [500, -200] });
+  cluster(22, 70, 820, 3, 70, 70, T - .4, { from: [-300, 80], exitAt: 2.05, T, to: [-400, 100] });
+}
+function lowerThird(T) {                                   // Sam Bruhn, Founder & CEO
+  const a = 2.35, b = 4.7, p = expo((T - a) / .55), q = expoIn((T - b) / .3); if (p <= 0 || q >= 1) return;
+  const x = 64 - (1 - p) * 120 - q * 700, y = 1330, w = 640, h = 180;
+  g.save(); g.globalAlpha = clamp(p * 2) * (1 - q);
+  g.shadowColor = 'rgba(0,0,0,.18)'; g.shadowBlur = 30; g.shadowOffsetY = 10;
+  g.fillStyle = WHITE; g.beginPath(); g.roundRect(x, y, w * lerp(.5, 1, p), h, 14); g.fill(); g.restore();
+  g.save(); g.globalAlpha = clamp((T - a - .15) * 4) * (1 - q); g.beginPath(); g.rect(x, y, w * p, h); g.clip();
+  if (LOGO_S) { const lh = 86, lw = lh * LOGO_S.width / LOGO_S.height; g.drawImage(LOGO_S, x + 34, y + h / 2 - lh / 2, lw, lh); }
+  g.fillStyle = '#D9DDE1'; g.fillRect(x + 262, y + 34, 2, (h - 68) * expo((T - a - .25) / .4));
+  rise('Sam Bruhn', x + 290, y + 92, T - a - .2, { size: 76, w: 700, col: INK, dur: .5 });
+  typeOn('Founder & CEO', x + 292, y + 140, T - a - .4, { size: 24, col: BLUE, track: 5, upper: true, cps: 30 });
+  g.restore();
+  const wob = Math.sin((T - a) * 3) * .25;
+  shard(x + 40, y + 6, 46, -.4 + wob, CYAN, T - a - .1, { from: [-140, -160], exitAt: b, T, to: [-300, -200], spin: 1.2 });
+  shard(x + 22, y + 40, 34, 1.2 - wob, '#0B5E91', T - a - .16, { from: [-160, -100], exitAt: b, T, to: [-300, -100], spin: 1.6 });
+  shard(x + 64, y - 10, 26, 2.4 + wob, BLUE, T - a - .2, { from: [-100, -200], exitAt: b, T, to: [-200, -300], spin: 2 });
+}
+function sceneDefCard(T) {                                  // 5.0–6.3: dictionary card
+  const wy = -H * expoIn((T - 6.05) / .2);                  // whip up and out
+  if (wy < 0) sceneStandsFor(T);
+  g.save(); g.translate(0, wy);
+  g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
+  const t = T - 5.0;
+  const p = expo(t / .5);
+  g.save(); g.globalAlpha = p; g.strokeStyle = BLUE; g.lineWidth = 3; font(500, 30, MONO); g.letterSpacing = '4px';
+  const pw = g.measureText('DEFINITIONS').width + 40; g.beginPath(); g.roundRect(92, 470, pw, 56, 28); g.stroke();
+  g.fillStyle = BLUE; g.fillText('DEFINITIONS', 112, 509); g.fillStyle = GREY; g.fillText('NOUN', 92 + pw + 20, 509);
+  g.letterSpacing = '0px'; g.restore();
+  g.fillStyle = '#D7D9DC'; g.fillRect(92, 570, 870 * expo((t - .1) / .6), 2);
+  rise('CRUD', 80, 1010, t - .12, { size: 470, w: 800, col: INK, dur: .6 });
+  typeOn('say: see · are · you · dee', 96, 1140, t - .42, { size: 44, col: '#555A60', track: 2, w: 400, cps: 30 });
+  g.fillStyle = BLUE; g.fillRect(96, 1180, 150 * expo((t - .5) / .5), 9);
+  cluster(31, 860, 1560, 8, 230, 120, t - .1, { from: [380, 420] });
+  g.restore();
+}
+// Navy "stands for" slide: TH shrinks into an inset card, words land on the VO.
+const INSET = { x: 60, y: 120, w: 960, h: 880 };
+function sceneStandsFor(T) {                                 // 6.25–8.0
+  const t = T - 6.05, p = expo(t / .55), e = inOut((T - 7.82) / .3);   // inset rises in, expands to full at the end
+  g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
+  const r0 = { x: INSET.x, y: INSET.y + (1 - p) * 500, w: INSET.w, h: INSET.h };
+  const r = { x: lerp(r0.x, 0, e), y: lerp(r0.y, 0, e), w: lerp(r0.w, W, e), h: lerp(r0.h, H, e) };
+  g.save(); g.translate(0, e * 400);
+  typeOn('CRUD stands for', 100, 1120, t - .2, { size: 34, col: CYAN, track: 6, upper: true, cps: 30 });
+  [['C', 'reate', 6.40], ['R', 'ead', 6.60], ['U', 'pdate', 7.12], ['D', 'elete', 7.68]].forEach(([L, rest, at], i) => {
+    const y = 1290 + i * 165, tt = T - at;
+    if (tt <= 0) return;
+    font(800, 160, COND); const lw = g.measureText(L).width;
+    rise(L, 98, y, tt, { size: 160, w: 800, col: CYAN, dur: .45 });
+    rise(rest, 98 + lw, y, tt - .04, { size: 160, w: 800, col: WHITE, dur: .45 });
+    const full = lw + g.measureText(rest).width;
+    g.fillStyle = CYAN; g.fillRect(98, y + 20, full * expo((tt - .1) / .5), 5);
+  });
+  cluster(41, 880, 1640, 5, 140, 120, t - .3, { from: [300, 300] });
+  g.restore();
+  g.save(); g.beginPath(); g.roundRect(r.x, r.y, r.w, r.h, 36 * (1 - e)); g.clip(); th(r, lerp(1.0, BZ * 1.14, e), lerp(.45, BAY, e)); g.restore();
+}
+function sceneRest(T) {                                      // 8.0–10.45: punch-in, REST behind head
+  const z = BZ * 1.14;
+  th(undefined, z, BAY);
+  if (T >= 9.88) {
+    rise('REST', 40, 560, T - 9.88, { size: 360, w: 800, dur: .5, exitAt: 10.3, T });
+    cutout(z, BAY);
+    const p = back((T - 10.04) / .45);
+    if (T > 10.04 && T < 10.45) { g.save(); g.translate(860, 300); g.scale(p, p); g.rotate(-.06);
+      g.fillStyle = CYAN; g.beginPath(); g.roundRect(-90, -45, 180, 90, 14); g.fill();
+      font(800, 70, COND); g.fillStyle = NAVY; g.textAlign = 'center'; g.fillText('API', 0, 25); g.textAlign = 'left'; g.restore(); }
+  }
+  captions(T, 1240);
+}
+// Light panel rises under the TH; diagram You → /api/users → Database.
+const PANEL_Y = 1230;
+function panel(T, top) {
+  g.save(); g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 40; g.fillStyle = LIGHT;
+  g.beginPath(); g.roundRect(0, top, W, H - top + 60, [44, 44, 0, 0]); g.fill(); g.restore();
+}
+function sceneEndpoint(T) {                                  // 10.45–14.95
+  th(undefined, zoomAt(T), BAY);
+  const t = T - 10.45, top = lerp(H + 40, PANEL_Y, expo(t / .6));
+  terminal(T, 13.3, 14.95, '$ curl -X POST \\', '    api.example.com/users');
+  captions(T, top - 60);
+  panel(T, top);
+  const oy = top - PANEL_Y, cy = 1500 + oy;
+  g.save(); g.translate(540, cy); g.scale(1.1, 1.1); g.translate(-540, -cy);
+  const pu = expo((T - 10.76) / .5), pd = expo((T - 10.9) / .5);
+  // connectors draw in, then the endpoint box
+  g.strokeStyle = INK; g.lineWidth = 3;
+  const L1 = expo((T - 11.2) / .5), L2 = expo((T - 11.35) / .5);
+  g.beginPath(); g.moveTo(222, cy); g.lineTo(lerp(222, 370, L1), cy); g.stroke();
+  g.beginPath(); g.moveTo(710, cy); g.lineTo(lerp(710, 858, L2), cy); g.stroke();
+  if (L2 > .95) { g.fillStyle = CYAN; g.strokeStyle = INK; g.lineWidth = 3; g.beginPath(); g.arc(828, cy, 12, 0, 7); g.fill(); g.stroke(); }
+  iconUser(160, cy, 62, pu); iconDB(920, cy, 62, pd);
+  font(700, 40, COND); g.fillStyle = INK; g.textAlign = 'center';
+  g.globalAlpha = pu; g.fillText('You', 160, cy + 120); g.globalAlpha = pd; g.fillText('Database', 920, cy + 120);
+  g.globalAlpha = 1; g.textAlign = 'left';
+  // endpoint box: dashed "?" first, fills blue on "endpoint", types /api/users on "creating users"
+  const pe = expo((T - 11.5) / .45), fill = expo((T - 13.84) / .4);
+  const bw = 340, bh = 140, bx = 540 - bw / 2, by = cy - bh / 2;
+  if (T > 11.3) {
+    g.save(); g.translate(540, cy); const s = lerp(.85, 1, back((T - 11.3) / .5)); g.scale(s, s); g.translate(-540, -cy);
+    g.setLineDash([12, 10]); g.strokeStyle = '#AEB4BA'; g.lineWidth = 3; g.beginPath(); g.roundRect(bx, by, bw, bh, 18); g.stroke(); g.setLineDash([]);
+    if (fill < .02) { font(800, 80, COND); g.fillStyle = '#C2C7CC'; g.textAlign = 'center'; g.fillText('?', 540, cy + 28); g.textAlign = 'left'; }
+    if (fill > 0) { g.save(); g.shadowColor = 'rgba(0,155,232,.45)'; g.shadowBlur = 30; g.shadowOffsetY = 10; g.fillStyle = BLUE;
+      g.beginPath(); g.roundRect(540 - bw / 2 * fill, by, bw * fill, bh, 18); g.fill(); g.restore();
+      typeOn('/api/users', 540 - 125, cy + 16, T - 14.0, { size: 46, col: WHITE, w: 500, track: 0, cps: 28 }); }
+    g.restore();
+  }
+  typeOn('Endpoint', 540 - 80, by - 34, T - 11.5, { size: 28, col: BLUE, track: 6, upper: true, cps: 28 });
+  g.restore();
+}
+// Dark terminal card that drops in over the talking head and types a request.
+function terminal(T, a, b, l1, l2) {
+  const p = expo((T - a) / .45), q = expoIn((T - b + .2) / .2); if (p <= 0 || q >= 1) return;
+  const x = 44, y = 70 - (1 - p) * 260 - q * 400, w = 600, h = 190;
+  g.save(); g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 40; g.shadowOffsetY = 14;
+  g.fillStyle = NAVY; g.beginPath(); g.roundRect(x, y, w, h, 18); g.fill(); g.restore();
+  g.fillStyle = '#3B5266'; [0, 1, 2].forEach(i => { g.beginPath(); g.arc(x + 30 + i * 22, y + 28, 6, 0, 7); g.fill(); });
+  const t = T - a - .3, n1 = l1.length / 34;
+  typeOn(l1.slice(0, 1), x + 30, y + 92, t, { size: 30, col: CYAN, track: 0, cps: 34 });
+  typeOn(l1.slice(1), x + 30 + 22, y + 92, t - 1 / 34, { size: 30, col: WHITE, track: 0, cps: 34, caret: t < n1 });
+  typeOn(l2, x + 30, y + 140, t - n1, { size: 30, col: WHITE, track: 0, cps: 34, caret: t >= n1 });
+}
+// Full light slide: method pills, giant verb, users table, circular face top-right.
+const ROWS0 = [[101, 'Sam Bruhn', 'Founder', 'active'], [102, 'Alex Kim', 'Developer', 'active']];
+function sceneActions(T) {                                   // 14.95–19.3
+  const t = T - 14.95, top = lerp(PANEL_Y, 0, inOut(t / .55));
+  const wy = -H * expoIn((T - 19.1) / .22);
+  if (wy < 0) sceneOK(T);
+  g.save(); g.translate(0, wy);
+  if (wy === 0 || T < 19.1) th(undefined, zoomAt(T - .01), BAY); panel(T, top);
+  if (top > 4) { g.restore(); return; }
+  const ACT = [['POST', 'Creates', 15.38], ['GET', 'Reads', 16.62], ['PUT', 'Updates', 17.58], ['DELETE', 'Deletes', 18.38]];
+  let a = -1; ACT.forEach(([, , at], i) => { if (T >= at - .05) a = i; });
+  // circular face
+  const pc = back((T - 15.15) / .6);
+  if (pc > 0) { g.save(); g.translate(880, 250); g.scale(pc, pc);
+    g.shadowColor = 'rgba(0,0,0,.18)'; g.shadowBlur = 30; g.shadowOffsetY = 10;
+    g.beginPath(); g.arc(0, 0, 150, 0, 7); g.fillStyle = WHITE; g.fill(); g.shadowColor = 'transparent';
+    g.beginPath(); g.arc(0, 0, 142, 0, 7); g.clip();
+    g.drawImage(FR, FACE.x - 260, FACE.y - 250, 520, 520, -142, -142, 284, 284); g.restore(); }
+  // method pills with the active one in cyan
+  let px = 60; const xs = [];
+  ACT.forEach(([m], i) => { const pp = expo((T - 15.1 - i * .06) / .4); g.save(); g.globalAlpha = pp; g.translate(0, (1 - pp) * 20);
+    xs.push(px); px += pill(m, px, 330, {}) + 14; g.restore(); });
+  if (a >= 0) { font(500, 28, MONO); g.letterSpacing = '2px';
+    const prev = Math.max(0, a - 1), k = a === 0 ? expo((T - ACT[0][2] + .05) / .3) : expo((T - ACT[a][2] + .05) / .25);
+    const wOf = i => g.measureText(ACT[i][0]).width + 36;
+    const hx = lerp(xs[prev], xs[a], a === 0 ? 1 : k), hw = lerp(wOf(prev), wOf(a), a === 0 ? 1 : k);
+    g.globalAlpha = a === 0 ? k : 1; g.fillStyle = CYAN; g.beginPath(); g.roundRect(hx, 330, hw, 52, 26); g.fill();
+    g.fillStyle = NAVY; g.fillText(ACT[a][0], xs[a] + 18, 365); g.globalAlpha = 1; g.letterSpacing = '0px'; }
+  // giant verb: each new one rises in as the old one rises out
+  ACT.forEach(([, word, at], i) => { const next = ACT[i + 1] ? ACT[i + 1][2] - .05 : 99;
+    if (T >= at - .05 && T < next + .2) rise(word, 54, 640, T - at - (i ? .08 : -.05), { size: 250, w: 800, col: INK, dur: .45, exitAt: next, T }); });
+  // users table card
+  const pt = expo((T - 15.25) / .6), cx = 50, cyy = 790 + (1 - pt) * 80, cw = 980;
+  g.save(); g.globalAlpha = pt;
+  typeOn('Users', cx + 10, cyy - 26, T - 15.3, { size: 28, col: BLUE, track: 6, upper: true, cps: 24 });
+  const nRows = 2 + (T >= 15.38 ? 1 : 0) - (T >= 18.9 ? expo((T - 18.9) / .4) : 0);
+  typeOn(`${Math.round(2 + (T >= 15.38 ? 1 : 0) - (T >= 18.9 ? 1 : 0))} rows`, cx + 140, cyy - 26, T - 15.3, { size: 28, col: GREY, track: 4, upper: true, cps: 40 });
+  const RH = 96, ch = 100 + RH * nRows + 30;
+  g.shadowColor = 'rgba(0,0,0,.10)'; g.shadowBlur = 40; g.shadowOffsetY = 14; g.fillStyle = WHITE;
+  g.beginPath(); g.roundRect(cx, cyy, cw, ch, 20); g.fill(); g.restore();
+  g.save(); g.globalAlpha = pt;
+  const C = [cx + 40, cx + 170, cx + 500, cx + 790];
+  font(500, 24, MONO); g.letterSpacing = '3px'; g.fillStyle = GREY;
+  ['ID', 'NAME', 'ROLE', 'STATUS'].forEach((h, i) => g.fillText(h, C[i], cyy + 62)); g.letterSpacing = '0px';
+  g.fillStyle = '#E5E7EA'; g.fillRect(cx + 30, cyy + 90, cw - 60, 2);
+  const rows = [...ROWS0.map(r => [...r]), [103, 'Jo Lee', 'Designer', 'new']];
+  if (T >= 17.9) rows[2][3] = 'active';
+  let y = cyy + 100;
+  rows.forEach((r, i) => {
+    if (i === 2 && T < 15.38) return;
+    const isNew = i === 2, del = i === 1 && T >= 18.38;
+    let hgt = RH, alpha = 1, slide = 0;
+    if (isNew) { const pn = expo((T - 15.5) / .5); alpha = pn; slide = (1 - pn) * -40; }
+    if (i === 1 && T >= 18.9) { const pc2 = expo((T - 18.9) / .4); hgt = RH * (1 - pc2); alpha = 1 - pc2; }
+    g.save(); g.beginPath(); g.rect(cx, y, cw, hgt); g.clip(); g.globalAlpha = pt * alpha;
+    // row highlight: new row on create, Sam on read, Jo on update
+    const hl = (isNew && win(T, 15.5, 16.5)) ? 1 - clamp((T - 16.2) / .3) : (i === 0 && win(T, 16.62, 17.5)) ? expo((T - 16.62) / .25) * (1 - clamp((T - 17.3) / .2)) : (isNew && win(T, 17.58, 18.3)) ? expo((T - 17.58) / .25) * (1 - clamp((T - 18.1) / .2)) : 0;
+    if (hl > 0) { g.globalAlpha = pt * alpha * hl; g.fillStyle = 'rgba(18,221,235,.28)'; g.fillRect(cx + 16, y + 10 + slide, cw - 32, RH - 20); g.globalAlpha = pt * alpha; }
+    const by = y + 62 + slide;
+    font(500, 32, MONO); g.fillStyle = INK; g.fillText(String(r[0]), C[0], by);
+    font(600, 42, COND); g.fillText(r[1], C[1], by + 2); g.fillStyle = '#555A60'; g.fillText(r[2], C[2], by + 2);
+    // status pill
+    const st = r[3], newOn = st === 'new'; font(500, 24, MONO);
+    const sw = g.measureText(st).width + 30; g.lineWidth = 2.5;
+    const flip = isNew && T >= 17.9 ? back((T - 17.9) / .4) : 1;
+    g.save(); g.translate(C[3] + sw / 2, by - 10); g.scale(1, flip); g.translate(-(C[3] + sw / 2), -(by - 10));
+    g.strokeStyle = newOn ? CYAN : BLUE; g.fillStyle = newOn ? CYAN : WHITE;
+    g.beginPath(); g.roundRect(C[3], by - 30, sw, 42, 21); g.fill(); g.stroke();
+    g.fillStyle = newOn ? NAVY : BLUE; g.fillText(st, C[3] + 15, by - 1); g.restore();
+    if (del) { const ps = expo((T - 18.45) / .4); g.fillStyle = INK; g.fillRect(C[0] - 6, by - 14, (cw - 80) * ps, 3); }
+    g.fillStyle = '#EEF0F2'; g.fillRect(cx + 30, y + hgt - 1, cw - 60, 1.5);
+    g.restore(); y += hgt;
+  });
+  g.restore();
+  g.restore();
+}
+// "200 OK" response card: drops in, status rolls to 200, JSON types, then shatters into triangles.
+const CAP2 = [[19.02, 'action'], [19.24, 'you'], [19.46, 'can'], [19.60, 'take.']];
+function sceneOK(T) {
+  th(undefined, BZ, BAY);
+  const SH = 19.95;                                          // shatter time
+  const p = expo((T - 19.15) / .4), x = 60, w = 960, h = 330, y = 900 - (1 - p) * 700;
+  // captions for the last phrase
+  if (T >= 19.02 && T < SH + .1) { const save = CAP.slice(); CAP.length = 0; CAP.push(CAP2); captions(T, 1380); CAP.length = 0; save.forEach(c => CAP.push(c)); }
+  if (T < SH) {
+    g.save(); g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 50; g.shadowOffsetY = 18;
+    g.fillStyle = NAVY; g.beginPath(); g.roundRect(x, y, w, h, 20); g.fill(); g.restore();
+    const roll = clamp((T - 19.3) / .35), code = roll >= 1 ? 200 : 200 + Math.round((1 - roll) ** 2 * 48 + (Math.floor(T * 30) % 7));
+    font(800, 120, COND); g.fillStyle = CYAN; g.fillText(String(code), x + 40, y + 125);
+    g.fillStyle = WHITE; if (roll >= 1) { const cw = g.measureText('200 ').width; g.fillText('OK', x + 40 + cw, y + 125); }
+    typeOn('To: you', x + w - 200, y + 100, T - 19.3, { size: 26, col: GREY, track: 5, upper: true, cps: 30 });
+    g.fillStyle = '#163A55'; g.fillRect(x + 40, y + 160, w - 80, 2);
+    typeOn('{ "id": 102, "deleted": true }', x + 40, y + 240, T - 19.55, { size: 34, col: WHITE, track: 0, cps: 60, caret: true });
+  } else {
+    // shatter: card splits into triangles that burst outward
+    const r = rng(77), t = T - SH;
+    for (let j = 0; j < 6; j++) for (let i = 0; i < 14; i++) for (let k = 0; k < 2; k++) {
+      const cw = w / 14, chh = h / 6, cx0 = x + i * cw, cy0 = y + j * chh;
+      const pts = k ? [[cx0, cy0], [cx0 + cw, cy0], [cx0, cy0 + chh]] : [[cx0 + cw, cy0], [cx0 + cw, cy0 + chh], [cx0, cy0 + chh]];
+      const mx = (pts[0][0] + pts[1][0] + pts[2][0]) / 3, my = (pts[0][1] + pts[1][1] + pts[2][1]) / 3;
+      const vx = (mx - 540) * (1.5 + r() * 2) + (r() - .5) * 900, vy = (my - 1065) * (2 + r() * 3) + 600 * r() - 300;
+      const rot = (r() - .5) * 10 * t, sc = 1 - clamp(t / .6) * r() * .5, col = r() < .55 ? NAVY : TRI[Math.floor(r() * TRI.length)];
+      const ox = vx * t + 900 * t * t * (r() - .5), oy = vy * t + 1400 * t * t;
+      g.save(); g.translate(mx + ox, my + oy); g.rotate(rot); g.scale(sc, sc); g.fillStyle = col; g.beginPath();
+      pts.forEach(([px, py], n) => n ? g.lineTo(px - mx, py - my) : g.moveTo(px - mx, py - my)); g.closePath(); g.fill(); g.restore();
+    }
+  }
+}
+function sceneEnd(T) {                                       // 20.4–23.6: white end card
+  const t = T - 20.4;
+  g.fillStyle = WHITE; g.fillRect(0, 0, W, H);
+  if (LOGO_S) { const p = expo(t / .6), lw = 620, lh = lw * LOGO_S.height / LOGO_S.width;
+    g.save(); g.beginPath(); g.rect(70, 600, lw * p + 4, lh + 10); g.clip(); g.drawImage(LOGO_S, 70, 605, lw, lh); g.restore(); }
+  rise('Definitions', 76, 1010, t - .2, { size: 150, w: 700, col: INK, dur: .5 });
+  typeOn('understand · solve · execute', 82, 1110, t - .45, { size: 38, col: '#0B6FA8', track: 5, w: 500, cps: 30 });
+  typeOn('usesoftware.com.au', 82, 1175, t - 1.1, { size: 32, col: '#555A60', track: 2, w: 400, cps: 30 });
+  cluster(51, 900, 160, 7, 180, 120, t - .05, { from: [300, -300] });
+  cluster(52, 760, 1620, 4, 140, 150, t - .15, { from: [200, 400] });
+  cluster(53, 620, 1920, 6, 260, 110, t - .25, { from: [0, 300] });
+  const f = clamp((T - 23.2) / .4); if (f > 0) { g.fillStyle = `rgba(255,255,255,${f})`; g.fillRect(0, 0, W, H); }
+}
+
+// =====================================================================================
+function frame(T) {
+  g.globalAlpha = 1; g.clearRect(0, 0, W, H);
+  if (T < 2.3) sceneTitle(T);
+  else if (T < 5.0) { th(undefined, zoomAt(T), BAY); captions(T, 1200); lowerThird(T); }
+  else if (T < 6.25) sceneDefCard(T);
+  else if (T < 8.12) sceneStandsFor(T);
+  else if (T < 10.45) sceneRest(T);
+  else if (T < 14.95) sceneEndpoint(T);
+  else if (T < 19.33) sceneActions(T);
+  else if (T < 20.4) sceneOK(T);
+  else sceneEnd(T);
+  // triangle mosaic wipes into the def card and into the end card
+  if (T >= 4.62 && T < 5.42) mosaic(T < 5.02 ? (T - 4.62) / .4 : 1 + (T - 5.02) / .4, 3);
+  if (T >= 20.0 && T < 20.8) mosaic(T < 20.4 ? (T - 20.0) / .4 : 1 + (T - 20.4) / .4, 9);
+}
+// Motion blur: average SUB subframes across a 180° shutter.
+const SUB = 8;
+function draw(T) {
+  out.globalAlpha = 1; out.globalCompositeOperation = 'source-over';
+  for (let k = 0; k < SUB; k++) {
+    frame(T + (k / SUB - .5) * (1 / FPS));
+    out.globalAlpha = 1 / (k + 1); out.drawImage(off, 0, 0);
+  }
+  out.globalAlpha = 1;
+}
+window.seek = async t => { await load(t); draw(t); return true; };
+window.ready = (async () => {
+  await document.fonts.ready;
+  await Promise.all([`800 40px "Barlow Condensed"`, `600 40px "Barlow Condensed"`, `600 40px Barlow`, `700 40px "Barlow Condensed"`, `500 40px "JetBrains Mono"`, `400 40px "JetBrains Mono"`].map(f => document.fonts.load(f)));
+  LOGO_S = await img('assets/use-logo-short.png'); LOGO_L = await img('assets/use-logo-long.png');
+})();
+if (!navigator.webdriver) window.ready.then(async () => { const t0 = performance.now();
+  (async function loop() { const t = ((performance.now() - t0) / 1000) % DUR; await load(t); draw(t); requestAnimationFrame(loop); })(); });
+</script>
+</body></html>

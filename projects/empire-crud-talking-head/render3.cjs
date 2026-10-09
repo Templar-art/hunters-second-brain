@@ -1,6 +1,6 @@
 // node render3.cjs stills <t,t,..> <outdir>  |  node render3.cjs video <out.mov>
 const { chromium } = require('playwright'); const { spawn } = require('child_process'); const path = require('path');
-const DIR = __dirname, FPS = 30, DUR = 23.0;
+const DIR = __dirname, FPS = 30, DUR = +(process.env.DUR || 23.0);
 (async () => {
   const b = await chromium.launch({ channel: 'chrome', args: ['--allow-file-access-from-files'] });
   const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
