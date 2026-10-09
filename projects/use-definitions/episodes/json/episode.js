@@ -4,7 +4,8 @@ const STANDS = [['J', 'ava', 5.64], ['S', 'cript', 5.9], ['O', 'bject', 6.22], [
 window.EP = {
   dur: 36.0, voEnd: 32.7,
   punchIns: [[29.9, 32.5]],
-  captions: [[JASON_IN, STANDS_IN, 1600], [CODE_IN, TYPES_IN, 1760], [SEMI_IN, END_MOS, 1240]],
+  captions: [[JASON_IN, STANDS_IN, 1600], [CODE_IN, TYPES_IN, 1760], [SEMI_IN, END_MOS, 1170]],
+  cuts: [JASON_IN, STANDS_IN, FILES_IN, CODE_IN, TYPES_IN, SEMI_IN, END_IN],
   frame(T) {
     if (T < JASON_IN) titleCard(T, 'JSON', 1.7);
     else if (T < STANDS_IN) sceneJason(T);
@@ -74,7 +75,7 @@ function sceneFiles(T) {
   th(FULL, BZ); g.save(); g.translate(0, wy);
   g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
   typeOn('A file format', 60, 330, T - 8.24, { size: 30, col: BLUE, track: 6, upper: true, cps: 30 });
-  rise('Like a CSV,', 54, 540, T - 10.0, { size: 150, w: 800, col: INK, dur: .45 });
+  rise('Like a CSV,', 54, 540, T - 8.5, { size: 150, w: 800, col: INK, dur: .45 });
   rise('or an XLSX.', 54, 690, T - 11.52, { size: 150, w: 800, col: INK, dur: .45 });
   FILES.forEach(([l, ext, at, col], i) => fileIcon(60 + i * 330, 860, 300, 400, l, ext, col, back((T - at) / .5)));
   // bracket: "something else that stores information"
@@ -88,7 +89,7 @@ function sceneFiles(T) {
 // Split layout: speaker in a tall left column, live JSON on navy to the right.
 const CODE = [['{', 0], ['  "users": [', 0], ['    {', 0], ['      "name": "Sam",', 1], ['      "role": "Founder",', 1], ['      "id": 101', 2], ['    }', 0], ['  ]', 0], ['}', 0]];
 function sceneCode(T) {
-  const t = T - CODE_IN, p = inOut(t / .6), wy = whip(T, TYPES_IN - .25);
+  const t = T - CODE_IN, p = inOut(t / .6), wy = whip(T, TYPES_IN - .42, .4);
   if (wy < 0) sceneTypes(T);
   g.save(); g.translate(0, wy);
   g.fillStyle = NAVY; g.fillRect(0, 0, W, H);

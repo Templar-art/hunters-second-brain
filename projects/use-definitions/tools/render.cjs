@@ -16,7 +16,18 @@ const ROOT = path.join(__dirname, '..'), EP = path.resolve(process.argv[2]), MOD
   fs.writeFileSync(path.join(EP, 'build/cues.json'), JSON.stringify(await p.evaluate(() => window.cues())));
   fs.writeFileSync(path.join(EP, 'build/render.json'), JSON.stringify({ dur, voEnd }));
   const shot = () => p.locator('canvas').screenshot({ type: 'png' });
-  if (MODE === 'stills') {
+  if (MODE === 'facecheck') {
+    // Sample every 0.1s. A violation = face covered >4% for ≥0.3s. Full-slide takeovers (face AND torso hidden) are
+    // filtered in the engine; sub-0.3s whips are transitions.
+    const samples = []; for (let t = 0; t < dur; t += .1) samples.push([+t.toFixed(1), await p.evaluate(t => window.faceAudit(t), t)]);
+    const runs = []; let cur = null;
+    for (const [t, c] of samples) { const bad = c > .04;
+      if (bad) { if (!cur) cur = { a: t, b: t, max: 0 }; cur.b = t; cur.max = Math.max(cur.max, c); } else if (cur) { runs.push(cur); cur = null; } }
+    if (cur) runs.push(cur);
+    const v = runs.filter(r => r.b - r.a >= .3).map(r => ({ from: r.a, to: r.b, maxPct: Math.round(r.max * 100) }));
+    fs.writeFileSync(path.join(EP, 'build/facecheck.json'), JSON.stringify(v));
+    console.log(v.length ? 'FACE COVERED: ' + v.map(r => `${r.from}–${r.to}s (max ${r.maxPct}%)`).join(' · ') : 'FACE CLEAR');
+  } else if (MODE === 'stills') {
     for (const t of process.argv[4].split(',')) { await p.evaluate(t => window.seek(+t), t);
       fs.writeFileSync(path.join(EP, `build/qa/s_${t}.png`), await shot()); }
   } else {

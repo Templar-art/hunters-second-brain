@@ -3,7 +3,8 @@ const CRT_IN = 4.0, TOOLS_IN = 10.9, YOU_IN = 16.8, TERM_IN = 22.0, END_MOS = 29
 window.EP = {
   dur: 32.9, voEnd: 29.5,
   punchIns: [[2.9, 4.0], [19.5, 22.0]],
-  captions: [[2.2, CRT_IN, 1200], [TOOLS_IN, YOU_IN, 640], [YOU_IN, TERM_IN, 1240], [TERM_IN, END_MOS, 1500]],
+  cuts: [2.25, CRT_IN, TOOLS_IN, YOU_IN, TERM_IN, END_IN],
+  captions: [[2.2, CRT_IN, 1200], [TOOLS_IN, YOU_IN, 1170], [YOU_IN, TERM_IN, 1240], [TERM_IN, END_MOS, 1040]],
   frame(T) {
     if (T < 2.25) titleCard(T, 'CLI', 1.95);
     else if (T < CRT_IN) { th(FULL, zoomAt(T)); captions(T); lowerThird(T, 2.3, 3.8); iris(T, CRT_IN - .5, 540, 760, sceneCRT); }
@@ -32,12 +33,12 @@ function sceneCRT(T) {
   g.fillStyle = '#020B12'; g.fillRect(0, 0, W, H);
   const pretty = T < 7.4;
   if (pretty) {                                        // "nice pretty interfaces"
-    const p = back((T - 4.4) / .6), x = 90, y = 360, w = 900, h = 900;
+    const p = back((T - 4.15) / .5), x = 90, y = 360, w = 900, h = 900;
     g.save(); g.translate(540, y + h / 2); g.scale(p, p); g.translate(-540, -(y + h / 2));
     card(x, y, w, h, LIGHT, 30, .4);
     g.fillStyle = WHITE; g.beginPath(); g.roundRect(x, y, w, 90, [30, 30, 0, 0]); g.fill();
     ['#FF6159', '#FFBD2E', '#28C941'].forEach((c, i) => { g.fillStyle = c; g.beginPath(); g.arc(x + 50 + i * 36, y + 45, 11, 0, 7); g.fill(); });
-    rise('Nice, pretty', x + 60, y + 260, T - 4.52, { size: 110, w: 800, col: INK, dur: .45 });
+    rise('Nice, pretty', x + 60, y + 260, T - 4.3, { size: 110, w: 800, col: INK, dur: .45 });
     rise('interfaces.', x + 60, y + 380, T - 5.68, { size: 110, w: 800, col: BLUE, dur: .45 });
     [0, 1, 2].forEach(i => { const pp = back((T - 5.0 - i * .12) / .4); if (pp <= 0) return; const bx = x + 60 + i * 270;
       g.save(); g.translate(bx + 120, y + 560); g.scale(pp, pp); card(-120, -80, 240, 160, WHITE, 22, .1);
@@ -53,7 +54,7 @@ function sceneCRT(T) {
   glitch(T, 1 - clamp((T - 7.4) / .35), () => {
     g.fillStyle = '#020B12'; g.fillRect(0, 0, W, H);
     const lines = ['USE-OS v1.0  (c) 1986', 'MEM 640K OK', 'LOADING DRIVERS....... DONE', 'READY.', '', 'A:\\> dir', ' SCRIPTS   <DIR>', ' FILES     <DIR>', ' README    TXT   1,024'];
-    let chars = Math.floor((T - 7.6) * 45);
+    let chars = 22 + Math.floor((T - 7.4) * 45);
     lines.forEach((l, i) => { const n = clamp(chars, 0, l.length); chars -= l.length + 2; if (n <= 0) return;
       font(500, 40, MONO); g.fillStyle = CYAN; g.globalAlpha = .9; g.fillText(l.slice(0, n), 80, 340 + i * 62); g.globalAlpha = 1; });
     // prompt line at the bottom
@@ -73,12 +74,12 @@ const TOOLS = [['Claude Code', 'terminal built in', 14.08, true], ['Cursor', 'te
 function sceneTools(T) {
   th(FULL, BZ);
   const p = expo((T - TOOLS_IN) / .5);
-  g.save(); g.globalAlpha = p; card(40, 760 + (1 - p) * 80, 1000, 210, NAVY, 22, .35);
-  typeOn('Still around in most IDEs', 80, 830, T - 11.1, { size: 26, col: CYAN, track: 5, upper: true, cps: 40 });
-  rise('Still around.', 80, 935, T - 11.24, { size: 90, w: 800, col: WHITE, dur: .45, exitAt: 16.1, T });
-  rise('Built right in.', 80, 935, T - 16.28, { size: 90, w: 800, col: CYAN, dur: .45 });
+  g.save(); g.globalAlpha = p; card(40, 1250 + (1 - p) * 80, 1000, 200, NAVY, 22, .35);
+  typeOn('Still around in most IDEs', 80, 1318, T - 11.1, { size: 26, col: CYAN, track: 5, upper: true, cps: 40 });
+  rise('Still around.', 80, 1420, T - 11.24, { size: 90, w: 800, col: WHITE, dur: .45, exitAt: 16.1, T });
+  rise('Built right in.', 80, 1420, T - 16.28, { size: 90, w: 800, col: CYAN, dur: .45 });
   g.restore();
-  cardStack(T, TOOLS, 60, 1020, 960, 140);
+  cardStack(T, TOOLS, 60, 1480, 960, 120, 14);
   captions(T);
 }
 
@@ -86,7 +87,7 @@ function sceneTools(T) {
 const CMDS = [['sed -i "s/old/new/" app.js', 'modified 1 file', 22.76], ['./run-local.sh', 'script finished in 0.4s', 25.28], ['npm run dev', 'ready on localhost:3000', 27.2]];
 function sceneTerminal(T) {
   th(FULL, zoomAt(T));
-  const p = expo((T - TERM_IN) / .5), x = 40, w = 1000, h = 640, y = 80 - (1 - p) * 800;
+  const p = expo((T - TERM_IN) / .5), x = 40, w = 1000, h = 620, y = 1080 + (1 - p) * 900;
   card(x, y, w, h, '#020B12', 24, .45);
   g.fillStyle = '#16222C'; g.beginPath(); g.roundRect(x, y, w, 70, [24, 24, 0, 0]); g.fill();
   ['#FF6159', '#FFBD2E', '#28C941'].forEach((c, i) => { g.fillStyle = c; g.beginPath(); g.arc(x + 40 + i * 30, y + 35, 9, 0, 7); g.fill(); });

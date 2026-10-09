@@ -54,7 +54,38 @@ function xf(rect, zoom, ay) {
   return [ox, oy, W * s, H * s];
 }
 const FULL = { x: 0, y: 0, w: W, h: H };
-function th(rect = FULL, zoom = BZ, ay = BAY) { if (FR) g.drawImage(FR, ...xf(rect, zoom, ay)); }
+// Face keep-out (Hunter's rule: never cover the face). Source-frame face box, 1080x1920.
+const BODY_BOX = { x: 260, y: 1000, w: 560, h: 420 };   // torso: used to tell a full-slide takeover from a face overlay
+const FACE_BOX = { x: 465, y: 370, w: 180, h: 330 };   // inner face: brow to chin, cheek to cheek
+let FACE_SNAPS = [], FACE_CHECK = false;
+function th(rect = FULL, zoom = BZ, ay = BAY) {
+  if (!FR) return; const r = xf(rect, zoom, ay); g.drawImage(FR, ...r);
+  if (!FACE_CHECK) return;
+  snapBox(r, rect, FACE_BOX, 'face'); snapBox(r, rect, BODY_BOX, 'body');
+}
+function snapBox(r, rect, B, kind) {
+  const s = r[2] / W, fx = r[0] + B.x * s, fy = r[1] + B.y * s, fw = B.w * s, fh = B.h * s;
+  // only the visible part of the face inside the rect (and on canvas)
+  const x0 = Math.max(fx, rect.x, 0), y0 = Math.max(fy, rect.y, 0), x1 = Math.min(fx + fw, rect.x + rect.w, W), y1 = Math.min(fy + fh, rect.y + rect.h, H);
+  if (x1 - x0 < 20 || y1 - y0 < 20) return;
+  const m = g.getTransform(), p0 = m.transformPoint({ x: x0, y: y0 }), p1 = m.transformPoint({ x: x1, y: y1 });
+  const bx = Math.round(Math.min(p0.x, p1.x)), by = Math.round(Math.min(p0.y, p1.y)), bw = Math.round(Math.abs(p1.x - p0.x)), bh = Math.round(Math.abs(p1.y - p0.y));
+  if (bw < 20 || bh < 20 || bx < 0 || by < 0 || bx + bw > W || by + bh > H) return;
+  FACE_SNAPS.push({ kind, bx, by, bw, bh, d: g.getImageData(bx, by, bw, bh).data });
+}
+// Fraction of face pixels changed by later drawing (0 = untouched). Cut-outs redraw the face, so they pass.
+function faceCovered() {
+  let worst = 0, body = 1, sawBody = false;
+  for (const f of FACE_SNAPS.filter(f => f.kind === 'body')) { sawBody = true; const now = g.getImageData(f.bx, f.by, f.bw, f.bh).data; let bad = 0, n = 0;
+    for (let i = 0; i < now.length; i += 16) { n++; if (Math.abs(now[i] - f.d[i]) + Math.abs(now[i + 1] - f.d[i + 1]) + Math.abs(now[i + 2] - f.d[i + 2]) > 60) bad++; }
+    body = Math.min(body, bad / n); }
+  for (const f of FACE_SNAPS.filter(f => f.kind === 'face')) { const now = g.getImageData(f.bx, f.by, f.bw, f.bh).data; let bad = 0, n = 0;
+    for (let i = 0; i < now.length; i += 16) { n++; if (Math.abs(now[i] - f.d[i]) + Math.abs(now[i + 1] - f.d[i + 1]) + Math.abs(now[i + 2] - f.d[i + 2]) > 60) bad++; }
+    worst = Math.max(worst, bad / n); }
+  // full takeover (slide replaces the shot): face AND torso both hidden → not an overlay
+  if (worst > .9 && sawBody && body > .9) return 0;
+  return worst;
+}
 // Speaker cut out over whatever was drawn (text behind the head). Same transform as th().
 function cutout(zoom = BZ, ay = BAY) {
   if (!MT || !FR) return;
@@ -65,7 +96,8 @@ function cutout(zoom = BZ, ay = BAY) {
   g.drawImage(c, 0, 0);
 }
 // Punch-in cuts: zoomAt(T) returns BZ, or BZ*1.12 inside any EP.punchIns window.
-const zoomAt = T => (EP.punchIns || []).some(([a, b]) => win(T, a, b)) ? BZ * 1.12 : BZ;
+let BASE_T = 0;   // centre time of the frame being drawn (subframes share it for cut decisions)
+const zoomAt = T => (EP.punchIns || []).some(([a, b]) => win(BASE_T, a, b)) ? BZ * 1.12 : BZ;
 
 // ---------- type ----------
 function font(w, size, fam) { g.font = `${w} ${size}px ${fam}`; }
@@ -141,7 +173,7 @@ function chunkWords(words) {
 // Draw the active chunk if T sits inside a caption window [a, b, y].
 function captions(T) {
   const wnd = (EP.captions || []).find(([a, b]) => win(T, a, b)); if (!wnd) return;
-  const [wa, wb, yy] = wnd, SZ = 66, y = typeof yy === 'function' ? yy(T) : yy;
+  const [wa, wb, yy, style] = wnd, SZ = 66, y = typeof yy === 'function' ? yy(T) : yy, dark = style === 'dark';
   for (let c = 0; c < CHUNKS.length; c++) {
     const ch = CHUNKS[c], st = Math.max(ch[0].s, wa), last = ch[ch.length - 1];
     const en = Math.min(CHUNKS[c + 1] ? CHUNKS[c + 1][0].s : 1e9, last.e + .45, wb);
@@ -155,12 +187,12 @@ function captions(T) {
     const p = expo((T - st) / .32), dy = (1 - p) * SZ * 1.2;
     g.save(); g.beginPath(); g.rect(0, y - SZ * 1.1, W, SZ * 1.5); g.clip();
     g.fillStyle = CYAN; g.beginPath(); g.roundRect(hx, y - SZ * .82 + dy, hw, SZ * 1.0, 8); g.fill();
-    g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 10; g.shadowOffsetY = 2; g.fillStyle = WHITE;
-    ch.forEach((w, i) => g.fillText(w.w, xs[i], y + dy));
+    if (!dark) { g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 10; g.shadowOffsetY = 2; }
+    ch.forEach((w, i) => { g.fillStyle = dark ? (i === a ? NAVY : INK) : WHITE; g.fillText(w.w, xs[i], y + dy); });   // dark: light slides
     g.restore(); g.letterSpacing = '0px';
   }
 }
-captions.cue = () => CHUNKS.forEach(ch => { if ((EP.captions || []).some(([a, b]) => win(ch[0].s, a, b))) cue(ch[0].s, 'pop', { f: 1300, d: .03, gain: .05 }); });
+captions.cue = () => {};                                       // captions are silent: SFX only on real motion
 
 // ---------- small parts ----------
 function iconUser(cx, cy, r, p) {
@@ -223,11 +255,11 @@ function lowerThird(T, a, b, name = 'Sam Bruhn', role = 'Founder & CEO') {
   g.save(); g.globalAlpha = clamp(p * 2) * (1 - q);
   g.shadowColor = 'rgba(0,0,0,.18)'; g.shadowBlur = 30; g.shadowOffsetY = 10;
   g.fillStyle = WHITE; g.beginPath(); g.roundRect(x, y, w * lerp(.5, 1, p), h, 14); g.fill(); g.restore();
-  g.save(); g.globalAlpha = clamp((T - a - .15) * 4) * (1 - q); g.beginPath(); g.rect(x, y, w * p, h); g.clip();
+  g.save(); g.globalAlpha = clamp((T - a - .03) * 6) * (1 - q); g.beginPath(); g.rect(x, y, w * p, h); g.clip();
   if (LOGO) { const lh = 86, lw = lh * LOGO.width / LOGO.height; g.drawImage(LOGO, x + 34, y + h / 2 - lh / 2, lw, lh); }
   g.fillStyle = '#D9DDE1'; g.fillRect(x + 262, y + 34, 2, (h - 68) * expo((T - a - .25) / .4));
-  rise(name, x + 290, y + 92, T - a - .2, { size: 76, w: 700, col: INK, dur: .5 });
-  typeOn(role, x + 292, y + 140, T - a - .4, { size: 24, col: BLUE, track: 5, upper: true, cps: 30 });
+  rise(name, x + 290, y + 92, T - a - .06, { size: 76, w: 700, col: INK, dur: .5 });
+  typeOn(role, x + 292, y + 140, T - a - .2, { size: 24, col: BLUE, track: 5, upper: true, cps: 30 });
   g.restore();
   const wob = Math.sin((T - a) * 3) * .25;
   shard(x + 40, y + 6, 46, -.4 + wob, CYAN, T - a - .1, { from: [-140, -160], exitAt: b, T, to: [-300, -200], spin: 1.2 });
@@ -472,15 +504,20 @@ function card(x, y, w, h, col = WHITE, r = 20, sh = .12) {
 // Motion blur: average SUB subframes across a full-frame shutter.
 const SUB = 8;
 function draw(T) {
-  out.globalAlpha = 1;
+  out.globalAlpha = 1; BASE_T = T;
   for (let k = 0; k < SUB; k++) {
     g.globalAlpha = 1; g.clearRect(0, 0, W, H);
-    EP.frame(T + (k / SUB - .5) * (1 / FPS));
+    // subframes never straddle a scene cut (EP.cuts), so cuts stay hard instead of dissolving
+    let t = T + (k / SUB - .5) * (1 / FPS); for (const c of EP.cuts || []) { if (T >= c && t < c) t = c; if (T < c && t >= c) t = c - 1e-4; }
+    EP.frame(t);
     out.globalAlpha = 1 / (k + 1); out.drawImage(off, 0, 0);
   }
   out.globalAlpha = 1;
 }
 window.seek = async t => { await load(t); draw(t); return true; };
+// Face audit: single-subframe render of time t; returns share of the face area covered by graphics.
+window.faceAudit = async t => { await load(t); BASE_T = t; FACE_CHECK = true; FACE_SNAPS = []; g.globalAlpha = 1; g.clearRect(0, 0, W, H); EP.frame(t);
+  const c = faceCovered(); FACE_CHECK = false; FACE_SNAPS = []; return c; };
 window.cues = () => CUES;
 window.ready = (async () => {
   EP_DIR = new URLSearchParams(location.search).get('ep') || '.';

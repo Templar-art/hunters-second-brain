@@ -1,3 +1,7 @@
+# Episode queue
+
+Rules per episode: face check (`render.cjs … facecheck`) must say FACE CLEAR, then `tools/qa.sh` → boss review (`tools/BOSS.md`) loop until PASS, then build and send.
+
 # Episode queue (batch from Hunter, 9 Oct 2026)
 Source clips: ~/Downloads/NN_OCTOBER TALKING HEADS.mp4. Transcripts in episodes/<name>/words.json.
 
@@ -8,9 +12,9 @@ Skipped:
 
 | # | Episode | Type | Status |
 |---|---|---|---|
-| 03 | cli | Definition | v1 sent |
-| 04 | json | Definition | v1 sent |
-| 05 | sdk | Definition | v1 sent |
+| 03 | cli | Definition | v2 boss-passed, sent |
+| 04 | json | Definition | v2 boss-passed, sent |
+| 05 | sdk | Definition | v2 boss-passed, sent |
 | 06 | ui-ux | Definition | |
 | 07 | ide | Definition | |
 | 08 | saas | Definition | |

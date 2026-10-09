@@ -17,7 +17,12 @@ tools/prep.sh ~/Downloads/<clip>.mp4 <name> [0-4 19-21]   # frames, words.json, 
    NODE_PATH=tools/node_modules node tools/render.cjs episodes/<name> stills 1.0,5.5,12.0
    ```
    (written to `episodes/<name>/build/qa/`)
-4. Build:
+4. **Face check + boss review (mandatory):**
+   ```bash
+   tools/qa.sh <name>     # FACE CLEAR + contact sheets build/qa/boss-*.png
+   ```
+   Give the sheets to a reviewer agent with `tools/BOSS.md`, fix, and repeat until it returns PASS. Never cover Sam's face.
+5. Build:
    ```bash
    tools/build.sh <name> v1     # → episodes/<name>/<name>-v1.mp4
    ```
@@ -46,6 +51,8 @@ Each component has a matching `.cue(...)` that registers its sound effects, so a
 **Animation kit v2** (use these so episodes don't repeat themselves): `letterDrop`, `letterPop`, `bubble` (speech bubble), `flipCard` (3D flip), `iris` (circle reveal), `zoomThrough`, `glitch(T, k, fn)`, `progress` (race-to-100% bar), `cardStack`, `burst` (triangle explosion), `card`.
 
 **Layouts beyond talking head + panel** (see `episodes/bus-network`): navy stage with a floating tilted speaker card (`sceneNetwork`), a bento grid with the speaker as one tile (`sceneResults`), a full-slide map with a camera push (`sceneOffTrack`).
+
+Engine rules: `EP.cuts` lists scene boundaries so motion blur never dissolves across a cut; a caption window can take a 4th value `'dark'` for light slides.
 
 Helpers: `th(rect, zoom, ay)` draws the speaker, `cutout(zoom, ay)` draws him on top (text behind head), `rise()` and `typeOn()` are the two text entrances, `expo` is the series curve.
 

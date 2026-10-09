@@ -112,7 +112,18 @@ def placeS(kind, t, gain, pan, send, rate=None, fallback=None):
     if m is None: place(t, fallback, gain, pan, send); return
     place(t - a, m, gain, pan, send)
 
-for c in json.load(open(f"{ep}/build/cues.json")):
+# Minimal mix (Hunter: busy SFX sounded cheap). Typing capped to short quiet bursts, small UI sounds
+# need 0.15s of space, and nothing small fires under a whoosh that's already playing.
+CUES = sorted(json.load(open(f"{ep}/build/cues.json")), key=lambda c: c["t"])
+SMALL = {"pop", "click", "ticks", "typing", "shards"}; last_small = -9; kept = []
+for c in CUES:
+    if c["type"] == "typing": c["n"] = min(int(c["n"]), 8); c["gain"] = (c.get("gain") or .28) * .45
+    if c["type"] == "ticks": c["n"] = min(int(c["n"]), 6)
+    if c["type"] in SMALL:
+        if c["t"] - last_small < .15: continue
+        last_small = c["t"]
+    kept.append(c)
+for c in kept:
     t, k, g = c["t"], c["type"], c.get("gain")
     pan = c.get("pan", (rs.random() - .5) * .5)
     if k == "whoosh":                                   # synth peaks at d/2 → anchor sample peak there
