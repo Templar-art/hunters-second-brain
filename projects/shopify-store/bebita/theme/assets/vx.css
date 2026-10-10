@@ -35,6 +35,7 @@ body.vx-body{margin:0;background:var(--vx-paper);color:var(--vx-ink);font:400 15
 .vx-icon__count{position:absolute;top:6px;right:4px;min-width:17px;height:17px;border-radius:9px;background:var(--vx-ink);color:#fff;font-size:10px;line-height:17px;text-align:center;padding:0 4px}
 .vx-hide-desk{display:inline-grid}
 @media (min-width:990px){.vx-head__nav{display:block}.vx-hide-desk{display:none}}
+@media (min-width:990px) and (max-width:1279px){.vx-head__nav{display:none}.vx-head__left .vx-hide-desk{display:inline-grid}}
 
 /* Drawer menu */
 .vx-drawer{margin:0;padding:0;border:0;max-width:none;max-height:none;width:min(420px,88vw);height:100dvh;background:#fff;color:var(--vx-ink)}
