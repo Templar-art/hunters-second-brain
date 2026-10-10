@@ -53,6 +53,10 @@ function sceneCRT(T) {
   // "just a bunch of text on the screen" (glitch in, scanlines, typed lines)
   glitch(T, 1 - clamp((T - 7.4) / .35), () => {
     g.fillStyle = '#020B12'; g.fillRect(0, 0, W, H);
+    // scanlines + vignette
+    g.fillStyle = 'rgba(0,0,0,.25)'; for (let y = 0; y < H; y += 6) g.fillRect(0, y, W, 2);
+    const v = g.createRadialGradient(540, 960, 400, 540, 960, 1200); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.6)');
+    g.fillStyle = v; g.fillRect(0, 0, W, H);
     const lines = ['USE-OS v1.0  (c) 1986', 'MEM 640K OK', 'LOADING DRIVERS....... DONE', 'READY.', '', 'A:\\> dir', ' SCRIPTS   <DIR>', ' FILES     <DIR>', ' README    TXT   1,024'];
     let chars = 22 + Math.floor((T - 7.4) * 45);
     lines.forEach((l, i) => { const n = clamp(chars, 0, l.length); chars -= l.length + 2; if (n <= 0) return;
@@ -61,10 +65,6 @@ function sceneCRT(T) {
     if (T > 9.6) { const p = expo((T - 9.6) / .4); g.fillStyle = CYAN; g.fillRect(60, 1290, 960 * p, 3);
       typeOn('> ls -la', 80, 1370, T - 10.1, { size: 48, col: WHITE, track: 0, cps: 14, caret: true });
       typeOn('a little line at the bottom', 80, 1460, T - 9.7, { size: 26, col: GREY, track: 5, upper: true, cps: 50 }); }
-    // scanlines + vignette
-    g.fillStyle = 'rgba(0,0,0,.25)'; for (let y = 0; y < H; y += 6) g.fillRect(0, y, W, 2);
-    const v = g.createRadialGradient(540, 960, 400, 540, 960, 1200); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.6)');
-    g.fillStyle = v; g.fillRect(0, 0, W, H);
   });
   faceCircle(880, 1680, 130, back((T - 8.0) / .6));
 }

@@ -3,6 +3,7 @@
 # Usage: tools/qa.sh <episode-name>   → episodes/<name>/build/qa/boss-1.png, boss-2.png, facecheck.json
 set -e; ROOT="${0:a:h:h}"; EP="$ROOT/episodes/$1"; export NODE_PATH="$ROOT/tools/node_modules"
 node "$ROOT/tools/render.cjs" "$EP" facecheck | tail -1
+node "$ROOT/tools/render.cjs" "$EP" textcheck | head -40
 DUR=$(python3 -c "import json;print(json.load(open('$EP/build/render.json'))['dur'])")
 TS=$(python3 -c "print(','.join(f'{t+.5:.1f}' for t in range(int($DUR))))")
 setopt nullglob; rm -f "$EP"/build/qa/s_*.png

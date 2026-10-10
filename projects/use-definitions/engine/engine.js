@@ -98,6 +98,7 @@ function cutout(zoom = BZ, ay = BAY) {
   g.drawImage(c, 0, 0);
   // face is back on top: re-baseline the face check so only overlays drawn after this count
   if (FACE_CHECK) FACE_SNAPS.forEach(f => { f.d = g.getImageData(f.bx, f.by, f.bw, f.bh).data; });
+  if (TEXT_LOG) TEXT_LOG.forEach(e => { if (e.d) e.d = g.getImageData(e.bx, e.by, e.bw, e.bh).data; });   // text behind the head is allowed
 }
 // Screen-space face box for the current frame under a full-frame th(zoom, ay).
 function faceScreen(zoom = BZ, ay = BAY) { const r = xf(FULL, zoom, ay), s = r[2] / W, b = FBOX || FACE_BOX;
@@ -345,14 +346,14 @@ behindHead.cue = (a, tag) => { cue(a - .03, 'whoosh', { d: .3, bright: .4, gain:
 // Dark terminal card over the talking head, types two lines.
 function terminal(T, a, b, l1, l2) {
   const p = expo((T - a) / .45), q = expoIn((T - b + .2) / .2); if (p <= 0 || q >= 1) return;
-  const x = 44, y = 70 - (1 - p) * 260 - q * 400, w = 600, h = 190;
+  const x = 44, y = 30 - (1 - p) * 260 - q * 400, w = 600, h = 160;   // sits above the head
   g.save(); g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 40; g.shadowOffsetY = 14;
   g.fillStyle = NAVY; g.beginPath(); g.roundRect(x, y, w, h, 18); g.fill(); g.restore();
-  g.fillStyle = '#3B5266'; [0, 1, 2].forEach(i => { g.beginPath(); g.arc(x + 30 + i * 22, y + 28, 6, 0, 7); g.fill(); });
+  g.fillStyle = '#3B5266'; [0, 1, 2].forEach(i => { g.beginPath(); g.arc(x + 30 + i * 22, y + 24, 6, 0, 7); g.fill(); });
   const t = T - a - .3, n1 = l1.length / 34;
-  typeOn('$', x + 30, y + 92, t, { size: 30, col: CYAN, track: 0, cps: 34 });
-  typeOn(l1, x + 30 + 36, y + 92, t - 1 / 34, { size: 30, col: WHITE, track: 0, cps: 34, caret: t < n1 });
-  typeOn(l2, x + 30, y + 140, t - n1, { size: 30, col: WHITE, track: 0, cps: 34, caret: t >= n1 });
+  typeOn('$', x + 30, y + 80, t, { size: 30, col: CYAN, track: 0, cps: 34 });
+  typeOn(l1, x + 30 + 36, y + 80, t - 1 / 34, { size: 30, col: WHITE, track: 0, cps: 34, caret: t < n1 });
+  typeOn(l2, x + 30, y + 126, t - n1, { size: 30, col: WHITE, track: 0, cps: 34, caret: t >= n1 });
 }
 terminal.cue = (a, l1, l2) => { cue(a, 'whoosh', { d: .3, bright: .4, gain: .25 }); cue(a + .3, 'typing', { n: l1.length + l2.length, cps: 34 }); };
 
@@ -549,6 +550,35 @@ function draw(T) {
   out.globalAlpha = 1;
 }
 window.seek = async t => { await load(t); draw(t); return true; };
+// Text audit (Hunter's rule: pop-ups never overlay text; text never leaves the frame).
+// Every visible fillText is boxed + snapshotted as it's drawn; at frame end we report text that was
+// later drawn over (>20% of its pixels changed) or whose box runs past the frame edge.
+let TEXT_LOG = null;
+const _fillText = CanvasRenderingContext2D.prototype.fillText;
+CanvasRenderingContext2D.prototype.fillText = function (txt, x, y, mw) {
+  if (!TEXT_LOG || this.canvas !== off || this.globalAlpha < .6 || !String(txt).trim()) return _fillText.call(this, txt, x, y, mw);
+  const m = this.measureText(txt), L = x - m.actualBoundingBoxLeft, R = x + m.actualBoundingBoxRight, Tp = y - m.actualBoundingBoxAscent, B = y + m.actualBoundingBoxDescent;
+  const M = this.getTransform(), P = [[L, Tp], [R, Tp], [L, B], [R, B]].map(([px, py]) => M.transformPoint({ x: px, y: py }));
+  const bx = Math.min(...P.map(p => p.x)), by = Math.min(...P.map(p => p.y)), ex = Math.max(...P.map(p => p.x)), ey = Math.max(...P.map(p => p.y));
+  const off_ = bx < -4 || by < -4 || ex > W + 4 || ey > H + 4;
+  const cx0 = Math.max(0, Math.round(bx)), cy0 = Math.max(0, Math.round(by)), cw = Math.min(W, Math.round(ex)) - cx0, chh = Math.min(H, Math.round(ey)) - cy0;
+  if (cw < 6 || chh < 6) return _fillText.call(this, txt, x, y, mw);
+  // only count text that actually painted pixels (clipped / masked text is invisible, so it can't be "cut off")
+  const before = this.getImageData(cx0, cy0, cw, chh).data; _fillText.call(this, txt, x, y, mw); const after = this.getImageData(cx0, cy0, cw, chh).data;
+  let painted = 0; for (let i = 0; i < after.length; i += 16) if (Math.abs(after[i] - before[i]) + Math.abs(after[i + 1] - before[i + 1]) + Math.abs(after[i + 2] - before[i + 2]) > 40) painted++;
+  if (painted < 4) return;
+  const t0 = String(txt).slice(0, 30); for (let k = TEXT_LOG.length - 1; k >= 0; k--) { const o = TEXT_LOG[k]; if (o.txt === t0 && Math.abs(o.bx - cx0) < 20 && Math.abs(o.by - cy0) < 20) TEXT_LOG.splice(k, 1); }
+  TEXT_LOG.push({ txt: t0, off: off_, bx: cx0, by: cy0, bw: cw, bh: chh, d: after });
+};
+window.textAudit = async t => { await load(t); BASE_T = t; TEXT_LOG = []; g.globalAlpha = 1; g.clearRect(0, 0, W, H); EP.frame(t);
+  const issues = [];
+  for (const e of TEXT_LOG) {
+    if (e.off) { issues.push({ kind: 'off-screen', txt: e.txt }); continue; }
+    const now = g.getImageData(e.bx, e.by, e.bw, e.bh).data; let bad = 0, n = 0;
+    for (let i = 0; i < now.length; i += 16) { n++; if (Math.abs(now[i] - e.d[i]) + Math.abs(now[i + 1] - e.d[i + 1]) + Math.abs(now[i + 2] - e.d[i + 2]) > 60) bad++; }
+    if (bad / n > .2) issues.push({ kind: 'covered', txt: e.txt, pct: Math.round(bad / n * 100) });
+  }
+  TEXT_LOG = null; return issues; };
 // Face audit: single-subframe render of time t; returns share of the face area covered by graphics.
 window.faceAudit = async t => { await load(t); BASE_T = t; FACE_CHECK = true; FACE_SNAPS = []; g.globalAlpha = 1; g.clearRect(0, 0, W, H); EP.frame(t);
   const c = faceCovered(); FACE_CHECK = false; FACE_SNAPS = []; return c; };

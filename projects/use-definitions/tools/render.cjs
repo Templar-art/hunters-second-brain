@@ -16,7 +16,17 @@ const ROOT = path.join(__dirname, '..'), EP = path.resolve(process.argv[2]), MOD
   fs.writeFileSync(path.join(EP, 'build/cues.json'), JSON.stringify(await p.evaluate(() => window.cues())));
   fs.writeFileSync(path.join(EP, 'build/render.json'), JSON.stringify({ dur, voEnd }));
   const shot = () => p.locator('canvas').screenshot({ type: 'png' });
-  if (MODE === 'facecheck') {
+  if (MODE === 'textcheck') {                          // every 0.1s: text covered by later drawing, or running off-screen (≥0.3s runs)
+    const runs = {};
+    for (let t = 0; t < dur; t += .1) { const iss = await p.evaluate(t => window.textAudit(t), t);
+      for (const i of iss) { const k = i.kind + '|' + i.txt; (runs[k] = runs[k] || []).push(+t.toFixed(1)); } }
+    const out = [];
+    for (const [k, ts] of Object.entries(runs)) { let a = ts[0], prev = ts[0];
+      for (const t of ts.slice(1).concat([1e9])) { if (t - prev > .15) { if (prev - a >= .45) { const [kind, txt] = k.split('|'); out.push({ kind, txt, from: a, to: prev }); } a = t; } prev = t; } }
+    out.sort((x, y) => x.from - y.from);
+    fs.writeFileSync(path.join(EP, 'build/textcheck.json'), JSON.stringify(out, null, 1));
+    console.log(out.length ? `TEXT ISSUES: ${out.length}\n` + out.map(o => `  ${o.from}–${o.to}s ${o.kind}: "${o.txt}"`).join('\n') : 'TEXT CLEAR');
+  } else if (MODE === 'facecheck') {
     // Sample every 0.1s. A violation = face covered >4% for ≥0.3s. Full-slide takeovers (face AND torso hidden) are
     // filtered in the engine; sub-0.3s whips are transitions.
     const samples = []; for (let t = 0; t < dur; t += .1) samples.push([+t.toFixed(1), await p.evaluate(t => window.faceAudit(t), t)]);

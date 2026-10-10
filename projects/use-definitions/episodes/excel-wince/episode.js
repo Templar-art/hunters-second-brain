@@ -41,10 +41,10 @@ function sceneChat(T) {
 const ERR = ['#REF!', '#VALUE!', '#N/A', '####', '#DIV/0!', '??', 'TBC', 'see Dave'];
 function sceneSheet(T) {
   g.fillStyle = '#E9EDF1'; g.fillRect(0, 0, W, H);
-  const p = expo((T - SHEET_IN + .3) / .5), push = 1 + .04 * clamp((T - SHEET_IN) / 7); g.save(); g.translate(540, 840); g.scale(push, push); g.translate(-540, -840); g.globalAlpha = p; card(40, 220, 1000, 1240, WHITE, 18, .2);
+  const p = expo((T - SHEET_IN + .3) / .5), push = 1 + .04 * clamp((T - SHEET_IN) / 7); g.save(); g.translate(540, 840); g.scale(push, push); g.translate(-540, -840); g.globalAlpha = p; card(40, 220, 1000, 1040, WHITE, 18, .2);
   g.fillStyle = '#1F7A44'; g.beginPath(); g.roundRect(40, 220, 1000, 90, [18, 18, 0, 0]); g.fill();
   font(500, 26, MONO); g.fillStyle = WHITE; g.fillText('MASTER_tracker_FINAL_v7(2).xlsx', 80, 276);
-  const cols = 5, rows = 12, cw = 184, rh = 82, ox = 60, oy = 330; font(500, 24, MONO);
+  const cols = 5, rows = 10, cw = 184, rh = 82, ox = 60, oy = 330; font(500, 24, MONO);
   let rank = 0;
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { const x = ox + c * cw, y = oy + r * rh; if (T < SHEET_IN - .2 + r * .09) continue;
     g.strokeStyle = '#D9DDE1'; g.lineWidth = 1; g.strokeRect(x, y, cw, rh);
@@ -54,10 +54,10 @@ function sceneSheet(T) {
     else { g.fillStyle = '#9AA0A6'; g.fillRect(x + 14, y + 34, 40 + rr() * 110, 14); } }
   g.restore();
   // stamps on "10 years ago" and "not even in the company anymore"
-  [['BUILT 10 YEARS AGO', 12.74, 300, 760, -.12], ['AUTHOR LEFT THE COMPANY', 14.18, 620, 1060, .1]].forEach(([txt, at, x, y, rot]) => { const q = back((T - at) / .3); if (q <= 0) return;
-    g.save(); g.translate(x, y); g.rotate(rot); g.scale(q * (2 - q), q * (2 - q)); font(800, 54, COND); const w = g.measureText(txt).width + 60;
+  [['BUILT 10 YEARS AGO', 12.74, 300, 1370, -.06], ['AUTHOR LEFT THE COMPANY', 14.18, 640, 1500, .05]].forEach(([txt, at, x, y, rot]) => { const q = back((T - at) / .3); if (q <= 0) return;
+    g.save(); g.translate(x, y); g.rotate(rot); g.scale(q * (2 - q), q * (2 - q)); font(800, 46, COND); const w = g.measureText(txt).width + 50;
     g.fillStyle = '#F3F3F3'; g.beginPath(); g.roundRect(-w / 2, -48, w, 96, 12); g.fill(); g.strokeStyle = '#F5A524'; g.lineWidth = 7; g.stroke(); g.fillStyle = '#F5A524'; g.textAlign = 'center'; g.fillText(txt, 0, 18); g.textAlign = 'left'; g.restore(); });
-  rise('Complete and utter garbage.', 54, 1640, T - 16.22, { size: 92, w: 800, col: INK, dur: .45 });
+  rise('Complete and utter garbage.', 54, 1700, T - 16.22, { size: 92, w: 800, col: INK, dur: .45 });
   faceCircle(920, 1790, 100, back((T - SHEET_IN - .2) / .6));
 }
 

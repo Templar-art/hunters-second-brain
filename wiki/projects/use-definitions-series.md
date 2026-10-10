@@ -45,6 +45,7 @@ Every episode passed the face check and the boss review. Latest file per episode
 
 ## Standing rules (Hunter, 9 Oct 2026)
 - **Never cover Sam's face.** No overlay may touch his face at any frame. Text behind his head via the matte is fine.
+- **Pop-ups never overlay text; text never leaves the frame** (Hunter, 10 Oct 2026). No card, bubble, pill or stamp on top of other text. All text fully on screen with a margin, entrances included.
 - **Boss review loop on every episode.** An independent reviewer checks the stills and contact sheet (face clear, variety, brand, no invented facts, captions) and the episode is fixed until it passes, before it's sent.
 - **SFX quality:** Hunter rates the current effects poor (synth plus Magnific 1s takes). Needs a rethink.
 

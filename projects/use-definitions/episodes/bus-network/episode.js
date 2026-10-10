@@ -13,8 +13,8 @@ window.EP = {
   voEnd: 46.3,
   punchIns: [[4.6, 7.3], [24.3, 27.4], [29.6, 31.2], [43.0, 44.5]],
   captions: [[0, 4.6, 1200], [4.6, PANEL_IN, 1200], [PANEL_IN, NAVY_IN - .4, T => panelTop(T, PANEL_IN) - 60],
-             [SYS_IN, BAD_IN, 1240], [BUILD_IN, NET_IN, 1240], [NET_IN, RES_IN, 1060],
-             [OUT_IN, MORE_IN, 1560], [MORE_IN, SHATTER, 1560]],
+             [SYS_IN, BAD_IN, 1240], [BUILD_IN, NET_IN, 1040], [NET_IN, RES_IN, 1060],
+             [OUT_IN, MORE_IN, 1560], [MORE_IN, SHATTER, 1000]],
 
   frame(T) {
     if (T < 4.6) sceneHook(T);
@@ -114,7 +114,6 @@ function sceneOffTrack(T) {
   const wy = whip(T, SYS_IN - .2); if (wy < 0) { th(FULL, BZ * 1.14); behindHead(T, 19.04, 20.3, 'SYSTEM', 'NONE'); captions(T); }
   g.save(); g.translate(0, wy);
   g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
-  const cam = 1 + .12 * inOut((T - 14.2) / 2.6); g.translate(540, 1300); g.scale(cam, cam); g.translate(-540 - 40 * (cam - 1) * 8, -1300);
   typeOn('Industry standard', 80, 420, T - 12.6, { size: 30, col: CYAN, track: 6, upper: true, cps: 30 });
   // standard grid: tidy straight routes
   const pg = expo((T - 12.9) / .8);
@@ -131,12 +130,14 @@ function sceneOffTrack(T) {
     const u = expo((T - 14.3) / 1.6);
     g.save(); g.setLineDash([2, 18]); g.lineCap = 'round'; g.strokeStyle = '#2B4A62'; g.lineWidth = 8;
     g.beginPath(); ROUTE.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.stroke(); g.restore();
+    const cam = 1 + .1 * inOut((T - 14.2) / 2.6); g.save(); g.translate(560, 1500); g.scale(cam, cam); g.translate(-560, -1500);   // push the map only, never the text
     g.strokeStyle = CYAN; g.lineWidth = 7; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath();
     const steps = 80; for (let s = 0; s <= steps * u; s++) { const [x, y] = routePoint(s / steps); s ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke();
     ROUTE.forEach(([x, y], i) => { const pp = back((T - 14.3 - i * .16) / .4); if (pp <= 0) return;
       g.fillStyle = NAVY; g.strokeStyle = CYAN; g.lineWidth = 5; g.beginPath(); g.arc(x, y, 14 * pp, 0, 7); g.fill(); g.stroke(); });
     const [bx, by] = routePoint((T - 14.3) / 2.8 % 1);
     g.save(); g.shadowColor = CYAN; g.shadowBlur = 30; g.fillStyle = WHITE; g.beginPath(); g.arc(bx, by, 16, 0, 7); g.fill(); g.restore();
+    g.restore();
   }
   faceCircle(880, 230, 130, back((T - 12.8) / .6));
   cluster(61, 980, 1840, 4, 100, 90, T - 12.7, { from: [300, 300] });
@@ -262,11 +263,11 @@ const MORE_STACK = [['Accuracy', 'improved', 43.3, true], ['Completeness', 'impr
 function moreCard(T) {
   if (T >= SHATTER) { okCard(T, MORE_IN, SHATTER, ''); return; }
   const p = expo((T - MORE_IN) / .4);
-  g.save(); g.globalAlpha = p; card(40, 70, 1000, 230, NAVY, 20, .35);
-  typeOn('What came next', 80, 140, T - MORE_IN - .1, { size: 26, col: GREY, track: 5, upper: true, cps: 40 });
-  rise('More for the network.', 80, 250, T - 44.4, { size: 92, w: 800, col: WHITE, dur: .45 });
+  g.save(); g.globalAlpha = p; card(40, 1080, 1000, 230, NAVY, 20, .35);
+  typeOn('What came next', 80, 1150, T - MORE_IN - .1, { size: 26, col: GREY, track: 5, upper: true, cps: 40 });
+  rise('More for the network.', 80, 1260, T - 44.4, { size: 92, w: 800, col: WHITE, dur: .45 });
   g.restore();
-  cardStack(T, MORE_STACK, 60, 1000, 960, 130);
+  cardStack(T, MORE_STACK, 60, 1340, 960, 110, 14);
 }
 
 // Hook: per-letter BUSES drop behind the head, then a speech bubble poses the question.
@@ -283,7 +284,7 @@ function sceneHook(T) {
 function sceneBuild(T) {
   th(FULL, zoomAt(T));
   const p = expo((T - 28.0) / .45), q = expoIn((T - 30.25) / .25);
-  if (p > 0 && q < 1) { const y = 120 - (1 - p) * 400 - q * 500; card(60, y, 960, 260, NAVY, 20, .35);
+  if (p > 0 && q < 1) { const y = 1130 + (1 - p) * 500 + q * 600; card(60, y, 960, 260, NAVY, 20, .35);
     g.save(); g.translate(0, y - 120); progress(T, 28.4, 1.8, 110, 300, 860, 'Rebuild · quick turnaround'); g.restore(); }
   if (T >= 30.36) { letterPop('COOL', 40, 560, T - 30.36, { size: 330, stagger: .07 }); cutout(zoomAt(T)); }
   burst(T, 30.78, 540, 380, 26);

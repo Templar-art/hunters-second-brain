@@ -100,7 +100,7 @@ function scenePhone(T) {
   else { rise('Feels good.', 54, 430, T - 17.72, { size: 150, w: 800, col: INK, dur: .45 }); rise('Quick. Responsive.', 54, 430, T - 13.0, { size: 110, w: 800, col: BLUE, dur: .4, exitAt: 17.6, T }); }
   phone(cx, cy, 560 * s, 1120 * s, phoneScreen(T), lerp(0, -.04, feel));
   // fingertip choreography during the "feel" beat
-  if (T > 14.6 && T < 18.6) { const tx = T < 16.4 ? cx : cx + 150 * s, ty = T < 16.4 ? cy + 400 * s : cy + 270 * s;
+  if (T > 14.6 && T < 18.6) { const tx = T < 16.4 ? cx + 200 * s : cx + 150 * s, ty = T < 16.4 ? cy + 400 * s : cy + 270 * s;   // tap beside the label, never on it
     const pr = T > 15.16 && T < 15.6 ? (T - 15.16) / .44 : T > 16.72 && T < 17.1 ? (T - 16.72) / .38 : 0; fingertip(tx, ty, pr); }
   burst(T, 17.94, cx + 180, cy - 380, 18, 3);
   faceCircle(900, 1720, 120, back((T - 7.2) / .6));
@@ -127,7 +127,7 @@ function sceneFlow(T) {
       font(700, 38, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText(lab, sx + w / 2, y + h - 132); g.textAlign = 'left'; });
     if (idx < 0) { font(700, 44, COND); g.fillStyle = GREY; g.textAlign = 'center'; g.fillText('Where do I go?', x + w / 2, y + h / 2); g.textAlign = 'left'; }
   });
-  if (idx >= 0) { const t = T - SCREENS[idx][1], pr = t < .3 ? t / .3 : 0; fingertip(800, 980 + 310, pr); }
+  if (idx >= 0) { const t = T - SCREENS[idx][1], pr = t < .3 ? t / .3 : 0; fingertip(960, 980 + 310, pr); }
   // progress dots
   SCREENS.forEach((_, i) => { g.fillStyle = i <= idx ? CYAN : '#2B4A62'; g.beginPath(); g.arc(740 + i * 40, 1490, 10, 0, 7); g.fill(); });
   captions(T);
@@ -141,14 +141,14 @@ function sceneDrag(T) {
     const sz = clamp((f.x - 100) / w100 * 100, 110, 250);   // fits fully left of the face with a 60px gap
     rise('DRAG', 30, 560, T - 27.48, { size: sz, w: 800, dur: .4 }); cutout(zoomAt(T)); }
   DIALOGS.forEach(([msg, at], i) => { const p = back((T - at) / .3); if (p <= 0) return; const r = rng(i + 4);
-    const x = 120 + r() * 360, y = 1080 + i * 120 + r() * 30;
-    g.save(); g.translate(x + 230, y + 90); g.rotate((r() - .5) * .12); g.scale(p, p); g.translate(-(x + 230), -(y + 90));
+    const x = i % 2 ? 560 : 60, y = 1090 + Math.floor(i / 2) * 210;
+    g.save(); g.translate(x + 230, y + 90); g.scale(p, p); g.translate(-(x + 230), -(y + 90));
     card(x, y, 460, 180, '#ECECEC', 6, .35); g.fillStyle = '#C8C8C8'; g.fillRect(x, y, 460, 40);
     font(500, 20, MONO); g.fillStyle = '#555'; g.fillText('Legacy App', x + 16, y + 27); g.fillText('✕', x + 430, y + 27);
     font(600, 32, BODY); g.fillStyle = '#222'; g.fillText(msg, x + 30, y + 105);
     g.strokeStyle = '#999'; g.lineWidth = 2; g.strokeRect(x + 330, y + 128, 100, 36); font(500, 20, MONO); g.fillStyle = '#222'; g.fillText('OK', x + 365, y + 153);
     g.restore(); });
-  if (T > 30.66) { g.save(); g.translate(900, 1500); g.rotate(T * 6); g.strokeStyle = WHITE; g.lineWidth = 12; g.lineCap = 'round';
+  if (T > 30.66) { g.save(); g.translate(790, 1720); g.rotate(T * 6); g.strokeStyle = WHITE; g.lineWidth = 12; g.lineCap = 'round';
     g.beginPath(); g.arc(0, 0, 60, 0, 4.5); g.stroke(); g.restore(); }
   captions(T);
 }
