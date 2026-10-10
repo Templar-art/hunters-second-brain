@@ -2,7 +2,7 @@
 // an episode (episodes/<name>/episode.js) only supplies timings, words and its own scenes.
 // Rendered frame-by-frame by tools/render.cjs via window.seek(t). Pure function of time.
 'use strict';
-const W = 1080, H = 1920, FPS = 30;
+const W = 1080, H = 1920, FPS = 50;   // iPhone takes are 50fps: render at native rate, no dropped frames
 const out = document.getElementById('c').getContext('2d');
 const off = Object.assign(document.createElement('canvas'), { width: W, height: H });
 let g = off.getContext('2d');
@@ -50,7 +50,7 @@ async function load(T) {
 }
 // FACE: where the face sits in the 1080x1920 source. Episodes can override (EP.face).
 let FACE = { x: 545, y: 540 };
-const BZ = 1.22, BAY = .25;                                   // series framing: cut at thighs, face a quarter down
+const BZ = 1.0, BAY = .25;   // native framing: no upscale, the camera stays sharp (punch-ins only)                                   // series framing: cut at thighs, face a quarter down
 function xf(rect, zoom, ay) {
   const s = Math.max(rect.w / W, rect.h / H) * zoom;
   let ox = rect.x + rect.w / 2 - FACE.x * s, oy = rect.y + rect.h * ay - FACE.y * s;
@@ -63,7 +63,7 @@ const BODY_BOX = { x: 260, y: 1000, w: 560, h: 420 };   // torso: used to tell a
 const FACE_BOX = { x: 465, y: 370, w: 180, h: 330 };   // inner face: brow to chin, cheek to cheek
 let FACE_SNAPS = [], FACE_CHECK = false;
 function th(rect = FULL, zoom = BZ, ay = BAY) {
-  if (!FR) return; const r = xf(rect, zoom, ay); g.drawImage(FR, ...r);
+  if (!FR) return; const r = xf(rect, zoom, ay); g.imageSmoothingQuality = 'high'; g.drawImage(FR, ...r);
   if (!FACE_CHECK) return;
   snapBox(r, rect, FBOX || FACE_BOX, 'face'); snapBox(r, rect, BODY_BOX, 'body');
 }
@@ -573,8 +573,8 @@ function chalkWrite(txt, x, y, t, { size = 90, col = '#F1F1EC', dur = .6, fam = 
 // Film grain + gentle vignette over the finished frame (on the output canvas, once per frame).
 const GRAIN = []; for (let k = 0; k < 6; k++) { const c = Object.assign(document.createElement('canvas'), { width: 270, height: 480 }), x = c.getContext('2d'), d = x.createImageData(270, 480), r = rng(k + 11);
   for (let i = 0; i < d.data.length; i += 4) { const v = r() * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 22; } x.putImageData(d, 0, 0); GRAIN.push(c); }
-function finish(T) { const c = GRAIN[Math.floor(T * FPS) % GRAIN.length]; out.save(); out.globalCompositeOperation = 'overlay'; out.imageSmoothingEnabled = false; out.drawImage(c, 0, 0, W, H); out.restore();
-  const v = out.createRadialGradient(W / 2, H * .45, H * .35, W / 2, H * .45, H * .8); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.35)'); out.fillStyle = v; out.fillRect(0, 0, W, H); }
+function finish(T) {   // no grain: it muddied the camera
+  const v = out.createRadialGradient(W / 2, H * .45, H * .35, W / 2, H * .45, H * .8); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.18)'); out.fillStyle = v; out.fillRect(0, 0, W, H); }
 // End card: white logo on black, big Anton tagline, handle on a red slab, scuffed slash underline.
 let LOGO_W = null;
 function endCard(T, a, dur, l1 = 'COACHING THAT', l2 = 'GETS RESULTS', l3 = 'FOR BUSY MEN.') {
@@ -593,7 +593,7 @@ endCard.cue = a => { cue(a, 'thud', { f: 45, d: .6, gain: .6 }); cue(a + .3, 'wh
 // RUNTIME
 // =====================================================================================
 // Motion blur: average SUB subframes across a full-frame shutter.
-const SUB = +(new URLSearchParams(location.search).get("sub") || 8);
+const SUB = +(new URLSearchParams(location.search).get("sub") || 4);
 function draw(T) {
   out.globalAlpha = 1; BASE_T = T;
   for (let k = 0; k < SUB; k++) {

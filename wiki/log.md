@@ -1148,3 +1148,4 @@ Hunter approved real SFX: 24 takes (whoosh, pop, click, impact, shatter, riser) 
 ## [2026-10-10] harvest | USE: 19-episode batch complete
 
 14 Definitions and 5 Q&A episodes were built through the template. Every one passed the tracked face check and the boss-review loop before sending. The Q&A series name is still a placeholder. Logged on [[use-definitions-series]].
+## [2026-10-10] query | Bebita storefront showed no products: API app lacks publications scope, so products need publishing to Online Store
