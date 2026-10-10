@@ -10,7 +10,7 @@ VOEND=$(python3 -c "import json;print(json.load(open('$EP/build/render.json'))['
 "$ROOT/.venv/bin/python" "$ROOT/tools/sfx.py" "$EP" "$DUR"
 VO="[1:a]atrim=0:$VOEND,afade=t=out:st=$((VOEND-0.2)):d=0.2,loudnorm=I=-16:TP=-1.5,aresample=48000,aformat=channel_layouts=stereo,apad"
 if [[ -f "$EP/music.wav" ]]; then
-  MIX="${VO},asplit[vo][key];[2:a]volume=0.63[fx];[3:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:${DUR},volume=0.35[m];[m][key]sidechaincompress=threshold=0.05:ratio=8:attack=20:release=300[md];[vo][fx][md]amix=inputs=3:duration=shortest:normalize=0,alimiter=limit=0.95,atrim=0:${DUR}[a]"
+  MIX="${VO},asplit[vo][key];[2:a]volume=0.63[fx];[3:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:${DUR},volume=${MUSIC_VOL:-0.18}[m];[m][key]sidechaincompress=threshold=0.05:ratio=8:attack=20:release=300[md];[vo][fx][md]amix=inputs=3:duration=shortest:normalize=0,alimiter=limit=0.95,atrim=0:${DUR}[a]"
   IN=(-i "$EP/build/picture.mp4" -i "$EP/source.mp4" -i "$EP/build/sfx.wav" -i "$EP/music.wav")
 else
   MIX="${VO}[vo];[2:a]volume=0.63[fx];[vo][fx]amix=inputs=2:duration=shortest:normalize=0,alimiter=limit=0.95,atrim=0:${DUR}[a]"
