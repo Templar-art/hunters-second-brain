@@ -3,7 +3,7 @@
 const S2 = 2.84, S3 = 7.44, S4 = 12.4, S5 = 16.86, S6 = 21.22, S7 = 25.86, END_MOS = 31.25, END_IN = END_MOS + .4;
 window.EP = {
   dur: 34.8, voEnd: 31.4,
-  punchIns: [[S2, S3], [S4, S5], [S7, END_MOS]],
+  punchIns: [[S2, S3], [S4, S5], [24.9, S7], [S7, END_MOS]],
   cuts: [S2, S3, S4, S5, S6, S7, END_IN],
   captions: [[S2, S3, 1000], [S4, S5, 1000], [S6, S7, 1000], [S7, END_MOS, 1000]],
   frame(T) {
@@ -34,7 +34,7 @@ function fit(txt, size, fam, maxW) { font(400, size, fam); const w = g.measureTe
 
 // Hook: on screen from frame 0 (it's the thumbnail). Black slab on the chest, tape name card.
 function sceneHook(T) {
-  th(FULL, BZ + T * .01);
+  th(FULL, 1.12 + T * .012);
   const s = lerp(1.1, 1, expo(T / .25)); g.save(); g.translate(540, 1120); g.scale(s, s); g.translate(-540, -1120);
   g.globalAlpha = .9; slab(50, 880, 960, 440, '#0A0A0A', -.12); g.globalAlpha = 1;
   font(400, fit("DON'T WORK", 210, COND, 860), COND); g.fillStyle = WHITE; g.fillText("DON'T WORK", 100, 1080);

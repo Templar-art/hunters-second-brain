@@ -2,7 +2,7 @@
 
 - **Client:** Jackson Farrier, Committed Coaching (@jacksonfarrier, committedcoaching.scos-app.com). Online coach for male business owners.
 - **Brief (Hunter, 10 Oct 2026):** turn 7 raw iPhone takes into one video. A pilot for the "talking-head motion graphics for coaches" offer.
-- **Status:** v2 built 10 Oct 2026 (gym restyle: tape, LED clock/scale, chalkboard, clipboard, barbells, stencil stamps, slash wipe, grain). Boss PASS 4/4/4/4 round 2, face + text checks clear. Music not added yet (quoted 80cr Lyria 3 / 720cr ElevenLabs v2, awaiting go-ahead).
+- **Status:** v3 built 10 Oct 2026: native 50fps frames straight from the iPhone MOVs (no re-encode, no 22% zoom, no grain), CRF 10, graphics re-timed to the words. Boss PASS round 3, face + text checks clear. Music still not added (80cr Lyria 3 quote awaiting go-ahead).
 - **Cost:** $0 / 0 credits (local render; reuses the USE template engine plus the Magnific SFX library).
 
 ## Build
