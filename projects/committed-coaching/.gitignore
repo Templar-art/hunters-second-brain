@@ -1,0 +1,5 @@
+.venv
+tools/node_modules
+episodes/*/build/
+episodes/*/source.mp4
+FINAL/

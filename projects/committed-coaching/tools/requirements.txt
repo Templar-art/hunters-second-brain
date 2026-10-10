@@ -1,0 +1,5 @@
+faster-whisper
+rembg[cpu]
+numpy
+pillow
+opencv-python-headless<5
