@@ -12,7 +12,7 @@ let g = off.getContext('2d');
 // NAVY = brand black, BLUE = brand red, CYAN = bright accent red, LIGHT = off-white slide.
 const NAVY = '#0A0A0A', LIGHT = '#F2F2F2', BLUE = '#E02020', CYAN = '#FF3B3B', INK = '#111114', GREY = '#9A9AA0', WHITE = '#FFFFFF';
 const TRI = ['#7A0E0E', '#B01616', '#E02020', '#FF3B3B', '#1C1C1F'];
-const COND = 'Inter, sans-serif', BODY = 'Inter, sans-serif', MONO = '"JetBrains Mono", monospace';
+const COND = 'Anton, Impact, sans-serif', MARK = '"Permanent Marker", cursive', CHALK = 'Chalkduster, "Permanent Marker", cursive', BODY = 'Inter, sans-serif', MONO = '"JetBrains Mono", monospace';
 
 // ---------- maths ----------
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -107,10 +107,12 @@ function faceScreen(zoom = BZ, ay = BAY) { const r = xf(FULL, zoom, ay), s = r[2
   return { x: r[0] + b.x * s, y: r[1] + b.y * s, w: b.w * s, h: b.h * s }; }
 // Punch-in cuts: zoomAt(T) returns BZ, or BZ*1.12 inside any EP.punchIns window.
 let BASE_T = 0;   // centre time of the frame being drawn (subframes share it for cut decisions)
-const zoomAt = T => (EP.punchIns || []).some(([a, b]) => win(BASE_T, a, b)) ? BZ * 1.12 : BZ;
+const zoomAt = T => { const base = (EP.punchIns || []).some(([a, b]) => win(BASE_T, a, b)) ? BZ * 1.12 : BZ;
+  const c = (EP.cuts || []).filter(c => T >= c).pop(), d = c === undefined ? 9 : T - c;   // every jump cut lands with a small punch that settles
+  return base * (1 + .07 * Math.exp(-d / .09) * (d < .5)); };
 
 // ---------- type ----------
-function font(w, size, fam) { if (fam === COND) { w = w >= 700 ? 900 : 700; size *= .86; } g.font = `${w} ${size}px ${fam}`; }   // Inter is wider than Barlow Condensed
+function font(w, size, fam) { if (fam === COND || fam === MARK || fam === CHALK) w = 400; g.font = `${w} ${size}px ${fam}`; }   // Anton / marker / chalk: single weight
 // Masked rise: the standard text entrance. exitAt → rises out the top.
 function rise(txt, x, y, t, { size, w = 800, fam = COND, col = WHITE, dur = .5, exitAt = Infinity, T = 0, align = 'left', track = 0 }) {
   const p = expo(t / dur); if (p <= 0) return 0;
@@ -192,17 +194,18 @@ function captions(T) {
     const ch = CHUNKS[c], carried = ch[0].s < wa, st = carried ? wa : Math.max(ch[0].s, wa + .15), last = ch[ch.length - 1];   // mid-sentence cut: chunk carries over settled; otherwise first caption after a cut waits .15s
     const en = Math.min(CHUNKS[c + 1] ? CHUNKS[c + 1][0].s : 1e9, last.e + .45, wb);
     if (!win(T, st, en) || ch[0].s >= wb || (carried && last.e < wa)) continue;   // finished lines don't carry across a cut
-    font(800, SZ, COND); g.letterSpacing = '0.5px';
-    const sp = 16, ws = ch.map(w => g.measureText(w.w).width), total = ws.reduce((a, b) => a + b, 0) + sp * (ch.length - 1);
+    font(400, SZ, COND); g.letterSpacing = '1px';
+    const sp = 16, ws = ch.map(w => g.measureText(w.w.toUpperCase()).width), total = ws.reduce((a, b) => a + b, 0) + sp * (ch.length - 1);
     const xs = []; let x = W / 2 - total / 2; ws.forEach(w => { xs.push(x); x += w + sp; });
     let a = 0; ch.forEach((w, i) => { if (T >= w.s) a = i; });
     const pa = Math.max(0, a - 1), k = a === 0 ? 1 : expo((T - ch[a].s) / .16);
     const hx = lerp(xs[pa], xs[a], k) - 10, hw = lerp(ws[pa], ws[a], k) + 20;
-    const p = carried ? 1 : expo((T - st) / .32), dy = (1 - p) * SZ * 1.2;
-    g.save(); g.beginPath(); g.rect(0, y - SZ * 1.1, W, SZ * 1.5); g.clip();
-    if (p > .35) { g.fillStyle = BLUE; g.beginPath(); g.roundRect(hx, y - SZ * .82 + dy, hw, SZ * 1.0, 8); g.fill(); }   // no orphan highlight bar before the words are up
-    if (!dark) { g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 10; g.shadowOffsetY = 2; }
-    ch.forEach((w, i) => { g.fillStyle = dark ? (i === a ? NAVY : INK) : WHITE; g.fillText(w.w, xs[i], y + dy); });   // dark: light slides
+    const p = carried ? 1 : expo((T - st) / .32), dy = (1 - p) * SZ * 1.2, sk = -.18;
+    g.save(); g.beginPath(); g.rect(0, y - SZ * 1.2, W, SZ * 1.6); g.clip();
+    const para = (x0, w0, top, h0, col) => { g.fillStyle = col; g.beginPath(); g.moveTo(x0 - sk * h0, top); g.lineTo(x0 + w0 - sk * h0, top); g.lineTo(x0 + w0, top + h0); g.lineTo(x0, top + h0); g.closePath(); g.fill(); };
+    if (!dark) para(xs[0] - 30, total + 60, y - SZ * .98 + dy, SZ * 1.22, 'rgba(8,8,8,.86)');   // backing strip: captions stay readable over the shirt print
+    if (p > .35) para(hx - 4, hw + 8, y - SZ * .9 + dy, SZ * 1.06, BLUE);   // no orphan highlight bar before the words are up
+    ch.forEach((w, i) => { g.fillStyle = dark ? (i === a ? NAVY : INK) : WHITE; g.fillText(w.w.toUpperCase(), xs[i], y + dy); });   // dark: light slides
     g.restore(); g.letterSpacing = '0px';
   }
 }
@@ -262,25 +265,6 @@ function titleCard(T, term, out = 2.0, label = 'Definitions') {
 titleCard.cue = (term, out = 2.0, label = 'Definitions') => { cue(.1, 'typing', { n: label.length, cps: 22 }); cue(.12, 'whoosh', { d: .4, gain: .35 }); cue(.25, 'thud', { f: 60, d: .35, gain: .45 });
   cue(.25, 'shards', { n: 7 }); cue(.4, 'shards', { n: 3 }); cue(out, 'whoosh', { d: .35, gain: .3 }); };
 
-// Lower third: logo | name / role. Shown a → b.
-function lowerThird(T, a, b, name = 'Jackson Farrier', role = 'Committed Coaching', y = 1330) {
-  const p = expo((T - a) / .55), q = expoIn((T - b) / .3); if (p <= 0 || q >= 1) return;
-  const x = 64 - (1 - p) * 120 - q * 700, w = 700, h = 180;
-  g.save(); g.globalAlpha = clamp(p * 2) * (1 - q);
-  g.shadowColor = 'rgba(0,0,0,.18)'; g.shadowBlur = 30; g.shadowOffsetY = 10;
-  g.fillStyle = WHITE; g.beginPath(); g.roundRect(x, y, w * lerp(.5, 1, p), h, 14); g.fill(); g.restore();
-  g.save(); g.globalAlpha = clamp((T - a - .03) * 6) * (1 - q); g.beginPath(); g.rect(x, y, w * p, h); g.clip();
-  rise(name, x + 34, y + 84, T - a - .06, { size: 70, w: 700, col: INK, dur: .5 });
-  typeOn(role, x + 36, y + 142, T - a - .2, { size: 30, col: BLUE, track: 3, upper: true, cps: 34 });
-  g.restore();
-  const wob = Math.sin((T - a) * 3) * .25;
-  shard(x + 40, y + 6, 46, -.4 + wob, CYAN, T - a - .1, { from: [-140, -160], exitAt: b, T, to: [-300, -200], spin: 1.2 });
-  shard(x + 22, y + 40, 34, 1.2 - wob, '#0B5E91', T - a - .16, { from: [-160, -100], exitAt: b, T, to: [-300, -100], spin: 1.6 });
-  shard(x + 64, y - 10, 26, 2.4 + wob, BLUE, T - a - .2, { from: [-100, -200], exitAt: b, T, to: [-200, -300], spin: 2 });
-}
-lowerThird.cue = (a, role = 'Founder & CEO') => { cue(a, 'whoosh', { d: .3, bright: .4, gain: .3 }); cue(a + .4, 'typing', { n: role.length, cps: 30 }); cue(a + .1, 'shards', { n: 2 }); };
-
-// Dictionary card: DEFINITIONS · NOUN pill, giant term, "say:" pronunciation. a → whip out at b.
 function defCard(T, a, b, term, say, under) {
   const wy = whip(T, b); if (wy < 0 && under) under(T);
   g.save(); g.translate(0, wy);
@@ -409,20 +393,6 @@ function qOpener(T, a, b, question, lines) {
 qOpener.cue = (a, b) => { whip.cue(b - .25); cue(a, 'whoosh', { d: .4, gain: .35 }); cue(a + .1, 'shards', { n: 6 }); cue(a + .3, 'typing', { n: 8, cps: 6, gain: .25 }); };
 
 // White end card: logo, "Definitions", tagline, URL. Fades to white over the last .4s.
-function endCard(T, a, dur, title = 'Coaching that gets results for busy men') {
-  const t = T - a; g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
-  if (LOGO) { const p = expo(t / .6), lw = 900, lh = lw * LOGO.height / LOGO.width;
-    g.save(); g.beginPath(); g.rect(90, 700, lw * p + 4, lh + 10); g.clip(); g.drawImage(LOGO, 90, 705, lw, lh); g.restore(); }
-  typeOn('COACHING', 96, 960, t - .2, { size: 40, col: WHITE, track: 18, w: 700, fam: BODY, cps: 30 });
-  rise('Coaching that gets results', 92, 1090, t - .4, { size: 54, w: 700, col: GREY, dur: .5 });
-  rise('for busy men.', 92, 1160, t - .5, { size: 54, w: 700, col: GREY, dur: .5 });
-  typeOn('@jacksonfarrier', 96, 1290, t - .7, { size: 48, col: WHITE, track: 2, w: 500, cps: 30 });
-  cluster(51, 920, 220, 7, 180, 120, t - .05, { from: [300, -300] });
-  cluster(53, 620, 1920, 6, 260, 110, t - .25, { from: [0, 300] });
-  const f = clamp((T - dur + .4) / .4); if (f > 0) { g.fillStyle = `rgba(0,0,0,${f})`; g.fillRect(0, 0, W, H); }
-}
-endCard.cue = a => { cue(a + .1, 'swell', { d: 2.2, gain: .18 }); cue(a + .2, 'typing', { n: 8, cps: 30 }); cue(a + .7, 'typing', { n: 15, cps: 30 }); cue(a, 'shards', { n: 8 }); };
-
 // =====================================================================================
 // ANIMATION KIT v2: more vocabulary, so episodes don't repeat the same moves.
 // =====================================================================================
@@ -534,6 +504,91 @@ function card(x, y, w, h, col = WHITE, r = 20, sh = .12) {
   g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); g.restore();
 }
 
+
+// =====================================================================================
+// GYM KIT (Committed Coaching): tape, LED digits, plates, stencil stamps, slash wipe, grain.
+// Replaces the USE look (triangles, shards, rounded white cards, mono type-ons).
+// =====================================================================================
+const TAPE = '#ECE8DF';
+// Skewed parallelogram block: the base shape of the look (sk = horizontal lean per px of height).
+function slab(x, y, w, h, col, sk = -.18) { g.fillStyle = col; g.beginPath(); g.moveTo(x - sk * h, y); g.lineTo(x + w - sk * h, y); g.lineTo(x + w, y + h); g.lineTo(x, y + h); g.closePath(); g.fill(); }
+// Torn gym tape strip with ragged ends.
+function tape(x, y, w, h, col = TAPE, rot = 0, seed = 1) {
+  const r = rng(seed); g.save(); g.translate(x, y); g.rotate(rot); g.fillStyle = col; g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 14; g.shadowOffsetY = 5;
+  g.beginPath(); g.moveTo(0, 0); for (let k = 0; k <= 8; k++) g.lineTo(w + (r() - .5) * 14, h * k / 8);
+  for (let k = 8; k >= 0; k--) g.lineTo((r() - .5) * 14, h * k / 8); g.closePath(); g.fill(); g.restore(); }
+// Lower third: two tape strips, name in marker, role in Anton. Slaps on at a, peels off at b.
+function lowerThird(T, a, b, name = 'Jackson Farrier', role = 'Head Coach · Committed', y = 1460) {
+  const p = back((T - a) / .3), q = expoIn((T - b) / .3); if (p <= 0 || q >= 1) return;
+  g.save(); g.globalAlpha = 1 - q; g.translate(70 - q * 900, y); g.rotate(-.035); g.scale(p, p);
+  font(400, 74, MARK); const w1 = g.measureText(name).width + 70; tape(0, 0, w1, 108, TAPE, 0, 3);
+  g.fillStyle = INK; g.fillText(name, 34, 80);
+  const r2 = back((T - a - .15) / .3); if (r2 > 0) { g.save(); g.translate(20, 118); g.scale(r2, 1); font(400, 40, COND); const w2 = g.measureText(role.toUpperCase()).width + 50;
+    tape(0, 0, w2, 64, BLUE, .02, 7); g.fillStyle = WHITE; g.letterSpacing = '3px'; g.fillText(role.toUpperCase(), 24, 48); g.letterSpacing = '0px'; g.restore(); }
+  g.restore(); }
+lowerThird.cue = a => { cue(a, 'thud', { f: 120, d: .12, gain: .25 }); cue(a + .15, 'click', { gain: .25 }); };
+// Seven-segment LED digits (gym timer / scale). txt: digits, ':' and '.'.
+const SEG = { 0: 'abcdef', 1: 'bc', 2: 'abdeg', 3: 'abcdg', 4: 'bcfg', 5: 'acdfg', 6: 'acdefg', 7: 'abc', 8: 'abcdefg', 9: 'abcdfg', '-': 'g', G: 'acdef', O: 'abcdef' };
+function led(txt, x, y, h, col = BLUE, { ghost = true, align = 'left' } = {}) {
+  const w = h * .55, t = h * .13, gap = h * .2, cw = c => (c === ':' || c === '.') ? h * .25 : w + gap;
+  let tw = 0; for (const c of txt) tw += cw(c); if (align === 'right') x -= tw; if (align === 'center') x -= tw / 2;
+  const segs = (on, X) => { const P = { a: [X + t, y, w - 2 * t, t], d: [X + t, y + h - t, w - 2 * t, t], g: [X + t, y + h / 2 - t / 2, w - 2 * t, t],
+      f: [X, y + t, t, h / 2 - 1.5 * t], b: [X + w - t, y + t, t, h / 2 - 1.5 * t], e: [X, y + h / 2 + t / 2, t, h / 2 - 1.5 * t], c: [X + w - t, y + h / 2 + t / 2, t, h / 2 - 1.5 * t] };
+    for (const k in P) { const on_ = on.includes(k); if (!on_ && !ghost) continue; g.fillStyle = on_ ? col : 'rgba(255,255,255,.06)'; const [a, b, c, d] = P[k]; g.fillRect(a, b, c, d); } };
+  g.save(); g.shadowColor = col; g.shadowBlur = h * .25;
+  for (const c of txt) { if (c === ':') { g.fillStyle = col; g.fillRect(x + h * .06, y + h * .28, t, t); g.fillRect(x + h * .03, y + h * .64, t, t); }
+    else if (c === '.') { g.fillStyle = col; g.fillRect(x + h * .04, y + h - t, t, t); } else segs(SEG[c] || '', x); x += cw(c); }
+  g.restore(); return tw; }
+// Gym interval-timer HUD (top-left corner, well clear of the face): counts the reel's own clock.
+function gymClock(T, p = 1) { if (p <= 0) return; g.save(); g.globalAlpha = p; g.fillStyle = 'rgba(8,8,8,.82)'; g.beginPath(); g.roundRect(44, 110, 300, 104, 10); g.fill();
+  const s = Math.floor(T), go = T >= 29.88; led(go ? 'GO' : `00:${String(s).padStart(2, '0')}`, 194, 128, 66, go && Math.floor(T * 4) % 2 ? WHITE : BLUE, { align: 'center' }); g.restore(); }
+// Stencil "rejected" stamp: red ink border box, Anton, ink speckle knocked out. Lands at `at` (y below the chin).
+function stamp(T, at, txt, y, rot = -.07, mark = '✗') { const q = (T - at) / .16; if (q <= 0) return; const s = q < 1 ? lerp(2.2, 1, expo(q)) : 1;
+  g.save(); g.translate(540, y); g.rotate(rot); g.scale(s, s); g.globalAlpha = clamp(q * 2); font(400, 84, COND); g.letterSpacing = '3px'; const w = g.measureText(txt).width + 120;
+  g.fillStyle = 'rgba(10,10,10,.55)'; g.fillRect(-w / 2, -66, w, 132); g.strokeStyle = BLUE; g.lineWidth = 9; g.strokeRect(-w / 2 + 8, -58, w - 16, 116);
+  g.fillStyle = BLUE; g.textAlign = 'center'; g.fillText(txt, mark ? 22 : 0, 30); font(400, 70, COND); if (mark) g.fillText(mark, -w / 2 + 52, 26);
+  g.globalCompositeOperation = 'destination-out'; const r = rng(txt.length * 7); for (let k = 0; k < 140; k++) { g.globalAlpha = .5 * r(); g.fillRect(-w / 2 + r() * w, -60 + r() * 120, 2 + r() * 5, 2 + r() * 3); }
+  g.restore(); g.letterSpacing = '0px'; }
+stamp.cue = t => { cue(t, 'thud', { f: 55, d: .4, gain: .55 }); cue(t + .01, 'click', { gain: .35 }); };
+// Barbell plate (side-on), centred at cx; d = diameter.
+function plate(cx, cy, d, col = '#E9E6DE', rim = BLUE) { const w = d * .2; g.fillStyle = col; g.beginPath(); g.roundRect(cx - w / 2, cy - d / 2, w, d, w * .35); g.fill();
+  g.fillStyle = rim; g.fillRect(cx - w / 2, cy - d * .06, w, d * .12); }
+// Barbell with plates (list of diameters) loaded from the sleeve outward on both ends.
+function barbell(cx, cy, len, plates, p = 1) { g.fillStyle = '#8E8E95'; g.fillRect(cx - len / 2, cy - 7, len, 14); g.fillStyle = '#B9B9C0'; g.fillRect(cx - len / 2 - 40, cy - 11, 70, 22); g.fillRect(cx + len / 2 - 30, cy - 11, 70, 22);
+  plates.forEach((d, i) => { const k = clamp(p * plates.length - i); if (k <= 0) return; const off = (1 - expo(k)) * 160, o = len / 2 - 90 - i * d * .22;
+    plate(cx - o - off, cy, d); plate(cx + o + off, cy, d); }); }
+// Slash wipe: red and black diagonal bars sweep across, cover at a + .35, clear by a + .8 (cut the scene underneath at a + .4).
+function slash(T, a) { const t = (T - a) / .8; if (t <= 0 || t >= 1) return; const n = 7;
+  for (let i = 0; i < n; i++) { const d = i * .045, pin = expo((t - d) / .4), pout = expo((t - .5 - d) / .4), bh = H / n * 1.6, y = i * H / n - bh * .2;
+    const x0 = lerp(-W * 1.6, -100, pin) + lerp(0, W * 1.7, pout); g.save(); g.translate(0, y); slab(x0, 0, W * 1.4, bh, i % 2 ? '#0A0A0A' : BLUE, -.5); g.restore(); } }
+slash.cue = a => { cue(a - .05, 'whoosh', { d: .55, gain: .5 }); cue(a + .38, 'thud', { f: 48, d: .5, gain: .5 }); };
+// Pinned photo of the speaker (replaces the round face bubble): white border, tilt, tape across the top.
+function facePin(cx, cy, s, p, rot = .06) { if (p <= 0 || !FR) return; g.save(); g.translate(cx, cy); g.rotate(rot * (2 - p)); g.scale(p, p);
+  g.shadowColor = 'rgba(0,0,0,.4)'; g.shadowBlur = 24; g.shadowOffsetY = 8; g.fillStyle = WHITE; g.fillRect(-s / 2 - 10, -s / 2 - 10, s + 20, s + 34); g.shadowColor = 'transparent';
+  g.drawImage(FR, FACE.x - 230, FACE.y - 200, 460, 460, -s / 2, -s / 2, s, s); tape(-50, -s / 2 - 26, 100, 36, 'rgba(236,232,223,.9)', -.08, 4); g.restore(); }
+// Chalk write-on: text revealed left to right like it's being drawn.
+function chalkWrite(txt, x, y, t, { size = 90, col = '#F1F1EC', dur = .6, fam = CHALK, align = 'left' } = {}) { if (t <= 0) return; font(400, size, fam); g.textAlign = align;
+  const w = g.measureText(txt).width, x0 = align === 'center' ? x - w / 2 : x, p = clamp(t / dur);
+  g.save(); g.beginPath(); g.rect(x0 - 20, y - size * 1.2, (w + 40) * p, size * 1.6); g.clip(); g.fillStyle = col; g.fillText(txt, x, y); g.restore(); g.textAlign = 'left'; return w; }
+// Film grain + gentle vignette over the finished frame (on the output canvas, once per frame).
+const GRAIN = []; for (let k = 0; k < 6; k++) { const c = Object.assign(document.createElement('canvas'), { width: 270, height: 480 }), x = c.getContext('2d'), d = x.createImageData(270, 480), r = rng(k + 11);
+  for (let i = 0; i < d.data.length; i += 4) { const v = r() * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 22; } x.putImageData(d, 0, 0); GRAIN.push(c); }
+function finish(T) { const c = GRAIN[Math.floor(T * FPS) % GRAIN.length]; out.save(); out.globalCompositeOperation = 'overlay'; out.imageSmoothingEnabled = false; out.drawImage(c, 0, 0, W, H); out.restore();
+  const v = out.createRadialGradient(W / 2, H * .45, H * .35, W / 2, H * .45, H * .8); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.35)'); out.fillStyle = v; out.fillRect(0, 0, W, H); }
+// End card: white logo on black, big Anton tagline, handle on a red slab, scuffed slash underline.
+let LOGO_W = null;
+function endCard(T, a, dur, l1 = 'COACHING THAT', l2 = 'GETS RESULTS', l3 = 'FOR BUSY MEN.') {
+  const t = T - a; g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
+  { const r = rng(91); g.lineCap = 'round'; for (let k = 0; k < 30; k++) { g.strokeStyle = `rgba(255,255,255,${.01 + r() * .025})`; g.lineWidth = 40 + r() * 90; g.beginPath(); const x = r() * W, y = r() * H; g.moveTo(x, y); g.lineTo(x + 300 * (r() - .5), y + 120 * (r() - .5)); g.stroke(); } }   // chalk-dusted black
+  if (LOGO && !LOGO_W) { LOGO_W = Object.assign(document.createElement('canvas'), { width: LOGO.width, height: LOGO.height }); const x = LOGO_W.getContext('2d'); x.drawImage(LOGO, 0, 0); x.globalCompositeOperation = 'source-in'; x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, LOGO.width, LOGO.height); }
+  if (LOGO_W) { const q = t / .18, s = q < 1 ? lerp(1.6, 1, expo(q)) : 1, lw = 940, lh = lw * LOGO.height / LOGO.width; if (q > 0) { g.save(); g.globalAlpha = clamp(q * 2); g.translate(540, 560); g.scale(s, s); g.drawImage(LOGO_W, -lw / 2, -lh / 2, lw, lh); g.restore(); } }
+  const u = expo((t - .3) / .35); if (u > 0) slab(70, 680, 940 * u, 22, BLUE, -.6);
+  [[l1, .45, WHITE], [l2, .6, BLUE], [l3, .75, WHITE]].forEach(([s_, d, c], i) => rise(s_, 540, 900 + i * 150, t - d, { size: 150, w: 400, col: c, dur: .4, align: 'center' }));
+  const h = back((t - 1.0) / .35); if (h > 0) { g.save(); g.translate(540, 1420); g.scale(h, h); font(400, 70, COND); const w = g.measureText('@JACKSONFARRIER').width + 90; slab(-w / 2, -60, w, 110, BLUE); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('@JACKSONFARRIER', 0, 25); g.textAlign = 'left'; g.restore(); }
+  const f = clamp((T - dur + .4) / .4); if (f > 0) { g.fillStyle = `rgba(0,0,0,${f})`; g.fillRect(0, 0, W, H); }
+}
+endCard.cue = a => { cue(a, 'thud', { f: 45, d: .6, gain: .6 }); cue(a + .3, 'whoosh', { d: .3, gain: .25 }); cue(a + 1.0, 'thud', { f: 120, d: .15, gain: .3 }); };
+
 // =====================================================================================
 // RUNTIME
 // =====================================================================================
@@ -548,7 +603,7 @@ function draw(T) {
     EP.frame(t);
     out.globalAlpha = 1 / (k + 1); out.drawImage(off, 0, 0);
   }
-  out.globalAlpha = 1;
+  out.globalAlpha = 1; finish(T);
 }
 window.seek = async t => { await load(t); draw(t); return true; };
 // Text audit (Hunter's rule: pop-ups never overlay text; text never leaves the frame).
@@ -588,7 +643,7 @@ window.ready = (async () => {
   EP_DIR = new URLSearchParams(location.search).get('ep') || '.';
   await document.fonts.ready;
   await Promise.all(['900 40px Inter', '700 40px Inter', '600 40px Inter', '500 40px Inter',
-    '500 40px "JetBrains Mono"', '400 40px "JetBrains Mono"'].map(f => document.fonts.load(f)));
+    '500 40px "JetBrains Mono"', '400 40px "JetBrains Mono"', '400 40px Anton', '400 40px "Permanent Marker"', '400 40px Chalkduster'].map(f => document.fonts.load(f)));
   LOGO = await img(`${EP_DIR}/../../brand/logo.png`);
   META = await fetch(`${EP_DIR}/build/meta.json`).then(r => r.json());
   TRACK = await fetch(`${EP_DIR}/build/face.json`).then(r => r.ok ? r.json() : null).catch(() => null);

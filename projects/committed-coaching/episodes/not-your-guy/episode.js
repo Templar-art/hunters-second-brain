@@ -1,11 +1,11 @@
-// Committed Coaching: "Don't work with me if…" anti-pitch (7 takes joined, 31.4s).
-// Take starts: 0, 2.84, 7.44, 12.4, 16.86, 21.22, 25.86 (jump cuts; alternate takes punch in).
+// Committed Coaching: "Don't work with me if…" anti-pitch (7 takes joined, 31.4s). v2: gym look.
+// Take starts: 0, 2.84, 7.44, 12.4, 16.86, 21.22, 25.86 (jump cuts punch in; alternate takes zoom).
 const S2 = 2.84, S3 = 7.44, S4 = 12.4, S5 = 16.86, S6 = 21.22, S7 = 25.86, END_MOS = 31.25, END_IN = END_MOS + .4;
 window.EP = {
   dur: 34.8, voEnd: 31.4,
   punchIns: [[S2, S3], [S4, S5], [S7, END_MOS]],
   cuts: [S2, S3, S4, S5, S6, S7, END_IN],
-  captions: [[S2, S3, 1040], [S4, S5, 1040], [S6, S7, 1040], [S7, END_MOS, 1040]],
+  captions: [[S2, S3, 1000], [S4, S5, 1000], [S6, S7, 1000], [S7, END_MOS, 1000]],
   frame(T) {
     if (T < S2) sceneHook(T);
     else if (T < S3) sceneShred(T);
@@ -15,129 +15,125 @@ window.EP = {
     else if (T < S7) sceneDeal(T);
     else if (T < END_IN) sceneCTA(T);
     else endCard(T, END_IN, this.dur);
-    mosaic(T, END_MOS, 9);
+    if (T < S2) gymClock(T); if (T >= S7 && T < END_IN) gymClock(T, expo((T - S7) / .3));
+    slash(T, END_MOS - .35);
   },
   cues() {
-    cue(0, 'whoosh', { d: .4, gain: .35 }); cue(.05, 'thud', { f: 50, d: .5, gain: .55 }); cue(.9, 'thud', { f: 60, d: .4, gain: .45 }); cue(1.76, 'pop', { f: 900, gain: .22 }); lowerThird.cue(.6);
-    cue(3.5, 'pop', { f: 800, gain: .2 }); cue(4.6, 'whoosh', { d: .4, bright: .5, gain: .25 }); stampCue(6.8);
-    iris.cue(S3 - .45); cue(8.42, 'pop', { f: 900, gain: .2 }); cue(9.22, 'riser', { d: .5, gain: .12 }); cue(9.96, 'whoosh', { d: .6, bright: .2, gain: .2 }); stampCue(11.66);
-    cue(S4, 'whoosh', { d: .35, gain: .3 }); cue(13.2, 'pop', { f: 900, gain: .2 }); cue(14.12, 'thud', { f: 90, d: .2, gain: .3 }); cue(14.74, 'pop', { f: 1000, gain: .2 }); stampCue(16.1);
-    whip.cue(S5 - .2); cue(S5, 'thud', { f: 40, d: .6, gain: .6 }); cue(17.92, 'pop', { f: 800, gain: .2 }); cue(19.0, 'pop', { f: 1000, gain: .2 }); cue(20.2, 'chime', { f: 988, gain: .12 });
-    cue(S6, 'whoosh', { d: .35, gain: .3 }); STEPS.forEach(([, at]) => { cue(at, 'pop', { f: 900, gain: .22 }); cue(at + .25, 'click', { gain: .3 }); }); cue(24.98, 'thud', { f: 60, d: .35, gain: .4 });
-    cue(S7, 'whoosh', { d: .35, gain: .3 }); cue(27.5, 'pop', { f: 1000, gain: .25 }); cue(29.88, 'chime', { f: 1175, gain: .12 });
-    mosaic.cue(END_MOS); endCard.cue(END_IN);
+    cue(0, 'thud', { f: 45, d: .5, gain: .55 }); cue(1.76, 'click', { gain: .3 }); lowerThird.cue(.6);
+    cue(3.5, 'click', { gain: .25 }); cue(5.6, 'click', { gain: .3 }); stamp.cue(6.8);
+    cue(S3, 'thud', { f: 70, d: .3, gain: .35 }); cue(8.42, 'whoosh', { d: .3, bright: .3, gain: .15 }); cue(9.96, 'whoosh', { d: .3, bright: .3, gain: .15 }); cue(11.0, 'thud', { f: 90, d: .2, gain: .3 }); stamp.cue(11.66);
+    cue(S4 + .05, 'whoosh', { d: .35, gain: .25 }); cue(13.7, 'click', { gain: .25 }); cue(15.24, 'click', { gain: .25 }); stamp.cue(16.1);
+    cue(S5, 'thud', { f: 40, d: .6, gain: .6 }); cue(17.92, 'thud', { f: 70, d: .25, gain: .35 }); cue(19.0, 'thud', { f: 80, d: .2, gain: .3 }); cue(20.2, 'thud', { f: 60, d: .35, gain: .45 });
+    STEPS.forEach(([, at]) => cue(at, 'thud', { f: 110, d: .14, gain: .3 })); cue(24.98, 'click', { gain: .3 });
+    cue(27.04, 'thud', { f: 60, d: .35, gain: .45 });
+    slash.cue(END_MOS - .35); endCard.cue(END_IN);
   },
 };
-function stampCue(t) { cue(t, 'thud', { f: 55, d: .4, gain: .5 }); cue(t, 'glass', { n: 20, span: .2 }); }
-// Red ✗ "not your guy" stamp, always placed below the chin (y given).
-function noStamp(T, at, txt, y) { const q = back((T - at) / .3); if (q <= 0) return; g.save(); g.translate(540, y); g.rotate(-.06); g.scale(q * (2 - q), q * (2 - q));
-  font(900, 74, COND); const w = g.measureText(txt).width + 150; g.fillStyle = BLUE; g.beginPath(); g.roundRect(-w / 2, -58, w, 116, 18); g.fill();
-  g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('✗  ' + txt, 0, 26); g.textAlign = 'left'; g.restore(); }
+// scale font size down until txt fits maxW
+function fit(txt, size, fam, maxW) { font(400, size, fam); const w = g.measureText(txt).width; return w > maxW ? size * maxW / w : size; }
 
-// Hook: "DON'T WORK WITH ME" behind his head + name card + "if this sounds like you".
+// Hook: on screen from frame 0 (it's the thumbnail). Black slab on the chest, tape name card.
 function sceneHook(T) {
   th(FULL, BZ + T * .01);
-  // hook as a type block on the chest (he stands centred, so text behind the head would be hidden)
-  const hp = expo(T / .3); g.save(); g.globalAlpha = .88 * hp; g.fillStyle = NAVY; g.beginPath(); g.roundRect(30, 880, 1020, 520, 26); g.fill(); g.restore(); g.save();
-  rise("DON'T WORK", 60, 1050, T - .02, { size: 165, w: 900, col: WHITE, dur: .4 });
-  rise('WITH ME', 60, 1200, T - .9, { size: 165, w: 900, col: BLUE, dur: .4 }); g.restore();
-  if (T > 1.76) { const q = back((T - 1.76) / .35); g.save(); g.translate(60, 1260); g.scale(q, q); font(700, 46, BODY); const w = g.measureText('IF THIS SOUNDS LIKE YOU…').width + 56;
-    g.fillStyle = WHITE; g.beginPath(); g.roundRect(0, 0, w, 90, 45); g.fill(); g.fillStyle = INK; g.fillText('IF THIS SOUNDS LIKE YOU…', 28, 61); g.restore(); }
-  cluster(21, 990, 820, 4, 60, 56, T - .2, { from: [400, -100] });
-  lowerThird(T, .6, 2.7, 'Jackson Farrier', 'Committed Coaching', 1450);
+  const s = lerp(1.1, 1, expo(T / .25)); g.save(); g.translate(540, 1120); g.scale(s, s); g.translate(-540, -1120);
+  g.globalAlpha = .9; slab(50, 880, 960, 440, '#0A0A0A', -.12); g.globalAlpha = 1;
+  font(400, fit("DON'T WORK", 210, COND, 860), COND); g.fillStyle = WHITE; g.fillText("DON'T WORK", 100, 1080);
+  font(400, 210, COND); g.fillStyle = BLUE; g.fillText('WITH ME', 100, 1290); g.restore();
+  if (T > 1.76) { const q = back((T - 1.76) / .3); g.save(); g.translate(96, 1338); g.rotate(-.03); g.scale(q, q); font(400, 46, COND); const w = g.measureText('IF THIS SOUNDS LIKE YOU…').width + 50;
+    tape(0, 0, w, 70, TAPE, 0, 9); g.fillStyle = INK; g.letterSpacing = '2px'; g.fillText('IF THIS SOUNDS LIKE YOU…', 25, 53); g.letterSpacing = '0px'; g.restore(); }
+  lowerThird(T, .6, 2.7, 'Jackson Farrier', 'Head Coach · Committed', 1520);
 }
 
-// 30-day shred: weight drops then rebounds straight after Christmas.
+// 30-day shred on a digital scale: weight drops, then rebounds straight after Christmas.
 function sceneShred(T) {
   th(FULL, zoomAt(T)); captions(T);
-  const p = expo((T - S2 - .1) / .45); if (p <= 0) return;
-  const x = 70, y = 1120 + (1 - p) * 500, w = 940, h = 420;
-  card(x, y, w, h, WHITE, 26, .35);
-  font(900, 54, COND); g.fillStyle = INK; g.fillText('30-DAY SHRED', x + 40, y + 76);
-  typeOn('Body weight', x + 40, y + 124, T - 3.6, { size: 30, col: GREY, track: 4, upper: true, cps: 40 });
-  const gx = x + 40, gy = y + 180, gw = w - 80, gh = 190, dr = clamp((T - 3.5) / 1.2), rb = clamp((T - 5.5) / .9);
-  const pt = u => u < .55 ? [gx + gw * u, gy + gh * (.15 + .65 * (u / .55))] : [gx + gw * u, gy + gh * (.8 - .7 * ((u - .55) / .45))];
-  g.strokeStyle = '#E5E5E8'; g.lineWidth = 2; for (let k = 0; k < 4; k++) { g.beginPath(); g.moveTo(gx, gy + k * gh / 3); g.lineTo(gx + gw, gy + k * gh / 3); g.stroke(); }
-  const upto = .55 * dr + .45 * rb; g.lineWidth = 8; g.lineCap = 'round'; g.lineJoin = 'round';
-  g.strokeStyle = INK; g.beginPath(); for (let k = 0; k <= 50 * Math.min(upto, .55) / .55; k++) { const [px, py] = pt(k / 50 * Math.min(upto, .55)); k ? g.lineTo(px, py) : g.moveTo(px, py); } g.stroke();
-  if (rb > 0) { g.strokeStyle = BLUE; g.beginPath(); for (let k = 0; k <= 30; k++) { const [px, py] = pt(.55 + .45 * rb * k / 30); k ? g.lineTo(px, py) : g.moveTo(px, py); } g.stroke();
-    font(700, 38, BODY); g.fillStyle = BLUE; g.fillText('After Christmas', gx + gw * .5, gy - 16); }
-  noStamp(T, 6.8, 'NOT YOUR GUY', 1700);
+  const p = expo((T - S2 - .1) / .4); if (p <= 0) return;
+  const x = 70, y = 1150 + (1 - p) * 140, w = 940, h = 420;
+  g.globalAlpha = .94 * clamp(p * 1.5); slab(x, y, w, h, '#0E0E10', -.06); g.globalAlpha = 1;
+  font(400, 64, COND); g.fillStyle = WHITE; g.fillText('30-DAY SHRED', x + 50, y + 92);
+  font(400, 30, COND); g.fillStyle = GREY; g.letterSpacing = '5px'; g.fillText('BODY WEIGHT · KG', x + 52, y + 140); g.letterSpacing = '0px';
+  const dr = inOut(clamp((T - 3.5) / 1.9)), rb = expo(clamp((T - 5.6) / .7)), kg = rb > 0 ? lerp(88, 95.5, rb) : lerp(96, 88, dr);
+  led(kg.toFixed(1), x + w - 60, y + 46, 150, rb > 0 ? BLUE : WHITE, { align: 'right' });
+  // daily bars along the bottom: 30 days down, then the Christmas spike
+  for (let d = 0; d < 34; d++) { const u = d < 30 ? d / 29 : 1, show = d < 30 ? clamp(dr * 30 - d) : clamp(rb * 4 - (d - 30)); if (show <= 0) continue;
+    const v = d < 30 ? lerp(96, 88, u) : lerp(88, 95.5, (d - 29) / 4), bh = (v - 84) * 8; g.fillStyle = d < 30 ? '#3A3A40' : BLUE; g.fillRect(x + 50 + d * 25, y + h - 36 - bh * show, 15, bh * show); }
+  if (rb > 0) { g.save(); g.globalAlpha = rb; g.translate(x + 50, y + 262); g.rotate(-.04); font(400, 62, MARK); g.fillStyle = WHITE; g.fillText('after Christmas…', 0, 0); g.restore(); }
+  stamp(T, 6.8, 'NOT YOUR GUY', 1610);
 }
 
-// PDF to download and forget: file downloads, gathers dust, 0 opens.
+// PDF on a chalkboard: written up, downloaded, never opened.
+const CHALK_BG = '#1E2421';
+function chalkboard() { g.fillStyle = CHALK_BG; g.fillRect(0, 0, W, H); const r = rng(77); g.lineCap = 'round';
+  for (let k = 0; k < 40; k++) { g.strokeStyle = `rgba(255,255,255,${.015 + r() * .03})`; g.lineWidth = 30 + r() * 90; g.beginPath(); const x = r() * W, y = r() * H; g.moveTo(x, y); g.quadraticCurveTo(x + 200 * (r() - .5), y + 100 * (r() - .5), x + 400 * (r() - .5), y + 150 * (r() - .5)); g.stroke(); }
+  g.fillStyle = '#5B4632'; g.fillRect(0, 0, W, 34); g.fillRect(0, H - 34, W, 34); }
 function scenePDF(T) {
-  g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
-  typeOn('If you want a', 60, 260, T - S3, { size: 34, col: BLUE, track: 6, upper: true, cps: 40 });
-  rise('PDF to download', 54, 440, T - 8.42, { size: 120, w: 900, col: INK, dur: .45 });
-  rise('and forget.', 54, 580, T - 9.96, { size: 120, w: 900, col: GREY, dur: .45 });
-  const p = back((T - 8.42) / .45), dust = clamp((T - 9.96) / 1.2), cx = 540, cy = 1040;
-  if (p > 0) { g.save(); g.translate(cx, cy); g.scale(p, p); g.rotate(dust * -.05); g.globalAlpha = 1 - dust * .45;
-    g.fillStyle = WHITE; g.shadowColor = 'rgba(0,0,0,.15)'; g.shadowBlur = 30; g.shadowOffsetY = 12; const f = 60;
-    g.beginPath(); g.moveTo(-170, -220); g.lineTo(170 - f, -220); g.lineTo(170, -220 + f); g.lineTo(170, 220); g.lineTo(-170, 220); g.closePath(); g.fill(); g.shadowColor = 'transparent';
-    g.fillStyle = BLUE; g.beginPath(); g.roundRect(-130, 110, 260, 80, 12); g.fill(); font(900, 50, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('PDF', 0, 168); g.textAlign = 'left';
-    g.fillStyle = '#DADADF'; for (let k = 0; k < 4; k++) g.fillRect(-120, -150 + k * 50, 240 - k * 30, 16);
-    if (dust > 0) { const r = rng(5); for (let k = 0; k < 60 * dust; k++) { g.fillStyle = 'rgba(140,130,110,.5)'; g.fillRect(-170 + r() * 340, -220 + r() * 440, 3 + r() * 4, 3 + r() * 4); } }
+  chalkboard();
+  chalkWrite('If you want a', 70, 330, T - S3, { size: 70, dur: .25 });
+  chalkWrite('PDF to download', 70, 480, T - 8.42, { size: fit('PDF to download', 100, CHALK, 900), dur: .55 });
+  chalkWrite('& forget it.', 70, 610, T - 9.96, { size: 100, dur: .45, col: '#FF6A5C' });
+  // chalk-outlined file, drawn on as soon as the scene starts
+  const p = clamp((T - S3 - .05) / .45), cx = 540, cy = 980; if (p > 0) { g.save(); const kn = back(clamp((T - 11.0) / .4)); g.translate(cx, cy + kn * 60); g.rotate(-.04 + kn * .32); g.globalAlpha = 1 - kn * .55; g.strokeStyle = '#F1F1EC'; g.lineWidth = 9; g.lineJoin = 'round'; g.setLineDash([1400 * p, 3000]);
+    g.beginPath(); g.moveTo(-150, -200); g.lineTo(90, -200); g.lineTo(150, -140); g.lineTo(150, 200); g.lineTo(-150, 200); g.closePath(); g.stroke(); g.setLineDash([]);
+    if (p > .7) { font(400, 80, CHALK); g.fillStyle = '#FF6A5C'; g.textAlign = 'center'; g.globalAlpha = (p - .7) / .3; g.fillText('PDF', 0, 40); g.textAlign = 'left'; g.globalAlpha = 1; }
     g.restore(); }
-  // download progress then "0 opens"
-  const dl = clamp((T - 9.22) / .7); if (T > 9.22) { g.fillStyle = '#DADADF'; g.beginPath(); g.roundRect(240, 1330, 600, 22, 11); g.fill(); g.fillStyle = INK; g.beginPath(); g.roundRect(240, 1330, 600 * dl, 22, 11); g.fill();
-    font(700, 44, BODY); g.fillStyle = GREY; g.fillText(dl < 1 ? 'Downloading…' : 'Opened 0 times', 240, 1420); }
-  noStamp(T, 11.66, 'ALSO NOT YOUR GUY', 1600);
-  faceCircle(920, 1800, 90, back((T - S3 - .3) / .6));
+  const dl = clamp((T - 9.22) / .7); if (T > 9.22) { g.strokeStyle = '#F1F1EC'; g.lineWidth = 6; g.strokeRect(240, 1260, 600, 44); g.fillStyle = 'rgba(241,241,236,.85)'; g.fillRect(250, 1270, 580 * dl, 24);
+    chalkWrite(dl < 1 ? 'downloading…' : 'opened: 0 times', 240, 1390, T - 9.3, { size: 54, dur: .3, col: dl < 1 ? '#F1F1EC' : '#FF6A5C' }); }
+  stamp(T, 11.66, 'ALSO NOT YOUR GUY', 1600);
+  facePin(870, 190, 200, back((T - S3) / .3));
 }
 
-// Check-ins: a weekly check-in where the answer and the truth don't match.
+// Weekly check-in on a clipboard: the answer vs the marker-pen truth.
 function sceneCheckin(T) {
   th(FULL, zoomAt(T)); captions(T);
-  const p = expo((T - S4 - .05) / .45); if (p <= 0) return;
-  const x = 70, y = 1120 + (1 - p) * 500, w = 940, h = 440;
-  card(x, y, w, h, WHITE, 26, .35);
-  font(900, 50, COND); g.fillStyle = INK; g.fillText('WEEKLY CHECK-IN', x + 40, y + 72);
-  [['Followed plan?', 'Yes, 100%', 13.2], ['Hit protein?', 'Every day', 14.74]].forEach(([q, a, at], i) => { const r = expo((T - at) / .3); if (r <= 0) return; const ry = y + 160 + i * 130;
-    g.globalAlpha = r; font(600, 42, BODY); g.fillStyle = GREY; g.fillText(q, x + 40, ry); font(700, 42, BODY); g.fillStyle = INK; g.fillText(a, x + 560, ry);
-    if (T > at + .5) { g.fillStyle = BLUE; g.fillRect(x + 556, ry - 14, g.measureText(a).width + 8, 6); font(700, 36, BODY); g.fillText(['(really: 3 of 7)', '(really: twice)'][i], x + 560, ry + 48); } g.globalAlpha = 1; });
-  noStamp(T, 16.1, "WE'RE NOT GOING TO WORK", 1700);
+  const p = expo((T - S4 - .05) / .4); if (p <= 0) return;
+  const ex = expoIn((T - 15.85) / .25); if (ex < 1) { const x = 90, y = 1160 + (1 - p) * 140 + ex * 900, w = 900, h = 450;
+  g.save(); g.globalAlpha = clamp(p * 1.5); g.translate(540, y + h / 2); g.rotate(-.02 * (1 - p) + .012); g.translate(-540, -(y + h / 2));
+  g.fillStyle = '#8A6A45'; g.beginPath(); g.roundRect(x, y, w, h, 18); g.fill();   // clipboard
+  g.fillStyle = '#F7F5EF'; g.fillRect(x + 26, y + 40, w - 52, h - 62);
+  g.strokeStyle = '#CFE0F0'; g.lineWidth = 2; for (let k = 0; k < 5; k++) { g.beginPath(); g.moveTo(x + 26, y + 150 + k * 66); g.lineTo(x + w - 26, y + 150 + k * 66); g.stroke(); }
+  g.fillStyle = '#9DA0A8'; g.beginPath(); g.roundRect(x + w / 2 - 110, y - 18, 220, 62, 10); g.fill();   // clip
+  font(400, 56, COND); g.fillStyle = INK; g.fillText('WEEKLY CHECK-IN', x + 56, y + 120);
+  [['Followed the plan?', 'YES, 100%', 13.2, '3/7'], ['Hit protein?', 'EVERY DAY', 14.74, 'twice']].forEach(([q, a, at, truth], i) => { const r = expo((T - at) / .3); if (r <= 0) return; const ry = y + 210 + i * 130;
+    g.globalAlpha = r * clamp(p * 1.5); font(600, 38, BODY); g.fillStyle = '#5A5D66'; g.fillText(q, x + 56, ry); font(400, 46, COND); g.fillStyle = INK; g.fillText(a, x + 520, ry);
+    const s = clamp((T - at - .5) / .2); if (s > 0) { const aw = g.measureText(a).width; g.strokeStyle = BLUE; g.lineWidth = 7; g.lineCap = 'round'; g.beginPath(); g.moveTo(x + 512, ry - 16); g.lineTo(x + 512 + (aw + 16) * s, ry - 22); g.stroke();
+      if (s >= 1) { g.save(); g.translate(x + 520, ry + 54); g.rotate(-.04); font(400, 40, MARK); g.fillStyle = BLUE; g.fillText('really: ' + truth, 0, 0); g.restore(); } }
+    g.globalAlpha = clamp(p * 1.5); });
+  g.restore(); }
+  stamp(T, 16.1, 'NO DEAL.', 1360);
 }
 
-// BUT: slam on black, then business KPIs vs body KPIs, treated the same way.
+// BUT: slams on black. Business bar is loaded; the body bar gets loaded to match.
 function sceneBut(T) {
-  g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
-  letterDrop('BUT', 60, 420, T - S5, { size: 300, col: BLUE, stagger: .06 });
-  typeOn('If you’re a business owner…', 66, 570, T - 17.3, { size: 48, col: WHITE, track: 2, w: 700, fam: BODY, cps: 34 });
-  [['YOUR BUSINESS', 17.92, [.3, .38, .5, .62, .78, .9]], ['YOUR BODY', 19.0, [.25, .3, .42, .55, .7, .85]]].forEach(([lab, at, pts], i) => {
-    const q = back((T - at) / .45); if (q <= 0) return; const x = 60 + i * 500, y = 700, w = 460, h = 560;
-    g.save(); g.translate(x + w / 2, y + h / 2); g.scale(q, q); g.translate(-(x + w / 2), -(y + h / 2)); card(x, y, w, h, '#151518', 26, .4);
-    font(900, 44, COND); g.fillStyle = WHITE; g.fillText(lab, x + 30, y + 70);
-    const gx = x + 30, gy = y + 480, gw = w - 60, gh = 320, u = expo((T - at - .2) / 1.0);
-    g.strokeStyle = i ? BLUE : WHITE; g.lineWidth = 8; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath();
-    const n = (pts.length - 1) * u; for (let k = 0; k <= Math.ceil(n); k++) { const kk = Math.min(k, n), a0 = Math.floor(kk), f = kk - a0, v = lerp(pts[a0], pts[Math.min(a0 + 1, pts.length - 1)], f);
-      const X = gx + gw * kk / (pts.length - 1), Y = gy - gh * v; k ? g.lineTo(X, Y) : g.moveTo(X, Y); } g.stroke();
-    font(700, 32, BODY); g.fillStyle = GREY; g.fillText(i ? 'Training · food' : 'Systems · numbers', x + 30, y + 530); g.restore(); });
-  rise('Same standard.', 60, 1460, T - 20.2, { size: 120, w: 900, col: WHITE, dur: .45 });
-  faceCircle(910, 1760, 110, back((T - S5 - .3) / .6));
+  chalkboard(); g.fillStyle = 'rgba(8,8,8,.82)'; g.fillRect(0, 0, W, H);
+  const s = lerp(1.25, 1, expo((T - S5) / .2)); g.save(); g.translate(70, 400); g.scale(s, s); font(400, 330, COND); g.fillStyle = BLUE; g.fillText('BUT', 0, 0); g.restore();
+  rise('IF YOU’RE A BUSINESS OWNER…', 72, 510, T - 17.26, { size: 62, w: 400, col: WHITE, dur: .4 });
+  const FULLP = [300, 260, 220], bz = expo((T - 17.92) / .5), bd = expo((T - 20.2) / .5);
+  if (T > 17.92) { rise('YOUR BUSINESS', 72, 680, T - 17.92, { size: 64, w: 400, col: WHITE, dur: .35 }); barbell(540, 880, 900, FULLP, bz); }
+  if (T > 19.0) { rise('YOUR BODY', 72, 1140, T - 19.0, { size: 64, w: 400, col: WHITE, dur: .35 }); barbell(540, 1340, 900, T < 20.2 ? [120] : FULLP, T < 20.2 ? expo((T - 19.1) / .4) : bd); }
+  stamp(T, 20.2, 'SAME STANDARD.', 1580, -.04, '');
+  facePin(870, 230, 210, back((T - S5 - .3) / .4), -.05);
 }
 
-// The deal: three steps tick off under the chin, then "I'll handle the rest".
+// The deal: three reps tick off under the chin, then "I'll handle the rest" in marker on tape.
 const STEPS = [['SHOW UP', 21.22], ['FOLLOW THE PLAN', 22.28], ['TELL THE TRUTH, WEEKLY', 23.34]];
 function sceneDeal(T) {
-  th(FULL, BZ); captions(T);
-  STEPS.forEach(([lab, at], i) => { const q = back((T - at) / .35); if (q <= 0) return; const y = 1160 + i * 140;
-    g.save(); g.translate(70, y); g.scale(q, q); card(0, 0, 940, 112, '#0A0A0A', 20, .4);
-    g.fillStyle = BLUE; g.beginPath(); g.arc(60, 56, 30, 0, 7); g.fill(); g.strokeStyle = WHITE; g.lineWidth = 7; g.lineCap = 'round';
-    if (T > at + .25) { g.beginPath(); g.moveTo(46, 56); g.lineTo(56, 67); g.lineTo(76, 44); g.stroke(); }
-    font(900, 48, COND); g.fillStyle = WHITE; g.fillText(lab, 115, 74); g.restore(); });
-  const r = back((T - 24.98) / .35); if (r > 0) { g.save(); g.translate(540, 1640); g.scale(r, r); font(900, 60, COND); const w = g.measureText("I'LL HANDLE THE REST.").width + 80;
-    g.fillStyle = BLUE; g.beginPath(); g.roundRect(-w / 2, -54, w, 108, 54); g.fill(); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText("I'LL HANDLE THE REST.", 0, 22); g.textAlign = 'left'; g.restore(); }
+  th(FULL, zoomAt(T)); captions(T);
+  STEPS.forEach(([lab, at], i) => { const q = expo((T - at) / .3); if (q <= 0) return; const y = 1130 + i * 132, x = 70 - (1 - q) * 260; if (q < 1) g.globalAlpha = q;
+    g.save(); g.translate(x, y); g.rotate([-.015, .01, -.008][i]); tape(0, 0, 940, 112, TAPE, 0, 30 + i);
+    font(400, 70, MARK); g.fillStyle = BLUE; g.fillText(`${i + 1}.`, 34, 84);
+    font(400, fit(lab, 54, MARK, 640), MARK); g.fillStyle = INK; g.fillText(lab, 130, 80); g.restore();
+    if (T > at + .3) { const c = clamp((T - at - .3) / .15); g.strokeStyle = BLUE; g.lineWidth = 12; g.lineCap = 'round'; g.beginPath(); g.moveTo(x + 860, y + 58); g.lineTo(x + 860 + 16 * c, y + 58 + 18 * c); if (c >= 1) g.lineTo(x + 916, y + 30); g.stroke(); } g.globalAlpha = 1; });
+  const r = back((T - 24.98) / .3); if (r > 0) { g.save(); g.translate(130, 1530); g.rotate(-.04); g.scale(r, r); font(400, 72, MARK); const w = g.measureText("I'll handle the rest.").width + 70;
+    tape(0, 0, w, 110, TAPE, 0, 21); g.fillStyle = BLUE; g.fillText("I'll handle the rest.", 35, 82); g.restore(); }
 }
 
-// CTA: free video in bio, arrow bouncing, "we'll know quick if we're a fit".
+// CTA: red slab, free video in my bio, arrow bouncing. Kept well above Instagram's bottom UI.
 function sceneCTA(T) {
   th(FULL, zoomAt(T)); captions(T);
-  const p = back((T - 27.04) / .4); if (p <= 0) return; g.save(); g.translate(540, 1480); g.scale(p, p);
-  card(-440, -170, 880, 340, BLUE, 30, .4); font(900, 84, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('FREE VIDEO', 0, -40);
-  font(900, 52, BODY); g.fillText('in my bio', 0, 24); const b = Math.sin((T - 27.5) * 7) * 14;
-  g.strokeStyle = WHITE; g.lineWidth = 10; g.lineCap = 'round'; g.beginPath(); g.moveTo(0, 60 + b); g.lineTo(0, 120 + b); g.moveTo(-26, 96 + b); g.lineTo(0, 124 + b); g.lineTo(26, 96 + b); g.stroke();
+  const p = back((T - 27.04) / .35); if (p <= 0) return; g.save(); const br = 1 + .015 * Math.sin((T - 27) * 5); g.translate(540, 1300); g.scale(p * br, p * br); g.rotate(-.03);
+  slab(-430, -170, 860, 330, BLUE, -.12); font(400, 140, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('FREE VIDEO', 10, -10);
+  font(400, 60, COND); g.letterSpacing = '6px'; g.fillText('IN MY BIO', -30, 90); g.letterSpacing = '0px'; const b = Math.sin((T - 27.5) * 7) * 10;
+  g.strokeStyle = WHITE; g.lineWidth = 12; g.lineCap = 'round'; g.beginPath(); g.moveTo(190, 40 + b); g.lineTo(190, 100 + b); g.moveTo(164, 76 + b); g.lineTo(190, 104 + b); g.lineTo(216, 76 + b); g.stroke();
+  if (T > 27.5) { tape(-470, -200, 150, 50, TAPE, -.5, 41); tape(330, 120, 150, 50, TAPE, -.5, 42); }
   g.textAlign = 'left'; g.restore();
-  if (T > 29.88) { const q = expo((T - 29.88) / .35); g.save(); g.globalAlpha = q; font(700, 32, BODY); g.fillStyle = WHITE; g.textAlign = 'center';
-    font(700, 48, BODY); g.fillText('We’ll know quick if we’re a fit.', 540, 1730); g.textAlign = 'left'; g.restore(); }
 }
