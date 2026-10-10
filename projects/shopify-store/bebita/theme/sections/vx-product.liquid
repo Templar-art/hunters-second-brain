@@ -65,7 +65,51 @@
 
     <div class="vx-acc">
       <details open><summary>Details &amp; fit</summary><div class="vx-acc__body">{{ product.description }}</div></details>
-      <details><summary>Size guide</summary><div class="vx-acc__body">{{ section.settings.size_guide }}</div></details>
+      <details><summary>Size guide</summary><div class="vx-acc__body">
+        <table>
+          <thead><tr><th>Size</th><th>AU</th><th>Bust</th><th>Waist</th><th>Hips</th></tr></thead>
+          <tbody>
+            <tr><td>XS</td><td>6</td><td>78–82</td><td>60–64</td><td>86–90</td></tr>
+            <tr><td>S</td><td>8</td><td>82–86</td><td>64–68</td><td>90–94</td></tr>
+            <tr><td>M</td><td>10</td><td>86–90</td><td>68–72</td><td>94–98</td></tr>
+            <tr><td>L</td><td>12</td><td>90–95</td><td>72–77</td><td>98–103</td></tr>
+            <tr><td>XL</td><td>14</td><td>95–100</td><td>77–82</td><td>103–108</td></tr>
+          </tbody>
+        </table>
+        <p class="vx-acc__fine">Body measurements in cm. XS-S fits AU 6–8 and M-L fits AU 10–12.</p>
+        {{ section.settings.size_guide }}
+      </div></details>
+      {%- liquid
+        assign fab = 'performance'
+        if product.title contains 'Dynamic'
+          assign fab = 'seamless'
+        elsif product.title contains 'Sarong'
+          assign fab = 'sarong'
+        elsif product.title contains 'Bedazzled'
+          assign fab = 'bedazzled'
+        elsif product.type == 'Swim'
+          assign fab = 'swim'
+        endif
+      -%}
+      <details><summary>Fabric &amp; care</summary><div class="vx-acc__body">
+        {%- case fab -%}
+          {%- when 'seamless' -%}
+            <p>Seamless knit in a soft nylon and elastane blend, with sculpting contour lines and a high-rise ribbed waistband. Four-way stretch, breathable, sweat-wicking and quick-drying, and made to stay opaque when you squat.</p>
+          {%- when 'swim' -%}
+            <p>Swim-grade nylon and elastane with a soft matte finish and full lining. Holds its shape in and out of the water and dries fast.</p>
+          {%- when 'sarong' -%}
+            <p>Lightweight, quick-dry sheer fabric that ties any way you like: as a skirt, a dress or a wrap.</p>
+          {%- when 'bedazzled' -%}
+            <p>Stretch mesh with hand-set rhinestones and adjustable drawstring sides.</p>
+          {%- else -%}
+            <p>Smooth, buttery-soft performance fabric in a nylon and elastane blend. Four-way stretch with a sculpting hold and a matte finish. Breathable, sweat-wicking and quick-drying, and made to stay opaque when you squat.</p>
+        {%- endcase -%}
+        {%- if fab == 'swim' or fab == 'sarong' or fab == 'bedazzled' -%}
+          <p><strong>Care:</strong> rinse in cold water after every swim to wash out salt, chlorine and sunscreen. Hand wash cold, don't wring, and dry flat in the shade. No tumble dryer, bleach or iron.</p>
+        {%- else -%}
+          <p><strong>Care:</strong> turn inside out and machine wash cold on a gentle cycle. No fabric softener or bleach. Line dry in the shade, and don't tumble dry or iron.</p>
+        {%- endif -%}
+      </div></details>
       <details><summary>Delivery &amp; returns</summary><div class="vx-acc__body">{{ section.settings.delivery }}</div></details>
     </div>
   </div>
@@ -93,7 +137,7 @@
 {% schema %}
 { "name": "Product page", "settings": [
   { "type": "text", "id": "note", "label": "Note under the button", "default": "Free shipping over $150. Sent from the Gold Coast in 1–2 business days." },
-  { "type": "richtext", "id": "size_guide", "label": "Size guide", "default": "<p>XS 6 · S 8 · M 10 · L 12 · XL 14 (AU sizes). Between sizes? Size up for leggings and one pieces, true to size for tops and shorts.</p>" },
+  { "type": "richtext", "id": "size_guide", "label": "Size guide", "default": "<p>Between sizes? Size up for leggings, jumpsuits and one pieces, and stay true to size for tops and shorts. Want a different fit up top and down below? Every piece is sold on its own, so pick a different size for each.</p>" },
   { "type": "richtext", "id": "delivery", "label": "Delivery and returns", "default": "<p>$9.95 standard, free over $150, $14.95 express. Australia only. Easy size swaps within 30 days on unworn items with tags. Swimwear only with the hygiene liner intact.</p>" },
   { "type": "collection", "id": "related", "label": "Override: pull suggestions from this collection (blank = same line)" },
   { "type": "text", "id": "related_heading", "label": "Heading", "default": "Complete the set" } ] }

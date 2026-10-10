@@ -1152,3 +1152,4 @@ Hunter approved real SFX: 24 takes (whoosh, pop, click, impact, shatter, riser) 
 
 ## [2026-10-10] ingest | Ocular Sounds SFX library
 Filed 192 Ocular sounds (Foundation, Pendulum, Aperture, Rainforest) into ~/Music/SFX Library with a catalog.csv. The Committed Coaching sfx-lib was rebuilt on Foundation impacts, booms, whooshes, hits and risers. v4 of the not-your-guy reel adds an 80cr Lyria music bed.
+## [2026-10-10] ingest | Bebita live polish: size guide, fabric & care, AI colour first, international off, header fix

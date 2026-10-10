@@ -148,6 +148,8 @@ def main():
     AI = ai_shots()
     AI_URLS = set()
     for name, line, role, cols in STOCK:
+        # colour with an AI model shot goes first, so the product page opens on it
+        cols = dict(sorted(cols.items(), key=lambda kv: 0 if AI.get((name, kv[0]), {}).get("model") else 1))
         h = handle(name)
         pid = existing(h)
         sizes = [s for s in SIZE_ORDER if any(s in v for v in cols.values())]
