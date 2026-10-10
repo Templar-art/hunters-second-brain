@@ -55,6 +55,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
 
 ## Concepts
+- [[sfx-library]]: the Ocular Sounds library (192 sounds, ~/Music/SFX Library) and how the motion engine uses it
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
 - [[zed-style]] — ZED's canonical staging style, now "Option 01" (warm ivory/oatmeal/walnut/olive/brass); 3rd style change, dated trail of older eras kept; + proposed modern-luxury Options 02–04 (2026-10-09)

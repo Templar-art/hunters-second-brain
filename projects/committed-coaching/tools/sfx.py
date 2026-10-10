@@ -17,7 +17,8 @@ def place(t, s, gain=1.0, pan=0.0, send=.18):
     i = int(t * SR)
     if i < 0 or i >= N: return
     n = min(len(s), N - i); a = (pan + 1) * np.pi / 4
-    lr = np.stack([s[:n] * np.cos(a), s[:n] * np.sin(a)], 1) * gain
+    if s.ndim == 2: lr = s[:n] * np.array([np.cos(a), np.sin(a)]) * np.sqrt(2) * gain   # stereo sample: keep its width, pan = balance
+    else: lr = np.stack([s[:n] * np.cos(a), s[:n] * np.sin(a)], 1) * gain
     dry[i:i + n] += lr; wet[i:i + n] += lr * send
 
 def env(n, a=.003, d=.2):
@@ -88,23 +89,24 @@ def swell(d=1.5):
 # ---------- sample library (sfx-lib/<type>_N.wav, Magnific/ElevenLabs takes) ----------
 # Takes are trimmed to their first transient, normalised, and skipped if near-silent.
 # Placement anchor per type: 'onset' (hits) or 'peak' (whoosh, riser).
-LIB, ANCHOR = {}, {"whoosh": "peak", "riser": "peak"}
+LIB, ANCHOR = {}, {"whoosh": "peak", "riser": "peak", "hit": "peak"}   # hit = whoosh into impact: the impact lands on the cue
 for f in sorted(glob.glob(os.path.join(os.path.dirname(__file__), "..", "sfx-lib", "*.wav"))):
     kind = os.path.basename(f).rsplit("_", 1)[0]
     w = wave.open(f); x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float).reshape(-1, w.getnchannels()) / 32768
-    m = x.mean(1); pk = np.abs(m).max()
+    if x.shape[1] == 1: x = np.repeat(x, 2, 1)
+    mono = x.mean(1); pk = np.abs(x).max()
     if pk < 10 ** (-30 / 20): continue                                  # dead take
-    on = int(np.argmax(np.abs(m) > pk * .1))
-    if ANCHOR.get(kind) != "peak": m = m[max(0, on - int(.004 * SR)):]
-    m = m / pk; n = len(m); fade = int(.03 * SR); m[-fade:] *= np.linspace(1, 0, fade)
+    on = int(np.argmax(np.abs(mono) > np.abs(mono).max() * .1))
+    if ANCHOR.get(kind) != "peak": x = x[max(0, on - int(.004 * SR)):]
+    m = x / pk; fade = int(.03 * SR); m[-fade:] *= np.linspace(1, 0, fade)[:, None]
     LIB.setdefault(kind, []).append(m)
 def sample(kind, rate=1.0):
     """Random take of kind, pitch-shifted by rate (resample). Returns (signal, anchor offset in seconds)."""
     takes = LIB.get(kind)
     if not takes: return None, 0
     m = takes[rs.integers(len(takes))]
-    idx = np.arange(0, len(m) - 1, rate); m = np.interp(idx, np.arange(len(m)), m)
-    a = int(np.argmax(np.abs(m))) / SR if ANCHOR.get(kind) == "peak" else 0
+    idx = np.arange(0, len(m) - 1, rate); m = np.stack([np.interp(idx, np.arange(len(m)), m[:, c]) for c in range(2)], 1)
+    a = int(np.argmax(np.abs(m).mean(1))) / SR if ANCHOR.get(kind) == "peak" else 0
     return m, a
 def placeS(kind, t, gain, pan, send, rate=None, fallback=None):
     """Place a library sample (anchored) or the synth fallback."""
@@ -127,11 +129,11 @@ for c in kept:
     t, k, g = c["t"], c["type"], c.get("gain")
     pan = c.get("pan", (rs.random() - .5) * .5)
     if k == "whoosh":                                   # synth peaks at d/2 → anchor sample peak there
-        d = c.get("d", .45); placeS("whoosh", t + d / 2, (g or .4) * .9, pan, .2, rate=1.0 / max(.35, min(1.4, d / .5)) ** .5,
+        d = c.get("d", .45); placeS("whoosh", t + d / 2, (g or .4) * .9, pan, .2, rate=min(1.1, max(.9, (.5 / max(d, .1)) ** .25)),
                                     fallback=whoosh(d, c.get("bright", .25)))
     elif k == "pop": placeS("pop", t, (g or .2) * 1.1, pan, .18, rate=.85 + c.get("f", 900) / 3000, fallback=pop(c.get("f", 900), c.get("d", .07)))
     elif k == "click": placeS("click", t, (g or .3) * 1.1, pan, .1, fallback=click(c.get("f", 2400)))
-    elif k == "thud": placeS("thud", t, (g or .4) * 1.1, 0, .25, rate=.9 + c.get("f", 55) / 600, fallback=thud(c.get("f", 55), c.get("d", .4)))
+    elif k == "thud": placeS("thud", t, (g or .4) * 1.1, 0, .06, rate=.9 + c.get("f", 55) / 600, fallback=thud(c.get("f", 55), c.get("d", .4)))
     elif k == "typing":
         for i in range(int(c["n"])): place(t + i / c.get("cps", 30) + rs.random() * .008, key(), (g or .28) * .55, pan + (rs.random() - .5) * .2, .08)
     elif k == "ticks":
@@ -144,6 +146,8 @@ for c in kept:
         placeS("whoosh", t + .17, .22, pan, .2, rate=1.3, fallback=whoosh(.35, .35))
         for i in range(int(c["n"])): place(t + .05 + i * .03, glass(1600 + rs.random() * 1800), .08, (rs.random() - .5) * 1.4, .3)
     elif k == "riser": placeS("riser", t, (g or .25) * .9, 0, .3, rate=1.0, fallback=riser(c.get("d", .8))) if "riser" in LIB else place(t - c.get("d", .8), riser(c.get("d", .8)), g or .25, 0, .3)
+    elif k == "boom": placeS("boom", t, (g or .5), 0, .05, rate=1.0, fallback=thud(45, .7))
+    elif k == "hit": placeS("hit", t, (g or .45), pan * .3, .05, rate=1.0, fallback=thud(60, .4))
     elif k == "chime": place(t, chime(c.get("f", 880)), g or .12, pan, .45)
     elif k == "swell": place(t, swell(c.get("d", 1.5)), g or .2, 0, .5)
 
@@ -152,7 +156,7 @@ L = int(.9 * SR); ir = rs.standard_normal((L, 2)) * np.exp(-np.arange(L) / SR / 
 ir = np.stack([onepole(ir[:, i], np.full(L, .35)) for i in range(2)], 1); ir /= np.abs(ir).sum(0) / 6
 rev = np.stack([np.fft.irfft(np.fft.rfft(wet[:, i], 2 * N) * np.fft.rfft(ir[:, i], 2 * N), 2 * N)[:N] for i in range(2)], 1)
 mix = dry + rev * .9
-mix = np.tanh(mix * 1.2) / 1.2
+mix = np.tanh(mix * .9) / .9   # gentle: the Ocular takes are already mastered
 mix *= .5 / max(np.abs(mix).max(), 1e-6)
 mix = mix[:int(SR * DUR)]
 w = wave.open(f"{ep}/build/sfx.wav", "wb"); w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)

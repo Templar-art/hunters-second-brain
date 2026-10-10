@@ -19,13 +19,13 @@ window.EP = {
     slash(T, END_MOS - .35);
   },
   cues() {
-    cue(0, 'thud', { f: 45, d: .5, gain: .55 }); cue(1.34, 'click', { gain: .3 }); lowerThird.cue(.6);
-    cue(3.45, 'thud', { f: 110, d: .14, gain: .25 }); cue(4.6, 'click', { gain: .3 }); cue(5.66, 'click', { gain: .2 }); stamp.cue(6.92);
-    cue(S3, 'thud', { f: 70, d: .3, gain: .35 }); cue(8.42, 'whoosh', { d: .3, bright: .3, gain: .15 }); cue(9.6, 'whoosh', { d: .3, bright: .3, gain: .15 }); cue(11.0, 'thud', { f: 90, d: .2, gain: .3 }); stamp.cue(11.66);
-    cue(S4 + .05, 'whoosh', { d: .35, gain: .25 }); cue(14.12, 'click', { gain: .25 }); cue(15.2, 'click', { gain: .25 }); stamp.cue(16.1);
-    cue(S5, 'thud', { f: 40, d: .6, gain: .6 }); cue(17.92, 'thud', { f: 70, d: .25, gain: .35 }); cue(19.34, 'thud', { f: 80, d: .2, gain: .3 }); cue(20.34, 'click', { gain: .3 }); stamp.cue(20.72);
-    STEPS.forEach(([, at]) => cue(at, 'thud', { f: 110, d: .14, gain: .3 })); cue(24.98, 'click', { gain: .3 });
-    cue(27.04, 'thud', { f: 60, d: .35, gain: .45 });
+    cue(0, 'boom', { gain: .5 }); cue(1.34, 'click', { gain: .3 }); lowerThird.cue(.6);
+    cue(3.45, 'whoosh', { d: .35, gain: .3 }); cue(4.6, 'click', { gain: .3 }); cue(5.66, 'click', { gain: .2 }); stamp.cue(6.92);
+    cue(S3, 'hit', { gain: .4 }); cue(11.0, 'thud', { f: 90, d: .2, gain: .22 }); stamp.cue(11.66);
+    cue(S4 + .2, 'whoosh', { d: .35, gain: .3 }); cue(14.12, 'click', { gain: .25 }); cue(15.2, 'click', { gain: .25 }); stamp.cue(16.1);
+    cue(S5 - .02, 'riser', { gain: .22 }); cue(S5, 'boom', { gain: .6 }); cue(17.95, 'thud', { f: 70, d: .25, gain: .3 }); cue(19.4, 'thud', { f: 80, d: .2, gain: .25 }); cue(20.34, 'click', { gain: .3 }); stamp.cue(20.72);
+    STEPS.forEach(([, at]) => cue(at, 'thud', { f: 110, d: .14, gain: .22 })); cue(24.98, 'click', { gain: .3 });
+    cue(27.04, 'hit', { gain: .4 });
     slash.cue(END_MOS - .35); endCard.cue(END_IN);
   },
 };

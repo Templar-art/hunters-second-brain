@@ -549,7 +549,7 @@ function stamp(T, at, txt, y, rot = -.07, mark = '✗') { const q = (T - at) / .
   g.fillStyle = BLUE; g.textAlign = 'center'; g.fillText(txt, mark ? 22 : 0, 30); font(400, 70, COND); if (mark) g.fillText(mark, -w / 2 + 52, 26);
   g.globalCompositeOperation = 'destination-out'; const r = rng(txt.length * 7); for (let k = 0; k < 140; k++) { g.globalAlpha = .5 * r(); g.fillRect(-w / 2 + r() * w, -60 + r() * 120, 2 + r() * 5, 2 + r() * 3); }
   g.restore(); g.letterSpacing = '0px'; }
-stamp.cue = t => { cue(t, 'thud', { f: 55, d: .4, gain: .55 }); cue(t + .01, 'click', { gain: .35 }); };
+stamp.cue = t => { cue(t, 'thud', { f: 55, d: .4, gain: .5 }); };
 // Barbell plate (side-on), centred at cx; d = diameter.
 function plate(cx, cy, d, col = '#E9E6DE', rim = BLUE) { const w = d * .2; g.fillStyle = col; g.beginPath(); g.roundRect(cx - w / 2, cy - d / 2, w, d, w * .35); g.fill();
   g.fillStyle = rim; g.fillRect(cx - w / 2, cy - d * .06, w, d * .12); }
@@ -561,7 +561,7 @@ function barbell(cx, cy, len, plates, p = 1) { g.fillStyle = '#8E8E95'; g.fillRe
 function slash(T, a) { const t = (T - a) / .8; if (t <= 0 || t >= 1) return; const n = 7;
   for (let i = 0; i < n; i++) { const d = i * .045, pin = expo((t - d) / .4), pout = expo((t - .5 - d) / .4), bh = H / n * 1.6, y = i * H / n - bh * .2;
     const x0 = lerp(-W * 1.6, -100, pin) + lerp(0, W * 1.7, pout); g.save(); g.translate(0, y); slab(x0, 0, W * 1.4, bh, i % 2 ? '#0A0A0A' : BLUE, -.5); g.restore(); } }
-slash.cue = a => { cue(a - .05, 'whoosh', { d: .55, gain: .5 }); cue(a + .38, 'thud', { f: 48, d: .5, gain: .5 }); };
+slash.cue = a => { cue(a + .35, 'hit', { gain: .5 }); };
 // Pinned photo of the speaker (replaces the round face bubble): white border, tilt, tape across the top.
 function facePin(cx, cy, s, p, rot = .06) { if (p <= 0 || !FR) return; g.save(); g.translate(cx, cy); g.rotate(rot * (2 - p)); g.scale(p, p);
   g.shadowColor = 'rgba(0,0,0,.4)'; g.shadowBlur = 24; g.shadowOffsetY = 8; g.fillStyle = WHITE; g.fillRect(-s / 2 - 10, -s / 2 - 10, s + 20, s + 34); g.shadowColor = 'transparent';
@@ -587,7 +587,7 @@ function endCard(T, a, dur, l1 = 'COACHING THAT', l2 = 'GETS RESULTS', l3 = 'FOR
   const h = back((t - 1.0) / .35); if (h > 0) { g.save(); g.translate(540, 1420); g.scale(h, h); font(400, 70, COND); const w = g.measureText('@JACKSONFARRIER').width + 90; slab(-w / 2, -60, w, 110, BLUE); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('@JACKSONFARRIER', 0, 25); g.textAlign = 'left'; g.restore(); }
   const f = clamp((T - dur + .4) / .4); if (f > 0) { g.fillStyle = `rgba(0,0,0,${f})`; g.fillRect(0, 0, W, H); }
 }
-endCard.cue = a => { cue(a, 'thud', { f: 45, d: .6, gain: .6 }); cue(a + .3, 'whoosh', { d: .3, gain: .25 }); cue(a + 1.0, 'thud', { f: 120, d: .15, gain: .3 }); };
+endCard.cue = a => { cue(a + .05, 'boom', { gain: .55 }); cue(a + 1.0, 'thud', { f: 110, d: .15, gain: .25 }); };
 
 // =====================================================================================
 // RUNTIME

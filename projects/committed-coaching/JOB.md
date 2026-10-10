@@ -2,8 +2,8 @@
 
 - **Client:** Jackson Farrier, Committed Coaching (@jacksonfarrier, committedcoaching.scos-app.com). Online coach for male business owners.
 - **Brief (Hunter, 10 Oct 2026):** turn 7 raw iPhone takes into one video. A pilot for the "talking-head motion graphics for coaches" offer.
-- **Status:** v3 built 10 Oct 2026: native 50fps frames straight from the iPhone MOVs (no re-encode, no 22% zoom, no grain), CRF 10, graphics re-timed to the words. Boss PASS round 3, face + text checks clear. Music still not added (80cr Lyria 3 quote awaiting go-ahead).
-- **Cost:** $0 / 0 credits (local render; reuses the USE template engine plus the Magnific SFX library).
+- **Status:** v4 built 10 Oct 2026: v3 picture plus a Lyria 3 music bed (80cr, approved) and Ocular Sounds SFX (the new sfx-lib). -16.1 LUFS. Boss PASS on the v3 picture.
+- **Cost:** 80 credits (Lyria 3 music, 10 Oct 2026). The rest was a local render.
 
 ## Build
 - Template copied from `projects/use-definitions` and rebranded: black #0A0A0A, red #E02020, Inter, cracked COMMITTED wordmark logo.

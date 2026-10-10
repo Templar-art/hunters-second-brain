@@ -1149,3 +1149,6 @@ Hunter approved real SFX: 24 takes (whoosh, pop, click, impact, shatter, riser) 
 
 14 Definitions and 5 Q&A episodes were built through the template. Every one passed the tracked face check and the boss-review loop before sending. The Q&A series name is still a placeholder. Logged on [[use-definitions-series]].
 ## [2026-10-10] query | Bebita storefront showed no products: API app lacks publications scope, so products need publishing to Online Store
+
+## [2026-10-10] ingest | Ocular Sounds SFX library
+Filed 192 Ocular sounds (Foundation, Pendulum, Aperture, Rainforest) into ~/Music/SFX Library with a catalog.csv. The Committed Coaching sfx-lib was rebuilt on Foundation impacts, booms, whooshes, hits and risers. v4 of the not-your-guy reel adds an 80cr Lyria music bed.
