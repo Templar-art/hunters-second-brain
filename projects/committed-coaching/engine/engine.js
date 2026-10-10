@@ -189,13 +189,14 @@ function chunkWords(words) {
 function captions(T) {
   T = BASE_T;   // captions are sharp: drawn at the frame centre, never blended across a chunk switch
   const wnd = (EP.captions || []).find(([a, b]) => win(T, a, b)); if (!wnd) return;
-  const [wa, wb, yy, style] = wnd, SZ = 66, y = typeof yy === 'function' ? yy(T) : yy, dark = style === 'dark';
+  const [wa, wb, yy, style, size] = wnd, SZ = size || 66, y = typeof yy === 'function' ? yy(T) : yy, dark = style === 'dark';
   for (let c = 0; c < CHUNKS.length; c++) {
     const ch = CHUNKS[c], carried = ch[0].s < wa, st = carried ? wa : Math.max(ch[0].s, wa + .15), last = ch[ch.length - 1];   // mid-sentence cut: chunk carries over settled; otherwise first caption after a cut waits .15s
     const en = Math.min(CHUNKS[c + 1] ? CHUNKS[c + 1][0].s : 1e9, last.e + .45, wb);
     if (!win(T, st, en) || ch[0].s >= wb || (carried && last.e < wa)) continue;   // finished lines don't carry across a cut
     font(400, SZ, COND); g.letterSpacing = '1px';
-    const sp = 16, ws = ch.map(w => g.measureText(w.w.toUpperCase()).width), total = ws.reduce((a, b) => a + b, 0) + sp * (ch.length - 1);
+    let sp = 16, ws = ch.map(w => g.measureText(w.w.toUpperCase()).width), total = ws.reduce((a, b) => a + b, 0) + sp * (ch.length - 1);
+    if (total > W - 180) { const k = (W - 180) / total; font(400, SZ * k, COND); sp *= k; ws = ws.map(w => w * k); total *= k; }   // long chunks shrink to fit, never leave the frame
     const xs = []; let x = W / 2 - total / 2; ws.forEach(w => { xs.push(x); x += w + sp; });
     let a = 0; ch.forEach((w, i) => { if (T >= w.s) a = i; });
     const pa = Math.max(0, a - 1), k = a === 0 ? 1 : expo((T - ch[a].s) / .16);
@@ -541,7 +542,7 @@ function led(txt, x, y, h, col = BLUE, { ghost = true, align = 'left' } = {}) {
   g.restore(); return tw; }
 // Gym interval-timer HUD (top-left corner, well clear of the face): counts the reel's own clock.
 function gymClock(T, p = 1) { if (p <= 0) return; g.save(); g.globalAlpha = p; g.fillStyle = 'rgba(8,8,8,.82)'; g.beginPath(); g.roundRect(44, 110, 300, 104, 10); g.fill();
-  const s = Math.floor(T), go = T >= 29.88; led(go ? 'GO' : `00:${String(s).padStart(2, '0')}`, 194, 128, 66, go && Math.floor(T * 4) % 2 ? WHITE : BLUE, { align: 'center' }); g.restore(); }
+  const s = Math.floor(Math.max(0, T)), go = T >= 29.88; led(go ? 'GO' : `00:${String(s).padStart(2, '0')}`, 194, 128, 66, go && Math.floor(T * 4) % 2 ? WHITE : BLUE, { align: 'center' }); g.restore(); }
 // Stencil "rejected" stamp: red ink border box, Anton, ink speckle knocked out. Lands at `at` (y below the chin).
 function stamp(T, at, txt, y, rot = -.07, mark = '✗') { const q = (T - at) / .16; if (q <= 0) return; const s = q < 1 ? lerp(2.2, 1, expo(q)) : 1;
   g.save(); g.translate(540, y); g.rotate(rot); g.scale(s, s); g.globalAlpha = clamp(q * 2); font(400, 84, COND); g.letterSpacing = '3px'; const w = g.measureText(txt).width + 120;
@@ -581,7 +582,7 @@ function endCard(T, a, dur, l1 = 'COACHING THAT', l2 = 'GETS RESULTS', l3 = 'FOR
   const t = T - a; g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
   { const r = rng(91); g.lineCap = 'round'; for (let k = 0; k < 30; k++) { g.strokeStyle = `rgba(255,255,255,${.01 + r() * .025})`; g.lineWidth = 40 + r() * 90; g.beginPath(); const x = r() * W, y = r() * H; g.moveTo(x, y); g.lineTo(x + 300 * (r() - .5), y + 120 * (r() - .5)); g.stroke(); } }   // chalk-dusted black
   if (LOGO && !LOGO_W) { LOGO_W = Object.assign(document.createElement('canvas'), { width: LOGO.width, height: LOGO.height }); const x = LOGO_W.getContext('2d'); x.drawImage(LOGO, 0, 0); x.globalCompositeOperation = 'source-in'; x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, LOGO.width, LOGO.height); }
-  if (LOGO_W) { const q = t / .18, s = q < 1 ? lerp(1.6, 1, expo(q)) : 1, lw = 940, lh = lw * LOGO.height / LOGO.width; if (q > 0) { g.save(); g.globalAlpha = clamp(q * 2); g.translate(540, 560); g.scale(s, s); g.drawImage(LOGO_W, -lw / 2, -lh / 2, lw, lh); g.restore(); } }
+  if (LOGO_W) { const q = t / .18, s = q < 1 ? lerp(1.6, 1, expo(q)) : 1, lw = 820, lh = lw * LOGO.height / LOGO.width; if (q > 0) { g.save(); g.globalAlpha = clamp(q * 2); g.translate(540, 560); g.scale(s, s); g.drawImage(LOGO_W, -lw / 2, -lh / 2, lw, lh); g.restore(); } }
   const u = expo((t - .3) / .35); if (u > 0) slab(70, 680, 940 * u, 22, BLUE, -.6);
   [[l1, .45, WHITE], [l2, .6, BLUE], [l3, .75, WHITE]].forEach(([s_, d, c], i) => rise(s_, 540, 900 + i * 150, t - d, { size: 150, w: 400, col: c, dur: .4, align: 'center' }));
   const h = back((t - 1.0) / .35); if (h > 0) { g.save(); g.translate(540, 1420); g.scale(h, h); font(400, 70, COND); const w = g.measureText('@JACKSONFARRIER').width + 90; slab(-w / 2, -60, w, 110, BLUE); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('@JACKSONFARRIER', 0, 25); g.textAlign = 'left'; g.restore(); }
