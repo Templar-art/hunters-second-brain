@@ -89,7 +89,7 @@ def swell(d=1.5):
 # ---------- sample library (sfx-lib/<type>_N.wav, Magnific/ElevenLabs takes) ----------
 # Takes are trimmed to their first transient, normalised, and skipped if near-silent.
 # Placement anchor per type: 'onset' (hits) or 'peak' (whoosh, riser).
-LIB, ANCHOR = {}, {"whoosh": "peak", "riser": "peak", "hit": "peak"}   # hit = whoosh into impact: the impact lands on the cue
+LIB, ANCHOR = {}, {"whoosh": "peak", "riser": "peak", "hit": "peak", "soft": "peak", "ding": "peak"}   # hit = whoosh into impact: the impact lands on the cue
 for f in sorted(glob.glob(os.path.join(os.path.dirname(__file__), "..", "sfx-lib", "*.wav"))):
     kind = os.path.basename(f).rsplit("_", 1)[0]
     w = wave.open(f); x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float).reshape(-1, w.getnchannels()) / 32768
@@ -148,6 +148,7 @@ for c in kept:
     elif k == "riser": placeS("riser", t, (g or .25) * .9, 0, .3, rate=1.0, fallback=riser(c.get("d", .8))) if "riser" in LIB else place(t - c.get("d", .8), riser(c.get("d", .8)), g or .25, 0, .3)
     elif k == "boom": placeS("boom", t, (g or .5), 0, .05, rate=1.0, fallback=thud(45, .7))
     elif k == "hit": placeS("hit", t, (g or .45), pan * .3, .05, rate=1.0, fallback=thud(60, .4))
+    elif k in ("soft", "sub", "ding"): placeS(k, t, g or .3, pan * .3, .03, rate=1.0, fallback=whoosh(.4, .2))   # premium kit: Ocular takes, near-dry
     elif k == "chime": place(t, chime(c.get("f", 880)), g or .12, pan, .45)
     elif k == "swell": place(t, swell(c.get("d", 1.5)), g or .2, 0, .5)
 

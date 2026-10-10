@@ -644,7 +644,7 @@ window.ready = (async () => {
   EP_DIR = new URLSearchParams(location.search).get('ep') || '.';
   await document.fonts.ready;
   await Promise.all(['900 40px Inter', '700 40px Inter', '600 40px Inter', '500 40px Inter',
-    '500 40px "JetBrains Mono"', '400 40px "JetBrains Mono"', '400 40px Anton', '400 40px "Permanent Marker"', '400 40px Chalkduster'].map(f => document.fonts.load(f)));
+    '500 40px "JetBrains Mono"', '400 40px "JetBrains Mono"', '400 40px Anton', '400 40px "Permanent Marker"', '400 40px Chalkduster', '400 40px "Instrument Serif"', 'italic 400 40px "Instrument Serif"'].map(f => document.fonts.load(f)));
   LOGO = await img(`${EP_DIR}/../../brand/logo.png`);
   META = await fetch(`${EP_DIR}/build/meta.json`).then(r => r.json());
   TRACK = await fetch(`${EP_DIR}/build/face.json`).then(r => r.ok ? r.json() : null).catch(() => null);
