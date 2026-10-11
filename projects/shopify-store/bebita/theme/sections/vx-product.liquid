@@ -80,21 +80,47 @@
         {{ section.settings.size_guide }}
       </div></details>
       {%- liquid
-        assign fab = 'performance'
+        assign fab = 'perf-bottom'
+        if product.tags contains 'top'
+          assign fab = 'perf-top'
+        elsif product.tags contains 'one-piece'
+          assign fab = 'perf-onepiece'
+        elsif product.tags contains 'layer'
+          assign fab = 'layer'
+        endif
         if product.title contains 'Dynamic'
-          assign fab = 'seamless'
-        elsif product.title contains 'Sarong'
+          if product.tags contains 'top'
+            assign fab = 'seamless-top'
+          else
+            assign fab = 'seamless-bottom'
+          endif
+        endif
+        if product.title contains 'Sarong'
           assign fab = 'sarong'
         elsif product.title contains 'Bedazzled'
           assign fab = 'bedazzled'
         elsif product.type == 'Swim'
-          assign fab = 'swim'
+          if product.tags contains 'top'
+            assign fab = 'swim-top'
+          else
+            assign fab = 'swim'
+          endif
         endif
       -%}
       <details><summary>Fabric &amp; care</summary><div class="vx-acc__body">
         {%- case fab -%}
-          {%- when 'seamless' -%}
+          {%- when 'seamless-bottom' -%}
             <p>Seamless knit in a soft nylon and elastane blend, with sculpting contour lines and a high-rise ribbed waistband. Four-way stretch, breathable, sweat-wicking and quick-drying, and made to stay opaque when you squat.</p>
+          {%- when 'seamless-top' -%}
+            <p>Seamless knit in a soft nylon and elastane blend, with a ruched front and a halter neck. Light, comfortable support for training and everyday wear, breathable and quick-drying. Pairs with any of our seamless bottoms.</p>
+          {%- when 'perf-top' -%}
+            <p>Smooth, buttery-soft performance fabric in a nylon and elastane blend with a matte finish. Gives a supportive, second-skin hold for low to medium impact training, and stays breathable, sweat-wicking and quick-drying from warm-up to cool-down.</p>
+          {%- when 'perf-onepiece' -%}
+            <p>Sculpting performance fabric in a nylon and elastane blend, with a front zip so it's easy to get in and out of. Holds you in from neckline to hem with four-way stretch, and stays breathable and quick-drying through a full session.</p>
+          {%- when 'layer' -%}
+            <p>Lightweight stretch fabric in a nylon and elastane blend, with a high neck, long sleeves and a full front zip. Slim cropped fit that layers over any of our bras for warm-ups, cool-downs and the walk to the gym.</p>
+          {%- when 'swim-top' -%}
+            <p>Swim-grade nylon and elastane with a soft matte finish and lining. Adjustable ties so you can set the fit and coverage you want, and it dries fast between swims.</p>
           {%- when 'swim' -%}
             <p>Swim-grade nylon and elastane with a soft matte finish and full lining. Holds its shape in and out of the water and dries fast.</p>
           {%- when 'sarong' -%}
@@ -104,7 +130,7 @@
           {%- else -%}
             <p>Smooth, buttery-soft performance fabric in a nylon and elastane blend. Four-way stretch with a sculpting hold and a matte finish. Breathable, sweat-wicking and quick-drying, and made to stay opaque when you squat.</p>
         {%- endcase -%}
-        {%- if fab == 'swim' or fab == 'sarong' or fab == 'bedazzled' -%}
+        {%- if fab == 'swim' or fab == 'swim-top' or fab == 'sarong' or fab == 'bedazzled' -%}
           <p><strong>Care:</strong> rinse in cold water after every swim to wash out salt, chlorine and sunscreen. Hand wash cold, don't wring, and dry flat in the shade. No tumble dryer, bleach or iron.</p>
         {%- else -%}
           <p><strong>Care:</strong> turn inside out and machine wash cold on a gentle cycle. No fabric softener or bleach. Line dry in the shade, and don't tumble dry or iron.</p>

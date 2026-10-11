@@ -236,3 +236,27 @@ body.vx-body{margin:0;background:var(--vx-paper);color:var(--vx-ink);font:400 15
 .vx-searchbar .vx-buy{width:auto;margin:0;padding:0 22px}
 
 .vx-acc .vx-acc__fine{font-size:12px;color:#666;margin:8px 0 12px}
+
+/* phone fit: card titles use the card size, not the theme's h3; long words wrap; nothing widens the page */
+.vx-card__title{font-size:inherit;line-height:inherit;letter-spacing:inherit;font-family:inherit;overflow-wrap:anywhere;hyphens:auto}
+.vx-grid>li,.vx-card__meta>*{min-width:0}
+.vx-chips{max-width:100vw;box-sizing:border-box}
+@media (max-width:989px){.vx-card__meta{grid-template-columns:1fr;font-size:12px;padding:8px 10px 14px}.vx-card__price{text-align:left}}
+
+/* calmer type scale (Hunter 2026-10-11: text too big) */
+.vx-hero__title{font-size:clamp(26px,4.5vw,46px)}
+.vx-tile span{font-size:clamp(15px,2vw,24px)}
+.vx-sechead h2{font-size:16px}
+.vx-colhead h1,.vx-page h1{font-size:clamp(20px,2.4vw,28px)}
+.vx-pdp__title{font-size:16px}
+.vx-pdp__price{font-size:15px}
+.vx-cart h1{font-size:22px}
+.vx-addons h2{font-size:15px}
+.vx-pop__title{font-size:clamp(22px,3vw,30px)}
+.vx-pop__code{font-size:18px}
+.vx-page__body{font-size:14px}
+.vx-drawer li a{font-size:14px}
+.vx-head__nav a{font-size:13px}
+.vx-acc .vx-acc__body{font-size:13px}
+@media (min-width:990px){.vx-card__meta{font-size:13px}}
+@media (max-width:480px){.vx-announce{font-size:10px;padding:10px 8px}.vx-card__sub{font-size:11px}}

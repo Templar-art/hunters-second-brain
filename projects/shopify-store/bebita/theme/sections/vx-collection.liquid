@@ -6,7 +6,7 @@
   </div>
   {%- if section.settings.chips.links.size > 0 -%}
     <nav class="vx-chips" aria-label="Collections">
-      {%- for link in section.settings.chips.links -%}<a href="{{ link.url }}"{% if link.url == collection.url %} aria-current="page"{% endif %}>{{ link.title }}</a>{%- endfor -%}
+      {%- for link in section.settings.chips.links -%}{%- if link.type != 'collection_link' and link.type != 'catalog_link' -%}{%- continue -%}{%- endif -%}<a href="{{ link.url }}"{% if link.url == collection.url %} aria-current="page"{% endif %}>{{ link.title }}</a>{%- endfor -%}
     </nav>
   {%- endif -%}
   {%- if collection.products.size > 0 -%}
