@@ -15,18 +15,28 @@
 4. **PayPal → Manage:** log in to a real PayPal account.
 5. **Test order:** buy the $29 sarong with your own card, check the confirmation email arrives, then refund it in Orders.
 
+## Step 1b: new accounts (you don't have the old ones, ~30 min)
+You don't have the old @bebitaactive / @bebitaswim, so start fresh under your own control:
+1. **Instagram:** create **@bebitacollective** (it matches the store name; if it's taken, try @bebita.collective or @shopbebita). Use one account for Active and Swim together. Set it as a **Business** account.
+2. **Facebook page:** create a "Bebita Collective" page, which Meta needs for ads, and link it to the Instagram.
+3. **TikTok (optional but worth it):** the same handle. Post the same videos there for free reach.
+4. **Fill the grid before running ads:** post **9–12 posts** (the AI model shots, carousels and shoot-day clips). When ad viewers tap through to an empty profile, it kills trust.
+5. Tell me the handle and I'll add it to the website footer.
+
+**Why it matters:** with no old followers, the free launch week will be smaller, so **paid ads do more of the work.** Expect the first sales to come mostly from ads in week 2, not from week 1.
+
 ## Step 2: tracking + free sales tools (~1 hour, before any ads)
-1. **Sales channels → add "Facebook & Instagram"** and connect the Bebita Facebook page, both IG accounts and a Meta ad account. This installs the Meta pixel + Conversions API, which ads need to find buyers, and syncs the products as a catalogue.
+1. **Sales channels → add "Facebook & Instagram"** and connect your new Facebook page, new Instagram account (Step 1b) and a Meta ad account. This installs the Meta pixel + Conversions API, which ads need to find buyers, and syncs the products as a catalogue.
 2. **Turn on Instagram Shopping** in the same channel. Once approved (a few days), tag products in posts and stories so people can tap to buy.
 3. **Sales channels → add "Google & YouTube"** and connect a Google account. This sends the products to Google Merchant Center (free listings on Google Shopping straight away) and sets up conversion tracking for Google Ads.
 4. **Marketing → Automations:** turn on the **Welcome** email (BEBITA10) and the **Abandoned checkout** email. The text is in `launch-copy.md`. Abandoned checkout alone usually wins back 5–10% of lost carts.
 5. **Install Judge.me (free)** for reviews. It emails buyers automatically after delivery to ask for one.
 
 ## Step 3: free launch week (no ad spend)
-1. Put the store link in both IG bios.
+1. Put the store link in the new account's bio.
 2. Post the 3 launch posts and the 3-frame story (copy is in `launch-copy.md`).
 3. **Post a story every day that week:** a new product, a "last sizes" update, a packing-orders video.
-4. **DM past customers and followers** who used to buy or comment: "We're back, final stock, 10% off with BEBITA10."
+4. **Follow and engage** with Gold Coast gym, pilates and beach accounts, and reply to every comment. You're starting from zero followers, so this week is about getting noticed.
 5. **Post on your own accounts** and ask your sister and a few friends with a following to share it.
 6. Expect your first sales here. They also "train" the Meta pixel before you pay for ads.
 

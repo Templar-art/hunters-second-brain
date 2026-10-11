@@ -1,20 +1,14 @@
 # Bebita relaunch copy (ready to paste)
 
-## Instagram bios (both accounts)
-**@bebitaactive**
-Bebita Active · the original run is back
-Final stock, when it's gone it's gone
-10% off your first order ↓
-[store link]
-
-**@bebitaswim**
-Bebita Swim · bikinis, one pieces, sarongs
-Final stock from the original run
+## Instagram bio (new account, e.g. @bebitacollective)
+Bebita · Active + Swim
+The original run, final stock. When it's gone, it's gone
+Sent from the Gold Coast · free shipping $150+
 10% off your first order ↓
 [store link]
 
 ## Relaunch post captions
-**Post 1 (both accounts)**
+**Post 1**
 We're back. 🤍
 The original Bebita run is live again, but only what's left. No restocks, so when your size is gone, it's gone.
 Shop now: link in bio. 10% off your first order when you sign up.
