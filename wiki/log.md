@@ -1155,3 +1155,4 @@ Filed 192 Ocular sounds (Foundation, Pendulum, Aperture, Rainforest) into ~/Musi
 ## [2026-10-10] ingest | Bebita live polish: size guide, fabric & care, AI colour first, international off, header fix
 ## [2026-10-11] ingest | Bebita: 13 crumpled flat-lays removed from the live store
 ## [2026-10-11] query | Bebita: payments not set up (no Shopify Payments account); launch-to-sales plan + 8 ad scripts written
+## [2026-10-11] ingest | Bebita: Hunter is the seller; payouts and onboarding in his name

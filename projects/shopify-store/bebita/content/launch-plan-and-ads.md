@@ -1,5 +1,7 @@
 # Bebita: launch-to-sales plan + ads to film
 
+**Who gets paid:** Hunter. The store, the payouts and the income are his.
+
 **The goal:** sell through 336 pieces (about $17,200 at full price) profitably. Every sale is cash back from stock you already own, so the only real costs are ads, Shopify/payment fees, postage and discounts.
 
 **The rule for ads:** spend no more than $1 in ads for every $3 in sales (a ROAS of 3 or more). Below that, pause and fix the ad or the offer before spending more.
@@ -8,7 +10,7 @@
 
 ## Step 1: get paid (do this before anything else, ~30 min)
 1. **Settings → Store details:** change the contact email to a real inbox, not the Apple hidden one.
-2. **Settings → Payments → Shopify Payments → Complete setup:** owner's details, ABN if there is one, and the BSB/account for payouts.
+2. **Settings → Payments → Shopify Payments → Complete setup:** use **your** details (Hunter): choose sole trader and enter your ABN (the 10x Visuals one works if you're a sole trader), plus **your** BSB and account so payouts land with you. Make sure the store owner account on Shopify is you as well (Settings → Users).
 3. **Check Apple Pay, Google Pay and Shop Pay are on.** This is the sign Shopify Payments worked.
 4. **PayPal → Manage:** log in to a real PayPal account.
 5. **Test order:** buy the $29 sarong with your own card, check the confirmation email arrives, then refund it in Orders.
@@ -25,7 +27,7 @@
 2. Post the 3 launch posts and the 3-frame story (copy is in `launch-copy.md`).
 3. **Post a story every day that week:** a new product, a "last sizes" update, a packing-orders video.
 4. **DM past customers and followers** who used to buy or comment: "We're back, final stock, 10% off with BEBITA10."
-5. **Your sister posts on her personal accounts** and asks a few friends with a following to share.
+5. **Post on your own accounts** and ask your sister and a few friends with a following to share it.
 6. Expect your first sales here. They also "train" the Meta pixel before you pay for ads.
 
 ## Step 4: shoot day (Hunter films: one day gets 2–3 weeks of ads)
@@ -70,6 +72,9 @@
 **As sizes sell out:**
 - Turn off ads for products with only 1–2 sizes left.
 - Run "last sizes" stories instead.
+
+## Tax (quick note)
+The sales are your income. If you're a sole trader with one ABN, Bebita sales count toward the same turnover as 10x Visuals. Once that total passes $75k a year you have to be registered for GST and charge it. Keep the Shopify payout reports and ask your accountant how to record it.
 
 ## Step 7: after the first sales
 1. Pack fast and post a "packing orders" story every time. It's free social proof.
@@ -125,9 +130,9 @@ These are written for Instagram/Facebook Reels and Stories (9:16). Every ad ends
 - **Caption:** Free shipping on orders over $150. Grab a full set and it's on us. Plus 10% off your first order with BEBITA10.
 - **Headline:** Free shipping over $150
 
-### Ad 7: Founder talking to camera (trust)
-- **Hook:** your sister to camera: "I'm [name], and I started Bebita."
-- **Script (20s):** "These are the last pieces from our original Active and Swim run. When they're gone, they're gone. Every top and bottom is sold on its own so you can get your real size in each. I pack every order myself on the Gold Coast."
+### Ad 7: Talking to camera (trust)
+- **Hook:** a model (or whoever's on camera) talking straight to the lens: "These are the last pieces of the original Bebita run."
+- **Script (20s):** "When they're gone, they're gone, with no restocks. Every top and bottom is sold on its own so you can get your real size in each. Every order is packed and sent from the Gold Coast in 1–2 days."
 - **On-screen text:** key words only. Keep it authentic, not polished.
 - **Headline:** From the Gold Coast
 
