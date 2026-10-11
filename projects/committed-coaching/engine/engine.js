@@ -33,6 +33,7 @@ const cue = (t, type, opts = {}) => CUES.push({ t, type, ...opts });
 
 // ---------- footage ----------
 const img = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = src; });
+let BR = null;   // current B-roll frame (EP.broll slots: {a, b, dir, n})
 let FR = null, MT = null, LOGO = null, META = { frames: 1 }, EP_DIR = '', TRACK = null, FBOX = null;
 // Past the last source frame, ping-pong the final 12 frames so the speaker never freezes.
 function fidx(T) {
@@ -45,6 +46,8 @@ async function load(T) {
   const i = fidx(T);
   FR = await img(`${EP_DIR}/build/frames/f${pad(i)}.jpg`);
   MT = await img(`${EP_DIR}/build/matte/m${pad(i)}.png`);
+  const sl = (EP.broll || []).find(b => T >= b.a && T < b.b);   // B-roll: one frame per output frame, held on its last frame if the slot outruns the clip
+  BR = sl ? await img(`${EP_DIR}/${sl.dir}/f${pad(Math.min(sl.n, Math.floor((T - sl.a) * FPS) + 1))}.jpg`) : null;
   // tracked face for this frame (falls back to the fixed box); FACE follows it so crops stay centred
   if (TRACK) { const b = TRACK[i - 1]; FBOX = { x: b[0], y: b[1], w: b[2], h: b[3] }; FACE = { x: b[0] + b[2] / 2, y: b[1] + b[3] * .5 }; }
 }

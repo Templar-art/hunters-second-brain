@@ -25,3 +25,26 @@
   - Soft Ocular SFX (soft, sub, ding kits). Same Lyria music bed at 0.18, faded for the shorter end.
 - Rule learned: nothing sits on the COMMITTED shirt print, and type lives below it. The automated text check can't see printed text in the footage; the boss review caught it.
 - Boss review: a fresh premium-brief reviewer, PASS on round 4 (4/4/5/4/4). Face and text checks clear (only the end dip to black).
+
+## Premium v3: multi-reviewer polish (11 Oct 2026)
+- Jackson liked the premium cut, and Hunter wants it perfected with more B-roll. Jackson films his own B-roll; Hunter picked that over stock at ~600cr per clip. `SHOTLIST.md` asks for 2 clips: D, one heavy rep on "to treat your body", and H, the hero shot of his forearm spotting a client on "I'll handle the rest". They drop in with `tools/broll.py`. Empty slots fall back to him on camera.
+- The engine now supports B-roll: an `EP.broll` slot loads one frame per output frame.
+- Reviewers, run in parallel and merged:
+  - a premium creative director: 6 rounds, final PASS at 4/4/4/4/4
+  - an Instagram retention strategist: hook 3→4, pacing 3→4
+  - a typographer for pixel QA: 2 rounds
+  - a numeric audio and loop-seam check
+- Changes made:
+  - the stock stand-in was dropped, since a stranger presented as his coaching misleads
+  - B-roll cut from 8 slots to 2, keeping his on-camera finger count during the list
+  - a PDF widget ("Opened: 0 times") that grows open on "forget"
+  - the "FOR BUSINESS OWNERS" kicker and the hook subline both set from frame 0
+  - no end card: it ends on the CTA and loops back into the hook
+  - a punch-in on "check-ins"
+  - curly apostrophes, optical centring, better contrast
+- Output: `not-your-guy-premium-v3.mp4`, 31.76s, 50fps, −15.9 LUFS, −1.9 dBTP. Face and text checks fully clear. 0 credits.
+- Open items for Hunter and Jackson:
+  - the real title of the free video, to add a value line to the CTA
+  - set the Instagram cover at about 2.0–2.5s
+  - consider a "comment FIT" keyword DM in the caption
+  - the scale and PDF numbers are illustrative
