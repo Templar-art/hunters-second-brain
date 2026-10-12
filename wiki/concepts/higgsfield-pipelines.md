@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [ai-generation, workflow, higgsfield, magnific]
-updated: 2026-10-06
+updated: 2026-10-12
 ---
 
 # Higgsfield Pipelines (AI generation routing)
@@ -28,6 +28,7 @@ How 10x routes real-estate AI image/video work. Full KB with T1–T10 prompt tem
 
 ## Hard rules
 - **Money gate:** any credit-spending op needs Hunter's explicit go-ahead. Git is free; credits never are.
+- **Editorial by default (2026-10-12):** every generation (stills, staging, renders, video) aims for a clean, magazine-grade editorial finish. Get it from composition and finish, and keep the light bright and airy, because "editorial" wording alone drifts moody (see [[staging-rules]]). Blender → video route: [[blender-blockout-pipeline]].
 - Staging rules → [[staging-rules]].
 - Skills: vendored in `.agents/skills/` (read the relevant `SKILL.md` first); discover models with unfiltered `higgsfield model list`.
 

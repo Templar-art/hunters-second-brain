@@ -26,3 +26,6 @@ Building the block-out is free. The generation step always gets a cost quote and
 
 ## Block-outs built
 - 2026-10-12: [living-room-pushin-v1.blend](../../projects/blender-blockouts/living-room-pushin-v1.blend), the first live-MCP test. A 5×4m room with the sofa on the back wall and a 24mm push-in from 1.9m to 0.5m back over 5s (120f @24fps). Gotcha: in a script, calling `frame_set()` between keyframe inserts re-evaluates the animation and overwrites the new pose, so pass `frame=` to `keyframe_insert` instead.
+
+## Default route (2026-10-12, Hunter picked it after the shot-1 test)
+Blender guide frame → **GPT Image 2.5 Sunburst** (high, 2K, about 2.75 HF credits) for an **editorial** look → **Seedance 2.5 on Higgsfield** (omni_reference start frame, 96 HF credits per 8s at 1080p). Kling 2.5 on Magnific (725cr for the test) held the move but redesigned the pool late in the clip, so it is not the default.

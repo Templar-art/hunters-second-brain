@@ -1168,3 +1168,6 @@ Filed 192 Ocular sounds (Foundation, Pendulum, Aperture, Rainforest) into ~/Musi
 
 ## [2026-10-12] migrate | Blender block-out pipeline installed
 Blender 5.2.2 + blender-mcp server + addon installed; headless block-out test passed. New page [[blender-blockout-pipeline]].
+
+## [2026-10-12] query | Editorial look is the default
+Hunter set an editorial finish as the default for ALL generations. Added to [[higgsfield-pipelines]] hard rules; Blender route default recorded in [[blender-blockout-pipeline]].
