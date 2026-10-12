@@ -23,3 +23,6 @@ Magnific's MCP has a built-in 3D Scene builder (cameras, keyframes, captures) th
 
 ## Rules
 Building the block-out is free. The generation step always gets a cost quote and Hunter's go-ahead first. Never full-frame a drone wide (see [[staging-rules]]).
+
+## Block-outs built
+- 2026-10-12: [living-room-pushin-v1.blend](../../projects/blender-blockouts/living-room-pushin-v1.blend), the first live-MCP test. A 5×4m room with the sofa on the back wall and a 24mm push-in from 1.9m to 0.5m back over 5s (120f @24fps). Gotcha: in a script, calling `frame_set()` between keyframe inserts re-evaluates the animation and overwrites the new pose, so pass `frame=` to `keyframe_insert` instead.
