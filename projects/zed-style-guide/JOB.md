@@ -3,7 +3,7 @@ client: zed
 address: n/a (style guide, no property)
 opened: 2026-10-09
 status: review        # intake → generating → review → delivered
-cost: { credits: 720, aud: 0 }
+cost: { credits: 1020, aud: 0 }
 ---
 
 # Job — ZED modern-luxury style guide
@@ -31,3 +31,4 @@ Client-facing: goes to Zed so he can **pick one style** for a furnished home. No
 ---
 _Vault: [[jarvis]]_
 - 2026-10-09 Hunter: deliverable is for Zed to pick a style → master sheet header reworded client-facing ("Choose your furnishing style"); deep research running to deepen room kits before rebuild
+- 2026-10-12 generating: 4 living-room anchors on Nano Banana Pro 2k, 4 × 75 = 300cr (total 1,020cr). All 4 landed: exact inventory, bright exposure, no text. Awaiting approval before the 36 referenced rooms (2,700cr)
