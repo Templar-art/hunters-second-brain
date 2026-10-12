@@ -1165,3 +1165,6 @@ Filed 192 Ocular sounds (Foundation, Pendulum, Aperture, Rainforest) into ~/Musi
 ## [2026-10-12] query | ZED style boards final
 
 01 dining end chairs masked out (75cr), Option 02 rebuilt with timber contrast (750cr). Job total 4,845cr. Delivery folder built for Zed.
+
+## [2026-10-12] migrate | Blender block-out pipeline installed
+Blender 5.2.2 + blender-mcp server + addon installed; headless block-out test passed. New page [[blender-blockout-pipeline]].

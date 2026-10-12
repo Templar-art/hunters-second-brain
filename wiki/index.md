@@ -56,6 +56,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 
 ## Concepts
 - [[sfx-library]]: the Ocular Sounds library (192 sounds, ~/Music/SFX Library) and how the motion engine uses it
+- [[blender-blockout-pipeline]] — Claude builds a Blender grey block-out + camera path, AI video skins it; installed 2026-10-12
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
 - [[zed-style]] — ZED's canonical staging style, now "Option 01" (warm ivory/oatmeal/walnut/olive/brass); 3rd style change, dated trail of older eras kept; + proposed modern-luxury Options 02–04 (2026-10-09)
