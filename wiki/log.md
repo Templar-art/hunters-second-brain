@@ -1161,3 +1161,7 @@ Filed 192 Ocular sounds (Foundation, Pendulum, Aperture, Rainforest) into ~/Musi
 ## [2026-10-12] query | ZED style boards v2
 
 40 rooms on Nano Banana Pro with anchor references (3,000cr; job total 3,720cr), 4 boards assembled locally. Logged on [[zed-style]].
+
+## [2026-10-12] query | ZED style boards final
+
+01 dining end chairs masked out (75cr), Option 02 rebuilt with timber contrast (750cr). Job total 4,845cr. Delivery folder built for Zed.
