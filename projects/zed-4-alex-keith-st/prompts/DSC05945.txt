@@ -1,0 +1,1 @@
+MASKED (T10): mask the person filming on the gazebo deck plus a 10px margin and their shadow. Fill prompt: the empty dark timber gazebo deck continuing naturally, the cream rendered wall and the screen door behind, soft natural daylight.
