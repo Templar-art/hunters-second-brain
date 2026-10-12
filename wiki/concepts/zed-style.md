@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [virtual-staging, style, zed]
-updated: 2026-10-09
+updated: 2026-10-12
 ---
 
 # ZED Style — "Option 01" (canonical staging library)
@@ -58,7 +58,10 @@ Never combine "preserve the exact camera angle and architecture" with "change th
 - Placement locks (footprint + axis vs a named fixed feature + direction cue) apply to every hero piece — see [[staging-rules]].
 - Round dining table fallback for end-chair risk is superseded for ZED specifically — Option 01's oval pedestal table is itself end-chair-proof (rounded ends, no flat end to seat someone at); the general round-table fallback still applies to other clients.
 
-## Proposed modern-luxury alternatives (2026-10-09, not approved)
+## Proposed modern-luxury alternatives (2026-10-09)
+
+**✅ 2026-10-12: Zed chose Option 04 Riviera Resort for the furnished-home job.** That makes it an approved style for that job. It does not replace Option 01 as his default; the next job still needs the choice confirmed. Riviera's room kit and anchor images are in `projects/zed-style-guide/rooms/04-*` and its prompts are in `prompts/option-04-riviera-resort/`. Known model quirks for Riviera: oval or rectangular tables pick up end chairs, so round tables are the proven fix; and terracotta pots go orange, so call them matte sand stoneware.
+
 Example directions drafted to show Zed, deliverable at [zed-modern-luxury-style-guide.html](../../projects/zed-style-guide/zed-modern-luxury-style-guide.html) (artifact: https://claude.ai/artifact/G4GcAynouMDafi4zVLJLEU). **Option 01 above stays canonical**; none of these is used on a job until Zed picks one and it gets its own full room library.
 - **02 Gallery Stone** — chalk/plaster/honed travertine, minimal smoked oak, bronze; curved chalk-bouclé sofa, travertine block coffee table, round travertine pedestal dining. New builds, apartments.
 - **03 Smoked Oak Suite** — hotel-suite: mushroom/taupe, espresso oak, cognac leather, smoked glass, antique bronze; channel-stitched king. Prestige listings. Exposure risk: dark palette pulls the frame moody, so prompts pin true exposure.

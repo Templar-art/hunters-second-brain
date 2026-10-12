@@ -1171,3 +1171,7 @@ Blender 5.2.2 + blender-mcp server + addon installed; headless block-out test pa
 
 ## [2026-10-12] query | Editorial look is the default
 Hunter set an editorial finish as the default for ALL generations. Added to [[higgsfield-pipelines]] hard rules; Blender route default recorded in [[blender-blockout-pipeline]].
+
+## [2026-10-12] decision | Zed picks Riviera Resort
+
+Zed chose Option 04 Riviera Resort for the furnished-home job. Logged on [[zed-style]].
