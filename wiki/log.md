@@ -1157,3 +1157,7 @@ Filed 192 Ocular sounds (Foundation, Pendulum, Aperture, Rainforest) into ~/Musi
 ## [2026-10-11] query | Bebita: payments not set up (no Shopify Payments account); launch-to-sales plan + 8 ad scripts written
 ## [2026-10-11] ingest | Bebita: Hunter is the seller; payouts and onboarding in his name
 ## [2026-10-11] ingest | Bebita: no access to old IG accounts; footer links removed, plan switched to new accounts
+
+## [2026-10-12] query | ZED style boards v2
+
+40 rooms on Nano Banana Pro with anchor references (3,000cr; job total 3,720cr), 4 boards assembled locally. Logged on [[zed-style]].
