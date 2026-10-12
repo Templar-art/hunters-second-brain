@@ -3,7 +3,7 @@ client: zed
 address: n/a (style guide, no property)
 opened: 2026-10-09
 status: review        # intake → generating → review → delivered
-cost: { credits: 3720, aud: 0 }
+cost: { credits: 4020, aud: 0 }
 ---
 
 # Job — ZED modern-luxury style guide
@@ -33,3 +33,4 @@ _Vault: [[jarvis]]_
 - 2026-10-09 Hunter: deliverable is for Zed to pick a style → master sheet header reworded client-facing ("Choose your furnishing style"); deep research running to deepen room kits before rebuild
 - 2026-10-12 generating: 4 living-room anchors on Nano Banana Pro 2k, 4 × 75 = 300cr (total 1,020cr). All 4 landed: exact inventory, bright exposure, no text. Awaiting approval before the 36 referenced rooms (2,700cr)
 - 2026-10-12 generating: 36 rooms on Nano Banana Pro 2k, each with its option's living anchor as reference, 36 × 75 = 2,700cr (job total 3,720cr). Boards v2 assembled locally in boards-v2/ (code-rendered title, swatches, captions). Known misses: end chairs at 01 dining, 01 outdoor dining, 04 dining, 04 outdoor dining
+- 2026-10-12 redo: 4 dining rooms, 300cr (job total 4,020cr). Fixed with round tables + 6 chairs evenly around: 01 outdoor dining, 04 dining, 04 outdoor dining. 01 indoor dining (oval, Zed spec) STILL got 8 chairs incl. ends despite 'exactly six'. v1 rejects in rooms/v1-rejected/
