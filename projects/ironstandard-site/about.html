@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/motion.css">
 </head>
 <body>
 
@@ -60,13 +61,12 @@
 
 <main id="main">
 
-  <section class="page-head">
-    <div class="container grid">
-      <div class="ph-title">
-        <p class="mark rv"><span class="mark-t">About us</span></p>
-        <h1 class="rv">Built on what Oslo is missing</h1>
-      </div>
-      <p class="lede rv">Iron Standard exists because training seriously in this city has meant compromising on either the equipment or the environment.</p>
+  <section class="page-hero">
+    <div class="page-hero-media" aria-hidden="true"><img src="assets/racks.jpg" alt="" width="480" height="1083" fetchpriority="high" decoding="async"></div>
+    <div class="container page-hero-copy">
+      <p class="eyebrow">About us</p>
+      <h1 class="page-title"><span class="ln"><span>Built on what Oslo is missing</span></span></h1>
+      <p class="lede">Iron Standard exists because training seriously in this city has meant compromising on either the equipment or the environment.</p>
     </div>
   </section>
 
@@ -135,10 +135,20 @@
 
   <!-- 03 BAND: one image, one idea -->
   <section class="band" aria-label="The training environment">
-    <img src="assets/band-2.jpg" alt="A training floor lit with warm light and orange equipment." width="558" height="939" loading="lazy" decoding="async">
+    <div class="band-bg" aria-hidden="true"><img src="assets/band-2.jpg" alt="" width="558" height="939" loading="lazy" decoding="async"></div>
     <div class="band-copy">
-      <div class="container">
-        <p class="rv">We set the standard.</p>
+      <p class="band-line"><span class="ln"><span>We set the standard.</span></span></p>
+    </div>
+  </section>
+
+  <!-- MARQUEE: words of the brand, slow and endless -->
+  <section class="marquee" aria-label="Discipline, community, strength, intent, consistency. We set the standard.">
+    <div class="marquee-track" aria-hidden="true">
+      <div class="marquee-row">
+        <span>Discipline</span><b></b><span>Community</span><b></b><span>Strength</span><b></b><span>Intent</span><b></b><span>Consistency</span><b></b><span>We set the standard</span><b></b>
+      </div>
+      <div class="marquee-row">
+        <span>Discipline</span><b></b><span>Community</span><b></b><span>Strength</span><b></b><span>Intent</span><b></b><span>Consistency</span><b></b><span>We set the standard</span><b></b>
       </div>
     </div>
   </section>
@@ -172,14 +182,16 @@
     </div>
   </section>
 
-  <section class="sec sec--dark sec--ruled">
+  <section class="close close--page">
+    <div class="close-bg" aria-hidden="true"><img src="assets/facility-a.jpg" alt="" width="643" height="1083" loading="lazy" decoding="async"></div>
+    <img class="close-logo" src="assets/logo-white.png" alt="" aria-hidden="true" width="3165" height="370" loading="lazy" decoding="async">
     <div class="container grid">
       <p class="mark rv"><span class="mark-n">04</span><span class="mark-t">Next</span></p>
       <h2 class="sec-full rv" style="font-size:var(--display-sm)">See where it happens.</h2>
       <p class="sec-copy rv" style="margin-top:28px;color:var(--muted)">The facility is where the position becomes concrete: the floor, the platforms and the equipment behind it.</p>
       <div class="cta-row sec-full rv">
-        <a class="btn" href="facility.html">View the facility</a>
-        <a class="btn btn--ghost" href="contact.html">Make an enquiry</a>
+        <a class="btn btn--lg" href="facility.html"><span>View the facility</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="btn btn--ghost btn--lg" href="contact.html"><span>Make an enquiry</span><i aria-hidden="true">&rarr;</i></a>
       </div>
     </div>
   </section>
@@ -214,5 +226,6 @@
 </footer>
 
 <script src="assets/site.js" defer></script>
+<script src="assets/motion.js" defer></script>
 </body>
 </html>

@@ -41,6 +41,11 @@ Tokens worth knowing:
   vertical rhythm, scaled for desktop.
 - All type is in `rem`, so it follows a visitor's text-size setting.
 
+- **Motion system.** `assets/motion.css` + `assets/motion.js` load on every page: masked
+  headline reveals, photo wipes, eased scroll effects, icon cards, the marquee, the page hero
+  and the closing band. `home.css` / `home.js` add only the homepage's pinned stage and
+  horizontal proof. Without JavaScript, or with "reduce motion" switched on, every page is a
+  complete static layout. Native scrolling is never taken over.
 Numbered section marks (01, 02...) are a client decision from the approved
 strategy and print guidelines. Design linters flag them; keep them.
 

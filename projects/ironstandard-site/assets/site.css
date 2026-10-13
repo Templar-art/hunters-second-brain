@@ -862,16 +862,7 @@ body::after{
 /* ---- 5. Scroll depth, in the header -------------------------
    The "more UI" the page actually needed: orientation, not
    ornament. A hairline, not a bar. */
-.scroll-line{
-  position:absolute; left:0; bottom:-1px;
-  height:2px; width:100%;
-  background:var(--orange);
-  transform:scaleX(0); transform-origin:left;
-  opacity:0;
-  transition:opacity var(--t) var(--ease);
-}
-.site-header.is-stuck .scroll-line{ opacity:1; }
-
+.site-header.is-stuck 
 /* ---- 6. State feedback --------------------------------------
    Every interactive thing now answers when touched. Fills and
    wipes only: no lift, no shadow, no scale. */
@@ -949,14 +940,12 @@ html{ scrollbar-color:var(--grey-800) var(--black); scrollbar-width:thin; }
 
 @media (prefers-reduced-motion:reduce){
   .will-reveal,.will-reveal img{ opacity:1; transform:none; }
-  .scroll-line{ transition:none; }
-}
+  }
 
 /* print must never inherit a pending reveal */
 @media print{
   .rv,.rv.will-reveal{ opacity:1 !important; transform:none !important; }
-  body::after,.sec--ruled::before,.scroll-line{ display:none !important; }
-}
+  body::after,.sec--ruled::before,}
 
 /* ============================================================
    POLISH: tap targets

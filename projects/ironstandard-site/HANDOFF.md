@@ -76,6 +76,11 @@ host, with the domain's DNS at GoDaddy. Pick one:
 - **One stylesheet** (`assets/site.css`) controls everything. Colours are black, white and
   `#F4502A` only. Orange buttons use **black** text: white on orange fails accessibility
   contrast (3.48:1), black passes (6.03:1).
+- **Motion system.** `assets/motion.css` + `assets/motion.js` load on every page: masked
+  headline reveals, photo wipes, eased scroll effects, icon cards, the marquee, the page hero
+  and the closing band. `home.css` / `home.js` add only the homepage's pinned stage and
+  horizontal proof. Without JavaScript, or with "reduce motion" switched on, every page is a
+  complete static layout. Native scrolling is never taken over.
 - **Photo grade.** Every photo runs through one warm black-and-white treatment
   (`--grade` in the stylesheet) so the stand-in images read as one shoot. Once the real
   shoot is colour-graded, change that one line to a light correction.

@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/motion.css">
 </head>
 <body>
 
@@ -60,13 +61,12 @@
 
 <main id="main">
 
-  <section class="page-head">
-    <div class="container grid">
-      <div class="ph-title">
-        <p class="mark rv"><span class="mark-t">Contact us</span></p>
-        <h1 class="rv">Tell us how you train</h1>
-      </div>
-      <p class="lede rv">Choose the type of enquiry and it goes straight to the person best placed to answer it.</p>
+  <section class="page-hero">
+    <div class="page-hero-media" aria-hidden="true"><img src="assets/band.jpg" alt="" width="1600" height="1066" fetchpriority="high" decoding="async"></div>
+    <div class="container page-hero-copy">
+      <p class="eyebrow">Contact us</p>
+      <h1 class="page-title"><span class="ln"><span>Tell us how you train</span></span></h1>
+      <p class="lede">Choose the type of enquiry and it goes straight to the person best placed to answer it.</p>
     </div>
   </section>
 
@@ -162,14 +162,16 @@
   </section>
   -->
 
-  <section class="sec sec--dark sec--ruled">
+  <section class="close close--page">
+    <div class="close-bg" aria-hidden="true"><img src="assets/rig.jpg" alt="" width="421" height="951" loading="lazy" decoding="async"></div>
+    <img class="close-logo" src="assets/logo-white.png" alt="" aria-hidden="true" width="3165" height="370" loading="lazy" decoding="async">
     <div class="container grid">
       <p class="mark rv"><span class="mark-n">02</span><span class="mark-t">Elsewhere</span></p>
       <h2 class="sec-full rv" style="font-size:var(--display-sm)">Read first, ask second.</h2>
       <p class="sec-copy rv" style="margin-top:28px;color:var(--muted)">The facility and coaching pages answer most of what comes through this form.</p>
       <div class="cta-row sec-full rv">
-        <a class="btn" href="facility.html">View the facility</a>
-        <a class="btn btn--ghost" href="faq.html">Read the FAQ</a>
+        <a class="btn btn--lg" href="facility.html"><span>View the facility</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="btn btn--ghost btn--lg" href="faq.html"><span>Read the FAQ</span><i aria-hidden="true">&rarr;</i></a>
       </div>
     </div>
   </section>
@@ -204,5 +206,6 @@
 </footer>
 
 <script src="assets/site.js" defer></script>
+<script src="assets/motion.js" defer></script>
 </body>
 </html>

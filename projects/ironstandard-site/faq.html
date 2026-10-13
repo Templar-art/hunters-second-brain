@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/motion.css">
 </head>
 <body>
 
@@ -60,13 +61,12 @@
 
 <main id="main">
 
-  <section class="page-head">
-    <div class="container grid">
-      <div class="ph-title">
-        <p class="mark rv"><span class="mark-t">FAQ</span></p>
-        <h1 class="rv">Questions, answered plainly</h1>
-      </div>
-      <p class="lede rv">Where something is not confirmed yet, this page says so.</p>
+  <section class="page-hero">
+    <div class="page-hero-media" aria-hidden="true"><img src="assets/rig.jpg" alt="" width="421" height="951" fetchpriority="high" decoding="async"></div>
+    <div class="container page-hero-copy">
+      <p class="eyebrow">FAQ</p>
+      <h1 class="page-title"><span class="ln"><span>Questions, answered plainly</span></span></h1>
+      <p class="lede">Where something is not confirmed yet, this page says so.</p>
     </div>
   </section>
 
@@ -152,14 +152,16 @@
     </div>
   </section>
 
-  <section class="sec sec--dark sec--ruled">
+  <section class="close close--page">
+    <div class="close-bg" aria-hidden="true"><img src="assets/facility-b.jpg" alt="" width="464" height="1047" loading="lazy" decoding="async"></div>
+    <img class="close-logo" src="assets/logo-white.png" alt="" aria-hidden="true" width="3165" height="370" loading="lazy" decoding="async">
     <div class="container grid">
       <p class="mark rv"><span class="mark-t">Next</span></p>
       <h2 class="sec-full rv" style="font-size:var(--display-sm)">Still have a question?</h2>
       <p class="sec-copy rv" style="margin-top:28px;color:var(--muted)">Anything not answered here goes straight to the right person through the contact page.</p>
       <div class="cta-row sec-full rv">
-        <a class="btn" href="contact.html">Contact us</a>
-        <a class="btn btn--ghost" href="facility.html">View the facility</a>
+        <a class="btn btn--lg" href="contact.html"><span>Contact us</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="btn btn--ghost btn--lg" href="facility.html"><span>View the facility</span><i aria-hidden="true">&rarr;</i></a>
       </div>
     </div>
   </section>
@@ -194,5 +196,6 @@
 </footer>
 
 <script src="assets/site.js" defer></script>
+<script src="assets/motion.js" defer></script>
 </body>
 </html>

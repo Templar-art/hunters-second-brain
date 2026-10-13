@@ -1,0 +1,323 @@
+/* ============================================================
+   IRON STANDARD - SHARED MOTION + COMPONENT LAYER
+   Loaded on every page, after site.css.
+
+   Two layers, always:
+   - The base rules are the complete, static page. That is what
+     renders with JS off and with prefers-reduced-motion.
+   - Everything under html.motion is the animated version. motion.js
+     adds that class only when motion is allowed, so a script failure
+     can never hide content.
+   ============================================================ */
+
+:root{
+  --ease-out:cubic-bezier(.16,1,.3,1);   /* expo out: fast start, long settle */
+  --rise:900ms;
+}
+
+/* ---- type helpers ------------------------------------------ */
+
+/* Masked line: the outer span clips, the inner span rises into view */
+.ln{ display:block; overflow:hidden; padding-bottom:.06em; margin-bottom:-.06em; }
+.ln > span{ display:block; }
+
+.display{
+  font-size:min(var(--display), calc(100cqi / 6.4));
+  line-height:.98; letter-spacing:-.015em; margin:0;
+}
+.display-sm{ font-size:var(--display-sm); line-height:1; letter-spacing:-.01em; margin:0; }
+
+.eyebrow--pin{ display:inline-flex; align-items:center; gap:10px; }
+.pin{ width:14px; height:18px; flex-shrink:0; fill:var(--orange); }
+.pin circle{ fill:var(--black); }
+
+/* ---- buttons: a sliding arrow and a fill that wipes in ----- */
+.btn--lg,.btn--xl{ gap:14px; }
+.btn--lg{ min-height:58px; padding:0 26px 0 30px; }
+.btn--xl{ min-height:72px; padding:0 30px 0 36px; font-size:0.9375rem; }
+.btn i{
+  font-style:normal; display:inline-block; font-size:1.1em; line-height:1;
+  transition:transform 420ms var(--ease-out);
+}
+.btn:hover i,.btn:focus-visible i{ transform:translateX(6px); }
+.btn--dark{ background:var(--black); color:var(--white); }
+.btn--dark::before{ background:var(--orange); }
+.btn--dark:hover{ background:var(--black); color:var(--black); }
+
+/* ============================================================
+   PAGE HERO (inner pages)
+   The same language as the homepage stage: photograph on the right,
+   type on a black field, focus pull on load, push-in on scroll.
+   ============================================================ */
+.page-hero{
+  position:relative; overflow:hidden; background:var(--black);
+  min-height:min(86svh, 820px); display:flex; align-items:flex-end;
+}
+.page-hero--plain{ min-height:min(62svh, 560px); }
+.page-hero-media{ position:absolute; inset:0; overflow:hidden; }
+.page-hero-media img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  object-position:50% 35%; filter:var(--grade);
+}
+.page-hero-media::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.94) 0%, rgba(0,0,0,.45) 50%, rgba(0,0,0,.55) 100%);
+}
+.page-hero--plain .page-hero-media img{ opacity:.45; }
+.page-hero-copy{
+  position:relative; z-index:2; width:100%;
+  padding-top:150px; padding-bottom:clamp(40px,7vh,80px);
+}
+.page-hero .eyebrow{ display:inline-flex; align-items:center; gap:12px; margin-bottom:16px; }
+.page-hero .eyebrow::before{ content:""; width:22px; height:2px; background:var(--orange); }
+.page-title{
+  font-size:clamp(2.25rem, 5vw, 4.75rem); line-height:1; letter-spacing:-.015em;
+  margin:0; max-width:16ch;
+}
+.page-hero .lede{ margin:clamp(16px,2.4vh,24px) 0 0; max-width:44ch; }
+@media (min-width:1024px){
+  .page-hero{ align-items:center; }
+  .page-hero-media{ left:auto; width:62vw; }
+  .page-hero-media::after{
+    background:
+      linear-gradient(to right, var(--black) 0%, rgba(0,0,0,.9) 30%, rgba(0,0,0,.3) 65%, rgba(0,0,0,.25) 100%),
+      linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0) 40%);
+  }
+  .page-hero--plain .page-hero-media{ width:100%; }
+  .page-hero-copy{ padding-bottom:0; padding-left:calc(var(--pad) + clamp(0px, 6vw, 120px)); }
+}
+
+/* ============================================================
+   BAND - fixed background, centred copy
+   ============================================================ */
+.band{
+  height:auto; min-height:100svh; display:grid; place-items:center;
+  clip-path:inset(0);                       /* clips the fixed layer to this section */
+}
+.band::after{ background:rgba(0,0,0,.62); z-index:1; }
+.band-bg{ position:fixed; inset:0; z-index:0; }
+.band .band-bg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:var(--grade) blur(1px); }
+.band .band-copy{
+  position:relative; inset:auto; z-index:2; padding:var(--sp-section) var(--pad);
+  text-align:center; width:100%;   /* grid centring would otherwise shrink it and the masks clip the lines */
+}
+/* .band .band-copy prefix: outranks the shared ".band-copy p" (16ch cap, smaller size) */
+.band .band-copy .band-line{
+  margin:0 auto; font-size:clamp(1.75rem,4.2vw,4.5rem); font-weight:700; text-transform:uppercase;
+  line-height:.98; letter-spacing:-.02em; max-width:none;
+}
+@media (min-width:768px){ .band-line .ln > span{ white-space:nowrap; } }
+.band-line .ln:last-child > span{ color:var(--orange); }
+.band-line .ln:only-child > span{ color:var(--white); }
+
+/* ---- image wipes ---- */
+.wipe{ overflow:hidden; }
+.wipe-in{ overflow:hidden; will-change:transform; }
+.wipe img{ display:block; }
+
+/* ---- words that light up with scroll ---- */
+[data-words] .w{ transition:color 400ms var(--ease); }
+
+/* ============================================================
+   ICON CARDS
+   ============================================================ */
+.cards{
+  list-style:none; margin:0; padding:0;
+  display:grid; grid-template-columns:1fr; gap:1px;
+  background:var(--rule-dark);              /* hairlines between cards */
+  border:1px solid var(--rule-dark);
+}
+.card{
+  position:relative; isolation:isolate; overflow:hidden;
+  background:var(--white); color:var(--black); padding:clamp(28px,3vw,40px);
+  display:flex; flex-direction:column; cursor:pointer;
+  transition:color 380ms var(--ease-out);
+}
+.card::before{
+  content:""; position:absolute; inset:0; z-index:-1; background:var(--black);
+  transform:scaleY(0); transform-origin:bottom;
+  transition:transform 480ms var(--ease-out);
+}
+/* stretched link: the h3 link covers the card, so the whole box is clickable */
+.card-link{ color:inherit; text-decoration:none; }
+.card-link::after{ content:""; position:absolute; inset:0; z-index:1; }
+.card-link:focus-visible{ outline:none; }
+.card:focus-within{ outline:2px solid var(--orange); outline-offset:-2px; }
+.card:hover,.card:focus-within{ color:var(--white); }
+.card:hover::before,.card:focus-within::before{ transform:scaleY(1); }
+.card:hover .ico,.card:focus-within .ico{ stroke:var(--orange); }
+.card:hover p,.card:focus-within p{ color:var(--ink-2); }
+.card:hover .card-n{ color:var(--muted); }
+.card-go{
+  position:absolute; right:clamp(28px,3vw,40px); bottom:clamp(28px,3vw,40px);
+  font-size:1.25rem; line-height:1; color:var(--orange);
+  opacity:0; transform:translateX(-8px);
+  transition:opacity 380ms var(--ease-out), transform 380ms var(--ease-out);
+}
+.card:hover .card-go,.card:focus-within .card-go{ opacity:1; transform:none; }
+.ico{
+  width:48px; height:48px; fill:none; stroke:var(--black); stroke-width:1.5;
+  stroke-linecap:round; stroke-linejoin:round; transition:stroke 380ms var(--ease-out);
+}
+.card-n{
+  position:absolute; top:clamp(28px,3vw,40px); right:clamp(28px,3vw,40px);
+  font-size:var(--eyebrow); font-weight:600; letter-spacing:.2em; color:var(--muted-dark);
+  font-variant-numeric:tabular-nums;
+}
+.card h3{ margin:auto 0 10px; padding-top:24px; font-size:clamp(1.125rem,1.4vw,1.375rem); }
+.card p{ margin:0; padding-right:28px; color:var(--muted-dark); font-size:0.9375rem; line-height:1.5; transition:color 380ms var(--ease-out); }
+.card p .chip{ margin:10px 0 0; display:inline-flex; }
+@media (min-width:640px){ .cards{ grid-template-columns:repeat(2,1fr); } .card{ min-height:260px; } .card h3{ padding-top:40px; } }
+@media (min-width:1024px){
+  .cards{ grid-template-columns:repeat(4,1fr); }
+  .cards--3{ grid-template-columns:repeat(3,1fr); }
+  .card{ min-height:300px; }
+}
+
+.support-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:clamp(36px,5vw,56px); }
+@media (min-width:1024px){
+  .support .cards,.support .support-actions{ grid-column:1/-1; }
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee{
+  background:var(--black); overflow:hidden;
+  border-block:1px solid var(--rule);
+  padding-block:clamp(24px,3.5vw,44px);
+}
+.marquee-track{ display:flex; width:max-content; }
+.marquee-row{ display:flex; align-items:center; flex-shrink:0; }
+.marquee-row span{
+  font-size:clamp(2.75rem,8vw,7.5rem); font-weight:700; text-transform:uppercase;
+  line-height:1; letter-spacing:-.02em; white-space:nowrap; padding-inline:.32em;
+}
+/* Outline words: stroke first, then a background-coloured fill over it.
+   The font's overlapping inner contours are covered; only the outer edge shows. */
+.marquee-row span:nth-of-type(even){
+  color:var(--black);
+  -webkit-text-stroke:2px var(--ink-2);
+  paint-order:stroke fill;
+}
+.marquee-row b{
+  width:.32em; height:.32em; flex-shrink:0; background:var(--orange);
+  font-size:clamp(2.75rem,8vw,7.5rem); transform:rotate(45deg) scale(.38);
+}
+
+/* ============================================================
+   CLOSE - the closing band on every page
+   Photo behind, a large faded logo that travels with scroll.
+   ============================================================ */
+.close{ position:relative; overflow:hidden; isolation:isolate; padding-block:var(--sp-statement); background:var(--black); }
+.close-bg{ position:absolute; inset:0; z-index:-2; }
+.close-bg img{ width:100%; height:100%; object-fit:cover; filter:var(--grade); opacity:.6; }
+.close::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:
+    radial-gradient(ellipse at 15% 100%, rgba(244,80,42,.14), transparent 55%),
+    linear-gradient(to bottom, rgba(0,0,0,.85) 0%, rgba(0,0,0,.4) 45%, rgba(0,0,0,.88) 100%);
+}
+.close-logo{
+  position:absolute; z-index:-1; left:0; bottom:10%;
+  width:max(80vw, 800px); max-width:none; height:auto;
+  opacity:.08; pointer-events:none;
+}
+.close-inner{ position:relative; container-type:inline-size; }
+.close .close-sub{ margin-top:28px; color:var(--ink-2); max-width:40ch; }
+.close .sec-copy{ color:var(--ink-2); }
+
+/* ============================================================
+   MOTION LAYER - only with html.motion
+   ============================================================ */
+
+/* Older ".rv" reveals: same easing as the rest of the system */
+.motion .rv{ transition:opacity 900ms var(--ease-out), transform 900ms var(--ease-out); }
+.motion .rv.will-reveal{ transform:translateY(28px); }
+
+/* Masked lines start below their mask and rise when their block is "in" */
+.motion [data-reveal] .ln > span{
+  transform:translateY(105%);
+  transition:transform var(--rise) var(--ease-out);
+  transition-delay:calc(var(--i, 0) * 90ms);
+}
+.motion [data-reveal].in .ln > span{ transform:none; }
+
+/* Blocks that fade and rise */
+.motion [data-reveal] .fade{
+  opacity:0; transform:translateY(18px);
+  transition:opacity 800ms var(--ease-out), transform 800ms var(--ease-out);
+  transition-delay:calc(var(--i, 0) * 90ms + 200ms);
+}
+.motion [data-reveal].in .fade{ opacity:1; transform:none; }
+
+/* Image wipe: the frame opens from the bottom, the photo settles from 1.18x */
+.motion .wipe{
+  clip-path:inset(100% 0 0 0);
+  transition:clip-path 1200ms var(--ease-out);
+}
+.motion .wipe img{ transform:scale(1.18); transition:transform 1600ms var(--ease-out); }
+.motion .in .wipe,.motion .wipe.in{ clip-path:inset(0 0 0 0); }
+.motion .in .wipe img,.motion .wipe.in img{ transform:scale(1); }
+.motion .fig-b.wipe,.motion .fig-b.wipe img{ transition-delay:160ms; }
+
+/* Cards rise one after another; icons draw their strokes */
+.motion .card{
+  opacity:0; transform:translateY(28px);
+  transition:opacity 800ms var(--ease-out), transform 800ms var(--ease-out), color 380ms var(--ease-out);
+  transition-delay:calc(var(--i, 0) * 110ms + 150ms);
+}
+.motion .in .card{ opacity:1; transform:none; }
+.motion .ico *{
+  stroke-dasharray:var(--len, 200); stroke-dashoffset:var(--len, 200);
+  transition:stroke-dashoffset 1400ms var(--ease-out);
+  transition-delay:calc(var(--i, 0) * 110ms + 500ms);
+}
+.motion .in .ico *{ stroke-dashoffset:0; }
+
+/* Words light up with scroll (motion.js sets .lit) */
+.motion [data-words] .w{ color:var(--grey-700); }
+.motion [data-words] .w.lit{ color:var(--white); }
+
+/* Page hero: focus pull on load, lines rise, copy fades up */
+.motion .page-hero-media img{
+  filter:var(--grade) blur(22px); transform:scale(1.12);
+  transition:filter 1700ms var(--ease-out), transform 2200ms var(--ease-out);
+}
+.motion .page-hero--plain .page-hero-media img{ filter:var(--grade) blur(8px); }
+.motion .page-hero .ln > span{ transform:translateY(105%); transition:transform 1100ms var(--ease-out); }
+.motion .page-hero .ln:nth-child(2) > span{ transition-delay:110ms; }
+.motion .page-hero .ln:nth-child(3) > span{ transition-delay:220ms; }
+.motion .page-hero .eyebrow,
+.motion .page-hero .lede{
+  opacity:0; transform:translateY(14px);
+  transition:opacity 900ms var(--ease-out) 400ms, transform 900ms var(--ease-out) 400ms;
+}
+.motion .page-hero.loaded .page-hero-media img{ filter:var(--grade) blur(0); transform:scale(1); }
+.motion .page-hero.loaded .ln > span{ transform:none; }
+.motion .page-hero.loaded .eyebrow,
+.motion .page-hero.loaded .lede{ opacity:1; transform:none; }
+.motion .page-hero-media,
+.motion .page-hero-copy{ will-change:transform; }
+
+/* Band */
+.motion .band-line .ln:nth-child(2) > span{ --i:2; }
+
+/* Close: logo travels, photo settles (motion.js) */
+.motion .close-logo{ will-change:transform; }
+.motion .close-bg img{ will-change:transform; transform:scale(1.2); }
+
+/* Marquee */
+.motion .marquee-track{ animation:marquee 70s linear infinite; }
+.marquee:hover .marquee-track{ animation-play-state:paused; }
+@keyframes marquee{ to{ transform:translateX(-50%); } }
+
+/* FAQ: answers open and close with height, not a jump (motion.js) */
+.motion .faq details .answer{ overflow:hidden; }
+.motion .faq summary::after{ transition:transform 420ms var(--ease-out); }
+.motion .faq details[open] summary::after{ transform:rotate(180deg); }
+
+/* Belt and braces: if the OS asks for less motion, the static page wins */
+@media (prefers-reduced-motion:reduce){
+  .marquee-track{ animation:none !important; }
+}

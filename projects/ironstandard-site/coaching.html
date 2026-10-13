@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/motion.css">
 </head>
 <body>
 
@@ -60,13 +61,12 @@
 
 <main id="main">
 
-  <section class="page-head">
-    <div class="container grid">
-      <div class="ph-title">
-        <p class="mark rv"><span class="mark-t">Coaching</span></p>
-        <h1 class="rv">Expertise on the floor</h1>
-      </div>
-      <p class="lede rv">Coaching, programming, independent trainers and physiotherapy operate inside the same building as the training floor.</p>
+  <section class="page-hero">
+    <div class="page-hero-media" aria-hidden="true"><img src="assets/conditioning.jpg" alt="" width="440" height="535" fetchpriority="high" decoding="async"></div>
+    <div class="container page-hero-copy">
+      <p class="eyebrow">Coaching</p>
+      <h1 class="page-title"><span class="ln"><span>Expertise on the floor</span></span></h1>
+      <p class="lede">Coaching, programming, independent trainers and physiotherapy operate inside the same building as the training floor.</p>
     </div>
   </section>
 
@@ -145,27 +145,39 @@
         Each is arranged on its own terms, so nobody buys a package to get the one part they need.
       </p>
 
-      <div class="support-list">
-        <div class="index-row rv" id="online-programming">
-          <span class="n">01</span>
-          <h3>Online programming</h3>
+      <ul class="cards cards--3 support-cards" role="list">
+        <li class="card" id="online-programming">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <rect x="8" y="9" width="32" height="32" rx="1"/><path d="M8 17h32M16 5v8M32 5v8M15 25h8M15 32h14"/><path d="M28 24l3 3 5-6"/>
+          </svg>
+          <span class="card-go" aria-hidden="true">&rarr;</span>
+          <span class="card-n">01</span>
+          <h3><a class="card-link" href="contact.html?type=coaching#enquiryForm">Online programming</a></h3>
           <p>Written programmes for lifters who train on their own schedule, reviewed against how the training is actually going.</p>
-        </div>
-        <div class="index-row rv" id="nutrition">
-          <span class="n">02</span>
-          <h3>Nutrition</h3>
+        </li>
+        <li class="card" id="nutrition">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="26" cy="26" r="15"/><circle cx="26" cy="26" r="9"/><path d="M8 6v14M5 6v8a3 3 0 0 0 6 0V6M8 20v22"/>
+          </svg>
+          <span class="card-go" aria-hidden="true">&rarr;</span>
+          <span class="card-n">02</span>
+          <h3><a class="card-link" href="contact.html?type=coaching#enquiryForm">Nutrition</a></h3>
           <p>Nutrition support built around the training, from a normal training block to competition preparation.</p>
-        </div>
-        <div class="index-row rv" id="events">
-          <span class="n">03</span>
-          <h3>Events and competitions</h3>
+        </li>
+        <li class="card" id="events">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path d="M12 44V5"/><path d="M12 7h24l-5 7 5 7H12"/><path d="M6 44h14"/>
+          </svg>
+          <span class="card-go" aria-hidden="true">&rarr;</span>
+          <span class="card-n">03</span>
+          <h3><a class="card-link" href="contact.html?type=general#enquiryForm">Events and competitions</a></h3>
           <p>Meets, workshops, seminars and courses, announced once the facility is open. <span class="chip chip--planned">Planned</span></p>
-        </div>
-      </div>
+        </li>
+      </ul>
 
-      <p class="support-cta rv">
-        <a class="textlink textlink--dark" href="contact.html?type=coaching#enquiryForm">Coaching enquiry <span aria-hidden="true">&rarr;</span></a>
-      </p>
+      <div class="support-actions">
+        <a class="btn btn--xl" href="contact.html?type=coaching#enquiryForm"><span>Coaching enquiry</span><i aria-hidden="true">&rarr;</i></a>
+      </div>
     </div>
   </section>
 
@@ -206,14 +218,16 @@
     </div>
   </section>
 
-  <section class="sec sec--dark sec--ruled">
+  <section class="close close--page">
+    <div class="close-bg" aria-hidden="true"><img src="assets/racks.jpg" alt="" width="480" height="1083" loading="lazy" decoding="async"></div>
+    <img class="close-logo" src="assets/logo-white.png" alt="" aria-hidden="true" width="3165" height="370" loading="lazy" decoding="async">
     <div class="container grid">
       <p class="mark rv"><span class="mark-n">04</span><span class="mark-t">Next</span></p>
       <h2 class="sec-full rv" style="font-size:var(--display-sm)">Tell us how you train.</h2>
       <p class="sec-copy rv" style="margin-top:28px;color:var(--muted)">Coaching, trainer and physiotherapy enquiries are all routed separately so the right person answers.</p>
       <div class="cta-row sec-full rv">
-        <a class="btn" href="contact.html?type=coaching#enquiryForm">Enquire</a>
-        <a class="btn btn--ghost" href="faq.html">Read the FAQ</a>
+        <a class="btn btn--lg" href="contact.html?type=coaching#enquiryForm"><span>Enquire</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="btn btn--ghost btn--lg" href="faq.html"><span>Read the FAQ</span><i aria-hidden="true">&rarr;</i></a>
       </div>
     </div>
   </section>
@@ -248,5 +262,6 @@
 </footer>
 
 <script src="assets/site.js" defer></script>
+<script src="assets/motion.js" defer></script>
 </body>
 </html>
