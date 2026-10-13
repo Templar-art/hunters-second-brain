@@ -1182,3 +1182,6 @@ Client revisions: scroll line removed, closing title now "Raise your standard.",
 
 ## [2026-10-13] ingest | House twilight reference locked
 Hunter supplied the target twilight frame; new page [[house-twilight]], supersedes ZED #21 as default.
+
+## [2026-10-14] ops | Iron Standard handoff pass
+Handoff folder re-synced: fresh full-page previews (6 desktop, 4 phone), HANDOFF.md corrected (stylesheet split, text-over-photo claim, revision history). Stale Oct 7 zip and homepage mirror moved to 10xVisuals Output/_archive.
