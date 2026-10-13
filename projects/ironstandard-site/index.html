@@ -22,8 +22,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/home.css">
 </head>
-<body>
+<body class="home">
 
 <a class="skip" href="#main">Skip to content</a>
 
@@ -61,193 +62,260 @@
 
 <main id="main">
 
-  <!-- 01 HERO ------------------------------------------------ -->
-  <section class="hero" aria-labelledby="hero-h">
-    <div class="hero-grid">
-      <div class="hero-media" id="heroMedia">
-        <img src="assets/hero.jpg" alt="An athlete steadying a loaded barbell across the shoulders in a rack." width="588" height="1084" fetchpriority="high" decoding="async">
-      </div>
-      <div class="hero-body">
-        <p class="eyebrow rv">Oslo, Norway</p>
-        <h1 id="hero-h" class="rv">Built by discipline.<span class="l2">Driven by community.</span></h1>
-        <p class="hero-sub rv">A different standard for serious training.</p>
-        <div class="hero-actions rv">
-          <a class="btn" href="facility.html">Explore the facility</a>
-          <a class="btn btn--ghost" href="contact.html">Make an enquiry</a>
+  <!-- 01 STAGE: hero + position as one pinned, scroll-driven scene.
+       Without JS (or with reduced motion) the two scenes simply stack. -->
+  <section class="stage" id="stage" aria-label="Introduction">
+    <div class="stage-pin">
+
+      <div class="scene scene-1" aria-labelledby="hero-h">
+        <div class="scene-media">
+          <div class="scene-img"><img src="assets/hero.jpg" alt="An athlete steadying a loaded barbell across the shoulders in a rack." width="588" height="1084" fetchpriority="high" decoding="async"></div>
+        </div>
+        <div class="scene-copy container">
+          <p class="eyebrow">Oslo, Norway</p>
+          <h1 id="hero-h" class="display">
+            <span class="ln"><span>Built by discipline.</span></span>
+            <span class="ln"><span>Driven by community.</span></span>
+          </h1>
+          <div class="scene-foot">
+            <p class="hero-sub">A different standard for serious training.</p>
+            <div class="hero-actions">
+              <a class="btn btn--lg" href="facility.html"><span>Explore the facility</span><i aria-hidden="true">&rarr;</i></a>
+              <a class="btn btn--ghost btn--lg" href="contact.html"><span>Make an enquiry</span><i aria-hidden="true">&rarr;</i></a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- 02 THE POSITION ---------------------------------------- -->
-  <section class="position sec--ruled" aria-labelledby="pos-h">
-    <div class="container grid">
-      <p class="mark rv"><span class="mark-n">01</span><span class="mark-t">The position</span></p>
-      <h2 id="pos-h" class="position-statement rv">
-        For people in Oslo who take strength and performance training seriously,
-        Iron Standard is the <em>purpose-built</em> facility that provides the equipment,
-        space and access commercial gyms cannot.
-      </h2>
-      <p class="position-foot rv">
-        The standard is high and it applies to everyone equally. Commitment counts here,
-        image does not, and the room belongs to anyone willing to meet that standard.
-      </p>
-    </div>
-  </section>
-
-  <!-- 03 THE PROOF ------------------------------------------- -->
-  <section class="proof sec--tall" aria-labelledby="proof-h">
-    <div class="container grid">
-      <p class="mark rv"><span class="mark-n">02</span><span class="mark-t">The proof</span></p>
-
-      <div class="proof-copy rv">
-        <h2 id="proof-h" style="margin-bottom:clamp(28px,4vw,44px)">Space is a feature, not a leftover</h2>
-        <dl style="margin:0">
-          <div class="stat">
-            <dt>800 m&sup2;</dt>
-            <dd>Purpose-built floor</dd>
-            <p class="note">Laid out so the training works at six on a Tuesday, not just at ten on a Sunday.</p>
-          </div>
-          <div class="stat">
-            <dt>24/7</dt>
-            <dd>Member access</dd>
-            <p class="note">Genuine round-the-clock entry. Train at five in the morning or eleven at night, whenever your week allows.</p>
-          </div>
-          <div class="stat">
-            <dt>Competition grade</dt>
-            <dd>Platforms and plates</dd>
-            <p class="note">Proper platforms, calibrated plates, specialist machines and a dedicated posing room.</p>
-          </div>
-        </dl>
-        <p class="proof-outro rv" style="margin-top:36px">
-          <a class="textlink" href="facility.html">Explore the facility <span aria-hidden="true">&rarr;</span></a>
-        </p>
+      <div class="scene scene-2" aria-labelledby="pos-h">
+        <div class="scene-media">
+          <div class="scene-img"><img src="assets/band.jpg" alt="A lifter chalking up beside a loaded barbell in a dimly lit training hall." width="1600" height="1066" decoding="async" loading="lazy"></div>
+        </div>
+        <svg class="ring" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+          <circle cx="200" cy="200" r="190" class="ring-a"/>
+          <circle cx="200" cy="200" r="138" class="ring-b"/>
+          <g class="ring-ticks">
+            <path d="M200 4v18M200 378v18M4 200h18M378 200h18"/>
+            <path d="M338.6 61.4l-9.9 9.9M71.3 328.7l-9.9 9.9M61.4 61.4l9.9 9.9M328.7 328.7l9.9 9.9"/>
+          </g>
+          <g class="ring-label">
+            <text x="200" y="52" text-anchor="middle">800 M²</text>
+            <text x="352" y="204" text-anchor="middle">24/7</text>
+            <text x="200" y="362" text-anchor="middle">OSLO</text>
+            <text x="48" y="204" text-anchor="middle">IRON</text>
+          </g>
+        </svg>
+        <div class="scene-copy container">
+          <p class="mark"><span class="mark-n">01</span><span class="mark-t">The position</span></p>
+          <h2 id="pos-h" class="statement">
+            <span class="ln"><span>For people in Oslo who take</span></span>
+            <span class="ln"><span>strength and performance training</span></span>
+            <span class="ln"><span>seriously, Iron Standard is the</span></span>
+            <span class="ln"><span><em>purpose-built</em> facility that provides</span></span>
+            <span class="ln"><span>the equipment, space and access</span></span>
+            <span class="ln"><span>commercial gyms cannot.</span></span>
+          </h2>
+          <p class="scene-note">Commitment counts here. Image does not.</p>
+        </div>
       </div>
 
-      <div class="proof-media rv">
-        <img src="assets/proof.jpg" alt="Close detail of a cable machine attachment on a loaded strength rack." width="584" height="1076" loading="lazy" decoding="async">
-      </div>
+      <a class="stage-cue" href="#proof" aria-label="Scroll to the facility proof">
+        <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="48"/></svg>
+        <span>Scroll</span>
+      </a>
     </div>
   </section>
 
-  <!-- 04 THE BAND -------------------------------------------- -->
+  <!-- 02 THE PROOF: pinned horizontal scroll. Stacks vertically without motion. -->
+  <section class="hs" id="proof" aria-labelledby="proof-h">
+    <div class="hs-pin">
+      <div class="hs-track">
+
+        <div class="hs-panel hs-intro">
+          <p class="mark"><span class="mark-n">02</span><span class="mark-t">The proof</span></p>
+          <h2 id="proof-h" class="display-sm">
+            <span class="ln"><span>Space is</span></span>
+            <span class="ln"><span>a feature,</span></span>
+            <span class="ln"><span>not a leftover.</span></span>
+          </h2>
+          <p class="hs-hint" aria-hidden="true">Keep scrolling <i>&rarr;</i></p>
+        </div>
+
+        <article class="hs-panel hs-stat">
+          <figure class="hs-media"><img src="assets/facility-a.jpg" alt="A row of power racks with loaded barbells on a dark training floor." width="643" height="1083" loading="lazy" decoding="async"></figure>
+          <div class="hs-copy">
+            <p class="hs-index">01 / 03</p>
+            <p class="hs-figure"><span class="count" data-to="800">800</span> m&sup2;</p>
+            <h3>Purpose-built floor</h3>
+            <p>Laid out so the training works at peak times, not just quiet ones.</p>
+          </div>
+        </article>
+
+        <article class="hs-panel hs-stat">
+          <figure class="hs-media"><img src="assets/motion.jpg" alt="A member walking past timber acoustic panelling, blurred in motion." width="643" height="543" loading="lazy" decoding="async"></figure>
+          <div class="hs-copy">
+            <p class="hs-index">02 / 03</p>
+            <p class="hs-figure"><span class="count" data-to="24">24</span>/7</p>
+            <h3>Member access</h3>
+            <p>Train at five in the morning or eleven at night. Whenever your week allows.</p>
+          </div>
+        </article>
+
+        <article class="hs-panel hs-stat">
+          <figure class="hs-media"><img src="assets/texture-a.jpg" alt="A calibrated weight plate lying on rubber gym flooring." width="480" height="1082" loading="lazy" decoding="async"></figure>
+          <div class="hs-copy">
+            <p class="hs-index">03 / 03</p>
+            <p class="hs-figure hs-figure--word">Competition grade</p>
+            <h3>Platforms and plates</h3>
+            <p>Proper platforms, calibrated plates and a dedicated posing room.</p>
+          </div>
+        </article>
+
+        <div class="hs-panel hs-end">
+          <p class="hs-end-line">Built for the session, not the tour.</p>
+          <a class="btn btn--lg" href="facility.html"><span>Explore the facility</span><i aria-hidden="true">&rarr;</i></a>
+        </div>
+
+      </div>
+      <div class="hs-progress" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+
+  <!-- 03 THE BAND: fixed background, copy centred both ways -->
   <section class="band" aria-label="The training floor">
-    <img src="assets/band.jpg" alt="A lifter chalking up beside a loaded barbell in a dimly lit training hall." width="1600" height="1066" loading="lazy" decoding="async">
-    <div class="band-copy">
-      <div class="container">
-        <p class="rv">No waiting for a rack. No programming around queues.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 WHO TRAINS HERE ------------------------------------- -->
-  <section class="who sec--ruled" aria-labelledby="who-h">
-    <div class="container grid">
-      <p class="mark rv"><span class="mark-n">03</span><span class="mark-t">Who trains here</span></p>
-
-      <div class="who-pair rv">
-        <figure class="fig-a">
-          <img src="assets/pair-a.jpg" alt="A woman holding a kettlebell locked out overhead, supported on one arm." width="440" height="535" loading="lazy" decoding="async">
-          <figcaption>Strength and physique athletes</figcaption>
-        </figure>
-        <figure class="fig-b">
-          <img src="assets/pair-b.jpg" alt="An athlete sitting back on a rowing machine between efforts, laughing." width="501" height="551" loading="lazy" decoding="async">
-          <figcaption>Serious recreational lifters</figcaption>
-        </figure>
-      </div>
-
-      <div class="who-copy rv">
-        <h2 id="who-h" style="margin-bottom:24px">Trained with intent</h2>
-        <p class="lede">
-          People who train several times a week to a programme, and athletes competing or
-          preparing to. Men and women, in equal number, wanting the same three things:
-          equipment that holds up, space that is actually free when you need it, and a
-          room that takes the work seriously.
-        </p>
-      </div>
-
-      <p class="who-pull rv">Men and women train here on the same floor, to the same standard.</p>
-    </div>
-  </section>
-
-  <!-- 06 UNDER ONE ROOF (light) ------------------------------ -->
-  <section class="support" aria-labelledby="sup-h">
-    <div class="container grid">
-      <p class="mark mark--dark rv"><span class="mark-n">04</span><span class="mark-t">Support</span></p>
-      <h2 id="sup-h" class="rv">Expertise under one roof</h2>
-      <p class="support-intro rv">
-        Membership, coaching, independent trainers and rehabilitation sit in one connected
-        environment, with events and competitions to follow, so nobody gets sent across
-        town for the next part of their training.
+    <div class="band-bg" aria-hidden="true"><img src="assets/band-2.jpg" alt="" width="558" height="939" loading="lazy" decoding="async"></div>
+    <div class="band-copy" data-reveal>
+      <p class="band-line">
+        <span class="ln"><span>No waiting for a rack.</span></span>
+        <span class="ln"><span>No programming around queues.</span></span>
       </p>
+    </div>
+  </section>
 
-      <div class="support-list">
-        <div class="index-row rv">
-          <span class="n">01</span>
+  <!-- 04 WHO TRAINS HERE -->
+  <section class="who" aria-labelledby="who-h" data-reveal>
+    <div class="container grid">
+      <p class="mark"><span class="mark-n">03</span><span class="mark-t">Who trains here</span></p>
+      <div class="who-pair">
+        <figure class="fig-a wipe" data-speed="-0.06">
+          <div class="wipe-in"><img src="assets/pair-a.jpg" alt="A woman holding a kettlebell locked out overhead, supported on one arm." width="440" height="535" loading="lazy" decoding="async"></div>
+          <figcaption><span>A</span>Strength and physique athletes</figcaption>
+        </figure>
+        <figure class="fig-b wipe" data-speed="0.08">
+          <div class="wipe-in"><img src="assets/pair-b.jpg" alt="An athlete sitting back on a rowing machine between efforts, laughing." width="501" height="551" loading="lazy" decoding="async"></div>
+          <figcaption><span>B</span>Serious recreational lifters</figcaption>
+        </figure>
+      </div>
+      <div class="who-copy">
+        <h2 id="who-h" class="display-sm">
+          <span class="ln"><span>Trained</span></span>
+          <span class="ln"><span>with intent.</span></span>
+        </h2>
+        <p class="lede">People who train to a programme, and athletes competing or preparing to. Men and women, in equal number.</p>
+      </div>
+      <p class="who-pull" data-words>Same floor. Same standard. Everyone who meets it belongs here.</p>
+    </div>
+  </section>
+
+  <!-- 05 SUPPORT: icon boxes + buttons as the focal point -->
+  <section class="support" aria-labelledby="sup-h" data-reveal>
+    <div class="container">
+      <div class="support-head">
+        <p class="mark mark--dark"><span class="mark-n">04</span><span class="mark-t">Support</span></p>
+        <h2 id="sup-h" class="display-sm">
+          <span class="ln"><span>Expertise</span></span>
+          <span class="ln"><span>under one roof.</span></span>
+        </h2>
+        <p class="support-intro">Coaching, trainers and rehabilitation in one building, so the next part of your training is never across town.</p>
+      </div>
+
+      <ul class="cards" role="list">
+        <li class="card">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="9"/><path d="M24 2v10M24 36v10M2 24h10M36 24h10"/>
+          </svg>
+          <span class="card-n">01</span>
           <h3>Coaching</h3>
-          <p>One-to-one work for lifters with a competition date, a lift to fix or a plan to follow.</p>
-        </div>
-        <div class="index-row rv">
-          <span class="n">02</span>
-          <h3>Semi-private and small group</h3>
-          <p>Programmed training in small numbers, with a coach on the floor beside you. Not a class taken from the front.</p>
-        </div>
-        <div class="index-row rv">
-          <span class="n">03</span>
+          <p>One-to-one work for a competition date, a lift to fix or a plan to follow.</p>
+        </li>
+        <li class="card">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="14" cy="16" r="5"/><circle cx="34" cy="16" r="5"/><circle cx="24" cy="12" r="5"/><path d="M5 38c0-6 4-10 9-10M43 38c0-6-4-10-9-10M14 40c0-7 4.5-12 10-12s10 5 10 12"/>
+          </svg>
+          <span class="card-n">02</span>
+          <h3>Small group</h3>
+          <p>Programmed training in small numbers, with a coach on the floor beside you.</p>
+        </li>
+        <li class="card">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <rect x="7" y="10" width="34" height="28" rx="1"/><path d="M18 10V6h12v4"/><circle cx="24" cy="21" r="4.5"/><path d="M15 34c1-4.5 4.6-7 9-7s8 2.5 9 7"/>
+          </svg>
+          <span class="card-n">03</span>
           <h3>Independent trainers</h3>
-          <p>Facilities for self-employed coaches who want a professional room and an aligned member base.</p>
-        </div>
-        <div class="index-row rv">
-          <span class="n">04</span>
-          <h3>On-site physiotherapy</h3>
-          <p>Assessment, rehabilitation and performance support from practitioners who understand loading.</p>
-        </div>
-      </div>
+          <p>A professional room and an aligned member base for self-employed coaches.</p>
+        </li>
+        <li class="card">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="24" cy="24" r="19"/><path d="M8 26h8l4-9 6 16 4-9h10"/>
+          </svg>
+          <span class="card-n">04</span>
+          <h3>Physiotherapy</h3>
+          <p>Assessment and rehabilitation from practitioners who understand loading.</p>
+        </li>
+      </ul>
 
-      <p class="support-cta rv">
-        <a class="textlink textlink--dark" href="coaching.html">Explore coaching <span aria-hidden="true">&rarr;</span></a>
-      </p>
+      <div class="support-actions">
+        <a class="btn btn--xl" href="coaching.html"><span>Explore coaching</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="btn btn--dark btn--xl" href="contact.html?type=coaching#enquiryForm"><span>Make an enquiry</span><i aria-hidden="true">&rarr;</i></a>
+      </div>
     </div>
   </section>
 
-  <!-- 07 THE FOUNDER ----------------------------------------- -->
-  <section class="founder" aria-labelledby="fnd-h">
+  <!-- MARQUEE: words of the brand, slow and endless -->
+  <section class="marquee" aria-label="Discipline, community, strength, intent, consistency. We set the standard.">
+    <div class="marquee-track" aria-hidden="true">
+      <div class="marquee-row">
+        <span>Discipline</span><b></b><span>Community</span><b></b><span>Strength</span><b></b><span>Intent</span><b></b><span>Consistency</span><b></b><span>We set the standard</span><b></b>
+      </div>
+      <div class="marquee-row">
+        <span>Discipline</span><b></b><span>Community</span><b></b><span>Strength</span><b></b><span>Intent</span><b></b><span>Consistency</span><b></b><span>We set the standard</span><b></b>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 THE FOUNDER -->
+  <section class="founder" aria-labelledby="fnd-h" data-reveal>
     <div class="container grid">
-      <figure class="founder-media rv">
-        <img src="assets/founder.jpg" alt="A man in a sleeveless training top standing outdoors, hands on hips, laughing." width="308" height="536" loading="lazy" decoding="async">
+      <figure class="founder-media wipe">
+        <div class="wipe-in" data-speed="0.05"><img src="assets/founder.jpg" alt="A man in a sleeveless training top standing outdoors, hands on hips, laughing." width="308" height="536" loading="lazy" decoding="async"></div>
         <figcaption>Placeholder image. To be replaced by founder photography.</figcaption>
       </figure>
-
-      <p class="mark rv"><span class="mark-n">05</span><span class="mark-t">The founder</span></p>
-
-      <div class="founder-copy rv">
-        <h2 id="fnd-h">Built by someone who trains</h2>
-        <p>
-          Iron Standard is founded and operated by people who understand strength
-          training, coaching and the Oslo market. The facility answers what the city
-          has been missing, not what is easy to fit out.
-        </p>
-        <p>
-          Credibility here is shown through specific decisions: why the platforms are where
-          they are, why the plates are calibrated, why capacity is treated as quality control.
-        </p>
+      <p class="mark"><span class="mark-n">05</span><span class="mark-t">The founder</span></p>
+      <div class="founder-copy">
+        <h2 id="fnd-h" class="display-sm">
+          <span class="ln"><span>Built by someone</span></span>
+          <span class="ln"><span>who trains.</span></span>
+        </h2>
+        <p>Founded and operated by people who understand strength training, coaching and the Oslo market. Every decision, from where the platforms sit to why capacity is treated as quality control, comes from the training.</p>
         <a class="textlink" href="about.html">Read the full story <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </section>
 
-  <!-- 08 THE CLOSE ------------------------------------------- -->
-  <section class="close" aria-labelledby="close-h">
-    <div class="container grid">
-      <p class="mark rv"><span class="mark-n">06</span><span class="mark-t">Next</span></p>
-      <h2 id="close-h" class="rv">The standard starts here.</h2>
-      <p class="rv">
-        Memberships, coaching and trainer opportunities are handled individually.
-        Tell us how you train and we will come back to you.
-      </p>
-      <div class="hero-actions rv">
-        <a class="btn" href="contact.html">Make an enquiry</a>
-        <a class="btn btn--ghost" href="faq.html">Read the FAQ</a>
+  <!-- 07 THE CLOSE: moving background, oversized outline type -->
+  <section class="close" aria-labelledby="close-h" data-reveal>
+    <div class="close-bg" aria-hidden="true"><img src="assets/detail-a.jpg" alt="" width="436" height="535" loading="lazy" decoding="async"></div>
+    <p class="close-outline" aria-hidden="true">The standard &nbsp; The standard &nbsp; The standard</p>
+    <div class="container close-inner">
+      <p class="mark"><span class="mark-n">06</span><span class="mark-t">Next</span></p>
+      <h2 id="close-h" class="display">
+        <span class="ln"><span>The standard</span></span>
+        <span class="ln"><span>starts here.</span></span>
+      </h2>
+      <p class="close-sub">Tell us how you train. We will come back to you.</p>
+      <div class="hero-actions">
+        <a class="btn btn--lg" href="contact.html"><span>Make an enquiry</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="btn btn--ghost btn--lg" href="faq.html"><span>Read the FAQ</span><i aria-hidden="true">&rarr;</i></a>
       </div>
     </div>
   </section>
@@ -282,5 +350,6 @@
 </footer>
 
 <script src="assets/site.js" defer></script>
+<script src="assets/home.js" defer></script>
 </body>
 </html>
