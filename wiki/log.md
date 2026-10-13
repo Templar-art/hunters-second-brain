@@ -1179,3 +1179,6 @@ Zed chose Option 04 Riviera Resort for the furnished-home job. Logged on [[zed-s
 ## [2026-10-13] build | Iron Standard: motion system site-wide
 
 Client revisions: scroll line removed, closing title now "Raise your standard.", closing logo halved and overlay lightened. Then the homepage style rolled out to every page: shared motion.css/motion.js (masked reveals, photo wipes, eased scroll engine, icon cards, marquee, closing band with travelling logo, smooth FAQ accordion) plus a cinematic page hero on every inner page. Static fallback with reduced motion. 32 page/width combos clean.
+
+## [2026-10-13] ingest | House twilight reference locked
+Hunter supplied the target twilight frame; new page [[house-twilight]], supersedes ZED #21 as default.
