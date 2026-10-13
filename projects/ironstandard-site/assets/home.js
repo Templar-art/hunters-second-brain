@@ -129,8 +129,7 @@
         ring = s2.querySelector(".ring"),
         mark2 = s2.querySelector(".mark"),
         lines2 = s2.querySelectorAll(".ln > span"),
-        note2 = s2.querySelector(".scene-note"),
-        cue = stage.querySelector(".stage-cue");
+        note2 = s2.querySelector(".scene-note");
     var desktop = window.matchMedia("(min-width:1024px)");
 
     /* load sequence */
@@ -147,7 +146,6 @@
       copy1.style.opacity = (1 - out1).toFixed(3);
       /* a faded-out scene must not stay clickable or focusable under the next one */
       copy1.style.visibility = out1 >= 0.995 ? "hidden" : "visible";
-      if (cue) cue.style.opacity = (1 - seg(p, 0.05, 0.2)).toFixed(3);
 
       /* scene 2: cross-fades in out of focus, then sharpens */
       var in2 = seg(p, 0.3, 0.5);
@@ -191,7 +189,7 @@
     if (!track) return;
     travel = Math.max(0, track.scrollWidth - window.innerWidth);
     /* section height = the horizontal distance, plus one screen to read the last panel */
-    hs.style.height = (travel + window.innerHeight) + "px";
+    hs.style.height = (travel * 0.8 + window.innerHeight) + "px";
   }
   if (track) {
     layoutHS();
@@ -246,10 +244,10 @@
   /* ---------- 7. close: outline type travels, photo settles ---------- */
   var close = document.querySelector(".home .close");
   if (close) {
-    var outline = close.querySelector(".close-outline");
+    var outline = close.querySelector(".close-logo");
     var cbg = close.querySelector(".close-bg img");
     add(close, function (p) {
-      if (outline) outline.style.transform = "translate3d(" + lerp(6, -42, p).toFixed(2) + "%,0,0)";
+      if (outline) outline.style.transform = "translate3d(" + lerp(4, -38, p).toFixed(2) + "%,0,0)";
       if (cbg) cbg.style.transform = "scale(" + lerp(1.2, 1, p).toFixed(4) + ")";
     }, "view");
   }
