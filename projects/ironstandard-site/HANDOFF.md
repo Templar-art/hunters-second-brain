@@ -14,6 +14,7 @@ Built against the approved *Website Strategy & Creative Direction* (Sept 2026) a
 | `02 Upload zip` | The same site, zipped and ready to upload to hosting. Internal notes are stripped out. | Whoever puts it online |
 | `03 Enquiry form setup` | The Google Apps Script that receives contact-form enquiries, plus step-by-step setup. | Whoever owns the Iron Standard Google account |
 | `04 Previews` | Full-page stills of the six core pages at desktop size, plus four at phone size. Stills show the resting layout: motion and the fixed photos behind the centred statement bands only appear in a browser. | For showing Anthony |
+| `05 WordPress setup` | One PDF: every WordPress page to create, its slug, SEO title and meta description, plus the Elementor steps and the link map. | Whoever builds the pages in WordPress |
 | `Iron Standard - Website Preview.html` | The whole site in one file. Double-click to open it in a browser and click through every page. For review only, not for uploading. | Anyone reviewing the site |
 
 ## The pages
