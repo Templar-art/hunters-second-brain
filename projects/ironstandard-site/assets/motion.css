@@ -97,6 +97,9 @@
 .band::after{ background:rgba(0,0,0,.62); z-index:1; }
 .band-bg{ position:fixed; inset:0; z-index:0; }
 .band .band-bg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:var(--grade) blur(1px); }
+/* full-colour band photo: no grade, and a slightly heavier overlay keeps the line readable */
+.band--colour .band-bg img{ filter:none; }
+.band--colour::after{ background:rgba(0,0,0,.66); }
 .band .band-copy{
   position:relative; inset:auto; z-index:2; padding:var(--sp-section) var(--pad);
   text-align:center; width:100%;   /* grid centring would otherwise shrink it and the masks clip the lines */
