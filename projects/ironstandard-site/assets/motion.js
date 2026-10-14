@@ -35,7 +35,7 @@
       if (sec.matches(".stage, .hs, .page-hero, .marquee")) return;
       sec.setAttribute("data-reveal", "");
       sec.querySelectorAll("h2").forEach(function (h) {
-        if (h.querySelector(".ln") || h.closest(".faq-group")) return;
+        if (h.querySelector(".ln") || h.closest(".faq-group, .legal-sec, .hs")) return;
         h.classList.remove("rv");
         /* move the heading's own nodes into a mask; no markup is re-parsed */
         var outer = document.createElement("span"), inner = document.createElement("span");
@@ -220,12 +220,84 @@
           { duration: 380, easing: "cubic-bezier(.16,1,.3,1)" });
         anim.onfinish = function () { d.open = false; anim = null; };
       } else {
+        /* close whichever answer is already open, so the page never grows long */
+        document.querySelectorAll(".faq details[open]").forEach(function (o) {
+          if (o === d) return;
+          var oa = o.querySelector(".answer");
+          if (!oa || !oa.animate) { o.open = false; return; }
+          oa.animate([{ height: oa.offsetHeight + "px", opacity: 1 }, { height: "0px", opacity: 0 }],
+            { duration: 320, easing: "cubic-bezier(.16,1,.3,1)" }).onfinish = function () { o.open = false; };
+        });
         d.open = true;
         var full = answer.offsetHeight;
         anim = answer.animate([{ height: "0px", opacity: 0 }, { height: full + "px", opacity: 1 }],
           { duration: 520, easing: "cubic-bezier(.16,1,.3,1)" });
         anim.onfinish = function () { anim = null; };
       }
+    });
+  });
+
+  /* ---------- 8b. measuring scale fills as it crosses the screen ---------- */
+  document.querySelectorAll("[data-scale]").forEach(function (sc) {
+    var fill = sc.querySelector(".scale-fill");
+    add(sc, function (p) {
+      fill.style.transform = "scaleX(" + easeOut(seg(p, 0.15, 0.6)).toFixed(4) + ")";
+    }, "view");
+  });
+
+  /* ---------- 9. horizontal tracks: pin, scroll sideways, release ----------
+     Section height is set so the sideways distance maps onto vertical
+     scroll; a link to a panel inside the track lands on that panel. */
+  document.querySelectorAll(".hs").forEach(function (hs) {
+    var track = hs.querySelector(".hs-track");
+    var pin = hs.querySelector(".hs-pin");
+    if (!track) return;
+    var bar = hs.querySelector(".hs-progress span");
+    var media = hs.querySelectorAll(".hs-media img");
+    var counters = hs.querySelectorAll(".count");
+    var counted = new WeakSet();
+    var travel = 0;
+    function layout() {
+      travel = Math.max(0, track.scrollWidth - window.innerWidth);
+      /* a little less vertical scroll than sideways distance, plus one screen to read the last panel */
+      hs.style.height = (travel * 0.8 + window.innerHeight) + "px";
+    }
+    layout();
+    window.addEventListener("load", layout);
+    window.addEventListener("resize", layout, { passive: true });
+
+    function toPanel(id) {
+      var el = id && document.getElementById(id);
+      if (!el || !track.contains(el)) return false;
+      var panel = el.closest(".hs-panel") || el;
+      /* a native anchor jump scrolls the clipped pin sideways; undo it, the track moves instead */
+      pin.scrollLeft = 0;
+      var p = travel ? clamp((panel.offsetLeft - window.innerWidth * 0.08) / travel, 0, 1) : 0;
+      var top = hs.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: top + p * (hs.offsetHeight - window.innerHeight), behavior: "instant" });
+      return true;
+    }
+    window.addEventListener("load", function () { toPanel(location.hash.slice(1)); });
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (a && toPanel(a.getAttribute("href").slice(1))) e.preventDefault();
+    });
+
+    add(hs, function (p) {
+      if (pin.scrollLeft) pin.scrollLeft = 0;
+      track.style.transform = "translate3d(" + (-p * travel).toFixed(1) + "px,0,0)";
+      if (bar) bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      var vw = window.innerWidth;
+      media.forEach(function (img) {
+        var box = img.parentElement.getBoundingClientRect();
+        /* -1 when the panel is off right, +1 off left: the photo drifts against the track */
+        var d = clamp((box.left + box.width / 2 - vw / 2) / vw, -1, 1);
+        img.style.transform = "translate3d(" + (d * -7).toFixed(2) + "%,0,0)";
+      });
+      counters.forEach(function (c) {
+        if (counted.has(c)) return;
+        if (c.getBoundingClientRect().left < vw * 0.85) { counted.add(c); countUp(c); }
+      });
     });
   });
 

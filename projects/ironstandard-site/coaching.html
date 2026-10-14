@@ -71,68 +71,70 @@
   </section>
 
 
-  <!-- 01 SERVICES: alternating asymmetric rows, image side flips each time -->
-  <section class="sec sec--dark sec--tight">
-    <div class="container">
-      <p class="mark rv"><span class="mark-n">01</span><span class="mark-t">What is offered</span></p>
+  <!-- 01 SERVICES: pinned horizontal track, one condensed panel per service,
+       then the page carries on scrolling. A plain stack without motion. -->
+  <section class="hs hs--services" id="services" aria-labelledby="services-h">
+    <div class="hs-pin">
+      <div class="hs-track">
 
-      <div class="alt-row">
-        <figure class="alt-media rv">
-          <img src="assets/coaching-a.jpg" alt="An athlete at the top of a box jump under overhead lighting." width="438" height="550" loading="lazy" decoding="async">
-        </figure>
-        <div class="alt-copy stack rv" id="one-to-one">
-          <h2>One-to-one coaching</h2>
-          <p>
-            Direct work with a coach for lifters with a competition date, a lift that has
-            stalled, or a plan that needs writing properly. Sessions are programmed around
-            the athlete in front of them, never a template.
-          </p>
+        <div class="hs-panel hs-intro">
+          <p class="mark"><span class="mark-n">01</span><span class="mark-t">What is offered</span></p>
+          <h2 id="services-h" class="display-sm">
+            <span class="ln"><span>Four ways</span></span>
+            <span class="ln"><span>to be coached.</span></span>
+          </h2>
+          <p class="hs-hint" aria-hidden="true">Keep scrolling <i>&rarr;</i></p>
         </div>
-      </div>
 
-      <div class="alt-row">
-        <figure class="alt-media rv">
-          <img src="assets/coaching-b.jpg" alt="Close detail of a lifter's shoulder and upper back under a padded bar." width="440" height="535" loading="lazy" decoding="async">
-        </figure>
-        <div class="alt-copy stack rv" id="small-group">
-          <h2>Semi-private and small group</h2>
-          <p>
-            Programmed training in small numbers with a coach on the floor beside you, not a
-            class taken from the front. Useful for lifters who want structure and
-            supervision without full one-to-one cost.
-          </p>
-        </div>
-      </div>
+        <article class="hs-panel hs-stat" id="one-to-one">
+          <figure class="hs-media"><img src="assets/coaching-a.jpg" alt="An athlete at the top of a box jump under overhead lighting." width="438" height="550" loading="lazy" decoding="async"></figure>
+          <div class="hs-copy">
+            <p class="hs-index">01 / 04</p>
+            <h2 class="hs-figure hs-figure--word">One-to-one</h2>
+            <h3>Coaching</h3>
+            <p>For a competition date, a stalled lift or a plan that needs writing properly. Built around you, never a template.</p>
+          </div>
+        </article>
 
-      <div class="alt-row">
-        <figure class="alt-media rv">
-          <img src="assets/trainers.jpg" alt="An adjustable training bench beside a loaded rack on rubber flooring." width="480" height="1083" loading="lazy" decoding="async">
-        </figure>
-        <div class="alt-copy stack rv" id="independent-trainers">
-          <h2>Independent trainers</h2>
-          <p>
-            Facilities for self-employed coaches who want a professional room and an aligned
-            member base. Trainer enquiries are handled separately from member enquiries so
-            each is answered by the right person.
-          </p>
-          <a class="textlink" href="contact.html?type=trainer#enquiryForm">Trainer enquiry <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </div>
+        <article class="hs-panel hs-stat" id="small-group">
+          <figure class="hs-media"><img src="assets/coaching-b.jpg" alt="Close detail of a lifter's shoulder and upper back under a padded bar." width="440" height="535" loading="lazy" decoding="async"></figure>
+          <div class="hs-copy">
+            <p class="hs-index">02 / 04</p>
+            <h2 class="hs-figure hs-figure--word">Small group</h2>
+            <h3>Semi-private</h3>
+            <p>A coach on the floor beside you, not a class from the front. Structure without full one-to-one cost.</p>
+          </div>
+        </article>
 
-      <div class="alt-row">
-        <figure class="alt-media rv">
-          <img src="assets/detail-a.jpg" alt="Hands loading a plate onto a barbell." width="436" height="535" loading="lazy" decoding="async">
-        </figure>
-        <div class="alt-copy stack rv" id="physiotherapy">
-          <h2>On-site physiotherapy</h2>
-          <p>
-            Assessment, rehabilitation and performance support from practitioners who
-            understand loading. Working in the same building as the training floor means
-            rehabilitation and programming stay connected.
-          </p>
-          <a class="textlink" href="contact.html?type=physiotherapy#enquiryForm">Physiotherapy enquiry <span aria-hidden="true">&rarr;</span></a>
+        <article class="hs-panel hs-stat" id="independent-trainers">
+          <figure class="hs-media"><img src="assets/trainers.jpg" alt="An adjustable training bench beside a loaded rack on rubber flooring." width="480" height="1083" loading="lazy" decoding="async"></figure>
+          <div class="hs-copy">
+            <p class="hs-index">03 / 04</p>
+            <h2 class="hs-figure hs-figure--word">Trainers</h2>
+            <h3>Independent</h3>
+            <p>A professional room and an aligned member base for self-employed coaches.</p>
+            <a class="textlink" href="contact.html?type=trainer#enquiryForm">Trainer enquiry <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="hs-panel hs-stat" id="physiotherapy">
+          <figure class="hs-media"><img src="assets/detail-a.jpg" alt="Hands loading a plate onto a barbell." width="436" height="535" loading="lazy" decoding="async"></figure>
+          <div class="hs-copy">
+            <p class="hs-index">04 / 04</p>
+            <h2 class="hs-figure hs-figure--word">Physio</h2>
+            <h3>On site</h3>
+            <p>Assessment and rehabilitation from practitioners who understand loading, in the same building as the floor.</p>
+            <a class="textlink" href="contact.html?type=physiotherapy#enquiryForm">Physiotherapy enquiry <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <div class="hs-panel hs-end">
+          <p class="hs-end-line">One enquiry. The right person.</p>
+          <a class="btn btn--lg" href="contact.html?type=coaching#enquiryForm"><span>Coaching enquiry</span><i aria-hidden="true">&rarr;</i></a>
         </div>
+
       </div>
+      <div class="hs-progress" aria-hidden="true"><span></span></div>
     </div>
   </section>
 
@@ -171,7 +173,7 @@
           <span class="card-go" aria-hidden="true">&rarr;</span>
           <span class="card-n">03</span>
           <h3><a class="card-link" href="contact.html?type=general#enquiryForm">Events and competitions</a></h3>
-          <p>Meets, workshops, seminars and courses, announced once the facility is open. <span class="chip chip--planned">Planned</span></p>
+          <p>Meets, workshops, seminars and courses, announced once the facility is open.</p>
         </li>
       </ul>
 
@@ -181,48 +183,28 @@
     </div>
   </section>
 
-  <!-- 03 HOW IT WORKS: dark editorial passage -->
-  <section class="sec sec--dark sec--ruled">
-    <div class="container grid">
-      <p class="mark rv"><span class="mark-n">03</span><span class="mark-t">How it works</span></p>
-      <h2 class="sec-head rv">Start with a conversation</h2>
-      <div class="sec-copy stack rv">
-        <p class="lede">
-          Every coaching relationship starts with a conversation. There is no sign-up form to fill in first.
-          Tell us what you train for and what you are trying to fix, and the enquiry goes to
-          the person best placed to answer it.
-        </p>
-        <p style="color:var(--muted)">
-          Nothing here is sold as a package before the requirement is understood.
-        </p>
-      </div>
-      <div class="sec-copy-r rv" style="margin-top:32px">
-        <!-- Coach profiles: reusable template (strategy p19). Clone into #coachList
-             for each confirmed coach, fill the slots, and remove the note above.
-             Nothing renders until a profile is added. -->
-        <div class="coach-list" id="coachList"></div>
-        <template id="coachProfile">
-          <article class="coach">
-            <figure class="coach-media"><img alt="" width="440" height="550" loading="lazy" decoding="async"></figure>
-            <p class="coach-role"></p>
-            <h3 class="coach-name"></h3>
-            <p class="coach-bio"></p>
-            <a class="textlink" href="contact.html?type=coaching#enquiryForm">Enquire <span aria-hidden="true">&rarr;</span></a>
-          </article>
-        </template>
-      </div>
-    </div>
-  </section>
+  <!-- Coach profiles: reusable template (strategy p19). Clone into #coachList for each
+       confirmed coach and fill the slots. Nothing renders until a profile is added. -->
+  <div class="coach-list container" id="coachList"></div>
+  <template id="coachProfile">
+    <article class="coach">
+      <figure class="coach-media"><img alt="" width="440" height="550" loading="lazy" decoding="async"></figure>
+      <p class="coach-role"></p>
+      <h3 class="coach-name"></h3>
+      <p class="coach-bio"></p>
+      <a class="textlink" href="contact.html?type=coaching#enquiryForm">Enquire <span aria-hidden="true">&rarr;</span></a>
+    </article>
+  </template>
 
   <section class="close close--page">
     <div class="close-bg" aria-hidden="true"><img src="assets/racks.jpg" alt="" width="480" height="1083" loading="lazy" decoding="async"></div>
     <img class="close-logo" src="assets/logo-white.png" alt="" aria-hidden="true" width="3165" height="370" loading="lazy" decoding="async">
     <div class="container grid">
-      <p class="mark rv"><span class="mark-n">04</span><span class="mark-t">Your move</span></p>
-      <h2 class="sec-full rv" style="font-size:var(--display-sm)">Tell us how you train.</h2>
-      <p class="sec-copy rv" style="margin-top:28px;color:var(--muted)">Coaching, trainer and physiotherapy enquiries are all routed separately so the right person answers.</p>
+      <p class="mark rv"><span class="mark-n">03</span><span class="mark-t">Your move</span></p>
+      <h2 class="sec-full rv" style="font-size:var(--display-sm)">Start with a conversation.</h2>
+      <p class="sec-copy rv" style="margin-top:28px;color:var(--ink-2)">No sign-up form, no package to buy first. Tell us what you train for and what you want to fix, and the person best placed to help answers.</p>
       <div class="cta-row sec-full rv">
-        <a class="btn btn--lg" href="contact.html?type=coaching#enquiryForm"><span>Enquire</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="btn btn--lg" href="contact.html?type=coaching#enquiryForm"><span>Get started</span><i aria-hidden="true">&rarr;</i></a>
         <a class="btn btn--ghost btn--lg" href="faq.html"><span>Read the FAQ</span><i aria-hidden="true">&rarr;</i></a>
       </div>
     </div>
@@ -247,11 +229,14 @@
     <div class="footer-bottom">
       <span>&copy; 2026 Iron Standard, Oslo</span>
       <span>
-        <a href="privacy.html">Privacy</a> &middot;
-        <a href="cookies.html">Cookies</a> &middot;
-        <a href="terms.html">Terms of use</a> &middot;
-        <a href="accessibility.html">Accessibility</a>
+        <a href="privacy.html">Privacy and cookies</a> &middot;
+        <a href="terms.html">Terms and accessibility</a>
       </span>
+    </div>
+  </div>
+  <div class="footer-credit">
+    <div class="container">
+      <a href="https://10xvisuals.com.au" target="_blank" rel="noopener">Built by <strong>10x Visuals</strong><span class="sr-only"> (opens in a new tab)</span></a>
     </div>
   </div>
 </footer>

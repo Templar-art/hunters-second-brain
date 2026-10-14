@@ -20,3 +20,13 @@
   from = "/wp-*"
   to = "/"
   status = 301
+
+# Cookies and accessibility now live inside the privacy and terms pages
+[[redirects]]
+  from = "/cookies.html"
+  to = "/privacy.html#cookies"
+  status = 301
+[[redirects]]
+  from = "/accessibility.html"
+  to = "/terms.html#accessibility"
+  status = 301

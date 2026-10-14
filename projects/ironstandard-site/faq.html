@@ -73,11 +73,14 @@
 
   <section class="sec sec--dark sec--ruled">
     <div class="container">
-      <nav class="faq-index rv" aria-label="FAQ categories">
-        <a href="#the-facility">The facility</a>
-        <a href="#training-here">Training here</a>
-        <a href="#coaching-and-services">Coaching and services</a>
-      </nav>
+      <!-- Tabs switch between the three groups (site.js). Without JavaScript
+           the tab bar stays hidden and every group shows in full. -->
+      <div class="faq-tabs" role="tablist" aria-label="FAQ topics" hidden>
+        <button type="button" role="tab" id="tab-the-facility" aria-controls="the-facility" aria-selected="true">The facility</button>
+        <button type="button" role="tab" id="tab-training-here" aria-controls="training-here" aria-selected="false" tabindex="-1">Training here</button>
+        <button type="button" role="tab" id="tab-coaching-and-services" aria-controls="coaching-and-services" aria-selected="false" tabindex="-1">Coaching and services</button>
+        <span class="faq-tabs-bar" aria-hidden="true"></span>
+      </div>
 
       <div class="faq-group" id="the-facility">
         <h2 class="rv">The facility</h2>
@@ -181,11 +184,14 @@
     <div class="footer-bottom">
       <span>&copy; 2026 Iron Standard, Oslo</span>
       <span>
-        <a href="privacy.html">Privacy</a> &middot;
-        <a href="cookies.html">Cookies</a> &middot;
-        <a href="terms.html">Terms of use</a> &middot;
-        <a href="accessibility.html">Accessibility</a>
+        <a href="privacy.html">Privacy and cookies</a> &middot;
+        <a href="terms.html">Terms and accessibility</a>
       </span>
+    </div>
+  </div>
+  <div class="footer-credit">
+    <div class="container">
+      <a href="https://10xvisuals.com.au" target="_blank" rel="noopener">Built by <strong>10x Visuals</strong><span class="sr-only"> (opens in a new tab)</span></a>
     </div>
   </div>
 </footer>

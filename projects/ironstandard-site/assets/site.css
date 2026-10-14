@@ -55,7 +55,10 @@
   --gap:20px;
   /* distance from the container's content edge out to the viewport edge,
      so an element can bleed past the grid and off screen */
-  --edge:calc((100vw - min(100vw, var(--maxw))) / 2 + var(--pad));
+  --edge:calc((100vw - min(100vw, var(--maxw))) / 2 + var(--pad) + var(--inset));
+  /* extra side inset for page content on desktop, so every section's text
+     lines up with the hero copy above it (header and footer keep --pad) */
+  --inset:0px;
 
   --t:260ms;
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -80,7 +83,7 @@
 
   --grade:grayscale(1) sepia(.14) contrast(1.12) brightness(.9);
 }
-@media (min-width:1024px){ :root{ --pad:48px; --gap:28px; } }
+@media (min-width:1024px){ :root{ --pad:48px; --gap:28px; --inset:clamp(0px, 6vw, 120px); } }
 
 *,*::before,*::after{ box-sizing:border-box; }
 html{ overflow-x:hidden; overflow-x:clip; scroll-behavior:smooth; }
@@ -118,6 +121,7 @@ a{ color:inherit; }
 
 /* ---------- layout primitives ---------- */
 .container{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad); }
+main .container{ padding-inline:calc(var(--pad) + var(--inset)); }
 /* mobile first: one column. The 12-column editorial grid is a desktop layer. */
 .grid{ display:grid; grid-template-columns:1fr; gap:0; }
 @media (min-width:1024px){
@@ -541,7 +545,7 @@ p:last-child{ margin-bottom:0; }
 /* ---------- footer ---------- */
 .site-footer{
   background:var(--black); border-top:1px solid var(--rule);
-  padding-block:clamp(48px,7vw,72px);
+  padding-top:clamp(48px,7vw,72px);
   font-size:0.875rem;
 }
 .footer-top{ display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; align-items:start; }
@@ -558,7 +562,17 @@ p:last-child{ margin-bottom:0; }
 }
 .footer-bottom a{ text-decoration:none; }
 .footer-bottom a:hover{ color:var(--white); }
-.footer-note{ flex-basis:100%; color:var(--ink-quiet); }
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+/* builder credit: its own thin band under the footer */
+.footer-credit{ margin-top:clamp(28px,4vw,40px); border-top:1px solid var(--rule); }
+.footer-credit .container{ display:flex; justify-content:center; padding-block:18px; }
+.footer-credit a{
+  display:inline-flex; align-items:center; min-height:44px; text-decoration:none;
+  font-size:var(--eyebrow); font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ink-quiet); transition:color var(--t) var(--ease);
+}
+.footer-credit strong{ margin-left:.5em; color:var(--ink-2); font-weight:700; transition:color var(--t) var(--ease); }
+.footer-credit a:hover, .footer-credit a:hover strong{ color:var(--white); }
 
 /* ============================================================
    INNER PAGE PATTERNS
@@ -658,19 +672,34 @@ p:last-child{ margin-bottom:0; }
   .faq-group > h2{ grid-column:1/4; margin:0; }
   .faq-group > .faq{ grid-column:5/13; }
 }
-/* Category index: jumps to a group; each answer has its own id so it can be linked */
-.faq-index{
-  display:flex; flex-wrap:wrap; gap:8px 28px;
-  margin-bottom:clamp(40px,6vw,72px); padding-bottom:20px;
-  border-bottom:1px solid var(--rule);
+/* Topic tabs: an underline slides to the selected topic */
+.faq-tabs{
+  position:relative; display:flex; gap:clamp(20px,3vw,48px); overflow-x:auto; scrollbar-width:none;
+  margin-bottom:clamp(40px,6vw,72px); border-bottom:1px solid var(--rule);
 }
-.faq-index a{
-  display:inline-flex; align-items:center; min-height:44px;
-  font-size:var(--eyebrow); font-weight:600; letter-spacing:.2em; text-transform:uppercase;
-  line-height:1.25; color:var(--ink-2);
-  transition:color var(--t) var(--ease);
+.faq-tabs[hidden]{ display:none; }
+.faq-tabs::-webkit-scrollbar{ display:none; }
+.faq-tabs [role="tab"]{
+  flex:0 0 auto; min-height:64px; padding:0; background:none; border:0; cursor:pointer;
+  font:inherit; font-size:clamp(0.8125rem,1vw,0.9375rem); font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted); transition:color var(--t) var(--ease);
 }
-.faq-index a:hover{ color:var(--white); }
+.faq-tabs [role="tab"]:hover,
+.faq-tabs [role="tab"][aria-selected="true"]{ color:var(--white); }
+.faq-tabs [role="tab"]:focus-visible{ outline:2px solid var(--orange); outline-offset:4px; }
+.faq-tabs-bar{
+  position:absolute; left:0; top:0; height:2px; width:0; background:var(--orange);
+  transition:transform 420ms cubic-bezier(.16,1,.3,1), width 420ms cubic-bezier(.16,1,.3,1);
+}
+.faq-group[hidden]{ display:none; }
+.faq-group[role="tabpanel"]{ margin-bottom:0; animation:faq-in 520ms cubic-bezier(.16,1,.3,1); }
+.faq-group[role="tabpanel"]:focus{ outline:none; }
+@media (max-width:599px){
+  .faq-tabs{ flex-wrap:wrap; gap:0 20px; overflow:visible; }
+  .faq-tabs [role="tab"]{ min-height:48px; font-size:0.75rem; letter-spacing:.12em; }
+}
+@keyframes faq-in{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce){ .faq-group[role="tabpanel"]{ animation:none; } .faq-tabs-bar{ transition:none; } }
 .faq-group, .faq details, [id].alt-copy, .index-row[id], #enquiryForm{ scroll-margin-top:110px; }
 .faq details:target > summary{ color:var(--orange); }
 
@@ -853,7 +882,7 @@ body::after{
     pointer-events:none;
     max-width:var(--maxw);
     margin-inline:auto;
-    left:var(--pad); right:var(--pad);
+    left:calc(var(--pad) + var(--inset)); right:calc(var(--pad) + var(--inset));
     background-image:repeating-linear-gradient(
       to right,
       var(--grid-line) 0 1px,

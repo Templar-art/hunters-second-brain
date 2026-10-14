@@ -44,10 +44,13 @@
   var sentinel = document.createElement("div");
   sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none;";
   document.body.prepend(sentinel);
+  /* On the homepage the pinned hero and position scenes play first, so the
+     header only turns white once that stage has scrolled away. */
+  var stage = document.getElementById("stage");
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function (e) {
       header.classList.toggle("is-stuck", !e[0].isIntersecting);
-    }).observe(sentinel);
+    }, stage ? { rootMargin: "-" + header.offsetHeight + "px 0px 0px 0px" } : {}).observe(stage || sentinel);
   }
 
 
@@ -294,16 +297,82 @@
 })();
 
 /* ============================================================
-   FAQ: a link to an individual answer opens it.
-   Answers are native <details>, so the text stays crawlable.
+   FAQ: topic tabs, one answer open at a time, and a link to an
+   individual answer opens it. Answers are native <details>, so the
+   text stays crawlable and every group shows in full without JS.
    ============================================================ */
 (function () {
   "use strict";
+  var tablist = document.querySelector(".faq-tabs");
+  var tabs = tablist ? Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]')) : [];
+  var bar = tablist && tablist.querySelector(".faq-tabs-bar");
+
+  function moveBar(tab) {
+    if (!bar) return;
+    bar.style.width = tab.offsetWidth + "px";
+    /* tabs wrap onto two rows on small phones, so track the row as well */
+    bar.style.transform = "translate(" + tab.offsetLeft + "px," + (tab.offsetTop + tab.offsetHeight - 1) + "px)";
+  }
+  function select(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      var panel = document.getElementById(t.getAttribute("aria-controls"));
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      panel.hidden = !on;
+      if (on) {
+        /* a panel shown later was never on screen for the reveal observer */
+        panel.querySelectorAll(".will-reveal").forEach(function (el) { el.classList.remove("will-reveal"); });
+      }
+    });
+    moveBar(tab);
+    if (focus) tab.focus();
+  }
+
+  if (tabs.length) {
+    tabs.forEach(function (t) {
+      var panel = document.getElementById(t.getAttribute("aria-controls"));
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", t.id);
+      panel.tabIndex = -1;
+      t.addEventListener("click", function () { select(t, false); });
+    });
+    tablist.addEventListener("keydown", function (e) {
+      var i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      var n = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 :
+              e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : null;
+      if (n === null) return;
+      e.preventDefault();
+      select(tabs[(n + tabs.length) % tabs.length], true);
+    });
+    tablist.hidden = false;
+    select(tabs[0], false);
+    window.addEventListener("resize", function () {
+      moveBar(tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0]);
+    }, { passive: true });
+  }
+
+  /* one answer open at a time. With motion on, motion.js animates this itself. */
+  document.querySelectorAll(".faq details").forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (!d.open || document.documentElement.classList.contains("motion")) return;
+      document.querySelectorAll(".faq details[open]").forEach(function (o) { if (o !== d) o.open = false; });
+    });
+  });
+
   function openTarget() {
     var id = decodeURIComponent(window.location.hash.slice(1));
     if (!id) return;
     var el = document.getElementById(id);
-    if (el && el.tagName === "DETAILS") el.open = true;
+    if (!el) return;
+    var group = el.closest(".faq-group");
+    if (group && tabs.length) {
+      var tab = tabs.filter(function (t) { return t.getAttribute("aria-controls") === group.id; })[0];
+      if (tab) select(tab, false);
+    }
+    if (el.tagName === "DETAILS") el.open = true;
+    el.scrollIntoView({ block: "start" });
   }
   openTarget();
   window.addEventListener("hashchange", openTarget);

@@ -10,7 +10,7 @@ Built against the approved *Website Strategy & Creative Direction* (Sept 2026) a
 
 | Folder | What it is | Who uses it |
 |---|---|---|
-| `01 Website` | The complete site: 6 core pages, 4 legal pages, a 404 page, all assets. Open `index.html` to view it locally. | Developer, or anyone checking the site |
+| `01 Website` | The complete site: 6 core pages, 2 legal pages (privacy and cookies, terms and accessibility), a 404 page, all assets. Open `index.html` to view it locally. | Developer, or anyone checking the site |
 | `02 Upload zip` | The same site, zipped and ready to upload to hosting. Internal notes are stripped out. | Whoever puts it online |
 | `03 Enquiry form setup` | The Google Apps Script that receives contact-form enquiries, plus step-by-step setup. | Whoever owns the Iron Standard Google account |
 | `04 Previews` | Full-page stills of the six core pages at desktop size, plus four at phone size. Stills show the resting layout: motion and the fixed photos behind the centred statement bands only appear in a browser. | For showing Anthony |
@@ -27,7 +27,8 @@ Built against the approved *Website Strategy & Creative Direction* (Sept 2026) a
 | FAQ | `faq.html` | Contact us |
 | Contact Us | `contact.html` | Send enquiry |
 
-Footer: Privacy, Cookies, Terms of use, Accessibility. Every page header carries
+Footer: Privacy and cookies, Terms and accessibility, plus a "Built by 10x Visuals" credit band.
+The old `cookies.html` and `accessibility.html` URLs redirect into those pages. Every page header carries
 "Make an enquiry". There is no waitlist anywhere, as the strategy requires.
 
 ---
@@ -63,7 +64,11 @@ host, with the domain's DNS at GoDaddy. Pick one:
   uses general copy until these arrive. Nothing about him has been invented. On-page
   "pending" notes were removed at the client's request, so this list is now the only record.
 - OK to name Anthony McCoy and Thomas Lilley publicly.
-- Legal copy for the four footer pages (needs a proper legal review).
+- Legal review of the privacy and terms pages. They are written to a standard GDPR template
+  for a Norwegian business, but someone must confirm: the legal entity name (and org number
+  if it should appear), the 12-month retention period for enquiries, and that enquiries are
+  stored in Iron Standard's own Google Workspace. Recommended: self-host the TASA Orbiter
+  font so no visitor data goes to Google Fonts at all.
 - Real photography. Every image is a low-resolution stand-in from the brand guidelines.
   The footer no longer says so (client request), so swap them before launch.
 - English, Norwegian or both. The strategy says to settle this before content production.
@@ -80,8 +85,8 @@ host, with the domain's DNS at GoDaddy. Pick one:
   contrast (3.48:1), black passes (6.03:1).
 - **Motion system.** `assets/motion.css` + `assets/motion.js` load on every page: masked
   headline reveals, photo wipes, eased scroll effects, icon cards, the marquee, the page hero
-  and the closing band. `home.css` / `home.js` add only the homepage's pinned stage and
-  horizontal proof. Without JavaScript, or with "reduce motion" switched on, every page is a
+  and the closing band. `home.css` / `home.js` add only the homepage's pinned stage; the
+  horizontal tracks (homepage proof, coaching services) are shared `.hs` sections. Without JavaScript, or with "reduce motion" switched on, every page is a
   complete static layout. Native scrolling is never taken over.
 - **Photo grade.** Every photo runs through one warm black-and-white treatment
   (`--grade` in the stylesheet) so the stand-in images read as one shoot. Once the real
@@ -104,6 +109,14 @@ host, with the domain's DNS at GoDaddy. Pick one:
   cards change colour instantly on hover; closing label "Your move" on every page, logo starts
   further right; About founder section rebuilt; all on-page notes removed. The contact form's
   "not connected yet" warning stays: it shows only until the form is connected, then disappears.
+- Round 5: homepage header stays clear until the hero and position scenes finish; ring label
+  "The gym" set vertically between the rings; page content on every page now lines up with the
+  hero copy (one `--inset` token in site.css); Facility specification rebuilt as a white
+  confirmed/planned board and the Space section rebuilt (measuring scale that fills to 800 m²,
+  contained photo, three figures); Coaching services became a pinned horizontal track, "Planned"
+  chip removed, "How it works" merged into the closing call to action; FAQ became tabs with one
+  answer open at a time; privacy and terms pages written in full, cookies and accessibility
+  folded into them; "Built by 10x Visuals" credit added under the footer.
 
 ## Quality checks passed
 

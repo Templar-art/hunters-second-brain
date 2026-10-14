@@ -4,14 +4,15 @@
    shared engine (window.ISM) and every shared effect: reveals,
    wipes, parallax, lit words, the closing band.
 
-   This file adds only what is unique to the homepage:
-   the pinned stage (hero + position) and the horizontal proof.
+   This file adds only what is unique to the homepage: the pinned
+   stage (hero + position). The horizontal proof uses the shared
+   .hs track in motion.js.
    ============================================================ */
 (function () {
   "use strict";
   var M = window.ISM;
   if (!M) return;   /* motion is off (reduced motion or no observer): static page */
-  var clamp = M.clamp, seg = M.seg, easeOut = M.easeOut, lerp = M.lerp;
+  var seg = M.seg, easeOut = M.easeOut, lerp = M.lerp;
 
   /* ---------- stage: hero + position ---------- */
   var stage = document.getElementById("stage");
@@ -73,36 +74,4 @@
     });
   }
 
-  /* ---------- proof: horizontal track ---------- */
-  var hs = document.getElementById("proof");
-  var track = hs && hs.querySelector(".hs-track");
-  if (!track) return;
-  var bar = hs.querySelector(".hs-progress span");
-  var hsMedia = hs.querySelectorAll(".hs-media img");
-  var counters = hs.querySelectorAll(".count");
-  var travel = 0;
-  function layoutHS() {
-    travel = Math.max(0, track.scrollWidth - window.innerWidth);
-    /* a little less vertical scroll than sideways distance, plus one screen to read the last panel */
-    hs.style.height = (travel * 0.8 + window.innerHeight) + "px";
-  }
-  layoutHS();
-  window.addEventListener("load", layoutHS);
-  window.addEventListener("resize", layoutHS, { passive: true });
-  var counted = new WeakSet();
-  M.add(hs, function (p) {
-    track.style.transform = "translate3d(" + (-p * travel).toFixed(1) + "px,0,0)";
-    if (bar) bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
-    var vw = window.innerWidth;
-    hsMedia.forEach(function (img) {
-      var box = img.parentElement.getBoundingClientRect();
-      /* -1 when the panel is off right, +1 off left: the photo drifts against the track */
-      var d = clamp((box.left + box.width / 2 - vw / 2) / vw, -1, 1);
-      img.style.transform = "translate3d(" + (d * -7).toFixed(2) + "%,0,0)";
-    });
-    counters.forEach(function (c) {
-      if (counted.has(c)) return;
-      if (c.getBoundingClientRect().left < vw * 0.85) { counted.add(c); M.countUp(c); }
-    });
-  });
 })();

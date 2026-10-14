@@ -16,8 +16,8 @@ No build step. Plain HTML, one shared stylesheet, one shared script.
 | `faq.html` | Contact us |
 | `contact.html` | Send enquiry |
 
-Plus four legal stubs (`privacy`, `cookies`, `terms`, `accessibility`) that need
-real copy from legal review before launch, and a `404.html`.
+Plus two legal pages (`privacy` covers cookies, `terms` covers accessibility), written
+in full but still needing legal review before launch, and a `404.html`.
 
 Primary actions follow the strategy's page table (p19). The header button on
 every page is always "Make an enquiry".
@@ -43,8 +43,8 @@ Tokens worth knowing:
 
 - **Motion system.** `assets/motion.css` + `assets/motion.js` load on every page: masked
   headline reveals, photo wipes, eased scroll effects, icon cards, the marquee, the page hero
-  and the closing band. `home.css` / `home.js` add only the homepage's pinned stage and
-  horizontal proof. Without JavaScript, or with "reduce motion" switched on, every page is a
+  and the closing band. `home.css` / `home.js` add only the homepage's pinned stage; the
+  horizontal tracks (homepage proof, coaching services) are shared `.hs` sections. Without JavaScript, or with "reduce motion" switched on, every page is a
   complete static layout. Native scrolling is never taken over.
 Numbered section marks (01, 02...) are a client decision from the approved
 strategy and print guidelines. Design linters flag them; keep them.
@@ -65,7 +65,7 @@ Or `ironstandard-site` in `.claude/launch.json`.
    material from the brand guidelines, standing in until the facility is
    photographed. Equipment brand names visible on plates are fine; another
    gym's branding is not.
-4. Legal copy for the four stub pages.
+4. Legal review of the privacy and terms pages.
 5. Restore the location block in `contact.html` (currently commented out) once
    the address is approved for publication.
 

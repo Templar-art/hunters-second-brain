@@ -18,6 +18,9 @@ DirectoryIndex index.html
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   # Old WordPress URLs go home
   RewriteRule ^(wp-|index\.php) / [L,R=301]
+  # Cookies and accessibility now live inside the privacy and terms pages
+  RewriteRule ^cookies\.html$ /privacy.html#cookies [NE,L,R=301]
+  RewriteRule ^accessibility\.html$ /terms.html#accessibility [NE,L,R=301]
   # Keep the Apps Script source off the public site
   RewriteRule ^google-apps-script/ - [F,L]
 </IfModule>

@@ -71,55 +71,40 @@
   </section>
 
 
-  <!-- 01 SPECIFICATION: confirmed and planned are visually distinct -->
-  <section class="sec sec--dark sec--ruled">
-    <div class="container grid">
-      <p class="mark rv"><span class="mark-n">01</span><span class="mark-t">Specification</span></p>
-      <h2 class="sec-head rv">What is confirmed, and what is not</h2>
-      <p class="sec-aside rv" style="color:var(--muted)">
-        The facility is being built. Anything not yet locked is labelled as planned rather
-        than presented as finished.
-      </p>
-      <div class="sec-full">
-        <p class="chip-key rv">
-          <span class="chip chip--confirmed">Confirmed</span>
-          <span class="chip chip--planned">Planned</span>
-          <span>Status is updated as each element is locked.</span>
-        </p>
-        <div class="spec rv">
-          <h3>800 m&sup2; purpose-built floor</h3>
-          <p>Laid out around the training, not around how many memberships the floor could hold.</p>
-          <span class="chip chip--confirmed">Confirmed</span>
+  <!-- 01 STATUS: one white board, confirmed beside planned, scannable at a glance -->
+  <section class="sec sec--light status-sec" aria-labelledby="status-h">
+    <div class="container">
+      <div class="status-top">
+        <p class="mark mark--dark"><span class="mark-n">01</span><span class="mark-t">Specification</span></p>
+        <h2 id="status-h" class="display-sm">What is confirmed, and what is not</h2>
+        <p class="status-intro">The facility is being built. Anything not yet locked is listed as planned, not presented as finished.</p>
+      </div>
+
+      <div class="status" data-reveal>
+        <div class="status-col">
+          <div class="status-head">
+            <span class="status-dot" aria-hidden="true"></span>
+            <h3>Confirmed</h3>
+            <span class="status-count" aria-hidden="true">04</span>
+          </div>
+          <ul class="status-list" role="list">
+            <li><h4>800 m&sup2; purpose-built floor</h4><p>Laid out around the training, not around how many memberships it could hold.</p></li>
+            <li><h4>24/7 member access</h4><p>Genuine round-the-clock entry for members.</p></li>
+            <li><h4>Competition platforms and calibrated plates</h4><p>The loading standards strength sport actually requires.</p></li>
+            <li><h4>Dedicated posing room</h4><p>A separate room for physique preparation, with the right lighting and mirrors.</p></li>
+          </ul>
         </div>
-        <div class="spec rv">
-          <h3>24/7 member access</h3>
-          <p>Genuine round-the-clock entry for members.</p>
-          <span class="chip chip--confirmed">Confirmed</span>
-        </div>
-        <div class="spec rv">
-          <h3>Competition platforms and calibrated plates</h3>
-          <p>Proper platforms with the loading standards strength sport actually requires.</p>
-          <span class="chip chip--confirmed">Confirmed</span>
-        </div>
-        <div class="spec rv">
-          <h3>Dedicated posing room</h3>
-          <p>A separate room for physique preparation, with appropriate lighting and mirrors.</p>
-          <span class="chip chip--confirmed">Confirmed</span>
-        </div>
-        <div class="spec rv">
-          <h3>Strength and physique machine selection</h3>
-          <p>Specialist machines chosen for the movements serious lifters actually programme.</p>
-          <span class="chip chip--planned">Planned</span>
-        </div>
-        <div class="spec rv">
-          <h3>On-site physiotherapy space</h3>
-          <p>Treatment and assessment space inside the building, so rehabilitation and training stay connected.</p>
-          <span class="chip chip--planned">Planned</span>
-        </div>
-        <div class="spec rv">
-          <h3>Recovery and preparation areas</h3>
-          <p>Warm-up, mobility and recovery space that does not compete with the training floor.</p>
-          <span class="chip chip--planned">Planned</span>
+        <div class="status-col status-col--planned">
+          <div class="status-head">
+            <span class="status-dot" aria-hidden="true"></span>
+            <h3>Planned</h3>
+            <span class="status-count" aria-hidden="true">03</span>
+          </div>
+          <ul class="status-list" role="list">
+            <li><h4>Strength and physique machines</h4><p>Specialist machines chosen for the movements serious lifters programme.</p></li>
+            <li><h4>On-site physiotherapy space</h4><p>Treatment and assessment inside the building, so rehab and training stay connected.</p></li>
+            <li><h4>Recovery and preparation areas</h4><p>Warm-up, mobility and recovery space that does not compete with the floor.</p></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -151,23 +136,39 @@
     </div>
   </section>
 
-  <!-- 03 SPACE: image bleeds left, the mirror of section 01 on About -->
-  <section class="sec sec--dark sec--bleed">
-    <div class="container grid">
-      <figure class="media-l rv">
-        <img src="assets/texture-a.jpg" alt="A weight plate resting on padded rubber flooring." width="480" height="1082" loading="lazy" decoding="async">
-      </figure>
-      <div class="sec-copy-r stack">
-        <p class="mark rv"><span class="mark-n">03</span><span class="mark-t">Space</span></p>
-        <h2 class="rv">Room is part of what you buy</h2>
-        <p class="rv">
-          Space and capacity are not details mentioned late. They are the reason the session
-          works at six in the evening as well as it does at ten in the morning.
-        </p>
-        <p class="rv">
-          Capacity is quality control here, not a ceiling on growth, which is the
-          decision most commercial rooms are unable to make.
-        </p>
+  <!-- 03 SPACE: a measuring scale fills to 800 m2 as it crosses the screen,
+       then a contained landscape photo beside the copy and three figures -->
+  <section class="sec sec--dark space" aria-labelledby="space-h">
+    <div class="container">
+      <p class="mark"><span class="mark-n">03</span><span class="mark-t">Space</span></p>
+      <h2 id="space-h" class="display-sm space-h">Room is part of what you buy.</h2>
+
+      <div class="scale" data-scale aria-hidden="true">
+        <div class="scale-bar"><span class="scale-fill"></span></div>
+        <ol class="scale-marks">
+          <li>0</li><li>200</li><li>400</li><li>600</li><li>800 m&sup2;</li>
+        </ol>
+      </div>
+
+      <div class="space-body">
+        <figure class="space-media wipe" data-reveal>
+          <img src="assets/motion.jpg" alt="A member walking past timber acoustic panelling, blurred in motion." width="643" height="543" loading="lazy" decoding="async" data-speed="-0.05">
+        </figure>
+        <div class="space-copy">
+          <p class="lede">
+            Space and capacity are not details mentioned late. They are the reason the session
+            works at six in the evening as well as it does at ten in the morning.
+          </p>
+          <p>
+            Capacity is quality control here, not a ceiling on growth, which is the decision
+            most commercial rooms are unable to make.
+          </p>
+          <dl class="space-facts" data-reveal>
+            <div><dt>800 m&sup2;</dt><dd>Floor laid out for the work</dd></div>
+            <div><dt>4 zones</dt><dd>Separated so sessions do not collide</dd></div>
+            <div><dt>1 cap</dt><dd>On membership, as quality control</dd></div>
+          </dl>
+        </div>
       </div>
     </div>
   </section>
@@ -246,11 +247,14 @@
     <div class="footer-bottom">
       <span>&copy; 2026 Iron Standard, Oslo</span>
       <span>
-        <a href="privacy.html">Privacy</a> &middot;
-        <a href="cookies.html">Cookies</a> &middot;
-        <a href="terms.html">Terms of use</a> &middot;
-        <a href="accessibility.html">Accessibility</a>
+        <a href="privacy.html">Privacy and cookies</a> &middot;
+        <a href="terms.html">Terms and accessibility</a>
       </span>
+    </div>
+  </div>
+  <div class="footer-credit">
+    <div class="container">
+      <a href="https://10xvisuals.com.au" target="_blank" rel="noopener">Built by <strong>10x Visuals</strong><span class="sr-only"> (opens in a new tab)</span></a>
     </div>
   </div>
 </footer>

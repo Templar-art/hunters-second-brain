@@ -1188,3 +1188,6 @@ Handoff folder re-synced: fresh full-page previews (6 desktop, 4 phone), HANDOFF
 
 ## [2026-10-14] ops | Iron Standard revision round 4
 White sticky header (inverted logo), ring label Strength, instant card hover (removed staggered colour transition), closing label "Your move" + logo starts right, About founder rebuilt as editorial feature (framed portrait, lit pull statement, three principles), all on-page notes and footer imagery note removed. Fixed a dangling selector left from the scroll-line removal. Handoff folder, zip, previews and single-file preview rebuilt.
+
+## [2026-10-14] ops | Iron Standard revision round 5
+Header gated behind the homepage stage; ring label The gym; site-wide --inset so section content aligns with hero copy; Facility status board (white, confirmed/planned) and Space rebuild (scroll-filled measuring scale); Coaching services as shared pinned horizontal track (hs engine moved from home.js into motion.js, anchors land on panels), How it works merged into CTA; FAQ tabs + single-open accordion; privacy and terms written in full with cookies and accessibility folded in (old URLs 301); Built by 10x Visuals footer credit. Headless test lesson: render-blocking Google Fonts can delay deferred scripts past a fixed wait, so captures now wait for readyState complete.
