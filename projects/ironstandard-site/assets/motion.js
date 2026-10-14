@@ -198,7 +198,7 @@
     var logo = close.querySelector(".close-logo");
     var cbg = close.querySelector(".close-bg img");
     add(close, function (p) {
-      if (logo) logo.style.transform = "translate3d(" + lerp(8, -30, p).toFixed(2) + "%,0,0)";
+      if (logo) logo.style.transform = "translate3d(" + lerp(45, -10, p).toFixed(2) + "%,0,0)";
       if (cbg) cbg.style.transform = "scale(" + lerp(1.2, 1, p).toFixed(4) + ")";
     }, "view");
   });

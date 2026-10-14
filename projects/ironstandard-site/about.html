@@ -71,32 +71,46 @@
   </section>
 
 
-  <!-- 01 FOUNDER: asymmetric split, image bleeds right.
-       Mirrors the homepage founder block, which bleeds left. -->
-  <section class="sec sec--dark sec--bleed">
-    <div class="container grid">
-      <div class="sec-copy stack">
-        <p class="mark rv"><span class="mark-n">01</span><span class="mark-t">The founder</span></p>
-        <h2 class="rv">Built by someone who trains</h2>
-        <p class="rv">
+  <!-- 01 FOUNDER: editorial feature. Framed portrait with an offset orange frame and a
+       vertical caption, a lit pull statement, then three principles that break up the read. -->
+  <section class="sec sec--dark fdr" aria-labelledby="fdr-h">
+    <div class="container">
+      <div class="fdr-head">
+        <p class="mark"><span class="mark-n">01</span><span class="mark-t">The founder</span></p>
+        <h2 id="fdr-h" class="display-sm">Built by someone who trains</h2>
+        <p class="lede">
           Iron Standard is founded and operated by people who understand strength training,
-          coaching and the Oslo market. The facility is a response to a specific frustration: training
-          seriously in Oslo has meant choosing between equipment and environment, and
-          accepting a room designed around membership numbers instead of the work.
-        </p>
-        <p class="rv">
-          That experience shapes every decision here, from how much floor a platform gets
-          to why a cap on numbers is treated as quality control.
-        </p>
-        <p class="note-block rv">
-          The full founder narrative is being written by the founder and will replace this
-          section before launch.
+          coaching and the Oslo market. The facility is a response to a specific frustration.
         </p>
       </div>
-      <figure class="media-r rv">
-        <img src="assets/founder.jpg" alt="A man in a sleeveless training top standing outdoors, hands on hips, laughing." width="308" height="536" loading="lazy" decoding="async">
-        <figcaption>Placeholder image. To be replaced by founder photography.</figcaption>
-      </figure>
+
+      <div class="fdr-body">
+        <figure class="fdr-media">
+          <div class="fdr-frame" aria-hidden="true"></div>
+          <div class="fdr-photo wipe" data-reveal>
+            <img src="assets/founder.jpg" alt="A man in a sleeveless training top standing outdoors, hands on hips, laughing." width="308" height="536" loading="lazy" decoding="async" data-speed="-0.06">
+          </div>
+          <span class="fdr-tag" aria-hidden="true">Founder &middot; Oslo</span>
+        </figure>
+
+        <div class="fdr-copy">
+          <blockquote class="fdr-pull">
+            <span class="fdr-q" aria-hidden="true">&ldquo;</span>
+            <p data-words>Training seriously in Oslo has meant choosing between equipment and environment.</p>
+          </blockquote>
+
+          <p>
+            And accepting a room designed around membership numbers instead of the work. That
+            experience shapes every decision here.
+          </p>
+
+          <ol class="fdr-points" data-reveal>
+            <li><span class="fdr-n">01</span><h3>Floor before footfall</h3><p>How much floor a platform gets is decided by the lift, not by the membership target.</p></li>
+            <li><span class="fdr-n">02</span><h3>A cap on numbers</h3><p>Treated as quality control, so the rack you need is free when you need it.</p></li>
+            <li><span class="fdr-n">03</span><h3>Built for the work</h3><p>Every room is laid out around training, not around the tour.</p></li>
+          </ol>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -126,10 +140,6 @@
           <p>An advisory role supporting the founder through the build and the launch.</p>
         </div>
       </div>
-      <p class="note-block rv" style="margin-top:36px">
-        Anthony McCoy's credentials, dates and Thomas Lilley's advisory role are supplied
-        by the founder and appear here once approved.
-      </p>
     </div>
   </section>
 
@@ -186,7 +196,7 @@
     <div class="close-bg" aria-hidden="true"><img src="assets/facility-a.jpg" alt="" width="643" height="1083" loading="lazy" decoding="async"></div>
     <img class="close-logo" src="assets/logo-white.png" alt="" aria-hidden="true" width="3165" height="370" loading="lazy" decoding="async">
     <div class="container grid">
-      <p class="mark rv"><span class="mark-n">04</span><span class="mark-t">Next</span></p>
+      <p class="mark rv"><span class="mark-n">04</span><span class="mark-t">Your move</span></p>
       <h2 class="sec-full rv" style="font-size:var(--display-sm)">See where it happens.</h2>
       <p class="sec-copy rv" style="margin-top:28px;color:var(--muted)">The facility is where the position becomes concrete: the floor, the platforms and the equipment behind it.</p>
       <div class="cta-row sec-full rv">
@@ -220,7 +230,6 @@
         <a href="terms.html">Terms of use</a> &middot;
         <a href="accessibility.html">Accessibility</a>
       </span>
-      <span class="footer-note">Imagery is indicative and will be replaced by photography of the completed facility.</span>
     </div>
   </div>
 </footer>

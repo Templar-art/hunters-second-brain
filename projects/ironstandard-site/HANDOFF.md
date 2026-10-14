@@ -60,11 +60,12 @@ host, with the domain's DNS at GoDaddy. Pick one:
 ## Waiting on Anthony
 
 - Founder story, credentials and dates, plus Thomas Lilley's advisory role. The About page
-  shows a clearly marked placeholder until these arrive. Nothing about him has been invented.
+  uses general copy until these arrive. Nothing about him has been invented. On-page
+  "pending" notes were removed at the client's request, so this list is now the only record.
 - OK to name Anthony McCoy and Thomas Lilley publicly.
 - Legal copy for the four footer pages (needs a proper legal review).
-- Real photography. Every image is a low-resolution stand-in from the brand guidelines and
-  is noted as indicative in the footer.
+- Real photography. Every image is a low-resolution stand-in from the brand guidelines.
+  The footer no longer says so (client request), so swap them before launch.
 - English, Norwegian or both. The strategy says to settle this before content production.
 - Address approval. A location block is ready (hidden) in `contact.html` and can go live
   once the address is approved for publication.
@@ -99,6 +100,10 @@ host, with the domain's DNS at GoDaddy. Pick one:
   centred founder, big faded logo in the closing band.
 - Round 3: header scroll line removed, closing title "Raise your standard.", logo halved,
   lighter overlay. The homepage style then rolled out to every page.
+- Round 4: header turns white with a black logo once it sticks; ring label "Strength"; support
+  cards change colour instantly on hover; closing label "Your move" on every page, logo starts
+  further right; About founder section rebuilt; all on-page notes removed. The contact form's
+  "not connected yet" warning stays: it shows only until the form is connected, then disappears.
 
 ## Quality checks passed
 

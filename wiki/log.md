@@ -1185,3 +1185,6 @@ Hunter supplied the target twilight frame; new page [[house-twilight]], supersed
 
 ## [2026-10-14] ops | Iron Standard handoff pass
 Handoff folder re-synced: fresh full-page previews (6 desktop, 4 phone), HANDOFF.md corrected (stylesheet split, text-over-photo claim, revision history). Stale Oct 7 zip and homepage mirror moved to 10xVisuals Output/_archive.
+
+## [2026-10-14] ops | Iron Standard revision round 4
+White sticky header (inverted logo), ring label Strength, instant card hover (removed staggered colour transition), closing label "Your move" + logo starts right, About founder rebuilt as editorial feature (framed portrait, lit pull statement, three principles), all on-page notes and footer imagery note removed. Fixed a dangling selector left from the scroll-line removal. Handoff folder, zip, previews and single-file preview rebuilt.

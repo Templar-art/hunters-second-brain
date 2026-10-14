@@ -201,16 +201,26 @@ p:last-child{ margin-bottom:0; }
   padding-block:18px;
 }
 .site-header.is-stuck{
-  background:var(--veil);
+  background:rgba(255,255,255,.96);
   backdrop-filter:blur(10px);
-  border-bottom-color:var(--rule);
+  border-bottom-color:rgba(0,0,0,.08);
 }
+/* stuck header is white: the white logo inverts to black, nav and menu icon go dark */
+.site-header.is-stuck .logo img{ filter:invert(1); }
+.site-header.is-stuck .nav a{ color:var(--grey-700, #4a4a4a); }
+.site-header.is-stuck .nav a:hover,
+.site-header.is-stuck .nav a[aria-current="page"]{ color:var(--black); }
+.site-header.is-stuck .nav-toggle span{ background:var(--black); }
+/* the phone menu panel is black, so the header returns to its dark state while it is open */
+.site-header.is-stuck:has(.nav-toggle[aria-expanded="true"]){ background:transparent; border-bottom-color:transparent; backdrop-filter:none; }
+.site-header.is-stuck:has(.nav-toggle[aria-expanded="true"]) .logo img{ filter:none; }
+.site-header.is-stuck:has(.nav-toggle[aria-expanded="true"]) .nav-toggle span{ background:var(--white); }
 .header-inner{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
 .logo{ display:block; line-height:0; }
 .logo img{
   width:clamp(132px,13vw,186px);
   transform-origin:left center;
-  transition:transform var(--t) var(--ease);
+  transition:transform var(--t) var(--ease), filter var(--t) var(--ease);
 }
 .site-header:not(.is-stuck) .logo img{ transform:scale(1.1); }
 
@@ -230,7 +240,7 @@ p:last-child{ margin-bottom:0; }
 }
 .nav-toggle span{
   display:block; width:24px; height:2px; background:var(--white);
-  transition:transform var(--t) var(--ease), opacity var(--t) var(--ease);
+  transition:transform var(--t) var(--ease), opacity var(--t) var(--ease), background var(--t) var(--ease);
 }
 .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
@@ -859,10 +869,6 @@ body::after{
   }
 }
 
-/* ---- 5. Scroll depth, in the header -------------------------
-   The "more UI" the page actually needed: orientation, not
-   ornament. A hairline, not a bar. */
-.site-header.is-stuck 
 /* ---- 6. State feedback --------------------------------------
    Every interactive thing now answers when touched. Fills and
    wipes only: no lift, no shadow, no scale. */
