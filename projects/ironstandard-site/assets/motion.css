@@ -622,3 +622,10 @@
   html:not(.motion) .hs-stat{ display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); gap:clamp(20px,2vw,32px); align-items:center; }
   html:not(.motion) .hs-media{ margin:0; max-width:none; }
 }
+
+/* footer: brand block, then each link column rises in turn */
+.motion .footer-main > *{ opacity:0; transform:translate3d(0,22px,0); transition:opacity 800ms var(--ease-out), transform 900ms var(--ease-out); }
+.motion .footer-main.in > *{ opacity:1; transform:none; }
+.motion .footer-main.in > :nth-child(2){ transition-delay:100ms; }
+.motion .footer-main.in > :nth-child(3){ transition-delay:180ms; }
+.motion .footer-main.in > :nth-child(4){ transition-delay:260ms; }
