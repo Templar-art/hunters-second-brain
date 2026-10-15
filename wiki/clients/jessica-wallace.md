@@ -52,3 +52,7 @@ Single extra room: a small office with a white-painted louvre window, frosted gl
 - Chair/laptop orientation: name the person's seat and turn the screen to it — models default to screen-to-camera otherwise.
 
 Related: [[staging-rules]], [[higgsfield-pipelines]].
+
+## IG templates + Property Hub canvas — Sep 2026
+- **IG listing/status templates** ([ig-listing-templates](../../projects/ig-listing-templates/), [ig-status-templates](../../projects/ig-status-templates/)) — five 1080×1080 Harcourts Property Hub posts (Just Listed, Coming Soon, Sold, Sold Off Market, Open Home): full-bleed photo, navy scrim, light-blue status chip, white Harcourts wordmark, **no 10x branding**. Built as HTML + inline SVG rendered via headless Chrome (no Canva), each template driven by one dict so a real listing just swaps the photo. Agent-card variants included. Live version is published as a design canvas.
+- **"Datum Line" canvas** ([harcourts-property-hub-canvas](../../projects/harcourts-property-hub-canvas/)) — a survey/drafting-inspired poster piece (hairlines, ticks, benchmarks) for Property Hub, delivered as PNG/PDF.

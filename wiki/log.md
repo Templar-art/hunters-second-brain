@@ -1191,3 +1191,9 @@ White sticky header (inverted logo), ring label Strength, instant card hover (re
 
 ## [2026-10-14] ops | Iron Standard revision round 5
 Header gated behind the homepage stage; ring label The gym; site-wide --inset so section content aligns with hero copy; Facility status board (white, confirmed/planned) and Space rebuild (scroll-filled measuring scale); Coaching services as shared pinned horizontal track (hs engine moved from home.js into motion.js, anchors land on panels), How it works merged into CTA; FAQ tabs + single-open accordion; privacy and terms written in full with cookies and accessibility folded in (old URLs 301); Built by 10x Visuals footer credit. Headless test lesson: render-blocking Google Fonts can delay deferred scripts past a fixed wait, so captures now wait for readyState complete.
+
+## [2026-10-16] lint | Overview refresh, nine unharvested folders, memory-slug links
+- Overview was frozen at July. Rewrote "current state" for October (web builds, Bebita/One Percent stores, ZED Riviera, USE series, Blender pipeline) and kept the July snapshot as a flagged trail.
+- Nine `projects/` folders had no wiki page. New [[zed-4-alex-keith-st]] and [[motion-and-stills-tools]] (logo sting, HIA title, motion-sfx, white-border). Harcourts IG templates + Datum Line canvas → [[jessica-wallace]]; site fixlist → [[oneill-group]]. Index updated.
+- 14 `[[feedback-*]]`/`[[reference-*]]`/`[[template-*]]` links pointed at auto-memory files that Obsidian can't resolve. Changed them to code refs in [[staging-rules]], [[zed-style]], [[coast-life-constructions]].
+- Open: ~25 memory feedback files aren't named by slug in the wiki (most are summarised by content in [[staging-rules]], so not a real gap). Hattie/Anthony retainer outcome still unknown. The "Coaching reel 2: Brett" commit (latest) has no page.

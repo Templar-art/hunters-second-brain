@@ -28,3 +28,4 @@ Keep **whitefoxrealestate.com.au** (goldcoast.whitefoxrealestate.com.au) as the 
 - [[oneill-brand-book-edition-one]] — the delivered identity manual. Authority over everything above.
 - [[belle-property]] — the departing principal's current agency; O'Neill Group is her spin-off.
 - [[brand-system]] — 10x colour/type system feeding this brief.
+- Site work ([projects/oneill-group-site](../../projects/oneill-group-site/)): a **design review + build fixlist** (PDF and HTML) auditing the developer's build against the brand book, plus a preloader animation.

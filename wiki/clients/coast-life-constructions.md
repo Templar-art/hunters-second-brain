@@ -124,10 +124,10 @@ Run for the 4-week graphic sprint ([plan](../../projects/clc-graphic-sprint-sep-
 
 ## CLC brand tokens — sampled from the real logo (1 Sep 2026)
 Built the 12-post sprint canvas ([artboards](../../projects/clc-graphic-sprint-sep-2026/canvas/build.py)) and had to settle the palette properly. Sampled `coastlife-logo-1.png` direct:
-- **Wordmark navy `#2a4f8d`** · **icon/wave blue `#1884c7`**. These are the mark's actual colours — [[template-clc-social-graphics]]'s "navy #102f41" is the deep **ground** colour used in the shipped June carousels, not the logo. Both are correct, for different jobs: `#102f41` = deep ground, `#2a4f8d` = wordmark, `#1884c7` = accent, `#2f6690` = kicker steel, `#97c8e8` = kicker on navy.
+- **Wordmark navy `#2a4f8d`** · **icon/wave blue `#1884c7`**. These are the mark's actual colours — `template-clc-social-graphics`'s "navy #102f41" is the deep **ground** colour used in the shipped June carousels, not the logo. Both are correct, for different jobs: `#102f41` = deep ground, `#2a4f8d` = wordmark, `#1884c7` = accent, `#2f6690` = kicker steel, `#97c8e8` = kicker on navy.
 - **Ground is cool off-white `#f5f7f9`, faint navy tint — never warm cream.** ⚠️ Supersedes the warm off-white/sand/concrete/charcoal palette in the first draft of the sprint plan; that was invented, not CLC's.
 - ⚠️ **Trap:** `~/Desktop/Coast-Life-Constructions-Brand-Uplift.pdf` and its HTML source use `--blue:#61a8d8` — that is **10x Visuals'** brand blue (the deck is our own pitch document about CLC), NOT Coast Life's. Don't sample a client palette out of our own deck about them.
-- Type: **Poppins** (300 Light headlines / 500 / 600 kickers). Montserrat is the secondary face in the deck but the local .ttf are corrupt — see [[reference-corrupt-montserrat-fonts]].
+- Type: **Poppins** (300 Light headlines / 500 / 600 kickers). Montserrat is the secondary face in the deck but the local .ttf are corrupt — see `reference-corrupt-montserrat-fonts`.
 - **Real finished-home photography exists** at `~/Desktop/_Brand & Tools/Coast-Life-Constructions/CLC Brand Kit/img/` — chambers (Chambers Lane façade, "9 Chambers Lane" legible), aerial (drone + pool), bath, garden, rear (self-contained rear dwelling), team (two crew on site, branded polos). Extracted from the capability statement; the only finished-build files on disk. No portrait of Rob anywhere — still the blocker for any "meet the builder" post.
 
 ## ⚠️ Princess Street image on the CLC website — check this (1 Sep 2026)

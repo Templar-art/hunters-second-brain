@@ -48,6 +48,8 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[open-arms-header]] — reusable Elementor-widget header shell (`.oa-x`, token-driven); built for Open Arms Australia
 - [[zed-full-house]] — 23-frame whole-listing ZED restyle, hinterland two-storey; in client revisions; style changed 3x since open, re-run decision pending
 - [[elevra-invoices]] — JSON → A4 PDF invoice generator (EM- numbering, no-GST rule, 1.3mm fidelity)
+- [[zed-4-alex-keith-st]] — ZED whole-house staging in Riviera Resort (Option 04), opened 12 Oct; dining, rumpus, master, gazebo anchors approved
+- [[motion-and-stills-tools]] — small reusable builds: 10x logo sting, HIA awards title, synth-SFX test, white-border framer
 - [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
 - [[one-percent-standard-store]] — Hunter's own white-label Shopify store (100 units in hand, self-fulfilled); Claude connected via Admin API 29 Sep
 - [[bebita-lifestyle-store]] — **Bebita Collective** (renamed from Lifestyle 30 Sep): sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
