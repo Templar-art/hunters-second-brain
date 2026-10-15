@@ -1,7 +1,7 @@
 ---
 type: reference
 tags: [lead-gen, sales, pipeline, outbound, positioning]
-updated: 2026-07-27
+updated: 2026-10-16
 ---
 
 # Lead Gen and Sales
@@ -42,7 +42,7 @@ Match the door to the prospect's readiness. Don't pitch the package to a cold, c
 
 ## Following up
 
-Warm replies decay fast. Answer with a fast, specific follow-up — reference their exact situation, not a template. The [[anthony]] / Hattie Boydle thread is the worked example: a warm reply converted through a tailored proposal, not a generic deck.
+Warm replies decay fast. Answer with a fast, specific follow-up — reference their exact situation, not a template.
 
 ## Lead-gen ads as a service
 

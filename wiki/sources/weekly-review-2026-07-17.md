@@ -18,7 +18,6 @@ Covers 2026-07-10 through 2026-07-17. Sources: `git log`, `wiki/log.md`, JOB.md 
 - MVX Electrical: aircon + electricians landing pages built, mobile-optimised, contrast/tap-target audit fixed.
 - [[strategic-investing-qld]] social batch 1: 23 posts / slides delivered at 0 credits (PIL, Quiet Equity house system).
 - 10x Prestige World scroll site: 5-scene photoreal fly-through delivered live, ~395 cr spend, browser QA green.
-- [[anthony]] / Hattie Boydle proposal v1 → v3 ($1,500/mo, brand-guidelines restyle) → warm reply → harvested into [[proposal-playbook]].
 - [[agentic-os]] phase 1: loop engine + dashboard live at :8770; L4 template repo pushed private and verified end-to-end.
 - Villa Noosa social drop staged; ZED full-house staging job taken intake → review in one session (~23 frames).
 
@@ -35,7 +34,7 @@ Covers 2026-07-10 through 2026-07-17. Sources: `git log`, `wiki/log.md`, JOB.md 
 
 ## Learned
 - New concept pages: [[jarvis]], [[agentic-os]], [[proposal-playbook]].
-- New client pages: [[strategic-investing-qld]], [[anthony]].
+- New client pages: [[strategic-investing-qld]].
 - New project page: [[10x-socials-funnel]].
 - Model behaviour note (Prestige World JOB.md): Seedance 2.0 std re-renders start frames rather than pixel-locking — the skill's ≥0.95 SSIM gate is structurally unreachable with this model; eye-verification is the real check.
 - Filename-scramble failure mode documented on Akmal: frame-number anchors must be verified against the actual shell, not assumed from intake order.

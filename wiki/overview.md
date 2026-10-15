@@ -7,7 +7,7 @@ updated: 2026-10-16
 
 **10x Visuals** (10xvisuals.com.au) is a Gold Coast full creative agency — branding, video, photo, design — increasingly specialised in property & construction media, with an AI generation practice (Higgsfield, Magnific, Freepik) layered on top of real shooting.
 
-**Team:** [[hunter]] (founder, videographer) · [[tyson]] (CEO) · [[damon]] (COO) · [[kris]] (videographer) · [[lachlan]] (editor).
+**Team:** [[tyson]] (founder & CEO) · [[hunter]] (videographer) · [[damon]] (COO) · [[kris]] (videographer) · [[lachlan]] (editor).
 
 ## Current state of play (October 2026)
 
@@ -16,7 +16,6 @@ updated: 2026-10-16
 - **Staging:** ZED's style changed three times and settled as a library ([[zed-style]]). Zed then picked Option 04 Riviera Resort for [[zed-4-alex-keith-st]], which is generating now. [[jessica-wallace]] (Harcourts) is a repeat staging client and also has IG templates.
 - **Video/motion:** the [[use-definitions-series]] shipped a 19-episode batch (10 Oct). [[woomala-st-9x16-reframe]] delivered a 44s reel upscaled to 4K. A Blender block-out → AI video pipeline was installed 12 Oct, with an editorial finish as the default look.
 - **Other clients active since July:** [[mvx-electrical]] (Meta lead-gen ads), [[salt-pm]] (brand-voice scrub for a chatbot), plus the [[ssd-to-drive-offload]] archive job.
-- **Two-tier go-to-market — provisional (2026-07-17):** the [[anthony]] / Hattie Boydle pitch surfaced a solo retainer ($1,500 all-in) as the entry, with agency packages as the upsell. Still unresolved in the vault; verdict at close.
 
 **⚠️ Superseded July snapshot (kept for the trail):** CLC in execution after the IG repositioning; Bespoke brand/social system filed; Belle Lot 48 awaiting go (closed 3 Aug); CVA render delivered and powering the [[10x-scroll-build]] demo; [[10x-ig-repositioning]] the active internal project. Standing knowledge layer unchanged: [[higgsfield-pipelines]], [[staging-rules]], [[brand-system]], [[proposal-playbook]], [[craft]].
 

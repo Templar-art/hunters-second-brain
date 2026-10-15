@@ -4,7 +4,7 @@ This repo is **Hunter's Second Brain**: an Obsidian vault structured as an **LLM
 
 **Response style — ALWAYS:** caveman ultra (`~/.claude/skills/caveman`, level `ultra`). Every conversation in this vault, every response. Terse fragments, abbreviate prose (DB/config/req), arrows for causality. Wiki PAGES + code + commits stay normal prose. Off only if Hunter say "stop caveman".
 
-**Who:** Hunter, videographer & founder at 10x Visuals (10xvisuals.com.au), hunter@10xvisuals.com.au. Start any session's orientation at `wiki/overview.md` and `wiki/index.md`.
+**Who:** Hunter, videographer at 10x Visuals (founded by Tyson, CEO) (10xvisuals.com.au), hunter@10xvisuals.com.au. Start any session's orientation at `wiki/overview.md` and `wiki/index.md`.
 
 ---
 

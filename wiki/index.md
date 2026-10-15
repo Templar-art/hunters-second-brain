@@ -7,7 +7,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[craft]] — the craft knowledge base: how-to-shoot / edit / sell reference layer (6 domains)
 
 ## People
-- [[hunter]] — founder & videographer (me)
+- [[hunter]] — videographer (me)
 - [[tyson]] — CEO
 - [[damon]] — COO
 - [[kris]] — videographer
@@ -28,7 +28,6 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[open-arms-australia]] — web client; NDIS support provider (QLD/NSW/VIC); site header redesigned + handed to Lach 23 Jul
 - [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch delivered 15 Jul — **converted: 10–15 leads in 4 business days**
 - [[akmal]] — 1007/180 Marine Parade full ZED restyle; delivered 14 Jul, 14cr
-- [[anthony]] — LEAD (recipient Hattie Boydle @hattieboydle): podcast/fitness content retainer; $1,500/mo proposal delivered 16 Jul, warm reply; harvested 17 Jul → [[proposal-playbook]]
 - [[oneill-group]] — client; full rebrand + website. Identity landed 2026-08 as **O'Neill Property** (Sage Grey/Basalt/Stone/Deep Sage, Sinhala MN + Inter) — the earlier 10x-palette brief on that page is superseded
 - [[iron-standard]] — Anthony McCoy, 800m² strength facility in Oslo. Six-page enquiry-led site built 22 Sep 2026 from the approved strategy doc; the waitlist scope is dead. Build discipline on [[premium-web-build]]
 - [[use-software]] — Gold Coast/Brisbane tech consultancy (Sam Bruhn, Founder & CEO); "Definitions" talking-head series; CRUD episode v5 in review 9 Oct, reusable template built

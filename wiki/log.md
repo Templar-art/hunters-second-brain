@@ -1197,3 +1197,7 @@ Header gated behind the homepage stage; ring label The gym; site-wide --inset so
 - Nine `projects/` folders had no wiki page. New [[zed-4-alex-keith-st]] and [[motion-and-stills-tools]] (logo sting, HIA title, motion-sfx, white-border). Harcourts IG templates + Datum Line canvas → [[jessica-wallace]]; site fixlist → [[oneill-group]]. Index updated.
 - 14 `[[feedback-*]]`/`[[reference-*]]`/`[[template-*]]` links pointed at auto-memory files that Obsidian can't resolve. Changed them to code refs in [[staging-rules]], [[zed-style]], [[coast-life-constructions]].
 - Open: ~25 memory feedback files aren't named by slug in the wiki (most are summarised by content in [[staging-rules]], so not a real gap). Hattie/Anthony retainer outcome still unknown. The "Coaching reel 2: Brett" commit (latest) has no page.
+
+## [2026-10-16] migrate | Hattie/Anthony retainer removed; Tyson is the founder
+- Hunter asked to remove the Anthony / Hattie Boydle retainer. Deleted the `anthony` client page and `projects/anthony-proposal/`, and stripped references from overview, index, iron-standard, lead-gen-and-sales, proposal-playbook and the 17 Jul weekly review. Earlier log entries are left as history.
+- **⚠️ Correction:** Tyson is the founder of 10x Visuals (founder & CEO), not Hunter. Fixed in overview, index, [[hunter]], [[tyson]] and CLAUDE.md.

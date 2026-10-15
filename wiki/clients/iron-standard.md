@@ -11,7 +11,6 @@ Anthony McCoy (anthonygmccoy@gmail.com, +47 41369929), a competitive powerlifter
 
 Existing site `ironstandard.no` is GoDaddy's free Website Builder "Launching Soon" placeholder — Anthony doesn't manage separate hosting beyond that ("Need help with this" on the intake form), so the domain stays at GoDaddy as registrar while hosting moves elsewhere.
 
-Not to be confused with [[anthony]] (a different, unrelated lead named Anthony — Hattie Boydle's podcast proposal).
 
 ## Brand
 
