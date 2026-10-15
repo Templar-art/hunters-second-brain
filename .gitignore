@@ -42,3 +42,6 @@ projects/committed-coaching/**/*.mp4
 
 # B-roll frames (regenerated from source clips with tools/broll.py)
 projects/*/episodes/*/broll/
+
+# raw client footage (large; lives on disk, not in git)
+projects/*/footage/

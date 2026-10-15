@@ -1,0 +1,167 @@
+{
+  "footage": "footage/brett-guessing-game",
+  "ref": "20251015_022813000_iOS 1",
+  "shift": {
+    "20251015_022522000_iOS": [
+      -3.0,
+      1.5
+    ]
+  },
+  "seam": [
+    560,
+    50
+  ],
+  "segments": [
+    {
+      "note": "A1 Brett: I sit behind a laptop all day,",
+      "dur": 2.42,
+      "left": [
+        "20251015_022813000_iOS 1",
+        6.5
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        1.0
+      ],
+      "audio": [
+        "20251015_022522000_iOS",
+        1.0
+      ]
+    },
+    {
+      "note": "A2 Brett: I train,",
+      "dur": 0.66,
+      "left": [
+        "20251015_022813000_iOS 1",
+        8.92
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        3.86
+      ],
+      "audio": [
+        "20251015_022522000_iOS",
+        3.86
+      ]
+    },
+    {
+      "note": "A3 Brett: but honestly, I'm just always guessing.",
+      "dur": 2.5,
+      "left": [
+        "20251015_022813000_iOS 1",
+        9.58
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        5.1
+      ],
+      "audio": [
+        "20251015_022522000_iOS",
+        5.1
+      ]
+    },
+    {
+      "note": "B Coach to Brett: Guessing what, bro? Sets, reps, macros, all of it?",
+      "dur": 4.9,
+      "left": [
+        "20251015_022813000_iOS 1",
+        1.6
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        26.6
+      ],
+      "audio": [
+        "20251015_022813000_iOS 1",
+        1.6
+      ]
+    },
+    {
+      "note": "C Coach to camera: That's Brett... not having structure (+1.0s hold for the quote card)",
+      "dur": 8.0,
+      "left": [
+        "20251015_022813000_iOS 1",
+        33.85
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        18.4
+      ],
+      "audio": [
+        "20251015_022813000_iOS 1",
+        33.85
+      ]
+    },
+    {
+      "note": "D1 Coach: So we took the guessing away.",
+      "dur": 1.7,
+      "left": [
+        "20251015_023100000_iOS",
+        0.45
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        31.6
+      ],
+      "audio": [
+        "20251015_023100000_iOS",
+        0.45
+      ]
+    },
+    {
+      "note": "D2 Coach: Every rep, every set... check-ins every week (B-roll over most of it)",
+      "dur": 7.05,
+      "left": [
+        "20251015_023100000_iOS",
+        2.95
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        33.3
+      ],
+      "audio": [
+        "20251015_023100000_iOS",
+        2.95
+      ]
+    },
+    {
+      "note": "E Brett: So I just open the app and do it? (+0.7s hold: 'Open the app. Do it.' beat; coach at his laptop)",
+      "dur": 3.6,
+      "left": [
+        "20251015_022813000_iOS 1",
+        12.1
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        14.25
+      ],
+      "audio": [
+        "20251015_022522000_iOS",
+        14.25
+      ]
+    },
+    {
+      "note": "F Coach to camera: Desk job or not, structure beats guesswork every time. Follow for more.",
+      "dur": 5.9,
+      "left": [
+        "20251015_023149000_iOS",
+        0.0
+      ],
+      "right": [
+        "20251015_022522000_iOS",
+        7.6
+      ],
+      "audio": [
+        "20251015_023149000_iOS",
+        0.0
+      ]
+    }
+  ],
+  "settle": {
+    "20251015_022522000_iOS": 10.0,
+    "20251015_022813000_iOS 1": 20.0,
+    "20251015_022813000_iOS": 6.0,
+    "20251015_023100000_iOS": 6.0,
+    "20251015_023149000_iOS": 4.0
+  }
+}

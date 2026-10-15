@@ -48,3 +48,27 @@
   - set the Instagram cover at about 2.0–2.5s
   - consider a "comment FIT" keyword DM in the caption
   - the scale and PDF numbers are illustrative
+
+## Reel 2: "Brett and the guessing game" (15 Oct 2026)
+- **Footage:** Jackson's OneDrive. 5 takes plus a brief image, and his whole B-roll library (54 files, 6.7 GB) in `footage/`, which is git-ignored. Downloaded through OneDrive's anonymous share API with Hunter's OK.
+- **Clone format:** Jackson plays both Brett and the coach. `tools/clone.py` composites two locked-off takes into one frame:
+  - feathered seam on the closet-door edge
+  - per-take colour fit, plus per-frame exposure matching against the iPhone's auto-exposure ramps
+  - 50fps JPG frames straight from the originals
+  - the speaking take's audio
+- **Missing lines:** two scripted lines were never filmed. They're carried as wall type: the hook plus an "IN HIS WORDS" quote card, and an "Open the app. Do it." beat.
+- **B-roll:** the deadlift, the desk from behind, portions being weighed, and portions in containers, all chosen with no faces that could read as a third character.
+- **Reviews:** the premium creative director (3 rounds, PASS), the retention strategist and the typographer. Their fixes:
+  - exposure match
+  - 4:5-safe hook in serif quotes
+  - dead air out
+  - centred 1.07 punch-ins
+  - "CLIENT · RE-ENACTED" disclosure
+  - captioned CTA
+  - near-black end card
+- **Output:** `episodes/brett-guessing-game/brett-guessing-game-v1.mp4`, 37.7s, 50fps, −16.0 LUFS. Face and text checks clear. 0 credits.
+- **Delivered** to Hunter's personal Google Drive (`gdrive-personal:Committed Coaching/`, an rclone drive.file remote set up 15 Oct 2026).
+- **Open items:**
+  - confirm Brett is a real client who's OK being named and quoted
+  - a real result for a proof line
+  - consider a stronger CTA than "Follow for more"
