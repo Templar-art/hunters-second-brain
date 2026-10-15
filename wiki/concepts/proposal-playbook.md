@@ -10,7 +10,7 @@ Evergreen recipe for pitching a content retainer (July 2026).
 
 ## 1. Style the doc to the recipient's world, not 10x branding
 
-When pitching a **personal brand**, the proposal should look like it already belongs in their feed — 10x branding on the doc reads as "our template", theirs reads as "we get you". The Hattie doc took three passes to learn this: v1 shipped generic, v2 rebuilt in her dark athletic-luxury world (near-black, champagne-bronze, condensed caps, an outlined "2X" champion motif from her actual title), v3 settled on a warm editorial system. The lesson survived all three: pull motifs from the recipient's identity (titles, handle, niche aesthetic) into the design itself. Keep 10x presence to a footer line (name + email).
+When pitching a **personal brand**, the proposal should look like it already belongs in their feed — 10x branding on the doc reads as "our template", theirs reads as "we get you". Pull motifs from the recipient's identity (titles, handle, niche aesthetic) into the design itself. Keep 10x presence to a footer line (name + email).
 
 ## 2. Delivery pipeline: self-contained HTML → Chrome print-to-PDF
 
