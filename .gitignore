@@ -45,3 +45,8 @@ projects/*/episodes/*/broll/
 
 # raw client footage (large; lives on disk, not in git)
 projects/*/footage/
+
+# Blender working files (100s of MB; GitHub rejects >100 MB). Kept on disk, not in git.
+*.blend1
+projects/blender-blockouts/beach-house-v1.blend
+projects/blender-blockouts/cliff-mansion-v2.blend
