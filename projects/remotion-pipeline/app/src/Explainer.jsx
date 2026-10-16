@@ -8,7 +8,6 @@ import '@fontsource/barlow-condensed/800.css';
 import '@fontsource/jetbrains-mono/500.css';
 import '@fontsource/inter/600.css';
 import { CameraMotionBlur } from '@remotion/motion-blur';
-import { LightLeak } from '@remotion/light-leaks';
 import { Dumbbell3D } from './Dumbbell3D.jsx';
 import WORDS from './words.json';
 import FACES from './faces.json';
@@ -134,14 +133,19 @@ function FaceCircle({ t, at = 0, src, startFrom, size = 300, x = 700, y = 120 })
 }
 
 // Iris wipe wrapper: scene circle-reveals in from a point and closes out
-function Scene({ dur, origin = [540, 960], children, bg }) {
+// Scene transition: panel pushes up from the bottom (expo ease), exits with a quick
+// scale-back + fade. Clean edges, no blur ghosting.
+function Scene({ dur, children, bg }) {
   const t = useT();
-  const R = 2300;
-  const open = lerp(t, 0, 0.9, 0, R, Easing.inOut(Easing.cubic));
-  const close = lerp(t, dur - 0.8, dur, R, 0, Easing.inOut(Easing.cubic));
-  const r = Math.min(open, close);
+  const inn = lerp(t, 0, 0.5, 0, 1, Easing.out(Easing.exp));
+  const out = lerp(t, dur - 0.35, dur, 0, 1, Easing.in(Easing.cubic));
+  const radius = 60 * (1 - inn) + 40 * out;
   return (
-    <AbsoluteFill style={{ clipPath: `circle(${r}px at ${origin[0]}px ${origin[1]}px)`, background: bg }}>
+    <AbsoluteFill style={{
+      transform: `translateY(${(1 - inn) * 1920}px) scale(${1 - 0.06 * out})`,
+      opacity: 1 - out, borderRadius: radius, overflow: 'hidden', background: bg,
+      boxShadow: '0 -30px 80px rgba(0,0,0,.35)',
+    }}>
       {children}
     </AbsoluteFill>
   );
@@ -177,35 +181,48 @@ const SRC_A = 'edit.mp4';
 // 10.3–12.7  "training for about 9 years"
 function SceneYears({ dur, start }) {
   const t = useT();
-  const years = Array.from({ length: 10 }, (_, i) => 2017 + i);
-  const fill = lerp(t, 0.5, 2.0, 0, 1, Easing.inOut(Easing.cubic));
-  const count = Math.round(fill * S.years.value);
+  const reveal = lerp(t, 0.45, 2.1, 0, 1, Easing.inOut(Easing.cubic));
+  const count = Math.round(reveal * S.years.value);
+  // illustrative progress curve: climbs with plateaus (trial & error)
+  const P = [[0, 300], [80, 250], [150, 250], [210, 200], [280, 205], [330, 160], [420, 165], [480, 110], [560, 112], [640, 60], [760, 30]];
+  const path = P.map(([x, y], i) => `${i ? 'L' : 'M'} ${x} ${y}`).join(' ');
+  const W = 760, H = 320, cx = reveal * W;
+  let cy = P[0][1];
+  for (let i = 1; i < P.length; i++) if (cx <= P[i][0]) { const [x0, y0] = P[i - 1], [x1, y1] = P[i]; cy = y0 + (y1 - y0) * ((cx - x0) / (x1 - x0)); break; } else cy = P[i][1];
+  const marks = [[115, 250], [245, 202], [375, 162]];
   return (
-    <Scene dur={dur} bg={C.light} origin={[540, 760]}>
+    <Scene dur={dur} bg={C.light}>
       <Header eyebrow={S.years.eyebrow} title={S.years.title} t={t} />
       <FaceCircle t={t} at={0.25} src={SRC_A} startFrom={sec(start)} />
-      <div style={{ position: 'absolute', left: 80, right: 80, top: 640 }}>
-        <Card s={sp(t, 0.3)} style={{ padding: '40px 44px' }}>
-          <div style={{ fontFamily: MONO, fontSize: 26, color: C.muted, letterSpacing: 3 }}>{S.years.label}</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 40, margin: '20px 0 24px' }}>
-            <svg width="260" height="260" viewBox="0 0 260 260">
-              <circle cx="130" cy="130" r="108" fill="none" stroke={C.line} strokeWidth="22" />
-              <circle cx="130" cy="130" r="108" fill="none" stroke={C.lime} strokeWidth="22" strokeLinecap="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1 - fill} transform="rotate(-90 130 130)" />
-              <text x="130" y="158" textAnchor="middle" fontFamily="Barlow Condensed" fontWeight="800" fontSize="96" fill={C.ink}>{count}</text>
-            </svg>
-            <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 120, lineHeight: 0.9, color: C.ink }}>
-              years<br /><span style={{ color: C.limeDeep }}>training</span>
-            </div>
+      <div style={{ position: 'absolute', left: 70, right: 70, top: 560 }}>
+        <Card s={sp(t, 0.25)} style={{ padding: '36px 40px 30px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+            <div style={{ fontFamily: MONO, fontSize: 24, color: C.muted, letterSpacing: 3 }}>{S.years.chart.label}</div>
+            <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 120, lineHeight: 0.9, color: C.ink }}>{count}<span style={{ fontSize: 56, color: C.limeDeep }}> YRS</span></div>
           </div>
-          <div style={{ position: 'relative', height: 70 }}>
-            <div style={{ position: 'absolute', top: 16, left: 0, right: 0, height: 10, borderRadius: 5, background: C.line }} />
-            <div style={{ position: 'absolute', top: 16, left: 0, width: `${fill * 100}%`, height: 10, borderRadius: 5, background: C.lime }} />
-            {years.map((y, i) => {
-              const on = fill >= i / 9 - 0.001;
-              return <div key={y} style={{ position: 'absolute', left: `calc(${(i / 9) * 100}% - 13px)`, top: 8, width: 26, height: 26, borderRadius: 13, background: on ? C.lime : C.card, border: `4px solid ${on ? C.ink : C.line}` }} />;
+          <svg width={W} height={H + 40} viewBox={`0 -10 ${W} ${H + 40}`} style={{ display: 'block', marginTop: 16, overflow: 'visible' }}>
+            <defs>
+              <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={C.lime} stopOpacity=".55" /><stop offset="1" stopColor={C.lime} stopOpacity="0" /></linearGradient>
+              <clipPath id="wipe"><rect x="-10" y="-20" width={cx + 10} height={H + 60} /></clipPath>
+            </defs>
+            {[0, 1, 2, 3].map((k) => <line key={k} x1="0" x2={W} y1={k * 100} y2={k * 100} stroke={C.line} strokeDasharray="4 8" />)}
+            <g clipPath="url(#wipe)">
+              <path d={`${path} L ${W} ${H} L 0 ${H} Z`} fill="url(#area)" />
+              <path d={path} fill="none" stroke={C.ink} strokeWidth="7" strokeLinejoin="round" strokeLinecap="round" />
+            </g>
+            {marks.map(([x, y], k) => {
+              const s2 = sp(t, 0.45 + (x / W) * 1.65, { stiffness: 240, damping: 13 });
+              return (
+                <g key={k} transform={`translate(${x} ${y - 34}) scale(${s2})`} opacity={s2}>
+                  <rect x="-58" y="-24" width="116" height="40" rx="20" fill={C.dark} />
+                  <text x="0" y="4" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="18" fill={C.lime}>{S.years.chart.plateaus[k]}</text>
+                </g>
+              );
             })}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: MONO, fontSize: 24, color: C.muted }}>
+            <circle cx={cx} cy={cy} r={14 + 6 * beatPulse()} fill={C.lime} opacity=".35" />
+            <circle cx={cx} cy={cy} r="11" fill={C.lime} stroke={C.ink} strokeWidth="5" />
+          </svg>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: MONO, fontSize: 22, color: C.muted, marginTop: 6 }}>
             <span>DAY 1</span><span>NOW</span>
           </div>
         </Card>
@@ -220,7 +237,7 @@ function SceneHotel({ dur, start }) {
   const t = useT();
   const rows = S.hotel.rows;
   return (
-    <Scene dur={dur} bg={C.dark} origin={[540, 1200]}>
+    <Scene dur={dur} bg={C.dark}>
       <Header eyebrow={S.hotel.eyebrow} title={S.hotel.title} t={t} dark />
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <div style={{ position: 'absolute', left: 120, right: 120, top: 640 }}>
@@ -257,7 +274,7 @@ function SceneLessons({ dur, start }) {
   const t = useT();
   const posts = S.lessons.posts;
   return (
-    <Scene dur={dur} bg={C.light} origin={[880, 270]}>
+    <Scene dur={dur} bg={C.light}>
       <Header eyebrow={S.lessons.eyebrow} title={S.lessons.title} t={t} />
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <div style={{ position: 'absolute', left: 80, right: 80, top: 660, display: 'flex', flexDirection: 'column', gap: 26 }}>
@@ -293,7 +310,7 @@ function SceneShortcut({ dur, start }) {
   const LONG = 'M 120 1500 C 120 1250, 900 1350, 880 1150 S 160 1000, 220 820 S 960 760, 900 600';
   const marks = [[480, 1350], [700, 1080], [330, 930], [650, 760]];
   return (
-    <Scene dur={dur} bg={C.dark} origin={[540, 1500]}>
+    <Scene dur={dur} bg={C.dark}>
       <Header eyebrow={S.shortcut.eyebrow} title={S.shortcut.title} t={t} dark />
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <svg width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -343,7 +360,7 @@ function NameTag({ dur }) {
   const t = useT();
   const s = sp(t, 0, { stiffness: 80, damping: 18 });
   const out = lerp(t, dur - 0.7, dur, 1, 0);
-  const pin = sp(t, 1.9, { stiffness: 110, damping: 16 });
+  const pin = sp(t, WORDS.find((w) => w.text === 'Gold').start - NAME_AT, { stiffness: 220, damping: 13 });
   return (
     <AbsoluteFill style={{ opacity: out }}>
       <div style={{ position: 'absolute', left: 70, top: 220, display: 'flex', alignItems: 'center', gap: 24, background: C.card, borderRadius: 24, padding: '24px 34px 24px 24px', boxShadow: '0 18px 50px rgba(0,0,0,.3)', transform: `translateX(${(1 - s) * -700}px)` }}>
@@ -410,6 +427,68 @@ function EndCard() {
   );
 }
 
+// ---------- popups ----------
+
+// Springy pop with overshoot, slight tilt, shadow; scales away at the end
+function Pop({ at, until, x, y, tilt = 0, children, origin = 'center' }) {
+  const t = useT();
+  const s = sp(t, at, { stiffness: 260, damping: 12 });
+  const o = lerp(t, until - 0.25, until, 1, 0, Easing.in(Easing.cubic));
+  if (t < at || t > until) return null;
+  return (
+    <div style={{ position: 'absolute', left: x, top: y, transform: `scale(${s * (0.6 + 0.4 * o)}) rotate(${tilt * (1 - s) * 3 + tilt}deg)`, transformOrigin: origin, opacity: o, filter: 'drop-shadow(0 16px 30px rgba(0,0,0,.35))' }}>
+      {children}
+    </div>
+  );
+}
+
+const Chip = ({ emoji, label }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 14, background: C.card, borderRadius: 999, padding: '14px 28px 14px 16px' }}>
+    <span style={{ width: 62, height: 62, borderRadius: 31, background: C.lime, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36, fontFamily: 'Noto Color Emoji' }}>{emoji}</span>
+    <span style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 54, color: C.ink }}>{label}</span>
+  </div>
+);
+
+// Chips beside the speaker on "fitness" / "nutrition"
+function SkillChips({ until }) {
+  const [a, b] = S.chips;
+  const ta = WORDS.find((w) => w.text.toLowerCase().startsWith(a.word)).start;
+  const tb = WORDS.find((w) => w.text.toLowerCase().startsWith(b.word)).start;
+  return (
+    <AbsoluteFill>
+      <Pop at={ta} until={until} x={30} y={600} tilt={-3}><Chip {...a} /></Pop>
+      <Pop at={tb} until={until} x={680} y={700} tilt={3}><Chip {...b} /></Pop>
+    </AbsoluteFill>
+  );
+}
+
+// "Now you know who I am" recap: checklist card ticking through
+function Recap({ at, until }) {
+  const t = useT();
+  return (
+    <AbsoluteFill>
+      <Pop at={at} until={until} x={110} y={230}>
+        <div style={{ width: 860, background: C.card, borderRadius: 28, padding: '30px 36px' }}>
+          <div style={{ fontFamily: MONO, fontSize: 24, letterSpacing: 5, color: C.limeDeep, marginBottom: 14 }}>{S.recap.title}</div>
+          {S.recap.items.map((it, i) => {
+            const k = at + 0.25 + i * 0.28;
+            const s = sp(t, k, { stiffness: 200, damping: 16 });
+            const done = t > k + 0.12;
+            return (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '12px 0', borderTop: i ? `2px solid ${C.line}` : 'none', opacity: Math.min(1, s * 1.5), transform: `translateX(${(1 - s) * 40}px)` }}>
+                <div style={{ width: 52, height: 52, borderRadius: 14, background: done ? C.lime : C.light, border: `3px solid ${done ? C.lime : C.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg width="30" height="30" viewBox="0 0 30 30"><path d="M6 15 L12 21 L24 8" fill="none" stroke={C.ink} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1 - lerp(t, k + 0.05, k + 0.3)} /></svg>
+                </div>
+                <div style={{ fontFamily: TITLE, fontWeight: 700, fontSize: 52, color: C.ink }}>{it}</div>
+              </div>
+            );
+          })}
+        </div>
+      </Pop>
+    </AbsoluteFill>
+  );
+}
+
 // ---------- captions: small, highlight box behind active word ----------
 
 function Captions({ hidden, light, scenes }) {
@@ -435,7 +514,7 @@ function Captions({ hidden, light, scenes }) {
           return (
             <span key={i} style={{ position: 'relative', padding: '0 12px', color: active || onLight ? C.ink : '#fff', textShadow: active || onLight ? 'none' : '0 2px 4px rgba(0,0,0,.8), 0 4px 18px rgba(0,0,0,.6)', opacity: Math.max(0.85, Math.min(1, s * 2)) }}>
               {active && <span style={{ position: 'absolute', inset: '6px 0 2px', background: C.lime, borderRadius: 10, transform: `scaleX(${s})` }} />}
-              <span style={{ position: 'relative' }}>{w.text.replace(/[.,]$/, '')}</span>
+              <span style={{ position: 'relative', display: 'inline-block', transform: `scale(${active ? 1 + 0.08 * Math.exp(-(t - w.start) * 8) : 1})` }}>{w.text.replace(/[.,]$/, '')}</span>
             </span>
           );
         })}
@@ -531,7 +610,7 @@ function SoundDesign() {
   // titles over talking head
   e.push([0.05, 'shimmer', 0.18], [0.15, 'pop', 0.25], [M(3.53) + 0.1, 'pop', 0.25]);
   // name tag + pin
-  e.push([M(6.28), 'whoosh', 0.25], [M(6.28) + 1.9, 'pop-high', 0.3]);
+  e.push([M(6.28), 'whoosh', 0.25], [WORDS.find((w) => w.text === 'Gold').start, 'pop-high', 0.3]);
   // years: ticks while counting, ding at the end
   for (let k = 0; k < 9; k++) e.push([sc[0] + 0.5 + k * (1.5 / 9), 'tick', 0.18]);
   e.push([sc[0] + 2.05, 'ding', 0.2]);
@@ -545,15 +624,19 @@ function SoundDesign() {
   // get there faster, follow click, end card
   e.push([M(23.49) + 0.05, 'pop', 0.25]);
   e.push([B_START + 1.6 + 1.0, 'click', 0.5], [B_START + 1.6 + 1.05, 'ding', 0.22]);
-  LEAKS.forEach(([at]) => e.push([at - 0.6, 'whoosh', 0.3]));
   BUMPS.forEach((b) => e.push([b, 'pop', 0.12]));
+  S.chips.forEach((c) => e.push([WORDS.find((w) => w.text.toLowerCase().startsWith(c.word)).start, 'pop-high', 0.35]));
+  e.push([RECAP_AT, 'whoosh', 0.25]);
+  S.recap.items.forEach((_, i) => e.push([RECAP_AT + 0.37 + i * 0.28, 'click', 0.3]));
   return <>{e.map(([at, src, vol], i) => <Sfx key={i} at={at} src={src} vol={vol} />)}</>;
 }
 
-// Light leaks over the big section changes (into graphics, into the CTA, into the end card)
-const LEAKS = [[SCENES[0][0] + 0.2, 3], [B_START, 11]];
+
 SCENES.length && [0, 1, 2, 3].forEach((i) => SHAKES.push(SCENES[3][0] + 0.6 + i * 0.32));
 SHAKES.push(SCENES[3][0] + 2.4);
+
+const NAME_AT = M(6.28);
+const RECAP_AT = WORDS.find((w) => w.text === 'know').start - 0.3;
 
 export function FullExplainer() {
   const end = sec(EDIT_LEN);
@@ -565,13 +648,12 @@ export function FullExplainer() {
       <Sequence from={sec(M(3.53))} durationInFrames={sec(M(5.56) - M(3.53))}><Blur><TopTitle eyebrow={S.about.eyebrow} title={S.about.title} dur={M(5.56) - M(3.53)} /></Blur></Sequence>
       <Sequence from={sec(M(6.28))} durationInFrames={sec(M(9.9) - M(6.28) + 0.3)}><Blur><NameTag dur={M(9.9) - M(6.28) + 0.3} /></Blur></Sequence>
       {SCENES.map(([a, b, Comp], i) => (
-        <Sequence key={i} from={sec(a)} durationInFrames={sec(b - a)}><Blur><Comp dur={b - a} start={a} /></Blur></Sequence>
+        <Sequence key={i} from={sec(a)} durationInFrames={sec(b - a)}><Comp dur={b - a} start={a} /></Sequence>
       ))}
+      <SkillChips until={SCENES[0][0] + 0.2} />
+      <Recap at={RECAP_AT} until={B_START + 1.55} />
       <Sequence from={sec(M(23.49))} durationInFrames={sec(B_START - M(23.49))}><BehindTitle eyebrow={S.faster.eyebrow} word={S.faster.behind} dur={B_START - M(23.49)} from={sec(M(23.49))} /></Sequence>
       <Sequence from={sec(B_START + 1.6)} durationInFrames={sec(EDIT_LEN - B_START - 1.6)}><Blur><FollowCTA dur={EDIT_LEN - B_START - 1.6} /></Blur></Sequence>
-      {LEAKS.map(([at, seed], i) => (
-        <Sequence key={`l${i}`} from={sec(at) - 25} durationInFrames={50}><LightLeak durationInFrames={50} seed={seed} hueShift={45} /></Sequence>
-      ))}
 
       <Captions hidden={[[EDIT_LEN, 99]]} light={[[SCENES[0][0] + 0.4, SCENES[0][1] - 0.4], [SCENES[2][0] + 0.4, SCENES[2][1] - 0.4]]} scenes={SCENES.map(([a, b]) => [a + 0.4, b - 0.4])} />
       <Grain />

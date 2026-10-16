@@ -1,16 +1,112 @@
 {
-  "hook": { "eyebrow": "New here?", "behind": "FOLLOW?" , "title": "Not following yet" },
-  "about": { "eyebrow": "About me", "title": "Who I am" },
-  "name": { "name": "Tyson", "role": "FITNESS & NUTRITION COACH", "pin": "GOLD COAST, QLD" },
-  "years": { "eyebrow": "Experience", "title": "9 years", "label": "TRAINING · YEARS IN", "value": 9 },
-  "hotel": { "eyebrow": "Day to day", "title": "Full time job", "rows": [
-    { "icon": "hotel", "name": "Hotel", "sub": "FULL-TIME JOB" },
-    { "icon": "dumbbell", "name": "Coaching", "sub": "FITNESS · NUTRITION" } ], "pill": "same 24 hours as you" },
-  "lessons": { "eyebrow": "On my page", "title": "9 years of lessons", "posts": [
-    { "tag": "TRAINING", "title": "Lesson 01" }, { "tag": "NUTRITION", "title": "Lesson 02" }, { "tag": "TRAINING", "title": "Lesson 03" } ] },
-  "shortcut": { "eyebrow": "Your shortcut", "title": "Skip the mistakes", "mine": "— MY WAY · 9 YRS OF TRIAL & ERROR", "yours": "— YOUR WAY · STRAIGHT THERE" },
-  "faster": { "eyebrow": "The result", "behind": "FASTER" },
-  "follow": { "handle": "Tyson", "sub": "FITNESS · NUTRITION · GOLD COAST" },
-  "end": { "eyebrow": "Fitness · Nutrition", "name": "Tyson", "sub": "GOLD COAST · COACHING" },
-  "bumpWords": ["Tyson.", "9", "skip", "mistakes", "faster.", "follow"]
+  "hook": {
+    "eyebrow": "New here?",
+    "behind": "FOLLOW?",
+    "title": "Not following yet"
+  },
+  "about": {
+    "eyebrow": "About me",
+    "title": "Who I am"
+  },
+  "name": {
+    "name": "Tyson",
+    "role": "FITNESS & NUTRITION COACH",
+    "pin": "GOLD COAST, QLD"
+  },
+  "years": {
+    "eyebrow": "Experience",
+    "title": "9 years",
+    "label": "TRAINING · YEARS IN",
+    "value": 9,
+    "chart": {
+      "label": "PROGRESS · ILLUSTRATIVE",
+      "plateaus": [
+        "plateau",
+        "restart",
+        "plateau"
+      ]
+    }
+  },
+  "hotel": {
+    "eyebrow": "Day to day",
+    "title": "Full time job",
+    "rows": [
+      {
+        "icon": "hotel",
+        "name": "Hotel",
+        "sub": "FULL-TIME JOB"
+      },
+      {
+        "icon": "dumbbell",
+        "name": "Coaching",
+        "sub": "FITNESS · NUTRITION"
+      }
+    ],
+    "pill": "same 24 hours as you"
+  },
+  "lessons": {
+    "eyebrow": "On my page",
+    "title": "9 years of lessons",
+    "posts": [
+      {
+        "tag": "NUTRITION",
+        "title": "Why you're not losing fat"
+      },
+      {
+        "tag": "TRAINING",
+        "title": "Stop program hopping"
+      },
+      {
+        "tag": "NUTRITION",
+        "title": "How much protein you need"
+      }
+    ]
+  },
+  "shortcut": {
+    "eyebrow": "Your shortcut",
+    "title": "Skip the mistakes",
+    "mine": "— MY WAY · 9 YRS OF TRIAL & ERROR",
+    "yours": "— YOUR WAY · STRAIGHT THERE"
+  },
+  "faster": {
+    "eyebrow": "The result",
+    "behind": "FASTER"
+  },
+  "follow": {
+    "handle": "Tyson",
+    "sub": "FITNESS · NUTRITION · GOLD COAST"
+  },
+  "end": {
+    "eyebrow": "Fitness · Nutrition",
+    "name": "Tyson",
+    "sub": "GOLD COAST · COACHING"
+  },
+  "bumpWords": [
+    "Tyson.",
+    "9",
+    "skip",
+    "mistakes",
+    "faster.",
+    "follow"
+  ],
+  "chips": [
+    {
+      "emoji": "💪",
+      "label": "Fitness",
+      "word": "fitness"
+    },
+    {
+      "emoji": "🥗",
+      "label": "Nutrition",
+      "word": "nutrition"
+    }
+  ],
+  "recap": {
+    "title": "NOW YOU KNOW",
+    "items": [
+      "Coach on the Gold Coast",
+      "9 years training",
+      "Free lessons every week"
+    ]
+  }
 }

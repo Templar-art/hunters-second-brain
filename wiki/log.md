@@ -1218,3 +1218,6 @@ New standing-rule page [[talking-head-edit-standards]]: tighter cuts, light musi
 
 ## [2026-10-16] query | Tyson explainer approved; motion upgrade research
 Hunter approved Tyson explainer v4. Researched how to improve the animations and effects → [[remotion-motion-upgrades]].
+
+## [2026-10-16] query | Hormozi-style motion research; Tyson v6
+New [[hormozi-style-motion-playbook]]. v6 removes light leaks, swaps the iris wipe for a push panel, adds a line chart, skill chips, a recap checklist and placeholder lesson titles.

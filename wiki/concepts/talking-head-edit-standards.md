@@ -29,3 +29,5 @@ See also: [[sfx-library]] · [[music-taxonomy]] · [[typography]]
 - **Graphics need time.** Slow, gentle easing in and out (iris wipes ~0.9s in / 0.8s out, soft springs, staggered card entrances). Hold each scene long enough to read. No fast pop-and-vanish.
 - Keep name tags and CTA cards in the top third so they never clash with the captions.
 - **No branded end card.** End on the speaker's last line or CTA ("I'll see you in the next one" / the follow CTA) with the music fading out. An end card adds nothing for coach and fitness reels (Hunter, 16 Oct 2026).
+- **No light leaks.** The orange flare looked off-brand. The lime/charcoal palette was liked (Hunter, 16 Oct 2026).
+- **Scripts first.** Push for value-first openers. The edit can't fix a generic script (see [[hormozi-style-motion-playbook]]).
