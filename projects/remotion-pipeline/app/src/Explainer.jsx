@@ -2,12 +2,17 @@
 // Talking head ↔ full-screen graphic scenes with iris wipes, face-in-circle,
 // eyebrow + condensed titles, UI cards/diagrams, highlight-box captions.
 import React from 'react';
-import { AbsoluteFill, Audio, OffthreadVideo, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
+import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
 import '@fontsource/barlow-condensed/700.css';
 import '@fontsource/barlow-condensed/800.css';
 import '@fontsource/jetbrains-mono/500.css';
 import '@fontsource/inter/600.css';
-import { WORDS_ALL } from './captions.js';
+import { CameraMotionBlur } from '@remotion/motion-blur';
+import { LightLeak } from '@remotion/light-leaks';
+import { Dumbbell3D } from './Dumbbell3D.jsx';
+import WORDS from './words.json';
+import FACES from './faces.json';
+import S from './script.json';
 
 export const FPS = 30;
 const sec = (s) => Math.round(s * FPS);
@@ -44,6 +49,14 @@ const lerp = (t, a, b, from = 0, to = 1, ease = Easing.out(Easing.cubic)) =>
   interpolate(t, [a, b], [from, to], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
 
 // ---------- shared pieces ----------
+
+// Music-synced pulse (96 bpm bed): 1 on each beat, decaying
+const beatPulse = () => {
+  const f = useCurrentFrame() / FPS;
+  const ph = (f / (60 / 96)) % 1;
+  return Math.exp(-ph * 6);
+};
+const faceAt = (frame) => FACES[Math.max(0, Math.min(FACES.length - 1, Math.round(frame) || 0))];
 
 function Eyebrow({ text, t, at = 0, color = C.limeDeep }) {
   const s = sp(t, at);
@@ -95,7 +108,7 @@ function Shards({ t, at = 0, corner = 'br', seed = 1 }) {
       {tris.map(([x1, y1, x2, y2, x3, y3, fill, d], i) => {
         const s = sp(t, at + d, { stiffness: 140, damping: 14 });
         const cx = (x1 + x2 + x3) / 3, cy = (y1 + y2 + y3) / 3;
-        const drift = Math.sin(t * 1.3 + i * 2 + seed) * 6;
+        const drift = Math.sin(t * 1.3 + i * 2 + seed) * 6 + beatPulse() * 10;
         return (
           <polygon key={i} points={`${x1},${y1} ${x2},${y2} ${x3},${y3}`} fill={fill} opacity={0.95}
             transform={`translate(${(1 - s) * 120},${(1 - s) * 80 + drift}) rotate(${(1 - s) * 90 + drift} ${cx} ${cy}) scale(${s})`}
@@ -109,10 +122,11 @@ function Shards({ t, at = 0, corner = 'br', seed = 1 }) {
 // Face in a circle (muted copy of the source, synced via startFrom)
 function FaceCircle({ t, at = 0, src, startFrom, size = 300, x = 700, y = 120 }) {
   const s = sp(t, at, { stiffness: 180, damping: 20 });
-  const k = 0.55; // video scale inside circle; face centre ≈ (540, 720) in source
+  const f = faceAt(startFrom + useCurrentFrame()); // tracked face (tools/track.py)
+  const k = (size * 0.62) / f.w; // face fills ~62% of the circle
   return (
     <div style={{ position: 'absolute', left: x, top: y, width: size, height: size, borderRadius: '50%', overflow: 'hidden', transform: `scale(${s})`, boxShadow: '0 18px 40px rgba(0,0,0,.25)', border: `6px solid ${C.lime}` }}>
-      <div style={{ position: 'absolute', left: size / 2 - 540 * k, top: size / 2 - 720 * k, width: 1080 * k, height: 1920 * k }}>
+      <div style={{ position: 'absolute', left: size / 2 - f.cx * k, top: size / 2 - (f.cy + f.w * 0.12) * k, width: 1080 * k, height: 1920 * k }}>
         <OffthreadVideo src={staticFile(src)} startFrom={startFrom} muted style={{ width: '100%', height: '100%' }} />
       </div>
     </div>
@@ -141,10 +155,17 @@ function Card({ children, style, s = 1 }) {
   );
 }
 
-function Icon({ glyph, active }) {
+const ICONS = {
+  hotel: 'M6 30 V8 H26 V30 M3 30 H29 M11 13 H13 M19 13 H21 M11 19 H13 M19 19 H21 M14 30 V25 H18 V30',
+  dumbbell: 'M4 16 H28 M7 10 V22 M10 8 V24 M22 8 V24 M25 10 V22',
+};
+function Icon({ name, active, draw = 1 }) {
+  const col = active ? C.ink : C.lime;
   return (
-    <div style={{ width: 74, height: 74, borderRadius: 16, background: active ? C.lime : C.dark, color: active ? C.ink : C.lime, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 38, flexShrink: 0 }}>
-      {glyph}
+    <div style={{ width: 74, height: 74, borderRadius: 16, background: active ? C.lime : C.dark, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <svg width="44" height="44" viewBox="0 0 32 32">
+        <path d={ICONS[name]} fill="none" stroke={col} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1 - draw} />
+      </svg>
     </div>
   );
 }
@@ -158,16 +179,23 @@ function SceneYears({ dur, start }) {
   const t = useT();
   const years = Array.from({ length: 10 }, (_, i) => 2017 + i);
   const fill = lerp(t, 0.5, 2.0, 0, 1, Easing.inOut(Easing.cubic));
-  const count = Math.round(fill * 9);
+  const count = Math.round(fill * S.years.value);
   return (
     <Scene dur={dur} bg={C.light} origin={[540, 760]}>
-      <Header eyebrow="Experience" title="9 years" t={t} />
+      <Header eyebrow={S.years.eyebrow} title={S.years.title} t={t} />
       <FaceCircle t={t} at={0.25} src={SRC_A} startFrom={sec(start)} />
       <div style={{ position: 'absolute', left: 80, right: 80, top: 640 }}>
         <Card s={sp(t, 0.3)} style={{ padding: '40px 44px' }}>
-          <div style={{ fontFamily: MONO, fontSize: 26, color: C.muted, letterSpacing: 3 }}>TRAINING · YEARS IN</div>
-          <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 220, lineHeight: 1, color: C.ink, margin: '10px 0 20px' }}>
-            {count}<span style={{ fontSize: 90, color: C.limeDeep }}> yrs</span>
+          <div style={{ fontFamily: MONO, fontSize: 26, color: C.muted, letterSpacing: 3 }}>{S.years.label}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 40, margin: '20px 0 24px' }}>
+            <svg width="260" height="260" viewBox="0 0 260 260">
+              <circle cx="130" cy="130" r="108" fill="none" stroke={C.line} strokeWidth="22" />
+              <circle cx="130" cy="130" r="108" fill="none" stroke={C.lime} strokeWidth="22" strokeLinecap="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1 - fill} transform="rotate(-90 130 130)" />
+              <text x="130" y="158" textAnchor="middle" fontFamily="Barlow Condensed" fontWeight="800" fontSize="96" fill={C.ink}>{count}</text>
+            </svg>
+            <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 120, lineHeight: 0.9, color: C.ink }}>
+              years<br /><span style={{ color: C.limeDeep }}>training</span>
+            </div>
           </div>
           <div style={{ position: 'relative', height: 70 }}>
             <div style={{ position: 'absolute', top: 16, left: 0, right: 0, height: 10, borderRadius: 5, background: C.line }} />
@@ -190,13 +218,10 @@ function SceneYears({ dur, start }) {
 // 12.7–15.5  "I also work full time at a hotel"
 function SceneHotel({ dur, start }) {
   const t = useT();
-  const rows = [
-    { g: '🏨', name: 'Hotel', sub: 'FULL-TIME JOB' },
-    { g: '🏋️', name: 'Coaching', sub: 'FITNESS · NUTRITION' },
-  ];
+  const rows = S.hotel.rows;
   return (
     <Scene dur={dur} bg={C.dark} origin={[540, 1200]}>
-      <Header eyebrow="Day to day" title="Full time job" t={t} dark />
+      <Header eyebrow={S.hotel.eyebrow} title={S.hotel.title} t={t} dark />
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <div style={{ position: 'absolute', left: 120, right: 120, top: 640 }}>
         {rows.map((r, i) => {
@@ -209,7 +234,7 @@ function SceneHotel({ dur, start }) {
                 </div>
               )}
               <Card s={s} style={{ display: 'flex', alignItems: 'center', gap: 26 }}>
-                <Icon glyph={r.g} active={i === 1 && t > 1.1} />
+                <Icon name={r.icon} active={i === 1 && t > 1.1} draw={lerp(t, 0.6 + i * 0.5, 1.4 + i * 0.5)} />
                 <div>
                   <div style={{ fontFamily: TITLE, fontWeight: 700, fontSize: 64, color: C.ink, lineHeight: 1 }}>{r.name}</div>
                   <div style={{ fontFamily: MONO, fontSize: 24, color: C.muted, letterSpacing: 3, marginTop: 6 }}>{r.sub}</div>
@@ -219,7 +244,7 @@ function SceneHotel({ dur, start }) {
           );
         })}
         <div style={{ textAlign: 'center', marginTop: 34, opacity: sp(t, 1.2) }}>
-          <span style={{ fontFamily: MONO, fontSize: 26, background: C.lime, color: C.ink, padding: '8px 20px', borderRadius: 30 }}>same 24 hours as you</span>
+          <span style={{ fontFamily: MONO, fontSize: 26, background: C.lime, color: C.ink, padding: '8px 20px', borderRadius: 30 }}>{S.hotel.pill}</span>
         </div>
       </div>
       <Shards t={t} at={0.3} corner="bl" seed={3} />
@@ -230,14 +255,10 @@ function SceneHotel({ dur, start }) {
 // 16.1–19.6  "sharing things that took me 9 years to learn"
 function SceneLessons({ dur, start }) {
   const t = useT();
-  const posts = [
-    { tag: 'TRAINING', title: 'Lesson 01' },
-    { tag: 'NUTRITION', title: 'Lesson 02' },
-    { tag: 'TRAINING', title: 'Lesson 03' },
-  ];
+  const posts = S.lessons.posts;
   return (
     <Scene dur={dur} bg={C.light} origin={[880, 270]}>
-      <Header eyebrow="On my page" title="9 years of lessons" t={t} />
+      <Header eyebrow={S.lessons.eyebrow} title={S.lessons.title} t={t} />
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <div style={{ position: 'absolute', left: 80, right: 80, top: 660, display: 'flex', flexDirection: 'column', gap: 26 }}>
         {posts.map((p, i) => {
@@ -273,7 +294,7 @@ function SceneShortcut({ dur, start }) {
   const marks = [[480, 1350], [700, 1080], [330, 930], [650, 760]];
   return (
     <Scene dur={dur} bg={C.dark} origin={[540, 1500]}>
-      <Header eyebrow="Your shortcut" title="Skip the mistakes" t={t} dark />
+      <Header eyebrow={S.shortcut.eyebrow} title={S.shortcut.title} t={t} dark />
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <svg width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
         <path d={LONG} fill="none" stroke="#3A463F" strokeWidth="14" strokeLinecap="round" />
@@ -294,8 +315,8 @@ function SceneShortcut({ dur, start }) {
           <path d="M -18 0 L -4 14 L 20 -12" fill="none" stroke={C.ink} strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
         </g>
       </svg>
-      <div style={{ position: 'absolute', left: 80, top: 470, fontFamily: MONO, fontSize: 26, color: C.muted, opacity: sp(t, 0.5) }}>— MY WAY · 9 YRS OF TRIAL &amp; ERROR</div>
-      <div style={{ position: 'absolute', left: 80, top: 515, fontFamily: MONO, fontSize: 26, color: C.lime, opacity: sp(t, 2.0) }}>— YOUR WAY · STRAIGHT THERE</div>
+      <div style={{ position: 'absolute', left: 80, top: 470, fontFamily: MONO, fontSize: 26, color: C.muted, opacity: sp(t, 0.5) }}>{S.shortcut.mine}</div>
+      <div style={{ position: 'absolute', left: 80, top: 515, fontFamily: MONO, fontSize: 26, color: C.lime, opacity: sp(t, 2.0) }}>{S.shortcut.yours}</div>
     </Scene>
   );
 }
@@ -328,12 +349,12 @@ function NameTag({ dur }) {
       <div style={{ position: 'absolute', left: 70, top: 220, display: 'flex', alignItems: 'center', gap: 24, background: C.card, borderRadius: 24, padding: '24px 34px 24px 24px', boxShadow: '0 18px 50px rgba(0,0,0,.3)', transform: `translateX(${(1 - s) * -700}px)` }}>
         <div style={{ width: 96, height: 96, borderRadius: 18, background: C.dark, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: TITLE, fontWeight: 800, fontSize: 64, color: C.lime }}>T</div>
         <div>
-          <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 70, color: C.ink, lineHeight: 1 }}>Tyson</div>
-          <div style={{ fontFamily: MONO, fontSize: 22, color: C.muted, letterSpacing: 3, marginTop: 6 }}>FITNESS &amp; NUTRITION COACH</div>
+          <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 70, color: C.ink, lineHeight: 1 }}>{S.name.name}</div>
+          <div style={{ fontFamily: MONO, fontSize: 22, color: C.muted, letterSpacing: 3, marginTop: 6 }}>{S.name.role}</div>
         </div>
       </div>
       <div style={{ position: 'absolute', left: 90, top: 400, transform: `scale(${pin})`, transformOrigin: 'left center', fontFamily: MONO, fontSize: 26, background: C.lime, color: C.ink, padding: '10px 22px', borderRadius: 30 }}>
-        📍 GOLD COAST, QLD
+        📍 {S.name.pin}
       </div>
     </AbsoluteFill>
   );
@@ -355,8 +376,8 @@ function FollowCTA({ dur }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 22, marginBottom: 26 }}>
             <div style={{ width: 84, height: 84, borderRadius: 42, background: C.dark, color: C.lime, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: TITLE, fontWeight: 800, fontSize: 52 }}>T</div>
             <div>
-              <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 52, color: C.ink, lineHeight: 1 }}>Tyson</div>
-              <div style={{ fontFamily: MONO, fontSize: 20, color: C.muted, letterSpacing: 2 }}>FITNESS · NUTRITION · GOLD COAST</div>
+              <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 52, color: C.ink, lineHeight: 1 }}>{S.follow.handle}</div>
+              <div style={{ fontFamily: MONO, fontSize: 20, color: C.muted, letterSpacing: 2 }}>{S.follow.sub}</div>
             </div>
           </div>
           <div style={{ transform: `scale(${press})`, background: done ? C.lime : C.dark, color: done ? C.ink : C.light, borderRadius: 16, padding: '22px 0', textAlign: 'center', fontFamily: BODY, fontWeight: 600, fontSize: 40 }}>
@@ -376,14 +397,15 @@ function EndCard() {
   return (
     <Scene dur={END_LEN + 1} bg={C.dark} origin={[540, 1100]}>
       <AbsoluteFill style={{ justifyContent: 'center', padding: 90 }}>
-        <Eyebrow text="Fitness · Nutrition" t={t} at={0.2} color={C.lime} />
+        <div style={{ position: 'absolute', left: 0, right: 0, top: 220, height: 640 }}><Dumbbell3D t={t} /></div>
+        <div style={{ height: 520 }} />
+        <Eyebrow text={S.end.eyebrow} t={t} at={0.2} color={C.lime} />
         <div style={{ height: 14 }} />
-        <Title text="Tyson" t={t} at={0.25} color={C.light} size={240} />
+        <Title text={S.end.name} t={t} at={0.25} color={C.light} size={240} />
         <div style={{ height: 12, width: 420 * sp(t, 0.45), background: C.lime, marginTop: 10 }} />
-        <div style={{ fontFamily: MONO, fontSize: 28, color: C.muted, letterSpacing: 4, marginTop: 26, opacity: sp(t, 0.6) }}>GOLD COAST · COACHING</div>
+        <div style={{ fontFamily: MONO, fontSize: 28, color: C.muted, letterSpacing: 4, marginTop: 26, opacity: sp(t, 0.6) }}>{S.end.sub}</div>
       </AbsoluteFill>
       <Shards t={t} at={0.3} corner="tr" seed={7} />
-      <Shards t={t} at={0.4} corner="bl" seed={9} />
     </Scene>
   );
 }
@@ -392,12 +414,12 @@ function EndCard() {
 
 function Captions({ hidden, light, scenes }) {
   const t = useT();
+  const frame = useCurrentFrame();
   const onLight = light.some(([a, b]) => t >= a && t < b);
   if (hidden.some(([a, b]) => t >= a && t < b)) return null;
   const pages = [];
   let cur = [];
-  for (const w0 of WORDS_ALL) {
-    const w = { ...w0, start: M(w0.start), end: Math.max(M(w0.start) + 0.12, M(w0.end)) };
+  for (const w of WORDS) {
     cur.push(w);
     if (cur.length >= 3 || /[.,]$/.test(w.text)) { pages.push(cur); cur = []; }
   }
@@ -405,7 +427,7 @@ function Captions({ hidden, light, scenes }) {
   const page = pages.find((p, i) => t >= p[0].start && t < (pages[i + 1] ? Math.min(pages[i + 1][0].start, p[p.length - 1].end + 0.5) : p[p.length - 1].end + 0.4));
   if (!page) return null;
   return (
-    <AbsoluteFill style={{ alignItems: 'center', paddingTop: scenes.some(([a, b]) => t >= a && t < b) ? 1560 : 1180 }}>
+    <AbsoluteFill style={{ alignItems: 'center', paddingTop: scenes.some(([a, b]) => t >= a && t < b) ? 1560 : Math.max(1100, Math.min(1260, faceAt(frame).cy + 420)) }}>
       <div style={{ display: 'flex', gap: 10, fontFamily: TITLE, fontWeight: 700, fontSize: 60 }}>
         {page.map((w, i) => {
           const active = t >= w.start && t < w.end + 0.1;
@@ -432,17 +454,70 @@ const SCENES = [
   [19.55, 23.6, SceneShortcut],
 ].map(([a, b, C]) => [M(a), M(b), C]);
 
-// Punch-in on every other cut: hides the jump cuts from the dead-air trim
-function BaseVideo() {
-  const t = useT();
+// Camera: face-centred punch-ins on alternate cuts, slow push-in through each take,
+// zoom bumps on key words and a short shake on impacts. Plus a light grade.
+const BUMPS = WORDS.filter((w) => S.bumpWords.includes(w.text)).map((w) => w.start);
+const SHAKES = []; // filled once SCENES is known (impact times)
+function cameraAt(t, frame) {
   const seg = Math.max(0, SEG_START.findIndex((s, i) => t >= s && t < (SEG_START[i + 1] ?? 1e9)));
-  const z = seg % 2 ? 1.12 : 1;
+  const segT = t - SEG_START[seg], segLen = (SEG_START[seg + 1] ?? EDIT_LEN) - SEG_START[seg];
+  let z = (seg % 2 ? 1.12 : 1) * (1 + 0.035 * (segT / segLen));
+  for (const b of BUMPS) if (t >= b) z *= 1 + 0.045 * Math.exp(-(t - b) * 7) * Math.min(1, (t - b) * 20);
+  let sx = 0, sy = 0;
+  for (const s0 of SHAKES) {
+    const d = t - s0;
+    if (d >= 0 && d < 0.18) { const a = 14 * (1 - d / 0.18); sx += a * Math.sin(frame * 2.7); sy += a * Math.cos(frame * 3.3); }
+  }
+  return { z, sx, sy };
+}
+function BaseVideo() {
+  const t = useT(), frame = useCurrentFrame();
+  const { z, sx, sy } = cameraAt(t, frame);
+  const f = faceAt(frame);
   return (
-    <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: '540px 760px' }}>
+    <AbsoluteFill style={{ transform: `translate(${sx}px, ${sy}px) scale(${z})`, transformOrigin: `${f.cx}px ${f.cy}px`, filter: 'contrast(1.07) saturate(1.1) brightness(1.02)' }}>
       <OffthreadVideo src={staticFile(SRC_A)} />
     </AbsoluteFill>
   );
 }
+
+// Text behind the subject: big title, then the person cutout (tools/track.py) on top
+function BehindTitle({ eyebrow, word, dur, from }) {
+  const t = useT(), frame = useCurrentFrame();
+  const g = from + frame; // global frame -> matte index
+  const { z, sx, sy } = cameraAt(g / FPS, g);
+  const f = faceAt(g);
+  const inn = sp(t, 0.1, { stiffness: 70, damping: 16 });
+  const out = lerp(t, dur - 0.6, dur, 1, 0);
+  const cam = { transform: `translate(${sx}px, ${sy}px) scale(${z})`, transformOrigin: `${f.cx}px ${f.cy}px` };
+  return (
+    <AbsoluteFill style={{ opacity: out }}>
+      <AbsoluteFill style={{ alignItems: 'center', paddingTop: 300 }}>
+        <div style={{ fontFamily: MONO, fontSize: 30, letterSpacing: 8, color: C.lime, textTransform: 'uppercase', opacity: inn, marginBottom: 10 }}>{eyebrow}</div>
+        <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 300, lineHeight: 0.85, color: C.lime, letterSpacing: -4, transform: `translateY(${(1 - inn) * 160}px) scale(${0.9 + 0.1 * inn})`, opacity: Math.min(1, inn * 1.4), textShadow: '0 20px 60px rgba(0,0,0,.35)' }}>{word}</div>
+      </AbsoluteFill>
+      <AbsoluteFill style={{ ...cam, filter: 'contrast(1.07) saturate(1.1) brightness(1.02)' }}>
+        <Img src={staticFile(`matte/f${String(g).padStart(4, '0')}.png`)} style={{ width: 1080, height: 1920 }} />
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+}
+
+// Film grain + vignette (seeded per frame, deterministic)
+function Grain() {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ pointerEvents: 'none' }}>
+      <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.28) 100%)' }} />
+      <svg width="1080" height="1920" style={{ position: 'absolute', inset: 0, opacity: 0.07, mixBlendMode: 'overlay' }}>
+        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed={frame % 60} /><feColorMatrix type="saturate" values="0" /></filter>
+        <rect width="1080" height="1920" filter="url(#g)" />
+      </svg>
+    </AbsoluteFill>
+  );
+}
+
+const Blur = ({ children }) => <CameraMotionBlur shutterAngle={180} samples={6}>{children}</CameraMotionBlur>;
 
 // Global SFX level: keep effects well under the voice
 const SFX_GAIN = 0.25;
@@ -474,8 +549,15 @@ function SoundDesign() {
   e.push([M(23.49) + 0.05, 'pop', 0.25]);
   e.push([B_START + 1.6 + 1.0, 'click', 0.5], [B_START + 1.6 + 1.05, 'ding', 0.22]);
   e.push([EDIT_LEN - 0.2, 'whoosh', 0.35], [EDIT_LEN + 0.5, 'shimmer', 0.2]);
+  LEAKS.forEach(([at]) => e.push([at - 0.6, 'whoosh', 0.3]));
+  BUMPS.forEach((b) => e.push([b, 'pop', 0.12]));
   return <>{e.map(([at, src, vol], i) => <Sfx key={i} at={at} src={src} vol={vol} />)}</>;
 }
+
+// Light leaks over the big section changes (into graphics, into the CTA, into the end card)
+const LEAKS = [[SCENES[0][0] + 0.2, 3], [B_START, 11], [EDIT_LEN, 21]];
+SCENES.length && [0, 1, 2, 3].forEach((i) => SHAKES.push(SCENES[3][0] + 0.6 + i * 0.32));
+SHAKES.push(SCENES[3][0] + 2.4);
 
 export function FullExplainer() {
   const end = sec(EDIT_LEN);
@@ -483,17 +565,21 @@ export function FullExplainer() {
     <AbsoluteFill style={{ background: C.dark }}>
       <Sequence durationInFrames={end}><BaseVideo /></Sequence>
 
-      <Sequence from={0} durationInFrames={sec(M(3.3))}><TopTitle eyebrow="New here?" title="Not following yet" dur={M(3.3)} /></Sequence>
-      <Sequence from={sec(M(3.53))} durationInFrames={sec(M(5.56) - M(3.53))}><TopTitle eyebrow="About me" title="Who I am" dur={M(5.56) - M(3.53)} /></Sequence>
-      <Sequence from={sec(M(6.28))} durationInFrames={sec(M(9.9) - M(6.28) + 0.3)}><NameTag dur={M(9.9) - M(6.28) + 0.3} /></Sequence>
+      <Sequence from={0} durationInFrames={sec(M(3.22))}><BehindTitle eyebrow={S.hook.eyebrow} word={S.hook.behind} dur={M(3.22)} from={0} /></Sequence>
+      <Sequence from={sec(M(3.53))} durationInFrames={sec(M(5.56) - M(3.53))}><Blur><TopTitle eyebrow={S.about.eyebrow} title={S.about.title} dur={M(5.56) - M(3.53)} /></Blur></Sequence>
+      <Sequence from={sec(M(6.28))} durationInFrames={sec(M(9.9) - M(6.28) + 0.3)}><Blur><NameTag dur={M(9.9) - M(6.28) + 0.3} /></Blur></Sequence>
       {SCENES.map(([a, b, Comp], i) => (
-        <Sequence key={i} from={sec(a)} durationInFrames={sec(b - a)}><Comp dur={b - a} start={a} /></Sequence>
+        <Sequence key={i} from={sec(a)} durationInFrames={sec(b - a)}><Blur><Comp dur={b - a} start={a} /></Blur></Sequence>
       ))}
-      <Sequence from={sec(M(23.49))} durationInFrames={sec(B_START - M(23.49))}><TopTitle eyebrow="The result" title="Get there faster" dur={B_START - M(23.49)} /></Sequence>
-      <Sequence from={sec(B_START + 1.6)} durationInFrames={sec(EDIT_LEN - B_START - 1.6)}><FollowCTA dur={EDIT_LEN - B_START - 1.6} /></Sequence>
+      <Sequence from={sec(M(23.49))} durationInFrames={sec(B_START - M(23.49))}><BehindTitle eyebrow={S.faster.eyebrow} word={S.faster.behind} dur={B_START - M(23.49)} from={sec(M(23.49))} /></Sequence>
+      <Sequence from={sec(B_START + 1.6)} durationInFrames={sec(EDIT_LEN - B_START - 1.6)}><Blur><FollowCTA dur={EDIT_LEN - B_START - 1.6} /></Blur></Sequence>
+      {LEAKS.map(([at, seed], i) => (
+        <Sequence key={`l${i}`} from={sec(at) - 25} durationInFrames={50}><LightLeak durationInFrames={50} seed={seed} hueShift={45} /></Sequence>
+      ))}
 
       <Captions hidden={[[EDIT_LEN, 99]]} light={[[SCENES[0][0] + 0.4, SCENES[0][1] - 0.4], [SCENES[2][0] + 0.4, SCENES[2][1] - 0.4]]} scenes={SCENES.map(([a, b]) => [a + 0.4, b - 0.4])} />
       <Sequence from={end}><EndCard /></Sequence>
+      <Grain />
 
       <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 15, end - 10, end + 10], [0, 0.06, 0.06, 0.25], { extrapolateRight: 'clamp' })} />
       <SoundDesign />

@@ -1,0 +1,502 @@
+[
+{
+"text": "Hey",
+"start": 0,
+"end": 0
+},
+{
+"text": "guys,",
+"start": 0,
+"end": 0.7
+},
+{
+"text": "if",
+"start": 0.8,
+"end": 1.08
+},
+{
+"text": "you're",
+"start": 1.08,
+"end": 1.36
+},
+{
+"text": "seeing",
+"start": 1.36,
+"end": 1.68
+},
+{
+"text": "this,",
+"start": 1.68,
+"end": 1.92
+},
+{
+"text": "you",
+"start": 1.92,
+"end": 2.08
+},
+{
+"text": "do",
+"start": 2.08,
+"end": 2.24
+},
+{
+"text": "not",
+"start": 2.24,
+"end": 2.4
+},
+{
+"text": "follow",
+"start": 2.4,
+"end": 2.64
+},
+{
+"text": "me",
+"start": 2.64,
+"end": 2.84
+},
+{
+"text": "yet.",
+"start": 2.84,
+"end": 3.12
+},
+{
+"text": "So",
+"start": 3.12,
+"end": 3.44
+},
+{
+"text": "let",
+"start": 3.44,
+"end": 3.6
+},
+{
+"text": "me",
+"start": 3.6,
+"end": 3.76
+},
+{
+"text": "tell",
+"start": 3.76,
+"end": 3.92
+},
+{
+"text": "you",
+"start": 3.92,
+"end": 4.04
+},
+{
+"text": "a",
+"start": 4.04,
+"end": 4.12
+},
+{
+"text": "little",
+"start": 4.12,
+"end": 4.32
+},
+{
+"text": "bit",
+"start": 4.32,
+"end": 4.48
+},
+{
+"text": "about",
+"start": 4.48,
+"end": 4.72
+},
+{
+"text": "myself.",
+"start": 4.72,
+"end": 5.12
+},
+{
+"text": "My",
+"start": 5.12,
+"end": 5.36
+},
+{
+"text": "name",
+"start": 5.36,
+"end": 5.56
+},
+{
+"text": "is",
+"start": 5.56,
+"end": 5.72
+},
+{
+"text": "Tyson.",
+"start": 5.72,
+"end": 6.2
+},
+{
+"text": "I'm",
+"start": 6.2,
+"end": 6.44
+},
+{
+"text": "a",
+"start": 6.44,
+"end": 6.56
+},
+{
+"text": "fitness",
+"start": 6.56,
+"end": 6.88
+},
+{
+"text": "and",
+"start": 6.88,
+"end": 7.2
+},
+{
+"text": "nutrition",
+"start": 7.2,
+"end": 7.52
+},
+{
+"text": "coach",
+"start": 7.52,
+"end": 7.88
+},
+{
+"text": "on",
+"start": 7.88,
+"end": 8.0
+},
+{
+"text": "the",
+"start": 8.0,
+"end": 8.16
+},
+{
+"text": "Gold",
+"start": 8.16,
+"end": 8.52
+},
+{
+"text": "Coast.",
+"start": 8.52,
+"end": 9.0
+},
+{
+"text": "I've",
+"start": 9.0,
+"end": 9.2
+},
+{
+"text": "been",
+"start": 9.2,
+"end": 9.36
+},
+{
+"text": "training",
+"start": 9.36,
+"end": 9.72
+},
+{
+"text": "for",
+"start": 9.72,
+"end": 9.92
+},
+{
+"text": "about",
+"start": 9.92,
+"end": 10.2
+},
+{
+"text": "9",
+"start": 10.2,
+"end": 10.56
+},
+{
+"text": "years",
+"start": 10.56,
+"end": 10.84
+},
+{
+"text": "now.",
+"start": 10.84,
+"end": 11.2
+},
+{
+"text": "I",
+"start": 11.2,
+"end": 11.4
+},
+{
+"text": "also",
+"start": 11.4,
+"end": 11.8
+},
+{
+"text": "work",
+"start": 11.8,
+"end": 12.2
+},
+{
+"text": "full",
+"start": 12.2,
+"end": 12.52
+},
+{
+"text": "time",
+"start": 12.52,
+"end": 12.76
+},
+{
+"text": "at",
+"start": 12.76,
+"end": 12.92
+},
+{
+"text": "a",
+"start": 12.92,
+"end": 13.08
+},
+{
+"text": "hotel.",
+"start": 13.08,
+"end": 13.64
+},
+{
+"text": "On",
+"start": 13.64,
+"end": 13.8
+},
+{
+"text": "my",
+"start": 13.8,
+"end": 14.04
+},
+{
+"text": "page,",
+"start": 14.04,
+"end": 14.44
+},
+{
+"text": "I'll",
+"start": 14.44,
+"end": 14.72
+},
+{
+"text": "be",
+"start": 14.72,
+"end": 14.92
+},
+{
+"text": "sharing",
+"start": 14.92,
+"end": 15.32
+},
+{
+"text": "things",
+"start": 15.32,
+"end": 15.84
+},
+{
+"text": "that",
+"start": 15.84,
+"end": 16.08
+},
+{
+"text": "took",
+"start": 16.08,
+"end": 16.28
+},
+{
+"text": "me",
+"start": 16.28,
+"end": 16.44
+},
+{
+"text": "9",
+"start": 16.44,
+"end": 16.8
+},
+{
+"text": "years",
+"start": 16.8,
+"end": 17.08
+},
+{
+"text": "to",
+"start": 17.08,
+"end": 17.32
+},
+{
+"text": "learn,",
+"start": 17.32,
+"end": 17.72
+},
+{
+"text": "so",
+"start": 17.72,
+"end": 18.12
+},
+{
+"text": "you",
+"start": 18.12,
+"end": 18.28
+},
+{
+"text": "can",
+"start": 18.28,
+"end": 18.44
+},
+{
+"text": "skip",
+"start": 18.44,
+"end": 18.76
+},
+{
+"text": "all",
+"start": 18.76,
+"end": 18.88
+},
+{
+"text": "the",
+"start": 18.88,
+"end": 18.96
+},
+{
+"text": "mistakes",
+"start": 18.96,
+"end": 19.4
+},
+{
+"text": "I",
+"start": 19.4,
+"end": 19.56
+},
+{
+"text": "made",
+"start": 19.56,
+"end": 19.8
+},
+{
+"text": "along",
+"start": 19.8,
+"end": 20.12
+},
+{
+"text": "the",
+"start": 20.12,
+"end": 20.36
+},
+{
+"text": "way",
+"start": 20.36,
+"end": 20.52
+},
+{
+"text": "and",
+"start": 20.52,
+"end": 20.8
+},
+{
+"text": "you'll",
+"start": 20.8,
+"end": 21.08
+},
+{
+"text": "get",
+"start": 21.08,
+"end": 21.28
+},
+{
+"text": "there",
+"start": 21.28,
+"end": 21.48
+},
+{
+"text": "faster.",
+"start": 21.48,
+"end": 21.96
+},
+{
+"text": "So",
+"start": 21.96,
+"end": 22.2
+},
+{
+"text": "now",
+"start": 22.2,
+"end": 22.4
+},
+{
+"text": "you",
+"start": 22.4,
+"end": 22.52
+},
+{
+"text": "know",
+"start": 22.52,
+"end": 22.68
+},
+{
+"text": "who",
+"start": 22.68,
+"end": 22.84
+},
+{
+"text": "I",
+"start": 22.84,
+"end": 23.04
+},
+{
+"text": "am,",
+"start": 23.04,
+"end": 23.4
+},
+{
+"text": "hit",
+"start": 23.4,
+"end": 23.68
+},
+{
+"text": "follow",
+"start": 23.68,
+"end": 24.04
+},
+{
+"text": "and",
+"start": 24.04,
+"end": 24.2
+},
+{
+"text": "I'll",
+"start": 24.2,
+"end": 24.48
+},
+{
+"text": "see",
+"start": 24.48,
+"end": 24.6
+},
+{
+"text": "you",
+"start": 24.6,
+"end": 24.76
+},
+{
+"text": "in",
+"start": 24.76,
+"end": 24.88
+},
+{
+"text": "the",
+"start": 24.88,
+"end": 25.0
+},
+{
+"text": "next",
+"start": 25.0,
+"end": 25.36
+},
+{
+"text": "one.",
+"start": 25.36,
+"end": 25.76
+}
+]
