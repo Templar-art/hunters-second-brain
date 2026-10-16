@@ -6,6 +6,8 @@ updated: 2026-10-16
 ---
 # Premium motion UI — specs for on-video graphics
 
+> Context: built for Hunter's personal side work (fitness coach edits, e.g. Tyson's intro reel). Separate from 10x Visuals.
+
 Research on what makes on-screen UI (cards, pop-ups, chips, charts) read as *premium* rather than *template* (16 Oct 2026). These are concrete numbers for the Remotion pipeline. Read with [[hormozi-style-motion-playbook]] and [[talking-head-edit-standards]].
 
 ## 1. Springs: Apple's model, converted to Remotion

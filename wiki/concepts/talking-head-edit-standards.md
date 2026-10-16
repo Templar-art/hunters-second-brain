@@ -6,6 +6,8 @@ updated: 2026-10-16
 ---
 # Talking-head edit standards (client feedback)
 
+> Context: built for Hunter's personal side work (fitness coach edits, e.g. Tyson's intro reel). Separate from 10x Visuals.
+
 Standing rules for short-form talking-head / explainer edits — including the AI/Remotion pipeline in `projects/remotion-pipeline/`. Every new edit gets checked against this list before it goes to the client.
 
 ## Client feedback — 16 Oct 2026

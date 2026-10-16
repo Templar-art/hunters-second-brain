@@ -6,6 +6,8 @@ updated: 2026-10-16
 ---
 # Remotion motion upgrades — research + roadmap
 
+> Context: built for Hunter's personal side work (fitness coach edits, e.g. Tyson's intro reel). Separate from 10x Visuals.
+
 Research done 16 Oct 2026, after Hunter approved the Tyson explainer v4 (`projects/remotion-pipeline/app/`, composition `Explainer`). This page lists what would lift the next edit from "solid" to the reference quality (Use Software "Definitions" reels), ranked by impact for the effort. Read alongside [[talking-head-edit-standards]].
 
 ## Status — 16 Oct 2026 (v5)

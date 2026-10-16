@@ -1233,3 +1233,6 @@ Hook/retention, voice processing chain, talking-head grade and transitions added
 
 ## [2026-10-16] query | Graphic design for fitness coaches
 New [[fitness-coach-graphic-design]]: carousel/Reel data, 2026 design direction, and an 8-part offer that reuses the Remotion system for stills.
+
+## [2026-10-16] migrate | Fitness/Remotion work tagged as personal side work
+Hunter clarified: the fitness coach videos, the Remotion pipeline and the coach graphic-design offer are his own side work, unrelated to 10x. Pages are tagged accordingly.

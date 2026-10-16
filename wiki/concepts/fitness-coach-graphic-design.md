@@ -1,10 +1,12 @@
 ---
 type: concept
-tags: [graphic-design, fitness, coaching, instagram, carousels, offer, research]
+tags: [graphic-design, fitness, coaching, instagram, carousels, offer, research, side-project]
 status: active
 updated: 2026-10-16
 ---
-# Graphic design for fitness coaches — research + what 10x can offer
+# Graphic design for fitness coaches — research + Hunter's side offer
+
+> **Hunter's personal side work — separate from and unrelated to 10x Visuals.** Don't bill, track or report it as a 10x job.
 
 Research (16 Oct 2026) on the static/graphic side of a fitness coach's content, and how it plugs into the Remotion video system we built for Tyson (`projects/remotion-pipeline/`). Related: [[hormozi-style-motion-playbook]] · [[premium-motion-ui]] · [[talking-head-edit-standards]] · [[brand-system]].
 
@@ -22,7 +24,7 @@ Research (16 Oct 2026) on the static/graphic side of a fitness coach's content, 
 - **Grain and texture everywhere**, plus warm/structural gradients and paper, Polaroid and sticker touches. It's a move away from flat, sterile layouts.
 - Our Tyson system (Barlow Condensed + mono eyebrows, lime/charcoal, grain, shards) already fits this direction, so carousels can reuse it one-for-one.
 
-## The 10x offer for coaches (one design system → every format)
+## Hunter's offer for coaches (one design system → every format)
 Built once per client in Remotion (it renders stills as well as video), so carousels, covers and Reels share one brand and come out fast:
 1. **Brand kit:** palette, type pairing, logo lockup, icon set, grain/texture, and one-page rules. Feeds everything below.
 2. **Reel system:** what we built for Tyson (word-synced captions, popups, charts, push-panel scenes), now templated off `script.json`.

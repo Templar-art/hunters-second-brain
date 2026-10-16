@@ -56,7 +56,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
 
 ## Concepts
-- [[fitness-coach-graphic-design]] — research + 10x offer for coaches: carousels (saves) + Reels (reach), 2026 design direction, one design system for every format
+- [[fitness-coach-graphic-design]] — research + Hunter's side offer for coaches (not 10x): carousels (saves) + Reels (reach), 2026 design direction, one design system for every format
 - [[premium-motion-ui]] — concrete specs for premium on-video UI: Apple springs converted to Remotion, layered shadows, glass, stagger, focus-pull
 - [[hormozi-style-motion-playbook]] — what makes short-form edits feel hand-made: word-synced pops, charts that read in 2s, transitions, script-first rule
 - [[remotion-motion-upgrades]] — ranked roadmap to better animations/effects in the Remotion pipeline (word timing, motion blur, light leaks, face tracking, text-behind-subject)

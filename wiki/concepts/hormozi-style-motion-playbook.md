@@ -6,6 +6,8 @@ updated: 2026-10-16
 ---
 # Hormozi-level motion playbook
 
+> Context: built for Hunter's personal side work (fitness coach edits, e.g. Tyson's intro reel). Separate from 10x Visuals.
+
 What separates a "someone spent hours on this" short-form edit from a template edit, distilled from research on Alex Hormozi-style editing and chart/motion design (16 Oct 2026). It's the target for the Remotion pipeline (`projects/remotion-pipeline/app/`). Pairs with [[talking-head-edit-standards]] and [[remotion-motion-upgrades]].
 
 ## What the Hormozi style actually is
