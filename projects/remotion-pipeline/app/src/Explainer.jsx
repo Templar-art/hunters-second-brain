@@ -444,8 +444,10 @@ function BaseVideo() {
   );
 }
 
+// Global SFX level: keep effects well under the voice
+const SFX_GAIN = 0.25;
 const Sfx = ({ at, src, vol = 0.5 }) => (
-  <Sequence from={Math.max(0, sec(at))}><Audio src={staticFile(`audio/${src}.wav`)} volume={vol} /></Sequence>
+  <Sequence from={Math.max(0, sec(at))}><Audio src={staticFile(`audio/${src}.wav`)} volume={vol * SFX_GAIN} /></Sequence>
 );
 
 function SoundDesign() {
@@ -493,7 +495,7 @@ export function FullExplainer() {
       <Captions hidden={[[EDIT_LEN, 99]]} light={[[SCENES[0][0] + 0.4, SCENES[0][1] - 0.4], [SCENES[2][0] + 0.4, SCENES[2][1] - 0.4]]} scenes={SCENES.map(([a, b]) => [a + 0.4, b - 0.4])} />
       <Sequence from={end}><EndCard /></Sequence>
 
-      <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 15, end - 10, end + 10], [0, 0.11, 0.11, 0.3], { extrapolateRight: 'clamp' })} />
+      <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 15, end - 10, end + 10], [0, 0.06, 0.06, 0.25], { extrapolateRight: 'clamp' })} />
       <SoundDesign />
     </AbsoluteFill>
   );
