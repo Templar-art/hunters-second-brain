@@ -18,8 +18,8 @@ CAT={
  "fabric":(1,0,1),        # magenta
  "stone":(1,0.5,0),       # orange
  "road":(0.25,0.25,0.25), # dark grey
- "neighbour":(0.8,0.7,1), # lavender
- "person":(1,0.6,0.75),   # pink = a real person goes here
+ "neighbour":(1,1,1),     # white render, same as main house (lavender leaked)
+ "person":(0.5,0,0.5),    # purple = a real person goes here
  "hedge":(0.0,0.5,0.25),  # teal-green clipped hedge
  "screen":(0.05,0.05,0.05),
 }

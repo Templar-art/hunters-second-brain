@@ -46,3 +46,21 @@ Ranked for a Python/MCP-driven pipeline:
 6. Photographer 5 (about $30)
 
 Skip Geo-Scatter, Kitbash, Fab and Fluent for now: they're weak to drive from a script. Spend on silhouette, vegetation shape and camera motion, because the AI repaints the surfaces anyway.
+
+## Model shootout: guide + colour-ID map, same prompt (2026-10-16, 12.25 HF credits)
+Run on the beach house pool shot. Grid: [shootout-grid.jpg](../../projects/blender-blockouts/beach/shootout/shootout-grid.jpg).
+
+| Model | Result |
+|---|---|
+| **Seedream 5.0 Pro** (2.5 cr) | Most photographic and closest to the layout. It turned the hedge into a concrete wall. Default when realism matters. |
+| **GPT Image 2.5 Sunburst** (2.75 cr) | Most editorial and lush, but it re-framed slightly and swapped some elements. Default when the editorial look matters. |
+| **Nano Banana 2.1** (2 cr) | Very real, but leaked the magenta and lavender key colours into the image. |
+| **FLUX 3** (3 cr) | Faithful, got the hedges right, slightly CG-looking. |
+| **Nano Banana Pro** (2 cr) | Weakest; heavy key-colour leaks. |
+
+**Lesson:** key colours that look like real paint (magenta, lavender) leak into the image. Neighbour houses now share the house-render white, and people moved to purple.
+
+## People and camera realism (2026-10-16)
+- **MPFB2 2.0.18** (free, official Blender extension, 46MB, checksum-verified) is installed. `HumanService.create_human(macro_detail_dict=…)` takes gender, age, height, weight and muscle; `add_builtin_rig(h,"default")` adds the skeleton. The body faces −y. Bending the leg forward is upperleg01 −X; the knee bends on lowerleg01 +X. Arms rest at upperarm01 Z −45 (L) / +45 (R) from the A-pose. A walk cycle is upperleg ±23°, knee 4–38° and arm swing ±14° over 26 frames with CYCLES modifiers. Each human is parented to a `Rig_` empty that carries its walk path. No clothes or skin pack yet; the AI dresses them from the prompt.
+- **Camera Shakify 0.5.1** (free, 78KB) is installed. Walking shots use WALK_TO_THE_STORE at 0.25–0.35; static or glide shots use INVESTIGATION at 0.15–0.2. It replaces the generic F-curve noise on those cameras.
+- **Tracking shot:** the camera keeps a TRACK_TO on an empty that copies the walker's location at chest height, while the camera itself runs a parallel path.
