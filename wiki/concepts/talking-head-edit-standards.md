@@ -23,3 +23,8 @@ Standing rules for short-form talking-head / explainer edits — including the A
 - Tyson fitness intro (IMG_9573 + IMG_9577) — Remotion explainer edit, 16 Oct 2026. First cut had no music, no SFX, no dead-air trimming. Fix these in v2.
 
 See also: [[sfx-library]] · [[music-taxonomy]] · [[typography]]
+
+## Hunter's notes — 16 Oct 2026 (v2 of the Tyson edit)
+- **Captions sit at chest height**, around the middle of the frame (y ≈ 1180 of 1920), not down at the bottom. Keep them subtle: smaller text with a soft shadow, not big and heavy.
+- **Graphics need time.** Slow, gentle easing in and out (iris wipes ~0.9s in / 0.8s out, soft springs, staggered card entrances). Hold each scene long enough to read. No fast pop-and-vanish.
+- Keep name tags and CTA cards in the top third so they never clash with the captions.

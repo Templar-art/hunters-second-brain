@@ -23,7 +23,7 @@ const MONO = '"JetBrains Mono", monospace';
 const BODY = 'Inter, sans-serif';
 
 const useT = () => useCurrentFrame() / FPS;
-const sp = (t, start, cfg = { stiffness: 200, damping: 24 }) =>
+const sp = (t, start, cfg = { stiffness: 90, damping: 20 }) =>
   spring({ frame: Math.round((t - start) * FPS), fps: FPS, config: cfg });
 const lerp = (t, a, b, from = 0, to = 1, ease = Easing.out(Easing.cubic)) =>
   interpolate(t, [a, b], [from, to], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
@@ -44,7 +44,7 @@ function Title({ text, t, at = 0, color, size = 150 }) {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 26px', fontFamily: TITLE, fontWeight: 800, fontSize: size, lineHeight: 0.95, color, letterSpacing: -1 }}>
       {text.split(' ').map((w, i) => {
-        const s = sp(t, at + 0.06 * i, { stiffness: 170, damping: 22 });
+        const s = sp(t, at + 0.12 * i, { stiffness: 80, damping: 18 });
         return (
           <span key={i} style={{ overflow: 'hidden', display: 'inline-block', paddingBottom: 8 }}>
             <span style={{ display: 'inline-block', transform: `translateY(${(1 - s) * 110}%)` }}>{w}</span>
@@ -108,8 +108,8 @@ function FaceCircle({ t, at = 0, src, startFrom, size = 300, x = 700, y = 120 })
 function Scene({ dur, origin = [540, 960], children, bg }) {
   const t = useT();
   const R = 2300;
-  const open = lerp(t, 0, 0.55, 0, R, Easing.inOut(Easing.cubic));
-  const close = lerp(t, dur - 0.45, dur, R, 0, Easing.inOut(Easing.cubic));
+  const open = lerp(t, 0, 0.9, 0, R, Easing.inOut(Easing.cubic));
+  const close = lerp(t, dur - 0.8, dur, R, 0, Easing.inOut(Easing.cubic));
   const r = Math.min(open, close);
   return (
     <AbsoluteFill style={{ clipPath: `circle(${r}px at ${origin[0]}px ${origin[1]}px)`, background: bg }}>
@@ -185,7 +185,7 @@ function SceneHotel({ dur, start }) {
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <div style={{ position: 'absolute', left: 120, right: 120, top: 640 }}>
         {rows.map((r, i) => {
-          const s = sp(t, 0.35 + i * 0.35);
+          const s = sp(t, 0.5 + i * 0.5);
           return (
             <React.Fragment key={i}>
               {i > 0 && (
@@ -226,7 +226,7 @@ function SceneLessons({ dur, start }) {
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <div style={{ position: 'absolute', left: 80, right: 80, top: 660, display: 'flex', flexDirection: 'column', gap: 26 }}>
         {posts.map((p, i) => {
-          const s = sp(t, 0.4 + i * 0.28);
+          const s = sp(t, 0.5 + i * 0.4);
           const saved = t > 1.2 + i * 0.5;
           return (
             <Card key={i} s={s} style={{ display: 'flex', alignItems: 'center', gap: 26 }}>
@@ -289,7 +289,7 @@ function SceneShortcut({ dur, start }) {
 
 function TopTitle({ eyebrow, title, dur }) {
   const t = useT();
-  const out = lerp(t, dur - 0.3, dur, 1, 0);
+  const out = Math.min(lerp(t, 0, 0.6), lerp(t, dur - 0.7, dur, 1, 0));
   return (
     <AbsoluteFill style={{ opacity: out }}>
       <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 560, background: 'linear-gradient(rgba(14,20,17,.75), rgba(14,20,17,0))' }} />
@@ -305,19 +305,19 @@ function TopTitle({ eyebrow, title, dur }) {
 
 function NameTag({ dur }) {
   const t = useT();
-  const s = sp(t, 0, { stiffness: 190, damping: 20 });
-  const out = lerp(t, dur - 0.35, dur, 1, 0);
-  const pin = sp(t, 1.9, { stiffness: 260, damping: 14 });
+  const s = sp(t, 0, { stiffness: 80, damping: 18 });
+  const out = lerp(t, dur - 0.7, dur, 1, 0);
+  const pin = sp(t, 1.9, { stiffness: 110, damping: 16 });
   return (
     <AbsoluteFill style={{ opacity: out }}>
-      <div style={{ position: 'absolute', left: 70, top: 1020, display: 'flex', alignItems: 'center', gap: 24, background: C.card, borderRadius: 24, padding: '24px 34px 24px 24px', boxShadow: '0 18px 50px rgba(0,0,0,.3)', transform: `translateX(${(1 - s) * -700}px)` }}>
+      <div style={{ position: 'absolute', left: 70, top: 220, display: 'flex', alignItems: 'center', gap: 24, background: C.card, borderRadius: 24, padding: '24px 34px 24px 24px', boxShadow: '0 18px 50px rgba(0,0,0,.3)', transform: `translateX(${(1 - s) * -700}px)` }}>
         <div style={{ width: 96, height: 96, borderRadius: 18, background: C.dark, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: TITLE, fontWeight: 800, fontSize: 64, color: C.lime }}>T</div>
         <div>
           <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 70, color: C.ink, lineHeight: 1 }}>Tyson</div>
           <div style={{ fontFamily: MONO, fontSize: 22, color: C.muted, letterSpacing: 3, marginTop: 6 }}>FITNESS &amp; NUTRITION COACH</div>
         </div>
       </div>
-      <div style={{ position: 'absolute', left: 90, top: 1200, transform: `scale(${pin})`, transformOrigin: 'left center', fontFamily: MONO, fontSize: 26, background: C.lime, color: C.ink, padding: '10px 22px', borderRadius: 30 }}>
+      <div style={{ position: 'absolute', left: 90, top: 400, transform: `scale(${pin})`, transformOrigin: 'left center', fontFamily: MONO, fontSize: 26, background: C.lime, color: C.ink, padding: '10px 22px', borderRadius: 30 }}>
         📍 GOLD COAST, QLD
       </div>
     </AbsoluteFill>
@@ -326,16 +326,16 @@ function NameTag({ dur }) {
 
 function FollowCTA({ dur }) {
   const t = useT();
-  const s = sp(t, 0, { stiffness: 200, damping: 20 });
-  const clickAt = 0.9;
+  const s = sp(t, 0, { stiffness: 90, damping: 18 });
+  const clickAt = 1.0;
   const cursorX = lerp(t, 0.2, clickAt, 900, 640, Easing.inOut(Easing.cubic));
-  const cursorY = lerp(t, 0.2, clickAt, 1500, 1215, Easing.inOut(Easing.cubic));
+  const cursorY = lerp(t, 0.2, clickAt, 900, 495, Easing.inOut(Easing.cubic));
   const press = t > clickAt && t < clickAt + 0.15 ? 0.94 : 1;
   const done = t > clickAt + 0.1;
   const out = lerp(t, dur - 0.3, dur, 1, 0);
   return (
     <AbsoluteFill style={{ opacity: out }}>
-      <div style={{ position: 'absolute', left: 140, right: 140, top: 980 }}>
+      <div style={{ position: 'absolute', left: 140, right: 140, top: 260 }}>
         <Card s={s} style={{ padding: '30px 34px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 22, marginBottom: 26 }}>
             <div style={{ width: 84, height: 84, borderRadius: 42, background: C.dark, color: C.lime, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: TITLE, fontWeight: 800, fontSize: 52 }}>T</div>
@@ -375,7 +375,7 @@ function EndCard() {
 
 // ---------- captions: small, highlight box behind active word ----------
 
-function Captions({ hidden, light }) {
+function Captions({ hidden, light, scenes }) {
   const t = useT();
   const onLight = light.some(([a, b]) => t >= a && t < b);
   if (hidden.some(([a, b]) => t >= a && t < b)) return null;
@@ -389,13 +389,13 @@ function Captions({ hidden, light }) {
   const page = pages.find((p, i) => t >= p[0].start && t < (pages[i + 1] ? Math.min(pages[i + 1][0].start, p[p.length - 1].end + 0.5) : p[p.length - 1].end + 0.4));
   if (!page) return null;
   return (
-    <AbsoluteFill style={{ alignItems: 'center', paddingTop: 1700 }}>
-      <div style={{ display: 'flex', gap: 14, fontFamily: TITLE, fontWeight: 700, fontSize: 76 }}>
+    <AbsoluteFill style={{ alignItems: 'center', paddingTop: scenes.some(([a, b]) => t >= a && t < b) ? 1560 : 1180 }}>
+      <div style={{ display: 'flex', gap: 10, fontFamily: TITLE, fontWeight: 700, fontSize: 60 }}>
         {page.map((w, i) => {
           const active = t >= w.start && t < w.end + 0.1;
-          const s = sp(t, w.start, { stiffness: 300, damping: 24 });
+          const s = sp(t, w.start, { stiffness: 160, damping: 24 });
           return (
-            <span key={i} style={{ position: 'relative', padding: '0 12px', color: active || onLight ? C.ink : '#fff', textShadow: active || onLight ? 'none' : '0 3px 14px rgba(0,0,0,.7)', opacity: Math.max(0.55, Math.min(1, s * 2)) }}>
+            <span key={i} style={{ position: 'relative', padding: '0 12px', color: active || onLight ? C.ink : '#fff', textShadow: active || onLight ? 'none' : '0 2px 4px rgba(0,0,0,.8), 0 4px 18px rgba(0,0,0,.6)', opacity: Math.max(0.85, Math.min(1, s * 2)) }}>
               {active && <span style={{ position: 'absolute', inset: '6px 0 2px', background: C.lime, borderRadius: 10, transform: `scaleX(${s})` }} />}
               <span style={{ position: 'relative' }}>{w.text.replace(/[.,]$/, '')}</span>
             </span>
@@ -409,10 +409,10 @@ function Captions({ hidden, light }) {
 // ---------- assembly ----------
 
 const SCENES = [
-  [10.25, 12.75, SceneYears],
-  [12.65, 15.6, SceneHotel],
-  [16.05, 19.7, SceneLessons],
-  [19.6, 23.4, SceneShortcut],
+  [9.9, 13.0, SceneYears],
+  [12.6, 16.1, SceneHotel],
+  [15.8, 19.9, SceneLessons],
+  [19.5, 23.7, SceneShortcut],
 ];
 
 export function FullExplainer() {
@@ -428,10 +428,10 @@ export function FullExplainer() {
       {SCENES.map(([a, b, Comp], i) => (
         <Sequence key={i} from={sec(a)} durationInFrames={sec(b - a)}><Comp dur={b - a} start={a} /></Sequence>
       ))}
-      <Sequence from={sec(23.4)} durationInFrames={sec(1.8)}><TopTitle eyebrow="The result" title="Get there faster" dur={1.8} /></Sequence>
+      <Sequence from={sec(23.5)} durationInFrames={sec(1.69)}><TopTitle eyebrow="The result" title="Get there faster" dur={1.69} /></Sequence>
       <Sequence from={bStart + sec(1.8)} durationInFrames={sec(B_LEN - 1.8)}><FollowCTA dur={B_LEN - 1.8} /></Sequence>
 
-      <Captions hidden={[[A_LEN + B_LEN, 99]]} light={[[10.5, 12.5], [16.3, 19.45]]} />
+      <Captions hidden={[[A_LEN + B_LEN, 99]]} light={[[10.3, 12.7], [16.3, 19.5]]} scenes={SCENES.map(([a, b]) => [a + 0.4, b - 0.4])} />
       <Sequence from={endStart}><EndCard /></Sequence>
     </AbsoluteFill>
   );
