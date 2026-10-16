@@ -1,5 +1,6 @@
 import React from 'react';
 import { AbsoluteFill, Composition, OffthreadVideo, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { FullExplainer, TOTAL } from './Explainer.jsx';
 import { PAGES_9573, PAGES_9577 } from './captions.js';
 
 const C = { ink: '#141413', paper: '#F0EEE6', accent: '#D97757' };
@@ -136,6 +137,7 @@ export function Full() {
 
 export const Root = () => (
   <>
+    <Composition id="Explainer" component={FullExplainer} durationInFrames={TOTAL} fps={FPS} width={1080} height={1920} />
     <Composition id="Full" component={Full} durationInFrames={sec(25.19) + sec(4.07)} fps={FPS} width={1080} height={1920} />
     <Composition id="Intro9573" component={Intro9573} durationInFrames={sec(25.19)} fps={FPS} width={1080} height={1920} />
     <Composition id="Outro9577" component={Outro9577} durationInFrames={sec(4.07)} fps={FPS} width={1080} height={1920} />

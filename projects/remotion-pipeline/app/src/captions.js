@@ -56,3 +56,6 @@ function toPages(words) {
 
 export const PAGES_9573 = toPages(toWords(PHRASES_9573));
 export const PAGES_9577 = toPages(toWords(PHRASES_9577));
+
+// One continuous word list for the combined edit (9577 starts at 25.19s)
+export const WORDS_ALL = [...toWords(PHRASES_9573), ...toWords(PHRASES_9577).map((w) => ({ ...w, start: w.start + 25.19, end: w.end + 25.19 }))];
