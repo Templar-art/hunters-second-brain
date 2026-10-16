@@ -6,3 +6,4 @@ out/
 __pycache__/
 app/public/*.mp4
 app/out/
+app/public/audio/
