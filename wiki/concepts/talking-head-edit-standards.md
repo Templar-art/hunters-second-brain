@@ -35,3 +35,4 @@ See also: [[sfx-library]] · [[music-taxonomy]] · [[typography]]
 - **Scripts first.** Push for value-first openers. The edit can't fix a generic script (see [[hormozi-style-motion-playbook]]).
 - **No dark gradient bars behind titles.** The top-of-frame gradient read as a black bar. Use text-shadow instead (Hunter, 16 Oct 2026).
 - **Pop-ups must linger.** Exits ~0.6s with ease, not 0.25s. Hold them long enough to read (Hunter, 16 Oct 2026).
+- **Export quality — no generation loss.** Render once at high quality and never re-encode the video afterwards: Remotion `--jpeg-quality=100 --crf=14 --x264-preset=slow`, then loudness on the audio only (`-c:v copy`). Keep grain subtle (~6% opacity), since heavy grain eats bitrate and Instagram re-compresses it to mush. Cap punch-ins around 1.08× on 1080p sources. v7 had dropped to ~4.8 Mbps through a "phone-friendly" crf 21 re-encode plus Remotion's default JPEG-80 frames (Hunter flagged it, 16 Oct 2026).

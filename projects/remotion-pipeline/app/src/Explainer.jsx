@@ -547,7 +547,7 @@ const SHAKES = []; // filled once SCENES is known (impact times)
 function cameraAt(t, frame) {
   const seg = Math.max(0, SEG_START.findIndex((s, i) => t >= s && t < (SEG_START[i + 1] ?? 1e9)));
   const segT = t - SEG_START[seg], segLen = (SEG_START[seg + 1] ?? EDIT_LEN) - SEG_START[seg];
-  let z = (seg % 2 ? 1.12 : 1) * (1 + 0.035 * (segT / segLen));
+  let z = (seg % 2 ? 1.08 : 1) * (1 + 0.035 * (segT / segLen));
   for (const b of BUMPS) if (t >= b) z *= 1 + 0.045 * Math.exp(-(t - b) * 7) * Math.min(1, (t - b) * 20);
   let sx = 0, sy = 0;
   for (const s0 of SHAKES) {
@@ -620,7 +620,7 @@ function Grain() {
   return (
     <AbsoluteFill style={{ pointerEvents: 'none' }}>
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.28) 100%)' }} />
-      <Img src={staticFile(`grain/g${frame % 8}.png`)} style={{ position: 'absolute', inset: 0, width: 1080, height: 1920, opacity: 0.1, mixBlendMode: 'overlay' }} />
+      <Img src={staticFile(`grain/g${frame % 8}.png`)} style={{ position: 'absolute', inset: 0, width: 1080, height: 1920, opacity: 0.06, mixBlendMode: 'overlay' }} />
     </AbsoluteFill>
   );
 }
