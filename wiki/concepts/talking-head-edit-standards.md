@@ -33,3 +33,5 @@ See also: [[sfx-library]] · [[music-taxonomy]] · [[typography]]
 - **No branded end card.** End on the speaker's last line or CTA ("I'll see you in the next one" / the follow CTA) with the music fading out. An end card adds nothing for coach and fitness reels (Hunter, 16 Oct 2026).
 - **No light leaks.** The orange flare looked off-brand. The lime/charcoal palette was liked (Hunter, 16 Oct 2026).
 - **Scripts first.** Push for value-first openers. The edit can't fix a generic script (see [[hormozi-style-motion-playbook]]).
+- **No dark gradient bars behind titles.** The top-of-frame gradient read as a black bar. Use text-shadow instead (Hunter, 16 Oct 2026).
+- **Pop-ups must linger.** Exits ~0.6s with ease, not 0.25s. Hold them long enough to read (Hunter, 16 Oct 2026).

@@ -119,7 +119,7 @@ function Shards({ t, at = 0, corner = 'br', seed = 1 }) {
 }
 
 // Face in a circle (muted copy of the source, synced via startFrom)
-function FaceCircle({ t, at = 0, src, startFrom, size = 300, x = 700, y = 120 }) {
+function FaceCircle({ t, at = 0, src, startFrom, size = 280, x = 650, y = 150 }) {
   const s = sp(t, at, { stiffness: 180, damping: 20 });
   const f = faceAt(startFrom + useCurrentFrame()); // tracked face (tools/track.py)
   const k = (size * 0.62) / f.w; // face fills ~62% of the circle
@@ -153,7 +153,7 @@ function Scene({ dur, children, bg }) {
 
 function Card({ children, style, s = 1 }) {
   return (
-    <div style={{ background: C.card, borderRadius: 22, boxShadow: '0 14px 40px rgba(14,20,17,.14)', padding: '26px 30px', opacity: Math.min(1, s * 1.5), transform: `translateY(${(1 - s) * 60}px) scale(${0.92 + 0.08 * s})`, ...style }}>
+    <div style={{ background: C.card, borderRadius: 22, boxShadow: '0 1px 2px rgba(0,0,0,.18), 0 6px 16px rgba(0,0,0,.12), 0 24px 60px rgba(0,0,0,.18)', border: '1px solid rgba(255,255,255,.6)', padding: '26px 30px', opacity: Math.min(1, s * 1.5), filter: `blur(${Math.max(0, 1 - s) * 12}px)`, transform: `translateY(${(1 - s) * 60}px) scale(${0.92 + 0.08 * s})`, ...style }}>
       {children}
     </div>
   );
@@ -176,7 +176,7 @@ function Icon({ name, active, draw = 1 }) {
 
 // ---------- graphic scenes ----------
 
-const SRC_A = 'edit.mp4';
+const SRC_A = 'edit_voiced.mp4'; // tools/make_edit.sh: trimmed + voice chain
 
 // 10.3–12.7  "training for about 9 years"
 function SceneYears({ dur, start }) {
@@ -283,8 +283,11 @@ function SceneLessons({ dur, start }) {
           const saved = t > 1.2 + i * 0.5;
           return (
             <Card key={i} s={s} style={{ display: 'flex', alignItems: 'center', gap: 26 }}>
-              <div style={{ width: 120, height: 150, borderRadius: 14, background: C.dark, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ width: 0, height: 0, borderTop: '22px solid transparent', borderBottom: '22px solid transparent', borderLeft: `36px solid ${C.lime}`, marginLeft: 8 }} />
+              <div style={{ position: 'relative', width: 120, height: 150, borderRadius: 14, overflow: 'hidden', background: C.dark, flexShrink: 0 }}>
+                <OffthreadVideo src={staticFile(`broll/${['bench-spot', 'incline-db', 'squat'][i]}.mp4`)} muted playbackRate={0.8} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,.25)' }}>
+                  <div style={{ width: 0, height: 0, borderTop: '16px solid transparent', borderBottom: '16px solid transparent', borderLeft: `26px solid ${C.lime}`, marginLeft: 6 }} />
+                </div>
               </div>
               <div style={{ flex: 1 }}>
                 <span style={{ fontFamily: MONO, fontSize: 22, background: C.dark, color: C.lime, padding: '4px 14px', borderRadius: 20 }}>{p.tag}</span>
@@ -314,6 +317,7 @@ function SceneShortcut({ dur, start }) {
       <Header eyebrow={S.shortcut.eyebrow} title={S.shortcut.title} t={t} dark />
       <FaceCircle t={t} at={0.2} src={SRC_A} startFrom={sec(start)} />
       <svg width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
+        <g transform="translate(0 -120)">
         <path d={LONG} fill="none" stroke="#3A463F" strokeWidth="14" strokeLinecap="round" />
         <path d={LONG} fill="none" stroke={C.muted} strokeWidth="14" strokeLinecap="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1 - long} />
         {marks.map(([x, y], i) => {
@@ -331,6 +335,7 @@ function SceneShortcut({ dur, start }) {
           <circle r="44" fill={C.lime} />
           <path d="M -18 0 L -4 14 L 20 -12" fill="none" stroke={C.ink} strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
         </g>
+      </g>
       </svg>
       <div style={{ position: 'absolute', left: 80, top: 470, fontFamily: MONO, fontSize: 26, color: C.muted, opacity: sp(t, 0.5) }}>{S.shortcut.mine}</div>
       <div style={{ position: 'absolute', left: 80, top: 515, fontFamily: MONO, fontSize: 26, color: C.lime, opacity: sp(t, 2.0) }}>{S.shortcut.yours}</div>
@@ -345,11 +350,10 @@ function TopTitle({ eyebrow, title, dur }) {
   const out = Math.min(lerp(t, 0, 0.6), lerp(t, dur - 0.7, dur, 1, 0));
   return (
     <AbsoluteFill style={{ opacity: out }}>
-      <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 560, background: 'linear-gradient(rgba(14,20,17,.75), rgba(14,20,17,0))' }} />
       <div style={{ position: "absolute", left: 80, top: 150, width: 720 }}>
         <Eyebrow text={eyebrow} t={t} at={0.05} color={C.lime} />
         <div style={{ height: 14 }} />
-        <Title text={title} t={t} at={0.1} color={C.light} size={150} />
+        <div style={{ textShadow: '0 2px 6px rgba(0,0,0,.45), 0 10px 40px rgba(0,0,0,.45)' }}><Title text={title} t={t} at={0.1} color={C.light} size={150} /></div>
       </div>
       <Shards t={t} at={0.15} corner="tr" seed={2} />
     </AbsoluteFill>
@@ -391,7 +395,9 @@ function FollowCTA({ dur }) {
       <div style={{ position: 'absolute', left: 140, right: 140, top: 260 }}>
         <Card s={s} style={{ padding: '30px 34px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 22, marginBottom: 26 }}>
-            <div style={{ width: 84, height: 84, borderRadius: 42, background: C.dark, color: C.lime, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: TITLE, fontWeight: 800, fontSize: 52 }}>T</div>
+            <div style={{ width: 84, height: 84, borderRadius: 42, overflow: 'hidden', border: `3px solid ${C.lime}`, flexShrink: 0 }}>
+              <OffthreadVideo src={staticFile('broll/to-camera.mp4')} muted style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
             <div>
               <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 52, color: C.ink, lineHeight: 1 }}>{S.follow.handle}</div>
               <div style={{ fontFamily: MONO, fontSize: 20, color: C.muted, letterSpacing: 2 }}>{S.follow.sub}</div>
@@ -432,20 +438,20 @@ function EndCard() {
 // Springy pop with overshoot, slight tilt, shadow; scales away at the end
 function Pop({ at, until, x, y, tilt = 0, children, origin = 'center' }) {
   const t = useT();
-  const s = sp(t, at, { stiffness: 260, damping: 12 });
-  const o = lerp(t, until - 0.25, until, 1, 0, Easing.in(Easing.cubic));
+  const s = sp(t, at, { stiffness: 158, damping: 21 });
+  const o = lerp(t, until - 0.6, until, 1, 0, Easing.inOut(Easing.cubic));
   if (t < at || t > until) return null;
   return (
-    <div style={{ position: 'absolute', left: x, top: y, transform: `scale(${s * (0.6 + 0.4 * o)}) rotate(${tilt * (1 - s) * 3 + tilt}deg)`, transformOrigin: origin, opacity: o, filter: 'drop-shadow(0 16px 30px rgba(0,0,0,.35))' }}>
+    <div style={{ position: 'absolute', left: x, top: y, transform: `translateY(${(1 - o) * -24}px) scale(${(0.7 + 0.3 * s) * (0.9 + 0.1 * o)}) rotate(${tilt * (1 - s) * 3 + tilt}deg)`, transformOrigin: origin, opacity: Math.min(o, s * 2), filter: `blur(${(1 - s) * 10 + (1 - o) * 6}px) drop-shadow(0 2px 3px rgba(0,0,0,.25)) drop-shadow(0 20px 40px rgba(0,0,0,.3))` }}>
       {children}
     </div>
   );
 }
 
 const Chip = ({ emoji, label }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 14, background: C.card, borderRadius: 999, padding: '14px 28px 14px 16px' }}>
-    <span style={{ width: 62, height: 62, borderRadius: 31, background: C.lime, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36, fontFamily: 'Noto Color Emoji' }}>{emoji}</span>
-    <span style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 54, color: C.ink }}>{label}</span>
+  <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: C.card, border: '1px solid rgba(255,255,255,.7)', borderRadius: 999, padding: '12px 26px 12px 12px' }}>
+    <span style={{ width: 54, height: 54, borderRadius: 27, background: C.lime, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30, fontFamily: 'Noto Color Emoji' }}>{emoji}</span>
+    <span style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 46, color: C.ink }}>{label}</span>
   </div>
 );
 
@@ -457,7 +463,7 @@ function SkillChips({ until }) {
   return (
     <AbsoluteFill>
       <Pop at={ta} until={until} x={30} y={600} tilt={-3}><Chip {...a} /></Pop>
-      <Pop at={tb} until={until} x={680} y={700} tilt={3}><Chip {...b} /></Pop>
+      <Pop at={tb} until={until} x={640} y={700} tilt={3}><Chip {...b} /></Pop>
     </AbsoluteFill>
   );
 }
@@ -506,14 +512,15 @@ function Captions({ hidden, light, scenes }) {
   const page = pages.find((p, i) => t >= p[0].start && t < (pages[i + 1] ? Math.min(pages[i + 1][0].start, p[p.length - 1].end + 0.5) : p[p.length - 1].end + 0.4));
   if (!page) return null;
   return (
-    <AbsoluteFill style={{ alignItems: 'center', paddingTop: scenes.some(([a, b]) => t >= a && t < b) ? 1560 : Math.max(1100, Math.min(1260, faceAt(frame).cy + 420)) }}>
+    <AbsoluteFill style={{ alignItems: 'center', paddingTop: scenes.some(([a, b]) => t >= a && t < b) ? 1400 : Math.max(1100, Math.min(1260, faceAt(frame).cy + 420)) }}>
       <div style={{ display: 'flex', gap: 10, fontFamily: TITLE, fontWeight: 700, fontSize: 60 }}>
         {page.map((w, i) => {
           const active = t >= w.start && t < w.end + 0.1;
           const s = sp(t, w.start, { stiffness: 160, damping: 24 });
+          const boxS = sp(t, w.start - 0.03, { stiffness: 400, damping: 32 });
           return (
-            <span key={i} style={{ position: 'relative', padding: '0 12px', color: active || onLight ? C.ink : '#fff', textShadow: active || onLight ? 'none' : '0 2px 4px rgba(0,0,0,.8), 0 4px 18px rgba(0,0,0,.6)', opacity: Math.max(0.85, Math.min(1, s * 2)) }}>
-              {active && <span style={{ position: 'absolute', inset: '6px 0 2px', background: C.lime, borderRadius: 10, transform: `scaleX(${s})` }} />}
+            <span key={i} style={{ position: 'relative', padding: '0 12px', color: (active && boxS > 0.5) || onLight ? C.ink : '#fff', textShadow: (active && boxS > 0.5) || onLight ? 'none' : '0 2px 4px rgba(0,0,0,.8), 0 4px 18px rgba(0,0,0,.6)', opacity: Math.max(0.85, Math.min(1, s * 2)) }}>
+              {active && <span style={{ position: 'absolute', inset: '6px 0 2px', background: C.lime, borderRadius: 10, transform: `scaleX(${boxS})` }} />}
               <span style={{ position: 'relative', display: 'inline-block', transform: `scale(${active ? 1 + 0.08 * Math.exp(-(t - w.start) * 8) : 1})` }}>{w.text.replace(/[.,]$/, '')}</span>
             </span>
           );
@@ -554,7 +561,7 @@ function BaseVideo() {
   const { z, sx, sy } = cameraAt(t, frame);
   const f = faceAt(frame);
   return (
-    <AbsoluteFill style={{ transform: `translate(${sx}px, ${sy}px) scale(${z})`, transformOrigin: `${f.cx}px ${f.cy}px`, filter: 'contrast(1.07) saturate(1.1) brightness(1.02)' }}>
+    <AbsoluteFill style={{ transform: `translate(${sx}px, ${sy}px) scale(${z})`, transformOrigin: `${f.cx}px ${f.cy}px`, filter: 'contrast(1.06) saturate(1.04) brightness(1.02)' }}>
       <OffthreadVideo src={staticFile(SRC_A)} />
     </AbsoluteFill>
   );
@@ -575,9 +582,34 @@ function BehindTitle({ eyebrow, word, dur, from }) {
         <div style={{ fontFamily: MONO, fontSize: 30, letterSpacing: 8, color: C.lime, textTransform: 'uppercase', opacity: inn, marginBottom: 10 }}>{eyebrow}</div>
         <div style={{ fontFamily: TITLE, fontWeight: 800, fontSize: 300, lineHeight: 0.85, color: C.lime, letterSpacing: -4, transform: `translateY(${(1 - inn) * 160}px) scale(${0.9 + 0.1 * inn})`, opacity: Math.min(1, inn * 1.4), textShadow: '0 20px 60px rgba(0,0,0,.35)' }}>{word}</div>
       </AbsoluteFill>
-      <AbsoluteFill style={{ ...cam, filter: 'contrast(1.07) saturate(1.1) brightness(1.02)' }}>
+      <AbsoluteFill style={{ ...cam, filter: 'contrast(1.06) saturate(1.04) brightness(1.02)' }}>
         <Img src={staticFile(`matte/f${String(g).padStart(4, '0')}.png`)} style={{ width: 1080, height: 1920 }} />
       </AbsoluteFill>
+    </AbsoluteFill>
+  );
+}
+
+// Full-screen B-roll cutaway (voice keeps playing underneath), slow push-in, title over it
+function BrollCut({ clips, dur, eyebrow, title }) {
+  const t = useT();
+  const per = dur / clips.length;
+  const k = Math.min(clips.length - 1, Math.floor(t / per));
+  const lt = t - k * per;
+  return (
+    <AbsoluteFill style={{ background: C.dark }}>
+      {clips.map((c, i) => (
+        <Sequence key={c} from={sec(i * per)} durationInFrames={sec(per) + 1}>
+          <AbsoluteFill style={{ transform: `scale(${1.04 + 0.06 * (lt / per)})`, filter: 'contrast(1.06) saturate(1.04) brightness(.92)' }}>
+            <OffthreadVideo src={staticFile(`broll/${c}.mp4`)} muted style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </AbsoluteFill>
+        </Sequence>
+      ))}
+      <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,.45) 100%)' }} />
+      <div style={{ position: 'absolute', left: 80, top: 300, width: 760, textShadow: '0 2px 6px rgba(0,0,0,.5), 0 10px 40px rgba(0,0,0,.5)' }}>
+        <Eyebrow text={eyebrow} t={t} at={0.05} color={C.lime} />
+        <div style={{ height: 14 }} />
+        <Title text={title} t={t} at={0.1} color={C.light} size={150} />
+      </div>
     </AbsoluteFill>
   );
 }
@@ -596,7 +628,7 @@ function Grain() {
 const Blur = ({ children }) => <CameraMotionBlur shutterAngle={180} samples={3}>{children}</CameraMotionBlur>;
 
 // Global SFX level: keep effects well under the voice
-const SFX_GAIN = 0.25;
+const SFX_GAIN = 0.75; // voice is ~10 dB hotter after the chain; keeps the approved balance
 const Sfx = ({ at, src, vol = 0.5 }) => (
   <Sequence from={Math.max(0, sec(at))}><Audio src={staticFile(`audio/${src}.wav`)} volume={vol * SFX_GAIN} /></Sequence>
 );
@@ -605,10 +637,10 @@ function SoundDesign() {
   const sc = SCENES.map(([a]) => a);
   const e = [];
   // scene iris wipes
-  sc.forEach((a, i) => { e.push([a - 0.15, 'whoosh', 0.35]); });
+  sc.forEach((a, i) => { e.push([a - 0.35, 'whoosh', 0.35]); });
   SCENES.forEach(([, b]) => e.push([b - 0.8, 'whoosh-out', 0.22]));
   // titles over talking head
-  e.push([0.05, 'shimmer', 0.18], [0.15, 'pop', 0.25], [M(3.53) + 0.1, 'pop', 0.25]);
+  e.push([0.05, 'shimmer', 0.18], [0.15, 'pop', 0.25], [M(3.53) - 0.3, 'whoosh', 0.3]);
   // name tag + pin
   e.push([M(6.28), 'whoosh', 0.25], [WORDS.find((w) => w.text === 'Gold').start, 'pop-high', 0.3]);
   // years: ticks while counting, ding at the end
@@ -645,7 +677,7 @@ export function FullExplainer() {
       <Sequence durationInFrames={end}><BaseVideo /></Sequence>
 
       <Sequence from={0} durationInFrames={sec(M(3.22))}><BehindTitle eyebrow={S.hook.eyebrow} word={S.hook.behind} dur={M(3.22)} from={0} /></Sequence>
-      <Sequence from={sec(M(3.53))} durationInFrames={sec(M(5.56) - M(3.53))}><Blur><TopTitle eyebrow={S.about.eyebrow} title={S.about.title} dur={M(5.56) - M(3.53)} /></Blur></Sequence>
+      <Sequence from={sec(M(3.53))} durationInFrames={sec(M(5.56) - M(3.53))}><BrollCut clips={['seated-row', 'squat']} dur={M(5.56) - M(3.53)} eyebrow={S.about.eyebrow} title={S.about.title} /></Sequence>
       <Sequence from={sec(M(6.28))} durationInFrames={sec(M(9.9) - M(6.28) + 0.3)}><Blur><NameTag dur={M(9.9) - M(6.28) + 0.3} /></Blur></Sequence>
       {SCENES.map(([a, b, Comp], i) => (
         <Sequence key={i} from={sec(a)} durationInFrames={sec(b - a)}><Comp dur={b - a} start={a} /></Sequence>
@@ -658,7 +690,7 @@ export function FullExplainer() {
       <Captions hidden={[[EDIT_LEN, 99]]} light={[[SCENES[0][0] + 0.4, SCENES[0][1] - 0.4], [SCENES[2][0] + 0.4, SCENES[2][1] - 0.4]]} scenes={SCENES.map(([a, b]) => [a + 0.4, b - 0.4])} />
       <Grain />
 
-      <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 15, end - 20, end], [0, 0.06, 0.06, 0], { extrapolateRight: 'clamp' })} />
+      <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 15, end - 20, end], [0, 0.18, 0.18, 0], { extrapolateRight: 'clamp' })} />
       <SoundDesign />
     </AbsoluteFill>
   );
