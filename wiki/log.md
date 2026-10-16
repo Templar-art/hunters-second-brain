@@ -1209,3 +1209,6 @@ Header gated behind the homepage stage; ring label The gym; site-wide --inset so
 ## [2026-10-16] query | ZED 86 Ormeu St full staging
 
 Zed picked Smoked Oak Suite; 15 more interiors staged (2,700cr, job total 6,480cr). No-additions rule held. Logged on [[zed-style]].
+
+## [2026-10-16] query | Blender: material-ID maps, denser scenes, add-on research
+Added the material-ID colour-map method, the scene-density lesson and the ranked add-on list to [[blender-blockout-pipeline]].

@@ -2,7 +2,7 @@
 type: concept
 tags: [ai-video, blender, higgsfield, magnific, pipeline]
 status: setup-complete
-updated: 2026-10-12
+updated: 2026-10-16
 ---
 # Blender block-out → AI video pipeline
 
@@ -29,3 +29,20 @@ Building the block-out is free. The generation step always gets a cost quote and
 
 ## Default route (2026-10-12, Hunter picked it after the shot-1 test)
 Blender guide frame → **GPT Image 2.5 Sunburst** (high, 2K, about 2.75 HF credits) for an **editorial** look → **Seedance 2.5 on Higgsfield** (omni_reference start frame, 96 HF credits per 8s at 1080p). Kling 2.5 on Magnific (725cr for the test) held the move but redesigned the pool late in the clip, so it is not the default.
+
+## Material-ID colour map (2026-10-16)
+Each material is rendered as one flat colour, then passed to the image model as a second reference with a key written in prose ("wherever Image 2 is red, the surface is timber…"). The model then knows which surface is which instead of guessing. Script: [material_id_pass.py](../../projects/blender-blockouts/scripts/material_id_pass.py) sorts every material by name into 17 categories: red timber, cyan glass, grey concrete, white render, black metal, blue pool, navy ocean, yellow sand, green grass, dark green plants, brown trunks, magenta fabric/furniture, orange stone, and so on. It uses Standard view transform and flat emission so the colours stay exact. Thin glass (fences, balustrades) is hidden from the map so it doesn't paint over what sits behind it.
+
+## Scene density matters
+Hunter's verdict on the first beach build (274 objects): too bare. The rebuild went to about 1,600 objects: dune-grass scatter, hedges, tropical garden beds, potted plants, outdoor dining, an umbrella, mullions, gutters and downpipes, a boardwalk, street lights, cars, eight detailed neighbour houses, and a full walk-through interior (stairs cut through the slabs, a garage, laundry, powder room, and a master suite with ensuite and robe). An empty block-out gives the AI room to invent; a dense one leaves it nothing to make up.
+
+## Add-ons worth installing (research, 2026-10-16, not yet verified live)
+Ranked for a Python/MCP-driven pipeline:
+1. Poly Haven (free, already wired in)
+2. BlenderKit (free tier / about $9 a month)
+3. Camera Shakify (free, real gimbal feel)
+4. Archipack (free, parametric walls, windows and roofs)
+5. Botaniq (about $49+, landscaping)
+6. Photographer 5 (about $30)
+
+Skip Geo-Scatter, Kitbash, Fab and Fluent for now: they're weak to drive from a script. Spend on silhouette, vegetation shape and camera motion, because the AI repaints the surfaces anyway.
