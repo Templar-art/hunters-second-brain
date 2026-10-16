@@ -509,15 +509,12 @@ function Grain() {
   return (
     <AbsoluteFill style={{ pointerEvents: 'none' }}>
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.28) 100%)' }} />
-      <svg width="1080" height="1920" style={{ position: 'absolute', inset: 0, opacity: 0.07, mixBlendMode: 'overlay' }}>
-        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed={frame % 60} /><feColorMatrix type="saturate" values="0" /></filter>
-        <rect width="1080" height="1920" filter="url(#g)" />
-      </svg>
+      <Img src={staticFile(`grain/g${frame % 8}.png`)} style={{ position: 'absolute', inset: 0, width: 1080, height: 1920, opacity: 0.1, mixBlendMode: 'overlay' }} />
     </AbsoluteFill>
   );
 }
 
-const Blur = ({ children }) => <CameraMotionBlur shutterAngle={180} samples={6}>{children}</CameraMotionBlur>;
+const Blur = ({ children }) => <CameraMotionBlur shutterAngle={180} samples={3}>{children}</CameraMotionBlur>;
 
 // Global SFX level: keep effects well under the voice
 const SFX_GAIN = 0.25;

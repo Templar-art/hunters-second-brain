@@ -8,3 +8,4 @@ app/public/*.mp4
 app/out/
 app/public/audio/
 app/public/matte/
+app/public/grain/
