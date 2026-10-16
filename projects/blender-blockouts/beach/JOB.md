@@ -3,7 +3,7 @@ client: internal-rnd
 address: Beachfront Gold Coast house (fictional test build)
 opened: 2026-10-12
 status: review        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 20.25, aud: 0 }
+cost: { credits: 0, hf_credits: 77.25, aud: 0 }
 ---
 
 # Job — Beach house Blender → AI pipeline test
@@ -30,6 +30,9 @@ Second R&D build for the [[blender-blockout-pipeline]]. A dense scene of about 1
 
 - 2026-10-16 generate: 4 cast face locks, Nano Banana Pro 2K (~8 HF). C has a softbox in frame, so re-roll it.
 - 2026-10-16 blender: camera clearance check on all 7 shots (only the walkthrough armchair grazed; chair moved), street facade detailed, supercar built.
+
+- 2026-10-16 generate: face C re-roll (2), 4 outfit stills on Banana Pro (8; A retried after a network error).
+- 2026-10-16 generate: 14 hero stills, 7 shots × Seedream 5 Pro (2.5) + Sunburst (2.75) = 36.75, plus the Lambo shot 7 in both (5.25), plus the 02 Seedream retry (upload error, no charge). QC: Sunburst wins 03/04/05/06; Seedream failed 04 (not top-down) and 05 (invented a pool), and copied the Blender low-poly palms literally; shot 7 broken (parked car in the foreground at frame 1300), car moved.
 
 ---
 _Vault: [[jarvis]]_
