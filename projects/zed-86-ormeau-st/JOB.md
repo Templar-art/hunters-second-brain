@@ -3,7 +3,7 @@ client: zed
 address: 86 Ormeu Street
 opened: 2026-10-16
 status: delivered        # intake → generating → review → delivered
-cost: { credits: 7380, aud: 0 }
+cost: { credits: 8820, aud: 0 }
 ---
 
 # Job — 86 Ormeu Street
@@ -26,3 +26,4 @@ _Vault: [[jarvis]]_
 - 2026-10-16 alfresco redo: v1 tables cut through the free-standing centre post in all 4. Re-ran 4 with each post named + table zone pinned (720cr); 03 still hit the window-corner post, re-ran once more with table right of all posts (180cr). Job total 3,780cr. v1 rejects in outputs/v1-rejected/. Boards rebuilt.
 - 2026-10-16 CLIENT DECISION: Zed picked Option 03 Smoked Oak Suite. Staged remaining 15 interiors in Smoked Oak on Sunburst 2k medium (15 × 180 = 2,700cr; job total 6,480cr). Hunter rule: nothing added to the house (no sheers, fittings) — prompts carried an explicit 'nothing added to the house itself' line and existing curtains/blinds were named to stay; held in all 15. Final 19 JPGs in 'ZED 86 Ormeu St - Smoked Oak Suite FINAL/' (gitignored, sources in final/ + outputs/). Exteriors (07032, 07082, 07092, 07132) not staged.
 - 2026-10-16 redo (Hunter): living 06942 + master 06892 had sheers from the style-guide round → re-run bare glass; 3 secondary bedrooms all dressed alike → re-run each distinct (06877 charcoal boucle rounded headboard + bronze lamps; 06982 espresso slatted timber bed + cognac knit throw; 06997 scalloped mushroom headboard + bronze/glass side tables + charcoal coverlet). 5 × 180 = 900cr, job total 7,380cr. Prompts in prompts/redo-v2/.
+- 2026-10-16 consistency pass (Hunter): open-plan angles (06932, 06947, 07077, 06977) re-run with 06942 as Image 2 → one artwork, same table/sofa everywhere. Every living space given its own sofa: main living mushroom boucle plinth; media room cognac leather + round smoked-glass/bronze table + charcoal rug (anchor 06927, matched 06887); granny flat slim taupe linen on legs + oval oak table + oatmeal rug (anchor 06867, matched 06862, sofa position from the straight-on shot). 8 × 180 = 1,440cr, job total 8,820cr.
