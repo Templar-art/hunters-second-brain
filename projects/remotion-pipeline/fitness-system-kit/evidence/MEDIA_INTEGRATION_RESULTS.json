@@ -1,0 +1,20 @@
+{
+  "fixture": "Synthetic 3-second tones; no real speech/music/footage",
+  "mix": "PASS",
+  "loudnessAnalysis": "PASS",
+  "twoPassMaster": "PASS",
+  "overwriteRefusal": "PASS",
+  "probeAndExtract": "PASS",
+  "evidenceManifest": "PASS",
+  "measuredMasterIntegratedLUFS": "-18.00",
+  "measuredMasterTruePeakDbTP": "-13.10",
+  "testTargetsNotUniversalRecommendations": {
+    "integrated": -18,
+    "truePeak": -1.5,
+    "lra": 7
+  },
+  "whisperInference": "NOT_RUN",
+  "faceDetection": "NOT_RUN",
+  "realAudioListening": "NOT_ASSESSED",
+  "remotionRender": "NOT_RUN"
+}

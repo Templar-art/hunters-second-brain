@@ -1,0 +1,3 @@
+# Optional; inspect supported Python/OS wheels and model licence first.
+mediapipe
+opencv-python-headless

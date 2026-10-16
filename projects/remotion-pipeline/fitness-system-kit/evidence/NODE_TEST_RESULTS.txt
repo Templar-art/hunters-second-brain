@@ -2,142 +2,142 @@ TAP version 13
 # Subtest: envelope bounded across fps
 ok 1 - envelope bounded across fps
   ---
-  duration_ms: 1.608219
+  duration_ms: 1.51733
   ...
 # Subtest: envelope endpoints
 ok 2 - envelope endpoints
   ---
-  duration_ms: 0.170785
+  duration_ms: 0.166189
   ...
 # Subtest: invalid frame timing
 ok 3 - invalid frame timing
   ---
-  duration_ms: 0.242299
+  duration_ms: 0.239993
   ...
 # Subtest: caption end exclusive
 ok 4 - caption end exclusive
   ---
-  duration_ms: 0.902429
+  duration_ms: 0.813604
   ...
 # Subtest: overlap detected
 ok 5 - overlap detected
   ---
-  duration_ms: 0.275368
+  duration_ms: 0.26307
   ...
 # Subtest: touching edges clear
 ok 6 - touching edges clear
   ---
-  duration_ms: 0.116201
+  duration_ms: 0.117195
   ...
 # Subtest: crop mapping
 ok 7 - crop mapping
   ---
-  duration_ms: 0.679044
+  duration_ms: 0.644163
   ...
 # Subtest: invalid crop
 ok 8 - invalid crop
   ---
-  duration_ms: 0.20515
+  duration_ms: 0.19702
   ...
 # Subtest: motion bounds union
 ok 9 - motion bounds union
   ---
-  duration_ms: 0.275332
+  duration_ms: 0.256394
   ...
 # Subtest: stable placement selected
 ok 10 - stable placement selected
   ---
-  duration_ms: 0.399682
+  duration_ms: 0.405516
   ...
 # Subtest: multiple faces across time
 ok 11 - multiple faces across time
   ---
-  duration_ms: 0.173719
+  duration_ms: 0.202015
   ...
 # Subtest: animation path conflict
 ok 12 - animation path conflict
   ---
-  duration_ms: 0.138795
+  duration_ms: 0.141347
   ...
 # Subtest: unknown detection not safe
 ok 13 - unknown detection not safe
   ---
-  duration_ms: 0.104908
+  duration_ms: 0.102156
   ...
 # Subtest: sampling stays provisional
 ok 14 - sampling stays provisional
   ---
-  duration_ms: 0.200982
+  duration_ms: 0.17916
   ...
 # Subtest: no placement fallback
 ok 15 - no placement fallback
   ---
-  duration_ms: 0.210227
+  duration_ms: 0.192404
   ...
 # Subtest: speech ducks music
 ok 16 - speech ducks music
   ---
-  duration_ms: 0.310265
+  duration_ms: 0.294505
   ...
 # Subtest: anticipation
 ok 17 - anticipation
   ---
-  duration_ms: 0.115882
+  duration_ms: 0.119971
   ...
 # Subtest: release
 ok 18 - release
   ---
-  duration_ms: 0.212101
+  duration_ms: 0.190076
   ...
 # Subtest: overlap not double-ducked
 ok 19 - overlap not double-ducked
   ---
-  duration_ms: 0.124581
+  duration_ms: 0.123019
   ...
 # Subtest: outside duration silent
 ok 20 - outside duration silent
   ---
-  duration_ms: 0.154915
+  duration_ms: 0.140453
   ...
 # Subtest: invalid speech
 ok 21 - invalid speech
   ---
-  duration_ms: 0.127667
+  duration_ms: 0.123763
   ...
 # Subtest: unassessed review valid
 ok 22 - unassessed review valid
   ---
-  duration_ms: 0.687702
+  duration_ms: 0.701401
   ...
 # Subtest: motion requires video
 ok 23 - motion requires video
   ---
-  duration_ms: 0.185466
+  duration_ms: 0.177908
   ...
 # Subtest: audio measurements not listening
 ok 24 - audio measurements not listening
   ---
-  duration_ms: 0.146352
+  duration_ms: 0.144435
   ...
 # Subtest: runner never auto-delivers
 ok 25 - runner never auto-delivers
   ---
-  duration_ms: 38.453095
+  duration_ms: 27.831499
   ...
 # Subtest: runner missing integration stops
 ok 26 - runner missing integration stops
   ---
-  duration_ms: 31.76651
+  duration_ms: 25.361882
   ...
 # Subtest: runner max revision cap
 ok 27 - runner max revision cap
   ---
-  duration_ms: 228.272039
+  duration_ms: 139.983496
   ...
 # Subtest: runner version mismatch rejected
 ok 28 - runner version mismatch rejected
   ---
-  duration_ms: 28.500949
+  duration_ms: 27.403369
   ...
 1..28
 # tests 28
@@ -147,4 +147,4 @@ ok 28 - runner version mismatch rejected
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 415.729662
+# duration_ms 303.870007

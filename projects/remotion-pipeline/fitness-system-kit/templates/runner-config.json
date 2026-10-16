@@ -1,0 +1,11 @@
+{
+  "maxPasses": 2,
+  "timeoutMs": 120000,
+  "expectedRenderVersion": "draft-1",
+  "reviewFile": "YOUR_REVIEW_ABSOLUTE_PATH",
+  "outputFile": "NEW_RESULT_ABSOLUTE_PATH",
+  "cwd": "YOUR_PROJECT_PATH",
+  "evaluateCommand": null,
+  "fixCommand": null,
+  "renderCommand": null
+}

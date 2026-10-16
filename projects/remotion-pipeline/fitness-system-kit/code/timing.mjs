@@ -1,0 +1,2 @@
+export function envelope(frame,fps,duration){if(![frame,fps,duration].every(Number.isFinite)||fps<=0||duration<=0)throw Error('Invalid timing');if(frame<0||frame>=duration)return 0;const t=Math.max(0,Math.min(1,frame/Math.max(1,Math.min(fps*.28,duration/2)),(duration-1-frame)/Math.max(1,Math.min(fps*.18,duration/2))));return 1-(1-t)**3;}
+export function activePhrase(phrases,t){return phrases.find(p=>t>=p.startSeconds&&t<p.endSeconds)??null;}

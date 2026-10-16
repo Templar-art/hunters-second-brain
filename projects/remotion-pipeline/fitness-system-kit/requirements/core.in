@@ -1,0 +1,2 @@
+# Resolve in an isolated environment, smoke-test, then pin exact working versions.
+faster-whisper

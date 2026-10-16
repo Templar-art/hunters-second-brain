@@ -1,0 +1,10 @@
+{
+  "id": "PROVISIONAL",
+  "fontFamily": "REPLACE_WITH_LICENSED_FONT",
+  "foreground": "#F5F4EF",
+  "background": "#111514",
+  "accent": "#C3F067",
+  "tone": "TO_CONFIRM",
+  "prohibitedTreatments": [],
+  "status": "pending"
+}

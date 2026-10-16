@@ -1,0 +1,258 @@
+{
+  "00_START_HERE.md": {
+    "bytes": 2527,
+    "sha256": "bd6e35a036b64f72fbcdd2a2ce231c4cda915076ffff998ee03db496fc617acf"
+  },
+  "01_PASTE_INTO_CLAUDE.md": {
+    "bytes": 3570,
+    "sha256": "f866e361b699572ca7428ff61ec4b747545135500ff890e6f039c2470053882d"
+  },
+  "CLAUDE_APPEND_ONLY.md": {
+    "bytes": 528,
+    "sha256": "68b9cc92dee5ecd6bec0299f3e4dc289156b6ce18d6e615dfd0571f208b2d02e"
+  },
+  "SOURCES.md": {
+    "bytes": 2055,
+    "sha256": "0436f9ff55062740561f4004ccf863fdf9e97270f8fcb83cecf08f3c684f11e2"
+  },
+  "VERIFICATION.md": {
+    "bytes": 2372,
+    "sha256": "cd4edd406d2e1e4c9f6eb19921193ca6bf5d3ae05c19d22451f650d661a1f0a9"
+  },
+  "code/Demo.mjs": {
+    "bytes": 1916,
+    "sha256": "b55e8eac256de68a6c2ae2d806f66db934f4293bd24fb8ae926ef7e75b055ff1"
+  },
+  "code/README.md": {
+    "bytes": 1601,
+    "sha256": "d26c6bd1ee5daa843043376c2ac5e86c275c10585e19bfa52f255f228c439e50"
+  },
+  "code/audio-envelope.mjs": {
+    "bytes": 872,
+    "sha256": "e7c867e400c20e7ad4478ef03392fff5c878e522f492fe44ee93069f912325f5"
+  },
+  "code/components.mjs": {
+    "bytes": 5344,
+    "sha256": "32c2b07a01b6e27d395a154a6171f90e9719fc19eed3bf05d9021275cb4d8c27"
+  },
+  "code/evidence-manifest.mjs": {
+    "bytes": 725,
+    "sha256": "9e870a74d3cf327c4d25511c212660a21de4aec91ad55b0d96095b07b32cbf08"
+  },
+  "code/placement.mjs": {
+    "bytes": 1929,
+    "sha256": "c449a49933cb27e6993c4bbd7883a469bcb52f234a8e7e447d885797d1767157"
+  },
+  "code/revision-runner.mjs": {
+    "bytes": 1863,
+    "sha256": "9808c4f880eacb4ea5666bc881d4c905aeac4def3e6687f615d311b826f94cbf"
+  },
+  "code/timing.mjs": {
+    "bytes": 446,
+    "sha256": "b47b911f9586c1e566c8c0a73651c21c70bf1088cc15fd1bd318f4821cdf69a0"
+  },
+  "code/validate-review.mjs": {
+    "bytes": 1442,
+    "sha256": "2a4ea993b8b5e5465b0020c7e288db63116aea1872820b0df58dfd56cf816fa2"
+  },
+  "docs/02_SETUP.md": {
+    "bytes": 4194,
+    "sha256": "9f4197e8cea67403e2e82cb41e9ff60e5f1ed5736da5cd62907dae7780f80856"
+  },
+  "docs/03_ARCHITECTURE.md": {
+    "bytes": 2820,
+    "sha256": "3c2a9b5884c21e37b54774793674aca28dd9855261bc69d82d67ed24b5d0b3e2"
+  },
+  "docs/04_ANALYSIS_AND_WHISPER.md": {
+    "bytes": 2782,
+    "sha256": "b00b9fd07476d626da4ad81f068147e1d5de900a31747e8452af5ca80f1dcad1"
+  },
+  "docs/05_CREATIVE_DIRECTION.md": {
+    "bytes": 1995,
+    "sha256": "70389b36181fe93188c2e8f3c634333931d2575f330032f7f8416c1da9307ecd"
+  },
+  "docs/06_MOTION_AND_TRANSITIONS.md": {
+    "bytes": 2431,
+    "sha256": "6baa914816cb835fb20e7cc4c6cbb1788c2cacac81129574f9593cd4acc7d73f"
+  },
+  "docs/07_AUDIO.md": {
+    "bytes": 2378,
+    "sha256": "6f785e709f7f4b8b1eb8d200827b10befd38eea2ced1c8ee4c5373aa115a607f"
+  },
+  "docs/08_FACE_AND_LAYOUT.md": {
+    "bytes": 1895,
+    "sha256": "3a18fedfcb780aeeed538caa1b511c25a473dc53eb00016f2d48b5a1081179d8"
+  },
+  "docs/09_QA_REVIEW_AND_LEARNING.md": {
+    "bytes": 2432,
+    "sha256": "ef04e59ed6cc1cdbfa8aeca35ceaba18f3af556003638b1b44cdde2cd46d427f"
+  },
+  "docs/10_BENCHMARKS_AND_BUDGET.md": {
+    "bytes": 1407,
+    "sha256": "4eaec2c7f6438cee29599bdfaa6466d1969fbac9c41184cbad63a71479ba11ba"
+  },
+  "docs/11_SECURITY_AND_RIGHTS.md": {
+    "bytes": 1085,
+    "sha256": "b2b091c6aefc2a0bbeeeb4bc1fbe67e7a8b4d9f2e6f58b20d17ee6f21c00d5c0"
+  },
+  "docs/12_FIRST_SESSION_CHECKLIST.md": {
+    "bytes": 923,
+    "sha256": "2d212fbbd0b11ab8b6c2e0854e19d797ba247991e9082d7cefc25a4fbc49ca5a"
+  },
+  "docs/13_EXACT_COMMANDS.md": {
+    "bytes": 2694,
+    "sha256": "ae06ab1fb52f209207919fb208066dab669da8143d71670546b501d32d0c9be2"
+  },
+  "docs/14_TROUBLESHOOTING.md": {
+    "bytes": 2119,
+    "sha256": "4da57abed8d2cf829a7c387874718a86398a83fec7092f83334b088047ddd3ba"
+  },
+  "docs/15_REVIEW_PROMPTS.md": {
+    "bytes": 1260,
+    "sha256": "9f46a3230196364e44c7f50538adaec11c6030c1963bc3514964efb460e9e106"
+  },
+  "evidence/BUILD_ENVIRONMENT.json": {
+    "bytes": 3944,
+    "sha256": "704c91e8f169763f3b05e3a14d21855afda556cb6313aebce8175784aff34255"
+  },
+  "evidence/FIXTURE_TIMELINE.json": {
+    "bytes": 1295,
+    "sha256": "f23091df958f83a9e07c4ba34196b352ec2657af6c0992321a607a6edfc6d7de"
+  },
+  "evidence/MEDIA_INTEGRATION_RESULTS.json": {
+    "bytes": 565,
+    "sha256": "6ec4fde8a040748573686424130d890cf4366e929f642c2083be465bdfccf060"
+  },
+  "evidence/NODE_TEST_RESULTS.txt": {
+    "bytes": 2910,
+    "sha256": "4629b6316befbdc42509b47afe2af82e9cc9c11fe0f38acfdb7245c3e4115fbe"
+  },
+  "evidence/PYTHON_TEST_RESULTS.txt": {
+    "bytes": 1689,
+    "sha256": "cfeb14a1ed8203d2b7a4d3174fd1bd54ccbb96c735cc5731f317e5ec5b6f1b4d"
+  },
+  "evidence/SYNTAX_CHECKS.json": {
+    "bytes": 660,
+    "sha256": "1b04d5e94c8fb6ff60cb2930aa06f0b791355503e7b06be5df8b6e49b83139df"
+  },
+  "requirements/README.md": {
+    "bytes": 449,
+    "sha256": "d310df476652d2c9c67b59ec0fada92f3580e0e51b137fbcb87edefaeab400de"
+  },
+  "requirements/core.in": {
+    "bytes": 98,
+    "sha256": "5f9d032f0d7968266e845d2c2050b76d4b14acd1ffc412217fb3494039c195d5"
+  },
+  "requirements/music-scenes.in": {
+    "bytes": 88,
+    "sha256": "55fcd402ea5b8c2d58b7ca2a63d1defe63bebd71bc1a690c86e227529a494fd2"
+  },
+  "requirements/vision.in": {
+    "bytes": 105,
+    "sha256": "2f34a209d12cb7878fc704be88158c46ae7628a7547e7b31895e9b2ab73d1a4a"
+  },
+  "research/REFERENCE_LIBRARY.md": {
+    "bytes": 3335,
+    "sha256": "280781e25157300ac75fadbdfb7d64b8a7e2c61ca415ea2961fe9140c81a6e32"
+  },
+  "schemas/CONTRACTS.md": {
+    "bytes": 1203,
+    "sha256": "9b0774fba766102f9254a0097aba16a0d570e7c9f92ad9fb6de44c5635c65e09"
+  },
+  "scripts/analyse_media.py": {
+    "bytes": 1614,
+    "sha256": "c40248ed951f46fd38fc2ea3444875a9896c6138fed45cce6230ddd5eb1a07ba"
+  },
+  "scripts/audio_tools.py": {
+    "bytes": 3147,
+    "sha256": "a4e5608c89953957eebb24e15b46d1170795260c9bf57f9dda8febaea79dc5d3"
+  },
+  "scripts/detect_faces.py": {
+    "bytes": 1919,
+    "sha256": "26f37b09eb25db543cf86475e0ee3862a1f06ec0ca463c8a6890f0ae1f9bfc17"
+  },
+  "scripts/doctor.py": {
+    "bytes": 1763,
+    "sha256": "13e9548b3d422d99afa66c09fb37330104571ac0526ee3aa2d70f62ef771b0be"
+  },
+  "scripts/ingest.py": {
+    "bytes": 2909,
+    "sha256": "77d5d8bd275c6fc8e99cb830f7a43ed8ded3c92618e6d2aaffae7dfe717211cc"
+  },
+  "scripts/timeline.py": {
+    "bytes": 3410,
+    "sha256": "98e59a1b178be370532d4a929058951d7d72f48f5be9be8b257c02cb7f2ded6b"
+  },
+  "scripts/transcribe.py": {
+    "bytes": 3085,
+    "sha256": "b126015e4e81c13a9f34d91a7a0dc47109f73cce6cc2689892f7a52589af9ac6"
+  },
+  "skills/README.md": {
+    "bytes": 289,
+    "sha256": "29a48891a931e1c78a6eac978c97f3822afb0c6f6a9ded2b9eee954bd210c69e"
+  },
+  "skills/fitness-director/SKILL.md": {
+    "bytes": 481,
+    "sha256": "4c52b91e84977f5914763373404533eea6e04db9a6bebf7b36e56c9a3b0ad06a"
+  },
+  "skills/render-critic/SKILL.md": {
+    "bytes": 463,
+    "sha256": "b8db8b4ab1bfa5171c527c37e659af9ffe03dec7cf9a958a5f9de5c079ec847a"
+  },
+  "skills/taste-curator/SKILL.md": {
+    "bytes": 423,
+    "sha256": "7f51f47a1b43ad09612f518c947ed6d4c9b4b0d0719109de4a29967b49ddacef"
+  },
+  "templates/asset.json": {
+    "bytes": 258,
+    "sha256": "acc9d3cba6d35abad47c6ee1d48d39bd282af01f45538903a26b86d7fe9ef597"
+  },
+  "templates/brand.json": {
+    "bytes": 226,
+    "sha256": "3398dc5d8567e33fe6a39b10a7cfeba81387a41641d9ae90c918ea6c0fe1c992"
+  },
+  "templates/brief.json": {
+    "bytes": 429,
+    "sha256": "ddfc702cf566e85b2d032054f8d33c190d6517d15b8194d58840c8af30b8b3c6"
+  },
+  "templates/edit-plan.json": {
+    "bytes": 323,
+    "sha256": "4fba9f42e08b764a6db1ceb04c18145a305aebce741877d7f7bd8180d61d8797"
+  },
+  "templates/feedback.json": {
+    "bytes": 351,
+    "sha256": "e4e3a873b6d9600fdb2885118cc24265faf9083db93bfc168a42c10089c1d60e"
+  },
+  "templates/placement-input.json": {
+    "bytes": 416,
+    "sha256": "d357491be2837545d067a0b3b007b2524bdd8a8dac1a3926ca9b9dac0b4567fb"
+  },
+  "templates/preference.json": {
+    "bytes": 201,
+    "sha256": "047fb283faf0737c0a6bb921aee99689be9439ef500b78fb2782499d368ccdda"
+  },
+  "templates/review.json": {
+    "bytes": 432,
+    "sha256": "3e014393437be96d3f5bd79470c96941f8ae80eb6c10a31217b9e3fdca28bd13"
+  },
+  "templates/runner-config.json": {
+    "bytes": 275,
+    "sha256": "5c7852d709c8bb0152acd4160e86a28753ee95c8ab0e6c71d075a50fd431b859"
+  },
+  "templates/timeline-input.json": {
+    "bytes": 576,
+    "sha256": "0d1cd6b73d5379fd1ffcf57cdf0c91fc002184c966a31dbe6d86d85bae4cebc1"
+  },
+  "tests/node.test.mjs": {
+    "bytes": 5205,
+    "sha256": "ad529396508f6f1abcf19e4649ae56ceac5e06c520c083db24493dced421419f"
+  },
+  "tests/test_timeline.py": {
+    "bytes": 3471,
+    "sha256": "62487930703ea9ce7046baae4f062df053bdc200ccf703605bb59e99114debc3"
+  },
+  "visuals/ORIGINAL_STORYBOARD.html": {
+    "bytes": 3103,
+    "sha256": "6b964f314588b3083f804ccd7f4978d4192732535b608413c96e4c3db9ccd286"
+  }
+}

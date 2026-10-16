@@ -1,0 +1,30 @@
+{
+  "candidates": [
+    {
+      "id": "bottom",
+      "motionBounds": [
+        {
+          "x": 72,
+          "y": 1400,
+          "w": 936,
+          "h": 180
+        }
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "status": "UNREVIEWED",
+      "protected": []
+    }
+  ],
+  "allowedZone": {
+    "x": 60,
+    "y": 160,
+    "w": 960,
+    "h": 1560
+  },
+  "exclusions": [],
+  "padding": 24,
+  "coverage": "unknown"
+}

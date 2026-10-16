@@ -3,3 +3,4 @@ work/
 node_modules/
 models/
 out/
+__pycache__/

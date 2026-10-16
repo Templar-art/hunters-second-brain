@@ -1,0 +1,16 @@
+{
+  "renderVersion": "draft-1",
+  "sceneId": "scene001",
+  "start": 4,
+  "end": 7,
+  "category": "motion",
+  "severity": "preference",
+  "observation": "EXAMPLE: entrance competes with coach",
+  "requestedChange": "EXAMPLE: remove card entrance",
+  "preserve": [
+    "approved captions",
+    "audio mix"
+  ],
+  "scope": "moment",
+  "status": "open"
+}

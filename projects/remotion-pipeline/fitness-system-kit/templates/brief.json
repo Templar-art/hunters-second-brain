@@ -1,0 +1,20 @@
+{
+  "projectId": "pilot001",
+  "version": "draft-1",
+  "mode": "coach_authority",
+  "audience": "TO_CONFIRM",
+  "objective": "TO_CONFIRM",
+  "mainMessage": "TO_CONFIRM",
+  "brandId": "TO_CONFIRM",
+  "approvedClaims": [],
+  "sourceSelections": [],
+  "graphicPurposes": [],
+  "referenceIds": [],
+  "delivery": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "status": "PROVISIONAL"
+  },
+  "approvalStatus": "pending"
+}

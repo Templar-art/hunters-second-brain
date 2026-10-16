@@ -19,7 +19,7 @@ def main():
     segments,info=model.transcribe(audio,word_timestamps=True,vad_filter=True,vad_parameters=vad_options,language=a.language,initial_prompt=a.initial_prompt or None)
     words=[];records=[]
     for s in segments:
-        records.append({'start':s.start,'end':s.end,'text':s.text})
+        records.append({'start':s.start,'end':s.end,'text':s.text,'reviewFlags':[] if s.words else ['missing_word_timings']})
         for w in s.words or []:
             flags=[]
             if w.start is None or w.end is None or w.end<=w.start:flags.append('invalid_or_missing_timing')

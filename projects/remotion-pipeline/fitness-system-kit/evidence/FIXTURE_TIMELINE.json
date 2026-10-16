@@ -1,0 +1,59 @@
+{
+  "timeBasis": "edited_timeline_seconds",
+  "words": [
+    {
+      "text": "Example",
+      "start": 0.0,
+      "end": 0.3999999999999999,
+      "clipId": "clip-cut001",
+      "sourceId": "clip001",
+      "sourceStart": 1,
+      "sourceEnd": 1.4
+    },
+    {
+      "text": "only.",
+      "start": 0.3999999999999999,
+      "end": 0.8,
+      "clipId": "clip-cut001",
+      "sourceId": "clip001",
+      "sourceStart": 1.4,
+      "sourceEnd": 1.8
+    }
+  ],
+  "speechRegions": [
+    {
+      "start": 0.0,
+      "end": 0.8999999999999999,
+      "clipId": "clip-cut001"
+    }
+  ],
+  "issues": [],
+  "note": "Constant positive playback rates only; speed ramps require a time-warp mapping.",
+  "captions": [
+    {
+      "startSeconds": 0.0,
+      "endSeconds": 0.8,
+      "text": "Example only.",
+      "words": [
+        {
+          "text": "Example",
+          "start": 0.0,
+          "end": 0.3999999999999999,
+          "clipId": "clip-cut001",
+          "sourceId": "clip001",
+          "sourceStart": 1,
+          "sourceEnd": 1.4
+        },
+        {
+          "text": "only.",
+          "start": 0.3999999999999999,
+          "end": 0.8,
+          "clipId": "clip-cut001",
+          "sourceId": "clip001",
+          "sourceStart": 1.4,
+          "sourceEnd": 1.8
+        }
+      ]
+    }
+  ]
+}

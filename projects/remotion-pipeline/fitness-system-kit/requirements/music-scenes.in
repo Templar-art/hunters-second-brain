@@ -1,0 +1,3 @@
+# Optional analysis features; not imported by core scripts.
+librosa
+scenedetect[opencv]

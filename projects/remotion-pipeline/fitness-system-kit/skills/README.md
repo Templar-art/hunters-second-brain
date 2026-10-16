@@ -1,0 +1,1 @@
+Optional local skill templates, not installed. Inspect the existing Claude skill conventions and names, then copy/adapt with approval; do not overwrite existing skills. These supplement rather than replace official Remotion skills. Read detailed files on demand to control context growth.
