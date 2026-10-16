@@ -1,0 +1,36 @@
+{
+  "analyses": [
+    {
+      "sourceId": "clip001",
+      "audioOffsetSeconds": 0,
+      "words": [
+        {
+          "text": "Example",
+          "start": 1,
+          "end": 1.4
+        },
+        {
+          "text": "only.",
+          "start": 1.4,
+          "end": 1.8
+        }
+      ],
+      "speechRegions": [
+        {
+          "start": 0.9,
+          "end": 1.9
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip-cut001",
+      "sourceId": "clip001",
+      "sourceIn": 1,
+      "sourceOut": 2,
+      "timelineStart": 0,
+      "rate": 1
+    }
+  ]
+}

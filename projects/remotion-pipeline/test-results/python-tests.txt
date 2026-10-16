@@ -1,0 +1,25 @@
+test_bad_phrase_settings (test_timeline.TimelineTests.test_bad_phrase_settings) ... ok
+test_basic_mapping (test_timeline.TimelineTests.test_basic_mapping) ... ok
+test_duplicate_clip (test_timeline.TimelineTests.test_duplicate_clip) ... ok
+test_duplicate_source (test_timeline.TimelineTests.test_duplicate_source) ... ok
+test_empty_input (test_timeline.TimelineTests.test_empty_input) ... ok
+test_invalid_rate (test_timeline.TimelineTests.test_invalid_rate) ... ok
+test_invalid_word_flagged (test_timeline.TimelineTests.test_invalid_word_flagged) ... ok
+test_missing_offset (test_timeline.TimelineTests.test_missing_offset) ... ok
+test_missing_source (test_timeline.TimelineTests.test_missing_source) ... ok
+test_negation_preserved (test_timeline.TimelineTests.test_negation_preserved) ... ok
+test_negative_offset (test_timeline.TimelineTests.test_negative_offset) ... ok
+test_offset (test_timeline.TimelineTests.test_offset) ... ok
+test_partial_word_flagged (test_timeline.TimelineTests.test_partial_word_flagged) ... ok
+test_phrase_clip_boundary (test_timeline.TimelineTests.test_phrase_clip_boundary) ... ok
+test_phrase_gap (test_timeline.TimelineTests.test_phrase_gap) ... ok
+test_phrase_word_limit (test_timeline.TimelineTests.test_phrase_word_limit) ... ok
+test_rate_mapping (test_timeline.TimelineTests.test_rate_mapping) ... ok
+test_reordered_duplicate_source (test_timeline.TimelineTests.test_reordered_duplicate_source) ... ok
+test_reversed_range (test_timeline.TimelineTests.test_reversed_range) ... ok
+test_speech_clipped (test_timeline.TimelineTests.test_speech_clipped) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.001s
+
+OK

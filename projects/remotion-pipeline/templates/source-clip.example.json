@@ -1,0 +1,11 @@
+{
+  "id": "clip001",
+  "path": "LOCAL_SOURCE_PATH",
+  "sha256": "COMPUTE_FROM_FILE",
+  "durationSeconds": null,
+  "videoStartSeconds": null,
+  "audioStartSeconds": null,
+  "audioOffsetSeconds": null,
+  "rightsStatus": "pending",
+  "timeBasis": "TO_VERIFY"
+}

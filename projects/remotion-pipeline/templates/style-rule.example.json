@@ -1,0 +1,10 @@
+{
+  "id": "candidate001",
+  "rule": "EXAMPLE ONLY",
+  "scope": "client:TO_CONFIRM",
+  "sourceFeedbackIds": [],
+  "exceptions": [],
+  "status": "candidate",
+  "approvedBy": null,
+  "approvedAt": null
+}

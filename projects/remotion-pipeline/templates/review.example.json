@@ -1,0 +1,22 @@
+{
+  "renderVersion": "draft-1",
+  "capabilities": {
+    "stills": false,
+    "temporalVideo": false,
+    "audioListening": false,
+    "audioAnalysis": false,
+    "transcript": false
+  },
+  "scores": {
+    "message": null,
+    "hierarchy": null,
+    "typography": null,
+    "motion": null,
+    "editing": null,
+    "graphicRelevance": null,
+    "brandFit": null,
+    "audio": null
+  },
+  "issues": [],
+  "humanApproval": "pending"
+}

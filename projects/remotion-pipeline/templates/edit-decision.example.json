@@ -1,0 +1,18 @@
+{
+  "projectId": "pilot001",
+  "version": "draft-1",
+  "clips": [
+    {
+      "id": "clip-cut001",
+      "sourceId": "clip001",
+      "sourceIn": 0,
+      "sourceOut": 3,
+      "timelineStart": 0,
+      "rate": 1
+    }
+  ],
+  "transitions": [],
+  "soundEvents": [],
+  "protectedRegions": [],
+  "humanApproval": "pending"
+}
