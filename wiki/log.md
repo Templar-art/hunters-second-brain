@@ -1201,3 +1201,7 @@ Header gated behind the homepage stage; ring label The gym; site-wide --inset so
 ## [2026-10-16] migrate | Hattie/Anthony retainer removed; Tyson is the founder
 - Hunter asked to remove the Anthony / Hattie Boydle retainer. Deleted the `anthony` client page and `projects/anthony-proposal/`, and stripped references from overview, index, iron-standard, lead-gen-and-sales, proposal-playbook and the 17 Jul weekly review. Earlier log entries are left as history.
 - **⚠️ Correction:** Tyson is the founder of 10x Visuals (founder & CEO), not Hunter. Fixed in overview, index, [[hunter]], [[tyson]] and CLAUDE.md.
+
+## [2026-10-16] query | ZED 86 Ormeu St style guide
+
+16 real-photo stagings (4 rooms × 4 options) on Sunburst, 2,880cr; boards built in code. Logged on [[zed-style]].

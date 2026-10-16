@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [virtual-staging, style, zed]
-updated: 2026-10-12
+updated: 2026-10-16
 ---
 
 # ZED Style — "Option 01" (canonical staging library)
@@ -98,3 +98,7 @@ White / cream modern luxury. **No black, no timber furniture.**
 **Bedroom** — white-gloss bed with a cream bouclé headboard, layered white and cream linen, no more than three accent cushions, folded cream throw; white-gloss bedsides styled differently left and right; gold-stem lamps; kentia palm in white ceramic; cream shag rug clear of the window and door.
 
 **Outdoor / patio** — rectangular white concrete table with 4 cream chairs on the long sides only. Indoor velvet and marble pieces never go outside.
+
+## 86 Ormeu Street style guide (2026-10-16)
+
+Same four directions staged on the real home instead of concept rooms: 4 shots (living/dining, kitchen, master, alfresco) × 4 options on GPT Image 2.5 Sunburst 2k medium, 2,880cr total. Sunburst held the real architecture, joinery, skylight and views in all 16 standalone restyles, which makes real-photo boards the better format for a client choosing a style for his own home. Long rectangular and oval tables still picked up seventh and eighth chairs in 6 of 8 shots despite count wording; round tables came out clean every time. Deliverable folder: `projects/zed-86-ormeau-st/`.
