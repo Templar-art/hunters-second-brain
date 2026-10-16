@@ -1224,3 +1224,6 @@ New [[hormozi-style-motion-playbook]]. v6 removes light leaks, swaps the iris wi
 
 ## [2026-10-16] query | Premium motion UI research
 New [[premium-motion-ui]]: Apple spring maths for Remotion, depth/glass specs, choreography rules, v7 action list.
+
+## [2026-10-16] query | Premium motion research round 2
+Safe zones, sound sync and caption readability added to [[premium-motion-ui]], with a v6 audit table (scene captions sit in the Reels dead zone, a chip sits under the right-side rail, whooshes land ~0.2s late).
