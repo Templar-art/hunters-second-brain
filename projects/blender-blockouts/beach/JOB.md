@@ -3,7 +3,7 @@ client: internal-rnd
 address: Beachfront Gold Coast house (fictional test build)
 opened: 2026-10-12
 status: review        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 77.25, aud: 0 }
+cost: { credits: 0, hf_credits: 72.25, aud: 0 }
 ---
 
 # Job — Beach house Blender → AI pipeline test
