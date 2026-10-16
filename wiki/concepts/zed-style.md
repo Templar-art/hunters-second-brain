@@ -102,3 +102,5 @@ White / cream modern luxury. **No black, no timber furniture.**
 ## 86 Ormeu Street style guide (2026-10-16)
 
 Same four directions staged on the real home instead of concept rooms: 4 shots (living/dining, kitchen, master, alfresco) × 4 options on GPT Image 2.5 Sunburst 2k medium, 2,880cr total. Sunburst held the real architecture, joinery, skylight and views in all 16 standalone restyles, which makes real-photo boards the better format for a client choosing a style for his own home. Long rectangular and oval tables still picked up seventh and eighth chairs in 6 of 8 shots despite count wording; round tables came out clean every time. Deliverable folder: `projects/zed-86-ormeau-st/`.
+
+**86 Ormeu St outcome (2026-10-16):** Zed chose Option 03 Smoked Oak Suite from the real-photo guide; the whole home (19 interiors + alfresco) was then staged in it on Sunburst. New standing instruction from Hunter on this job: staging adds nothing to the house itself (no sheers, blinds, light fittings or fixtures); existing window coverings are named in the prompt and kept.

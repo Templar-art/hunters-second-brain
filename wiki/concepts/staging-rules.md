@@ -44,3 +44,6 @@ Standing rules for AI staging of listing photos, distilled from job feedback (ca
 
 ## Craft
 Prompting patterns behind these rules: [[ai-prompting]]. Tool selection: [[ai-image-tools]]. Shooting the source photos: [[interior-photography]].
+
+
+**⚠️ 2026-10-16 (Hunter, ZED 86 Ormeu St):** staging adds nothing to the house itself: no new sheers, curtains, blinds, light fittings or fixtures. Existing window coverings are named in the prompt and kept as photographed. This supersedes the curtains-by-default rule for ZED.

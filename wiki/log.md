@@ -1205,3 +1205,7 @@ Header gated behind the homepage stage; ring label The gym; site-wide --inset so
 ## [2026-10-16] query | ZED 86 Ormeu St style guide
 
 16 real-photo stagings (4 rooms × 4 options) on Sunburst, 2,880cr; boards built in code. Logged on [[zed-style]].
+
+## [2026-10-16] query | ZED 86 Ormeu St full staging
+
+Zed picked Smoked Oak Suite; 15 more interiors staged (2,700cr, job total 6,480cr). No-additions rule held. Logged on [[zed-style]].
