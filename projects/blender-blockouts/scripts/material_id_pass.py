@@ -19,10 +19,13 @@ CAT={
  "stone":(1,0.5,0),       # orange
  "road":(0.25,0.25,0.25), # dark grey
  "neighbour":(0.8,0.7,1), # lavender
+ "person":(1,0.6,0.75),   # pink = a real person goes here
+ "hedge":(0.0,0.5,0.25),  # teal-green clipped hedge
+ "screen":(0.05,0.05,0.05),
 }
 def cat(o,m):
     n=((m.name if m else "")+" "+o.name).lower()
-    for k,c in (("pool_water","water"),("poolwater","water"),("ocean","ocean"),("surf","surf"),("wetsand","wetsand"),("sand","sand"),("beach","sand"),
+    for k,c in (("mannequin","person"),("person_","person"),("hedge","hedge"),("tvblack","screen"),("boucle","fabric"),("linen","fabric"),("wool","fabric"),("oak","timber"),("porcelain","stone"),("stonetile","stone"),("pool_water","water"),("poolwater","water"),("ocean","ocean"),("surf","surf"),("wetsand","wetsand"),("sand","sand"),("beach","sand"),
                 ("glass","glass"),("timber","timber"),("deck","timber"),("batten","timber"),("garage","timber"),("wood_floor","timber"),("path","timber"),
                 ("bronze","metal"),("post","metal"),("fascia","metal"),("carpaint","metal"),
                 ("concrete","concrete"),("slab","concrete"),("roof","concrete"),("pool_","concrete"),
