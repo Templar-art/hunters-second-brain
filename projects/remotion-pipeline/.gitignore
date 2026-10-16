@@ -4,3 +4,5 @@ node_modules/
 models/
 out/
 __pycache__/
+app/public/*.mp4
+app/out/
