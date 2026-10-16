@@ -125,8 +125,18 @@ export function Outro9577() {
   );
 }
 
+export function Full() {
+  return (
+    <AbsoluteFill style={{ background: C.ink }}>
+      <Sequence durationInFrames={sec(25.19)}><Intro9573 /></Sequence>
+      <Sequence from={sec(25.19)}><Outro9577 /></Sequence>
+    </AbsoluteFill>
+  );
+}
+
 export const Root = () => (
   <>
+    <Composition id="Full" component={Full} durationInFrames={sec(25.19) + sec(4.07)} fps={FPS} width={1080} height={1920} />
     <Composition id="Intro9573" component={Intro9573} durationInFrames={sec(25.19)} fps={FPS} width={1080} height={1920} />
     <Composition id="Outro9577" component={Outro9577} durationInFrames={sec(4.07)} fps={FPS} width={1080} height={1920} />
   </>
