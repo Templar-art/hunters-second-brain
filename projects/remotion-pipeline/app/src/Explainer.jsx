@@ -2,7 +2,7 @@
 // Talking head ↔ full-screen graphic scenes with iris wipes, face-in-circle,
 // eyebrow + condensed titles, UI cards/diagrams, highlight-box captions.
 import React from 'react';
-import { AbsoluteFill, OffthreadVideo, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
+import { AbsoluteFill, Audio, OffthreadVideo, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
 import '@fontsource/barlow-condensed/700.css';
 import '@fontsource/barlow-condensed/800.css';
 import '@fontsource/jetbrains-mono/500.css';
@@ -11,8 +11,23 @@ import { WORDS_ALL } from './captions.js';
 
 export const FPS = 30;
 const sec = (s) => Math.round(s * FPS);
-const A_LEN = 25.19, B_LEN = 4.07, END_LEN = 1.6;
-export const TOTAL = sec(A_LEN) + sec(B_LEN) + sec(END_LEN);
+// Dead-air trim (must match tools/make_edit.sh). Times are "source time":
+// IMG_9573 = 0–25.19, IMG_9577 = 25.19 + its own time.
+const KEEP = [[0.15, 3.22], [3.53, 5.56], [6.28, 10.18], [10.38, 12.63], [12.80, 15.15], [16.27, 23.19], [23.49, 25.0], [25.46, 28.93]];
+const SEG_START = KEEP.reduce((acc, [a, b], i) => [...acc, acc[i] + (b - a)], [0]);
+// source time -> edit time (times inside a removed gap snap to the next kept frame)
+export const M = (g) => {
+  for (let i = 0; i < KEEP.length; i++) {
+    const [a, b] = KEEP[i];
+    if (g < a) return SEG_START[i];
+    if (g <= b) return SEG_START[i] + (g - a);
+  }
+  return SEG_START[KEEP.length];
+};
+const EDIT_LEN = SEG_START[KEEP.length];
+const B_START = M(25.46);
+const END_LEN = 2.2;
+export const TOTAL = sec(EDIT_LEN) + sec(END_LEN);
 
 const C = {
   dark: '#0E1411', dark2: '#17201B', light: '#F2F3EE', card: '#FFFFFF',
@@ -136,7 +151,7 @@ function Icon({ glyph, active }) {
 
 // ---------- graphic scenes ----------
 
-const SRC_A = 'IMG_9573.mp4', SRC_B = 'IMG_9577.mp4';
+const SRC_A = 'edit.mp4';
 
 // 10.3–12.7  "training for about 9 years"
 function SceneYears({ dur, start }) {
@@ -279,8 +294,8 @@ function SceneShortcut({ dur, start }) {
           <path d="M -18 0 L -4 14 L 20 -12" fill="none" stroke={C.ink} strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
         </g>
       </svg>
-      <div style={{ position: 'absolute', left: 80, top: 1560, fontFamily: MONO, fontSize: 26, color: C.muted, opacity: sp(t, 0.5) }}>— MY WAY · 9 YRS OF TRIAL &amp; ERROR</div>
-      <div style={{ position: 'absolute', left: 80, top: 1610, fontFamily: MONO, fontSize: 26, color: C.lime, opacity: sp(t, 2.0) }}>— YOUR WAY · STRAIGHT THERE</div>
+      <div style={{ position: 'absolute', left: 80, top: 470, fontFamily: MONO, fontSize: 26, color: C.muted, opacity: sp(t, 0.5) }}>— MY WAY · 9 YRS OF TRIAL &amp; ERROR</div>
+      <div style={{ position: 'absolute', left: 80, top: 515, fontFamily: MONO, fontSize: 26, color: C.lime, opacity: sp(t, 2.0) }}>— YOUR WAY · STRAIGHT THERE</div>
     </Scene>
   );
 }
@@ -381,7 +396,8 @@ function Captions({ hidden, light, scenes }) {
   if (hidden.some(([a, b]) => t >= a && t < b)) return null;
   const pages = [];
   let cur = [];
-  for (const w of WORDS_ALL) {
+  for (const w0 of WORDS_ALL) {
+    const w = { ...w0, start: M(w0.start), end: Math.max(M(w0.start) + 0.12, M(w0.end)) };
     cur.push(w);
     if (cur.length >= 3 || /[.,]$/.test(w.text)) { pages.push(cur); cur = []; }
   }
@@ -408,31 +424,77 @@ function Captions({ hidden, light, scenes }) {
 
 // ---------- assembly ----------
 
+// [sourceStart, sourceEnd, component] — mapped onto the trimmed edit
 const SCENES = [
-  [9.9, 13.0, SceneYears],
-  [12.6, 16.1, SceneHotel],
-  [15.8, 19.9, SceneLessons],
-  [19.5, 23.7, SceneShortcut],
-];
+  [9.9, 12.9, SceneYears],
+  [12.55, 16.6, SceneHotel],
+  [16.27, 19.9, SceneLessons],
+  [19.55, 23.6, SceneShortcut],
+].map(([a, b, C]) => [M(a), M(b), C]);
+
+// Punch-in on every other cut: hides the jump cuts from the dead-air trim
+function BaseVideo() {
+  const t = useT();
+  const seg = Math.max(0, SEG_START.findIndex((s, i) => t >= s && t < (SEG_START[i + 1] ?? 1e9)));
+  const z = seg % 2 ? 1.12 : 1;
+  return (
+    <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: '540px 760px' }}>
+      <OffthreadVideo src={staticFile(SRC_A)} />
+    </AbsoluteFill>
+  );
+}
+
+const Sfx = ({ at, src, vol = 0.5 }) => (
+  <Sequence from={Math.max(0, sec(at))}><Audio src={staticFile(`audio/${src}.wav`)} volume={vol} /></Sequence>
+);
+
+function SoundDesign() {
+  const sc = SCENES.map(([a]) => a);
+  const e = [];
+  // scene iris wipes
+  sc.forEach((a, i) => { e.push([a - 0.15, 'whoosh', 0.35]); });
+  SCENES.forEach(([, b]) => e.push([b - 0.8, 'whoosh-out', 0.22]));
+  // titles over talking head
+  e.push([0.05, 'shimmer', 0.18], [0.15, 'pop', 0.25], [M(3.53) + 0.1, 'pop', 0.25]);
+  // name tag + pin
+  e.push([M(6.28), 'whoosh', 0.25], [M(6.28) + 1.9, 'pop-high', 0.3]);
+  // years: ticks while counting, ding at the end
+  for (let k = 0; k < 9; k++) e.push([sc[0] + 0.5 + k * (1.5 / 9), 'tick', 0.18]);
+  e.push([sc[0] + 2.05, 'ding', 0.2]);
+  // hotel cards
+  e.push([sc[1] + 0.5, 'pop', 0.3], [sc[1] + 1.0, 'pop', 0.3], [sc[1] + 1.2, 'pop-high', 0.2]);
+  // lesson cards + save clicks
+  [0, 1, 2].forEach((i) => e.push([sc[2] + 0.5 + i * 0.4, 'pop', 0.25], [sc[2] + 1.2 + i * 0.5, 'click', 0.35]));
+  // shortcut: mistakes thud, straight line, check
+  [0, 1, 2, 3].forEach((i) => e.push([sc[3] + 0.6 + i * 0.32, 'thud', 0.4]));
+  e.push([sc[3] + 1.9, 'whoosh', 0.25], [sc[3] + 2.4, 'ding', 0.3]);
+  // get there faster, follow click, end card
+  e.push([M(23.49) + 0.05, 'pop', 0.25]);
+  e.push([B_START + 1.6 + 1.0, 'click', 0.5], [B_START + 1.6 + 1.05, 'ding', 0.22]);
+  e.push([EDIT_LEN - 0.2, 'whoosh', 0.35], [EDIT_LEN + 0.5, 'shimmer', 0.2]);
+  return <>{e.map(([at, src, vol], i) => <Sfx key={i} at={at} src={src} vol={vol} />)}</>;
+}
 
 export function FullExplainer() {
-  const bStart = sec(A_LEN), endStart = bStart + sec(B_LEN);
+  const end = sec(EDIT_LEN);
   return (
     <AbsoluteFill style={{ background: C.dark }}>
-      <Sequence durationInFrames={sec(A_LEN)}><OffthreadVideo src={staticFile(SRC_A)} /></Sequence>
-      <Sequence from={bStart} durationInFrames={sec(B_LEN)}><OffthreadVideo src={staticFile(SRC_B)} /></Sequence>
+      <Sequence durationInFrames={end}><BaseVideo /></Sequence>
 
-      <Sequence from={0} durationInFrames={sec(3.3)}><TopTitle eyebrow="New here?" title="Not following yet" dur={3.3} /></Sequence>
-      <Sequence from={sec(3.4)} durationInFrames={sec(2.7)}><TopTitle eyebrow="About me" title="Who I am" dur={2.7} /></Sequence>
-      <Sequence from={sec(6.2)} durationInFrames={sec(4.0)}><NameTag dur={4.0} /></Sequence>
+      <Sequence from={0} durationInFrames={sec(M(3.3))}><TopTitle eyebrow="New here?" title="Not following yet" dur={M(3.3)} /></Sequence>
+      <Sequence from={sec(M(3.53))} durationInFrames={sec(M(5.56) - M(3.53))}><TopTitle eyebrow="About me" title="Who I am" dur={M(5.56) - M(3.53)} /></Sequence>
+      <Sequence from={sec(M(6.28))} durationInFrames={sec(M(9.9) - M(6.28) + 0.3)}><NameTag dur={M(9.9) - M(6.28) + 0.3} /></Sequence>
       {SCENES.map(([a, b, Comp], i) => (
         <Sequence key={i} from={sec(a)} durationInFrames={sec(b - a)}><Comp dur={b - a} start={a} /></Sequence>
       ))}
-      <Sequence from={sec(23.5)} durationInFrames={sec(1.69)}><TopTitle eyebrow="The result" title="Get there faster" dur={1.69} /></Sequence>
-      <Sequence from={bStart + sec(1.8)} durationInFrames={sec(B_LEN - 1.8)}><FollowCTA dur={B_LEN - 1.8} /></Sequence>
+      <Sequence from={sec(M(23.49))} durationInFrames={sec(B_START - M(23.49))}><TopTitle eyebrow="The result" title="Get there faster" dur={B_START - M(23.49)} /></Sequence>
+      <Sequence from={sec(B_START + 1.6)} durationInFrames={sec(EDIT_LEN - B_START - 1.6)}><FollowCTA dur={EDIT_LEN - B_START - 1.6} /></Sequence>
 
-      <Captions hidden={[[A_LEN + B_LEN, 99]]} light={[[10.3, 12.7], [16.3, 19.5]]} scenes={SCENES.map(([a, b]) => [a + 0.4, b - 0.4])} />
-      <Sequence from={endStart}><EndCard /></Sequence>
+      <Captions hidden={[[EDIT_LEN, 99]]} light={[[SCENES[0][0] + 0.4, SCENES[0][1] - 0.4], [SCENES[2][0] + 0.4, SCENES[2][1] - 0.4]]} scenes={SCENES.map(([a, b]) => [a + 0.4, b - 0.4])} />
+      <Sequence from={end}><EndCard /></Sequence>
+
+      <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 15, end - 10, end + 10], [0, 0.11, 0.11, 0.3], { extrapolateRight: 'clamp' })} />
+      <SoundDesign />
     </AbsoluteFill>
   );
 }
