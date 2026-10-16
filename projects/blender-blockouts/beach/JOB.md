@@ -3,7 +3,7 @@ client: internal-rnd
 address: Beachfront Gold Coast house (fictional test build)
 opened: 2026-10-12
 status: review        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 75.0, aud: 0 }
+cost: { credits: 0, hf_credits: 747.0, aud: 0 }
 ---
 
 # Job — Beach house Blender → AI pipeline test
@@ -35,6 +35,8 @@ Second R&D build for the [[blender-blockout-pipeline]]. A dense scene of about 1
 - 2026-10-16 generate: 14 hero stills, 7 shots × Seedream 5 Pro (2.5) + Sunburst (2.75) = 36.75, plus the Lambo shot 7 in both (5.25), plus the 02 Seedream retry (upload error, no charge). QC: Sunburst wins 03/04/05/06; Seedream failed 04 (not top-down) and 05 (invented a pool), and copied the Blender low-poly palms literally; shot 7 broken (parked car in the foreground at frame 1300), car moved.
 
 - 2026-10-16 decision: Hunter picked Sunburst for all shots. Shot 7 redone from frame 1380 on Sunburst (2.75): pearl-white Lambo-style car, no badges, PASS.
+
+- 2026-10-16 generate: 7 × Seedance 2.5 8s 1080p from the Sunburst stills, no cast refs (refs would push it to 128/shot) = 672 HF. QC: 03, 04, 05 PASS; 02 pass with minor props appearing; 01 barely moves; 06 has a dissolve/morph at about 2s then cuts to leg tracking; 07 the car doesn't roll. Rough assembly at video/rough-assembly-v1.mp4.
 
 ---
 _Vault: [[jarvis]]_
