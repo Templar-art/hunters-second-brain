@@ -28,3 +28,4 @@ See also: [[sfx-library]] · [[music-taxonomy]] · [[typography]]
 - **Captions sit at chest height**, around the middle of the frame (y ≈ 1180 of 1920), not down at the bottom. Keep them subtle: smaller text with a soft shadow, not big and heavy.
 - **Graphics need time.** Slow, gentle easing in and out (iris wipes ~0.9s in / 0.8s out, soft springs, staggered card entrances). Hold each scene long enough to read. No fast pop-and-vanish.
 - Keep name tags and CTA cards in the top third so they never clash with the captions.
+- **No branded end card.** End on the speaker's last line or CTA ("I'll see you in the next one" / the follow CTA) with the music fading out. An end card adds nothing for coach and fitness reels (Hunter, 16 Oct 2026).

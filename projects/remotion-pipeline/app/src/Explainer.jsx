@@ -32,7 +32,7 @@ export const M = (g) => {
 const EDIT_LEN = SEG_START[KEEP.length];
 const B_START = M(25.46);
 const END_LEN = 2.2;
-export const TOTAL = sec(EDIT_LEN) + sec(END_LEN);
+export const TOTAL = sec(EDIT_LEN); // ends on "I'll see you in the next one" — no end card
 
 const C = {
   dark: '#0E1411', dark2: '#17201B', light: '#F2F3EE', card: '#FFFFFF',
@@ -548,14 +548,13 @@ function SoundDesign() {
   // get there faster, follow click, end card
   e.push([M(23.49) + 0.05, 'pop', 0.25]);
   e.push([B_START + 1.6 + 1.0, 'click', 0.5], [B_START + 1.6 + 1.05, 'ding', 0.22]);
-  e.push([EDIT_LEN - 0.2, 'whoosh', 0.35], [EDIT_LEN + 0.5, 'shimmer', 0.2]);
   LEAKS.forEach(([at]) => e.push([at - 0.6, 'whoosh', 0.3]));
   BUMPS.forEach((b) => e.push([b, 'pop', 0.12]));
   return <>{e.map(([at, src, vol], i) => <Sfx key={i} at={at} src={src} vol={vol} />)}</>;
 }
 
 // Light leaks over the big section changes (into graphics, into the CTA, into the end card)
-const LEAKS = [[SCENES[0][0] + 0.2, 3], [B_START, 11], [EDIT_LEN, 21]];
+const LEAKS = [[SCENES[0][0] + 0.2, 3], [B_START, 11]];
 SCENES.length && [0, 1, 2, 3].forEach((i) => SHAKES.push(SCENES[3][0] + 0.6 + i * 0.32));
 SHAKES.push(SCENES[3][0] + 2.4);
 
@@ -578,10 +577,9 @@ export function FullExplainer() {
       ))}
 
       <Captions hidden={[[EDIT_LEN, 99]]} light={[[SCENES[0][0] + 0.4, SCENES[0][1] - 0.4], [SCENES[2][0] + 0.4, SCENES[2][1] - 0.4]]} scenes={SCENES.map(([a, b]) => [a + 0.4, b - 0.4])} />
-      <Sequence from={end}><EndCard /></Sequence>
       <Grain />
 
-      <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 15, end - 10, end + 10], [0, 0.06, 0.06, 0.25], { extrapolateRight: 'clamp' })} />
+      <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 15, end - 20, end], [0, 0.06, 0.06, 0], { extrapolateRight: 'clamp' })} />
       <SoundDesign />
     </AbsoluteFill>
   );
