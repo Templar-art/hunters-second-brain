@@ -113,3 +113,40 @@ The guides disagree, and the figures are third-party and measured, not official.
 - Glasser et al. 2021 — caption width (W4A): https://par.nsf.gov/servlets/purl/10253921
 - Kairos — futures for captioning: https://kairos.technorhetoric.net/23.1/topoi/zdenek/conclusion.html
 - Nemo — kinetic typography for ads: https://www.nemovideo.com/blog/kinetic-typography-product-ads
+
+## Research round 3 (16 Oct 2026): hook/retention, voice, grade, transitions
+
+### 10. Hook and retention (what the algorithm rewards)
+- Instagram's named ranking signals (Mosseri, Jan 2025, via secondary sources): **watch time, likes per reach, sends per reach**. Watch time is the one the edit controls.
+- **The first 3 seconds decide distribution.** Benchmarks conflict and none are official (one says 28% is the average and 50%+ is needed for Explore; another says 60%). Either way, the opening frame and line carry the video.
+- **Length:** 7–15s Reels show ~74% completion vs ~49% for 30–60s (vendor data). Our 25.6s cut sits in the 15–30s band. Fine for an intro, but tip videos should aim at ≤20s.
+- ⚠️ **Audit:** Tyson's opening line ("Hey guys, if you're seeing this…") spends ~1.5s before any value. The text-behind "FOLLOW?" visual carries the first frames. Next scripts: open on the claim, cut the greeting.
+
+### 11. Voice processing (the biggest "cheap → premium" gap we haven't touched)
+Standard talking-head chain, in order: **high-pass ~80Hz → subtractive EQ (dip ~300Hz mud, ~1kHz nasal if needed) → de-ess 5–8kHz (3–6dB) → gentle compression (+3–6dB make-up) → tonal EQ (small presence lift ~3–5kHz) → loudness −14 LUFS** (YouTube/Reels; −16 for podcasts). De-ess *before* compression, because compression exaggerates sibilance. Don't over-compress.
+- **v7 action:** run the voice through an ffmpeg chain before mixing: `highpass=f=80, equalizer=f=300:t=q:w=1:g=-2, deesser, acompressor=threshold=-20dB:ratio=3:attack=10:release=120:makeup=4, equalizer=f=4000:t=q:w=1.5:g=2`. Then music/SFX, then loudnorm. Tyson's phone-mic audio will sound noticeably more "produced".
+
+### 12. Colour grade on talking heads
+- Global warmth pushes skin orange first. Protect skin with HSL/masks rather than global moves. Teal/orange works because skin is already warm.
+- LUTs are a starting point. Landscape LUTs misbehave on faces. Read the waveform/scopes, not a laptop screen.
+- ⚠️ **Audit:** v5/v6 applies a global CSS `saturate(1.1) contrast(1.07)`. Tyson is already tan in a warm room, so check that skin isn't drifting orange. Better: lower saturation to ~1.04 and add a cool lift in the shadows only (Remotion can't do true HSL keying cheaply; do it with an ffmpeg `colorbalance` pass on edit.mp4 before compositing: shadows slightly teal, highlights neutral).
+
+### 13. Transitions
+- **Whip pan:** cut during the fastest part of the blur, matching direction and speed on both sides. Digitally: a directional blur plus a 3–4 frame slide in one consistent direction.
+- **Match cut:** link two shots by shape, colour or motion (e.g. the lime circle of the face cam → the progress ring).
+- **J/L cuts:** let audio lead or trail the picture cut. Use them on B-roll cutaways so they feel edited, not stacked.
+- Cross-dissolves read as "time passing". Avoid them in fast talking-head edits.
+- **v7 idea:** keep one transition direction across the edit (every scene panel pushes up), and add a lime ring → progress ring match cut into the 9-years scene.
+
+### Sources (round 3)
+- Hootsuite — Instagram algorithm 2026: https://blog.hootsuite.com/instagram-algorithm/
+- Retensis — Reels retention benchmarks 2026: https://retensis.com/blog/good-instagram-reels-retention-rate
+- Creatorflow — Instagram algorithm 2026: https://creatorflow.so/blog/instagram-algorithm-2026/
+- Quso — Reels best practices 2026: https://quso.ai/blog/instagram-reels-best-practices
+- Sage Audio — vocal chain / EQ: https://www.sageaudio.com/articles/waves-vocal-chain
+- Audio-editing skill (loudness targets): https://claudeskills.info/skills/guia-matthieu/clawfu-skills/audio-editing/
+- DIY Photography — cinematic grade without orange skin: https://www.diyphotography.net/cinematic-color-grading-skin-tone/
+- DaVinci webcam grade skill (scopes): https://skillsmp.com/ar/creators/chaiwithjai/davinci-resolve-claude-skills/skills-davinci-resolve-color-grade-webcam
+- CapCut — cinematic grading: https://www.capcut.com/resource/cinematic-color-grading
+- Wolfcrow — in-camera transitions: https://wolfcrow.com/the-3-important-in-camera-transitions-in-filmmaking/
+- Splice — B-roll transitions 2026: https://spliceapp.com/blog/mastering-aviation-b-roll-transitions-guide/

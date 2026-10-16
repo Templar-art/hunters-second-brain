@@ -1227,3 +1227,6 @@ New [[premium-motion-ui]]: Apple spring maths for Remotion, depth/glass specs, c
 
 ## [2026-10-16] query | Premium motion research round 2
 Safe zones, sound sync and caption readability added to [[premium-motion-ui]], with a v6 audit table (scene captions sit in the Reels dead zone, a chip sits under the right-side rail, whooshes land ~0.2s late).
+
+## [2026-10-16] query | Premium motion research round 3
+Hook/retention, voice processing chain, talking-head grade and transitions added to [[premium-motion-ui]]. Biggest new v7 item: an ffmpeg voice chain.
