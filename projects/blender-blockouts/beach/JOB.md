@@ -3,7 +3,7 @@ client: internal-rnd
 address: Beachfront Gold Coast house (fictional test build)
 opened: 2026-10-12
 status: review        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 747.0, aud: 0 }
+cost: { credits: 0, hf_credits: 791.5, aud: 0 }
 ---
 
 # Job — Beach house Blender → AI pipeline test
@@ -37,6 +37,8 @@ Second R&D build for the [[blender-blockout-pipeline]]. A dense scene of about 1
 - 2026-10-16 decision: Hunter picked Sunburst for all shots. Shot 7 redone from frame 1380 on Sunburst (2.75): pearl-white Lambo-style car, no badges, PASS.
 
 - 2026-10-16 generate: 7 × Seedance 2.5 8s 1080p from the Sunburst stills, no cast refs (refs would push it to 128/shot) = 672 HF. QC: 03, 04, 05 PASS; 02 pass with minor props appearing; 01 barely moves; 06 has a dissolve/morph at about 2s then cuts to leg tracking; 07 the car doesn't roll. Rough assembly at video/rough-assembly-v1.mp4.
+
+- 2026-10-16 face test, shot 06 (Hunter: 'a lot is shit, faces messing up'): Kling 3.0 Pro 5s (12.5) + Veo 3.1 Fast high 8s (32) = 44.5. Both are one continuous take, no dissolve, faces hold and match the cast. Kling: true sideways tracking with parallax, background stable, slight motion blur. Veo: walks toward camera, sharper faces, but the background houses drift and change late in the clip.
 
 ---
 _Vault: [[jarvis]]_
