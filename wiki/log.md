@@ -1221,3 +1221,6 @@ Hunter approved Tyson explainer v4. Researched how to improve the animations and
 
 ## [2026-10-16] query | Hormozi-style motion research; Tyson v6
 New [[hormozi-style-motion-playbook]]. v6 removes light leaks, swaps the iris wipe for a push panel, adds a line chart, skill chips, a recap checklist and placeholder lesson titles.
+
+## [2026-10-16] query | Premium motion UI research
+New [[premium-motion-ui]]: Apple spring maths for Remotion, depth/glass specs, choreography rules, v7 action list.

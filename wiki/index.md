@@ -56,6 +56,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
 
 ## Concepts
+- [[premium-motion-ui]] — concrete specs for premium on-video UI: Apple springs converted to Remotion, layered shadows, glass, stagger, focus-pull
 - [[hormozi-style-motion-playbook]] — what makes short-form edits feel hand-made: word-synced pops, charts that read in 2s, transitions, script-first rule
 - [[remotion-motion-upgrades]] — ranked roadmap to better animations/effects in the Remotion pipeline (word timing, motion blur, light leaks, face tracking, text-behind-subject)
 - [[talking-head-edit-standards]] — client feedback rules for short-form edits: tight cuts, music bed, SFX, image overlays, human review on every video
