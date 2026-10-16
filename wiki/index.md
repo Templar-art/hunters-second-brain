@@ -56,6 +56,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
 
 ## Concepts
+- [[remotion-motion-upgrades]] — ranked roadmap to better animations/effects in the Remotion pipeline (word timing, motion blur, light leaks, face tracking, text-behind-subject)
 - [[talking-head-edit-standards]] — client feedback rules for short-form edits: tight cuts, music bed, SFX, image overlays, human review on every video
 - [[sfx-library]]: the Ocular Sounds library (192 sounds, ~/Music/SFX Library) and how the motion engine uses it
 - [[house-twilight]] — locked twilight target: early dusk, clean blue→peach sky, bright ground, amber windows (ref frame in raw/assets/twilight)

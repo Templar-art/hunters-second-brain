@@ -1215,3 +1215,6 @@ Added the material-ID colour-map method, the scene-density lesson and the ranked
 
 ## [2026-10-16] ingest | Client feedback on video edits
 New standing-rule page [[talking-head-edit-standards]]: tighter cuts, light music, SFX, image overlays, human review on every video. Client is sending their last video as a reference.
+
+## [2026-10-16] query | Tyson explainer approved; motion upgrade research
+Hunter approved Tyson explainer v4. Researched how to improve the animations and effects → [[remotion-motion-upgrades]].
