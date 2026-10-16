@@ -1212,3 +1212,6 @@ Zed picked Smoked Oak Suite; 15 more interiors staged (2,700cr, job total 6,480c
 
 ## [2026-10-16] query | Blender: material-ID maps, denser scenes, add-on research
 Added the material-ID colour-map method, the scene-density lesson and the ranked add-on list to [[blender-blockout-pipeline]].
+
+## [2026-10-16] ingest | Client feedback on video edits
+New standing-rule page [[talking-head-edit-standards]]: tighter cuts, light music, SFX, image overlays, human review on every video. Client is sending their last video as a reference.
