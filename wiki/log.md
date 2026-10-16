@@ -1230,3 +1230,6 @@ Safe zones, sound sync and caption readability added to [[premium-motion-ui]], w
 
 ## [2026-10-16] query | Premium motion research round 3
 Hook/retention, voice processing chain, talking-head grade and transitions added to [[premium-motion-ui]]. Biggest new v7 item: an ffmpeg voice chain.
+
+## [2026-10-16] query | Graphic design for fitness coaches
+New [[fitness-coach-graphic-design]]: carousel/Reel data, 2026 design direction, and an 8-part offer that reuses the Remotion system for stills.
