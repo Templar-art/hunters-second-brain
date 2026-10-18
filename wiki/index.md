@@ -18,6 +18,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[2026-07-17]] · [[2026-07-22]] · [[2026-08-10]] — dated plan/queue notes; the durable content from these lives on the pages they link to
 
 ## Clients
+- [[lrgr-than-life-apparel]] — streetwear hat brand (Shak); proof-over-promises short-form plan
 - [[coast-life-constructions]] — builder IG repositioning; active execution; Rob's brand verdict governs
 - [[bespoke-estate-agents]] — Jason Ward prestige agent; live site (Elementor HTML paste) getting real photos in / fake listings out (4 Aug), source at `projects/bespoke-elementor-source/`; About still a Services duplicate
 - [[belle-property]] — Lot 48 house-into-lot composite; delivered 21 Jul

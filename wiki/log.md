@@ -1212,3 +1212,6 @@ Zed picked Smoked Oak Suite; 15 more interiors staged (2,700cr, job total 6,480c
 
 ## [2026-10-16] query | Blender: material-ID maps, denser scenes, add-on research
 Added the material-ID colour-map method, the scene-density lesson and the ranked add-on list to [[blender-blockout-pipeline]].
+
+## [2026-10-18] ingest | LRGR Than Life Apparel creative brief
+Ingested the brief (raw/lrgr/). Wrote [[lrgr-than-life-apparel]] and projects/streetwear-ads/LRGR-CREATIVE-PLAN.md: 12 concepts, top 6, execution plans, batch shoot. Flagged the earlier generic production pack's concepts as superseded.
