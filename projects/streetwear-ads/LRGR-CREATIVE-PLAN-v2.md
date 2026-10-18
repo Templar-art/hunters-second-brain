@@ -1,8 +1,10 @@
 # LRGR Than Life Apparel: Creative and Production Plan (v2)
 
-Prepared by 10x Visuals for Larger Than Life Apparel, 18 October 2026. This revises the client proposal (`LRGR Video Concepts.pdf`) against the original brief in `raw/lrgr/`. It is an internal producer document and not yet client-facing.
+Prepared by 10x Visuals for Larger Than Life Apparel, 18 October 2026. This revises the client proposal (`LRGR Video Concepts.pdf`) against the original brief in `raw/lrgr/`. It is an internal producer document. The client version is `LRGR Video Concepts v2.pdf`.
 
-> **Status:** the executions for The Drawer Hat and What Goes First? are first drafts. Unlike the other four, they have not had a second review pass. Check their participant prompts before the shoot.
+> **Constraint (Hunter, 18 Oct):** everything must be filmable in one session. The 30-wear series What Goes First? was replaced by The Lift, and In The Bag replaced it in the six (packed at arrival, unpacked at wrap).
+>
+> **Status:** the executions for The Drawer Hat and In The Bag have not had a second review pass. Check their participant prompts before the shoot.
 
 ## 1. Creative diagnosis
 
@@ -102,11 +104,11 @@ The proposal has the right rules and the wrong slate. “Proof over promises. We
 | 03 The Drawer Hat | Improve | The best mechanism in the document. Its one real fault is the LRGR hat on the table at 0s, which gives away the ending. | No LRGR hat on the table. Shak writes one specific guess before the owner explains, gets one fix without swapping hats, and the owner decides. An LRGR hat comes out only if the owner asks to try one, as a try-on, not the fix. “I paid for it and it just lives in the drawer” stays first-person framing: never on screen or in captions as something a customer said. Absorbs 01's loosening test and 12's checks. |
 | 04 Who It's Not For | Replace | A position, not a mechanism. Shak speaks for the wearer, his generosity is scripted (“And that's fine. Wear that one.”), and it ends on the pitch it claims to avoid. | **Shak's Bet**: before anyone tries the hat, Shak hides a coin under the cup of the person he reckons won't want it. Verdicts are captured, not written. He asks the least keen person “If we did one for you, what's different?” and it ends on his answer. |
 | 05 The Tug Count | Improve | The only real game. But “two similar days” means different conditions, the counter knows which hat is LRGR, and it claims to measure comfort. | One day, four 15-minute blocks in A-B-B-A order, and a written count rule with the draw margin set before filming. The viewer is told which hat is which from the first block. The wearer and the official recounter (someone who has never seen LRGR hats or the hypothesis) aren't. Raw counts go on screen, and the wearer isn't Shak. |
-| 06 30 Wears. One Hat. | Improve | Right series, wrong Ep. 0. A turntable spec sheet gives viewers nothing to wait for. “Wear” is undefined, “Brim's flat” contradicts the curved brim, and “nothing else” is a promise he may not keep. | **What Goes First?**: Shak's and the wearer's predictions read out, shown and sealed on camera, plus a twin hat sealed in a box as the control. Ep. 0 is cut down to the bet. A wear is defined and logged, both hats are picked on camera from one confirmed batch, and checkpoints use a phone kit matched to a phone baseline. |
+| 06 30 Wears. One Hat. | Replace | A 30-wear series can't be filmed in one session, and its Ep. 0 had nothing at stake. “Wear” is undefined, “Brim's flat” contradicts the curved brim, and “nothing else” is a promise he may not keep. | **The Lift**: the same real-wear question answered inside the shoot. The cap is lifted on camera at the end of each Tug Count block, so the viewer sees what 15 minutes of wear left behind on the head and in the hat. |
 | 07 Every Part, What It's For | Replace | A feature read with cause-and-effect lines nobody has verified (“frames your face”, “dial it in”), a tape measurement with no method, and an implied maker claim. Its one good question is buried off camera. | **Mark It Up**: that question (“If you had to cut one thing…”) becomes the mechanism. Shak gets three strips of tape (orange for “I'd change this”, green for “not touching it”) for a hat pulled at random. Then the wearer marks up the LRGR hat they wore that day, with the same limit. |
 | 08 The Sample I Sent Back | Improve | A real spot-the-difference with a decision behind it, but built on a line that asserts history nobody has confirmed (“Everyone reckoned I was being picky”), with a tape mark that gives the answer away. It lives or dies on a real sample. | **The One I Knocked Back**: no tape, a participant does the spotting, documentation on screen, and Shak asks “Would you have noticed?” No sample, no video. |
 | 09 One Hat. Six Heads. | Replace | A montage of one frame. It overclaims from head circumference, invents data, scripts every verdict and contradicts itself (six heads, four in the grid, 4–6 booked). | **Will It Do Up?**: the strap is measured notch by notch on camera, the tape calls each person's notch from their head size, and the person sets the strap without hearing the call. Claims stop at whether the strap closed on each person filmed. |
-| 10 Brand New vs Mine | Replace | If it exists, it's one hat with an unverified history. It may already be shaped to Shak's head and may come from an earlier run. There is no same-day substitute. | Folded into **What Goes First?**: the sealed twin gives a fair new-versus-worn comparison at wear 30. If Shak has a genuinely worn hat with dated evidence, it can run once, described as his one hat. |
+| 10 Brand New vs Mine | Replace | If it exists, it's one hat with an unverified history. It may already be shaped to Shak's head and may come from an earlier run. | Dropped. It needs a genuinely worn hat with a dated history, which can't be created in one session. Revisit only if Shak has one with evidence. |
 | 11 Mirror Says Yes | Replace | The best reveal in the document. But a photo taken “without warning” on a set is staged, the nod is directed, a handheld phone distorts, and it shares a takeaway with 02, 12 and the Booth. | Its turn becomes the middle of **Red or Blue?**. The wearer picks in the mirror, then sees the locked side view and is asked the same question again. |
 | 12 Three Checks Before You Buy | Replace | A list. Every check is shown on a shallow cap against LRGR. Two of the three checks (“the gap above the ear” and “the pull-down test”) are defined around a deep fit, so the format favours the LRGR shape before anyone tries a hat on. | Shak's real checks get used where something's at stake: on someone's own hat in **The Drawer Hat**, which he looks over the way he would any hat. Keep the “doesn't matter whose” stance. |
 
@@ -146,7 +148,7 @@ Nothing survives as written. Five concepts are improved, and seven are replaced 
 | 3 | The One I Knocked Back | Side by Side | A participant spots the difference, then “Would you have noticed?” | 30–45s | Low (needs a real sample) | 08 |
 | 4 | The Tug Count | The Hat Test | Running tally in A-B-B-A blocks; the viewer knows the hats, the counters don't | 30–45s | Medium | 05 |
 | 5 | In The Bag | The Hat Test | Before and after one real bag, overlay wipe | 20–30s | Low | New |
-| 6 | What Goes First? | The Hat Test | Two predictions shown and sealed, a sealed twin, opened at wear 30 | Ep. 0 12–20s | Low on the day, medium overall | 06, 10 |
+| 6 | The Lift | The Hat Test | The cap lifted on camera after each Tug Count block: forehead, hair and sweatband after the same 15 minutes | 15–25s | Low | 06 (one-session version) |
 | 7 | The Drawer Hat | Built For Us | A specific guess before the story, one fix, the owner's call | 60–90s | Low | 03, 01, 12 |
 | 8 | Shak's Bet | Built For Us | Hidden bet on who won't want it, then a live disagreement | 45–60s | Low–medium | 04 |
 | 9 | Will It Do Up? | Built For Us | The tape's call against where each person sets the strap, scored | 40–60s | Medium | 09 |
@@ -286,7 +288,7 @@ Nothing survives as written. Five concepts are improved, and seven are replaced 
     - A crew member who hasn't worked on LRGR as the wearer, disclosed.
     - An indoor desk or phone session if the space won't hold a frame.
     - If conditions change mid-session, stop and say so rather than compare the blocks.
-    - If the wearer's real activity is somewhere else, or there's no second rig or third crew member, it moves to its own session on the wearer's time (phone on a tripod, helper clicking) and its status changes from “finish on shoot day”. Use a wearer who hasn't seen the Red or Blue? reveal, or say on screen that the wearer knew which hat was which.
+    - If the wearer's real activity is somewhere else, or there's no second rig or third crew member, it runs in sequence on the main camera in the same session (adds about 1.25 hours; Can't Unsee It and the buffer go first) and its status changes from “finish on shoot day”. Use a wearer who hasn't seen the Red or Blue? reveal, or say on screen that the wearer knew which hat was which.
 - **Production difficulty:** Medium. About 75 minutes on a locked camera, plus an hour of recounting in post. It runs on a second camera, or a phone on a tripod, so the main camera keeps shooting.
 
 ### 5. In The Bag
@@ -302,8 +304,7 @@ Nothing survives as written. Five concepts are improved, and seven are replaced 
 - **Exact first two seconds:** Overhead: two caps on a gridded cutting mat beside the owner's open bag. The owner's hand picks one up and packs it into their own bag the way they normally do.
 - **Suggested opening line:** (to the bag's owner) “Pack them how you normally would.”
 - **What happens:**
-  - **By default, overnight:** at wrap, top-down and front-on stills on the marks with the phone kit, a grey card in frame and the phone height noted. The owner packs both, takes the bag through their evening and next morning, and swaps the hats' places halfway (filmed on their phone). The unpack is shot the next morning on the same kit from the setup sheet.
-  - **On a shoot day instead:** stills at call, and the bag goes wherever the owner goes that day. On screen: “shoot day”.
+  - **One session:** before stills when the participant arrives, then they pack both caps and the bag stays with them all day. At lunch they swap the two caps' places (filmed on a phone). The unpack is filmed at wrap on the same marks. On screen: “One bag, one shoot day”.
   - The packing and the swap are filmed and left undirected.
   - **Unpack:** the hats go straight onto the marks, then the wipe, then the ten-minute frame.
   - If the owner would normally push a dent out by hand, film them doing it as a separate step.
@@ -315,47 +316,37 @@ Nothing survives as written. Five concepts are improved, and seven are replaced 
   - Sign-off to publish a bad result.
   - No rehearsal off camera. Testing first and filming only a good run is selection bias.
   - No steaming or washing to fix a dent unless the care instructions are confirmed.
-  - On screen: “One bag, one [night/day], one way of packing.” It is not a durability claim.
-  - A go or no-go at the pre-interview, before call time, because it's Mark It Up's swap.
+  - On screen: “One bag, one shoot day, one way of packing.” It is not a durability claim.
   - **Fallback:** a crew member's bag, disclosed.
 - **Production difficulty:** Low. Twenty minutes of stills at each end; the bag does the rest.
 
-### 6. What Goes First?
-*Built from 06 30 Wears. One Hat. Absorbs 10 Brand New vs Mine.*
+### 6. The Lift
+*Replaces What Goes First?, which needed 30 wears over several weeks and can't be filmed in one session. It sits inside The Tug Count's block swaps, so it costs no extra wearer time.*
 
 - **Pillar:** The Hat Test
-- **Viewer insight or question:** Which part of a cap gives out first when you actually wear it? And does the person behind it know?
-- **Core creative mechanism:** A bet in plain view, with an untouched control hat.
-  - Two hats from one confirmed batch. One is sealed in a box with Shak's signature across the tape. The other is worn for 30 logged wears.
-  - Shak and the wearer each write down what they think goes first, and roughly when, and read it to camera. The cards go on screen, then into an envelope taped to the box. The envelope locks the predictions in. It doesn't hide them, so the viewer can take a side.
-  - Checkpoints at wears 10 and 20.
-  - At wear 30, the box is cut open, the twins go side by side under the Ep. 0 setups, and the envelope is opened.
-- **Exact first two seconds:** A two-shot: Shak and the wearer on either side of a taped, signed box, each holding a card up to the camera. On screen: “WEAR 0 / 30”.
-- **Suggested opening line:** “That's mine. No changing it at thirty.”
+- **Viewer insight or question:** What does a cap leave behind after you've had it on for a while? A band mark across the forehead, flattened hair, nothing at all? And does it differ between two caps on the same head?
+- **Core creative mechanism:** Four lifts, one at the end of each Tug Count block.
+  - At each swap the wearer stands on the same floor mark, facing the same locked close-up camera, and lifts the cap straight up.
+  - The camera holds on the forehead and hairline for three seconds. The cap then goes face-up on a marked tray for a close-up of its sweatband.
+  - The four lifts run in order (A, B, B, A), so the cap worn first is also worn last and the order effect is visible.
+  - The viewer knows which cap is LRGR. The wearer doesn't, because they're still blind from Red or Blue?.
+- **Exact first two seconds:** Tight on a forehead and the edge of a brim. Two hands lift the cap straight up and out of frame. Nothing is said.
+- **Suggested opening line:** None from Shak. The first words are the producer's prompt to the wearer: “How's your head feel?”
 - **What happens:**
-  - **On the day (about 45 minutes):**
-    - The helper lays out hats from one confirmed batch, and the wearer picks two on camera.
-    - **Record shoot, not for the cut:** both hats on a marked stand for a front shot, a top-down and five fixed macros (brim edge, crown front, embroidery, sweatband, strap), with a grey card in every frame. It's shot twice: on the main camera, and on the phone kit (same phone, same marks, grey card) as the reference for the checkpoint wipes. The settings go on a setup sheet.
-    - One hat is boxed, taped and signed. Both predictions are read out, shown and sealed.
-  - **Ep. 0 (12–20s):** the pick, the box, the signature, the two cards read out and shown, the envelope sealed, “WEAR 0 / 30”. The definition of a wear goes on one on-screen card and in the caption: for example, two hours or more out of the house, logged with the date, hours, what they did and the weather. No special care. The baseline macros go up as a pinned carousel or in the caption.
-  - **Wears 10 and 20:** about 15 seconds each, shot on the phone kit from the setup sheet, wiping from the phone baseline.
-  - **Wear 30:** the box is cut open on camera, both hats go on the same marks, both setups are repeated, and the envelope is opened.
-- **Payoff:** Ep. 0's payoff is the bet itself, out in the open. At wear 30: a worn hat next to its untouched twin, and whose call was right. No visible change is also a result.
-- **Product role:** The subject throughout, compared against its own untouched twin.
-- **Why someone would watch:** Two calls you can see and side with, and a counter that moves. The finale compares against a hat you watched get sealed, not a memory of day one.
+  - Lift 1 (cap A after 15 minutes): hold on the forehead, then the sweatband on the tray. The wearer answers the prompt in their own words.
+  - Lifts 2 and 3 (cap B, then B again): same framing, same hold, same prompt.
+  - Lift 4 (cap A again): the last lift. The edit lays all four forehead frames side by side.
+  - Shak sees the four frames for the first time after the tape-off and says what he notices, unscripted.
+- **Payoff:** Four frames side by side: a mark, flattened hair or nothing, after the same 15 minutes on the same head. Both caps may leave the same mark, or the LRGR one may leave more. Either result stays in.
+- **Product role:** One of two caps worn under the same conditions on the same head.
+- **Why someone would watch:** Everyone knows the moment you take a cap off and check your hair. It's a two-second reveal repeated four times, with the order flipping halfway.
 - **What needs confirming:**
-  - Who wears the hat and keeps the log, named before the shoot. Ideally someone who wears a cap most days, not Shak. If it's the lean-day participant, Ep. 0 runs after the Red or Blue? tape-off, because handling LRGR stock earlier would end their blindness.
-  - The definition of a wear.
-  - Care instructions before any cleaning.
-  - Sign-off to publish any wear or fading, and Shak's prediction being wrong.
-  - Two hats from one confirmed batch.
-  - No “nothing else” rule. Handling hats on shoot day doesn't count as a wear.
-  - **Fallbacks:**
-    - Shak as the wearer, disclosed as an interested party, with every wear logged with a dated photo. The participant or the 10x producer writes the second card, so there's still a bet.
-    - With only one hat, compare against the Ep. 0 setup sheet.
-    - If the wearer drops out, the series stops and says so. Never swap in a fresh hat.
-    - If Shak has a genuinely worn hat of the same model with dated evidence, it can run once alongside the series, described as his one hat.
-- **Production difficulty:** Low on the day (about 45 minutes). Medium overall, because the log has to hold for one to two months.
+  - The wearer's consent to forehead and hairline close-ups.
+  - No hair product, sweat-wiping or mirror check between the lift and the shot. The producer calls the lift before the wearer touches their head.
+  - Sign-off to publish if the LRGR cap leaves the bigger mark.
+  - On screen: “One person, 15 minutes per cap. Not a comfort test.” Activity, temperature and sweat all vary between blocks.
+  - **Fallback:** if The Tug Count runs in sequence instead of in parallel, The Lift still happens at each swap.
+- **Production difficulty:** Low. About two minutes per swap on the second rig, inside The Tug Count hour.
 
 ### 7. The Drawer Hat
 *Built from 03 The Drawer Hat. Absorbs 01's loosening test and 12's checks.*
@@ -559,11 +550,11 @@ Nothing survives as written. Five concepts are improved, and seven are replaced 
 | 3 | The Tug Count | Finish on shoot day (recount in post) | A clicker over the helper's shoulder, the wearer soft behind | Running tally in A-B-B-A blocks; the viewer knows the hats, the counters don't | Steady build; 30–45s | How often one person fixed each hat in an hour |
 | 4 | Mark It Up | Finish on shoot day | Macro of the first strip of tape going on | Three-strip self-audit, then a wearer's three | Hands-on and opinionated; 35–50s | What the founder would and wouldn't change on his own hat |
 | 5 | The Drawer Hat | Needs existing evidence | The owner in their old cap, Shak writing on a card beside them | Specific guess, the real reason, one fix, the owner's call | Conversational; 60–90s | Is it the hat, or how you're wearing it? |
-| 6 | What Goes First? | Series started on the day | Shak and the wearer either side of a sealed box, cards to camera | A bet in plain view now, the result at wear 30 | Fast; Ep. 0 12–20s | Two calls on what wears first: pick a side and come back |
+| 6 | In The Bag | Finish on shoot day | Overhead: a hand packs a cap into its owner's own bag | Before, a full shoot day in one real bag, then an overlay wipe | Fast; 20–30s | Whether a cap comes out of a bag the way it went in |
 
 ### Why these six work together
 - **One side-profile video, not four.** Red or Blue? carries “check the side” once, done blind, and puts it to the test instead of asserting it. The other five reach the product through touch, behaviour, critique, conversation and time. The Drawer Hat uses the profile set only if loosening turns out to be its one fix.
-- **In three of them, Shak commits before he knows the answer:** Ours Or Not?, The Drawer Hat and What Goes First?. In Mark It Up, he marks his own hat before a wearer marks theirs. In Red or Blue? Part 2, he responds to a pick that may not be his.
+- **In three of them, Shak commits before he knows the answer:** Ours Or Not?, The Drawer Hat and In The Bag (he calls which cap comes out worse before it's packed). In Mark It Up, he marks his own hat before a wearer marks theirs. In Red or Blue? Part 2, he responds to a pick that may not be his.
 
   That's how his personality comes through without anyone having to assume what it is: being right, being wrong, and how he takes it.
 - **Most of them can go against LRGR or against Shak on camera.**
@@ -571,45 +562,45 @@ Nothing survives as written. Five concepts are improved, and seven are replaced 
   - Ours Or Not? can beat him.
   - Mark It Up puts his own product's flaws in frame.
   - The Drawer Hat can end on “keep your hat”.
-  - What Goes First? can show wear, and his call can be wrong.
+  - In The Bag can dent the LRGR hat and not the other one, and his call can be wrong.
 
   That is the proposal's own rule (“If the LRGR hat doesn't come out ahead, it stays in”), built into the structures instead of written in a box.
 - **Six different first frames, and only two on a tabletop.** Two faces in taped caps, a feel box, a clicker over a shoulder, a tape macro, an owner in their old cap, and two people holding cards beside a box. The two tabletop openings (the feel box and the tape macro) look nothing alike.
-- **Six different structures:** a blind pick with a turn across two posts; scored rounds against chance on a fixed escalation; a running tally in alternating blocks with no reveal; a three-strip audit with a second opinion; a guess, a conversation and one fix; and a bet in plain view with a long payoff. Lengths run from a 12-second Ep. 0 to a 90-second conversation. Two are quick (Ours Or Not?, What Goes First?), two build (The Tug Count, Red or Blue?), one is talk (The Drawer Hat) and one is hands-on opinion (Mark It Up).
+- **Six different structures:** a blind pick with a turn across two posts; scored rounds against chance on a fixed escalation; a running tally in alternating blocks with no reveal; a three-strip audit with a second opinion; a guess, a conversation and one fix; and a before-and-after wipe across the whole day. Lengths run from 20 seconds to a 90-second conversation. Two are quick (Ours Or Not?, In The Bag), two build (The Tug Count, Red or Blue?), one is talk (The Drawer Hat) and one is hands-on opinion (Mark It Up).
 - **Six different takeaways:** whether the side changes the pick, the detail to check by hand, how often one person fixed each hat, what the founder would change, whether it's the hat at all, and what wears first.
 - **They feed each other on the day.**
-  - **Hats.** The 10x producer buys the comparison cap and the three Ours Or Not? decoys once, to the written rules, and Shak doesn't see them before the shoot. The comparison cap serves Red or Blue? and The Tug Count. The decoys go in the Ours Or Not? box, which runs at the same time as The Tug Count. Add a second copy of the comparison cap if In The Bag is a go. Plan for six to eight LRGR hats on the day: one for Red or Blue? and The Tug Count, two or three for the Ours Or Not? pool, a stock box for Mark It Up's random pull, and at least two from one confirmed batch for What Goes First?.
+  - **Hats.** The 10x producer buys the comparison cap and the three Ours Or Not? decoys once, to the written rules, and Shak doesn't see them before the shoot. The comparison cap serves Red or Blue? and The Tug Count. The decoys go in the Ours Or Not? box, which runs at the same time as The Tug Count. Buy a second copy of the comparison cap for In The Bag. Plan for six to eight LRGR hats on the day: one for Red or Blue? and The Tug Count, two or three for the Ours Or Not? pool, a stock box for Mark It Up's random pull, and one for In The Bag that won't be sold afterwards.
   - **One participant carries the lean version, and that has a cost.**
     - They arrive having never seen LRGR hats or content, for Red or Blue?.
     - They stay blind through The Tug Count, on the same hats retagged “1” and “2”.
     - The tape-off comes after The Tug Count and pays off Red or Blue? only.
     - Then they mark up the LRGR hat they've now worn, for Mark It Up, and bring their own hat out of their bag for The Drawer Hat.
-    - That puts one face in four of the six, which reads as “the brand's mate” if it isn't handled. Disclose any link to LRGR or the crew once per video. If possible, name someone else as the series wearer for What Goes First?, so it isn't five.
-    - **Posting order:** Red or Blue? Part 1 → Ours Or Not? → Red or Blue? Part 2 → What Goes First? Ep. 0 → The Tug Count → Mark It Up → The Drawer Hat. Put a post from outside this shoot (Can't Unsee It if it's made, or the account's usual posts) between The Tug Count, Mark It Up and The Drawer Hat, so this person's videos never run back to back. The Tug Count lands after the reveal.
+    - That puts one face in four of the six, which reads as “the brand's mate” if it isn't handled. Disclose any link to LRGR or the crew once per video.
+    - **Posting order:** Red or Blue? Part 1 → Ours Or Not? → Red or Blue? Part 2 → In The Bag → The Tug Count → Mark It Up → The Drawer Hat. Put a post from outside this shoot (Can't Unsee It if it's made, or the account's usual posts) between The Tug Count, Mark It Up and The Drawer Hat, so this person's videos never run back to back. The Tug Count lands after the reveal.
     - **Expanded version:** give The Drawer Hat and the wearer's half of Mark It Up to other people, with a Drawer Hat owner who hasn't worn the LRGR hat.
   - **The parallel block.** The Tug Count runs in its own space on a locked second camera (or a phone on a tripod), with a second phone over the clicker's shoulder, out of sight and earshot of the tabletop. Shak gives the wearer the count rule at the start of block 1, then moves to the tabletop. The main camera then shoots Ours Or Not? and Shak's half of Mark It Up, so the participant never hears him say what makes a hat “ours” or what he'd change. If the tabletop runs over, Shak's half of Mark It Up moves to after the tape-off, adding about half an hour.
   - **Crew roles (assumption):**
     - LRGR helper: Tug Count clicker and hat swaps for the whole hour. The clicker knows which hat is which. That's why the recount is blind.
     - 10x producer: buys the comparison cap and decoys; tapes the Red or Blue? hats, tosses for order and gives the wearer's prompts; loads the Ours Or Not? box, tosses the coins, keeps the log and gives Shak his prompts; manages releases.
     - 10x shooter: main camera and sound.
-  - **Running order (assumption):** load-in and three-space build 1.5h + briefing and releases 0.25h + Red or Blue? 1.5h + The Tug Count, with Ours Or Not? and Shak's half of Mark It Up in parallel, 1.25h + tape-off 0.25h + lunch 0.75h + What Goes First? Ep. 0 0.75h + Mark It Up, wearer's half 0.5h + The Drawer Hat 1h + pack-down 0.75h + buffer 0.5h = **about 9 hours**. The parallel camera saves about an hour and a quarter. On one camera in sequence, the same six run to about 10.25 hours before any overrun.
-  - **Kit (assumptions, not confirmed):** the main camera; a second camera body or a phone on a tripod for the Tug Count wide; a second phone for its close-up; a tally counter; two lavs; a monitor or tethered laptop with an overlay function for the Red or Blue? onion-skin check; a phone kit (marked stand, grey card) for What Goes First?; and three crew (a 10x shooter, a 10x producer and the LRGR helper). **Fallback:** without the second rig or the third crew member, The Tug Count can't run in parallel. It runs as a separate session on the wearer's own time (phone on a tripod, helper clicking), and the shoot day carries five.
+  - **Running order (assumption):** load-in and three-space build 1.5h + briefing and releases 0.25h + Red or Blue? 1.5h + The Tug Count, with Ours Or Not? and Shak's half of Mark It Up in parallel, 1.25h + tape-off 0.25h + lunch 0.75h (with the In The Bag swap) + In The Bag packing 0.25h and unpack 0.5h + Mark It Up, wearer's half 0.5h + The Drawer Hat 1h + pack-down 0.75h + buffer 0.5h = **about 9 hours**. The parallel camera saves about an hour and a quarter. On one camera in sequence, the same six run to about 10.25 hours before any overrun.
+  - **Kit (assumptions, not confirmed):** the main camera; a second camera body or a phone on a tripod for the Tug Count wide; a second phone for its close-up; a tally counter; two lavs; a monitor or tethered laptop with an overlay function for the Red or Blue? onion-skin check; a gridded mat and an overhead rig for In The Bag; and three crew (a 10x shooter, a 10x producer and the LRGR helper). **Fallback:** without the second rig or the third crew member, The Tug Count can't run in parallel. It runs in sequence on the main camera in the same session, adding about 1.25 hours, and the shoot day carries five.
   - **Location (unconfirmed), three spaces:** the locked profile set, left standing for the Part 2 tape-off and The Drawer Hat's before-and-after; the tabletop; and The Tug Count activity space, far enough from the tabletop that clicks and talk don't bleed into Shak's audio and the wearer can't hear him.
-  - **Reasons to come back:** What Goes First? at wears 10, 20 and 30, and Red or Blue? Part 2 for the reveal.
+  - **Reasons to come back:** Red or Blue? Part 2 for the reveal. Everything is filmed in the one session.
 
-### Finish on shoot day, needs existing evidence, series started that day
+### Finish on shoot day and needs existing evidence
 
 **Finish on shoot day**
 - **Red or Blue?** All footage is shot on the day, with the tape-off filmed after The Tug Count. Part 2's edit adds the vote result after Part 1 posts.
 - **Ours Or Not?** Tabletop, Shak and the producer, during The Tug Count hour.
-- **The Tug Count.** Filmed on the day; the blind recount happens in post. It moves to its own session, and off this list, if the wearer's real activity is elsewhere or the second rig or third crew member isn't there.
+- **The Tug Count.** Filmed on the day; the blind recount happens in post. It runs in sequence on the main camera, still in the same session, if the wearer's real activity is elsewhere or the second rig or third crew member isn't there.
 - **Mark It Up.** Shak's half during The Tug Count hour, the wearer's half after the tape-off.
 
 **Needs existing evidence**
 - **The Drawer Hat.** Needs a real hat someone stopped wearing, with a reason Shak hasn't heard. The fallback that keeps it on the schedule is the daily-hat episode on the participant's everyday cap: same mechanism, nothing staged.
 
-**Series started that day**
-- **What Goes First?** Ep. 0, the record shoot and both sealings happen on the day, after the tape-off. Checkpoints at wears 10 and 20 are shot on the phone kit, and the finale at wear 30 repeats both setups.
+**Packed at arrival, unpacked at wrap (still one session)**
+- **In The Bag.** Before stills at arrival, the lunch swap on a phone, the unpack and the ten-minute frame at wrap. Nothing leaves the session.
 
 ### If something isn't confirmed
 
@@ -617,16 +608,16 @@ Nothing survives as written. Five concepts are improved, and seven are replaced 
 |---|---|---|
 | Red or Blue? | A wearer who has never seen LRGR hats or content; a two-part post; colour-matched caps | A disclosed 10x crew member who hasn't worked on LRGR or handled its hats; one video with a pause-and-pick card; both halves graded black and white |
 | Ours Or Not? | Shak agreeing that a miss goes out; decoys bought to spec | The participant plays after the tape-off, having handled one LRGR hat for a minute |
-| The Tug Count | A space that holds one locked frame, out of earshot of the tabletop; a recounter who has never seen LRGR hats, footage, this brief or the hypothesis; a second rig and a third crew member | An indoor desk or phone session; a recounter from outside 10x's LRGR work, never a 10x editor on the account; its own session on the wearer's time, with the day carrying five |
+| The Tug Count | A space that holds one locked frame, out of earshot of the tabletop; a recounter who has never seen LRGR hats, footage, this brief or the hypothesis; a second rig and a third crew member | An indoor desk or phone session; a recounter from outside 10x's LRGR work, never a 10x editor on the account; run in sequence on the main camera in the same session (about 1.25 hours longer) |
 | Mark It Up | Genuine “would change” answers; the client's comfort with orange tape on its hat | The wearer-led version if Shak has no genuine changes; In The Bag if the client isn't comfortable with orange tape or neither has anything real (decided at the pre-interview, before call time) |
 | The Drawer Hat | A real drawer hat | The daily-hat episode |
-| What Goes First? | A committed wearer and log keeper, named before the shoot; two hats from one confirmed batch | Shak as the wearer, disclosed, with a dated photo of every wear and the producer or participant writing the second card; with one hat, compare against the Ep. 0 setup sheet |
+| In The Bag | The participant's own everyday bag; one LRGR hat that won't be sold; a second copy of the comparison cap | A crew member's bag, disclosed; if no second comparison cap, swap in Can't Unsee It (only with real pet hates) |
 
 ### Essential before locking concepts
-This goes on the client checklist as essential before locking concepts. Shak signs off on publishing whatever happens in all six: Red or Blue?, Ours Or Not?, The Tug Count, Mark It Up, What Goes First? (any wear or fading, and his prediction being wrong) and The Drawer Hat (a missed guess, a “keep your hat” ending, or the owner not liking the LRGR hat). Sign-off happens before the slate locks, not on the day. If he declines one test, re-plan that slot before booking: In The Bag (if he'll sign off on a bad result there), or Will It Do Up? as a one- or two-head segment (crew disclosed, and he signs off on whatever the tape calls). If he declines more than one, re-plan the slate before booking the day.
+This goes on the client checklist as essential before locking concepts. Shak signs off on publishing whatever happens in all six: Red or Blue?, Ours Or Not?, The Tug Count, Mark It Up, In The Bag (a dent in the LRGR hat, and his call being wrong) and The Drawer Hat (a missed guess, a “keep your hat” ending, or the owner not liking the LRGR hat). Sign-off happens before the slate locks, not on the day. If he declines one test, re-plan that slot before booking: Can't Unsee It (if the pre-interview turned up real pet hates), or Will It Do Up? as a one- or two-head segment (crew disclosed, and he signs off on whatever the tape calls). If he declines more than one, re-plan the slate before booking the day.
 
 ### Next in line
-- **Decided before call time:** In The Bag. Go or no-go at the pre-interview, as Mark It Up's swap or as an extra. The default is the overnight version, so it doesn't depend on how the day runs. It needs a second copy of the comparison cap.
+- **Folded into The Tug Count:** The Lift. Two minutes at each block swap, so it costs no extra wearer time.
 - **Bonus, if the day runs to time:** Can't Unsee It, 30 minutes on the tabletop, only if the pre-interview turned up real pet hates.
 - **For the expanded shoot (four to six participants):** Shak's Bet and Will It Do Up?. Both need several real people and lose their point with only one. Will It Do Up? can also run as a recurring one- or two-head segment.
 - **Once the asset exists:**
@@ -1031,9 +1022,8 @@ The producer reads these from a card, the same way every time. No reactions to a
   - Keep the hats taped and stored together, and keep the key unchanged.
   - Rebook the wearer or a replacement. The status changes to "finished at a later session".
 - **No spare LRGR hat for the tape test:** test on a cap with similar fabric, and use the paper layer on both hats.
-- **The Tug Count moves to its own session:**
-  - Film the tape-off on the shoot day, either straight after the second pick or at the end of the day, so Red or Blue? is still finished on the day.
-  - The Tug Count follows its own fallback for the wearer.
+- **The Tug Count runs in sequence instead of in parallel:**
+  - The tape-off still comes after it, so the wearer stays blind. Everything is still filmed in the one session.
 - **No overlay monitor:** mark the eye line and the top of the ear from the first pass with fine tape on the monitor screen, and match each later pass to those marks.
 - **The session runs over:**
   - Cut the optional extras first, then the buffer.
@@ -1221,7 +1211,7 @@ Nobody hints at what an LRGR hat feels like. The caption then says the player he
 **Products**
 - **3 LRGR A-frames,** new and unworn, from regular stock, chosen by the producer, not Shak.
   - If only two are spare, the die maps 1–3 to L1 and 4–6 to L2.
-  - Keep them separate from the Red or Blue? / Tug Count hat, the What Goes First? twins and the Mark It Up stock box.
+  - Keep them separate from the Red or Blue? / Tug Count hat, the In The Bag hat and the Mark It Up stock box.
   - Any colourway. If the hats come in more than one size, use one size throughout.
 - **3 caps from other makers,** bought new and retail by the producer, ideally from three different makers.
   - Keep the receipts.
@@ -1638,9 +1628,9 @@ These are for the wearer only. The helper reads every on-camera question from th
 | The wearer works out which cap is LRGR, or says so after the hour | Log the block. Keep going. On screen: "The wearer guessed which was LRGR during block [n]" (or "...after the hour"). | The disclosure keeps the count honest. |
 | A short break is needed mid-block | Pause the clock. The cap goes to the swap table and comes back on at the mark with "done", and none of that counts. Resume and note the pause on screen. A break over two minutes voids the session (see the next row). | Every block still gets its full 15 minutes on the head. |
 | The live count and recount differ by more than [y] in any block ([y] is set on the card and is separate from the margin) | A second blind recounter, briefed the same way, counts that block. Show every number. If the two recounts also differ by more than [y], that block is unsettled and the hour is called a draw. | Showing the disagreement is more credible than presenting one clean number, and the rule was set before filming. |
-| The session is void (light change, rig stopped or bumped, hands out of frame, a long break) | Call it from the log and footage before anyone sees the recount. Don't compare partial blocks. Re-run the full hour as its own session. The wearer will have seen the tape-off by then, so use a new wearer, or say on screen that this wearer knew which cap was which. Disclose the void session in the caption. | It becomes a clean fallback session instead of a compromised comparison. |
+| The session is void (light change, rig stopped or bumped, hands out of frame, a long break) | Call it from the log and footage before anyone sees the recount. Don't compare partial blocks. Don't re-run it on another day: post what was filmed with the gap disclosed on screen, or drop it and use the slot for Can't Unsee It. If re-run, use a new wearer, or say on screen that this wearer knew which cap was which. Disclose the void session in the caption. | It becomes a clean fallback session instead of a compromised comparison. |
 | No usable opener moment on phone B | Open on the locked wide at the session's first logged touch, with the wide's audio and the tally overlay. | The opening works without re-enacting anything. |
-| No second rig, no separate space or no spare crew on shoot day | Run it as its own session on another day with a new wearer who hasn't seen either cap or any LRGR content. A crew member who hasn't worked on LRGR works, disclosed on screen. Drop the Red or Blue? closing line and end on the guess. The shoot day then carries five concepts. | The mechanism, rules and recount stay the same, and only the logistics and the closing line change. |
+| No second rig, no separate space or no spare crew on shoot day | Run it in sequence on the main camera in the same session, after Red or Blue? Part 1 and before the tape-off. The day runs about 1.25 hours longer, so Can't Unsee It and the buffer go first. | The mechanism, rules and recount stay the same, and only the running order changes. |
 
 ### Mark It Up
 
@@ -1775,7 +1765,7 @@ The video ends on the top-down hold with the tally. The last sound is the tail o
   - **The LRGR helper:** on The Tug Count during Shak's half, so not needed here. **Assumption:** The Tug Count runs on its own locked camera with the helper and doesn't need the shooter. If it does need the shooter, use the over-run plan below.
 - **Products:**
   - **The stock box:**
-    - At least three LRGR hats of the same model as the wearer's hat, untaped, and not from the What Goes First? batch.
+    - At least three LRGR hats of the same model as the wearer's hat, untaped, and not the In The Bag hat.
     - The producer fills it from what LRGR brings. Shak doesn't choose them.
     - Any colourway the tape won't contrast with comes out before the box is filmed.
     - If hats are short, the LRGR hats from the Ours Or Not? pool can join once that round is done and their tape is off, checked for residue first.
@@ -1812,7 +1802,6 @@ The video ends on the top-down hold with the tally. The last sound is the tail o
     - Wearer steps out while the producer sets both hats under the cover and swaps the main camera to 50mm: 3.
     - Reveal and response: 10.
   - **If the tabletop runs over:** Shak's half moves to after the tape-off, while the wearer is on their break and out of earshot. That adds about 30 minutes.
-- **Running order:** if the participant is also writing a What Goes First? card, shoot their half of Mark It Up before What Goes First? Ep. 0. It's the same block with no added time, and it means they haven't heard Shak's prediction of what goes first before they mark.
 - **Evidence:**
   - Anything Shak says about a decision he made, or a change he's making, gets checked with him after the shoot against something real (a message, a spec note or a sample) before it goes in a caption.
   - No materials, manufacturing details or price on screen unless confirmed.
@@ -2119,303 +2108,99 @@ There are two payoffs. The first comes mid-video: whether Shak called it, in the
 | No drawer hat turns up | The daily-hat episode: their everyday cap and one thing they don't love about how it sits, with the same guess and one fix. On screen: "Their everyday cap." | Same mechanism, nothing staged. |
 | No cap at all | Don't stage one. Use the hour for Can't Unsee It (if the pre-interview turned up real pet hates) or for pickups. Book a real owner for a short later session. | No video is better than a fake drawer hat. |
 | The owner won't let anyone touch the cap, or won't allow brim shaping | Shak talks them through the fix and they do it with their own hands, within whatever they allow. | Their cap, their hands. The fix is still his call. |
-| The day runs late | Protect at least 40 minutes. Drop pickups before cutting the take. If less than 40 minutes remain, move it to a short separate session with the cap still unseen. | A rushed conversation is the one thing this concept can't survive. |
+| The day runs late | Protect at least 40 minutes. Drop pickups before cutting the take. If less than 40 minutes remain, switch to the daily-hat episode, which runs in about 30 minutes, in the same session. | A rushed conversation is the one thing this concept can't survive. |
 
-### What Goes First?
-
-*The series starts on the shoot day, with Ep. 0 shot after the Red or Blue? tape-off. Ep. 0 runs about 18s, the checkpoints at wears 10 and 20 run about 15s each, and the wear-30 finale runs 45–60s.*
+### In The Bag
 
 #### A. The idea
+Two new caps, the LRGR hat and a second copy of the comparison cap, are shot on a gridded board when the participant arrives. Before anything is packed, Shak writes down which one he reckons comes out worse, and the card is turned face down. The participant packs both into their own everyday bag the way they normally would. The bag stays with them for the whole shoot. At lunch they swap the two caps' places in the bag, filmed on a phone. At wrap the caps come straight out onto the same marks, and the edit wipes each after frame over its before. Ten minutes later there's one more frame with the caps untouched, to show whether anything springs back. Then Shak's card is turned over.
 
-Two LRGR hats come from one batch that LRGR confirms. The wearer picks them, and a coin decides which one gets worn. The other is sealed in a box with Shak's signature across the tape. That's the untouched control.
+**Viewer takeaway:** whether either cap came out of one real bag after one shoot day looking different, whether it recovered, and whether the founder called it. It's one bag on one day, not a durability claim.
 
-Before any wear, Shak and the wearer each write down which part they reckon goes first and roughly when. Each reads their card to camera. The cards go on screen and are then sealed in an envelope taped to the box. The predictions are public from Ep. 0, so the viewer can take a side. The envelope only stops anyone rewriting them.
-
-The wearer logs 30 real wears and does checkpoints at 10 and 20 on a phone kit. At 30, the box is cut open and the worn hat goes next to its twin.
-
-**Takeaway:**
-- **Ep. 0:** two specific calls on what wears first, one of them from the person behind the hat, and a set point when we find out.
-- **Finale:** what 30 logged wears did to one hat compared with its sealed twin, and whose call was right, even if neither was.
+**Length:** 20–30s.
 
 #### B. Opening
-
-- **Shot:** a locked vertical two-shot at chest height. Shak and the wearer stand shoulder to shoulder behind a table. The sealed box sits front and centre, with the signature across the tape facing the lens. Each holds an A5 prediction card at chest height, writing to camera. The cards have printed headers (GOES FIRST: / BY WEAR:) filled in with thick black marker in capitals, so they can be read on a phone.
-- **Action:** both cards are already up at frame one, and both people are still.
-- **Suggested dialogue (Shak; a starting point he says his way, or not at all):** “That's mine. No changing it at thirty.”
-- **On-screen text:** “WEAR 0 / 30” in the top third from frame one, in a counter style that every later episode reuses. No other text in the first two seconds, because the cards are the text.
-- **Why it works before any explanation:** two people, a sealed, signed box and two written calls you want to read. It reads as a bet before anyone says what the bet is.
+- **Shot:** Overhead, locked. A gridded cutting mat with two caps on taped marks, the owner's open bag beside them.
+- **Action:** The owner's hand picks up one cap and packs it into the bag the way they normally do. Cut before the second one goes in.
+- **Dialogue:** None in the first two seconds. Then the producer, off camera: “Pack them how you normally would.”
+- **On-screen text:** “Same bag. All day. Which one comes out worse?”
 
 #### C. Beat-by-beat plan
 
-**Ep. 0 (target 16–18s, hard limit 20s)**
-
 | Approximate time | Visual/action | Dialogue or talking prompt | Edit/audio note |
 |---|---|---|---|
-| 0–2s | Opening two-shot: cards up, sealed box between them. | Shak: “That's mine. No changing it at thirty.” (starting point) | “WEAR 0 / 30” from frame one. Lavs and room sound only. No music under any spoken line. |
-| 2–4s | Top-down: the batch the LRGR helper laid out. The wearer's hands take two. | None | Super “Two from the same batch” only if LRGR confirms it in writing. Otherwise state only what's confirmed (e.g. “Same model, same colourway”). |
-| 4–6s | Mid-shot: the producer calls, tosses, and the coin lands on the table. Cut to one hat going into the box. | Producer, off camera, before the toss: “Heads, [left] gets worn.” | Super: “Coin picks which one gets worn.” Keep the coin landing in shot. That's the fairness beat. |
-| 6–8s | Macro: lid down, tape across the seam, Shak signs and dates across it. | None | Tape tear and marker squeak up in the mix. |
-| 8–10.5s | The wearer reads their card. Cut to the card flat on the table, top-down. | The wearer reads the card as written. | Typed super: “[First name]: [part], by wear [x]”. Use the read as recorded, with no trims that change the meaning. |
-| 10.5–13s | Shak reads his card. Card insert. Any real reaction to the wearer's call stays in. | Shak reads the card as written. | Typed super: “Shak: [part], by wear [x]”. Both supers stay stacked to the end. |
-| 13–14.5s | Top-down: both cards into the envelope, flap signed by both, envelope taped to the box. | None | Hard cut. No transition effects. |
-| 14.5–16.5s | Locked wide: the wearer puts the worn hat on and walks out of frame. The box stays on the table. | None | Definition card, held at least 2s: “1 wear = [confirmed definition, e.g. 2+ hrs out of the house]. Logged every time. No special care.” |
-| 16.5–18s | The same wide holds on the box alone. | None | End supers: both calls stacked, then “WEAR 0 / 30 · Next check: wear 10”. Cut on the hold, with no sting. |
-
-**Checkpoints at wears 10 and 20 (about 15s each; the wearer shoots on the phone kit)**
-
-| Approximate time | Visual/action | Dialogue or talking prompt | Edit/audio note |
-|---|---|---|---|
-| 0–2s | Phone-kit front frame of the worn hat on its marks, wiping from the wear-0 phone frame. | None | “WEAR 10 / 30” (or 20) in the Ep. 0 counter style. Wipe left to right and pause at both ends. |
-| 2–8s | Macro wipes (wear 0 to now, about 2s each): the two predicted parts first, then any other part that visibly changed. | None | Super on each predicted part: “Shak's call” / “[Name]'s call”. Captions say only what the frame shows. “No visible change yet” is a valid caption. All seven frames go in the carousel. |
-| 8–11s | The producer's dated photo of the sealed box, signature intact. Log summary card. | None | Card: “[10] wears · [x] hrs logged · [first date]–[latest date]”. |
-| 11–15s | The wearer in a mid-shot, phone on a stand. | “Anything you've noticed since the last check?” Their answer as given. | Close mic. End super: “Next check: wear 20” or “Wear 30: the box opens.” |
-
-**Wear 30 finale (45–60s; a 10x session with Shak and the wearer)**
-
-| Approximate time | Visual/action | Dialogue or talking prompt | Edit/audio note |
-|---|---|---|---|
-| 0–3s | Close: the sealed box, signature and envelope intact, a blade at the tape. | None | “WEAR 30 / 30”. Hold on the signature long enough to read it. |
-| 3–8s | The box is cut open and the twin lifted out. The worn hat comes off the wearer's head (or out of their bag) as it is. | Only reactions nobody asked for. | No brushing, reshaping or cleaning of either hat before the frames. |
-| 8–15s | Both hats in one frame under the same light: front, then top-down, with a grey card in shot. | To both: “What do you see?” | Same grade on both, with no local adjustments to either hat. This is the main evidence shot. |
-| 15–30s | The five macros, worn next to twin, in a fixed order: brim edge, crown front, embroidery, sweatband, strap. A quick wipe from wear 0 wherever something changed. | Talk-over from the wearer and Shak as it happened. | Stacked split at identical scale. Hold each at least 2s. Captions name what's visible, not causes. |
-| 30–40s | The envelope is cut open, and each person reads their own card. | Each reads their card. | Bring back the Ep. 0 card supers and flag the matching macro. |
-| 40–55s | Two-shot over both hats. | “Whose call was closer? What do you make of that?” | End on Shak's response with both hats in frame. A plain final super states the result (see G). |
+| 0–2s | Overhead: the hand packs the first cap | None | Cold open on the action. Room tone only. |
+| 2–6s | Both caps on the grid, top-down, then front-on | None | Label: “Before · [time]”. Hold each frame 1.5s. |
+| 6–9s | Insert: Shak writes his call on a card, turns it face down | Producer: “Which one comes out worse?” | Don't show the card. |
+| 9–13s | The owner packs both, their way, undirected | Owner, in their own words, if they say anything | Speed-ramp the packing; keep the real order. |
+| 13–15s | Phone clip: the lunch swap inside the bag | None | Label: “Swapped places at lunch.” |
+| 15–19s | Wrap: the caps come straight out onto the marks | Producer: “Straight onto the marks.” | Label: “After · [time]”. |
+| 19–25s | Overlay wipe, after over before, one cap at a time | None | Same crop and grade as the before frames. |
+| 25–28s | The ten-minute frame, untouched | None | Label: “10 minutes later.” |
+| 28–30s | Shak's card flips | Shak's reaction, unscripted | End on the card and his first line. |
 
 #### D. Essential shot list
+**Essential**
+- Overhead locked frame of the gridded mat with both caps on taped marks, before and after (recommended: 35mm on a boom arm or overhead rig, height noted on the setup sheet).
+- Front-on locked frame of both caps at mat level, before and after, same height and distance.
+- The owner packing both caps, wide enough to show the bag and the way it's packed.
+- Insert of Shak writing the card and turning it face down. The card's text is never in frame until the flip.
+- Phone clip of the lunch swap inside the bag.
+- The unpack straight onto the marks, with no reshaping.
+- The ten-minute frame from both positions.
+- The card flip and Shak's reaction.
 
-**Essential: the Ep. 0 cut**
-1. **Opening two-shot.** Locked camera in vertical orientation, chest height, 35mm full-frame equivalent from about 2m (recommendation). Both faces, both cards and the signature on the box must be legible. Shoot the card hold-up and both read-outs as one continuous take so the reactions are real.
-2. **The pick.** Top-down over the batch on 35mm (recommendation). The helper's hands lay out the hats and the wearer's hands take two. It has to show that the wearer chooses, not Shak.
-3. **Coin toss.** Mid-shot of the producer's hand. The call is heard before the toss, and the coin lands visibly on the table.
-4. **Boxing and signature.** A three-quarter mid-shot of the box on 50mm (recommendation), then a macro of the signature and date across the tape seam (85mm or a macro lens, recommendation).
-5. **Card inserts.** Top-down, each card flat and fully legible, framed with room for the super.
-6. **Envelope.** Top-down: the cards go in, both people sign the flap, and the envelope is taped to the box.
-7. **Closing wide.** Locked: the wearer puts the worn hat on and walks out, and the box stays in frame.
-
-**Essential: the record shoot (not for the cut; the whole series rests on it)**
-
-8. **Main camera, both hats, seven frames each:** front, top-down, and five macros (brim edge, crown front, embroidery, sweatband, strap).
-   - Each hat sits on the same marked stand, with the brim centre on the mark, the strap on the logged notch and a grey card in every frame.
-   - Front shot on 50–85mm at a measured distance. Top-down from an overhead arm. Macros on a 90–100mm macro lens, or an 85mm at minimum focus.
-   - Everything on manual, f/8–f/11 for depth of field, RAW stills plus a 3s clip of each frame.
-   - All lenses and settings here are recommendations.
-9. **Phone kit, the same seven frames per hat:**
-   - Use the wearer's own phone (log the model), on the main 1x lens only.
-   - Turn off automatic macro switching, lock exposure and focus, and turn off filters and portrait mode.
-   - Measure and log the clamp height and distance.
-   - The wearer shoots this set under the producer's eye, so it doubles as their training.
-10. **Both hats in one frame,** front and top-down, under the same light. This is the shared-frame baseline for wear 30.
-11. **Slate and set record.**
-    - A slate card at the start of each set: hat ID (W or C), frame name, “WEAR 0” and the date.
-    - A wide of the record set showing the stand, tape marks, lights and camera positions, for the setup sheet.
-12. **Identification inserts.** The inside ID mark on each hat (if approved), plus any batch label, tag or order record that confirms the batch.
-
-**Later sessions**
-- **Wear 30:** rebuild from the setup sheet and repeat items 8–10 on both the main camera and the phone kit. Add the box-opening close and the finale two-shot.
-
-**Optional extras**
-- Singles of Shak and the wearer during the read-outs (85mm, recommendation).
-- Top-down of the full batch before anyone touches it.
-- A turntable 360° of each hat, for the pinned carousel (not the Ep. 0 cut).
-- A 60s handover clip of the producer walking the wearer through the phone kit. It's for the wearer's reference, not for posting.
-- A dated still of the box in its storage spot.
-- The coin toss in slow motion.
+**Optional**
+- Macro of any crease or dent.
+- The owner pushing a dent out by hand, filmed as a separate step and only if they'd normally do it.
 
 #### E. Direction for Shak
-
-- **What he's doing:** committing, on record, to a call about his own hat, in front of the person whose wears will prove it right or wrong. He doesn't choose the hats or decide which one is worn, and he doesn't see the wearer's card before he writes his own.
-- **Who he's speaking to:** the wearer while they write and after they read. The lens when he reads his card: it's a statement for the record, so speaking straight to camera works here.
-- **Tone:** plain and specific. A bet, not a pitch, in whatever words he'd actually use.
-- **The card:** one named part and one rough wear number.
-  - If he genuinely thinks nothing will show by 30, he still names the part he reckons goes first and writes “after 30”. That's still a call, and it doesn't play as a durability claim.
-  - Vague answers (“nothing”, “the whole thing”) don't count.
-- **Off limits on camera:** materials, how or where the hat is made, care advice, and how long it will last. None of these are confirmed. He gives the wearer no instructions on looking after the hat.
-- **Starting points only:** “That's mine. No changing it at thirty.” / “[Part]. Around wear [x].”
-
-**Off-camera questions (asked before he writes, so he thinks it through before committing):**
-- “On caps you've worn yourself, what's usually gone first?”
-- “Look this one over. Which bit are you least sure about?”
-- “What would it have to look like before you'd say it's gone?”
-- “Roughly when? Pick a number.”
-
-**After the wearer reads:**
-- “What do you make of their call?”
-
-**At wear 30:**
-- Before the cut: “Still back your call?”
-- After: “Whose call was closer?” and “Anything there you didn't expect?”
-- “Would you change anything on the next run because of this?” Keep his answer only if it describes a real decision.
+Shak isn't in the packing or the unpack. His job is the call at the start and his honest reaction at the end. He talks to the producer, not the lens.
+- **Off-camera questions:**
+  - “Which one do you reckon comes out worse? Write it down.”
+  - (At the flip) “What do you make of that?”
+  - “Is that something you'd ever change on the hat?”
+- **Starting point for his line, only if he wants it:** “I reckon that one cops it.” Said his way or not at all.
 
 #### F. Participant prompts
+- “Pack them how you normally would.”
+- (At lunch) “Swap their places in the bag.”
+- (At the unpack) “Straight onto the marks. Don't fix anything.”
+- “What do you notice?”
 
-**The series wearer, before writing (on camera):**
-- “How often do you wear a cap, and what are you usually doing in it?”
-- “On caps you've had, what's usually gone first?”
-- “Look this one over. What do you reckon goes first, and roughly when? Write it down, but don't say it yet.”
-- “Read it out.”
-- After Shak reads: “What do you make of his call?”
-
-**Wear log fields (the same every entry, with no rating of the hat):**
-- date
-- hours out
-- what you did (general terms only, never a location)
-- weather
-- anything that happened to it (dropped, rained on, packed in a bag, sat on)
-- anything you noticed
-
-**At checkpoints:**
-- “Anything you've noticed since the last check?”
-- “Anything happen to it that should be on the record?”
-
-**At wear 30:**
-- “Before we open it, anything you want to say about your call?”
-- “Look at the two side by side. What do you see?”
-- “Whose call was closer?”
-- “Would you keep wearing it? Why or why not?”
+Never prompt for a verdict on either cap. Don't tell the owner which cap is LRGR.
 
 #### G. Payoff and ending
-
-- **Ep. 0:** ends on the bet itself. Both calls are on screen, the worn hat walks out of frame, the sealed box stays put, and the last super reads “Next check: wear 10.” That's a real test still to come, so no call to action is needed. The caption carries the wear definition, the rules and the baseline carousel.
-- **Checkpoints:** end on the wearer's own words and the number of the next checkpoint. If nothing shows, the episode says so.
-- **Wear 30:**
-  - Ends on Shak's response, with worn and twin held side by side.
-  - A plain final super: “[Part] showed first, at wear [x]. [Name] called it.” or “No visible change at 30 in these frames. Neither call landed.”
-  - Then: “One hat. One wearer. 30 logged wears. Informal.”
-  - No shop link in the video. If the account wants one, it goes in the caption.
+The wipe answers the question in a second, the ten-minute frame shows whether it recovered, and Shak's card says whether he called it. End on his first reaction to the card. No call to action.
 
 #### H. Practical requirements
-
-**People**
-- **Series wearer and log keeper,** named before the shoot.
-  - Ideally someone who wears a cap most days. Not Shak, and preferably not the lean-day participant, to keep one face out of a fifth video.
-  - If it is the lean-day participant, Ep. 0 runs after the Red or Blue? tape-off.
-  - The wearer is chosen before the shoot, never because of anything they say on the day.
-- **Shak.**
-- **LRGR helper:** lays out the batch.
-- **10x producer:** tosses the coin, gives the prompts, keeps the setup sheet, sets up the log, holds the box and checks the log weekly.
-- **10x shooter:** main camera and sound.
-
-**Products**
-- At least two LRGR hats of the same model and colourway, from one batch that LRGR confirms in writing (an order or batch record).
-- Three or four from that batch make the pick a real choice. If only two exist, say “the only two” on screen rather than staging a choice.
-- Neither hat is sold afterwards.
-
-**Props**
-- A rigid box large enough that nothing touches the crown or brim. No stuffing, unless it's LRGR's confirmed standard packaging and it doesn't press on the hat.
-- Paper tape that takes a paint marker, and a paint marker.
-- An envelope, two A5 cards printed “GOES FIRST: / BY WEAR: / NAME / DATE”, and a thick black marker.
-- A coin.
-- Two grey cards: one for the record set, one for the phone kit.
-- A marked stand: a hat stand or head form fixed to a board, with marks for the brim centre. A measuring tape.
-- A fabric pen for the inside ID marks (W and C), in a spot LRGR approves that sits outside all seven frames.
-- **Setup sheet,** printed and digital. It records:
-  - camera body, lens and focal length
-  - aperture, shutter, ISO and white balance
-  - distances, and camera and light heights
-  - light power and colour temperature
-  - stand position and strap notch
-  - a reference still of every frame
-- **Phone kit for the wearer:**
-  - a marked stand board
-  - a phone clamp or tripod with the height marked
-  - a grey card
-  - a printed reference sheet showing all seven frames
-  - a tape measure
-  - a small LED light at a fixed, noted setting (recommendation)
-- **Wear log:** a shared form or spreadsheet that timestamps each entry (recommendation), so late entries show.
-
-**Kit (recommendations)**
-- Main camera.
-- A 35mm, a 50mm, and a macro or 85mm lens.
-- An overhead arm.
-- Two soft LED panels with marked positions.
-- Two lavs.
-
-**Location**
-- Ep. 0 is shot on the tabletop set.
-- The record frames need a corner where ambient light can be blacked out or overpowered.
-- Measure light and camera positions from the stand, not the room, so the wear-30 set can be rebuilt anywhere.
-
-**Time on the day (about 45 minutes)**
-- 0–5 min: batch laid out, the pick and the coin toss. The wearer sets the worn hat's strap and the control goes on the same notch. ID marks go on both hats.
-- 5–20 min: record shoot on the main camera (seven frames per hat, plus the shot with both hats in one frame).
-- 20–30 min: phone-kit record, shot by the wearer.
-- 30–35 min: the control is boxed, taped and signed.
-- 35–45 min: cards written apart, then the opening two-shot and the read-outs in one take, the envelope sealed, the closing wide and the inserts.
-- If it runs over, the inserts give way. The record shoot, the seal and the cards never do.
-
-**Checkpoint logistics**
-- The wearer shoots each checkpoint on the day the 10th or 20th wear is logged, before the next wear.
-- They send the files to the producer the same day for an alignment check. A reshoot is fine as long as it happens before the next wear.
-- Wear 30 is a 10x session of about an hour: about 30 minutes to rebuild from the setup sheet and 30 to shoot.
-- At four or five wears a week, wear 30 lands in about six to eight weeks.
-
-**Evidence**
-- Written batch confirmation.
-- The wear log.
-- A dated photo of every wear: recommended for any wearer, required if Shak wears it.
-- Dated photos of the sealed box on each checkpoint day.
-- All baseline files and the setup sheet, saved in two places.
-
-**Permissions and releases**
-- The wearer's release covers a series running one to two months, their name on screen, and log details in captions (never locations).
-- Shak's written sign-off, before the slate locks, to publish any wear or fading and his call being wrong.
-- Confirmed care instructions before any cleaning. If cleaning happens anyway, it's logged and disclosed.
-- LRGR's approval for the inside ID marks.
-- Agreement that 10x holds the box.
+- **People:** the participant (their own everyday bag), Shak for the call and the flip, the producer for prompts and the setup sheet, the shooter.
+- **Products:** one new LRGR hat that won't be sold afterwards, and a second copy of the comparison cap bought by the producer to the same written rule.
+- **Props:** gridded cutting mat, tape for the marks, an A6 card and marker, a grey card in the before and after frames.
+- **Location:** a corner of the tabletop space that can stay set all day without being bumped.
+- **Releases:** the participant's release covers their bag appearing on camera.
 
 #### I. Honest execution
-
-**What it demonstrates**
-- What 30 logged wears by one person did to one LRGR hat, next to a twin from the same batch that sat sealed for the same period, in matched frames.
-- Whether two named people's written predictions matched what showed.
-
-**What it doesn't demonstrate**
-- How the model ages in general, on other heads, in other climates or with other habits. It's one hat and one wearer.
-- Anything about waterproofing, sweat, heat or washing.
-- That LRGR lasts longer than any other brand. There is no comparison cap in this test, and none is implied.
-- A lab measurement. Frames with a grey card show visible change. They don't measure colour or shape.
-- That the twin is “how a new hat stays”. It's a hat that sat in a box for the same stretch.
-
-**Keeping it fair**
-- **Selection:** the wearer picks the hats and a coin decides which is worn. Shak has no hand in either choice.
-- **Batch:** batch claims go only as far as LRGR's written confirmation.
-- **Strap and marks:** for every record shoot, the strap goes back to the logged notch on the same marks. The notch the wearer actually uses is logged separately.
-- **As they come:** hats are shot exactly as they arrive. No brushing, reshaping, pushing out dents or cleaning before any frame.
-- **Every frame shown:** all seven frames go out at every checkpoint, not just the flattering ones. Captions describe what's visible and never claim a cause the log doesn't support.
-- **The log:** filled in on the day of each wear, never backfilled. Any gaps are disclosed.
-- **The seal:** shown intact at every checkpoint and at wear 30. Anything that happened to the box is disclosed.
-- **The cards:** read in full and shown unedited, at Ep. 0 and at wear 30.
-- **Changes between sessions:** any change of phone, light or location is disclosed on the frame it affects.
-- **Disclosure:** any link between the wearer and LRGR or 10x is disclosed once per episode. If Shak is the wearer: “Shak's wearing it. He's not neutral.”
-- **No visible change** is reported as exactly that, never as “built to last”.
+- **Demonstrates:** what one shoot day in one real bag, packed one person's way, did to these two caps, and whether it recovered after ten minutes.
+- **Does not demonstrate:** durability, how either cap holds up over weeks, or what any other bag or packing style would do.
+- **Keeping it fair:**
+  - Both caps go into the same bag, packed by the owner without direction.
+  - They swap places halfway so neither spends the whole day on the bottom.
+  - No rehearsal. Testing first and filming only a good run is selection bias.
+  - No reshaping before the after frames, and no steaming or washing unless LRGR's care instructions are confirmed.
+  - On screen: “One bag, one shoot day, one way of packing.”
 
 #### J. Contingency
+- **No visible change on either cap:** that's the result. Post it as “Nothing happened”, with the wipe and the card flip. It's shorter, and still a real answer.
+- **The LRGR hat comes out worse:** it stays in, as agreed in the sign-off.
+- **The owner forgets the lunch swap:** say so on screen.
+- **The owner's bag isn't suitable or they didn't bring one:** use a crew member's everyday bag, disclosed on screen.
+- **No second comparison cap:** swap this slot for Can't Unsee It, only if the pre-interview turned up real pet hates.
 
-- **No visible change by the finale:**
-  - **At wear 10 or 20:** post anyway, shorter (8–10s): the wipe, “No visible change at 10” and the log card. The counter moving is the format. Never zoom in until something shows, and never add a part nobody predicted.
-  - **At wear 30:** the finale still works on the box opening, the both-in-one-frame shot, the macros and the cards. Super: “No visible change at 30 in these frames. Neither call landed.” Shak responds, unscripted. Any extension to 60 is announced after the wear-30 result posts, under the same rules, never instead of it.
-- **The result isn't what anyone predicted:**
-  - **Something neither person predicted goes first:** that's the result, and both calls missed. Show it and ask Shak what he makes of it.
-  - **A change shows early:** post it at the checkpoint where it first appears. Nothing is held back for the finale.
-  - **The predictions match:** keep them. The “by wear” numbers become the bet. If the cards are identical, say so on screen, and the bet becomes whether both are right.
-- **The wearer would rather wear another hat:**
-  - There's no “nothing else” rule, so that's fine. Only LRGR wears count, so the series runs slower, and the caption updates the expected finale. Nobody pushes them to wear it more.
-  - If the lean-day participant picked the other hat in Red or Blue?, nothing changes here. They're the wearer because they were named before the shoot.
-- **Problems during the series:**
-  - **The wearer drops out:** the series stops and an episode says so, with whatever the last checkpoint showed. Never swap in a fresh hat or a new wearer.
-  - **Accident (lost, crushed, put through a wash):** log it, post what happened and what it did, and never present it as normal wear. If the hat is lost, the series ends and says so.
-  - **Seal or box damaged in storage:** show it and say so. Continue only if the twin is visibly undisturbed.
-  - **The wearer changes phone:** disclose it at the next checkpoint. From then on, wipes run within the new phone's frames, and wear 30 leans on the main-camera baseline.
-- **Problems before or on the day:**
-  - **Only one hat from the confirmed batch:** no box. Ep. 0 opens on Shak and the wearer either side of the hat on its stand, cards up. The producer keeps the envelope. Wear 30 compares against the Ep. 0 setup-sheet frames, with “No twin: compared with day-one photos” on screen.
-  - **No wearer named by shoot day:** Shak wears it, disclosed as an interested party, with a dated photo of every wear. The producer or the lean-day participant writes the second card.
-  - **The day runs over:** keep the record shoot, the seal and the cards. Drop the singles and the closing wide. The opening two-shot and the card inserts carry Ep. 0.
-- **Shak has a genuinely worn hat of the same model, with dated evidence:** it can run once alongside the series, described as his one hat. It's never part of the bet.
 
 ## 6. Realistic batch-shoot plan
 
-**Assumptions:** none of this is confirmed. Lenses, kit, crew and locations below are recommendations.
+**Everything is filmed in one session.** Nothing needs a second day or a follow-up shoot. **Assumptions:** none of this is confirmed. Lenses, kit, crew and locations below are recommendations.
 - **Crew:**
   - 10x shooter (Hunter).
   - A 10x producer.
@@ -2440,31 +2225,31 @@ The wearer logs 30 real wears and does checkpoints at 10 and 20 on a phone kit. 
 | Time | Block | Concepts | Who | Notes |
 |---|---|---|---|---|
 | 07:30–09:00 | Load-in and build | All | Crew | Build and light all three spaces. Lock the profile set, record the continuity sheet. Producer tapes the Red or Blue? caps and does the coin toss for order off camera. Decoys go into opaque bags. Rig check on the Tug Count locked camera. |
-| 09:00–09:20 | Participant arrival | — | Participant, producer | Releases and lav. Neutral briefing: "We're filming you trying some caps and doing an hour of [activity]." No brand talk. Shak stays out of sight. |
-| 09:20–10:50 | Red or Blue? Part 1 | Red or Blue? | Participant, producer, shooter | Mirror pick, then locked side and back frames, the stacked split on the laptop, then the second pick. Overlay check between each hat change. Picks are recorded once and never repeated. |
+| 09:00–09:30 | Arrival and packing | In The Bag (before) | Participant, producer, Shak (card only) | Releases and lav. Neutral briefing: "We're filming you trying some caps and doing an hour of [activity]." No brand talk. Before stills of both bag caps on the mat; Shak writes his call off set; the participant packs both into their own bag, which stays with them all day. |
+| 09:30–10:50 | Red or Blue? Part 1 | Red or Blue? | Participant, producer, shooter | Mirror pick, then locked side and back frames, the stacked split on the laptop, then the second pick. Overlay check between each hat change. Picks are recorded once and never repeated. |
 | 10:50–11:00 | Break and reset | — | All | Retag the two caps "1" and "2" for The Tug Count. Shak signs the draw margin on camera. |
-| 11:00–12:15 | Parallel block | The Tug Count (activity space) + Ours Or Not? and Shak's half of Mark It Up (tabletop) | Participant + helper / Shak + producer + shooter | Tug Count: four 15-min blocks A-B-B-A on the locked rig, helper clicking. Tabletop: Ours Or Not? (about 45 min for six rounds, read-out and score guess), then Shak's three strips (about 30 min). If the tabletop overruns, Shak's strips move to after lunch (+30 min). |
+| 11:00–12:15 | Parallel block | The Tug Count (activity space) + Ours Or Not? and Shak's half of Mark It Up (tabletop) | Participant + helper / Shak + producer + shooter | Tug Count: four 15-min blocks A-B-B-A on the locked rig, helper clicking, with The Lift filmed at each swap (about 2 min each). Tabletop: Ours Or Not? (about 45 min for six rounds, read-out and score guess), then Shak's three strips (about 30 min). If the tabletop overruns, Shak's strips move to after lunch (+30 min). |
 | 12:15–12:30 | Tug Count wrap | The Tug Count | Helper, shooter | Stop the rigs, offload and back up to two drives. Remove the tags. |
 | 12:30–12:50 | Tape-off | Red or Blue? Part 2 | Shak, participant | On the locked profile set. Shak hears the picks for the first time and peels the tape himself. |
-| 12:50–13:35 | Lunch | — | All | Card backup number 1. |
-| 13:35–14:20 | Ep. 0 | What Goes First? | Shak, series wearer | Batch pick, coin toss, cards written and read, setup-sheet record shoot, box sealing. Lean: the participant is the series wearer (disclosed), or Shak is, if no one else is committed. |
-| 14:20–14:50 | Wearer's half and reveal | Mark It Up | Participant, then Shak | The participant places three strips with Shak out of the room. Then the single cover lift with both in frame. |
-| 14:50–15:00 | Break | — | All | Reset the table and chairs for The Drawer Hat. Swap lavs. |
-| 15:00–16:00 | Conversation | The Drawer Hat | Shak, participant | The participant's own cap from their bag. Allow the full hour because the guess, reason, flip and fix need room. Before-and-after on the profile marks only if the fix needs it. Fallback: the daily-hat episode. |
-| 16:00–16:30 | Pickups | All | Shak, shooter | Macros, hand inserts, box and tape details, Shak's off-camera answers, and room tone in each space. |
-| 16:30–17:00 | Buffer | — | — | Absorbs overruns. If unused, film Can't Unsee It (only if the pre-interview turned up real pet hates). |
-| 17:00–17:45 | Pack down | — | Crew | Final double backup, label cards, return LRGR stock, bag and label the decoys. |
+| 12:50–13:35 | Lunch | In The Bag (swap) | All | Card backup number 1. The participant swaps the two caps' places in their bag, filmed on a phone. |
+| 13:35–14:05 | Bonus or buffer | Can't Unsee It | Shak, shooter | Only if the pre-interview turned up real pet hates. Otherwise it's buffer. |
+| 14:05–14:35 | Wearer's half and reveal | Mark It Up | Participant, then Shak | The participant places three strips with Shak out of the room. Then the single cover lift with both in frame. |
+| 14:35–14:45 | Break | — | All | Reset the table and chairs for The Drawer Hat. Swap lavs. |
+| 14:45–15:45 | Conversation | The Drawer Hat | Shak, participant | The participant's own cap from their bag. Allow the full hour because the guess, reason, flip and fix need room. Before-and-after on the profile marks only if the fix needs it. Fallback: the daily-hat episode. |
+| 15:45–16:15 | Unpack | In The Bag (after) | Participant, Shak | Caps straight out onto the marks, after stills from both positions, then Shak's card flip. The ten-minute frame is shot at 16:25 during pickups. |
+| 16:15–16:45 | Pickups | All | Shak, shooter | Macros, hand inserts, box and tape details, Shak's off-camera answers, and room tone in each space. |
+| 16:45–17:15 | Buffer | — | — | Absorbs overruns. |
+| 17:15–18:00 | Pack down | — | Crew | Final double backup, label cards, return LRGR stock, bag and label the decoys. |
 
 **What the lean day completes:**
-- All six concepts, which is seven posts once Red or Blue? Part 2 is counted.
-- The Tug Count's blind recount happens in post.
-- What Goes First? checkpoints at wears 10 and 20 are shot later on the phone kit.
+- All six concepts plus The Lift, which is eight posts once Red or Blue? Part 2 is counted.
+- Everything is filmed in the session. Only The Tug Count's blind recount happens afterwards, in the edit.
 
-**Day length and footage:** about 10 hours on site, with roughly 3–4 hours of usable raw footage.
+**Day length and footage:** about 10.5 hours on site, with roughly 3–4 hours of usable raw footage.
 
 **What gets cut or deferred if the day is short:**
-- **No helper or no second rig:** The Tug Count can't run alongside the tabletop. Move it to its own session on the wearer's time (phone on a tripod, helper clicking) and the day carries five. This saves about 1.25 hours.
-- **Running over at 15:00:** The Drawer Hat moves to its own short session with a real owner. Never rush it.
+- **No helper or no second rig:** The Tug Count can't run alongside the tabletop. Run it in sequence on the main camera in the same session. That adds about 1.25 hours, so drop Can't Unsee It and use the buffer.
+- **Running over at 14:45:** The Drawer Hat switches to the daily-hat version (about 30 minutes) rather than being rushed.
 - **The cost:** one participant appears in four of the six videos. Disclose any link to LRGR or the crew once per video, and space their videos apart when posting (order in section 4).
 
 ### Expanded version: four to six participants
@@ -2473,24 +2258,23 @@ Same build, rules and locked set. Participants get staggered call times so nobod
 
 | Time | Block | Concepts | Who | Notes |
 |---|---|---|---|---|
-| 07:30–09:00 | Load-in and build | All | Crew | As lean. Also measure and log the hat's notch ladder for Will It Do Up? on the tabletop, with the method shown on camera. |
+| 07:30–09:00 | Load-in and build | All | Crew | As lean, except P2 (the bag owner) arrives at 08:45 to pack In The Bag. Also measure and log the hat's notch ladder for Will It Do Up? on the tabletop, with the method shown on camera. |
 | 09:00–12:50 | Core morning | Red or Blue?, The Tug Count, Ours Or Not?, Shak's half of Mark It Up, tape-off | P1 (blind wearer), Shak | Same as lean, 09:00–12:50. |
 | 12:50–13:35 | Lunch | — | All | Backup number 1. P2 and P3 arrive at 13:20 and wait in a holding area away from the sets. |
-| 13:35–14:20 | Ep. 0 | What Goes First? | Shak, P2 (named series wearer) | P2 is someone who wears a cap most days, committed in advance to 30 logged wears. |
-| 14:20–14:50 | Wearer's half and reveal | Mark It Up | P1 | P1 stays because they're the one who has worn the hat. If a real LRGR customer can attend with their own hat, they can take this instead, with the reason disclosed. |
-| 14:50–15:50 | Conversation | The Drawer Hat | Shak, P3 (a real drawer-hat owner who hasn't worn LRGR) | Allow the full hour. |
+| 13:35–14:05 | Bag owner | In The Bag (swap) and Can't Unsee It | P2, Shak | Expanded: P2 packed their own bag at 09:00 and swaps the caps at lunch. Can't Unsee It only if real pet hates came up. |
+| 14:05–14:35 | Wearer's half and reveal | Mark It Up | P1 | P1 stays because they're the one who has worn the hat. If a real LRGR customer can attend with their own hat, they can take this instead, with the reason disclosed. |
+| 14:35–15:35 | Conversation | The Drawer Hat | Shak, P3 (a real drawer-hat owner who hasn't worn LRGR) | Allow the full hour. |
+| 15:35–15:50 | Unpack | In The Bag (after) | P2, Shak | Straight onto the marks, then the card flip. Ten-minute frame during the break. |
 | 15:50–16:00 | Break | — | All | P4–P6 arrive and sit away from the set. Reset for the group. |
 | 16:00–17:15 | Group block | Shak's Bet, then Will It Do Up? | Shak, P4–P6 | Shak's Bet first (chats one at a time, coin under a cup, verdicts, cup lift): about 45 min. Then Will It Do Up? with the same three heads (tape call against the person's own strap choice): about 30 min. Shak's Bet needs three people who have their own everyday caps. |
 | 17:15–17:45 | Pickups | All | Shak, shooter | As lean, kept tight. |
 | 17:45–18:30 | Pack down | — | Crew | Final double backup. |
 
 **What the expanded day completes:**
-- The six, plus Shak's Bet and Will It Do Up?: eight concepts, nine posts.
+- The six, The Lift, Shak's Bet and Will It Do Up?: nine concepts, ten posts.
 - One participant now appears in only two or three videos instead of four.
 
-**Day length:** about 11 hours on site, which is long. Two options:
-- **Split it (recommended):** run the lean day, then a half-day group session (The Drawer Hat, Shak's Bet and Will It Do Up?) on another date.
-- **Keep it to one day:** drop the 30-minute buffer only if the morning finishes on time.
+**Day length:** about 11 hours on site in one session. If the morning runs late, drop Will It Do Up? from the group block first, then Can't Unsee It. Don't cut the buffer before the group block.
 
 ### Recommended kit (to confirm)
 - **Main camera:**
@@ -2506,7 +2290,7 @@ Same build, rules and locked set. Participants get staggered call times so nobod
   - A6 cards and a thick marker.
   - Coins, plus a die for Ours Or Not?.
   - Opaque bags for the decoys.
-  - The What Goes First? kit: a rigid box, paper tape, a paint marker, envelopes, grey cards and a marked hat stand.
+  - For In The Bag: a gridded cutting mat, an overhead rig or boom arm, and a grey card.
   - A soft measuring tape.
 - **Media:** three or more fast cards and two backup drives.
 
@@ -2516,23 +2300,23 @@ The lean day needs three people behind the camera:
 - **Producer:** runs the prompts, the log, the coin tosses and the blind key.
 - **LRGR helper:** the Tug Count clicker and hat swaps.
 
-With only Hunter and the helper, cut to five concepts and move The Tug Count to its own session. One person can't shoot the tabletop and keep the blind key at the same time.
+With only Hunter and the helper, run The Tug Count in sequence and drop Can't Unsee It. One person can't shoot the tabletop and keep the blind key at the same time.
 
 ## 7. Client confirmation checklist
 
 ### Essential before locking the concepts
-1. **Shak signs off that results go out as filmed** in all six: a pick or count that goes against LRGR, a miss in Ours Or Not?, orange tape on his own hat, visible wear in What Goes First?, and a "keep your hat" ending in The Drawer Hat. If he declines one, that slot gets re-planned (section 4) before anything is booked.
-2. **Which hat model is the hero for this shoot,** and that six to eight units can be set aside: one for Red or Blue? and The Tug Count, two or three for the Ours Or Not? pool, a stock box for Mark It Up, and at least two from one batch for What Goes First?.
-3. **Whether LRGR can confirm two or more hats came from the same batch** (an order or batch record). Without that, What Goes First? runs against its Ep. 0 setup sheet instead of a sealed twin.
+1. **Shak signs off that results go out as filmed** in all six: a pick or count that goes against LRGR, a miss in Ours Or Not?, orange tape on his own hat, a dent in the LRGR hat in In The Bag, and a "keep your hat" ending in The Drawer Hat. If he declines one, that slot gets re-planned (section 4) before anything is booked.
+2. **Which hat model is the hero for this shoot,** and that six to eight units can be set aside: one for Red or Blue? and The Tug Count, two or three for the Ours Or Not? pool, a stock box for Mark It Up, and one for In The Bag that won't be sold afterwards.
+3. **That everything happens in one session.** No follow-up shoots or series. Only Red or Blue? posts in two parts, both filmed on the day.
 4. **Whether Shak has genuine "I'd change this" answers** on his own hat, checked in a short pre-interview. If not, Mark It Up becomes wearer-led or swaps for In The Bag.
 5. **How Shak prefers to work on camera:** answering someone off camera, talking straight to the lens, or a mix. This changes how the producer runs his prompts.
 
 ### Essential before filming
 1. **The participant:** someone who wears caps, has never seen LRGR hats or content, is booked through the tape-off, and has any link to LRGR or the crew disclosed. Their real everyday activity for The Tug Count, and whether they own a cap they stopped wearing.
-2. **The series wearer and log keeper** for What Goes First?, named before the shoot and committed to 30 logged wears.
+2. **The participant brings their own everyday bag** for In The Bag.
 3. **Location:** three areas, with the Tug Count space out of earshot of the tabletop.
 4. **Crew:** an LRGR helper for the full day, and a 10x producer.
-5. **Care instructions** for the hero hat, so What Goes First? doesn't wash, clean or store it in a way LRGR wouldn't recommend.
+5. **Care instructions** for the hero hat, so nobody steams or reshapes a dent in a way LRGR wouldn't recommend.
 6. **Signed releases** for every participant, including on-screen measurements (Will It Do Up?) and their own caps (The Drawer Hat).
 7. **A blind recounter** for The Tug Count with no link to LRGR or 10x's work on the account.
 

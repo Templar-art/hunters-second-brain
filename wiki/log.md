@@ -1218,3 +1218,6 @@ Ingested the brief (raw/lrgr/). Wrote [[lrgr-than-life-apparel]] and projects/st
 
 ## [2026-10-18] query | LRGR plan v2 (critique and rework)
 A multi-agent critique and rework of the LRGR PDF produced a new 12-concept slate, six shoot-ready executions and a batch schedule. Two executions are unreviewed drafts. Filed on [[lrgr-than-life-apparel]].
+
+## [2026-10-18] query | LRGR v2: one-session constraint
+All multi-day content was removed. What Goes First? was replaced by The Lift and In The Bag (same-session version). The client PDF v2 was rebuilt.
