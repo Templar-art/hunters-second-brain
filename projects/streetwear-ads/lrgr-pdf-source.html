@@ -1,0 +1,306 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:0}
+:root{--blue:#61a8d8;--ink:#0d1114;--grey:#6b737a;--line:#e3e6e9;--soft:#f3f6f8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins,Arial,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:10pt;line-height:1.55}
+.page{width:210mm;height:297mm;padding:20mm 18mm 18mm;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column;gap:7mm}
+.foot{position:absolute;left:18mm;right:18mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7pt;color:var(--grey);letter-spacing:.14em;text-transform:uppercase}
+.eyebrow{font-size:7.5pt;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+h1{font-weight:700;letter-spacing:-.02em;line-height:1}
+h2{font-size:26pt;font-weight:700;letter-spacing:-.02em;line-height:1.05}
+h3{font-size:15pt;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.k{font-size:7pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);margin-bottom:1.2mm}
+.rule{height:1px;background:var(--line)}
+/* cover */
+.cover{background:var(--ink);color:#fff;padding:22mm 20mm}
+.cover h1{font-size:58pt;margin-top:auto}
+.cover h1 span{color:var(--blue)}
+.cover .sub{font-size:13pt;font-weight:300;max-width:120mm;color:#c9d2d9}
+.cover .meta{display:flex;gap:14mm;font-size:8pt;color:#9aa6af;letter-spacing:.12em;text-transform:uppercase;border-top:1px solid #2a3238;padding-top:6mm}
+.cover .meta b{display:block;color:#fff;font-weight:600;letter-spacing:.04em;text-transform:none;font-size:10pt;margin-top:1mm}
+.cover svg{width:120mm;align-self:flex-end;margin-top:6mm}
+/* intro */
+.lead{font-size:13pt;font-weight:300;line-height:1.5;max-width:150mm}
+.body p+p{margin-top:3mm}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm}
+.pillar{border-top:2px solid var(--blue);padding-top:4mm}
+.pillar b{display:block;font-size:11pt;font-weight:600;margin-bottom:1mm}
+.pillar span{color:var(--grey);font-size:9pt}
+.big{font-size:20pt;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.big span{color:var(--blue)}
+/* concept */
+.concept{flex:1;display:flex;flex-direction:column;gap:3.2mm;padding-bottom:5mm}
+.concept+.concept{border-top:1px solid var(--line);padding-top:6mm}
+.chead{display:flex;align-items:baseline;gap:5mm}
+.num{font-size:30pt;font-weight:800;color:var(--blue);line-height:1;width:16mm}
+.pill{margin-left:auto;font-size:6.8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:1.3mm 2.6mm;border-radius:10mm;border:1px solid var(--line);color:var(--grey);white-space:nowrap}
+.pill.pick{background:var(--blue);border-color:var(--blue);color:#fff}
+.idea{font-size:10.5pt}
+.hook{background:var(--soft);border-left:3px solid var(--blue);padding:3.5mm 5mm}
+.hook q{display:block;font-size:12pt;font-weight:600;margin-top:1mm;quotes:none}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm 8mm}
+.cols p{font-size:9pt}
+/* table */
+table{width:100%;border-collapse:collapse;font-size:8.8pt}
+th{text-align:left;font-size:6.8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);font-weight:600;padding:2.5mm 3mm;border-bottom:1.5px solid var(--ink)}
+td{padding:2.6mm 3mm;border-bottom:1px solid var(--line);vertical-align:top}
+.rank td:first-child{font-size:20pt;font-weight:800;color:var(--blue);width:14mm;line-height:1}
+.rank td b{font-weight:600;font-size:10pt}
+.plan td{padding:1.8mm 2.5mm;font-size:8.3pt}.plan{gap:4mm;padding-top:15mm;padding-bottom:20mm}.plan .hook q{font-size:10pt}.plan .hook{padding:2.5mm 4mm;font-size:8.8pt}.plan .idea{font-size:9.5pt}.plan .cols p,.plan .honest p{font-size:8.4pt}.plan li{font-size:8.4pt}.plan h2{font-size:18pt!important}.plan li{margin-bottom:.5mm}
+.beats td:first-child{white-space:nowrap;color:var(--blue);font-weight:600;width:16mm}
+ul{padding-left:4mm}li{margin-bottom:1mm;font-size:9pt}
+.ess{font-size:6.8pt;font-weight:700;letter-spacing:.14em;color:var(--blue);text-transform:uppercase;margin-bottom:1mm}
+.honest{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;border-top:1.5px solid var(--ink);padding-top:3.5mm;margin-top:auto}
+.honest p{font-size:8.6pt}
+/* shoot day */
+.slot{display:grid;grid-template-columns:30mm 1fr;gap:6mm;padding:3.6mm 0;border-bottom:1px solid var(--line)}
+.slot .t{font-weight:600;color:var(--blue);font-size:9.5pt}
+.slot b{font-weight:600;font-size:10.5pt;display:block}
+.slot span{font-size:9pt;color:#333}
+.boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.box{background:var(--soft);padding:5mm}
+.box b{display:block;font-weight:600;margin-bottom:1.5mm}
+.box span{font-size:8.8pt}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm;list-style:none;padding:0}
+.checks li{display:flex;gap:3mm;font-size:9.2pt}
+.checks li:before{content:"";flex:none;width:3.4mm;height:3.4mm;border:1.2px solid var(--ink);border-radius:.6mm;margin-top:1mm}
+.close{margin-top:auto;background:var(--ink);color:#fff;padding:9mm 10mm}
+.close h2{color:#fff}.close h2 span{color:var(--blue)}
+.close p{color:#c9d2d9;margin-top:3mm;max-width:140mm}
+</style></head><body>
+<div id="doc"></div>
+<script>
+const C=[
+{n:1,t:"Fits Around. Doesn't Sit Down.",p:"Side by Side",pick:1,
+ idea:"On one head, a shallow cap is fitted snug, then loosened, then put next to the LRGR A-frame in profile. It shows that loosening the strap changes how big the hat is around your head, not how deep the crown is.",
+ frus:"\"It fits. So why does it look wrong?\"",
+ open:"Tight side profile of a cap sitting high, with a clear gap above the ear.",line:"\"This fits his head. It just doesn't sit on it.\"",
+ happens:"Snug the shallow cap → fixed side shot → loosen two notches (it drops a little and goes loose) → the LRGR hat at the same snug fit, same side shot.",
+ takeaway:"If your hat sits high, it's crown depth, not size. Loosening won't fix it.",
+ why:"Turns the most common fit complaint into something you can see in three seconds.",
+ need:"One shallow comparison cap, and a wearer where the difference actually shows (tested before rolling)."},
+{n:2,t:"Same Head. Same Camera. Two Profiles.",p:"Side by Side",pick:1,
+ idea:"A locked tripod and tape marks on the floor, one wearer, two hats, front, side and back. Shown as a split screen so the viewer judges the difference.",
+ frus:"\"What does a deeper crown actually look like on a person?\"",
+ open:"Split screen: the same face in side profile, two different hats.",line:"\"Same head, same camera, same spot. Only thing that changes is the hat.\"",
+ happens:"The wearer turns 0° / 90° / 180° in hat A, then repeats in hat B. Nothing about the camera or light moves. Both hats are adjusted the way the wearer likes them.",
+ takeaway:"A clear, fair look at how each hat sits. The viewer picks.",
+ why:"Proof over promises in its simplest form, and it becomes a repeatable format.",
+ need:"One comparison cap, named on screen."},
+{n:3,t:"The Drawer Hat",p:"Built For Us",pick:0,
+ idea:"Someone brings in a hat they bought and stopped wearing. They explain why, Shak looks at the fit, and then they try an LRGR hat. Whatever they think, it stays in.",
+ frus:"\"I paid for it and it just lives in the drawer.\"",
+ open:"Hands drop a worn cap on the table next to an LRGR hat.",line:"\"Alright. Why'd you stop wearing this one?\"",
+ happens:"A chat across the table. They put their own hat on and Shak points out what he sees from the side. They swap to LRGR and we film front and side. They give an honest verdict.",
+ takeaway:"A specific, recognisable reason hats go unworn, and whether a different shape fixes it.",
+ why:"Starts from a real frustration. Shak's eye for fit comes through naturally.",
+ need:"Real people with a real unworn hat. The outcome isn't cast."},
+{n:4,t:"Who It's Not For",p:"Built For Us",pick:1,
+ idea:"Shak names the fit preferences the LRGR shape won't suit, and shows it on someone who prefers a shallower hat.",
+ frus:"\"Is a deep A-frame actually right for me?\"",
+ open:"Shak lifts the LRGR hat off a wearer and hands them a lower cap.",line:"\"Honestly? If you like it sitting up top, ours probably isn't it.\"",
+ happens:"The wearer tries the LRGR hat and Shak points out where it sits differently from what they like. They swap to the shallower cap and explain why they prefer it. Shak says who the LRGR shape is built for.",
+ takeaway:"Viewers know straight away whether this is their hat.",
+ why:"A founder saying who shouldn't buy is rare, and it makes everything else Shak says believable.",
+ need:"A wearer who genuinely prefers a shallow fit, and Shak's real opinion."},
+{n:5,t:"The Tug Count",p:"Hat Test",pick:0,
+ idea:"A mate clicks a tally counter every time the wearer reaches up to fix their hat during the same 30-minute everyday routine. One session per hat.",
+ frus:"\"Why am I always pulling my cap down?\"",
+ open:"Close-up: a thumb clicks a tally counter as a hand tugs a brim.",line:"\"Every time he touches it, I click.\"",
+ happens:"The same walk, coffee run and drive on two similar days. A wide fixed camera, rules for what counts set before filming, and both tallies revealed at the end.",
+ takeaway:"An informal, one-person look at how much each hat needs fixing, labelled as exactly that.",
+ why:"Makes comfort and fit something you can count and watch.",
+ need:"Two scheduled sessions. The result is whatever it is, even a draw."},
+{n:6,t:"30 Wears. One Hat.",p:"Hat Test",pick:1,
+ idea:"One hat, logged on every real wear, inspected at wear 0, 10, 20 and 30 with identical framing.",
+ frus:"\"What does it look like after I actually wear it?\"",
+ open:"A fresh hat on a turntable, with \"WEAR 0 / 30\" on screen.",line:"\"Wearing this one, nothing else, thirty times. Here's day one.\"",
+ happens:"Baseline macros of the brim curve, crown shape, embroidery, sweatband and strap. A quick selfie on each wear day with a dated log. Re-inspected at each checkpoint on the same marks.",
+ takeaway:"Real ownership evidence, shown over time.",
+ why:"A recurring series with built-in continuity that gives people a reason to follow.",
+ need:"A dedicated hat (marked inside), and someone who keeps the wear log."},
+{n:7,t:"Every Part, What It's For",p:"Built For Us",pick:1,
+ idea:"Shak goes through the hat one detail at a time and says what each part does for fit, look or use.",
+ frus:"\"What actually makes one cap better than another?\"",
+ open:"Macro: a thumb pressing the crown structure from the inside.",line:"\"Forget the logo for a sec. This is the bit that matters.\"",
+ happens:"Crown depth measured with a tape, brim curve, snapback, 3D embroidery, sweatband, then back on the head in profile. One plain sentence on each.",
+ takeaway:"What each part of the hat is there for, in plain words.",
+ why:"Talks about the product the way a maker would, with no luxury language and no digs at anyone else.",
+ need:"Confirmed materials and measurements."},
+{n:8,t:"The Sample I Sent Back",p:"Built For Us",pick:0,
+ idea:"Shak puts a rejected sample next to the final hat and explains the one detail he wouldn't let go.",
+ frus:"\"Does anyone actually care about this stuff?\"",
+ open:"Two near-identical hats, one with tape marking the problem.",line:"\"Sent this one back. Everyone reckoned I was being picky.\"",
+ happens:"Side by side: Shak points at the difference, why it mattered, and what fixing it took.",
+ takeaway:"The shape came from specific decisions, not a catalogue.",
+ why:"Shows Shak's standards through one concrete story instead of a founder-journey monologue.",
+ need:"Only works if a real sample or revision exists."},
+{n:9,t:"One Hat. Six Heads.",p:"Side by Side",pick:1,
+ idea:"The same LRGR hat on 4 to 6 people, with each person's head measurement, strap setting and an honest verdict on screen. Mixed opinions stay in.",
+ frus:"\"Will it look like that on me?\"",
+ open:"A grid of four side profiles, all in the same hat.",line:"\"Same hat, six heads. Not everyone was into it.\"",
+ happens:"Each person is measured, puts the hat on, and is filmed in a fixed front and side shot. The strap notch is logged and they give one line on it.",
+ takeaway:"A real fit reference. Find the head most like yours.",
+ why:"An honest fit guide that buyers will come back to, not a reaction montage.",
+ need:"A range of head sizes, and releases that cover showing measurements."},
+{n:10,t:"Brand New vs Mine",p:"Side by Side",pick:0,
+ idea:"A new LRGR hat next to Shak's own well-worn one of the same model.",
+ frus:"\"Will it hold its shape?\"",
+ open:"Two hats on a table, one crisp and one clearly lived in.",line:"\"This one's new. This one's mine.\"",
+ happens:"Matching macros of the brim, crown, sweatband, embroidery and strap. Then both on the same head in profile.",
+ takeaway:"How this hat has actually aged under real use.",
+ why:"Ownership evidence Shak already has, with no staging.",
+ need:"A genuinely worn hat of the same model, and how long it's been worn."},
+{n:11,t:"Mirror Says Yes",p:"Hat Test",pick:0,
+ idea:"A wearer approves a hat in the mirror, then sees the side photo a mate snapped without warning.",
+ frus:"\"Looked fine in the mirror. Then I saw the photo.\"",
+ open:"Front-on mirror shot, the wearer nodding at their reflection.",line:"\"Mirror says yes. Now check the side.\"",
+ happens:"Mirror shot in hat A, then a hard cut to the mate's phone photo from the side. Repeat in the LRGR hat at the same angle.",
+ takeaway:"Always check a hat from the side before you buy it.",
+ why:"Leads with a buying tip everyone recognises, and the product follows.",
+ need:"One comparison cap and a willing wearer."},
+{n:12,t:"Three Checks Before You Buy",p:"Built For Us",pick:0,
+ idea:"Shak's quick routine for any hat in any shop: where the brim sits against your brow, the gap above the ear, and the pull-down test.",
+ frus:"\"How do I know before I pay for it?\"",
+ open:"A finger traces the line from brim to ear on a side profile.",line:"\"Three things I check on any hat. Doesn't matter whose.\"",
+ happens:"Each check demonstrated on a shallow cap and an LRGR hat. It ends on: \"Neither's wrong. Depends how you like it.\"",
+ takeaway:"A checklist people can use in any shop.",
+ why:"Makes Shak the go-to person for hat fit, beyond his own brand.",
+ need:"Shak's real checks, in his own words."}
+];
+
+const RANK=[
+ [2,"Split profile reads instantly. The difference is as visible as it gets. One setup.","One comparison cap"],
+ [1,"The gap above the ear is the hook. It explains the problem everyone has. Same set as #1.","One shallow cap, a wearer it shows on"],
+ [9,"Grid opener. Real data across head sizes. Shows how Shak handles mixed verdicts.","4 to 6 wearers, a tape"],
+ [4,"Unexpected from a founder. Shak's honesty is the content.","A wearer who likes a shallow fit"],
+ [7,"Strong macro visuals. Shak talking like a maker. Tabletop, so it's easy.","Confirmed materials and measurements"],
+ [6,"Starts a series people follow. Only the baseline gets filmed on the day.","A dedicated hat and a wear log"]
+];
+
+const PLANS={
+2:{len:"~35s",sum:"One wearer, one locked camera, two hats, three angles. The viewer sees how each hat sits from the side and back, and decides. Takeaway: judge a hat from the side, not just the front.",
+ text:"\"Same head. Two hats.\" with small labels naming each hat.",
+ beats:[["0 to 2s","Split side profiles","Opening line","The comparison"],["2 to 7s","Wide: tripod, tape marks, wearer sitting","\"Tripod hasn't moved. He's set both how he likes.\"","It's fair"],["7 to 17s","Front A vs B, then side A vs B","Shak on the brim line and the gap above the ear","The difference"],["17 to 25s","Back A vs B","How far each one comes down at the back","The full picture"],["25 to 32s","The wearer picks","Their preference and why","Preference, kept honest"],["32 to 36s","Shak","\"Which side looks like how you want it to sit?\"","A real question"]],
+ ess:["Locked 35mm head-height shots at 0°, 90° and 180°, in both hats","A wide that proves the camera didn't move","Both hats adjusted on camera to the wearer's preference"],
+ opt:["85mm crown macros off the head","Top-down of both hats side by side"],
+ prompts:["What's the first thing you notice from the side?","Where's each one sitting against his ears?","Would you ever wear the other one? When?","Who'd actually prefer hat A?"],
+ end:"Audience question: \"Which one sits how you like it?\" It's genuine, because both answers are valid.",
+ edit:"Stacked split for 9:16, identical scale and grade on both halves. Hold each angle 2s or more. An optional matching guide line at eyebrow height.",
+ shows:"How two specific hats sit on one specific head.",not:"Comfort, durability, or how they sit on every head.",risk:"A mismatched lens or crop, or a comparison hat set up to look bad. Name the comparison, and keep the result if the wearer prefers hat A."},
+1:{len:"~30s",sum:"Shows why 'just loosen it' doesn't fix a hat that sits high. Takeaway: circumference and depth are different things, so check the depth.",
+ text:"\"Fits around ≠ sits down\"",
+ beats:[["0 to 3s","Side profile with the gap","Opening line","The problem"],["3 to 9s","Strap snug, wearer pulls it down, it rides back up","\"Snug all the way round.\"","It fits around"],["9 to 16s","Loosened two notches, same profile","\"Loosen it, drops a bit, but now it's loose.\"","The usual fix fails"],["16 to 25s","Back to snug, then the LRGR hat at the same snug fit","\"Same fit around. Deeper crown.\"","The depth difference"],["25 to 30s","A/B side freeze","\"If yours sits like the left, it's depth, not size.\"","The takeaway"]],
+ ess:["Locked 35mm side profile","85mm close-up of the strap notches changing","The hat pulled down and riding back up"],
+ opt:["A tape measuring crown depth on both hats"],
+ prompts:["What do people usually do when a hat sits high?","Does loosening help? Why not?","Who does a shallow crown actually suit?"],
+ end:"Buying takeaway: \"Check depth, not just size.\"",
+ edit:"A notch overlay (\"Notch 4 → Notch 6\"). Identical profile framing in every beat, and an optional guide line above the ear.",
+ shows:"On this head, loosening didn't bring that cap down meaningfully.",not:"Every shallow cap, or every head.",risk:"Over-tightening the comparison. Don't add any 'fits everyone' text."},
+9:{len:"~50s",sum:"A fit reference: the same LRGR hat on 4 to 6 people with measurements and honest verdicts on screen. Takeaway: find the head that's most like yours.",
+ text:"\"1 hat · 6 heads · real opinions\". Each person gets a card like \"58cm · notch 5 · 'Sits right'\"",
+ beats:[["0 to 3s","2×2 grid of side profiles","Opening line","The format"],["3 to 8s each","Tape around the head → hat on → front and side","The wearer's one-liner","Data plus preference"],["Last 8s","The grid again, labelled","What Shak noticed across them","A pattern, no overclaiming"]],
+ ess:["A tape close-up for each person","A strap-notch close-up","Locked front and side shots","The verdict line"],
+ opt:["A group shot","Shak adjusting a hat on someone"],
+ prompts:["How do you normally like a hat to sit?","Better or worse than what you usually wear?","(To Shak) Anyone surprise you?","Who didn't it suit, and why?"],
+ end:"\"Tell me your head size and I'll tell you who's closest.\" Only if Shak will actually reply. Otherwise end on the grid.",
+ edit:"Identical framing for every person. Keep the negative verdicts in, and don't save them for a punchline.",
+ shows:"How one model sat on these particular people.",not:"A universal fit, or long-term comfort.",risk:"Cutting the negative verdicts, or only picking heads it suits."},
+4:{len:"~25s",sum:"Shak openly says who the LRGR shape isn't for, and shows it. Takeaway: buyers can tell straight away if it's their hat, and they trust everything else Shak says.",
+ text:"Captions only.",
+ beats:[["0 to 3s","The swap","Opening line","Honesty first"],["3 to 12s","Wearer in the LRGR hat, side view, Shak pointing","\"See how it comes down over the ears? He doesn't want that.\"","The limit"],["12 to 20s","The shallower cap, side view","The wearer on why they prefer it","A different taste, respected"],["20 to 25s","Shak to camera","\"If hats always sit too high on you, that's who ours is for.\"","Who it IS for"]],
+ ess:["The swap","Both side profiles","Shak in medium close-up"],
+ opt:["Shak's reaction while the wearer talks"],
+ prompts:["Who's tried your hats and walked away? Why?","What would you tell a mate who likes it sitting high?","Ever thought about a shallower version?"],
+ end:"Buying takeaway: who it's built for.",
+ edit:"Few cuts. Let Shak's tone carry it, with no music sting or gotcha edit.",
+ shows:"Shak's own view of where the hat fits and where it doesn't.",not:"A measured result.",risk:"Turning the honesty into a humble-brag. Keep the limit real."},
+7:{len:"~40s",sum:"A tabletop breakdown of each part of the hat and what it does. Takeaway: what you're actually getting, in plain words.",
+ text:"One label per detail, e.g. \"Crown depth: [measured]cm\".",
+ beats:[["0 to 8s","Crown depth with a tape","Why that depth","Fit"],["8 to 15s","Brim curve","What the curve does","Look"],["15 to 22s","Snapback and notches","How it adjusts","Fit"],["22 to 30s","3D embroidery","Why it's raised (look only)","Detail"],["30 to 36s","Sweatband","What it's for","Wear"],["36 to 40s","On the head, side view","Closing line","The whole hat"]],
+ ess:["An 85mm or macro shot of each detail on a neutral surface","The tape reading in focus","One on-head side profile"],
+ opt:["Slider push-ins","Top-down layout"],
+ prompts:["Why that depth?","What did you change on the brim?","What's the 3D embroidery for?","If you had to cut one thing, what would it be, and what wouldn't you touch?"],
+ end:"Product action: \"That's the A-frame. Link's there if it's your shape.\"",
+ edit:"Hold each macro long enough to read the label. No 'premium' or 'luxury' overlays.",
+ shows:"The features and what each is meant to do.",not:"Durability or performance.",risk:"Saying embroidery proves quality, inventing materials, or knocking other brands."},
+6:{len:"~25s (ep. 0)",sum:"The first episode of a documented wear series: today's video is the baseline and the rules. Takeaway: we'll show you, not tell you.",
+ text:"\"WEAR 0 / 30\" (the counter stays the same across every episode).",
+ beats:[["0 to 4s","Turntable","Opening line","The start"],["4 to 16s","Baseline macros of the brim, sweatband, embroidery and strap","Shak noting each one","The reference point"],["16 to 22s","Shak","The rules: one wearer, logged wears, no special care","It's fair"],["22 to 25s","The hat on","\"Check back at ten.\"","A reason to follow"]],
+ ess:["A turntable 360°","Macros on marked, repeatable framing (note the lens, distance and light)","Side profile on the head"],
+ opt:["Top-down"],
+ prompts:["What do you reckon goes first?","What would count as it failing, for you?"],
+ end:"A real test still running, with check-ins at 10, 20 and 30.",
+ edit:"Identical framing every episode. Later episodes wipe from wear 0 to wear N.",
+ shows:"How one hat holds up under real, logged wear.",not:"A lab test or every hat.",risk:"Swapping in a fresh hat, skipping logged wears, or cleaning it without confirmed care instructions."}
+};
+
+
+const D=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])).replace(/\s—\s/g,", ").replace(/—/g,", ");
+const Q=s=>D(s).replace(/^\\?"|\\?"$/g,'').replace(/^"|"$/g,'');
+let pg=0;const pages=[];
+const foot=()=>`<div class="foot"><span>LRGR Than Life · Video Concepts</span><span>10x Visuals · ${String(++pg).padStart(2,'0')}</span></div>`;
+const page=(h,cls='')=>pages.push(`<section class="page ${cls}">${h}${cls==='cover'?'':foot()}</section>`);
+const svg=`<svg viewBox="0 0 420 230"><g fill="none" stroke="#5b666e" stroke-width="2"><ellipse cx="105" cy="140" rx="62" ry="74"/><path d="M150 140q14 6 0 22"/><ellipse cx="315" cy="140" rx="62" ry="74"/><path d="M360 140q14 6 0 22"/></g>
+<path d="M48 102Q105 48 162 102Z" fill="#3a4650"/><path d="M150 102L196 106" stroke="#3a4650" stroke-width="5" stroke-linecap="round"/>
+<line x1="139" y1="104" x2="139" y2="136" stroke="#61a8d8" stroke-width="1.6" stroke-dasharray="3 3"/>
+<path d="M254 130Q315 30 376 130Z" fill="#61a8d8"/><path d="M362 130L408 136" stroke="#61a8d8" stroke-width="5" stroke-linecap="round"/>
+<text x="40" y="226" fill="#9aa6af" font-family="Poppins" font-size="11" letter-spacing="1.5">GAP ABOVE THE EAR</text><text x="262" y="226" fill="#fff" font-family="Poppins" font-size="11" letter-spacing="1.5">SITS DOWN TO THE EAR</text></svg>`;
+
+page(`<div class="eyebrow">LRGR Than Life Apparel</div>
+<div class="sub">Short form video concepts and shoot plan</div>
+<h1>Fits around.<br><span>Sits down.</span></h1>${svg}
+<div class="meta"><div>Prepared for<b>Shak</b></div><div>Prepared by<b>10x Visuals</b></div><div>Format<b>Reels, TikTok, Shorts</b></div><div>Date<b>October 2026</b></div></div>`,'cover');
+
+page(`<div class="eyebrow">The big idea</div><h2>Show the side,<br>not the front.</h2>
+<p class="lead">From the front almost every hat looks fine. The problems people actually talk about show up from the side: it fits around the head but sits up high, they keep pulling it down, and it looks off in the photos their mates take.</p>
+<div class="body"><p>So the camera goes where the problem is. A locked side profile, the same head and the same light, and the viewer judges the difference for themselves.</p><p>Shak becomes the person who shows you what to look for in a hat. He doesn't have to sell it. He points out what he notices, says what annoys him, and is upfront about who the shape is not for.</p></div>
+<div class="big">One rule runs through everything.<br><span>Proof over promises.</span> We film the result, whatever it is.</div>
+<div class="rule"></div>
+<div class="pillars"><div class="pillar"><b>The Hat Test</b><span>Real world use with a real outcome.</span></div><div class="pillar"><b>Built For Us</b><span>Who it's for and the decisions behind it.</span></div><div class="pillar"><b>Side by Side</b><span>Fair comparisons in the same frame.</span></div></div>
+<div class="body"><div class="k">What's inside</div><p>12 concepts · the 6 we'd shoot first · a full plan for each of those 6 · a one day shoot schedule · what we need from you</p></div>`);
+
+const cHTML=c=>`<div class="concept"><div class="chead"><span class="num">${String(c.n).padStart(2,'0')}</span><h3>${D(c.t)}</h3><span class="pill ${c.pick?'pick':''}">${c.pick?'Shoot 1':c.p}</span></div>
+<p class="idea">${D(c.idea)}</p>
+<div class="hook"><div class="k">First two seconds</div>${D(c.open)}<q>${Q(c.line)}</q></div>
+<div class="cols"><div><div class="k">The problem</div><p>${Q(c.frus)}</p></div><div><div class="k">What happens</div><p>${D(c.happens)}</p></div>
+<div><div class="k">The viewer walks away with</div><p>${D(c.takeaway)}</p></div><div><div class="k">Why it fits LRGR</div><p>${D(c.why)}</p></div>
+<div><div class="k">Pillar</div><p>${c.p}</p></div><div><div class="k">Needed first</div><p>${D(c.need)}</p></div></div></div>`;
+for(let i=0;i<C.length;i+=2)page(`${i===0?'<div class="eyebrow">The 12 concepts</div>':''}${cHTML(C[i])}${cHTML(C[i+1])}`);
+
+const byN=n=>C.find(c=>c.n===n);
+page(`<div class="eyebrow">Recommendation</div><h2>Six for the first shoot.</h2>
+<p class="lead">Ranked by how fast the opening reads, how clearly the difference shows on screen, how much of Shak comes through, and how easy it is to film. All six can be shot in one day on one set. It's your call; swap any of them out.</p>
+<table class="rank"><thead><tr><th></th><th>Concept</th><th>Why it's in</th><th>What it needs</th></tr></thead><tbody>
+${RANK.map((r,i)=>`<tr><td>${i+1}</td><td><b>${D(byN(r[0]).t)}</b></td><td>${D(r[1])}</td><td>${D(r[2])}</td></tr>`).join('')}</tbody></table>`);
+
+RANK.forEach((r,i)=>{const c=byN(r[0]),p=PLANS[r[0]];page(`
+<div class="chead"><span class="num">${i+1}</span><div><div class="eyebrow">Shoot plan · ${D(p.len)} · ${c.p}</div><h2 style="font-size:21pt;margin-top:1mm">${D(c.t)}</h2></div></div>
+<p class="idea">${D(p.sum)}</p>
+<div class="cols"><div class="hook"><div class="k">Opening</div>${D(c.open)}<q>${Q(c.line)}</q></div><div class="hook"><div class="k">On screen text</div>${D(p.text)}</div></div>
+<div><div class="k">Beat by beat</div><table class="beats"><thead><tr><th>Time</th><th>We see</th><th>We hear</th><th>It shows</th></tr></thead><tbody>${p.beats.map(b=>`<tr>${b.map(x=>`<td>${D(x)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+<div class="cols"><div><div class="k">Shot list</div><div class="ess">Must have</div><ul>${p.ess.map(x=>`<li>${D(x)}</li>`).join('')}</ul><div class="ess" style="color:var(--grey);margin-top:2mm">Nice to have</div><ul>${p.opt.map(x=>`<li>${D(x)}</li>`).join('')}</ul></div>
+<div><div class="k">Questions for Shak (asked off camera)</div><ul>${p.prompts.map(x=>`<li>${D(x)}</li>`).join('')}</ul></div>
+<div><div class="k">Edit</div><p>${D(p.edit)}</p></div><div><div class="k">Ending</div><p>${D(p.end)}</p></div></div>
+<div class="honest"><div><div class="k">What it shows</div><p>${D(p.shows)}</p></div><div><div class="k">What it doesn't</div><p>${D(p.not)}</p></div><div><div class="k">Keep it fair</div><p>${D(p.risk)}</p></div></div>`,"plan")});
+
+page(`<div class="eyebrow">Shoot day</div><h2>One day. One set.</h2>
+<p class="lead">Grouped so the camera barely moves. The side profile set is built once and used for four concepts back to back.</p>
+<div>${[["8:30 to 10:00","Tabletop and macro","Every Part, What It's For detail shots. The 30 Wears starting point on the turntable, with framing recorded so every check in matches. Shak only."],
+["10:00 to 12:00","Locked profile set","Fits Around, Doesn't Sit Down, then Same Head, Two Profiles. One wearer. Camera, light and settings locked and never touched."],
+["12:30 to 2:30","Same set, more heads","One Hat, Six Heads with wearers in waves, then Who It's Not For with the person who likes a shallower fit."],
+["2:30 to 3:30","Shak's chair","Questions for all six, pickups, and the rules for the 30 wear series."],
+["3:30 to 4:00","Outside (optional)","The hat worn naturally, and the first logged wear for the 30 wear series."]].map(s=>`<div class="slot"><div class="t">${s[0]}</div><div><b>${s[1]}</b><span>${s[2]}</span></div></div>`).join('')}</div>
+<div class="boxes"><div class="box"><b>Done on the day</b><span>Same Head, Two Profiles · Fits Around · Six Heads · Who It's Not For · Every Part</span></div><div class="box"><b>Needs something real</b><span>The Sample I Sent Back · Brand New vs Mine · The Drawer Hat</span></div><div class="box"><b>Starts now, pays off later</b><span>30 Wears (check ins at 10, 20, 30) · The Tug Count</span></div></div>
+<div><div class="k">Kit</div><p style="font-size:9pt">One camera with a 35mm (or 24 to 70mm) and an 85mm lens, tripod, two soft LED panels, a plain grey or white wall, lav mic, a stool with tape marks, a soft measuring tape and a tally counter. Shak, one helper, and four to six people with different head sizes.</p></div>`);
+
+page(`<div class="eyebrow">Before we film</div><h2>What we need from you.</h2>
+<ul class="checks">${["How you're most comfortable on camera: straight to the lens, or answering someone off camera","Which LRGR hats and colourways go in, and in what sizes","The comparison caps, bought from a shop and named on screen","Four to six people with a range of head sizes, happy to sign a release","Materials and care instructions, so we only say what's true","Whether a real development sample or rejected version exists","Whether you have a genuinely worn LRGR hat, and how long you've had it","Where the hats are made, if it comes up","Location for the day","Who wears the 30 wear hat and keeps the log"].map(x=>`<li>${x}</li>`).join('')}</ul>
+<div class="rule"></div>
+<div class="pillars" style="grid-template-columns:1fr 1fr">${[["Results are filmed, not scripted","If the LRGR hat doesn't come out ahead, it stays in. That's what makes the rest believable."],["Fair comparisons","Same camera, light and lens. Every hat set the way the wearer likes it."],["Preference is not proof","\"I like it\" and \"it measures this\" are kept separate. An informal test is called an informal test."],["No claims we can't back","No waterproof, sweat or wash claims until they're verified."]].map(x=>`<div class="pillar"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>
+<div class="close"><div class="eyebrow">Next step</div><h2>Pick your <span>six.</span></h2><p>Go through the twelve, keep the ones that feel like you and drop the ones that don't. Send Hunter your picks and anything you can tick off the list above, and we'll lock in the shoot day.</p></div>`);
+
+document.getElementById('doc').innerHTML=pages.join('');
+</script></body></html>
