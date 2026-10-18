@@ -15,7 +15,10 @@ h3{font-size:15pt;font-weight:700;letter-spacing:-.01em;line-height:1.15}
 .rule{height:1px;background:var(--line)}
 /* cover */
 .cover{background:var(--ink);color:#fff;padding:22mm 20mm}
-.cover h1{font-size:58pt;margin-top:auto}
+.cover h1{font-size:68pt;margin:5mm 0 7mm}
+.ctop{display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.2em;text-transform:uppercase;color:#9aa6af}
+.cmid{margin:auto 0;padding-bottom:20mm}
+.cbrand{font-size:10pt;letter-spacing:.3em}
 .cover h1 span{color:var(--blue)}
 .cover .sub{font-size:13pt;font-weight:300;max-width:120mm;color:#c9d2d9}
 .cover .meta{display:flex;gap:14mm;font-size:8pt;color:#9aa6af;letter-spacing:.12em;text-transform:uppercase;border-top:1px solid #2a3238;padding-top:6mm}
@@ -42,6 +45,16 @@ h3{font-size:15pt;font-weight:700;letter-spacing:-.01em;line-height:1.15}
 .hook q{display:block;font-size:12pt;font-weight:600;margin-top:1mm;quotes:none}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm 8mm}
 .cols p{font-size:9pt}
+/* hype + scripts */
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.hcard{border-top:2px solid var(--blue);padding-top:3mm;display:flex;flex-direction:column;gap:2mm}
+.hcard h3{font-size:12pt}.hcard p{font-size:8.2pt;line-height:1.45}.hcard .hook{padding:2.2mm 3.5mm;font-size:8.4pt}.hcard .hook q{font-size:9.2pt}
+.hcard .why{color:var(--grey);font-style:italic}
+.hype{gap:4mm;padding-top:15mm}.hype .lead{font-size:10.5pt}.hype .hgrid{gap:4mm 6mm}
+.script{display:flex;flex-direction:column;gap:3mm}
+.script+.script{border-top:1px solid var(--line);padding-top:6mm}
+.script td{font-size:10pt;padding:2.6mm 3mm}
+.who{width:30mm;font-size:7.5pt!important;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
 /* table */
 table{width:100%;border-collapse:collapse;font-size:8.8pt}
 th{text-align:left;font-size:6.8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);font-weight:600;padding:2.5mm 3mm;border-bottom:1.5px solid var(--ink)}
@@ -249,9 +262,9 @@ const svg=`<svg viewBox="0 0 420 230"><g fill="none" stroke="#5b666e" stroke-wid
 <path d="M254 130Q315 30 376 130Z" fill="#61a8d8"/><path d="M362 130L408 136" stroke="#61a8d8" stroke-width="5" stroke-linecap="round"/>
 <text x="40" y="226" fill="#9aa6af" font-family="Poppins" font-size="11" letter-spacing="1.5">GAP ABOVE THE EAR</text><text x="262" y="226" fill="#fff" font-family="Poppins" font-size="11" letter-spacing="1.5">SITS DOWN TO THE EAR</text></svg>`;
 
-page(`<div class="eyebrow">LRGR Than Life Apparel</div>
-<div class="sub">Short form video concepts and shoot plan</div>
-<h1>Fits around.<br><span>Sits down.</span></h1>
+page(`<div class="ctop"><span>10x Visuals</span><span>Creative proposal</span></div>
+<div class="cmid"><div class="eyebrow cbrand">LRGR Than Life Apparel</div><h1>Fits around.<br><span>Sits down.</span></h1>
+<div class="sub">Video concepts, scripts and a shoot plan for the LRGR hat range.</div></div>
 <div class="meta"><div>Prepared for<b>Shak</b></div><div>Prepared by<b>10x Visuals</b></div><div>Format<b>Reels, TikTok, Shorts</b></div><div>Date<b>October 2026</b></div></div>`,'cover');
 
 page(`<div class="eyebrow">The big idea</div><h2>Show the side,<br>not the front.</h2>
@@ -260,7 +273,7 @@ page(`<div class="eyebrow">The big idea</div><h2>Show the side,<br>not the front
 <div class="big">One rule runs through everything.<br><span>Proof over promises.</span> We film the result, whatever it is.</div>
 <div class="rule"></div>
 <div class="pillars"><div class="pillar"><b>The Hat Test</b><span>Real world use with a real outcome.</span></div><div class="pillar"><b>Built For Us</b><span>Who it's for and the decisions behind it.</span></div><div class="pillar"><b>Side by Side</b><span>Fair comparisons in the same frame.</span></div></div>
-<div class="body"><div class="k">What's inside</div><p>12 concepts · the 6 we'd shoot first · a full plan for each of those 6 · a one day shoot schedule · what we need from you</p></div>`);
+<div class="body"><div class="k">What's inside</div><p>12 concepts · the 6 we'd shoot first · a full plan for each · 6 hype ideas for drops · loose scripts for Shak · a one day shoot schedule · what we need from you</p></div>`);
 
 const cHTML=c=>`<div class="concept"><div class="chead"><span class="num">${String(c.n).padStart(2,'0')}</span><h3>${D(c.t)}</h3><span class="pill ${c.pick?'pick':''}">${c.pick?'Shoot 1':c.p}</span></div>
 <p class="idea">${D(c.idea)}</p>
@@ -285,6 +298,74 @@ RANK.forEach((r,i)=>{const c=byN(r[0]),p=PLANS[r[0]];page(`
 <div><div class="k">Questions for Shak (asked off camera)</div><ul>${p.prompts.map(x=>`<li>${D(x)}</li>`).join('')}</ul></div>
 <div><div class="k">Edit</div><p>${D(p.edit)}</p></div><div><div class="k">Ending</div><p>${D(p.end)}</p></div></div>
 <div class="honest"><div><div class="k">What it shows</div><p>${D(p.shows)}</p></div><div><div class="k">What it doesn't</div><p>${D(p.not)}</p></div><div><div class="k">Keep it fair</div><p>${D(p.risk)}</p></div></div>`,"plan")});
+
+const HYPE=[
+{t:"Drop Night",type:"Launch trailer",idea:"A short trailer for a new drop. The studio is dark and one hat sits under a single hard light. Tight macro cuts of the embroidery, the brim and the strap land on the beat. It ends on the drop date and time.",open:"Black screen. A light clicks on above one hat.",line:"(No talking. The track carries it. Shak's voice only at the end.)",why:"Gives every drop a moment people wait for, without making claims about the hat."},
+{t:"Stitch by Stitch",type:"Process ASMR",idea:"The 3D embroidery and the build of the hat filmed in extreme close up, with every sound recorded: the machine, the snap, the brim bending. Cut tight to the sound.",open:"A needle punching thread into the front panel, loud and crisp.",line:"Every one of these goes through this. (Only if true.)",why:"Satisfying to watch, built for replays, and shows the detail without saying 'quality'."},
+{t:"The Side Check Booth",type:"Event / market pop up",idea:"At a market stall or event, set up a mirror and a second camera on the side. People try on any hat, then see their side profile on a screen. Real reactions, both good and bad.",open:"A stranger turns to the side screen and their face changes.",line:"\"Mirror's lying to you. Check this.\"",why:"Turns the core insight into a live experience and gives you a week of content from one day."},
+{t:"Every Colour, One Take",type:"Range reveal",idea:"One continuous camera move along a wall or table of every colourway. A different hand reaches in and takes each one, and the last hat lands on Shak's head right at the end.",open:"Fast push along a row of hats, all lined up.",line:"\"Pick one.\"",why:"Shows the whole range in seconds, with a strong visual you can reuse for every new colour."},
+{t:"Shak's Week",type:"Rotation series",idea:"Seven days of Shak's real fits in 15 seconds, with the same LRGR hat as the anchor. One locked angle at the same door each morning, with a day stamp.",open:"Monday stamp. Shak walks out the door.",line:"\"Same hat all week. Let's see.\"",why:"Shows how the hat works with real clothes, and builds a habit people come back for."},
+{t:"Sold Through",type:"Real stock moment",idea:"When a colourway genuinely sells out, film the empty shelf spot or the last box going out, then the restock arriving.",open:"An empty gap on the shelf where a colour used to be.",line:"\"That's the last of the cherry ones. More coming.\"",why:"Real scarcity is the only hype that holds up. Only use it when it's true."}
+];
+const SCRIPTS=[
+{t:"Same Head. Same Camera. Two Profiles.",len:"35s",lines:[
+["Shak (VO)","Same head, same camera, same spot. Only thing that changes is the hat."],
+["Shak","Tripod hasn't moved. He's done both up how he likes them."],
+["Shak","From the front, honestly, they both look fine."],
+["Shak","Now turn him side on. Look at the gap above the ear on this one."],
+["Shak","This one comes down to where you'd actually want it."],
+["Wearer","I'd wear this one. The other one feels like it's sitting on top of my head."],
+["Shak","Which side looks more like how you want yours to sit?"]]},
+{t:"Fits Around. Doesn't Sit Down.",len:"30s",lines:[
+["Shak","This fits his head. It just doesn't sit on it."],
+["Shak","Snug all the way round. Pull it down, and it rides straight back up."],
+["Shak","Everyone says loosen it. Watch."],
+["Shak","Drops a bit. But now it's loose, and it's still sitting high."],
+["Shak","Same snug fit, deeper crown. That's the difference."],
+["Shak","If yours sits like the left one, it's not your size. It's the depth."]]},
+{t:"One Hat. Six Heads.",len:"50s",lines:[
+["Shak","Same hat, six heads. Not everyone was into it."],
+["Shak","58 centimetres, notch five. What do you reckon?"],
+["Wearer 1","Sits right. Doesn't feel like it's going to fly off."],
+["Wearer 3","Bit much on top for me, to be honest."],
+["Shak","Fair. You like it lower profile."],
+["Shak","Find the head closest to yours. That's roughly how it'll sit on you."]]},
+{t:"Who It's Not For",len:"25s",lines:[
+["Shak","Honestly? If you like it sitting up top, ours probably isn't it."],
+["Shak","See how it comes down over his ears? He doesn't want that."],
+["Wearer","I like it sitting higher. Always have."],
+["Shak","And that's fine. Wear that one."],
+["Shak","But if every hat you've bought sits on top of your head, that's who we made this for."]]},
+{t:"Every Part, What It's For",len:"40s",lines:[
+["Shak","Forget the logo for a sec. This is the bit that matters."],
+["Shak","Crown depth. That's what gets it sitting down instead of perched up top."],
+["Shak","The brim. Curved like this so it frames your face."],
+["Shak","Snapback, so you can actually dial it in."],
+["Shak","3D embroidery. That's for the look, it stands off the front."],
+["Shak","Put it all together, and it sits like this."]]},
+{t:"30 Wears. One Hat.",len:"25s",lines:[
+["Shak","Wearing this one, nothing else, thirty times. Here's day one."],
+["Shak","Brim's flat and clean. Sweatband's fresh. Strap's never been touched."],
+["Shak","Rules: I wear it like normal, I log every wear, no babying it."],
+["Shak","Check back at ten."]]},
+{t:"Drop Night (hype)",len:"15s",lines:[
+["SFX","Light switch clicks on. Track kicks in."],
+["On screen","[Colourway name]"],
+["On screen","[Drop date] · [time]"],
+["Shak (VO)","New one. Same fit. See you [day]."]]},
+{t:"The Side Check Booth (hype)",len:"30s",lines:[
+["Shak","Mirror's lying to you. Check this."],
+["Stranger","Oh no. That's how it looks?"],
+["Shak","Try this one."],
+["Stranger","Yeah, okay. That's better."],
+["Stranger 2","Nah, I like mine. I'm keeping mine."],
+["Shak","Come find us at [market/event]. We'll check yours."]]}
+];
+page(`<div class="eyebrow">Bonus: hype content</div><h2>When you want energy.</h2>
+<p class="lead">These lift the energy for drops and launches. They stay grounded in real moments, so they don't undo the honesty in the main concepts.</p>
+<div class="hgrid">${HYPE.map((h,i)=>`<div class="hcard"><div class="k">${h.type}</div><h3>${D(h.t)}</h3><p>${D(h.idea)}</p><div class="hook"><div class="k">Opening</div>${D(h.open)}<q>${Q(h.line)}</q></div><p class="why">${D(h.why)}</p></div>`).join('')}</div>`,'hype');
+for(let i=0;i<SCRIPTS.length;i+=2)page(`${i===0?`<div class="eyebrow">Scripts</div><h2>Loose scripts for Shak.</h2><p class="lead">Read them once, then say it your way. These are a guide, not lines to memorise. Natural beats polished every time.</p>`:''}
+${SCRIPTS.slice(i,i+2).map(s=>`<div class="script"><div class="chead"><h3>${D(s.t)}</h3><span class="pill">${s.len}</span></div><table>${s.lines.map(l=>`<tr><td class="who">${D(l[0])}</td><td>${Q(l[1])}</td></tr>`).join('')}</table></div>`).join('')}`,'scripts');
 
 page(`<div class="eyebrow">Shoot day</div><h2>One day. One set.</h2>
 <p class="lead">Grouped so the camera barely moves. The side profile set is built once and used for four concepts back to back.</p>
