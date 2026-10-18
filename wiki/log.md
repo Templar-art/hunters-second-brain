@@ -1215,3 +1215,6 @@ Added the material-ID colour-map method, the scene-density lesson and the ranked
 
 ## [2026-10-18] ingest | LRGR Than Life Apparel creative brief
 Ingested the brief (raw/lrgr/). Wrote [[lrgr-than-life-apparel]] and projects/streetwear-ads/LRGR-CREATIVE-PLAN.md: 12 concepts, top 6, execution plans, batch shoot. Flagged the earlier generic production pack's concepts as superseded.
+
+## [2026-10-18] query | LRGR plan v2 (critique and rework)
+A multi-agent critique and rework of the LRGR PDF produced a new 12-concept slate, six shoot-ready executions and a batch schedule. Two executions are unreviewed drafts. Filed on [[lrgr-than-life-apparel]].

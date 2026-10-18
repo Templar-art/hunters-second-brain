@@ -19,5 +19,8 @@ Key insight: a hat that fits *around* the head isn't necessarily one that sits *
 - Client pitch page (no pricing): https://claude.ai/artifact/B3x3TckTWGbsojCYxBpcEu, source [lrgr-pitch.html](../../projects/streetwear-ads/lrgr-pitch.html). Hunter's rule: never mention price in client-facing material.
 - [PRODUCTION-PACK.md](../../projects/streetwear-ads/PRODUCTION-PACK.md): a generic streetwear ad pack (camera settings, gear, run sheet, releases) written before the brief arrived. ⚠️ Its ad concepts (night run, rate the fit) are superseded by the brief, which bans forced street interviews and influencer transitions. The camera, gear and paperwork sections still apply.
 
+## v2 plan (2026-10-18)
+[LRGR-CREATIVE-PLAN-v2.md](../../projects/streetwear-ads/LRGR-CREATIVE-PLAN-v2.md) is a critical rework of the client PDF. It found that 9 of the 12 original concepts leaned on side profile or crown depth, and that the scripts pre-wrote participant verdicts. The new six are Red or Blue? (a blind pick), Ours Or Not? (a feel-box game), The Tug Count, Mark It Up (tape self-audit), The Drawer Hat and What Goes First? (a 30-wear series with a sealed twin). It also has lean and expanded shoot schedules and a client checklist. Lesson: a client deliverable must never script participant reactions or assume the client's product wins a test.
+
 ## Unconfirmed
 Shak's on-camera style, audience age and city, competitors, production resources, current price (about $49.99 hats and $75 tees per earlier research, still to confirm), materials, care instructions, and where the hats are made.
