@@ -15,7 +15,8 @@ Source: the creative brief in [raw/lrgr/](../../raw/lrgr/LRGR_Claude_Creative_Br
 Key insight: a hat that fits *around* the head isn't necessarily one that sits *down* on it. That difference shows in side profile, not from the front. Don't claim deeper is always better.
 
 ## Deliverables
-- [LRGR-CREATIVE-PLAN.md](../../projects/streetwear-ads/LRGR-CREATIVE-PLAN.md): 12 concepts, a top 6 ranked, shoot-ready plans with beats, shots, prompts, edit notes and an integrity check, and a one-day batch shoot plan. Plan for the first shoot: Same Head Two Profiles → Fits Around Doesn't Fit Down → Different Heads → When I Wouldn't Recommend Ours → Fifty Bucks → Thirty Wears (baseline only).
+- [LRGR-CREATIVE-PLAN.md](../../projects/streetwear-ads/LRGR-CREATIVE-PLAN.md): 12 concepts, a top 6 ranked, shoot-ready plans with beats, shots, prompts, edit notes and an integrity check, and a one-day batch shoot plan. Plan for the first shoot: Same Head Two Profiles → Fits Around Doesn't Fit Down → Different Heads → When I Wouldn't Recommend Ours → Every Part, What It's For → Thirty Wears (baseline only).
+- Client pitch page (no pricing): https://claude.ai/artifact/B3x3TckTWGbsojCYxBpcEu, source [lrgr-pitch.html](../../projects/streetwear-ads/lrgr-pitch.html). Hunter's rule: never mention price in client-facing material.
 - [PRODUCTION-PACK.md](../../projects/streetwear-ads/PRODUCTION-PACK.md): a generic streetwear ad pack (camera settings, gear, run sheet, releases) written before the brief arrived. ⚠️ Its ad concepts (night run, rate the fit) are superseded by the brief, which bans forced street interviews and influencer transitions. The camera, gear and paperwork sections still apply.
 
 ## Unconfirmed
