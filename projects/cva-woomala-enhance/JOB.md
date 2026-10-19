@@ -64,3 +64,6 @@ _Vault: [[jarvis]]_
 
 **Cost tally: 3,210 Magnific cr** (2,685 + 525)
 - DELIVERED to folder: delivery/CVA-Woomala-St-Enhanced/ (11 JPGs, q95) + zip (26MB, git-ignored). Not yet sent to CVA.
+- Moody pass (825cr, approved): 2nd NBP pass on each final: golden-hour sun, practical lights on (pendants, lamps, downlights, entry portal), stronger materials. Layouts held. ⚠️ #08: the kitchen upper joinery came out timber instead of white (fixture change), flagged. Delivery folder rebuilt from outputs/moody/.
+
+**Cost tally: 4,035 Magnific cr** (3,210 + 825)
