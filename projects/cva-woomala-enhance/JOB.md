@@ -43,3 +43,7 @@ _Vault: [[jarvis]]_
 - Still missing: #2 dusk pool, #7 entry.
 
 **Cost tally: 1,725 Magnific cr** (1,325 + 400)
+- #2 dusk pool + #7 entry Precise Edit (160cr) → 02/07_precise_FINAL.png. Layout locked, now blue sky and sun.
+- Full before/after: outputs/compare-sheet.jpg. Layout and angle hold on 10/11. Weak: #8 dining and #10 living barely changed (sky still pale). ⚠️ #6 tower: NBP widened the angle, turned the façade bronze and invented an office block, so it breaks the no-angle-change rule.
+
+**Cost tally: 1,885 Magnific cr** (1,725 + 160)
