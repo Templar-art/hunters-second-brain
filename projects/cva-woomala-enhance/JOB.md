@@ -55,3 +55,7 @@ _Vault: [[jarvis]]_
 
 **Cost tally: 2,125 Magnific cr** (no change)
 - Hunter: flat light-blue remap rejected ("messing up the sky"). Target = 06_nbp tower sky: natural gradient, deep blue overhead fading pale at the horizon, wispy cloud. Tower final reverted to 06_nbp (uncropped, office block kept as shown). Other skies regraded locally to that gradient (top 54,108,170 → horizon 157,193,227), texture kept. Known flaw: hard band behind the skyline on #02.
+- Reverted all local sky hacks per Hunter. Sky-only Precise Edit (560cr) on 02, 03, 04, 05, 08, 09, 10 (10 also de-tinted): natural blue overhead fading to pale at the horizon, wispy cirrus. Layout untouched. DELIVER set = 01 nbp, 02–05/07–10 precise, 06 nbp tower, 11 nbp upscaled.
+- Lesson: never fake skies with local colour remaps; Hunter spots it straight away. Use an AI sky-only pass.
+
+**Cost tally: 2,685 Magnific cr** (2,125 + 560)
