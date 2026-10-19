@@ -1230,3 +1230,7 @@ Audited per-request context (~80k tokens baseline). Moved the four global MCP se
 
 ## [2026-10-19] ingest | Sound Lab, local 10x fork
 React Bits Sound Lab was pulled out of the react-bits repo (MIT + Commons Clause) into `projects/sound-lab/`, a standalone Vite app on port 8160. It now adds 48k/24 WAV delivery, project file naming, −1 dBFS normalising, kit zip export with a CSV, and picture-sync cueing with timecode and a stem export. All of it was verified in the browser preview. Whether the synth sounds hold up in a real edit is still untested. → [[sound-lab]]
+
+## [2026-10-19] query | Claude improvement research
+
+Second pass on the same day. Turned off superpowers, code-review, commit-commands, hookify and security-guidance for the vault, and parked caveman-help and caveman-review. Ran a docs sweep of Claude Code best practices plus a vault audit, and filed the result as [[claude-improvement-plan]]. Top findings: `.git` is 6.6 GB with media committed, the "no paid ops without asking" rule isn't enforced in config, the CVA JOB.md header and wiki cost are stale (4,035cr vs 3,210cr), and two staging rules have drifted between auto-memory and [[staging-rules]]. Nothing in the plan has been applied yet.

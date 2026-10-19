@@ -25,7 +25,7 @@ Plugins were pruned 2026-07-27 — the dev-tooling packs and both output styles 
 
 ## Efficiency pass — 2026-10-19
 
-Measured baseline before the first message: ~80k tokens (system tools 28k, MCP tools 23k, system prompt 11k, skills 10k, memory 5k). Pass: global MCP servers moved to vault scope (all are used here, so in-vault savings are nil, but other folders no longer load them), web/UI plugins disabled for the vault, 13 animation/web skills parked. Configs backed up to `~/.claude/backups/efficiency-2026-10-19/`. Habits that matter more than config: `/clear` between unrelated jobs, a fresh session per job rather than one long thread, and subagents for broad searches.
+Measured baseline before the first message: ~80k tokens (system tools 28k, MCP tools 23k, system prompt 11k, skills 10k, memory 5k). Pass: global MCP servers moved to vault scope (all are used here, so in-vault savings are nil, but other folders no longer load them), web/UI plugins disabled for the vault, 13 animation/web skills parked. Same day, second pass: superpowers + code-review + commit-commands + hookify + security-guidance also off for the vault; caveman-help and caveman-review parked. Next steps live on [[claude-improvement-plan]]. Configs backed up to `~/.claude/backups/efficiency-2026-10-19/`. Habits that matter more than config: `/clear` between unrelated jobs, a fresh session per job rather than one long thread, and subagents for broad searches.
 
 ## Permissions posture
 

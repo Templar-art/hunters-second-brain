@@ -74,6 +74,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[jarvis]] — Hunter's phased personal assistant; phase 1 = weekday 7am CRM morning brief via push
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
 - [[claude-code-setup]] — the Claude install mapped: settings, skills, MCP, permissions posture; 10 Aug audit (LAN-exposed dashboard, every scheduled loop dead on TCC)
+- [[claude-improvement-plan]] — 19 Oct research pass: repo bloat (6.6 GB .git), money gate as a permission rule, JOB.md drift, memory/wiki rule splits, Claude habits
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
 - [[premium-web-build]] — how a client site avoids reading as a template: vary every section's layout, test the accent against both grounds before choosing light or dark, the fixed-position and grid gotchas, and verify by measurement not screenshot
 - [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)

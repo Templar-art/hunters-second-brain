@@ -2,6 +2,11 @@
   "enabledPlugins": {
     "ui-ux-pro-max@ui-ux-pro-max-skill": false,
     "scroll-world@scroll-world": false,
-    "frontend-design@claude-plugins-official": false
+    "frontend-design@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": false,
+    "code-review@claude-plugins-official": false,
+    "commit-commands@claude-plugins-official": false,
+    "hookify@claude-plugins-official": false,
+    "security-guidance@claude-plugins-official": false
   }
 }
