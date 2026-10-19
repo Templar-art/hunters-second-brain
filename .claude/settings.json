@@ -12,7 +12,7 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "mcp__magnific__.*",
+        "matcher": "mcp__magnific__.*|Bash|Write|Edit|MultiEdit",
         "hooks": [
           {
             "type": "command",
