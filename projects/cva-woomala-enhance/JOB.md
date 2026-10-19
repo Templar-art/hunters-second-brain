@@ -27,4 +27,9 @@ _Vault: [[jarvis]]_
 - #11 bedroom v1 → outputs/11_v1_sunburst.png (3072×2048). 180cr. Status: awaiting Hunter QC.
 - Upscale held: 3072px source likely L/XL tier (270–1080cr), over the approved 270 test.
 
-**Cost tally: 180 Magnific cr**
+- v1 rejected by Hunter: "looks like a cartoon". Sunburst medium posterises → wrong model for photoreal arch-viz.
+- #11 v2: Nano Banana Pro 2k edit, "real photograph, 24mm tilt-shift" prompt (75cr) → outputs/11_v2_nbp.png
+- #11 v2 Magnific Ultra Photo 2x → outputs/11_v2_nbp_upscaled.jpg (5056×3392). Billed 270cr, NOT the ~90 quoted: tier set by source size. ⚠️ 180 over approval.
+- QC: photoreal and holds at 100% crop. Flaw: gibberish signage on two skyline towers.
+
+**Cost tally: 525 Magnific cr** (180 + 75 + 270)
