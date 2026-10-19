@@ -54,3 +54,4 @@ _Vault: [[jarvis]]_
 - Delivery candidates: outputs/NN_DELIVER.* + deliver-sheet.jpg. Note: Precise Edit outputs are source-res (~1.1–1.7k px); tower only 1073px.
 
 **Cost tally: 2,125 Magnific cr** (no change)
+- Hunter: flat light-blue remap rejected ("messing up the sky"). Target = 06_nbp tower sky: natural gradient, deep blue overhead fading pale at the horizon, wispy cloud. Tower final reverted to 06_nbp (uncropped, office block kept as shown). Other skies regraded locally to that gradient (top 54,108,170 → horizon 157,193,227), texture kept. Known flaw: hard band behind the skyline on #02.
