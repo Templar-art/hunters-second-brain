@@ -32,4 +32,8 @@ _Vault: [[jarvis]]_
 - #11 v2 Magnific Ultra Photo 2x → outputs/11_v2_nbp_upscaled.jpg (5056×3392). Billed 270cr, NOT the ~90 quoted: tier set by source size. ⚠️ 180 over approval.
 - QC: photoreal and holds at 100% crop. Flaw: gibberish signage on two skyline towers.
 
-**Cost tally: 525 Magnific cr** (180 + 75 + 270)
+- Batch (approved ~800cr): tower crop-bars → outpaint 3:2 (50) → NBP (75); 9 others NBP 2k (9×75=675). Outputs NN_nbp.png.
+- QC: everything reads as a real photo with blue sky and sun shadows. ⚠️ NBP drifts the composition: #07 entry redesigned (fake "STREET" sign, new car); #08 became a different room; #02 lounger layout changed; #03 pendant/chair count changed; #04 pendant swapped; #06 invented an office tower on the right. Holding well: #01, #05, #09, #10, #11.
+- Lesson: NBP = photoreal but loose framing; off-plan marketing must match the design, so drifted frames need a redo.
+
+**Cost tally: 1,325 Magnific cr** (525 + 800)
