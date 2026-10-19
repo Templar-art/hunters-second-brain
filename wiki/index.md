@@ -54,6 +54,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[fcp-plugin-research]] — which FCP 12.4 plugins to buy. Installed-plugin inventory recorded; Perplexity prompts ready, no results yet
 - [[motion-and-stills-tools]] — small reusable builds: 10x logo sting, HIA awards title, synth-SFX test, white-border framer
 - [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
+- [[sfx-sorter]] — launchd watcher: new sound-pack zips in Downloads → extracted into ~/Music/SFX Library (Ocular → Ocular Sounds/, else _Incoming/); leaves music/VO alone; live 20 Oct
 - [[one-percent-standard-store]] — Hunter's own white-label Shopify store (100 units in hand, self-fulfilled); Claude connected via Admin API 29 Sep
 - [[bebita-lifestyle-store]] — **Bebita Collective** (renamed from Lifestyle 30 Sep): sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
 - [[use-definitions-series]] — USE Software Definitions episodes: CRUD v5 (0cr, local canvas render) + `projects/use-definitions/` template; lesson: get the client's own past episodes before styling
