@@ -47,3 +47,6 @@ _Vault: [[jarvis]]_
 - Full before/after: outputs/compare-sheet.jpg. Layout and angle hold on 10/11. Weak: #8 dining and #10 living barely changed (sky still pale). ⚠️ #6 tower: NBP widened the angle, turned the façade bronze and invented an office block, so it breaks the no-angle-change rule.
 
 **Cost tally: 1,885 Magnific cr** (1,725 + 160)
+- Fix-3 Precise Edit (240cr): 06_precise_FINAL (from the 3:2 outpaint), 08_precise_v2_FINAL, 10_precise_FINAL. #8 strong. #6: sky and sun strong, but the office block on the right came from the OUTPAINT (50cr step), not this pass. #10: blue sky good, but a blue cast crept onto the white sofa and dining chairs.
+
+**Cost tally: 2,125 Magnific cr** (1,885 + 240)
