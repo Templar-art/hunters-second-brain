@@ -50,3 +50,7 @@ _Vault: [[jarvis]]_
 - Fix-3 Precise Edit (240cr): 06_precise_FINAL (from the 3:2 outpaint), 08_precise_v2_FINAL, 10_precise_FINAL. #8 strong. #6: sky and sun strong, but the office block on the right came from the OUTPAINT (50cr step), not this pass. #10: blue sky good, but a blue cast crept onto the white sofa and dining chairs.
 
 **Cost tally: 2,125 Magnific cr** (1,885 + 240)
+- Hunter: skies must be LIGHT soft blue like #01; deep saturated blue rejected. Local fix (free): sky-only mask (blue hue + smooth texture + upper frame) remapped to #01's sky S/V. Tower recropped to 80% width; #10 blue cast desaturated locally.
+- Delivery candidates: outputs/NN_DELIVER.* + deliver-sheet.jpg. Note: Precise Edit outputs are source-res (~1.1–1.7k px); tower only 1073px.
+
+**Cost tally: 2,125 Magnific cr** (no change)
