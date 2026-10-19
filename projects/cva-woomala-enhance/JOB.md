@@ -59,3 +59,7 @@ _Vault: [[jarvis]]_
 - Lesson: never fake skies with local colour remaps; Hunter spots it straight away. Use an AI sky-only pass.
 
 **Cost tally: 2,685 Magnific cr** (2,125 + 560)
+- Hunter: "do them correctly, use AI like Salisbury" = Nano Banana Pro. Re-ran NBP on the CORRECT originals for 02, 03, 04, 05, 07, 08, 09 (525cr). Layouts held this time, which confirms the earlier "drift" was the upload bug, not NBP. Natural soft-blue sky, warm low sun, real materials. DELIVER = NBP across all 11 (10 = NBP correct-source, 06 = NBP tower).
+- Lesson: for CVA render-enhance, NBP from the correct source + framing lock is the recipe. Precise Edit reads too saturated/CGI.
+
+**Cost tally: 3,210 Magnific cr** (2,685 + 525)
