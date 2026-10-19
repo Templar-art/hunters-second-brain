@@ -37,3 +37,9 @@ _Vault: [[jarvis]]_
 - Lesson: NBP = photoreal but loose framing; off-plan marketing must match the design, so drifted frames need a redo.
 
 **Cost tally: 1,325 Magnific cr** (525 + 800)
+- ⚠️ BUG (Claude): the batch PUT loop ran in zsh (1-indexed arrays), so upload n got file n+1. #2 dusk pool was never uploaded, and the NBP batch prompts hit the wrong photos, which caused most of the "drift". Mismatched NBP outputs moved to outputs/_mismatched/.
+- Precise Edit batch (Ideogram 4.5, 400cr): outputs are faithful, layout and angle locked, labelled by true source: 03 boardroom, 04 rooftop dining, 05 gym, 08 dining, 09 kitchen.
+- Good NBP (correct source): 01 pool golden, 06 tower, 10 living, 11 bedroom (+ upscale).
+- Still missing: #2 dusk pool, #7 entry.
+
+**Cost tally: 1,725 Magnific cr** (1,325 + 400)
