@@ -66,7 +66,8 @@ def last_human_message(transcript_path):
                 r = json.loads(line)
             except Exception:
                 continue
-            if r.get("type") != "user" or r.get("isMeta"):
+            if (r.get("type") != "user" or r.get("isMeta") or r.get("isSidechain")
+                    or r.get("isCompactSummary") or r.get("userType") != "external"):
                 continue
             c = r.get("message", {}).get("content")
             if isinstance(c, list):
