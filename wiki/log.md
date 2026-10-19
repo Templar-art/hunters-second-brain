@@ -1223,3 +1223,7 @@ A multi-agent critique and rework of the LRGR PDF produced a new 12-concept slat
 All multi-day content was removed. What Goes First? was replaced by The Lift and In The Bag (same-session version). The client PDF v2 was rebuilt.
 
 ## [2026-10-19] ingest | CVA Woomala render enhance — 11 stills delivered (NBP recipe, 3,210cr) → [[cva-woomala-render-enhance]]
+
+## [2026-10-19] lint | Claude efficiency pass
+
+Audited per-request context (~80k tokens baseline). Moved the four global MCP servers into vault scope, disabled ui-ux-pro-max / scroll-world / frontend-design for the vault via a new committed `.claude/settings.json`, parked 13 animation/web skills in `~/.claude/skills-parked/`. Backups in `~/.claude/backups/efficiency-2026-10-19/`. Detail on [[claude-code-setup]].

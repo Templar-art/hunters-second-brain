@@ -2,7 +2,7 @@
 type: concept
 tags: [claude, infrastructure, security, tooling]
 status: audited
-updated: 2026-08-10
+updated: 2026-10-19
 ---
 
 # Claude Code Setup
@@ -14,12 +14,18 @@ The standing map of Hunter's Claude Code install — what is configured, where i
 | Thing | Where | Notes |
 |-------|-------|-------|
 | Global settings | `~/.claude/settings.json` | statusline, theme, enabled plugins, extra marketplaces |
-| Project settings | `.claude/settings.local.json` (vault) | one PostToolUse hook only |
+| Project settings | `.claude/settings.json` (vault, committed) | disables ui-ux-pro-max, scroll-world, frontend-design plugins here (2026-10-19) |
+| Project local settings | `.claude/settings.local.json` (vault) | one PostToolUse hook only |
 | Skills | `~/.claude/skills/` | 35 as of 10 Aug; only `caveman-compress`, `impeccable`, `webapp-testing` ship executable code, and none of it auto-runs |
-| MCP servers | `~/.claude.json` | `skill-seekers` global; `magnific` + `10x-crm` scoped to this vault |
+| MCP servers | `~/.claude.json` | **none global** since 2026-10-19; all six (`magnific`, `10x-crm`, `skill-seekers`, `shopify-dev`, `gethookd`, `blender`) scoped to this vault. Kept in `~/.claude.json`, not `.mcp.json`, because the GetHookd entry carries a bearer token |
+| Parked skills | `~/.claude/skills-parked/` | 13 animation/web-dev skills moved out of global 2026-10-19; README there says how to revive |
 | Scheduled agents | `~/Library/LaunchAgents/com.10x.aios.*` | see [[agentic-os]] |
 
 Plugins were pruned 2026-07-27 — the dev-tooling packs and both output styles were injecting ~6–7k tokens of skill descriptions into every request in a vault that is not a software project. They stay registered but disabled; flip to `true` to revive.
+
+## Efficiency pass — 2026-10-19
+
+Measured baseline before the first message: ~80k tokens (system tools 28k, MCP tools 23k, system prompt 11k, skills 10k, memory 5k). Pass: global MCP servers moved to vault scope (all are used here, so in-vault savings are nil, but other folders no longer load them), web/UI plugins disabled for the vault, 13 animation/web skills parked. Configs backed up to `~/.claude/backups/efficiency-2026-10-19/`. Habits that matter more than config: `/clear` between unrelated jobs, a fresh session per job rather than one long thread, and subagents for broad searches.
 
 ## Permissions posture
 
