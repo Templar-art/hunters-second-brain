@@ -1249,3 +1249,7 @@ Added nine features to [[sound-lab]]: layering stacks, LUFS levelling (matches f
 ## [2026-10-20] ingest | SFX sorter live
 
 Built `projects/sfx-sorter/sfx-sorter.mjs` and the launchd job `com.10x.sfx-sorter`. When a sound-pack zip lands in Downloads, it is extracted into `~/Music/SFX Library` (Ocular packs to `Ocular Sounds/`, others to `_Incoming/`) and the original zip goes to `_Archives/`. The first dry run showed that Downloads also holds music tracks and client VO, so loose audio is now ignored and only zips newer than 20 Oct 09:00 count. Tested in scratch and live under launchd. Detail on [[sfx-sorter]].
+
+## [2026-10-20] harvest | Beach Blender build: video results
+
+The 16 Oct video pass never reached the wiki. Harvested it to [[blender-blockout-pipeline]]: 7 Seedance clips (672 HF; 3 pass, 1 near-pass, 3 fail) and the shot-06 face test (Kling 3.0 Pro vs Veo 3.1 Fast). Job total 791.5 HF, status review. Committed the job's small working files (run.py, list.txt, face-test prompt and URLs); its mp4s stay local.
