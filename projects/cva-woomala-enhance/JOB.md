@@ -63,3 +63,4 @@ _Vault: [[jarvis]]_
 - Lesson: for CVA render-enhance, NBP from the correct source + framing lock is the recipe. Precise Edit reads too saturated/CGI.
 
 **Cost tally: 3,210 Magnific cr** (2,685 + 525)
+- DELIVERED to folder: delivery/CVA-Woomala-St-Enhanced/ (11 JPGs, q95) + zip (26MB, git-ignored). Not yet sent to CVA.

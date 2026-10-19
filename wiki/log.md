@@ -1221,3 +1221,5 @@ A multi-agent critique and rework of the LRGR PDF produced a new 12-concept slat
 
 ## [2026-10-18] query | LRGR v2: one-session constraint
 All multi-day content was removed. What Goes First? was replaced by The Lift and In The Bag (same-session version). The client PDF v2 was rebuilt.
+
+## [2026-10-19] ingest | CVA Woomala render enhance — 11 stills delivered (NBP recipe, 3,210cr) → [[cva-woomala-render-enhance]]
