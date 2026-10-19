@@ -40,5 +40,7 @@ Second R&D build for the [[blender-blockout-pipeline]]. A dense scene of about 1
 
 - 2026-10-16 face test, shot 06 (Hunter: 'a lot is shit, faces messing up'): Kling 3.0 Pro 5s (12.5) + Veo 3.1 Fast high 8s (32) = 44.5. Both are one continuous take, no dissolve, faces hold and match the cast. Kling: true sideways tracking with parallax, background stable, slight motion blur. Veo: walks toward camera, sharper faces, but the background houses drift and change late in the clip.
 
+- 2026-10-20 decision: Veo 3.1 Fast chosen for the people shots. Quoted 32 HF each (high, 8s, 16:9, start frame = Sunburst still), so 96 HF to re-roll 01, 06 and 07. **On hold, nothing generated.** Hunter: build the system and framework first; the Blender run took too long ("time was shit").
+
 ---
 _Vault: [[jarvis]]_
