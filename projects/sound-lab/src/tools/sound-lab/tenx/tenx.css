@@ -1,0 +1,196 @@
+/* 10x additions: project/kit panel, picture sync. Built on the stock lab tokens. */
+
+.tx-stage-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.bs-export.tx-ghost {
+  background: var(--surface-ghost);
+  box-shadow: var(--surface-ghost-highlight);
+  color: var(--text-primary);
+}
+
+.bs-export.tx-ghost:hover {
+  background: var(--surface-ghost-hover);
+}
+
+.tx-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px;
+  padding: 0 12px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--tool-track, rgba(255, 255, 255, 0.05));
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.tx-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 13px;
+}
+
+.tx-filename {
+  margin: 2px 8px 6px;
+  overflow: hidden;
+  color: var(--text-dimmed);
+  font-family: 'Geist Mono', ui-monospace, Menlo, monospace;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tx-kit-heading {
+  margin-top: 10px;
+}
+
+.tx-kit,
+.tx-cues {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0 4px;
+  list-style: none;
+}
+
+.tx-kit li,
+.tx-cues li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  padding: 0 4px 0 10px;
+  border-radius: 8px;
+  background: var(--surface-ghost);
+  font-size: 12.5px;
+}
+
+.tx-kit-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tx-kit-name em,
+.tx-cues em {
+  color: var(--text-dimmed);
+  font-style: normal;
+}
+
+.tx-kit-meta {
+  color: var(--text-dimmed);
+  font-size: 11px;
+}
+
+.tx-kit-export {
+  width: calc(100% - 8px);
+  margin: 10px 4px 0;
+}
+
+.tx-note {
+  margin: 8px 8px 2px;
+  color: var(--text-dimmed);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.tx-picture {
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+}
+
+.tx-video,
+.tx-drop {
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  border-radius: var(--radius-md);
+  background: #000;
+}
+
+.tx-video {
+  object-fit: contain;
+}
+
+.tx-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px dashed var(--border-primary);
+  background: var(--surface-ghost);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.tx-drop strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.tx-picture-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.tx-picture-bar .bs-export.tx-ghost {
+  padding: 0 10px;
+}
+
+.tx-tc {
+  min-width: 104px;
+  font-family: 'Geist Mono', ui-monospace, Menlo, monospace;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.tx-picture-bar .tx-tc {
+  margin-right: auto;
+}
+
+.tx-cues {
+  max-height: 132px;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.tx-cue-seek {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tx-cues .tx-tc {
+  min-width: 0;
+  font-size: 12px;
+}
+
+.tx-video-name {
+  margin: 0;
+}

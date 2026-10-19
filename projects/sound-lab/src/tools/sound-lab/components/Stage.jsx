@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { Download04Icon, KeyboardIcon } from '@hugeicons/core-free-icons';
+import { Download04Icon, KeyboardIcon, Video01Icon } from '@hugeicons/core-free-icons';
 import { Icon, Tip } from '../../background-studio/components/ui';
 import Orb from './Orb';
 
@@ -24,7 +24,7 @@ function TypeField({ sound, onType }) {
   );
 }
 
-const Stage = forwardRef(function Stage({ sound, player, onPlay, onType, onExport }, ref) {
+const Stage = forwardRef(function Stage({ sound, player, onPlay, onType, onExport, onPicture }, ref) {
   return (
     <div className="lab-stage snd-stage" ref={ref} data-library={sound.library}>
       <div className="snd-view">
@@ -33,12 +33,20 @@ const Stage = forwardRef(function Stage({ sound, player, onPlay, onType, onExpor
             <h2 className="snd-title">{sound.name}</h2>
             <p className="snd-desc">{sound.description}</p>
           </div>
-          <Tip label="Code or audio file" hint="E" placement="bottom">
+          <div className="tx-stage-actions">
+          <Tip label="Preview against a video clip" hint="P" placement="bottom">
+            <button type="button" className="bs-export snd-export tx-ghost" onClick={onPicture}>
+              <Icon icon={Video01Icon} />
+              <span>Picture</span>
+            </button>
+          </Tip>
+          <Tip label="WAV, MP3, OGG or link" hint="E" placement="bottom">
             <button type="button" className="bs-export snd-export" onClick={() => onExport(null)}>
               <Icon icon={Download04Icon} />
               <span>Export</span>
             </button>
           </Tip>
+          </div>
         </header>
         <div className="snd-center">
           <button type="button" className="snd-orb" onClick={() => onPlay(sound.id)} aria-label={`Play ${sound.name}`}>

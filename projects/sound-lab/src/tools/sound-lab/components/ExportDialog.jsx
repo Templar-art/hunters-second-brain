@@ -9,6 +9,7 @@ import { canEncode, encodeAudio } from '../export/encode';
 import { shareRows, shareUrl } from '../sounds/share';
 import Orb from './Orb';
 import { formatSeconds } from '../sounds/browse';
+import { normalize, sfxName } from '../tenx/deliver';
 
 const TABS = [
   { value: 'audio', label: 'Audio', icon: MusicNote01Icon },
@@ -75,7 +76,7 @@ const OrbWell = ({ sound, info, player, onPlay }) => (
   </div>
 );
 
-function AudioTab({ sound, tune, info, player, onPlay, onBusyChange }) {
+function AudioTab({ sound, tune, info, project, player, onPlay, onBusyChange }) {
   const [settings, setSettings] = useState(remembered);
   const [support, setSupport] = useState({ wav: true, mp3: true, ogg: true });
   const [busy, setBusy] = useState(false);
@@ -113,8 +114,9 @@ function AudioTab({ sound, tune, info, player, onPlay, onBusyChange }) {
     setError(null);
     try {
       const buffer = await renderSound(sound.recipe, tune, { sampleRate: rate, channels: 2 });
+      if (project.normalize) normalize(buffer);
       const blob = await encodeAudio(buffer, { format, bitDepth: depth, bitrate, channels });
-      downloadBlob(blob, `${sound.id}.${extension}`);
+      downloadBlob(blob, sfxName(project.name, sound, null, extension));
       toast.success(`${sound.name} downloaded`);
     } catch (problem) {
       setError(problem?.message || 'That format could not be encoded in this browser.');
@@ -164,14 +166,18 @@ function AudioTab({ sound, tune, info, player, onPlay, onBusyChange }) {
           {error && <p className="bs-xp-error">{error}</p>}
         </div>
         <div className="bs-xp-footer">
+          <p className="bs-xp-meta tx-filename">{sfxName(project.name, sound, null, extension)}</p>
           <p className="bs-xp-meta">
             {[
               format.toUpperCase(),
               format === 'wav' ? (depth === 32 ? '32-bit float' : `${depth}-bit`) : `${bitrate} kbps`,
               RATES.find(item => item.value === rate)?.long,
               channels === 2 ? 'Stereo' : 'Mono',
-              formatBytes(bytes)
-            ].join(' · ')}
+              formatBytes(bytes),
+              project.normalize ? '−1 dBFS peak' : null
+            ]
+              .filter(Boolean)
+              .join(' · ')}
           </p>
           <div className="bs-xp-actions">
             <button type="button" className="bs-export bs-wide-button" onClick={download} disabled={busy}>
@@ -234,7 +240,7 @@ function LinkTab({ sound, tune, info, player, onPlay }) {
   );
 }
 
-export default function ExportDialog({ initialTab, sound, tune, info, player, onPlay, onClose }) {
+export default function ExportDialog({ initialTab, sound, tune, info, project, player, onPlay, onClose }) {
   const [tab, setTabState] = useState(() => (initialTab && initialTab !== 'last' ? initialTab : remembered.tab));
   const [busy, setBusy] = useState(false);
   const dialogRef = useRef(null);
@@ -303,7 +309,7 @@ export default function ExportDialog({ initialTab, sound, tune, info, player, on
           {tab === 'link' ? (
             <LinkTab sound={sound} tune={tune} info={info} player={player} onPlay={onPlay} />
           ) : (
-            <AudioTab sound={sound} tune={tune} info={info} player={player} onPlay={onPlay} onBusyChange={setBusy} />
+            <AudioTab sound={sound} tune={tune} info={info} project={project} player={player} onPlay={onPlay} onBusyChange={setBusy} />
           )}
         </div>
       </div>

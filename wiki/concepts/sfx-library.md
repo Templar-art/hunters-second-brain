@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [audio, sfx, motion-graphics, assets]
-updated: 2026-10-10
+updated: 2026-10-19
 ---
 # SFX library (Ocular Sounds)
 
@@ -31,4 +31,6 @@ Hunter's licensed sound library, filed 10 Oct 2026 from ~/Downloads.
 
 To add a sound, trim it from the library into `sfx-lib/<kind>_N.wav`. The trim script is in the 10 Oct session; it uses ffmpeg with `-t <keep> -af afade=out -ar 48000 -ac 2 -sample_fmt s16`.
 
-Related: [[use-definitions-series]]
+For custom synthesised SFX (UI pops, accents, glitches, title stingers) that aren't in Ocular, use [[sound-lab]]. Its kit WAVs are 48k stereo and go straight into `sfx-lib/`.
+
+Related: [[use-definitions-series]] · [[sound-lab]]

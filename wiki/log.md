@@ -1227,3 +1227,6 @@ All multi-day content was removed. What Goes First? was replaced by The Lift and
 ## [2026-10-19] lint | Claude efficiency pass
 
 Audited per-request context (~80k tokens baseline). Moved the four global MCP servers into vault scope, disabled ui-ux-pro-max / scroll-world / frontend-design for the vault via a new committed `.claude/settings.json`, parked 13 animation/web skills in `~/.claude/skills-parked/`. Backups in `~/.claude/backups/efficiency-2026-10-19/`. Detail on [[claude-code-setup]].
+
+## [2026-10-19] ingest | Sound Lab, local 10x fork
+React Bits Sound Lab was pulled out of the react-bits repo (MIT + Commons Clause) into `projects/sound-lab/`, a standalone Vite app on port 8160. It now adds 48k/24 WAV delivery, project file naming, −1 dBFS normalising, kit zip export with a CSV, and picture-sync cueing with timecode and a stem export. All of it was verified in the browser preview. Whether the synth sounds hold up in a real edit is still untested. → [[sound-lab]]

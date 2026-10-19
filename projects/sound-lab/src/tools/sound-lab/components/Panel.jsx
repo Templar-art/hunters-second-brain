@@ -1,18 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Cancel01Icon, Copy01Icon, PlusSignIcon } from '@hugeicons/core-free-icons';
+import { Cancel01Icon, PlusSignIcon } from '@hugeicons/core-free-icons';
 import { RotateCcw } from 'lucide-react';
-import { toast } from 'sonner';
 import { Icon, Tip, Track } from '../../background-studio/components/ui';
 import { useScrollEdges } from '../../background-studio/hooks/useScrollEdges';
 import PreviewSlider from '../../../components/common/Preview/PreviewSlider';
 import PreviewSwitch from '../../../components/common/Preview/PreviewSwitch';
 import { EFFECTS, PLAYBACK, TUNE, effectDefaults } from '../sounds/controls';
-
-const copy = text =>
-  navigator.clipboard
-    .writeText(text)
-    .then(() => toast.success('Install command copied'))
-    .catch(() => toast.error('Could not copy'));
 
 function Heading({ title, children }) {
   return (
@@ -173,7 +166,7 @@ function Effects({ tune, onEffect }) {
   );
 }
 
-export default function Panel({ sound, tune, onTune, onEffect, onReset }) {
+export default function Panel({ tune, onTune, onEffect, onReset, children }) {
   const scrollRef = useRef(null);
   const edges = useScrollEdges(scrollRef, '.snd-panel-scroll > section');
   const changed = Object.entries(tune).some(([key, value]) => {
@@ -210,6 +203,8 @@ export default function Panel({ sound, tune, onTune, onEffect, onReset }) {
           </section>
 
           <Effects tune={tune} onEffect={onEffect} />
+
+          {children}
 
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { toast } from 'sonner';
 import { Track } from '../background-studio/components/ui';
 import { SOUNDS, SOUNDS_BY_ID } from './sounds/catalog';
 import { createPlayer } from './engine/player';
@@ -10,9 +11,12 @@ import Panel from './components/Panel';
 import { EFFECT_KEYS, PLAYBACK, TUNE } from './sounds/controls';
 import ExportDialog from './components/ExportDialog';
 import { readSharedSound } from './sounds/share';
+import PictureSync from './tenx/PictureSync';
+import ProjectSection from './tenx/ProjectSection';
 import '../background-studio/studio.css';
 import '../texture-lab/lab.css';
 import './snd.css';
+import './tenx/tenx.css';
 
 const WIDE_QUERY = '(min-width: 1280px)';
 const DESKTOP_QUERY = '(min-width: 1024px)';
@@ -57,6 +61,8 @@ const isTyping = target =>
   typeof target?.closest === 'function' &&
   Boolean(target.closest('input, textarea, select, [contenteditable="true"], [role="slider"], [role="dialog"]'));
 
+const PROJECT = { name: '', normalize: true, fps: 25 };
+
 const DEFAULTS = Object.fromEntries([...TUNE, ...PLAYBACK].map(control => [control.key, control.fallback]));
 
 const cleanTune = tune =>
@@ -82,14 +88,14 @@ export default function SoundLab({ toolSelector }) {
   const [shared] = useState(readSharedSound);
   const [reveal, setReveal] = useState(() => shared?.id || null);
   const [library, setLibraryState] = useState(() =>
-    shared ? SOUNDS_BY_ID[shared.id].library : read('library', 'interface')
+    shared ? SOUNDS_BY_ID[shared.id].library : read('library', 'video')
   );
   const [category, setCategory] = useState('all');
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState(() => {
     if (shared) return shared.id;
-    const stored = read('sound', 'pebble');
-    return SOUNDS_BY_ID[stored] ? stored : 'pebble';
+    const stored = read('sound', 'swoop');
+    return SOUNDS_BY_ID[stored] ? stored : 'swoop';
   });
   const [tunes, setTunes] = useState(() => {
     const stored = read('tunes', {});
@@ -100,6 +106,10 @@ export default function SoundLab({ toolSelector }) {
   const [exporting, setExporting] = useState(null);
   const [sideTab, setSideTab] = useState('sounds');
   const [playing, setPlaying] = useState(null);
+  const [project, setProject] = useState(() => ({ ...PROJECT, ...read('project', {}) }));
+  const [kit, setKit] = useState(() => read('kit', []));
+  const [cues, setCues] = useState(() => read('cues', []));
+  const [picture, setPicture] = useState(() => read('picture', false));
   const tunesRef = useRef(tunes);
   tunesRef.current = tunes;
   const selectedRef = useRef(selectedId);
@@ -170,6 +180,25 @@ export default function SoundLab({ toolSelector }) {
   useEffect(() => {
     write('tunes', tunes);
   }, [tunes]);
+
+  useEffect(() => {
+    write('project', project);
+    write('kit', kit);
+    write('cues', cues);
+    write('picture', picture);
+  }, [project, kit, cues, picture]);
+
+  const onProject = patch => setProject(previous => ({ ...previous, ...patch }));
+
+  const addToKit = () => {
+    setKit(previous => [
+      ...previous,
+      { key: `${Date.now()}-${previous.length}`, id: selectedRef.current, tune: tunesRef.current[selectedRef.current] || {} }
+    ]);
+    toast.success(`${SOUNDS_BY_ID[selectedRef.current].name} added to kit`);
+  };
+
+  const removeFromKit = key => setKit(previous => previous.filter(item => item.key !== key));
 
   useEffect(() => {
     if (!shared) return;
@@ -283,6 +312,10 @@ export default function SoundLab({ toolSelector }) {
       step(-1);
     } else if (key === 'e') {
       setExporting('last');
+    } else if (key === 'k') {
+      addToKit();
+    } else if (key === 'p') {
+      setPicture(value => !value);
     } else if (key === 'l') {
       toggleLoop();
     } else if (key === 'escape') {
@@ -318,17 +351,41 @@ export default function SoundLab({ toolSelector }) {
     </>
   );
 
-  const panel = <Panel sound={sound} tune={tune} onTune={onTune} onEffect={onEffect} onReset={onReset} />;
+  const panel = (
+    <Panel sound={sound} tune={tune} onTune={onTune} onEffect={onEffect} onReset={onReset}>
+      <ProjectSection
+        sound={sound}
+        project={project}
+        onProject={onProject}
+        kit={kit}
+        onAdd={addToKit}
+        onRemove={removeFromKit}
+      />
+    </Panel>
+  );
 
   const main = (
     <section className="lab-main" aria-label="Sound">
-      <Stage
-        sound={sound}
-        player={player}
-        onPlay={id => play(id)}
-        onType={type}
-        onExport={tab => setExporting(tab || 'last')}
-      />
+      {picture ? (
+        <PictureSync
+          sound={sound}
+          tune={tune}
+          project={project}
+          cues={cues}
+          onCues={setCues}
+          player={player}
+          onClose={() => setPicture(false)}
+        />
+      ) : (
+        <Stage
+          sound={sound}
+          player={player}
+          onPlay={id => play(id)}
+          onType={type}
+          onExport={tab => setExporting(tab || 'last')}
+          onPicture={() => setPicture(true)}
+        />
+      )}
       <Timeline
         sound={sound}
         info={infos[selectedId]}
@@ -373,6 +430,7 @@ export default function SoundLab({ toolSelector }) {
           sound={sound}
           tune={tune}
           info={infos[selectedId]}
+          project={project}
           player={player}
           onPlay={id => play(id)}
           onClose={() => setExporting(null)}
