@@ -50,3 +50,17 @@ projects/*/footage/
 *.blend1
 projects/blender-blockouts/beach-house-v1.blend
 projects/blender-blockouts/cliff-mansion-v2.blend
+
+# Global media rule (2026-10-19): video/audio/Blender/zip never go into git — .git hit 6.6 GB.
+# Finals live on Drive/SSD; the wiki points at them. Already-tracked files stay tracked
+# (ignore rules don't untrack). To force one small file in: git add -f <file>
+*.mp4
+*.mov
+*.m4v
+*.mxf
+*.wav
+*.aif
+*.aiff
+*.mp3
+*.blend
+*.zip

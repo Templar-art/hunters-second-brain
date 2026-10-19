@@ -8,5 +8,49 @@
     "commit-commands@claude-plugins-official": false,
     "hookify@claude-plugins-official": false,
     "security-guidance@claude-plugins-official": false
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__magnific__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/magnific-gate.py\"",
+            "timeout": 10,
+            "statusMessage": "Magnific money gate"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/magnific-gate.py\" --record-prompt",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "mcp__magnific__simulate_cost",
+      "mcp__magnific__simulate_flows",
+      "mcp__magnific__simulate_spaces",
+      "mcp__magnific__account_balance",
+      "mcp__magnific__images_models_list",
+      "mcp__magnific__images_models_show",
+      "mcp__magnific__images_models_settings",
+      "mcp__magnific__video_models_list",
+      "mcp__magnific__creation_status",
+      "mcp__magnific__creations_wait",
+      "mcp__magnific__creations_show",
+      "mcp__magnific__creations_list",
+      "mcp__magnific__guides_get",
+      "mcp__magnific__guides_list"
+    ]
   }
 }

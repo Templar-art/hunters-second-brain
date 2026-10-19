@@ -1234,3 +1234,7 @@ React Bits Sound Lab was pulled out of the react-bits repo (MIT + Commons Clause
 ## [2026-10-19] query | Claude improvement research
 
 Second pass on the same day. Turned off superpowers, code-review, commit-commands, hookify and security-guidance for the vault, and parked caveman-help and caveman-review. Ran a docs sweep of Claude Code best practices plus a vault audit, and filed the result as [[claude-improvement-plan]]. Top findings: `.git` is 6.6 GB with media committed, the "no paid ops without asking" rule isn't enforced in config, the CVA JOB.md header and wiki cost are stale (4,035cr vs 3,210cr), and two staging rules have drifted between auto-memory and [[staging-rules]]. Nothing in the plan has been applied yet.
+
+## [2026-10-20] migrate | Media ignore rules + Magnific money gate
+
+Applied priorities 1 and 2 from [[claude-improvement-plan]]. `.gitignore` now blocks video, audio, Blender and zip files vault-wide; tracked files are untouched and history was not rewritten. Built `.claude/hooks/magnific-gate.py`. Finding: under bypass mode a hook's `ask` is silently auto-approved. So the gate denies paid tools in bypass mode until Hunter's latest message starts with yes/go/approved, and asks in normal modes. Live test: `guides_list` passed, `tags_create` was blocked before it reached Magnific. Detail on [[claude-code-setup]].

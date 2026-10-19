@@ -2,7 +2,7 @@
 type: concept
 tags: [claude, efficiency, infrastructure, plan]
 status: proposed
-updated: 2026-10-19
+updated: 2026-10-20
 ---
 
 # Claude Improvement Plan
@@ -16,7 +16,7 @@ Research pass of 19 October 2026 on how to make the whole setup run better: Clau
 - 15 skills parked in `~/.claude/skills-parked/`: 13 animation/web-dev skills plus `caveman-help` and `caveman-review`. `caveman`, `caveman-compress` and `ultracave` stay, because CLAUDE.md runs ultra.
 - Baseline before any of this: about 80k tokens loaded before the first message.
 
-## Priority 1: stop the repo bloat
+## Priority 1: stop the repo bloat — ✅ ignore rules done 2026-10-20 (history rewrite not done)
 
 The biggest real problem the audit found.
 
@@ -25,7 +25,9 @@ The biggest real problem the audit found.
 - `.gitignore` only has per-folder media rules. **Fix:** add global `*.mp4 *.mov *.wav *.blend *.blend1 *.zip` rules. Keep finals on Drive or the SSD; the wiki should point at them, not store them.
 - An optional, bigger fix is to rewrite history with `git filter-repo` to drop the old binaries. That is destructive and every clone must re-clone, so Hunter decides.
 
-## Priority 2: hard money gate in config, not just in prose
+## Priority 2: hard money gate in config, not just in prose — ✅ done 2026-10-20
+
+**As built** (supersedes the plan bullets below): `.claude/hooks/magnific-gate.py`, wired in `.claude/settings.json`. Live test showed a hook `ask` is **silently auto-approved under bypass-permissions mode**, so a plain ask rule would have protected nothing in Hunter's usual mode. The gate therefore asks in normal modes and **denies** in bypass mode unless Hunter's latest typed message starts with yes/go/approved (valid 20 min, recorded by a UserPromptSubmit hook Claude cannot trigger). Read-only and `simulate_*` tools always pass. Verified live: `guides_list` passed, `tags_create` was blocked before reaching Magnific.
 
 At the moment the "ask before any paid op" rule lives only in CLAUDE.md, and nothing enforces it mechanically. The fix is a permission rule in the vault's `.claude/settings.json`:
 

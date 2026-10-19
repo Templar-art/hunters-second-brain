@@ -2,7 +2,7 @@
 type: concept
 tags: [claude, infrastructure, security, tooling]
 status: audited
-updated: 2026-10-19
+updated: 2026-10-20
 ---
 
 # Claude Code Setup
@@ -15,6 +15,7 @@ The standing map of Hunter's Claude Code install — what is configured, where i
 |-------|-------|-------|
 | Global settings | `~/.claude/settings.json` | statusline, theme, enabled plugins, extra marketplaces |
 | Project settings | `.claude/settings.json` (vault, committed) | disables ui-ux-pro-max, scroll-world, frontend-design plugins here (2026-10-19) |
+| Magnific money gate | `.claude/hooks/magnific-gate.py` | PreToolUse + UserPromptSubmit hooks (2026-10-20). Paid Magnific tools: ask in normal modes, deny in bypass unless Hunter's last message starts with yes/go/approved (20-min window). Read-only + simulate_* pass. Detail on [[claude-improvement-plan]] |
 | Project local settings | `.claude/settings.local.json` (vault) | one PostToolUse hook only |
 | Skills | `~/.claude/skills/` | 35 as of 10 Aug; only `caveman-compress`, `impeccable`, `webapp-testing` ship executable code, and none of it auto-runs |
 | MCP servers | `~/.claude.json` | **none global** since 2026-10-19; all six (`magnific`, `10x-crm`, `skill-seekers`, `shopify-dev`, `gethookd`, `blender`) scoped to this vault. Kept in `~/.claude.json`, not `.mcp.json`, because the GetHookd entry carries a bearer token |
@@ -26,6 +27,10 @@ Plugins were pruned 2026-07-27 — the dev-tooling packs and both output styles 
 ## Efficiency pass — 2026-10-19
 
 Measured baseline before the first message: ~80k tokens (system tools 28k, MCP tools 23k, system prompt 11k, skills 10k, memory 5k). Pass: global MCP servers moved to vault scope (all are used here, so in-vault savings are nil, but other folders no longer load them), web/UI plugins disabled for the vault, 13 animation/web skills parked. Same day, second pass: superpowers + code-review + commit-commands + hookify + security-guidance also off for the vault; caveman-help and caveman-review parked. Next steps live on [[claude-improvement-plan]]. Configs backed up to `~/.claude/backups/efficiency-2026-10-19/`. Habits that matter more than config: `/clear` between unrelated jobs, a fresh session per job rather than one long thread, and subagents for broad searches.
+
+## Git media rule
+
+Since 2026-10-20 `.gitignore` blocks `*.mp4 *.mov *.m4v *.mxf *.wav *.aif *.aiff *.mp3 *.blend *.zip` vault-wide (`.git` had reached 6.6 GB). Files already tracked stay tracked. To force a small one in, use `git add -f`. History has not been rewritten.
 
 ## Permissions posture
 
