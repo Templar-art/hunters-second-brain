@@ -69,6 +69,17 @@
         "projects/shopify-store/bebita"
       ],
       "port": 8150
+    },
+    {
+      "name": "sound-lab",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "projects/sound-lab",
+        "run",
+        "dev"
+      ],
+      "port": 8160
     }
   ]
 }

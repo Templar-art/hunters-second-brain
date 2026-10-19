@@ -1,0 +1,33 @@
+@import './css/fonts.css';
+@import './css/variables.css';
+@import './css/misc.css';
+@import './css/docs.css';
+@import './tools/tools.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: var(--bg-body);
+  color: var(--text-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tool-shell {
+  height: 100vh;
+  padding: 12px;
+  display: flex;
+}
+
+.tool-shell > .lab {
+  flex: 1;
+  min-height: 0;
+}
