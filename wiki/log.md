@@ -1238,3 +1238,7 @@ Second pass on the same day. Turned off superpowers, code-review, commit-command
 ## [2026-10-20] migrate | Media ignore rules + Magnific money gate
 
 Applied priorities 1 and 2 from [[claude-improvement-plan]]. `.gitignore` now blocks video, audio, Blender and zip files vault-wide; tracked files are untouched and history was not rewritten. Built `.claude/hooks/magnific-gate.py`. Finding: under bypass mode a hook's `ask` is silently auto-approved. So the gate denies paid tools in bypass mode until Hunter's latest message starts with yes/go/approved, and asks in normal modes. Live test: `guides_list` passed, `tags_create` was blocked before it reached Magnific. Detail on [[claude-code-setup]].
+
+## [2026-10-20] migrate | Magnific gate v3: transcript-based approval
+
+Two automated security reviews flagged that a file-based approval could be forged, and that the gate could edit its own settings. Rebuilt the gate so approval comes from Hunter's latest typed message in the session transcript; the approval file and the UserPromptSubmit hook are gone. Edits to the hook, the settings and the transcripts now need the same approval, and NotebookEdit was added to the matcher. A 20-case test against fake transcripts passed. On live use it blocked Claude from reading settings until Hunter replied "yes". Detail on [[claude-code-setup]].

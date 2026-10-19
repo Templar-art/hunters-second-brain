@@ -1,28 +1,36 @@
 #!/usr/bin/env python3
-"""Magnific money gate.
+"""Magnific money gate (PreToolUse).
 
-PreToolUse (matcher mcp__magnific__.*):
-  Read-only / cost-check tools pass silently. Every other Magnific tool —
-  generations, upscales, video, audio, 3D, flow/space runs, and anything
-  Magnific adds later — is gated:
-    * normal modes (default/acceptEdits/auto/plan): permissionDecision "ask",
-      so Claude Code shows its own approval prompt.
-    * bypassPermissions: "ask" is silently auto-approved there (tested
-      2026-10-20), so the call is DENIED unless Hunter's most recent chat
-      message starts with an approval word, within APPROVAL_TTL seconds.
+Approval source: Hunter's own latest typed message, read from the session
+transcript (`transcript_path`) — there is no approval file to forge.
+An "approval" = his latest real message starts with yes/go/approved/…
+and is under APPROVAL_TTL old.
 
-UserPromptSubmit (`--record-prompt`):
-  Records whether Hunter's latest message is an approval. Only Hunter's typed
-  messages reach this hook, so Claude cannot approve its own spend through
-  it. Claude must never write the state file by hand.
+Rules:
+  * Magnific read-only / cost-check tools (exact allowlist) pass.
+  * Any other Magnific tool (generations, upscales, video, audio, 3D, runs,
+    and anything added later):
+      - default / acceptEdits / plan mode -> "ask" (native prompt)
+      - bypass / auto / unknown mode      -> deny unless approved
+        (tested 2026-10-20: "ask" is silently auto-approved under bypass)
+  * Bash/Write/Edit/MultiEdit/NotebookEdit touching the gate itself
+    (.claude/hooks, .claude/settings*.json, session transcripts) -> deny
+    unless approved, so the gate can't be quietly switched off.
+  * Any error -> deny (fail closed).
 
-Fails closed: unreadable input -> ask (normal) / deny (bypass unknown -> deny).
+Threat model: a careless or over-eager agent, not a hostile one. An agent
+with a full shell can always find some way around an in-process check; this
+makes spending or disabling the gate require Hunter's typed go-ahead.
 """
-import json, os, re, sys, time
+import json, re, sys
+from datetime import datetime, timezone
 
-STATE = os.path.expanduser("~/.claude/magnific-gate-approval.json")
 APPROVAL_TTL = 20 * 60
 APPROVAL = re.compile(r"^\s*(yes|yep|yeah|go|go ahead|approved|approve|do it|run it|send it|ok go)\b", re.I)
+INJECTED = re.compile(r"<(system-reminder|task-notification|side-sessions-event)>.*?</\1>", re.S)
+PROTECTED = re.compile(r"\.claude/hooks|\.claude/settings[^/\s\"']*\.json|\.claude/projects/[^\s\"']*\.jsonl|magnific-gate")
+NORMAL_MODES = {"default", "acceptEdits", "plan"}
+WRITE_TOOLS = {"Bash", "Write", "Edit", "MultiEdit", "NotebookEdit"}
 
 # Exact allowlist (no wildcards): only these pass ungated. New Magnific tools are gated
 # until someone checks they are free and adds them here.
@@ -41,71 +49,63 @@ spaces_show spaces_state spaces_templates_search spaces_node_types_search stock_
 stock_search stock_show tags_list video_luts_list video_metadata video_models_list
 video_vfx_list""".split()}
 
-NORMAL_MODES = {"default", "acceptEdits", "plan"}  # auto + bypass may auto-approve "ask", so they get the deny path
+
+def decide(decision, reason):
+    print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
+                                             "permissionDecision": decision,
+                                             "permissionDecisionReason": reason}}))
 
 
-def out(event, **fields):
-    print(json.dumps({"hookSpecificOutput": {"hookEventName": event, **fields}}))
+def last_human_message(transcript_path):
+    """(text, timestamp) of Hunter's latest typed message, skipping tool results
+    and harness-injected blocks."""
+    last = (None, None)
+    with open(transcript_path) as f:
+        for line in f:
+            try:
+                r = json.loads(line)
+            except Exception:
+                continue
+            if r.get("type") != "user" or r.get("isMeta"):
+                continue
+            c = r.get("message", {}).get("content")
+            if isinstance(c, list):
+                if any(isinstance(x, dict) and x.get("type") == "tool_result" for x in c):
+                    continue
+                c = " ".join(x.get("text", "") for x in c if isinstance(x, dict) and x.get("type") == "text")
+            text = INJECTED.sub("", c or "").strip()
+            if text:
+                last = (text, r.get("timestamp"))
+    return last
 
 
-def record_prompt(data):
-    prompt = data.get("prompt", "") or ""
-    state = {"approved": bool(APPROVAL.match(prompt)), "at": time.time()}
-    with open(STATE, "w") as f:
-        json.dump(state, f)
-
-
-def approved_recently():
-    try:
-        with open(STATE) as f:
-            s = json.load(f)
-        return s.get("approved") and time.time() - s.get("at", 0) < APPROVAL_TTL
-    except Exception:
+def approved(data):
+    text, ts = last_human_message(data["transcript_path"])
+    if not text or not ts or not APPROVAL.match(text):
         return False
-
-
-def guard_state_file(data):
-    """Bash/Write/Edit: block anything that touches the approval state file."""
-    if "magnific-gate-approval" in json.dumps(data.get("tool_input", {})):
-        out("PreToolUse", permissionDecision="deny",
-            permissionDecisionReason="Magnific gate: the approval state file is written only by "
-                                     "Hunter's own messages. Do not touch it.")
+    age = (datetime.now(timezone.utc) - datetime.fromisoformat(ts.replace("Z", "+00:00"))).total_seconds()
+    return 0 <= age < APPROVAL_TTL
 
 
 def gate(data):
     tool = data.get("tool_name", "")
-    if not tool.startswith("mcp__magnific__"):
-        return guard_state_file(data)
-    if tool in READ_ONLY:
+    if tool in WRITE_TOOLS:
+        if PROTECTED.search(json.dumps(data.get("tool_input", {}))) and not approved(data):
+            decide("deny", "Magnific gate: this touches the gate's own hook/settings/transcripts. "
+                           "Ask Hunter; it needs his reply starting with yes/go/approved.")
+        return
+    if not tool.startswith("mcp__magnific__") or tool in READ_ONLY:
         return
     short = tool.removeprefix("mcp__magnific__")
-    if data.get("permission_mode") in NORMAL_MODES:  # unknown/missing mode = treat as bypass
-        out("PreToolUse", permissionDecision="ask",
-            permissionDecisionReason=f"Magnific gate: {short} may spend credits.")
-        return
-    if approved_recently():
-        return
-    out("PreToolUse", permissionDecision="deny",
-        permissionDecisionReason=(
-            f"Magnific gate: {short} may spend credits and Hunter has not approved it. "
-            "Run simulate_cost, quote the cost in chat, and wait for Hunter to reply "
-            "starting with yes/go/approved. Never write the gate state file yourself."))
+    if data.get("permission_mode") in NORMAL_MODES:
+        return decide("ask", f"Magnific gate: {short} may spend credits.")
+    if not approved(data):
+        decide("deny", f"Magnific gate: {short} may spend credits and Hunter has not approved it. "
+                       "Run simulate_cost, quote the cost in chat, and wait for Hunter to reply "
+                       "starting with yes/go/approved.")
 
 
 try:
-    data = json.load(sys.stdin)
-except Exception:
-    if "--record-prompt" not in sys.argv:
-        out("PreToolUse", permissionDecision="deny",
-            permissionDecisionReason="Magnific gate: could not read tool call.")
-    sys.exit(0)
-
-try:
-    if "--record-prompt" in sys.argv:
-        record_prompt(data)
-    else:
-        gate(data)
-except Exception:
-    if "--record-prompt" not in sys.argv:
-        out("PreToolUse", permissionDecision="deny",
-            permissionDecisionReason="Magnific gate: internal error, blocking to be safe.")
+    gate(json.load(sys.stdin))
+except Exception as e:
+    decide("deny", f"Magnific gate: internal error ({type(e).__name__}), blocking to be safe.")

@@ -12,24 +12,13 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "mcp__magnific__.*|Bash|Write|Edit|MultiEdit",
+        "matcher": "mcp__magnific__.*|Bash|Write|Edit|MultiEdit|NotebookEdit",
         "hooks": [
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/magnific-gate.py\"",
             "timeout": 10,
             "statusMessage": "Magnific money gate"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/magnific-gate.py\" --record-prompt",
-            "timeout": 5
           }
         ]
       }
