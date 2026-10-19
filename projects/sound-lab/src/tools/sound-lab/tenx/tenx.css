@@ -194,3 +194,99 @@
 .tx-video-name {
   margin: 0;
 }
+
+.tx-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 4px 0;
+}
+
+.tx-row .bs-export,
+.tx-picture-bar .bs-export {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 12.5px;
+}
+
+.tx-chip {
+  flex: none;
+  height: 24px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--surface-ghost-hover);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+.tx-chip:hover {
+  background: var(--bg-hover);
+}
+
+.tx-chip-strong {
+  background: #fff;
+  color: #120f17;
+}
+
+.tx-cuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 64px;
+  overflow-y: auto;
+}
+
+.tx-cuts .tx-chip {
+  font-family: 'Geist Mono', ui-monospace, Menlo, monospace;
+}
+
+.tx-cuts .tx-chip-strong {
+  font-family: inherit;
+}
+
+.tx-spacer {
+  flex: 1;
+}
+
+.tx-folder strong {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tx-layer h3 em {
+  color: var(--text-dimmed);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.tx-takes {
+  margin: 8px 4px 0;
+}
+
+.tx-kit .tx-cue-seek {
+  font-size: 12.5px;
+}
+
+/* The stock phone layout turns export buttons into bare icons; these need their words. */
+@media (max-width: 640px) {
+  .tx-picture .bs-export span,
+  .tx-row .bs-export span,
+  .tx-kit-export span {
+    display: inline;
+  }
+
+  .tx-picture .bs-export:has(span),
+  .tx-row .bs-export,
+  .tx-kit-export {
+    width: auto;
+    padding: 0 12px;
+  }
+}

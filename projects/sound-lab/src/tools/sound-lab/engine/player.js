@@ -1,7 +1,7 @@
-import { renderSound } from '../../../sounds/ts/react-bits-sound';
+import { renderTuned } from '../tenx/render';
 import { analyze } from './analysis';
 
-const SHAPE_KEYS = ['pitch', 'tone', 'length', 'space', 'punch', 'reverb', 'echo', 'filter', 'chorus', 'lofi'];
+const SHAPE_KEYS = ['pitch', 'tone', 'length', 'space', 'punch', 'reverb', 'echo', 'filter', 'chorus', 'lofi', 'trim'];
 
 const BANDS = [
   [40, 320],
@@ -67,7 +67,7 @@ export function createPlayer() {
     let pending = renders.get(key);
     if (!pending) {
       const rate = context?.sampleRate || 48000;
-      pending = renderSound(sound.recipe, shapeOf(tune), { sampleRate: rate, variant }).then(buffer => ({
+      pending = renderTuned(sound, shapeOf(tune), { rate, variant }).then(buffer => ({
         buffer,
         info: analyze(buffer)
       }));
@@ -84,7 +84,7 @@ export function createPlayer() {
     let pending = inspected.get(key);
     if (!pending) {
       const rate = context?.sampleRate || 48000;
-      pending = renderSound(sound.recipe, shapeOf(tune), { sampleRate: rate }).then(analyze);
+      pending = renderTuned(sound, shapeOf(tune), { rate }).then(analyze);
       inspected.set(key, pending);
       pending.catch(() => inspected.delete(key));
       if (inspected.size > 600) inspected.delete(inspected.keys().next().value);
@@ -135,8 +135,21 @@ export function createPlayer() {
     return entry;
   };
 
+  // 10x: play an already-rendered buffer (stacks, picture cues). Not tracked as the selected sound.
+  const playBuffer = async (buffer, { exclusive = false } = {}) => {
+    const audio = ensure();
+    if (audio.state === 'suspended') await audio.resume();
+    if (exclusive) stop();
+    const source = audio.createBufferSource();
+    source.buffer = buffer;
+    source.connect(master);
+    source.start(audio.currentTime + 0.005);
+    return source;
+  };
+
   return {
     render,
+    playBuffer,
     inspect,
     play,
     stop,
@@ -177,6 +190,7 @@ export function createPlayer() {
       stop();
       context?.close();
       context = null;
+      analyser = null;
     }
   };
 }

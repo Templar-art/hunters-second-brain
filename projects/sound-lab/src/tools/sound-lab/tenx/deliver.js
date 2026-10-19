@@ -1,5 +1,5 @@
 // 10x additions: delivery-spec rendering, file naming and timecode helpers for video editors.
-import { renderSound } from '../../../sounds/ts/react-bits-sound';
+import { itemCategory, itemSlug, level, renderItem } from './render';
 import { encodeWav } from '../export/wav';
 
 export const DELIVERY = { rate: 48000, depth: 24 };
@@ -20,51 +20,55 @@ const slug = value =>
     .replace(/[^A-Za-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-// PROJECT_category_sound[_01].wav — sorts by project, then by SFX family, in any bin or finder window.
-export function sfxName(project, sound, index = null, extension = 'wav') {
-  const parts = [slug(project), slug(sound.category), slug(sound.id)].filter(Boolean);
+// PROJECT_category_sound[_01][-2].wav — sorts by project, then by SFX family, in any bin or finder window.
+// Works for a catalog sound or a kit item (single sound or stack).
+export function sfxName(project, item, index = null, extension = 'wav', take = 0) {
+  const parts = [slug(project), slug(itemCategory(item)), slug(itemSlug(item))].filter(Boolean);
   if (index !== null) parts.push(String(index + 1).padStart(2, '0'));
-  return `${parts.join('_')}.${extension}`;
+  return `${parts.join('_')}${take ? `-${take + 1}` : ''}.${extension}`;
 }
 
 export const kitName = project => `${slug(project) || 'sound-lab'}_sfx-kit.zip`;
+export const projectSlug = project => slug(project.name) || 'sound-lab';
 
+// peak: the loudest sample (for headroom). time: centre of the loudest 10 ms window (for alignment) — a single
+// sample in a noisy rumble wanders by tens of ms between renders, the envelope doesn't.
 export function peakOf(buffer) {
+  const rate = buffer.sampleRate;
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, index) => buffer.getChannelData(index));
+  const window = Math.max(1, Math.round(rate * 0.01));
   let peak = 0;
+  let best = -1;
   let at = 0;
-  for (let channel = 0; channel < buffer.numberOfChannels; channel += 1) {
-    const data = buffer.getChannelData(channel);
-    for (let i = 0; i < data.length; i += 1) {
-      const value = Math.abs(data[i]);
-      if (value > peak) {
-        peak = value;
-        at = i;
-      }
+  for (let from = 0; from < buffer.length; from += window) {
+    let energy = 0;
+    const to = Math.min(buffer.length, from + window);
+    for (let i = from; i < to; i += 1) {
+      let mono = 0;
+      channels.forEach(data => {
+        peak = Math.max(peak, Math.abs(data[i]));
+        mono += data[i];
+      });
+      energy += mono * mono;
+    }
+    if (energy > best) {
+      best = energy;
+      at = (from + to) / 2;
     }
   }
-  return { peak, time: at / buffer.sampleRate };
+  return { peak, time: at / rate };
 }
 
-// Scales in place so the loudest sample sits at `ceiling` dBFS (default -1, broadcast-safe headroom).
-export function normalize(buffer, ceiling = -1) {
-  const { peak } = peakOf(buffer);
-  if (peak < 1e-6) return buffer;
-  const gain = Math.pow(10, ceiling / 20) / peak;
-  for (let channel = 0; channel < buffer.numberOfChannels; channel += 1) {
-    const data = buffer.getChannelData(channel);
-    for (let i = 0; i < data.length; i += 1) data[i] *= gain;
-  }
-  return buffer;
+export const levelOf = project => ({ mode: project.level, target: project.lufs });
+
+export async function renderDelivery(item, project, { take = 0, levelled = true } = {}) {
+  const buffer = await renderItem(item, { rate: DELIVERY.rate, take });
+  return levelled ? level(buffer, levelOf(project)).buffer : buffer;
 }
 
-export async function renderDelivery(sound, tune = {}, { rate = DELIVERY.rate, normalized = true } = {}) {
-  const buffer = await renderSound(sound.recipe, tune, { sampleRate: rate, channels: 2 });
-  return normalized ? normalize(buffer) : buffer;
-}
-
-export async function deliveryWav(sound, tune, options = {}) {
-  const buffer = await renderDelivery(sound, tune, options);
-  return { blob: encodeWav(buffer, { bitDepth: options.depth || DELIVERY.depth, channels: 2 }), buffer };
+export async function deliveryWav(item, project, options = {}) {
+  const buffer = await renderDelivery(item, project, options);
+  return { blob: encodeWav(buffer, { bitDepth: DELIVERY.depth, channels: 2 }), buffer };
 }
 
 const nominal = fps => Math.round(fps);

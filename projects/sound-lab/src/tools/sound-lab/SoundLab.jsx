@@ -13,6 +13,9 @@ import ExportDialog from './components/ExportDialog';
 import { readSharedSound } from './sounds/share';
 import PictureSync from './tenx/PictureSync';
 import ProjectSection from './tenx/ProjectSection';
+import StackSection from './tenx/StackSection';
+import PresetsSection from './tenx/PresetsSection';
+import { loadFolder } from './tenx/save';
 import '../background-studio/studio.css';
 import '../texture-lab/lab.css';
 import './snd.css';
@@ -61,7 +64,20 @@ const isTyping = target =>
   typeof target?.closest === 'function' &&
   Boolean(target.closest('input, textarea, select, [contenteditable="true"], [role="slider"], [role="dialog"]'));
 
-const PROJECT = { name: '', normalize: true, fps: 25 };
+const PROJECT = { name: '', level: 'peak', lufs: -18, fps: 25, takes: 1, mediaPath: '/Users/10xhunter/Downloads' };
+
+// Picture mode owns transport keys (space, J/K/L, frame step) while it's open.
+const PICTURE_KEYS = new Set([' ', 'j', 'k', 'l', 'arrowleft', 'arrowright', ',', '.', 'm']);
+
+const uid = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+
+const readProject = () => {
+  const stored = read('project', {});
+  // v1 stored a boolean `normalize`.
+  if (stored.level === undefined && stored.normalize === false) stored.level = 'off';
+  delete stored.normalize;
+  return { ...PROJECT, ...stored };
+};
 
 const DEFAULTS = Object.fromEntries([...TUNE, ...PLAYBACK].map(control => [control.key, control.fallback]));
 
@@ -106,7 +122,10 @@ export default function SoundLab({ toolSelector }) {
   const [exporting, setExporting] = useState(null);
   const [sideTab, setSideTab] = useState('sounds');
   const [playing, setPlaying] = useState(null);
-  const [project, setProject] = useState(() => ({ ...PROJECT, ...read('project', {}) }));
+  const [project, setProject] = useState(readProject);
+  const [stack, setStack] = useState(() => read('stack', []));
+  const [presets, setPresets] = useState(() => read('presets', []));
+  const [folder, setFolder] = useState(null);
   const [kit, setKit] = useState(() => read('kit', []));
   const [cues, setCues] = useState(() => read('cues', []));
   const [picture, setPicture] = useState(() => read('picture', false));
@@ -186,16 +205,48 @@ export default function SoundLab({ toolSelector }) {
     write('kit', kit);
     write('cues', cues);
     write('picture', picture);
-  }, [project, kit, cues, picture]);
+    write('stack', stack);
+    write('presets', presets);
+  }, [project, kit, cues, picture, stack, presets]);
+
+  useEffect(() => {
+    loadFolder().then(handle => handle && setFolder(handle));
+  }, []);
 
   const onProject = patch => setProject(previous => ({ ...previous, ...patch }));
 
-  const addToKit = () => {
-    setKit(previous => [
-      ...previous,
-      { key: `${Date.now()}-${previous.length}`, id: selectedRef.current, tune: tunesRef.current[selectedRef.current] || {} }
-    ]);
-    toast.success(`${SOUNDS_BY_ID[selectedRef.current].name} added to kit`);
+  const current = () => ({ id: selectedRef.current, tune: tunesRef.current[selectedRef.current] || {} });
+
+  const addItemToKit = (item, label) => {
+    setKit(previous => [...previous, { ...item, key: uid() }]);
+    toast.success(`${label} added to kit`);
+  };
+
+  const addToKit = () => addItemToKit(current(), SOUNDS_BY_ID[selectedRef.current].name);
+
+  const addLayer = () => {
+    setStack(previous => [...previous, { ...current(), key: uid(), offset: 0, gain: 0 }]);
+    toast.success(`${SOUNDS_BY_ID[selectedRef.current].name} layered`);
+  };
+
+  const savePreset = item => {
+    const name = window.prompt('Preset name', item.name || '');
+    if (!name?.trim()) return;
+    setPresets(previous => [...previous, { key: uid(), name: name.trim(), item: { ...item, name: name.trim() } }]);
+    toast.success(`Saved “${name.trim()}”`);
+  };
+
+  const loadPreset = preset => {
+    if (preset.item.layers) {
+      setStack(preset.item.layers.map(layer => ({ ...layer, key: uid() })));
+      toast.success(`${preset.name} loaded into the stack`);
+      return;
+    }
+    const target = SOUNDS_BY_ID[preset.item.id];
+    if (!target) return;
+    setTunes(previous => withSettings(previous, target.id, preset.item.tune || {}));
+    select(target, { autoplay: false });
+    player.play(target, preset.item.tune || {}).catch(() => null);
   };
 
   const removeFromKit = key => setKit(previous => previous.filter(item => item.key !== key));
@@ -299,6 +350,7 @@ export default function SoundLab({ toolSelector }) {
     if (exporting || event.defaultPrevented) return;
     const key = event.key.toLowerCase();
     if (event.metaKey || event.ctrlKey || event.altKey || isTyping(event.target)) return;
+    if (picture && PICTURE_KEYS.has(key)) return;
     if (key === ' ') {
       if (typeof event.target?.closest === 'function' && event.target.closest('button, a, [role="switch"]')) return;
       event.preventDefault();
@@ -314,6 +366,8 @@ export default function SoundLab({ toolSelector }) {
       setExporting('last');
     } else if (key === 'k') {
       addToKit();
+    } else if (key === 's') {
+      addLayer();
     } else if (key === 'p') {
       setPicture(value => !value);
     } else if (key === 'l') {
@@ -353,10 +407,28 @@ export default function SoundLab({ toolSelector }) {
 
   const panel = (
     <Panel sound={sound} tune={tune} onTune={onTune} onEffect={onEffect} onReset={onReset}>
+      <StackSection
+        stack={stack}
+        onStack={setStack}
+        project={project}
+        player={player}
+        onAdd={addLayer}
+        onKit={item => addItemToKit(item, item.name || 'Stack')}
+        onSave={savePreset}
+      />
+      <PresetsSection
+        presets={presets}
+        onPresets={setPresets}
+        onSave={() => savePreset(current())}
+        onLoad={loadPreset}
+        onKit={preset => addItemToKit(preset.item, preset.name)}
+      />
       <ProjectSection
         sound={sound}
         project={project}
         onProject={onProject}
+        folder={folder}
+        onFolder={setFolder}
         kit={kit}
         onAdd={addToKit}
         onRemove={removeFromKit}
@@ -371,6 +443,8 @@ export default function SoundLab({ toolSelector }) {
           sound={sound}
           tune={tune}
           project={project}
+          stack={stack}
+          folder={folder}
           cues={cues}
           onCues={setCues}
           player={player}
@@ -431,6 +505,7 @@ export default function SoundLab({ toolSelector }) {
           tune={tune}
           info={infos[selectedId]}
           project={project}
+          folder={folder}
           player={player}
           onPlay={id => play(id)}
           onClose={() => setExporting(null)}

@@ -3,13 +3,13 @@ import { createPortal } from 'react-dom';
 import { Cancel01Icon, Download04Icon, Link04Icon, MusicNote01Icon } from '@hugeicons/core-free-icons';
 import { toast } from 'sonner';
 import { Icon, Track } from '../../background-studio/components/ui';
-import { downloadBlob } from '../../background-studio/utils/download';
-import { renderSound } from '../../../sounds/ts/react-bits-sound';
 import { canEncode, encodeAudio } from '../export/encode';
 import { shareRows, shareUrl } from '../sounds/share';
 import Orb from './Orb';
 import { formatSeconds } from '../sounds/browse';
-import { normalize, sfxName } from '../tenx/deliver';
+import { levelOf, sfxName } from '../tenx/deliver';
+import { level, renderTuned } from '../tenx/render';
+import { saveFiles } from '../tenx/save';
 
 const TABS = [
   { value: 'audio', label: 'Audio', icon: MusicNote01Icon },
@@ -76,7 +76,7 @@ const OrbWell = ({ sound, info, player, onPlay }) => (
   </div>
 );
 
-function AudioTab({ sound, tune, info, project, player, onPlay, onBusyChange }) {
+function AudioTab({ sound, tune, info, project, folder, player, onPlay, onBusyChange }) {
   const [settings, setSettings] = useState(remembered);
   const [support, setSupport] = useState({ wav: true, mp3: true, ogg: true });
   const [busy, setBusy] = useState(false);
@@ -113,11 +113,10 @@ function AudioTab({ sound, tune, info, project, player, onPlay, onBusyChange }) 
     onBusyChange(true);
     setError(null);
     try {
-      const buffer = await renderSound(sound.recipe, tune, { sampleRate: rate, channels: 2 });
-      if (project.normalize) normalize(buffer);
+      const buffer = level(await renderTuned(sound, tune, { rate }), levelOf(project)).buffer;
       const blob = await encodeAudio(buffer, { format, bitDepth: depth, bitrate, channels });
-      downloadBlob(blob, sfxName(project.name, sound, null, extension));
-      toast.success(`${sound.name} downloaded`);
+      const where = await saveFiles(folder, [{ name: sfxName(project.name, sound, null, extension), data: blob }]);
+      toast.success(`${sound.name} saved to ${where}`);
     } catch (problem) {
       setError(problem?.message || 'That format could not be encoded in this browser.');
     } finally {
@@ -174,7 +173,7 @@ function AudioTab({ sound, tune, info, project, player, onPlay, onBusyChange }) 
               RATES.find(item => item.value === rate)?.long,
               channels === 2 ? 'Stereo' : 'Mono',
               formatBytes(bytes),
-              project.normalize ? '−1 dBFS peak' : null
+              project.level === 'peak' ? '−1 dBFS peak' : project.level === 'lufs' ? `${project.lufs} LUFS` : null
             ]
               .filter(Boolean)
               .join(' · ')}
@@ -240,7 +239,7 @@ function LinkTab({ sound, tune, info, player, onPlay }) {
   );
 }
 
-export default function ExportDialog({ initialTab, sound, tune, info, project, player, onPlay, onClose }) {
+export default function ExportDialog({ initialTab, sound, tune, info, project, folder, player, onPlay, onClose }) {
   const [tab, setTabState] = useState(() => (initialTab && initialTab !== 'last' ? initialTab : remembered.tab));
   const [busy, setBusy] = useState(false);
   const dialogRef = useRef(null);
@@ -309,7 +308,7 @@ export default function ExportDialog({ initialTab, sound, tune, info, project, p
           {tab === 'link' ? (
             <LinkTab sound={sound} tune={tune} info={info} player={player} onPlay={onPlay} />
           ) : (
-            <AudioTab sound={sound} tune={tune} info={info} project={project} player={player} onPlay={onPlay} onBusyChange={setBusy} />
+            <AudioTab sound={sound} tune={tune} info={info} project={project} folder={folder} player={player} onPlay={onPlay} onBusyChange={setBusy} />
           )}
         </div>
       </div>

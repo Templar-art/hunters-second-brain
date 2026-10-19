@@ -1242,3 +1242,6 @@ Applied priorities 1 and 2 from [[claude-improvement-plan]]. `.gitignore` now bl
 ## [2026-10-20] migrate | Magnific gate v3: transcript-based approval
 
 Two automated security reviews flagged that a file-based approval could be forged, and that the gate could edit its own settings. Rebuilt the gate so approval comes from Hunter's latest typed message in the session transcript; the approval file and the UserPromptSubmit hook are gone. Edits to the hook, the settings and the transcripts now need the same approval, and NotebookEdit was added to the matcher. A 20-case test against fake transcripts passed. On live use it blocked Claude from reading settings until Hunter replied "yes". Detail on [[claude-code-setup]].
+
+## [2026-10-20] ingest | Sound Lab v2 + FCP plugin research
+Added nine features to [[sound-lab]]: layering stacks, LUFS levelling (matches ffmpeg ebur128), takes, presets, a trim effect, FCPXML export (valid against FCP 12.4's v1.11 DTD), editor transport keys, frame-exact cut detection and save-to-folder. All were verified in the preview. Importing the XML into Final Cut itself hasn't been tested yet. Started [[fcp-plugin-research]] with an inventory of installed plugins (FCP 12.4, M5 Pro) and two Perplexity prompts. Flagged [[video-edit-pipeline]], which says "Resolve or Premiere" although FCP is the working NLE.

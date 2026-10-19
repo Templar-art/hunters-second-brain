@@ -125,6 +125,19 @@ export const EFFECTS = [
   }
 ];
 
+// 10x: post-render trim. Applied by tenx/render.js finish(), after the engine.
+EFFECTS.push({
+  key: 'trim',
+  label: 'Trim',
+  hint: 'Fades, reverse, tail',
+  controls: [
+    { key: 'fadeIn', label: 'Fade in', min: 0, max: 500, step: 5, fallback: 0, format: value => `${value} ms` },
+    { key: 'fadeOut', label: 'Fade out', min: 0, max: 2000, step: 10, fallback: 40, format: value => `${value} ms` },
+    { key: 'reverse', label: 'Reverse', type: 'switch', fallback: false },
+    { key: 'tail', label: 'Cut silent tail', type: 'switch', fallback: true }
+  ]
+});
+
 export const EFFECT_KEYS = EFFECTS.map(effect => effect.key);
 
 export const effectDefaults = effect =>

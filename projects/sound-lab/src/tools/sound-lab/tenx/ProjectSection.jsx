@@ -3,46 +3,73 @@ import { Cancel01Icon, Download04Icon, PlusSignIcon } from '@hugeicons/core-free
 import { toast } from 'sonner';
 import { Icon, Tip, Track } from '../../background-studio/components/ui';
 import { downloadBlob } from '../../background-studio/utils/download';
-import PreviewSwitch from '../../../components/common/Preview/PreviewSwitch';
-import { SOUNDS_BY_ID } from '../sounds/catalog';
-import { FRAME_RATES, deliveryWav, kitName, sfxName } from './deliver';
+import { FRAME_RATES, deliveryWav, kitName, projectSlug, sfxName } from './deliver';
+import { LEVELS, LUFS_TARGETS, itemCategory, itemName, loudness } from './render';
+import { canPickFolder, forgetFolder, pickFolder, saveFiles } from './save';
 import { zipFiles } from './zip';
 
-const describe = tune =>
-  Object.entries(tune)
-    .filter(([, value]) => typeof value === 'number')
-    .map(([key, value]) => `${key}=${Number(value.toFixed(3))}`)
-    .join(' ');
+const TAKES = [1, 3, 5].map(value => ({ value, label: value === 1 ? '1' : `${value}` }));
 
-export async function exportKit(project, kit) {
+const describe = item =>
+  (item.layers || [item])
+    .map(layer => {
+      const tune = Object.entries(layer.tune || {})
+        .filter(([, value]) => typeof value === 'number')
+        .map(([key, value]) => `${key}=${Number(value.toFixed(3))}`)
+        .join(' ');
+      return `${layer.id}${layer.offset ? `@${layer.offset}s` : ''}${layer.gain ? `(${layer.gain}dB)` : ''}${tune ? ` ${tune}` : ''}`;
+    })
+    .join(' + ');
+
+// Every kit item × takes → WAVs + sfx-list.csv. Into the chosen folder, or one zip in Downloads.
+export async function exportKit(project, kit, folder) {
   const files = [];
-  const rows = ['file,sound,category,seconds,tune'];
+  const rows = ['file,name,category,seconds,lufs,recipe'];
+  const takes = project.takes || 1;
   for (const [index, item] of kit.entries()) {
-    const sound = SOUNDS_BY_ID[item.id];
-    if (!sound) continue;
-    const { blob, buffer } = await deliveryWav(sound, item.tune, { normalized: project.normalize });
-    const name = sfxName(project.name, sound, index);
-    files.push({ name, data: blob });
-    rows.push([name, sound.name, sound.category, buffer.duration.toFixed(3), describe(item.tune)].join(','));
+    for (let take = 0; take < takes; take += 1) {
+      const { blob, buffer } = await deliveryWav(item, project, { take });
+      const name = sfxName(project.name, item, index, 'wav', takes > 1 ? take : 0);
+      files.push({ name, data: blob });
+      const lufs = loudness(buffer);
+      rows.push(
+        [name, `"${itemName(item)}"`, itemCategory(item), buffer.duration.toFixed(3), lufs.toFixed(1), `"${describe(item)}"`].join(
+          ','
+        )
+      );
+    }
   }
   files.push({ name: 'sfx-list.csv', data: rows.join('\n') + '\n' });
-  const zip = await zipFiles(files);
-  downloadBlob(zip, kitName(project.name));
-  return files.length - 1;
+  const where = await saveFiles(folder, files, {
+    sub: `${projectSlug(project)}_sfx-kit`,
+    fallback: async () => {
+      downloadBlob(await zipFiles(files), kitName(project.name));
+      return 'Downloads (zip)';
+    }
+  });
+  return { count: files.length - 1, where };
 }
 
-export default function ProjectSection({ sound, project, onProject, kit, onAdd, onRemove }) {
+export default function ProjectSection({ sound, project, onProject, folder, onFolder, kit, onAdd, onRemove }) {
   const [busy, setBusy] = useState(false);
 
   const run = async () => {
     setBusy(true);
     try {
-      const count = await exportKit(project, kit);
-      toast.success(`${count} WAVs zipped`);
+      const { count, where } = await exportKit(project, kit, folder);
+      toast.success(`${count} WAVs → ${where}`);
     } catch (problem) {
       toast.error(problem?.message || 'Kit export failed');
     } finally {
       setBusy(false);
+    }
+  };
+
+  const choose = async () => {
+    try {
+      onFolder(await pickFolder());
+    } catch (problem) {
+      if (problem?.name !== 'AbortError') toast.error(problem?.message || 'Could not open that folder');
     }
   };
 
@@ -65,11 +92,25 @@ export default function ProjectSection({ sound, project, onProject, kit, onAdd, 
         <p className="tx-filename" title="Export filename">
           {sfxName(project.name, sound)}
         </p>
-        <PreviewSwitch
-          title="Normalize −1 dBFS"
-          isChecked={project.normalize}
-          onChange={value => onProject({ normalize: value })}
-        />
+        <div className="scrubber">
+          <div className="scrubber-track bs-choice">
+            <span className="bs-choice-label">Level</span>
+            <Track label="Level" value={project.level} options={LEVELS} onChange={value => onProject({ level: value })} />
+          </div>
+        </div>
+        {project.level === 'lufs' && (
+          <div className="scrubber">
+            <div className="scrubber-track bs-choice">
+              <span className="bs-choice-label">Target</span>
+              <Track
+                label="LUFS target"
+                value={project.lufs}
+                options={LUFS_TARGETS.map(value => ({ value, label: `${value}` }))}
+                onChange={value => onProject({ lufs: value })}
+              />
+            </div>
+          </div>
+        )}
         <div className="scrubber">
           <div className="scrubber-track bs-choice">
             <span className="bs-choice-label">FPS</span>
@@ -81,6 +122,35 @@ export default function ProjectSection({ sound, project, onProject, kit, onAdd, 
             />
           </div>
         </div>
+        <div className="tx-field tx-folder">
+          <span>Save to</span>
+          <strong title={folder ? 'Chosen folder' : 'Browser downloads'}>{folder ? folder.name : 'Downloads'}</strong>
+          {folder ? (
+            <button
+              type="button"
+              className="lab-icon-button"
+              aria-label="Use Downloads again"
+              onClick={() => forgetFolder().then(() => onFolder(null))}
+            >
+              <Icon icon={Cancel01Icon} size={13} />
+            </button>
+          ) : (
+            canPickFolder() && (
+              <button type="button" className="tx-chip" onClick={choose}>
+                Choose…
+              </button>
+            )
+          )}
+        </div>
+        <label className="tx-field" title="Where the cue WAVs will sit on disk, for the Final Cut XML">
+          <span>FCP path</span>
+          <input
+            value={project.mediaPath}
+            spellCheck={false}
+            autoComplete="off"
+            onChange={event => onProject({ mediaPath: event.target.value })}
+          />
+        </label>
       </div>
 
       <div className="customize-heading tx-kit-heading">
@@ -96,36 +166,41 @@ export default function ProjectSection({ sound, project, onProject, kit, onAdd, 
       </div>
       {kit.length ? (
         <ol className="tx-kit">
-          {kit.map((item, index) => {
-            const target = SOUNDS_BY_ID[item.id];
-            if (!target) return null;
-            return (
-              <li key={item.key}>
-                <span className="tx-kit-name" title={sfxName(project.name, target, index)}>
-                  {String(index + 1).padStart(2, '0')} {target.name}
-                  {Object.keys(item.tune).length ? <em> · tuned</em> : null}
-                </span>
-                <span className="tx-kit-meta">{target.category}</span>
-                <button
-                  type="button"
-                  className="lab-icon-button"
-                  aria-label={`Remove ${target.name}`}
-                  onClick={() => onRemove(item.key)}
-                >
-                  <Icon icon={Cancel01Icon} size={13} />
-                </button>
-              </li>
-            );
-          })}
+          {kit.map((item, index) => (
+            <li key={item.key}>
+              <span className="tx-kit-name" title={sfxName(project.name, item, index)}>
+                {String(index + 1).padStart(2, '0')} {itemName(item)}
+                {!item.layers && Object.keys(item.tune || {}).length ? <em> · tuned</em> : null}
+              </span>
+              <span className="tx-kit-meta">{itemCategory(item)}</span>
+              <button
+                type="button"
+                className="lab-icon-button"
+                aria-label={`Remove ${itemName(item)}`}
+                onClick={() => onRemove(item.key)}
+              >
+                <Icon icon={Cancel01Icon} size={13} />
+              </button>
+            </li>
+          ))}
         </ol>
       ) : (
-        <p className="snd-fx-empty">Build a kit for this edit: tune a sound, press K, repeat. Exports as one zip.</p>
+        <p className="snd-fx-empty">Build a kit for this edit: tune a sound, press K, repeat. Stacks and presets go in too.</p>
       )}
+      <div className="scrubber tx-takes">
+        <div className="scrubber-track bs-choice">
+          <span className="bs-choice-label">Takes each</span>
+          <Track label="Takes" value={project.takes || 1} options={TAKES} onChange={value => onProject({ takes: value })} />
+        </div>
+      </div>
       <button type="button" className="bs-export bs-wide-button tx-kit-export" onClick={run} disabled={busy || !kit.length}>
         {busy ? <span className="bs-spinner" /> : <Icon icon={Download04Icon} />}
-        <span>{busy ? 'Rendering' : 'Export kit (.zip)'}</span>
+        <span>{busy ? 'Rendering' : folder ? `Export kit → ${folder.name}` : 'Export kit (.zip)'}</span>
       </button>
-      <p className="tx-note">Every export is 48 kHz · 24-bit · stereo WAV, named for the project.</p>
+      <p className="tx-note">
+        48 kHz · 24-bit · stereo WAV, named for the project. Extra takes vary pitch and tone slightly so repeats don’t
+        sound identical.
+      </p>
     </section>
   );
 }
