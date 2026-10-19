@@ -67,3 +67,4 @@ _Vault: [[jarvis]]_
 - Moody pass (825cr, approved): 2nd NBP pass on each final: golden-hour sun, practical lights on (pendants, lamps, downlights, entry portal), stronger materials. Layouts held. ⚠️ #08: the kitchen upper joinery came out timber instead of white (fixture change), flagged. Delivery folder rebuilt from outputs/moody/.
 
 **Cost tally: 4,035 Magnific cr** (3,210 + 825)
+- #08 swapped back to the pre-moody NBP version (white joinery). Final delivery: 10 moody + #08 standard.
