@@ -1332,3 +1332,6 @@ The full Ocular download landed in a Downloads subfolder, which the sorter does 
 
 ## [2026-10-20] migrate | USE redo: State management v2 locked, ERD v2 built
 Hunter locked State management v2. ERD v2 has the upgrades ported, on-story motion (scanner sweep, records along the connector), and the face circle moved off the houses table. All clear. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: ERD v2 locked, Excel wince v4 built
+Hunter locked ERD v2. Excel wince v4: the Q&A opener is now alive engine-wide, the end card is alive, and a headline was moved off the face circle (a QA gap: TEXT CLEAR ignores the face circle). All clear. Waiting on Gate B. No spend.

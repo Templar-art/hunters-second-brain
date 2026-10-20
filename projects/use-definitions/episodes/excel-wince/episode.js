@@ -4,13 +4,15 @@ window.EP = {
   dur: 25.0, voEnd: 21.7,
   punchIns: [[6.76, 8.2]],
   cuts: [ASK_IN, REPLY_IN, SHEET_IN, RIGHT_IN, END_IN],
+  // v4 (redo pass): deliberate transitions the QC continuity check should ignore (hard cuts get ±0.3 s)
+  qcAllow: [[0, 0.6], [2.8, 3.5], [6.5, 7.0], [7.9, 8.5], [10.4, 11.3], [17.7, 18.3], [21.3, 22.3]],
   captions: [[ASK_IN, 8.6, 1240], [RIGHT_IN, END_MOS, 1240]],
   frame(T) {
     if (T < ASK_IN) qOpener(T, 0, ASK_IN, '', ['What makes me wince', 'on a first call?']);
     else if (T < SHEET_IN) sceneChat(T);
     else if (T < RIGHT_IN) sceneSheet(T);
     else if (T < END_IN) sceneRight(T);
-    else endCard(T, END_IN, this.dur, 'Q&A');
+    else endCard(T, END_IN, this.dur, 'Q&A', true);   // v4: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -57,7 +59,7 @@ function sceneSheet(T) {
   [['BUILT 10 YEARS AGO', 12.74, 300, 1370, -.06], ['AUTHOR LEFT THE COMPANY', 14.18, 640, 1500, .05]].forEach(([txt, at, x, y, rot]) => { const q = back((T - at) / .3); if (q <= 0) return;
     g.save(); g.translate(x, y); g.rotate(rot); g.scale(q * (2 - q), q * (2 - q)); font(800, 46, COND); const w = g.measureText(txt).width + 50;
     g.fillStyle = '#F3F3F3'; g.beginPath(); g.roundRect(-w / 2, -48, w, 96, 12); g.fill(); g.strokeStyle = '#F5A524'; g.lineWidth = 7; g.stroke(); g.fillStyle = '#F5A524'; g.textAlign = 'center'; g.fillText(txt, 0, 18); g.textAlign = 'left'; g.restore(); });
-  rise('Complete and utter garbage.', 54, 1700, T - 16.22, { size: 92, w: 800, col: INK, dur: .45 });
+  rise('Complete and utter garbage.', 54, 1650, T - 16.22, { size: 84, w: 800, col: INK, dur: .45 });   // v4: clear of the face circle (v3 overlapped it)
   faceCircle(920, 1790, 100, back((T - SHEET_IN - .2) / .6));
 }
 

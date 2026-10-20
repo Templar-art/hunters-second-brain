@@ -394,14 +394,17 @@ function qOpener(T, a, b, question, lines) {
   const wy = whip(T, b - .25, .25); if (wy < 0) th(FULL, BZ);
   g.save(); g.translate(0, wy);
   g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
-  const t = T - a; cluster(81, 930, 170, 6, 120, 90, t - .1, { from: [300, -260] });
+  const t = T - a, dz = clamp((t - .8) / .5);   // redo: once landed, the opener keeps drifting so the read never sits dead still
+  g.save(); g.translate(Math.sin(t * 1.9) * 14 * dz, Math.cos(t * 1.6) * 10 * dz); cluster(81, 930, 170, 6, 120, 90, t - .1, { from: [300, -260] }); g.restore();
+  if (t > .9) for (let k = 0; k < 2; k++) { const r = ((t - .9) / 1.3 + k / 2) % 1; g.strokeStyle = `rgba(18,221,235,${.5 * (1 - r)})`; g.lineWidth = 3; g.beginPath(); g.roundRect(70 - r * 40, 338 - r * 40, 250 + r * 80, 64 + r * 80, 32 + r * 40); g.stroke(); }
   const tg = back(t / .4); if (tg > 0) { g.save(); g.translate(70, 380); g.scale(tg, tg); g.fillStyle = CYAN; g.beginPath(); g.roundRect(0, -42, 250, 64, 32); g.fill();
     font(500, 28, MONO); g.letterSpacing = '5px'; g.fillStyle = NAVY; g.fillText('QUESTION', 28, 0); g.letterSpacing = '0px'; g.restore(); }
   // the question types word by word, wrapped into the given lines
   const words = lines.join(' ').split(' '), per = (b - a - 1.4) / words.length; let shown = Math.floor(clamp((t + per * .9) / per, 0, words.length));   // first word on frame one
   lines.forEach((ln, i) => { const ws = ln.split(' '), n = Math.min(ws.length, shown); shown -= ws.length; if (n <= 0) return;
-    font(800, 104, COND); g.fillStyle = WHITE; g.fillText(ws.slice(0, n).join(' '), 70, 560 + i * 112); });
-  faceCircle(880, 1620, 150, back((t - .2) / .6));
+    font(800, 104, COND); g.fillStyle = WHITE; const s_ = ws.slice(0, n).join(' '); g.fillText(s_, 70, 560 + i * 112);
+    if (shown <= 0 && Math.floor(t * 2.4) % 2 === 0) { g.fillStyle = CYAN; g.fillRect(70 + g.measureText(s_).width + 14, 560 + i * 112 - 84, 12, 96); } });   // redo: blinking caret after the last word
+  faceCircle(880, 1620 + Math.sin(t * 2.2) * 12 * dz, 150, back((t - .2) / .6));
   typeOn('Sam Bruhn · Founder & CEO', 70, 1640, t - .5, { size: 26, col: GREY, track: 4, upper: true, cps: 40 });
   g.restore();
 }

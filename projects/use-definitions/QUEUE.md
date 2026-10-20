@@ -62,8 +62,8 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 | 13 | webhooks | v1 | skip: already done by USE (Damon Hall, 10 Oct) |
 | 14 | state-management | v1 | ✅ **LOCKED v2** (Hunter, 20 Oct). Upgrades ported; 5 dead holds in v1 pre-fixed (stored chips keep floating with pulse rings off the store; a cursor clicks the tabs, one click per re-fetch line in the log, with spinners, then rides the bobbing NOT NEEDED pill). First build passed QC, but still_scan found two ~0.5 s holds; the cursor glides were lengthened and the pill bobs. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.2 LUFS (v1 −17.2) |
 | 15 | sql | v1 | skip: already done by USE (Damon Hall, 9 Oct) |
-| 16 | erd | v1 | **v2 built → Gate B.** Upgrades ported; 4 dead holds in v1 pre-fixed (a blueprint scanner bar sweeps the sheet, records flow from users to houses along the connector). The face circle moved off the houses table, which it overlapped in v1. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.4 LUFS (v1 −17.3) |
-| 17 | excel-wince | v3 | todo |
+| 16 | erd | v1 | ✅ **LOCKED v2** (Hunter, 20 Oct). Upgrades ported; 4 dead holds in v1 pre-fixed (a blueprint scanner bar sweeps the sheet, records flow from users to houses along the connector). The face circle moved off the houses table, which it overlapped in v1. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.4 LUFS (v1 −17.3) |
+| 17 | excel-wince | v3 | **v4 built → Gate B.** Upgrades ported. The Q&A opener is now alive engine-wide (shards drift, rings pulse off the QUESTION pill, a caret blinks, the face circle bobs), and the end card is alive. The boss review caught "Complete and utter garbage." running into the face circle (also in v3, missed by TEXT CLEAR), so it was raised and shrunk. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −16.4 LUFS (v3 −16.4) |
 | 18 | scope-myth | v2 | todo |
 | 19 | promises | v2 | todo |
 | 20 | ask-the-vision | v1 | todo |
