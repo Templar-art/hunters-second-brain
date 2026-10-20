@@ -1338,3 +1338,6 @@ Hunter locked ERD v2. Excel wince v4: the Q&A opener is now alive engine-wide, t
 
 ## [2026-10-20] migrate | USE redo: Excel wince v4 locked, Scope myth v3 built
 Hunter locked Excel wince v4. Scope myth v3 has the upgrades ported, on-story motion (core cards build with progress bars), and the Over-delivered pill moved off the caption. All clear. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: Scope myth v3 locked, Promises v3 built
+Hunter locked Scope myth v3. Promises v3 brings the agreement scene alive (pen reads, signs and hovers; turning seal; worst cases ticked). Rebuilt once for a 0.9 s freeze. All clear. Waiting on Gate B. No spend.
