@@ -14,12 +14,13 @@ Source: `Posting for 10xRealestate/To Post/Solis 673 Casuarina Way | SALTPM/Phot
 
 | # | Shot | Pipeline | Status | Notes |
 |---|------|----------|--------|-------|
-| 1 | Pool cinemagraph, 10s 9:16 | video (Seedance 2.5 i2v, 1080p, no audio) | review | locked camera; only pool water + wall spout move; composite still back over non-water if drift |
+| 1 | Pool cinemagraph, 10s 9:16 | video (Seedance 2.5 i2v) + local sky composite | review | v2 = v1 water + still sky slow-zoomed 16% from top-right under a sky mask (work/build_v2.py), 0 credits |
 
 ## Log
 
 - 2026-10-20 intake: 1 shot; Hunter approved Seedance 2.5 1080p 10s 9:16 (160 hf est.)
 - 2026-10-20 v1 generated (Seedance 2.5, 1080p, 10s, 9:16). QC: frame locked, only water + spout move, woman holds still. gen_runner NO_MOTION flag is a false positive for cinemagraphs (whole-frame metric). Awaiting Hunter review.
+- 2026-10-20 Hunter: sky should move too → v2_sky built locally (0 credits): sky masked from the still (geo polygon + colour key, eave pocket forced), zoomed 1.00→1.16 anchored top-right so no house/tree pixels get dragged in. Composited over v1. AI re-roll with clouds held in reserve (160 hf).
 
 ## Ledger
 
