@@ -77,7 +77,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[agentic-os]] — AIOS: 4-level agentic OS; phase 1 live 16 Jul (loop engine + dashboard on :8770)
 - [[claude-code-setup]] — the Claude install mapped: settings, skills, MCP, permissions posture; 10 Aug audit (LAN-exposed dashboard, every scheduled loop dead on TCC)
 - [[claude-improvement-plan]] — 19 Oct research pass: repo bloat (6.6 GB .git), money gate as a permission rule, JOB.md drift, memory/wiki rule splits, Claude habits
-- [[job-framework-v2]] — PROPOSED 20 Oct: 3-gate flow for all jobs, shot-class route table, pilot-before-batch, gen-runner + auto JOB.md tally, spec-driven Blender kit (<2h target)
+- [[job-framework-v2]] — approved 20 Oct, phase 1 built (gen-runner + JOB.md ledger): 3-gate flow for all jobs, shot-class route table, pilot-before-batch, gen-runner + auto JOB.md tally, spec-driven Blender kit (<2h target)
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
 - [[premium-web-build]] — how a client site avoids reading as a template: vary every section's layout, test the accent against both grounds before choosing light or dark, the fixed-position and grid gotchas, and verify by measurement not screenshot
 - [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)
