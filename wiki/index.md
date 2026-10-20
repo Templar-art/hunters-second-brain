@@ -36,6 +36,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 
 ## Projects
 - [[cva-woomala-render-enhance]] — 11 Woomala St renders made photoreal (NBP from source, layout locked); 3,210cr; recipe + failure log
+- [[solis-pool-cinemagraph]] — Salt PM listing photo → 10s 9:16 cinemagraph: Seedance 2.5 with camera lock moves only water + spout (160 hf); clouds added free in post by anchored sky-zoom composite
 - [[woomala-st-9x16-reframe]] — 14 Woomala St renders → 9:16 via pad-canvas + Nano Banana Pro + 1:1 paste-back (88 cr); method for any render reframe
 - [[lead-gen-engine]] — ads + landing pages for MVX, CVA and 10x itself; per-niche strategy, 3 pages built 28 Jul
 - [[10x-ig-repositioning]] — own-brand IG overhaul: credit loop, premium kit, craft series

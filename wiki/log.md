@@ -1296,3 +1296,6 @@ Hunter locked bus-network v3. CLI v3 has the upgrades ported; QC FREEZE caught 3
 
 ## [2026-10-20] migrate | USE redo: CLI v3 locked, JSON v4 built; build.sh stale-picture bug fixed
 Hunter locked CLI v3. JSON v4 has the upgrades ported plus an idle float (QC freeze). Found that `build.sh` silently re-muxed a stale picture when the render crashed, and `qa.sh` hid errors behind pipes. Both are fixed (syntax gate, stale-picture delete, a picture-exists check, pipefail). No spend.
+
+## [2026-10-20] ingest | Solis pool cinemagraph delivered
+Salt PM, Solis 673 Casuarina Way frame 16 → 10s 9:16 cinemagraph. Seedance 2.5 i2v with camera lock moved only the water and spout (160 hf). Clouds were added free in post with an anchored sky-zoom composite. Harvested into [[solis-pool-cinemagraph]] and linked from [[salt-pm]] + index.

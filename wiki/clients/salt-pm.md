@@ -2,7 +2,7 @@
 type: client
 tags: [salt-pm, kingscliff, property-management, chatbot]
 status: active
-updated: 2026-09-02
+updated: 2026-10-20
 ---
 
 # Salt PM
@@ -19,3 +19,6 @@ Brand-voice scrub done 2026-09-02 to spec a chatbot that drafts/posts IG content
 Not yet started: the chatbot build itself (no spec page yet — next step is deciding scope: draft-only assistant vs auto-posting, and how many more caption samples it needs beyond the 2 pulled in the first scrub).
 
 Handoff doc given to Lach: [projects/salt-pm-brand-voice-handoff.md](../../projects/salt-pm-brand-voice-handoff.md) — condenses the scrub into the two-register voice rules + practical caption-writing brief.
+
+## Jobs
+- [[solis-pool-cinemagraph]]: Solis, 673 Casuarina Way pool photo made into a 10s 9:16 cinemagraph (water, spout and clouds move). Delivered 20 Oct 2026, 160 hf.
