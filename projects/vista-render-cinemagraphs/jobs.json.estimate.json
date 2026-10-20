@@ -1,0 +1,12 @@
+{
+ "at": 1792465217.647464,
+ "costs": {
+  "08_bedroom": 160.0,
+  "11_hallway": 160.0,
+  "05_powder": 160.0,
+  "06_kitchen": 160.0,
+  "04_living": 160.0,
+  "01_exterior": 160.0
+ },
+ "total_pending": 960.0
+}
