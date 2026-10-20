@@ -1,0 +1,14 @@
+[
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/05_powder_v2_720.mp4",
+  "motion": 0.002,
+  "continuity_min": 1.0,
+  "continuity_at_s": 4.25,
+  "frames": 121,
+  "flags": [
+   "FREEZE 1.1s",
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ }
+]
