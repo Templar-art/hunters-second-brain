@@ -1293,3 +1293,6 @@ Hunter caught overprinting headlines in bus-network v3 (Simple./Standard.). Fixe
 
 ## [2026-10-20] migrate | USE redo: bus-network v3 locked, CLI v3 built
 Hunter locked bus-network v3. CLI v3 has the upgrades ported; QC FREEZE caught 3 dead stretches in the CRT scene (fixed with a cursor click, a CRT roll band and a push), and the engine `cardStack` label padding is fixed. All checks clear. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: CLI v3 locked, JSON v4 built; build.sh stale-picture bug fixed
+Hunter locked CLI v3. JSON v4 has the upgrades ported plus an idle float (QC freeze). Found that `build.sh` silently re-muxed a stale picture when the render crashed, and `qa.sh` hid errors behind pipes. Both are fixed (syntax gate, stale-picture delete, a picture-exists check, pipefail). No spend.

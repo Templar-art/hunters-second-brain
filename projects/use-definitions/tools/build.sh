@@ -4,7 +4,12 @@
 # Output: episodes/<name>/<name>-<label>.mp4. Optional episodes/<name>/music.wav is ducked under the VO.
 set -e; ROOT="${0:a:h:h}"; EP="$ROOT/episodes/$1"; V="${2:-latest}"
 export NODE_PATH="$ROOT/tools/node_modules"
-[[ -n "$MIX_ONLY" ]] || node "$ROOT/tools/render.cjs" "$EP" video   # MIX_ONLY=1 re-mixes audio without re-rendering
+node -e "new Function(require('fs').readFileSync('$EP/episode.js','utf8'))"   # syntax gate: a broken episode.js must stop here
+if [[ -z "$MIX_ONLY" ]]; then                                  # MIX_ONLY=1 re-mixes audio without re-rendering
+  rm -f "$EP/build/picture.mp4"                                # never re-mux a stale picture if the render dies
+  node "$ROOT/tools/render.cjs" "$EP" video
+fi
+[[ -f "$EP/build/picture.mp4" ]] || { echo "RENDER FAILED: no picture.mp4"; exit 1; }
 DUR=$(python3 -c "import json;print(json.load(open('$EP/build/render.json'))['dur'])")
 VOEND=$(python3 -c "import json;print(json.load(open('$EP/build/render.json'))['voEnd'])")
 "$ROOT/.venv/bin/python" "$ROOT/tools/sfx.py" "$EP" "$DUR"

@@ -49,8 +49,8 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 |---|---|---|---|
 | 01 | crud | v6 | ✅ **LOCKED v7** (Hunter, 20 Oct). Sound Lab UI + Ocular kit (sfx-lib-v2), SUB16/shutter .5 blur, cuts list, shards off face, alive end card. QC ok, FACE/TEXT CLEAR, −17.5 LUFS |
 | 02 | bus-network | v2 | ✅ **LOCKED v3** (Hunter, 20 Oct). v7 upgrades ported (cuts, qcAllow, alive end card, sfx-lib-v2, SUB16/shutter .5); hook shards moved off the ear; panel caption holds at 1200 until pushed (was clipped); Simple./Standard. restacked on two lines, each on its spoken word (Hunter caught the overprint), plus buses running the standard grid and a grid push to kill the 0.8 s freeze this exposed. QC ok, RISE CLEAR, FACE/TEXT CLEAR, −15.8 LUFS (= v2) |
-| 03 | cli | v2 | **v3 built 20 Oct → Gate B (Hunter look)**. Upgrades ported (qcAllow, shards off face, alive end card, sfx-lib-v2, SUB16/shutter .5). QC caught 3 freezes in the CRT scene, fixed with a cursor that glides in and clicks Get started, a CRT roll band and a slow push. Card-stack labels were hugging the edge, fixed in the engine with measured width. QC ok, FACE/TEXT/RISE CLEAR, −16.5 LUFS (= v2) |
-| 04 | json | v3 | todo |
+| 03 | cli | v2 | ✅ **LOCKED v3** (Hunter, 20 Oct). Upgrades ported (qcAllow, shards off face, alive end card, sfx-lib-v2, SUB16/shutter .5). QC caught 3 freezes in the CRT scene, fixed with a cursor that glides in and clicks Get started, a CRT roll band and a slow push. Card-stack labels were hugging the edge, fixed in the engine with measured width. QC ok, FACE/TEXT/RISE CLEAR, −16.5 LUFS (= v2) |
+| 04 | json | v3 | **v4 built 20 Oct → Gate B (Hunter look)**. Upgrades ported (qcAllow, shards off face, alive end card, sfx-lib-v2, SUB16/shutter .5). QC found file icons + type cards sitting dead between beats, fixed with an idle float. QC ok, FACE/TEXT/RISE CLEAR, −16.6 LUFS (= v3) |
 | 05 | sdk | v3 | todo |
 | 06 | ui-ux | v1 | todo |
 | 07 | ide | v2 | todo |

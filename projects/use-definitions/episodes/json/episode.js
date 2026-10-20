@@ -6,15 +6,18 @@ window.EP = {
   punchIns: [[29.9, 32.5]],
   captions: [[JASON_IN, STANDS_IN, 1600], [CODE_IN, TYPES_IN, 1760], [SEMI_IN, END_MOS, 1170]],
   cuts: [JASON_IN, STANDS_IN, FILES_IN, CODE_IN, TYPES_IN, SEMI_IN, END_IN],
+  // v4 (redo pass): deliberate transitions the QC continuity check should ignore
+  qcAllow: [[0, 0.6], [1.5, 2.4], [3.6, 4.4], [4.8, 5.4], [7.4, 8.1], [13.3, 13.7], [14.1, 14.8], [22.4, 23.0], [23.3, 23.8],
+            [24.9, 25.4], [25.8, 26.9], [27.4, 27.9], [29.2, 29.6], [29.8, 30.1], [32.3, 33.5]],
   frame(T) {
-    if (T < JASON_IN) titleCard(T, 'JSON', 1.7);
+    if (T < JASON_IN) titleCard(T, 'JSON', 1.7, 'Definitions', [985, 800]);   // v4: shards off the ear line
     else if (T < STANDS_IN) sceneJason(T);
     else if (T < FILES_IN) standsFor(T, STANDS_IN, FILES_IN, 'JSON', STANDS);
     else if (T < CODE_IN) sceneFiles(T);
     else if (T < TYPES_IN) sceneCode(T);
     else if (T < SEMI_IN) sceneTypes(T);
     else if (T < END_IN) sceneSemi(T);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v4: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -77,7 +80,7 @@ function sceneFiles(T) {
   typeOn('A file format', 60, 330, T - 8.24, { size: 30, col: BLUE, track: 6, upper: true, cps: 30 });
   rise('Like a CSV,', 54, 540, T - 8.5, { size: 150, w: 800, col: INK, dur: .45 });
   rise('or an XLSX.', 54, 690, T - 11.52, { size: 150, w: 800, col: INK, dur: .45 });
-  FILES.forEach(([l, ext, at, col], i) => fileIcon(60 + i * 330, 860, 300, 400, l, ext, col, back((T - at) / .5)));
+  FILES.forEach(([l, ext, at, col], i) => fileIcon(60 + i * 330, 860 + Math.sin(T * 2.1 + i * 1.4) * 12 /* v4: idle float */, 300, 400, l, ext, col, back((T - at) / .5)));
   // bracket: "something else that stores information"
   const pb = expo((T - 13.4) / .5);
   if (pb > 0) { g.strokeStyle = BLUE; g.lineWidth = 5; g.beginPath(); g.moveTo(60, 1310); g.lineTo(60, 1340); g.lineTo(60 + 960 * pb, 1340); g.lineTo(60 + 960 * pb, 1310); g.stroke();
@@ -125,7 +128,7 @@ const TYPES = [['Text', '"Sam"', 23.36], ['Integer', '42', 24.96], ['Decimal', '
 function sceneTypes(T) {
   g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
   typeOn('Values can be', 60, 380, T - 22.8, { size: 30, col: BLUE, track: 6, upper: true, cps: 30 });
-  TYPES.forEach(([type, ex, at], i) => { const cy = 640 + i * 400, pin = back((T - TYPES_IN - .1 - i * .1) / .5); if (pin <= 0) return;
+  TYPES.forEach(([type, ex, at], i) => { const cy = 640 + i * 400 + Math.sin(T * 2.3 + i * 1.3) * 12, pin   /* v4: idle float between flips */ = back((T - TYPES_IN - .1 - i * .1) / .5); if (pin <= 0) return;
     g.save(); g.translate(540, cy); g.scale(pin, pin); g.translate(-540, -cy);
     flipCard(T, at, 540, cy, 900, 320,
       (x, y, w, h) => { font(800, 130, COND); g.fillStyle = WHITE; g.fillText(type, x + 60, y + 205); },
