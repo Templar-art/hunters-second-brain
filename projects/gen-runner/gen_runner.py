@@ -13,7 +13,8 @@
   tally <JOB.md>                    rewrite the JOB.md `cost:` header from the ledger
   sheet <out.jpg> <files...>        QC contact sheet: images as-is, videos as 5 frames
                                      (0/25/50/75/100 %)
-  qc <videos...> [--json out.json]  automatic flags: NO_MOTION, MORPH/DISSOLVE@t (qc_video.py);
+  qc <videos...> [--json out.json] [--edit --allow a-b,…]
+                                     automatic flags: NO_MOTION, MORPH/DISSOLVE@t, FREEZE (qc_video.py);
                                      `run` applies them to every video it downloads
 
 jobs.json (paths relative to the file):
@@ -220,13 +221,13 @@ def cmd_tally(a):
 VIDEO_EXT = (".mp4", ".mov", ".webm")
 
 
-def qc_videos(files, json_out=None):
+def qc_videos(files, json_out=None, edit=False, allow=()):
     """Run the automatic video checks; print a table; return {path: [flags]}."""
     if not files:
         return {}
     sys.path.insert(0, str(Path(__file__).parent))
     import qc_video
-    results = [qc_video.analyse(f) for f in files]
+    results = [qc_video.analyse(f, edit=edit, allow=allow) for f in files]
     print(f"{'video':28} {'motion':>7} {'contin.':>7}  flags")
     for r in results:
         print(f"{Path(r['file']).name:28} {r.get('motion', 0):7.3f} {r.get('continuity_min', 0):7.2f}  {', '.join(r['flags']) or 'ok'}")
@@ -236,7 +237,8 @@ def qc_videos(files, json_out=None):
 
 
 def cmd_qc(a):
-    flags = qc_videos([Path(f) for f in a.files], a.json)
+    allow = [tuple(map(float, w.split("-"))) for w in a.allow.split(",")] if a.allow else []
+    flags = qc_videos([Path(f) for f in a.files], a.json, edit=a.edit, allow=allow)
     if a.sheet:
         make_sheet(a.sheet, a.files, flags)
         print(a.sheet)
@@ -275,7 +277,7 @@ def make_sheet(out, files, flags=None):
         h = max(i.height for i in imgs)
         strip = Image.new("RGB", (W * 5, h + LABEL), "white")
         fl = (flags or {}).get(str(f), [])
-        bad = [x for x in fl if not x.startswith("WARN")]
+        bad = [x for x in fl if not x.startswith(("WARN", "LOOK"))]
         label = f.name + (f"   >> {' · '.join(fl)}" if fl else "")
         ImageDraw.Draw(strip).text((10, 8), label, fill="red" if bad else ("darkorange" if fl else "black"), font=font)
         for i, im in enumerate(imgs):
@@ -307,6 +309,8 @@ def main():
     s = sp.add_parser("tally"); s.add_argument("job_md"); s.set_defaults(f=cmd_tally)
     s = sp.add_parser("sheet"); s.add_argument("out"); s.add_argument("files", nargs="+"); s.set_defaults(f=cmd_sheet)
     s = sp.add_parser("qc"); s.add_argument("files", nargs="+"); s.add_argument("--json"); s.add_argument("--sheet")
+    s.add_argument("--edit", action="store_true", help="cut motion-graphics piece: skip NO_MOTION, use --allow windows")
+    s.add_argument("--allow", help="deliberate cuts/transitions to ignore, e.g. 4.5-5.2,18.9-19.6")
     s.set_defaults(f=cmd_qc)
     a = p.parse_args()
     a.f(a)

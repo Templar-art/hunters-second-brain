@@ -12,10 +12,14 @@ window.EP = {
   voEnd: 19.8,                                        // source audio is trimmed + faded here
   dropWords: [[19.8, 99]],                            // whisper hallucinated a repeat at the tail
   punchIns: [[3.6, 5.0], [12.3, 14.95]],
-  captions: [[2.2, 5.0, 1200], [8.0, 10.45, 1240], [ENDPOINT_IN, ACTIONS_IN, T => panelTop(T) - 60], [19.0, 20.05, 1380]],
+  // v7: hard scene cuts (scene switches in frame() + punch-in edges) so motion blur never straddles them
+  cuts: [2.3, 3.6, 5.0, 6.25, 8.12, 10.45, 12.3, 14.95, 19.33, 20.4],
+  // deliberate transitions the QC continuity check should ignore (mosaics, whips, card flips, panel moves)
+  qcAllow: [[0, 0.6], [2.1, 2.6], [4.5, 5.4], [5.9, 6.5], [7.9, 8.4], [10.3, 11.1], [14.7, 15.4], [15.3, 15.7], [16.5, 16.8], [17.5, 17.8], [18.3, 18.6], [18.9, 19.6], [19.9, 20.8]],
+  captions: [[2.2, 5.0, 1200], [8.0, 10.45, 1240], [ENDPOINT_IN, ACTIONS_IN, T => panelTop(T) - 80], [19.0, 20.05, 1380]],
 
   frame(T) {
-    if (T < 2.3) titleCard(T, 'CRUD');
+    if (T < 2.3) titleCard(T, 'CRUD', 2.0, 'Definitions', [985, 800]);   // v7: shards moved off the ear/eye line to the shoulder
     else if (T < 5.0) { th(FULL, zoomAt(T)); captions(T); lowerThird(T, 2.35, 4.7); }
     else if (T < 6.25) defCard(T, 5.0, 6.05, 'CRUD', 'see · are · you · dee', T => standsFor(T, 6.05, 8.12, 'CRUD', STANDS));
     else if (T < 8.12) standsFor(T, 6.05, 8.12, 'CRUD', STANDS);
@@ -23,7 +27,7 @@ window.EP = {
     else if (T < ACTIONS_IN) sceneEndpoint(T);
     else if (T < 19.33) sceneActions(T);
     else if (T < 20.4) sceneOK(T);
-    else endCard(T, 20.4, this.dur);
+    else endCard(T, 20.4, this.dur, 'Definitions', true);           // v7: alive end card (no dead 2s hold)
     mosaic(T, 4.62, 3);
     mosaic(T, 20.0, 9);
   },

@@ -32,3 +32,7 @@ Tested 20 Oct 2026: a real estimate on the beach Veo re-roll came to 96 HF, matc
 Calibration: the 7 beach Seedance clips plus 2 face tests came out **9/9 correct**. The three known failures were flagged, including the dissolve time. Every pass scored ≥ 0.20 motion and ≥ 0.61 continuity. Takes about 5 s per 8 s clip. The flags are prompts to look, not verdicts; the contact sheet is still the final check. It can't see identity drift (a face changing into someone else while the shot stays continuous), so faces still need a look.
 
 **Gate quirk:** the money-gate hook matches the runner's spend command by text, so any Bash command that merely *quotes* it (docs, commit messages) is blocked too. Put such edits in a script file. It also blocks fake-CLI test runs, which is correct, since it can't tell them apart.
+
+### Edit mode (motion-graphics pieces)
+
+`qc <file> --edit --allow 4.5-5.4,18.9-19.6` is for cut pieces such as the USE episodes. It skips NO_MOTION, ignores continuity dips inside the allowed transition windows, and reports any other dip as `LOOK@t` (look, don't fail). FREEZE flags a stuck stretch, except the final hold. On CRUD v7 its one flag was a tile-wipe that overran its window by 0.2 s, so the window was widened.

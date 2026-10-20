@@ -9,7 +9,7 @@ const ROOT = path.join(__dirname, '..'), EP = path.resolve(process.argv[2]), MOD
   const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   p.on('pageerror', e => console.error('PAGE ERROR', e.message));
   const rel = path.relative(path.join(ROOT, 'engine'), EP);
-  await p.goto('file://' + path.join(ROOT, 'engine/page.html') + '?ep=' + encodeURIComponent(rel) + (process.env.SUB ? '&sub=' + process.env.SUB : ''));
+  await p.goto('file://' + path.join(ROOT, 'engine/page.html') + '?ep=' + encodeURIComponent(rel) + (process.env.SUB ? '&sub=' + process.env.SUB : '') + (process.env.SHUTTER ? '&shutter=' + process.env.SHUTTER : ''));
   const { dur } = await p.evaluate(() => window.ready);
   const voEnd = await p.evaluate(() => EP.voEnd || 0);
   fs.mkdirSync(path.join(EP, 'build/qa'), { recursive: true });

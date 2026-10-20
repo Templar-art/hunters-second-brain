@@ -247,13 +247,13 @@ whip.cue = a => cue(a - .05, 'whoosh', { d: .3, bright: .5, gain: .45 });
 // SERIES COMPONENTS
 // =====================================================================================
 // Title: "Definitions" label + giant TERM behind the speaker's head, shard clusters. 0 → out.
-function titleCard(T, term, out = 2.0, label = 'Definitions') {
+function titleCard(T, term, out = 2.0, label = 'Definitions', shardAt = [900, 520]) {
   th(FULL, BZ + T * .012);
   typeOn(label, 44, 140, T - .1, { size: 34, track: 2, w: 500, cps: 22 });
   const size = Math.min(330, 900 / Math.max(1, term.length) * 1.55);
   rise(term, 26, 470, T - .15, { size, w: 800, dur: .6, exitAt: out, T });
   cutout(BZ + T * .012);
-  cluster(21, 900, 520, 7, 150, 95, T - .25, { from: [420, -120], exitAt: out + .05, T, to: [500, -200] });
+  cluster(21, shardAt[0], shardAt[1], 7, 150, 95, T - .25, { from: [420, -120], exitAt: out + .05, T, to: [500, -200] });
   cluster(22, 70, 820, 3, 70, 70, T - .4, { from: [-300, 80], exitAt: out + .05, T, to: [-400, 100] });
 }
 titleCard.cue = (term, out = 2.0, label = 'Definitions') => { cue(.1, 'typing', { n: label.length, cps: 22 }); cue(.12, 'whoosh', { d: .4, gain: .35 }); cue(.25, 'thud', { f: 60, d: .35, gain: .45 });
@@ -408,16 +408,20 @@ function qOpener(T, a, b, question, lines) {
 qOpener.cue = (a, b) => { whip.cue(b - .25); cue(a, 'whoosh', { d: .4, gain: .35 }); cue(a + .1, 'shards', { n: 6 }); cue(a + .3, 'typing', { n: 8, cps: 6, gain: .25 }); };
 
 // White end card: logo, "Definitions", tagline, URL. Fades to white over the last .4s.
-function endCard(T, a, dur, title = 'Definitions') {
+function endCard(T, a, dur, title = 'Definitions', alive = false) {
   const t = T - a; g.fillStyle = WHITE; g.fillRect(0, 0, W, H);
+  // alive (v2 redo): slow push-in + drifting shards so the hold never sits dead still
+  const push = alive ? 1 + .022 * Math.max(0, t) : 1, dr = k => alive ? [Math.sin(t * .7 + k) * 14, Math.cos(t * .55 + k) * 10] : [0, 0];
+  g.save(); g.translate(W / 2, H * .45); g.scale(push, push); g.translate(-W / 2, -H * .45);
   if (LOGO) { const p = expo(t / .6), lw = 620, lh = lw * LOGO.height / LOGO.width;
     g.save(); g.beginPath(); g.rect(70, 600, lw * p + 4, lh + 10); g.clip(); g.drawImage(LOGO, 70, 605, lw, lh); g.restore(); }
   rise(title, 76, 1010, t - .2, { size: 150, w: 700, col: INK, dur: .5 });
   typeOn('understand · solve · execute', 82, 1110, t - .05, { size: 38, col: '#0B6FA8', track: 5, w: 500, cps: 48 });
   typeOn('usesoftware.com.au', 82, 1175, t - .6, { size: 32, col: '#555A60', track: 2, w: 400, cps: 30 });
-  cluster(51, 900, 160, 7, 180, 120, t - .05, { from: [300, -300] });
-  cluster(52, 760, 1620, 4, 140, 150, t - .15, { from: [200, 400] });
-  cluster(53, 620, 1920, 6, 260, 110, t - .25, { from: [0, 300] });
+  cluster(51, 900 + dr(1)[0], 160 + dr(1)[1], 7, 180, 120, t - .05, { from: [300, -300] });
+  cluster(52, 760 + dr(2)[0], 1620 + dr(2)[1], 4, 140, 150, t - .15, { from: [200, 400] });
+  cluster(53, 620 + dr(3)[0], 1920 + dr(3)[1], 6, 260, 110, t - .25, { from: [0, 300] });
+  g.restore();
   const f = clamp((T - dur + .4) / .4); if (f > 0) { g.fillStyle = `rgba(255,255,255,${f})`; g.fillRect(0, 0, W, H); }
 }
 endCard.cue = a => { cue(a + .1, 'swell', { d: 2.2, gain: .18 }); cue(a + .45, 'typing', { n: 28, cps: 30 }); cue(a + 1.1, 'typing', { n: 18, cps: 30 }); cue(a, 'shards', { n: 8 }); };
@@ -536,14 +540,16 @@ function card(x, y, w, h, col = WHITE, r = 20, sh = .12) {
 // =====================================================================================
 // RUNTIME
 // =====================================================================================
-// Motion blur: average SUB subframes across a full-frame shutter.
+// Motion blur: average SUB subframes across the shutter (1 = 360°, 0.5 = film 180°).
+// v2 redo builds use SUB=16 SHUTTER=0.5: 4x finer steps, so fast ease-outs don't band (CRUD 10.5s).
 const SUB = +(new URLSearchParams(location.search).get("sub") || 8);
+const SHUTTER = +(new URLSearchParams(location.search).get("shutter") || 1);
 function draw(T) {
   out.globalAlpha = 1; BASE_T = T;
   for (let k = 0; k < SUB; k++) {
     g.globalAlpha = 1; g.clearRect(0, 0, W, H);
     // subframes never straddle a scene cut (EP.cuts), so cuts stay hard instead of dissolving
-    let t = T + (k / SUB - .5) * (1 / FPS); for (const c of EP.cuts || []) { if (T >= c && t < c) t = c; if (T < c && t >= c) t = c - 1e-4; }
+    let t = T + (k / SUB - .5) * (SHUTTER / FPS); for (const c of EP.cuts || []) { if (T >= c && t < c) t = c; if (T < c && t >= c) t = c - 1e-4; }
     EP.frame(t);
     out.globalAlpha = 1 / (k + 1); out.drawImage(off, 0, 0);
   }

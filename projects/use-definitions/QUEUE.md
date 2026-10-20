@@ -47,7 +47,7 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 
 | # | Episode | Current final | v2-redo status |
 |---|---|---|---|
-| 01 | crud | v6 | todo |
+| 01 | crud | v6 | **v7 built 20 Oct → Gate B (Hunter look)**. Sound Lab UI + Ocular kit (sfx-lib-v2), SUB16/shutter .5 blur, cuts list, shards off face, alive end card. QC ok, FACE/TEXT CLEAR, −17.5 LUFS |
 | 02 | bus-network | v2 | todo |
 | 03 | cli | v2 | todo |
 | 04 | json | v3 | todo |
@@ -59,9 +59,9 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 | 10 | cpu | v2 | todo |
 | 11 | git | v2 | todo |
 | 12 | docker | v1 | todo |
-| 13 | webhooks | v1 | todo |
+| 13 | webhooks | v1 | skip: already done by USE (Damon Hall, 10 Oct) |
 | 14 | state-management | v1 | todo |
-| 15 | sql | v1 | todo |
+| 15 | sql | v1 | skip: already done by USE (Damon Hall, 9 Oct) |
 | 16 | erd | v1 | todo |
 | 17 | excel-wince | v3 | todo |
 | 18 | scope-myth | v2 | todo |

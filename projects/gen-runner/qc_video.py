@@ -36,7 +36,11 @@ def _inlier(a, b):
     return float(mask.sum()) / len(m) if mask is not None else 0.0
 
 
-def analyse(path):
+def analyse(path, edit=False, allow=()):
+    """edit=True: a cut, motion-graphics piece (talking head + slides). NO_MOTION is skipped (a locked-off
+    talking head is meant to be still) and continuity dips inside `allow` windows [(a, b) s] — declared
+    cuts and deliberate transitions — are ignored; a dip anywhere else is an accidental dissolve.
+    Also flags FREEZE: >= 0.7 s of identical frames."""
     cap = cv2.VideoCapture(str(path))
     fps = cap.get(cv2.CAP_PROP_FPS) or 24
     big, small = [], []
@@ -49,20 +53,43 @@ def analyse(path):
         small.append(cv2.resize(g, (320, 320 * g.shape[0] // g.shape[1])))
     if len(small) < GAP + 4:
         return {"file": str(path), "error": "too few frames", "flags": ["UNREADABLE"]}
+    diffs = [float(np.abs(a.astype(np.int16) - b).mean()) for a, b in zip(small, small[1:])]
     mags = [float(np.median(np.linalg.norm(cv2.calcOpticalFlowFarneback(a, b, None, 0.5, 3, 15, 3, 5, 1.2, 0), axis=2)))
             for a, b in zip(small, small[1:])]
     inl = np.array([_inlier(big[t - GAP], big[t]) for t in range(GAP, len(big), STEP)])
     sm = np.convolve(inl, np.ones(3) / 3, "valid")
-    at = GAP + STEP * int(sm.argmin())
+    times = (GAP + STEP * np.arange(len(sm)) + STEP) / fps           # centre of each 3-sample window
+    if edit:
+        keep = np.array([not any(a - .1 <= t <= b + .1 for a, b in allow) for t in times])
+        if keep.any():
+            sm, times = sm[keep], times[keep]
+        else:
+            sm, times = np.array([1.0]), np.array([0.0])
+    at = float(times[int(sm.argmin())]) * fps
     motion, morph = float(np.median(mags)), float(sm.min())
     flags = []
-    if motion < NO_MOTION_PX:
+    run, longest = 0, 0
+    for i, d in enumerate(diffs):                                      # FREEZE: identical frames in a row
+        run = run + 1 if d < .15 else 0
+        if edit and i == len(diffs) - 1:
+            break                                                      # a run reaching the last frame = end-card hold
+        longest = max(longest, run)
+    if longest + 1 >= .7 * fps:
+        flags.append(f"FREEZE {(longest + 1) / fps:.1f}s")
+    if edit:
+        pass
+    elif motion < NO_MOTION_PX:
         flags.append("NO_MOTION")
     elif motion < NO_MOTION_WARN:
         flags.append("WARN_LOW_MOTION")
-    if morph < MORPH_INLIER:
+    dips = [round(float(t), 2) for v, t in zip(sm, times) if v < MORPH_INLIER]
+    if edit:
+        if dips:                                                       # slides swap content on purpose:
+            flags.append(f"LOOK@{dips[0]:.1f}s")                       # report, don't fail
+    elif morph < MORPH_INLIER:
         flags.append(f"MORPH/DISSOLVE@{at / fps:.1f}s")
     elif morph < MORPH_WARN:
         flags.append(f"WARN_MORPH@{at / fps:.1f}s")
     return {"file": str(path), "motion": round(motion, 3), "continuity_min": round(morph, 2),
-            "continuity_at_s": round(at / fps, 2), "frames": len(small), "flags": flags}
+            "continuity_at_s": round(at / fps, 2), "frames": len(small), "flags": flags,
+            "dips_s": dips[:20]}

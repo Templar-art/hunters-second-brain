@@ -89,7 +89,8 @@ def swell(d=1.5):
 # Takes are trimmed to their first transient, normalised, and skipped if near-silent.
 # Placement anchor per type: 'onset' (hits) or 'peak' (whoosh, riser).
 LIB, ANCHOR = {}, {"whoosh": "peak", "riser": "peak"}
-for f in sorted(glob.glob(os.path.join(os.path.dirname(__file__), "..", "sfx-lib", "*.wav"))):
+LIBDIR = os.environ.get("SFX_LIB", "sfx-lib")                         # v2 redo: SFX_LIB=sfx-lib-v2
+for f in sorted(glob.glob(os.path.join(os.path.dirname(__file__), "..", LIBDIR, "*.wav"))):
     kind = os.path.basename(f).rsplit("_", 1)[0]
     w = wave.open(f); x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float).reshape(-1, w.getnchannels()) / 32768
     m = x.mean(1); pk = np.abs(m).max()
@@ -133,7 +134,7 @@ for c in kept:
     elif k == "click": placeS("click", t, (g or .3) * 1.1, pan, .1, fallback=click(c.get("f", 2400)))
     elif k == "thud": placeS("thud", t, (g or .4) * 1.1, 0, .25, rate=.9 + c.get("f", 55) / 600, fallback=thud(c.get("f", 55), c.get("d", .4)))
     elif k == "typing":
-        for i in range(int(c["n"])): place(t + i / c.get("cps", 30) + rs.random() * .008, key(), (g or .28) * .55, pan + (rs.random() - .5) * .2, .08)
+        for i in range(int(c["n"])): placeS("key", t + i / c.get("cps", 30) + rs.random() * .008, (g or .28) * .55, pan + (rs.random() - .5) * .2, .08, fallback=key())
     elif k == "ticks":
         for i in range(int(c["n"])): placeS("click", t + i * c.get("gap", .035), (g or .4) * .55, pan, .1, rate=1 + i * .03, fallback=click(2000 + i * 120))
     elif k == "glass" and "glass" in LIB:              # one real shatter replaces the cloud of synth ticks
@@ -144,7 +145,7 @@ for c in kept:
         placeS("whoosh", t + .17, .22, pan, .2, rate=1.3, fallback=whoosh(.35, .35))
         for i in range(int(c["n"])): place(t + .05 + i * .03, glass(1600 + rs.random() * 1800), .08, (rs.random() - .5) * 1.4, .3)
     elif k == "riser": placeS("riser", t, (g or .25) * .9, 0, .3, rate=1.0, fallback=riser(c.get("d", .8))) if "riser" in LIB else place(t - c.get("d", .8), riser(c.get("d", .8)), g or .25, 0, .3)
-    elif k == "chime": place(t, chime(c.get("f", 880)), g or .12, pan, .45)
+    elif k == "chime": placeS("chime", t, g or .12, pan, .45, rate=1.0, fallback=chime(c.get("f", 880)))
     elif k == "swell": place(t, swell(c.get("d", 1.5)), g or .2, 0, .5)
 
 # room reverb: exponentially decaying stereo noise IR, ~0.9s

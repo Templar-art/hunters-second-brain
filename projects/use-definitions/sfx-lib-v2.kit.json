@@ -1,0 +1,298 @@
+{
+ "whoosh_1.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNWhsh/DSGNWhsh_WHOOSH-Organic Motion_Ocular_Foundation.wav",
+  "dur": 0.8
+ },
+ "whoosh_2.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNWhsh/DSGNWhsh_WHOOSH-Two Steps_Ocular_Foundation.wav",
+  "dur": 0.8
+ },
+ "whoosh_3.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNWhsh/DSGNWhsh_WHOOSH-Dark Air_Ocular_Foundation.wav",
+  "dur": 0.8
+ },
+ "whoosh_4.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNWhsh/DSGNWhsh_WHOOSH-Speed is Everything_Ocular_Foundation.wav",
+  "dur": 0.65
+ },
+ "whoosh_5.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNWhsh/DSGNWhsh_WHOOSH-Passed By_Ocular_Foundation.wav",
+  "dur": 0.8
+ },
+ "whoosh_6.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNWhsh/DSGNWhsh_WHOOSH-Be Gentle_Ocular_Foundation.wav",
+  "dur": 0.8
+ },
+ "whoosh_7.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNWhsh/DSGNWhsh_WHOOSH-Fastlane_Ocular_Foundation.wav",
+  "dur": 0.66
+ },
+ "whoosh_8.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNWhsh/DSGNWhsh_WHOOSH-Turn of Events_Ocular_Foundation.wav",
+  "dur": 0.8
+ },
+ "thud_1.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNImpt/DSGNImpt_WHOOSH HIT-Clean Rumble_Ocular_Foundation.wav",
+  "dur": 1.1
+ },
+ "thud_2.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNImpt/DSGNImpt_IMPACT-Gut Feeling_Ocular_Foundation.wav",
+  "dur": 1.1
+ },
+ "thud_3.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNImpt/DSGNImpt_WHOOSH HIT-Quick and Dirty_Ocular_Foundation (2).wav",
+  "dur": 1.1
+ },
+ "thud_4.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNImpt/DSGNImpt_IMPACT-Not What You Think_Ocular_Foundation.wav",
+  "dur": 1.1
+ },
+ "riser_1.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNRise/DSGNRise_RISER-Lift Off_Ocular_Foundation.wav",
+  "dur": 1.95
+ },
+ "riser_2.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNRise/DSGNRise_RISER-Fresh Air_Ocular_Foundation.wav",
+  "dur": 1.95
+ },
+ "riser_3.wav": {
+  "source": "~/Music/SFX Library/Ocular Sounds/Foundation/DSGNRise/DSGNRise_RISER-Into the Light_Ocular_Foundation.wav",
+  "dur": 1.95
+ },
+ "pop_1.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_bead_1.wav",
+  "dur": 0.44
+ },
+ "pop_2.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_bead_2.wav",
+  "dur": 0.44
+ },
+ "pop_3.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_bead_3.wav",
+  "dur": 0.44
+ },
+ "pop_4.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_bead_4.wav",
+  "dur": 0.44
+ },
+ "pop_5.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_dew_1.wav",
+  "dur": 0.31
+ },
+ "pop_6.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_dew_2.wav",
+  "dur": 0.31
+ },
+ "pop_7.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_dew_3.wav",
+  "dur": 0.31
+ },
+ "pop_8.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_dew_4.wav",
+  "dur": 0.31
+ },
+ "pop_9.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_pebble_1.wav",
+  "dur": 0.26
+ },
+ "pop_10.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_pebble_2.wav",
+  "dur": 0.26
+ },
+ "pop_11.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_pebble_3.wav",
+  "dur": 0.26
+ },
+ "pop_12.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_pebble_4.wav",
+  "dur": 0.26
+ },
+ "pop_13.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_boop_1.wav",
+  "dur": 0.23
+ },
+ "pop_14.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_boop_2.wav",
+  "dur": 0.23
+ },
+ "pop_15.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_boop_3.wav",
+  "dur": 0.23
+ },
+ "pop_16.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_boop_4.wav",
+  "dur": 0.23
+ },
+ "pop_17.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_dot_1.wav",
+  "dur": 0.24
+ },
+ "pop_18.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_dot_2.wav",
+  "dur": 0.24
+ },
+ "pop_19.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_dot_3.wav",
+  "dur": 0.24
+ },
+ "pop_20.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/pop_dot_4.wav",
+  "dur": 0.24
+ },
+ "click_1.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_nib_1.wav",
+  "dur": 0.17
+ },
+ "click_2.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_nib_2.wav",
+  "dur": 0.17
+ },
+ "click_3.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_nib_3.wav",
+  "dur": 0.17
+ },
+ "click_4.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_nib_4.wav",
+  "dur": 0.17
+ },
+ "click_5.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_notch_1.wav",
+  "dur": 0.13
+ },
+ "click_6.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_notch_2.wav",
+  "dur": 0.13
+ },
+ "click_7.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_notch_3.wav",
+  "dur": 0.13
+ },
+ "click_8.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_notch_4.wav",
+  "dur": 0.13
+ },
+ "click_9.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_tab_1.wav",
+  "dur": 0.14
+ },
+ "click_10.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_tab_2.wav",
+  "dur": 0.14
+ },
+ "click_11.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_tab_3.wav",
+  "dur": 0.14
+ },
+ "click_12.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_tab_4.wav",
+  "dur": 0.14
+ },
+ "click_13.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_tink_1.wav",
+  "dur": 0.22
+ },
+ "click_14.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_tink_2.wav",
+  "dur": 0.22
+ },
+ "click_15.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_tink_3.wav",
+  "dur": 0.22
+ },
+ "click_16.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/click_tink_4.wav",
+  "dur": 0.22
+ },
+ "key_1.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_keycap_1.wav",
+  "dur": 0.15
+ },
+ "key_2.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_keycap_2.wav",
+  "dur": 0.12
+ },
+ "key_3.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_keycap_3.wav",
+  "dur": 0.14
+ },
+ "key_4.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_keycap_4.wav",
+  "dur": 0.15
+ },
+ "key_5.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_chiclet_1.wav",
+  "dur": 0.12
+ },
+ "key_6.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_chiclet_2.wav",
+  "dur": 0.11
+ },
+ "key_7.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_chiclet_3.wav",
+  "dur": 0.11
+ },
+ "key_8.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_chiclet_4.wav",
+  "dur": 0.12
+ },
+ "key_9.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_thock_1.wav",
+  "dur": 0.15
+ },
+ "key_10.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_thock_2.wav",
+  "dur": 0.15
+ },
+ "key_11.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_thock_3.wav",
+  "dur": 0.15
+ },
+ "key_12.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/key_thock_4.wav",
+  "dur": 0.15
+ },
+ "chime_1.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/chime_chime_1.wav",
+  "dur": 1.2
+ },
+ "chime_2.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/chime_chime_2.wav",
+  "dur": 1.2
+ },
+ "chime_3.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/chime_chime_3.wav",
+  "dur": 1.2
+ },
+ "chime_4.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/chime_chime_4.wav",
+  "dur": 1.2
+ },
+ "chime_5.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/chime_ping_1.wav",
+  "dur": 1.2
+ },
+ "chime_6.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/chime_ping_2.wav",
+  "dur": 1.2
+ },
+ "chime_7.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/chime_ping_3.wav",
+  "dur": 1.2
+ },
+ "chime_8.wav": {
+  "source": "~/Documents/Hunters Second Brain/projects/use-definitions/sfx-src/uikit/chime_ping_4.wav",
+  "dur": 1.2
+ },
+ "glass_1.wav": {
+  "source": "sfx-lib/glass_1.wav (Magnific, 9 Oct)"
+ },
+ "glass_2.wav": {
+  "source": "sfx-lib/glass_2.wav (Magnific, 9 Oct)"
+ },
+ "glass_3.wav": {
+  "source": "sfx-lib/glass_3.wav (Magnific, 9 Oct)"
+ },
+ "glass_4.wav": {
+  "source": "sfx-lib/glass_4.wav (Magnific, 9 Oct)"
+ }
+}

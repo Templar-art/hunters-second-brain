@@ -1281,3 +1281,6 @@ Added `projects/gen-runner/qc_video.py` and a `qc` command, and the runner now f
 ## [2026-10-20] query | USE Definitions v2 redo queued
 
 Hunter: redo the 21 sent USE "software videos" with everything improved since, one at a time. Queued in `projects/use-definitions/QUEUE.md` (v2 redo table, 01 CRUD first) and noted on [[use-definitions-series]]. The main upgrade is real SFX (Ocular, free packs, Sound Lab). Not started.
+
+## [2026-10-20] migrate | USE Definitions v2 redo: CRUD v7 built
+The first episode of the redo pass. New SFX kit sfx-lib-v2 (Ocular plus Sound Lab UI renders); engine SHUTTER, placeable title shards and an alive end card; gen-runner QC edit mode (`--edit --allow`). QC came back ok after widening one transition window, with FACE CLEAR, TEXT CLEAR and −17.5 LUFS (matching v6). Waiting on Hunter's Gate B before 02 bus-network. See [[use-definitions-series]]. No spend.
