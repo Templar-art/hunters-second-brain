@@ -122,12 +122,18 @@ function sceneOffTrack(T) {
   typeOn('Industry standard', 80, 420, T - 12.6, { size: 30, col: CYAN, track: 6, upper: true, cps: 30 });
   // standard grid: tidy straight routes
   const pg = expo((T - 12.9) / .8);
+  const gp = 1 + .05 * inOut((T - 12.9) / 3);                       // v3: slow push on the grid only, never the text
+  g.save(); g.translate(540, 660); g.scale(gp, gp); g.translate(-540, -660);
   g.globalAlpha = .55 * pg;
   for (let i = 0; i < 5; i++) { line(80, 520 + i * 70, 1000, 520 + i * 70, expo((T - 12.9 - i * .06) / .6), '#2B4A62', 6);
     for (let k = 0; k < 6; k++) { g.fillStyle = '#2B4A62'; g.beginPath(); g.arc(120 + k * 170, 520 + i * 70, 9 * pg, 0, 7); g.fill(); } }
-  g.globalAlpha = 1;
-  rise('Simple.', 80, 960, T - 12.62, { size: 150, w: 800, col: WHITE, dur: .5, exitAt: 14.18, T });
-  rise('Standard.', 80, 960, T - 14.0, { size: 150, w: 800, col: '#2B4A62', dur: .4, exitAt: 14.18, T });
+  // v3: a bus runs each standard route at the same steady pace (keeps the hold alive, no 0.8 s freeze)
+  for (let i = 0; i < 5; i++) { const bx = 80 + ((T - 12.9) * 260 + i * 190) % 920;
+    g.globalAlpha = .9 * pg; g.fillStyle = '#8FB3CC'; g.beginPath(); g.arc(bx, 520 + i * 70, 14 * pg, 0, 7); g.fill(); }
+  g.globalAlpha = 1; g.restore();
+  // v3: stacked on two lines, each on its spoken word (was both on one line, Standard 0.8 s late, overprinting)
+  rise('Simple.', 80, 940, T - 12.62, { size: 150, w: 800, col: WHITE, dur: .5, exitAt: 14.18, T });
+  rise('Standard.', 80, 1080, T - 13.16, { size: 150, w: 800, col: '#5C7A92', dur: .45, exitAt: 14.24, T });
   // the off-track route
   if (T > 14.18) {
     rise('Off the', 80, 940, T - 15.66, { size: 150, w: 800, col: WHITE, dur: .5 });

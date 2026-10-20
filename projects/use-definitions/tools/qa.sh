@@ -1,9 +1,10 @@
 #!/bin/zsh
-# Pre-boss QA pack: face check + a still every second, tiled into contact sheets.
+# Pre-boss QA pack: face check + text check + headline-overprint lint + a still every second, tiled into contact sheets.
 # Usage: tools/qa.sh <episode-name>   → episodes/<name>/build/qa/boss-1.png, boss-2.png, facecheck.json
 set -e; ROOT="${0:a:h:h}"; EP="$ROOT/episodes/$1"; export NODE_PATH="$ROOT/tools/node_modules"
 node "$ROOT/tools/render.cjs" "$EP" facecheck | tail -1
 node "$ROOT/tools/render.cjs" "$EP" textcheck | head -40
+python3 "$ROOT/tools/lint_rise.py" "$1" || echo "RISE OVERPRINT: headlines stack on one line (fix before boss review)"
 DUR=$(python3 -c "import json;print(json.load(open('$EP/build/render.json'))['dur'])")
 TS=$(python3 -c "print(','.join(f'{t+.5:.1f}' for t in range(int($DUR))))")
 setopt nullglob; rm -f "$EP"/build/qa/s_*.png

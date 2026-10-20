@@ -1287,3 +1287,6 @@ The first episode of the redo pass. New SFX kit sfx-lib-v2 (Ocular plus Sound La
 
 ## [2026-10-20] migrate | USE Definitions redo: CRUD v7 locked, bus-network v3 built
 Hunter locked CRUD v7. Bus-network v3 has the v7 upgrades plus two fixes: the hook shards are off the face, and the panel caption no longer clips (it holds until the panel pushes it up). Added `tools/qc_episode.py`. QC ok, FACE/TEXT CLEAR, loudness equal to v2. Waiting on Gate B. No spend.
+
+## [2026-10-20] lint | USE: headline-overprint check added
+Hunter caught overprinting headlines in bus-network v3 (Simple./Standard.). Fixed, and made a standing check: `tools/lint_rise.py` in `qa.sh`, BOSS.md rule 6, and auto-memory `feedback-motion-headlines-never-stack`. All 21 episodes swept clean. The follow-on freeze was caught by gen-runner QC and fixed. Bus-network v3 rebuilt and resent for Gate B.
