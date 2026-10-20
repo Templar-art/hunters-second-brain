@@ -1347,3 +1347,6 @@ Hunter locked Promises v3. Ask the vision v2 is built (alive vision cloud, thoug
 
 ## [2026-10-20] ingest | Extra Salt Kollosche gulls comp
 Hunter asked for birds flying past a 1.9s Pottsville drone wide with the grade unchanged. Built as a Blender comp: a constrained drone-camera fit to 2D tracks (0.21 px), four procedural silver gulls, an RGBA pass and an ffmpeg overlay. The plate is untouched outside the birds. Delivered mp4 + ProRes for review. New page [[extra-salt-kollosche-birds]]. No spend.
+
+## [2026-10-20] migrate | USE redo: Ask the vision v2 + Scope myth v4 locked, Handover v2 built
+Hunter locked Ask the vision v2 and Scope myth v4. Handover v2 is built: upgrades ported and loop-scene dead holds pre-fixed (traveller + blue radar sweep, alive hub, kit and repo pill). Cyan on the light page still froze 0.7 s; the deeper brand blue cleared it. All QC clear. Waiting on Hunter's Gate B for the last episode of the redo pass. No spend.
