@@ -1,14 +1,14 @@
 ---
 type: concept
 tags: [audio, sfx, motion-graphics, assets]
-updated: 2026-10-19
+updated: 2026-10-21
 ---
 # SFX library (Ocular Sounds)
 
 Hunter's licensed sound library, filed 10 Oct 2026 from ~/Downloads.
 
 - **Location:** `~/Music/SFX Library/Ocular Sounds/<Library>/<CatID>/` (9 GB, outside the vault so it stays out of git).
-- **Catalog:** `~/Music/SFX Library/Ocular Sounds/catalog.csv` lists path, library, category, title, duration, key and description for all 192 sounds. Each library's metadata CSV, asset list and thumbnail are in its `_docs/` folder.
+- **Catalog:** `~/Music/SFX Library/Ocular Sounds/catalog.csv` lists path, library, category, title, duration, key and description for every sound. ⚠️ It held 192 sounds on 10 Oct; it was rebuilt on 20 Oct at **1,547 sounds** after eight more packs were added (Forged, Velocity, Shift, Mechanica, Utility, Cityscapes Vol 1, The Provence, full Aperture). See [[sfx-sorter]]. Each library's metadata CSV, asset list and thumbnail are in its `_docs/` folder.
 - **Libraries:**
   - **Foundation:** designed impacts, booms, whooshes, whoosh-into-hits and risers. This is the motion-graphics workhorse.
   - **Pendulum:** 120 bpm percussion, synth and rhythm loops. These could serve as free music beds.
@@ -33,4 +33,6 @@ To add a sound, trim it from the library into `sfx-lib/<kind>_N.wav`. The trim s
 
 For custom synthesised SFX (UI pops, accents, glitches, title stingers) that aren't in Ocular, use [[sound-lab]]. Its kit WAVs are 48k stereo and go straight into `sfx-lib/`.
 
-Related: [[use-definitions-series]] · [[sound-lab]]
+Buying more SFX, licences, and how to make them sound expensive: [[sfx-sourcing-and-design]].
+
+Related: [[use-definitions-series]] · [[sound-lab]] · [[sfx-sourcing-and-design]]

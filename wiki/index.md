@@ -62,7 +62,8 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
 
 ## Concepts
-- [[sfx-library]]: the Ocular Sounds library (192 sounds, ~/Music/SFX Library) and how the motion engine uses it
+- [[sfx-library]]: the Ocular Sounds library (1,547 sounds since 20 Oct, ~/Music/SFX Library) and how the motion engine uses it
+- [[sfx-sourcing-and-design]]: SFX libraries, prices and licences (client work and paid social), layering/LUFS technique, design tools, FCP drop-on-the-cut workflow; starter pick Soundly Pro + Sonniss (~A$275/yr)
 - [[house-twilight]] — locked twilight target: early dusk, clean blue→peach sky, bright ground, amber windows (ref frame in raw/assets/twilight)
 - [[blender-blockout-pipeline]] — Claude builds a Blender grey block-out + camera path, AI video skins it; installed 2026-10-12 · **kit v1 (20 Oct): scene.json → full scene in ~5 s**
 - [[extra-salt-kollosche-birds]] — CG gulls comped over a 1.9s drone wide; constrained drone-camera fit beats Blender solve on low parallax (20 Oct, $0)

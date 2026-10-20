@@ -1353,3 +1353,6 @@ Hunter locked Ask the vision v2 and Scope myth v4. Handover v2 is built: upgrade
 
 ## [2026-10-20] migrate | USE redo: Handover v2 locked, redo pass complete
 Hunter locked Handover v2. Every sent episode in the v2 redo pass is now locked (skipped: API, MCP, SQL, Webhooks). No spend.
+
+## [2026-10-21] query | SFX sourcing, licensing, technique and FCP workflow
+Answered Prompt 2 of the FCP plugin research (SFX sources) by web research. Filed [[sfx-sourcing-and-design]], which covers subscriptions and packs with prices and licences, what is cleared for client work and paid social, layering/pitch/reverb/ducking/LUFS technique, design tools (Logic, Vital, Krotos, Tonsturm, Sound Particles, AI generators) and the FCP drop-on-the-cut workflow (Sound Effects alias, Shift-Q backtimed connect). Pick: Soundly Pro plus the free Sonniss GDC bundles, about A$275/yr; Epidemic Pro if music is needed too. Also fixed the stale 192-sound count on [[sfx-library]] (now 1,547). No spend.

@@ -2,12 +2,12 @@
 type: project
 tags: [final-cut-pro, plugins, editing, tools, research]
 status: research-prompt-ready
-updated: 2026-10-20
+updated: 2026-10-21
 ---
 
 # Final Cut Pro plugin research
 
-The goal is to work out which Final Cut Pro plugins and companion apps would make 10x edits faster or better, without paying for anything FCP already does or that's already installed. The research is being done in Perplexity; the prompts are in [projects/fcp-plugin-research/perplexity-prompts.md](../../projects/fcp-plugin-research/perplexity-prompts.md). Prompt 1 covers FCP plugins and Prompt 2 covers SFX sources. No results are back yet.
+The goal is to work out which Final Cut Pro plugins and companion apps would make 10x edits faster or better, without paying for anything FCP already does or that's already installed. The research is being done in Perplexity; the prompts are in [projects/fcp-plugin-research/perplexity-prompts.md](../../projects/fcp-plugin-research/perplexity-prompts.md). Prompt 1 covers FCP plugins and Prompt 2 covers SFX sources. **Prompt 2 was answered on 21 Oct 2026 by web research, not Perplexity: see [[sfx-sourcing-and-design]].** Prompt 1 has no results yet.
 
 ## The edit machine (checked 20 Oct 2026)
 - Final Cut Pro **12.4** on an Apple **M5 Pro** running macOS 27.0.1. DaVinci Resolve is also installed.
@@ -23,4 +23,4 @@ The goal is to work out which Final Cut Pro plugins and companion apps would mak
 ## Already solved locally
 - **SFX:** [[sound-lab]] covers custom synth SFX, layering, LUFS levelling, picture-synced cueing and **FCPXML export** of the cues. [[sfx-library]] (Ocular Sounds) covers recorded hits and whooshes.
 
-Related: [[sound-lab]] · [[sfx-library]] · [[video-edit-pipeline]] · [[audio-for-video]] · [[color-grading]]
+Related: [[sfx-sourcing-and-design]] · [[sound-lab]] · [[sfx-library]] · [[video-edit-pipeline]] · [[audio-for-video]] · [[color-grading]]
