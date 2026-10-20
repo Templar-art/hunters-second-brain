@@ -1,12 +1,12 @@
 {
- "at": 1792465217.647464,
+ "at": 1792465361.307276,
  "costs": {
-  "08_bedroom": 160.0,
-  "11_hallway": 160.0,
-  "05_powder": 160.0,
-  "06_kitchen": 160.0,
-  "04_living": 160.0,
-  "01_exterior": 160.0
+  "08_bedroom": 35.0,
+  "11_hallway": 35.0,
+  "05_powder": 35.0,
+  "06_kitchen": 35.0,
+  "04_living": 35.0,
+  "01_exterior": 35.0
  },
- "total_pending": 960.0
+ "total_pending": 210.0
 }

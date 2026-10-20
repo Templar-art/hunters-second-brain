@@ -1,0 +1,13 @@
+[
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/08_bedroom_v1_720.mp4",
+  "motion": 0.004,
+  "continuity_min": 1.0,
+  "continuity_at_s": 3.17,
+  "frames": 121,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ }
+]
