@@ -12,7 +12,12 @@ window.EP = {
   dur: 49.8,
   voEnd: 46.3,
   punchIns: [[4.6, 7.3], [24.3, 27.4], [29.6, 31.2], [43.0, 44.5]],
-  captions: [[0, 4.6, 1200], [4.6, PANEL_IN, 1200], [PANEL_IN, NAVY_IN - .4, T => panelTop(T, PANEL_IN) - 60],
+  // v3 (redo pass): hard scene switches + punch-in edges, so motion blur never straddles them
+  cuts: [4.6, 7.3, 24.3, 27.4, 27.7, 29.6, 31.2, 42.9, 43.0, 44.5, 46.55],
+  // deliberate transitions the QC continuity check should ignore (iris, whips, glitches, mosaics, zoom-through, shatter)
+  qcAllow: [[0, 0.6], [2.0, 2.6], [4.5, 4.8], [7.2, 7.9], [11.5, 13.1], [17.1, 17.8], [19.1, 19.7], [21.8, 22.6], [24.2, 24.8],
+            [25.8, 27.2], [27.2, 28.1], [29.5, 29.8], [30.2, 31.9], [34.5, 35.4], [40.0, 40.7], [42.6, 43.2], [44.4, 44.7], [45.9, 47.1]],
+  captions: [[0, 4.6, 1200], [4.6, PANEL_IN, 1200], [PANEL_IN, NAVY_IN - .4, T => Math.min(1200, panelTop(T, PANEL_IN) - 80)],
              [SYS_IN, BAD_IN, 1240], [BUILD_IN, NET_IN, 1040], [NET_IN, RES_IN, 1060],
              [OUT_IN, MORE_IN, 1560], [MORE_IN, SHATTER, 1000]],
 
@@ -28,7 +33,7 @@ window.EP = {
     else if (T < OUT_IN) zoomThrough(T, RES_IN, 540, 1500, sceneNetwork, sceneResults, .35);
     else if (T < MORE_IN) { th(FULL, BZ); captions(T); outlookCard(T); }
     else if (T < END_IN) { th(FULL, zoomAt(T)); if (T < SHATTER + .1) captions(T); moreCard(T); }
-    else endCard(T, END_IN, this.dur, 'Case Study');
+    else endCard(T, END_IN, this.dur, 'Case Study', true);       // v3: alive end card (no dead hold)
     mosaic(T, BUILD_IN - .4, 5);
     mosaic(T, SHATTER - .05, 9);
   },
@@ -276,7 +281,7 @@ function sceneHook(T) {
   typeOn('Case study · our favourite build', 44, 140, T - .1, { size: 30, track: 2, w: 500, cps: 26 });
   letterDrop('BUSES', 30, 470, T - .2, { size: 300, stagger: .07, exitAt: 2.15, T });
   cutout(BZ + T * .01);
-  cluster(21, 930, 560, 6, 130, 90, T - .3, { from: [420, -120], exitAt: 2.2, T, to: [500, -200] });
+  cluster(21, 960, 860, 6, 130, 90, T - .3, { from: [420, -120], exitAt: 2.2, T, to: [500, -200] });   // v3: off the ear line, to the shoulder
   bubble(T, 2.3, 4.45, 'Which build am I secretly fond of?', 540, 150, { size: 44 });
   captions(T);
 }

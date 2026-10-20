@@ -47,8 +47,8 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 
 | # | Episode | Current final | v2-redo status |
 |---|---|---|---|
-| 01 | crud | v6 | **v7 built 20 Oct → Gate B (Hunter look)**. Sound Lab UI + Ocular kit (sfx-lib-v2), SUB16/shutter .5 blur, cuts list, shards off face, alive end card. QC ok, FACE/TEXT CLEAR, −17.5 LUFS |
-| 02 | bus-network | v2 | todo |
+| 01 | crud | v6 | ✅ **LOCKED v7** (Hunter, 20 Oct). Sound Lab UI + Ocular kit (sfx-lib-v2), SUB16/shutter .5 blur, cuts list, shards off face, alive end card. QC ok, FACE/TEXT CLEAR, −17.5 LUFS |
+| 02 | bus-network | v2 | **v3 built 20 Oct → Gate B (Hunter look)**. v7 upgrades ported (cuts, qcAllow, alive end card, sfx-lib-v2, SUB16/shutter .5); hook shards moved off the ear; panel caption holds at 1200 until pushed (was clipped). QC ok, FACE/TEXT CLEAR, −15.8 LUFS (= v2) |
 | 03 | cli | v2 | todo |
 | 04 | json | v3 | todo |
 | 05 | sdk | v3 | todo |
