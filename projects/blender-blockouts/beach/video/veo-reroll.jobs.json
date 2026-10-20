@@ -1,0 +1,39 @@
+{
+ "job_md": "../JOB.md",
+ "cap_hf": 100,
+ "defaults": {
+  "model": "veo3_1",
+  "params": {
+   "variant": "veo-3-1-fast",
+   "quality": "high",
+   "duration": 8,
+   "aspect_ratio": "16:9"
+  }
+ },
+ "rows": [
+  {
+   "id": "01_surf_veo",
+   "params": {
+    "start-image": "../hero/01_surf_sunburst.png"
+   },
+   "prompt": "Cinematic drone footage. The drone glides very slowly forward low over the rolling surf toward the beachfront homes, rising gently as waves roll in and break into white foam beneath it, the couple walking along the wet sand in the distance, palms and dune grass moving softly in the sea breeze. One continuous shot, no cuts, no zoom. The architecture, furniture, people and car stay solid and consistent throughout; nothing morphs, appears or disappears. Bright clear Gold Coast morning sun, true-to-life colour, real cinematic footage, editorial luxury property film.",
+   "out": "veo/01_surf_veo.mp4"
+  },
+  {
+   "id": "06_track_veo",
+   "params": {
+    "start-image": "../hero/06_track_sunburst.png"
+   },
+   "prompt": "Cinematic gimbal tracking shot, moving. The camera dollies smoothly sideways along the beach at walking pace while also pushing gently closer, keeping the couple framed full body in the centre as they walk barefoot along the wet sand at the water's edge. They stride naturally side by side, the woman's ivory dress and long honey-brown hair moving in the sea breeze, the man in the white linen shirt walking beside her, both looking ahead along the beach and toward each other, relaxed and happy. Small waves wash in over the sand around their feet, the beachfront homes and dune grass sliding past behind them with real parallax. Their faces, bodies and clothing stay exactly the same as the first frame through the whole shot \u2014 same people, same outfits, no morphing, no dissolves, no cuts, one continuous take. Bright clear Gold Coast morning sun, true-to-life colour, real 35mm cinematic footage, editorial luxury lifestyle film.",
+   "out": "veo/06_track_veo.mp4"
+  },
+  {
+   "id": "07_car_veo",
+   "params": {
+    "start-image": "../hero/07_car_sunburst.png"
+   },
+   "prompt": "Low cinematic tracking footage. The pearl-white supercar rolls slowly forward along the street in front of the house, wheels turning, reflections sliding across its glossy paintwork, the camera tracking alongside at the same pace, palms swaying gently behind. One continuous shot, no cuts, no zoom. The architecture, furniture, people and car stay solid and consistent throughout; nothing morphs, appears or disappears. Bright clear Gold Coast morning sun, true-to-life colour, real cinematic footage, editorial luxury property film.",
+   "out": "veo/07_car_veo.mp4"
+  }
+ ]
+}

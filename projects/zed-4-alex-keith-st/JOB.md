@@ -2,8 +2,8 @@
 client: zed
 address: 4 Alex Keith Street
 opened: 2026-10-12
-status: intake        # intake → generating → review → delivered
-cost: { credits: 0, aud: 0 }
+status: generating    # intake → generating → review → delivered
+cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — 4 Alex Keith Street

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Magnific money gate (PreToolUse).
+"""Money gate (PreToolUse): Magnific MCP tools + Higgsfield CLI spends via Bash.
 
 Approval source: Hunter's own latest typed message, read from the session
 transcript (`transcript_path`) — there is no approval file to forge.
@@ -29,6 +29,8 @@ APPROVAL_TTL = 20 * 60
 APPROVAL = re.compile(r"^\s*(yes|yep|yeah|go|go ahead|approved|approve|do it|run it|send it|ok go)\b", re.I)
 INJECTED = re.compile(r"<(system-reminder|task-notification|side-sessions-event)>.*?</\1>", re.S)
 PROTECTED = re.compile(r"\.claude/hooks|\.claude/settings[^/\s\"']*\.json|\.claude/projects/[^\s\"']*\.jsonl|magnific-gate")
+# Bash commands that spend Higgsfield credits (CLI create, or the gen-runner's run step).
+SPEND_CMD = re.compile(r"higgsfield\b[^|;&]*\bgenerate\s+create\b|gen[-_]runner(\.py)?[\"']?\s+run\b")
 NORMAL_MODES = {"default", "acceptEdits", "plan"}
 WRITE_TOOLS = {"Bash", "Write", "Edit", "MultiEdit", "NotebookEdit"}
 
@@ -90,6 +92,13 @@ def approved(data):
 
 def gate(data):
     tool = data.get("tool_name", "")
+    if tool == "Bash" and SPEND_CMD.search(data.get("tool_input", {}).get("command", "")):
+        if data.get("permission_mode") in NORMAL_MODES:
+            return decide("ask", "Money gate: this Bash command spends Higgsfield credits.")
+        if not approved(data):
+            return decide("deny", "Money gate: this spends Higgsfield credits and Hunter has not approved it. "
+                                  "Run the estimate (higgsfield generate cost / gen-runner estimate), quote "
+                                  "the total in chat, and wait for Hunter to reply starting with yes/go/approved.")
     if tool in WRITE_TOOLS:
         if PROTECTED.search(json.dumps(data.get("tool_input", {}))) and not approved(data):
             decide("deny", "Magnific gate: this touches the gate's own hook/settings/transcripts. "

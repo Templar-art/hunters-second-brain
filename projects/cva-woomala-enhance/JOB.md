@@ -1,12 +1,12 @@
 ---
-client: {client-slug}
-address: {street address}
-opened: {YYYY-MM-DD}
-status: intake        # intake → generating → review → delivered
-cost: { credits: 0, aud: 0 }
+client: cva-architects
+address: 12–16 Woomala St
+opened: 2026-10-19
+status: delivered     # intake → generating → review → delivered
+cost: { credits: 4035, hf_credits: 0, aud: 0 }   # derived from ## Ledger
 ---
 
-# Job — {address}
+# Job — 12–16 Woomala St
 
 ## Shots
 
@@ -17,6 +17,11 @@ cost: { credits: 0, aud: 0 }
 ## Log
 
 - {YYYY-MM-DD} intake: {N} shots triaged
+
+## Ledger
+
+<!-- one line per spend; the cost: header is derived from this (gen_runner.py tally) -->
+- 2026-10-20 | 4035 cr | baseline: all Magnific spend to 2026-10-19 per the log's running tallies (1,725+160+240+560+525+825), pre-ledger
 
 ---
 _Vault: [[jarvis]]_

@@ -1257,3 +1257,7 @@ The 16 Oct video pass never reached the wiki. Harvested it to [[blender-blockout
 ## [2026-10-20] query | Job framework v2 + Blender kit design
 
 Hunter put the Veo re-roll (96 HF quoted) on hold to build the system first: "time was shit". Diagnosed the beach job (about 6 h hand-build, a rebuild, 672 HF before any pilot) and interviewed Hunter: the pains were the build wait and bad outputs, the use is off-the-plan plus R&D, the target is under 2 h, and the scope is every job. Wrote the design spec and [[job-framework-v2]]. Not built; awaiting approval.
+
+## [2026-10-20] migrate | Job framework v2, phase 1: gen-runner + ledger
+
+Hunter approved the [[job-framework-v2]] design. Built `projects/gen-runner/gen_runner.py` (estimate, run, log, tally, sheet). Added a `## Ledger` section to JOB.md so the cost header is derived, not hand-kept; seeded beach (791.5 HF) and CVA (4,035 cr, correcting the wiki's 3,210). Fixed the CVA header placeholders and moved ZED-4's status to generating (Hunter's web-app gens, no metered spend). Widened the money gate to `higgsfield generate create` and `gen_runner.py run`. Tests: the real beach estimate came to 96 HF, and a fake-CLI run passed every path. No credits spent.

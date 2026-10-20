@@ -36,7 +36,7 @@ At the moment the "ask before any paid op" rule lives only in CLAUDE.md, and not
 - The docs say `ask` beats a hook's allow. **Unverified:** whether it still prompts under bypass-permissions mode. Test it with a free tool before trusting it.
 - Optional: a PreToolUse hook that appends every Magnific call to a cost log. That would make the JOB.md tallies (Priority 3) automatic.
 
-## Priority 3: job tracking drift
+## Priority 3: job tracking drift — ✅ fixed 2026-10-20 by the gen-runner ledger ([[job-framework-v2]]); CVA and ZED-4 headers corrected
 
 - `projects/cva-woomala-enhance/JOB.md` still has the blank template header (`{client-slug}`, cost 0). Its log body ends at **4,035cr**, but [[cva-woomala-render-enhance]] and log.md still say 3,210cr, so the moody pass (825cr) never reached the wiki.
 - `projects/zed-4-alex-keith-st/JOB.md` shows `intake` and cost 0, while the wiki says `generating`.

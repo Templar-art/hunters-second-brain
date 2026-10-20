@@ -2,7 +2,7 @@
 type: concept
 tags: [jarvis, automation, ops]
 status: active
-updated: 2026-07-10
+updated: 2026-10-20
 ---
 
 # Jarvis
@@ -14,6 +14,10 @@ Hunter's personal assistant built on Claude Code. Built in phases; each phase ge
 1. **Brain + ops copilot** — live. Weekday 8:30 AM morning brief: ranked open to-dos from the 10x CRM, delivered as a push notification. Spec: [phase 1 design](../../docs/superpowers/specs/2026-07-10-jarvis-phase1-design.md). Prompt: [PROMPT.md](../../projects/jarvis/PROMPT.md).
 2. **Job state tracking** — live. Every job folder gets `JOB.md` (from [JOB-template.md](../../projects/jarvis/JOB-template.md)): status, shots table, cost tally, append-only log; updated on every state change. Enforced by vault CLAUDE.md rule + cross-project auto-memory. Spec: [phase 2 design](../../docs/superpowers/specs/2026-07-10-jarvis-phase2-job-tracking-design.md). Query/resume/brief-integration deferred — cheap once tracking exists.
 3. **Voice layer** — live (tested 10 Jul). Push-to-talk: hold right-option → speak → spoken + on-screen answer. Components in [projects/jarvis/voice/](../../projects/jarvis/voice/): `jarvis.lua` (Hammerspoon hotkey + overlay), `jarvis-ask.sh` (ffmpeg → whisper-cli base.en → `claude -p` with [VOICE-PROMPT.md](../../projects/jarvis/voice/VOICE-PROMPT.md) → TTS), Cmd+Alt+J mute. TTS = macOS `say` Jamie (Premium) — Hunter's pick, instant (`.use-say` flag present). Kokoro local neural installed as alternative (`bm_george` etc., ~5 s load latency); delete `projects/jarvis/voice/.use-say` to switch back. Ask + capture only: reads vault/CRM, may create todos, hard-banned from paid ops/writes. Spec: [phase 3 design](../../docs/superpowers/specs/2026-07-10-jarvis-phase3-voice-design.md). Note: headless CRM connector access still unverified — voice may answer task questions with "CRM not reachable"; wire local MCP config if so.
+
+## Cost ledger (2026-10-20)
+
+JOB.md now has a `## Ledger` section, one line per spend. The `cost:` header is derived from it by [gen-runner](../../projects/gen-runner/README.md) (`run` appends Higgsfield spends automatically; `log` records Magnific/web spends). This replaced hand-kept tallies after the CVA and ZED-4 headers drifted. See [[job-framework-v2]].
 
 ## Phase 1 mechanics
 
