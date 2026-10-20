@@ -1,0 +1,58 @@
+[
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/11_hallway_v1_720.mp4",
+  "motion": 0.01,
+  "continuity_min": 0.95,
+  "continuity_at_s": 2.92,
+  "frames": 121,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/05_powder_v1_720.mp4",
+  "motion": 0.001,
+  "continuity_min": 1.0,
+  "continuity_at_s": 2.25,
+  "frames": 121,
+  "flags": [
+   "FREEZE 5.0s",
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/06_kitchen_v1_720.mp4",
+  "motion": 0.014,
+  "continuity_min": 0.99,
+  "continuity_at_s": 4.08,
+  "frames": 121,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/04_living_v1_720.mp4",
+  "motion": 0.009,
+  "continuity_min": 1.0,
+  "continuity_at_s": 2.5,
+  "frames": 121,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/01_exterior_v1_720.mp4",
+  "motion": 0.004,
+  "continuity_min": 0.99,
+  "continuity_at_s": 2.42,
+  "frames": 121,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ }
+]

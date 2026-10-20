@@ -24,46 +24,41 @@
   {
    "id": "11_hallway",
    "params": {
-    "start-image": "hero/11_hallway_169.jpg",
-    "end-image": "hero/11_hallway_169.jpg"
+    "start-image": "hero/11_hallway_169.jpg"
    },
-   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of an architectural interior: every wall, ceiling, joinery panel, piece of furniture and fixture stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous, and the final frame matches the first frame so the clip loops seamlessly. The sheer white curtain on the left edge sways softly in a light breeze, its folds rippling gently. The diagonal beams of sunlight on the timber wall and floor creep very slowly across the surfaces as if the sun is moving, with faint leaf shadows dappling inside the light. Through the skylight, the tree branches above move gently. Through the far window the garden foliage rustles softly. The column, joinery panels and floor boards stay perfectly still. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
+   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of an architectural interior: every wall, ceiling, joinery panel, piece of furniture and fixture stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous. The sheer white curtain on the left edge sways softly in a light breeze, its folds rippling gently. The diagonal beams of sunlight on the timber wall and floor creep very slowly across the surfaces as if the sun is moving, with faint leaf shadows dappling inside the light. Through the skylight, the tree branches above move gently. Through the far window the garden foliage rustles softly. The column, joinery panels and floor boards stay perfectly still. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
    "out": "video/11_hallway_v1_720.mp4"
   },
   {
    "id": "05_powder",
    "params": {
-    "start-image": "hero/05_powder_169.jpg",
-    "end-image": "hero/05_powder_169.jpg"
+    "start-image": "hero/05_powder_169.jpg"
    },
-   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of an architectural interior: every wall, ceiling, joinery panel, piece of furniture and fixture stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous, and the final frame matches the first frame so the clip loops seamlessly. Through the tall window, the tree leaves and garden shrubs sway gently in a light breeze. The bright patch of sunlight on the left wall drifts very slowly and softly, with faint leaf shadows dappling and shimmering inside it. The basin, tapware, mirror, towel, bottles, arched tile niche and stone floor stay perfectly still; the hanging towel barely stirs. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
+   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of an architectural interior: every wall, ceiling, joinery panel, piece of furniture and fixture stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous. Through the tall window, the tree leaves and garden shrubs sway gently in a light breeze. The bright patch of sunlight on the left wall drifts very slowly and softly, with faint leaf shadows dappling and shimmering inside it. The basin, tapware, mirror, towel, bottles, arched tile niche and stone floor stay perfectly still; the hanging towel barely stirs. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
    "out": "video/05_powder_v1_720.mp4"
   },
   {
    "id": "06_kitchen",
    "params": {
-    "start-image": "hero/06_kitchen_169.jpg",
-    "end-image": "hero/06_kitchen_169.jpg"
+    "start-image": "hero/06_kitchen_169.jpg"
    },
-   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of an architectural interior: every wall, ceiling, joinery panel, piece of furniture and fixture stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous, and the final frame matches the first frame so the clip loops seamlessly. The long stripes of low golden sunlight across the timber floor and island creep very slowly across the boards as if the sun is setting, staying sharp and warm. Outside the open glass doors the garden foliage sways gently in a light breeze. The sculptural wave pendant light glows steadily and does not move. The island, five bar stools, cabinetry, oven and dining chairs outside stay perfectly still. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
+   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of an architectural interior: every wall, ceiling, joinery panel, piece of furniture and fixture stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous. The long stripes of low golden sunlight across the timber floor and island creep very slowly across the boards as if the sun is setting, staying sharp and warm. Outside the open glass doors the garden foliage sways gently in a light breeze. The sculptural wave pendant light glows steadily and does not move. The island, five bar stools, cabinetry, oven and dining chairs outside stay perfectly still. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
    "out": "video/06_kitchen_v1_720.mp4"
   },
   {
    "id": "04_living",
    "params": {
-    "start-image": "hero/04_living_169.jpg",
-    "end-image": "hero/04_living_169.jpg"
+    "start-image": "hero/04_living_169.jpg"
    },
-   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of an architectural interior: every wall, ceiling, joinery panel, piece of furniture and fixture stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous, and the final frame matches the first frame so the clip loops seamlessly. Outside the tall windows on the right, the palm trees and garden foliage sway gently in a light breeze. The soft angled patches of sunlight on the ceiling and back wall drift very slowly as if the sun is moving. The six curved armchairs, the marble coffee tables, the black TV screen, the shelving and the ornaments stay perfectly still. The TV screen stays dark. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
+   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of an architectural interior: every wall, ceiling, joinery panel, piece of furniture and fixture stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous. Outside the tall windows on the right, the palm trees and garden foliage sway gently in a light breeze. The soft angled patches of sunlight on the ceiling and back wall drift very slowly as if the sun is moving. The six curved armchairs, the marble coffee tables, the black TV screen, the shelving and the ornaments stay perfectly still. The TV screen stays dark. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
    "out": "video/04_living_v1_720.mp4"
   },
   {
    "id": "01_exterior",
    "params": {
-    "start-image": "hero/01_exterior_169.jpg",
-    "end-image": "hero/01_exterior_169.jpg"
+    "start-image": "hero/01_exterior_169.jpg"
    },
-   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of a house exterior: every wall, window, roof, stone surface and hard surface stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous, and the final frame matches the first frame so the clip loops seamlessly. The palm tree fronds sway gently in a soft breeze, and their shadows move softly across the timber garage door and the concrete driveway in time with the fronds. The trailing green plants hanging over the balcony edges stir slightly. The garden plants in the foreground rustle softly. The window-shaped patch of sunlight on the driveway stays put. Clouds: none, the blue sky stays clear. The house, stone entry, windows, roof and palm trunk stay perfectly still. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the scene.",
+   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph of a house exterior: every wall, window, roof, stone surface and hard surface stays perfectly still and unchanged like a photograph. The only motion is natural ambient life, gentle and continuous. The palm tree fronds sway gently in a soft breeze, and their shadows move softly across the timber garage door and the concrete driveway in time with the fronds. The trailing green plants hanging over the balcony edges stir slightly. The garden plants in the foreground rustle softly. The window-shaped patch of sunlight on the driveway stays put. Clouds: none, the blue sky stays clear. The house, stone entry, windows, roof and palm trunk stay perfectly still. Constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the scene.",
    "out": "video/01_exterior_v1_720.mp4"
   }
  ]
