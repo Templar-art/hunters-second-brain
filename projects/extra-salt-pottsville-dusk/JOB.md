@@ -20,6 +20,7 @@ Source: `~/Downloads/Extra Salt Reels/Kollosche VO/Pottsville Edits 1 Day to nig
 
 - 2026-10-20 intake: 1 shot; Hunter approved Seedance 2.5 720p @ 2,080cr. Submitted.
 - 2026-10-20 result back (~20 min). Dusk sky, sun stripes gone, downlights on, geometry/motion held. Darker + moodier than locked bright twilight; sky a touch cloudier, little peach. Trimmed to 3.46s → `outputs/` + copied beside source in Downloads.
+- 2026-10-20 free local ffmpeg lift (curves mids +~0.17, sat 1.05, lanczos → 1080p) → "DUSK bright.mp4". Brings it to the bright twilight look.
 
 ## Ledger
 
