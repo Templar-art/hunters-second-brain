@@ -1261,3 +1261,7 @@ Hunter put the Veo re-roll (96 HF quoted) on hold to build the system first: "ti
 ## [2026-10-20] migrate | Job framework v2, phase 1: gen-runner + ledger
 
 Hunter approved the [[job-framework-v2]] design. Built `projects/gen-runner/gen_runner.py` (estimate, run, log, tally, sheet). Added a `## Ledger` section to JOB.md so the cost header is derived, not hand-kept; seeded beach (791.5 HF) and CVA (4,035 cr, correcting the wiki's 3,210). Fixed the CVA header placeholders and moved ZED-4's status to generating (Hunter's web-app gens, no metered spend). Widened the money gate to `higgsfield generate create` and `gen_runner.py run`. Tests: the real beach estimate came to 96 HF, and a fake-CLI run passed every path. No credits spent.
+
+## [2026-10-20] migrate | Job framework v2, phase 2: gates + routes in 10x-ai
+
+Rewrote the `10x-ai` skill around the three Hunter gates (A spec + cap + pilot spend, B pilot results + batch quote, C finals). Added shot classes, a Blender route, the pilot-before-batch rule, gen-runner for batches, and pilot outcomes written back. New canonical route page [[shot-class-routes]]: vehicles (C4) and drone wides (C5) are pilot-required. Linked from [[higgsfield-pipelines]]. Skill backup is in `~/.claude/backups/10x-ai-2026-10-20/`.

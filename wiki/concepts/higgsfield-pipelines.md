@@ -26,6 +26,8 @@ How 10x routes real-estate AI image/video work. Full KB with T1–T10 prompt tem
 ❌ **Never run full-frame on a drone wide** — it regenerates the ground and wrecks fine detail.
 ❌ **Never full-frame-generate real photos** — faithful only on renders; real photos get Topaz upscale (auto-memory `feedback-generate-vs-real-photos`).
 
+**Video, renders and CG:** route by shot class, see [[shot-class-routes]] (C1–C5, with the pilot-before-batch rule).
+
 ## Hard rules
 - **Money gate:** any credit-spending op needs Hunter's explicit go-ahead. Git is free; credits never are.
 - **Editorial by default (2026-10-12):** every generation (stills, staging, renders, video) aims for a clean, magazine-grade editorial finish. Get it from composition and finish, and keep the light bright and airy, because "editorial" wording alone drifts moody (see [[staging-rules]]). Blender → video route: [[blender-blockout-pipeline]].
