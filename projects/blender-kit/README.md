@@ -12,6 +12,7 @@ Outputs go to the scene's `output` folder: `<name>.blend`, `guides/`, `id/` (mat
 ## Modules (`kit/`)
 | Module | Builds |
 |---|---|
+| `house` | Parametric multi-level house from a plan-derived spec: rectangular levels, openings per side (stacker, window, bifold, door, garage door, void) built as wall segments with sills, lintels, glazing and mullions (no booleans), floors, flat or pitched roof with fascia, alfresco with posts, balconies with glass balustrades, lift core, rooftop observatory, pool. Spec format in the module docstring. |
 | `site` | Lot (lawn, boundary walls, hedges, driveway, letterbox), street (road, footpath, lights), beach terrain from a height profile with dune noise, wet sand, ocean, surf lines, boardwalk, dune posts, and parametric **neighbour houses** (1–4 storeys, piers, glazing, balconies, roof, pool, lawn, hedge, drive) |
 | `landscape` | Dune-grass clumps (shared mesh variants, so thousands are cheap), procedural palms, planted beds scattered from asset pools, potted plants, trees. Ground height follows the terrain. |
 | `people` | Rigged MPFB2 mannequins from the library, placed or walked along a keyed path (walk cycles included) |
@@ -41,8 +42,13 @@ New assets (for example from the free asset-library session) go in as more `A_<k
 
 Side-by-side of all 8 guide frames: `beach/kit/build/compare-guides.jpg`. Camera moves, house, neighbours, people and the car line up. Frame 1300 differs because the original guide predates the parked-car fix.
 
+## Test — Lot 48 house from spec (20 Oct 2026)
+
+`scenes/lot48-test.scene.json` holds the Lot 48 Fairway Bvd house drawn from the plan **summary facts** (the plans PDF isn't on this Mac, so items marked `_assumed` are guesses). Level areas match the plans: 257, 243 and 205 m², plus a 62 m² alfresco. **153 house objects, built in under 0.1 s, 1.4 s total with 2 guide + 2 ID renders.** Sheet: `projects/blender-blockouts/lot48-test/build/lot48-sheet.jpg`. To redo it against the real plans, read their dimensions into the same spec block and rebuild.
+
 ## Known gaps (v1)
-- The house and interior are still imported. The parametric `house` module plus plan-to-spec is phase 4 (Lot 48).
+- `house` v1 handles rectangular levels only (an L-shape needs a list of rectangles per level). No internal walls or rooms, stairs or furniture yet; the beach scene still imports its hand-built house and interior.
+- Plan-to-spec is Claude reading the PDF into the spec. Not yet tested on a real plan set.
 - Handheld shake uses F-curve noise. Camera Shakify presets aren't wired in yet.
 - Vehicles are imported with their animation. There's no vehicle path or wheel-spin module yet.
-- ID colour rules for cars, tyres and pots were added after the test renders, so `id/` in the test predates them.
+- The ID category now checks the material name before the object name (fixed 20 Oct after a "Garage" wall in Render came out timber-red).

@@ -80,3 +80,7 @@ Job: [JOB.md](../../projects/blender-blockouts/beach/JOB.md). **Status: review, 
 Hand-building is replaced. Scenes are now described in a `scene.json` and built headless by the [Blender kit](../../projects/blender-kit/README.md) (modules: site, landscape, people, cameras, passes, plus an asset library extracted from the beach scene). **The beach rebuild took 4.3 s instead of about 6 h**: 1,729 objects against 1,768, 78 of 86 object families matching exactly, and all 8 guide frames lining up ([compare sheet](../../projects/blender-blockouts/beach/kit/build/compare-guides.jpg)). Density and camera clearance are checked automatically on every build. The house is still imported until phase 4 (house generator) of [[job-framework-v2]].
 
 **Gotcha:** Blender 5 uses layered actions, so `action.fcurves` is gone. Use `bpy_extras.anim_utils.action_get_channelbag_for_slot(action, slot).fcurves` (wrapped as `core.fcurves`).
+
+## House generator (20 Oct)
+
+`house` module: a plan-derived spec goes in and a full multi-level shell comes out in under 0.1 s (see the [kit README](../../projects/blender-kit/README.md)). Tested on Lot 48 from the summary facts; the real plans weren't on the Mac. Next real job: read the plan PDF's dimensions into the spec at Gate A, and Hunter checks the summary table before the build.

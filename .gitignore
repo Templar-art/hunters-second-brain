@@ -66,5 +66,5 @@ projects/blender-blockouts/cliff-mansion-v2.blend
 *.zip
 
 # Blender kit build renders (regenerate with build.py; the compare sheet + report.json stay tracked)
-projects/**/kit/build/guides/
-projects/**/kit/build/id/
+projects/**/build/guides/
+projects/**/build/id/

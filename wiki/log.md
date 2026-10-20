@@ -1269,3 +1269,7 @@ Rewrote the `10x-ai` skill around the three Hunter gates (A spec + cap + pilot s
 ## [2026-10-20] migrate | Job framework v2, phase 3: Blender kit v1
 
 Built `projects/blender-kit/`. `build.py` runs the modules site, landscape, people, cameras and passes, plus an imports step. The asset library (Poly Haven plants, grass, tree, chair, 7 rigged mannequins, materials, world) was extracted from the beach scene. The beach was rebuilt from `beach.scene.json` in 4.3 s (65 s with renders) against about 6 h of hand-building on 16 Oct: 1,729 against 1,768 objects, 78 of 86 families exact, guide frames matching, 0 clearance hits. Fixed in passing: the surf was hidden by the ocean waves, and stray anthurium templates were coming in with the import. The house is still imported until phase 4. No spend. Detail on [[blender-blockout-pipeline]].
+
+## [2026-10-20] migrate | Job framework v2, phase 4: house generator
+
+Added `kit/house.py`: a parametric multi-level house from a spec (openings per side as wall segments with no booleans, roof, alfresco, balconies, lift, observatory, pool). Lot 48 test built from summary facts because the plans PDF is no longer on the Mac: 153 objects, 1.4 s with renders, level areas matching the plans. Fixed the ID pass so the material name wins over the object name (a garage wall had come out timber-red); beach plants now get correct IDs as a bonus. No spend. Detail in [[job-framework-v2]], [[blender-blockout-pipeline]] and [[belle-property]].

@@ -1,0 +1,51 @@
+{
+ "name": "lot48-house-test",
+ "seed": 48,
+ "output": "../../blender-blockouts/lot48-test/build",
+ "assets": "../assets/kit-assets.blend",
+ "_note": "DRAFT from summary facts only (plans PDF not on this Mac). Front = -Y (street), rear = +Y (water/golf). Units metres. Items marked ASSUMED are guesses to replace from the real plans.",
+ "house": {
+  "name": "Lot48",
+  "ceiling": 3.0,
+  "slab": 0.3,
+  "wall": {"thickness": 0.3, "material": "Render"},
+  "levels": [
+   {"name": "Garage", "z": 0.0, "rect": [-9.0, -7.15, 9.0, 7.15],
+    "_area": "18.0 x 14.3 = 257 m2 (plans: 258)",
+    "openings": [
+     {"side": "S", "offset": 1.5, "width": 5.4, "height": 2.4, "type": "garage_door"},
+     {"side": "S", "offset": 7.6, "width": 5.4, "height": 2.4, "type": "garage_door"},
+     {"side": "S", "offset": 14.2, "width": 1.2, "height": 2.4, "type": "door", "_assumed": "entry"}
+    ]},
+   {"name": "Lower", "z": 3.3, "rect": [-9.0, -6.75, 9.0, 6.75],
+    "_area": "18.0 x 13.5 = 243 m2 (plans: 243)",
+    "openings": [
+     {"side": "N", "offset": 0.6, "width": 16.8, "height": 2.7, "type": "stacker", "panels": 6, "_assumed": "full-width rear stackers"},
+     {"side": "S", "offset": 2.0, "width": 3.6, "height": 2.4, "sill": 0.6, "type": "window"},
+     {"side": "S", "offset": 11.0, "width": 3.6, "height": 2.4, "sill": 0.6, "type": "window"},
+     {"side": "E", "offset": 4.0, "width": 2.4, "height": 2.7, "type": "bifold"}
+    ]},
+   {"name": "Upper", "z": 6.6, "rect": [-8.0, -6.0, 8.0, 6.8],
+    "_area": "16.0 x 12.8 = 205 m2 (plans: 205)",
+    "openings": [
+     {"side": "N", "offset": 0.5, "width": 15.0, "height": 2.7, "type": "stacker", "panels": 5},
+     {"side": "S", "offset": 1.0, "width": 6.0, "height": 2.4, "sill": 0.3, "type": "window"},
+     {"side": "S", "offset": 9.0, "width": 6.0, "height": 2.4, "sill": 0.3, "type": "window"}
+    ]}
+  ],
+  "alfresco": {"level": "Lower", "rect": [-9.0, 6.75, 9.0, 10.2], "_area": "18.0 x 3.45 = 62 m2 (plans: 62)", "covered_by": "Upper balcony"},
+  "balconies": [{"level": "Upper", "side": "N", "depth": 3.45, "balustrade": "glass", "_assumed": "upper balcony doubles as the alfresco roof"}],
+  "core": {"name": "Lift", "rect": [6.0, -2.0, 8.0, 0.0], "levels": ["Garage", "Lower", "Upper"], "_assumed": "lift position"},
+  "roof": {"type": "flat", "pitch_deg": 3, "overhang": 0.9, "fascia": 0.3, "material": "RoofDark", "fascia_material": "Bronze"},
+  "observatory": {"rect": [-3.0, 0.0, 2.0, 4.0], "height": 2.7, "_assumed": "small rooftop room; plans mention an observatory upper floor"},
+  "pool": {"rect": [-6.0, 11.2, 4.0, 15.2], "_assumed": "rear, beyond the alfresco"},
+  "materials": {"slab": "concrete_wall_009", "glass": "Glass", "frame": "Bronze", "garage_door": "Timber", "floor": "wood_floor"}
+ },
+ "site": {"lot": {"size": [30, 45], "center": [0, 3], "lawn": "leafy_grass"}},
+ "shots": [
+  {"name": "H1_FrontThreeQuarter", "preset": "drone_reveal", "frames": 120, "path": [[-26, -30, 8], [-20, -26, 10]], "look_at": [0, 0, 5]},
+  {"name": "H2_RearWide", "preset": "glide", "frames": 120, "path": [[22, 30, 3], [14, 32, 3.5]], "look_at": [0, 4, 4]}
+ ],
+ "lighting": {"world": "PolyHaven qwantani_morning_puresky", "sun": {"energy": 5.5, "angle_deg": 0.8, "rotation_deg": [45, 10, 160]}},
+ "passes": {"density": {"min_total": 1}, "clearance": {"radius": 0.35, "every": 4}, "guides": true, "id": true, "resolution": [1920, 1080], "percent": 50}
+}

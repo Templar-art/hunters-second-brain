@@ -4,13 +4,13 @@
 
 Outputs (into scene.json "output", relative to the json): <name>.blend, guides/, id/,
 report.json (stage timings, object counts, density, clearance hits).
-Stages: imports -> site -> landscape -> people -> cameras -> lighting -> save -> passes.
+Stages: imports -> house -> site -> landscape -> people -> cameras -> lighting -> save -> passes.
 """
 import json, math, os, sys, time
 import bpy
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from kit import core, site, landscape, people, cameras, passes  # noqa: E402
+from kit import core, house, site, landscape, people, cameras, passes  # noqa: E402
 
 
 def imports(spec, ctx):
@@ -79,6 +79,8 @@ def main():
     for i, imp in enumerate(spec.get("imports", [])):
         n = stage(f"import_{i}", lambda imp=imp: imports(imp, ctx))
         ctx.report[f"imported_{i}"] = n
+    if "house" in spec:
+        stage("house", lambda: house.build(spec["house"], ctx))
     if "site" in spec:
         stage("site", lambda: site.build(spec["site"], ctx))
     if "landscape" in spec:

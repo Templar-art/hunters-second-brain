@@ -1,0 +1,45 @@
+{
+ "house_objects": 153,
+ "guide_frames": [
+  [
+   "H1_FrontThreeQuarter",
+   1
+  ],
+  [
+   "H2_RearWide",
+   121
+  ]
+ ],
+ "objects": 159,
+ "density": {
+  "total": 154,
+  "by_collection": {
+   "House": 153,
+   "Site": 1,
+   "Cameras": 0,
+   "Lighting": 0
+  },
+  "fails": []
+ },
+ "clearance": [],
+ "guides": [
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/lot48-test/build/guides/shot_0001.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/lot48-test/build/guides/shot_0121.png"
+ ],
+ "id_unknown": [],
+ "id": [
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/lot48-test/build/id/id_0001.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/lot48-test/build/id/id_0121.png"
+ ],
+ "timings_s": {
+  "assets": 0.2,
+  "house": 0.0,
+  "site": 0.0,
+  "cameras": 0.0,
+  "lighting": 0.0,
+  "save": 0.1,
+  "passes": 1.0,
+  "total": 1.4
+ },
+ "blend": "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/lot48-test/build/lot48-house-test.blend"
+}

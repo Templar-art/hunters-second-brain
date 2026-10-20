@@ -97,8 +97,13 @@ RULES = (("mannequin", "person"), ("person_", "person"), ("hedge", "hedge"), ("t
 
 
 def category(obj_name, mat_name):
-    n = (mat_name + " " + obj_name).lower()
-    return next((c for k, c in RULES if k in n), None)
+    """Material name decides first (a "Garage" wall in Render is still render); the object
+    name is the fallback for generic materials."""
+    for n in (mat_name.lower(), obj_name.lower()):
+        c = next((c for k, c in RULES if k in n), None)
+        if c:
+            return c
+    return None
 
 
 def material_id(ctx):
