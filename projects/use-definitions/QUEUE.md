@@ -31,3 +31,40 @@ Skipped:
 | 20 | promises | Q&A | v1 boss-passed, sent |
 | 21 | ask-the-vision | Q&A | v1 boss-passed, sent |
 | 23 | handover | Q&A | v1 boss-passed, sent |
+
+# v2 redo pass (Hunter, 20 Oct 2026): all 21 episodes, ONE AT A TIME
+
+Hunter: redo every sent episode with everything improved since, and make each one better. **Strictly one episode at a time.** Each one gets Hunter's look before the next starts, so a lesson from one carries into the next. Nothing is re-sent to USE without Hunter's go.
+
+What "updated" means. Apply all of it to each episode:
+- **SFX** (the biggest gap; Hunter rated the current effects poor): replace the synth and 1s Magnific takes with real library sounds. Sources: the Ocular Sounds packs in `~/Music/SFX Library/Ocular Sounds/` (auto-sorted by the [[sfx-sorter]]), the free commercial packs being collected by the asset-library session, and [Sound Lab](../sound-lab/) for custom 48k/24 renders. Cues stay driven by the components so sound matches motion.
+- **Gates** ([[job-framework-v2]] style, adapted for motion): A = what changes on this episode → build → B = Hunter reviews v-next → C = final before sending.
+- **Existing rules still apply:** FACE CLEAR check, `tools/qa.sh`, the boss review loop (`tools/BOSS.md`), never cover the face, pop-ups never over text, no text off-screen.
+- **Automatic QC:** run `gen_runner.py qc` on each render to catch frozen sections or accidental dissolves, plus a contact sheet.
+- Keep the v1/v2 finals and write the new one as the next version number.
+
+Order: as listed (01 CRUD first, the anchor episode). Update the row after every step.
+
+| # | Episode | Current final | v2-redo status |
+|---|---|---|---|
+| 01 | crud | v6 | todo |
+| 02 | bus-network | v2 | todo |
+| 03 | cli | v2 | todo |
+| 04 | json | v3 | todo |
+| 05 | sdk | v3 | todo |
+| 06 | ui-ux | v1 | todo |
+| 07 | ide | v2 | todo |
+| 08 | saas | v1 | todo |
+| 09 | gpu | v1 | todo |
+| 10 | cpu | v2 | todo |
+| 11 | git | v2 | todo |
+| 12 | docker | v1 | todo |
+| 13 | webhooks | v1 | todo |
+| 14 | state-management | v1 | todo |
+| 15 | sql | v1 | todo |
+| 16 | erd | v1 | todo |
+| 17 | excel-wince | v3 | todo |
+| 18 | scope-myth | v2 | todo |
+| 19 | promises | v2 | todo |
+| 20 | ask-the-vision | v1 | todo |
+| 21 | handover | v1 | todo |

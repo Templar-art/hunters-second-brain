@@ -2,7 +2,7 @@
 type: project
 tags: [motion-graphics, talking-head, template, use-software]
 status: in-review
-updated: 2026-10-09
+updated: 2026-10-20
 ---
 
 # USE Definitions series: CRUD episode + template
@@ -66,3 +66,7 @@ Every episode passed the face check and the boss review. Latest file per episode
 
 ## Links
 [[use-software]] · [[brand-system]]
+
+## v2 redo pass (queued 2026-10-20)
+
+Hunter wants **all 21 sent episodes redone, one at a time**, updated with everything improved since. The main change is real SFX, since the current effects were rated poor; the new sources are Ocular, the free packs and Sound Lab. The redo also uses framework-style gates, automatic video QC and the existing face, QA and boss-review rules. Each episode gets Hunter's look before the next starts. Order and status are tracked in [QUEUE.md](../../projects/use-definitions/QUEUE.md). Nothing is re-sent without Hunter's go. Not started.
