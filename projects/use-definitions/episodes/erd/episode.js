@@ -5,14 +5,16 @@ window.EP = {
   dur: 16.3, voEnd: 13.0,
   punchIns: [],
   cuts: [BP_IN, STANDS_IN, CARD_IN, JOIN_IN, END_IN],
+  // v2 (redo pass): deliberate transitions the QC continuity check should ignore (hard cuts get ±0.3 s)
+  qcAllow: [[0, 0.6], [1.0, 1.9], [4.0, 4.7], [5.5, 6.2], [10.3, 11.0], [12.5, 13.6]],
   captions: [[JOIN_IN, END_MOS, T => lerp(H + 40, PANEL_Y, expo((T - JOIN_IN) / .5)) - 60]],
   frame(T) {
-    if (T < BP_IN) titleCard(T, 'ERD', 1.25);
+    if (T < BP_IN) titleCard(T, 'ERD', 1.25, 'Definitions', [985, 800]);   // v2: shards off the ear line
     else if (T < STANDS_IN) sceneBlueprint(T, false);
     else if (T < CARD_IN) standsFor(T, STANDS_IN, CARD_IN, 'ERD', STANDS);
     else if (T < JOIN_IN) sceneBlueprint(T, true);
     else if (T < END_IN) sceneJoin(T);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v2: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -43,6 +45,8 @@ function crowV(x, y1, y2, p, oneOn, manyOn) {
 
 function sceneBlueprint(T, cardMode) {
   grid();
+  { const sy = ((T - BP_IN) * 420) % (H + 300) - 150, sg = g.createLinearGradient(0, sy - 120, 0, sy + 8);   // v2: blueprint scanner bar sweeps down the sheet
+    sg.addColorStop(0, 'rgba(18,221,235,0)'); sg.addColorStop(1, 'rgba(18,221,235,.16)'); g.fillStyle = sg; g.fillRect(0, sy - 120, W, 128); g.fillStyle = 'rgba(160,240,255,.55)'; g.fillRect(0, sy + 6, W, 3); }
   const U = { x: 70, y: 340 }, Hs = { x: 540, y: 960 };
   typeOn(cardMode ? 'Cardinality' : 'A diagram of a database', 70, 230, T - (cardMode ? 7.12 : 1.6), { size: 30, col: CYAN, track: 6, upper: true, cps: 36 });
   table(U.x, U.y, 'users', ['id', 'name'], cardMode ? 1 : expo((T - 1.68) / .8));
@@ -53,6 +57,10 @@ function sceneBlueprint(T, cardMode) {
   const pulse = cardMode && T > 7.12 ? .5 + .5 * Math.sin((T - 7.12) * 7) : 0;
   if (d > 0) { g.save(); if (pulse) { g.shadowColor = CYAN; g.shadowBlur = 24 * pulse; } g.strokeStyle = CYAN; g.lineWidth = 6; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(...P[0]);
     for (let k = 0; k < 3; k++) { const f = Math.min(1, d / segL[k]); g.lineTo(lerp(P[k][0], P[k + 1][0], f), lerp(P[k][1], P[k + 1][1], f)); d -= segL[k]; if (d <= 0) break; } g.stroke(); g.restore(); }
+  // v2: records flow user → houses along the connector once it's drawn (old render: still 3.2–4.4, 7.1–9.6 s)
+  if (T > 3.9) for (let n = 0; n < 3; n++) { let s = ((T - 3.9) * .55 + n / 3) % 1 * tot, px = P[0][0], py = P[0][1];
+    for (let k = 0; k < 3; k++) { const f = Math.min(1, s / segL[k]); px = lerp(P[k][0], P[k + 1][0], f); py = lerp(P[k][1], P[k + 1][1], f); s -= segL[k]; if (s <= 0) break; }
+    g.save(); g.globalAlpha = clamp((T - 3.9) / .3); g.shadowColor = CYAN; g.shadowBlur = 20; g.fillStyle = WHITE; g.beginPath(); g.arc(px, py, 13, 0, 7); g.fill(); g.restore(); }
   // notation draws on "cardinality"; labels on "one" / "another"
   const nt = cardMode ? expo((T - 7.12) / .4) : 0;
   if (nt > 0) { g.save(); g.globalAlpha = nt; g.strokeStyle = CYAN; g.lineWidth = 6; g.beginPath(); g.moveTo(274, 630); g.lineTo(326, 630);
@@ -64,7 +72,7 @@ function sceneBlueprint(T, cardMode) {
     font(500, 32, MONO); g.fillStyle = WHITE; g.fillText(`house ${k + 1} → user 1`, -205, 12); g.restore(); }
   if (!cardMode) rise('The structure.', 70, 1640, T - 2.92, { size: 130, w: 800, col: WHITE, dur: .45 });
   else rise('How many own how many.', 70, 1760, T - 8.16, { size: 84, w: 800, col: WHITE, dur: .45 });
-  faceCircle(930, 1300, 100, back((T - (cardMode ? CARD_IN : BP_IN) - .3) / .6));
+  faceCircle(930, 1500, 100, back((T - (cardMode ? CARD_IN : BP_IN) - .3) / .6));   // v2: off the houses table (v1 overlapped it)
 }
 
 // "How you might join those together": two tables slide into one row.

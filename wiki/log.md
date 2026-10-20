@@ -1329,3 +1329,6 @@ Hunter locked Docker v2. State management v2 has the upgrades ported plus on-sto
 
 ## [2026-10-20] ingest | Full Ocular Sounds set filed
 The full Ocular download landed in a Downloads subfolder, which the sorter does not watch. Eight packs were extracted into ~/Music/SFX Library/Ocular Sounds, sorted by CatID, and catalog.csv was rebuilt: 1,547 sounds (was 190). Utility adds computer keys, drives and UI-adjacent foley, useful for the USE kit. See [[sfx-sorter]].
+
+## [2026-10-20] migrate | USE redo: State management v2 locked, ERD v2 built
+Hunter locked State management v2. ERD v2 has the upgrades ported, on-story motion (scanner sweep, records along the connector), and the face circle moved off the houses table. All clear. Waiting on Gate B. No spend.
