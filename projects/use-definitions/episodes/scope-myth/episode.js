@@ -81,7 +81,7 @@ function sceneOver(T) {
   if (fill > 1) { g.fillStyle = '#28C941'; g.beginPath(); g.roundRect(bx + bw - 30, 1450, 30 + (fill - 1) * bw, 50, 25); g.fill(); }
   g.strokeStyle = WHITE; g.lineWidth = 3; g.beginPath(); g.moveTo(bx + bw * .85, 1430); g.lineTo(bx + bw * .85, 1520); g.stroke(); font(500, 22, MONO); g.fillStyle = WHITE; g.fillText('PROMISED', bx + bw * .85 - 60, 1555);
   g.restore();
-  if (T > 28.36) { const q = back((T - 28.36) / .35); g.save(); g.translate(800, 1398); g.scale(q, q); g.fillStyle = '#28C941';   // v3: inside the card, clear of the caption (v2 touched it) g.beginPath(); g.roundRect(-190, -40, 380, 80, 40); g.fill();
+  if (T > 28.36) { const q = back((T - 28.36) / .35); g.save(); g.translate(800, 1398); g.scale(q, q); g.fillStyle = '#28C941';   /* v3: inside the card, clear of the caption (v2 touched it) */ g.beginPath(); g.roundRect(-190, -40, 380, 80, 40); g.fill();
     font(800, 48, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('Over-delivered', 0, 16); g.textAlign = 'left'; g.restore(); }
   burst(T, 28.5, 960, 1475, 18, 6);
 }

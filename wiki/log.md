@@ -1341,3 +1341,6 @@ Hunter locked Excel wince v4. Scope myth v3 has the upgrades ported, on-story mo
 
 ## [2026-10-20] migrate | USE redo: Scope myth v3 locked, Promises v3 built
 Hunter locked Scope myth v3. Promises v3 brings the agreement scene alive (pen reads, signs and hovers; turning seal; worst cases ticked). Rebuilt once for a 0.9 s freeze. All clear. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: Promises v3 locked, Ask the vision v2 built, Scope myth v4 bugfix
+Hunter locked Promises v3. Ask the vision v2 is built (alive vision cloud, thoughts between heads). A mid-line // comment bug hid its circles and had silently broken Scope myth v3's pill, so Scope myth v4 was rebuilt with only that fix. build.sh now has a comment gate. All clear. Waiting on Hunter for both. No spend.

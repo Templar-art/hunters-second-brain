@@ -24,3 +24,5 @@ FIXES (ordered, most important first; each with timestamp + exact change):
 1. …
 ```
 Only PASS if there are no hard-rule breaches and the average is ≥ 4. Don't pad with praise.
+
+7. **Mid-line notes use /* */, never //.** A // comment mid-line silently swallows the drawing code after it (JSON v4, Scope myth v3, Ask the vision v2). build.sh refuses to build when it finds one.

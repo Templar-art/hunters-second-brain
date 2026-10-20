@@ -5,6 +5,8 @@
 set -e; ROOT="${0:a:h:h}"; EP="$ROOT/episodes/$1"; V="${2:-latest}"
 export NODE_PATH="$ROOT/tools/node_modules"
 node -e "new Function(require('fs').readFileSync('$EP/episode.js','utf8'))"   # syntax gate: a broken episode.js must stop here
+# comment gate: a // comment mid-line silently swallows the drawing code after it (json v4, scope-myth v3, ask-the-vision v2)
+if grep -nE '//[^/]*; *[a-zA-Z_][a-zA-Z_.]*[(=]' "$EP/episode.js" | grep -v 'https\?:'; then echo "COMMENT SWALLOWS CODE: use /* */ for mid-line notes"; exit 1; fi
 if [[ -z "$MIX_ONLY" ]]; then                                  # MIX_ONLY=1 re-mixes audio without re-rendering
   rm -f "$EP/build/picture.mp4"                                # never re-mux a stale picture if the render dies
   node "$ROOT/tools/render.cjs" "$EP" video
