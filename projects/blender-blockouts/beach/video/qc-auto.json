@@ -1,0 +1,80 @@
+[
+ {
+  "file": "01_surf.mp4",
+  "motion": 0.014,
+  "continuity_min": 0.99,
+  "continuity_at_s": 2.0,
+  "frames": 193,
+  "flags": [
+   "NO_MOTION"
+  ]
+ },
+ {
+  "file": "02_pool.mp4",
+  "motion": 0.263,
+  "continuity_min": 0.82,
+  "continuity_at_s": 7.83,
+  "frames": 193,
+  "flags": []
+ },
+ {
+  "file": "03_living.mp4",
+  "motion": 0.197,
+  "continuity_min": 0.96,
+  "continuity_at_s": 2.83,
+  "frames": 193,
+  "flags": []
+ },
+ {
+  "file": "04_top.mp4",
+  "motion": 0.822,
+  "continuity_min": 0.64,
+  "continuity_at_s": 3.25,
+  "frames": 193,
+  "flags": []
+ },
+ {
+  "file": "05_walk.mp4",
+  "motion": 0.483,
+  "continuity_min": 0.86,
+  "continuity_at_s": 7.0,
+  "frames": 193,
+  "flags": []
+ },
+ {
+  "file": "06_track.mp4",
+  "motion": 0.664,
+  "continuity_min": 0.13,
+  "continuity_at_s": 2.0,
+  "frames": 193,
+  "flags": [
+   "MORPH/DISSOLVE@2.0s"
+  ]
+ },
+ {
+  "file": "07_car.mp4",
+  "motion": 0.064,
+  "continuity_min": 0.98,
+  "continuity_at_s": 3.5,
+  "frames": 193,
+  "flags": [
+   "NO_MOTION"
+  ]
+ },
+ {
+  "file": "facetest/06_kling3pro.mp4",
+  "motion": 0.512,
+  "continuity_min": 0.77,
+  "continuity_at_s": 3.58,
+  "frames": 121,
+  "flags": []
+ },
+ {
+  "file": "facetest/06_veo31fast.mp4",
+  "motion": 0.716,
+  "continuity_min": 0.62,
+  "continuity_at_s": 7.58,
+  "frames": 192,
+  "flags": []
+ }
+]

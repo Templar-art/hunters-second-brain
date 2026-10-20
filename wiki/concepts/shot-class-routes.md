@@ -38,6 +38,10 @@ Before any batch, run **one generation per shot class present in the job**, pick
 
 **Why:** on 16 Oct the beach job batched all 7 Seedance clips (672 HF) before a single people or vehicle shot had been tested, and 3 failed.
 
+## Automatic QC flags
+
+gen-runner flags every downloaded video: **NO_MOTION** (barely moves) and **MORPH/DISSOLVE@t** (cross-fade or morph). Calibrated 9/9 on the beach clips. A flagged pilot counts as failed for its class unless Hunter overrides it after looking. Faces and identity still need a human look. Detail is in the [gen-runner README](../../projects/gen-runner/README.md).
+
 ## Re-roll ladder (video and CG)
 
 1. Up to **2 re-rolls on the same route**, each changing one thing (prompt, then start frame).
@@ -46,4 +50,5 @@ Before any batch, run **one generation per shot class present in the job**, pick
 4. Write the outcome back to this page (evidence column).
 
 ## Changelog
+- 2026-10-20: automatic QC flags added (phase 5).
 - 2026-10-20: page created from the beach job and CVA evidence (phase 2 of [[job-framework-v2]]).

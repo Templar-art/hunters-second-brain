@@ -13,6 +13,8 @@
   tally <JOB.md>                    rewrite the JOB.md `cost:` header from the ledger
   sheet <out.jpg> <files...>        QC contact sheet: images as-is, videos as 5 frames
                                      (0/25/50/75/100 %)
+  qc <videos...> [--json out.json]  automatic flags: NO_MOTION, MORPH/DISSOLVE@t (qc_video.py);
+                                     `run` applies them to every video it downloads
 
 jobs.json (paths relative to the file):
   {"job_md": "JOB.md", "cap_hf": 150,
@@ -156,8 +158,10 @@ def cmd_run(a):
     if job_md.exists():
         tally(job_md)
     if ok_files:
-        sheet_path = base / f"qc-{datetime.now():%Y%m%d-%H%M}.jpg"
-        make_sheet(sheet_path, ok_files)
+        stamp = f"{datetime.now():%Y%m%d-%H%M}"
+        flags = qc_videos([f for f in ok_files if f.suffix.lower() in VIDEO_EXT], base / f"qc-{stamp}.json")
+        sheet_path = base / f"qc-{stamp}.jpg"
+        make_sheet(sheet_path, ok_files, flags)
         print(f"QC sheet: {sheet_path}")
     if fails:
         print(f"{len(fails)} failed (not charged in ledger): {', '.join(fails)}")
@@ -213,6 +217,31 @@ def cmd_tally(a):
 
 # ---------- contact sheet ----------
 
+VIDEO_EXT = (".mp4", ".mov", ".webm")
+
+
+def qc_videos(files, json_out=None):
+    """Run the automatic video checks; print a table; return {path: [flags]}."""
+    if not files:
+        return {}
+    sys.path.insert(0, str(Path(__file__).parent))
+    import qc_video
+    results = [qc_video.analyse(f) for f in files]
+    print(f"{'video':28} {'motion':>7} {'contin.':>7}  flags")
+    for r in results:
+        print(f"{Path(r['file']).name:28} {r.get('motion', 0):7.3f} {r.get('continuity_min', 0):7.2f}  {', '.join(r['flags']) or 'ok'}")
+    if json_out:
+        Path(json_out).write_text(json.dumps(results, indent=1))
+    return {str(Path(r["file"])): r["flags"] for r in results}
+
+
+def cmd_qc(a):
+    flags = qc_videos([Path(f) for f in a.files], a.json)
+    if a.sheet:
+        make_sheet(a.sheet, a.files, flags)
+        print(a.sheet)
+
+
 def video_frames(path, n=5):
     dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of",
                                 "csv=p=0", str(path)], capture_output=True, text=True).stdout.strip() or 0)
@@ -229,14 +258,14 @@ def video_frames(path, n=5):
     return frames
 
 
-def make_sheet(out, files):
+def make_sheet(out, files, flags=None):
     from PIL import Image, ImageDraw, ImageFont
     W, LABEL = 480, 40
     font = ImageFont.load_default(size=22)
     strips = []
     for f in files:
         f = Path(f)
-        if f.suffix.lower() in (".mp4", ".mov", ".webm"):
+        if f.suffix.lower() in VIDEO_EXT:
             imgs = video_frames(f)
         else:
             im = Image.open(f).convert("RGB")
@@ -245,7 +274,10 @@ def make_sheet(out, files):
             continue
         h = max(i.height for i in imgs)
         strip = Image.new("RGB", (W * 5, h + LABEL), "white")
-        ImageDraw.Draw(strip).text((10, 8), f.name, fill="black", font=font)
+        fl = (flags or {}).get(str(f), [])
+        bad = [x for x in fl if not x.startswith("WARN")]
+        label = f.name + (f"   >> {' · '.join(fl)}" if fl else "")
+        ImageDraw.Draw(strip).text((10, 8), label, fill="red" if bad else ("darkorange" if fl else "black"), font=font)
         for i, im in enumerate(imgs):
             strip.paste(im, (i * W, LABEL))
         strips.append(strip)
@@ -274,6 +306,8 @@ def main():
     s.add_argument("unit"); s.add_argument("note", nargs="+"); s.set_defaults(f=cmd_log)
     s = sp.add_parser("tally"); s.add_argument("job_md"); s.set_defaults(f=cmd_tally)
     s = sp.add_parser("sheet"); s.add_argument("out"); s.add_argument("files", nargs="+"); s.set_defaults(f=cmd_sheet)
+    s = sp.add_parser("qc"); s.add_argument("files", nargs="+"); s.add_argument("--json"); s.add_argument("--sheet")
+    s.set_defaults(f=cmd_qc)
     a = p.parse_args()
     a.f(a)
 

@@ -1273,3 +1273,7 @@ Built `projects/blender-kit/`. `build.py` runs the modules site, landscape, peop
 ## [2026-10-20] migrate | Job framework v2, phase 4: house generator
 
 Added `kit/house.py`: a parametric multi-level house from a spec (openings per side as wall segments with no booleans, roof, alfresco, balconies, lift, observatory, pool). Lot 48 test built from summary facts because the plans PDF is no longer on the Mac: 153 objects, 1.4 s with renders, level areas matching the plans. Fixed the ID pass so the material name wins over the object name (a garage wall had come out timber-red); beach plants now get correct IDs as a bonus. No spend. Detail in [[job-framework-v2]], [[blender-blockout-pipeline]] and [[belle-property]].
+
+## [2026-10-20] migrate | Job framework v2, phase 5: automatic video QC
+
+Added `projects/gen-runner/qc_video.py` and a `qc` command, and the runner now flags every downloaded video: NO_MOTION (median optical flow < 0.12 px/frame at 320 px) and MORPH/DISSOLVE@t (ORB homography inlier ratio < 0.35). Calibrated on the 7 beach Seedance clips plus 2 face tests, 9/9 correct: 01 and 07 flagged no-motion, 06 flagged a dissolve at 2.0 s, and all passes clean. Updated [[shot-class-routes]], the 10x-ai skill's QC step and [[job-framework-v2]] (all 5 phases built). Gate quirk noted: commands that quote the runner's spend command get blocked too. No spend.
