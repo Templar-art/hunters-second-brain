@@ -1344,3 +1344,6 @@ Hunter locked Scope myth v3. Promises v3 brings the agreement scene alive (pen r
 
 ## [2026-10-20] migrate | USE redo: Promises v3 locked, Ask the vision v2 built, Scope myth v4 bugfix
 Hunter locked Promises v3. Ask the vision v2 is built (alive vision cloud, thoughts between heads). A mid-line // comment bug hid its circles and had silently broken Scope myth v3's pill, so Scope myth v4 was rebuilt with only that fix. build.sh now has a comment gate. All clear. Waiting on Hunter for both. No spend.
+
+## [2026-10-20] ingest | Extra Salt Kollosche gulls comp
+Hunter asked for birds flying past a 1.9s Pottsville drone wide with the grade unchanged. Built as a Blender comp: a constrained drone-camera fit to 2D tracks (0.21 px), four procedural silver gulls, an RGBA pass and an ffmpeg overlay. The plate is untouched outside the birds. Delivered mp4 + ProRes for review. New page [[extra-salt-kollosche-birds]]. No spend.

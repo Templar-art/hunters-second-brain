@@ -65,6 +65,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[sfx-library]]: the Ocular Sounds library (192 sounds, ~/Music/SFX Library) and how the motion engine uses it
 - [[house-twilight]] — locked twilight target: early dusk, clean blue→peach sky, bright ground, amber windows (ref frame in raw/assets/twilight)
 - [[blender-blockout-pipeline]] — Claude builds a Blender grey block-out + camera path, AI video skins it; installed 2026-10-12 · **kit v1 (20 Oct): scene.json → full scene in ~5 s**
+- [[extra-salt-kollosche-birds]] — CG gulls comped over a 1.9s drone wide; constrained drone-camera fit beats Blender solve on low parallax (20 Oct, $0)
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
 - [[zed-style]] — ZED's canonical staging style, now "Option 01" (warm ivory/oatmeal/walnut/olive/brass); 3rd style change, dated trail of older eras kept; + proposed modern-luxury Options 02–04 (2026-10-09)

@@ -68,3 +68,12 @@ projects/blender-blockouts/cliff-mansion-v2.blend
 # Blender kit build renders (regenerate with build.py; the compare sheet + report.json stay tracked)
 projects/**/build/guides/
 projects/**/build/id/
+
+# kollosche gulls: plate frames, renders, comps and masters regenerate from scripts/
+projects/extra-salt-kollosche-birds/frames/
+projects/extra-salt-kollosche-birds/comp/
+projects/extra-salt-kollosche-birds/render/
+projects/extra-salt-kollosche-birds/src/
+projects/extra-salt-kollosche-birds/out/*.mov
+projects/extra-salt-kollosche-birds/*.blend1
+projects/extra-salt-kollosche-birds/track.log
