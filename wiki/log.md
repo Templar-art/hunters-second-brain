@@ -1311,3 +1311,6 @@ Hunter locked UI/UX v2. IDE v3 has the upgrades ported plus a pre-fixed window f
 
 ## [2026-10-20] migrate | USE redo: IDE v3 locked, SaaS v2 built first-pass
 Hunter locked IDE v3. SaaS v2 has the upgrades ported plus pre-fixed on-story motion, and passed all checks first build. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: SaaS v2 locked, GPU v2 built
+Hunter locked SaaS v2. GPU v2 has the upgrades ported plus pre-fixed on-story motion. QC LOOK flags turned out to be tight allow windows (hard cuts need ±0.3 s), fixed without a rebuild. All clear. Waiting on Gate B. No spend.

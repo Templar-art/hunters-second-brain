@@ -4,9 +4,13 @@ window.EP = {
   dur: 52.4, voEnd: 49.0,
   punchIns: [[4.4, 6.9], [26.4, 31.0], [46.5, 48.9]],
   cuts: [USES_IN, DC_IN, CORES_IN, RAM_IN, XFER_IN, NN_IN, COST_IN, END_IN],
+  // v2 (redo pass): deliberate transitions the QC continuity check should ignore
+  qcAllow: [[0, 0.6], [1.8, 2.7], [4.0, 4.6], [5.0, 5.4], [5.9, 8.1], [9.5, 10.0], [10.7, 11.1], [11.9, 12.3], [12.9, 14.6],
+            [15.0, 15.4], [22.4, 23.0], [23.4, 24.0], [26.3, 26.5], [30.7, 31.4], [38.9, 39.8], [42.9, 43.4], [45.1, 45.5],
+            [46.3, 47.0], [47.0, 47.6], [48.7, 50.0]],
   captions: [[USES_IN, DC_IN, 1040], [RAM_IN, XFER_IN, 1040], [XFER_IN, NN_IN, 1780], [COST_IN, END_MOS, 1240]],
   frame(T) {
-    if (T < USES_IN) titleCard(T, 'GPU', 2.1);
+    if (T < USES_IN) titleCard(T, 'GPU', 2.1, 'Definitions', [985, 800]);   // v2: shards off the ear line
     else if (T < DC_IN) sceneUses(T);
     else if (T < CORES_IN) sceneDC(T);
     else if (T < RAM_IN) sceneCores(T);
@@ -14,7 +18,7 @@ window.EP = {
     else if (T < NN_IN) sceneXfer(T);
     else if (T < COST_IN) sceneNN(T);
     else if (T < END_IN) { th(FULL, zoomAt(T)); behindHead(T, 47.2, END_MOS, '$$$', 'EXPENSIVE', zoomAt(T)); captions(T); }
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v2: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -57,7 +61,8 @@ function sceneDC(T) {
   for (let c = 0; c < cols; c++) { const q = expo((T - 7.3 - c * .15) / .5); if (q <= 0) continue;
     const rw = 860 / cols - 16, x = 110 + c * (rw + 16), y = 560;
     g.save(); g.globalAlpha = q; g.fillStyle = '#0E1C28'; g.beginPath(); g.roundRect(x, y + (1 - q) * 60, rw, 900, 12); g.fill();
-    for (let u = 0; u < 16; u++) { const uy = y + 24 + u * 54 + (1 - q) * 60; g.fillStyle = '#16293A'; g.fillRect(x + 12, uy, rw - 24, 40);
+    for (let u = 0; u < 16; u++) { const uy = y + 24 + u * 54 + (1 - q) * 60, busy = Math.max(0, Math.sin((T - 7.3) * 5 - u * .55 + c * .9));   // v2: workload sweep through the racks (old render: still holds)
+      g.fillStyle = busy > .6 ? `rgba(0,155,232,${.25 + .45 * (busy - .6) / .4})` : '#16293A'; g.fillRect(x + 12, uy, rw - 24, 40);
       for (let k = 0; k < 3; k++) { const on = Math.sin(T * (6 + r() * 10) + r() * 6) > 0; g.fillStyle = on ? (k === 0 ? CYAN : BLUE) : '#24384A'; g.beginPath(); g.arc(x + 30 + k * 18, uy + 20, 5, 0, 7); g.fill(); } }
     g.restore(); }
   [['RUNNING AI', 10.84], ['TRAINING AI', 12.02]].forEach(([lab, at], i) => { const q = back((T - at) / .35); if (q <= 0) return;
@@ -73,7 +78,9 @@ function sceneCores(T) {
   typeOn('Thousands of tiny cores', 70, 260, T - 13.35, { size: 30, col: CYAN, track: 6, upper: true, cps: 30 });
   const N = 24, S = 36, gap = 4, ox = 540 - (N * (S + gap)) / 2, oy = 440, appear = expo((T - 13.35) / 1.2), all = T >= 22.64 ? expo((T - 22.64) / .2) * (1 - clamp((T - 23.2) / .4) * .4) : 0;
   for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) { const d = Math.hypot(i - N / 2, j - N / 2) / (N * .72); if (d > appear) continue;
-    const wave = Math.max(0, Math.sin((T - 17.96) * 7 - d * 9)) * (T > 17.96 && T < 22.5 ? 1 : 0), lit = Math.max(wave, all);
+    const wave = Math.max(0, Math.sin((T - 17.96) * 7 - d * 9)) * (T > 17.96 && T < 22.5 ? 1 : 0);
+    const idle = T < 17.96 && ((i * 73 + j * 151 + Math.floor(T * 7) * 37) % 29) === 0 ? .45 : 0;   // v2: sparse idle twinkle before the waves
+    const lit = Math.max(wave, all, idle);
     g.fillStyle = lit > .05 ? `rgba(18,221,235,${.25 + .75 * lit})` : '#0E3148'; g.beginPath(); g.roundRect(ox + i * (S + gap), oy + j * (S + gap), S, S, 6); g.fill(); }
   // tiny maths ops floating up during "small mathematical operations"
   if (T > 19.36 && T < 22.6) { const r = rng(3); for (let k = 0; k < 14; k++) { const t = ((T - 19.36) * .9 + r()) % 1, x = ox + r() * N * (S + gap), y = oy + N * (S + gap) - t * 700;
@@ -123,7 +130,7 @@ function sceneNN(T) {
   g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
   typeOn('Train + run complex models', 60, 260, T - 39.5, { size: 28, col: BLUE, track: 5, upper: true, cps: 36 });
   const L = [3, 5, 6, 5, 2], lx = i => 140 + i * 200, ly = (i, j) => 900 + (j - (L[i] - 1) / 2) * 150;
-  const build = expo((T - 39.5) / 1.4), pass = T > 41.0 ? ((T - 41.0) * (T > 43.14 ? 2.4 : 1.0)) % 1 : -1;
+  const build = expo((T - 39.5) / 1.4), pass = T > 40.2 ? ((T - 40.2) * (T > 43.14 ? 2.4 : 1.0)) % 1 : -1;   // v2: pass starts as soon as the net is built
   L.forEach((n, i) => { if (i < L.length - 1) for (let j = 0; j < n; j++) for (let k = 0; k < L[i + 1]; k++) {
       const vis = clamp(build * L.length - i - .3); if (vis <= 0) continue; const hot = pass >= 0 && Math.abs(pass * (L.length - 1) - i - .5) < .5;
       g.strokeStyle = hot ? 'rgba(0,155,232,.55)' : `rgba(46,49,52,${.12 * vis})`; g.lineWidth = hot ? 3 : 2; g.beginPath(); g.moveTo(lx(i), ly(i, j)); g.lineTo(lx(i + 1), ly(i + 1, k)); g.stroke(); }

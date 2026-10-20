@@ -85,4 +85,6 @@ Hunter wants **all 21 sent episodes redone, one at a time**, updated with everyt
 
 **07 IDE v3 (20 Oct): built first-pass, awaiting Gate B.** still_scan on v2 found the IDE window sitting still for about 8 s across both passes, pre-fixed with a window float. Every check passed on the first build. **Locked by Hunter 20 Oct.**
 
-**08 SaaS v2 (20 Oct): built first-pass, awaiting Gate B.** The still_scan-found holds were pre-fixed with motion that tells the story: the app card floats, a "this month" ring keeps stepping through the paid calendar (recurring billing), and update packets flow from the one app out to every company ("built once, in bulk").
+**08 SaaS v2 (20 Oct): built first-pass, awaiting Gate B.** The still_scan-found holds were pre-fixed with motion that tells the story: the app card floats, a "this month" ring keeps stepping through the paid calendar (recurring billing), and update packets flow from the one app out to every company ("built once, in bulk"). **Locked by Hunter 20 Oct.**
+
+**09 GPU v2 (20 Oct): built, awaiting Gate B.** Pre-fixed holds: a workload sweep runs through the server racks, idle cores twinkle before the "all at once" waves, and the neural-net pass starts as soon as the net is built. The picture passed first build. Three QC LOOK flags were deliberate transitions whose allow windows were too tight; a hard cut needs ±0.3 s. They were widened and QC re-run without a rebuild.

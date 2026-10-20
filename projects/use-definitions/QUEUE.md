@@ -54,8 +54,8 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 | 05 | sdk | v3 | ✅ **LOCKED v4** (Hunter, 20 Oct). Upgrades ported. QC found 6 dead stretches (wrap diagram 7–13.5 s, stack 20.7–22.4 s), fixed with a wrap pulse ring, request packets dev→SDK, and the stack floating as one unit. QC ok, FACE/TEXT/RISE CLEAR, −16.5 LUFS (= v3) |
 | 06 | ui-ux | v1 | ✅ **LOCKED v2** (Hunter, 20 Oct). Upgrades ported; dead holds pre-fixed from a still_scan of v1 (the phone floats + sways), so it passed first build. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.4 LUFS (v1 −17.3) |
 | 07 | ide | v2 | ✅ **LOCKED v3** (Hunter, 20 Oct). Upgrades ported; still_scan of v2 found the IDE window still ~8 s, pre-fixed with a window float (both passes). First-build pass. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −16.1 LUFS (= v2) |
-| 08 | saas | v1 | **v2 built 20 Oct → Gate B (Hunter look)**. Upgrades ported; dead holds pre-fixed (app card float, a 'this month' ring stepping the calendar, update packets hub→companies). First-build pass. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.9 LUFS (= v1) |
-| 09 | gpu | v1 | todo |
+| 08 | saas | v1 | ✅ **LOCKED v2** (Hunter, 20 Oct). Upgrades ported; dead holds pre-fixed (app card float, a 'this month' ring stepping the calendar, update packets hub→companies). First-build pass. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.9 LUFS (= v1) |
+| 09 | gpu | v1 | **v2 built 20 Oct → Gate B (Hunter look)**. Upgrades ported; dead holds pre-fixed (workload sweep through the racks, idle core twinkle, NN pass starts once built). First build; 3 LOOK flags were deliberate transitions with too-tight allow windows (fixed, no rebuild). QC ok, FACE/TEXT/RISE CLEAR, −16.6 LUFS (v1 −16.5) |
 | 10 | cpu | v2 | todo |
 | 11 | git | v2 | todo |
 | 12 | docker | v1 | todo |
@@ -69,4 +69,4 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 | 20 | ask-the-vision | v1 | todo |
 | 21 | handover | v1 | todo |
 
-**Redo workflow (from 06 on):** run `python3 tools/still_scan.py episodes/<ep>/<ep>-<old>.mp4` FIRST and pre-fix every dead hold with on-story motion. Then port (qcAllow, shards [985,800], alive end card), build with `SFX_LIB=sfx-lib-v2 SUB=16 SHUTTER=0.5`, then run `tools/qc_episode.py`, `tools/qa.sh` (FACE/TEXT/RISE CLEAR), and `still_scan` on the new render.
+**Redo workflow (from 06 on):** run `python3 tools/still_scan.py episodes/<ep>/<ep>-<old>.mp4` FIRST and pre-fix every dead hold with on-story motion. Then port (qcAllow, shards [985,800], alive end card), build with `SFX_LIB=sfx-lib-v2 SUB=16 SHUTTER=0.5`, then run `tools/qc_episode.py`, `tools/qa.sh` (FACE/TEXT/RISE CLEAR), and `still_scan` on the new render. Allow windows around a hard cut need ±0.3 s: QC compares frames 0.2 s apart, so a tight window still trips LOOK. Widening a window needs no rebuild; just re-run `qc_episode.py`.
