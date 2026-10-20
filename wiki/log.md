@@ -1326,3 +1326,6 @@ Hunter locked Git v3. Docker v2 has the upgrades ported plus on-story motion ove
 
 ## [2026-10-20] migrate | USE redo: Docker v2 locked, State management v2 built
 Hunter locked Docker v2. State management v2 has the upgrades ported plus on-story motion (floating store, tab-clicking cursor tied to the re-fetch log). Rebuilt once for two short holds. All clear. Waiting on Gate B. No spend.
+
+## [2026-10-20] ingest | Full Ocular Sounds set filed
+The full Ocular download landed in a Downloads subfolder, which the sorter does not watch. Eight packs were extracted into ~/Music/SFX Library/Ocular Sounds, sorted by CatID, and catalog.csv was rebuilt: 1,547 sounds (was 190). Utility adds computer keys, drives and UI-adjacent foley, useful for the USE kit. See [[sfx-sorter]].

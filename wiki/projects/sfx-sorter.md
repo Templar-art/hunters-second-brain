@@ -30,6 +30,7 @@ A background watcher that moves downloaded sound packs out of `~/Downloads` and 
 - Stop: `launchctl bootout gui/$(id -u)/com.10x.sfx-sorter`
 - Start: `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.10x.sfx-sorter.plist`
 - Preview: `node projects/sfx-sorter/sfx-sorter.mjs --dry-run`
+- **Only the top level of `~/Downloads` is watched.** On 20 October Hunter's browser saved the full Ocular set into `~/Downloads/Ocular_Sounds/`, so nothing was picked up. Eight packs were extracted by hand (Aperture complete, Cityscapes Vol 1, Forged, Mechanica, Shift, The Provence, Utility, Velocity). Each was sorted into `<pack>/<CatID>/` with docs in `_docs/`, and `catalog.csv` was rebuilt from every pack's Metadata Import CSV: 1,547 sounds, up from 190. Telescope is an app installer and was left alone. The zips are still in Downloads.
 - Ocular packs whose zip doesn't say "Ocular" land in `_Incoming/`. Move them into `Ocular Sounds/` by hand, or rename the zip before it finishes downloading.
 
 ## Verified
