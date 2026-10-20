@@ -104,6 +104,18 @@ def mesh_obj(name, verts, faces, material, parent=None, solid=0.012):
     o = bpy.data.objects.new(name, me)
     sc.collection.objects.link(o)
     o.data.materials.append(material)
+    # densify: crease the outline so the wing planform keeps its points, smooth the interior
+    crease = me.attributes.new("crease_edge", 'FLOAT', 'EDGE')
+    use = {}
+    for p in me.polygons:
+        for ek in p.edge_keys:
+            use[ek] = use.get(ek, 0) + 1
+    for e in me.edges:
+        crease.data[e.index].value = 0.85 if use.get(tuple(sorted(e.vertices)), 0) == 1 else 0.0
+    sub = o.modifiers.new("subd", 'SUBSURF')
+    sub.levels = sub.render_levels = 3
+    for p in me.polygons:
+        p.use_smooth = True
     if solid:
         mod = o.modifiers.new("thick", 'SOLIDIFY')
         mod.thickness = solid
@@ -111,7 +123,8 @@ def mesh_obj(name, verts, faces, material, parent=None, solid=0.012):
     return o
 
 
-def ellipsoid(name, center, radii, material, parent, seg=12, ring=8):
+def ellipsoid(name, center, radii, material, parent, seg=32, ring=16):
+    seg, ring = max(seg, 32), max(ring, 16)
     bpy.ops.mesh.primitive_uv_sphere_add(segments=seg, ring_count=ring, radius=1, location=center)
     o = bpy.context.active_object
     o.name = name
@@ -120,6 +133,8 @@ def ellipsoid(name, center, radii, material, parent, seg=12, ring=8):
     o.parent = parent
     for p in o.data.polygons:
         p.use_smooth = True
+    sub = o.modifiers.new("subd", 'SUBSURF')
+    sub.levels = sub.render_levels = 1
     return o
 
 
@@ -155,7 +170,7 @@ def make_gull(tag, span=0.95):
     sc.collection.objects.link(root)
     ellipsoid(f"{tag}_body", (0, 0, 0), (0.055 * s, 0.19 * s, 0.058 * s), M_WHITE, root, 16, 10)
     ellipsoid(f"{tag}_head", (0, 0.175 * s, 0.03 * s), (0.04 * s, 0.05 * s, 0.042 * s), M_WHITE, root)
-    bpy.ops.mesh.primitive_cone_add(vertices=8, radius1=0.01 * s, depth=0.045 * s,
+    bpy.ops.mesh.primitive_cone_add(vertices=24, radius1=0.01 * s, depth=0.045 * s,
                                     location=(0, 0.245 * s, 0.022 * s), rotation=(-math.pi / 2, 0, 0))
     bill = bpy.context.active_object
     bill.name = f"{tag}_bill"; bill.data.materials.append(M_BILL); bill.parent = root

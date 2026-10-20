@@ -21,6 +21,7 @@ cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger — never
 - 2026-10-20 build: procedural silver gulls (`scripts/03_scene.py`), EEVEE RGBA pass with 0.2 shutter motion blur, ffmpeg overlay. Verified: 0 px change outside the birds and frame 46 identical.
 - 2026-10-20 delivered for review: `out/fake-birds_gulls.mp4` (H.264 CRF12) + `out/fake-birds_gulls_prores.mov` (ProRes 422 HQ), original audio.
 - 2026-10-20 approved: Hunter signed off on the first full render.
+- 2026-10-20 v2: Hunter asked for more polys. Bodies are now 32x16 spheres plus subsurf, wings get creased-outline subsurf L3 (~5.7k polys per gull, was a few hundred). Re-rendered and re-exported over the same out/ files.
 
 ## Ledger
 
