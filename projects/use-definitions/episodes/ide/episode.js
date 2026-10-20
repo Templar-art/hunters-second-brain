@@ -4,14 +4,17 @@ window.EP = {
   dur: 37.0, voEnd: 33.7,
   punchIns: [[5.0, 7.2], [23.5, 26.85]],
   cuts: [PIECES_IN, IDE_IN, FEAT_IN, AI_IN, END_IN],
+  // v3 (redo pass): deliberate transitions the QC continuity check should ignore
+  qcAllow: [[0, 0.6], [2.0, 2.9], [4.1, 4.8], [4.9, 5.1], [5.6, 6.0], [6.4, 6.9], [7.1, 7.3], [8.2, 9.9], [12.9, 13.6], [14.3, 14.9],
+            [17.8, 18.4], [20.9, 21.3], [22.4, 22.9], [23.4, 23.6], [26.4, 27.8], [27.9, 28.6], [29.4, 29.8], [30.5, 30.9], [33.4, 34.6]],
   captions: [[PIECES_IN, IDE_IN, 1000], [FEAT_IN, AI_IN, 1780]],
   frame(T) {
-    if (T < PIECES_IN) titleCard(T, 'IDE', 2.3);
+    if (T < PIECES_IN) titleCard(T, 'IDE', 2.3, 'Definitions', [985, 800]);   // v3: shards off the ear line
     else if (T < IDE_IN) scenePieces(T);
     else if (T < FEAT_IN) sceneIDE(T, false);
     else if (T < AI_IN) sceneFeatures(T);
     else if (T < END_IN) sceneIDE(T, true);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v3: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -51,7 +54,8 @@ function sceneIDE(T, ai) {
   g.fillStyle = '#E9EDF1'; g.fillRect(0, 0, W, H);
   const p = expo((T - (ai ? AI_IN : IDE_IN)) / .55), x = 40, y = 280, w = 1000, h = 1180;
   typeOn(ai ? 'And nowadays' : 'Typically you get', 60, 200, T - (ai ? AI_IN + .1 : 9.36), { size: 28, col: BLUE, track: 6, upper: true, cps: 30 });
-  g.save(); g.globalAlpha = clamp(p * 2); g.translate(0, (1 - p) * 120);
+  const bob = Math.sin((T - (ai ? AI_IN : IDE_IN)) * 2.0) * 12 * clamp((T - (ai ? AI_IN : IDE_IN) - .6) / .5);   // v3: window floats, never dead (old render: ~8 s of still holds)
+  g.save(); g.globalAlpha = clamp(p * 2); g.translate(0, (1 - p) * 120 + bob);
   card(x, y, w, h, '#0D1620', 26, .35);
   g.fillStyle = '#16222C'; g.beginPath(); g.roundRect(x, y, w, 64, [26, 26, 0, 0]); g.fill();
   ['#FF6159', '#FFBD2E', '#28C941'].forEach((c, i) => { g.fillStyle = c; g.beginPath(); g.arc(x + 36 + i * 28, y + 32, 9, 0, 7); g.fill(); });

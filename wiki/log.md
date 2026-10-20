@@ -1305,3 +1305,6 @@ Hunter locked JSON v4. SDK v4 has the upgrades ported; QC FREEZE caught 6 dead s
 
 ## [2026-10-20] migrate | USE redo: SDK v4 locked, UI/UX v2 built first-pass
 Hunter locked SDK v4. Added `tools/still_scan.py`, which pre-scans the old render for dead holds. UI/UX v2 passed every check on its first build (phone float pre-fixed). Redo workflow written into QUEUE.md. No spend.
+
+## [2026-10-20] migrate | USE redo: UI/UX v2 locked, IDE v3 built first-pass
+Hunter locked UI/UX v2. IDE v3 has the upgrades ported plus a pre-fixed window float, and passed all checks first build (loudness equal to v2). Waiting on Gate B. No spend.
