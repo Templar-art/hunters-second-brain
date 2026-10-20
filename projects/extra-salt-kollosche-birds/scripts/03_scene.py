@@ -215,39 +215,100 @@ cam_fwd_h.normalize()
 f_px = cam_data["lens_mm"] / 36 * 1920
 
 # (tag, depth m, start screen x px from centre, screen y px from centre(+up), speed m/s,
-#  flap Hz, phase, heading tilt toward/away from camera deg, span m,
-#  bank deg: far wing raised so the drone sees the bird's back)
+#  flap Hz, phase (cycles), mid-shot heading toward/away from camera deg, span m,
+#  bank deg (far wing raised so the drone sees the bird's back; also sets the turn rate),
+#  glide windows in seconds)
 BIRDS = [
-    ("hero", 7.0, -520, -600, 10.0, 3.0, 0.0, 50, 0.95, 12),
-    ("b2", 11.0, -950, -470, 9.5, 3.3, 1.7, 44, 0.92, 10),
-    ("b3", 16.0, -1150, -230, 9.8, 2.8, 3.1, 40, 0.98, 14),
-    ("b4", 22.0, -1260, -60, 10.5, 3.2, 0.9, 36, 0.92, 8),
+    ("hero", 7.0, -520, -600, 10.0, 2.9, 0.00, 50, 0.95, 12, [(0.95, 1.35)]),
+    ("b2", 11.0, -950, -470, 9.5, 3.2, 0.35, 44, 0.92, 10, [(0.0, 0.40)]),
+    ("b3", 16.0, -1150, -230, 9.8, 2.7, 0.60, 40, 0.98, 14, [(0.75, 9.0)]),
+    ("b4", 22.0, -1260, -60, 10.5, 3.1, 0.15, 36, 0.92, 8, [(1.30, 1.70)]),
 ]
 if PREVIEW:
     sc.render.resolution_percentage = 50
 
-for tag, depth, sx, sy, speed, hz, ph, tilt, span, bank in BIRDS:
+TOP, BOT, DOWN = 50.0, -28.0, 0.58  # arm elevation range (deg); downstroke takes 58% of the beat
+T_SHOT = (N - 1) / FPS
+
+
+def smooth(x):
+    x = min(1.0, max(0.0, x))
+    return x * x * (3 - 2 * x)
+
+
+def elev(u):
+    """Arm elevation through one beat: slow powered downstroke, quick recovery."""
+    u %= 1.0
+    if u < DOWN:
+        return TOP + (BOT - TOP) * (1 - math.cos(math.pi * u / DOWN)) / 2
+    return BOT + (TOP - BOT) * (1 - math.cos(math.pi * (u - DOWN) / (1 - DOWN))) / 2
+
+
+def w_up(u):
+    u %= 1.0
+    return math.sin(math.pi * (u - DOWN) / (1 - DOWN)) if u >= DOWN else 0.0
+
+
+def w_dn(u):
+    u %= 1.0
+    return math.sin(math.pi * u / DOWN) if u < DOWN else 0.0
+
+
+def glide_w(t, windows, ramp=0.15):
+    g = 0.0
+    for a, b in windows:
+        g = max(g, smooth((t - a) / ramp) * (1 - smooth((t - b) / ramp)) if a > 0 else 1 - smooth((t - b) / ramp))
+    return g
+
+
+GLIDE = dict(elev=6.0, arm_sweep=6.0, hand_dih=-6.0, hand_sweep=12.0, twist=0.0)
+SUB = 4  # integration substeps per frame
+KEY_STEP = 0.5  # keyframe every half frame so motion blur follows the wingbeat
+
+for tag, depth, sx, sy, speed, hz, ph, tilt, span, bank, glides in BIRDS:
     root, wings = make_gull(tag, span)
-    p_cam = Vector((sx / f_px * depth, sy / f_px * depth, -depth))
-    start = M1 @ p_cam
-    a = math.radians(tilt)
-    vel = (cam_right * math.cos(a) + cam_fwd_h * math.sin(a)) * speed
-    heading = math.atan2(vel.y, vel.x) - math.pi / 2  # local +Y faces travel
-    for f in range(1, N + 1):
-        t = (f - 1) / FPS
-        w = 2 * math.pi * hz * t + ph
-        bob = -0.04 * span * math.sin(w)  # body dips on the downstroke
-        root.location = start + vel * t + Vector((0, 0, bob))
-        root.rotation_euler = (math.radians(-4) + 0.04 * math.cos(w), math.radians(bank) + 0.03 * math.sin(w * 0.5), heading)
-        root.keyframe_insert("location", frame=f)
-        root.keyframe_insert("rotation_euler", frame=f)
-        amp = 1.0 if tag != "b3" else max(0.15, min(1.0, 1 - (t - 0.7) * 3))  # b3 settles into a glide
-        for side, inner, outer in wings:
-            up = math.sin(w) * amp
-            inner.rotation_euler = (0, -side * math.radians(10 + 32 * up), 0)
-            outer.rotation_euler = (0, -side * math.radians(-6 + 22 * math.sin(w - 0.7) * amp), 0)
-            inner.keyframe_insert("rotation_euler", frame=f)
-            outer.keyframe_insert("rotation_euler", frame=f)
+    pos = M1 @ Vector((sx / f_px * depth, sy / f_px * depth, -depth))
+    omega0 = 9.81 * math.tan(math.radians(bank)) / speed  # coordinated turn rate
+    ang = math.radians(tilt) + omega0 * T_SHOT / 2  # so mid-shot heading == tilt
+    phase = ph
+    dt = 1 / (FPS * SUB)
+    t = 0.0
+    next_key = 1.0
+    frame = 1.0
+    while frame <= N + 1e-6:
+        g = glide_w(t, glides)
+        u = phase % 1.0
+        # ---- wing pose: flap blended toward a held glide pose
+        fl = dict(elev=elev(u), arm_sweep=14 * w_up(u),
+                  hand_dih=0.55 * (elev(u - 0.07) - elev(u)) - 4,
+                  hand_sweep=40 * w_up(u), twist=-9 * w_dn(u))
+        pose = {k: (1 - g) * fl[k] + g * GLIDE[k] for k in fl}
+        # ---- body: lifts as the wings come down (lagged), noses up slightly on the power stroke
+        lowness = (TOP - elev(u - 0.22)) / (TOP - BOT)
+        lift = (1 - g) * 0.05 * span * (lowness - 0.5)
+        roll = bank + 2.0 * math.sin(1.3 * t + ph * 6)
+        if frame >= next_key - 1e-6:
+            dirv = cam_right * math.cos(ang) + cam_fwd_h * math.sin(ang)
+            heading = math.atan2(dirv.y, dirv.x) - math.pi / 2  # local +Y faces travel
+            root.location = pos + Vector((0, 0, lift))
+            root.rotation_euler = (math.radians(-4 + 2.5 * (1 - g) * w_dn(u) - 1.5 * g), math.radians(roll), heading)
+            root.keyframe_insert("location", frame=next_key)
+            root.keyframe_insert("rotation_euler", frame=next_key)
+            for side, inner, outer in wings:
+                inner.rotation_euler = (0, -side * math.radians(pose["elev"]), -side * math.radians(pose["arm_sweep"]))
+                outer.rotation_euler = (math.radians(pose["twist"]), -side * math.radians(pose["hand_dih"]),
+                                        -side * math.radians(pose["hand_sweep"]))
+                inner.keyframe_insert("rotation_euler", frame=next_key)
+                outer.keyframe_insert("rotation_euler", frame=next_key)
+            next_key += KEY_STEP
+        # ---- integrate: surge on the downstroke, climb while flapping, sink while gliding
+        v = speed * ((1 - g) * (1 + 0.05 * w_dn(u)) + g * 0.97)
+        dirv = cam_right * math.cos(ang) + cam_fwd_h * math.sin(ang)
+        pos = pos + dirv * v * dt + Vector((0, 0, ((1 - g) * 0.25 - g * 0.7) * dt))
+        ang -= 9.81 * math.tan(math.radians(roll)) / v * dt  # right wing low -> turn right
+        phase += hz * (1 - g) * dt
+        t += dt
+        frame += 1 / SUB
 
 sc.render.image_settings.file_format = 'PNG'
 sc.render.image_settings.color_mode = 'RGBA'
