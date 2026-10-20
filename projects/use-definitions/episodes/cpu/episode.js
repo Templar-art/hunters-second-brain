@@ -4,16 +4,20 @@ window.EP = {
   dur: 38.8, voEnd: 35.4,
   punchIns: [[11.0, 14.4], [31.2, 35.3]],
   cuts: [VS_IN, CORES_IN, BRAIN_IN, BOARD_IN, FLOW_IN, OUT_IN, END_IN],
+  // v3 (redo pass): deliberate transitions the QC continuity check should ignore (hard cuts get ±0.3 s)
+  qcAllow: [[0, 0.6], [1.3, 2.1], [2.7, 3.1], [3.5, 4.6], [5.4, 6.4], [7.0, 7.6], [9.0, 9.7], [10.7, 11.3], [13.1, 15.0],
+            [16.4, 17.1], [18.7, 19.9], [20.2, 20.6], [21.2, 21.5], [22.4, 23.1], [23.2, 23.4], [25.7, 26.4], [27.7, 28.8],
+            [30.4, 30.7], [30.9, 31.5], [32.8, 33.1], [34.9, 36.5]],
   captions: [[VS_IN, CORES_IN, 1040], [BRAIN_IN, BOARD_IN, 1240], [OUT_IN, END_MOS, T => lerp(H + 40, PANEL_Y, expo((T - OUT_IN) / .6)) - 60]],
   frame(T) {
-    if (T < VS_IN) titleCard(T, 'CPU', 1.4);
+    if (T < VS_IN) titleCard(T, 'CPU', 1.4, 'Definitions', [985, 800]);   // v3: shards off the ear line
     else if (T < CORES_IN) sceneVS(T);
     else if (T < BRAIN_IN) sceneCores(T);
     else if (T < BOARD_IN) { th(FULL, zoomAt(T)); lowerThird(T, 9.5, 11.6); behindHead(T, 13.24, BOARD_IN, 'BRAIN', null, zoomAt(T)); brainChip(T); captions(T); }
     else if (T < FLOW_IN) sceneBoard(T);
     else if (T < OUT_IN) sceneFlow(T);
     else if (T < END_IN) sceneOut(T);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v3: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -46,7 +50,9 @@ function sceneCores(T) {
   const pulse = T > 7.14 ? .5 + .5 * Math.sin((T - 7.14) * 8) : 0;
   for (let i = 0; i < 4; i++) { const q = back((T - 4.0 - i * .12) / .4); if (q <= 0) continue; const x = 90 + (i % 2) * 230, y = 800 + Math.floor(i / 2) * 230;
     g.save(); g.translate(x + 100, y + 100); g.scale(q * (1 + pulse * .05), q * (1 + pulse * .05)); if (pulse) { g.shadowColor = CYAN; g.shadowBlur = 30 * pulse; }
-    g.fillStyle = BLUE; g.beginPath(); g.roundRect(-100, -100, 200, 200, 26); g.fill(); g.shadowColor = 'transparent';
+    const turn = T > 4.5 && T < 7.14 && Math.floor((T - 4.5) * 3) % 4 === i;   // v3: the few big cores take turns working (old render: still 5–7.1 s)
+    if (turn) { g.shadowColor = CYAN; g.shadowBlur = 36; }
+    g.fillStyle = turn ? '#3FC3F5' : BLUE; g.beginPath(); g.roundRect(-100, -100, 200, 200, 26); g.fill(); g.shadowColor = 'transparent';
     font(800, 56, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('CORE', 0, 20); g.textAlign = 'left'; g.restore(); }
   font(800, 60, COND); g.fillStyle = WHITE; g.globalAlpha = expo((T - 4.3) / .4); g.fillText('CPU', 90, 1320); g.globalAlpha = 1;
   // GPU: many tiny cores
@@ -61,12 +67,12 @@ function sceneCores(T) {
 function sceneBoard(T) {
   g.fillStyle = '#04141E'; g.fillRect(0, 0, W, H);
   typeOn('Inside the machine', 70, 260, T - 14.4, { size: 30, col: CYAN, track: 6, upper: true, cps: 32 });
-  const cx = 540, cy = 980, r = rng(9), grow = expo((T - 15.84) / 1.4);
+  const cx = 540, cy = 980, r = rng(9), grow = expo((T - 15.0) / 2.0);   // v3: traces start as soon as the chip lands
   for (let k = 0; k < 28; k++) { const a = (k / 28) * 6.283, len = 260 + r() * 260, bend = (r() - .5) * 1.2, L = len * grow;
     const x1 = cx + Math.cos(a) * 130, y1 = cy + Math.sin(a) * 130, x2 = x1 + Math.cos(a) * L * .6, y2 = y1 + Math.sin(a) * L * .6, x3 = x2 + Math.cos(a + bend) * L * .4, y3 = y2 + Math.sin(a + bend) * L * .4;
     g.strokeStyle = 'rgba(18,221,235,.55)'; g.lineWidth = 4; g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.lineTo(x3, y3); g.stroke();
     if (grow > .9) { g.fillStyle = CYAN; g.beginPath(); g.arc(x3, y3, 7, 0, 7); g.fill(); }
-    const pulseT = ((T - 16.96) * 1.3 + r()) % 1; if (T > 16.96) { const px = pulseT < .6 ? lerp(x1, x2, pulseT / .6) : lerp(x2, x3, (pulseT - .6) / .4), py = pulseT < .6 ? lerp(y1, y2, pulseT / .6) : lerp(y2, y3, (pulseT - .6) / .4);
+    const pulseT = ((T - 15.9) * 1.3 + r()) % 1; if (T > 15.9) { const px = pulseT < .6 ? lerp(x1, x2, pulseT / .6) : lerp(x2, x3, (pulseT - .6) / .4), py = pulseT < .6 ? lerp(y1, y2, pulseT / .6) : lerp(y2, y3, (pulseT - .6) / .4);
       g.save(); g.shadowColor = CYAN; g.shadowBlur = 14; g.fillStyle = WHITE; g.beginPath(); g.arc(px, py, 5, 0, 7); g.fill(); g.restore(); } }
   const cp = back((T - 14.4) / .45); if (cp > 0) { g.save(); g.translate(cx, cy); g.scale(cp, cp);
     g.fillStyle = '#1A2B38'; g.beginPath(); g.roundRect(-150, -150, 300, 300, 24); g.fill(); g.fillStyle = '#9FB3C4'; for (let i = 0; i < 8; i++) { g.fillRect(-130 + i * 34, -170, 14, 20); g.fillRect(-130 + i * 34, 150, 14, 20); g.fillRect(-170, -130 + i * 34, 20, 14); g.fillRect(150, -130 + i * 34, 20, 14); }
@@ -81,7 +87,8 @@ function sceneFlow(T) {
   typeOn('Inside the machine', 60, 260, T - FLOW_IN - .1, { size: 28, col: BLUE, track: 5, upper: true, cps: 36 });
   const M = { x: 270, y: 900 }, C = { x: 810, y: 900 };
   [[M, 'Memory', 19.2], [C, 'CPU', 19.4]].forEach(([n, lab, at], i) => { const q = back((T - at) / .45); if (q <= 0) return;
-    g.save(); g.translate(n.x, n.y); g.scale(q, q); card(-190, -170, 380, 340, i ? NAVY : WHITE, 30, .15);
+    const fl = Math.sin((T - FLOW_IN) * 2.0 + i * Math.PI) * 12 * clamp((T - 19.9) / .5);   // v3: cards float in opposite phase (old render: still 20.6–28 s)
+    g.save(); g.translate(n.x, n.y + fl); g.scale(q, q); card(-190, -170, 380, 340, i ? NAVY : WHITE, 30, .15);
     font(800, 76, COND); g.fillStyle = i ? WHITE : INK; g.textAlign = 'center'; g.fillText(lab, 0, 26); g.textAlign = 'left'; g.restore(); });
   // arrows
   const la = expo((T - 19.6) / .4); g.globalAlpha = la;
@@ -92,7 +99,7 @@ function sceneFlow(T) {
   if (T > 22.52) { const k = clamp((T - 22.52) / .5); px = lerp(M.x, C.x, inOut(k)); py = 840; }
   if (T > 23.26) label = 'result';
   if (T > 25.78) { const k = clamp((T - 25.78) / .5); px = lerp(C.x, M.x, inOut(k)); py = 960; }
-  if (T > 20.28) { g.save(); g.translate(px, py - 230); g.shadowColor = CYAN; g.shadowBlur = 24; g.fillStyle = label === 'result' ? CYAN : BLUE; g.beginPath(); g.roundRect(-80, -34, 160, 68, 34); g.fill();
+  if (T > 20.28) { g.save(); g.translate(px, py - 230 + Math.sin(T * 3.1) * 8); g.shadowColor = CYAN; g.shadowBlur = 24; g.fillStyle = label === 'result' ? CYAN : BLUE; g.beginPath(); g.roundRect(-80, -34, 160, 68, 34); g.fill();
     font(500, 26, MONO); g.fillStyle = label === 'result' ? NAVY : WHITE; g.textAlign = 'center'; g.fillText(label, 0, 9); g.textAlign = 'left'; g.restore(); }
   // operations spark inside the CPU
   if (T > 23.0 && T < 25.6) { const r = rng(Math.floor(T * 12)); for (let k = 0; k < 6; k++) { font(500, 30, MONO); g.fillStyle = CYAN; g.globalAlpha = .8; g.fillText(['+', '×', '÷', '−'][k % 4], C.x - 120 + r() * 240, C.y - 120 + r() * 60); } g.globalAlpha = 1; }

@@ -1314,3 +1314,6 @@ Hunter locked IDE v3. SaaS v2 has the upgrades ported plus pre-fixed on-story mo
 
 ## [2026-10-20] migrate | USE redo: SaaS v2 locked, GPU v2 built
 Hunter locked SaaS v2. GPU v2 has the upgrades ported plus pre-fixed on-story motion. QC LOOK flags turned out to be tight allow windows (hard cuts need ±0.3 s), fixed without a rebuild. All clear. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: GPU v2 locked, CPU v3 built
+Hunter locked GPU v2. CPU v3 has the upgrades ported plus pre-fixed on-story motion. One 0.5 s still at 16.1 s (between traces finishing and pulses starting) was fixed by starting the pulses earlier. Waiting on Gate B. No spend.

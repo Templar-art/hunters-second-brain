@@ -55,8 +55,8 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 | 06 | ui-ux | v1 | ✅ **LOCKED v2** (Hunter, 20 Oct). Upgrades ported; dead holds pre-fixed from a still_scan of v1 (the phone floats + sways), so it passed first build. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.4 LUFS (v1 −17.3) |
 | 07 | ide | v2 | ✅ **LOCKED v3** (Hunter, 20 Oct). Upgrades ported; still_scan of v2 found the IDE window still ~8 s, pre-fixed with a window float (both passes). First-build pass. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −16.1 LUFS (= v2) |
 | 08 | saas | v1 | ✅ **LOCKED v2** (Hunter, 20 Oct). Upgrades ported; dead holds pre-fixed (app card float, a 'this month' ring stepping the calendar, update packets hub→companies). First-build pass. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.9 LUFS (= v1) |
-| 09 | gpu | v1 | **v2 built 20 Oct → Gate B (Hunter look)**. Upgrades ported; dead holds pre-fixed (workload sweep through the racks, idle core twinkle, NN pass starts once built). First build; 3 LOOK flags were deliberate transitions with too-tight allow windows (fixed, no rebuild). QC ok, FACE/TEXT/RISE CLEAR, −16.6 LUFS (v1 −16.5) |
-| 10 | cpu | v2 | todo |
+| 09 | gpu | v1 | ✅ **LOCKED v2** (Hunter, 20 Oct). Upgrades ported; dead holds pre-fixed (workload sweep through the racks, idle core twinkle, NN pass starts once built). First build; 3 LOOK flags were deliberate transitions with too-tight allow windows (fixed, no rebuild). QC ok, FACE/TEXT/RISE CLEAR, −16.6 LUFS (v1 −16.5) |
+| 10 | cpu | v2 | **v3 built → Gate B.** Upgrades ported; dead holds pre-fixed (cores take turns, traces grow on chip landing with early pulses, Memory/CPU cards float, packet bobs). still_scan caught 0.5 s at 16.1 s, fixed by starting the pulses earlier. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.2 LUFS (v2 −17.1) |
 | 11 | git | v2 | todo |
 | 12 | docker | v1 | todo |
 | 13 | webhooks | v1 | skip: already done by USE (Damon Hall, 10 Oct) |
