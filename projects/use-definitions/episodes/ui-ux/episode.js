@@ -5,13 +5,16 @@ window.EP = {
   punchIns: [[4.9, 6.7]],
   captions: [[ORBIT_IN, PHONE_IN, 1240], [FLOW_IN, DRAG_IN, 1760], [DRAG_IN, END_MOS, 1010]],
   cuts: [ORBIT_IN, PHONE_IN, FLOW_IN, DRAG_IN, END_IN],
+  // v2 (redo pass): deliberate transitions the QC continuity check should ignore
+  qcAllow: [[0, 0.6], [2.3, 3.4], [4.1, 5.0], [6.1, 7.1], [7.4, 7.9], [8.0, 8.7], [12.1, 13.3], [17.5, 18.2], [18.5, 19.0],
+            [21.4, 21.8], [22.5, 22.9], [23.7, 24.1], [25.7, 26.1], [27.2, 27.7], [29.0, 30.8], [31.5, 33.0]],
   frame(T) {
-    if (T < ORBIT_IN) titleCard(T, 'UI/UX', 2.6);
+    if (T < ORBIT_IN) titleCard(T, 'UI/UX', 2.6, 'Definitions', [985, 800]);   // v2: shards off the ear line
     else if (T < PHONE_IN) sceneOrbit(T);
     else if (T < FLOW_IN) scenePhone(T);
     else if (T < DRAG_IN) sceneFlow(T);
     else if (T < END_IN) sceneDrag(T);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v2: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -94,11 +97,12 @@ function lerpCol(a, b, p) { const pa = [1, 3, 5].map(i => parseInt(a.slice(i, i 
 function scenePhone(T) {
   g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
   const p = expo((T - 6.2) / .6), feel = inOut((T - FEEL_IN) / .7);
-  const cx = lerp(540, 580, feel), cy = lerp(1080, 1130, feel) + (1 - p) * 900, s = lerp(1, 1.04, feel);
+  const bob = Math.sin((T - PHONE_IN) * 2.0) * 12 * clamp((T - 7.2) / .5);   // v2: idle float, the phone never sits dead (old render had ~6 s of still holds)
+  const cx = lerp(540, 580, feel), cy = lerp(1080, 1130, feel) + (1 - p) * 900 + bob, s = lerp(1, 1.04, feel);
   typeOn(T < FEEL_IN ? 'User interface' : 'User experience', 60, 250, T - (T < FEEL_IN ? 6.3 : FEEL_IN + .1), { size: 30, col: BLUE, track: 6, upper: true, cps: 30 });
   if (T < FEEL_IN) { rise('Looks good.', 54, 430, T - 7.48, { size: 150, w: 800, col: INK, dur: .45, exitAt: FEEL_IN - .1, T }); }
   else { rise('Feels good.', 54, 430, T - 17.72, { size: 150, w: 800, col: INK, dur: .45 }); rise('Quick. Responsive.', 54, 430, T - 13.0, { size: 110, w: 800, col: BLUE, dur: .4, exitAt: 17.6, T }); }
-  phone(cx, cy, 560 * s, 1120 * s, phoneScreen(T), lerp(0, -.04, feel));
+  phone(cx, cy, 560 * s, 1120 * s, phoneScreen(T), lerp(0, -.04, feel) + Math.sin((T - PHONE_IN) * 1.3) * .012);
   // fingertip choreography during the "feel" beat
   if (T > 14.6 && T < 18.6) { const tx = T < 16.4 ? cx + 200 * s : cx + 150 * s, ty = T < 16.4 ? cy + 400 * s : cy + 270 * s;   // tap beside the label, never on it
     const pr = T > 15.16 && T < 15.6 ? (T - 15.16) / .44 : T > 16.72 && T < 17.1 ? (T - 16.72) / .38 : 0; fingertip(tx, ty, pr); }

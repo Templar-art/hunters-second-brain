@@ -1302,3 +1302,6 @@ Salt PM, Solis 673 Casuarina Way frame 16 → 10s 9:16 cinemagraph. Seedance 2.5
 
 ## [2026-10-20] migrate | USE redo: JSON v4 locked, SDK v4 built
 Hunter locked JSON v4. SDK v4 has the upgrades ported; QC FREEZE caught 6 dead stretches, fixed with on-story motion (wrap pulse, request packets, stack float). All checks clear, loudness equal to v3. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: SDK v4 locked, UI/UX v2 built first-pass
+Hunter locked SDK v4. Added `tools/still_scan.py`, which pre-scans the old render for dead holds. UI/UX v2 passed every check on its first build (phone float pre-fixed). Redo workflow written into QUEUE.md. No spend.

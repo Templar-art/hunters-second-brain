@@ -51,8 +51,8 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 | 02 | bus-network | v2 | ✅ **LOCKED v3** (Hunter, 20 Oct). v7 upgrades ported (cuts, qcAllow, alive end card, sfx-lib-v2, SUB16/shutter .5); hook shards moved off the ear; panel caption holds at 1200 until pushed (was clipped); Simple./Standard. restacked on two lines, each on its spoken word (Hunter caught the overprint), plus buses running the standard grid and a grid push to kill the 0.8 s freeze this exposed. QC ok, RISE CLEAR, FACE/TEXT CLEAR, −15.8 LUFS (= v2) |
 | 03 | cli | v2 | ✅ **LOCKED v3** (Hunter, 20 Oct). Upgrades ported (qcAllow, shards off face, alive end card, sfx-lib-v2, SUB16/shutter .5). QC caught 3 freezes in the CRT scene, fixed with a cursor that glides in and clicks Get started, a CRT roll band and a slow push. Card-stack labels were hugging the edge, fixed in the engine with measured width. QC ok, FACE/TEXT/RISE CLEAR, −16.5 LUFS (= v2) |
 | 04 | json | v3 | ✅ **LOCKED v4** (Hunter, 20 Oct). Upgrades ported (qcAllow, shards off face, alive end card, sfx-lib-v2, SUB16/shutter .5). QC found file icons + type cards sitting dead between beats, fixed with an idle float. QC ok, FACE/TEXT/RISE CLEAR, −16.6 LUFS (= v3) |
-| 05 | sdk | v3 | **v4 built 20 Oct → Gate B (Hunter look)**. Upgrades ported. QC found 6 dead stretches (wrap diagram 7–13.5 s, stack 20.7–22.4 s), fixed with a wrap pulse ring, request packets dev→SDK, and the stack floating as one unit. QC ok, FACE/TEXT/RISE CLEAR, −16.5 LUFS (= v3) |
-| 06 | ui-ux | v1 | todo |
+| 05 | sdk | v3 | ✅ **LOCKED v4** (Hunter, 20 Oct). Upgrades ported. QC found 6 dead stretches (wrap diagram 7–13.5 s, stack 20.7–22.4 s), fixed with a wrap pulse ring, request packets dev→SDK, and the stack floating as one unit. QC ok, FACE/TEXT/RISE CLEAR, −16.5 LUFS (= v3) |
+| 06 | ui-ux | v1 | **v2 built 20 Oct → Gate B (Hunter look)**. Upgrades ported; dead holds pre-fixed from a still_scan of v1 (the phone floats + sways), so it passed first build. QC ok, FACE/TEXT/RISE CLEAR, no still stretches, −17.4 LUFS (v1 −17.3) |
 | 07 | ide | v2 | todo |
 | 08 | saas | v1 | todo |
 | 09 | gpu | v1 | todo |
@@ -68,3 +68,5 @@ Order: as listed (01 CRUD first, the anchor episode). Update the row after every
 | 19 | promises | v2 | todo |
 | 20 | ask-the-vision | v1 | todo |
 | 21 | handover | v1 | todo |
+
+**Redo workflow (from 06 on):** run `python3 tools/still_scan.py episodes/<ep>/<ep>-<old>.mp4` FIRST and pre-fix every dead hold with on-story motion. Then port (qcAllow, shards [985,800], alive end card), build with `SFX_LIB=sfx-lib-v2 SUB=16 SHUTTER=0.5`, then run `tools/qc_episode.py`, `tools/qa.sh` (FACE/TEXT/RISE CLEAR), and `still_scan` on the new render.
