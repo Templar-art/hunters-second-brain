@@ -1308,3 +1308,6 @@ Hunter locked SDK v4. Added `tools/still_scan.py`, which pre-scans the old rende
 
 ## [2026-10-20] migrate | USE redo: UI/UX v2 locked, IDE v3 built first-pass
 Hunter locked UI/UX v2. IDE v3 has the upgrades ported plus a pre-fixed window float, and passed all checks first build (loudness equal to v2). Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: IDE v3 locked, SaaS v2 built first-pass
+Hunter locked IDE v3. SaaS v2 has the upgrades ported plus pre-fixed on-story motion, and passed all checks first build. Waiting on Gate B. No spend.

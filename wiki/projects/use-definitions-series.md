@@ -83,4 +83,6 @@ Hunter wants **all 21 sent episodes redone, one at a time**, updated with everyt
 
 **06 UI/UX v2 (20 Oct): built, awaiting Gate B. First episode to pass on the first build.** New `tools/still_scan.py` lists still stretches in the *old* render before the rebuild, so dead holds get fixed up front. Here that was the phone sitting still for about 6 s across 8–18 s, fixed with an idle float and sway. That saves the roughly 9-min rebuild every earlier episode needed. The workflow is now recorded at the bottom of QUEUE.md. **Locked by Hunter 20 Oct.**
 
-**07 IDE v3 (20 Oct): built first-pass, awaiting Gate B.** still_scan on v2 found the IDE window sitting still for about 8 s across both passes, pre-fixed with a window float. Every check passed on the first build.
+**07 IDE v3 (20 Oct): built first-pass, awaiting Gate B.** still_scan on v2 found the IDE window sitting still for about 8 s across both passes, pre-fixed with a window float. Every check passed on the first build. **Locked by Hunter 20 Oct.**
+
+**08 SaaS v2 (20 Oct): built first-pass, awaiting Gate B.** The still_scan-found holds were pre-fixed with motion that tells the story: the app card floats, a "this month" ring keeps stepping through the paid calendar (recurring billing), and update packets flow from the one app out to every company ("built once, in bulk").

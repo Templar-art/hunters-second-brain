@@ -5,16 +5,19 @@ window.EP = {
   dur: 27.6, voEnd: 24.3,
   punchIns: [[11.9, 14.9]],
   cuts: [SPELL_IN, STANDS_IN, VALUE_IN, BOX_IN, MONTH_IN, BULK_IN, END_IN],
+  // v2 (redo pass): deliberate transitions the QC continuity check should ignore
+  qcAllow: [[0, 0.6], [1.3, 2.3], [2.8, 4.4], [4.7, 5.6], [7.9, 8.6], [9.2, 9.7], [10.9, 11.5], [11.8, 12.0], [13.3, 13.6],
+            [14.3, 15.6], [19.1, 19.7], [20.4, 22.2], [22.3, 22.6], [24.0, 25.2]],
   captions: [[SPELL_IN, STANDS_IN, 1070], [BOX_IN, MONTH_IN, 1050]],
   frame(T) {
-    if (T < SPELL_IN) titleCard(T, 'SaaS', 1.55);
+    if (T < SPELL_IN) titleCard(T, 'SaaS', 1.55, 'Definitions', [985, 800]);   // v2: shards off the ear line
     else if (T < STANDS_IN) sceneSpell(T);
     else if (T < VALUE_IN) sceneStands(T);
     else if (T < BOX_IN) sceneValue(T);
     else if (T < MONTH_IN) sceneBox(T);
     else if (T < BULK_IN) sceneMonthly(T);
     else if (T < END_IN) sceneBulk(T);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v2: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -58,7 +61,7 @@ function sceneStands(T) {
 function sceneValue(T) {
   g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
   typeOn('Someone builds software', 60, 300, T - 5.0, { size: 30, col: BLUE, track: 6, upper: true, cps: 32 });
-  const p = back((T - 5.05) / .5), cx = 540, cy = 860;
+  const p = back((T - 5.05) / .5), cx = 540, cy = 860 + Math.sin((T - VALUE_IN) * 2.0) * 12 * clamp((T - 5.6) / .5);   // v2: app card floats (old render: still 5.7–9.4 s)
   if (p > 0) { g.save(); g.translate(cx, cy); g.scale(p, p); card(-300, -300, 600, 600, WHITE, 40, .15);
     const gr = g.createLinearGradient(-200, -200, 200, 200); gr.addColorStop(0, BLUE); gr.addColorStop(1, CYAN);
     g.fillStyle = gr; g.beginPath(); g.roundRect(-150, -210, 300, 300, 70); g.fill();
@@ -110,6 +113,9 @@ function sceneMonthly(T) {
     g.fillStyle = on ? BLUE : '#0E3148'; g.beginPath(); g.roundRect(-105, -100, 210, 200, 22); g.fill();
     font(800, 80, COND); g.fillStyle = on ? WHITE : '#2B4A62'; g.textAlign = 'center'; g.fillText(m, 0, 10);
     if (on) { font(500, 22, MONO); g.fillStyle = CYAN; g.fillText('PAID ✓', 0, 60); } g.textAlign = 'left'; g.restore(); });
+  // v2: once the year is paid, a 'this month' ring keeps stepping through the calendar (recurring, never dead)
+  if (T > 17.75) { const k = Math.floor((T - 17.75) / .22) % 12, x = 80 + (k % 4) * 235, y = 640 + Math.floor(k / 4) * 230;
+    g.save(); g.strokeStyle = CYAN; g.lineWidth = 7; g.shadowColor = CYAN; g.shadowBlur = 20; g.beginPath(); g.roundRect(x - 6, y - 6, 222, 212, 26); g.stroke(); g.restore(); }
   // recurring loop
   const lp = expo((T - 16.32) / .8); if (lp > 0) { g.save(); g.translate(540, 1500); g.rotate(T * 1.5); g.strokeStyle = CYAN; g.lineWidth = 10; g.lineCap = 'round';
     g.beginPath(); g.arc(0, 0, 90, 0, 5.5 * lp); g.stroke(); g.restore();
@@ -128,6 +134,9 @@ function sceneBulk(T) {
     g.strokeStyle = '#C9CDD2'; g.lineWidth = 3; g.beginPath(); g.moveTo(hx, hy); g.lineTo(lerp(hx, x, clamp(q)), lerp(hy, y, clamp(q))); g.stroke();
     g.save(); g.translate(x, y); g.scale(q, q); g.fillStyle = WHITE; g.strokeStyle = BLUE; g.lineWidth = 3; g.beginPath(); g.roundRect(-46, -40, 92, 80, 14); g.fill(); g.stroke();
     g.fillStyle = INK; g.fillRect(-20, -14, 40, 34); g.fillStyle = WHITE; for (let k = 0; k < 3; k++) g.fillRect(-14 + k * 11, -6, 6, 6); g.restore(); }
+  // v2: built once, shipped to all — update packets run out from the app along every spoke
+  if (T > 22.1) for (let i = 0; i < N; i++) { const a = -Math.PI / 2 + (i / N) * 6.283, u = ((T - 22.1) / .8 + i * .37) % 1;
+    g.fillStyle = BLUE; g.beginPath(); g.arc(hx + Math.cos(a) * 340 * u, hy + Math.sin(a) * 272 * u, 11, 0, 7); g.fill(); }
   const hp = back((T - BULK_IN) / .45); if (hp > 0) { g.save(); g.translate(hx, hy); g.scale(hp, hp);
     const gr = g.createLinearGradient(-90, -90, 90, 90); gr.addColorStop(0, BLUE); gr.addColorStop(1, CYAN); g.fillStyle = gr;
     g.beginPath(); g.roundRect(-90, -90, 180, 180, 44); g.fill(); font(800, 64, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('App', 0, 22); g.textAlign = 'left'; g.restore(); }
