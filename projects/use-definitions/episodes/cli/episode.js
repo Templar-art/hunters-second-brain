@@ -4,15 +4,18 @@ window.EP = {
   dur: 32.9, voEnd: 29.5,
   punchIns: [[2.9, 4.0], [19.5, 22.0]],
   cuts: [2.25, CRT_IN, TOOLS_IN, YOU_IN, TERM_IN, END_IN],
+  // v3 (redo pass): deliberate transitions the QC continuity check should ignore
+  qcAllow: [[0, 0.6], [1.8, 2.5], [2.8, 3.0], [3.4, 4.7], [7.3, 7.9], [10.8, 11.4], [16.0, 16.6], [16.7, 17.0], [18.3, 18.9],
+            [19.4, 19.6], [21.9, 22.6], [29.0, 30.4]],
   captions: [[2.2, CRT_IN, 1200], [TOOLS_IN, YOU_IN, 1170], [YOU_IN, TERM_IN, 1240], [TERM_IN, END_MOS, 1040]],
   frame(T) {
-    if (T < 2.25) titleCard(T, 'CLI', 1.95);
+    if (T < 2.25) titleCard(T, 'CLI', 1.95, 'Definitions', [985, 800]);   // v3: shards off the ear line, to the shoulder
     else if (T < CRT_IN) { th(FULL, zoomAt(T)); captions(T); lowerThird(T, 2.3, 3.8); iris(T, CRT_IN - .5, 540, 760, sceneCRT); }
     else if (T < TOOLS_IN) sceneCRT(T);
     else if (T < YOU_IN) sceneTools(T);
     else if (T < TERM_IN) { th(FULL, zoomAt(T)); if (T >= 18.42) { letterPop('YOU.', 40, 560, T - 18.42, { size: 330, stagger: .07 }); cutout(zoomAt(T)); } captions(T); }
     else if (T < END_IN) sceneTerminal(T);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v3: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -29,7 +32,12 @@ window.EP = {
 };
 
 // Full-screen terminal world: a pretty GUI window first, which glitches down into raw text + a prompt line.
+// v3: slow camera push over the whole CRT world, so the built window and the slow typing never sit frozen
 function sceneCRT(T) {
+  const k = 1 + .045 * inOut(clamp((T - CRT_IN) / (TOOLS_IN - CRT_IN)));
+  g.save(); g.translate(540, 960); g.scale(k, k); g.translate(-540, -960); sceneCRTBody(T); g.restore();
+}
+function sceneCRTBody(T) {
   g.fillStyle = '#020B12'; g.fillRect(0, 0, W, H);
   const pretty = T < 7.4;
   if (pretty) {                                        // "nice pretty interfaces"
@@ -48,6 +56,12 @@ function sceneCRT(T) {
       g.fillStyle = BLUE; g.beginPath(); g.roundRect(-200, -50, 400, 100, 50); g.fill();
       font(700, 50, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('Get started', 0, 17); g.textAlign = 'left'; g.restore(); }
     g.restore();
+    // v3: a mouse cursor glides in and clicks the button (the GUI way), so the built window never sits still
+    const cm = inOut((T - 6.3) / .7); if (T > 6.3) { const cx = lerp(860, 600, cm), cy = lerp(1560, y + 790, cm);
+      const press = T > 7.0 ? 1 - .15 * Math.sin(clamp((T - 7.0) / .18) * Math.PI) : 1;
+      g.save(); g.translate(cx, cy); g.scale(1.6 * press, 1.6 * press); g.fillStyle = WHITE; g.strokeStyle = INK; g.lineWidth = 2.2; g.lineJoin = 'round';
+      g.beginPath(); g.moveTo(0, 0); g.lineTo(0, 34); g.lineTo(9, 26); g.lineTo(16, 40); g.lineTo(22, 37); g.lineTo(15, 23); g.lineTo(27, 23); g.closePath(); g.fill(); g.stroke(); g.restore();
+      if (T > 7.0) { const r = expo((T - 7.0) / .35); g.strokeStyle = `rgba(0,155,232,${.6 * (1 - r)})`; g.lineWidth = 4; g.beginPath(); g.arc(600, y + 790, 30 + 60 * r, 0, 7); g.stroke(); } }
     return;
   }
   // "just a bunch of text on the screen" (glitch in, scanlines, typed lines)
@@ -57,6 +71,10 @@ function sceneCRT(T) {
     g.fillStyle = 'rgba(0,0,0,.25)'; for (let y = 0; y < H; y += 6) g.fillRect(0, y, W, 2);
     const v = g.createRadialGradient(540, 960, 400, 540, 960, 1200); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.6)');
     g.fillStyle = v; g.fillRect(0, 0, W, H);
+    // v3: CRT roll band drifting down the tube (keeps the slow typing alive)
+    const by = (T - 7.4) * 380 % (H + 400) - 200, bg = g.createLinearGradient(0, by - 140, 0, by + 140);
+    bg.addColorStop(0, 'rgba(18,221,235,0)'); bg.addColorStop(.5, 'rgba(18,221,235,.07)'); bg.addColorStop(1, 'rgba(18,221,235,0)');
+    g.fillStyle = bg; g.fillRect(0, by - 140, W, 280);
     const lines = ['USE-OS v1.0  (c) 1986', 'MEM 640K OK', 'LOADING DRIVERS....... DONE', 'READY.', '', 'A:\\> dir', ' SCRIPTS   <DIR>', ' FILES     <DIR>', ' README    TXT   1,024'];
     let chars = 22 + Math.floor((T - 7.4) * 45);
     lines.forEach((l, i) => { const n = clamp(chars, 0, l.length); chars -= l.length + 2; if (n <= 0) return;

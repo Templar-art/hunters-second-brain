@@ -517,7 +517,8 @@ function cardStack(T, items, x, y, w, h, gap = 22) {
     const yy = y + i * (h + gap), xx = x + (1 - p) * 900;
     g.save(); g.globalAlpha = clamp(p * 2); card(xx, yy, w, h, dark ? '#2B2E33' : WHITE, 16, .2);
     font(800, h * .48, COND); g.fillStyle = dark ? WHITE : INK; g.fillText(title, xx + 32, yy + h * .66);
-    typeOn(sub, xx + w - 32 - sub.length * 17, yy + h * .6, T - at - .2, { size: 24, col: dark ? CYAN : BLUE, track: 4, upper: true, cps: 40 });
+    font(500, 24, MONO); g.letterSpacing = '4px'; const sw = g.measureText(sub.toUpperCase()).width; g.letterSpacing = '0px';   // real width, not a guess (labels hugged the edge)
+    typeOn(sub, xx + w - 40 - sw, yy + h * .6, T - at - .2, { size: 24, col: dark ? CYAN : BLUE, track: 4, upper: true, cps: 40 });
     g.restore();
   });
 }

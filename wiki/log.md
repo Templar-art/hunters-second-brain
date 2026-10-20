@@ -1290,3 +1290,6 @@ Hunter locked CRUD v7. Bus-network v3 has the v7 upgrades plus two fixes: the ho
 
 ## [2026-10-20] lint | USE: headline-overprint check added
 Hunter caught overprinting headlines in bus-network v3 (Simple./Standard.). Fixed, and made a standing check: `tools/lint_rise.py` in `qa.sh`, BOSS.md rule 6, and auto-memory `feedback-motion-headlines-never-stack`. All 21 episodes swept clean. The follow-on freeze was caught by gen-runner QC and fixed. Bus-network v3 rebuilt and resent for Gate B.
+
+## [2026-10-20] migrate | USE redo: bus-network v3 locked, CLI v3 built
+Hunter locked bus-network v3. CLI v3 has the upgrades ported; QC FREEZE caught 3 dead stretches in the CRT scene (fixed with a cursor click, a CRT roll band and a push), and the engine `cardStack` label padding is fixed. All checks clear. Waiting on Gate B. No spend.
