@@ -1,0 +1,24 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 170,
+ "defaults": {
+  "model": "seedance_2_5",
+  "params": {
+   "mode": "omni_reference",
+   "aspect_ratio": "9:16",
+   "duration": 10,
+   "resolution": "1080p",
+   "generate_audio": false
+  }
+ },
+ "rows": [
+  {
+   "id": "pool_cinemagraph",
+   "params": {
+    "start-image": "hero/solis16_916.jpg"
+   },
+   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, framing identical to the start image for all ten seconds. This is a cinemagraph: the house, glass pool fence, paving, plants, trees, clouds and the woman seated on the pool edge stay perfectly still like a photograph. The only motion is water. The turquoise lap pool surface ripples gently in a light breeze, and soft sunlit caustic patterns shimmer and drift slowly across the tiled pool floor. Around the woman's feet dipped in the water, small soft rings ripple outward. On the white wall at the far end of the pool, the stainless wall spout pours a steady, smooth, continuous clear sheet of water into the pool, with a small patch of gentle splash and bubbles where it lands. Bright natural midday daylight, constant exposure, no lighting change, photorealistic, crisp detail.",
+   "out": "video/pool_cinemagraph_v1.mp4"
+  }
+ ]
+}

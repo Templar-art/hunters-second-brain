@@ -1,0 +1,13 @@
+[
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/solis-673-casuarina-cinemagraph/video/pool_cinemagraph_v1.mp4",
+  "motion": 0.005,
+  "continuity_min": 1.0,
+  "continuity_at_s": 0.75,
+  "frames": 241,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ }
+]
