@@ -4,6 +4,8 @@ window.EP = {
   dur: 39.3, voEnd: 36.0,
   punchIns: [[9.0, 13.4], [26.0, 28.7]],
   cuts: [MYTH_IN, SCOPE_IN, LOVE_IN, TRUTH_IN, END_IN],
+  // v3 (redo pass): deliberate transitions the QC continuity check should ignore (hard cuts get ±0.3 s)
+  qcAllow: [[0, 0.6], [4.5, 5.2], [8.8, 9.3], [12.9, 13.8], [18.2, 18.6], [22.9, 23.5], [25.8, 26.3], [28.3, 29.0], [35.6, 36.6]],
   captions: [[MYTH_IN, SCOPE_IN, 1240], [LOVE_IN, TRUTH_IN, 1240], [TRUTH_IN, END_MOS, T => lerp(H + 40, PANEL_Y, expo((T - TRUTH_IN) / .6)) - 60]],
   frame(T) {
     if (T < MYTH_IN) qOpener(T, 0, MYTH_IN, '', ['What do people wrongly', 'assume about', 'software shops?']);
@@ -11,7 +13,7 @@ window.EP = {
     else if (T < LOVE_IN) sceneScope(T);
     else if (T < TRUTH_IN) sceneOver(T);
     else if (T < END_IN) sceneTruth(T);
-    else endCard(T, END_IN, this.dur, 'Q&A');
+    else endCard(T, END_IN, this.dur, 'Q&A', true);   // v3: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -47,13 +49,16 @@ const EXTRA = [['Extra report', 20.12], ['New button', 20.92], ['One more page',
 function sceneScope(T) {
   g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
   typeOn(T < 18.36 ? 'We set scopes' : 'If it’s up to me', 60, 250, T - (T < 18.36 ? 13.4 : 18.4), { size: 30, col: BLUE, track: 6, upper: true, cps: 32 });
-  const bp = expo((T - 13.45) / .5); g.save(); g.setLineDash([16, 12]); g.lineDashOffset = -T * 30; g.strokeStyle = BLUE; g.lineWidth = 5; g.globalAlpha = bp;
+  const bp = expo((T - 13.45) / .5); g.save(); g.setLineDash([16, 12]); g.lineDashOffset = -T * 90; g.strokeStyle = BLUE; g.lineWidth = 5; g.globalAlpha = bp;   // v3: the scope border marches faster
   g.beginPath(); g.roundRect(80, 360, 920, 920, 30); g.stroke(); g.restore(); g.setLineDash([]);
   if (bp > .5) { font(500, 24, MONO); g.letterSpacing = '4px'; g.fillStyle = BLUE; g.fillText('SCOPE', 110, 400); g.letterSpacing = '0px'; }
   const CORE = ['Login', 'Dashboard', 'Reports', 'Admin'];
   CORE.forEach((c, i) => { const q = back((T - 14.4 - i * .15) / .4); if (q <= 0) return; const x = 140 + (i % 2) * 430, y = 450 + Math.floor(i / 2) * 200;
-    g.save(); g.translate(x + 190, y + 80); g.scale(q, q); card(-190, -80, 380, 160, NAVY, 20, .2); font(700, 54, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText(c, 0, 18); g.textAlign = 'left'; g.restore(); });
-  if (T > 15.58 && T < 18.36) { const q = back((T - 15.58) / .35); g.save(); g.translate(540, 1150); g.scale(q, q); g.fillStyle = CYAN; g.beginPath(); g.roundRect(-220, -44, 440, 88, 44); g.fill();
+    const fy = Math.sin(T * 2.2 + i * 1.7) * 12 * clamp((T - 15.0) / .5), pr = clamp((T - 15.6 - i * .5) / 2.2);   // v3: cores float + get built (old render: still 16–20 s)
+    g.save(); g.translate(x + 190, y + 80 + fy); g.scale(q, q); card(-190, -80, 380, 160, NAVY, 20, .2); font(700, 54, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText(c, 0, 8); g.textAlign = 'left';
+    if (T > 15.6) { g.fillStyle = '#163A55'; g.beginPath(); g.roundRect(-140, 34, 280, 14, 7); g.fill(); g.fillStyle = pr >= 1 ? '#28C941' : CYAN; g.beginPath(); g.roundRect(-140, 34, Math.max(14, 280 * inOut(pr)), 14, 7); g.fill(); }
+    g.restore(); });
+  if (T > 15.58 && T < 18.36) { const q = back((T - 15.58) / .35); g.save(); g.translate(540, 1150 + Math.sin(T * 2.6) * 10); g.scale(q, q); g.fillStyle = CYAN; g.beginPath(); g.roundRect(-220, -44, 440, 88, 44); g.fill();
     font(800, 54, COND); g.fillStyle = NAVY; g.textAlign = 'center'; g.fillText('Manageable ✓', 0, 18); g.textAlign = 'left'; g.restore(); }
   EXTRA.forEach(([c, at], i) => { const k = expo(clamp((T - at) / .5)); if (T < at) return; const tx = 140 + (i % 2) * 430, ty = 870 + Math.floor(i / 2) * 170;
     const x = lerp(i % 2 ? 1300 : -500, tx, k), y = lerp(ty - 300, ty, k);
@@ -76,7 +81,7 @@ function sceneOver(T) {
   if (fill > 1) { g.fillStyle = '#28C941'; g.beginPath(); g.roundRect(bx + bw - 30, 1450, 30 + (fill - 1) * bw, 50, 25); g.fill(); }
   g.strokeStyle = WHITE; g.lineWidth = 3; g.beginPath(); g.moveTo(bx + bw * .85, 1430); g.lineTo(bx + bw * .85, 1520); g.stroke(); font(500, 22, MONO); g.fillStyle = WHITE; g.fillText('PROMISED', bx + bw * .85 - 60, 1555);
   g.restore();
-  if (T > 28.36) { const q = back((T - 28.36) / .35); g.save(); g.translate(800, 1290); g.scale(q, q); g.fillStyle = '#28C941'; g.beginPath(); g.roundRect(-190, -40, 380, 80, 40); g.fill();
+  if (T > 28.36) { const q = back((T - 28.36) / .35); g.save(); g.translate(800, 1398); g.scale(q, q); g.fillStyle = '#28C941';   // v3: inside the card, clear of the caption (v2 touched it) g.beginPath(); g.roundRect(-190, -40, 380, 80, 40); g.fill();
     font(800, 48, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('Over-delivered', 0, 16); g.textAlign = 'left'; g.restore(); }
   burst(T, 28.5, 960, 1475, 18, 6);
 }

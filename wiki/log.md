@@ -1335,3 +1335,6 @@ Hunter locked State management v2. ERD v2 has the upgrades ported, on-story moti
 
 ## [2026-10-20] migrate | USE redo: ERD v2 locked, Excel wince v4 built
 Hunter locked ERD v2. Excel wince v4: the Q&A opener is now alive engine-wide, the end card is alive, and a headline was moved off the face circle (a QA gap: TEXT CLEAR ignores the face circle). All clear. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: Excel wince v4 locked, Scope myth v3 built
+Hunter locked Excel wince v4. Scope myth v3 has the upgrades ported, on-story motion (core cards build with progress bars), and the Over-delivered pill moved off the caption. All clear. Waiting on Gate B. No spend.
