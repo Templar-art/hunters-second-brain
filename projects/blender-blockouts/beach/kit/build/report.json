@@ -1,0 +1,136 @@
+{
+ "imported_0": 420,
+ "guide_frames": [
+  [
+   "B1_SurfReveal",
+   1
+  ],
+  [
+   "B2_PoolGlide",
+   193
+  ],
+  [
+   "B3_LivingView",
+   385
+  ],
+  [
+   "B4_TopDownRise",
+   577
+  ],
+  [
+   "B5_Walkthrough",
+   769
+  ],
+  [
+   "B6_BeachTrack",
+   1009
+  ],
+  [
+   "B7_CarArrival",
+   1300
+  ],
+  [
+   "B7_CarArrival",
+   1380
+  ]
+ ],
+ "objects": 1729,
+ "density": {
+  "total": 1690,
+  "by_collection": {
+   "House": 410,
+   "Site": 356,
+   "Landscape": 917,
+   "People": 7,
+   "Cameras": 0,
+   "Lighting": 0
+  },
+  "fails": []
+ },
+ "clearance": [],
+ "guides": [
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/guides/shot_0001.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/guides/shot_0193.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/guides/shot_0385.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/guides/shot_0577.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/guides/shot_0769.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/guides/shot_1009.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/guides/shot_1300.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/guides/shot_1380.png"
+ ],
+ "id_unknown": [
+  "Car_B_Body:CarGrey",
+  "Car_B_Wheel_-0.85_-1.5:Tyre",
+  "Car_B_Wheel_-0.85_1.5:Tyre",
+  "Car_B_Wheel_0.85_-1.5:Tyre",
+  "Car_B_Wheel_0.85_1.5:Tyre",
+  "GPot_0__dirt:potted_plant_02_pot",
+  "GPot_0__pot.001:potted_plant_02_pot",
+  "GPot_1__dirt:potted_plant_02_pot",
+  "GPot_1__pot.001:potted_plant_02_pot",
+  "GPot_2__dirt:potted_plant_02_pot",
+  "GPot_2__pot.001:potted_plant_02_pot",
+  "G_Art_1:Umbrella",
+  "HeroCar_Body:SuperPaint",
+  "HeroCar_Brake0:TailLight",
+  "HeroCar_Brake1:TailLight",
+  "HeroCar_Brake2:TailLight",
+  "HeroCar_Brake3:TailLight",
+  "HeroCar_Diffuser:Rubber",
+  "HeroCar_HeadLight-1:HeadLight",
+  "HeroCar_HeadLight1:HeadLight",
+  "HeroCar_Intake-1:Rubber",
+  "HeroCar_Intake1:Rubber",
+  "HeroCar_Mirror-1:SuperPaint",
+  "HeroCar_Mirror1:SuperPaint",
+  "HeroCar_Rim0:Chrome",
+  "HeroCar_Rim1:Chrome",
+  "HeroCar_Rim2:Chrome",
+  "HeroCar_Rim3:Chrome",
+  "HeroCar_Splitter:Rubber",
+  "HeroCar_TailBar:TailLight",
+  "HeroCar_Tyre0:Rubber",
+  "HeroCar_Tyre1:Rubber",
+  "HeroCar_Tyre2:Rubber",
+  "HeroCar_Tyre3:Rubber",
+  "HeroCar_Wing:SuperPaint",
+  "InPot_0__dirt:potted_plant_02_pot",
+  "InPot_0__pot.001:potted_plant_02_pot",
+  "InPot_1__dirt:potted_plant_02_pot",
+  "InPot_1__pot.001:potted_plant_02_pot",
+  "InPot_2__dirt:potted_plant_02_pot",
+  "InPot_2__pot.001:potted_plant_02_pot",
+  "KIT_potted_plant_02_dirt:potted_plant_02_pot",
+  "KIT_potted_plant_02_pot:potted_plant_02_pot",
+  "Pot_0__dirt:potted_plant_02_pot",
+  "Pot_0__pot.001:potted_plant_02_pot",
+  "Pot_1__dirt:potted_plant_02_pot",
+  "Pot_1__pot.001:potted_plant_02_pot",
+  "Pot_2__dirt:potted_plant_02_pot",
+  "Pot_2__pot.001:potted_plant_02_pot",
+  "Pot_3__dirt:potted_plant_02_pot"
+ ],
+ "id": [
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/id/id_0001.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/id/id_0193.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/id/id_0385.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/id/id_0577.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/id/id_0769.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/id/id_1009.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/id/id_1300.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/id/id_1380.png"
+ ],
+ "timings_s": {
+  "assets": 0.3,
+  "import_0": 1.2,
+  "site": 0.1,
+  "landscape": 0.2,
+  "people": 0.0,
+  "cameras": 0.0,
+  "lighting": 0.0,
+  "save": 0.4,
+  "passes": 63.3,
+  "total": 65.6
+ },
+ "blend": "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/beach/kit/build/beach-kit-rebuild.blend"
+}

@@ -1,0 +1,974 @@
+{
+ "name": "beach-kit-rebuild",
+ "seed": 7,
+ "output": "build",
+ "assets": "../../../blender-kit/assets/kit-assets.blend",
+ "render": {
+  "engine": "BLENDER_EEVEE",
+  "fps": 24,
+  "resolution": [
+   1920,
+   1080
+  ],
+  "view_transform": "AgX",
+  "samples": 32
+ },
+ "imports": [
+  {
+   "from": "../../beach-house-v1.blend",
+   "collection": "House",
+   "exclude_prefixes": [
+    "DuneGrass_",
+    "Neighbour_",
+    "Palm",
+    "GardenBed_",
+    "FrontBed_",
+    "PoolBed_",
+    "Pot_",
+    "GPot_",
+    "InPot_",
+    "DunePost_",
+    "StreetLight",
+    "StreetTree_",
+    "Boardwalk_",
+    "Hedge_",
+    "Surf_",
+    "WetSand",
+    "Lot_",
+    "BoundaryWall_",
+    "Body_",
+    "Rig_",
+    "Arm_",
+    "Tgt_",
+    "CameraShakify",
+    "grass_medium_01",
+    "anthurium_botany_",
+    "calathea_orbifolia_01",
+    "fern_02",
+    "potted_plant_02"
+   ],
+   "exclude_names": [
+    "Beach",
+    "Ocean",
+    "Street",
+    "Footpath",
+    "Driveway",
+    "Letterbox",
+    "Sun"
+   ],
+   "exclude_types": [
+    "CAMERA"
+   ]
+  }
+ ],
+ "site": {
+  "lot": {
+   "size": [
+    24,
+    50
+   ],
+   "center": [
+    0,
+    14
+   ],
+   "lawn": "leafy_grass",
+   "boundary_walls": {
+    "x": 12,
+    "height": 1.2,
+    "length": 52,
+    "y": 16
+   },
+   "hedges": {
+    "x": 11.4,
+    "height": 1.8,
+    "length": 50,
+    "y": 16
+   },
+   "driveway": {
+    "x": 6,
+    "y": 30,
+    "size": [
+     5.5,
+     22
+    ]
+   },
+   "letterbox": [
+    -6.8,
+    24.5
+   ]
+  },
+  "street": {
+   "y": 46,
+   "width": 10,
+   "length": 300,
+   "footpath": {
+    "y": 41,
+    "width": 2.4
+   },
+   "lights": {
+    "y": 42.6,
+    "from": -60,
+    "to": 60,
+    "spacing": 30,
+    "height": 7
+   }
+  },
+  "beach": {
+   "x": [
+    -150,
+    150
+   ],
+   "y": [
+    -80,
+    45
+   ],
+   "step": 1.5,
+   "profile": [
+    [
+     -80,
+     -3.6
+    ],
+    [
+     -71,
+     -3.35
+    ],
+    [
+     -50,
+     -2.95
+    ],
+    [
+     -35,
+     -2.6
+    ],
+    [
+     -30,
+     -2.1
+    ],
+    [
+     -25,
+     -0.9
+    ],
+    [
+     -20,
+     -0.2
+    ],
+    [
+     -16,
+     0.1
+    ],
+    [
+     -11,
+     0.0
+    ],
+    [
+     45,
+     0.0
+    ]
+   ],
+   "dune_noise": {
+    "band": [
+     -31,
+     -11
+    ],
+    "amp": 0.45
+   },
+   "wet_sand_y": -71,
+   "ocean": {
+    "y": -260,
+    "z": -3.5,
+    "size": 360
+   },
+   "surf_y": [
+    -76,
+    -85,
+    -94,
+    -103,
+    -112
+   ],
+   "boardwalk": {
+    "x": 1,
+    "from_y": -11,
+    "count": 16,
+    "step": 1.3,
+    "size": [
+     1.6,
+     1.2
+    ]
+   },
+   "dune_posts": {
+    "x": [
+     -0.2,
+     2.2
+    ],
+    "from_y": -12,
+    "to_y": -30,
+    "step": 2,
+    "height": 0.9
+   }
+  },
+  "neighbours": {
+   "depth": 20,
+   "houses": [
+    {
+     "x": -30.0,
+     "width": 17.39,
+     "storeys": 3,
+     "cladding": "NB_RenderWarm",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": 30.0,
+     "width": 17.81,
+     "storeys": 2,
+     "cladding": "NB_Brick",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": -56.0,
+     "width": 18.11,
+     "storeys": 3,
+     "cladding": "NB_RenderGrey",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": 56.0,
+     "width": 18.62,
+     "storeys": 2,
+     "cladding": "NB_Cladding",
+     "pool": false,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": -82.0,
+     "width": 18.66,
+     "storeys": 2,
+     "cladding": "NB_Brick",
+     "pool": false,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": 82.0,
+     "width": 18.67,
+     "storeys": 3,
+     "cladding": "NB_RenderWarm",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": -108.0,
+     "width": 16.02,
+     "storeys": 2,
+     "cladding": "NB_Cladding",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": 108.0,
+     "width": 17.27,
+     "storeys": 3,
+     "cladding": "NB_RenderGrey",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    }
+   ]
+  }
+ },
+ "landscape": {
+  "dune_grass": {
+   "zone": [
+    -110,
+    110,
+    -31,
+    -13
+   ],
+   "count": 681,
+   "exclude": [
+    [
+     -1.2,
+     3.4,
+     -32,
+     -10
+    ]
+   ],
+   "variants": 24,
+   "pieces": [
+    4,
+    12
+   ],
+   "spread": 0.6,
+   "scale": [
+    5,
+    9
+   ]
+  },
+  "palms": {
+   "at": [
+    [
+     -11,
+     -10
+    ],
+    [
+     -8,
+     -11
+    ],
+    [
+     9,
+     -9.5
+    ],
+    [
+     11.5,
+     -2
+    ],
+    [
+     -11.5,
+     20
+    ],
+    [
+     10,
+     25
+    ]
+   ],
+   "height": [
+    8.4,
+    9.4
+   ],
+   "fronds": 11,
+   "lean": 0.06
+  },
+  "beds": [
+   {
+    "name": "GardenBed",
+    "zone": [
+     -11.2,
+     -9.9,
+     -2,
+     21
+    ],
+    "count": 20,
+    "assets": [
+     "calathea",
+     "anthurium",
+     "fern"
+    ],
+    "scale": [
+     0.8,
+     1.6
+    ],
+    "z": 0
+   },
+   {
+    "name": "GardenBedE",
+    "zone": [
+     9.9,
+     11.2,
+     -2,
+     21
+    ],
+    "count": 20,
+    "assets": [
+     "calathea",
+     "anthurium",
+     "fern"
+    ],
+    "scale": [
+     0.8,
+     1.6
+    ],
+    "z": 0
+   },
+   {
+    "name": "FrontBed",
+    "zone": [
+     -10,
+     -4,
+     19,
+     24
+    ],
+    "count": 26,
+    "assets": [
+     "calathea",
+     "anthurium",
+     "fern"
+    ],
+    "scale": [
+     0.9,
+     1.8
+    ],
+    "z": 0
+   },
+   {
+    "name": "PoolBed",
+    "zone": [
+     -7,
+     9,
+     -9.2,
+     -8.6
+    ],
+    "count": 14,
+    "assets": [
+     "calathea",
+     "anthurium"
+    ],
+    "scale": [
+     0.5,
+     1.2
+    ],
+    "z": 0
+   }
+  ],
+  "pots": [
+   {
+    "name": "Pot",
+    "at": [
+     [
+      -9.4,
+      -2.4,
+      3.75
+     ],
+     [
+      9.4,
+      -2.4,
+      3.75
+     ],
+     [
+      -9.0,
+      -1.2,
+      0.24
+     ],
+     [
+      9.0,
+      -1.2,
+      0.24
+     ],
+     [
+      10.5,
+      -4.5,
+      0.24
+     ],
+     [
+      -7.0,
+      15.8,
+      0.0
+     ],
+     [
+      -5.0,
+      16.2,
+      6.95
+     ]
+    ]
+   },
+   {
+    "name": "GPot",
+    "at": [
+     [
+      -9.2,
+      0.2,
+      0.32
+     ],
+     [
+      2.1,
+      0.2,
+      0.32
+     ],
+     [
+      -9.2,
+      8.2,
+      0.32
+     ]
+    ]
+   },
+   {
+    "name": "InPot",
+    "at": [
+     [
+      -8.2,
+      1.2,
+      3.77
+     ],
+     [
+      8.6,
+      1.4,
+      3.77
+     ],
+     [
+      -1.0,
+      7.4,
+      3.77
+     ]
+    ]
+   }
+  ],
+  "trees": [
+   {
+    "name": "StreetTree",
+    "asset": "island_tree",
+    "at": [
+     [
+      -11,
+      30
+     ],
+     [
+      12,
+      34
+     ],
+     [
+      -6,
+      38
+     ]
+    ]
+   }
+  ]
+ },
+ "people": [
+  {
+   "name": "Person_BalconyA",
+   "template": "Person_BalconyA",
+   "at": [
+    -6.0,
+    -1.45,
+    4.02
+   ]
+  },
+  {
+   "name": "Person_BalconyB",
+   "template": "Person_BalconyB",
+   "at": [
+    -4.0,
+    -2.19,
+    3.81
+   ]
+  },
+  {
+   "name": "Person_BeachWalk",
+   "template": "Person_BeachWalk",
+   "path": [
+    [
+     1,
+     -24.0,
+     -55.0,
+     -3.07
+    ],
+    [
+     313,
+     -12.0,
+     -55.4,
+     -3.1
+    ],
+    [
+     624,
+     0.0,
+     -55.2,
+     -2.92
+    ],
+    [
+     936,
+     12.0,
+     -55.6,
+     -2.99
+    ],
+    [
+     1248,
+     24.0,
+     -55.3,
+     -3.09
+    ]
+   ]
+  },
+  {
+   "name": "Person_BeachWalk2",
+   "template": "Person_BeachWalk2",
+   "path": [
+    [
+     1,
+     -25.0,
+     -55.8,
+     -3.1
+    ],
+    [
+     313,
+     -13.0,
+     -56.2,
+     -3.1
+    ],
+    [
+     624,
+     -1.0,
+     -56.0,
+     -2.94
+    ],
+    [
+     936,
+     11.0,
+     -56.4,
+     -2.99
+    ],
+    [
+     1248,
+     23.0,
+     -56.1,
+     -3.1
+    ]
+   ]
+  },
+  {
+   "name": "Person_Kitchen",
+   "template": "Person_Kitchen",
+   "path": [
+    [
+     385,
+     4.2,
+     5.9,
+     3.81
+    ],
+    [
+     576,
+     6.0,
+     5.9,
+     3.81
+    ]
+   ]
+  },
+  {
+   "name": "Person_Lounger",
+   "template": "Person_Lounger",
+   "at": [
+    6.9,
+    -6.45,
+    0.67
+   ]
+  },
+  {
+   "name": "Person_PoolEdge",
+   "template": "Person_PoolEdge",
+   "path": [
+    [
+     193,
+     -7.0,
+     -8.4,
+     0.28
+    ],
+    [
+     257,
+     -2.0,
+     -8.4,
+     0.28
+    ],
+    [
+     320,
+     2.0,
+     -8.4,
+     0.28
+    ],
+    [
+     384,
+     2.2,
+     -8.4,
+     0.28
+    ]
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "name": "B1_SurfReveal",
+   "preset": "drone_reveal",
+   "frames": 192,
+   "keys": [
+    [
+     0,
+     -10.0,
+     -104.0,
+     -1.6
+    ],
+    [
+     191,
+     -4.0,
+     -78.0,
+     3.5
+    ]
+   ],
+   "look_at": [
+    [
+     0,
+     0.0,
+     -6.0,
+     3.5
+    ],
+    [
+     191,
+     0.0,
+     -2.0,
+     4.5
+    ]
+   ],
+   "lens": 32
+  },
+  {
+   "name": "B2_PoolGlide",
+   "preset": "glide",
+   "frames": 192,
+   "keys": [
+    [
+     0,
+     9.0,
+     -12.5,
+     2.3
+    ],
+    [
+     191,
+     6.5,
+     -11.0,
+     2.4
+    ]
+   ],
+   "look_at": [
+    [
+     0,
+     -3.0,
+     -5.0,
+     0.6
+    ],
+    [
+     191,
+     -6.0,
+     0.0,
+     1.8
+    ]
+   ],
+   "lens": 24
+  },
+  {
+   "name": "B3_LivingView",
+   "preset": "interior_drift",
+   "frames": 192,
+   "keys": [
+    [
+     0,
+     4.0,
+     12.0,
+     5.3
+    ],
+    [
+     191,
+     2.5,
+     8.0,
+     5.25
+    ]
+   ],
+   "look_at": [
+    [
+     0,
+     -3.0,
+     -30.0,
+     3.2
+    ],
+    [
+     191,
+     -5.0,
+     -60.0,
+     2.4
+    ]
+   ],
+   "lens": 20
+  },
+  {
+   "name": "B4_TopDownRise",
+   "preset": "top_down_rise",
+   "frames": 192,
+   "keys": [
+    [
+     0,
+     0.0,
+     0.0,
+     28.0
+    ],
+    [
+     191,
+     -8.0,
+     -45.0,
+     110.0
+    ]
+   ],
+   "look_at": [
+    [
+     0,
+     0.0,
+     4.0,
+     0.0
+    ],
+    [
+     191,
+     -2.0,
+     -32.0,
+     0.0
+    ]
+   ],
+   "lens": 28
+  },
+  {
+   "name": "B5_Walkthrough",
+   "preset": "walkthrough",
+   "frames": 240,
+   "keys": [
+    [
+     0,
+     -0.5,
+     -4.5,
+     1.65
+    ],
+    [
+     84,
+     -0.5,
+     -0.9,
+     1.65
+    ],
+    [
+     167,
+     -2.5,
+     4.5,
+     1.65
+    ],
+    [
+     239,
+     -6.4,
+     7.6,
+     1.7
+    ]
+   ],
+   "look_at": [
+    [
+     0,
+     -0.5,
+     6.0,
+     1.6
+    ],
+    [
+     84,
+     -2.0,
+     6.0,
+     1.5
+    ],
+    [
+     167,
+     -7.0,
+     10.0,
+     2.2
+    ],
+    [
+     239,
+     -8.6,
+     13.0,
+     3.4
+    ]
+   ],
+   "lens": 18
+  },
+  {
+   "name": "B6_BeachTrack",
+   "preset": "gimbal_track",
+   "frames": 240,
+   "keys": [
+    [
+     0,
+     12.31,
+     -62.03,
+     -1.55
+    ],
+    [
+     239,
+     25.5,
+     -60.3,
+     -1.63
+    ]
+   ],
+   "look_at": {
+    "follow": "Rig_Person_BeachWalk",
+    "offset": [
+     0.0,
+     0.0,
+     1.25
+    ]
+   },
+   "lens": 35
+  },
+  {
+   "name": "B7_CarArrival",
+   "preset": "car_track",
+   "frames": 240,
+   "keys": [
+    [
+     0,
+     -30.0,
+     52.5,
+     1.1
+    ],
+    [
+     119,
+     -6.0,
+     52.2,
+     1.2
+    ],
+    [
+     186,
+     3.5,
+     49.5,
+     1.4
+    ],
+    [
+     239,
+     8.6,
+     47.5,
+     1.7
+    ]
+   ],
+   "look_at": {
+    "follow": "HeroCar",
+    "offset": [
+     0.0,
+     0.0,
+     0.9
+    ]
+   },
+   "lens": 35,
+   "guide_frames": [
+    51,
+    131
+   ]
+  }
+ ],
+ "lighting": {
+  "world": "PolyHaven qwantani_morning_puresky",
+  "sun": {
+   "energy": 5.5,
+   "angle_deg": 0.8,
+   "rotation_deg": [
+    45,
+    10,
+    160
+   ]
+  }
+ },
+ "passes": {
+  "density": {
+   "min_total": 1500,
+   "min": {
+    "Landscape": 800,
+    "Site": 300
+   }
+  },
+  "clearance": {
+   "radius": 0.35,
+   "every": 4
+  },
+  "guides": true,
+  "id": true,
+  "resolution": [
+   1920,
+   1080
+  ],
+  "percent": 50
+ }
+}

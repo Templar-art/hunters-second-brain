@@ -74,3 +74,9 @@ Job: [JOB.md](../../projects/blender-blockouts/beach/JOB.md). **Status: review, 
 - **Face test on shot 06** (Hunter: faces were messing up): Kling 3.0 Pro (12.5) against Veo 3.1 Fast (32). Both held faces in one continuous take. Kling gave a true sideways track with a stable background. Veo gave sharper faces, but the background houses drift late. Side-by-side: `video/facetest/facetest-side-by-side.mp4`.
 - **Lesson:** Seedance from a still is fine for empty-architecture moves (03/04/05) but weak for people and vehicles. For shots with people, Kling 3.0 Pro is the cheapest clean option tested.
 - **Open:** choose Kling or Veo for the people shots, then re-roll 01, 06 and 07 and re-cut.
+
+## Kit v1: spec-driven builds (20 Oct)
+
+Hand-building is replaced. Scenes are now described in a `scene.json` and built headless by the [Blender kit](../../projects/blender-kit/README.md) (modules: site, landscape, people, cameras, passes, plus an asset library extracted from the beach scene). **The beach rebuild took 4.3 s instead of about 6 h**: 1,729 objects against 1,768, 78 of 86 object families matching exactly, and all 8 guide frames lining up ([compare sheet](../../projects/blender-blockouts/beach/kit/build/compare-guides.jpg)). Density and camera clearance are checked automatically on every build. The house is still imported until phase 4 (house generator) of [[job-framework-v2]].
+
+**Gotcha:** Blender 5 uses layered actions, so `action.fcurves` is gone. Use `bpy_extras.anim_utils.action_get_channelbag_for_slot(action, slot).fcurves` (wrapped as `core.fcurves`).
