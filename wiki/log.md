@@ -1317,3 +1317,6 @@ Hunter locked SaaS v2. GPU v2 has the upgrades ported plus pre-fixed on-story mo
 
 ## [2026-10-20] migrate | USE redo: GPU v2 locked, CPU v3 built
 Hunter locked GPU v2. CPU v3 has the upgrades ported plus pre-fixed on-story motion. One 0.5 s still at 16.1 s (between traces finishing and pulses starting) was fixed by starting the pulses earlier. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: CPU v3 locked, Git v3 built
+Hunter locked CPU v3. Git v3 has the upgrades ported plus on-story motion over all 16 dead holds in v2. All clear after widening one allow window. Waiting on Gate B. No spend.
