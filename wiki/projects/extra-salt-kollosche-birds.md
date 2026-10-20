@@ -1,7 +1,7 @@
 ---
 type: project
 tags: [extra-salt, blender, vfx, camera-tracking, drone]
-status: review
+status: delivered
 updated: 2026-10-20
 ---
 
