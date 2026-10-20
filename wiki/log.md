@@ -1299,3 +1299,6 @@ Hunter locked CLI v3. JSON v4 has the upgrades ported plus an idle float (QC fre
 
 ## [2026-10-20] ingest | Solis pool cinemagraph delivered
 Salt PM, Solis 673 Casuarina Way frame 16 → 10s 9:16 cinemagraph. Seedance 2.5 i2v with camera lock moved only the water and spout (160 hf). Clouds were added free in post with an anchored sky-zoom composite. Harvested into [[solis-pool-cinemagraph]] and linked from [[salt-pm]] + index.
+
+## [2026-10-20] migrate | USE redo: JSON v4 locked, SDK v4 built
+Hunter locked JSON v4. SDK v4 has the upgrades ported; QC FREEZE caught 6 dead stretches, fixed with on-story motion (wrap pulse, request packets, stack float). All checks clear, loudness equal to v3. Waiting on Gate B. No spend.

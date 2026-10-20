@@ -5,13 +5,16 @@ window.EP = {
   punchIns: [[3.7, 5.2]],
   captions: [[PREV_IN, WRAP_IN, 1240], [CALLS_IN, STACK_IN, 1010, 'dark']],
   cuts: [PREV_IN, WRAP_IN, CALLS_IN, STACK_IN, END_IN],
+  // v4 (redo pass): deliberate transitions the QC continuity check should ignore
+  qcAllow: [[0, 0.6], [1.6, 2.5], [3.2, 4.0], [4.7, 6.2], [7.4, 7.8], [8.2, 8.6], [13.6, 14.3], [19.5, 20.6], [21.2, 21.6],
+            [22.3, 22.9], [23.7, 25.0]],
   frame(T) {
-    if (T < PREV_IN) titleCard(T, 'SDK', 1.9);
+    if (T < PREV_IN) titleCard(T, 'SDK', 1.9, 'Definitions', [985, 800]);   // v4: shards off the ear line
     else if (T < WRAP_IN) scenePrev(T);
     else if (T < CALLS_IN) sceneWrap(T);
     else if (T < STACK_IN) sceneCalls(T);
     else if (T < END_IN) sceneStack(T);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v4: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -58,6 +61,10 @@ function sceneWrap(T) {
     if (i > 0) { font(500, 20, MONO); g.letterSpacing = '3px'; g.fillStyle = col; g.fillText(tag, cx - rw + 22, cy - rh + 36); g.letterSpacing = '0px'; }
     g.restore();
   });
+  // v4: wrap pulse — a soft ring radiates from the core out through the shells (keeps the diagram alive)
+  if (T > 6.0) for (let k = 0; k < 2; k++) { const u = ((T - 6.0) / 1.6 + k / 2) % 1, rw = lerp(170, 480, u), rh = lerp(70, 315, u);
+    g.save(); g.globalAlpha = .55 * (1 - u) * clamp((T - 6.0) / .5); g.strokeStyle = CYAN; g.lineWidth = 6;
+    g.beginPath(); g.roundRect(cx - rw, cy - rh, rw * 2, rh * 2, 36); g.stroke(); g.restore(); }
   // API block at the core
   const pa = back((T - 5.22) / .45);
   if (pa > 0) { g.save(); g.translate(cx, cy); g.scale(pa, pa); g.shadowColor = 'rgba(0,155,232,.6)'; g.shadowBlur = 40; g.fillStyle = BLUE;
@@ -73,6 +80,10 @@ function sceneWrap(T) {
     g.save(); g.translate(x, y); g.scale(p, p); g.fillStyle = WHITE; g.beginPath(); g.arc(0, 0, 62, 0, 7); g.fill();
     g.strokeStyle = INK; g.lineWidth = 5; g.beginPath(); g.arc(0, -12, 16, 0, 7); g.stroke(); g.beginPath(); g.arc(0, 40, 30, Math.PI * 1.1, Math.PI * 1.9); g.stroke();
     font(500, 22, MONO); g.fillStyle = CYAN; g.textAlign = 'center'; g.fillText('DEV', 0, 100); g.textAlign = 'left'; g.restore(); });
+  // v4: once plugged in, request packets run from each dev up into the SDK
+  [[150, 1380], [540, 1460], [930, 1380]].forEach(([x, y], i) => { if (T < 10.6 + i * .18) return;
+    const u = ((T - 10.6 - i * .18) / .9 + i * .33) % 1, px = lerp(x, cx + (x - cx) * .3, u), py = lerp(y - 70, cy + 230, u);
+    g.save(); g.shadowColor = CYAN; g.shadowBlur = 24; g.fillStyle = WHITE; g.beginPath(); g.arc(px, py, 13, 0, 7); g.fill(); g.restore(); });
   rise('Easier access.', 80, 1700, T - 12.02, { size: 130, w: 800, col: WHITE, dur: .45 });
   g.restore();
 }
@@ -104,7 +115,8 @@ function sceneStack(T) {
   g.fillStyle = WHITE; g.fillRect(0, 0, W, H);
   typeOn('Build on top of what exists', 60, 330, T - 20.2, { size: 30, col: BLUE, track: 5, upper: true, cps: 40 });
   rise('On top.', 54, 560, T - 22.4, { size: 200, w: 800, col: INK, dur: .45 });
-  LAYERS.forEach(([lab, col, at], i) => { const y = 1500 - i * 230, p = clamp((T - at) / .32), b = back(p), drop = (1 - expo(p)) * -900;
+  const bob = Math.sin((T - STACK_IN) * 2.2) * 12 * clamp((T - 20.6) / .4);   // v4: the built stack floats as one unit, never dead
+  LAYERS.forEach(([lab, col, at], i) => { const y = 1500 - i * 230 + bob, p = clamp((T - at) / .32), b = back(p), drop = (1 - expo(p)) * -900;
     if (p <= 0) return; const squash = 1 + (1 - clamp(b)) * .2;
     g.save(); g.translate(540, y + 100 + drop); g.scale(1, i < 2 ? 1 : 1 / squash); g.translate(-540, -(y + 100));
     card(140, y, 800, 200, col, 28, .2);
