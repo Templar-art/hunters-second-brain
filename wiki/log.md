@@ -1350,3 +1350,6 @@ Hunter asked for birds flying past a 1.9s Pottsville drone wide with the grade u
 
 ## [2026-10-20] migrate | USE redo: Ask the vision v2 + Scope myth v4 locked, Handover v2 built
 Hunter locked Ask the vision v2 and Scope myth v4. Handover v2 is built: upgrades ported and loop-scene dead holds pre-fixed (traveller + blue radar sweep, alive hub, kit and repo pill). Cyan on the light page still froze 0.7 s; the deeper brand blue cleared it. All QC clear. Waiting on Hunter's Gate B for the last episode of the redo pass. No spend.
+
+## [2026-10-20] migrate | USE redo: Handover v2 locked, redo pass complete
+Hunter locked Handover v2. Every sent episode in the v2 redo pass is now locked (skipped: API, MCP, SQL, Webhooks). No spend.
