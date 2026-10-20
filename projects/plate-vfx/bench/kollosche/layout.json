@@ -1,0 +1,103 @@
+{
+ "aspect": "16:9",
+ "seed": 1,
+ "safe_rect": [
+  0.0,
+  0,
+  1920.0,
+  1080
+ ],
+ "birds": [
+  {
+   "tag": "hero",
+   "depth": 6.34,
+   "sx": -832,
+   "sy": -260,
+   "speed": 9.9,
+   "hz": 3.09,
+   "phase": 0.79,
+   "heading": 51.5,
+   "bank": 12.6,
+   "span": 0.91,
+   "glides": [
+    [
+     1.19,
+     1.71
+    ]
+   ],
+   "score": {
+    "visible": 1.0,
+    "min_px": 48.548,
+    "max_px": 186.95,
+    "overlap": 0.0
+   }
+  },
+  {
+   "tag": "b2",
+   "depth": 11.14,
+   "sx": 266,
+   "sy": -228,
+   "speed": 10.62,
+   "hz": 3.21,
+   "phase": 0.09,
+   "heading": 51.9,
+   "bank": 13.3,
+   "span": 0.98,
+   "glides": [
+    [
+     0.6,
+     1.12
+    ]
+   ],
+   "score": {
+    "visible": 1.0,
+    "min_px": 42.917,
+    "max_px": 114.419,
+    "overlap": 0.0
+   }
+  },
+  {
+   "tag": "b3",
+   "depth": 19.83,
+   "sx": 382,
+   "sy": -412,
+   "speed": 9.44,
+   "hz": 2.98,
+   "phase": 0.47,
+   "heading": 36.3,
+   "bank": 10.5,
+   "span": 0.99,
+   "glides": [],
+   "score": {
+    "visible": 1.0,
+    "min_px": 37.826,
+    "max_px": 64.952,
+    "overlap": 0.0
+   }
+  },
+  {
+   "tag": "b4",
+   "depth": 21.98,
+   "sx": -324,
+   "sy": -335,
+   "speed": 9.27,
+   "hz": 2.89,
+   "phase": 0.34,
+   "heading": 39.7,
+   "bank": 11.0,
+   "span": 0.95,
+   "glides": [
+    [
+     0.0,
+     0.5
+    ]
+   ],
+   "score": {
+    "visible": 1.0,
+    "min_px": 33.954,
+    "max_px": 56.236,
+    "overlap": 0.0
+   }
+  }
+ ]
+}

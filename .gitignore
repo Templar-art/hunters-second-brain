@@ -77,3 +77,11 @@ projects/extra-salt-kollosche-birds/src/
 projects/extra-salt-kollosche-birds/out/*.mov
 projects/extra-salt-kollosche-birds/*.blend1
 projects/extra-salt-kollosche-birds/track.log
+
+# plate-vfx: benchmark/job frames, renders, comps, outputs regenerate from plate_vfx.py
+projects/plate-vfx/bench/*/frames/
+projects/plate-vfx/bench/*/render/
+projects/plate-vfx/bench/*/comp/
+projects/plate-vfx/bench/*/out/
+projects/plate-vfx/bench/*/src/
+projects/plate-vfx/**/__pycache__/

@@ -1359,3 +1359,6 @@ Answered Prompt 2 of the FCP plugin research (SFX sources) by web research. File
 
 ## [2026-10-21] query | FCP 12.4 plugin research (Prompt 1)
 Answered Prompt 1 of [[fcp-plugin-research]] by web research (five parallel passes: FCP-native features, audio + captions, reframe + colour, organisation + AI + interchange, motion graphics). Key shifts: FCP 12.3 now does burned-in word-by-word captions, Match Color, Auto Mask and HEVC proxies natively; Apple bought motionVFX (16 Mar 2026) and Boris FX bought iZotope (2 Jul 2026); mReal Estate and mLogo are already in the owned DesignStudio. Buy-first: Jumper, dxRevive, DipSync, Neat Video 6, ScriptStar, Arctic, Globe Trotter 3, captionTranslator, about US$592 all one-off. Flagged [[video-edit-pipeline]] as contradicting the FCP setup. No spend.
+
+## [2026-10-21] ingest | plate-vfx skill + pipeline v1
+Turned the Kollosche gulls job into a reusable pipeline (projects/plate-vfx) and skill (plate-vfx). It has cut detection, a multi-start constrained drone-camera fit (0.15 px on the benchmark), plate matching (sky, warmth, grain), auto-routed flight paths for 16:9/9:16, and draft/standard/hero tiers. The standard and hero tiers use a rigged CC-BY Sketchfab herring gull. Hunter updated the Blender MCP addon and enabled Sketchfab. New page [[plate-vfx]]. No spend.
