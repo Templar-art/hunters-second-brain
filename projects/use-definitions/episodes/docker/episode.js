@@ -4,16 +4,18 @@ window.EP = {
   dur: 43.3, voEnd: 40.0,
   punchIns: [[33.0, 35.1]],
   cuts: [VM_IN, BOX_IN, CLONE_IN, SETUP_IN, SHIP_IN, SEC_IN, END_IN],
+  // v2 (redo pass): deliberate transitions the QC continuity check should ignore (hard cuts get ±0.3 s)
+  qcAllow: [[0, 0.6], [1.9, 2.8], [5.4, 6.6], [13.0, 13.8], [18.5, 19.8], [27.6, 28.3], [30.5, 31.2], [34.8, 35.5], [39.6, 40.6]],
   captions: [[VM_IN, BOX_IN, 1040], [SHIP_IN, SEC_IN, T => lerp(H + 40, PANEL_Y, expo((T - SHIP_IN) / .6)) - 60]],
   frame(T) {
-    if (T < VM_IN) titleCard(T, 'DOCKER', 2.2);
+    if (T < VM_IN) titleCard(T, 'DOCKER', 2.2, 'Definitions', [985, 800]);   // v2: shards off the ear line
     else if (T < BOX_IN) sceneVM(T);
     else if (T < CLONE_IN) sceneBox(T);
     else if (T < SETUP_IN) sceneClone(T);
     else if (T < SHIP_IN) sceneSetup(T);
     else if (T < SEC_IN) sceneShip(T);
     else if (T < END_IN) sceneSecure(T);
-    else endCard(T, END_IN, this.dur);
+    else endCard(T, END_IN, this.dur, 'Definitions', true);   // v2: alive end card
     mosaic(T, END_MOS, 9);
   },
   cues() {
@@ -64,11 +66,15 @@ function sceneBox(T) {
 function sceneClone(T) {
   g.fillStyle = LIGHT; g.fillRect(0, 0, W, H);
   typeOn('Same environment, any machine', 60, 250, T - 13.5, { size: 28, col: BLUE, track: 5, upper: true, cps: 36 });
-  cargo(540, 520, 420, 170, back((T - 13.6) / .45));
-  [['Laptop', 200, 15.34], ['Server', 540, 16.64], ['Cloud', 880, 17.26]].forEach(([lab, x, at]) => { const q = expo((T - at) / .5);
+  const sy = 520 + Math.sin((T - 13.6) * 2.6) * 16;   // v2: source container floats (old render: still 14–19.5 s)
+  [[200, 15.34], [540, 16.64], [880, 17.26]].forEach(([x, at]) => { if (T < 13.9 || T > at) return;   // v2: copy beams reach for each machine until it lands
+    g.save(); g.globalAlpha = clamp((T - 13.9) / .4); g.setLineDash([14, 12]); g.lineDashOffset = -T * 90; g.strokeStyle = BLUE; g.lineWidth = 5; g.beginPath(); g.moveTo(540, sy + 85); g.lineTo(x, 1000); g.stroke(); g.restore(); });
+  cargo(540, sy, 420, 170, back((T - 13.6) / .45));
+  if (T > 14.0) { const sx = ((T - 14.0) * 700) % 1400 - 400; g.save(); g.beginPath(); g.roundRect(330, sy - 85, 420, 170, 10); g.clip(); g.fillStyle = 'rgba(255,255,255,.35)'; g.beginPath(); g.moveTo(330 + sx, sy - 85); g.lineTo(450 + sx, sy - 85); g.lineTo(390 + sx, sy + 85); g.lineTo(270 + sx, sy + 85); g.fill(); g.restore(); }   // v2: image shine sweeps
+  [['Laptop', 200, 15.34], ['Server', 540, 16.64], ['Cloud', 880, 17.26]].forEach(([lab, x, at], i) => { const q = expo((T - at) / .5), bob = Math.sin(T * 2.4 + i * 2.1) * 12 * clamp((T - at - .5) / .4);
     g.fillStyle = WHITE; g.strokeStyle = '#C9CDD2'; g.lineWidth = 3; g.beginPath(); g.roundRect(x - 150, 1000, 300, 360, 24); g.fill(); g.stroke();
     font(700, 48, COND); g.fillStyle = INK; g.textAlign = 'center'; g.fillText(lab, x, 1320); g.textAlign = 'left';
-    if (q > 0) { const yy = lerp(520, 1130, q), xx = lerp(540, x, q); cargo(xx, yy, 230, 100, lerp(.6, 1, q)); }
+    if (q > 0) { const yy = lerp(520, 1130, q) + bob, xx = lerp(540, x, q); cargo(xx, yy, 230, 100, lerp(.6, 1, q)); }
     if (q > .95) pillC('✓', x + 120, 1030, back((T - at - .5) / .3), CYAN, NAVY, 22); });
   const im = expo((T - 18.6) / .2); if (im > 0) { g.fillStyle = `rgba(255,255,255,${.6 * (1 - clamp((T - 18.7) / .3))})`; g.fillRect(0, 0, W, H); }
   rise('Immediately.', 54, 1600, T - 18.6, { size: 150, w: 800, col: INK, dur: .4 });
@@ -82,15 +88,16 @@ function sceneSetup(T) {
   const sweep = inOut((T - 27.76) / .5);
   [['Your computer', 60], ['My computer', 560]].forEach(([lab, x], side) => { const q = expo((T - 19.72 - side * .2) / .45); if (q <= 0) return;
     const pulse = Math.max(0, 1 - Math.abs(T - (side ? 30.0 : 29.4)) / .3);
-    g.save(); g.globalAlpha = q; card(x, 340, 460, 900, pulse > 0 ? lerpC(WHITE, '#DFF8FB', pulse) : WHITE, 26, .1); font(800, 60, COND); g.fillStyle = INK; g.fillText(lab, x + 34, 430);
+    const fy = Math.sin((T - 19.7) * 2 + side * Math.PI) * 12 * clamp((T - 20.2) / .5);   // v2: machines float in opposite phase (old render: still 20.3–29 s)
+    g.save(); g.globalAlpha = q; g.translate(0, fy); card(x, 340, 460, 900, pulse > 0 ? lerpC(WHITE, '#DFF8FB', pulse) : WHITE, 26, .1); font(800, 60, COND); g.fillStyle = INK; g.fillText(lab, x + 34, 430);
     DEPS.forEach(([d, a, b], i) => { const at = [22.44, 22.84, 24.08, 25.04][i], r = expo((T - at) / .3); if (r <= 0) return; const y = 540 + i * 150, off = sweep * (side ? 600 : -600);
       g.save(); g.globalAlpha = q * r * (1 - sweep * .5);
       font(500, 30, MONO); g.fillStyle = INK; g.fillText(d, x + 34, y); g.fillStyle = side ? '#9A6200' : BLUE; g.fillText(side ? b : a, x + 300, y);
-      if (side) { g.fillStyle = '#F5A524'; g.beginPath(); g.arc(x + 420, y - 10, 18, 0, 7); g.fill(); font(800, 26, COND); g.fillStyle = WHITE; g.fillText('✗', x + 411, y - 1); }
+      if (side) { g.fillStyle = '#F5A524'; g.beginPath(); g.arc(x + 420, y - 10, 18 + Math.max(0, Math.sin(T * 5 - i)) * 6 * (1 - sweep), 0, 7); g.fill(); font(800, 26, COND); g.fillStyle = WHITE; g.fillText('✗', x + 411, y - 1); }
       if (sweep > 0) { g.globalAlpha = 1; g.fillStyle = CYAN; g.fillRect(x + 30, y - 12, 400 * sweep, 5); }
       g.restore(); });
     g.restore(); });
-  pillC('SAME APP', 540, 320, back((T - 21.18) / .35), BLUE, WHITE, 26);
+  pillC('SAME APP', 540, 320 + Math.sin(T * 2.6) * 8, back((T - 21.18) / .35), BLUE, WHITE, 26);
   if (T > 25.2 && sweep < .5) pillC('VERSIONS DON’T MATCH', 540, 1340, back((T - 25.5) / .35), '#F5A524', WHITE);
   rise('Not worried.', 54, 1560, T - 27.88, { size: 160, w: 800, col: INK, dur: .45 });
   faceCircle(910, 1740, 110, back((T - SETUP_IN - .2) / .6));
@@ -108,13 +115,17 @@ function sceneShip(T) {
 function sceneSecure(T) {
   g.fillStyle = NAVY; g.fillRect(0, 0, W, H);
   typeOn('And it’s isolated', 70, 250, T - SEC_IN - .1, { size: 30, col: CYAN, track: 6, upper: true, cps: 32 });
-  cargo(540, 1300, 460, 180, back((T - SEC_IN - .1) / .45));
+  cargo(540, 1300 + Math.sin((T - SEC_IN) * 2.2) * 12, 460, 180, back((T - SEC_IN - .1) / .45));   // v2: container bobs (old render: still 36.3–39 s)
   const sys = back((T - 35.2) / .45); if (sys > 0) { g.save(); g.translate(540, 520); g.scale(sys, sys); card(-260, -110, 520, 220, '#0E3148', 22, .3);
     font(800, 64, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('Your system', 0, 0); font(500, 22, MONO); g.fillStyle = GREY; g.fillText('HIGHER-LEVEL FUNCTIONS', 0, 50); g.textAlign = 'left'; g.restore(); }
   // arrow up from the container, stopped by a shield
   const sh = back((T - 36.0) / .35), a = expo((T - 36.3) / .5); g.strokeStyle = '#F5A524'; g.lineWidth = 8; g.lineCap = 'round'; g.beginPath(); g.moveTo(540, 1200); g.lineTo(540, lerp(1200, 1000, a)); g.stroke(); if (sh > 0) { g.save(); g.translate(540, 880); g.scale(sh, sh);
     g.fillStyle = CYAN; g.beginPath(); g.moveTo(0, -90); g.lineTo(80, -60); g.lineTo(70, 30); g.quadraticCurveTo(40, 80, 0, 100); g.quadraticCurveTo(-40, 80, -70, 30); g.lineTo(-80, -60); g.closePath(); g.fill();
     g.strokeStyle = NAVY; g.lineWidth = 10; g.beginPath(); g.moveTo(-30, 0); g.lineTo(-5, 28); g.lineTo(35, -25); g.stroke(); g.restore(); }
+  // v2: repeated escape attempts fire up from the container and bounce off the shield
+  if (T > 36.8) for (let k = 0; k < 3; k++) { const t = ((T - 36.8) * .9 + k / 3) % 1, x = 540 + (k - 1) * 120, up = t < .6, yy = up ? lerp(1180, 990, t / .6) : lerp(990, 1120, (t - .6) / .4), xx = up ? x * .3 + 540 * .7 + (x - 540) * .7 * (t / .6) : x + (x - 540) * (t - .6) * 1.5;
+    g.save(); g.globalAlpha = up ? 1 : 1 - (t - .6) / .4; g.shadowColor = '#F5A524'; g.shadowBlur = 16; g.fillStyle = '#F5A524'; g.beginPath(); g.arc(xx, yy, 13, 0, 7); g.fill(); g.restore();
+    if (!up) { const r = (t - .6) / .4; g.strokeStyle = `rgba(18,221,235,${.6 * (1 - r)})`; g.lineWidth = 5; g.beginPath(); g.arc(540, 880, 110 + r * 120, 0, 7); g.stroke(); } }
   rise('More secure.', 70, 1640, T - 39.08, { size: 150, w: 800, col: WHITE, dur: .45 });
   faceCircle(900, 1780, 100, back((T - SEC_IN - .2) / .6));
 }

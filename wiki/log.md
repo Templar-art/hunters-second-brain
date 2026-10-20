@@ -1320,3 +1320,6 @@ Hunter locked GPU v2. CPU v3 has the upgrades ported plus pre-fixed on-story mot
 
 ## [2026-10-20] migrate | USE redo: CPU v3 locked, Git v3 built
 Hunter locked CPU v3. Git v3 has the upgrades ported plus on-story motion over all 16 dead holds in v2. All clear after widening one allow window. Waiting on Gate B. No spend.
+
+## [2026-10-20] migrate | USE redo: Git v3 locked, Docker v2 built
+Hunter locked Git v3. Docker v2 has the upgrades ported plus on-story motion over all 10 dead holds in v1. A float alone froze on the light background, so copy beams and a shine were added. All clear. Waiting on Gate B. No spend.
