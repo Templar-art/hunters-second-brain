@@ -1,6 +1,6 @@
 # Huracán LP580-2 (ZEDDDD) in Blender
 
-Hunter's reference photo: an orange Huracán LP580-2, NSW plate ZEDDDD, on a grass-paver drive (2026-10-21). He wants the car for a clip.
+Hunter's reference photo: an orange Huracán LP580-2, QLD plate ZEDDDD, on a grass-paver drive (2026-10-21). He wants the car for a clip.
 
 - `huracan_lp580-2.blend` (local only, `*.blend` is gitignored). The car is the `Sketchfab_model` hierarchy: 4.46 m long (real LP580-2 = 4.459 m), wheels on z=0.
 - Paint: `baseM_CarPaint_Max1`, a deep orange with a clear coat (0.85/0.075/0 linear, metallic 0.25, coat roughness 0.02). Matched by eye to the photo under AgX Punchy.
