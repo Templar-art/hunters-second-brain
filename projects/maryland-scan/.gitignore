@@ -1,0 +1,6 @@
+drone/
+ground/
+frames*/
+*.usdz
+*.log
+tools/scan
