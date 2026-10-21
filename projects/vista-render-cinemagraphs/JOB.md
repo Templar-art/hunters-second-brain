@@ -63,3 +63,4 @@ Source: 12 developer renders pasted by Hunter (2000×1368) → `inputs/1–12.jp
 - 2026-10-21 | 10 hf | up_05_powder_v2 bytedance_video_upscale (gen-runner)
 - 2026-10-21 | 10 hf | up_04_living_v1 bytedance_video_upscale (gen-runner)
 - 2026-10-21 | 10 hf | up_07_laundry_169_v1 bytedance_video_upscale (gen-runner)
+- 2026-10-21 · 16:9 full-frame Reel 1 → `reels/salisbury_reel1_169_fullframe.mp4` (1920×1080p50, 21.76s). Exterior → bedroom → kitchen at 75% speed, one by one, hard cuts on Lay Back onsets 0.255/6.037/12.376, shutter pop on each cut, each clip's own ambience only under it, logo card hard cut at 18.75 w/ click+thud, ~3s hold. Builder `work/build_169_seq.py`. Cuts QC'd at 0.26/6.04/12.38/18.76. 0 credits.
