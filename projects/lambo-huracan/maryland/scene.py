@@ -29,7 +29,7 @@ W2, H2, F, CX, CY, CAMH = 1600, 1066, 1102.0, 800.0, 533.0, 1.6
 FPS, NF = 25, 240
 
 # driveway centreline picked on the 2x plate, then on past the gate and out to the left (street)
-PTS_IMG = [(566, 572), (555, 600), (568, 635), (610, 668), (680, 700), (745, 725), (735, 780), (640, 840)]
+PTS_IMG = [(578, 572), (590, 600), (625, 635), (680, 668), (740, 700), (780, 725), (760, 780), (660, 840)]
 PTS = [((u - CX) / F * (F * CAMH / (v - CY)), F * CAMH / (v - CY)) for u, v in PTS_IMG]
 PTS += [(-3.5, 5.6), (-7.0, 5.2), (-11.0, 5.0)]
 
