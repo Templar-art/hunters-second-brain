@@ -23,13 +23,14 @@ T = {
   "Real night is dark. The sky is a deep navy, not black, and near towns the horizon glows orange-brown from light pollution. On a moonlit night the sky goes faint blue and the land reads as cool silver. Stars only show up away from city lights. Artificial lights dominate the ground.",
   "clear night sky, deep navy blue, faint stars, subtle warm light-pollution glow on the horizon, scene lit by warm artificial lights, cool moonlit tones in the shadows"),
 }
+SHOW = ["sunset", "dusk"]  # Hunter 2026-10-21: only golden hour + blue hour matter
 cards = []
-for t, (title, sun, desc, prompt) in T.items():
+for t, (title, sun, desc, prompt) in ((t, T[t]) for t in SHOW):
     imgs = "".join(f'''<figure><img src="picks/{t}_{k}_sun.jpg" loading="lazy"><img src="picks/{t}_{k}_away.jpg" loading="lazy">
 <img class="strip" src="picks/{t}_{k}_strip.jpg" loading="lazy"><figcaption>{'★ best · ' if i==0 else ''}<b>{k}</b> · <a href="https://polyhaven.com/a/{k}">polyhaven</a></figcaption></figure>''' for i, k in enumerate(p[t]))
     cards.append(f'''<section id="{t}"><h2>{title} <span>{sun}</span></h2><p>{desc}</p>
 <div class="prompt"><small>prompt language</small><code>{prompt}</code></div><div class="grid">{imgs}</div></section>''')
-nav = " · ".join(f'<a href="#{t}">{v[0]}</a>' for t, v in T.items())
+nav = " · ".join(f'<a href="#{t}">{T[t][0]}</a>' for t in SHOW)
 html = f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sky Library</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>:root{{--bg:#0e1013;--fg:#e8ecf0;--mut:#8b95a1;--acc:#61a8d8;--card:#171a1f}}
@@ -40,7 +41,7 @@ p{{max-width:900px;color:#c9d1d9}}.prompt{{background:var(--card);border-left:3p
 .prompt small{{display:block;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;font-size:11px}}code{{font-family:inherit;user-select:all}}
 .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}}figure{{margin:0;background:var(--card);padding:6px;border-radius:6px}}
 figure img{{width:49.4%;display:inline-block}}figure img.strip{{width:100%}}figcaption{{font-size:12px;color:var(--mut);padding:4px 2px}}figcaption b{{color:var(--fg);font-weight:600}}</style></head>
-<body><main><h1>Sky Library</h1><p>Real skies from 299 Poly Haven HDRIs (CC0), rendered as the camera actually sees them. Each card shows three views: looking toward the sun (left), sun behind the camera (right), and a 360° strip of the 0–40° band. Night is exposed to read dark, the way real night does. Use these images as AI references and the prompt lines as wording.</p>
+<body><main><h1>Sky Library</h1><p>Real skies from 299 Poly Haven HDRIs (CC0), rendered as the camera actually sees them. Each card shows three views: looking toward the sun (left), sun behind the camera (right), and a 360° strip of the 0–40° band. Blue hour includes dawn skies: the sky looks the same with the sun 0–8° below the horizon either side of the night. Other times of day stay in times.json and sheets/. Use these images as AI references and the prompt lines as wording.</p>
 <nav>{nav}</nav>{"".join(cards)}</main></body></html>'''
 open("index.html", "w").write(html)
 json.dump({t: {"title": v[0], "sun": v[1], "look": v[2], "prompt": v[3]} for t, v in T.items()}, open("times.json", "w"), indent=1)

@@ -1,9 +1,56 @@
 {
- "sunrise": ["umhlanga_sunrise", "kiara_1_dawn", "citrus_orchard_road", "qwantani_sunrise_puresky"],
- "morning": ["museumplein", "driving_school", "rustig_koppie_puresky", "kiara_4_mid-morning"],
- "midday": ["kloofendal_48d_partly_cloudy_puresky", "rosendal_plains_2", "clarens_midday", "sunflowers_puresky"],
- "afternoon": ["skidpan", "oberer_kuhberg", "waterkloof_farm", "kiara_6_afternoon"],
- "sunset": ["grasslands_sunset", "sunset_in_the_chalk_quarry", "minedump_flats", "kloppenheim_06_puresky"],
- "dusk": ["the_sky_is_on_fire", "qwantani_dusk_2_puresky", "rosendal_park_sunset_puresky", "kiara_9_dusk"],
- "night": ["rogland_clear_night", "clarens_night_02", "kloppenheim_02_puresky", "satara_night_no_lamps"]
+ "sunrise": [
+  "umhlanga_sunrise",
+  "kiara_1_dawn",
+  "citrus_orchard_road",
+  "qwantani_sunrise_puresky"
+ ],
+ "morning": [
+  "museumplein",
+  "driving_school",
+  "rustig_koppie_puresky",
+  "kiara_4_mid-morning"
+ ],
+ "midday": [
+  "kloofendal_48d_partly_cloudy_puresky",
+  "rosendal_plains_2",
+  "clarens_midday",
+  "sunflowers_puresky"
+ ],
+ "afternoon": [
+  "skidpan",
+  "oberer_kuhberg",
+  "waterkloof_farm",
+  "kiara_6_afternoon"
+ ],
+ "sunset": [
+  "grasslands_sunset",
+  "sunset_in_the_chalk_quarry",
+  "minedump_flats",
+  "kloppenheim_06_puresky",
+  "wasteland_clouds_puresky",
+  "wildflower_field",
+  "evening_field",
+  "qwantani_sunset",
+  "sunset_meadow_path",
+  "venice_sunset"
+ ],
+ "dusk": [
+  "the_sky_is_on_fire",
+  "qwantani_dusk_2_puresky",
+  "rosendal_park_sunset_puresky",
+  "kiara_9_dusk",
+  "sunset_fairway",
+  "kiara_1_dawn",
+  "venice_dawn_1",
+  "qwantani_dusk_1_puresky",
+  "signal_hill_dawn",
+  "syferfontein_0d_clear_puresky"
+ ],
+ "night": [
+  "rogland_clear_night",
+  "clarens_night_02",
+  "kloppenheim_02_puresky",
+  "satara_night_no_lamps"
+ ]
 }

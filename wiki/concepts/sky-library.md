@@ -25,6 +25,12 @@ This is a reference of what real sky looks like at each time of day. It holds th
   - Night must be exposed dark. Auto-exposure turns a real night into a fake day.
 
 ## Picks (★ = best)
+
+**Hunter, 2026-10-21: only golden hour and blue hour matter.** The page now shows just those two, with 10 options each. Dawn-twilight skies (kiara_1_dawn, venice_dawn_1, signal_hill_dawn) count as blue hour because the sky looks the same at sun 0 to −8°. The other times are kept below for reference.
+
+- Extra golden-hour picks: wasteland_clouds_puresky, wildflower_field, evening_field, qwantani_sunset, sunset_meadow_path, venice_sunset
+- Extra blue-hour picks: sunset_fairway, kiara_1_dawn, venice_dawn_1, qwantani_dusk_1_puresky, signal_hill_dawn, syferfontein_0d_clear_puresky
+
 | Time | Sun elevation | ★ Best | Alternates |
 |---|---|---|---|
 | Sunrise / dawn | −6° → +6° | umhlanga_sunrise | kiara_1_dawn (pre-sun pink band), citrus_orchard_road, qwantani_sunrise_puresky |
