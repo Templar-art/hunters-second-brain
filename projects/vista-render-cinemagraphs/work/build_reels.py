@@ -2,11 +2,13 @@
 clips at 0.5x (work/slow2), click SFX per card, click+thud on the logo, royalty-free lofi bed (Pixabay) + soft wind.
 3 cards: Solis-reference geometry (x37 1006x566, y 64/678/1290). 4 cards: 800x450 centred, 24px gaps.
 usage: build_reels.py out.mp4 music.mp3 music_start clip1 clip2 clip3 [clip4]     0 credits."""
-import sys, subprocess
+import sys, subprocess, os
 out, music, mst, clips = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4:]
 n = len(clips)
 if n == 3: W_, H_, X, YS, POPS, CUT = 1006, 566, 37, [64, 678, 1290], [0.5, 3.5, 6.5], 10.4
 else:      W_, H_, X, YS, POPS, CUT = 800, 450, 140, [24 + i * 474 for i in range(4)], [0.5, 3.0, 5.5, 8.0], 11.0
+if os.environ.get("POPS"):  # music-synced times from work/sync_pops.py: p1,p2,p3,cut
+    v = [float(x) for x in os.environ["POPS"].split(",")]; POPS, CUT = v[:-1], v[-1]
 TOT = CUT + 3.0
 WIND = "/Users/10xhunter/Downloads/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3"
 inp = ["-f", "lavfi", "-i", f"color=c=0x0b0b0a:s=1080x1920:r=50:d={TOT}"]
