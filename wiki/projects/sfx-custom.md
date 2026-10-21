@@ -34,4 +34,23 @@ Lessons:
 - Release the dry layers before the buffer ends, or the reverb tail starts with a hard cut.
 - Always render a spectrogram to check. I can't listen to these, so vertical lines (clicks) and hard edges are the tells.
 
+## Shing (2026-10-21)
+Hunter wanted the flare to go "shinggggg", a metallic sword-draw or sun-glint ring. That's a different sound from the airy lens-flare swells above. Script: [shing.py](../../projects/sfx-custom/shing.py), outputs `out/shing_*.wav`, same format as the lens-flare files.
+
+How it's built:
+- The "sh" is a band-passed noise scrape sweeping 2.5→12 kHz.
+- The "ing" is modal synthesis of a thin steel blade: 7 inharmonic partials, and higher modes decay faster.
+- Each partial is a detuned pair split across L/R. The beating between the pair is the wobbling "nggg" and makes it wide.
+- The strike has a 3% upward pitch flick.
+
+Variants:
+- classic (4.0 s)
+- long (6.9 s, holds the ring)
+- bright (3.5 s, higher + sparkle)
+- glint (1.9 s, short twinkle)
+- heavy (4.9 s, bigger blade)
+- wobble (4.9 s, fast shimmer)
+- sweep-lr / sweep-rl (4.2 s, pans)
+- clean (4.4 s, almost no scrape)
+
 Contrast with [[extra-salt-kollosche-birds]]: synthetic *physical* sounds (wing flaps) read as fake ("like a cloth"), while abstract/designed sounds (shimmer, whoosh) are where synthesis works. For physical sounds, use real recordings.

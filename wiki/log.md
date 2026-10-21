@@ -1380,3 +1380,6 @@ Three procedural lens-flare WAVs (soft, shimmer, sweep) in projects/sfx-custom. 
 
 ## [2026-10-21] ingest | Lens-flare SFX: 12 variants
 Added glint, sunburst, golden-bloom, anamorphic (both directions), riser-into-flare, dreamy, subtle-air and crystal to `projects/sfx-custom/lens_flare.py`. The script is now a VARIANTS table. Spectrogram QC is clean. Variant table is in [[sfx-custom]].
+
+## [2026-10-21] ingest | Shing SFX: 9 variants
+Added `projects/sfx-custom/shing.py`, a metallic blade-ring "shinggg" built from modal synthesis plus a noise scrape. Spectrogram QC is clean. Details are in [[sfx-custom]].
