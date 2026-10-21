@@ -1,0 +1,44 @@
+{
+ "sunrise": {
+  "title": "Sunrise / dawn",
+  "sun": "sun \u22126\u00b0 \u2192 +6\u00b0",
+  "look": "Before the sun clears the horizon: a thin orange-to-peach band sitting on the horizon, fading up into pale lilac then clean blue. Opposite the sun a pink 'Belt of Venus' sits above a grey-blue earth shadow. Once the sun is up the disc is yellow-white, low cloud undersides glow orange, everything above stays cool. Air is clean and cool, less haze than evening.",
+  "prompt": "pre-dawn sky, thin peach-orange band low on the horizon fading through pale lilac to soft clear blue above, cool clean air, sun just cresting, undersides of low clouds lit warm orange, long soft shadows"
+ },
+ "morning": {
+  "title": "Morning",
+  "sun": "sun 10\u201335\u00b0",
+  "look": "Bright, clean, crisp. The sky is a saturated mid-blue that pales toward a near-white horizon. Shadows are long, sharp and slightly cool. Light is neutral-to-warm and directional; cumulus build slowly and stay small and white.",
+  "prompt": "crisp mid-morning sky, saturated clear blue fading to pale near-white at the horizon, a few small bright white cumulus, low raking sunlight from the side, long crisp shadows, clean fresh air"
+ },
+ "midday": {
+  "title": "Midday",
+  "sun": "sun 50\u201380\u00b0",
+  "look": "Hardest light of the day. The deepest blue sits overhead and the sky pales strongly toward a hazy horizon. Shadows are short and sit directly under objects. Fair-weather cumulus are bright white with flat grey bases, and contrast is high. Shoot with the sun behind the camera for the deepest blue; facing the sun the sky washes out.",
+  "prompt": "high-noon sky, deep cobalt blue overhead grading to soft pale haze at the horizon, scattered bright white fair-weather cumulus clouds with flat grey bases, hard overhead sunlight, short shadows, high contrast"
+ },
+ "afternoon": {
+  "title": "Afternoon",
+  "sun": "sun 20\u201345\u00b0",
+  "look": "Like the morning but warmer and hazier. More humidity means taller cumulus and wispy cirrus streaks. Light picks up a hint of gold and shadows lengthen again. This is the classic real-estate blue-sky look when the sun is behind the camera.",
+  "prompt": "late-afternoon sky, clear warm blue with wispy high cirrus streaks and puffy white cumulus, gentle golden tint in the sunlight, lengthening soft shadows, slight atmospheric haze toward the horizon"
+ },
+ "sunset": {
+  "title": "Golden hour / sunset",
+  "sun": "sun +6\u00b0 \u2192 0\u00b0",
+  "look": "Warm, low, directional light. The sun disc is orange and the sky near it glows gold and amber. Higher up and away from the sun the sky stays blue, so there's a big warm-to-cool split across the frame. Clouds catch colour on their sun-facing edges: gold on top, grey-violet in their shadows. Long warm shadows; fa\u00e7ades facing the sun glow.",
+  "prompt": "golden hour sunset, low orange sun disc on the horizon, warm amber and gold glow across the lower sky, scattered clouds lit gold on their edges with violet-grey shadows, sky above stays soft blue, long warm shadows across the ground"
+ },
+ "dusk": {
+  "title": "Dusk / blue hour",
+  "sun": "sun 0\u00b0 \u2192 \u22128\u00b0",
+  "look": "The sun is down, so there are no shadows: all light comes from the sky dome. For a few minutes after sunset clouds can light up pink-orange from below (afterglow). Then a smooth gradient takes over: a warm peach/orange band on the horizon, then rose-lilac, then deep saturated blue overhead. The opposite horizon shows the pink Belt of Venus over the blue earth shadow. Interior and street lights now match the sky brightness: this is the real-estate twilight window.",
+  "prompt": "blue hour twilight about fifteen minutes after sunset, sun below the horizon, smooth gradient from a warm peach-orange band at the horizon through soft rose and lilac into deep saturated blue above, no shadows, soft even ambient light, warm interior lights glowing in the windows"
+ },
+ "night": {
+  "title": "Night",
+  "sun": "sun < \u221218\u00b0",
+  "look": "Real night is dark. The sky is a deep navy, not black, and near towns the horizon glows orange-brown from light pollution. On a moonlit night the sky goes faint blue and the land reads as cool silver. Stars only show up away from city lights. Artificial lights dominate the ground.",
+  "prompt": "clear night sky, deep navy blue, faint stars, subtle warm light-pollution glow on the horizon, scene lit by warm artificial lights, cool moonlit tones in the shadows"
+ }
+}

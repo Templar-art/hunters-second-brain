@@ -1392,3 +1392,6 @@ Built roadmap items #2–4 on the Kollosche benchmark. Lines and sky pass the pl
 
 ## [2026-10-21] lint | plate-vfx dusk shelved
 The day-to-dusk relight (v2, Depth Pro mesh + Cycles) was stopped by Hunter. Window detection at drone scale is the blocker. Lessons are filed in [[plate-vfx-roadmap]].
+
+## [2026-10-21] ingest | Sky library
+Hunter asked what real sky looks like at each time of day and for the best real sky at each. All 299 Poly Haven skies were rendered camera-view and ranked, and 4 were picked per time. Physics notes and prompt wording sit alongside them. See [[sky-library]].

@@ -70,6 +70,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[plate-vfx]] — skill + pipeline: CG birds, tracked lot lines/pins, sky swap, day-to-dusk into real footage; plate untouched; draft/standard/hero tiers (21 Oct, $0)
 - [[sfx-custom]] — procedural original SFX; 12 lens-flare + 9 shing WAVs (21 Oct, $0)
 - [[plate-vfx-roadmap]] — what to build after the birds: tracked flare, property lines, sky swap, day-to-dusk video, CG house, boats, splats (21 Oct)
+- [[sky-library]] — real skies per time of day (299 Poly Haven HDRIs → 28 picks), physics + AI prompt wording; sun-behind judging (21 Oct, $0)
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
 - [[zed-style]] — ZED's canonical staging style, now "Option 01" (warm ivory/oatmeal/walnut/olive/brass); 3rd style change, dated trail of older eras kept; + proposed modern-luxury Options 02–04 (2026-10-09)
