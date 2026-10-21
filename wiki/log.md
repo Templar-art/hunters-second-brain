@@ -1377,3 +1377,6 @@ Hunter rejected the ambience (the gull source has speech) and wanted better flap
 
 ## [2026-10-21] ingest | Custom lens-flare SFX
 Three procedural lens-flare WAVs (soft, shimmer, sweep) in projects/sfx-custom. Clicks were fixed with a crossfaded filter bank, verified by spectrogram. New page [[sfx-custom]]. No spend.
+
+## [2026-10-21] ingest | Lens-flare SFX: 12 variants
+Added glint, sunburst, golden-bloom, anamorphic (both directions), riser-into-flare, dreamy, subtle-air and crystal to `projects/sfx-custom/lens_flare.py`. The script is now a VARIANTS table. Spectrogram QC is clean. Variant table is in [[sfx-custom]].
