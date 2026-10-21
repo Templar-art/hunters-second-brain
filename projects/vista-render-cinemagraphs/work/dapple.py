@@ -5,6 +5,7 @@ import sys, subprocess, numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 SRC, STILL, OUT = sys.argv[1:4]
 W, H, FPS = 1920, 1080, 50
+SLOW = float(sys.argv[4]) if len(sys.argv) > 4 else 1.0  # stretch sway periods to match a slowed clip
 still = np.asarray(Image.open(STILL).convert("L").resize((W, H)), float)
 m = np.clip((still - 190) / 35, 0, 1)
 m[:, 600:] = 0
@@ -35,7 +36,7 @@ while True:
     buf = ff.stdout.read(W * H * 3)
     if len(buf) < W * H * 3: break
     f = np.frombuffer(buf, np.uint8).reshape(H, W, 3).astype(float)
-    t = i / FPS
+    t = i / FPS / SLOW
     dx1 = 200 + 22 * np.sin(2 * np.pi * t / 2.3) + 8 * np.sin(2 * np.pi * t / 0.9)
     dy1 = 200 + 10 * np.sin(2 * np.pi * t / 3.1 + 1)
     dx2 = 200 + 12 * np.sin(2 * np.pi * t / 3.7 + 2)
