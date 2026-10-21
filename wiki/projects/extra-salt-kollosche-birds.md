@@ -21,6 +21,7 @@ Hunter asked for birds to fly past a 1.9s Pottsville drone wide from the Kollosc
 - **Small CG birds on a warm plate need warm light.** A blue sky fill made them look cold. A ~0.2 shutter (about 1/120 s) keeps wing blur believable.
 - **Realistic bird flight** (v3, Hunter asked): asymmetric beat with a slow downstroke and quick upstroke, the wrist folding back on the upstroke, the body rising on the downstroke (not dipping), flap/glide bursts, and banked turns at the coordinated rate g·tan(bank)/v. Key every half frame so motion blur follows the wingbeat.
 - **Procedural wing-flap SFX reads as cloth flapping, and it was too loud.** Hunter wanted ambience, not hits. Use real recordings (distant gulls + soft wind) set just under the clip's audio, and keep flap synthesis out of the default.
+- **SFX v3:** cut real wingbeat grains from the SFX_10X library (`Birds Flapping Whoosh.wav`, `Bird Whoosh 2.wav`) and place one per rendered downstroke, pitched down for gull size and attenuated by distance (`scripts/06_flap_real.py`). `~/Downloads/1-116 Seagull.wav` has speech in it, so don't use it. Drive SFX only download while the Google Drive app is running.
 - Blender clip-tracking ops need the GUI (a Clip Editor area). Run them with `Blender --python` plus a timer and `temp_override`, not `-b`.
 
 Related: [[blender-blockout-pipeline]], [[house-twilight]].

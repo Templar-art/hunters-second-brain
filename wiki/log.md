@@ -1371,3 +1371,6 @@ Procedural flap SFX synced to each gull's downstrokes, using distance for level 
 
 ## [2026-10-21] migrate | Kollosche gulls: ambience instead of flap SFX
 The synth flaps were rejected ("like a cloth", too loud). Replaced them with a quiet ambience bed from real local recordings (distant gull window + soft wind) at -43 dB mean, under the clip audio. Lesson logged on [[extra-salt-kollosche-birds]]. No spend.
+
+## [2026-10-21] migrate | Kollosche gulls: real-grain flap SFX
+Hunter rejected the ambience (the gull source has speech) and wanted better flaps. Built a custom WAV from 11 real wingbeat grains placed on every rendered downstroke, with distance level/high-cut and pan, -18 dBFS peak. No spend.
