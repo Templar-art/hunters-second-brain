@@ -1,0 +1,14 @@
+{
+ "at": 1792549643.5456471,
+ "costs": {
+  "up_02_gate_169_v1": 10.0,
+  "up_01_exterior_v1": 10.0,
+  "up_06_kitchen_v1": 10.0,
+  "up_11_hallway_v1": 10.0,
+  "up_08_bedroom_v1": 10.0,
+  "up_05_powder_v2": 10.0,
+  "up_04_living_v1": 10.0,
+  "up_07_laundry_169_v1": 10.0
+ },
+ "total_pending": 80.0
+}

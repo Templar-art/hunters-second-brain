@@ -12,7 +12,7 @@ if os.environ.get("POPS"):  # music-synced times from work/sync_pops.py: p1,p2,p
 TOT = CUT + 3.0
 WIND = "/Users/10xhunter/Downloads/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3"
 inp = ["-f", "lavfi", "-i", f"color=c=0x0b0b0a:s=1080x1920:r=50:d={TOT}"]
-for c in clips: inp += ["-i", f"work/slow2/{c}.mp4"]
+for c in clips: inp += ["-i", f"{os.environ.get("SLOWDIR", "work/slow2")}/{c}.mp4"]
 inp += ["-loop", "1", "-framerate", "50", "-t", str(TOT), "-i", "assets/endcard_postcard_916.png",
         "-ss", mst, "-i", music, "-i", WIND, "-i", "assets/sfx/click_1.wav", "-i", "assets/sfx/click_5.wav", "-i", "assets/sfx/thud_4.wav"]
 L, M, Wd, K, K5, T4 = n + 1, n + 2, n + 3, n + 4, n + 5, n + 6

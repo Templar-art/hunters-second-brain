@@ -1,0 +1,79 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 90,
+ "defaults": {
+  "model": "bytedance_video_upscale",
+  "params": {
+   "resolution": "1080p",
+   "preset": "aigc",
+   "model_version": "pro",
+   "fps": 24
+  }
+ },
+ "rows": [
+  {
+   "id": "up_02_gate_169_v1",
+   "params": {
+    "video-references": "video/02_gate_169_v1_720.mp4"
+   },
+   "prompt": "",
+   "out": "video/up/02_gate_169_v1_1080up.mp4"
+  },
+  {
+   "id": "up_01_exterior_v1",
+   "params": {
+    "video-references": "video/01_exterior_v1_720.mp4"
+   },
+   "prompt": "",
+   "out": "video/up/01_exterior_v1_1080up.mp4"
+  },
+  {
+   "id": "up_06_kitchen_v1",
+   "params": {
+    "video-references": "video/06_kitchen_v1_720.mp4"
+   },
+   "prompt": "",
+   "out": "video/up/06_kitchen_v1_1080up.mp4"
+  },
+  {
+   "id": "up_11_hallway_v1",
+   "params": {
+    "video-references": "video/11_hallway_v1_720.mp4"
+   },
+   "prompt": "",
+   "out": "video/up/11_hallway_v1_1080up.mp4"
+  },
+  {
+   "id": "up_08_bedroom_v1",
+   "params": {
+    "video-references": "video/08_bedroom_v1_720.mp4"
+   },
+   "prompt": "",
+   "out": "video/up/08_bedroom_v1_1080up.mp4"
+  },
+  {
+   "id": "up_05_powder_v2",
+   "params": {
+    "video-references": "video/05_powder_v2_720.mp4"
+   },
+   "prompt": "",
+   "out": "video/up/05_powder_v2_1080up.mp4"
+  },
+  {
+   "id": "up_04_living_v1",
+   "params": {
+    "video-references": "video/04_living_v1_720.mp4"
+   },
+   "prompt": "",
+   "out": "video/up/04_living_v1_1080up.mp4"
+  },
+  {
+   "id": "up_07_laundry_169_v1",
+   "params": {
+    "video-references": "video/07_laundry_169_v1_720.mp4"
+   },
+   "prompt": "",
+   "out": "video/up/07_laundry_169_v1_1080up.mp4"
+  }
+ ]
+}

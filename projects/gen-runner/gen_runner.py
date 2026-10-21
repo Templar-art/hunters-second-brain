@@ -53,7 +53,7 @@ def load_jobs(path):
     rows = []
     for r in spec["rows"]:
         row = {**d, **r, "params": {**d.get("params", {}), **r.get("params", {})}}
-        for k in ("id", "model", "prompt", "out"):
+        for k in ("id", "model", "out"):  # prompt optional: upscalers etc. take none
             if not row.get(k):
                 sys.exit(f"row {r.get('id', '?')}: missing '{k}'")
         rows.append(row)
@@ -67,7 +67,7 @@ def hf_args(row):
     args = [row["model"]]
     for k, v in row["params"].items():
         args += [f"--{k}", str(v).lower() if isinstance(v, bool) else str(v)]
-    return args + ["--prompt", row["prompt"]]
+    return args + (["--prompt", row["prompt"]] if row.get("prompt") else [])
 
 
 # ---------- estimate ----------
