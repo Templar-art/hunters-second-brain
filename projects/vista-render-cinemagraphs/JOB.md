@@ -1,9 +1,9 @@
 ---
-client: tbc
+client: salisbury   # per Hunter 2026-10-21
 address: "Vista" (render set, 12 renders)
 opened: 2026-10-20
 status: intake         # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 245, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 315, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — Vista renders → cinemagraphs
@@ -29,6 +29,7 @@ Source: 12 developer renders pasted by Hunter (2000×1368) → `inputs/1–12.jp
 - 2026-10-20 Hunter: run the other 5, no loop, upscale to 1080 at 50 fps. Ran 5 × 35 hf (Hunter go). QC: frames locked on all; hallway sun beam + curtain, kitchen floor stripes creep and dim toward sunset, living ceiling patches + palms, exterior fronds + their shadows. Powder room barely moves (0.2% px), weakest. All 6 (bedroom un-looped too) → minterpolate mci 50 fps + lanczos 1920×1080 → `deliver/*_1080p50.mp4` (0 credits). Interp leaves a faint ghost on the bedroom fan blades. Total 210 hf.
 - 2026-10-20 powder re-roll v2 (Hunter go, 35 hf): stronger prompt (steady breeze, dancing leaf shadows on the wall patch, towel stirs). Only marginally more motion (0.7% px vs 0.2%): faint tree + towel. Seedance won't animate this composition much. Delivered `deliver/05_powder_v2_1080p50.mp4`. Fallback if needed: local leaf-shadow dapple composite over the wall sun patch (0 credits). Total 245 hf.
 - 2026-10-20 powder v3 (Hunter asked, 0 credits): local leaf-shadow dapple over v2. Mask = still luminance 190→225 on the wall left of x=600, 6px feather. Two procedural leaf layers (near sharp, far soft) sway on sine offsets with subpixel shift, darken the patch up to ~34% with a slight cool tint. Script `work/dapple.py`. → `deliver/05_powder_v3_dapple_1080p50.mp4`. Awaiting Hunter review.
+- 2026-10-21 Hunter: 2 slow reels × 4 clips for Salisbury → client set. Need 2 more clips: gate (#2) + laundry (#7), generated natively 9:16 from local 9:16 crops (Hunter yes, 70 hf). ❌ BOTH FAILED fixture lock: frame 0 is already re-imagined, not the start image. Gate: background trees replaced, framing shifted. Laundry: zoomed in, a sink added to the left bench, tree and path redrawn. The 16:9 runs from 1920×1080 heroes all held. Suspect 9:16 i2v from a soft 770px-wide crop upscaled 2.5×. Not used.
 
 ## Ledger
 
@@ -40,3 +41,5 @@ Source: 12 developer renders pasted by Hunter (2000×1368) → `inputs/1–12.jp
 - 2026-10-20 | 35 hf | 04_living seedance_2_5 (gen-runner)
 - 2026-10-20 | 35 hf | 01_exterior seedance_2_5 (gen-runner)
 - 2026-10-20 | 35 hf | 05_powder_v2 seedance_2_5 (gen-runner)
+- 2026-10-21 | 35 hf | 02_gate seedance_2_5 (gen-runner)
+- 2026-10-21 | 35 hf | 07_laundry seedance_2_5 (gen-runner)

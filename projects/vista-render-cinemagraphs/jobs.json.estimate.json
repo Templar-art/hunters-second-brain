@@ -1,5 +1,5 @@
 {
- "at": 1792466445.072373,
+ "at": 1792544489.9085262,
  "costs": {
   "08_bedroom": 35.0,
   "11_hallway": 35.0,
@@ -7,7 +7,9 @@
   "06_kitchen": 35.0,
   "04_living": 35.0,
   "01_exterior": 35.0,
-  "05_powder_v2": 35.0
+  "05_powder_v2": 35.0,
+  "02_gate": 35.0,
+  "07_laundry": 35.0
  },
- "total_pending": 35.0
+ "total_pending": 70.0
 }
