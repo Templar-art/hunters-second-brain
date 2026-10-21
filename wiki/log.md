@@ -1374,3 +1374,6 @@ The synth flaps were rejected ("like a cloth", too loud). Replaced them with a q
 
 ## [2026-10-21] migrate | Kollosche gulls: real-grain flap SFX
 Hunter rejected the ambience (the gull source has speech) and wanted better flaps. Built a custom WAV from 11 real wingbeat grains placed on every rendered downstroke, with distance level/high-cut and pan, -18 dBFS peak. No spend.
+
+## [2026-10-21] ingest | Custom lens-flare SFX
+Three procedural lens-flare WAVs (soft, shimmer, sweep) in projects/sfx-custom. Clicks were fixed with a crossfaded filter bank, verified by spectrogram. New page [[sfx-custom]]. No spend.
