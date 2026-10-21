@@ -1,6 +1,6 @@
 {
  "aspect": "16:9",
- "seed": 1,
+ "seed": 2,
  "safe_rect": [
   0.0,
   0,
@@ -10,93 +10,88 @@
  "birds": [
   {
    "tag": "hero",
-   "depth": 6.34,
-   "sx": -832,
-   "sy": -260,
-   "speed": 9.9,
-   "hz": 3.09,
-   "phase": 0.79,
-   "heading": 51.5,
-   "bank": 12.6,
-   "span": 0.91,
+   "depth": 7.24,
+   "sx": 207,
+   "sy": -238,
+   "speed": 10.12,
+   "hz": 2.84,
+   "phase": 0.02,
+   "heading": 39.3,
+   "bank": 10.3,
+   "span": 0.93,
    "glides": [
     [
-     1.19,
-     1.71
+     0.65,
+     1.45
     ]
    ],
    "score": {
     "visible": 1.0,
-    "min_px": 48.548,
-    "max_px": 186.95,
+    "min_px": 53.963,
+    "max_px": 167.121,
     "overlap": 0.0
    }
   },
   {
    "tag": "b2",
-   "depth": 11.14,
-   "sx": 266,
-   "sy": -228,
-   "speed": 10.62,
-   "hz": 3.21,
-   "phase": 0.09,
-   "heading": 51.9,
-   "bank": 13.3,
+   "depth": 11.44,
+   "sx": -642,
+   "sy": -438,
+   "speed": 9.44,
+   "hz": 3.09,
+   "phase": 0.86,
+   "heading": 35.5,
+   "bank": 8.9,
    "span": 0.98,
    "glides": [
     [
-     0.6,
-     1.12
+     1.12,
+     1.5
     ]
    ],
    "score": {
     "visible": 1.0,
-    "min_px": 42.917,
-    "max_px": 114.419,
+    "min_px": 50.066,
+    "max_px": 111.522,
     "overlap": 0.0
    }
-  },
+  }
+ ],
+ "flocks": [
   {
-   "tag": "b3",
-   "depth": 19.83,
-   "sx": 382,
-   "sy": -412,
-   "speed": 9.44,
-   "hz": 2.98,
-   "phase": 0.47,
-   "heading": 36.3,
-   "bank": 10.5,
-   "span": 0.99,
-   "glides": [],
-   "score": {
-    "visible": 1.0,
-    "min_px": 37.826,
-    "max_px": 64.952,
-    "overlap": 0.0
-   }
-  },
-  {
-   "tag": "b4",
-   "depth": 21.98,
-   "sx": -324,
-   "sy": -335,
-   "speed": 9.27,
-   "hz": 2.89,
-   "phase": 0.34,
-   "heading": 39.7,
-   "bank": 11.0,
-   "span": 0.95,
-   "glides": [
-    [
-     0.0,
-     0.5
+   "leader": {
+    "tag": "flock",
+    "depth": 28.5,
+    "sx": -696,
+    "sy": -218,
+    "speed": 9.98,
+    "hz": 2.98,
+    "phase": 0.0,
+    "heading": 48.7,
+    "bank": 8.2,
+    "span": 0.95,
+    "glides": [
+     [
+      0.38,
+      0.93
+     ]
     ]
+   },
+   "count": 24,
+   "seed": 2,
+   "spread": [
+    6.3,
+    8.0,
+    1.7
    ],
+   "drift": 1.2,
+   "sep": 1.6,
+   "follow_glide": 0.75,
    "score": {
-    "visible": 1.0,
-    "min_px": 33.954,
-    "max_px": 56.236,
-    "overlap": 0.0
+    "member_visible": 0.995,
+    "min_px": 25,
+    "max_px": 54,
+    "min_depth_m": 22.8
    }
   }
  ]

@@ -1362,3 +1362,6 @@ Answered Prompt 1 of [[fcp-plugin-research]] by web research (five parallel pass
 
 ## [2026-10-21] ingest | plate-vfx skill + pipeline v1
 Turned the Kollosche gulls job into a reusable pipeline (projects/plate-vfx) and skill (plate-vfx). It has cut detection, a multi-start constrained drone-camera fit (0.15 px on the benchmark), plate matching (sky, warmth, grain), auto-routed flight paths for 16:9/9:16, and draft/standard/hero tiers. The standard and hero tiers use a rigged CC-BY Sketchfab herring gull. Hunter updated the Blender MCP addon and enabled Sketchfab. New page [[plate-vfx]]. No spend.
+
+## [2026-10-21] migrate | plate-vfx: flock
+Added simulate_flock: a leader path plus members in drifting slots, with lag, separation, velocity-derived banking, and individual wingbeats and glides. `layout --flock N`. Benchmark: 2 heroes + 24-bird flock, standard tier 33 s, 0 px plate change. No spend.

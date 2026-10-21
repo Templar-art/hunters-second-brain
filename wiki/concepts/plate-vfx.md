@@ -30,7 +30,10 @@ Built 2026-10-21 from the [[extra-salt-kollosche-birds]] job. Hunter's brief was
 - **Plate match.** Sky hue drives the fill light and warmth drives the sun colour. Grain is measured in flat blocks and added only inside the CG alpha.
 - **Cut detection** runs at init, which fixes the frame-46 trap.
 
+## Flock (added 2026-10-21)
+`layout --flock N` routes a leader, then N members ride drifting slots in a loose elongated flock: own lag along the path, separation ≥1.6 m, banking/pitch from their own velocity, individual wingbeats, mostly-shared glides. Benchmark: 2 hero gulls + 24-bird flock over the Kollosche river mouth, standard tier 33 s, plate untouched.
+
 ## Next
-A boids flock, feather cards on the hero wing edges, sun direction read from plate shadows, keyframe-chained tracking for long shots, and new subjects (drones, boats, people).
+Feather cards on the hero wing edges, sun direction read from plate shadows, keyframe-chained tracking for long shots, and new subjects (drones, boats, people).
 
 Related: [[blender-blockout-pipeline]], [[higgsfield-pipelines]] (the drone-wide no-AI rule).

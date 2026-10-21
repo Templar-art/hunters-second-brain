@@ -21,7 +21,8 @@ shot = json.load(open(SHOT))
 TIER = argv[argv.index("--tier") + 1] if "--tier" in argv else shot.get("tier", "standard")
 cam_data = json.load(open(os.path.join(JOB, "camera.json")))
 plate = json.load(open(os.path.join(JOB, "plate.json")))
-birds = json.load(open(os.path.join(JOB, "layout.json")))["birds"]
+_lay = json.load(open(os.path.join(JOB, "layout.json")))
+birds, flocks = _lay["birds"], _lay.get("flocks", [])
 N = len(cam_data["frames"])
 FPS = cam_data["fps"][0] / cam_data["fps"][1]
 W, H = cam_data["width"], cam_data["height"]
@@ -302,6 +303,11 @@ for b in birds:
     gull = (AssetGull if MODEL == "asset" else ProceduralGull)(b["tag"], b["span"])
     for k in flight.simulate(b, M1, F_PX, FPS, N):
         gull.key(k)
+for fi, fl in enumerate(flocks):
+    for mi, keys in enumerate(flight.simulate_flock(fl, M1, F_PX, FPS, N)):
+        gull = (AssetGull if MODEL == "asset" else ProceduralGull)(f"f{fi}_{mi:02d}", keys[0]["span"])
+        for k in keys:
+            gull.key(k)
 
 out_dir = os.path.join(JOB, "render", TIER)
 os.makedirs(out_dir, exist_ok=True)

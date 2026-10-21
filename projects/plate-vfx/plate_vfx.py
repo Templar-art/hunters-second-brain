@@ -4,7 +4,7 @@
   python3 plate_vfx.py init   <clip> --job <dir> [--aspect 16:9|9:16|4:5|1:1]
   python3 plate_vfx.py track  <dir> [--model auto|line|free]
   python3 plate_vfx.py match  <dir>
-  python3 plate_vfx.py layout <dir> [--count 4] [--seed 1] [--direction 1|-1]
+  python3 plate_vfx.py layout <dir> [--count 4] [--flock 24] [--seed 1] [--direction 1|-1]
   python3 plate_vfx.py pilot  <dir> [--frame N] [--tier draft]
   python3 plate_vfx.py render <dir> [--tier draft|standard|hero]
   python3 plate_vfx.py prep   <clip> --job <dir> ...   # init+track+match+layout+pilot, then stop for approval
@@ -87,10 +87,12 @@ def cmd_layout(a):
     job = os.path.abspath(a.job)
     shot = jload(os.path.join(job, "shot.json"))
     cam = jload(os.path.join(job, "camera.json"))
-    lay = layout.auto(cam, count=a.count, aspect=shot["aspect"], seed=a.seed, direction=a.direction)
+    lay = layout.auto(cam, count=a.count, aspect=shot["aspect"], seed=a.seed, direction=a.direction) if a.count else \
+        {"aspect": shot["aspect"], "seed": a.seed, "safe_rect": layout.safe_rect(cam["width"], cam["height"], shot["aspect"]), "birds": []}
+    lay["flocks"] = [layout.auto_flock(cam, count=a.flock, aspect=shot["aspect"], seed=a.seed, direction=a.direction)] if a.flock else []
     jsave(os.path.join(job, "layout.json"), lay)
     layout.preview(lay, cam, plate_paths(job)[shot["range"][0] - 1], os.path.join(job, "layout_preview.jpg"))
-    print(f"layout: {len(lay['birds'])} birds -> layout.json, layout_preview.jpg")
+    print(f"layout: {len(lay['birds'])} birds + {sum(f['count'] for f in lay['flocks'])} in flocks -> layout.json, layout_preview.jpg")
 
 
 def blender_build(job, tier, render=False, frame=None):
@@ -195,10 +197,12 @@ def main():
         p.add_argument("--aspect", default="16:9")
         p.add_argument("--model", default="auto"); p.add_argument("--count", type=int, default=4)
         p.add_argument("--seed", type=int, default=1); p.add_argument("--direction", type=int, default=1)
+        p.add_argument("--flock", type=int, default=0)
     p = sp.add_parser("track"); p.add_argument("job"); p.add_argument("--model", default="auto")
     p = sp.add_parser("match"); p.add_argument("job")
     p = sp.add_parser("layout"); p.add_argument("job"); p.add_argument("--count", type=int, default=4)
     p.add_argument("--seed", type=int, default=1); p.add_argument("--direction", type=int, default=1)
+    p.add_argument("--flock", type=int, default=0, help="add a flock of N birds")
     p = sp.add_parser("pilot"); p.add_argument("job"); p.add_argument("--frame", type=int); p.add_argument("--tier", default="draft")
     p = sp.add_parser("render"); p.add_argument("job"); p.add_argument("--tier")
     a = ap.parse_args()

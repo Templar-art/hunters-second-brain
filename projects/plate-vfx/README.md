@@ -18,6 +18,7 @@ python3 plate_vfx.py render <dir> --tier draft|standard|hero
 | track | `lib/track_fit.py` | Forward/backward-checked LK tracks feed a flat-ground drone-camera fit. There are two models: `line` (straight travel plus gimbal) and `free` (6-DOF per frame, smoothed). `auto` picks one. The gate is a mean error under 0.5 px. Output: `camera.json`. |
 | match | `lib/plate.py` | Measures sky colour (linear), warmth (R/B) and grain sigma in the flattest blocks. Output: `plate.json`. |
 | layout | `lib/layout.py` | Random search over flight parameters. Each candidate is simulated through the camera and scored on time inside the safe area, edge entry, readable size and spacing between birds. Outputs: `layout.json` and `layout_preview.jpg`. |
+| flock | `lib/flight.py` `simulate_flock` | Leader path (auto-routed) + N members: ellipsoid slots (0.22/0.28/0.06 × depth) with smooth-noise drift, per-member lag ±0.25 s along the leader path, separation relaxation (≥1.6 m), temporal smoothing, heading/bank/pitch from each member's own velocity (coordinated turns), own wingbeat, 75 % share the leader's glide with ±0.15 s jitter. 24 birds sim in 0.04 s; standard render of 26 birds ≈ 33 s. |
 | flight | `lib/flight.py` | The shared flight simulation: asymmetric wingbeat, wrist fold, body lift, glides, coordinated banked turns. Keys every half frame. |
 | build/render | `blender/build_birds.py` | Builds the tiered scene (camera, plate background, plate-matched light, gulls) and renders an RGBA pass to `render/<tier>/`. |
 | comp | `lib/plate.py` | `plate*(1-a) + (cg+grain)*a`, bit-exact outside the alpha, then `verify()`. Exports mp4, ProRes 422 HQ and ProRes 4444 alpha. |
@@ -39,4 +40,4 @@ python3 plate_vfx.py render <dir> --tier draft|standard|hero
 ## Limits and next upgrades
 - Tracks must survive the whole range, so long or fast shots need keyframe chaining (not built yet).
 - Flat-ground prior: fine for aerials. Ground-level shots with big parallax should use Blender's solver (`extra-salt-kollosche-birds/scripts/01_track.py` shows how).
-- Next: a boids flock (20+ birds), feather-card wing edges for hero, sun direction read from the plate, more subjects (drones, boats).
+- Next: feather-card wing edges for hero, sun direction read from the plate, more subjects (drones, boats).

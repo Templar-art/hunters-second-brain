@@ -106,6 +106,56 @@ def auto(cam, count=4, aspect="16:9", seed=1, direction=1, min_px=16, tries=2500
     return {"aspect": aspect, "seed": seed, "safe_rect": rect, "birds": birds}
 
 
+def flock_tracks(fl, cam, f_px, fps, w, h):
+    n = len(cam["frames"])
+    out = []
+    for keys in flight.simulate_flock(fl, cam["frames"][0], f_px, fps, n):
+        pts = []
+        for k in keys:
+            if abs(k["frame"] - round(k["frame"])) < 1e-6:
+                pts.append(flight.project(k["pos"], cam["frames"][int(round(k["frame"])) - 1], f_px, w, h))
+        out.append(pts)
+    return out
+
+
+def auto_flock(cam, count=24, aspect="16:9", seed=1, direction=1, depth=(26.0, 48.0), tries=1200, log=print):
+    """Route one flock: search the leader path on the flock centre, then report member stats."""
+    w, h = cam["width"], cam["height"]
+    fps = cam["fps"][0] / cam["fps"][1]
+    f_px = cam["lens_mm"] / 36 * w
+    rect = safe_rect(w, h, aspect)
+    rng = random.Random(seed * 7919)
+    best = None
+    for _ in range(tries):
+        d = math.exp(rng.uniform(math.log(depth[0]), math.log(depth[1])))
+        heading, bank = rng.uniform(25, 50), rng.uniform(5, 10)
+        if direction < 0:
+            heading, bank = 180 - heading, -bank
+        lead = dict(tag="flock", depth=round(d, 2), sx=round(rng.uniform(-1.4, -0.2) * w / 2 * direction),
+                    sy=round(rng.uniform(-0.6, 0.5) * h / 2), speed=round(rng.uniform(9.5, 11.0), 2),
+                    hz=round(rng.uniform(2.8, 3.2), 2), phase=0.0, heading=round(heading, 1), bank=round(bank, 1),
+                    span=0.95, glides=[])
+        if rng.random() < 0.5:
+            a = rng.uniform(0.3, 1.1)
+            lead["glides"] = [[round(a, 2), round(a + rng.uniform(0.3, 0.6), 2)]]
+        pts = track_bird(lead, cam, f_px, fps, w, h)
+        sc_, info = score(lead, pts, rect, f_px, [], 10)
+        if best is None or sc_ > best[0]:
+            best = (sc_, lead, info)
+    lead = best[1]
+    spread = [round(0.22 * lead["depth"], 1), round(0.28 * lead["depth"], 1), round(0.06 * lead["depth"], 1)]
+    fl = dict(leader=lead, count=count, seed=seed, spread=spread, drift=1.2, sep=1.6, follow_glide=0.75)
+    tr = flock_tracks(fl, cam, f_px, fps, w, h)
+    x0, y0, x1, y1 = rect
+    vis = np.mean([np.mean([p is not None and x0 < p[0] < x1 and y0 < p[1] < y1 for p in t]) for t in tr])
+    sizes = [lead["span"] * f_px / p[2] for t in tr for p in t if p is not None]
+    mind = min(p[2] for t in tr for p in t if p is not None)
+    fl["score"] = dict(member_visible=round(float(vis), 3), min_px=round(min(sizes)), max_px=round(max(sizes)), min_depth_m=round(mind, 1))
+    log(f"  flock of {count}: centre depth {lead['depth']}m, members visible {vis:.0%} in {aspect} safe area, "
+        f"{min(sizes):.0f}-{max(sizes):.0f}px span, nearest bird {mind:.1f}m")
+    return fl
+
+
 def preview(layout, cam, plate_img, out_path):
     """Draw each bird's screen path + safe area over the first plate frame."""
     import cv2
@@ -123,4 +173,11 @@ def preview(layout, cam, plate_img, out_path):
         if pts:
             cv2.circle(img, (int(pts[0][0]), int(pts[0][1])), 9, cols[j % len(cols)], -1)
             cv2.putText(img, b["tag"], (int(pts[-1][0]) + 8, int(pts[-1][1])), cv2.FONT_HERSHEY_SIMPLEX, 0.9, cols[j % len(cols)], 2)
+    for fl in layout.get("flocks", []):
+        for pts in flock_tracks(fl, cam, f_px, fps, w, h):
+            pts = [p for p in pts if p is not None]
+            for a, c in zip(pts[:-1], pts[1:]):
+                cv2.line(img, (int(a[0]), int(a[1])), (int(c[0]), int(c[1])), (255, 255, 0), 1)
+            if pts:
+                cv2.circle(img, (int(pts[0][0]), int(pts[0][1])), 4, (255, 255, 0), -1)
     cv2.imwrite(out_path, img)
