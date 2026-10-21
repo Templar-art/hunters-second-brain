@@ -1,0 +1,5 @@
+exr/
+comp/
+*.blend1
+render.log
+*.mp4
