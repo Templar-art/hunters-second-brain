@@ -13,3 +13,4 @@ Reel 2 (hallway, bedroom, powder at 75%)
 05_powder_breeze_leaves ....... breeze through trees outside the window + distant field birds
 (bedroom reuses 02_bedroom_curtain_fan)
 Whoosh on every cut: assets/sfx/whoosh_simple.mp3 (Pixabay universfield fast swoosh 02), peak lands on the shutter.
+06_living_palms_breeze_room ... breeze through the palms outside + birds + low room tone (reel 3)

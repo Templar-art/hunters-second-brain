@@ -1,4 +1,4 @@
-"""Reel 2 ambience stems (hallway, powder), 7.2s with soft fades. 0 credits."""
+"""Reel 2/3 ambience stems (hallway, powder, living), 7.2s with soft fades. 0 credits."""
 import subprocess, os
 H = os.path.expanduser; O = H("~/Music/SFX Library/Ocular Sounds/The Provence"); D = H("~/Downloads")
 F = "afade=in:st=0:d=0.3,afade=out:st=6.6:d=0.6"; S = "aformat=sample_rates=48000:channel_layouts=stereo"
@@ -15,3 +15,8 @@ mk("deliver/sfx/05_powder_breeze_leaves.wav",
    [(30, f"{D}/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3"),
     (10, f"{O}/AMBGras/AMBGras_FIELD-Day Ambience Field Loop 02_Ocular_The Provence.wav")],
    f"[0]{S},lowpass=f=4500,volume=0.9[a];[1]{S},lowpass=f=3000,volume=0.3[b];[a][b]amix=inputs=2:normalize=0,loudnorm=I=-23:TP=-3,{S},{F}[o]")
+mk("deliver/sfx/06_living_palms_breeze_room.wav",
+   [(45, f"{D}/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3"),
+    (20, f"{O}/AMBForst/AMBForst_WOODS-Day Ambience Woodland Loop 05_Ocular_The Provence.wav"),
+    (None, "anoisesrc=c=brown:a=0.02")],
+   f"[0]{S},lowpass=f=3500,volume=0.9[a];[1]{S},lowpass=f=2500,highpass=f=300,volume=0.3[b];[2]{S},lowpass=f=300[c];[a][b][c]amix=inputs=3:normalize=0,loudnorm=I=-23:TP=-3,{S},{F}[o]")
