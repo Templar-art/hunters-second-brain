@@ -70,22 +70,20 @@
    "out": "video/05_powder_v2_720.mp4"
   },
   {
-   "id": "02_gate",
+   "id": "02_gate_169",
    "params": {
-    "start-image": "hero/02_gate_916.jpg",
-    "aspect_ratio": "9:16"
+    "start-image": "hero/02_gate_169.jpg"
    },
-   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph: the stone walls, white piers, timber gate, the gold \"Vista\" lettering, the concrete driveway and the bollard light stay perfectly still and unchanged like a photograph, and the gold \"Vista\" sign keeps its exact letters, shape and glow. The only motion is natural ambient life, slow and gentle. A soft breeze moves through the tall palm trees: the fronds sway slowly and the leaves of the trees behind rustle. The long shadows of the palm trunks lying across the driveway shift very slightly with the sway. The grass blades and garden plants along the driveway stir softly. Warm late afternoon sun, constant exposure, no flicker, photorealistic, crisp detail, nothing new appears in the scene.",
-   "out": "video/02_gate_v1_720.mp4"
+   "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph: the stone walls, white piers, timber gate, the gold \"Vista\" lettering on the left wall, the concrete driveway and the bollard light stay perfectly still and unchanged like a photograph, and the gold \"Vista\" sign keeps its exact letters, shape and glow. The only motion is natural ambient life, slow and gentle. A soft breeze moves through the tall palm trees: the fronds sway slowly and the leaves of the trees behind rustle. The long shadows of the palm trunks lying across the driveway shift very slightly with the sway. The grass blades and garden plants along the driveway stir softly. Warm late afternoon sun, constant exposure, no flicker, photorealistic, crisp detail, nothing new appears in the scene.",
+   "out": "video/02_gate_169_v1_720.mp4"
   },
   {
-   "id": "07_laundry",
+   "id": "07_laundry_169",
    "params": {
-    "start-image": "hero/07_laundry_916.jpg",
-    "aspect_ratio": "9:16"
+    "start-image": "hero/07_laundry_169.jpg"
    },
    "prompt": "Locked-off tripod shot, absolutely zero camera movement, no zoom, no pan, no dolly, framing identical to the start image for the whole clip. This is a cinemagraph: the timber cabinetry, stone benchtops, hexagon tiles, brass tap, tiled tub, skylight and glossy floor tiles stay perfectly still and unchanged like a photograph. The only motion is natural ambient life, slow and gentle. Through the tall window at the end of the room, the tree and the garden shrubs sway softly in a light breeze, leaves catching the sun. The patch of sunlight on the floor and its reflection on the glossy tiles shimmer faintly with moving leaf shadows. Warm afternoon light, constant exposure, no flicker, photorealistic, crisp architectural detail, nothing new appears in the room.",
-   "out": "video/07_laundry_v1_720.mp4"
+   "out": "video/07_laundry_169_v1_720.mp4"
   }
  ]
 }

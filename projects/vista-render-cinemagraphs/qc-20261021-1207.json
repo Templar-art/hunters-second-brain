@@ -1,0 +1,25 @@
+[
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/02_gate_169_v1_720.mp4",
+  "motion": 0.009,
+  "continuity_min": 1.0,
+  "continuity_at_s": 2.08,
+  "frames": 121,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/vista-render-cinemagraphs/video/07_laundry_169_v1_720.mp4",
+  "motion": 0.004,
+  "continuity_min": 1.0,
+  "continuity_at_s": 2.17,
+  "frames": 121,
+  "flags": [
+   "FREEZE 1.8s",
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ }
+]

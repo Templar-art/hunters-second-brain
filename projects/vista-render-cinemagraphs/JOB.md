@@ -3,7 +3,7 @@ client: salisbury   # per Hunter 2026-10-21
 address: "Vista" (render set, 12 renders)
 opened: 2026-10-20
 status: intake         # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 315, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 385, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — Vista renders → cinemagraphs
@@ -20,7 +20,9 @@ Source: 12 developer renders pasted by Hunter (2000×1368) → `inputs/1–12.jp
 | 6 | Kitchen: floor sun stripes creep, garden | video (Seedance 2.5 720p 5s, no loop) + local 1080p50 | review | |
 | 4 | Living: palms outside, ceiling sun patches | video (Seedance 2.5 720p 5s, no loop) + local 1080p50 | review | |
 | 1 | Exterior: palm fronds + their shadows on garage/drive | video (Seedance 2.5 720p 5s, no loop) + local 1080p50 | review | |
-| 2,3,7,9,10,12 | gate, office, laundry, towel nook, gym, ensuite | — | reserve | weaker motion or mirror/signage risk |
+| 2 | Gate: palms + driveway shadows, Vista sign held | video (Seedance 2.5 720p 5s 16:9) | in reels | 9:16 attempt failed; 16:9 retry held |
+| 7 | Laundry: garden through window | video (Seedance 2.5 720p 5s 16:9) | in reels | 9:16 attempt failed; 16:9 retry held (low motion) |
+| 3,9,10,12 | office, towel nook, gym, ensuite | — | reserve | weaker motion or mirror risk |
 
 ## Log
 
@@ -33,6 +35,7 @@ Source: 12 developer renders pasted by Hunter (2000×1368) → `inputs/1–12.jp
 - 2026-10-21 Hunter: skip gate/laundry, 2 reels × 3 clips (0 credits). Clips slowed 0.7× (setpts 1.4 + minterpolate 50 fps, from the 720 sources), powder dapple re-run on the slowed clip with sway periods stretched 1.4×. 608px vertical slice per clip → 1080×1920, 1s dissolves, fade in/out, 18.7s, silent. Reel 1 Arrival: exterior → hallway → kitchen. Reel 2 Inside: living → bedroom → powder v3. Script `work/build_reels.sh` → `reels/`. No text or end card yet (Salisbury branding unknown). Awaiting Hunter review.
 - 2026-10-21 Hunter: no dissolves, no fade to black; add music + end card; then "similar idea to" `~/Downloads/Solis Postcard Post.mp4`. Rebuilt as postcard reels matched to that reference: ink #0b0b0a background, three 16:9 clips stacked full width (x37, 1006×566 at y 64/678/1290, measured off the reference), hard pop-ins at 0.5/1.2/1.9s, each plays from its pop, hard cut at 7.4s to the Salisbury logo tinted bone #efece4 (400px), 10.0s total. No cropping needed: the 16:9 clips stay whole. Music: Reel 1 AURENZA 'Found my Way', Reel 2 AVE 'Meet Me In The Dark' (both from ~/Downloads, intros), plus wind-through-trees bed at 0.18, loudnorm −14 LUFS, audio-only fade out. ⚠️ Both tracks are commercial: IG may mute them, so swap in the in-app track for posting. Script `work/build_reels.sh`.
 - 2026-10-21 Hunter rejected the eased pop-in animation (`work/postcard.py`, kept for reference). v3: hard click-ins spaced 3s apart (0.5 / 3.5 / 6.5s) so each clip breathes, clips re-slowed to 0.5× (`work/slow2`, powder dapple re-run with SLOW=2), all hold to 10.4s, hard cut to logo, 13.4s total. SFX from `use-definitions/sfx-lib-v2`: click_1 per card, click_5 + thud_4 on the logo. Slower music from ~/Downloads (no credits): Reel 1 AVE 'Meet Me In The Dark' from 1.5s (skips the silent lead-in), Reel 2 ANOTR 'Relax My Eyes' intro. Magnific Lyria custom track priced at 80 cr each but not approved. Both songs are commercial, so IG may mute them.
+- 2026-10-21 Hunter: chill lofi not upbeat; powder without the black dots (= v2, no dapple); retry the other 2 clips (yes, 70 hf). Gate + laundry regenerated at 16:9 from 1920×1080 heroes → both HELD (Vista sign intact). Lesson: Seedance i2v holds the source at 16:9 from a full-width hero; 9:16 from a narrow upscaled crop re-imagines. Reels v4 = 4 cards each (800×450, x140, 24px gaps), click-ins 0.5/3.0/5.5/8.0s, logo 11.0s, 14.0s. Reel 1: gate, exterior, hallway, kitchen. Reel 2: living, bedroom, laundry, powder v2. Music: 5 Pixabay lofi tracks downloaded (`assets/music/`, licence noted); defaults Reel 1 Lay Back, Reel 2 Chill Downtempo; every reel × track combo in `reels/alt/`. Builder `work/build_reels.py`. Total 315 + 70 = 385 hf.
 
 ## Ledger
 
@@ -46,3 +49,5 @@ Source: 12 developer renders pasted by Hunter (2000×1368) → `inputs/1–12.jp
 - 2026-10-20 | 35 hf | 05_powder_v2 seedance_2_5 (gen-runner)
 - 2026-10-21 | 35 hf | 02_gate seedance_2_5 (gen-runner)
 - 2026-10-21 | 35 hf | 07_laundry seedance_2_5 (gen-runner)
+- 2026-10-21 | 35 hf | 02_gate_169 seedance_2_5 (gen-runner)
+- 2026-10-21 | 35 hf | 07_laundry_169 seedance_2_5 (gen-runner)

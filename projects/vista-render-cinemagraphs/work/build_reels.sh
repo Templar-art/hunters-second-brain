@@ -30,4 +30,4 @@ reel() { # out music music_start a b c
   -map "[v]" -map "[aout]" -c:v libx264 -crf 16 -preset slow -c:a aac -b:a 256k -ar 48000 -movflags +faststart -t $TOT reels/$out
 }
 reel salisbury_reel1_arrival_916.mp4 "$HOME/Downloads/AVE - Meet Me In The Dark (Official Audio).mp3" 1.5 01_exterior_v1 11_hallway_v1 06_kitchen_v1
-reel salisbury_reel2_inside_916.mp4 "$HOME/Downloads/Relax My Eyes.mp3" 0 04_living_v1 08_bedroom_v1 05_powder_v3
+reel salisbury_reel2_inside_916.mp4 "$HOME/Downloads/Relax My Eyes.mp3" 0 04_living_v1 08_bedroom_v1 05_powder_v2
