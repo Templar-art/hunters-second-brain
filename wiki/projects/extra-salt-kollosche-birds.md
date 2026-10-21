@@ -20,6 +20,7 @@ Hunter asked for birds to fly past a 1.9s Pottsville drone wide from the Kollosc
 - **Gulls crossing a drone frame side-on read as crosses or "T" shapes.** Fly them diagonally away from camera and bank them 10–15° so the drone sees their backs and the M-shaped wings.
 - **Small CG birds on a warm plate need warm light.** A blue sky fill made them look cold. A ~0.2 shutter (about 1/120 s) keeps wing blur believable.
 - **Realistic bird flight** (v3, Hunter asked): asymmetric beat with a slow downstroke and quick upstroke, the wrist folding back on the upstroke, the body rising on the downstroke (not dipping), flap/glide bursts, and banked turns at the coordinated rate g·tan(bank)/v. Key every half frame so motion blur follows the wingbeat.
+- **Procedural wing-flap SFX reads as cloth flapping, and it was too loud.** Hunter wanted ambience, not hits. Use real recordings (distant gulls + soft wind) set just under the clip's audio, and keep flap synthesis out of the default.
 - Blender clip-tracking ops need the GUI (a Clip Editor area). Run them with `Blender --python` plus a timer and `temp_override`, not `-b`.
 
 Related: [[blender-blockout-pipeline]], [[house-twilight]].

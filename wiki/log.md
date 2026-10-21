@@ -1368,3 +1368,6 @@ Added simulate_flock: a leader path plus members in drifting slots, with lag, se
 
 ## [2026-10-21] migrate | Kollosche gulls: synced wing-flap SFX
 Procedural flap SFX synced to each gull's downstrokes, using distance for level and brightness and screen position for pan. The WAV and a preview mp4 are delivered. Next: port it as a `sfx` stage in plate-vfx. No spend.
+
+## [2026-10-21] migrate | Kollosche gulls: ambience instead of flap SFX
+The synth flaps were rejected ("like a cloth", too loud). Replaced them with a quiet ambience bed from real local recordings (distant gull window + soft wind) at -43 dB mean, under the clip audio. Lesson logged on [[extra-salt-kollosche-birds]]. No spend.
