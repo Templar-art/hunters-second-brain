@@ -23,6 +23,7 @@ cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger — never
 - 2026-10-20 approved: Hunter signed off on the first full render.
 - 2026-10-20 v2: Hunter asked for more polys. Bodies are now 32x16 spheres plus subsurf, wings get creased-outline subsurf L3 (~5.7k polys per gull, was a few hundred). Re-rendered and re-exported over the same out/ files.
 - 2026-10-20 v3: more realistic flight. Asymmetric beat (58% downstroke), wrist fold + sweep-back on the upstroke, hand pronation on the downstroke, body lifts on the downstroke (v1-2 had it backwards), flap/glide windows per bird with sink while gliding, coordinated banked turns (rate = g·tan(bank)/v), keys every half frame for motion blur. Re-exported.
+- 2026-10-21 SFX: Hunter asked for wing-flap sounds. Synthesised `out/wing-flaps_synced.wav` (48k/24-bit stereo, 1.919 s): one feather fwump per downstroke of each gull (17 flaps), level and brightness by distance, panned by screen x, soft air on glides (`scripts/04_dump_wings.py` + `05_flap_sfx.py`). Preview: `out/fake-birds_gulls_with-flaps.mp4` (SFX at 0.25 under the original audio). $0.
 
 ## Ledger
 

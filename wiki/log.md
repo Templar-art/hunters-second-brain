@@ -1365,3 +1365,6 @@ Turned the Kollosche gulls job into a reusable pipeline (projects/plate-vfx) and
 
 ## [2026-10-21] migrate | plate-vfx: flock
 Added simulate_flock: a leader path plus members in drifting slots, with lag, separation, velocity-derived banking, and individual wingbeats and glides. `layout --flock N`. Benchmark: 2 heroes + 24-bird flock, standard tier 33 s, 0 px plate change. No spend.
+
+## [2026-10-21] migrate | Kollosche gulls: synced wing-flap SFX
+Procedural flap SFX synced to each gull's downstrokes, using distance for level and brightness and screen position for pan. The WAV and a preview mp4 are delivered. Next: port it as a `sfx` stage in plate-vfx. No spend.
