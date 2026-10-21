@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [vfx, roadmap, drone, sfx, research]
-status: in-progress
+status: parked
 updated: 2026-10-21
 ---
 
@@ -56,7 +56,13 @@ Open video-to-audio models exist, but HunyuanVideo-Foley is **research/non-comme
 ## Status (2026-10-21)
 - **#2 lines: built.** `plate_vfx.py lines` + `marks.json`. On the Kollosche benchmark, lot corners hold within 0.4 px of optical flow and the plate is untouched.
 - **#3 sky: built.** `plate_vfx.py sky`. SegFormer matte carried by the camera rotation, Poly Haven CC0 HDRI dome, plate untouched. The best day sky is kloofendal_48d.
-- **#4 dusk: v1 built.** `plate_vfx.py dusk`: twilight grade, blue-hour sky ramp, Fresnel water reflections, tracked window, pool and lamp glows. Limits: only marked windows light up, and white roofs stay brightish.
+- **#4 dusk: SHELVED (2026-10-21).** Hunter rejected both attempts, and day-to-night from a daytime drone wide isn't working.
+  - **v1 (2D grade + pasted glows):** read as a dark filter with sticker lights.
+  - **v2 (Depth Pro relief mesh on the solved ground plane, Cycles + dusk HDRI, glossy water, marked windows; `lib/relight.py`, `blender/build_relight.py`):** physically lit, but it looked like a dim afternoon. Only the hand-marked hero windows glow.
+  - **Hard blocker:** automatic window finding fails at drone scale. SegFormer finds 0 windows, dark-patch detection flags shadows and recesses, and rectangle detection flags solar panels. Without lights in every house, dusk reads fake.
+  - **Reusable pieces:** the relief-mesh trick (Depth Pro gives local relief only; the solve owns the metric ground) and the building/water masks.
+  - Don't retry without a real window-detection answer, or a client-supplied twilight reference.
+- **#2 lines and #3 sky:** Hunter called the lines cheap and the whole direction wrong, so both are parked. See [[feedback-vfx-no-2d-fakes]] in auto-memory.
 - **#1 flare:** waiting on Hunter's clip.
 - The benchmark barely moves (3–6 px total). Re-test the lock on a clip with a real drone move before selling it.
 

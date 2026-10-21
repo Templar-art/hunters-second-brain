@@ -1,6 +1,6 @@
 """Sky probability from SegFormer-B5 (ADE20K class 2 = sky). Runs in the ML venv (torch + transformers).
 
-  ~/.venvs/demucs/bin/python lib/sky_matte.py <job> [frame ...]   -> <job>/sky/{prob,water,pool}_####.png (8-bit)
+  ~/.venvs/demucs/bin/python lib/sky_matte.py <job> [frame ...]   -> <job>/sky/{prob,water,pool,build}_####.png (8-bit)
 
 Called by `plate_vfx.py sky`; by default it infers keyframes only (first / middle / last of the CG range)
 and the main stage propagates frame 1 through the solved camera rotation.
@@ -15,6 +15,7 @@ MODEL = "nvidia/segformer-b5-finetuned-ade-640-640"
 SKY = 2
 WATER = [21, 26, 60, 128]  # water, sea, river, lake
 POOL = [109]               # swimming pool
+BUILD = [1, 25, 48]        # building, house, skyscraper
 dev = "mps" if torch.backends.mps.is_available() else "cpu"
 
 
@@ -35,7 +36,8 @@ def main():
             lo = m(pixel_values=x).logits
             sm = torch.nn.functional.interpolate(lo, size=(h, w), mode="bilinear").softmax(1)[0]
             p, wat, pool = sm[SKY].cpu().numpy(), sm[WATER].sum(0).cpu().numpy(), sm[POOL].sum(0).cpu().numpy()
-        for tag, x in (("prob", p), ("water", wat), ("pool", pool)):
+            bld = sm[BUILD].sum(0).cpu().numpy()
+        for tag, x in (("prob", p), ("water", wat), ("pool", pool), ("build", bld)):
             cv2.imwrite(os.path.join(job, "sky", f"{tag}_{f:04d}.png"), np.clip(x * 255 + 0.5, 0, 255).astype(np.uint8))
         print(f"SKY_PROB {f} {float((p > 0.5).mean()):.4f}")
 

@@ -1389,3 +1389,6 @@ Researched what to build next after the birds. Filed as [[plate-vfx-roadmap]], r
 
 ## [2026-10-21] ingest | plate-vfx: lines, sky, dusk stages
 Built roadmap items #2–4 on the Kollosche benchmark. Lines and sky pass the plate-untouched check. Dusk v1 is graded with a before/after pilot. Status is in [[plate-vfx-roadmap]].
+
+## [2026-10-21] lint | plate-vfx dusk shelved
+The day-to-dusk relight (v2, Depth Pro mesh + Cycles) was stopped by Hunter. Window detection at drone scale is the blocker. Lessons are filed in [[plate-vfx-roadmap]].
