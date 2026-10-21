@@ -26,12 +26,14 @@ def arg(n, d):
 
 
 W2, H2, F, CX, CY, CAMH = 1600, 1066, 1102.0, 800.0, 533.0, 1.6
-FPS, NF = 25, 240
+FPS, NF = 25, 175
 
-# driveway centreline picked on the 2x plate, then on past the gate and out to the left (street)
-PTS_IMG = [(578, 572), (590, 600), (625, 635), (680, 668), (740, 700), (780, 725), (760, 780), (660, 840)]
-PTS = [((u - CX) / F * (F * CAMH / (v - CY)), F * CAMH / (v - CY)) for u, v in PTS_IMG]
-PTS += [(-3.5, 5.6), (-7.0, 5.2), (-11.0, 5.0)]
+# Drives IN: off the street (behind and left of camera) across the paver apron, through the gate, up the drive.
+# Drive centreline picked on the 2x plate (far to near), converted to ground metres; apron points in metres.
+DRIVE_IMG = [(578, 572), (590, 600), (625, 635), (680, 668), (740, 700)]
+DRIVE = [((u - CX) / F * (F * CAMH / (v - CY)), F * CAMH / (v - CY)) for u, v in DRIVE_IMG]
+PTS = [(-4.6, -1.6), (-3.5, 0.5), (-2.3, 3.3), (-1.3, 6.3), (-0.9, 8.4)] + DRIVE[::-1] + [(-10.6, 52.0)]
+WB = 2.62   # Huracán wheelbase; the path is the REAR axle (bicycle model: no sideways slip)
 
 sc = bpy.context.scene
 for n in ("Camera", "ground"):
@@ -70,7 +72,12 @@ nt.links.new(env.outputs[0], bg.inputs[0]); bg.inputs["Strength"].default_value 
 nt.links.new(bg.outputs[0], o.inputs[0])
 
 # ---- car rig: root follows the path; wheels spin; front wheels steer
-car = bpy.data.objects["Sketchfab_model"]
+# The Sketchfab root carries a quaternion import rotation and x100 scale, so it can't be keyed with a yaw euler
+# (that is what made the car slide sideways without turning). Drive a clean world-aligned rig instead: front is -y.
+model = bpy.data.objects["Sketchfab_model"]
+car = bpy.data.objects.new("car_rig", None); sc.collection.objects.link(car)
+car.rotation_mode = "XYZ"
+mw0 = model.matrix_world.copy(); model.parent = car; model.matrix_world = mw0
 R = 0.34
 spins = {}
 for side in ("Front L", "Front R", "Rear L", "Rear R"):
@@ -78,10 +85,9 @@ for side in ("Front L", "Front R", "Rear L", "Rear R"):
     mw = wheel.matrix_world.copy()
     steer = bpy.data.objects.new("steer " + side, None); sc.collection.objects.link(steer)
     spin = bpy.data.objects.new("spin " + side, None); sc.collection.objects.link(spin)
-    steer.parent = wheel.parent; steer.matrix_world = mw.Translation(mw.translation) if False else steer.matrix_world
-    steer.matrix_world = car.matrix_world.to_3x3().to_4x4()
-    steer.matrix_world.translation = mw.translation
-    spin.parent = steer; spin.matrix_world = steer.matrix_world.copy()
+    steer.parent = car; steer.location = mw.translation   # rig is at identity here: local = world
+    spin.parent = steer
+    bpy.context.view_layer.update()
     wheel.parent = spin; wheel.matrix_world = mw
     spins[side] = (steer, spin)
 
@@ -91,64 +97,87 @@ def catmull(pts, n=400):
     P = [P[0] * 2 - P[1]] + P + [P[-1] * 2 - P[-2]]
     out = []
     for i in range(1, len(P) - 2):
-        for k in range(n // (len(P) - 3)):
-            t = k / (n // (len(P) - 3))
+        for k in range(n):
+            t = k / n
             p0, p1, p2, p3 = P[i - 1], P[i], P[i + 1], P[i + 2]
             out.append(0.5 * (2 * p1 + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t + (-p0 + 3 * p1 - 3 * p2 + p3) * t ** 3))
     out.append(P[-2])
     return out
 
 
-path = catmull(PTS, 2000)
-cum = [0.0]
-for a, b in zip(path, path[1:]):
-    cum.append(cum[-1] + (b - a).length)
-L = cum[-1]
+def resample(path, step):
+    cum = [0.0]
+    for a, b in zip(path, path[1:]):
+        cum.append(cum[-1] + (b - a).length)
+    out, s, i = [], 0.0, 1
+    while s <= cum[-1]:
+        while cum[i] < s:
+            i += 1
+        t = (s - cum[i - 1]) / max(1e-9, cum[i] - cum[i - 1])
+        out.append(path[i - 1].lerp(path[i], t)); s += step
+    return out
+
+
+# hand-picked points wobble; resample every 10 cm and Gaussian-smooth (sigma 1.5 m) so curvature is continuous
+STEP = 0.1
+raw = resample(catmull(PTS, 200), STEP)
+sig = int(1.5 / STEP); ker = [math.exp(-0.5 * (k / sig) ** 2) for k in range(-3 * sig, 3 * sig + 1)]
+path = []
+for i in range(len(raw)):
+    acc, wsum = Vector((0, 0, 0)), 0.0
+    for k, wk in enumerate(ker):
+        j = min(len(raw) - 1, max(0, i + k - 3 * sig)); acc += raw[j] * wk; wsum += wk
+    path.append(acc / wsum)
+path = resample(path, STEP)
+L = (len(path) - 1) * STEP
 
 
 def at(s):
-    s = max(0, min(L - 1e-6, s))
-    i = max(1, next(k for k, c in enumerate(cum) if c >= s))
-    a, b = path[i - 1], path[i]
-    t = (s - cum[i - 1]) / max(1e-9, cum[i] - cum[i - 1])
-    return a.lerp(b, t)
+    x = max(0.0, min(L - 1e-6, s)) / STEP; i = int(x)
+    return path[i].lerp(path[min(i + 1, len(path) - 1)], x - i)
 
 
-# speed: roll down at ~18 km/h, ease to ~9 km/h through the gate and the turn, pull away
-def speed(s):
-    gate = 0.62 * L
-    return 6.0 - 3.0 * math.exp(-((s - gate) / 8.0) ** 2) + (1.5 if s > 0.85 * L else 0)
+def heading(s):
+    d = at(s + 0.3) - at(s - 0.3); return math.atan2(d.y, d.x)
 
 
-s_list, s = [], 0.0
+def curvature(s):
+    dh = heading(s + 0.5) - heading(s - 0.5); dh = (dh + math.pi) % (2 * math.pi) - math.pi; return dh / 1.0
+
+
+kmax = max(abs(curvature(k * 0.5)) for k in range(2, int(L / 0.5) - 2))
+print("path length", round(L, 1), "m; tightest radius", round(1 / max(kmax, 1e-6), 1), "m")
+
+# speed: rolls in off the street at ~9 km/h, eases up to ~20 km/h along the drive (accel <= 1 m/s^2)
+v, s, s_list = 2.5, 2.6, []
 for f in range(NF):
-    s_list.append(s); s += speed(s) / FPS
-print("path length", round(L, 1), "m; covered", round(s, 1), "m in", NF / FPS, "s")
+    s_list.append(s)
+    v = min(5.5, v + 1.0 / FPS); s += v / FPS
+    if s > L - 3:
+        break
+NF = len(s_list)
+print("frames", NF, "covered", round(s_list[-1], 1), "m")
 
-prev_yaw = None
+prev_yaw, s_front, front_prev = None, 0.0, None
 for f, s in enumerate(s_list, start=1):
-    p, q = at(s), at(s + 1.5)
-    d = q - p
-    yaw = math.atan2(d.x, -d.y)  # car front is local -y
+    rear = at(s); h = heading(s)
+    fwd = Vector((math.cos(h), math.sin(h), 0))
+    yaw = math.atan2(fwd.x, -fwd.y)          # car front is local -y
     if prev_yaw is not None:
         while yaw - prev_yaw > math.pi: yaw -= 2 * math.pi
         while yaw - prev_yaw < -math.pi: yaw += 2 * math.pi
     prev_yaw = yaw
-    car.location = (p.x, p.y, 0); car.rotation_euler = (0, 0, yaw)
+    front = rear + fwd * WB
+    s_front += (front - front_prev).length if front_prev is not None else 0.0
+    front_prev = front
+    car.location = (rear + fwd * (WB / 2)).to_tuple(); car.rotation_euler = (0, 0, yaw)
     car.keyframe_insert("location", frame=f); car.keyframe_insert("rotation_euler", frame=f)
-    # steering from path curvature over the wheelbase (2.62 m), clamped
-    q2 = at(s + 4.0) - at(s + 1.5)
-    turn = math.atan2(q2.x, -q2.y) - math.atan2(d.x, -d.y)
-    turn = (turn + math.pi) % (2 * math.pi) - math.pi
-    steer_a = max(-0.5, min(0.5, turn * 1.6))
+    steer_a = math.atan(WB * curvature(s))   # Ackermann-free bicycle steer; + = left (CCW from above)
     for side, (st, sp) in spins.items():
-        sp.rotation_euler = (s / R, 0, 0)   # forward roll (front is -y): positive x
-        sp.keyframe_insert("rotation_euler", frame=f)
+        dist = s_front if "Front" in side else s
+        sp.rotation_euler = (dist / R, 0, 0); sp.keyframe_insert("rotation_euler", frame=f)
         if "Front" in side:
             st.rotation_euler = (0, 0, steer_a); st.keyframe_insert("rotation_euler", frame=f)
-for fc in (car.animation_data.action.fcurves if hasattr(car.animation_data.action, "fcurves") else []):
-    for k in fc.keyframe_points:
-        k.interpolation = "LINEAR"
 
 # ---- lights on: LED DRLs/headlights white, tail lights red, real beams on the drive
 for m in bpy.data.materials:

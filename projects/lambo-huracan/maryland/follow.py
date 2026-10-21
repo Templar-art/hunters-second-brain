@@ -96,7 +96,7 @@ else:
 for i, name in enumerate(files, start=first):
     img = np.asarray(Image.open(os.path.join(src, name)).convert("RGB"), np.float32)
     acc = 0
-    for s in (-0.25, 0.0, 0.25):        # 180-degree shutter on the camera move
+    for s in (-0.12, 0.0, 0.12):        # ~90-degree shutter on the camera move (the plate is already soft)
         j = min(max(i + s, 0), len(aim) - 1); j0 = int(j); j1 = min(j0 + 1, len(aim) - 1); t = j - j0
         yaw, pitch, fo = (1 - t) * aim[j0] + t * aim[j1]
         acc = acc + sample(img, *rays(yaw, pitch, fo, uu, vv))
