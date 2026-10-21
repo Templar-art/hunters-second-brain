@@ -68,7 +68,8 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[blender-blockout-pipeline]] — Claude builds a Blender grey block-out + camera path, AI video skins it; installed 2026-10-12 · **kit v1 (20 Oct): scene.json → full scene in ~5 s**
 - [[extra-salt-kollosche-birds]] — CG gulls comped over a 1.9s drone wide; constrained drone-camera fit beats Blender solve on low parallax (20 Oct, $0)
 - [[plate-vfx]] — skill + pipeline: CG birds into real footage, plate untouched; draft/standard/hero tiers, rigged herring gull, auto layout (21 Oct, $0)
-- [[sfx-custom]] — procedural original SFX; lens-flare soft/shimmer/sweep WAVs (21 Oct, $0)
+- [[sfx-custom]] — procedural original SFX; 12 lens-flare + 9 shing WAVs (21 Oct, $0)
+- [[plate-vfx-roadmap]] — what to build after the birds: tracked flare, property lines, sky swap, day-to-dusk video, CG house, boats, splats (21 Oct)
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
 - [[staging-rules]] — standing virtual-staging rules (fixtures, one-shot, variation)
 - [[zed-style]] — ZED's canonical staging style, now "Option 01" (warm ivory/oatmeal/walnut/olive/brass); 3rd style change, dated trail of older eras kept; + proposed modern-luxury Options 02–04 (2026-10-09)

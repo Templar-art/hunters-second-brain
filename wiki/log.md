@@ -1383,3 +1383,6 @@ Added glint, sunburst, golden-bloom, anamorphic (both directions), riser-into-fl
 
 ## [2026-10-21] ingest | Shing SFX: 9 variants
 Added `projects/sfx-custom/shing.py`, a metallic blade-ring "shinggg" built from modal synthesis plus a noise scrape. Spectrogram QC is clean. Details are in [[sfx-custom]].
+
+## [2026-10-21] query | Plate-VFX roadmap research
+Researched what to build next after the birds. Filed as [[plate-vfx-roadmap]], ranked by client value against effort and reuse of the camera solve and plate match.
