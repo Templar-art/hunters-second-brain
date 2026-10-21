@@ -1386,3 +1386,6 @@ Added `projects/sfx-custom/shing.py`, a metallic blade-ring "shinggg" built from
 
 ## [2026-10-21] query | Plate-VFX roadmap research
 Researched what to build next after the birds. Filed as [[plate-vfx-roadmap]], ranked by client value against effort and reuse of the camera solve and plate match.
+
+## [2026-10-21] ingest | plate-vfx: lines, sky, dusk stages
+Built roadmap items #2–4 on the Kollosche benchmark. Lines and sky pass the plate-untouched check. Dusk v1 is graded with a before/after pilot. Status is in [[plate-vfx-roadmap]].

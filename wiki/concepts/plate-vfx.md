@@ -37,3 +37,6 @@ Built 2026-10-21 from the [[extra-salt-kollosche-birds]] job. Hunter's brief was
 Feather cards on the hero wing edges, sun direction read from plate shadows, keyframe-chained tracking for long shots, and new subjects (drones, boats, people).
 
 Related: [[blender-blockout-pipeline]], [[higgsfield-pipelines]] (the drone-wide no-AI rule).
+
+## Beyond birds (2026-10-21)
+The same camera solve now drives three more stages: `lines` (tracked lot outlines and pins in 10x blue), `sky` (tracked HDRI sky replacement) and `dusk` (day-to-dusk video). The plan and status are in [[plate-vfx-roadmap]], and internals are in the README. All three run locally at $0. The sky and water mattes come from SegFormer-B5 in `~/.venvs/demucs`.

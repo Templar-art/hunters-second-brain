@@ -85,3 +85,5 @@ projects/plate-vfx/bench/*/comp/
 projects/plate-vfx/bench/*/out/
 projects/plate-vfx/bench/*/src/
 projects/plate-vfx/**/__pycache__/
+projects/plate-vfx/assets/skies/*.hdr
+projects/plate-vfx/bench/*/sky/

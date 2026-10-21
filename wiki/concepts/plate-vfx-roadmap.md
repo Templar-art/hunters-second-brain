@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [vfx, roadmap, drone, sfx, research]
-status: proposal
+status: in-progress
 updated: 2026-10-21
 ---
 
@@ -52,6 +52,13 @@ Zillow SkyTour uses Gaussian splats for listing exteriors ([lidarnews](https://l
 
 ### 8. Auto sound-design pass
 Open video-to-audio models exist, but HunyuanVideo-Foley is **research/non-commercial only** ([Replicate](https://replicate.com/tencent/hunyuanvideo-foley)), so it can't be used on client work. MMAudio's licence is unverified. The licence-clean route is our own: element-synced placement (as with the gull flaps) from a growing one-shot library. That library comes from [[sfx-custom]] plus reels cut with Demucs.
+
+## Status (2026-10-21)
+- **#2 lines: built.** `plate_vfx.py lines` + `marks.json`. On the Kollosche benchmark, lot corners hold within 0.4 px of optical flow and the plate is untouched.
+- **#3 sky: built.** `plate_vfx.py sky`. SegFormer matte carried by the camera rotation, Poly Haven CC0 HDRI dome, plate untouched. The best day sky is kloofendal_48d.
+- **#4 dusk: v1 built.** `plate_vfx.py dusk`: twilight grade, blue-hour sky ramp, Fresnel water reflections, tracked window, pool and lamp glows. Limits: only marked windows light up, and white roofs stay brightish.
+- **#1 flare:** waiting on Hunter's clip.
+- The benchmark barely moves (3–6 px total). Re-test the lock on a clip with a real drone move before selling it.
 
 ## Suggested order
 #1 (the clip is already coming) → #2 (cheap, sellable now) → #3 → #4 (the differentiator). #5 and #6 wait until a client asks; #7 is a separate experiment.

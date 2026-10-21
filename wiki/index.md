@@ -67,7 +67,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[house-twilight]] — locked twilight target: early dusk, clean blue→peach sky, bright ground, amber windows (ref frame in raw/assets/twilight)
 - [[blender-blockout-pipeline]] — Claude builds a Blender grey block-out + camera path, AI video skins it; installed 2026-10-12 · **kit v1 (20 Oct): scene.json → full scene in ~5 s**
 - [[extra-salt-kollosche-birds]] — CG gulls comped over a 1.9s drone wide; constrained drone-camera fit beats Blender solve on low parallax (20 Oct, $0)
-- [[plate-vfx]] — skill + pipeline: CG birds into real footage, plate untouched; draft/standard/hero tiers, rigged herring gull, auto layout (21 Oct, $0)
+- [[plate-vfx]] — skill + pipeline: CG birds, tracked lot lines/pins, sky swap, day-to-dusk into real footage; plate untouched; draft/standard/hero tiers (21 Oct, $0)
 - [[sfx-custom]] — procedural original SFX; 12 lens-flare + 9 shing WAVs (21 Oct, $0)
 - [[plate-vfx-roadmap]] — what to build after the birds: tracked flare, property lines, sky swap, day-to-dusk video, CG house, boats, splats (21 Oct)
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate
