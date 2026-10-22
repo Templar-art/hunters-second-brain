@@ -1,0 +1,54 @@
+{
+ "job_md": "../JOB.md",
+ "cap_hf": 80,
+ "defaults": {
+  "model": "topaz_hyperion_2_5",
+  "params": {
+   "output_format": "h265"
+  }
+ },
+ "rows": [
+  {
+   "id": "u_tail_light",
+   "params": {
+    "video": "details/real2_tail_light.mp4"
+   },
+   "out": "details/4k/tail_light_4k.mp4"
+  },
+  {
+   "id": "u_front_badge",
+   "params": {
+    "video": "details/real2_front_badge.mp4"
+   },
+   "out": "details/4k/front_badge_4k.mp4"
+  },
+  {
+   "id": "u_rear_wheel",
+   "params": {
+    "video": "details/real2_rear_wheel.mp4"
+   },
+   "out": "details/4k/rear_wheel_4k.mp4"
+  },
+  {
+   "id": "u_front_wheel",
+   "params": {
+    "video": "details/real2_front_wheel.mp4"
+   },
+   "out": "details/4k/front_wheel_4k.mp4"
+  },
+  {
+   "id": "u_rear_plate",
+   "params": {
+    "video": "details/real2_rear_plate.mp4"
+   },
+   "out": "details/4k/rear_plate_4k.mp4"
+  },
+  {
+   "id": "u_side_intake",
+   "params": {
+    "video": "details/real2_side_intake.mp4"
+   },
+   "out": "details/4k/side_intake_4k.mp4"
+  }
+ ]
+}
