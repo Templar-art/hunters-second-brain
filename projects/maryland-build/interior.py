@@ -141,6 +141,10 @@ MI = dict(
     rug_jute=textured(mat("Rug_jute", (0.55, 0.45, 0.3), 1.0), "noise", 90, 0.5),
     tv=mat("TV_screen_black", (0.01, 0.01, 0.012), 0.08),
     bulb=mat("Pendant_bulb_warm", (1.0, 0.75, 0.45), 0.5, emit=6.0),
+    oak=textured(mat("Timber_oak", (0.42, 0.3, 0.19), 0.45), "boards", 0.5, 0.05, ramp=((0.3, 0.2, 0.12), (0.5, 0.37, 0.24))),
+    linen_sofa=textured(mat("Linen_sofa_ivory", (0.8, 0.77, 0.71), 0.95), "noise", 150, 0.2),
+    linen_charcoal=textured(mat("Linen_sofa_charcoal", (0.12, 0.12, 0.125), 0.95), "noise", 150, 0.2),
+    canvas=textured(mat("Outdoor_canvas_stone", (0.7, 0.68, 0.63), 0.95), "noise", 120, 0.2),
     fireplace=mat("Fireplace_surround_white", (0.88, 0.87, 0.84), 0.5),
     firebox=mat("Firebox_black", (0.02, 0.02, 0.02), 0.6),
 )
@@ -239,6 +243,54 @@ def downlights(room, x0, y0, x1, y1, z, nx, ny, energy=60):
             slab(f"{room}_dl_trim{i}{j}", x - 0.06, y - 0.06, x + 0.06, y + 0.06, z - 0.025, z - 0.02, MI["bulb"], "interior_lights")
 
 
+def local_parts(name, at, front, z, parts, room, level):
+    """parts: [(material, (x0, y0, z0, x1, y1, z1) local metres with -Y = front, bevel)] -> objects at `at` facing `front`"""
+    yaw = yaw_for(front)
+    for k, (m_, (x0, y0, z0, x1, y1, z1), bev) in enumerate(parts):
+        bm_ = bmesh.new(); add_box(bm_, x0, y0, x1, y1, z0, z1)
+        o = obj(f"{name}_{k}", bm_, m_, "interior_" + level); o.location = (at[0], at[1], z); o.rotation_euler = (0, 0, yaw)
+        if bev:
+            b = o.modifiers.new("soft", "BEVEL"); b.width = bev; b.segments = 5; b.limit_method = "NONE"
+            o.modifiers.new("smooth", "SUBSURF").levels = 1 if bev > 0.03 else 0
+            o.data.polygons.foreach_set("use_smooth", [True] * len(o.data.polygons))
+
+
+def sofa(name, at, face, room, width=2.6, fabric="linen", accent="rug_bw", level="ground", depth=0.98, kind="seat"):
+    """Hamptons linen sofa: square arms, three loose seat + back cushions, scatter cushions, dark timber feet"""
+    front = (Vector(face[1:]) if face[0] == "dir" else Vector(face) - Vector(at[:2])).normalized()
+    W, D = width, depth; A = 0.2; n = 3 if W > 2.2 else 2; cw = (W - 2 * A) / n
+    fab = MI[fabric]; feet = MI["oak"]
+    parts = [(fab, (-W / 2, -D / 2, 0.1, W / 2, D / 2, 0.42), 0.02),                       # base
+             (fab, (-W / 2, -D / 2, 0.1, -W / 2 + A, D / 2, 0.68), 0.04),                 # arms
+             (fab, (W / 2 - A, -D / 2, 0.1, W / 2, D / 2, 0.68), 0.04),
+             (fab, (-W / 2 + A, D / 2 - 0.2, 0.42, W / 2 - A, D / 2, 0.7), 0.02)]          # back frame
+    for i in range(n):
+        x0 = -W / 2 + A + i * cw
+        parts.append((fab, (x0 + 0.005, -D / 2 + 0.02, 0.42, x0 + cw - 0.005, D / 2 - 0.2, 0.58), 0.05))        # seat
+        parts.append((fab, (x0 + 0.01, D / 2 - 0.42, 0.58, x0 + cw - 0.01, D / 2 - 0.2, 0.92), 0.07))        # back cushion
+    for sx in (-1, 1):
+        parts.append((MI[accent], (sx * (W / 2 - A - 0.48) - 0.24, D / 2 - 0.5, 0.58, sx * (W / 2 - A - 0.48) + 0.24, D / 2 - 0.38, 0.98), 0.06))
+        for sy in (-1, 1):
+            x = sx * (W / 2 - 0.08); y = sy * (D / 2 - 0.08)
+            parts.append((feet, (x - 0.03, y - 0.03, 0.0, x + 0.03, y + 0.03, 0.1), 0))
+    z = FFL if level == "ground" else U_FFL
+    local_parts(name, at, front, z, parts, room, level)
+    register(name, kind, at, front, (W, D, 0.95), room, None if face[0] == "dir" else face, False, level, z)
+
+
+def table(name, at, face, room, w=2.4, d=1.0, h=0.76, top="oak", level="ground"):
+    """timber dining table, chunky top + square legs (listing photo 12)"""
+    front = Vector(face[1:]).normalized()
+    parts = [(MI[top], (-w / 2, -d / 2, h - 0.06, w / 2, d / 2, h), 0.004)]
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            x, y = sx * (w / 2 - 0.15), sy * (d / 2 - 0.12)
+            parts.append((MI[top], (x - 0.05, y - 0.05, 0, x + 0.05, y + 0.05, h - 0.06), 0.003))
+    z = FFL if level == "ground" else U_FFL
+    local_parts(name, at, front, z, parts, room, level)
+    register(name, "table", at, front, (w, d, h), room, None, False, level, z)
+
+
 def rect_px(a, b, c, d, f=hw):
     (x0, y0), (x1, y1) = f(a, b), f(c, d)
     return min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1)
@@ -257,7 +309,7 @@ fo.rotation_euler = (math.radians(90), 0, 0)
 ct = Vector((fp.x, fp.y - 3.0))
 rug("lounge_rug", (ct.x, ct.y - 0.2), 3.6, 2.8, MI["rug_bw"])
 place("CoffeeTable_01", ct, ("dir", 0, 1), "lounge", kind="table", recolor=None)
-place("sofa_03", (ct.x, ct.y - 1.55), (fp.x, fp.y), "lounge", recolor=LINEN)
+sofa("lounge_sofa", (ct.x, ct.y - 1.55), (fp.x, fp.y), "lounge", 2.7, "linen_sofa")
 place("ArmChair_01", (ct.x - 1.75, ct.y + 0.1), (ct.x, ct.y + 0.1), "lounge", recolor=(0.2, 0.2, 0.2))
 place("ArmChair_01", (ct.x + 1.75, ct.y + 0.1), (ct.x, ct.y + 0.1), "lounge", recolor=(0.2, 0.2, 0.2))
 for sx in (-1.65, 1.65):
@@ -269,7 +321,7 @@ downlights("lounge", *rect_px(702, 372, 778, 465), G_TOP, 2, 3)
 # ---- dining (plan px 782-822, 365-430): table long axis north-south, chairs face the table
 dc = Vector(hw(802, 397))
 rug("dining_rug", dc, 2.4, 3.4, MI["rug_jute"])
-place("dining_table", dc, ("dir", 1, 0), "dining", kind="table")
+table("dining_table", dc, ("dir", 1, 0), "dining", 2.3, 1.05)
 for dy in (-0.7, 0.0, 0.7):
     for sx in (-1, 1):
         place("dining_chair_02", (dc.x + sx * 0.92, dc.y + dy), (dc.x, dc.y + dy), "dining")
@@ -321,7 +373,7 @@ proc("family_tv", (tvc.x, wy - 0.025), (0, -1), (1.7, 0.05, 0.95), "family", "de
 fc = Vector((tvc.x, tvc.y - 2.9))
 rug("family_rug", (fc.x, fc.y + 1.1), 3.2, 2.6, MI["rug_bw"])
 place("modern_coffee_table_02", (fc.x, fc.y + 1.3), ("dir", 0, 1), "family", kind="table")
-place("sofa_03", fc, (tvc.x, tvc.y), "family", recolor=LINEN)
+sofa("family_sofa", fc, (tvc.x, tvc.y), "family", 2.6, "linen_sofa")
 place("modern_arm_chair_01", (fc.x + 1.85, fc.y + 1.3), (fc.x, fc.y + 1.3), "family", recolor=(0.75, 0.72, 0.66))
 downlights("family", *rect_px(674, 512, 731, 581), G_TOP, 2, 2)
 # bar counter (plan px 735-760, 528-570) + stools on the room side facing it
@@ -344,7 +396,7 @@ place("modern_wooden_cabinet", tc_, ("dir", 0, 1), "media", kind="fixture", wall
 tm = Vector((tc_.x, tc_.y - 0.29))
 slab("media_tv", tm.x - 1.1, tm.y, tm.x + 1.1, tm.y + 0.05, GZ + 1.0, GZ + 2.25, MI["tv"])
 proc("media_tv", (tm.x, tm.y + 0.025), (0, 1), (2.2, 0.05, 1.25), "media", "decor", z=GZ + 1.0)
-place("sofa_03", (tm.x, tm.y + 3.6), (tm.x, tm.y), "media", recolor=(0.16, 0.16, 0.17))
+sofa("media_sofa", (tm.x, tm.y + 3.6), (tm.x, tm.y), "media", 2.9, "linen_charcoal", accent="linen_sand")
 place("Ottoman_01", (tm.x, tm.y + 2.3), ("dir", 0, -1), "media", kind="table")
 rug("media_rug", (tm.x, tm.y + 2.8), 3.4, 2.6, MI["rug_jute"])
 downlights("media", *rect_px(910, 407, 970, 488), G_TOP, 2, 2, 25)
@@ -355,14 +407,14 @@ downlights("entry", *rect_px(845, 420, 905, 495), G_TOP, 1, 2)
 
 # ---- outdoor entertaining (plan px 608-686, 362-585): dining under the cupola, lounge facing the pool
 od = Vector(hw(647, 398))
-place("dining_table", od, ("dir", 0, 1), "outdoor", kind="table")
+table("outdoor_table", od, ("dir", 0, 1), "outdoor", 2.4, 1.0)
 for dx in (-0.7, 0.0, 0.7):
     for sy in (-1, 1):
         place("gallinera_chair", (od.x + dx, od.y + sy * 0.92), (od.x + dx, od.y), "outdoor")
 pendant("outdoor_pendant", od, G_TOP + 1.2, r=0.4, drop=1.6)
 ol = Vector(hw(655, 505))
 rug("outdoor_rug", (ol.x - 0.8, ol.y), 2.6, 3.4, MI["rug_jute"])
-place("sofa_02", (ol.x + 0.6, ol.y), ("dir", -1, 0), "outdoor", recolor=(0.82, 0.8, 0.76))
+sofa("outdoor_sofa", (ol.x + 0.6, ol.y), ("dir", -1, 0), "outdoor", 2.4, "canvas", accent="linen_grey")
 place("CoffeeTable_01", (ol.x - 0.75, ol.y), ("dir", -1, 0), "outdoor", kind="table")
 for sy in (-1, 1):
     place("mid_century_lounge_chair", (ol.x - 0.8, ol.y + sy * 1.55), (ol.x - 0.75, ol.y), "outdoor")
@@ -377,33 +429,151 @@ bed("master_bed", mh, (-1, 0), "master", ("boucle", "linen", "linen_sand", "thro
 place("Ottoman_01", (mh.x - 2.65, mh.y), ("dir", -1, 0), "master", kind="table", level="upper", recolor=(0.8, 0.77, 0.72))
 place("ArmChair_01", U(1068, 590), U(1090, 556), "master", level="upper", recolor=LINEN)
 rug("master_rug", (mh.x - 1.5, mh.y), 2.8, 3.6, MI["rug_jute"], "upper")
-downlights("master", *rect_px(1059, 519, 1118, 598, U), U_TOP, 2, 2, 30)
+downlights("master", *rect_px(1059, 519, 1118, 598, U), U_TOP, 2, 2, 75)
 # ---- bedroom 2 (upper px 1100-1167, 447-497): headboard east wall, faces west
 b2 = Vector(U(1134, 492))
 bed("bed2", b2, (0, 1), "bed2", ("velvet", "linen_grey", "linen", "throw"))
-downlights("bed2", *rect_px(1102, 449, 1165, 495, U), U_TOP, 1, 1, 30)
+downlights("bed2", *rect_px(1102, 449, 1165, 495, U), U_TOP, 1, 1, 75)
 # ---- bedroom 3 (upper px 1120-1192, 517-565): headboard on the west wall, faces east
 b3 = Vector(U(1124, 548))
 bed("bed3", b3, (1, 0), "bed3", ("boucle", "linen_sand", "linen_grey", "throw"))
-downlights("bed3", *rect_px(1122, 519, 1170, 562, U), U_TOP, 1, 1, 30)
+downlights("bed3", *rect_px(1122, 519, 1170, 562, U), U_TOP, 1, 1, 75)
 # ---- bedroom 4 (upper px 1245-1322, 520-568): headboard on the south wall, faces north
 b4 = Vector(U(1287, 567))
 bed("bed4", b4, (0, 1), "bed4", ("velvet", "linen", "linen_grey", "throw_tan"))
-downlights("bed4", *rect_px(1247, 522, 1320, 566, U), U_TOP, 1, 1, 30)
+downlights("bed4", *rect_px(1247, 522, 1320, 566, U), U_TOP, 1, 1, 75)
 # ---- upper living (upper px 1250-1320, 450-515): sofa backs onto the void, faces east to the balcony
 ul = Vector(U(1285, 482))
 rug("upper_living_rug", ul, 3.0, 3.4, MI["rug_bw"], "upper")
 place("modern_coffee_table_02", ul, ("dir", 1, 0), "upper_living", kind="table", level="upper")
-place("sofa_02", (ul.x - 1.45, ul.y), ("dir", 1, 0), "upper_living", level="upper", recolor=LINEN)
+sofa("upper_sofa", (ul.x - 1.45, ul.y), ("dir", 1, 0), "upper_living", 2.3, "linen_sofa", accent="linen_sand", level="upper")
 for sy in (-1, 1):
     place("modern_arm_chair_01", (ul.x + 0.2, ul.y + sy * 1.55), (ul.x, ul.y), "upper_living", level="upper", recolor=(0.75, 0.72, 0.66))
-downlights("upper_living", *rect_px(1250, 450, 1320, 515, U), U_TOP, 2, 2, 30)
+downlights("upper_living", *rect_px(1250, 450, 1320, 515, U), U_TOP, 2, 2, 75)
 # ---- master balcony (ground px 614-704, 433-525): two lounge chairs facing the water (west)
 mb = Vector(hw(640, 479))
 for sy in (-1, 1):
     place("mid_century_lounge_chair", (mb.x, mb.y + sy * 0.9), ("dir", -1, 0), "master_balcony", level="upper", z=U_FFL)
 place("side_table_01", (mb.x, mb.y), ("dir", -1, 0), "master_balcony", kind="decor", level="upper", z=U_FFL)
 place("potted_plant_02", hw(618, 437), ("dir", -1, 0), "master_balcony", kind="decor", level="upper", z=U_FFL)
+
+# ================================================================== DRESSING (listing photos 07-35)
+MI["art_a"] = textured(mat("Art_abstract_a", (0.5, 0.45, 0.4), 0.8), "noise", 1.2, 0.0, ramp=((0.08, 0.12, 0.2), (0.85, 0.78, 0.66)))
+MI["art_b"] = textured(mat("Art_abstract_b", (0.5, 0.45, 0.4), 0.8), "noise", 0.7, 0.0, ramp=((0.55, 0.2, 0.08), (0.92, 0.88, 0.8)))
+MI["sheer"] = mat("Curtain_sheer_linen", (0.92, 0.91, 0.88), 0.9, trans=0.0)
+_sb = next(n for n in MI["sheer"].node_tree.nodes if n.type == "BSDF_PRINCIPLED")
+_sb.inputs["Alpha"].default_value = 0.55
+MI["book"] = textured(mat("Books_spines", (0.4, 0.35, 0.3), 0.7), "boards", 30, 0.2, ramp=((0.1, 0.12, 0.15), (0.85, 0.8, 0.72)))
+
+
+def shaker(name, x0, x1, face, n_out, z0, z1, door=0.6, level="ground", glass=False):
+    """shaker door fronts along a run: face = (axis, coord) of the front plane, n_out = +1/-1 outward normal"""
+    ax, c = face; n = max(1, round((x1 - x0) / door)); w = (x1 - x0) / n
+    bm_f = bmesh.new()
+    for k in range(n):
+        a0, a1 = x0 + k * w + 0.003, x0 + (k + 1) * w - 0.003
+        for (u0, u1, v0, v1) in ((a0, a0 + 0.07, z0, z1), (a1 - 0.07, a1, z0, z1), (a0, a1, z0, z0 + 0.07), (a0, a1, z1 - 0.07, z1)):
+            if ax == "y":
+                add_box(bm_f, u0, min(c, c + n_out * 0.02), u1, max(c, c + n_out * 0.02), v0, v1)
+            else:
+                add_box(bm_f, min(c, c + n_out * 0.02), u0, max(c, c + n_out * 0.02), u1, v0, v1)
+        hx = (a1 - 0.05) if k % 2 == 0 else (a0 + 0.05)          # knob
+        if ax == "y":
+            add_box(bm_f, hx - 0.012, min(c, c + n_out * 0.05), hx + 0.012, max(c, c + n_out * 0.05), (z0 + z1) / 2 - 0.012, (z0 + z1) / 2 + 0.012)
+        if glass and ax == "y":
+            slab(f"{name}_glass{k}", a0 + 0.07, min(c, c + n_out * 0.01), a1 - 0.07, max(c, c + n_out * 0.01), z0 + 0.07, z1 - 0.07, M["glass"], "interior_" + level)
+    obj(name, bm_f, MI["cab"], "interior_" + level)
+
+
+# kitchen: shaker doors on the back run + island (kitchen side), glass-front uppers, tapware
+shaker("kitchen_back_doors", kx0 + 0.02, kx1 - 0.02, ("y", ky0 - 0.02), 1, GZ + 0.1, GZ + 0.86)
+shaker("kitchen_upper_doors", kx0 + 0.02, kx1 - 0.02, ("y", ky1 + 0.36), 1, GZ + 1.6, G_TOP - 0.1, door=0.5, glass=True)
+shaker("kitchen_island_doors", ic.x - IW / 2 + 0.08, ic.x + IW / 2 - 0.08, ("y", ic.y - ID / 2 + 0.05), -1, GZ + 0.1, GZ + IH - 0.08)
+tap = Vector((ic.x + 0.9, ic.y - 0.15))
+bpy.ops.mesh.primitive_torus_add(major_radius=0.13, minor_radius=0.012, location=(tap.x, tap.y - 0.0, GZ + IH + 0.3), rotation=(math.pi / 2, 0, 0))
+_t = bpy.context.active_object; _t.name = "kitchen_tap_spout"; _t.data.materials.append(M["steel"])
+slab("kitchen_tap_body", tap.x + 0.12, tap.y - 0.015, tap.x + 0.15, tap.y + 0.015, GZ + IH, GZ + IH + 0.3, M["steel"])
+slab("kitchen_sink", ic.x + 0.55, ic.y - 0.38, ic.x + 1.25, ic.y + 0.05, GZ + IH - 0.001, GZ + IH + 0.001, M["steel"])
+for _o in (_t,):
+    for _c in _o.users_collection:
+        _c.objects.unlink(_o)
+    col("interior_ground").objects.link(_o)
+# skirting + cornice on every interior wall
+for lv, z_f, z_c in (("ground", FFL, G_TOP), ("upper", U_FFL, U_TOP)):
+    bm_s = bmesh.new(); bm_k = bmesh.new()
+    for (l_, xa, ya, xb, yb) in WALLS:
+        if l_ != lv:
+            continue
+        add_box(bm_s, xa - 0.012, ya - 0.012, xb + 0.012, yb + 0.012, z_f, z_f + 0.13)
+        add_box(bm_k, xa - 0.035, ya - 0.035, xb + 0.035, yb + 0.035, z_c - 0.09, z_c - 0.02)
+    obj(f"{lv}_skirting", bm_s, MI["cab"], "interior_" + lv); obj(f"{lv}_cornice", bm_k, MI["cab"], "interior_" + lv)
+# sheer linen curtains stacked at both ends of every big exterior opening (ground living + upper bedrooms)
+for (lv, xa, ya, xb, yb) in OPENINGS:
+    horiz = (xb - xa) > (yb - ya); L_ = max(xb - xa, yb - ya)
+    poly_ = G_POLY if lv == "ground" else U_POLY
+    cx_, cy_ = (xa + xb) / 2, (ya + yb) / 2
+    p1 = (cx_, cy_ + 0.8) if horiz else (cx_ + 0.8, cy_); p2 = (cx_, cy_ - 0.8) if horiz else (cx_ - 0.8, cy_)
+    if L_ < 1.6 or inside(poly_, p1) == inside(poly_, p2):
+        continue
+    inner = p1 if inside(poly_, p1) else p2
+    z0_, z1_ = (FFL, G_TOP - 0.04) if lv == "ground" else (U_FFL, U_TOP - 0.04)
+    for end in (0, 1):
+        bm_c = bmesh.new(); verts = []
+        for k in range(17):
+            t = k / 16 * 0.55; wv = 0.05 * math.sin(k * 1.6)
+            if horiz:
+                x = (xa + t) if end == 0 else (xb - t); y = cy_ + (0.12 + wv) * (1 if inner[1] > cy_ else -1)
+            else:
+                y = (ya + t) if end == 0 else (yb - t); x = cx_ + (0.12 + wv) * (1 if inner[0] > cx_ else -1)
+            verts.append((bm_c.verts.new((x, y, z0_ + 0.02)), bm_c.verts.new((x, y, z1_))))
+        for (a0, a1), (b0, b1) in zip(verts, verts[1:]):
+            bm_c.faces.new((a0, b0, b1, a1))
+        obj(f"curtain_{lv}_{round(cx_)}_{round(cy_)}_{end}", bm_c, MI["sheer"], "interior_" + lv)
+# ceiling fans (palm-leaf style in photos 10/14/29)
+for nm, p_, z_ in (("lounge", (ct.x, ct.y - 0.6), G_TOP), ("family", (fc.x, fc.y + 1.3), G_TOP), ("outdoor_n", (od.x, od.y), G_TOP),
+                   ("upper_living", (ul.x, ul.y), U_TOP), ("master", (mh.x - 2.3, mh.y), U_TOP)):
+    place("ceiling_fan", p_, ("dir", 0, 1), nm, kind="hanging", z=z_ - 0.02, check=False, level="upper" if z_ == U_TOP else "ground")
+# art: big abstract canvases on the feature walls (none above beds)
+def art(name, centre, normal, w, h, z, m, level="ground"):
+    n_ = Vector((normal[0], normal[1], 0)); s_ = Vector((-n_.y, n_.x, 0)); c_ = Vector((centre[0], centre[1], 0))
+    t_ = wall_hit(centre, (-n_.x, -n_.y), level) or 0.0; c_ = c_ - n_ * (t_ - 0.03)
+    pts = [c_ + s_ * (-w / 2), c_ + s_ * (w / 2), c_ + s_ * (w / 2) + n_ * 0.04, c_ + s_ * (-w / 2) + n_ * 0.04]
+    bm_a = bmesh.new(); add_quad_prism(bm_a, [(p.x, p.y) for p in pts], z, z + h); obj(name, bm_a, MI[m], "interior_" + level)
+    fr = [c_ + s_ * (-w / 2 - 0.03) + n_ * 0.005, c_ + s_ * (w / 2 + 0.03) + n_ * 0.005, c_ + s_ * (w / 2 + 0.03) + n_ * 0.035, c_ + s_ * (-w / 2 - 0.03) + n_ * 0.035]
+    bm_f = bmesh.new(); add_quad_prism(bm_f, [(p.x, p.y) for p in fr], z - 0.03, z + h + 0.03); obj(name + "_frame", bm_f, M["black"], "interior_" + level)
+
+
+art("lounge_art", (fp.x, fp.y - 0.6), (0, -1), 1.6, 1.0, GZ + 1.55, "art_a")
+art("dining_art", (dc.x + 1.2, dc.y), (-1, 0), 1.4, 1.0, GZ + 1.2, "art_b")
+art("media_art", (tm.x - 2.6, tm.y + 1.8), (1, 0), 1.0, 1.3, GZ + 1.0, "art_a")
+# table-top dressing: books + bowl + vases + plants
+def books(name, at, z, n=3, yaw=0.0, level="ground"):
+    for k in range(n):
+        w_, d_, h_ = 0.32 - k * 0.03, 0.24 - k * 0.02, 0.035
+        bm_b = bmesh.new(); add_box(bm_b, -w_ / 2, -d_ / 2, w_ / 2, d_ / 2, 0, h_)
+        o_ = obj(f"{name}{k}", bm_b, MI["book"], "interior_" + level); o_.location = (at[0], at[1], z + k * h_); o_.rotation_euler = (0, 0, yaw + k * 0.12)
+
+
+books("lounge_books", (ct.x - 0.35, ct.y), GZ + 0.52)
+place("wooden_bowl_01", (ct.x + 0.35, ct.y), ("dir", 0, 1), "lounge", kind="decor", z=GZ + 0.52, check=False)
+books("family_books", (fc.x + 0.3, fc.y + 1.3), GZ + 0.37, yaw=0.4)
+place("ceramic_vase_01", (dc.x, dc.y + 0.3), ("dir", 0, 1), "dining", kind="decor", z=GZ + 0.76, check=False)
+place("brass_vase_01", (dc.x, dc.y - 0.35), ("dir", 0, 1), "dining", kind="decor", z=GZ + 0.76, check=False)
+place("wooden_bowl_01", (ic.x - 0.6, ic.y + 0.1), ("dir", 0, 1), "kitchen", kind="decor", z=GZ + IH, check=False)
+place("potted_plant_04", (ic.x - 1.4, ic.y), ("dir", 0, 1), "kitchen", kind="decor", z=GZ + IH, check=False)
+place("ceramic_vase_01", (kx0 + 0.4, ky1 + 0.3), ("dir", 0, 1), "kitchen", kind="decor", z=GZ + 0.92, check=False)
+books("upper_books", (ul.x, ul.y + 0.2), U_FFL + 0.37, yaw=-0.3, level="upper")
+place("anthurium_botany_01", (ul.x + 0.1, ul.y - 0.3), ("dir", 1, 0), "upper_living", kind="decor", z=U_FFL + 0.37, check=False, level="upper", scale=0.15)
+place("potted_plant_01", U(1062, 522), ("dir", 1, 0), "master", kind="decor", level="upper")
+
+# ---- exterior soffit downlights: outdoor entertaining, verandahs, balconies (listing photo 02 at dusk)
+for nm, r_ in (("outdoor_n", (610, 365, 684, 430)), ("outdoor_s", (610, 528, 684, 583)), ("verandah_w", (856, 327, 929, 360)),
+               ("verandah_e", (974, 365, 994, 488)), ("porch", (856, 492, 894, 508))):
+    x0_, y0_, x1_, y1_ = rect_px(*r_); nx_ = max(1, round((x1_ - x0_) / 2.2)); ny_ = max(1, round((y1_ - y0_) / 2.2))
+    downlights("ext_" + nm, x0_, y0_, x1_, y1_, G_TOP, nx_, ny_, 25)
+for nm, r_ in (("balcony_master", (616, 435, 702, 523)), ("balcony_east", (974, 365, 994, 486))):
+    x0_, y0_, x1_, y1_ = rect_px(*r_); nx_ = max(1, round((x1_ - x0_) / 2.2)); ny_ = max(1, round((y1_ - y0_) / 2.2))
+    downlights("ext_" + nm, x0_, y0_, x1_, y1_, U_TOP, nx_, ny_, 25)
 
 json.dump(dict(placed=PLACED, walls=WALLS, openings=OPENINGS), open(os.path.join(HERE, "layout.json"), "w"), indent=1)
 print("INTERIOR", len(PLACED), "pieces")

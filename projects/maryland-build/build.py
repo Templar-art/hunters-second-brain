@@ -115,6 +115,21 @@ def textured(m, kind, scale, strength, ramp=None):
     return m
 
 
+def lawn_mat():
+    m = textured(mat("Grass_lawn", (0.1, 0.24, 0.05), 0.9), "noise", 0.15, 0.1, ramp=((0.06, 0.17, 0.03), (0.11, 0.27, 0.05)))
+    nt = m.node_tree; b = next(n for n in nt.nodes if n.type == "BSDF_PRINCIPLED"); cr = next(n for n in nt.nodes if n.type == "VALTORGB")
+    tc = next(n for n in nt.nodes if n.type == "TEX_COORD")
+    wv = nt.nodes.new("ShaderNodeTexWave"); wv.wave_type = "BANDS"; wv.bands_direction = "Y"; wv.wave_profile = "SIN"
+    wv.inputs["Scale"].default_value = 0.26; wv.inputs["Distortion"].default_value = 0.3   # ~2.4 m mower passes
+    rmp = nt.nodes.new("ShaderNodeMapRange"); rmp.inputs["From Min"].default_value = 0.45; rmp.inputs["From Max"].default_value = 0.55
+    mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"; mix.blend_type = "MULTIPLY"
+    mix.inputs["B"].default_value = (1.2, 1.17, 1.12, 1)
+    nt.links.new(tc.outputs["Object"], wv.inputs["Vector"]); nt.links.new(wv.outputs["Fac"], rmp.inputs["Value"])
+    nt.links.new(rmp.outputs["Result"], mix.inputs["Factor"]); nt.links.new(cr.outputs["Color"], mix.inputs["A"])
+    nt.links.new(mix.outputs["Result"], b.inputs["Base Color"])
+    return m
+
+
 M = dict(
     wall=mat("Render_white", (0.84, 0.84, 0.82), 0.6),
     boards=textured(mat("Weatherboard_white", (0.84, 0.84, 0.82), 0.55), "boards", 1.75, 0.35),
@@ -124,24 +139,27 @@ M = dict(
     floor=mat("Floor_tile_light", (0.6, 0.58, 0.55), 0.4),
     timber_floor=textured(mat("Floor_timber_dark", (0.09, 0.06, 0.045), 0.35), "noise", 2.0, 0.05,
                           ramp=((0.06, 0.04, 0.03), (0.13, 0.085, 0.06))),
-    carpet=textured(mat("Carpet_charcoal", (0.1, 0.1, 0.105), 1.0), "noise", 300, 0.15, ramp=((0.07, 0.07, 0.075), (0.13, 0.13, 0.135))),
+    carpet=textured(mat("Carpet_charcoal", (0.17, 0.17, 0.175), 1.0), "noise", 300, 0.15, ramp=((0.13, 0.13, 0.135), (0.21, 0.21, 0.215))),
     pavers=mat("Concrete_pavers_grey", (0.42, 0.42, 0.41), 0.75),
     drive=mat("Concrete_drive", (0.48, 0.47, 0.45), 0.8),
-    lawn=textured(mat("Grass_lawn", (0.1, 0.24, 0.05), 0.9), "noise", 0.15, 0.1, ramp=((0.07, 0.19, 0.035), (0.13, 0.3, 0.06))),
-    sand=textured(mat("Rock_seawall", (0.4, 0.38, 0.35), 0.9), "noise", 3, 1.0, ramp=((0.22, 0.21, 0.2), (0.5, 0.47, 0.42))),
+    lawn=lawn_mat(),
+    lawn_far=textured(mat("Grass_far", (0.06, 0.13, 0.04), 0.9), "noise", 0.02, 0.0, ramp=((0.04, 0.09, 0.03), (0.09, 0.17, 0.05))),
+    sand=textured(mat("Rock_seawall", (0.25, 0.24, 0.22), 0.9), "noise", 6, 1.0, ramp=((0.07, 0.07, 0.065), (0.3, 0.28, 0.25))),
     water=mat("Water_canal", (0.05, 0.11, 0.12), 0.05),
     pool=mat("Pool_water", (0.12, 0.45, 0.5), 0.05),
     coping=mat("Stone_coping", (0.7, 0.68, 0.63), 0.6),
     hedge=mat("Plants_hedge", (0.05, 0.13, 0.04), 0.9),
     leaf=mat("Plants_tree_canopy", (0.07, 0.15, 0.05), 0.9),
     trunk=mat("Trunk_bark", (0.25, 0.2, 0.15), 0.9),
-    stone=mat("Stone_wall_travertine", (0.66, 0.63, 0.57), 0.8),
+    stone=textured(mat("Stone_wall_travertine", (0.58, 0.53, 0.45), 0.75), "noise", 4, 0.15, ramp=((0.48, 0.43, 0.36), (0.66, 0.61, 0.53))),
     solar=mat("Metal_solar_panel", (0.02, 0.03, 0.06), 0.15, metal=0.6),
     road=mat("Asphalt_road", (0.1, 0.1, 0.1), 0.9),
     neigh=mat("Render_neighbour", (0.78, 0.74, 0.68), 0.7),
     terracotta=mat("Roof_terracotta", (0.42, 0.16, 0.1), 0.7),
     timber=mat("Timber_jetty", (0.35, 0.27, 0.2), 0.8),
     black=mat("Metal_black", (0.03, 0.03, 0.03), 0.4),
+    glass_dark=mat("Glass_dark_reflective", (0.02, 0.025, 0.03), 0.05, metal=0.3),
+    glass_lit=mat("Glass_lit_warm", (0.9, 0.65, 0.4), 0.3, emit=0.001),
     fence=shadow_clear(mat("Glass_pool_fence", (0.8, 0.9, 0.9), 0.02, trans=1.0)),
     steel=mat("Steel_brushed", (0.7, 0.7, 0.7), 0.3, metal=1.0),
     cushion=mat("Fabric_lounger_charcoal", (0.08, 0.08, 0.085), 0.8),
@@ -418,18 +436,63 @@ for o in list(col("guest_house").objects):
 LOT = [site(772.8, 779.6), site(1177.4, 779.6), site(1249.9, 678.7), site(826.5, 710.6)]
 prism("lot_lawn", LOT, -0.05, 0.0, M["lawn"], "site")
 (wx0, wy0), (wx1, wy1) = LOT[0], LOT[3]
-prism("ground_beyond", [(wx0 - 6, -60), (230, -60), (230, 110), (wx1 - 6, wy1 + 40)], -0.25, -0.06, M["lawn"], "site")
-prism("canal_water", [(-120, -60), (wx0 - 6, -60), (wx1 - 6, wy1 + 40), (-120, wy1 + 40)], -0.6, -0.55, M["water"], "site")
-prism("beach_sand", [(wx0 - 6, -60), (wx0 + 2, wy0), (wx1 + 2, wy1), (wx1 - 6, wy1 + 40)], -0.55, -0.04, M["sand"], "site")
+SHORE = [(-24, -60), (-6, -22), (0, 0), (18.5, 23.8), (28, 52), (32, 80), (33, 112)]   # lot shore extended along the canal bend
+
+
+def shore_x(y):
+    for (x0, y0), (x1, y1) in zip(SHORE, SHORE[1:]):
+        if y0 <= y <= y1:
+            return x0 + (x1 - x0) * (y - y0) / (y1 - y0)
+    return SHORE[0][0] if y < SHORE[0][1] else SHORE[-1][0]
+
+
+def offset_shore(dx):
+    return [(x + dx, y) for x, y in SHORE]
+
+
+prism("ground_beyond", offset_shore(-1.5) + [(230, 112), (230, -60)], -0.25, -0.06, M["lawn"], "site")
+prism("canal_water", [(-120, -60)] + offset_shore(-3.5) + [(-120, 112)], -0.6, -0.55, M["water"], "site")
+# rock revetment: a sloped strip from the lawn edge (z 0) down under the water (z -0.9), boulder-lumpy
+bm = bmesh.new(); rows = []
+for k, (dx, z) in enumerate(((0.6, 0.02), (-0.4, -0.15), (-1.4, -0.35), (-2.4, -0.6), (-3.6, -0.95))):
+    rows.append([bm.verts.new((x, y, z)) for x, y in offset_shore(dx)])
+for r0, r1 in zip(rows, rows[1:]):
+    for i in range(len(SHORE) - 1):
+        bm.faces.new((r0[i], r0[i + 1], r1[i + 1], r1[i]))
+sw_o = obj("beach_sand", bm, M["sand"], "site")
+sw_o.modifiers.new("sub", "SUBSURF").levels = 0; sw_o.modifiers["sub"].render_levels = 0
+rm = sw_o.modifiers.new("remesh", "REMESH"); rm.mode = "VOXEL"; rm.voxel_size = 0.25
+sol = sw_o.modifiers.new("solid", "SOLIDIFY"); sol.thickness = 0.3; sw_o.modifiers.move(2, 0)
+dsp = sw_o.modifiers.new("boulders", "DISPLACE"); tx = bpy.data.textures.new("boulders", "VORONOI"); tx.noise_scale = 0.55
+dsp.texture = tx; dsp.strength = 0.35; dsp.mid_level = 0.3
+(wx0, wy0), (wx1, wy1) = LOT[0], LOT[3]
 # jetty + pontoon + boat (drone c05/c06)
-box("jetty_walk", wx0 - 2, 9.5, wx0 + 2, 11.0, -0.2, 0.0, M["timber"], "site")
-box("pontoon", wx0 - 14, 7.0, wx0 - 2, 10.5, -0.45, -0.25, M["timber"], "site")
-box("boat_hull", wx0 - 13, 4.6, wx0 - 6.5, 6.8, -0.5, 0.2, M["trim"], "site")
-box("boat_console", wx0 - 10.5, 5.2, wx0 - 9.3, 6.2, 0.2, 1.2, M["trim"], "site")
+sx = shore_x(10.25)
+box("jetty_walk", sx - 6, 9.6, sx + 0.5, 10.9, -0.15, 0.0, M["timber"], "site")
+for k in range(5):
+    box("jetty_pile", sx - 6 + k * 1.5 - 0.1, 9.45, sx - 6 + k * 1.5 + 0.1, 9.65, -1.0, 0.9, M["timber"], "site")
+box("pontoon", sx - 18, 7.2, sx - 6, 10.9, -0.45, -0.22, M["timber"], "site")
+# a 7 m centre-console boat moored alongside: tapered hull, white deck, console with a T-top
+bx, by = sx - 16.5, 5.6
+bm = bmesh.new()
+add_quad_prism(bm, [(bx, by - 1.2), (bx + 5.4, by - 1.2), (bx + 7.2, by), (bx + 5.4, by + 1.2), (bx, by + 1.2)], -0.55, 0.15)
+obj("boat_hull", bm, M["trim"], "site")
+bm = bmesh.new()
+add_quad_prism(bm, [(bx + 0.1, by - 1.1), (bx + 5.3, by - 1.1), (bx + 6.9, by), (bx + 5.3, by + 1.1), (bx + 0.1, by + 1.1)], 0.15, 0.2)
+obj("boat_deck", bm, M["coping"], "site")
+box("boat_stripe", bx, by - 1.21, bx + 5.4, by + 1.21, -0.1, 0.0, M["black"], "site")
+box("boat_console", bx + 2.6, by - 0.45, bx + 3.4, by + 0.45, 0.2, 1.25, M["trim"], "site")
+box("boat_screen", bx + 3.35, by - 0.45, bx + 3.45, by + 0.45, 1.25, 1.55, M["glass"], "site")
+for dy in (-0.55, 0.55):
+    box("boat_ttop_post", bx + 2.4, by + dy - 0.03, bx + 2.46, by + dy + 0.03, 0.2, 2.3, M["steel"], "site")
+    box("boat_ttop_post", bx + 3.5, by + dy - 0.03, bx + 3.56, by + dy + 0.03, 0.2, 2.3, M["steel"], "site")
+box("boat_ttop", bx + 2.2, by - 0.75, bx + 3.8, by + 0.75, 2.3, 2.36, M["cushion"], "site")
+box("boat_engine", bx - 0.6, by - 0.35, bx, by + 0.35, -0.3, 0.75, M["black"], "site")
 # pool (site plan), coping, surround with the step notch on the south side
-box("pool_surround", 24.6, 14.2, 43.4, 24.8, -0.02, 0.06, M["pavers"], "site")
-box("pool_coping", 26.6, 16.0, 42.0, 23.1, 0.0, 0.1, M["coping"], "site")
-box("pool_water", 27.2, 16.5, 41.4, 22.6, 0.0, 0.11, M["pool"], "site")
+box("pool_surround", 24.6, 14.2, 43.4, 24.8, -0.02, 0.09, M["pavers"], "site")
+for (xa, ya, xb, yb) in ((26.6, 16.0, 42.0, 16.5), (26.6, 22.6, 42.0, 23.1), (26.6, 16.0, 27.2, 23.1), (41.4, 16.0, 42.0, 23.1)):
+    box("pool_coping", xa, ya, xb, yb, 0.0, 0.12, M["coping"], "site")
+box("pool_water", 27.2, 16.5, 41.4, 22.6, 0.0, 0.1, M["pool"], "site")
 box("pool_step", 32.5, 15.2, 36.0, 16.6, 0.0, 0.1, M["coping"], "site")
 # frameless glass fence along the pool's north (lawn) and west sides, spigots; three loungers on the north deck
 for (xa, ya, xb, yb) in ((24.6, 24.8, 43.4, 24.8), (24.6, 14.2, 24.6, 24.8)):
@@ -444,6 +507,17 @@ for i in range(3):
     box("lounger_frame", x, 23.0, x + 0.7, 24.95 - 0.1, 0.06, 0.3, M["steel"], "site")
     box("lounger_cushion", x + 0.03, 23.05, x + 0.67, 24.4, 0.3, 0.38, M["cushion"], "site")
     bar(bm := bmesh.new(), (x + 0.35, 24.4), (x + 0.35, 24.85), 0, 0.38, 0.45, 0.85, 0.3); obj("lounger_back", bm, M["cushion"], "site")
+# timber bench under the waterside tree, facing the water: the directed "looking out at the water" moment
+BENCH = (shore_x(12.6) + 3.2, 12.6)
+bm = bmesh.new()
+for k in range(5):                                            # seat slats (along y), backrest slats, legs
+    add_box(bm, BENCH[0] - 0.22 + k * 0.095, BENCH[1] - 0.9, BENCH[0] - 0.22 + k * 0.095 + 0.08, BENCH[1] + 0.9, 0.43, 0.46)
+for k in range(3):
+    add_box(bm, BENCH[0] + 0.25 + k * 0.02, BENCH[1] - 0.9, BENCH[0] + 0.28 + k * 0.02, BENCH[1] + 0.9, 0.55 + k * 0.13, 0.65 + k * 0.13)
+for dy in (-0.8, 0.8):
+    add_box(bm, BENCH[0] - 0.22, BENCH[1] + dy - 0.04, BENCH[0] + 0.25, BENCH[1] + dy + 0.04, 0.0, 0.43)
+    add_box(bm, BENCH[0] + 0.24, BENCH[1] + dy - 0.04, BENCH[0] + 0.32, BENCH[1] + dy + 0.04, 0.0, 0.95)
+obj("waterside_bench", bm, M["timber"], "site")
 # fire pit + curved rendered seat wall near the water, the "bench looking at the water" spot (listing photo 05)
 FP = (17.0, 7.0)
 bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=0.55, depth=0.4, location=(*FP, 0.2))
@@ -451,7 +525,7 @@ fp = bpy.context.active_object; fp.name = "fire_pit"; fp.data.materials.append(M
 for c in fp.users_collection:
     c.objects.unlink(fp)
 col("site").objects.link(fp)
-box("fire_pit_pad", FP[0] - 2.6, FP[1] - 2.6, FP[0] + 2.6, FP[1] + 2.6, -0.02, 0.03, M["pavers"], "site")
+box("fire_pit_pad", FP[0] - 2.6, FP[1] - 2.6, FP[0] + 2.6, FP[1] + 2.6, -0.02, 0.09, M["pavers"], "site")
 bm = bmesh.new()
 for k in range(10):                                           # seat wall arc on the house side, facing the water
     a0, a1 = math.radians(-70 + k * 14), math.radians(-70 + (k + 1) * 14)
@@ -465,9 +539,9 @@ drive = [(141, 2.6), (120, 3.3), (98, 4.3), (78, 5.6), (70, 7.0)]
 bm = bmesh.new()
 for (x0, y0), (x1, y1) in zip(drive, drive[1:]):
     dx, dy = x1 - x0, y1 - y0; L = math.hypot(dx, dy); nx, ny = -dy / L * 2.0, dx / L * 2.0
-    add_quad_prism(bm, [(x0 + nx, y0 + ny), (x0 - nx, y0 - ny), (x1 - nx, y1 - ny), (x1 + nx, y1 + ny)], -0.02, 0.04)
+    add_quad_prism(bm, [(x0 + nx, y0 + ny), (x0 - nx, y0 - ny), (x1 - nx, y1 - ny), (x1 + nx, y1 + ny)], -0.02, 0.09)
 obj("driveway", bm, M["drive"], "site")
-box("garage_apron", 59.9, 1.9, 73.9, 12.4, -0.02, 0.05, M["drive"], "site")
+box("garage_apron", 59.9, 1.9, 73.9, 12.4, -0.02, 0.09, M["drive"], "site")
 # street + front wall with gate pillars and the 18 MARYLAND sign
 (ex0, ey0), (ex1, ey1) = LOT[1], LOT[2]
 ux, uy = (ex1 - ex0) / math.dist(LOT[1], LOT[2]), (ey1 - ey0) / math.dist(LOT[1], LOT[2])
@@ -480,8 +554,12 @@ for t0, t1 in ((6.5, 18), (24, 40)):                         # wall either side 
 for t in (1.0, 6.5):
     x, y = ex0 + ux * t, ey0 + uy * t; box("gate_pillar", x - 0.6, y - 0.6, x + 0.6, y + 0.6, 0, 2.6, M["stone"], "street")
 # white gate leaf, swung open inward off the south pillar (listing photo 01)
-gx, gy = ex0 + ux * 1.6, ey0 + uy * 1.6; sw = math.atan2(uy, ux) + math.radians(-75)
-bm = bmesh.new(); add_box(bm, 0, -0.04, 4.6, 0.04, 0.1, 2.2); g = obj("gate_leaf", bm, M["trim"], "street")
+gx, gy = ex0 + ux * 1.6, ey0 + uy * 1.6; sw = math.radians(-168)   # swung fully open inward, flat along the south boundary
+bm = bmesh.new()
+for k in range(26):                                          # vertical slats + top/bottom rails
+    add_box(bm, 0.05 + k * 0.175, -0.035, 0.05 + k * 0.175 + 0.13, 0.035, 0.12, 2.15)
+add_box(bm, 0, -0.045, 4.6, 0.045, 0.1, 0.22); add_box(bm, 0, -0.045, 4.6, 0.045, 2.05, 2.2)
+g = obj("gate_leaf", bm, M["trim"], "street")
 g.location = (gx - 0.6, gy, 0); g.rotation_euler = (0, 0, sw)
 # "18 MARYLAND" in dark metal letters on the street face of the sign wall, north of the gate
 cu = bpy.data.curves.new("sign", "FONT"); cu.body = "18 MARYLAND"; cu.size = 0.42; cu.extrude = 0.015; cu.align_x = "CENTER"
@@ -500,33 +578,30 @@ box("hedge_north", 22, 31.2, 150, 33.0, 0, 4.0, M["hedge"], "site")
 NEIGH = [(30, -22, 52, -6, M["terracotta"]), (62, -20, 82, -5, M["terracotta"]), (32, 36, 56, 52, M["roof"]), (70, 38, 92, 54, M["roof"])]
 for i, (x0, y0, x1, y1, rm) in enumerate(NEIGH):
     box(f"neighbour_{i}", x0, y0, x1, y1, 0, 6.0, M["neigh"], "neighbours")
+    for z0 in (0.4, 3.6):                                    # a few big openings per side so they read as houses
+        for k in range(5):
+            t = 2.5 + k * 5.5; wm = M["glass_lit"] if (i + k + int(z0)) % 3 == 0 else M["glass_dark"]
+            hz = 2.4 if z0 < 1 else 1.6
+            if x0 + t + 2.6 < x1 - 1.5:
+                for yy in (y0 - 0.03, y1):
+                    box(f"neighbour_{i}_glass", x0 + t, yy, x0 + t + 2.6, yy + 0.03, z0, z0 + hz, wm, "neighbours")
+            if y0 + t + 2.6 < y1 - 1.5:
+                for xx in (x0 - 0.03, x1):
+                    box(f"neighbour_{i}_glass", xx, y0 + t, xx + 0.03, y0 + t + 2.6, z0, z0 + hz, wm, "neighbours")
     hip(f"neighbour_{i}_roof", x0, y0, x1, y1, 6.0, collection="neighbours", material=rm)
 
 
-# ------------------------------------------------------------------ trees + palms
-def tree(name, x, y, r, h):
-    box(name + "_trunk", x - 0.25, y - 0.25, x + 0.25, y + 0.25, 0, h * 0.5, M["trunk"], "landscape")
-    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=r, location=(x, y, h * 0.5 + r * 0.6))
-    o = bpy.context.active_object; o.name = name; o.scale = (1, 1, 0.75)
-    for c in o.users_collection:
-        c.objects.unlink(o)
-    col("landscape").objects.link(o); o.data.materials.append(M["leaf"])
-    d = o.modifiers.new("lumpy", "DISPLACE"); t = bpy.data.textures.new(name + "_n", "CLOUDS"); t.noise_scale = r * 0.35
-    d.texture = t; d.strength = r * 0.35
+# ------------------------------------------------------------------ trees + palms + lawn + water (landscape.py)
+exec(open(os.path.join(HERE, "landscape.py")).read())
 
-
-def palm(name, x, y, h):
-    box(name + "_trunk", x - 0.18, y - 0.18, x + 0.18, y + 0.18, 0, h, M["trunk"], "landscape")
-    bm = bmesh.new()
-    for k in range(9):
-        a = k / 9 * 2 * math.pi
-        tip = (x + math.cos(a) * 3.2, y + math.sin(a) * 3.2, h - 1.3)
-        mid = (x + math.cos(a) * 1.6, y + math.sin(a) * 1.6, h + 0.4)
-        side = (-math.sin(a) * 0.5, math.cos(a) * 0.5)
-        v = [bm.verts.new((x, y, h)), bm.verts.new((mid[0] + side[0], mid[1] + side[1], mid[2])), bm.verts.new(tip),
-             bm.verts.new((mid[0] - side[0], mid[1] - side[1], mid[2]))]
-        bm.faces.new(v)
-    obj(name, bm, M["leaf"], "landscape")
+# neighbour lots dressed like the drone aerial (photo 03): a pool on the water side, canopy trees, a palm or two
+for i, (x0, y0, x1, y1, rm) in enumerate(NEIGH):
+    cy = (y0 + y1) / 2; px0 = max(x0 - 12, shore_x(cy) + 5)
+    box(f"neighbour_{i}_pool_surround", px0 - 1, cy - 4, px0 + 10, cy + 4, -0.06, 0.04, M["pavers"], "neighbours")
+    box(f"neighbour_{i}_pool", px0, cy - 2.5, px0 + 9, cy + 2.5, -0.06, 0.06, M["pool"], "neighbours")
+    for k, (tx, ty) in enumerate(((x1 + 8, y0 + 2), (x1 + 14, y1 - 3), (x0 - 22, y0 + 1))):
+        tree(f"neighbour_{i}_tree{k}", max(tx, shore_x(ty) + 3), ty, 4, 7 + 2 * k)
+    palm(f"neighbour_{i}_palm", px0 - 3, cy + 5, 12)
 
 
 for i, (x, y) in enumerate([(119.2, 26.8), (129, 26), (138, 29.2), (137.7, 22.2), (146.2, 28.2), (155.5, 30.5)]):
@@ -534,11 +609,36 @@ for i, (x, y) in enumerate([(119.2, 26.8), (129, 26), (138, 29.2), (137.7, 22.2)
 for i in range(7):                                           # weeping-fig row on the north boundary (photo 06)
     tree(f"fig_row_{i}", 100 + i * 2.8, 31.0 + (i % 2) * 0.6, 3.6, 13.0)
 for i, (x, y) in enumerate([(16, 15.8), (13.2, 10.6), (4.5, 2.1), (9.5, 2.8), (14.5, 2.1)]):
-    tree(f"waterside_tree_{i}", x, y, 3.2, 6.0)
-for i, (x, y, h) in enumerate([(6, 22, 12), (9, 26, 14), (3, 15, 11), (19, 28, 13), (22, 4, 10), (48, 29, 12), (75, 30, 11)]):
-    palm(f"palm_{i}", x, y, h)
+    tree(f"waterside_tree_{i}", max(x, shore_x(y) + 3.0), y, 3.2, 6.0)
+for i, (x, y, h) in enumerate([(22.5, 27, 12), (24.5, 29.5, 14), (6.5, 6.5, 11), (19.5, 21.5, 13), (22, 4, 10), (48, 29, 12), (75, 30, 11)]):
+    palm(f"palm_{i}", max(x, shore_x(y) + 2.5), y, h)
 for i in range(14):                                          # hedge-line shrubs + garden beds by the house
-    x = 46 + i * 2.1; tree(f"shrub_{i}", x, 29.6, 0.9, 1.0)
+    x = 46 + i * 2.1; shrub(f"shrub_{i}", x, 29.6, 0.8, 1.1)
+plant_hedges()
+def _seg_d(p, a, c):
+    ax, ay = a; bx_, by_ = c; dx, dy = bx_ - ax, by_ - ay
+    t = max(0, min(1, ((p[0] - ax) * dx + (p[1] - ay) * dy) / (dx * dx + dy * dy)))
+    return math.hypot(p[0] - ax - t * dx, p[1] - ay - t * dy)
+
+
+HARD = [(24.4, 14.0, 43.6, 25.0), (59.7, 1.7, 74.1, 12.6), (FP[0] - 2.8, FP[1] - 2.8, FP[0] + 2.8, FP[1] + 2.8)]
+HARD += [(min(hw(a_, b_)[0], hw(c_, d_)[0]) - 0.3, min(hw(a_, b_)[1], hw(c_, d_)[1]) - 0.3,
+          max(hw(a_, b_)[0], hw(c_, d_)[0]) + 0.3, max(hw(a_, b_)[1], hw(c_, d_)[1]) + 0.3) for a_, b_, c_, d_ in DECKS.values()]
+
+
+def lawn_keep(x, y):
+    if inside(G_POLY, (x, y)) or inside(GP, (x, y)):
+        return False
+    if any(xa <= x <= xb and ya <= y <= yb for xa, ya, xb, yb in HARD):
+        return False
+    return min(_seg_d((x, y), a_, c_) for a_, c_ in zip(drive, drive[1:])) > 2.3
+
+
+lawn_grass(LOT, lawn_keep)
+water_material()
+far_bank()
+horizon()
+bury_protos()
 
 # ------------------------------------------------------------------ interior (furniture, kitchen, lights)
 M["glass"] = shadow_clear(M["glass"])
