@@ -3,7 +3,7 @@ client: internal
 address: 18 Maryland (Lambo clip, ZED)
 opened: 2026-10-21
 status: generating        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 140, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 175, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job: 18 Maryland, CG Huracán clips
@@ -28,6 +28,7 @@ cost: { credits: 0, hf_credits: 140, aud: 0 }   # derived from ## Ledger
 <!-- one line per spend; the cost: header is derived from this (gen_runner.py tally) -->
 <!-- Higgsfield batches: gen_runner.py run appends here. Magnific/MCP or web spends: gen_runner.py log JOB.md <amount> <hf|cr|aud> <note> -->
 - 2026-10-22 | 140 hf | s1_drive_in_photoreal seedance_2_5 (gen-runner)
+- 2026-10-22 | 35 hf | d_tail_light seedance_2_5 (gen-runner)
 
 ---
 _Vault: [[jarvis]]_
