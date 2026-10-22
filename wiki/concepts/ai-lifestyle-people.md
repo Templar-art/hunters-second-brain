@@ -56,6 +56,8 @@ The cinematic version is a short film rather than single photos: someone on a be
 - [[blender-blockout-pipeline]]: the kit (`scene.json` → headless build), MPFB2 posed humans, Camera Shakify, material-ID maps (people = purple), and the Sunburst → video route.
 - [[lambo-huracan]]: the CG car rig (a clean world-aligned rig, bicycle-model steering, drive IN), tracked real plates, and the 2026-10-22 finish chain.
 
+**The film is the real property; AI people are a few directed moments (Hunter, 2026-10-22).** Most of the film is 10x's real footage of the house. The AI cast appears only in 2–4 hand-picked hero moments that Hunter directs: the bench looking at the water, the balcony, the car arriving. It's never a whole AI film. Each moment is planned like a shot on set (who, where, what action, which camera move), then built with the recipe below and cut between the real shots, graded to match.
+
 **Per-shot recipe**
 1. **Set.** Choose the source:
    - the kit for render and plan jobs;
