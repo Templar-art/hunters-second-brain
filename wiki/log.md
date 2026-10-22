@@ -1395,3 +1395,6 @@ The day-to-dusk relight (v2, Depth Pro mesh + Cycles) was stopped by Hunter. Win
 
 ## [2026-10-21] ingest | Sky library
 Hunter asked what real sky looks like at each time of day and for the best real sky at each. All 299 Poly Haven skies were rendered camera-view and ranked, and 4 were picked per time. Physics notes and prompt wording sit alongside them. See [[sky-library]].
+
+## [2026-10-22] query | AI lifestyle people framework
+Hunter wants hyper-real AI-generated people (no cast talent) in listing lifestyle shots. Drafted [[ai-lifestyle-people]]: a recurring invented house cast, new shot classes P5 (people into a real photo, composited back onto the raw) and C6 (people in renders/CG), a realism QC checklist, the Topaz 4K50 + Hyperion HDR finish proven on the Lambo side intake, costs, and a ~75 HF pilot. Awaiting the cast list and the pilot photos.
