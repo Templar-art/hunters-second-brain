@@ -85,6 +85,16 @@ def mat(name, rgb, rough=0.5, metal=0.0, alpha=1.0, emit=0.0, trans=0.0):
     return m
 
 
+def shadow_clear(m):
+    """glass that still lets direct light through (Cycles blocks sun shadow rays at transmissive surfaces)"""
+    nt = m.node_tree; out = next(n for n in nt.nodes if n.type == "OUTPUT_MATERIAL")
+    b = next(n for n in nt.nodes if n.type == "BSDF_PRINCIPLED")
+    lp = nt.nodes.new("ShaderNodeLightPath"); tr = nt.nodes.new("ShaderNodeBsdfTransparent"); mx = nt.nodes.new("ShaderNodeMixShader")
+    nt.links.new(lp.outputs["Is Shadow Ray"], mx.inputs[0]); nt.links.new(b.outputs[0], mx.inputs[1])
+    nt.links.new(tr.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], out.inputs["Surface"])
+    return m
+
+
 def textured(m, kind, scale, strength, ramp=None):
     """procedural bump (weatherboard laps, roof tiles, grass) + optional two-colour noise ramp"""
     nt = m.node_tree; b = next(n for n in nt.nodes if n.type == "BSDF_PRINCIPLED")
@@ -110,8 +120,11 @@ M = dict(
     boards=textured(mat("Weatherboard_white", (0.84, 0.84, 0.82), 0.55), "boards", 1.75, 0.35),
     trim=mat("Render_trim_white", (0.9, 0.9, 0.88), 0.4),
     roof=textured(mat("Roof_tile_charcoal", (0.045, 0.048, 0.052), 0.65), "noise", 40, 0.25),
-    glass=mat("Glass_window", (0.05, 0.07, 0.08), 0.05, trans=0.6),
+    glass=mat("Glass_window", (0.9, 0.95, 0.95), 0.0, trans=1.0),
     floor=mat("Floor_tile_light", (0.6, 0.58, 0.55), 0.4),
+    timber_floor=textured(mat("Floor_timber_dark", (0.09, 0.06, 0.045), 0.35), "noise", 2.0, 0.05,
+                          ramp=((0.06, 0.04, 0.03), (0.13, 0.085, 0.06))),
+    carpet=textured(mat("Carpet_charcoal", (0.1, 0.1, 0.105), 1.0), "noise", 300, 0.15, ramp=((0.07, 0.07, 0.075), (0.13, 0.13, 0.135))),
     pavers=mat("Concrete_pavers_grey", (0.42, 0.42, 0.41), 0.75),
     drive=mat("Concrete_drive", (0.48, 0.47, 0.45), 0.8),
     lawn=textured(mat("Grass_lawn", (0.1, 0.24, 0.05), 0.9), "noise", 0.15, 0.1, ramp=((0.07, 0.19, 0.035), (0.13, 0.3, 0.06))),
@@ -129,7 +142,7 @@ M = dict(
     terracotta=mat("Roof_terracotta", (0.42, 0.16, 0.1), 0.7),
     timber=mat("Timber_jetty", (0.35, 0.27, 0.2), 0.8),
     black=mat("Metal_black", (0.03, 0.03, 0.03), 0.4),
-    fence=mat("Glass_pool_fence", (0.8, 0.9, 0.9), 0.02, trans=1.0),
+    fence=shadow_clear(mat("Glass_pool_fence", (0.8, 0.9, 0.9), 0.02, trans=1.0)),
     steel=mat("Steel_brushed", (0.7, 0.7, 0.7), 0.3, metal=1.0),
     cushion=mat("Fabric_lounger_charcoal", (0.08, 0.08, 0.085), 0.8),
 )
@@ -199,6 +212,9 @@ def to_world(rect, origin, fn):
     return a, b
 
 
+WALLS, OPENINGS = [], []                         # (level, xa, ya, xb, yb) world rects, read by interior.py + review.py
+
+
 def walls_from(level, origin, fn, z0, z1, collection, footprint, wall_mat="wall"):
     w = P[level + "_wall"]; h = P[level + "_header"]
     bm = bmesh.new()
@@ -206,6 +222,8 @@ def walls_from(level, origin, fn, z0, z1, collection, footprint, wall_mat="wall"
         (x0, y0), (x1, y1) = to_world(rc, origin, fn)
         if abs(x1 - x0) * abs(y1 - y0) > 0.004:
             add_box(bm, min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1), z0, z1)
+            if level != "guest":
+                WALLS.append((level, min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1)))
     obj(f"{level}_walls", bm, M[wall_mat], collection)
     bmh = bmesh.new(); bmg = bmesh.new(); bmf = bmesh.new()
     for rc in rects(h):
@@ -213,6 +231,8 @@ def walls_from(level, origin, fn, z0, z1, collection, footprint, wall_mat="wall"
         xa, xb, ya, yb = min(x0, x1), max(x0, x1), min(y0, y1), max(y0, y1)
         if (xb - xa) * (yb - ya) < 0.004:
             continue
+        if level != "guest":
+            OPENINGS.append((level, xa, ya, xb, yb))
         add_box(bmh, xa, ya, xb, yb, z0 + 2.2, z1)
         cx, cy = (xa + xb) / 2, (ya + yb) / 2; horiz = (xb - xa) > (yb - ya)
         p1 = (cx, cy + 0.8) if horiz else (cx + 0.8, cy); p2 = (cx, cy - 0.8) if horiz else (cx - 0.8, cy)
@@ -324,8 +344,9 @@ G_POLY = [hw(*p) for p in GROUND_PX]; U_POLY = [hw(*p) for p in UPPER_PX]
 
 walls_from("ground", (600, 320), hw, FFL, G_TOP, "house_ground", G_POLY)
 walls_from("upper", UPPER_ORIGIN, hw, U_FFL, U_TOP, "house_upper", U_POLY, "boards")
-prism("ground_slab", G_POLY, 0.0, FFL, M["floor"], "house_ground")
-prism("upper_slab", U_POLY, G_TOP, U_FFL, M["floor"], "house_upper")
+prism("ground_slab", G_POLY, 0.0, FFL, M["timber_floor"], "house_ground")
+prism("upper_slab", U_POLY, G_TOP, U_FFL, M["carpet"], "house_upper")
+prism("ground_ceiling", U_POLY, G_TOP - 0.02, G_TOP, M["trim"], "house_ground")
 prism("upper_ceiling", U_POLY, U_TOP - 0.05, U_TOP, M["trim"], "house_upper")
 
 # decks (plan px rects) -> pavers at ground, balcony decks upstairs
@@ -518,6 +539,10 @@ for i, (x, y, h) in enumerate([(6, 22, 12), (9, 26, 14), (3, 15, 11), (19, 28, 1
     palm(f"palm_{i}", x, y, h)
 for i in range(14):                                          # hedge-line shrubs + garden beds by the house
     x = 46 + i * 2.1; tree(f"shrub_{i}", x, 29.6, 0.9, 1.0)
+
+# ------------------------------------------------------------------ interior (furniture, kitchen, lights)
+M["glass"] = shadow_clear(M["glass"])
+exec(open(os.path.join(HERE, "interior.py")).read())
 
 # ------------------------------------------------------------------ light, cameras, render
 w = bpy.data.worlds.new("sky"); sc.world = w; w.use_nodes = True
