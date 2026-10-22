@@ -51,6 +51,28 @@ Kids are generated characters too, never real children's photos. Keep them back-
 5. **QC** against the realism checklist below. Re-roll from the raw, never from the last AI output.
 6. **Optional motion (paid, ~35 HF at 720p).** Seedance 2.5 omni_reference from the finished still, with one small action (steam from a cup, a page turning, a hair move) and a locked camera or a slow gimbal drift. Then the Topaz chain if needed (below).
 
+## Blender-directed lifestyle films (C6 at full scale)
+The cinematic version is a short film rather than single photos: someone on a bench looking out at the water, a couple on the balcony at dusk, the car rolling up the drive, hands on a coffee cup at the island. Blender directs it and AI paints it. Blender fixes the camera move, the composition, the person's pose and position, and the car's path; the AI only makes it photoreal. It reuses what's already built:
+- [[blender-blockout-pipeline]]: the kit (`scene.json` → headless build), MPFB2 posed humans, Camera Shakify, material-ID maps (people = purple), and the Sunburst → video route.
+- [[lambo-huracan]]: the CG car rig (a clean world-aligned rig, bicycle-model steering, drive IN), tracked real plates, and the 2026-10-22 finish chain.
+
+**Per-shot recipe**
+1. **Set.** Choose the source:
+   - the kit for render and plan jobs;
+   - a low-poly scan of the real house (Object Capture, as on 18 Maryland);
+   - a real plate when 10x shot the property.
+2. **Block the shot (free).** Place an MPFB2 person with the pose and action named in the shot list: sitting on the bench facing the water, leaning on the balcony rail, walking in. Then set the camera move (one continuous crane or gimbal move, no zoom) and the car path if there is one. Render a guide frame, plus a material-ID map for any shot with clutter.
+3. **Photoreal still (~3 HF).** GPT Image 2.5 Sunburst from the guide frame plus the cast `face.png`. The prompt reads the guide in prose and dresses the MPFB figure as the cast member. Use the filmic "unretouched ARRI footage" wording that fixed the plasticky Lambo stills.
+4. **Motion.** Route by what moves:
+   - Empty architecture or a slow move → Seedance 2.5 omni_reference.
+   - Faces in frame → Kling 3.0 Pro (12.5 HF) or Veo 3.1 Fast (32 HF). They held faces in the beach face test where Seedance morphed at ~2 s.
+   - Car → CG car tracked into a real plate when the plate exists. Otherwise use a start frame plus an end frame (empty drive → parked car), so the AI only fills the drive.
+5. **Finish.** Topaz Video for 4K 50 fps, then Hyperion HDR if it's for an HDR delivery.
+
+**Close-ups don't need Blender.** Hands on a rail, a coffee cup, a back-of-head shot looking out at the view: generate them straight from the cast still with a small action and a slow slider move. Blender earns its keep on the wides and the moves, where AI drifts.
+
+**Typical lifestyle film (8–10 shots):** establishing drone (real or kit) → car arrival → front door → interior walk-through → island moment (cast) → bench or lawn looking at the water (cast, close plus wide) → balcony at golden or blue hour (cast) → detail close-ups → closing wide. The sky comes from [[sky-library]].
+
 ## Realism checklist (QC, and the prompt wording)
 - **Hands:** simple grips (mug, book, rail), no interlaced fingers, no hands floating near faces. Hands are the first thing that gives AI away.
 - **Skin:** natural texture and pores, uneven tone, no airbrushing. Say "unretouched" and "natural skin". Glam only for agent portraits ([[feedback-ai-face-swap-glam]] in auto-memory applies to replaced faces, not lifestyle cast).

@@ -1398,3 +1398,6 @@ Hunter asked what real sky looks like at each time of day and for the best real 
 
 ## [2026-10-22] query | AI lifestyle people framework
 Hunter wants hyper-real AI-generated people (no cast talent) in listing lifestyle shots. Drafted [[ai-lifestyle-people]]: a recurring invented house cast, new shot classes P5 (people into a real photo, composited back onto the raw) and C6 (people in renders/CG), a realism QC checklist, the Topaz 4K50 + Hyperion HDR finish proven on the Lambo side intake, costs, and a ~75 HF pilot. Awaiting the cast list and the pilot photos.
+
+## [2026-10-22] query | Blender-directed lifestyle films
+Extended [[ai-lifestyle-people]] with the Blender + AI cinematic route: the kit, MPFB2 posed people and car rigs direct the shot; Sunburst with the cast face makes it photoreal; motion is routed Seedance (architecture), Kling 3.0 Pro / Veo (faces) or a tracked CG car; then the Topaz 4K50 + HDR finish. Includes an 8–10 shot lifestyle film template.
