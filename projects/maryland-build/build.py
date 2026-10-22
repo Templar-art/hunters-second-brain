@@ -8,6 +8,10 @@ Site plan: 2.9 px/m; floor plans: 13.1 px/m. The ground plan is placed on the si
 outline; the upper level is registered onto the ground level (side verandahs line up); the guest house sits where
 the site plan draws it, rotated to the north boundary. Facades/roof from 10x's own footage: white weatherboard,
 charcoal tiled hip roofs, white balustrade balconies, solar panels, pyramid cupola on the water side.
+v2 (listing photos, raw/18-maryland/listing/): white rendered ground floor + weatherboard upper, Chinese
+Chippendale balustrades, porthole window on the water facade, frameless glass pool fence + loungers, rock seawall
+(no beach), travertine gate pillars + "18 MARYLAND" sign wall, white gate leaf, flagpole, fire-pit seat wall by
+the water, weeping-fig row along the north boundary.
 Output: maryland.blend + qc/*.png
 """
 import math
@@ -81,16 +85,37 @@ def mat(name, rgb, rough=0.5, metal=0.0, alpha=1.0, emit=0.0, trans=0.0):
     return m
 
 
+def textured(m, kind, scale, strength, ramp=None):
+    """procedural bump (weatherboard laps, roof tiles, grass) + optional two-colour noise ramp"""
+    nt = m.node_tree; b = next(n for n in nt.nodes if n.type == "BSDF_PRINCIPLED")
+    tc = nt.nodes.new("ShaderNodeTexCoord"); bump = nt.nodes.new("ShaderNodeBump")
+    bump.inputs["Strength"].default_value = strength; bump.inputs["Distance"].default_value = 0.02
+    if kind == "boards":
+        t = nt.nodes.new("ShaderNodeTexWave"); t.wave_type = "BANDS"; t.bands_direction = "Z"; t.wave_profile = "SAW"
+        t.inputs["Scale"].default_value = scale; t.inputs["Distortion"].default_value = 0.0
+    else:
+        t = nt.nodes.new("ShaderNodeTexNoise"); t.inputs["Scale"].default_value = scale
+        t.inputs["Detail"].default_value = 8
+    nt.links.new(tc.outputs["Object"], t.inputs["Vector"]); nt.links.new(t.outputs["Fac"], bump.inputs["Height"])
+    nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
+    if ramp:
+        cr = nt.nodes.new("ShaderNodeValToRGB"); cr.color_ramp.elements[0].color = (*ramp[0], 1)
+        cr.color_ramp.elements[1].color = (*ramp[1], 1); nt.links.new(t.outputs["Fac"], cr.inputs["Fac"])
+        nt.links.new(cr.outputs["Color"], b.inputs["Base Color"])
+    return m
+
+
 M = dict(
-    wall=mat("Render_weatherboard_white", (0.82, 0.82, 0.80), 0.6),
+    wall=mat("Render_white", (0.84, 0.84, 0.82), 0.6),
+    boards=textured(mat("Weatherboard_white", (0.84, 0.84, 0.82), 0.55), "boards", 1.75, 0.35),
     trim=mat("Render_trim_white", (0.9, 0.9, 0.88), 0.4),
-    roof=mat("Roof_tile_charcoal", (0.10, 0.105, 0.11), 0.7),
+    roof=textured(mat("Roof_tile_charcoal", (0.045, 0.048, 0.052), 0.65), "noise", 40, 0.25),
     glass=mat("Glass_window", (0.05, 0.07, 0.08), 0.05, trans=0.6),
     floor=mat("Floor_tile_light", (0.6, 0.58, 0.55), 0.4),
     pavers=mat("Concrete_pavers_grey", (0.42, 0.42, 0.41), 0.75),
     drive=mat("Concrete_drive", (0.48, 0.47, 0.45), 0.8),
-    lawn=mat("Grass_lawn", (0.12, 0.22, 0.06), 0.9),
-    sand=mat("Sand_beach", (0.62, 0.56, 0.44), 0.9),
+    lawn=textured(mat("Grass_lawn", (0.1, 0.24, 0.05), 0.9), "noise", 0.15, 0.1, ramp=((0.07, 0.19, 0.035), (0.13, 0.3, 0.06))),
+    sand=textured(mat("Rock_seawall", (0.4, 0.38, 0.35), 0.9), "noise", 3, 1.0, ramp=((0.22, 0.21, 0.2), (0.5, 0.47, 0.42))),
     water=mat("Water_canal", (0.05, 0.11, 0.12), 0.05),
     pool=mat("Pool_water", (0.12, 0.45, 0.5), 0.05),
     coping=mat("Stone_coping", (0.7, 0.68, 0.63), 0.6),
@@ -104,6 +129,9 @@ M = dict(
     terracotta=mat("Roof_terracotta", (0.42, 0.16, 0.1), 0.7),
     timber=mat("Timber_jetty", (0.35, 0.27, 0.2), 0.8),
     black=mat("Metal_black", (0.03, 0.03, 0.03), 0.4),
+    fence=mat("Glass_pool_fence", (0.8, 0.9, 0.9), 0.02, trans=1.0),
+    steel=mat("Steel_brushed", (0.7, 0.7, 0.7), 0.3, metal=1.0),
+    cushion=mat("Fabric_lounger_charcoal", (0.08, 0.08, 0.085), 0.8),
 )
 
 
@@ -171,14 +199,14 @@ def to_world(rect, origin, fn):
     return a, b
 
 
-def walls_from(level, origin, fn, z0, z1, collection, footprint):
+def walls_from(level, origin, fn, z0, z1, collection, footprint, wall_mat="wall"):
     w = P[level + "_wall"]; h = P[level + "_header"]
     bm = bmesh.new()
     for rc in rects(w):
         (x0, y0), (x1, y1) = to_world(rc, origin, fn)
         if abs(x1 - x0) * abs(y1 - y0) > 0.004:
             add_box(bm, min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1), z0, z1)
-    obj(f"{level}_walls", bm, M["wall"], collection)
+    obj(f"{level}_walls", bm, M[wall_mat], collection)
     bmh = bmesh.new(); bmg = bmesh.new(); bmf = bmesh.new()
     for rc in rects(h):
         (x0, y0), (x1, y1) = to_world(rc, origin, fn)
@@ -202,7 +230,7 @@ def walls_from(level, origin, fn, z0, z1, collection, footprint):
                 n = max(1, round((yb - ya) / 1.0))
                 for k in range(n + 1):
                     y = ya + (yb - ya) * k / n; add_box(bmf, cx - 0.05, y - pad / 2, cx + 0.05, y + pad / 2, z0, z0 + 2.2)
-    obj(f"{level}_headers", bmh, M["wall"], collection)
+    obj(f"{level}_headers", bmh, M[wall_mat], collection)
     obj(f"{level}_glazing", bmg, M["glass"], collection)
     obj(f"{level}_window_frames", bmf, M["black"], collection)
 
@@ -263,6 +291,30 @@ def pyramid(name, cx, cy, half, z, h, collection="house_roof"):
     bm.faces.new(v[::-1]); obj(name, bm, M["roof"], collection)
 
 
+def bar(bm, p, q, t0, z0, t1, z1, th=0.025):
+    """thin square bar in the vertical plane of side p->q, from (t0, z0) to (t1, z1) (t in metres along the side)"""
+    L = math.dist(p, q); ux, uy = (q[0] - p[0]) / L, (q[1] - p[1]) / L
+    a = Vector((p[0] + ux * t0, p[1] + uy * t0, z0)); b = Vector((p[0] + ux * t1, p[1] + uy * t1, z1))
+    d = (b - a).normalized(); n = Vector((-uy, ux, 0)); m = d.cross(n).normalized()
+    vs = [bm.verts.new(c + n * sn * th + m * sm * th) for c in (a, b) for sn, sm in ((-1, -1), (1, -1), (1, 1), (-1, 1))]
+    for f in ((0, 1, 2, 3), (7, 6, 5, 4), (0, 4, 5, 1), (1, 5, 6, 2), (2, 6, 7, 3), (3, 7, 4, 0)):
+        bm.faces.new([vs[i] for i in f])
+
+
+def chippendale(bm, p, q, z0, z1, panel=1.25):
+    """Chinese Chippendale fretwork: per panel a post, a centre square and the X through it (listing photos 02/06)"""
+    L = math.dist(p, q); n = max(1, round(L / panel)); w = L / n; h = z1 - z0
+    for i in range(n + 1):
+        bar(bm, p, q, i * w, z0, i * w, z1, 0.045)
+    for i in range(n):
+        a, b = i * w, (i + 1) * w; c = (a + b) / 2; s = min(w, h) * 0.22; zm = z0 + h / 2
+        bar(bm, p, q, a, z0, b, z1); bar(bm, p, q, a, z1, b, z0)
+        for (t0, za, t1, zb) in ((c - s, zm - s, c + s, zm - s), (c - s, zm + s, c + s, zm + s),
+                                 (c - s, zm - s, c - s, zm + s), (c + s, zm - s, c + s, zm + s)):
+            bar(bm, p, q, t0, za, t1, zb)
+        bar(bm, p, q, a, zm, c - s, zm); bar(bm, p, q, c + s, zm, b, zm)
+
+
 # ------------------------------------------------------------------ house
 GROUND_PX = [(686.25, 362.5), (972.5, 362.5), (972.5, 490), (853.75, 490), (853.75, 510), (843.75, 510),
              (843.75, 627.5), (670, 627.5), (670, 503.75), (700, 503.75), (700, 426.25), (686.25, 426.25)]
@@ -271,7 +323,7 @@ UPPER_PX = [(685.5, 363), (971.75, 363), (971.75, 488), (858, 488), (858, 515.5)
 G_POLY = [hw(*p) for p in GROUND_PX]; U_POLY = [hw(*p) for p in UPPER_PX]
 
 walls_from("ground", (600, 320), hw, FFL, G_TOP, "house_ground", G_POLY)
-walls_from("upper", UPPER_ORIGIN, hw, U_FFL, U_TOP, "house_upper", U_POLY)
+walls_from("upper", UPPER_ORIGIN, hw, U_FFL, U_TOP, "house_upper", U_POLY, "boards")
 prism("ground_slab", G_POLY, 0.0, FFL, M["floor"], "house_ground")
 prism("upper_slab", U_POLY, G_TOP, U_FFL, M["floor"], "house_upper")
 prism("upper_ceiling", U_POLY, U_TOP - 0.05, U_TOP, M["trim"], "house_upper")
@@ -290,15 +342,24 @@ for n, (a, b, c, d) in BALC.items():
     open_sides = [((xa, ya), (xb, ya)), ((xa, yb), (xb, yb))]
     open_sides.append(((xa, ya), (xa, yb)) if n == "master_balcony" else ((xb, ya), (xb, yb)))
     for (p, q) in open_sides:
-        L = math.dist(p, q); k = max(2, int(L / 0.12))
-        add_box(bm, min(p[0], q[0]) - 0.04, min(p[1], q[1]) - 0.04, max(p[0], q[0]) + 0.04, max(p[1], q[1]) + 0.04, U_FFL + 1.0, U_FFL + 1.08)
-        add_box(bm, min(p[0], q[0]) - 0.03, min(p[1], q[1]) - 0.03, max(p[0], q[0]) + 0.03, max(p[1], q[1]) + 0.03, U_FFL + 0.08, U_FFL + 0.14)
-        for i in range(k + 1):
-            t = i / k; x = p[0] + (q[0] - p[0]) * t; y = p[1] + (q[1] - p[1]) * t
-            add_box(bm, x - 0.015, y - 0.015, x + 0.015, y + 0.015, U_FFL + 0.14, U_FFL + 1.0)
+        add_box(bm, min(p[0], q[0]) - 0.05, min(p[1], q[1]) - 0.05, max(p[0], q[0]) + 0.05, max(p[1], q[1]) + 0.05, U_FFL + 1.0, U_FFL + 1.08)
+        add_box(bm, min(p[0], q[0]) - 0.03, min(p[1], q[1]) - 0.03, max(p[0], q[0]) + 0.03, max(p[1], q[1]) + 0.03, U_FFL + 0.08, U_FFL + 0.16)
+        chippendale(bm, p, q, U_FFL + 0.16, U_FFL + 1.0)
     obj(n + "_balustrade", bm, M["trim"], "house_decks")
     for cx, cy in ((xa, ya), (xb, ya), (xa, yb), (xb, yb)):   # posts carrying the balcony roof, and the deck below
         box(n + "_post", cx - 0.12, cy - 0.12, cx + 0.12, cy + 0.12, 0, U_TOP, M["trim"], "house_decks")
+
+# porthole window in the weatherboard wall north of the master balcony (listing photo 02)
+px_, py_ = hw(685.5, 398)
+bpy.ops.mesh.primitive_cylinder_add(vertices=48, radius=0.6, depth=0.12, location=(px_ - 0.08, py_, U_FFL + 1.55), rotation=(0, math.pi / 2, 0))
+o = bpy.context.active_object; o.name = "porthole_glass"; o.data.materials.append(M["glass"])
+bpy.ops.mesh.primitive_torus_add(major_radius=0.64, minor_radius=0.07, location=(px_ - 0.14, py_, U_FFL + 1.55), rotation=(0, math.pi / 2, 0))
+o2 = bpy.context.active_object; o2.name = "porthole_frame"; o2.data.materials.append(M["trim"])
+for ob in (o, o2):
+    for c in ob.users_collection:
+        c.objects.unlink(ob)
+    col("house_upper").objects.link(ob)
+
 
 # roofs
 def hw_rect(a, b, c, d):
@@ -325,7 +386,7 @@ for (a, b) in ((608.75, 362.5), (608.75, 433), (608.75, 525.5), (608.75, 585), (
 # ------------------------------------------------------------------ guest house
 GUEST_PX = [(1082.5, 323.75), (1301.25, 323.75), (1301.25, 410), (1082.5, 410)]
 GP = [guest_w(*p) for p in GUEST_PX]
-walls_from("guest", (1078, 320), guest_w, FFL, G_TOP, "guest_house", GP)
+walls_from("guest", (1078, 320), guest_w, FFL, G_TOP, "guest_house", GP, "boards")
 prism("guest_slab", GP, 0, FFL, M["floor"], "guest_house")
 g = hip("roof_guest", -8.35, -3.3, 8.35, 3.3, G_TOP, pitch=25, collection="guest_house")
 for o in list(col("guest_house").objects):
@@ -349,6 +410,35 @@ box("pool_surround", 24.6, 14.2, 43.4, 24.8, -0.02, 0.06, M["pavers"], "site")
 box("pool_coping", 26.6, 16.0, 42.0, 23.1, 0.0, 0.1, M["coping"], "site")
 box("pool_water", 27.2, 16.5, 41.4, 22.6, 0.0, 0.11, M["pool"], "site")
 box("pool_step", 32.5, 15.2, 36.0, 16.6, 0.0, 0.1, M["coping"], "site")
+# frameless glass fence along the pool's north (lawn) and west sides, spigots; three loungers on the north deck
+for (xa, ya, xb, yb) in ((24.6, 24.8, 43.4, 24.8), (24.6, 14.2, 24.6, 24.8)):
+    L = math.dist((xa, ya), (xb, yb)); k = int(L / 1.6)
+    for i in range(k):
+        t0, t1 = i / k, (i + 1) / k - 0.02 / L
+        x0, y0 = xa + (xb - xa) * t0, ya + (yb - ya) * t0; x1, y1 = xa + (xb - xa) * t1, ya + (yb - ya) * t1
+        box("pool_fence", x0 - 0.006, y0 - 0.006, x1 + 0.006, y1 + 0.006, 0.12, 1.32, M["fence"], "site")
+        box("pool_spigot", x0 + (x1 - x0) * 0.2 - 0.03, y0 + (y1 - y0) * 0.2 - 0.03, x0 + (x1 - x0) * 0.2 + 0.03, y0 + (y1 - y0) * 0.2 + 0.03, 0.06, 0.3, M["steel"], "site")
+for i in range(3):
+    x = 31.0 + i * 1.0
+    box("lounger_frame", x, 23.0, x + 0.7, 24.95 - 0.1, 0.06, 0.3, M["steel"], "site")
+    box("lounger_cushion", x + 0.03, 23.05, x + 0.67, 24.4, 0.3, 0.38, M["cushion"], "site")
+    bar(bm := bmesh.new(), (x + 0.35, 24.4), (x + 0.35, 24.85), 0, 0.38, 0.45, 0.85, 0.3); obj("lounger_back", bm, M["cushion"], "site")
+# fire pit + curved rendered seat wall near the water, the "bench looking at the water" spot (listing photo 05)
+FP = (17.0, 7.0)
+bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=0.55, depth=0.4, location=(*FP, 0.2))
+fp = bpy.context.active_object; fp.name = "fire_pit"; fp.data.materials.append(M["black"])
+for c in fp.users_collection:
+    c.objects.unlink(fp)
+col("site").objects.link(fp)
+box("fire_pit_pad", FP[0] - 2.6, FP[1] - 2.6, FP[0] + 2.6, FP[1] + 2.6, -0.02, 0.03, M["pavers"], "site")
+bm = bmesh.new()
+for k in range(10):                                           # seat wall arc on the house side, facing the water
+    a0, a1 = math.radians(-70 + k * 14), math.radians(-70 + (k + 1) * 14)
+    r0, r1 = 2.0, 2.45
+    pts = [(FP[0] + r0 * math.cos(a0), FP[1] + r0 * math.sin(a0)), (FP[0] + r1 * math.cos(a0), FP[1] + r1 * math.sin(a0)),
+           (FP[0] + r1 * math.cos(a1), FP[1] + r1 * math.sin(a1)), (FP[0] + r0 * math.cos(a1), FP[1] + r0 * math.sin(a1))]
+    add_quad_prism(bm, pts, 0, 0.45)
+obj("seat_wall", bm, M["wall"], "site")
 # driveway: street (SE corner) along the south boundary into the garage apron
 drive = [(141, 2.6), (120, 3.3), (98, 4.3), (78, 5.6), (70, 7.0)]
 bm = bmesh.new()
@@ -364,10 +454,25 @@ prism("maryland_ave", [(ex0 + 1 - ux * 30, ey0 - uy * 30), (ex0 + 1 - ux * 30 + 
 for t0, t1 in ((6.5, 18), (24, 40)):                         # wall either side of the 5.5 m gate opening
     pts = [(ex0 + ux * t0, ey0 + uy * t0), (ex0 + ux * t1, ey0 + uy * t1)]
     (a0, b0), (a1, b1) = pts
-    prism("front_wall", [(a0, b0), (a1, b1), (a1 - 0.35, b1), (a0 - 0.35, b0)], 0, 1.9, M["stone"], "street")
+    prism("front_wall", [(a0, b0), (a1, b1), (a1 - 0.35, b1), (a0 - 0.35, b0)], 0, 1.9 if t0 > 7 else 2.3, M["stone"], "street")
     prism("front_hedge", [(a0 - 0.4, b0), (a1 - 0.4, b1), (a1 - 1.3, b1), (a0 - 1.3, b0)], 0, 1.4, M["hedge"], "street")
 for t in (1.0, 6.5):
-    x, y = ex0 + ux * t, ey0 + uy * t; box("gate_pillar", x - 0.45, y - 0.45, x + 0.45, y + 0.45, 0, 2.4, M["trim"], "street")
+    x, y = ex0 + ux * t, ey0 + uy * t; box("gate_pillar", x - 0.6, y - 0.6, x + 0.6, y + 0.6, 0, 2.6, M["stone"], "street")
+# white gate leaf, swung open inward off the south pillar (listing photo 01)
+gx, gy = ex0 + ux * 1.6, ey0 + uy * 1.6; sw = math.atan2(uy, ux) + math.radians(-75)
+bm = bmesh.new(); add_box(bm, 0, -0.04, 4.6, 0.04, 0.1, 2.2); g = obj("gate_leaf", bm, M["trim"], "street")
+g.location = (gx - 0.6, gy, 0); g.rotation_euler = (0, 0, sw)
+# "18 MARYLAND" in dark metal letters on the street face of the sign wall, north of the gate
+cu = bpy.data.curves.new("sign", "FONT"); cu.body = "18 MARYLAND"; cu.size = 0.42; cu.extrude = 0.015; cu.align_x = "CENTER"
+so = bpy.data.objects.new("sign_18_maryland", cu); col("street").objects.link(so); so.data.materials.append(M["black"])
+tx, ty = ex0 + ux * 10.5, ey0 + uy * 10.5
+so.location = (tx + 0.02, ty, 1.15); so.rotation_euler = (math.pi / 2, 0, math.atan2(uy, ux))
+# flagpole on the front lawn (listing photos 01/06)
+bpy.ops.mesh.primitive_cylinder_add(vertices=12, radius=0.05, depth=8.0, location=(77.0, 10.0, 4.0))
+fl = bpy.context.active_object; fl.name = "flagpole"; fl.data.materials.append(M["trim"])
+for c in fl.users_collection:
+    c.objects.unlink(fl)
+col("site").objects.link(fl)
 # boundary hedges (tall, both sides) + neighbours
 box("hedge_south", 12, -1.6, 140, -0.2, 0, 3.2, M["hedge"], "site")
 box("hedge_north", 22, 31.2, 150, 33.0, 0, 4.0, M["hedge"], "site")
@@ -405,6 +510,8 @@ def palm(name, x, y, h):
 
 for i, (x, y) in enumerate([(119.2, 26.8), (129, 26), (138, 29.2), (137.7, 22.2), (146.2, 28.2), (155.5, 30.5)]):
     tree(f"fig_{i}", x, y, 5.0, 9.0)
+for i in range(7):                                           # weeping-fig row on the north boundary (photo 06)
+    tree(f"fig_row_{i}", 100 + i * 2.8, 31.0 + (i % 2) * 0.6, 3.6, 13.0)
 for i, (x, y) in enumerate([(16, 15.8), (13.2, 10.6), (4.5, 2.1), (9.5, 2.8), (14.5, 2.1)]):
     tree(f"waterside_tree_{i}", x, y, 3.2, 6.0)
 for i, (x, y, h) in enumerate([(6, 22, 12), (9, 26, 14), (3, 15, 11), (19, 28, 13), (22, 4, 10), (48, 29, 12), (75, 30, 11)]):
@@ -424,7 +531,7 @@ sun.data.energy = 3.5; sun.rotation_euler = (math.radians(45), 0, math.radians(-
 
 CAMS = {   # name: location, look-at, lens
     "top_down": ((70, 15, 160), (70, 15, 0), 35),
-    "street_gate": ((147, 1, 1.6), (88, 16, 4), 35),
+    "street_gate": ((145.8, 3.7, 1.6), (75, 12, 4), 28),
     "water_aerial": ((-12, -2, 22), (55, 18, 3), 28),
     "lawn_house": ((24, 10, 1.6), (60, 15, 4.5), 24),
 }
