@@ -3,7 +3,7 @@ client: internal
 address: 18 Maryland (Lambo clip, ZED)
 opened: 2026-10-21
 status: generating        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 518, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 574, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job: 18 Maryland, CG Huracán clips
@@ -55,6 +55,7 @@ cost: { credits: 0, hf_credits: 518, aud: 0 }   # derived from ## Ledger
 - 2026-10-22 | 13 hf | Topaz Hyperion 2.5 4K upscale, tail light (job f6c27e59, finished after runner timeout)
 - 2026-10-22 | 28 hf | Topaz Video 4K 50fps (apo-8), side intake (job c912e26c; measured from balance 411.8 -> 383.8)
 - 2026-10-22 | 13 hf | Topaz Hyperion 2.5 HDR, side intake 720p (job ccbbd327)
+- 2026-10-22 | 56 hf | Topaz Hyperion 2.5 HDR on 4K50 side intake (job 79fde01d)
 
 ---
 _Vault: [[jarvis]]_
