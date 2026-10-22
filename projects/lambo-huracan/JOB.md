@@ -3,7 +3,7 @@ client: internal
 address: 18 Maryland (Lambo clip, ZED)
 opened: 2026-10-21
 status: generating        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 197, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 464, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job: 18 Maryland, CG Huracán clips
@@ -37,6 +37,21 @@ cost: { credits: 0, hf_credits: 197, aud: 0 }   # derived from ## Ledger
 - 2026-10-22 | 2.75 hf | r_mirror gpt_image_2_5 (gen-runner)
 - 2026-10-22 | 2.75 hf | r_rear_wheel gpt_image_2_5 (gen-runner)
 - 2026-10-22 | 2.75 hf | r_side_intake gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 2.75 hf | r_tail_light gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 2.75 hf | r_rear_plate gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 2.75 hf | r_front_wheel gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 2.75 hf | r_headlight gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 2.75 hf | r_front_badge gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 2.75 hf | r_mirror gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 2.75 hf | r_rear_wheel gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 2.75 hf | r_side_intake gpt_image_2_5 (gen-runner)
+- 2026-10-22 | 35 hf | d_tail_light seedance_2_5 (gen-runner)
+- 2026-10-22 | 35 hf | d_rear_plate seedance_2_5 (gen-runner)
+- 2026-10-22 | 35 hf | d_front_wheel seedance_2_5 (gen-runner)
+- 2026-10-22 | 35 hf | d_front_badge seedance_2_5 (gen-runner)
+- 2026-10-22 | 35 hf | d_mirror seedance_2_5 (gen-runner)
+- 2026-10-22 | 35 hf | d_rear_wheel seedance_2_5 (gen-runner)
+- 2026-10-22 | 35 hf | d_side_intake seedance_2_5 (gen-runner)
 
 ---
 _Vault: [[jarvis]]_

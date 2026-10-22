@@ -1,0 +1,69 @@
+[
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/lambo-huracan/seedance/details/real2_tail_light.mp4",
+  "motion": 0.52,
+  "continuity_min": 0.85,
+  "continuity_at_s": 2.25,
+  "frames": 121,
+  "flags": [],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/lambo-huracan/seedance/details/real2_rear_plate.mp4",
+  "motion": 0.323,
+  "continuity_min": 0.9,
+  "continuity_at_s": 0.67,
+  "frames": 121,
+  "flags": [],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/lambo-huracan/seedance/details/real2_front_wheel.mp4",
+  "motion": 0.176,
+  "continuity_min": 0.84,
+  "continuity_at_s": 2.25,
+  "frames": 121,
+  "flags": [
+   "WARN_LOW_MOTION"
+  ],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/lambo-huracan/seedance/details/real2_front_badge.mp4",
+  "motion": 0.329,
+  "continuity_min": 0.93,
+  "continuity_at_s": 2.75,
+  "frames": 121,
+  "flags": [],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/lambo-huracan/seedance/details/real2_mirror.mp4",
+  "motion": 0.03,
+  "continuity_min": 0.98,
+  "continuity_at_s": 2.92,
+  "frames": 121,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/lambo-huracan/seedance/details/real2_rear_wheel.mp4",
+  "motion": 0.329,
+  "continuity_min": 0.97,
+  "continuity_at_s": 1.25,
+  "frames": 121,
+  "flags": [],
+  "dips_s": []
+ },
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/lambo-huracan/seedance/details/real2_side_intake.mp4",
+  "motion": 0.275,
+  "continuity_min": 0.73,
+  "continuity_at_s": 0.33,
+  "frames": 121,
+  "flags": [],
+  "dips_s": []
+ }
+]

@@ -1,0 +1,25 @@
+{
+ "job_md": "../JOB.md",
+ "cap_hf": 100,
+ "defaults": {
+  "model": "seedance_2_5",
+  "params": {
+   "mode": "omni_reference",
+   "resolution": "720p",
+   "aspect_ratio": "21:9",
+   "duration": 5,
+   "generate_audio": false
+  }
+ },
+ "rows": [
+  {
+   "id": "ak_drive_in",
+   "params": {
+    "start-image": "empty_house.png",
+    "end-image": "last_frame.png"
+   },
+   "out": "ak_drive_in.mp4",
+   "prompt": "Real cinematic footage of a luxury property in warm late-afternoon light. The video starts exactly on the first image and ends exactly on the second image, with the same framing, colour grade and film look. An orange Lamborghini Huracan drives slowly into frame from the left along the driveway in front of the white two-storey house, its headlights on, rolls smoothly across the front of the house and comes to a gentle stop in front of the red bougainvillea, parked exactly where it sits in the final image. The wheels turn naturally and the car keeps its exact shape the whole way. The camera is on a crane or gimbal: almost locked off, with only a very slow, perfectly smooth drift, no shake, no zoom and no cuts. The house, lawn, trees and palms stay exactly as they are. Nothing new appears, no people and no text."
+  }
+ ]
+}

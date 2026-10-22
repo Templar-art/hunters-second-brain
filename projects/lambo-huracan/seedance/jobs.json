@@ -1,6 +1,29 @@
-{"job_md": "../JOB.md", "cap_hf": 150,
- "defaults": {"model": "seedance_2_5", "params": {"mode": "video_edit", "resolution": "1080p"}},
- "rows": [{"id": "s1_drive_in_photoreal",
-   "params": {"video": "../maryland/maryland_drive_in_pan.mp4"},
+{
+ "job_md": "../JOB.md",
+ "cap_hf": 150,
+ "defaults": {
+  "model": "seedance_2_5",
+  "params": {
+   "mode": "video_edit",
+   "resolution": "1080p"
+  }
+ },
+ "rows": [
+  {
+   "id": "s1_drive_in_photoreal",
+   "params": {
+    "video": "../maryland/maryland_drive_in_pan.mp4"
+   },
    "prompt": "Photoreal enhancement of this exact shot. Keep the camera move, framing, timing and the car's path exactly as in the input video. An orange Lamborghini Huracan with a black ZEDDDD number plate drives in off the street, across the grey paver apron, between the stone gate pillars and up the curved concrete driveway toward the lit two-storey white house at blue hour. Make the car fully photoreal: glossy orange clear-coat paint carrying sky and garden reflections, tyres firmly on the ground with soft contact shadows, glowing red tail lights. Keep the house, stone walls, 18 MARYLAND sign, hedges, lawn and sky exactly as they are, only sharper and more detailed. Nothing new is added to the scene.",
-   "out": "s1_drive_in_photoreal.mp4"}]}
+   "out": "s1_drive_in_photoreal.mp4"
+  },
+  {
+   "id": "c_wheel_track_photoreal",
+   "params": {
+    "video": "../shots/closeups/wheel_track.mp4"
+   },
+   "prompt": "Photoreal commercial car footage. Keep this exact shot: the camera, framing, timing and motion stay exactly as in the input video. A low tracking shot rides beside the front wheel of an orange Lamborghini Huracan driving along a dark wet asphalt road at blue hour. The wheel and tyre spin and the road streaks past with motion blur. Make it look filmed on a real cinema camera: deep glossy orange clear-coat paint with true reflections of the dusk sky, the black alloy wheel and red brake caliper in crisp detail, real tyre sidewall texture and rubber, fine road grit. Nothing new is added; no text and no logo changes.",
+   "out": "c_wheel_track_photoreal.mp4"
+  }
+ ]
+}

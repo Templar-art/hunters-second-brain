@@ -15,66 +15,66 @@
   {
    "id": "d_tail_light",
    "params": {
-    "start-image": "details/real/tail_light.png"
+    "start-image": "details/real2/tail_light.png"
    },
-   "prompt": "Photoreal luxury car commercial footage, shot on a cinema camera with a shallow-focus lens. The video starts exactly on this frame. An orange Lamborghini Huracan with a black ZEDDDD number plate sits parked on grey concrete pavers in front of a white two-storey house with a dark roof, garden and trees, sunny afternoon, softly out of focus behind. Camera move: Slow lateral slide left to right across the rear three-quarter, the red LED tail light glowing as the light glints travel along its edge, ending with more of the ZEDDDD plate in view. The car stays still and parked; only the camera moves, smooth and steady like a gimbal or slider. Glossy orange clear-coat paint with real reflections, crisp detail on the car, the house and garden stay soft in the background. Nothing new appears, no people, no text, no logo changes, the car's design and the plate stay exactly the same.",
-   "out": "details/real_tail_light.mp4"
+   "prompt": "Real film footage from a car commercial, shot on a cinema camera. The video starts exactly on this frame and looks exactly like it: same natural colour, soft contrast, film grain and soft out-of-focus background. An orange Lamborghini Huracan with a ZEDDDD number plate sits parked and completely still on grey concrete pavers in front of a white two-storey house and garden in afternoon daylight. Camera move: the crane glides slowly sideways from left to right across the rear corner of the car, the red tail light passing through frame as light slides along the paint. The move is one single continuous take on a motion-controlled camera crane or a stabilised gimbal: perfectly smooth, slow and steady at a constant speed, gently easing in at the start and out at the end, with no shake, no jitter, no wobble, no handheld feel, no sudden speed changes, no zoom and no cuts. Only the camera moves; the car, the house and the trees stay exactly as they are and keep their shape. Nothing new appears, no people, no text, and the plate always reads ZEDDDD.",
+   "out": "details/real2_tail_light.mp4"
   },
   {
    "id": "d_rear_plate",
    "params": {
-    "start-image": "details/real/rear_plate.png"
+    "start-image": "details/real2/rear_plate.png"
    },
-   "prompt": "Photoreal luxury car commercial footage, shot on a cinema camera with a shallow-focus lens. The video starts exactly on this frame. An orange Lamborghini Huracan with a black ZEDDDD number plate sits parked on grey concrete pavers in front of a white two-storey house with a dark roof, garden and trees, sunny afternoon, softly out of focus behind. Camera move: Slow push in toward the rear of the car, centred on the ZEDDDD plate and Lamborghini script, the tail lights glowing red, a gentle rise of the camera as it moves closer. The car stays still and parked; only the camera moves, smooth and steady like a gimbal or slider. Glossy orange clear-coat paint with real reflections, crisp detail on the car, the house and garden stay soft in the background. Nothing new appears, no people, no text, no logo changes, the car's design and the plate stay exactly the same.",
-   "out": "details/real_rear_plate.mp4"
+   "prompt": "Real film footage from a car commercial, shot on a cinema camera. The video starts exactly on this frame and looks exactly like it: same natural colour, soft contrast, film grain and soft out-of-focus background. An orange Lamborghini Huracan with a ZEDDDD number plate sits parked and completely still on grey concrete pavers in front of a white two-storey house and garden in afternoon daylight. Camera move: the crane slowly pushes straight in toward the rear of the car while rising slightly, ending centred on the ZEDDDD plate and Lamborghini script. The move is one single continuous take on a motion-controlled camera crane or a stabilised gimbal: perfectly smooth, slow and steady at a constant speed, gently easing in at the start and out at the end, with no shake, no jitter, no wobble, no handheld feel, no sudden speed changes, no zoom and no cuts. Only the camera moves; the car, the house and the trees stay exactly as they are and keep their shape. Nothing new appears, no people, no text, and the plate always reads ZEDDDD.",
+   "out": "details/real2_rear_plate.mp4"
   },
   {
    "id": "d_front_wheel",
    "params": {
-    "start-image": "details/real/front_wheel.png"
+    "start-image": "details/real2/front_wheel.png"
    },
-   "prompt": "Photoreal luxury car commercial footage, shot on a cinema camera with a shallow-focus lens. The video starts exactly on this frame. An orange Lamborghini Huracan with a black ZEDDDD number plate sits parked on grey concrete pavers in front of a white two-storey house with a dark roof, garden and trees, sunny afternoon, softly out of focus behind. Camera move: Low camera slowly orbits around the front wheel from the front corner toward the side, the black alloy wheel and Lamborghini centre cap staying sharp, reflections sliding across the front fender. The car stays still and parked; only the camera moves, smooth and steady like a gimbal or slider. Glossy orange clear-coat paint with real reflections, crisp detail on the car, the house and garden stay soft in the background. Nothing new appears, no people, no text, no logo changes, the car's design and the plate stay exactly the same.",
-   "out": "details/real_front_wheel.mp4"
+   "prompt": "Real film footage from a car commercial, shot on a cinema camera. The video starts exactly on this frame and looks exactly like it: same natural colour, soft contrast, film grain and soft out-of-focus background. An orange Lamborghini Huracan with a ZEDDDD number plate sits parked and completely still on grey concrete pavers in front of a white two-storey house and garden in afternoon daylight. Camera move: a low gimbal slowly arcs around the front wheel from the front corner toward the side of the car, keeping the wheel in the centre of frame. The move is one single continuous take on a motion-controlled camera crane or a stabilised gimbal: perfectly smooth, slow and steady at a constant speed, gently easing in at the start and out at the end, with no shake, no jitter, no wobble, no handheld feel, no sudden speed changes, no zoom and no cuts. Only the camera moves; the car, the house and the trees stay exactly as they are and keep their shape. Nothing new appears, no people, no text, and the plate always reads ZEDDDD.",
+   "out": "details/real2_front_wheel.mp4"
   },
   {
    "id": "d_headlight",
    "params": {
-    "start-image": "details/real/headlight.png"
+    "start-image": "details/real2/headlight.png"
    },
-   "prompt": "Photoreal luxury car commercial footage, shot on a cinema camera with a shallow-focus lens. The video starts exactly on this frame. An orange Lamborghini Huracan with a black ZEDDDD number plate sits parked on grey concrete pavers in front of a white two-storey house with a dark roof, garden and trees, sunny afternoon, softly out of focus behind. Camera move: Slow slide along the front corner toward the headlight, then a gentle push in on the white LED daytime running light, reflections gliding over the bonnet. The car stays still and parked; only the camera moves, smooth and steady like a gimbal or slider. Glossy orange clear-coat paint with real reflections, crisp detail on the car, the house and garden stay soft in the background. Nothing new appears, no people, no text, no logo changes, the car's design and the plate stay exactly the same.",
-   "out": "details/real_headlight.mp4"
+   "prompt": "Real film footage from a car commercial, shot on a cinema camera. The video starts exactly on this frame and looks exactly like it: same natural colour, soft contrast, film grain and soft out-of-focus background. An orange Lamborghini Huracan with a ZEDDDD number plate sits parked and completely still on grey concrete pavers in front of a white two-storey house and garden in afternoon daylight. Camera move: the crane slowly slides along the front corner toward the headlight, gently pushing in as it goes. The move is one single continuous take on a motion-controlled camera crane or a stabilised gimbal: perfectly smooth, slow and steady at a constant speed, gently easing in at the start and out at the end, with no shake, no jitter, no wobble, no handheld feel, no sudden speed changes, no zoom and no cuts. Only the camera moves; the car, the house and the trees stay exactly as they are and keep their shape. Nothing new appears, no people, no text, and the plate always reads ZEDDDD.",
+   "out": "details/real2_headlight.mp4"
   },
   {
    "id": "d_front_badge",
    "params": {
-    "start-image": "details/real/front_badge.png"
+    "start-image": "details/real2/front_badge.png"
    },
-   "prompt": "Photoreal luxury car commercial footage, shot on a cinema camera with a shallow-focus lens. The video starts exactly on this frame. An orange Lamborghini Huracan with a black ZEDDDD number plate sits parked on grey concrete pavers in front of a white two-storey house with a dark roof, garden and trees, sunny afternoon, softly out of focus behind. Camera move: Slow low push in toward the nose of the car, centred on the gold Lamborghini badge and the ZEDDDD plate, headlights glowing white. The car stays still and parked; only the camera moves, smooth and steady like a gimbal or slider. Glossy orange clear-coat paint with real reflections, crisp detail on the car, the house and garden stay soft in the background. Nothing new appears, no people, no text, no logo changes, the car's design and the plate stay exactly the same.",
-   "out": "details/real_front_badge.mp4"
+   "prompt": "Real film footage from a car commercial, shot on a cinema camera. The video starts exactly on this frame and looks exactly like it: same natural colour, soft contrast, film grain and soft out-of-focus background. An orange Lamborghini Huracan with a ZEDDDD number plate sits parked and completely still on grey concrete pavers in front of a white two-storey house and garden in afternoon daylight. Camera move: the crane slowly pushes in low and straight toward the nose of the car, centred on the badge and the ZEDDDD plate, rising very slightly. The move is one single continuous take on a motion-controlled camera crane or a stabilised gimbal: perfectly smooth, slow and steady at a constant speed, gently easing in at the start and out at the end, with no shake, no jitter, no wobble, no handheld feel, no sudden speed changes, no zoom and no cuts. Only the camera moves; the car, the house and the trees stay exactly as they are and keep their shape. Nothing new appears, no people, no text, and the plate always reads ZEDDDD.",
+   "out": "details/real2_front_badge.mp4"
   },
   {
    "id": "d_mirror",
    "params": {
-    "start-image": "details/real/mirror.png"
+    "start-image": "details/real2/mirror.png"
    },
-   "prompt": "Photoreal luxury car commercial footage, shot on a cinema camera with a shallow-focus lens. The video starts exactly on this frame. An orange Lamborghini Huracan with a black ZEDDDD number plate sits parked on grey concrete pavers in front of a white two-storey house with a dark roof, garden and trees, sunny afternoon, softly out of focus behind. Camera move: Slow slide forward along the side of the car past the door and side mirror, the window line and paint reflections moving smoothly, the house drifting softly behind. The car stays still and parked; only the camera moves, smooth and steady like a gimbal or slider. Glossy orange clear-coat paint with real reflections, crisp detail on the car, the house and garden stay soft in the background. Nothing new appears, no people, no text, no logo changes, the car's design and the plate stay exactly the same.",
-   "out": "details/real_mirror.mp4"
+   "prompt": "Real film footage from a car commercial, shot on a cinema camera. The video starts exactly on this frame and looks exactly like it: same natural colour, soft contrast, film grain and soft out-of-focus background. An orange Lamborghini Huracan with a ZEDDDD number plate sits parked and completely still on grey concrete pavers in front of a white two-storey house and garden in afternoon daylight. Camera move: the crane glides slowly forward along the side of the car past the side mirror, keeping the same height the whole way. The move is one single continuous take on a motion-controlled camera crane or a stabilised gimbal: perfectly smooth, slow and steady at a constant speed, gently easing in at the start and out at the end, with no shake, no jitter, no wobble, no handheld feel, no sudden speed changes, no zoom and no cuts. Only the camera moves; the car, the house and the trees stay exactly as they are and keep their shape. Nothing new appears, no people, no text, and the plate always reads ZEDDDD.",
+   "out": "details/real2_mirror.mp4"
   },
   {
    "id": "d_rear_wheel",
    "params": {
-    "start-image": "details/real/rear_wheel.png"
+    "start-image": "details/real2/rear_wheel.png"
    },
-   "prompt": "Photoreal luxury car commercial footage, shot on a cinema camera with a shallow-focus lens. The video starts exactly on this frame. An orange Lamborghini Huracan with a black ZEDDDD number plate sits parked on grey concrete pavers in front of a white two-storey house with a dark roof, garden and trees, sunny afternoon, softly out of focus behind. Camera move: Low camera slowly tracks along the rear haunch toward the rear wheel, the red brake caliper and black alloy wheel sharp, twin exhausts visible at the edge of frame. The car stays still and parked; only the camera moves, smooth and steady like a gimbal or slider. Glossy orange clear-coat paint with real reflections, crisp detail on the car, the house and garden stay soft in the background. Nothing new appears, no people, no text, no logo changes, the car's design and the plate stay exactly the same.",
-   "out": "details/real_rear_wheel.mp4"
+   "prompt": "Real film footage from a car commercial, shot on a cinema camera. The video starts exactly on this frame and looks exactly like it: same natural colour, soft contrast, film grain and soft out-of-focus background. An orange Lamborghini Huracan with a ZEDDDD number plate sits parked and completely still on grey concrete pavers in front of a white two-storey house and garden in afternoon daylight. Camera move: a low gimbal glides slowly along the rear haunch toward the rear wheel, keeping the same height the whole way. The move is one single continuous take on a motion-controlled camera crane or a stabilised gimbal: perfectly smooth, slow and steady at a constant speed, gently easing in at the start and out at the end, with no shake, no jitter, no wobble, no handheld feel, no sudden speed changes, no zoom and no cuts. Only the camera moves; the car, the house and the trees stay exactly as they are and keep their shape. Nothing new appears, no people, no text, and the plate always reads ZEDDDD.",
+   "out": "details/real2_rear_wheel.mp4"
   },
   {
    "id": "d_side_intake",
    "params": {
-    "start-image": "details/real/side_intake.png"
+    "start-image": "details/real2/side_intake.png"
    },
-   "prompt": "Photoreal luxury car commercial footage, shot on a cinema camera with a shallow-focus lens. The video starts exactly on this frame. An orange Lamborghini Huracan with a black ZEDDDD number plate sits parked on grey concrete pavers in front of a white two-storey house with a dark roof, garden and trees, sunny afternoon, softly out of focus behind. Camera move: Slow low glide along the side of the car from the rear wheel toward the door, following the sharp side air intake, the red caliper and paint reflections catching the light. The car stays still and parked; only the camera moves, smooth and steady like a gimbal or slider. Glossy orange clear-coat paint with real reflections, crisp detail on the car, the house and garden stay soft in the background. Nothing new appears, no people, no text, no logo changes, the car's design and the plate stay exactly the same.",
-   "out": "details/real_side_intake.mp4"
+   "prompt": "Real film footage from a car commercial, shot on a cinema camera. The video starts exactly on this frame and looks exactly like it: same natural colour, soft contrast, film grain and soft out-of-focus background. An orange Lamborghini Huracan with a ZEDDDD number plate sits parked and completely still on grey concrete pavers in front of a white two-storey house and garden in afternoon daylight. Camera move: a low gimbal glides slowly along the side of the car from the rear wheel toward the door, following the side air intake at a constant height. The move is one single continuous take on a motion-controlled camera crane or a stabilised gimbal: perfectly smooth, slow and steady at a constant speed, gently easing in at the start and out at the end, with no shake, no jitter, no wobble, no handheld feel, no sudden speed changes, no zoom and no cuts. Only the camera moves; the car, the house and the trees stay exactly as they are and keep their shape. Nothing new appears, no people, no text, and the plate always reads ZEDDDD.",
+   "out": "details/real2_side_intake.mp4"
   }
  ]
 }

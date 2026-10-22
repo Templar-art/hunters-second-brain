@@ -1,0 +1,13 @@
+[
+ {
+  "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/lambo-huracan/seedance/s1_drive_in_photoreal.mp4",
+  "motion": 0.1,
+  "continuity_min": 0.94,
+  "continuity_at_s": 2.92,
+  "frames": 161,
+  "flags": [
+   "NO_MOTION"
+  ],
+  "dips_s": []
+ }
+]

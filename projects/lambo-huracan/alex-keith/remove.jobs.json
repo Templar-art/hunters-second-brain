@@ -1,0 +1,23 @@
+{
+ "job_md": "../JOB.md",
+ "cap_hf": 10,
+ "defaults": {
+  "model": "gpt_image_2_5",
+  "params": {
+   "variant": "sunburst",
+   "quality": "high",
+   "resolution": "2k",
+   "aspect_ratio": "21:9"
+  }
+ },
+ "rows": [
+  {
+   "id": "ak_empty",
+   "params": {
+    "image": "last_frame.png"
+   },
+   "out": "empty_house.png",
+   "prompt": "Edit this exact photograph and change only one thing: remove the orange Lamborghini parked in front of the house, and fill the space where it was with the same grey driveway, lawn edge and red bougainvillea and hedge behind it, matching the surrounding light and shadows. Everything else stays pixel for pixel the same: the same framing and crop, the white two-storey house with the balcony and dark tiled roof, the single-storey wing on the right with its open glass doors, the turret roof, the palm trees, the lawn, the curved concrete path at the bottom left, the white post at the left edge, the warm late-afternoon light and the colour grade. Nothing else is added or changed."
+  }
+ ]
+}
