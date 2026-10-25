@@ -19,6 +19,7 @@ Every Blender or archviz build runs in this order:
 1. **Audit, read-only:** version and tools; units, dimensions, cameras, lights and engine; a top view plus two exterior views; gaps, intersections and assumptions; and the external models actually used, taken from the ledger.
 2. **Staged proposal against Hunter's reference:** A geometry/layout, B camera, C lighting/materials, D optional AI finishing.
 3. **Execute only the approved stage.** Never invent missing architectural details: list them as questions instead.
+4. **Placed-asset contract (Hunter, 26 Oct):** every placed asset gets its front direction, its intended facing target, its scale and its supporting surface stated explicitly. People also get their intended pose and contact surfaces. Measure contacts on the evaluated mesh, never from origins, and show side, front and 3/4 verification views before calling the placement done.
 
 ## Two modes
 - **Headless** (no UI): Claude writes `bpy` scripts and runs them with `blender -b`. Best for automated batches.
@@ -157,3 +158,11 @@ The first fully kit-built scene, with no imported geometry: an invented two-stor
 **Kit bug (open):** the camera shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds. It should use a stable hash.
 
 Shots can list `guide_frames` (frame offsets) to get guide and ID frames at the start, middle and end, which first-and-last-frame video needs.
+
+**Seated-figure audit (26 Oct):** the lounger figure had been placed by its origin. Its rig carried an upright chair-sit pose, so the soles stood on the seat top and the pelvis floated about 0.45 m above it, facing the house. The live fix, which is **not yet saved to the spec or the .blend and is awaiting Hunter's approval**:
+- rotate the rig 180° so the figure faces the ocean;
+- shins 65°, feet 21°, soles on the paving;
+- thighs on the seat with a 1.7 mm gap, no skin verts inside the seat;
+- hands planted on the seat behind the hips, with a 4.8 mm gap.
+
+The lounger is a frontless block, so its −Y (ocean) end was chosen as the front. Views are in `projects/blender-blockouts/coastal-test/audit/seat-*.png`.

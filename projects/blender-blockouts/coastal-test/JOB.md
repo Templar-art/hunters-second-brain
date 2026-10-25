@@ -35,6 +35,19 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - A5: driveway stops at the lot boundary (y 39), no longer overlapping the footpath.
   - Diff: only these objects changed. The camera move is unchanged (1 mm shake jitter only).
   - 2026-10-26: guide frames 1 / 97 / 192 re-rendered from the fixed scene (Hunter: "guides only"). Sheet: `audit/stageA-guides.jpg`. **The ID maps and `preview/rise-reveal-v3.mp4` still predate stage A.** No reference exists (Hunter confirmed), so dimensions stay as built.
+- 2026-10-26 seat audit (Hunter's brief):
+  - **Before:** the lounger (`Coastal_Lounger`, a 0.7 × 2.0 × 0.42 m block) has no front. The figure (`Body_Person_Lounger`, MPFB rig with 163 bones) was facing +Y toward the house in an upright chair-sit. Its soles were on the seat top (z 0.423), its thighs floated at z 0.87, about 0.45 m above the seat, and its hands hung in the air.
+  - **Live fix, unsaved:**
+    - rig rotated 180° to face −Y, toward the ocean;
+    - rig moved to (6.9, −6.814, 0.222);
+    - lowerleg01 65°, foot 21°;
+    - upperarm01 (−15°, 0, ∓45°), lowerarm01 −95°.
+  - **Measured on skin verts:**
+    - soles at z 0.000;
+    - thigh gap 1.7 mm;
+    - hands 4.8 mm above the seat, within the seat bounds;
+    - 0 verts inside the seat.
+  - Views: `audit/seat-before-*.png`, `audit/seat-after-side-front-3q.png`. **Awaiting approval** before this goes into the spec or kit.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
