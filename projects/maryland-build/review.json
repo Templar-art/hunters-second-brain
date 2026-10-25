@@ -1,0 +1,12 @@
+{
+ "layout": {
+  "pieces": 80,
+  "fails": 0,
+  "warns": 0,
+  "issues": [],
+  "images": {
+   "ground": "qc/review_layout_ground.png",
+   "upper": "qc/review_layout_upper.png"
+  }
+ }
+}

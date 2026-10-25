@@ -1,6 +1,6 @@
 """Camera-follow pass: a tripod operator panning, tilting and zooming with the car.
 
-  python3 follow.py <comp dir> <out dir> [--w 1920 --h 1080] [--lag 0.35] [--size 0.22] [--fmax 3000]
+  python3 follow.py <comp dir> <out dir> [--w 1920 --h 1080] [--lag 0.35] [--size 0.22] [--fmax 3000] [--fixed 1500]
 
 The comp frames are the locked shot (plate + car, both from one nodal point). Rotating a camera about its own
 centre needs no depth, so each output frame is an exact reprojection of the locked frame:
@@ -24,6 +24,7 @@ WO, HO = int(opt.get("w", 1920)), int(opt.get("h", 1080))
 LAG = float(opt.get("lag", 0.35))        # spring time constant, seconds
 SIZE = float(opt.get("size", 0.22))      # target car width as a fraction of frame width
 FMAX = float(opt.get("fmax", 3000))
+FIXED = float(opt["fixed"]) if "fixed" in opt else None   # --fixed F: one lens for the whole shot, pan/tilt only (no zoom)
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(out, exist_ok=True)
 
@@ -55,7 +56,7 @@ want = []
 for f, X, Y, Z in track:
     x, y, z = X, Z + CAR_Z - CAMH, Y
     d = math.sqrt(x * x + y * y + z * z)
-    fo = min(FMAX, max(FMIN, SIZE * WO * d / CAR_W))
+    fo = FIXED if FIXED else min(FMAX, max(FMIN, SIZE * WO * d / CAR_W))
     want.append((math.atan2(x, z), math.atan2(y, math.hypot(x, z)), math.log(fo)))
 want = np.array(want)
 

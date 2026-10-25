@@ -91,3 +91,15 @@ projects/sky-library/hdr_*/
 projects/sky-library/renders/
 projects/sky-library/renders_away/
 projects/vista-blender-rebuild/tex/
+
+# Python bytecode caches
+**/__pycache__/
+
+# Lambo plate/render sequences — GBs of derived frames, regenerate from the shot scripts
+projects/lambo-huracan/shots/*/frames/
+projects/lambo-huracan/shots/*/plate16/
+projects/lambo-huracan/shots/*/trk/
+projects/lambo-huracan/shots/closeups/
+
+# plate-vfx relight intermediates (depth/relief arrays, regenerable)
+projects/plate-vfx/bench/kollosche/relight/*.npy
