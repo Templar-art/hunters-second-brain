@@ -1416,3 +1416,6 @@ Hunter approved. Disabled the `addon` module and kept `blender_mcp`; verified on
 
 ## [2026-10-26] lint | Blender MCP add-on updated
 Updated the add-on from protocol 14 to 15 with the installer, restarted Blender, and checked it live: up to date, one module loaded. The installer rewrites the duplicate `addon.py` too, but that module stays disabled. Poly Haven search is currently off. See [[blender-blockout-pipeline]].
+
+## [2026-10-26] lint | Blender asset libraries on
+Hunter turned on Poly Haven, Sketchfab and Poly Pizza search in the MCP add-on; confirmed live. The generators stay off.

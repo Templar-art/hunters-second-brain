@@ -81,7 +81,7 @@ Audit of this Mac (Mac mini, M5 Pro, 48 GB, macOS 27.0.1) against the [install c
 
 **Add-on updated to protocol 15 (26 Oct):** `uvx mcp-for-blender install-addon` brought the add-on up to the server's protocol; the old v14 had made newer features run on fallbacks. **The installer rewrites both `blender_mcp.py` and `addon.py` every time**, so the duplicate file comes back on each update. That's harmless while the `addon` module stays disabled. The installer also leaves the files world-writable (666), so `chmod 644` them after updating. Restart Blender afterwards. The live check passed: protocol 15, up to date, telemetry off.
 
-⚠️ **Poly Haven, Sketchfab and Poly Pizza search are off** in the add-on (as of 26 Oct), which contradicts "Poly Haven (free, already wired in)" in the add-on list above. Turn Poly Haven on in the add-on's N-panel before using `search_assets`.
+✅ **Poly Haven, Sketchfab and Poly Pizza search turned on (26 Oct)** in the add-on's N-panel and confirmed via `get_addon_status`. They had been off, contrary to "already wired in" above. The 3D generators (Hunyuan3D, Hyper3D, Meshy, Tripo) stay off because they are metered.
 
 ## When Blender is the final pixel (no AI repaint)
 Most of the pipeline uses Blender only as a guide frame. For shots where the render *is* the deliverable, follow the photoreal checklist and critique loop in [[claude-blender-guides-2026-10]]:
