@@ -47,6 +47,10 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - thigh gap 1.7 mm;
     - hands 4.8 mm above the seat, within the seat bounds;
     - 0 verts inside the seat.
+  - Rule check (scene quality rules, pasted the same day):
+    - The support surface is `Lot_Lawn` at z 0.020, not paving, so the soles and the lounger base are **20 mm sunk into it**. Proposed fix: raise the lounger and rig together by +0.020 m.
+    - The figure is **0% visible** from C2 at frames 1, 97 and 192, hidden by the garage door and the roof.
+    - Top view: `audit/seat-after-top.png`.
   - Views: `audit/seat-before-*.png`, `audit/seat-after-side-front-3q.png`. **Awaiting approval** before this goes into the spec or kit.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.

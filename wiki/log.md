@@ -1443,3 +1443,6 @@ The lounger figure was floating in an upright chair-sit pose and facing the hous
 
 ## [2026-10-26] ingest | Kollosche brand + video pack
 Hunter downloaded Kollosche's video asset pack: 476 files, about 1.5 GB. Sorted into `raw/kollosche/`: guidelines, brand-logos, overlays, templates-psd, fonts, examples, end-cards, and team-logos/<agent> for 32 teams. Seven byte-identical re-downloads went to `_duplicates/`. The EPS/AI/PSD/OTF masters are gitignored, and the SVG/PNG/PDF files (~12 MB) are tracked. New pages [[kollosche]] and [[kollosche-video-guidelines]]. Key rules: the K opens every video and never closes it, Söhne Breit Kräftig supers, navy-overlay outro with no logo, auction and Agent Focus variants. Flagged: the pack has four caption specs that disagree (PDF Kräftig 40, example Kräftig 45, Premiere screenshot Leicht 48 with a navy box, our FCP SOP Kräftig 67). Söhne Breit is not yet installed. No spend.
+
+## [2026-10-26] ingest | Architectural scene quality rules
+Hunter's standing rule set was filed raw, summarised in [[blender-blockout-pipeline]] and folded into auto-memory. The first check of the seat fix against it found that the soles and the lounger sit 20 mm inside `Lot_Lawn`, which corrects the earlier "paving" claim. It also found the figure is fully hidden from the approved camera at every guide frame.

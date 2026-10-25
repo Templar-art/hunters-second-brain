@@ -21,6 +21,46 @@ Every Blender or archviz build runs in this order:
 3. **Execute only the approved stage.** Never invent missing architectural details: list them as questions instead.
 4. **Placed-asset contract (Hunter, 26 Oct):** every placed asset gets its front direction, its intended facing target, its scale and its supporting surface stated explicitly. People also get their intended pose and contact surfaces. Measure contacts on the evaluated mesh, never from origins, and show side, front and 3/4 verification views before calling the placement done.
 
+## Scene quality rules (Hunter, 26 Oct — standing)
+Frozen original: [architectural-scene-quality-rules-2026-10-26.md](../../raw/blender/architectural-scene-quality-rules-2026-10-26.md). It applies alongside the approval workflow above, on every Blender or archviz scene.
+- **General:**
+  - Work in metres and state the axis convention. The coastal scene: +Y points to the house and street, −Y to the ocean, Z is up.
+  - Keep the approved architecture and camera.
+  - Save a checkpoint (`vNN.blend`) before any substantial change.
+  - Validate one asset before duplicating it.
+  - Never claim a check the tools couldn't actually run.
+- **Asset inspection before placing:**
+  - dimensions, orientation, origin, hierarchy and scale;
+  - the real front, judged from the geometry;
+  - the support surface and contact points;
+  - whether it is rigged, animated or a fixed-pose mesh;
+  - and never blindly apply transforms or alter proportions.
+- **Furniture:**
+  - state the facing target;
+  - put the support points on the actual surface;
+  - check intersections and circulation clearances;
+  - never accept origins or bounding boxes as proof of contact;
+  - bounding-box overlap is only a warning.
+- **People:**
+  - state the action, facing direction and support surfaces;
+  - fit the pose to the seat when the rig allows it;
+  - check the pelvis, thighs, feet, hands and body intersections;
+  - never distort anatomy to make a fit. If the figure can't fit plausibly, report it and propose a replacement asset.
+- **Validation:**
+  - show the top view, a front or side view, and the final-camera view;
+  - report measurements separately from visual judgements;
+  - mark anything unchecked **UNKNOWN**, never PASS;
+  - stop for approval after the first furniture or person arrangement.
+- **Camera:**
+  - approve the start and end framing before animating;
+  - state the lens, duration, path and speed curve;
+  - inspect intermediate frames for clipping and framing drift;
+  - make a cheap preview before any final render.
+- **AI finishing:**
+  - the approved raw Blender render is the baseline;
+  - compare the architecture, furniture orientation and people before and after;
+  - never use enhancement to hide unresolved scene errors.
+
 ## Two modes
 - **Headless** (no UI): Claude writes `bpy` scripts and runs them with `blender -b`. Best for automated batches.
 - **Live MCP**: Blender is open and the addon's "Connect to Claude" is clicked, so Claude edits the scene in real time. Best for iterating with Hunter watching.
@@ -161,8 +201,13 @@ Shots can list `guide_frames` (frame offsets) to get guide and ID frames at the 
 
 **Seated-figure audit (26 Oct):** the lounger figure had been placed by its origin. Its rig carried an upright chair-sit pose, so the soles stood on the seat top and the pelvis floated about 0.45 m above it, facing the house. The live fix, which is **not yet saved to the spec or the .blend and is awaiting Hunter's approval**:
 - rotate the rig 180° so the figure faces the ocean;
-- shins 65°, feet 21°, soles on the paving;
+- shins 65°, feet 21°, soles at z 0;
 - thighs on the seat with a 1.7 mm gap, no skin verts inside the seat;
 - hands planted on the seat behind the hips, with a 4.8 mm gap.
 
 The lounger is a frontless block, so its −Y (ocean) end was chosen as the front. Views are in `projects/blender-blockouts/coastal-test/audit/seat-*.png`.
+
+**Rule check against the scene quality rules, same day.**
+- ⚠️ This corrects the earlier "soles on the paving" note. The surface under the feet and the lounger is `Lot_Lawn` with its top at z 0.020, so the soles and the lounger base, both at z 0, sit **20 mm inside the lawn**.
+- From the approved C2 camera the figure is **0% visible** at frames 1, 97 and 192. A ray cast from the camera to the skin hits the garage door at frame 1, then the fascia and roof at 97, then the roof at 192. The seat fix has no effect on the approved shot.
+- The top view is square to the lounger and centred in X.
