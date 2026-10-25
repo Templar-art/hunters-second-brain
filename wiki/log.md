@@ -1422,3 +1422,6 @@ Hunter turned on Poly Haven, Sketchfab and Poly Pizza search in the MCP add-on; 
 
 ## [2026-10-26] ingest | Coastal drone-reveal guide build
 Built an invented beach house and a street-to-ocean drone reveal entirely from the kit, with guides and ID maps at 3 frames. Fixed three kit bugs: invisible trees, footpath rendering as timber in the ID map, and tree trunks rendering as stone. See [[blender-blockout-pipeline]]. No credits spent.
+
+## [2026-10-26] ingest | Coastal stills generated
+Three Sunburst stills from the coastal drone-reveal guides cost 8.25 HF (matching the quote), and all three passed first time. Recorded in [[blender-blockout-pipeline]] and the job's JOB.md. gen-runner now takes two `--image` refs per row.

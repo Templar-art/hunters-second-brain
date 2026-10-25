@@ -132,7 +132,7 @@ Hand-building is replaced. Scenes are now described in a `scene.json` and built 
 `house` module: a plan-derived spec goes in and a full multi-level shell comes out in under 0.1 s (see the [kit README](../../projects/blender-kit/README.md)). Tested on Lot 48 from the summary facts; the real plans weren't on the Mac. Next real job: read the plan PDF's dimensions into the spec at Gate A, and Hunter checks the summary table before the build.
 
 ## Coastal drone-reveal test (26 Oct)
-The first fully kit-built scene, with no imported geometry: an invented two-storey beach house from the `house` generator on the beach site, and a street-to-ocean drone reveal (8 s, 24 mm). Built in about 4 s, with guide and ID frames at the start, middle and end. Job: [JOB.md](../../projects/blender-blockouts/coastal-test/JOB.md). Waiting on Hunter's go for Sunburst stills (about 8 HF).
+The first fully kit-built scene, with no imported geometry: an invented two-storey beach house from the `house` generator on the beach site, and a street-to-ocean drone reveal (8 s, 24 mm). Built in about 4 s, with guide and ID frames at the start, middle and end. Job: [JOB.md](../../projects/blender-blockouts/coastal-test/JOB.md). **Sunburst stills: 3 of 3 passed first time for 8.25 HF**, the best hit rate yet. It used the guide plus ID map, the full colour key, the framing lock and the line telling the model the low-poly palms are placeholders. Only small drift: the sandy verge became gravel. Video comes next.
 
 **Three kit bugs found and fixed on this build:**
 1. `core.copy_obj` copied the library template's hidden flag, so **every kit tree has been invisible since v1**, including in the beach rebuild. Placed copies are now forced visible.
