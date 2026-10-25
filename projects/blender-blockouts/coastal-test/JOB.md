@@ -26,7 +26,18 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - **House:** the upper floor cantilevers 1.5 m over the garage and entry; timber batten screen on the street window; stone entry blade wall with a concrete portico; stone planter; stepping-stone path; rendered fence with timber slats, letterbox and gate piers; driveway runs to the garage; 1.2 m eaves; downpipes, AC unit, 12 solar panels.
   - **Camera:** rebuilt as a flown rise-and-push. 28 mm lens, street at 2.7 m to 22 m over the front yard, gimbal +3° → −12°, eased, no look-at swing.
   - Grey preview: `preview/rise-reveal-v3.mp4`.
-- Next: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
+- 2026-10-26 audit (read-only, approval workflow). Found 5 defects; all dimensions are invented (no reference supplied). Views are in `audit/`.
+- 2026-10-26 **stage A approved (A1–A5 only) and done:**
+  - A1: alfresco glass balustrade moved off the stacker doors to the pool-side edge (y −4); posts 0 → 3.3 m at the outer corners under the balcony edge.
+  - A2: pool bed moved outside the pool coping. Leaves of one plant rest on the coping, none in the water.
+  - A3: entry bed limited to the solid wall between the blade and the garage. Nothing touches the blade, door, garage or pavers.
+  - A4: 0.7 × 2.0 × 0.42 m lounger block under the reclining figure (Hunter's choice over removing it).
+  - A5: driveway stops at the lot boundary (y 39), no longer overlapping the footpath.
+  - Diff: only these objects changed. The camera move is unchanged (1 mm shake jitter only).
+  - **The guide frames and `preview/rise-reveal-v3.mp4` predate stage A and were not re-rendered.**
+- Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
+- Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
+- Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
 
 ## Ledger
 

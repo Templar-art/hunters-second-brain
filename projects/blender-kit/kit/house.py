@@ -5,7 +5,7 @@ scene.json "house": {
   "levels": [{"name": "Lower", "z": 3.3, "rect": [x0, y0, x1, y1], "ceiling": 3.0,
               "openings": [{"side": "N", "offset": 0.6, "width": 16.8, "height": 2.7, "sill": 0,
                             "type": "stacker|window|bifold|door|garage_door|void", "panels": 6}]}],
-  "alfresco":  {"level": "Lower", "rect": [...]},
+  "alfresco":  {"level": "Lower", "rect": [...], "edge": "N", "post_height": 3.3},  // edge = outer side (default N)
   "balconies": [{"level": "Upper", "side": "N", "depth": 3.45, "balustrade": "glass"}],
   "core":      {"name": "Lift", "rect": [...], "levels": ["Garage", "Lower", "Upper"]},
   "roof":      {"type": "flat", "pitch_deg": 3, "overhang": 0.9, "fascia": 0.3, "material": "RoofDark"},
@@ -160,9 +160,13 @@ def build(H, ctx):
         _rect_box(f"{n}_Alfresco_Slab", a["rect"], z, z + H["slab"], M["slab"], col)
         _rect_box(f"{n}_Alfresco_Deck", a["rect"], z + H["slab"], z + H["slab"] + 0.03, M["deck"], col, grow=-0.05)
         x0, y0, x1, y1 = a["rect"]
-        for k, (px, py) in enumerate(((x0 + 0.2, y1 - 0.2), (x1 - 0.2, y1 - 0.2))):
-            box(f"{n}_Alfresco_Post{k}", (0.25, 0.25, z), (px, py, z / 2), M["wall"], col)   # down to ground
-        _balustrade(f"{n}_Alfresco_Bal", a["rect"], z + H["slab"], "N", M, col)
+        edge = a.get("edge", "N")                     # the alfresco's outer side: balustrade + posts go there
+        ey = y1 - 0.2 if edge == "N" else y0 + 0.2
+        ph = a.get("post_height", z)                  # default: from the ground up to the alfresco level
+        if ph > 0:
+            for k, px in enumerate((x0 + 0.2, x1 - 0.2)):
+                box(f"{n}_Alfresco_Post{k}", (0.25, 0.25, ph), (px, ey, ph / 2), M["wall"], col)
+        _balustrade(f"{n}_Alfresco_Bal", a["rect"], z + H["slab"], edge, M, col)
 
     for b in H.get("balconies", []):
         L = levels[b["level"]]

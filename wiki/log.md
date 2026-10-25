@@ -1431,3 +1431,6 @@ Hunter rejected v1 (house not believable, drone move bad). Added screens, extras
 
 ## [2026-10-26] lint | Coastal audit + approval workflow
 Hunter switched Blender work to an approval-based workflow: audit, then a staged proposal, then execution only of the approved stage. Audited coastal v3 read-only (no changes); the audit views are in `projects/blender-blockouts/coastal-test/audit/`. Standing rule added to [[blender-blockout-pipeline]].
+
+## [2026-10-26] lint | Coastal stage A fixes
+Hunter approved stage A (A1–A5) only. Fixed the alfresco balustrade and posts, the pool and entry planting clashes, added a lounger under the floating figure, and stopped the driveway at the lot boundary. The diff confirmed nothing else changed. The kit `alfresco` now takes `edge` and `post_height`. Guides were not re-rendered. Details in the job's JOB.md.

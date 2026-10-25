@@ -154,4 +154,6 @@ The first fully kit-built scene, with no imported geometry: an invented two-stor
 - **Camera:** a new `rot_keys` option (keyed gimbal pitch and yaw) replaces the swinging `look_at` for drone and crane moves. The v3 move is an eased rise-and-push on 28 mm, with pitch going +3° → −12°.
 - **Motion preview before any spend:** an EEVEE grey MP4 of all 192 frames takes about 80 s headless. Blender 5 has no FFMPEG output option in `image_settings`, so render JPEGs and encode them with ffmpeg.
 
+**Kit bug (open):** the camera shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds. It should use a stable hash.
+
 Shots can list `guide_frames` (frame offsets) to get guide and ID frames at the start, middle and end, which first-and-last-frame video needs.

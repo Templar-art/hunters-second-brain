@@ -1,5 +1,5 @@
 {
- "house_objects": 229,
+ "house_objects": 230,
  "guide_frames": [
   [
    "C2_RiseReveal",
@@ -14,11 +14,11 @@
    192
   ]
  ],
- "objects": 1520,
+ "objects": 1521,
  "density": {
-  "total": 1512,
+  "total": 1513,
   "by_collection": {
-   "House": 229,
+   "House": 230,
    "Site": 355,
    "Landscape": 925,
    "People": 3,
@@ -28,28 +28,17 @@
   "fails": []
  },
  "clearance": [],
- "guides": [
-  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0001.png",
-  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0097.png",
-  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0192.png"
- ],
- "id_unknown": [],
- "id": [
-  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0001.png",
-  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0097.png",
-  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0192.png"
- ],
  "timings_s": {
   "assets": 0.2,
   "house": 0.0,
-  "site": 0.1,
+  "site": 0.0,
   "landscape": 0.1,
   "people": 0.0,
   "cameras": 0.0,
   "lighting": 0.0,
   "save": 0.2,
-  "passes": 8.6,
-  "total": 9.3
+  "passes": 0.3,
+  "total": 0.9
  },
  "blend": "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/coastal-test.blend"
 }
