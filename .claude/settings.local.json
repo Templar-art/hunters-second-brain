@@ -1,5 +1,4 @@
 {
-  "description": "Impeccable design detector: runs after Edit/Write/MultiEdit on UI files and surfaces findings as system reminders.",
   "hooks": {
     "PostToolUse": [
       {
@@ -13,6 +12,12 @@
           }
         ]
       }
+    ]
+  },
+  "description": "Impeccable design detector: runs after Edit/Write/MultiEdit on UI files and surfaces findings as system reminders.",
+  "permissions": {
+    "allow": [
+      "Bash(cd \"/Users/10xhunter/Documents/Hunters Second Brain\" && ls raw/ wiki/concepts wiki/sources | head -150; grep -rli \"blender\" wiki | head -30; grep -n \"blender\" -i ~/.claude.json 2>/dev/null | head; cat .mcp.json 2>/dev/null | head -40)"
     ]
   }
 }
