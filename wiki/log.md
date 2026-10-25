@@ -1446,3 +1446,6 @@ Hunter downloaded Kollosche's video asset pack: 476 files, about 1.5 GB. Sorted 
 
 ## [2026-10-26] ingest | Architectural scene quality rules
 Hunter's standing rule set was filed raw, summarised in [[blender-blockout-pipeline]] and folded into auto-memory. The first check of the seat fix against it found that the soles and the lounger sit 20 mm inside `Lot_Lawn`, which corrects the earlier "paving" claim. It also found the figure is fully hidden from the approved camera at every guide frame.
+
+## [2026-10-26] lint | Coastal lounger raised 20 mm
+Approved. The lounger and rig now sit on `Lot_Lawn`, with a 0 mm gap and no skin below the lawn or inside the seat. The fix is live only and not persisted.

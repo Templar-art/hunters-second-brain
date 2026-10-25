@@ -51,7 +51,15 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - The support surface is `Lot_Lawn` at z 0.020, not paving, so the soles and the lounger base are **20 mm sunk into it**. Proposed fix: raise the lounger and rig together by +0.020 m.
     - The figure is **0% visible** from C2 at frames 1, 97 and 192, hidden by the garage door and the roof.
     - Top view: `audit/seat-after-top.png`.
-  - Views: `audit/seat-before-*.png`, `audit/seat-after-side-front-3q.png`. **Awaiting approval** before this goes into the spec or kit.
+  - Views: `audit/seat-before-*.png`, `audit/seat-after-side-front-3q.png`.
+  - 2026-10-26: **+0.020 m raise approved and done live, still unsaved.** The lounger is now at z 0.02–0.44 and the rig at (6.9, −6.814, 0.242).
+    - Re-measured on skin verts:
+      - soles at z 0.020, the lawn top is 0.020: 0 mm gap;
+      - thighs 1.7 mm above the seat; hands 4.8 mm above it, inside its bounds;
+      - 0 skin verts inside the seat; 0 below the lawn.
+    - Views: `audit/seat-after-raise.png` (side, front, top, 3/4).
+    - **UNKNOWN:** a close-up view of the feet, because `look` frames the whole object. The feet contact is measured only, not seen.
+ **Awaiting approval** before this goes into the spec or kit.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
