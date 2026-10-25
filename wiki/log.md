@@ -1401,3 +1401,6 @@ Hunter wants hyper-real AI-generated people (no cast talent) in listing lifestyl
 
 ## [2026-10-22] query | Blender-directed lifestyle films
 Extended [[ai-lifestyle-people]] with the Blender + AI cinematic route: the kit, MPFB2 posed people and car rigs direct the shot; Sunburst with the cast face makes it photoreal; motion is routed Seedance (architecture), Kling 3.0 Pro / Veo (faces) or a tracked CG car; then the Topaz 4K50 + HDR finish. Includes an 8–10 shot lifestyle film template.
+
+## [2026-10-26] ingest | Claude + Blender guides
+Two research docs from 23 Oct, copied to `raw/blender/`: the MCP automation + photoreal render guide and its add-ons companion, which corrects the guide. Wrote [[claude-blender-guides-2026-10]]. Updated [[blender-blockout-pipeline]]: flagged that Archipack 2.x is paid (it was listed as free), noted the Geo-Scatter verdict differs, added fSpy for still-photo camera matching, MCP bridge notes, the photoreal checklist and critique loop for final-pixel renders, and the support-surface floor check. Updated [[claude-code-setup]] with the package rename and safe-mode note. Not adopted: migrating the MCP package, turning on safe mode, or buying any add-ons.

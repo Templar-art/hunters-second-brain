@@ -65,7 +65,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[sfx-library]]: the Ocular Sounds library (1,547 sounds since 20 Oct, ~/Music/SFX Library) and how the motion engine uses it
 - [[sfx-sourcing-and-design]]: SFX libraries, prices and licences (client work and paid social), layering/LUFS technique, design tools, FCP drop-on-the-cut workflow; starter pick Soundly Pro + Sonniss (~A$275/yr)
 - [[house-twilight]] — locked twilight target: early dusk, clean blue→peach sky, bright ground, amber windows (ref frame in raw/assets/twilight)
-- [[blender-blockout-pipeline]] — Claude builds a Blender grey block-out + camera path, AI video skins it; installed 2026-10-12 · **kit v1 (20 Oct): scene.json → full scene in ~5 s**
+- [[blender-blockout-pipeline]] — Claude builds a Blender grey block-out + camera path, AI video skins it; installed 2026-10-12 · **kit v1 (20 Oct): scene.json → full scene in ~5 s** · add-on verdicts reconciled 26 Oct
 - [[extra-salt-kollosche-birds]] — CG gulls comped over a 1.9s drone wide; constrained drone-camera fit beats Blender solve on low parallax (20 Oct, $0)
 - [[plate-vfx]] — skill + pipeline: CG birds, tracked lot lines/pins, sky swap, day-to-dusk into real footage; plate untouched; draft/standard/hero tiers (21 Oct, $0)
 - [[sfx-custom]] — procedural original SFX; 12 lens-flare + 9 shing WAVs (21 Oct, $0)
@@ -104,6 +104,7 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 - [[business-craft]] — MOC: [[pricing-and-packaging]] · [[client-onboarding]] · [[lead-gen-and-sales]] (proposal recipe stays in [[proposal-playbook]])
 
 ## Sources (ops)
+- [[claude-blender-guides-2026-10]] — Claude + Blender MCP render guide + add-on shortlist (23 Oct): bridge options, fSpy camera match, photoreal checklist, 8-axis critique loop, add-on acceptance test
 - [[deep-research-2026-10-luxury-staging-prompting]] — 2026 AU warm-earthy palette shift, white boucle sofa dated, AI board/staging prompting best practice (verified, cited)
 - [[research-activewear-pain-points]] — women's activewear complaints + AU competitors; Bebita positioning angles (30 Sep)
 - [[research-lifting-strap-pain-points]] — strap complaints + competitors; One Percent 'doesn't quit' angle (30 Sep)

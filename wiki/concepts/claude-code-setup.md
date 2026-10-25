@@ -2,7 +2,7 @@
 type: concept
 tags: [claude, infrastructure, security, tooling]
 status: audited
-updated: 2026-10-20
+updated: 2026-10-26
 ---
 
 # Claude Code Setup
@@ -18,7 +18,7 @@ The standing map of Hunter's Claude Code install — what is configured, where i
 | Magnific money gate | `.claude/hooks/magnific-gate.py` | One PreToolUse hook (2026-10-20, v3). Approval = Hunter's latest typed message in the session transcript starts with yes/go/approved and is under 20 min old; harness-injected blocks, tool results and isMeta rows are skipped. **No state file**, so nothing to forge. Paid Magnific tools: ask in default/acceptEdits/plan, denied in bypass/auto/unknown mode unless approved. Exact allowlist of 67 read-only + simulate_* tools; any new tool is gated. Bash/Write/Edit/MultiEdit/NotebookEdit touching `.claude/hooks`, `.claude/settings*.json` or session transcripts also need approval, so the gate can't be quietly switched off. Fails closed. 20-case test with fake transcripts passed. Threat model is a careless agent, not a hostile one; no HMAC. Approval is a 20-min window, not single-use, on purpose (batch jobs) |
 | Project local settings | `.claude/settings.local.json` (vault) | one PostToolUse hook only |
 | Skills | `~/.claude/skills/` | 35 as of 10 Aug; only `caveman-compress`, `impeccable`, `webapp-testing` ship executable code, and none of it auto-runs |
-| MCP servers | `~/.claude.json` | **none global** since 2026-10-19; all six (`magnific`, `10x-crm`, `skill-seekers`, `shopify-dev`, `gethookd`, `blender`) scoped to this vault. Kept in `~/.claude.json`, not `.mcp.json`, because the GetHookd entry carries a bearer token |
+| MCP servers | `~/.claude.json` | **none global** since 2026-10-19; all six (`magnific`, `10x-crm`, `skill-seekers`, `shopify-dev`, `gethookd`, `blender`) scoped to this vault. Kept in `~/.claude.json`, not `.mcp.json`, because the GetHookd entry carries a bearer token. `blender` still runs as `uvx blender-mcp`; upstream renamed it to `mcp-for-blender`, but the old name keeps working. Its socket (localhost:9876) has no authentication, and `BLENDER_MCP_SAFE_MODE=1` is available but not set ([[claude-blender-guides-2026-10]]) |
 | Parked skills | `~/.claude/skills-parked/` | 13 animation/web-dev skills moved out of global 2026-10-19; README there says how to revive |
 | Scheduled agents | `~/Library/LaunchAgents/com.10x.aios.*` | see [[agentic-os]] |
 

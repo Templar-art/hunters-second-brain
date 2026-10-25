@@ -2,7 +2,7 @@
 type: concept
 tags: [ai-video, blender, higgsfield, magnific, pipeline]
 status: setup-complete
-updated: 2026-10-20
+updated: 2026-10-26
 ---
 # Blender block-out → AI video pipeline
 
@@ -46,6 +46,30 @@ Ranked for a Python/MCP-driven pipeline:
 6. Photographer 5 (about $30)
 
 Skip Geo-Scatter, Kitbash, Fab and Fluent for now: they're weak to drive from a script. Spend on silhouette, vegetation shape and camera motion, because the AI repaints the surfaces anyway.
+
+**Update from the 23 Oct research pair ([[claude-blender-guides-2026-10]]):**
+- ⚠️ **Archipack contradicts the "free" above.** Only the older edition is free. The current 2.x, which advertises Blender 3–5 support, is paid.
+- ⚠️ **Geo-Scatter:** the new research recommends it once exterior landscaping is frequent (5.6.4 targets Blender 5.2 LTS; Biome-Reader is a free, limited alternative, and the two must never be installed together). The "weak to drive from a script" call above still stands for our headless kit, which does its own scatter. Revisit only if hand-built exteriors become routine.
+- **New: fSpy + its Blender importer** (free). It solves a camera from one still photo, so a Blender camera can match a real listing photo or a scan. Validate the solve against one known dimension. It is still-only; video still goes through the [[plate-vfx]] camera solve.
+- The Poly Haven Asset Browser add-on is paid and redundant, because the MCP's own Poly Haven import covers it. Node Wrangler is bundled with Blender.
+- **Acceptance test before trusting an add-on via MCP:** inspect read-only first, run one reversible test in a temporary collection, read the values back. Never invent operator names, and never treat "no error" as proof it worked.
+
+## MCP bridge notes (23 Oct research)
+- The community package is now `mcp-for-blender`. Our `uvx blender-mcp` config still works, so no migration is needed until something breaks.
+- The socket on `localhost:9876` has no authentication, so keep it on localhost. `BLENDER_MCP_SAFE_MODE=1` validates scripts but is not a security boundary.
+- The official Blender Lab MCP is a separate product (API and manual lookup, file audits). Never connect both bridges at once.
+- `generate_3d` and the premium asset services are separately metered, so they fall under the cost gate.
+- Long Cycles renders time out the tool call. Render previews small over MCP and finals headless (`blender -b`).
+
+## When Blender is the final pixel (no AI repaint)
+Most of the pipeline uses Blender only as a guide frame. For shots where the render *is* the deliverable, follow the photoreal checklist and critique loop in [[claude-blender-guides-2026-10]]:
+- Bevel every hard edge.
+- Light from the HDRI first, adding a sun only to match the HDRI's direction.
+- Use AgX and save as EXR.
+- Keep albedo between 0.03 and 0.9 and vary the roughness.
+- Score each render on an 8-axis rubric and apply fixes one at a time from the same camera.
+
+Floor checks test **support points against the support surface**, not "lowest point at z = 0".
 
 ## Model shootout: guide + colour-ID map, same prompt (2026-10-16, 12.25 HF credits)
 Run on the beach house pool shot. Grid: [shootout-grid.jpg](../../projects/blender-blockouts/beach/shootout/shootout-grid.jpg).
