@@ -6,9 +6,14 @@ scene.json "shots": [
    "look_at": [x, y, z] | [[x, y, z], …] (spread over the slot) | [[offset_frame, x, y, z], …]
             | {"follow": "Rig_Person_BeachWalk", "offset": [0, 0, 1.3]},
    "lens": 32, "shake": 0.2, "guide_frames": [0]}  // guide frames are offsets within the slot
+   // or, instead of look_at, a flown gimbal: "rot_keys": [[offset_frame, pitch_deg, yaw_deg], …]
+   //   pitch 0 = level, negative = tilted down; yaw 0 = looking toward -Y (the ocean in the beach scenes)
 ]
+A flown gimbal (rot_keys) is how a real drone moves: the aim changes slowly and on purpose, rather
+than swinging with a look-at target. Prefer it for drone and crane moves.
 Presets only set defaults (lens, shake); anything in the shot overrides them.
 """
+import math
 import bpy
 from . import core
 
@@ -52,6 +57,17 @@ def shot(s, start, ctx, col):
     else:
         keys = _spread([tuple(p) for p in cfg["path"]], start, L)
     core.key_path(cam, keys)
+
+    if "rot_keys" in cfg:
+        cam.rotation_mode = "XYZ"
+        for k in cfg["rot_keys"]:
+            cam.rotation_euler = (math.radians(90 + k[1]), 0.0, math.radians(180 + k[2]))
+            cam.keyframe_insert("rotation_euler", frame=start + k[0])
+        if cfg.get("shake"):
+            _add_noise(cam, cfg["shake"] * 0.08, scale=60)
+        m = bpy.context.scene.timeline_markers.new(s["name"], frame=start)
+        m.camera = cam
+        return L, [start + g for g in cfg.get("guide_frames", [0])]
 
     tgt = bpy.data.objects.new("Tgt_" + s["name"], None)
     col.objects.link(tgt)

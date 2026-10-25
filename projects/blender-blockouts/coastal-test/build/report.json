@@ -1,25 +1,25 @@
 {
- "house_objects": 112,
+ "house_objects": 229,
  "guide_frames": [
   [
-   "C1_StreetDroneReveal",
+   "C2_RiseReveal",
    1
   ],
   [
-   "C1_StreetDroneReveal",
+   "C2_RiseReveal",
    97
   ],
   [
-   "C1_StreetDroneReveal",
+   "C2_RiseReveal",
    192
   ]
  ],
- "objects": 1405,
+ "objects": 1520,
  "density": {
-  "total": 1396,
+  "total": 1512,
   "by_collection": {
-   "House": 112,
-   "Site": 356,
+   "House": 229,
+   "Site": 355,
    "Landscape": 925,
    "People": 3,
    "Cameras": 0,
@@ -42,14 +42,14 @@
  "timings_s": {
   "assets": 0.2,
   "house": 0.0,
-  "site": 0.0,
+  "site": 0.1,
   "landscape": 0.1,
   "people": 0.0,
   "cameras": 0.0,
   "lighting": 0.0,
   "save": 0.2,
-  "passes": 8.3,
-  "total": 8.9
+  "passes": 8.6,
+  "total": 9.3
  },
  "blend": "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/coastal-test.blend"
 }

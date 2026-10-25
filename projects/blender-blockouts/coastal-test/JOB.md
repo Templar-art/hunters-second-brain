@@ -21,7 +21,12 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
 - 2026-10-26 build: v1 → v3. Added front-fence and entry planting plus verge trees; trimmed the trees that blocked the facade; pushed the end frame higher and toward the sea so the pool clears the balcony.
 - 2026-10-26 kit fixes found on this build: (1) `copy_obj` copied the template's hidden flag, so every kit tree came out invisible (beach rebuild included); (2) ID rule order sent "footpath" to timber red; (3) `island_tree` trunks matched the kitchen-island rule and came out stone orange. All fixed in `blender-kit/kit/`.
 - 2026-10-26 generate: 3 × GPT Image 2.5 Sunburst (high, 2K, 16:9), guide + ID map as Image 1 / Image 2, quoted 8.25 HF and spent 8.25 HF. QC: **all 3 PASS first time.** Layout, framing, house, pool, boardwalk and people positions all held; the palms and trees came out real (the "placeholder" wording worked). Small drift: the sandy side verge became a gravel path and the front pad became concrete, both acceptable. The house reads the same across all 3 (timber garage door, 3 dark-framed upper windows), so the stills work as start and end frames. Comparison: `stills/guide-vs-still.jpg`.
-- Next: video. Start frame f001 → end frame f192 (first/last-frame), quote before running.
+- 2026-10-26 feedback (Hunter): "needs to look more believable like an actual house", and the drone move was "straight dog shit". The v1 stills are superseded.
+- 2026-10-26 rebuild v3 (free):
+  - **House:** the upper floor cantilevers 1.5 m over the garage and entry; timber batten screen on the street window; stone entry blade wall with a concrete portico; stone planter; stepping-stone path; rendered fence with timber slats, letterbox and gate piers; driveway runs to the garage; 1.2 m eaves; downpipes, AC unit, 12 solar panels.
+  - **Camera:** rebuilt as a flown rise-and-push. 28 mm lens, street at 2.7 m to 22 m over the front yard, gimbal +3° → −12°, eased, no look-at swing.
+  - Grey preview: `preview/rise-reveal-v3.mp4`.
+- Next: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
 
 ## Ledger
 

@@ -11,6 +11,10 @@ scene.json "house": {
   "roof":      {"type": "flat", "pitch_deg": 3, "overhang": 0.9, "fascia": 0.3, "material": "RoofDark"},
   "observatory": {"rect": [...], "height": 2.7},
   "pool":      {"rect": [...], "z": 0},
+  "screens":   [{"level": "Upper", "side": "N", "offset": 1.0, "width": 4.0, "height": 2.7, "spacing": 0.11,
+                 "size": [0.042, 0.09], "standoff": 0.25, "material": "Timber"}],
+  "extras":    [{"name": "EntryBlade", "rect": [x0, y0, x1, y1], "z": [0, 6.6], "material": "StoneTile"}],
+  per level:   "wall_material": "Cladding"   (overrides the house wall material on that level)
   "materials": {"slab": …, "glass": …, "frame": …, "garage_door": …, "floor": …}
 }
 Sides: S = y0 (front/street), N = y1 (rear), W = x0, E = x1. An opening's offset runs along
@@ -74,6 +78,7 @@ def _walls(L, H, t, M, col, skip_sides=()):
     ceil = L.get("ceiling", H["ceiling"])
     zt = zf + ceil
     p = f"{H['name']}_{L['name']}"
+    M = {**M, "wall": L.get("wall_material", M["wall"])}
     for side in "SNWE":
         if side in skip_sides:
             continue
@@ -185,6 +190,28 @@ def build(H, ctx):
         _walls(ol, H, 0.2, M, col)
         x0, y0, x1, y1 = ob["rect"]
         _rect_box(f"{n}_Obs_Roof", (x0 - 0.4, y0 - 0.4, x1 + 0.4, y1 + 0.4), z0 + 0.15 + h, z0 + 0.4 + h, M["roof"], col)
+
+    for k, sc in enumerate(H.get("screens", [])):
+        # vertical batten screen standing off a facade: battens of `size` at `spacing` centres
+        L = levels[sc["level"]]
+        zf = L["z"] + H["slab"] + sc.get("sill", 0.0)
+        z1 = zf + sc.get("height", L.get("ceiling", H["ceiling"]))
+        bw, bd = sc.get("size", [0.042, 0.09])
+        a, n_b = sc["offset"], 0
+        while a + bw <= sc["offset"] + sc["width"] + 1e-6:
+            _piece(f"{n}_Screen{k}_{n_b}", sc["side"], a, a + bw, zf, z1, bd, -sc.get("standoff", 0.25), L["rect"],
+                   sc.get("material", M["deck"]), col)
+            a, n_b = a + sc.get("spacing", 0.11), n_b + 1
+        for e, (z0_, z1_) in enumerate(((zf - 0.06, zf), (z1, z1 + 0.06))):     # top and bottom rails
+            _piece(f"{n}_Screen{k}_Rail{e}", sc["side"], sc["offset"], sc["offset"] + sc["width"], z0_, z1_, bd,
+                   -sc.get("standoff", 0.25), L["rect"], M["frame"], col)
+
+    for e in H.get("extras", []):
+        # free-form pieces: feature walls, portico, fence, planters, downpipes, solar, AC units
+        o = _rect_box(f"{n}_{e['name']}", e["rect"], e["z"][0], e["z"][1], e.get("material", M["wall"]), col,
+                      bevel=e.get("bevel", 0.0))
+        if e.get("rot_deg"):
+            o.rotation_euler.z = math.radians(e["rot_deg"])
 
     pl = H.get("pool")
     if pl:

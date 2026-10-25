@@ -82,7 +82,7 @@ CAT = {
     "trunk": (0.45, 0.2, 0.05), "fabric": (1, 0, 1), "stone": (1, 0.5, 0), "road": (0.25, 0.25, 0.25),
     "neighbour": (1, 1, 1), "person": (0.5, 0, 0.5), "hedge": (0.0, 0.5, 0.25), "screen": (0.05, 0.05, 0.05),
 }
-RULES = (("mannequin", "person"), ("person_", "person"), ("hedge", "hedge"), ("tvblack", "screen"), ("boucle", "fabric"),
+RULES = (("mannequin", "person"), ("person_", "person"), ("hedge", "hedge"), ("tvblack", "screen"), ("solar", "screen"), ("boucle", "fabric"),
          ("linen", "fabric"), ("wool", "fabric"), ("oak", "timber"), ("porcelain", "stone"), ("stonetile", "stone"),
          ("pool_water", "water"), ("poolwater", "water"), ("ocean", "ocean"), ("surf", "surf"), ("wetsand", "wetsand"),
          ("sand", "sand"), ("beach", "sand"), ("glass", "glass"), ("timber", "timber"), ("deck", "timber"),

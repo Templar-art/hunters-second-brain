@@ -1425,3 +1425,6 @@ Built an invented beach house and a street-to-ocean drone reveal entirely from t
 
 ## [2026-10-26] ingest | Coastal stills generated
 Three Sunburst stills from the coastal drone-reveal guides cost 8.25 HF (matching the quote), and all three passed first time. Recorded in [[blender-blockout-pipeline]] and the job's JOB.md. gen-runner now takes two `--image` refs per row.
+
+## [2026-10-26] ingest | Coastal v3: believable house + flown drone move
+Hunter rejected v1 (house not believable, drone move bad). Added screens, extras and per-level wall material to the kit house generator, plus `rot_keys` gimbal cameras. Rebuilt the house with real articulation and the camera as an eased rise-and-push, and rendered a grey motion preview. The v1 stills (8.25 HF) are superseded. See [[blender-blockout-pipeline]].

@@ -139,4 +139,13 @@ The first fully kit-built scene, with no imported geometry: an invented two-stor
 2. In the ID rules, "foot**path**" matched `path → timber` before it reached its own rule, so footpaths and driveways rendered timber red. They are now concrete.
 3. `island_tree` materials matched the kitchen-island `island → stone` rule, so tree trunks rendered stone orange. They are now trunk brown.
 
+**Hunter's verdict on v1 (26 Oct):** the house didn't look believable and the drone move was "straight dog shit". The plain-box house came back from the AI as a plain box, and the camera's look-at target swung from the house to the sea, so the gimbal tilted from level to nearly straight down. v3 fixes both:
+- **House realism kit features:**
+  - `screens` (vertical batten screens standing off a facade);
+  - `extras` (free-form pieces: feature blade walls, portico, planters, fence, downpipes, AC units, solar);
+  - per-level `wall_material`.
+  - Cantilever the upper level by giving it a bigger rect. A believable house needs offset massing, mixed materials, an entry statement and services, not just walls with holes.
+- **Camera:** a new `rot_keys` option (keyed gimbal pitch and yaw) replaces the swinging `look_at` for drone and crane moves. The v3 move is an eased rise-and-push on 28 mm, with pitch going +3° → −12°.
+- **Motion preview before any spend:** an EEVEE grey MP4 of all 192 frames takes about 80 s headless. Blender 5 has no FFMPEG output option in `image_settings`, so render JPEGs and encode them with ffmpeg.
+
 Shots can list `guide_frames` (frame offsets) to get guide and ID frames at the start, middle and end, which first-and-last-frame video needs.
