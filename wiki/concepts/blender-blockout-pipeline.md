@@ -79,6 +79,10 @@ Audit of this Mac (Mac mini, M5 Pro, 48 GB, macOS 27.0.1) against the [install c
 
 ✅ **Duplicate add-on fixed (26 Oct):** `scripts/addons/` held two identical copies of MCP for Blender v1.8, `addon.py` and `blender_mcp.py`, and both were enabled. That caused an unregister exception when Blender quit. The `addon` module is now disabled and the user prefs saved; only `blender_mcp` loads, and Blender quits cleanly. The `addon.py` file is still on disk but inactive. Prefs backup from before the change: `$TMPDIR/userpref-backup-2026-10-26.blend` (temporary).
 
+**Add-on updated to protocol 15 (26 Oct):** `uvx mcp-for-blender install-addon` brought the add-on up to the server's protocol; the old v14 had made newer features run on fallbacks. **The installer rewrites both `blender_mcp.py` and `addon.py` every time**, so the duplicate file comes back on each update. That's harmless while the `addon` module stays disabled. The installer also leaves the files world-writable (666), so `chmod 644` them after updating. Restart Blender afterwards. The live check passed: protocol 15, up to date, telemetry off.
+
+⚠️ **Poly Haven, Sketchfab and Poly Pizza search are off** in the add-on (as of 26 Oct), which contradicts "Poly Haven (free, already wired in)" in the add-on list above. Turn Poly Haven on in the add-on's N-panel before using `search_assets`.
+
 ## When Blender is the final pixel (no AI repaint)
 Most of the pipeline uses Blender only as a guide frame. For shots where the render *is* the deliverable, follow the photoreal checklist and critique loop in [[claude-blender-guides-2026-10]]:
 - Bevel every hard edge.

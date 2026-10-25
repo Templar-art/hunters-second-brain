@@ -1413,3 +1413,6 @@ Copied to `raw/blender/` and linked from [[claude-blender-guides-2026-10]]. Audi
 
 ## [2026-10-26] lint | Blender duplicate MCP add-on disabled
 Hunter approved. Disabled the `addon` module and kept `blender_mcp`; verified on a fresh Blender start that only one copy loads and the quit exception is gone. See [[blender-blockout-pipeline]].
+
+## [2026-10-26] lint | Blender MCP add-on updated
+Updated the add-on from protocol 14 to 15 with the installer, restarted Blender, and checked it live: up to date, one module loaded. The installer rewrites the duplicate `addon.py` too, but that module stays disabled. Poly Haven search is currently off. See [[blender-blockout-pipeline]].
