@@ -1,0 +1,48 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 20,
+ "defaults": {
+  "model": "gpt_image_2_5",
+  "params": {
+   "variant": "sunburst",
+   "quality": "high",
+   "resolution": "2k",
+   "aspect_ratio": "16:9"
+  }
+ },
+ "rows": [
+  {
+   "id": "c1_f001",
+   "params": {
+    "image": [
+     "build/guides/shot_0001.png",
+     "build/id/id_0001.png"
+    ]
+   },
+   "prompt": "Image 1 is a grey 3D block-out that sets the exact geometry, framing and layout. Image 2 is a flat colour label map of the same frame and is only a key, so none of its flat colours appear in the photograph. Wherever Image 2 is white the surface is crisp white render; light grey is smooth pale concrete, which covers the flat roofs, the driveway and the footpath; cyan is floor-to-ceiling low-iron glass in slim black frames with warm lived-in interiors visible through it; red is warm spotted-gum timber on the garage door, front door and beach boardwalk; black is slim charcoal metalwork, roof fascias and street-light poles; blue is clear turquoise pool water; navy is the deep blue-green Pacific Ocean; the pale stripes on it are white breaking surf; yellow is pale golden beach sand and sandy verge; green is lush buffalo lawn and soft silvery dune grass; dark green is tropical garden planting; teal is a clipped dense hedge; brown is palm trunks and tree bark; dark grey is asphalt road; purple marks a real person. The photograph is taken by a drone hovering low over a quiet coastal Gold Coast street. It looks across the asphalt road, concrete footpath and front lawn to a contemporary two-storey beach house in white render with a flat roof, a timber garage door, a timber front door and dark-framed windows. A street light and a gnarled street tree stand in the foreground, palms frame the house, and white rendered neighbouring homes sit on either side behind clipped hedges. Keep the exact camera position, lens, crop and horizon of Image 1 with no zoom or re-crop, and every building, tree, palm and person exactly where it sits in Image 1. The simple low-poly palm and tree shapes in Image 1 are placeholders for real, full, healthy Queensland palms and trees. It is a bright clear Gold Coast morning with soft natural shadows and a clean blue sky with a light coastal haze, bright and airy with true-to-life colour, in the style of magazine-grade editorial architectural photography. It is a real photograph on a real drone camera, with no CGI, no render look, no text and no watermark.",
+   "out": "stills/c1_f001_sunburst.png"
+  },
+  {
+   "id": "c1_f097",
+   "params": {
+    "image": [
+     "build/guides/shot_0097.png",
+     "build/id/id_0097.png"
+    ]
+   },
+   "prompt": "Image 1 is a grey 3D block-out that sets the exact geometry, framing and layout. Image 2 is a flat colour label map of the same frame and is only a key, so none of its flat colours appear in the photograph. Wherever Image 2 is white the surface is crisp white render; light grey is smooth pale concrete, which covers the flat roofs, the driveway and the footpath; cyan is floor-to-ceiling low-iron glass in slim black frames with warm lived-in interiors visible through it; red is warm spotted-gum timber on the garage door, front door and beach boardwalk; black is slim charcoal metalwork, roof fascias and street-light poles; blue is clear turquoise pool water; navy is the deep blue-green Pacific Ocean; the pale stripes on it are white breaking surf; yellow is pale golden beach sand and sandy verge; green is lush buffalo lawn and soft silvery dune grass; dark green is tropical garden planting; teal is a clipped dense hedge; brown is palm trunks and tree bark; dark grey is asphalt road; purple marks a real person. The photograph is taken by a drone rising over the front garden of a contemporary two-storey white rendered beach house with a flat pale concrete roof. It looks over the roof to the palms, the soft dune grass, a timber boardwalk and the golden beach, with the Pacific Ocean stretching to the horizon. White rendered neighbouring homes sit on either side, and the lawn and tropical garden beds are below. Keep the exact camera position, lens, crop and horizon of Image 1 with no zoom or re-crop, and every building, tree, palm and person exactly where it sits in Image 1. The simple low-poly palm and tree shapes in Image 1 are placeholders for real, full, healthy Queensland palms and trees. It is a bright clear Gold Coast morning with soft natural shadows and a clean blue sky with a light coastal haze, bright and airy with true-to-life colour, in the style of magazine-grade editorial architectural photography. It is a real photograph on a real drone camera, with no CGI, no render look, no text and no watermark.",
+   "out": "stills/c1_f097_sunburst.png"
+  },
+  {
+   "id": "c1_f192",
+   "params": {
+    "image": [
+     "build/guides/shot_0192.png",
+     "build/id/id_0192.png"
+    ]
+   },
+   "prompt": "Image 1 is a grey 3D block-out that sets the exact geometry, framing and layout. Image 2 is a flat colour label map of the same frame and is only a key, so none of its flat colours appear in the photograph. Wherever Image 2 is white the surface is crisp white render; light grey is smooth pale concrete, which covers the flat roofs, the driveway and the footpath; cyan is floor-to-ceiling low-iron glass in slim black frames with warm lived-in interiors visible through it; red is warm spotted-gum timber on the garage door, front door and beach boardwalk; black is slim charcoal metalwork, roof fascias and street-light poles; blue is clear turquoise pool water; navy is the deep blue-green Pacific Ocean; the pale stripes on it are white breaking surf; yellow is pale golden beach sand and sandy verge; green is lush buffalo lawn and soft silvery dune grass; dark green is tropical garden planting; teal is a clipped dense hedge; brown is palm trunks and tree bark; dark grey is asphalt road; purple marks a real person. The photograph is taken by a high drone looking out over the flat pale concrete roof of a contemporary two-storey white rendered beach house. Below is the turquoise pool and lawn behind the house, then palms, a band of silvery dune grass crossed by a timber boardwalk, and the wide golden beach with a few tiny people walking at the water's edge. The deep blue-green Pacific with rolling lines of white surf fills the top of the frame, and the roofs and pools of the neighbouring homes sit at the edges. Keep the exact camera position, lens, crop and horizon of Image 1 with no zoom or re-crop, and every building, tree, palm and person exactly where it sits in Image 1. The simple low-poly palm and tree shapes in Image 1 are placeholders for real, full, healthy Queensland palms and trees. It is a bright clear Gold Coast morning with soft natural shadows and a clean blue sky with a light coastal haze, bright and airy with true-to-life colour, in the style of magazine-grade editorial architectural photography. It is a real photograph on a real drone camera, with no CGI, no render look, no text and no watermark.",
+   "out": "stills/c1_f192_sunburst.png"
+  }
+ ]
+}

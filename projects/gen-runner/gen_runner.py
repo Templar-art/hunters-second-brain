@@ -66,7 +66,8 @@ def load_jobs(path):
 def hf_args(row):
     args = [row["model"]]
     for k, v in row["params"].items():
-        args += [f"--{k}", str(v).lower() if isinstance(v, bool) else str(v)]
+        for item in (v if isinstance(v, list) else [v]):  # a list repeats the flag, e.g. two --image refs
+            args += [f"--{k}", str(item).lower() if isinstance(item, bool) else str(item)]
     return args + (["--prompt", row["prompt"]] if row.get("prompt") else [])
 
 
