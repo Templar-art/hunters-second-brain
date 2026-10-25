@@ -14,6 +14,12 @@ Claude builds a rough 3D block-out (grey geometry, real metre sizes, locked came
 - Addon "MCP for Blender" v1.8 (`~/BlenderMCP/addon.py`, github ahujasid/blender-mcp) installed and enabled in Blender prefs. Addon telemetry is off by default; leave it off. Optional paid add-ons (Hyper3D, Sketchfab, premium) are not needed.
 - Headless test passed: Claude rendered a grey room block-out with `blender -b -P script.py` in about 3s.
 
+## Approval-based workflow (Hunter, 26 Oct — standing rule)
+Every Blender or archviz build runs in this order:
+1. **Audit, read-only:** version and tools; units, dimensions, cameras, lights and engine; a top view plus two exterior views; gaps, intersections and assumptions; and the external models actually used, taken from the ledger.
+2. **Staged proposal against Hunter's reference:** A geometry/layout, B camera, C lighting/materials, D optional AI finishing.
+3. **Execute only the approved stage.** Never invent missing architectural details: list them as questions instead.
+
 ## Two modes
 - **Headless** (no UI): Claude writes `bpy` scripts and runs them with `blender -b`. Best for automated batches.
 - **Live MCP**: Blender is open and the addon's "Connect to Claude" is clicked, so Claude edits the scene in real time. Best for iterating with Hunter watching.

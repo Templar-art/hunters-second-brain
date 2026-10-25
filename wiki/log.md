@@ -1428,3 +1428,6 @@ Three Sunburst stills from the coastal drone-reveal guides cost 8.25 HF (matchin
 
 ## [2026-10-26] ingest | Coastal v3: believable house + flown drone move
 Hunter rejected v1 (house not believable, drone move bad). Added screens, extras and per-level wall material to the kit house generator, plus `rot_keys` gimbal cameras. Rebuilt the house with real articulation and the camera as an eased rise-and-push, and rendered a grey motion preview. The v1 stills (8.25 HF) are superseded. See [[blender-blockout-pipeline]].
+
+## [2026-10-26] lint | Coastal audit + approval workflow
+Hunter switched Blender work to an approval-based workflow: audit, then a staged proposal, then execution only of the approved stage. Audited coastal v3 read-only (no changes); the audit views are in `projects/blender-blockouts/coastal-test/audit/`. Standing rule added to [[blender-blockout-pipeline]].
