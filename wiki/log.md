@@ -1452,3 +1452,6 @@ Approved. The lounger and rig now sit on `Lot_Lawn`, with a 0 mm gap and no skin
 
 ## [2026-10-26] lint | Coastal seat fix persisted
 The pose and the 20 mm raise went into the spec, and the kit `people` module gained `pose` overrides. Checkpoints were saved first. The headless rebuild matches the live measurements, and nothing was rendered.
+
+## [2026-10-26] update | Kollosche IG handles verified
+Hunter screenshotted the profiles: @kollosche_, @taylorkleinberg_kollosche, @thibaultparolini_kollosche. Added to [[kollosche]], plus a 13 Mayra Court posted-work line. Corrected a draft caption that tagged @kollosche.com.au (the email domain, not a handle).

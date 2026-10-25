@@ -9,6 +9,15 @@ updated: 2026-10-26
 
 Prestige Gold Coast real-estate agency (Kollosche Pty Ltd / Kollosche Sales Pty Ltd). It runs agent "teams" under one brand, and also a commercial arm (Kollosche Commercial). Its listings are at the high end; the pack's examples are in Main Beach and Tallai. Brand: navy `#011A3B`, charcoal `#282829`, white, set in Söhne Breit. Logo approvals go to design@kollosche.com.au.
 
+## Instagram handles (verified in-app by Hunter, 2026-10-26)
+- Agency: **@kollosche_** (verified badge). ⚠️ Not @kollosche.com.au, which is only the email domain and was wrongly used in a draft caption.
+- Taylor Kleinberg: **@taylorkleinberg_kollosche**
+- Thibault Parolini: **@thibaultparolini_kollosche**
+- Other agents usually follow the `firstnamelastname_kollosche` pattern, but verify each one in the app before tagging.
+
+## Posted work
+- **13 Mayra Court, Mermaid Waters** (Taylor Kleinberg + Thibault Parolini listing): main video captioned for @10xrealestate_ on 2026-10-26. The house has a script name sign on the facade (reads "Saraya", unconfirmed).
+
 ## The video rulebook
 Kollosche has strict, written rules for every video on its channels. The full spec is at [[kollosche-video-guidelines]]. The short version:
 - **The K opens every 9:16 video** (the full wordmark on 4K landscape). It is there from frame 1, centred, for 2–4 s, and **never at the end**.
