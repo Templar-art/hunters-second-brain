@@ -61,6 +61,24 @@ Skip Geo-Scatter, Kitbash, Fab and Fluent for now: they're weak to drive from a 
 - `generate_3d` and the premium asset services are separately metered, so they fall under the cost gate.
 - Long Cycles renders time out the tool call. Render previews small over MCP and finals headless (`blender -b`).
 
+## Install audit against the Mac mini checklist (26 Oct)
+Audit of this Mac (Mac mini, M5 Pro, 48 GB, macOS 27.0.1) against the [install checklist](../../raw/blender/mac-mini-claude-blender-install-checklist-2026-10-26.md):
+
+| Checklist item | State |
+|---|---|
+| Blender stable Apple Silicon | ✅ 5.2.2 LTS, arm64. The checklist targets 5.2.3, an optional patch update. |
+| Claude Code | ✅ 2.1.222 |
+| uv / uvx | ✅ 0.11.28 (Homebrew) |
+| MCP registered | ✅ as `uvx blender-mcp`, which prints the rename notice but works. Deliberately scoped to the vault rather than the checklist's separate `~/Documents/10x-Blender` folder. |
+| Telemetry off | ✅ `DISABLE_TELEMETRY=true` |
+| Safe mode | ❌ **off by Hunter's decision (26 Oct).** The checklist wants it on, but it gives little protection here and adds friction for the live scripts. |
+| Socket local only | ✅ |
+| Metal GPU | ✅ Metal, with the 20-core GPU enabled and the CPU unticked |
+| Acceptance tests | ✅ effectively passed; the MCP has driven every build since 12 Oct |
+| Node Wrangler | not enabled (bundled; enable when needed) |
+
+⚠️ **Duplicate add-on:** `scripts/addons/` holds two identical copies of MCP for Blender v1.8, `addon.py` and `blender_mcp.py`, and **both are enabled**. Blender throws an unregister exception on `addon.py` at quit. It works today, but it's the "duplicated tools" case the checklist warns about. Fix: disable the `addon` module and keep `blender_mcp`.
+
 ## When Blender is the final pixel (no AI repaint)
 Most of the pipeline uses Blender only as a guide frame. For shots where the render *is* the deliverable, follow the photoreal checklist and critique loop in [[claude-blender-guides-2026-10]]:
 - Bevel every hard edge.

@@ -1407,3 +1407,6 @@ Two research docs from 23 Oct, copied to `raw/blender/`: the MCP automation + ph
 
 ## [2026-10-26] lint | Closed three open items
 Hunter confirmed all three are done: the [[ai-lifestyle-people]] pilot, the beach build people-shot pick + re-rolls ([[blender-blockout-pipeline]], JOB.md set to delivered), and Lot 48 ([[belle-property]], delivered 21 Jul; the stale "awaiting go" line in the auto-memory index is fixed). The pilot results and the final beach spend aren't recorded.
+
+## [2026-10-26] ingest | Mac mini Blender install checklist
+Copied to `raw/blender/` and linked from [[claude-blender-guides-2026-10]]. Audited this Mac against it in [[blender-blockout-pipeline]]: everything is in place (Blender 5.2.2 LTS arm64, Claude Code, uv, telemetry off, Metal GPU on) except safe mode, which Hunter chose to leave off. Found two identical MCP add-on copies both enabled.

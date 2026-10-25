@@ -10,7 +10,9 @@ Two research write-ups prepared for 10x on 23 October 2026, ingested 26 October.
 - [Claude + Blender MCP: Automation and Photoreal Render Guide](../../raw/blender/claude-blender-mcp-render-guide-2026-10-23.md): setup, capabilities, limits, a best-practice workflow, a realism checklist, AI refinement and a critique loop.
 - [Claude and Blender: Recommended Plugins and Add-ons](../../raw/blender/claude-blender-plugins-addons-2026-10-23.md): the companion. It shortlists add-ons and corrects several claims in the render guide.
 
-Both are documentation research, not hands-on tests. Where the two disagree, **the add-ons doc wins**: it was written as the correction pass.
+- [Mac mini: Claude Code + Blender Installation Checklist](../../raw/blender/mac-mini-claude-blender-install-checklist-2026-10-26.md), added 26 Oct. It is a step-by-step install for this Mac (M5 Pro, 48 GB): versions, uv, the add-on, Claude Code registration, acceptance tests, Metal/Cycles and the optional tool order. The audit of this Mac against it is in [[blender-blockout-pipeline]].
+
+All three are documentation research, not hands-on tests. Where the two disagree, **the add-ons doc wins**: it was written as the correction pass.
 
 ## Takeaways for 10x
 
