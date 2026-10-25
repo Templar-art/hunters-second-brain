@@ -86,13 +86,13 @@ RULES = (("mannequin", "person"), ("person_", "person"), ("hedge", "hedge"), ("t
          ("linen", "fabric"), ("wool", "fabric"), ("oak", "timber"), ("porcelain", "stone"), ("stonetile", "stone"),
          ("pool_water", "water"), ("poolwater", "water"), ("ocean", "ocean"), ("surf", "surf"), ("wetsand", "wetsand"),
          ("sand", "sand"), ("beach", "sand"), ("glass", "glass"), ("timber", "timber"), ("deck", "timber"),
-         ("batten", "timber"), ("garage", "timber"), ("wood_floor", "timber"), ("path", "timber"), ("bronze", "metal"),
+         ("batten", "timber"), ("garage", "timber"), ("wood_floor", "timber"), ("footpath", "concrete"), ("path", "timber"), ("bronze", "metal"),
          ("post", "metal"), ("fascia", "metal"), ("carpaint", "metal"), ("concrete", "concrete"), ("slab", "concrete"),
          ("roof", "concrete"), ("pool_", "concrete"), ("render", "render"), ("wall", "render"), ("ceiling", "render"),
          ("neighbour", "neighbour"), ("nb_", "neighbour"), ("grass", "grass"), ("lawn", "grass"), ("dunegrass", "grass"), ("leaf", "plant"),
          ("leaves", "plant"), ("palmleaf", "plant"), ("anthurium", "plant"), ("calathea", "plant"), ("fern", "plant"),
-         ("trunk", "trunk"), ("bark", "trunk"), ("street", "road"), ("footpath", "road"), ("marble", "stone"),
-         ("coping", "stone"), ("tyre", "metal"), ("cargrey", "metal"), ("carwhite", "metal"), ("dirt", "trunk"), ("_pot", "stone"), ("island", "stone"), ("tile", "stone"), ("fabric", "fabric"), ("sofa", "fabric"), ("rug", "fabric"),
+         ("trunk", "trunk"), ("bark", "trunk"), ("street", "road"), ("marble", "stone"),
+         ("coping", "stone"), ("tyre", "metal"), ("cargrey", "metal"), ("carwhite", "metal"), ("dirt", "trunk"), ("_pot", "stone"), ("island_tree", "trunk"), ("island", "stone"), ("tile", "stone"), ("fabric", "fabric"), ("sofa", "fabric"), ("rug", "fabric"),
          ("lounger", "fabric"), ("chair", "fabric"), ("table", "stone"), ("lamp", "metal"))
 
 

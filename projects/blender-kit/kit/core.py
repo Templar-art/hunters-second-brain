@@ -139,6 +139,7 @@ def copy_obj(src, name, col, loc=None, rot_z=None, scale=None):
     """Linked duplicate: shares mesh data, so thousands of copies stay cheap."""
     o = src.copy()
     o.name = name
+    o.hide_viewport = o.hide_render = False   # library templates are hidden; placed copies must not be
     col.objects.link(o)
     if loc is not None:
         o.location = loc

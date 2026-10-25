@@ -1419,3 +1419,6 @@ Updated the add-on from protocol 14 to 15 with the installer, restarted Blender,
 
 ## [2026-10-26] lint | Blender asset libraries on
 Hunter turned on Poly Haven, Sketchfab and Poly Pizza search in the MCP add-on; confirmed live. The generators stay off.
+
+## [2026-10-26] ingest | Coastal drone-reveal guide build
+Built an invented beach house and a street-to-ocean drone reveal entirely from the kit, with guides and ID maps at 3 frames. Fixed three kit bugs: invisible trees, footpath rendering as timber in the ID map, and tree trunks rendering as stone. See [[blender-blockout-pipeline]]. No credits spent.

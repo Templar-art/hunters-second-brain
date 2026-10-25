@@ -1,0 +1,761 @@
+{
+ "name": "coastal-test",
+ "seed": 11,
+ "output": "build",
+ "assets": "../../blender-kit/assets/kit-assets.blend",
+ "_note": "Invented two-storey Gold Coast beach house, R&D test 26 Oct 2026. Ocean = -Y, street = +Y. House side S (y0) faces the ocean, N (y1) faces the street.",
+ "render": {
+  "engine": "BLENDER_EEVEE",
+  "fps": 24,
+  "resolution": [
+   1920,
+   1080
+  ],
+  "view_transform": "AgX",
+  "samples": 32
+ },
+ "house": {
+  "name": "Coastal",
+  "ceiling": 3.0,
+  "slab": 0.3,
+  "wall": {
+   "thickness": 0.3,
+   "material": "Render"
+  },
+  "levels": [
+   {
+    "name": "Ground",
+    "z": 0.0,
+    "rect": [
+     -8.0,
+     0.0,
+     8.0,
+     14.0
+    ],
+    "openings": [
+     {
+      "side": "S",
+      "offset": 0.8,
+      "width": 14.4,
+      "height": 2.7,
+      "type": "stacker",
+      "panels": 6
+     },
+     {
+      "side": "N",
+      "offset": 9.6,
+      "width": 5.4,
+      "height": 2.4,
+      "type": "garage_door"
+     },
+     {
+      "side": "N",
+      "offset": 4.0,
+      "width": 1.4,
+      "height": 2.7,
+      "type": "door"
+     },
+     {
+      "side": "N",
+      "offset": 0.8,
+      "width": 2.4,
+      "height": 1.2,
+      "sill": 1.2,
+      "type": "window"
+     },
+     {
+      "side": "W",
+      "offset": 3.0,
+      "width": 3.0,
+      "height": 2.7,
+      "type": "bifold"
+     }
+    ]
+   },
+   {
+    "name": "Upper",
+    "z": 3.3,
+    "rect": [
+     -8.0,
+     0.0,
+     8.0,
+     13.0
+    ],
+    "openings": [
+     {
+      "side": "S",
+      "offset": 0.8,
+      "width": 14.4,
+      "height": 2.7,
+      "type": "stacker",
+      "panels": 6
+     },
+     {
+      "side": "N",
+      "offset": 1.0,
+      "width": 4.0,
+      "height": 1.8,
+      "sill": 0.6,
+      "type": "window"
+     },
+     {
+      "side": "N",
+      "offset": 7.0,
+      "width": 2.0,
+      "height": 1.8,
+      "sill": 0.6,
+      "type": "window"
+     },
+     {
+      "side": "N",
+      "offset": 11.0,
+      "width": 4.0,
+      "height": 1.8,
+      "sill": 0.6,
+      "type": "window"
+     },
+     {
+      "side": "E",
+      "offset": 4.0,
+      "width": 3.0,
+      "height": 2.4,
+      "sill": 0.6,
+      "type": "window"
+     }
+    ]
+   }
+  ],
+  "alfresco": {
+   "level": "Ground",
+   "rect": [
+    -8.0,
+    -3.0,
+    8.0,
+    0.0
+   ]
+  },
+  "balconies": [
+   {
+    "level": "Upper",
+    "side": "S",
+    "depth": 3.0,
+    "balustrade": "glass"
+   }
+  ],
+  "roof": {
+   "type": "flat",
+   "pitch_deg": 3,
+   "overhang": 0.9,
+   "fascia": 0.3,
+   "material": "RoofDark",
+   "fascia_material": "Bronze"
+  },
+  "pool": {
+   "rect": [
+    -6.0,
+    -8.5,
+    4.0,
+    -4.5
+   ]
+  },
+  "materials": {
+   "slab": "concrete_wall_009",
+   "glass": "Glass",
+   "frame": "Bronze",
+   "garage_door": "Timber",
+   "floor": "wood_floor"
+  }
+ },
+ "site": {
+  "lot": {
+   "size": [
+    24,
+    50
+   ],
+   "center": [
+    0,
+    14
+   ],
+   "lawn": "leafy_grass",
+   "boundary_walls": {
+    "x": 12,
+    "height": 1.2,
+    "length": 52,
+    "y": 16
+   },
+   "hedges": {
+    "x": 11.4,
+    "height": 1.8,
+    "length": 50,
+    "y": 16
+   },
+   "driveway": {
+    "x": 6,
+    "y": 30,
+    "size": [
+     5.5,
+     22
+    ]
+   },
+   "letterbox": [
+    -6.8,
+    24.5
+   ]
+  },
+  "street": {
+   "y": 46,
+   "width": 10,
+   "length": 300,
+   "footpath": {
+    "y": 41,
+    "width": 2.4
+   },
+   "lights": {
+    "y": 42.6,
+    "from": -60,
+    "to": 60,
+    "spacing": 30,
+    "height": 7
+   }
+  },
+  "beach": {
+   "x": [
+    -150,
+    150
+   ],
+   "y": [
+    -80,
+    45
+   ],
+   "step": 1.5,
+   "profile": [
+    [
+     -80,
+     -3.6
+    ],
+    [
+     -71,
+     -3.35
+    ],
+    [
+     -50,
+     -2.95
+    ],
+    [
+     -35,
+     -2.6
+    ],
+    [
+     -30,
+     -2.1
+    ],
+    [
+     -25,
+     -0.9
+    ],
+    [
+     -20,
+     -0.2
+    ],
+    [
+     -16,
+     0.1
+    ],
+    [
+     -11,
+     0.0
+    ],
+    [
+     45,
+     0.0
+    ]
+   ],
+   "dune_noise": {
+    "band": [
+     -31,
+     -11
+    ],
+    "amp": 0.45
+   },
+   "wet_sand_y": -71,
+   "ocean": {
+    "y": -260,
+    "z": -3.5,
+    "size": 360
+   },
+   "surf_y": [
+    -76,
+    -85,
+    -94,
+    -103,
+    -112
+   ],
+   "boardwalk": {
+    "x": 1,
+    "from_y": -11,
+    "count": 16,
+    "step": 1.3,
+    "size": [
+     1.6,
+     1.2
+    ]
+   },
+   "dune_posts": {
+    "x": [
+     -0.2,
+     2.2
+    ],
+    "from_y": -12,
+    "to_y": -30,
+    "step": 2,
+    "height": 0.9
+   }
+  },
+  "neighbours": {
+   "depth": 20,
+   "houses": [
+    {
+     "x": -30.0,
+     "width": 17.39,
+     "storeys": 3,
+     "cladding": "NB_RenderWarm",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": 30.0,
+     "width": 17.81,
+     "storeys": 2,
+     "cladding": "NB_Brick",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": -56.0,
+     "width": 18.11,
+     "storeys": 3,
+     "cladding": "NB_RenderGrey",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": 56.0,
+     "width": 18.62,
+     "storeys": 2,
+     "cladding": "NB_Cladding",
+     "pool": false,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": -82.0,
+     "width": 18.66,
+     "storeys": 2,
+     "cladding": "NB_Brick",
+     "pool": false,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": 82.0,
+     "width": 18.67,
+     "storeys": 3,
+     "cladding": "NB_RenderWarm",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": -108.0,
+     "width": 16.02,
+     "storeys": 2,
+     "cladding": "NB_Cladding",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    },
+    {
+     "x": 108.0,
+     "width": 17.27,
+     "storeys": 3,
+     "cladding": "NB_RenderGrey",
+     "pool": true,
+     "accent": "NB_TimberLight"
+    }
+   ]
+  }
+ },
+ "landscape": {
+  "dune_grass": {
+   "zone": [
+    -110,
+    110,
+    -31,
+    -13
+   ],
+   "count": 681,
+   "exclude": [
+    [
+     -1.2,
+     3.4,
+     -32,
+     -10
+    ]
+   ],
+   "variants": 24,
+   "pieces": [
+    4,
+    12
+   ],
+   "spread": 0.6,
+   "scale": [
+    5,
+    9
+   ]
+  },
+  "palms": {
+   "at": [
+    [
+     -11,
+     -10
+    ],
+    [
+     -8,
+     -11
+    ],
+    [
+     9,
+     -9.5
+    ],
+    [
+     11.5,
+     -2
+    ],
+    [
+     -11.5,
+     20
+    ],
+    [
+     10,
+     25
+    ]
+   ],
+   "height": [
+    8.4,
+    9.4
+   ],
+   "fronds": 11,
+   "lean": 0.06
+  },
+  "beds": [
+   {
+    "name": "GardenBed",
+    "zone": [
+     -11.2,
+     -9.9,
+     -2,
+     21
+    ],
+    "count": 20,
+    "assets": [
+     "calathea",
+     "anthurium",
+     "fern"
+    ],
+    "scale": [
+     0.8,
+     1.6
+    ],
+    "z": 0
+   },
+   {
+    "name": "GardenBedE",
+    "zone": [
+     9.9,
+     11.2,
+     -2,
+     21
+    ],
+    "count": 20,
+    "assets": [
+     "calathea",
+     "anthurium",
+     "fern"
+    ],
+    "scale": [
+     0.8,
+     1.6
+    ],
+    "z": 0
+   },
+   {
+    "name": "FrontBed",
+    "zone": [
+     -10,
+     -4,
+     19,
+     24
+    ],
+    "count": 26,
+    "assets": [
+     "calathea",
+     "anthurium",
+     "fern"
+    ],
+    "scale": [
+     0.9,
+     1.8
+    ],
+    "z": 0
+   },
+   {
+    "name": "PoolBed",
+    "zone": [
+     -7,
+     9,
+     -9.2,
+     -8.6
+    ],
+    "count": 14,
+    "assets": [
+     "calathea",
+     "anthurium"
+    ],
+    "scale": [
+     0.5,
+     1.2
+    ],
+    "z": 0
+   },
+   {
+    "name": "FrontFenceBed",
+    "zone": [
+     -11.0,
+     1.5,
+     37.0,
+     38.6
+    ],
+    "count": 30,
+    "assets": [
+     "calathea",
+     "anthurium",
+     "fern"
+    ],
+    "scale": [
+     0.9,
+     1.8
+    ],
+    "z": 0
+   },
+   {
+    "name": "EntryBed",
+    "zone": [
+     -3.5,
+     2.0,
+     14.6,
+     16.0
+    ],
+    "count": 14,
+    "assets": [
+     "anthurium",
+     "fern"
+    ],
+    "scale": [
+     0.7,
+     1.3
+    ],
+    "z": 0
+   }
+  ],
+  "trees": [
+   {
+    "name": "StreetTree",
+    "asset": "island_tree",
+    "at": [
+     [
+      -11,
+      30
+     ],
+     [
+      12,
+      34
+     ]
+    ]
+   },
+   {
+    "name": "VergeTree",
+    "asset": "island_tree",
+    "at": [
+     [
+      -34,
+      43.6
+     ],
+     [
+      -20,
+      43.6
+     ],
+     [
+      20,
+      43.6
+     ],
+     [
+      34,
+      43.6
+     ]
+    ]
+   }
+  ]
+ },
+ "people": [
+  {
+   "name": "Person_BeachWalk",
+   "template": "Person_BeachWalk",
+   "path": [
+    [
+     1,
+     -24.0,
+     -55.0,
+     -3.07
+    ],
+    [
+     313,
+     -12.0,
+     -55.4,
+     -3.1
+    ],
+    [
+     624,
+     0.0,
+     -55.2,
+     -2.92
+    ],
+    [
+     936,
+     12.0,
+     -55.6,
+     -2.99
+    ],
+    [
+     1248,
+     24.0,
+     -55.3,
+     -3.09
+    ]
+   ]
+  },
+  {
+   "name": "Person_BeachWalk2",
+   "template": "Person_BeachWalk2",
+   "path": [
+    [
+     1,
+     -25.0,
+     -55.8,
+     -3.1
+    ],
+    [
+     313,
+     -13.0,
+     -56.2,
+     -3.1
+    ],
+    [
+     624,
+     -1.0,
+     -56.0,
+     -2.94
+    ],
+    [
+     936,
+     11.0,
+     -56.4,
+     -2.99
+    ],
+    [
+     1248,
+     23.0,
+     -56.1,
+     -3.1
+    ]
+   ]
+  },
+  {
+   "name": "Person_Lounger",
+   "template": "Person_Lounger",
+   "at": [
+    6.9,
+    -6.45,
+    0.67
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "name": "C1_StreetDroneReveal",
+   "preset": "drone_reveal",
+   "frames": 192,
+   "keys": [
+    [
+     0,
+     -16.0,
+     64.0,
+     5.0
+    ],
+    [
+     191,
+     -8.0,
+     22.0,
+     36.0
+    ]
+   ],
+   "look_at": [
+    [
+     0,
+     0.0,
+     8.0,
+     4.5
+    ],
+    [
+     191,
+     0.0,
+     -30.0,
+     0.0
+    ]
+   ],
+   "lens": 24,
+   "guide_frames": [
+    0,
+    96,
+    191
+   ]
+  }
+ ],
+ "lighting": {
+  "world": "PolyHaven qwantani_morning_puresky",
+  "sun": {
+   "energy": 5.5,
+   "angle_deg": 0.8,
+   "rotation_deg": [
+    45,
+    10,
+    160
+   ]
+  }
+ },
+ "passes": {
+  "density": {
+   "min_total": 1200,
+   "min": {
+    "Landscape": 800,
+    "Site": 300
+   }
+  },
+  "clearance": {
+   "radius": 0.35,
+   "every": 4
+  },
+  "guides": true,
+  "id": true,
+  "resolution": [
+   1920,
+   1080
+  ],
+  "percent": 100
+ }
+}
