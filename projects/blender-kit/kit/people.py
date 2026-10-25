@@ -3,11 +3,16 @@ The AI repaints them from the cast refs; they only fix position, scale and gait.
 
 scene.json "people": [
   {"name": "Person_BeachWalk", "template": "Person_BeachWalk", "at": [x, y, z], "rot_z": 1.57},
-  {"name": "Person_Walker2", "template": "Person_BeachWalk", "path": [[frame, x, y], …], "ground": true}
+  {"name": "Person_Walker2", "template": "Person_BeachWalk", "path": [[frame, x, y], …], "ground": true},
+  {"name": "Person_Lounger", "template": "Person_Lounger", "at": [x, y, z], "rot_z": 3.1416,
+   "pose": {"lowerleg01.L": [65, 0, 0], …}}
 ]
 Templates (kit library): Person_BalconyA/B, Person_BeachWalk/2 (walk cycle), Person_Kitchen,
 Person_Lounger, Person_PoolEdge. `path` keys the rig empty; z follows the terrain when "ground".
+`pose` overrides bone rotations (XYZ euler, degrees) to fit the figure to its seat; check the
+contacts on the evaluated skin mesh afterwards, never from origins.
 """
+import math
 import bpy
 from . import core
 
@@ -23,6 +28,12 @@ def build(spec, ctx):
             rig.location = p["at"]
         if "rot_z" in p:
             rig.rotation_euler.z = p["rot_z"]
+        if "pose" in p:
+            arm = next(o for o in rig.children_recursive if o.type == "ARMATURE")
+            for bone, deg in p["pose"].items():
+                pb = arm.pose.bones[bone]
+                pb.rotation_mode = "XYZ"
+                pb.rotation_euler = [math.radians(d) for d in deg]
         if "path" in p:
             pts = []
             for f, x, y, *z in p["path"]:

@@ -60,6 +60,19 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - Views: `audit/seat-after-raise.png` (side, front, top, 3/4).
     - **UNKNOWN:** a close-up view of the feet, because `look` frames the whole object. The feet contact is measured only, not seen.
  **Awaiting approval** before this goes into the spec or kit.
+- 2026-10-26: **seat fix persisted (approved).**
+  - Checkpoints in `build/checkpoints/`, gitignored:
+    - `coastal-test-v03-pre-seat.blend`, the file on disk before the fix;
+    - `coastal-test-v04-seatfix-live.blend`, the live state.
+  - Spec changes:
+    - Lounger extra z → [0.02, 0.44];
+    - Person_Lounger `at` [6.9, −6.8145, 0.242], `rot_z` π;
+    - a new `pose` block with 8 bones.
+  - Kit: `people.py` now takes `pose` (bone → XYZ degrees).
+  - Rebuilt headless with `--no-render`.
+  - The re-measured contacts match the live fix exactly: soles at 0.020 on the lawn, thighs 1.7 mm and hands 4.8 mm above the seat, 0 verts inside the seat or below the lawn.
+  - View: `audit/seat-rebuilt-from-spec.png`.
+  - Guides, ID maps and the preview were not re-rendered. The figure is hidden from C2 anyway.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.

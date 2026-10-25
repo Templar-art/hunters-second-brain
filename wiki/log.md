@@ -1449,3 +1449,6 @@ Hunter's standing rule set was filed raw, summarised in [[blender-blockout-pipel
 
 ## [2026-10-26] lint | Coastal lounger raised 20 mm
 Approved. The lounger and rig now sit on `Lot_Lawn`, with a 0 mm gap and no skin below the lawn or inside the seat. The fix is live only and not persisted.
+
+## [2026-10-26] lint | Coastal seat fix persisted
+The pose and the 20 mm raise went into the spec, and the kit `people` module gained `pose` overrides. Checkpoints were saved first. The headless rebuild matches the live measurements, and nothing was rendered.
