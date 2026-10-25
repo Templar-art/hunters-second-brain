@@ -86,7 +86,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[claude-improvement-plan]] — 19 Oct research pass: repo bloat (6.6 GB .git), money gate as a permission rule, JOB.md drift, memory/wiki rule splits, Claude habits
 - [[job-framework-v2]] — approved 20 Oct, phase 1 built (gen-runner + JOB.md ledger): 3-gate flow for all jobs, shot-class route table, pilot-before-batch, gen-runner + auto JOB.md tally, spec-driven Blender kit (<2h target)
 - [[shot-class-routes]] — canonical route table: shot class (P1–P4 photos, C1–C5 renders/CG) → still + video model, costs, evidence, pilot-required flags; read by 10x-ai
-- [[ai-lifestyle-people]] — framework (draft, unpiloted) for AI-generated people in listing photos/films: recurring house cast, P5/C6 shot classes, composite-onto-raw rule, realism QC, costs, ~75 HF pilot plan
+- [[ai-lifestyle-people]] — framework (pilot done 26 Oct, results not yet filed) for AI-generated people in listing photos/films: recurring house cast, P5/C6 shot classes, composite-onto-raw rule, realism QC, costs, ~75 HF pilot plan
 - [[proposal-playbook]] — retainer proposal recipe: recipient-world styling, HTML→PDF pipeline, incumbent comparison, undercut + shortfall-guarantee pricing
 - [[premium-web-build]] — how a client site avoids reading as a template: vary every section's layout, test the accent against both grounds before choosing light or dark, the fixed-position and grid gotchas, and verify by measurement not screenshot
 - [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)

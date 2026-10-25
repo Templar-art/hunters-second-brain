@@ -2,7 +2,7 @@
 client: internal-rnd
 address: Beachfront Gold Coast house (fictional test build)
 opened: 2026-10-12
-status: review        # intake → generating → review → delivered
+status: delivered     # intake → generating → review → delivered
 cost: { credits: 0, hf_credits: 791.5, aud: 0 }   # derived from ## Ledger
 ---
 
@@ -49,3 +49,4 @@ Second R&D build for the [[blender-blockout-pipeline]]. A dense scene of about 1
 
 ---
 _Vault: [[jarvis]]_
+- 2026-10-26 closed: Hunter confirmed the Kling/Veo pick, the 01/06/07 re-rolls and the re-cut are done. Those spends happened outside this ledger, so the tally above undercounts.

@@ -91,13 +91,13 @@ Run on the beach house pool shot. Grid: [shootout-grid.jpg](../../projects/blend
 
 ## Beach build — video results (16 Oct, harvested 20 Oct)
 
-Job: [JOB.md](../../projects/blender-blockouts/beach/JOB.md). **Status: review, waiting on Hunter's pick.** Total spend is 791.5 HF credits, of which 672 went on video.
+Job: [JOB.md](../../projects/blender-blockouts/beach/JOB.md). **Status: done (Hunter confirmed 2026-10-26).** Total spend is 791.5 HF credits, of which 672 went on video.
 
 - **Stills:** Hunter picked GPT Image 2.5 Sunburst for all 7 shots. Seedream copied the Blender low-poly palms literally, failed the top-down shot and invented a pool.
 - **Video:** 7 × Seedance 2.5 (8s, 1080p) from the Sunburst stills, with no cast refs (refs would have cost 128 per shot). Shots 03, 04 and 05 passed. 02 passed with minor props appearing. 01 barely moves. 06 dissolves and morphs at about 2s. 07: the car doesn't roll. Rough cut: `projects/blender-blockouts/beach/video/rough-assembly-v1.mp4` (local only, media is gitignored).
 - **Face test on shot 06** (Hunter: faces were messing up): Kling 3.0 Pro (12.5) against Veo 3.1 Fast (32). Both held faces in one continuous take. Kling gave a true sideways track with a stable background. Veo gave sharper faces, but the background houses drift late. Side-by-side: `video/facetest/facetest-side-by-side.mp4`.
 - **Lesson:** Seedance from a still is fine for empty-architecture moves (03/04/05) but weak for people and vehicles. For shots with people, Kling 3.0 Pro is the cheapest clean option tested.
-- **Open:** choose Kling or Veo for the people shots, then re-roll 01, 06 and 07 and re-cut.
+- **Closed 2026-10-26:** Hunter confirmed the people-shot model pick, the 01/06/07 re-rolls and the re-cut are done. Which model won and the final spend weren't recorded here.
 
 ## Kit v1: spec-driven builds (20 Oct)
 

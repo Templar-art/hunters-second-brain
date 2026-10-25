@@ -1404,3 +1404,6 @@ Extended [[ai-lifestyle-people]] with the Blender + AI cinematic route: the kit,
 
 ## [2026-10-26] ingest | Claude + Blender guides
 Two research docs from 23 Oct, copied to `raw/blender/`: the MCP automation + photoreal render guide and its add-ons companion, which corrects the guide. Wrote [[claude-blender-guides-2026-10]]. Updated [[blender-blockout-pipeline]]: flagged that Archipack 2.x is paid (it was listed as free), noted the Geo-Scatter verdict differs, added fSpy for still-photo camera matching, MCP bridge notes, the photoreal checklist and critique loop for final-pixel renders, and the support-surface floor check. Updated [[claude-code-setup]] with the package rename and safe-mode note. Not adopted: migrating the MCP package, turning on safe mode, or buying any add-ons.
+
+## [2026-10-26] lint | Closed three open items
+Hunter confirmed all three are done: the [[ai-lifestyle-people]] pilot, the beach build people-shot pick + re-rolls ([[blender-blockout-pipeline]], JOB.md set to delivered), and Lot 48 ([[belle-property]], delivered 21 Jul; the stale "awaiting go" line in the auto-memory index is fixed). The pilot results and the final beach spend aren't recorded.

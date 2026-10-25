@@ -1,13 +1,13 @@
 ---
 type: concept
 tags: [ai, people, lifestyle, listings, framework, higgsfield]
-status: draft — not piloted
-updated: 2026-10-22
+status: piloted
+updated: 2026-10-26
 ---
 
 # AI lifestyle people (listings)
 
-How 10x puts **AI-generated people** into listing photos and films so they read as real lifestyle shots: a couple in the kitchen, a family on the lawn, someone reading by the window. No real talent is cast. Every person is invented and stays consistent from listing to listing. This is a draft framework; nothing is piloted yet (see **Pilot plan**).
+How 10x puts **AI-generated people** into listing photos and films so they read as real lifestyle shots: a couple in the kitchen, a family on the lawn, someone reading by the window. No real talent is cast. Every person is invented and stays consistent from listing to listing. **Pilot done (Hunter confirmed 2026-10-26).** The results (cast, what held, real costs) haven't been written back here yet, and there is no `projects/ai-cast/` folder in the vault.
 
 It slots into [[job-framework-v2]] as two new shot classes, run by the `10x-ai` skill like any other job.
 
@@ -112,7 +112,7 @@ A typical listing (3 stills with people + 1 motion clip at 720p) runs about **45
 3. One Seedance motion clip from the better still, 35 HF.
 4. Write the results (what held, what failed, the real costs) back here and into [[shot-class-routes]], then decide on the rest of the cast.
 
-**Pilot total: ~75 HF.** Open questions for Hunter: confirm the cast list, which past job to pilot on, and whether agents have rules on AI people.
+**Pilot total: ~75 HF (estimate).** ✅ Done per Hunter 2026-10-26. The cast list, pilot job and agency-rules questions are closed; their answers aren't filed here yet.
 
 ## Related
 [[job-framework-v2]] · [[shot-class-routes]] · [[staging-rules]] · [[higgsfield-pipelines]] · [[zed-style]] · [[plate-vfx]] · [[lambo-huracan]]
