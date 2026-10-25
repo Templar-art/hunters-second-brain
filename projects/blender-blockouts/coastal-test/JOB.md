@@ -34,7 +34,7 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - A4: 0.7 × 2.0 × 0.42 m lounger block under the reclining figure (Hunter's choice over removing it).
   - A5: driveway stops at the lot boundary (y 39), no longer overlapping the footpath.
   - Diff: only these objects changed. The camera move is unchanged (1 mm shake jitter only).
-  - **The guide frames and `preview/rise-reveal-v3.mp4` predate stage A and were not re-rendered.**
+  - 2026-10-26: guide frames 1 / 97 / 192 re-rendered from the fixed scene (Hunter: "guides only"). Sheet: `audit/stageA-guides.jpg`. **The ID maps and `preview/rise-reveal-v3.mp4` still predate stage A.** No reference exists (Hunter confirmed), so dimensions stay as built.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.

@@ -1434,3 +1434,6 @@ Hunter switched Blender work to an approval-based workflow: audit, then a staged
 
 ## [2026-10-26] lint | Coastal stage A fixes
 Hunter approved stage A (A1–A5) only. Fixed the alfresco balustrade and posts, the pool and entry planting clashes, added a lounger under the floating figure, and stopped the driveway at the lot boundary. The diff confirmed nothing else changed. The kit `alfresco` now takes `edge` and `post_height`. Guides were not re-rendered. Details in the job's JOB.md.
+
+## [2026-10-26] lint | Coastal guides re-rendered
+Re-rendered only the guide frames after stage A, as Hunter asked; the ID maps and motion preview were left as they were. Hunter has no reference for the house.
