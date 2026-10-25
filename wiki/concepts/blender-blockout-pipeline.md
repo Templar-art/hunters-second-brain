@@ -77,7 +77,7 @@ Audit of this Mac (Mac mini, M5 Pro, 48 GB, macOS 27.0.1) against the [install c
 | Acceptance tests | ✅ effectively passed; the MCP has driven every build since 12 Oct |
 | Node Wrangler | not enabled (bundled; enable when needed) |
 
-⚠️ **Duplicate add-on:** `scripts/addons/` holds two identical copies of MCP for Blender v1.8, `addon.py` and `blender_mcp.py`, and **both are enabled**. Blender throws an unregister exception on `addon.py` at quit. It works today, but it's the "duplicated tools" case the checklist warns about. Fix: disable the `addon` module and keep `blender_mcp`.
+✅ **Duplicate add-on fixed (26 Oct):** `scripts/addons/` held two identical copies of MCP for Blender v1.8, `addon.py` and `blender_mcp.py`, and both were enabled. That caused an unregister exception when Blender quit. The `addon` module is now disabled and the user prefs saved; only `blender_mcp` loads, and Blender quits cleanly. The `addon.py` file is still on disk but inactive. Prefs backup from before the change: `$TMPDIR/userpref-backup-2026-10-26.blend` (temporary).
 
 ## When Blender is the final pixel (no AI repaint)
 Most of the pipeline uses Blender only as a guide frame. For shots where the render *is* the deliverable, follow the photoreal checklist and critique loop in [[claude-blender-guides-2026-10]]:

@@ -1410,3 +1410,6 @@ Hunter confirmed all three are done: the [[ai-lifestyle-people]] pilot, the beac
 
 ## [2026-10-26] ingest | Mac mini Blender install checklist
 Copied to `raw/blender/` and linked from [[claude-blender-guides-2026-10]]. Audited this Mac against it in [[blender-blockout-pipeline]]: everything is in place (Blender 5.2.2 LTS arm64, Claude Code, uv, telemetry off, Metal GPU on) except safe mode, which Hunter chose to leave off. Found two identical MCP add-on copies both enabled.
+
+## [2026-10-26] lint | Blender duplicate MCP add-on disabled
+Hunter approved. Disabled the `addon` module and kept `blender_mcp`; verified on a fresh Blender start that only one copy loads and the quit exception is gone. See [[blender-blockout-pipeline]].
