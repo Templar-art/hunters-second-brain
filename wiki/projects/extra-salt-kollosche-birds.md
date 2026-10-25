@@ -2,7 +2,7 @@
 type: project
 tags: [extra-salt, blender, vfx, camera-tracking, drone]
 status: delivered
-updated: 2026-10-20
+updated: 2026-10-26
 ---
 
 # Extra Salt — Kollosche gulls comp
@@ -24,4 +24,4 @@ Hunter asked for birds to fly past a 1.9s Pottsville drone wide from the Kollosc
 - **SFX v3:** cut real wingbeat grains from the SFX_10X library (`Birds Flapping Whoosh.wav`, `Bird Whoosh 2.wav`) and place one per rendered downstroke, pitched down for gull size and attenuated by distance (`scripts/06_flap_real.py`). `~/Downloads/1-116 Seagull.wav` has speech in it, so don't use it. Drive SFX only download while the Google Drive app is running.
 - Blender clip-tracking ops need the GUI (a Clip Editor area). Run them with `Blender --python` plus a timer and `temp_override`, not `-b`.
 
-Related: [[blender-blockout-pipeline]], [[house-twilight]].
+Related: [[kollosche]], [[blender-blockout-pipeline]], [[house-twilight]].

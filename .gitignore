@@ -103,3 +103,11 @@ projects/lambo-huracan/shots/closeups/
 
 # plate-vfx relight intermediates (depth/relief arrays, regenerable)
 projects/plate-vfx/bench/kollosche/relight/*.npy
+
+# Kollosche brand pack (2026-10-26): ~1.5 GB of EPS/AI/PSD masters + licensed Söhne Breit fonts stay local.
+# SVG/PNG/JPG/PDF/DOCX (~12 MB) are tracked. Originals came from Kollosche's design team.
+raw/kollosche/**/*.eps
+raw/kollosche/**/*.ai
+raw/kollosche/**/*.psd
+raw/kollosche/**/*.otf
+raw/kollosche/_duplicates/
