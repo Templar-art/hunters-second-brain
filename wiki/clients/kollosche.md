@@ -21,7 +21,7 @@ Kollosche has strict, written rules for every video on its channels. The full sp
 ## Assets
 The full pack is in `raw/kollosche/`. It holds the guidelines, overlays, PSD templates, Söhne Breit fonts, three example edits and logo sets for 32 agent teams. The inventory is on [[kollosche-video-guidelines]]. The EPS/PSD/font masters are kept local and are not in git.
 
-**Before editing:** install Söhne Breit from `raw/kollosche/fonts/sohne-breit/`. It is not installed on this Mac yet, and without it Premiere and Final Cut swap in a default font.
+**Font:** all 7 Söhne Breit weights were installed to `~/Library/Fonts` on 2026-10-26 (from `raw/kollosche/fonts/sohne-breit/`). Restart Premiere or Final Cut if either was open at the time.
 
 ## Work for and around Kollosche
 - [[extra-salt-kollosche-birds]]: CG gulls comped into a Pottsville drone wide from the Kollosche reel (Oct 2026). That plate became the [[plate-vfx]] benchmark.

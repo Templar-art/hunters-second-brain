@@ -64,7 +64,7 @@ The PDF and the example video agree on Kräftig with no box, and the example (45
 | `brand-logos/` | K icon + KOLLOSCHE wordmark overlays (1080×1920, 3840×2160, transparent PNG), `svg_Kollosche Black/Blue/White_01/02.svg` |
 | `overlays/` | Blue overlay 9:16 + 4K (50% navy), AUCTION overlay 9:16 |
 | `templates-psd/` | `Agent-Outro`, `Agent-Property-Intro` (K + AUCTION + address + team), `Agent-Title` (name + title lower-third), `Monthly-wrap-INTRO` (KOLLOSCHE + month), `Blue_overlay_4K`, `Kollosche_YouTube-video_overlays_GROUPED` (4K K + address). Local only, not in git |
-| `fonts/sohne-breit/` | Söhne Breit: Extraleicht, Leicht, Buch, Kräftig, Halbfett, Dreiviertelfett, Extrafett (licensed, local only, **not yet installed**) |
+| `fonts/sohne-breit/` | Söhne Breit: Extraleicht, Leicht, Buch, Kräftig, Halbfett, Dreiviertelfett, Extrafett (licensed, local only; installed to `~/Library/Fonts` 2026-10-26) |
 | `examples/` | `01. Intro_and_Outro` (9:16, 28 s), `02. Captions_Kraftig_45pt` (9:16, 63 s, Infinity 33 agent piece), `03. 4K Landscape example` (3840×2160, 24 s, 55B Woodroffe Ave Main Beach) |
 | `end-cards/` | Taylor Kleinberg × Thibault Parolini end cards (9:16 + 16:9) |
 | `team-logos/<Agent>/` | 32 agent/team logo sets (below) |
