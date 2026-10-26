@@ -128,6 +128,17 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - Rebuilt with `--no-render`.
   - Verified: C2 and C3 moved at most 0.85 mm (the shake-hash jitter) with keys unchanged; C4 hits the approved start and end exactly.
   - Grey preview: `preview/c4-ground-pushin-v1.mp4` (local only) and `preview/c4-ground-pushin-v1-frames.jpg`. No AI, no credits.
+- 2026-10-26: C4 motion approved. **Stage C proposal (lighting and materials), read-only audit, not executed:**
+  - **Two suns, 93° apart.**
+    - The HDRI `qwantani_morning_puresky` has its sun at 20° elevation on the −Y/+X side, which lights the ocean facade.
+    - The `Sun` lamp (5.5 W, 44° elevation) shines from the +Y side, which lights the street facade.
+    - Each facade gets a different sun, so the shadows conflict.
+  - **White ocean:**
+    - The `Ocean` material is the kit fallback grey (0.7, roughness 0.5), because `core.FALLBACK_COLOURS` has a "water" key but no "ocean" key.
+    - The ID map is correct; only the grey guide is wrong.
+  - **Solar panels float 50 mm over the roof** (bottom at z 6.90, roof top at 6.85) with no mounts.
+  - **Pool fence:** none is modelled. Australian pools need a compliant barrier; this needs Hunter's decision.
+  - **Materials:** most are flat, untextured colours. `concrete_wall_009` has no image texture despite its Poly Haven name; cause UNKNOWN. Low priority while Blender stays a guide for the AI.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
