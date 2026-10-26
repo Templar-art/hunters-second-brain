@@ -1458,3 +1458,6 @@ Hunter screenshotted the profiles: @kollosche_, @taylorkleinberg_kollosche, @thi
 
 ## [2026-10-26] lint | Coastal outputs refreshed
 The guides, ID maps and grey motion preview (v4) were re-rendered from the current spec. Nothing in the scene changed, and no credits were spent.
+
+## [2026-10-26] update | @10xrealestate_ profile polish
+Bio rewritten to "Property film and photography / By @10xvisuals_" (Hunter wants prestige, nothing that sounds AI). Grid audited, and 5 highlight covers made (black with white Poppins, in projects/10xrealestate-ig/highlights/). Instagram web can't pin posts, edit links or the contact button, or create highlights, so those are listed for the phone in projects/10xrealestate-ig/PHONE-TODO.md.
