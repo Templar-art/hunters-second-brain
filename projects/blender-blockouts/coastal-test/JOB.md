@@ -93,6 +93,17 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - figure 100% visible, at screen x 0.73 at the start and 0.82 at the end.
   - Rendered headless from a throwaway copy with the markers removed and a temporary camera, never saved: `audit/c3-start.png`, `audit/c3-end.png`. Script: `audit/c3_stills.py`.
   - Not in the spec or kit yet.
+- 2026-10-26: **C3 framing approved and added to the spec.** C2 is untouched.
+  - `C3_OceanRise`: 28 mm, 192 frames, slot 193–384 on the shared timeline.
+    - keys (1.5, −32, 2.5) to (1.5, −22, 7), eased (bezier);
+    - rot_keys pitch +2° to −12°, yaw 184° fixed;
+    - shake 0.03, same as C2.
+  - Rebuilt with `--no-render`, so no guides or ID maps were made.
+  - Verified:
+    - C2 moved at most 0.84 mm across 5 samples (the known shake-hash jitter); its keys are unchanged;
+    - C3 hits the approved start and end exactly;
+    - the camera's closest approach to any geometry is 4.38 m (dune grass), so nothing clips.
+  - Grey EEVEE preview, 1280×720: `preview/c3-ocean-rise-v1.mp4` (local only, gitignored) and `preview/c3-ocean-rise-v1-frames.jpg`. Script: `audit/preview_range.py`. No AI, no credits.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
