@@ -1479,3 +1479,6 @@ Built 5 listing carousels: Cylinders, Solis, Pottsville townhouses (merged), Aus
 
 ## [2026-10-26] build | 10xConstruction carousels + both posting queues in Finder
 @10xrealestate_ has 11 posts in `Posting for 10xRealestate/Ready to Post/`, plus a 00 profile and highlights folder. The Cylinders main went up 26 Oct, so its reel moved last. Construction: Broncos Leagues Club deck is ready, the Grandview reel needs its builder handle, and Kennedys (Salisbury) is built and held for Murph. The Shape hotel set isn't identified yet. Construction stays on the original blue. Notes are in `projects/10xconstruction-ig/README.md`.
+
+## [2026-10-26] build | Every shot set → carousels (Drive pull)
+Inventoried 37 client folders on the Drive and pulled 47 finished shoots (12.4 GB) to `~/Documents/10x Drive Pulls/`. Built 21 REA decks (@10xrealestate_ posts 12 to 32) and 21 construction decks (14 queued as posts 04 to 17, 7 held). Ready to Post folders, captions, and planners are done for both pages. Web research fixed four address typos. Unverified handles and the holds are flagged in each READ ME. See [[10xrealestate-ig]].

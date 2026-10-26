@@ -28,6 +28,14 @@ The deck is a seamless 9-slide editorial layout:
 
 It uses warm paper and the original 10x blue #61a8d8. Full rules are in auto-memory `template-10xrealestate-carousel.md`.
 
+## Second wave (2026-10-26)
+Hunter asked for every photo set we've shot to be turned into a deck. I inventoried all 37 client folders on the Drive (`gdrive:Clients`) and pulled 47 finished shoots (12.4 GB of JPGs) into `~/Documents/10x Drive Pulls/`.
+- Built 21 more @10xrealestate_ decks (posts 12 to 32, 30 Nov to 29 Jan).
+- Built 21 construction decks: 14 queued, 7 held. Details are in `projects/10xconstruction-ig/README.md`.
+- Clients with only zips weren't touched: Kollosche, McGrath, Salt, Stone, Whitefox, Marco, Milan|Simon, Najim. Their zips run 5 to 549 GB each and hold video.
+- 4 agents picked 12 photos per shoot from numbered contact sheets. A web pass then verified the suburbs and handles, which caught four address typos in the Drive folder names (446 not 466 Marine Pde, Girtin Circuit, Muscovey, Southern Skies Ave).
+- Handles found by search still need checking in the IG app. Each Ready to Post READ ME lists them.
+
 ## What it taught us
 - **Hunter's standing rules:**
   - No navy and no end cards.
@@ -42,7 +50,6 @@ It uses warm paper and the original 10x blue #61a8d8. Full rules are in auto-mem
 - **References were what moved the design.** v4 read as a template. v5 came after studying five carousel references Hunter sent: layered type, cut photos, tilted frames and film strips.
 
 ## Open
-- Grandview Hotel: confirm it belongs on the real-estate page or the construction page.
 - 13 Mayra Ct has no photos, so it posts as a reel only.
 - Reel covers still need setting in the app, and the videos haven't been QC'd.
 - Division colour idea: the construction page X goes orange (AI is purple). Not actioned.

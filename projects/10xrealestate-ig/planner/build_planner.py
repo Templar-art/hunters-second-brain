@@ -19,6 +19,28 @@ POSTS = [  # Salt PM alternates with another client every time. Cylinders main w
     ("10 Australis Ct, Mermaid Waters", "Carousel", "Kollosche", "carousels/10-australis-ct/01.jpg"),
     ("Elanora Ave townhouses, Pottsville", "Reel", "Salt PM", "planner/elanora-reel.jpg"),
     ("59 Cylinders Dr, Kingscliff", "Reel", "Salt PM", "planner/cylinders-reel.jpg"),
+    # second wave from the Drive pull (2026-10-26), no client twice in a row
+    ("6/446 Marine Pde", "Carousel", "Zed", "carousels/6-446-marine-pde/01.jpg"),
+    ("37 Southaven Dr", "Carousel", "Belle", "carousels/37-southaven-dr/01.jpg"),
+    ("701/1245 Gold Coast Hwy", "Carousel", "Zed", "carousels/701-1245-gold-coast-hwy/01.jpg"),
+    ("43 North View St", "Carousel", "Bespoke", "carousels/43-north-view-st/01.jpg"),
+    ("57 Girtin Cct", "Carousel", "YPA", "carousels/57-girtin-cct/01.jpg"),
+    ("24A Muscovey Ave", "Carousel", "Zed", "carousels/24a-muscovey-ave/01.jpg"),
+    ("71/73 Lydford Cl", "Carousel", "Coastline", "carousels/71-73-lydford-cl/01.jpg"),
+    ("Uniq Residences", "Carousel", "Bespoke", "carousels/uniq-waterford-ct/01.jpg"),
+    ("3422 Surfers Paradise Blvd", "Carousel", "Zed", "carousels/3422-surfers-paradise-blvd/01.jpg"),
+    ("88 Third Ave", "Carousel", "Jessica Wallace", "carousels/88-third-ave/01.jpg"),
+    ("4 Mornington Ct", "Carousel", "YPA", "carousels/4-mornington-ct/01.jpg"),
+    ("801/1245 Gold Coast Hwy", "Carousel", "Zed", "carousels/801-1245-gold-coast-hwy/01.jpg"),
+    ("32 Southern Skies Ave", "Carousel", "Remax", "carousels/32-southern-skies/01.jpg"),
+    ("3009 The Boulevard", "Carousel", "Bespoke", "carousels/3009-the-boulevard/01.jpg"),
+    ("15 Muston Ct", "Carousel", "Ray White TMG", "carousels/15-muston-ct/01.jpg"),
+    ("25 Dungogie Dr", "Carousel", "Zed", "carousels/25-dungogie-dr/01.jpg"),
+    ("23 Gillian Dr", "Carousel", "Belle", "carousels/23-gillian-dr/01.jpg"),
+    ("41 Sears Rd", "Carousel", "YPA", "carousels/41-sears-rd/01.jpg"),
+    ("38 John Lund Dr", "Carousel", "Zed", "carousels/38-john-lund-dr/01.jpg"),
+    ("3049/3029 The Boulevard", "Carousel", "Bespoke", "carousels/3029-the-boulevard/01.jpg"),
+    ("13 Pyrite St", "Carousel", "Place", "carousels/13-pyrite-st/01.jpg"),
 ]
 BLUE, INK, PAPER = (0x61, 0xA8, 0xD8), (22, 26, 30), (0xF6, 0xF4, 0xF0)
 f = lambda w, s: ImageFont.truetype(f"{F}{w}.ttf", s)

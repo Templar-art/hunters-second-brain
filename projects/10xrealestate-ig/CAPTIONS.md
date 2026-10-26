@@ -45,3 +45,89 @@ Elanora Avenue, Pottsville, on film. Treetop bedrooms and a plunge pool tucked i
 ## 11 Fri 27 Nov 59 Cylinders Dr (Reel)
 
 Back at 59 Cylinders Drive. Kingscliff light through white walls, nothing else needed. @saltpropertymgt
+
+# Second wave (Drive pull, 2026-10-26)
+
+## 12 Mon 30 Nov 6/446 Marine Pde (Carousel)
+
+6/446 Marine Parade, Biggera Waters. A sauna, a bar and the Broadwater right off the terrace. Shot for @zedrealestate.
+
+## 13 Thu 3 Dec 37 Southaven Dr (Carousel)
+
+37 Southaven Drive, Helensvale. Pontoon out the back, a cabana by the pool and the canal doing the rest. Love this one. Shot for @bellepropertyhopeisland.
+
+## 14 Sun 6 Dec 701/1245 Gold Coast Hwy (Carousel)
+
+701/1245 Gold Coast Highway, Palm Beach. Ocean from the living room and a rooftop pool above it all 👀 Shot for @zedrealestate.
+
+## 15 Wed 9 Dec 43 North View St (Carousel)
+
+43 North View Street, Hope Island. A cinema, a pool and the marina at the bottom of the garden. Shot for Bespoke Estate Agents.
+
+## 16 Sat 12 Dec 57 Girtin Cct (Carousel)
+
+57 Girtin Circuit, Pimpama. A pavilion over the pool and a media room for the cooler nights. Shot for @ypaqueensland.
+
+## 17 Tue 15 Dec 24A Muscovey Ave (Carousel)
+
+24A Muscovey Avenue, Paradise Point. Timber stairs, a big balcony and a deck you won't want to leave. Shot for @zedrealestate.
+
+## 18 Fri 18 Dec 71/73 Lydford Cl (Carousel)
+
+71/73 Lydford Close, Bonogin. A wraparound verandah, a fireplace and nothing but hinterland around it. What a spot. Shot for Coastline Prestige.
+
+## 19 Mon 21 Dec Uniq Residences (Carousel)
+
+Uniq Residences, Bundall. A lift, a pool and stone through every bathroom. Clean work start to finish. Shot for @wardteam__bespoke.
+
+## 20 Thu 24 Dec 3422 Surfers Paradise Blvd (Carousel)
+
+3422 Surfers Paradise Boulevard. A rooftop pool above the strip and the skyline right out the window. Shot for @zedrealestate.
+
+## 21 Sun 27 Dec 88 Third Ave (Carousel)
+
+88 Third Avenue, Palm Beach. A butler's pantry, a big timber deck and a pool off the living room. Shot for Jessica Wallace.
+
+## 22 Wed 30 Dec 4 Mornington Ct (Carousel)
+
+4 Mornington Court, Pimpama. Bright, open living straight through to the pool. Shot for @ypaqueensland.
+
+## 23 Sat 2 Jan 801/1245 Gold Coast Hwy (Carousel)
+
+801/1245 Gold Coast Highway, Palm Beach. One floor up and the beach still fills every window. Shot for @zedrealestate.
+
+## 24 Tue 5 Jan 32 Southern Skies Ave (Carousel)
+
+32 Southern Skies Avenue, Reedy Creek. An outdoor kitchen, a big lawn and a pool made for summer. Shot for @remaxregencygc.
+
+## 25 Fri 8 Jan 3009 The Boulevard (Carousel)
+
+3009 The Boulevard, Carrara. A courtyard, a study and an alfresco built for long lunches. Shot for @wardteam__bespoke.
+
+## 26 Mon 11 Jan 15 Muston Ct (Carousel)
+
+15 Muston Court, Carrara. Garden views from the kitchen and an alfresco made for weekends. Shot for @raywhite.tmg.
+
+## 27 Thu 14 Jan 25 Dungogie Dr (Carousel)
+
+25 Dungogie Drive, Tallebudgera. Light timber, a courtyard and a terrace to finish the day on. Shot for @zedrealestate.
+
+## 28 Sun 17 Jan 23 Gillian Dr (Carousel)
+
+23 Gillian Drive, Coomera. A media room, a study and a pool right off the alfresco. Shot for @bellepropertyhopeisland.
+
+## 29 Wed 20 Jan 41 Sears Rd (Carousel)
+
+41 Sears Road, Yatala. Acreage, a fire pit and a shed big enough for everything. Proper country living. Shot for @ypaqueensland.
+
+## 30 Sat 23 Jan 38 John Lund Dr (Carousel)
+
+38 John Lund Drive, Hope Island. Marina living with room for the whole family. Shot for @zedrealestate.
+
+## 31 Tue 26 Jan 3049/3029 The Boulevard (Carousel)
+
+3049/3029 The Boulevard, Carrara. A sitting room, a balcony and space on every level. Shot for @wardteam__bespoke.
+
+## 32 Fri 29 Jan 13 Pyrite St (Carousel)
+
+13 Pyrite Street, Pimpama. A retreat upstairs, a big island and an alfresco out the back. Shot for Place Cleveland.
