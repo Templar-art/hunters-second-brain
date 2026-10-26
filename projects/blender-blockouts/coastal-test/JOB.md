@@ -120,6 +120,14 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - next is DuneGrass_309 at 0.64 m near the end;
     - no dune post within 2 m; no intersections.
   - Files: `audit/c4-start.png`, `audit/c4-end.png`; script `audit/c4_stills.py` (throwaway copy, never saved).
+- 2026-10-26: **C4 framing approved and added to the spec.** C2 and C3 are untouched.
+  - `C4_GroundPushIn`: preset gimbal_track, 28 mm, 192 frames, slot 385–576.
+    - keys (5.5, −20, 1.34) to (6.0, −13, 1.52), eased, about 0.9 m/s walking pace;
+    - rot_keys pitch +1°, yaw 186° → 190°;
+    - shake 0.03.
+  - Rebuilt with `--no-render`.
+  - Verified: C2 and C3 moved at most 0.85 mm (the shake-hash jitter) with keys unchanged; C4 hits the approved start and end exactly.
+  - Grey preview: `preview/c4-ground-pushin-v1.mp4` (local only) and `preview/c4-ground-pushin-v1-frames.jpg`. No AI, no credits.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
