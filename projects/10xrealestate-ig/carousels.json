@@ -1,0 +1,192 @@
+{
+ "59-cylinders-dr": {
+  "folder": "59 Cylinders Drive | Salt PM",
+  "area": "KINGSCLIFF \u00b7 NSW",
+  "title": "59 Cylinders Drive",
+  "slides": [
+   [
+    "cover",
+    8
+   ],
+   [
+    "full",
+    7,
+    "Courtyard"
+   ],
+   [
+    "stack",
+    13,
+    18,
+    "Arrival"
+   ],
+   [
+    "full",
+    1,
+    "Living"
+   ],
+   [
+    "stack",
+    2,
+    0,
+    "Kitchen"
+   ],
+   [
+    "full",
+    4
+   ],
+   [
+    "stack",
+    5,
+    17,
+    "Dining"
+   ],
+   [
+    "full",
+    12,
+    "Ensuite"
+   ],
+   [
+    "stack",
+    11,
+    14,
+    "Bedrooms"
+   ]
+  ]
+ },
+ "solis-673-casuarina-way": {
+  "folder": "Solis 673 Casuarina Way | SALTPM",
+  "area": "CASUARINA \u00b7 NSW",
+  "title": "Solis",
+  "slides": [
+   [
+    "cover",
+    5
+   ],
+   [
+    "full",
+    6,
+    "Pool"
+   ],
+   [
+    "stack",
+    4,
+    10,
+    "Arrival"
+   ],
+   [
+    "full",
+    8,
+    "Living"
+   ],
+   [
+    "stack",
+    9,
+    0
+   ],
+   [
+    "full",
+    1,
+    "Main bedroom"
+   ],
+   [
+    "stack",
+    2,
+    15,
+    "Bathrooms"
+   ]
+  ]
+ },
+ "2-7a-elanora-ave": {
+  "folder": "2:7A Elanora Ave | Salt Pm",
+  "area": "TWEED COAST \u00b7 NSW",
+  "title": "2/7A Elanora Avenue",
+  "slides": [
+   [
+    "cover",
+    0
+   ],
+   [
+    "full",
+    10,
+    "Living"
+   ],
+   [
+    "stack",
+    9,
+    7,
+    "Kitchen"
+   ],
+   [
+    "full",
+    1,
+    "Main bedroom"
+   ],
+   [
+    "stack",
+    3,
+    4,
+    "Ensuite"
+   ],
+   [
+    "full",
+    5
+   ],
+   [
+    "stack",
+    2,
+    6
+   ],
+   [
+    "full",
+    13
+   ],
+   [
+    "stack",
+    12,
+    16,
+    "Bedrooms"
+   ]
+  ]
+ },
+ "10-australis-ct": {
+  "folder": "10 Australis Court | Kollosche",
+  "area": "GOLD COAST \u00b7 QLD",
+  "title": "10 Australis Court",
+  "slides": [
+   [
+    "cover",
+    21
+   ],
+   [
+    "full",
+    13,
+    "Waterfront"
+   ],
+   [
+    "stack",
+    12,
+    16
+   ],
+   [
+    "full",
+    22,
+    "Living"
+   ],
+   [
+    "stack",
+    10,
+    2
+   ],
+   [
+    "full",
+    4,
+    "Main bedroom"
+   ],
+   [
+    "stack",
+    11,
+    6
+   ]
+  ]
+ }
+}
