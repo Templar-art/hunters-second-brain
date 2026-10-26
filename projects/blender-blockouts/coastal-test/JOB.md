@@ -113,6 +113,13 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - The figure is 100% visible and grows from 15% to about 38% of the frame height, sitting at screen x about 0.67 → 0.75–0.82.
     - The roof clips at the end, which is expected for a push-in.
   - Camera clearance to the dune posts and grass along the path: UNKNOWN until the framing stills are rendered.
+- 2026-10-26: **C4 ground push-in framing stills rendered and awaiting approval. Not in the spec.**
+  - 28 mm. Start (5.5, −20, 1.34) at yaw 186°; end (6.0, −13, 1.52) at yaw 190°; pitch +1°.
+  - Path clearance, sampled at 41 points:
+    - closest is a dune-grass tip 0.53 m from the lens (DuneGrass_389, 17% along the path);
+    - next is DuneGrass_309 at 0.64 m near the end;
+    - no dune post within 2 m; no intersections.
+  - Files: `audit/c4-start.png`, `audit/c4-end.png`; script `audit/c4_stills.py` (throwaway copy, never saved).
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
