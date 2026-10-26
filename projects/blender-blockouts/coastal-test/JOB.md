@@ -78,6 +78,14 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - Grey EEVEE preview, 192 frames, 1280×720, 79 s: `preview/rise-reveal-v4.mp4`, with frames sheet `preview/rise-reveal-v4-frames.jpg`. v3 is kept for comparison.
   - The camera keys are unchanged.
   - Observation, not acted on: the ocean renders as flat white in the grey guides, though the ID map shows it correctly. This belongs to stage C.
+- 2026-10-26: **Stage B proposal, not executed.** I tested candidate camera positions read-only with ray casts from the camera to the skin mesh:
+  - **C2 as built (−2, 42.3, 2.7) to (−1, 35, 22):** the figure is 0% visible across the whole move.
+  - **Extending C2 over the roof:** the figure stays hidden by the roof or out of frame unless the pitch reaches about −55°, which breaks the ≤15° flown-gimbal rule. Rejected.
+  - **New C3 from the ocean side, looking +Y:** start (4, −32, 2.5) at pitch +2°, end (4, −22, 7) at pitch −12°.
+    - The figure is 100% visible at the start, middle and end, about 11–14% of the frame height, in the lower-right third.
+    - It clears the beach by 4.8 m at the start, 6.0 m in the middle and 7.3 m at the end.
+    - At the end the left edge of the house clips (screen x −0.08), so x or yaw needs tuning.
+  - Options: B1 keep C2 and drop the figure; B2 keep C2 and add C3; B3 extend C2 (rejected).
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
