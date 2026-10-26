@@ -34,7 +34,7 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - A4: 0.7 × 2.0 × 0.42 m lounger block under the reclining figure (Hunter's choice over removing it).
   - A5: driveway stops at the lot boundary (y 39), no longer overlapping the footpath.
   - Diff: only these objects changed. The camera move is unchanged (1 mm shake jitter only).
-  - 2026-10-26: guide frames 1 / 97 / 192 re-rendered from the fixed scene (Hunter: "guides only"). Sheet: `audit/stageA-guides.jpg`. **The ID maps and `preview/rise-reveal-v3.mp4` still predate stage A.** No reference exists (Hunter confirmed), so dimensions stay as built.
+  - 2026-10-26: guide frames 1 / 97 / 192 re-rendered from the fixed scene (Hunter: "guides only"). Sheet: `audit/stageA-guides.jpg`. ~~The ID maps and the preview still predate stage A~~ (fixed: v4, 26 Oct). No reference exists (Hunter confirmed), so dimensions stay as built.
 - 2026-10-26 seat audit (Hunter's brief):
   - **Before:** the lounger (`Coastal_Lounger`, a 0.7 × 2.0 × 0.42 m block) has no front. The figure (`Body_Person_Lounger`, MPFB rig with 163 bones) was facing +Y toward the house in an upright chair-sit. Its soles were on the seat top (z 0.423), its thighs floated at z 0.87, about 0.45 m above the seat, and its hands hung in the air.
   - **Live fix, unsaved:**
@@ -73,6 +73,11 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - The re-measured contacts match the live fix exactly: soles at 0.020 on the lawn, thighs 1.7 mm and hands 4.8 mm above the seat, 0 verts inside the seat or below the lawn.
   - View: `audit/seat-rebuilt-from-spec.png`.
   - Guides, ID maps and the preview were not re-rendered. The figure is hidden from C2 anyway.
+- 2026-10-26: **stale outputs refreshed** (Hunter: "go"). Free and local, no credits.
+  - Full headless build: the guides and ID maps for frames 1, 97 and 192 are now current with stage A and the seat fix. Sheet: `audit/v4-guides-id.jpg`.
+  - Grey EEVEE preview, 192 frames, 1280×720, 79 s: `preview/rise-reveal-v4.mp4`, with frames sheet `preview/rise-reveal-v4-frames.jpg`. v3 is kept for comparison.
+  - The camera keys are unchanged.
+  - Observation, not acted on: the ocean renders as flat white in the grey guides, though the ID map shows it correctly. This belongs to stage C.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.

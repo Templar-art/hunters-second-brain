@@ -1455,3 +1455,6 @@ The pose and the 20 mm raise went into the spec, and the kit `people` module gai
 
 ## [2026-10-26] update | Kollosche IG handles verified
 Hunter screenshotted the profiles: @kollosche_, @taylorkleinberg_kollosche, @thibaultparolini_kollosche. Added to [[kollosche]], plus a 13 Mayra Court posted-work line. Corrected a draft caption that tagged @kollosche.com.au (the email domain, not a handle).
+
+## [2026-10-26] lint | Coastal outputs refreshed
+The guides, ID maps and grey motion preview (v4) were re-rendered from the current spec. Nothing in the scene changed, and no credits were spent.
