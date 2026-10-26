@@ -106,7 +106,7 @@ def _rect_box(name, rect, z0, z1, material, col, grow=0.0, bevel=0.0):
 
 
 def _clear_glass(name):
-    """Clear thin glass (pool fences): full transmission, near-zero roughness, single-sided slab."""
+    """Clear thin glass (pool fences): full transmission, near-zero roughness, slab, alpha 0.1 blended."""
     m = core.mat(name)
     b = next(n for n in m.node_tree.nodes if n.type == "BSDF_PRINCIPLED")
     b.inputs["Base Color"].default_value = (0.95, 0.98, 0.98, 1)
@@ -115,6 +115,13 @@ def _clear_glass(name):
     b.inputs["IOR"].default_value = 1.5
     if hasattr(m, "thickness_mode"):
         m.thickness_mode = "SLAB"
+    # EEVEE without raytracing fills transmission with the world probe, not what is behind the
+    # glass, so the fence would read as a tinted wall; mostly-transparent blending shows through.
+    b.inputs["Alpha"].default_value = 0.1
+    if hasattr(m, "surface_render_method"):
+        m.surface_render_method = "BLENDED"
+    else:
+        m.blend_method = "BLEND"
     return m
 
 

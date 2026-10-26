@@ -172,6 +172,11 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - Options:
     - (a) `FenceGlass` only: add alpha blending (base alpha about 0.1, blended render method). Material-local, reliable.
     - (b) Turn on EEVEE raytraced refraction scene-wide. Affects every material, so it's a render-settings change.
+- 2026-10-26: **FenceGlass alpha 0.1, blended** (approved; FenceGlass only).
+  - Window `Glass` confirmed unchanged: alpha 1.0, dithered, same values.
+  - C4 guides only: `audit/stageC/c4-fence-glass-steps.jpg` (old Glass → transmission → alpha).
+  - **Result: the pool now shows through the fence in all 3 C4 frames.** Only faint panel edges and a slight haze remain.
+  - Watch: the fence is now very faint in the grey guide. The AI may drop it unless the ID map or prompt names it. The ID map is not re-rendered yet.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
