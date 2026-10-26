@@ -1,20 +1,20 @@
 # @10xrealestate_ posting schedule (v2, 2026-10-26)
 
-One post every 3 days at 7pm AEST, with a different client between every Salt PM post (a Salt PM video went up 26 Oct). Only the last two posts are back-to-back Salt PM, because Salt has 6 of the 11 slots. Visual grid preview: [planner/PLANNER.jpg](planner/PLANNER.jpg). To regenerate it, edit POSTS in `planner/build_planner.py` and run it.
+One post every 3 days at 7pm AEST, with Salt PM alternating with another client every time. The 59 Cylinders main video went up 26 Oct, so the Cylinders reel goes last, a month clear. That leaves the only back-to-back Salt PM pair at the end. Visual grid preview: [planner/PLANNER.jpg](planner/PLANNER.jpg). To regenerate it, edit POSTS in `planner/build_planner.py` and run it.
 
 | # | Date (7pm AEST) | Listing | Format | Client |
 |---|---|---|---|---|
 | 1 | Wed 28 Oct | 13 Mayra Ct, Mermaid Waters | Reel | Kollosche |
-| 2 | Sat 31 Oct | 59 Cylinders Dr, Kingscliff | Carousel | Salt PM |
+| 2 | Sat 31 Oct | Solis, 673 Casuarina Way | Reel | Salt PM |
 | 3 | Tue 3 Nov | 47 Somerset Dr, Mudgeeraba | Carousel | Whitefox |
-| 4 | Fri 6 Nov | Solis, 673 Casuarina Way | Reel | Salt PM |
+| 4 | Fri 6 Nov | Elanora Ave townhouses, Pottsville | Carousel | Salt PM |
 | 5 | Mon 9 Nov | 10 Australis Ct, Mermaid Waters | Reel | Kollosche |
-| 6 | Thu 12 Nov | Elanora Ave townhouses, Pottsville | Carousel | Salt PM |
+| 6 | Thu 12 Nov | 59 Cylinders Dr, Kingscliff | Carousel | Salt PM |
 | 7 | Sun 15 Nov | 47 Somerset Dr, Mudgeeraba | Reel | Whitefox |
-| 8 | Wed 18 Nov | 59 Cylinders Dr, Kingscliff | Reel | Salt PM |
+| 8 | Wed 18 Nov | Solis, 673 Casuarina Way | Carousel | Salt PM |
 | 9 | Sat 21 Nov | 10 Australis Ct, Mermaid Waters | Carousel | Kollosche |
-| 10 | Tue 24 Nov | Solis, 673 Casuarina Way | Carousel | Salt PM |
-| 11 | Fri 27 Nov | Elanora Ave townhouses, Pottsville | Reel | Salt PM |
+| 10 | Tue 24 Nov | Elanora Ave townhouses, Pottsville | Reel | Salt PM |
+| 11 | Fri 27 Nov | 59 Cylinders Dr, Kingscliff | Reel | Salt PM |
 
 ## Sources
 - Carousels: `carousels/<key>/01-09.jpg`, built by `build_carousels.py` from `carousels.json`.
