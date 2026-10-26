@@ -164,6 +164,14 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - The corner only moves 0.4 m, and a glass run still spans about x 0.08–0.50 of the end frame.
     - The real cause is the shared `Glass` fallback material: grey-blue, roughness 0.5, no transmission. It renders as a milky, near-opaque wall, so the pool disappears behind it.
     - Real frameless glass would be see-through.
+- 2026-10-26: **Pool fence now has its own `FenceGlass` material** (approved).
+  - Settings: transmission 1, roughness 0.02, IOR 1.5, slab thickness. Kit: `house._clear_glass`, used only when the fence material isn't the house glass.
+  - Window `Glass` is confirmed untouched (53 users; 0.6/0.75/0.8, roughness 0.5, no transmission).
+  - C4 guides only, via the new `audit/render_guides.py`. Sheet: `audit/stageC/c4-fenceglass-before-after.jpg`.
+  - **Result: still not see-through.** Without raytracing, EEVEE transmission shows the world probe (a dark sky-blue reflection), not the pool behind the glass. The fence went from milky white to a dark tinted pane.
+  - Options:
+    - (a) `FenceGlass` only: add alpha blending (base alpha about 0.1, blended render method). Material-local, reliable.
+    - (b) Turn on EEVEE raytraced refraction scene-wide. Affects every material, so it's a render-settings change.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.

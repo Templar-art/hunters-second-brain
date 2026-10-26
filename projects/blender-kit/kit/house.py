@@ -105,6 +105,19 @@ def _rect_box(name, rect, z0, z1, material, col, grow=0.0, bevel=0.0):
     return box(name, (x1 - x0 + 2 * grow, y1 - y0 + 2 * grow, z1 - z0), ((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2), material, col, bevel=bevel)
 
 
+def _clear_glass(name):
+    """Clear thin glass (pool fences): full transmission, near-zero roughness, single-sided slab."""
+    m = core.mat(name)
+    b = next(n for n in m.node_tree.nodes if n.type == "BSDF_PRINCIPLED")
+    b.inputs["Base Color"].default_value = (0.95, 0.98, 0.98, 1)
+    b.inputs["Roughness"].default_value = 0.02
+    b.inputs["Transmission Weight"].default_value = 1.0
+    b.inputs["IOR"].default_value = 1.5
+    if hasattr(m, "thickness_mode"):
+        m.thickness_mode = "SLAB"
+    return m
+
+
 def _balustrade(name, rect, z, sides, M, col, h=1.0):
     x0, y0, x1, y1 = rect
     for s in sides:
@@ -228,6 +241,8 @@ def build(H, ctx):
             x0, y0, x1, y1 = f["rect"]
             fz, fh, pw, g = f.get("z", 0.0), f.get("height", 1.2), f.get("panel", 1.5), f.get("gap", 0.05)
             fm = f.get("material", M["glass"])
+            if fm != M["glass"]:   # own material: clear, thin, see-through (window glass left alone)
+                _clear_glass(fm)
             for side, (a0, a1) in {"S": (x0, x1), "N": (x0, x1), "W": (y0, y1), "E": (y0, y1)}.items():
                 k = max(1, round((a1 - a0) / (pw + g)))
                 step = (a1 - a0) / k

@@ -178,7 +178,7 @@
     "height": 1.2,
     "panel": 1.5,
     "gap": 0.05,
-    "material": "Glass"
+    "material": "FenceGlass"
    }
   },
   "materials": {
