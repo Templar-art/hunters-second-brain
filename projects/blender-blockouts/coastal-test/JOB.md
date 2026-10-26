@@ -86,6 +86,13 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - It clears the beach by 4.8 m at the start, 6.0 m in the middle and 7.3 m at the end.
     - At the end the left edge of the house clips (screen x −0.08), so x or yaw needs tuning.
   - Options: B1 keep C2 and drop the figure; B2 keep C2 and add C3; B3 extend C2 (rejected).
+- 2026-10-26: **B2 approved.** C2 stays untouched. C3 start and end framing stills are rendered and **awaiting approval**; nothing is animated yet.
+  - Tuned read-only: x = 1.5, constant yaw +4°. Start (1.5, −32, 2.5) at pitch +2°; end (1.5, −22, 7) at pitch −12°; 28 mm.
+  - Measured:
+    - house bounding corners within frame x 0.26–0.78 at the start and 0.10–0.91 at the end (about 9% margin);
+    - figure 100% visible, at screen x 0.73 at the start and 0.82 at the end.
+  - Rendered headless from a throwaway copy with the markers removed and a temporary camera, never saved: `audit/c3-start.png`, `audit/c3-end.png`. Script: `audit/c3_stills.py`.
+  - Not in the spec or kit yet.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
