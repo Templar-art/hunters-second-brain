@@ -1,11 +1,12 @@
-"""Seamless editorial carousels for @10xrealestate_ (v4).
+"""Seamless editorial carousels for @10xrealestate_ (v5).
 
 Each carousel is composed on ONE long canvas (9 slides x 1080 wide) and then
-sliced, so photos can run across the swipe seams: a two-slide panorama, frames
-that overlap and get cut by the seam, tall bleeds, inset details.
-Photo order in carousels.json fills slots A..J:
-  A cover · B panorama · C tall bleed · D overlap across seam · E tall bleed right
-  F frame straddling seam · G inset detail · H full bleed · I top bleed · J overlap inset
+sliced, so photos run across the swipe seams. Patterns from the reference set
+Hunter liked: mixed-weight headline, one photo cut into staggered bands, tilted
+prints cut by a seam, a film strip of details, a frame split ON the seam.
+carousels.json lists 13 [index, label] photos, filling in order:
+  0 cover, 1 bands, 2-3 tilted prints, 4-7 film strip, 8 seam split,
+  9 inset, 10 full bleed, 11 top bleed, 12 closing inset
 Run: python3 build_carousels.py
 """
 import io, json, os
@@ -92,36 +93,113 @@ def shade(canvas, box, top_alpha, bottom_alpha):
     canvas.alpha_composite(layer, (x0, y0))
 
 
+def caption(d, xy, n, label, light=False):
+    """Small numbered caption: blue index, then the room in light type."""
+    if not label:
+        return
+    x, y = xy
+    tracked(d, (x, y), f"{n:02d}", font("Medium", 20), BLUE + (255,), 3)
+    d.text((x + 46, y), label, font=font("Light", 25), anchor="lm",
+           fill=(255, 255, 255, 235) if light else INK + (235,))
+
+
+def bands(canvas, path, box, offsets, gap=22):
+    """One photo cut into horizontal bands, each nudged sideways."""
+    x0, y0, x1, y1 = box
+    im = load(path, (x1 - x0, y1 - y0))
+    n = len(offsets)
+    bh = (im.height - gap * (n - 1)) // n
+    for k, dx in enumerate(offsets):
+        top = k * (bh + gap)
+        canvas.paste(im.crop((0, top, im.width, top + bh)), (x0 + dx, y0 + top))
+
+
+def split(canvas, path, box, cut, drop, gap=24):
+    """One photo cut vertically at x=cut, right half dropped by `drop`."""
+    x0, y0, x1, y1 = box
+    im = load(path, (x1 - x0, y1 - y0))
+    c = cut - x0
+    canvas.paste(im.crop((0, 0, c - gap // 2, im.height)), (x0, y0))
+    canvas.paste(im.crop((c + gap // 2, 0, im.width, im.height)), (cut + gap // 2, y0 + drop))
+
+
+def tilt(canvas, path, centre, size, angle):
+    """Bordered print, slightly rotated, with a soft shadow."""
+    w, h = size
+    card = Image.new("RGBA", (w + 2 * BORDER, h + 2 * BORDER), PAPER + (255,))
+    card.paste(load(path, size), (BORDER, BORDER))
+    pad = 60
+    sh = Image.new("RGBA", (card.width + 2 * pad, card.height + 2 * pad), (0, 0, 0, 0))
+    sh.paste((0, 0, 0, 70), (pad + 6, pad + 14, pad + 6 + card.width, pad + 14 + card.height))
+    sh = sh.filter(ImageFilter.GaussianBlur(22))
+    sh.alpha_composite(card, (pad, pad))
+    sh = sh.rotate(angle, resample=Image.BICUBIC, expand=True)
+    canvas.alpha_composite(sh, (centre[0] - sh.width // 2, centre[1] - sh.height // 2))
+
+
+def fit(d, text, weight, size, maxw):
+    while d.textlength(text, font=font(weight, size)) > maxw:
+        size -= 4
+    return font(weight, size)
+
+
 def compose(listing, photos):
-    p = [photos[i] for i in listing["photos"]]
-    c = Image.new("RGB", (W * SLIDES, H), PAPER)
+    p = [photos[i] for i, _ in listing["photos"]]
+    lab = [l for _, l in listing["photos"]]
+    c = Image.new("RGBA", (W * SLIDES, H), PAPER + (255,))
+    d = ImageDraw.Draw(c)
     s = lambda n: W * (n - 1)  # left edge of slide n
 
-    # 1 · cover
+    # 1 · cover, mixed-weight headline
     place(c, p[0], (0, 0, W, H))
-    # 2-3 · panorama across the seam
-    place(c, p[1], (s(2) + 110, 190, s(4) - 110, 190 + 970))
-    # 4-5 · tall bleed left, frame overlapping it and cut by the seam, tall bleed right
-    place(c, p[2], (s(4), 0, s(4) + 660, H))
-    place(c, p[4], (s(6) - 560, 0, s(6), H))
-    place(c, p[3], (s(4) + 560, 700, s(4) + 560 + 900, 700 + 600), border=True)
-    # 6-7 · large frame straddling the seam, tall detail overlapping its corner
-    place(c, p[5], (s(6) + 200, 150, s(7) + 640, 150 + 960))
-    place(c, p[6], (s(7) + 560, 760, s(7) + 1000, 760 + 500), border=True)
-    # 8 · full bleed
-    place(c, p[7], (s(8), 0, s(9), H))
-    # 9 · top bleed with an inset overlapping its lower edge
-    place(c, p[8], (s(9), 0, s(10), 700))
-    place(c, p[9], (s(9) + 300, 600, s(10) - 80, 600 + 467), border=True)
-
-    c = c.convert("RGBA")
-    shade(c, (0, int(H * 0.45), W, H), 0, 225)
+    shade(c, (0, int(H * 0.40), W, H), 0, 215)
     d = ImageDraw.Draw(c)
-    if listing.get("kicker"):
-        tracked(d, (M, H - 278), listing["kicker"], font("Medium", 22), (255, 255, 255, 220), 8)
-    d.text((M, H - 200), listing["title"], font=font("Light", 82), fill="white", anchor="lm")
-    d.line((M, H - 128, M + 40, H - 128), fill=BLUE, width=3)
-    tracked(d, (M + 56, H - 128), listing["area"], font("Medium", 22), (255, 255, 255, 220), 7)
+    tracked(d, (M, H - 400), listing["kicker"], font("Medium", 22), (255, 255, 255, 225), 8)
+    d.text((M - 6, H - 300), listing["street"], anchor="lm", fill="white",
+           font=fit(d, listing["street"], "SemiBold", 168, W - 2 * M))
+    d.text((M, H - 170), listing["suffix"], anchor="lm", fill="white", font=font("LightItalic", 96))
+    d.line((M, H - 84, M + 40, H - 84), fill=BLUE, width=3)
+    tracked(d, (M + 56, H - 84), listing["area"], font("Medium", 20), (255, 255, 255, 220), 7)
+
+    # 2-3 · photo cut into staggered bands, running into slide 3
+    bands(c, p[1], (s(2) + 120, 170, s(3) + 640, 170 + 960), (0, 70, -36))
+    caption(d, (s(2) + 120, 1225), 1, lab[1])
+
+    # 3-4 · two tilted prints, the first cut by the seam
+    tilt(c, p[2], (s(4) - 10, 430), (640, 480), -4)
+    tilt(c, p[3], (s(4) + 600, 905), (480, 600), 3)
+    caption(d, (s(3) + 760, 760), 2, lab[2])
+    caption(d, (s(4) + 120, 1225), 3, lab[3])
+
+    # 5 · place name, then a film strip of four details
+    d.text((s(5) + M - 4, 330), listing["place"], anchor="lm", fill=INK,
+           font=fit(d, listing["place"], "LightItalic", 150, W - 2 * M))
+    d.line((s(5) + M, 450, s(5) + M + 40, 450), fill=BLUE, width=3)
+    fw, fh, fg = 228, 400, 16
+    fx = s(5) + (W - (4 * fw + 3 * fg)) // 2
+    for k in range(4):
+        x = fx + k * (fw + fg)
+        place(c, p[4 + k], (x, 620, x + fw, 620 + fh))
+        caption(d, (x, 1065), 4 + k, lab[4 + k])
+
+    # 6-7 · one frame cut on the swipe seam, right half dropped; inset over it
+    split(c, p[8], (s(6) + 140, 130, s(7) + 720, 130 + 960), s(7), 80)
+    place(c, p[9], (s(7) + 560, 840, s(7) + 1010, 840 + 400), border=True)
+    caption(d, (s(6) + 140, 1225), 8, lab[8])
+    caption(d, (s(7) + 140, 1290), 9, lab[9])
+
+    # 8 · full bleed
+    place(c, p[10], (s(8), 0, s(9), H))
+    shade(c, (s(8), H - 300, s(9), H), 0, 150)
+    d = ImageDraw.Draw(c)
+    caption(d, (s(8) + M, H - M - 10), 10, lab[10], light=True)
+
+    # 9 · top bleed, bordered inset across its edge, address to sign off
+    place(c, p[11], (s(9), 0, s(10), 720))
+    place(c, p[12], (s(9) + 420, 600, s(10) - 70, 600 + 440), border=True)
+    caption(d, (s(9) + M, 760), 11, lab[11])
+    caption(d, (s(9) + 420, 1090), 12, lab[12])
+    d.text((s(9) + M, H - M - 10), listing["address"], anchor="lm", fill=INK + (200,), font=font("Light", 25))
     return c
 
 
