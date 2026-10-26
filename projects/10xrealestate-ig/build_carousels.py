@@ -10,6 +10,8 @@ carousels.json lists 13 [index, label] photos, filling in order:
 Run: python3 build_carousels.py
 """
 import io, json, os
+import numpy as np
+from scipy import ndimage
 import cairosvg
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps, ImageStat
 
@@ -98,8 +100,8 @@ def caption(d, xy, n, label, light=False):
     if not label:
         return
     x, y = xy
-    tracked(d, (x, y), f"{n:02d}", font("Medium", 20), BLUE + (255,), 3)
-    d.text((x + 46, y), label, font=font("Light", 25), anchor="lm",
+    tracked(d, (x, y), f"{n:02d}", font("Medium", 24), BLUE + (255,), 3)
+    d.text((x + 54, y), label, font=font("Regular", 30), anchor="lm",
            fill=(255, 255, 255, 235) if light else INK + (235,))
 
 
@@ -143,6 +145,58 @@ def fit(d, text, weight, size, maxw):
     return font(weight, size)
 
 
+def sky_mask(im):
+    """Sky pixels connected to the top edge, as a soft L mask."""
+    a = np.asarray(im).astype(int)
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    lab, _ = ndimage.label(((b > r + 12) & (b > 110)) | ((r + g + b) > 690))
+    sky = np.isin(lab, list(set(np.unique(lab[0])) - {0}))
+    roof = np.percentile([np.argmax(~sky[:, x]) for x in range(60, W - 60, 10)], 30)
+    return Image.fromarray((sky * 255).astype("uint8")).filter(ImageFilter.GaussianBlur(1.2)), roof
+
+
+def cover(c, path, listing):
+    """Street name set huge. Where the photo has sky, the house stands in front of it."""
+    if listing.get("cover_crop"):
+        src = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
+        l, t, r, b = listing["cover_crop"]
+        src = src.crop((int(l * src.width), int(t * src.height), int(r * src.width), int(b * src.height)))
+        im = grade(ImageOps.fit(src, (W, H), Image.LANCZOS))
+    else:
+        im = load(path, (W, H))
+    c.paste(im, (0, 0))
+    mask, roof = sky_mask(im)
+    if roof > 300:  # deepen the sky so white type holds against it
+        g = Image.linear_gradient("L").resize((W, H)).point(lambda v: int(150 * max(0, 1 - v / 255 * H / (roof + 120))))
+        deep = ImageEnhance.Color(ImageEnhance.Brightness(im).enhance(0.78)).enhance(1.15)
+        c.paste(Image.composite(deep, im, Image.fromarray(np.minimum(np.asarray(g), np.asarray(mask)))), (0, 0))
+    d = ImageDraw.Draw(c)
+    big = fit(d, listing["street"], "SemiBold", 300, W - 2 * 40)
+    x0, y0, x1, y1 = d.textbbox((0, 0), listing["street"], font=big, anchor="ls")
+    th = y1 - y0
+    behind = roof > 300
+    base = int(roof + th * 0.16) if behind else H - 330
+    base = max(base, 170 + th)
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(layer).text(((W - (x1 - x0)) // 2 - x0, base), listing["street"], font=big, fill="white", anchor="ls")
+    shadow = layer.copy()
+    shadow.putalpha(shadow.getchannel("A").point(lambda v: v * 0.5).filter(ImageFilter.GaussianBlur(16)))
+    if behind:
+        for l in (shadow, layer):
+            l.putalpha(Image.fromarray(np.minimum(np.asarray(l.getchannel("A")), np.asarray(mask))))
+    shade(c, (0, int(H * 0.55), W, H), 0, 200)
+    if not behind:
+        shade(c, (0, int(H * 0.35), W, int(H * 0.55)), 0, 0)
+    c.alpha_composite(shadow)
+    c.alpha_composite(layer)
+    d = ImageDraw.Draw(c)
+    kx = (W - (x1 - x0)) // 2
+    tracked(d, (kx + 4, base - th - 34), listing["kicker"], font("Medium", 26), (255, 255, 255, 235), 9)
+    d.text((M, H - 190), listing["suffix"], anchor="lm", fill="white", font=font("LightItalic", 104))
+    d.line((M, H - 96, M + 44, H - 96), fill=BLUE, width=3)
+    tracked(d, (M + 60, H - 96), listing["area"], font("Medium", 24), (255, 255, 255, 230), 8)
+
+
 def compose(listing, photos):
     p = [photos[i] for i, _ in listing["photos"]]
     lab = [l for _, l in listing["photos"]]
@@ -150,16 +204,9 @@ def compose(listing, photos):
     d = ImageDraw.Draw(c)
     s = lambda n: W * (n - 1)  # left edge of slide n
 
-    # 1 · cover, mixed-weight headline
-    place(c, p[0], (0, 0, W, H))
-    shade(c, (0, int(H * 0.40), W, H), 0, 215)
+    # 1 · cover
+    cover(c, p[0], listing)
     d = ImageDraw.Draw(c)
-    tracked(d, (M, H - 400), listing["kicker"], font("Medium", 22), (255, 255, 255, 225), 8)
-    d.text((M - 6, H - 300), listing["street"], anchor="lm", fill="white",
-           font=fit(d, listing["street"], "SemiBold", 168, W - 2 * M))
-    d.text((M, H - 170), listing["suffix"], anchor="lm", fill="white", font=font("LightItalic", 96))
-    d.line((M, H - 84, M + 40, H - 84), fill=BLUE, width=3)
-    tracked(d, (M + 56, H - 84), listing["area"], font("Medium", 20), (255, 255, 255, 220), 7)
 
     # 2-3 · photo cut into staggered bands, running into slide 3
     bands(c, p[1], (s(2) + 120, 170, s(3) + 640, 170 + 960), (0, 70, -36))
@@ -199,7 +246,7 @@ def compose(listing, photos):
     place(c, p[12], (s(9) + 420, 600, s(10) - 70, 600 + 440), border=True)
     caption(d, (s(9) + M, 760), 11, lab[11])
     caption(d, (s(9) + 420, 1090), 12, lab[12])
-    d.text((s(9) + M, H - M - 10), listing["address"], anchor="lm", fill=INK + (200,), font=font("Light", 25))
+    d.text((s(9) + M, H - M - 10), listing["address"], anchor="lm", fill=INK + (225,), font=font("Regular", 30))
     return c
 
 
