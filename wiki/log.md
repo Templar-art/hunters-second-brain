@@ -1476,3 +1476,6 @@ All guides and ID maps were re-rendered for C2, C3 and C4. The pool fence is hid
 
 ## [2026-10-26] harvest | @10xrealestate_ carousels v5.2 + posting planner
 Built 5 listing carousels: Cylinders, Solis, Pottsville townhouses (merged), Australis, and Somerset (new, Whitefox). Fixed the real suburbs: Mermaid Waters, Pottsville, Mudgeeraba. Planned 12 posts from 28 Oct. Hunter approved the design system, which is saved to auto-memory `template-10xrealestate-carousel.md` and the new [[10xrealestate-ig]] page. New standing rules: punched-in drones OK, no view drones, construction jobs stay off this page, merge identical shoots.
+
+## [2026-10-26] build | 10xConstruction carousels + both posting queues in Finder
+@10xrealestate_ has 11 posts in `Posting for 10xRealestate/Ready to Post/`, plus a 00 profile and highlights folder. The Cylinders main went up 26 Oct, so its reel moved last. Construction: Broncos Leagues Club deck is ready, the Grandview reel needs its builder handle, and Kennedys (Salisbury) is built and held for Murph. The Shape hotel set isn't identified yet. Construction stays on the original blue. Notes are in `projects/10xconstruction-ig/README.md`.
