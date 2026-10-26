@@ -193,6 +193,7 @@ The first fully kit-built scene, with no imported geometry: an invented two-stor
   - per-level `wall_material`.
   - Cantilever the upper level by giving it a bigger rect. A believable house needs offset massing, mixed materials, an entry statement and services, not just walls with holes.
 - **Camera:** a new `rot_keys` option (keyed gimbal pitch and yaw) replaces the swinging `look_at` for drone and crane moves. The v3 move is an eased rise-and-push on 28 mm, with pitch going +3° → −12°.
+- **Not every move needs to be a drone (Hunter, 26 Oct).** A ground-level gimbal move is just as valid: a push-in, slide or orbit at about 1.5 m. Pick whichever move suits the shot. The same rules apply: one eased move, a small aim change, and a grey preview first.
 - **Motion preview before any spend:** an EEVEE grey MP4 of all 192 frames takes about 80 s headless. Blender 5 has no FFMPEG output option in `image_settings`, so render JPEGs and encode them with ffmpeg.
 
 **Kit bug (open):** the camera shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds. It should use a stable hash.

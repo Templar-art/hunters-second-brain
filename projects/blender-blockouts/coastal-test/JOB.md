@@ -104,6 +104,15 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
     - C3 hits the approved start and end exactly;
     - the camera's closest approach to any geometry is 4.38 m (dune grass), so nothing clips.
   - Grey EEVEE preview, 1280×720: `preview/c3-ocean-rise-v1.mp4` (local only, gitignored) and `preview/c3-ocean-rise-v1-frames.jpg`. Script: `audit/preview_range.py`. No AI, no credits.
+- 2026-10-26: Hunter said drone moves aren't required and ground gimbal push-ins are fine; memory and wiki updated. **Proposed C4 ground gimbal, read-only tests, not executed:**
+  - **Straight push up the boardwalk (x 1.0) at 1.5 m: weak.**
+    - Dune grass and a post hide the figure until about y −20.
+    - At the end the house overfills the frame and the figure sits at the right edge (x 0.91 at 28 mm).
+  - **Angled push-in toward the figure (recommended):** 28 mm, 1.5 m above the beach.
+    - Start (5.5, −20, 1.34) at yaw 186°; end (6.0, −13, 1.52) at about yaw 190°; pitch +1°.
+    - The figure is 100% visible and grows from 15% to about 38% of the frame height, sitting at screen x about 0.67 → 0.75–0.82.
+    - The roof clips at the end, which is expected for a push-in.
+  - Camera clearance to the dune posts and grass along the path: UNKNOWN until the framing stills are rendered.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
