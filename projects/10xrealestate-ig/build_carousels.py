@@ -191,7 +191,7 @@ def cover(c, path, listing):
     if behind:
         for l in (shadow, layer):
             l.putalpha(Image.fromarray(np.minimum(np.asarray(l.getchannel("A")), np.asarray(mask))))
-    shade(c, (0, int(H * 0.55), W, H), 0, 200)
+    shade(c, (0, int(H * listing.get("cover_shade", 0.55)), W, H), 0, 200)  # deeper on busy interiors
     if not behind:
         shade(c, (0, int(H * 0.35), W, int(H * 0.55)), 0, 0)
     c.alpha_composite(shadow)
@@ -288,7 +288,8 @@ def photos_for(listing):
     if listing.get("dir"):
         d = listing["dir"]
         return sorted(os.path.join(d, f) for f in os.listdir(d)
-                      if listing.get("match", "") in f and f.lower().endswith((".jpg", ".jpeg", ".png")))
+                      if listing.get("match", "") in f and f.lower().endswith((".jpg", ".jpeg", ".png"))
+                      and not (listing.get("exclude") and listing["exclude"] in f))
     out = []
     for folder in listing.get("folders", [listing.get("folder")]):
         fs = []

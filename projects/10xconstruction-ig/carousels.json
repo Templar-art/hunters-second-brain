@@ -120,5 +120,68 @@
     "Pool deck"
    ]
   ]
+ },
+ "elysium-noosa": {
+  "dir": "/Users/10xhunter/Desktop/Websites photos and videos/Photos",
+  "match": "Shape-",
+  "exclude": "(1)",
+  "kicker": "SHAPE",
+  "street": "Elysium",
+  "suffix": "Noosa",
+  "area": "NOOSA HEADS QLD",
+  "place": "Hastings Street",
+  "address": "Elysium Noosa, Hastings Street",
+  "cover_mode": "front",
+  "photos": [
+   [
+    16,
+    ""
+   ],
+   [
+    20,
+    "Cibaria"
+   ],
+   [
+    34,
+    "Outlook"
+   ],
+   [
+    7,
+    "Suite"
+   ],
+   [
+    1,
+    "Vanity"
+   ],
+   [
+    6,
+    "Suite detail"
+   ],
+   [
+    44,
+    "Kitchenette"
+   ],
+   [
+    40,
+    "Bath"
+   ],
+   [
+    27,
+    "Bar"
+   ],
+   [
+    13,
+    "Ensuite"
+   ],
+   [
+    12,
+    "Lounge"
+   ],
+   [
+    22,
+    "Dining"
+   ]
+  ],
+  "cover_shade": 0.38
  }
 }
