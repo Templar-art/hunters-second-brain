@@ -10,7 +10,8 @@ scene.json "house": {
   "core":      {"name": "Lift", "rect": [...], "levels": ["Garage", "Lower", "Upper"]},
   "roof":      {"type": "flat", "pitch_deg": 3, "overhang": 0.9, "fascia": 0.3, "material": "RoofDark"},
   "observatory": {"rect": [...], "height": 2.7},
-  "pool":      {"rect": [...], "z": 0},
+  "pool":      {"rect": [...], "z": 0,
+                "fence": {"rect": [...], "z": 0.02, "height": 1.2, "panel": 1.5, "gap": 0.05, "material": "Glass"}},
   "screens":   [{"level": "Upper", "side": "N", "offset": 1.0, "width": 4.0, "height": 2.7, "spacing": 0.11,
                  "size": [0.042, 0.09], "standoff": 0.25, "material": "Timber"}],
   "extras":    [{"name": "EntryBlade", "rect": [x0, y0, x1, y1], "z": [0, 6.6], "material": "StoneTile"}],
@@ -222,5 +223,21 @@ def build(H, ctx):
         z = pl.get("z", 0.0)
         _rect_box(f"{n}_Pool_Coping", pl["rect"], z - 0.02, z + 0.06, M["coping"], col, grow=0.4)
         _rect_box(f"{n}_Pool_Water", pl["rect"], z, z + 0.08, M["water"], col)
+        f = pl.get("fence")
+        if f:   # frameless glass panels around the fence rect, set on the ground at f["z"]
+            x0, y0, x1, y1 = f["rect"]
+            fz, fh, pw, g = f.get("z", 0.0), f.get("height", 1.2), f.get("panel", 1.5), f.get("gap", 0.05)
+            fm = f.get("material", M["glass"])
+            for side, (a0, a1) in {"S": (x0, x1), "N": (x0, x1), "W": (y0, y1), "E": (y0, y1)}.items():
+                k = max(1, round((a1 - a0) / (pw + g)))
+                step = (a1 - a0) / k
+                for i in range(k):
+                    a, b = a0 + i * step + g / 2, a0 + (i + 1) * step - g / 2
+                    c, L = (a + b) / 2, b - a
+                    if side in "SN":
+                        dims, loc = (L, 0.012, fh), (c, y0 if side == "S" else y1, fz + fh / 2)
+                    else:
+                        dims, loc = (0.012, L, fh), (x0 if side == "W" else x1, c, fz + fh / 2)
+                    box(f"{n}_PoolFence_{side}{i}", dims, loc, fm, col)
 
     ctx.report["house_objects"] = len(col.all_objects)

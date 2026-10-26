@@ -139,6 +139,24 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - **Solar panels float 50 mm over the roof** (bottom at z 6.90, roof top at 6.85) with no mounts.
   - **Pool fence:** none is modelled. Australian pools need a compliant barrier; this needs Hunter's decision.
   - **Materials:** most are flat, untextured colours. `concrete_wall_009` has no image texture despite its Poly Haven name; cause UNKNOWN. Low priority while Blender stays a guide for the AI.
+- 2026-10-26: **Stage C executed: C1 option c, C2, C3 and C4 approved; C5 skipped.** Checkpoint: `build/checkpoints/coastal-test-v05-pre-stageC.blend`.
+  - **C1, one sun.**
+    - Spec `world_rotation_deg` −15.9 with `sun.match_hdri`. The kit (`build.py` `_hdri_sun`) finds the HDRI's sun pixel, applies the world mapping rotation, aims the lamp at it and turns off the world's extracted sun shadow.
+    - The sun now sits at azimuth −20°, side-light biased toward the ocean, at 20.1° elevation.
+    - **Verified with sphere probe renders,** one world-only and one lamp-only: azimuth −20.3° and −20.2°, so they agree within 0.1°. The first probe attempt clipped and gave a false +50°; the fix was exposure −5 plus a centroid.
+    - As predicted, the street facade (C2) is now in soft shade, and the ocean facade gets raking light.
+  - **C2, ocean.**
+    - Kit `core.FALLBACK_COLOURS` gains "ocean" (0.02, 0.16, 0.2), with a new `FALLBACK_ROUGHNESS` for ocean of 0.08.
+    - ⚠️ My first pass also lowered the water and glass roughness, which was outside scope. It was caught on the sheet and reverted. PoolWater, Glass and Surf are confirmed unchanged at roughness 0.5.
+  - **C3, solar.** 4 rails (Bronze, 40 mm wide, z 6.85–6.90) as spec extras. Every panel rests on 2 rails, and the rails sit on the roof top (6.85), so the gap is 0 mm.
+  - **C4, pool fence.**
+    - New kit option `pool.fence`: 22 frameless glass panels (12 mm, 1.2 m high, 50 mm gaps), rect [−6.9, −10.3, 5.0, −5.0], z 0.02.
+    - South line at y −10.3, between the coping (−10.2) and the boardwalk end (−10.4), so the glass meets the boardwalk where a gate would be.
+    - Measured: 0 mm to the lawn on every panel, and the pool-bed plants are ≥107 mm off the glass plane.
+    - ⚠️ An earlier support check of mine was flawed: the ray started 1 mm under the lawn top and hit the beach. That briefly sank the fence 20 mm; it was re-measured from above and fixed.
+  - **Consequence flagged:** at the end of C4 the fence's east side sits about 3 m in front of the lens, so a large glass panel covers the left of frame.
+  - Cameras unchanged (spot-checked at mid-frames).
+  - Before/after: `audit/stageC/stageC-before-after.jpg`, with frames in `audit/stageC/{before,after}/`.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.

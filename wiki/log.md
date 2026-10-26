@@ -1467,3 +1467,6 @@ The C3 framing was approved and added to the spec as a second timeline slot, wit
 
 ## [2026-10-26] lint | Coastal C4 ground push-in added
 This is the first ground-gimbal move: a 28 mm walking push-in through the dune grass to the seated figure. It was added as the third timeline slot, with C2 and C3 untouched, and a grey preview was rendered. No credits were spent.
+
+## [2026-10-26] lint | Coastal stage C (lighting, ocean, solar, pool fence)
+One sun, with the HDRI rotated and the lamp matched by the kit. A sphere probe confirms the two agree within 0.1°. The ocean fallback colour is fixed in the kit, the solar panels sit on rails, and a 1.2 m frameless glass pool fence was added as a new kit option. Two of my own errors were caught and fixed: a scope creep into the glass and water roughness, and a flawed support ray.

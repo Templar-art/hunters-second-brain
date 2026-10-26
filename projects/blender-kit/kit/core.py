@@ -37,7 +37,9 @@ FALLBACK_COLOURS = {
     "render": (0.92, 0.91, 0.88), "concrete": (0.6, 0.6, 0.58), "glass": (0.6, 0.75, 0.8),
     "timber": (0.45, 0.3, 0.18), "sand": (0.86, 0.78, 0.6), "water": (0.1, 0.4, 0.6),
     "grass": (0.25, 0.45, 0.15), "metal": (0.3, 0.25, 0.2), "hedge": (0.15, 0.35, 0.12),
+    "ocean": (0.02, 0.16, 0.2),
 }
+FALLBACK_ROUGHNESS = {"ocean": 0.08}
 
 
 def mat(name):
@@ -51,6 +53,9 @@ def mat(name):
     bsdf = next(n for n in m.node_tree.nodes if n.type == "BSDF_PRINCIPLED")
     col = next((c for k, c in FALLBACK_COLOURS.items() if k in name.lower()), (0.7, 0.7, 0.7))
     bsdf.inputs["Base Color"].default_value = (*col, 1)
+    rough = next((r for k, r in FALLBACK_ROUGHNESS.items() if k in name.lower()), None)
+    if rough is not None:
+        bsdf.inputs["Roughness"].default_value = rough
     return m
 
 

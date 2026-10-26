@@ -166,7 +166,20 @@
     -9.8,
     4.0,
     -5.8
-   ]
+   ],
+   "fence": {
+    "rect": [
+     -6.9,
+     -10.3,
+     5.0,
+     -5.0
+    ],
+    "z": 0.02,
+    "height": 1.2,
+    "panel": 1.5,
+    "gap": 0.05,
+    "material": "Glass"
+   }
   },
   "materials": {
    "slab": "concrete_wall_009",
@@ -919,6 +932,62 @@
      0.44
     ],
     "material": "Lounger"
+   },
+   {
+    "name": "SolarRail_3.25",
+    "rect": [
+     -6.6,
+     3.23,
+     4.05,
+     3.27
+    ],
+    "z": [
+     6.85,
+     6.9
+    ],
+    "material": "Bronze"
+   },
+   {
+    "name": "SolarRail_3.8",
+    "rect": [
+     -6.6,
+     3.78,
+     4.05,
+     3.82
+    ],
+    "z": [
+     6.85,
+     6.9
+    ],
+    "material": "Bronze"
+   },
+   {
+    "name": "SolarRail_4.35",
+    "rect": [
+     -6.6,
+     4.33,
+     4.05,
+     4.369999999999999
+    ],
+    "z": [
+     6.85,
+     6.9
+    ],
+    "material": "Bronze"
+   },
+   {
+    "name": "SolarRail_4.9",
+    "rect": [
+     -6.6,
+     4.880000000000001,
+     4.05,
+     4.92
+    ],
+    "z": [
+     6.85,
+     6.9
+    ],
+    "material": "Bronze"
    }
   ]
  },
@@ -1601,12 +1670,9 @@
   "sun": {
    "energy": 5.5,
    "angle_deg": 0.8,
-   "rotation_deg": [
-    45,
-    10,
-    160
-   ]
-  }
+   "match_hdri": true
+  },
+  "world_rotation_deg": -15.9
  },
  "passes": {
   "density": {

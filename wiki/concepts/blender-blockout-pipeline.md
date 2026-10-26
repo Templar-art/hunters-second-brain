@@ -213,3 +213,10 @@ The lounger is a frontless block, so its −Y (ocean) end was chosen as the fron
 - From the approved C2 camera the figure is **0% visible** at frames 1, 97 and 192. A ray cast from the camera to the skin hits the garage door at frame 1, then the fascia and roof at 97, then the roof at 192. The seat fix has no effect on the approved shot.
 - The top view is square to the lounger and centred in X.
 - **Fixed:** Hunter approved a +0.020 m raise of the lounger and rig together. The soles now sit on the lawn with a 0 mm gap, and the thigh and hand gaps are unchanged. It was then **persisted** (approved): the spec gained a people `pose` block, and the kit's `people` module now takes `pose: {bone: [x, y, z] degrees}`, so a figure can be fitted to its seat from the spec. A headless rebuild reproduced the live contacts exactly. Checkpoints are in `build/checkpoints/`.
+
+**Kit additions from stage C (26 Oct):**
+- `lighting.world_rotation_deg` plus `sun.match_hdri`: the lamp is aimed at the HDRI's own sun and the world's extracted sun shadow is turned off, so there is one sun. Verify with a world-only sphere probe and a lamp-only one, at exposure −5 with a centroid, because a clipped probe gives false directions.
+- A fallback "ocean" colour and roughness. Previously an "Ocean" material fell back to grey 0.7 and rendered white.
+- `house.pool.fence`: frameless glass panels.
+- **Measurement lesson:** a support-check ray must start *above* the surface. Starting 1 mm under the lawn top misses the lawn and reports the surface beneath it.
+

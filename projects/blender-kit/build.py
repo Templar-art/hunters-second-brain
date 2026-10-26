@@ -34,17 +34,52 @@ def imports(spec, ctx):
     return kept
 
 
+def _hdri_sun(world):
+    """World-space direction toward the HDRI's brightest pixel (its sun), after the world Mapping
+    rotation. Blender equirect: u = -atan2(y, x)/2pi + 0.5, v = atan2(z, hypot(x, y))/pi + 0.5."""
+    from mathutils import Matrix, Vector
+    nodes = world.node_tree.nodes
+    img = next(n.image for n in nodes if n.type == "TEX_ENVIRONMENT")
+    W, H = img.size
+    px = img.pixels[:]
+    best, bx, by = -1.0, 0, 0
+    for y in range(0, H, 2):
+        for x in range(0, W, 2):
+            i = (y * W + x) * 4
+            lum = px[i] * 0.2126 + px[i + 1] * 0.7152 + px[i + 2] * 0.0722
+            if lum > best:
+                best, bx, by = lum, x, y
+    az = (0.5 - (bx + 0.5) / W) * 2 * math.pi
+    el = ((by + 0.5) / H - 0.5) * math.pi
+    d = Vector((math.cos(el) * math.cos(az), math.cos(el) * math.sin(az), math.sin(el)))
+    mp = next((n for n in nodes if n.type == "MAPPING"), None)
+    if mp:   # POINT mapping looks up env(R @ dir), so the sun appears at R^-1 @ d
+        d = mp.inputs["Rotation"].default_value.to_matrix().inverted() @ d
+    return d.normalized()
+
+
 def lighting(spec, ctx):
+    """"world_rotation_deg" turns the HDRI about Z. "sun": {"match_hdri": true} aims the lamp at the
+    HDRI's own sun and switches off the world's extracted sun shadow, so there is one sun, not two."""
     sc = bpy.context.scene
     if spec.get("world"):
         sc.world = bpy.data.worlds[spec["world"]]
+    if "world_rotation_deg" in spec:
+        mp = next(n for n in sc.world.node_tree.nodes if n.type == "MAPPING")
+        mp.inputs["Rotation"].default_value[2] = math.radians(spec["world_rotation_deg"])
     s = spec.get("sun")
     if s:
         d = bpy.data.lights.new("Sun", "SUN")
         d.energy = s.get("energy", 5)
         d.angle = math.radians(s.get("angle_deg", 0.8))
         o = bpy.data.objects.new("Sun", d)
-        o.rotation_euler = [math.radians(v) for v in s["rotation_deg"]]
+        if s.get("match_hdri"):
+            sd = _hdri_sun(sc.world)
+            o.rotation_euler = sd.to_track_quat("Z", "Y").to_euler()     # lamp +Z points at the sun
+            sc.world.use_sun_shadow = False
+            ctx.report["sun_dir"] = [round(v, 4) for v in sd]
+        else:
+            o.rotation_euler = [math.radians(v) for v in s["rotation_deg"]]
         core.coll("Lighting").objects.link(o)
 
 
