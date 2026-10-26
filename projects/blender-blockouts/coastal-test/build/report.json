@@ -1,5 +1,5 @@
 {
- "house_objects": 230,
+ "house_objects": 254,
  "guide_frames": [
   [
    "C2_RiseReveal",
@@ -12,13 +12,42 @@
   [
    "C2_RiseReveal",
    192
+  ],
+  [
+   "C3_OceanRise",
+   193
+  ],
+  [
+   "C3_OceanRise",
+   289
+  ],
+  [
+   "C3_OceanRise",
+   384
+  ],
+  [
+   "C4_GroundPushIn",
+   385
+  ],
+  [
+   "C4_GroundPushIn",
+   481
+  ],
+  [
+   "C4_GroundPushIn",
+   576
   ]
  ],
- "objects": 1521,
+ "sun_dir": [
+  0.882,
+  -0.3219,
+  0.3441
+ ],
+ "objects": 1547,
  "density": {
-  "total": 1513,
+  "total": 1537,
   "by_collection": {
-   "House": 230,
+   "House": 254,
    "Site": 355,
    "Landscape": 925,
    "People": 3,
@@ -28,6 +57,29 @@
   "fails": []
  },
  "clearance": [],
+ "guides": [
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0001.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0097.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0192.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0193.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0289.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0384.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0385.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0481.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/guides/shot_0576.png"
+ ],
+ "id_unknown": [],
+ "id": [
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0001.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0097.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0192.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0193.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0289.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0384.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0385.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0481.png",
+  "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/id/id_0576.png"
+ ],
  "timings_s": {
   "assets": 0.2,
   "house": 0.0,
@@ -35,10 +87,10 @@
   "landscape": 0.1,
   "people": 0.0,
   "cameras": 0.0,
-  "lighting": 0.0,
+  "lighting": 0.2,
   "save": 0.2,
-  "passes": 0.3,
-  "total": 0.9
+  "passes": 23.1,
+  "total": 23.9
  },
  "blend": "/Users/10xhunter/Documents/Hunters Second Brain/projects/blender-blockouts/coastal-test/build/coastal-test.blend"
 }
