@@ -38,20 +38,28 @@ def tracked(draw, xy, text, fnt, fill, track, anchor="l"):
     return total
 
 
-def mark(width):
+def mark(width, ten=None, xcol=X_ON_DARK):
     m = Image.open(io.BytesIO(cairosvg.svg2png(url=LOGO, output_width=width))).convert("RGBA")
     px = m.load()
     ref = (0x61 + 0xA8 + 0xD8) / 3
     for y in range(m.height):
         for x in range(m.width):
             r, g, b, a = px[x, y]
-            if a and not (r > 200 and g > 200 and b > 200):
+            if not a:
+                continue
+            if r > 200 and g > 200 and b > 200:
+                if ten:
+                    px[x, y] = ten + (a,)
+            else:
                 k = ((r + g + b) / 3) / ref
-                px[x, y] = tuple(min(255, int(c * k)) for c in X_ON_DARK) + (a,)
+                px[x, y] = tuple(min(255, int(c * k)) for c in xcol) + (a,)
     return m
 
 
+PAPER = (0xF6, 0xF4, 0xF0)
+X_ON_LIGHT = (0x2C, 0x4A, 0x7A)
 MARK = mark(118)
+MARK_LIGHT = mark(118, NAVY, X_ON_LIGHT)
 
 
 def grade(im):
@@ -89,19 +97,51 @@ def shade(canvas, box, top_alpha, bottom_alpha):
     canvas.alpha_composite(layer, (x0, y0))
 
 
-def chrome(canvas, n, total, on_photo):
-    if on_photo:
-        shade(canvas, (0, 0, W, 200), 70, 0)
-    canvas.alpha_composite(MARK, (M, M - 8))
+def chrome(canvas, n, total, theme):
+    if theme in ("photo", "split"):
+        shade(canvas, (0, 0, 660 if theme == "split" else W, 200), 70, 0)
+    light = theme == "light"
+    canvas.alpha_composite(MARK_LIGHT if light else MARK, (M, M - 8))
     d = ImageDraw.Draw(canvas)
-    tracked(d, (W - M, M + MARK.height // 2 - 8), f"{n:02d} / {total:02d}", font("Medium", 22), (255, 255, 255, 230), 4, "r")
+    ink = NAVY + (230,) if theme in ("light", "split") else (255, 255, 255, 230)
+    tracked(d, (W - M, M + MARK.height // 2 - 8), f"{n:02d} / {total:02d}", font("Medium", 22), ink, 4, "r")
+
+
+def mat(p, label):
+    """Single photo on warm paper with generous margins: the gallery wall slide."""
+    c = Image.new("RGBA", (W, H), PAPER + (255,))
+    side = 96
+    pw = W - 2 * side
+    ph = int(pw * 2 / 3)
+    top = (H - ph) // 2 + 10
+    c.paste(load(p, (pw, ph)), (side, top))
+    if label:
+        d = ImageDraw.Draw(c)
+        y = top + ph + 64
+        d.line((side, y, side + 40, y), fill=X_ON_LIGHT, width=3)
+        tracked(d, (side + 56, y), label.upper(), font("Medium", 22), NAVY + (255,), 7)
+    return c
+
+
+def split(p, label):
+    """Tall crop on the left, quiet paper panel on the right with the room name."""
+    c = Image.new("RGBA", (W, H), PAPER + (255,))
+    pw = 660
+    c.paste(load(p, (pw, H)), (0, 0))
+    d = ImageDraw.Draw(c)
+    x = pw + 60
+    d.line((x, H - 240, x + 40, H - 240), fill=X_ON_LIGHT, width=3)
+    words = (label or "").upper().split()
+    for i, w in enumerate(words):
+        tracked(d, (x, H - 180 + i * 44), w, font("Medium", 24), NAVY + (255,), 7)
+    return c
 
 
 def cover(p, listing):
     c = load(p, (W, H)).convert("RGBA")
     shade(c, (0, int(H * 0.45), W, H), 0, 225)
     d = ImageDraw.Draw(c)
-    d.text((M, H - 200), listing["title"], font=font("SemiBold", 74), fill="white", anchor="lm")
+    d.text((M, H - 200), listing["title"], font=font("Light", 82), fill="white", anchor="lm")
     d.line((M, H - 128, M + 40, H - 128), fill=X_ON_DARK, width=3)
     tracked(d, (M + 56, H - 128), listing["area"], font("Medium", 22), (255, 255, 255, 220), 7)
     return c
@@ -155,12 +195,17 @@ def build(key, listing, photos):
             c = cover(photos[s[1]], listing)
         elif kind == "full":
             c = full(photos[s[1]], s[2] if len(s) > 2 else None)
+        elif kind == "mat":
+            c = mat(photos[s[1]], s[2] if len(s) > 2 else None)
+        elif kind == "split":
+            c = split(photos[s[1]], s[2] if len(s) > 2 else None)
         else:
             c = stack(photos[s[1]], photos[s[2]], s[3] if len(s) > 3 else None)
-        chrome(c, n, total, on_photo=kind != "stack")
+        theme = {"stack": "navy", "mat": "light", "split": "split"}.get(kind, "photo")
+        chrome(c, n, total, theme)
         c.convert("RGB").save(f"{out}/{n:02d}.jpg", quality=93)
     e = end()
-    chrome(e, total, total, on_photo=False)
+    chrome(e, total, total, "navy")
     e.convert("RGB").save(f"{out}/{total:02d}.jpg", quality=93)
 
 

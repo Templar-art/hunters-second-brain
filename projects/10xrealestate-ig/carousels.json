@@ -20,15 +20,14 @@
     "Arrival"
    ],
    [
-    "full",
+    "mat",
     1,
     "Living"
    ],
    [
-    "stack",
+    "split",
     2,
-    0,
-    "Kitchen"
+    "The kitchen"
    ],
    [
     "full",
@@ -41,7 +40,7 @@
     "Dining"
    ],
    [
-    "full",
+    "mat",
     12,
     "Ensuite"
    ],
@@ -74,7 +73,7 @@
     "Arrival"
    ],
    [
-    "full",
+    "mat",
     8,
     "Living"
    ],
@@ -84,15 +83,14 @@
     0
    ],
    [
-    "full",
+    "split",
     1,
     "Main bedroom"
    ],
    [
-    "stack",
+    "mat",
     2,
-    15,
-    "Bathrooms"
+    "Ensuite"
    ]
   ]
  },
@@ -111,13 +109,17 @@
     "Living"
    ],
    [
-    "stack",
+    "split",
     9,
-    7,
-    "Kitchen"
+    "The kitchen"
    ],
    [
-    "full",
+    "stack",
+    7,
+    5
+   ],
+   [
+    "mat",
     1,
     "Main bedroom"
    ],
@@ -126,15 +128,6 @@
     3,
     4,
     "Ensuite"
-   ],
-   [
-    "full",
-    5
-   ],
-   [
-    "stack",
-    2,
-    6
    ],
    [
     "full",
@@ -158,24 +151,23 @@
     21
    ],
    [
-    "full",
-    13,
-    "Waterfront"
-   ],
-   [
-    "stack",
-    12,
-    16
-   ],
-   [
-    "full",
+    "mat",
     22,
     "Living"
    ],
    [
-    "stack",
-    10,
+    "full",
     2
+   ],
+   [
+    "split",
+    3,
+    "Dining"
+   ],
+   [
+    "stack",
+    1,
+    11
    ],
    [
     "full",
@@ -183,9 +175,20 @@
     "Main bedroom"
    ],
    [
+    "mat",
+    27,
+    "Bathroom"
+   ],
+   [
     "stack",
-    11,
-    6
+    9,
+    26,
+    "Bedrooms"
+   ],
+   [
+    "full",
+    10,
+    "Alfresco"
    ]
   ]
  }
