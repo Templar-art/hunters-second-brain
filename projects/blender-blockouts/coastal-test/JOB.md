@@ -157,6 +157,13 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - **Consequence flagged:** at the end of C4 the fence's east side sits about 3 m in front of the lens, so a large glass panel covers the left of frame.
   - Cameras unchanged (spot-checked at mid-frames).
   - Before/after: `audit/stageC/stageC-before-after.jpg`, with frames in `audit/stageC/{before,after}/`.
+- 2026-10-26: **East fence line moved in to x 4.6** (approved).
+  - Measured: 20 panels, 0 mm to the lawn, 0.19 m off the coping, 1.94 m from the lounger, no real-mesh contacts.
+  - C4 guides only: `audit/stageC/c4-fence-5.0-vs-4.6.jpg`.
+  - **Result: it does not clear the C4 end frame.**
+    - The corner only moves 0.4 m, and a glass run still spans about x 0.08–0.50 of the end frame.
+    - The real cause is the shared `Glass` fallback material: grey-blue, roughness 0.5, no transmission. It renders as a milky, near-opaque wall, so the pool disappears behind it.
+    - Real frameless glass would be see-through.
 - Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
