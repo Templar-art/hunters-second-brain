@@ -168,7 +168,8 @@ def cover(c, path, listing):
         im = load(path, (W, H))
     c.paste(im, (0, 0))
     mask, roof = sky_mask(im)
-    if roof > 300:  # deepen the sky so white type holds against it
+    behind = roof > 300 and listing.get("cover_mode") != "front"  # front when the skyline is ragged (trees)
+    if behind:  # deepen the sky so white type holds against it
         g = Image.linear_gradient("L").resize((W, H)).point(lambda v: int(150 * max(0, 1 - v / 255 * H / (roof + 120))))
         deep = ImageEnhance.Color(ImageEnhance.Brightness(im).enhance(0.78)).enhance(1.15)
         c.paste(Image.composite(deep, im, Image.fromarray(np.minimum(np.asarray(g), np.asarray(mask)))), (0, 0))
@@ -176,8 +177,12 @@ def cover(c, path, listing):
     big = fit(d, listing["street"], "SemiBold", 300, W - 2 * 80)  # survives the 3:4 grid crop
     x0, y0, x1, y1 = d.textbbox((0, 0), listing["street"], font=big, anchor="ls")
     th = y1 - y0
-    behind = roof > 300
-    base = int(roof + th * 0.16) if behind else H - 330
+    if behind:
+        base = int(roof + th * 0.16)
+    elif roof > 300:  # open sky but a ragged edge: set the name clear of it
+        base = max(int(roof - 40), 240 + th)  # keep the kicker clear of the logo
+    else:
+        base = H - 330
     base = max(base, 170 + th)
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     ImageDraw.Draw(layer).text(((W - (x1 - x0)) // 2 - x0, base), listing["street"], font=big, fill="white", anchor="ls")
@@ -277,15 +282,24 @@ def build(key, listing, photos):
     strip.convert("RGB").resize((W * SLIDES // 4, H // 4)).save(f"{out}/_strip.jpg", quality=85)
 
 
-def photos_for(folder):
-    fs = []
-    for root, _, files in os.walk(f"{SRC}/{folder}"):
-        fs += [os.path.join(root, f) for f in files if f.lower().endswith((".jpg", ".jpeg", ".png"))]
-    return sorted(fs)
+def photos_for(listing):
+    """Sorted photo paths. `folders` concatenates shoots in order (indices run on);
+    `dir` + `match` reads straight from another folder, e.g. the website photo dump."""
+    if listing.get("dir"):
+        d = listing["dir"]
+        return sorted(os.path.join(d, f) for f in os.listdir(d)
+                      if listing.get("match", "") in f and f.lower().endswith((".jpg", ".jpeg", ".png")))
+    out = []
+    for folder in listing.get("folders", [listing.get("folder")]):
+        fs = []
+        for root, _, files in os.walk(f"{SRC}/{folder}"):
+            fs += [os.path.join(root, f) for f in files if f.lower().endswith((".jpg", ".jpeg", ".png"))]
+        out += sorted(fs)
+    return out
 
 
 if __name__ == "__main__":
     cfg = json.load(open(f"{HERE}/carousels.json"))
     for key, listing in cfg.items():
-        build(key, listing, photos_for(listing["folder"]))
+        build(key, listing, photos_for(listing))
         print("built", key)

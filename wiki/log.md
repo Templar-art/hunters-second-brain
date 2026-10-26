@@ -1473,3 +1473,6 @@ One sun, with the HDRI rotated and the lamp matched by the kit. A sphere probe c
 
 ## [2026-10-26] lint | Coastal stage C closed
 All guides and ID maps were re-rendered for C2, C3 and C4. The pool fence is hidden in ID maps by kit design (like balustrades), so prompts must name it. Next is stage D (AI), which needs a quote first.
+
+## [2026-10-26] harvest | @10xrealestate_ carousels v5.2 + posting planner
+Built 5 listing carousels: Cylinders, Solis, Pottsville townhouses (merged), Australis, and Somerset (new, Whitefox). Fixed the real suburbs: Mermaid Waters, Pottsville, Mudgeeraba. Planned 12 posts from 28 Oct. Hunter approved the design system, which is saved to auto-memory `template-10xrealestate-carousel.md` and the new [[10xrealestate-ig]] page. New standing rules: punched-in drones OK, no view drones, construction jobs stay off this page, merge identical shoots.

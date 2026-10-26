@@ -64,7 +64,7 @@
   "street": "Casuarina",
   "suffix": "Way",
   "area": "CASUARINA NSW",
-  "place": "Tweed Coast",
+  "place": "Casuarina",
   "address": "Solis, 673 Casuarina Way",
   "photos": [
    [
@@ -115,71 +115,6 @@
     6,
     "Lap pool"
    ]
-  ]
- },
- "2-7a-elanora-ave": {
-  "folder": "2:7A Elanora Ave | Salt Pm",
-  "kicker": "2/7A",
-  "street": "Elanora",
-  "suffix": "Avenue",
-  "area": "POTTSVILLE NSW",
-  "place": "Pottsville",
-  "address": "2/7A Elanora Avenue, Pottsville",
-  "photos": [
-   [
-    8,
-    ""
-   ],
-   [
-    9,
-    "Kitchen"
-   ],
-   [
-    6,
-    "Terrace"
-   ],
-   [
-    2,
-    "Bedroom"
-   ],
-   [
-    3,
-    "Bath"
-   ],
-   [
-    11,
-    "Stair"
-   ],
-   [
-    14,
-    "Hall"
-   ],
-   [
-    4,
-    "Tub"
-   ],
-   [
-    10,
-    "Lounge"
-   ],
-   [
-    15,
-    "Vanity"
-   ],
-   [
-    1,
-    "Bedroom"
-   ],
-   [
-    0,
-    "Living"
-   ]
-  ],
-  "cover_crop": [
-   0.22,
-   0.0,
-   1.0,
-   0.86
   ]
  },
  "10-australis-ct": {
@@ -240,5 +175,134 @@
     "Pool"
    ]
   ]
+ },
+ "elanora-ave-townhouses": {
+  "folders": [
+   "2:7A Elanora Ave | Salt Pm",
+   "2:9B Elanora Ave | Salt PM"
+  ],
+  "kicker": "2/7A AND 2/9B",
+  "street": "Elanora",
+  "suffix": "Avenue",
+  "area": "POTTSVILLE NSW",
+  "place": "Pottsville",
+  "address": "2/7A and 2/9B Elanora Avenue, Pottsville",
+  "cover_crop": [
+   0.22,
+   0.0,
+   1.0,
+   0.86
+  ],
+  "photos": [
+   [
+    8,
+    ""
+   ],
+   [
+    18,
+    "Living"
+   ],
+   [
+    20,
+    "Plunge pool"
+   ],
+   [
+    2,
+    "Bedroom"
+   ],
+   [
+    3,
+    "Bath"
+   ],
+   [
+    11,
+    "Stair"
+   ],
+   [
+    28,
+    "Nook"
+   ],
+   [
+    4,
+    "Tub"
+   ],
+   [
+    9,
+    "Kitchen"
+   ],
+   [
+    15,
+    "Vanity"
+   ],
+   [
+    1,
+    "Bedroom"
+   ],
+   [
+    0,
+    "Living"
+   ]
+  ]
+ },
+ "47-somerset-dr": {
+  "dir": "/Users/10xhunter/Desktop/Websites photos and videos/Photos",
+  "match": "Somerset Drive _ Print",
+  "kicker": "NO. 47",
+  "street": "Somerset",
+  "suffix": "Drive",
+  "area": "MUDGEERABA QLD",
+  "place": "Mudgeeraba",
+  "address": "47 Somerset Drive, Mudgeeraba",
+  "photos": [
+   [
+    27,
+    ""
+   ],
+   [
+    22,
+    "Living"
+   ],
+   [
+    3,
+    "From above"
+   ],
+   [
+    23,
+    "Games room"
+   ],
+   [
+    18,
+    "Kitchen"
+   ],
+   [
+    16,
+    "Vanity"
+   ],
+   [
+    24,
+    "Bath"
+   ],
+   [
+    10,
+    "Lounge"
+   ],
+   [
+    14,
+    "Alfresco"
+   ],
+   [
+    50,
+    "Bedroom"
+   ],
+   [
+    0,
+    "Entry"
+   ],
+   [
+    54,
+    "Pool"
+   ]
+  ],
+  "cover_mode": "front"
  }
 }
