@@ -299,7 +299,10 @@ def photos_for(listing):
 
 
 if __name__ == "__main__":
-    cfg = json.load(open(f"{HERE}/carousels.json"))
+    import sys  # optional: build_carousels.py <config.json> <out dir>, e.g. the construction page
+    if len(sys.argv) > 2:
+        HERE = os.path.abspath(sys.argv[2])
+    cfg = json.load(open(sys.argv[1] if len(sys.argv) > 1 else f"{HERE}/carousels.json"))
     for key, listing in cfg.items():
         build(key, listing, photos_for(listing))
         print("built", key)

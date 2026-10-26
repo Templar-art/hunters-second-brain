@@ -7,18 +7,17 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 F = "/Users/10xhunter/Library/Fonts/Poppins-"
 START, EVERY = date(2026, 10, 28), 3
-POSTS = [  # listing, format, client, thumbnail (reel thumbs are stand-ins; real covers set in the app)
+POSTS = [  # clients alternate: Salt PM never back to back. Reel thumbs are stand-ins; real covers set in the app
     ("13 Mayra Ct, Mermaid Waters", "Reel", "Kollosche", "covers/mayra-ct-cover.jpg"),
     ("59 Cylinders Dr, Kingscliff", "Carousel", "Salt PM", "carousels/59-cylinders-dr/01.jpg"),
-    ("47 Somerset Dr, Mudgeeraba", "Reel", "Whitefox", "planner/somerset-reel.jpg"),
-    ("Solis, 673 Casuarina Way", "Carousel", "Salt PM", "carousels/solis-673-casuarina-way/01.jpg"),
+    ("47 Somerset Dr, Mudgeeraba", "Carousel", "Whitefox", "carousels/47-somerset-dr/01.jpg"),
+    ("Solis, 673 Casuarina Way", "Reel", "Salt PM", "planner/solis-reel.jpg"),
     ("10 Australis Ct, Mermaid Waters", "Reel", "Kollosche", "planner/australis-reel.jpg"),
     ("Elanora Ave townhouses, Pottsville", "Carousel", "Salt PM", "carousels/elanora-ave-townhouses/01.jpg"),
-    ("Grandview Hotel", "Reel", "Grandview", "planner/grandview-reel.jpg"),
-    ("47 Somerset Dr, Mudgeeraba", "Carousel", "Whitefox", "carousels/47-somerset-dr/01.jpg"),
+    ("47 Somerset Dr, Mudgeeraba", "Reel", "Whitefox", "planner/somerset-reel.jpg"),
     ("59 Cylinders Dr, Kingscliff", "Reel", "Salt PM", "planner/cylinders-reel.jpg"),
     ("10 Australis Ct, Mermaid Waters", "Carousel", "Kollosche", "carousels/10-australis-ct/01.jpg"),
-    ("Solis, 673 Casuarina Way", "Reel", "Salt PM", "planner/solis-reel.jpg"),
+    ("Solis, 673 Casuarina Way", "Carousel", "Salt PM", "carousels/solis-673-casuarina-way/01.jpg"),
     ("Elanora Ave townhouses, Pottsville", "Reel", "Salt PM", "planner/elanora-reel.jpg"),
 ]
 BLUE, INK, PAPER = (0x61, 0xA8, 0xD8), (22, 26, 30), (0xF6, 0xF4, 0xF0)
