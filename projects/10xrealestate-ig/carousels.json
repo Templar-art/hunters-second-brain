@@ -49,16 +49,12 @@
     "Ensuite"
    ],
    [
-    9,
-    "Gallery"
-   ],
-   [
     20,
     "Bedroom"
    ],
    [
-    17,
-    "Dining"
+    9,
+    "Gallery"
    ]
   ]
  },
@@ -68,7 +64,7 @@
   "street": "Casuarina",
   "suffix": "Way",
   "area": "CASUARINA NSW",
-  "place": "Casuarina",
+  "place": "Tweed Coast",
   "address": "Solis, 673 Casuarina Way",
   "photos": [
    [
@@ -80,20 +76,16 @@
     "Kitchen and dining"
    ],
    [
-    4,
-    "Alfresco"
-   ],
-   [
     10,
     "Entry"
    ],
    [
-    2,
-    "Bath"
-   ],
-   [
     0,
     "Retreat"
+   ],
+   [
+    2,
+    "Tub"
    ],
    [
     15,
@@ -104,6 +96,10 @@
     "Bedroom"
    ],
    [
+    14,
+    "Bathroom"
+   ],
+   [
     8,
     "Living"
    ],
@@ -112,16 +108,12 @@
     "Bedroom"
    ],
    [
+    4,
+    "Alfresco"
+   ],
+   [
     6,
     "Lap pool"
-   ],
-   [
-    12,
-    "Bedroom"
-   ],
-   [
-    11,
-    "Bedroom"
    ]
   ]
  },
@@ -159,8 +151,8 @@
     "Stair"
    ],
    [
-    7,
-    "Kitchen"
+    14,
+    "Hall"
    ],
    [
     4,
@@ -168,7 +160,7 @@
    ],
    [
     10,
-    "Living"
+    "Lounge"
    ],
    [
     15,
@@ -179,12 +171,8 @@
     "Bedroom"
    ],
    [
-    13,
-    "Lounge"
-   ],
-   [
-    12,
-    "Bedroom"
+    0,
+    "Living"
    ]
   ],
   "cover_crop": [
@@ -240,20 +228,16 @@
     "Lounge"
    ],
    [
-    9,
-    "Bedroom"
-   ],
-   [
     17,
-    "Pool"
+    "Outlook"
    ],
    [
     4,
     "Bedroom"
    ],
    [
-    26,
-    "Bedroom"
+    12,
+    "Pool"
    ]
   ]
  }

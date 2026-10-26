@@ -4,9 +4,9 @@ Each carousel is composed on ONE long canvas (9 slides x 1080 wide) and then
 sliced, so photos run across the swipe seams. Patterns from the reference set
 Hunter liked: mixed-weight headline, one photo cut into staggered bands, tilted
 prints cut by a seam, a film strip of details, a frame split ON the seam.
-carousels.json lists 13 [index, label] photos, filling in order:
+carousels.json lists 12 [index, label] photos, filling in order:
   0 cover, 1 bands, 2-3 tilted prints, 4-7 film strip, 8 seam split,
-  9 inset, 10 full bleed, 11 top bleed, 12 closing inset
+  9 inset, 10 full bleed, 11 closing hero
 Run: python3 build_carousels.py
 """
 import io, json, os
@@ -72,10 +72,10 @@ def grade(im):
     return Image.composite(im, ImageEnhance.Brightness(im).enhance(0.85), vig)
 
 
-def load(path, size):
+def load(path, size, centering=(0.5, 0.5)):
     im = ImageOps.exif_transpose(Image.open(path))
     im.draft("RGB", (size[0] * 2, size[1] * 2))
-    return grade(ImageOps.fit(im.convert("RGB"), size, Image.LANCZOS, centering=(0.5, 0.5)))
+    return grade(ImageOps.fit(im.convert("RGB"), size, Image.LANCZOS, centering=centering))
 
 
 def place(canvas, path, box, border=False):
@@ -100,7 +100,7 @@ def caption(d, xy, n, label, light=False):
     if not label:
         return
     x, y = xy
-    tracked(d, (x, y), f"{n:02d}", font("Medium", 24), BLUE + (255,), 3)
+    tracked(d, (x, y), f"{n:02d}", font("Medium", 24), (255, 255, 255, 255) if light else BLUE + (255,), 3)
     d.text((x + 54, y), label, font=font("Regular", 30), anchor="lm",
            fill=(255, 255, 255, 235) if light else INK + (235,))
 
@@ -108,7 +108,9 @@ def caption(d, xy, n, label, light=False):
 def bands(canvas, path, box, offsets, gap=22):
     """One photo cut into horizontal bands, each nudged sideways."""
     x0, y0, x1, y1 = box
-    im = load(path, (x1 - x0, y1 - y0))
+    w, h = x1 - x0, y1 - y0
+    im = load(path, (int(w * 1.2), int(h * 1.2)))  # zoom in and sit low: keeps the top band off bare ceiling
+    im = im.crop(((im.width - w) // 2, im.height - h, (im.width + w) // 2, im.height))
     n = len(offsets)
     bh = (im.height - gap * (n - 1)) // n
     for k, dx in enumerate(offsets):
@@ -171,7 +173,7 @@ def cover(c, path, listing):
         deep = ImageEnhance.Color(ImageEnhance.Brightness(im).enhance(0.78)).enhance(1.15)
         c.paste(Image.composite(deep, im, Image.fromarray(np.minimum(np.asarray(g), np.asarray(mask)))), (0, 0))
     d = ImageDraw.Draw(c)
-    big = fit(d, listing["street"], "SemiBold", 300, W - 2 * 40)
+    big = fit(d, listing["street"], "SemiBold", 300, W - 2 * 80)  # survives the 3:4 grid crop
     x0, y0, x1, y1 = d.textbbox((0, 0), listing["street"], font=big, anchor="ls")
     th = y1 - y0
     behind = roof > 300
@@ -213,10 +215,10 @@ def compose(listing, photos):
     caption(d, (s(2) + 120, 1225), 1, lab[1])
 
     # 3-4 · two tilted prints, the first cut by the seam
-    tilt(c, p[2], (s(4) - 10, 430), (640, 480), -4)
-    tilt(c, p[3], (s(4) + 600, 905), (480, 600), 3)
-    caption(d, (s(3) + 760, 760), 2, lab[2])
-    caption(d, (s(4) + 120, 1225), 3, lab[3])
+    tilt(c, p[2], (s(4) - 10, 800), (640, 480), -4)
+    tilt(c, p[3], (s(4) + 600, 470), (480, 600), 3)
+    caption(d, (s(3) + 740, 1120), 2, lab[2])
+    caption(d, (s(4) + 370, 830), 3, lab[3])
 
     # 5 · place name, then a film strip of four details
     d.text((s(5) + M - 4, 330), listing["place"], anchor="lm", fill=INK,
@@ -241,11 +243,9 @@ def compose(listing, photos):
     d = ImageDraw.Draw(c)
     caption(d, (s(8) + M, H - M - 10), 10, lab[10], light=True)
 
-    # 9 · top bleed, bordered inset across its edge, address to sign off
-    place(c, p[11], (s(9), 0, s(10), 720))
-    place(c, p[12], (s(9) + 420, 600, s(10) - 70, 600 + 440), border=True)
-    caption(d, (s(9) + M, 760), 11, lab[11])
-    caption(d, (s(9) + 420, 1090), 12, lab[12])
+    # 9 · close on the hero, set below the chrome, address to sign off
+    place(c, p[11], (s(9), 150, s(10), 1150))
+    caption(d, (s(9) + M, 1205), 11, lab[11])
     d.text((s(9) + M, H - M - 10), listing["address"], anchor="lm", fill=INK + (225,), font=font("Regular", 30))
     return c
 
