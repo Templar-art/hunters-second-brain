@@ -177,7 +177,11 @@ First build after the Blender MCP add-on update and asset-library switch-on. An 
   - C4 guides only: `audit/stageC/c4-fence-glass-steps.jpg` (old Glass → transmission → alpha).
   - **Result: the pool now shows through the fence in all 3 C4 frames.** Only faint panel edges and a slight haze remain.
   - Watch: the fence is now very faint in the grey guide. The AI may drop it unless the ID map or prompt names it. The ID map is not re-rendered yet.
-- Open (not approved): B camera, C lighting/materials, D AI. Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
+- 2026-10-26: **Stage C approved as done.** Full rebuild: guides and ID maps for all 9 frames (C2 1/97/192, C3 193/289/384, C4 385/481/576), with no AI and no credits. Sheet: `audit/stageC-final-guides-id.jpg`.
+  - The ID maps now show the ocean as dark blue and the solar panels on their rails.
+  - **The pool fence is absent from the ID maps by kit design.** `passes.material_id` hides any object named "Fence" or "Balustrade" so the view through stays readable. **Any stills or video prompt must name the 1.2 m frameless glass pool fence in text.**
+- **Open next:** stage D (AI finishing). Quote first; the money gate applies.
+- Open (not approved): D AI. (B camera and C lighting/materials are done.) Questions for Hunter: cantilever support, downpipe position, roof fall, neighbour heights. Waiting on a reference.
 - Kit bug noted, not fixed: shake-noise phase uses Python's salted `hash()`, so it varies slightly between builds.
 - Superseded: Hunter reviews the v3 motion. Then new Sunburst stills (3 × 2.75 = 8.25 HF, quote again) with house-character wording, then video.
 
