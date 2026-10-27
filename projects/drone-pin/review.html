@@ -80,6 +80,7 @@
       <button data-tool="edit">Edit <small>E</small></button>
       <button data-tool="brush">Behind brush <small>B</small></button>
       <button data-tool="erase">Eraser <small>X</small></button>
+      <button data-tool="draw">Draw outline <small>D</small></button>
       <button data-tool="place">Location pin <small>L</small></button>
     </div>
     <div class="grp" title="Outline thickness for this photo">
@@ -118,11 +119,13 @@ const SZ = __SIZES__;
 const HELP = {
   edit: 'Pin: drag the tip onto the house (first drag on a close or top-down shot sets the house for every photo) · drag the badge up/down to change the line length · ⌥-drag tip re-sets the house.  Outline: drag a corner · drag the line or inside to move it all · double-click the line to add a corner · ⌥-click a corner to delete it.',
   brush: 'Paint over whatever stands in front of the outline (buildings, trees) and the line goes behind it · ⇧ erases · [ ] brush size · red = hidden area.',
+  draw: 'Click to place outline points around whatever you want. Click the first point, double-click or press ⏎ to finish · ⌫ removes the last point · Esc cancels. Replaces this photo\'s outline; fine-tune afterwards in Edit.',
   erase: 'Rub out the behind mask where you went too far, and the outline comes back · [ ] brush size · red = hidden area.',
   place: 'Click the ground at a location, type its name; the pin and its distance from the house appear on every photo that sees it. Drag a location pin in Edit to nudge it on this photo.',
 };
 let site, marks, names = [], cur = 0, img = new Image(), K = new Image(), anchors = {}, drag = null;
 let zoom = 1, pan = [0, 0], panning = null, spaceDown = false;
+let pts = null, hover = null;   // Draw outline: points placed so far, pointer in image px
 let tool = 'edit', brush = 40, mask = null, maskDirty = false, painting = false, cursor = null;
 const cv = document.getElementById('cv'), cx = cv.getContext('2d');
 K.onload = () => draw(); K.src = '/preview/_k.png';
@@ -241,6 +244,7 @@ function modeBtns() { document.querySelectorAll('[data-mode]').forEach(b => b.cl
 const brushy = () => tool === 'brush' || tool === 'erase';
 const outlineW = m => Math.max(2, Math.round(SZ.OUTLINE_W * (m.outline_w ?? 1) * m.w));
 function setTool(t) {
+  if (t !== 'draw') pts = null;
   tool = t;
   document.querySelectorAll('[data-tool]').forEach(b => b.classList.toggle('on', b.dataset.tool === t));
   document.getElementById('help').textContent = HELP[t] + ZOOM_HELP;
@@ -301,6 +305,24 @@ function draw() {
     if (cursor) { cx.beginPath(); cx.strokeStyle = '#fff'; cx.lineWidth = 1.5 / zoom; cx.arc(cursor[0], cursor[1], brush / 2 / zoom, 0, 7); cx.stroke(); }
   }
   if (tool === 'edit') handles(m, s);
+  if (tool === 'draw' && pts) {
+    const z = q => [q[0] * s, q[1] * s], line = pts.map(z);
+    if (hover) line.push(z(hover));
+    cx.strokeStyle = '#61a8d8'; cx.lineWidth = 2 / zoom; cx.setLineDash([8 / zoom, 5 / zoom]);
+    cx.beginPath(); line.forEach(([x, y], j) => j ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.setLineDash([]);
+    pts.forEach(([x, y], j) => {
+      cx.beginPath(); cx.fillStyle = j ? '#61a8d8' : '#f5b041'; cx.strokeStyle = '#000'; cx.lineWidth = 2 / zoom;
+      const r = (j ? 5 : 7) / zoom; cx.rect(x * s - r, y * s - r, 2 * r, 2 * r); cx.fill(); cx.stroke();
+    });
+  }
+}
+function finishDraw() {
+  const m = M(), tol = 6 * m.w / cv.getBoundingClientRect().width;
+  const q = (pts || []).filter((p, j, a) => !j || Math.hypot(p[0] - a[j - 1][0], p[1] - a[j - 1][1]) > tol);   // dblclick dupes
+  if (q.length < 3) return flash('an outline needs at least 3 points');
+  m.lot = q; m.manual = true;
+  if (m.mode === 'pin') m.mode = 'both'; else if (m.mode === 'none') m.mode = 'outline';
+  pts = null; modeBtns(); list(); save(); setTool('edit'); flash(`outline drawn: ${q.length} points`);
 }
 function drawPlaces(m) {
   const lw = Math.max(2, Math.round(SZ.LINE_W * m.h));
@@ -373,6 +395,12 @@ cv.onmousedown = async e => {
   const m = M(); if (!m || m.error) return;
   if (brushy()) { painting = true; paint(e); return; }
   const p = toImg(e);
+  if (tool === 'draw') {
+    pts = pts || [];
+    const tol = 10 * m.w / cv.getBoundingClientRect().width;
+    if (pts.length >= 3 && Math.hypot(p[0] - pts[0][0], p[1] - pts[0][1]) < tol) return finishDraw();
+    pts.push(p); draw(); return;
+  }
   if (tool === 'place') {
     const label = await ask('Location name (e.g. SURFERS PARADISE BEACH)', ''); if (!label) return;
     const r = await api('/place', { file: names[cur], xy: p, label });
@@ -388,12 +416,14 @@ cv.onmousedown = async e => {
   cv.onmousemove(e);
 };
 cv.ondblclick = e => {
+  if (tool === 'draw' && pts) return finishDraw();
   const m = M(); if (tool !== 'edit' || !m || m.error) return;
   const h = hit(m, toImg(e));
   if (h && h.kind === 'edge') { const a = m.lot[h.j], b = m.lot[(h.j + 1) % m.lot.length]; m.lot.splice(h.j + 1, 0, [a[0] + (b[0] - a[0]) * h.t, a[1] + (b[1] - a[1]) * h.t]); m.manual = true; draw(); save(); }
 };
 cv.onmousemove = e => {
   if (panning) { pan = [e.clientX - panning[0], e.clientY - panning[1]]; view(); return; }
+  if (tool === 'draw') { hover = toImg(e); draw(); return; }
   if (brushy()) { cursor = toCanvas(e); if (painting) paint(e); else draw(); return; }
   if (!drag) return;
   const m = M(), p = toImg(e), dx = p[0] - drag.start[0], dy = p[1] - drag.start[1];
@@ -486,6 +516,11 @@ document.getElementById('apply').onclick = async () => {
 window.onkeydown = e => {
   if (e.target.tagName === 'INPUT') return;
   if (e.key === ' ') { e.preventDefault(); if (!spaceDown) { spaceDown = true; cv.style.cursor = 'grab'; } return; }
+  if (tool === 'draw' && pts) {
+    if (e.key === 'Enter') { e.preventDefault(); return finishDraw(); }
+    if (e.key === 'Escape') { pts = null; return draw(); }
+    if (e.key === 'Backspace') { e.preventDefault(); pts.pop(); if (!pts.length) pts = null; return draw(); }
+  }
   if (e.key === '0') return setZoom(1);
   if (e.key === '=' || e.key === '+') return zoomAt(1.5);
   if (e.key === '-') return zoomAt(1 / 1.5);
@@ -497,6 +532,7 @@ window.onkeydown = e => {
   else if (e.key === 'b') setTool('brush');
   else if (e.key === 'l') setTool('place');
   else if (e.key === 'x') setTool('erase');
+  else if (e.key === 'd') setTool('draw');
   else if (e.key === '[') { brush = Math.max(6, brush / 1.25); draw(); }
   else if (e.key === ']') { brush = Math.min(400, brush * 1.25); draw(); }
 };
