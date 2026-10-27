@@ -1482,3 +1482,6 @@ Built 5 listing carousels: Cylinders, Solis, Pottsville townhouses (merged), Aus
 
 ## [2026-10-26] build | Every shot set → carousels (Drive pull)
 Inventoried 37 client folders on the Drive and pulled 47 finished shoots (12.4 GB) to `~/Documents/10x Drive Pulls/`. Built 21 REA decks (@10xrealestate_ posts 12 to 32) and 21 construction decks (14 queued as posts 04 to 17, 7 held). Ready to Post folders, captions, and planners are done for both pages. Web research fixed four address typos. Unverified handles and the holds are flagged in each READ ME. See [[10xrealestate-ig]].
+
+## [2026-10-27] ingest | Kollosche day-to-night intake (Villas on Esther)
+4 clips (4K, 1.5–3.5 s) triaged; Seedance video_modify prompts written to projects/kollosche-day-to-night/prompts.md. Nothing spent.
