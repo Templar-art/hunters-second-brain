@@ -61,7 +61,13 @@
     <div class="grp">
       <button data-tool="edit">Edit <small>E</small></button>
       <button data-tool="brush">Behind brush <small>B</small></button>
+      <button data-tool="erase">Eraser <small>X</small></button>
       <button data-tool="place">Location pin <small>L</small></button>
+    </div>
+    <div class="grp" title="Outline thickness for this photo">
+      <label for="ow" style="align-self:center;color:var(--dim)">Outline</label>
+      <small style="align-self:center">S</small><input id="ow" type="range" min="0.5" max="3" step="0.1" value="1"><small style="align-self:center">L</small>
+      <button id="owall" title="Use this thickness on every photo">All</button>
     </div>
     <span class="sp"></span>
     <button id="reset">Reset photo</button>
@@ -79,6 +85,7 @@ const SZ = __SIZES__;
 const HELP = {
   edit: 'Pin: drag the tip onto the house (first drag on a close or top-down shot sets the house for every photo) · drag the badge up/down to change the line length · ⌥-drag tip re-sets the house.  Outline: drag a corner · drag the line or inside to move it all · double-click the line to add a corner · ⌥-click a corner to delete it.',
   brush: 'Paint over whatever stands in front of the outline (buildings, trees) and the line goes behind it · ⇧ erases · [ ] brush size · red = hidden area.',
+  erase: 'Rub out the behind mask where you went too far, and the outline comes back · [ ] brush size · red = hidden area.',
   place: 'Click the ground at a location, type its name; the pin and its distance from the house appear on every photo that sees it. Drag a location pin in Edit to nudge it on this photo.',
 };
 let site, marks, names = [], cur = 0, img = new Image(), K = new Image(), anchors = {}, drag = null;
@@ -138,14 +145,16 @@ function show(i) {
   };
   im.src = '/preview/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.jpg'));
   document.getElementById('note').textContent = m.error || m.note || '';
-  list(); modeBtns();
+  list(); modeBtns(); ow.value = m.outline_w ?? 1;
 }
 function modeBtns() { document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === M().mode)); }
+const brushy = () => tool === 'brush' || tool === 'erase';
+const outlineW = m => Math.max(2, Math.round(SZ.OUTLINE_W * (m.outline_w ?? 1) * m.w));
 function setTool(t) {
   tool = t;
   document.querySelectorAll('[data-tool]').forEach(b => b.classList.toggle('on', b.dataset.tool === t));
   document.getElementById('help').textContent = HELP[t];
-  cv.style.cursor = t === 'brush' ? 'none' : 'crosshair';
+  cv.style.cursor = brushy() ? 'none' : 'crosshair';
   draw();
 }
 
@@ -175,7 +184,7 @@ function draw() {
   if (on('outline') && m.lot.length) {
     // Outline on its own layer so the behind-mask can cut it (shadow included).
     const L = document.createElement('canvas'); L.width = cv.width; L.height = cv.height;
-    const c = L.getContext('2d'), lw = Math.max(2, Math.round(SZ.OUTLINE_W * m.w)) * s;
+    const c = L.getContext('2d'), lw = outlineW(m) * s;
     c.strokeStyle = '#fff'; c.lineJoin = c.lineCap = 'round'; c.lineWidth = Math.max(1, lw); shadowOn(c, lw);
     c.beginPath(); m.lot.forEach(([x, y], j) => j ? c.lineTo(x * s, y * s) : c.moveTo(x * s, y * s)); c.closePath(); c.stroke();
     if (mask) { c.shadowColor = 'transparent'; c.globalCompositeOperation = 'destination-out'; c.drawImage(mask, 0, 0); }
@@ -194,7 +203,7 @@ function draw() {
   }
   drawPlaces(m);
   cx.restore();
-  if (tool === 'brush' && mask) {
+  if (brushy() && mask) {
     // Show the hidden area in red while painting.
     const T = document.createElement('canvas'); T.width = cv.width; T.height = cv.height;
     const t = T.getContext('2d'); t.drawImage(mask, 0, 0); t.globalCompositeOperation = 'source-in'; t.fillStyle = 'rgba(255,60,60,0.45)'; t.fillRect(0, 0, T.width, T.height);
@@ -270,7 +279,7 @@ function hit(m, p) {
 
 cv.onmousedown = async e => {
   const m = M(); if (!m || m.error) return;
-  if (tool === 'brush') { painting = true; paint(e); return; }
+  if (brushy()) { painting = true; paint(e); return; }
   const p = toImg(e);
   if (tool === 'place') {
     const label = prompt('Location name (e.g. SURFERS PARADISE BEACH)'); if (!label) return;
@@ -292,7 +301,7 @@ cv.ondblclick = e => {
   if (h && h.kind === 'edge') { const a = m.lot[h.j], b = m.lot[(h.j + 1) % m.lot.length]; m.lot.splice(h.j + 1, 0, [a[0] + (b[0] - a[0]) * h.t, a[1] + (b[1] - a[1]) * h.t]); m.manual = true; draw(); save(); }
 };
 cv.onmousemove = e => {
-  if (tool === 'brush') { cursor = toCanvas(e); if (painting) paint(e); else draw(); return; }
+  if (brushy()) { cursor = toCanvas(e); if (painting) paint(e); else draw(); return; }
   if (!drag) return;
   const m = M(), p = toImg(e), dx = p[0] - drag.start[0], dy = p[1] - drag.start[1];
   if (drag.kind === 'tip') m.tip = p;
@@ -302,7 +311,7 @@ cv.onmousemove = e => {
   else if (drag.kind === 'place') { const st = m.places[drag.id]; st.xy = p; st.manual = true; }
   draw();
 };
-cv.onmouseleave = () => { cursor = null; if (tool === 'brush') draw(); };
+cv.onmouseleave = () => { cursor = null; if (brushy()) draw(); };
 window.onmouseup = async e => {
   if (painting) { painting = false; saveMask(); return; }
   if (!drag) return;
@@ -319,7 +328,7 @@ window.onmouseup = async e => {
 function paint(e) {
   // Stroke from the last point so fast drags leave no gaps.
   const c = mask.getContext('2d'), [x, y] = toCanvas(e), [px, py] = painting === true ? [x, y] : painting;
-  c.globalCompositeOperation = e.shiftKey ? 'destination-out' : 'source-over';
+  c.globalCompositeOperation = (tool === 'erase') !== e.shiftKey ? 'destination-out' : 'source-over';
   c.strokeStyle = '#fff'; c.lineWidth = brush; c.lineCap = 'round';
   c.beginPath(); c.moveTo(px, py); c.lineTo(x, y); c.stroke();
   painting = [x, y]; maskDirty = true; cursor = [x, y]; draw();
@@ -333,6 +342,12 @@ async function saveMask() {
 async function setMode(mode) { M().mode = mode; modeBtns(); draw(); list(); await save(); }
 document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
 document.querySelectorAll('[data-tool]').forEach(b => b.onclick = () => setTool(b.dataset.tool));
+const ow = document.getElementById('ow');
+ow.oninput = () => { M().outline_w = +ow.value; draw(); };
+ow.onchange = () => save();
+document.getElementById('owall').onclick = async () => {
+  names.forEach(n => marks[n].outline_w = +ow.value); await api('/save', marks); flash(`outline ${(+ow.value).toFixed(1)}× on every photo`);
+};
 document.getElementById('approve').onclick = async () => {
   if (maskDirty) await saveMask();
   M().reviewed = true; await save(); flash('approved'); show(cur + 1);
@@ -359,6 +374,7 @@ window.onkeydown = e => {
   else if (e.key === 'e') setTool('edit');
   else if (e.key === 'b') setTool('brush');
   else if (e.key === 'l') setTool('place');
+  else if (e.key === 'x') setTool('erase');
   else if (e.key === '[') { brush = Math.max(6, brush / 1.25); draw(); }
   else if (e.key === ']') { brush = Math.min(400, brush * 1.25); draw(); }
 };

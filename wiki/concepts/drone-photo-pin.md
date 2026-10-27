@@ -26,6 +26,8 @@ updated: 2026-10-27
 
 ## Hand editing (Hunter's request, 2026-10-27)
 - **Outline:** drag a corner, drag the line or the inside to move it all, double-click the line to add a corner, and ⌥-click a corner to delete it. Hand edits stick, and re-solving the camera won't overwrite them.
+- **Outline thickness:** a Small–Large slider for each photo (0.5–3× of 0.33% of the width), plus an "All" button that applies it to every photo.
+- **Eraser (X):** rubs out the behind mask so the outline comes back.
 - **Behind brush (B):** paint over buildings or trees that stand in front of the outline, and the line and its shadow are hidden there. The mask is stored per photo in `masks/`. Use it on the close-up and straight-on shots; the far wides don't need it.
 - **Drones-6 lesson (Esther Pl):** at 45 m up, the drone's height and heading were off enough that the camera maths couldn't place the outline (the rear corners landed in front of the building). Close oblique shots will often need the outline placed by hand, and that's what the editing is for.
 

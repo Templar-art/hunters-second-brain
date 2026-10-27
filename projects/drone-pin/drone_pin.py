@@ -61,7 +61,7 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 BADGE, BADGE_K, BADGE_BORDER = 0.085, 0.62, 0.018   # badge side; K width and border as fractions of the badge
 BADGE_FILL = (1, 26, 59)                             # Kollosche Blue #011A3B
 LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05
-OUTLINE_W = 0.0022                                   # of photo width
+OUTLINE_W = 0.0033                                   # of photo width, x per-photo outline_w (0.5-3)
 # Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
 # below, low opacity. All in multiples of the outline width.
 SHADOW_OFFSET, SHADOW_BLUR, SHADOW_OPACITY = 0.5, 0.6, 0.6
@@ -595,7 +595,7 @@ def draw_overlay(m, k, site=None, mask=None):
     ss = 2
     a = np.zeros((H * ss, W * ss), np.uint8)
     if m["mode"] in ("outline", "both") and m["lot"]:
-        lw = max(2, round(OUTLINE_W * W)) * ss
+        lw = max(2, round(OUTLINE_W * m.get("outline_w", 1) * W)) * ss
         p = np.round(np.array(m["lot"]) * ss * 16).astype(np.int32)
         cv2.polylines(a, [p], True, 255, lw, cv2.LINE_AA, shift=4)
         for x, y in p:
@@ -603,7 +603,7 @@ def draw_overlay(m, k, site=None, mask=None):
     alpha = cv2.resize(a, (W, H), interpolation=cv2.INTER_AREA)
     im = Image.new("RGBA", (W, H), (255, 255, 255, 0))
     if alpha.any():
-        lw = max(2, round(OUTLINE_W * W))
+        lw = max(2, round(OUTLINE_W * m.get("outline_w", 1) * W))
         if mask is not None:
             # "Behind" brush: hide the line (and so its shadow) where buildings stand in front.
             mk = cv2.resize(np.array(mask.convert("L")), (W, H), interpolation=cv2.INTER_LINEAR).astype(np.float32)
