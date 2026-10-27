@@ -62,6 +62,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[bebita-lifestyle-store]] — **Bebita Collective** (renamed from Lifestyle 30 Sep): sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
 - [[use-definitions-series]] — USE Software Definitions episodes: CRUD v5 (0cr, local canvas render) + `projects/use-definitions/` template; lesson: get the client's own past episodes before styling
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
+- [[drone-run]] — browser drone game (Three.js + Blender-built drone/houses, 0cr); playable prototype `projects/drone-run/`
 
 ## Concepts
 - [[sfx-library]]: the Ocular Sounds library (1,547 sounds since 20 Oct, ~/Music/SFX Library) and how the motion engine uses it
