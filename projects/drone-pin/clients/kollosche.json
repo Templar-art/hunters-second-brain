@@ -1,0 +1,23 @@
+{
+ "name": "Kollosche",
+ "confirmed": true,
+ "notes": "Navy K badge pin + thin white outline on print AND web (Hunter 2026-10-27). No top-downs, no location pins. Proportions from Kollosche's own 'Kollosche Map Pin.png'.",
+ "style": {
+  "pin": "badge",
+  "glyph": "kollosche-k",
+  "badge": 0.085,
+  "glyph_w": 0.54,
+  "border": 0.05,
+  "pin_line": 0.055,
+  "fill": "#011A3B",
+  "outline_w": 0.0033,
+  "outline_color": "#FFFFFF",
+  "blackout": 0,
+  "topdowns": false,
+  "location_pins": false,
+  "print_graphics": true,
+  "naming": "{address} - {kind}-{n}"
+ },
+ "agents_from": "raw/kollosche/team-logos",
+ "agents": {}
+}

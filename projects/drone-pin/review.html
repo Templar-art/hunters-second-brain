@@ -7,6 +7,7 @@
 <style>
   @font-face { font-family: "SohneK"; src: url(/font/kraftig); }
   @font-face { font-family: "SohneB"; src: url(/font/buch); }
+  @font-face { font-family: "PlaceF"; src: url(/font/place); }
   :root { --bg: #111317; --panel: #1a1d23; --line: #2a2e36; --text: #e8eaee; --dim: #8a909c; --accent: #61a8d8; --ok: #5cc28a; --warn: #f5b041; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.4 -apple-system, "Poppins", sans-serif; display: grid; grid-template-columns: 250px 1fr; height: 100vh; overflow: hidden; }
@@ -58,14 +59,23 @@
   #dlg input { background: #111317; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; font: inherit; }
   #dlg form > div { display: flex; gap: 8px; justify-content: flex-end; }
   #help { display: block; width: 100%; color: var(--dim); }
+  .look { display: grid; gap: 4px; margin: 6px 0 10px; font-size: 12px; color: var(--dim); }
+  .look label { display: flex; gap: 6px; align-items: center; justify-content: space-between; }
+  .look select { flex: 1; max-width: 70%; }
+  #lookmsg { color: #e0b050; }
 </style>
 </head>
 <body>
 <aside>
   <h1>DRONE PIN REVIEW</h1>
   <div class="site" id="site"></div>
+  <div class="look">
+    <label>Client <select id="client"></select></label>
+    <label>Agent <select id="agent"></select></label>
+    <small id="lookmsg"></small>
+  </div>
   <div id="list"></div>
-  <h2>LOCATION PINS <small>(optional, not used for Kollosche)</small></h2>
+  <h2>LOCATION PINS <small>(optional, not every client uses them)</small></h2>
   <div id="places"></div>
 </aside>
 <main>
@@ -122,7 +132,8 @@
     <label><input type="checkbox" id="xpg" checked> pin + outline on print <small>(untick for a clean print)</small></label>
     <label><input type="checkbox" id="xweb" checked> Web <small>2048 px, pin + outline, no GPS data</small></label>
   </div>
-  <label class="row">Name all <input id="xbase" placeholder="e.g. 5 Esther Place Surfers Paradise"><button type="button" id="xnum">Number them</button></label>
+  <label class="row">Name all <input id="xbase" placeholder="e.g. 5 Esther Place"> from <input id="xstart" type="number" min="1" value="1" style="width:4em"><button type="button" id="xnum">Number them</button></label>
+  <small>Names may contain {kind}: it becomes Print or Web in each folder (e.g. "5 Esther Place - {kind}-14").</small>
   <div id="xlist"></div>
   <div class="row end"><span id="xmsg"></span><span class="sp"></span><button type="button" id="xcancel">Close</button><button type="button" class="go" id="xgo">Export</button></div>
   <small>Saves into Print/ and Web/ folders inside the folder you pick. Same name = overwritten.</small>
@@ -134,7 +145,7 @@ const HELP = {
   edit: 'Pin: drag the tip onto the house (first drag on a close or top-down shot sets the house for every photo) · drag the badge up/down to change the line length · ⌥-drag tip re-sets the house.  Outline: drag a corner · drag the line or inside to move it all · double-click the line to add a corner · ⌥-click a corner to delete it.',
   brush: 'Paint over whatever stands in front of the outline (buildings, trees) and the line goes behind it · ⇧ erases · [ ] brush size · red = hidden area.',
   lasso: 'Hide the outline behind a building: click its corners (or hold and drag freehand) and close by clicking the first point, double-clicking or ⏎ · hold ⇧ while closing to erase that area instead · ⌫ removes the last point · Esc cancels · red = hidden area.',
-  light: 'ZED blackout: lasso the house (click its corners or drag freehand) and close it. Everything outside goes dark. Add more shapes to add more bright area · ⇧ while closing cuts a shape back to dark · ⌥-click inside a shape to delete it · Blackout slider sets how dark.',
+  light: (SZ.STYLE.surround === 'mono' ? 'B&W surround (ZED): the neighbourhood goes black & white; the far landscape fades back to colour. ' : '') + 'Blackout: lasso the house (click its corners or drag freehand) and close it. Everything outside goes dark. Add more shapes to add more bright area · ⇧ while closing cuts a shape back to dark · ⌥-click inside a shape to delete it · Blackout slider sets how dark.',
   razor: 'Click the outline to cut it there · ⇧-click a piece of line to remove it (shown red dashed), ⇧-click again to bring it back. Cut twice, then ⇧-click between the cuts to take out just that stretch.',
   draw: 'Click to place outline points around whatever you want. Click the first point, double-click or press ⏎ to finish · ⌫ removes the last point · Esc cancels. Replaces this photo\'s outline; fine-tune afterwards in Edit.',
   erase: 'Rub out the behind mask where you went too far, and the outline comes back · [ ] brush size · red = hidden area.',
@@ -147,7 +158,7 @@ const sizes = { brush: 40, erase: 40 };
 let tool = 'edit', brush = 40, mask = null, maskDirty = false, painting = false, cursor = null;
 const cv = document.getElementById('cv'), cx = cv.getContext('2d');
 K.onload = () => draw(); K.src = '/preview/_k.png';
-document.fonts.load('40px SohneK'); document.fonts.load('40px SohneB'); document.fonts.ready.then(() => draw());
+document.fonts.load('40px PlaceF'); document.fonts.load('40px SohneK'); document.fonts.load('40px SohneB'); document.fonts.ready.then(() => draw());
 
 // In-page confirm/prompt: the preview pane silently cancels window.confirm and window.prompt.
 // ask(text) resolves true/false; ask(text, value) shows a text box and resolves the text or null.
@@ -173,7 +184,7 @@ X('export').onclick = async () => {
   const pr = xprefs();
   X('xfolder').value = pr.folder || site.photos.replace(/\/[^/]*$/, '') + '/Drone Graphics';
   X('xbase').value = pr.base || '';
-  X('xpg').checked = pr.print_graphics ?? true;
+  X('xpg').checked = pr.print_graphics ?? SZ.STYLE.print_graphics;
   X('xlist').innerHTML = names.map((n, i) => {
     const m = marks[n], on = !m.error && m.mode !== 'none';
     const nm = (pr.names || {})[n] || n.replace(/\.[^.]+$/, '');
@@ -184,9 +195,11 @@ X('export').onclick = async () => {
 X('xcancel').onclick = () => X('exp').hidden = true;
 X('exp').onkeydown = e => { e.stopPropagation(); if (e.key === 'Escape') X('exp').hidden = true; };
 X('xnum').onclick = () => {
+  // The client's naming pattern; {kind} stays in the name and becomes Print / Web per folder.
   const base = X('xbase').value.trim(); if (!base) return;
-  let k = 0;
-  document.querySelectorAll('[data-x]').forEach(c => { if (c.checked) document.querySelector(`[data-xn="${c.dataset.x}"]`).value = `${base} ${String(++k).padStart(2, '0')}`; });
+  const start = +(X('xstart').value || 1), pat = SZ.STYLE.naming || '{address} {n}';
+  let k = start - 1;
+  document.querySelectorAll('[data-x]').forEach(c => { if (c.checked) document.querySelector(`[data-xn="${c.dataset.x}"]`).value = pat.replace('{address}', base).replace('{n}', String(++k).padStart(2, '0')); });
 };
 X('xchoose').onclick = async () => {
   X('xmsg').textContent = 'pick a folder in the Finder window…';
@@ -213,11 +226,26 @@ const flash = t => { const e = document.getElementById('msg'); e.textContent = t
 const M = () => marks[names[cur]];
 const save = () => api('/save', { [names[cur]]: M() });
 
+let clients = {};
 async function load() {
-  ({ site, marks } = await api('/marks'));
+  ({ site, marks, clients } = await api('/marks'));
   names = Object.keys(marks);
+  look();
   document.getElementById('site').innerHTML = `${site.address}<br>Lot ${site.lotplan} · ${Math.round(site.lot_area)} m²`;
   setTool('edit'); show(0);
+}
+// Client + agent: their profile (clients/<slug>.json) sets the pin, outline and export defaults.
+function look() {
+  const cs = X('client'), as = X('agent'), c = clients[site.client];
+  cs.innerHTML = '<option value="">(no client)</option>' + Object.entries(clients).map(([k, v]) => `<option value="${k}" ${k === site.client ? 'selected' : ''}>${v.name}</option>`).join('');
+  as.innerHTML = '<option value="">(any agent)</option>' + (c ? c.agents : []).map(a => `<option ${a === site.agent ? 'selected' : ''}>${a}</option>`).join('');
+  X('lookmsg').textContent = !c ? 'No client: plain outline only.' : c.confirmed ? '' : `${c.name}'s look isn't confirmed yet. ${c.notes}`;
+  const change = async () => {
+    await save();
+    await api('/client', { client: cs.value, agent: cs.value === site.client ? as.value : '' });
+    location.reload();
+  };
+  cs.onchange = as.onchange = change;
 }
 function list() {
   document.getElementById('list').innerHTML = names.map((n, i) => {
@@ -314,14 +342,24 @@ function draw() {
         b.beginPath(); poly(sh.pts); b.fill();
       });
     } else b.fill('nonzero');
-    cx.drawImage(B, 0, 0);
+    if (SZ.STYLE.surround === 'mono') {
+      // ZED: B&W instead of dark, fading back to colour toward the far landscape (drone_pin.py surround()).
+      const top = (m.lot.length ? Math.min(...m.lot.map(p => p[1])) : m.tip[1]) * s, H = m.h * s;
+      const [fa, fb] = SZ.STYLE.mono_fade, g = b.createLinearGradient(0, top - fb * H, 0, top - fa * H);
+      for (let i = 0; i <= 8; i++) { const t = i / 8; g.addColorStop(t, `rgba(0,0,0,${t * t * (3 - 2 * t)})`); }
+      b.filter = 'none'; b.globalCompositeOperation = 'destination-in'; b.fillStyle = g; b.fillRect(0, 0, B.width, B.height);
+      const G = document.createElement('canvas'); G.width = cv.width; G.height = cv.height;
+      const gc = G.getContext('2d'); gc.filter = 'grayscale(1)'; gc.drawImage(img, 0, 0, G.width, G.height);
+      gc.filter = 'none'; gc.globalCompositeOperation = 'destination-in'; gc.drawImage(B, 0, 0);
+      cx.drawImage(G, 0, 0);
+    } else cx.drawImage(B, 0, 0);
   }
   const on = k => m.mode === k || m.mode === 'both';
   if (on('outline') && m.lot.length) {
     // Outline on its own layer so the behind-mask can cut it (shadow included).
     const L = document.createElement('canvas'); L.width = cv.width; L.height = cv.height;
     const c = L.getContext('2d'), lw = outlineW(m) * s;
-    c.strokeStyle = '#fff'; c.lineJoin = c.lineCap = 'round'; c.lineWidth = Math.max(1, lw); shadowOn(c, lw);
+    c.strokeStyle = SZ.STYLE.outline_color; c.lineJoin = c.lineCap = 'round'; c.lineWidth = Math.max(1, lw); shadowOn(c, lw);
     const gaps = new Set(m.gaps || []), n = m.lot.length;
     c.beginPath();
     if (!gaps.size) { m.lot.forEach(([x, y], j) => j ? c.lineTo(x * s, y * s) : c.moveTo(x * s, y * s)); c.closePath(); }
@@ -331,15 +369,21 @@ function draw() {
     cx.drawImage(L, 0, 0);
   }
   cx.save(); cx.scale(s, s);
-  if (on('pin')) {
+  if (on('pin') && SZ.STYLE.pin !== 'none') {
     const { side, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.PIN_LINE * side));
     const [tx, ty] = m.tip, bx = tx - side / 2, by = ty - len - side;
     cx.fillStyle = '#fff'; cx.fillRect(tx - lw / 2, ty - len, lw, len);
-    cx.fillStyle = SZ.BADGE_FILL; cx.fillRect(bx, by, side, side);
     const bw = Math.max(1, SZ.BADGE_BORDER * side);
-    cx.strokeStyle = '#fff'; cx.lineWidth = bw; cx.strokeRect(bx + bw / 2, by + bw / 2, side - bw, side - bw);
+    cx.globalAlpha = SZ.STYLE.fill_opacity; cx.fillStyle = SZ.BADGE_FILL;
+    if (SZ.STYLE.pin === 'ring') {   // ZED: circle, white ring
+      cx.beginPath(); cx.arc(tx, by + side / 2, side / 2, 0, 7); cx.fill(); cx.globalAlpha = 1;
+      cx.strokeStyle = '#fff'; cx.lineWidth = bw; cx.beginPath(); cx.arc(tx, by + side / 2, side / 2 - bw / 2, 0, 7); cx.stroke();
+    } else {
+      cx.fillRect(bx, by, side, side); cx.globalAlpha = 1;
+      cx.strokeStyle = '#fff'; cx.lineWidth = bw; cx.strokeRect(bx + bw / 2, by + bw / 2, side - bw, side - bw);
+    }
     const kw = SZ.BADGE_K * side, kh = kw * K.height / K.width;
-    cx.drawImage(K, tx - kw / 2, by + (side - kh) / 2, kw, kh);
+    if (K.width > 1) cx.drawImage(K, tx - kw / 2, by + (side - kh) / 2, kw, kh);
   }
   drawPlaces(m);
   cx.restore();
@@ -429,9 +473,9 @@ function drawPlaces(m) {
     const [x, y] = st.xy, top = y - SZ.PLACE_LINE * m.h;
     cx.save(); shadowOn(cx, lw);
     cx.fillStyle = '#fff';
-    cx.beginPath(); cx.arc(x, y, SZ.PLACE_DOT * m.h, 0, 7); cx.fill();
+    if (SZ.STYLE.place_dot) { cx.beginPath(); cx.arc(x, y, SZ.PLACE_DOT * m.h, 0, 7); cx.fill(); }
     cx.fillRect(x - lw / 2, top, lw, y - top);
-    const rows = [[p.label, 'SohneK', SZ.PLACE_CAP * m.h]];
+    const rows = [[SZ.STYLE.place_upper ? p.label.toUpperCase() : p.label, 'PlaceF', SZ.PLACE_CAP * m.h]];
     if (p.dist) rows.push([dist(p), 'SohneB', SZ.PLACE_SUB * m.h]);
     const lead = SZ.PLACE_LEAD * SZ.PLACE_CAP * m.h;
     let cy = top - SZ.PLACE_GAP * m.h - rows.reduce((a, r) => a + r[2], 0) - lead * (rows.length - 1);

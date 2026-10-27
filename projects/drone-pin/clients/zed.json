@@ -1,0 +1,10 @@
+{
+ "name": "ZED",
+ "confirmed": false,
+ "notes": "Blacks out everything around the house (Bright lasso + Blackout slider, 2026-10-27). Pin style not confirmed: the Ormeu St 'Pins Print' folder was empty. Set pin/outline here once Hunter confirms.",
+ "style": {
+  "pin": "none",
+  "blackout": 0.6
+ },
+ "agents": {}
+}

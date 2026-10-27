@@ -57,16 +57,29 @@ TARGET_MAX_RANGE = 120  # m: only top-downs and close shots may set the house (a
 PREVIEW = 3200        # long edge of review previews (px); sharp enough to zoom in on
 EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 
-# Pin and outline, matched to Kollosche's own listing stills (Hunter's refs,
-# 2026-10-27): a navy square badge with a thin white border and a white K,
-# sitting straight on a thin white line. Fractions of photo height unless noted.
-# Proportions measured from Kollosche's own 'Kollosche Map Pin.png' (Drive, 3026 The Boulevard):
-# border 5% and K 54% of the badge, pin line 5.5% of the badge width.
-BADGE, BADGE_K, BADGE_BORDER, PIN_LINE = 0.085, 0.54, 0.05, 0.055   # badge side; K width and border as fractions of the badge
-BADGE_FILL = (1, 26, 59)                             # Kollosche Blue #011A3B
+# Pin and outline look per client: clients/<slug>.json "style" over DEFAULT_STYLE,
+# then that client's "agents" entry for the job's agent. The job's site.json names
+# the client and agent. Kollosche's: a navy square badge with a thin white border
+# and a white K on a thin white line, proportions from its own 'Kollosche Map Pin.png'.
+#   pin: "badge" (square) | "ring" (circle, ZED) | "none"   fill_opacity: badge/ring fill alpha 0-1
+#   glyph: "kollosche-k", a white PNG (vault path), or null
+#   badge: side, of photo height  glyph_w / border / pin_line: fractions of the badge side
+#   outline_w: of photo width (x per-photo outline_w)   blackout: default for new photos (ZED)
+#   topdowns: false = top-downs start as "none"   print_graphics: export default
+#   naming: export name pattern, {address} {kind} {n}
+#   surround: "dark" (blackout darkens) | "mono" (ZED: the neighbourhood goes black & white;
+#     the lot, Bright-lasso shapes and, past mono_fade, the far landscape stay colour)
+#   place_dot / place_upper: location pins get a dot on the spot / labels in caps
+#   place_font: label font file (default Söhne Breit Kräftig); placed labels are kept as typed
+#   mono_fade: [full, none] heights above the lot's top edge, of photo height, where B&W fades out
+CLIENTS = HERE / "clients"
+DEFAULT_STYLE = {"pin": "none", "glyph": None, "badge": 0.085, "glyph_w": 0.54, "border": 0.05,
+                 "pin_line": 0.055, "fill": "#011A3B", "fill_opacity": 1.0, "outline_w": 0.0033, "outline_color": "#FFFFFF",
+                 "blackout": 0, "topdowns": True, "location_pins": True, "print_graphics": True,
+                 "naming": "{address} - {kind}-{n}", "surround": "dark", "mono_fade": [0.25, 0.4],
+                 "place_dot": True, "place_upper": True, "place_font": None}
 LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05   # LINE_W: location-pin lines
 BLACKOUT_FEATHER = 0.0015                            # blackout edge softness, of photo width
-OUTLINE_W = 0.0033                                   # of photo width, x per-photo outline_w (0.5-3)
 # Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
 # below, low opacity. All in multiples of the outline width.
 SHADOW_OFFSET, SHADOW_BLUR, SHADOW_OPACITY = 0.5, 0.6, 0.6
@@ -76,6 +89,47 @@ PLACE_DOT, PLACE_LINE, PLACE_GAP = 0.0032, 0.07, 0.009
 PLACE_CAP, PLACE_SUB, PLACE_TRACK, PLACE_LEAD = 0.0135, 0.0095, 0.06, 0.65
 FONT_K = os.path.expanduser("~/Library/Fonts/SöhneBreit-Kräftig.otf")
 FONT_B = os.path.expanduser("~/Library/Fonts/SöhneBreit-Buch.otf")
+
+
+# --- clients --------------------------------------------------------------------
+
+def clients():
+    """slug -> profile, from clients/*.json."""
+    return {p.stem: json.loads(p.read_text()) for p in sorted(CLIENTS.glob("*.json"))}
+
+
+def agents(prof):
+    """Agent names the review page offers: the profile's own plus one per team-logo folder."""
+    names = set(prof.get("agents", {}))
+    src = prof.get("agents_from")
+    if src and (ROOT / src).is_dir():
+        names |= {re.sub(r"(?<=[a-z])(?=[A-Z&])|(?<=&)", " ", d.name).strip() for d in (ROOT / src).iterdir()
+                  if d.is_dir() and "-" not in d.name}
+    return sorted(names)
+
+
+def style(site):
+    """The job's look: defaults, then the client's style, then its agent's overrides."""
+    prof = clients().get(site.get("client") or "", {})
+    st = {**DEFAULT_STYLE, **prof.get("style", {})}
+    st.update(prof.get("agents", {}).get(site.get("agent") or "", {}))
+    return st
+
+
+def from_folder(path):
+    """(client slug, address) from the SSD's "Client | Address" folder above the photos,
+    e.g. "Kollosche | 5 Esther Place, Surfers Paradise" -> ("kollosche", "5 Esther Place, Surfers Paradise").
+    Either is None when the folder doesn't say."""
+    for part in reversed(Path(path).resolve().parts):
+        if "|" in part:
+            head, rest = part.split("|", 1)
+            address = re.sub(r"\s*\|.*$", "", rest).strip() or None   # "Name | Address | Photos"
+            key = re.sub(r"[^a-z0-9]", "", head.lower())
+            for slug, prof in clients().items():
+                if key and key in {re.sub(r"[^a-z0-9]", "", s.lower()) for s in [slug, prof["name"], *prof.get("aliases", [])]}:
+                    return slug, address
+            return None, address
+    return None, None
 
 
 # --- cadastre -----------------------------------------------------------------
@@ -250,7 +304,7 @@ def add_place(m, site, uv, label):
     if not math.isfinite(e) or np.hypot(e, n) > 50000:
         raise ValueError("that point is at or above the horizon; click the ground under the place")
     pl = {"id": max([p["id"] for p in site.get("places", [])], default=0) + 1,
-          "label": label.strip().upper(), "dist": True,
+          "label": label.strip(), "dist": True,
           "lon": m["lon"] + math.degrees(e / (6378137.0 * math.cos(math.radians(m["lat"])))),
           "lat": m["lat"] + math.degrees(n / 6378137.0), "from": m["file"]}
     site.setdefault("places", []).append(pl)
@@ -297,8 +351,10 @@ def flight_fix(done, site):
     return float(x[0]), float(x[1])
 
 
-def default_mode(m):
-    return "outline" if m["pitch"] <= -70 else "pin"
+def default_mode(m, st):
+    if m["pitch"] <= -70:
+        return "outline" if st["topdowns"] else "none"
+    return "pin" if st["pin"] != "none" else "outline"
 
 
 # --- job files -------------------------------------------------------------------
@@ -321,9 +377,11 @@ def cmd_init(a):
     tip = [lon0 + math.degrees(ip[0] / (6378137.0 * math.cos(math.radians(lat0)))),
            lat0 + math.degrees(ip[1] / 6378137.0)]
     site = {"address": rec["address"], "lotplan": rec["lotplan"], "lot_area": rec["lot_area"],
-            "ring": ring, "tip": tip, "roof_h": a.roof_height, "photos": str(photos.resolve())}
+            "ring": ring, "tip": tip, "roof_h": a.roof_height, "photos": str(photos.resolve()),
+            "client": a.client if a.client is not None else from_folder(photos)[0], "agent": a.agent}
     save(job, "site.json", site)
-    print(f"{rec['address']}  lot {rec['lotplan']}  {rec['lot_area']} m²  {len(ring)} corners")
+    st = style(site)
+    print(f"{rec['address']}  lot {rec['lotplan']}  {rec['lot_area']} m²  {len(ring)} corners  client {site['client'] or 'none'}")
 
     marks = {}
     for p in sorted(photos.iterdir()):
@@ -332,12 +390,14 @@ def cmd_init(a):
         m = meta(p)
         if "error" not in m:
             m.update(propose(m, site))
-            m["mode"] = default_mode(m)
+            m["mode"] = default_mode(m, st)
             dist = np.linalg.norm(enu(tip[1], tip[0], m["lat"], m["lon"]))
             m["note"] = f"{dist:.0f} m from the lot, {m['alt']:.0f} m up, pitch {m['pitch']:.0f}°"
-            if m["mode"] == "pin" and not m["tip_visible"]:
+            if m["mode"] == "pin" and not m["tip_visible"] or m["mode"] == "outline" and not m["lot_visible"] and m["pitch"] > -70:
                 m["mode"] = "none"
                 m["note"] += ", lot not in frame"
+            if st["blackout"]:
+                m["blackout"] = st["blackout"]
         else:
             m["mode"] = "none"
             m["tip"] = [m["w"] / 2, m["h"] * 0.6]
@@ -347,7 +407,7 @@ def cmd_init(a):
         make_preview(p, job)
         print(f"  {p.name}: {m['mode']:7s} {m.get('note', m.get('error'))}")
     save(job, "marks.json", marks)
-    k_glyph().save(job / "previews" / "_k.png")
+    glyph(st).save(job / "previews" / "_k.png")
 
 
 # --- review server --------------------------------------------------------------
@@ -366,6 +426,9 @@ def cmd_review(a):
         pv, src = job / "previews" / (Path(name).stem + ".jpg"), Path(site["photos"]) / name
         if src.exists() and (not pv.exists() or max(Image.open(pv).size) < PREVIEW):
             make_preview(src, job)
+    # The look (client + agent) is fixed for the life of the server: changing it reloads the page.
+    look = {"st": style(site)}
+    glyph(look["st"]).save(job / "previews" / "_k.png")
     lock = threading.Lock()
 
     class H(http.server.BaseHTTPRequestHandler):
@@ -383,16 +446,21 @@ def cmd_review(a):
             path = urllib.parse.unquote(self.path.split("?")[0])
             if path == "/":
                 html = (HERE / "review.html").read_text()
+                st = look["st"]
                 return self.send(html.replace("__SIZES__", json.dumps(
-                    {"BADGE": BADGE, "BADGE_K": BADGE_K, "BADGE_BORDER": BADGE_BORDER, "PIN_LINE": PIN_LINE,
-                     "BADGE_FILL": "#%02x%02x%02x" % BADGE_FILL, "LINE_W": LINE_W, "LINE_LEN": LINE_LEN,
-                     "TOP_MARGIN": TOP_MARGIN, "OUTLINE_W": OUTLINE_W, "BLACKOUT_FEATHER": BLACKOUT_FEATHER,
+                    {"STYLE": st, "BADGE": st["badge"], "BADGE_K": st["glyph_w"], "BADGE_BORDER": st["border"],
+                     "PIN_LINE": st["pin_line"], "BADGE_FILL": st["fill"], "LINE_W": LINE_W, "LINE_LEN": LINE_LEN,
+                     "TOP_MARGIN": TOP_MARGIN, "OUTLINE_W": st["outline_w"], "BLACKOUT_FEATHER": BLACKOUT_FEATHER,
                      "SHADOW_OFFSET": SHADOW_OFFSET, "SHADOW_BLUR": SHADOW_BLUR, "SHADOW_OPACITY": SHADOW_OPACITY,
                      "PLACE_DOT": PLACE_DOT, "PLACE_LINE": PLACE_LINE, "PLACE_GAP": PLACE_GAP,
                      "PLACE_CAP": PLACE_CAP, "PLACE_SUB": PLACE_SUB, "PLACE_TRACK": PLACE_TRACK,
                      "PLACE_LEAD": PLACE_LEAD})).encode(), "text/html")
             if path == "/marks":
-                return self.send(json.dumps({"site": site, "marks": load(job, "marks.json")}).encode())
+                cl = clients()
+                return self.send(json.dumps({"site": site, "marks": load(job, "marks.json"),
+                                             "clients": {k: {"name": v["name"], "confirmed": v.get("confirmed", False),
+                                                             "notes": v.get("notes", ""), "agents": agents(v)}
+                                                         for k, v in cl.items()}}).encode())
             if path.startswith("/preview/"):
                 f = job / "previews" / Path(path).name
                 if f.exists():
@@ -401,6 +469,8 @@ def cmd_review(a):
                 f = job / "masks" / Path(path).name
                 if f.exists():
                     return self.send(f.read_bytes(), "image/png")
+            if path == "/font/place":
+                return self.send(Path(os.path.expanduser(look["st"]["place_font"] or FONT_K)).read_bytes(), "font/otf")
             if path in ("/font/kraftig", "/font/buch"):
                 return self.send(Path(FONT_K if path.endswith("kraftig") else FONT_B).read_bytes(), "font/otf")
             self.send(b"not found", "text/plain", 404)
@@ -415,6 +485,13 @@ def cmd_review(a):
                 script = f'POSIX path of (choose folder with prompt "Export to" default location (POSIX file "{start}"))'
                 r = subprocess.run(["osascript", "-e", script], capture_output=True, text=True)
                 return self.send(json.dumps({"folder": r.stdout.strip().rstrip("/") or None}).encode())
+            if self.path == "/client":
+                # Client / agent picked in the review page: new look for every photo.
+                site["client"], site["agent"] = body.get("client") or None, body.get("agent") or None
+                save(job, "site.json", site)
+                look["st"] = style(site)
+                glyph(look["st"]).save(job / "previews" / "_k.png")
+                return self.send(b"{}")
             if self.path == "/export":
                 try:
                     done = export(job, site, load(job, "marks.json"), body)
@@ -475,7 +552,7 @@ def cmd_review(a):
                             o.get("places", {}).pop(str(pl["id"]), None)
                     for k in ("label", "dist"):
                         if k in body:
-                            pl[k] = body[k].strip().upper() if k == "label" else bool(body[k])
+                            pl[k] = body[k].strip() if k == "label" else bool(body[k])
                     save(job, "site.json", site)
                     save(job, "marks.json", marks)
                     return self.send(json.dumps({"site": site, "marks": marks}).encode())
@@ -502,6 +579,17 @@ def cmd_review(a):
 
 # --- render ------------------------------------------------------------------------
 
+def glyph(st):
+    """The badge's white mark: the built-in Kollosche K, a white PNG from the vault, or nothing."""
+    g = st.get("glyph")
+    if g == "kollosche-k":
+        return k_glyph()
+    if g:
+        im = Image.open(ROOT / g).convert("RGBA")
+        return im.crop(im.getchannel("A").getbbox())
+    return Image.new("RGBA", (1, 1), (255, 255, 255, 0))
+
+
 def k_glyph():
     """The K from the white Kollosche wordmark (first two shapes of the lockup)."""
     src = Image.open(ROOT / "raw/kollosche/team-logos/HayleyKidson/HK Kollosche_2white.png").convert("RGBA")
@@ -515,27 +603,44 @@ def k_glyph():
     return k.crop(k.getchannel("A").getbbox())
 
 
-def pin_layout(m):
+def pin_layout(m, st):
     """Badge side and line length; per-photo pin_len (dragged in review) wins,
     and the line shortens so the badge stays in frame."""
     H = m["h"]
-    side = BADGE * H
+    side = st["badge"] * H
     want = m.get("pin_len", LINE_LEN) * H
     room = m["tip"][1] - TOP_MARGIN * H - side
     return side, max(0.0, min(want, room))
 
 
-def badge(side, k):
-    """Navy square, thin white border, white K centred."""
+def rgb(hexc):
+    return tuple(int(hexc.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def badge(side, k, st):
+    """Filled square (Kollosche navy) or circle (ZED ring), thin white border, white mark centred."""
     side = round(side)
-    b = Image.new("RGBA", (side, side), BADGE_FILL + (255,))
-    bw = max(1, round(BADGE_BORDER * side))
-    a = np.zeros((side, side), np.uint8)
-    a[:bw], a[-bw:], a[:, :bw], a[:, -bw:] = 255, 255, 255, 255
+    fill = rgb(st["fill"]) + (round(255 * st["fill_opacity"]),)
+    bw = max(1, round(st["border"] * side))
+    if st["pin"] == "ring":
+        ss = 4   # supersampled for a clean circle edge
+        a, f = np.zeros((side * ss, side * ss), np.uint8), np.zeros((side * ss, side * ss), np.uint8)
+        c, r = (side * ss) // 2, side * ss / 2
+        cv2.circle(f, (c, c), round(r), 255, -1, cv2.LINE_AA)
+        cv2.circle(a, (c, c), round(r - bw * ss / 2), 255, round(bw * ss), cv2.LINE_AA)
+        f, a = (cv2.resize(x, (side, side), interpolation=cv2.INTER_AREA) for x in (f, a))
+        b = Image.new("RGBA", (side, side), fill[:3] + (0,))
+        b.putalpha(Image.fromarray((f.astype(np.float32) * fill[3] / 255).astype(np.uint8)))
+    else:
+        b = Image.new("RGBA", (side, side), fill)
+        a = np.zeros((side, side), np.uint8)
+        a[:bw], a[-bw:], a[:, :bw], a[:, -bw:] = 255, 255, 255, 255
     border = Image.new("RGBA", (side, side), (255, 255, 255, 0))
     border.putalpha(Image.fromarray(a))
     b.alpha_composite(border)
-    kw = round(BADGE_K * side)
+    if k.width < 2:
+        return b
+    kw = round(st["glyph_w"] * side)
     kk = k.resize((kw, round(k.height * kw / k.width)), Image.LANCZOS)
     b.alpha_composite(kk, ((side - kk.width) // 2, (side - kk.height) // 2))
     return b
@@ -570,34 +675,36 @@ def text_image(text, font_path, cap_px, track_em):
     return im, pad   # pad: offset of the cap top / left edge inside the image
 
 
-def shadowed(alpha, lw):
-    """The outline's subtle drop shadow, for any white alpha layer."""
+def shadowed(alpha, lw, color=(255, 255, 255)):
+    """The outline's subtle drop shadow, for any alpha layer (white unless a client says otherwise)."""
     off = round(SHADOW_OFFSET * lw)
     sh = np.roll(alpha, off, axis=0).astype(np.float32)
     sh = cv2.GaussianBlur(sh, (0, 0), SHADOW_BLUR * lw) * SHADOW_OPACITY
     shadow = Image.new("RGBA", (alpha.shape[1], alpha.shape[0]), (0, 0, 0, 0))
     shadow.putalpha(Image.fromarray(np.clip(sh, 0, 255).astype(np.uint8)))
-    line = Image.new("RGBA", shadow.size, (255, 255, 255, 0))
+    line = Image.new("RGBA", shadow.size, color + (0,))
     line.putalpha(Image.fromarray(alpha))
     shadow.alpha_composite(line)
     return shadow
 
 
-def draw_places(m, site, W, H):
+def draw_places(m, site, W, H, st):
     """Location pins: dot, thin line up, label over distance, centred on the spot."""
     layer = Image.new("RGBA", (W, H), (255, 255, 255, 0))
     a = np.zeros((H, W), np.uint8)
     lw = max(2, round(LINE_W * H))
     for pl in site.get("places", []):
-        st = m.get("places", {}).get(str(pl["id"]))
-        if not st or not st.get("on"):
+        ps = m.get("places", {}).get(str(pl["id"]))
+        if not ps or not ps.get("on"):
             continue
-        x, y = st["xy"]
+        x, y = ps["xy"]
         r = PLACE_DOT * H
-        cv2.circle(a, (round(x * 16), round(y * 16)), round(r * 16), 255, -1, cv2.LINE_AA, shift=4)
+        if st["place_dot"]:
+            cv2.circle(a, (round(x * 16), round(y * 16)), round(r * 16), 255, -1, cv2.LINE_AA, shift=4)
         top = y - PLACE_LINE * H
         a[max(0, round(top)):max(0, round(y)), max(0, round(x - lw / 2)):max(0, round(x - lw / 2) + lw)] = 255
-        lines = [(pl["label"], FONT_K, PLACE_CAP * H)]
+        label = pl["label"].upper() if st["place_upper"] else pl["label"]
+        lines = [(label, os.path.expanduser(st["place_font"] or FONT_K), PLACE_CAP * H)]
         if pl.get("dist", True):
             lines.append((place_distance(site, pl), FONT_B, PLACE_SUB * H))
         imgs = [text_image(t, f, c, PLACE_TRACK) + (c,) for t, f, c in lines]
@@ -630,12 +737,34 @@ def lit_area(lot, lift):
     return polys
 
 
-def draw_overlay(m, k, site=None, mask=None):
+def surround(m, st):
+    """How strongly each pixel gets the surround treatment (uint8, 255 = full), or None.
+    Off the bright area: the hand-drawn Bright lasso shapes (added/cut in order) if any, else the
+    outline (+ lift), with a soft edge. "mono" also fades back to colour toward the far landscape."""
+    if not m.get("blackout") or not (m.get("lit") or m["lot"]):
+        return None
+    W, H = m["w"], m["h"]
+    inside = np.zeros((H, W), np.uint8)
+    shapes = [(sh["pts"], 0 if sh.get("cut") else 255) for sh in m["lit"]] if m.get("lit") \
+        else [(poly, 255) for poly in lit_area(m["lot"], m.get("lift", 0) * H)]
+    for poly, val in shapes:
+        cv2.fillPoly(inside, [np.round(np.array(poly) * 16).astype(np.int32)], val, cv2.LINE_AA, shift=4)
+    inside = cv2.GaussianBlur(inside.astype(np.float32), (0, 0), BLACKOUT_FEATHER * W)
+    amt = m["blackout"] * (255 - inside)
+    if st["surround"] == "mono":
+        top = min(y for _, y in m["lot"]) if m["lot"] else m["tip"][1]
+        full, none = (top - f * H for f in st["mono_fade"])
+        t = np.clip((np.arange(H, dtype=np.float32) - none) / max(1.0, full - none), 0, 1)
+        amt *= (t * t * (3 - 2 * t))[:, None]   # smoothstep
+    return amt.clip(0, 255).astype(np.uint8)
+
+
+def draw_overlay(m, k, st, site=None, mask=None):
     W, H = m["w"], m["h"]
     ss = 2
     a = np.zeros((H * ss, W * ss), np.uint8)
     if m["mode"] in ("outline", "both") and m["lot"]:
-        lw = max(2, round(OUTLINE_W * m.get("outline_w", 1) * W)) * ss
+        lw = max(2, round(st["outline_w"] * m.get("outline_w", 1) * W)) * ss
         p = np.round(np.array(m["lot"]) * ss * 16).astype(np.int32)
         gaps = set(m.get("gaps", []))   # razor-removed edges, by start corner
         for j in range(len(p)):
@@ -647,45 +776,39 @@ def draw_overlay(m, k, site=None, mask=None):
                 cv2.circle(a, (int(x), int(y)), lw // 2 * 16, 255, -1, cv2.LINE_AA, shift=4)
     alpha = cv2.resize(a, (W, H), interpolation=cv2.INTER_AREA)
     im = Image.new("RGBA", (W, H), (255, 255, 255, 0))
-    if m.get("blackout") and (m.get("lit") or m["lot"]):
-        # ZED look: darken everything outside the bright area, soft edge. The bright area is the
-        # hand-drawn Bright lasso shapes (added/cut in order) if any, else the outline (+ lift).
-        inside = np.zeros((H, W), np.uint8)
-        shapes = [(sh["pts"], 0 if sh.get("cut") else 255) for sh in m["lit"]] if m.get("lit") \
-            else [(poly, 255) for poly in lit_area(m["lot"], m.get("lift", 0) * H)]
-        for poly, val in shapes:
-            cv2.fillPoly(inside, [np.round(np.array(poly) * 16).astype(np.int32)], val, cv2.LINE_AA, shift=4)
-        inside = cv2.GaussianBlur(inside.astype(np.float32), (0, 0), BLACKOUT_FEATHER * W)
-        dark = (m["blackout"] * (255 - inside)).clip(0, 255).astype(np.uint8)
-        im = Image.merge("RGBA", (*[Image.new("L", (W, H), 0)] * 3, Image.fromarray(dark)))
+    if st["surround"] == "dark" and (amt := surround(m, st)) is not None:
+        im = Image.merge("RGBA", (*[Image.new("L", (W, H), 0)] * 3, Image.fromarray(amt)))
     if alpha.any():
-        lw = max(2, round(OUTLINE_W * m.get("outline_w", 1) * W))
+        lw = max(2, round(st["outline_w"] * m.get("outline_w", 1) * W))
         if mask is not None:
             # "Behind" brush: hide the line (and so its shadow) where buildings stand in front.
             mk = cv2.resize(np.array(mask.convert("L")), (W, H), interpolation=cv2.INTER_LINEAR).astype(np.float32)
             mk = cv2.GaussianBlur(mk, (0, 0), 0.15 * lw)
             alpha = (alpha * (1 - mk / 255)).astype(np.uint8)
-        im.alpha_composite(shadowed(alpha, lw))
+        im.alpha_composite(shadowed(alpha, lw, rgb(st["outline_color"])))
     if site is not None:
-        im.alpha_composite(draw_places(m, site, W, H))
-    if m["mode"] in ("pin", "both"):
+        im.alpha_composite(draw_places(m, site, W, H, st))
+    if m["mode"] in ("pin", "both") and st["pin"] != "none":
         tx, ty = m["tip"]
-        side, length = pin_layout(m)
-        lw = max(2, round(PIN_LINE * side))
+        side, length = pin_layout(m, st)
+        lw = max(2, round(st["pin_line"] * side))
         line = Image.new("RGBA", (lw, max(1, round(length))), (255, 255, 255, 255))
         im.alpha_composite(line, (round(tx - lw / 2), round(ty - length)))
-        bd = badge(side, k)
+        bd = badge(side, k, st)
         im.alpha_composite(bd, (round(tx - bd.width / 2), round(ty - length - bd.height)))
     return im
 
 
-def finished(job, site, name, m, k):
+def finished(job, site, name, m, k, st):
     """The photo with its pin/outline burned in, plus the source's EXIF/ICC and the overlay layer."""
     src = Image.open(Path(site["photos"]) / name)
     mf = job / "masks" / (Path(name).stem + ".png")
     mask = Image.open(mf).getchannel("A") if mf.exists() else None
-    ov = draw_overlay(m, k, site, mask)
+    ov = draw_overlay(m, k, st, site, mask)
     final = src.convert("RGBA")
+    if st["surround"] == "mono" and (amt := surround(m, st)) is not None:
+        # ZED: the neighbourhood in black & white, the lot (and far landscape) in colour.
+        final = Image.composite(src.convert("L").convert("RGBA"), final, Image.fromarray(amt))
     final.alpha_composite(ov)
     extra = {k2: src.info[k2] for k2 in ("exif", "icc_profile") if k2 in src.info}
     if "exif" in extra:
@@ -715,23 +838,26 @@ def export(job, site, marks, body):
     names = [safe_name(it["name"]) for it in body["items"]]
     if len(set(n.lower() for n in names)) < len(names):
         raise ValueError("two photos have the same name")
-    k, done = k_glyph(), []
+    st = style(site)
+    k, done = glyph(st), []
     for it, nm in zip(body["items"], names):
-        img, extra, _ = finished(job, site, it["file"], marks[it["file"]], k)
+        img, extra, _ = finished(job, site, it["file"], marks[it["file"]], k, st)
         for kind in kinds:
+            # A {kind} in the name (e.g. "5 Esther Place - {kind}-14") becomes Print / Web per folder.
+            out = nm.replace("{kind}", kind.capitalize())
             d = folder / kind.capitalize()
             d.mkdir(parents=True, exist_ok=True)
             if kind == "print" and not body.get("print_graphics"):
                 # Kollosche: print copies are the clean photo (no pin, no outline), byte-for-byte.
-                shutil.copyfile(Path(site["photos"]) / it["file"], d / f"{nm}.jpg")
+                shutil.copyfile(Path(site["photos"]) / it["file"], d / f"{out}.jpg")
             elif kind == "print":
-                img.save(d / f"{nm}.jpg", quality=100, subsampling=0, dpi=(300, 300), **extra)
+                img.save(d / f"{out}.jpg", quality=100, subsampling=0, dpi=(300, 300), **extra)
             else:
                 w = img.copy()
                 w.thumbnail((WEB_EDGE, WEB_EDGE), Image.LANCZOS)
-                w.save(d / f"{nm}.jpg", quality=85, optimize=True, progressive=True,
+                w.save(d / f"{out}.jpg", quality=85, optimize=True, progressive=True,
                        **({"icc_profile": extra["icc_profile"]} if "icc_profile" in extra else {}))
-            done.append(str(d / f"{nm}.jpg"))
+            done.append(str(d / f"{out}.jpg"))
     return done
 
 
@@ -740,14 +866,15 @@ def cmd_render(a):
     site, marks = load(job, "site.json"), load(job, "marks.json")
     out = job / "out"
     out.mkdir(exist_ok=True)
-    k = k_glyph()
+    st = style(site)
+    k = glyph(st)
     for name, m in marks.items():
         if m["mode"] == "none" and not m.get("blackout") and not any(p.get("on") for p in m.get("places", {}).values()):
             continue
         if not m.get("reviewed") and not a.all:
             print(f"  skip {name}: not approved in review (use --all to render anyway)")
             continue
-        final, extra, ov = finished(job, site, name, m, k)
+        final, extra, ov = finished(job, site, name, m, k, st)
         ov.save(out / f"{Path(name).stem}_overlay.png")
         for old in out.glob(f"{Path(name).stem}_*.jpg"):
             old.unlink()   # one finished JPG per photo, whatever its mode was last time
@@ -764,6 +891,8 @@ def main():
     p.add_argument("photos")
     p.add_argument("--address", required=True)
     p.add_argument("--roof-height", type=float, default=ROOF_H, help="pin tip height in metres (single storey ~6, three storey ~10)")
+    p.add_argument("--client", help="clients/<slug>.json; default: read from the 'Client | Address' folder name")
+    p.add_argument("--agent", help="agent name, for agent-specific pins (clients/<slug>.json 'agents')")
     p = sub.add_parser("review")
     p.add_argument("job")
     p.add_argument("--port", type=int, default=8765)

@@ -34,5 +34,25 @@
  ],
  "roof_h": 10.0,
  "photos": "/Volumes/10X SSD1/Kollosche | 5 Esther Place, Surfers Paradise/Done/Drone",
- "tip_from": "Kollosche Drones-4.JPG"
+ "tip_from": "Kollosche Drones-4.JPG",
+ "places": [
+  {
+   "id": 1,
+   "label": "Q1",
+   "dist": true,
+   "lon": 153.41804577047043,
+   "lat": -28.013318027368715,
+   "from": "Kollosche Drones-2.JPG"
+  },
+  {
+   "id": 2,
+   "label": "RANDOM HOUSE",
+   "dist": true,
+   "lon": 153.41671881175785,
+   "lat": -28.0099155504549,
+   "from": "Kollosche Drones.JPG"
+  }
+ ],
+ "client": "kollosche",
+ "agent": null
 }

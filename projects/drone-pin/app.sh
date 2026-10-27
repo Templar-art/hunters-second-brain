@@ -15,9 +15,16 @@ parent=$(print -r -- "${photos:h:h:t}" | tr -cs 'A-Za-z0-9' '-' | sed 's/^-//; s
 job="$HERE/jobs/${parent:+$parent-}$slug"
 
 if [[ ! -f "$job/site.json" ]]; then
-  if [[ -z "$address" ]]; then print "NEED_ADDRESS"; exit 0; fi
+  # No address given: read it (and the client) from the SSD's "Client | Address" folder name.
+  guessed=0
+  if [[ -z "$address" ]]; then
+    address=$("$PY" -I -c 'import sys; sys.path.insert(0, sys.argv[1]); import drone_pin as d; print(d.from_folder(sys.argv[2])[1] or "")' "$HERE" "$photos")
+    [[ -z "$address" ]] && { print "NEED_ADDRESS"; exit 0; }
+    guessed=1
+  fi
   if ! out=$("$PY" -I "$HERE/drone_pin.py" init "$job" "$photos" --address "$address" 2>&1); then
     rm -rf "$job"
+    (( guessed )) && { print "NEED_ADDRESS"; exit 0; }   # folder name wasn't enough (no suburb, several matches)
     print -r -- "ERROR=$(print -r -- "$out" | tail -1)"; exit 0
   fi
 fi

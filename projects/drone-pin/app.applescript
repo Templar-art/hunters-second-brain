@@ -1,4 +1,5 @@
--- Drone Pin.app: pick a folder of drone stills, give the address once, review + export in the browser.
+-- Drone Pin.app: pick a folder of drone stills; the client and address come from the
+-- SSD's "Client | Address" folder name (asks only when that isn't enough); review + export in the browser.
 set tool to "/Users/10xhunter/Documents/Hunters Second Brain/projects/drone-pin/app.sh"
 set f to choose folder with prompt "Pick the folder of drone stills (e.g. …/Done/Drone)"
 set p to POSIX path of f
