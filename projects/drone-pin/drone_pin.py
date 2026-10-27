@@ -58,7 +58,7 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 # Pin and outline, matched to Kollosche's own listing stills (Hunter's refs,
 # 2026-10-27): a navy square badge with a thin white border and a white K,
 # sitting straight on a thin white line. Fractions of photo height unless noted.
-BADGE, BADGE_K, BADGE_BORDER = 0.085, 0.48, 0.018   # badge side; K width and border as fractions of the badge
+BADGE, BADGE_K, BADGE_BORDER = 0.085, 0.62, 0.018   # badge side; K width and border as fractions of the badge
 BADGE_FILL = (1, 26, 59)                             # Kollosche Blue #011A3B
 LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05
 OUTLINE_W = 0.0022                                   # of photo width
