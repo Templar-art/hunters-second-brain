@@ -60,9 +60,11 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 # Pin and outline, matched to Kollosche's own listing stills (Hunter's refs,
 # 2026-10-27): a navy square badge with a thin white border and a white K,
 # sitting straight on a thin white line. Fractions of photo height unless noted.
-BADGE, BADGE_K, BADGE_BORDER = 0.085, 0.62, 0.018   # badge side; K width and border as fractions of the badge
+# Proportions measured from Kollosche's own 'Kollosche Map Pin.png' (Drive, 3026 The Boulevard):
+# border 5% and K 54% of the badge, pin line 5.5% of the badge width.
+BADGE, BADGE_K, BADGE_BORDER, PIN_LINE = 0.085, 0.54, 0.05, 0.055   # badge side; K width and border as fractions of the badge
 BADGE_FILL = (1, 26, 59)                             # Kollosche Blue #011A3B
-LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05
+LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05   # LINE_W: location-pin lines
 BLACKOUT_FEATHER = 0.0015                            # blackout edge softness, of photo width
 OUTLINE_W = 0.0033                                   # of photo width, x per-photo outline_w (0.5-3)
 # Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
@@ -382,7 +384,7 @@ def cmd_review(a):
             if path == "/":
                 html = (HERE / "review.html").read_text()
                 return self.send(html.replace("__SIZES__", json.dumps(
-                    {"BADGE": BADGE, "BADGE_K": BADGE_K, "BADGE_BORDER": BADGE_BORDER,
+                    {"BADGE": BADGE, "BADGE_K": BADGE_K, "BADGE_BORDER": BADGE_BORDER, "PIN_LINE": PIN_LINE,
                      "BADGE_FILL": "#%02x%02x%02x" % BADGE_FILL, "LINE_W": LINE_W, "LINE_LEN": LINE_LEN,
                      "TOP_MARGIN": TOP_MARGIN, "OUTLINE_W": OUTLINE_W, "BLACKOUT_FEATHER": BLACKOUT_FEATHER,
                      "SHADOW_OFFSET": SHADOW_OFFSET, "SHADOW_BLUR": SHADOW_BLUR, "SHADOW_OPACITY": SHADOW_OPACITY,
@@ -669,7 +671,7 @@ def draw_overlay(m, k, site=None, mask=None):
     if m["mode"] in ("pin", "both"):
         tx, ty = m["tip"]
         side, length = pin_layout(m)
-        lw = max(2, round(LINE_W * H))
+        lw = max(2, round(PIN_LINE * side))
         line = Image.new("RGBA", (lw, max(1, round(length))), (255, 255, 255, 255))
         im.alpha_composite(line, (round(tx - lw / 2), round(ty - length)))
         bd = badge(side, k)

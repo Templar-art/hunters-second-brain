@@ -332,7 +332,7 @@ function draw() {
   }
   cx.save(); cx.scale(s, s);
   if (on('pin')) {
-    const { side, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.LINE_W * m.h));
+    const { side, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.PIN_LINE * side));
     const [tx, ty] = m.tip, bx = tx - side / 2, by = ty - len - side;
     cx.fillStyle = '#fff'; cx.fillRect(tx - lw / 2, ty - len, lw, len);
     cx.fillStyle = SZ.BADGE_FILL; cx.fillRect(bx, by, side, side);

@@ -36,7 +36,7 @@ To use it without Claude, double-click **`~/Desktop/Drone Pin.app`**. It's built
 Jobs live in `projects/drone-pin/jobs/<folder>`. Reopening the same folder resumes the job. Only one job is served at a time; opening another stops the last one. The backend is `app.sh`.
 
 ## Style (matched to Kollosche's own listing stills, 2026-10-27)
-- **Pin:** a Kollosche Blue (#011A3B) square badge with a thin white border and a white K. It sits directly on a thin white line, with no gap. Drag the badge to set the line length per photo. This replaced the bare-K video pin for stills.
+- **Pin:** a Kollosche Blue (#011A3B) square badge with a white border and a white K. **Proportions match Kollosche's own `Kollosche Map Pin.png`** (Drive: `Clients/Kollosche/3026 The Boulevard/`; Hunter's boss flagged the line thickness, 2026-10-27): border is 5% of the badge, the K is 54% of the badge width, and the pin line is 5.5% of the badge width. Our earlier line was half that thickness. That asset's navy is `#0B162C`, darker than the brand-pack `#011A3B`; we keep the brand navy. It sits directly on a thin white line, with no gap. Drag the badge to set the line length per photo. This replaced the bare-K video pin for stills.
 - **Outline:** thin white, 0.22% of photo width, with a very subtle drop shadow.
 - **Location pins** (dot, line, label and auto distance) are built for other clients. **Kollosche doesn't use location pins**, only the logo pin and the outline.
 
