@@ -37,3 +37,11 @@ Convert this footage to early dusk just after sunset, keeping the exact camera m
 
 **Plain English:** this is the locked house-twilight look on a ground exterior. The fin soffit lights and the glow behind the battens come on, the sky goes clear blue to peach, the ground stays bright, and the signage is locked letter for letter.
 **Pass confidence: 60%.** The look itself is easy, but video_modify repaints every pixel, and Kollosche will notice if "VILLAS ON ESTHER" comes back warped. If the lettering breaks, the fix is to mask the sign wall back in from the source, frame by frame. That's a plate composite, not a re-roll.
+
+---
+
+# v2 — Hunter's route (2026-10-27): night still per first frame → video with that still as reference
+
+Darker set, matching Hunter's approved stills: clip 1 is deep blue hour, clip 4 is about 35 min after sunset with the sign unlit. Hunter re-exported longer clips with the same start frame. Each video prompt ends with the revealed-areas line, so parts of the scene not shown in the reference still keep the same lighting.
+
+The full video prompts are as pasted in the session on 2026-10-27, one per clip, each ending in: "Parts of the scene revealed later in the camera move that are not in the reference image follow the same lighting: the same twilight sky, the same warm light only from existing fittings, and the same darkness."
