@@ -622,9 +622,14 @@ def draw_overlay(m, k, site=None, mask=None):
     if m["mode"] in ("outline", "both") and m["lot"]:
         lw = max(2, round(OUTLINE_W * m.get("outline_w", 1) * W)) * ss
         p = np.round(np.array(m["lot"]) * ss * 16).astype(np.int32)
-        cv2.polylines(a, [p], True, 255, lw, cv2.LINE_AA, shift=4)
-        for x, y in p:
-            cv2.circle(a, (int(x), int(y)), lw // 2 * 16, 255, -1, cv2.LINE_AA, shift=4)
+        gaps = set(m.get("gaps", []))   # razor-removed edges, by start corner
+        for j in range(len(p)):
+            if j in gaps:
+                continue
+            seg = np.array([p[j], p[(j + 1) % len(p)]])
+            cv2.polylines(a, [seg], False, 255, lw, cv2.LINE_AA, shift=4)
+            for x, y in seg:
+                cv2.circle(a, (int(x), int(y)), lw // 2 * 16, 255, -1, cv2.LINE_AA, shift=4)
     alpha = cv2.resize(a, (W, H), interpolation=cv2.INTER_AREA)
     im = Image.new("RGBA", (W, H), (255, 255, 255, 0))
     if alpha.any():

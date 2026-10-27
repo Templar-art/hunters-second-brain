@@ -31,6 +31,9 @@ updated: 2026-10-27
 - **Fit view** button (or 0) zooms back out. Edits are kept.
 - **Gotcha:** the Claude app's preview pane silently cancels `window.confirm()`/`prompt()`, which is why Reset photo did nothing. The page now uses in-page dialogs. The server also wasn't saving `/solve` results, so tip corrections and resets vanished on reload; that's fixed too.
 - **Draw outline (D):** click points around anything to make your own outline. Click the first point, double-click or press ⏎ to close it; ⌫ undoes a point and Esc cancels. It replaces the photo's outline (marked as a hand edit) and switches the mode to show the outline.
+- **Lasso (A):** the quickest way to hide the outline behind a building. Click its corners (or hold and drag freehand) and close the shape; ⇧ while closing erases that area instead.
+- **Razor (R):** click the outline to cut it. ⇧-click a piece of line to remove it (shown red dashed) or bring it back. Removed pieces are stored as `gaps` (edge start indices) in marks.json and skipped by the final render.
+- **Brush slider:** the Behind brush and the Eraser each keep their own size; `[` and `]` work too.
 - **Zoom:** scroll or pinch zooms at the pointer (up to 12×). Hold space and drag, or right-drag, to pan. 0 fits the photo. Previews are 3200 px, so a zoomed view stays sharp.
 - **Eraser (X):** rubs out the behind mask so the outline comes back.
 - **Behind brush (B):** paint over buildings or trees that stand in front of the outline, and the line and its shadow are hidden there. The mask is stored per photo in `masks/`. Use it on the close-up and straight-on shots; the far wides don't need it.

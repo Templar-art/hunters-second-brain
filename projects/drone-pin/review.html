@@ -79,9 +79,15 @@
     <div class="grp">
       <button data-tool="edit">Edit <small>E</small></button>
       <button data-tool="brush">Behind brush <small>B</small></button>
+      <button data-tool="lasso">Lasso <small>A</small></button>
       <button data-tool="erase">Eraser <small>X</small></button>
+      <button data-tool="razor">Razor <small>R</small></button>
       <button data-tool="draw">Draw outline <small>D</small></button>
       <button data-tool="place">Location pin <small>L</small></button>
+    </div>
+    <div class="grp" title="Behind brush / eraser size ([ and ] also work). Each tool keeps its own size.">
+      <label for="bs" style="align-self:center;color:var(--dim)">Brush</label>
+      <small style="align-self:center">S</small><input id="bs" type="range" min="4" max="300" step="1" value="40"><small style="align-self:center">L</small>
     </div>
     <div class="grp" title="Outline thickness for this photo">
       <label for="ow" style="align-self:center;color:var(--dim)">Outline</label>
@@ -119,13 +125,16 @@ const SZ = __SIZES__;
 const HELP = {
   edit: 'Pin: drag the tip onto the house (first drag on a close or top-down shot sets the house for every photo) · drag the badge up/down to change the line length · ⌥-drag tip re-sets the house.  Outline: drag a corner · drag the line or inside to move it all · double-click the line to add a corner · ⌥-click a corner to delete it.',
   brush: 'Paint over whatever stands in front of the outline (buildings, trees) and the line goes behind it · ⇧ erases · [ ] brush size · red = hidden area.',
+  lasso: 'Hide the outline behind a building: click its corners (or hold and drag freehand) and close by clicking the first point, double-clicking or ⏎ · hold ⇧ while closing to erase that area instead · ⌫ removes the last point · Esc cancels · red = hidden area.',
+  razor: 'Click the outline to cut it there · ⇧-click a piece of line to remove it (shown red dashed), ⇧-click again to bring it back. Cut twice, then ⇧-click between the cuts to take out just that stretch.',
   draw: 'Click to place outline points around whatever you want. Click the first point, double-click or press ⏎ to finish · ⌫ removes the last point · Esc cancels. Replaces this photo\'s outline; fine-tune afterwards in Edit.',
   erase: 'Rub out the behind mask where you went too far, and the outline comes back · [ ] brush size · red = hidden area.',
   place: 'Click the ground at a location, type its name; the pin and its distance from the house appear on every photo that sees it. Drag a location pin in Edit to nudge it on this photo.',
 };
 let site, marks, names = [], cur = 0, img = new Image(), K = new Image(), anchors = {}, drag = null;
 let zoom = 1, pan = [0, 0], panning = null, spaceDown = false;
-let pts = null, hover = null;   // Draw outline: points placed so far, pointer in image px
+let pts = null, hover = null, lasso = null, lassoDown = false;   // lasso points in canvas px   // Draw outline: points placed so far, pointer in image px
+const sizes = { brush: 40, erase: 40 };
 let tool = 'edit', brush = 40, mask = null, maskDirty = false, painting = false, cursor = null;
 const cv = document.getElementById('cv'), cx = cv.getContext('2d');
 K.onload = () => draw(); K.src = '/preview/_k.png';
@@ -245,7 +254,9 @@ const brushy = () => tool === 'brush' || tool === 'erase';
 const outlineW = m => Math.max(2, Math.round(SZ.OUTLINE_W * (m.outline_w ?? 1) * m.w));
 function setTool(t) {
   if (t !== 'draw') pts = null;
+  if (t !== 'lasso') lasso = null;
   tool = t;
+  if (sizes[t]) { brush = sizes[t]; document.getElementById('bs').value = brush; }
   document.querySelectorAll('[data-tool]').forEach(b => b.classList.toggle('on', b.dataset.tool === t));
   document.getElementById('help').textContent = HELP[t] + ZOOM_HELP;
   cv.style.cursor = brushy() ? 'none' : 'crosshair';
@@ -280,7 +291,11 @@ function draw() {
     const L = document.createElement('canvas'); L.width = cv.width; L.height = cv.height;
     const c = L.getContext('2d'), lw = outlineW(m) * s;
     c.strokeStyle = '#fff'; c.lineJoin = c.lineCap = 'round'; c.lineWidth = Math.max(1, lw); shadowOn(c, lw);
-    c.beginPath(); m.lot.forEach(([x, y], j) => j ? c.lineTo(x * s, y * s) : c.moveTo(x * s, y * s)); c.closePath(); c.stroke();
+    const gaps = new Set(m.gaps || []), n = m.lot.length;
+    c.beginPath();
+    if (!gaps.size) { m.lot.forEach(([x, y], j) => j ? c.lineTo(x * s, y * s) : c.moveTo(x * s, y * s)); c.closePath(); }
+    else m.lot.forEach(([x, y], j) => { if (gaps.has(j)) return; const [u, v] = m.lot[(j + 1) % n]; c.moveTo(x * s, y * s); c.lineTo(u * s, v * s); });
+    c.stroke();
     if (mask) { c.shadowColor = 'transparent'; c.globalCompositeOperation = 'destination-out'; c.drawImage(mask, 0, 0); }
     cx.drawImage(L, 0, 0);
   }
@@ -297,14 +312,26 @@ function draw() {
   }
   drawPlaces(m);
   cx.restore();
-  if (brushy() && mask) {
+  if ((brushy() || tool === 'lasso') && mask) {
     // Show the hidden area in red while painting.
     const T = document.createElement('canvas'); T.width = cv.width; T.height = cv.height;
     const t = T.getContext('2d'); t.drawImage(mask, 0, 0); t.globalCompositeOperation = 'source-in'; t.fillStyle = 'rgba(255,60,60,0.45)'; t.fillRect(0, 0, T.width, T.height);
     cx.drawImage(T, 0, 0);
-    if (cursor) { cx.beginPath(); cx.strokeStyle = '#fff'; cx.lineWidth = 1.5 / zoom; cx.arc(cursor[0], cursor[1], brush / 2 / zoom, 0, 7); cx.stroke(); }
+    if (cursor && brushy()) { cx.beginPath(); cx.strokeStyle = '#fff'; cx.lineWidth = 1.5 / zoom; cx.arc(cursor[0], cursor[1], brush / 2 / zoom, 0, 7); cx.stroke(); }
   }
-  if (tool === 'edit') handles(m, s);
+  if ((tool === 'edit' || tool === 'razor') && (m.gaps || []).length) {
+    // Removed pieces: red dashed so you can see (and restore) them.
+    cx.strokeStyle = 'rgba(255,70,70,.9)'; cx.lineWidth = 2 / zoom; cx.setLineDash([6 / zoom, 5 / zoom]); cx.beginPath();
+    m.gaps.forEach(j => { const a = m.lot[j], b = m.lot[(j + 1) % m.lot.length]; if (a && b) { cx.moveTo(a[0] * s, a[1] * s); cx.lineTo(b[0] * s, b[1] * s); } });
+    cx.stroke(); cx.setLineDash([]);
+  }
+  if (tool === 'edit' || tool === 'razor') handles(m, s);
+  if (tool === 'lasso' && lasso) {
+    const line = hover ? [...lasso, hover] : lasso;
+    cx.strokeStyle = '#ff4646'; cx.lineWidth = 2 / zoom; cx.setLineDash([8 / zoom, 5 / zoom]);
+    cx.beginPath(); line.forEach(([x, y], j) => j ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.setLineDash([]);
+    const r = 7 / zoom; cx.fillStyle = '#f5b041'; cx.strokeStyle = '#000'; cx.beginPath(); cx.rect(lasso[0][0] - r, lasso[0][1] - r, 2 * r, 2 * r); cx.fill(); cx.stroke();
+  }
   if (tool === 'draw' && pts) {
     const z = q => [q[0] * s, q[1] * s], line = pts.map(z);
     if (hover) line.push(z(hover));
@@ -316,11 +343,40 @@ function draw() {
     });
   }
 }
+// Outline edits that change the corner count keep m.gaps (removed edges, by start index) lined up.
+function insertPoint(m, j, t) {
+  const a = m.lot[j], b = m.lot[(j + 1) % m.lot.length];
+  m.lot.splice(j + 1, 0, [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]);
+  m.gaps = (m.gaps || []).flatMap(g => g < j ? [g] : g === j ? [j, j + 1] : [g + 1]);
+}
+function deletePoint(m, i) {
+  const n = m.lot.length, prev = (i - 1 + n) % n, g = new Set(m.gaps || []);
+  const merged = g.has(prev) && g.has(i), at = i === 0 ? n - 2 : i - 1;
+  m.lot.splice(i, 1);
+  m.gaps = [...g].filter(x => x !== i && x !== prev).map(x => x > i ? x - 1 : x);
+  if (merged) m.gaps.push(at);
+  m.gaps.sort((a, b) => a - b);
+}
+function setBrush(v) {
+  brush = Math.round(Math.min(300, Math.max(4, v)));
+  if (sizes[tool]) sizes[tool] = brush;
+  document.getElementById('bs').value = brush; draw();
+}
+document.getElementById('bs').oninput = e => setBrush(+e.target.value);
+function finishLasso(erase) {
+  const q = (lasso || []).filter((p, j, a) => !j || Math.hypot(p[0] - a[j - 1][0], p[1] - a[j - 1][1]) > 1);
+  lasso = null; lassoDown = false;
+  if (q.length < 3) return draw();
+  const c = mask.getContext('2d');
+  c.globalCompositeOperation = erase ? 'destination-out' : 'source-over'; c.fillStyle = '#fff';
+  c.beginPath(); q.forEach(([x, y], j) => j ? c.lineTo(x, y) : c.moveTo(x, y)); c.closePath(); c.fill();
+  maskDirty = true; saveMask(); draw(); flash(erase ? 'lasso area erased' : 'outline hidden inside the lasso');
+}
 function finishDraw() {
   const m = M(), tol = 6 * m.w / cv.getBoundingClientRect().width;
   const q = (pts || []).filter((p, j, a) => !j || Math.hypot(p[0] - a[j - 1][0], p[1] - a[j - 1][1]) > tol);   // dblclick dupes
   if (q.length < 3) return flash('an outline needs at least 3 points');
-  m.lot = q; m.manual = true;
+  m.lot = q; m.gaps = []; m.manual = true;
   if (m.mode === 'pin') m.mode = 'both'; else if (m.mode === 'none') m.mode = 'outline';
   pts = null; modeBtns(); list(); save(); setTool('edit'); flash(`outline drawn: ${q.length} points`);
 }
@@ -395,6 +451,18 @@ cv.onmousedown = async e => {
   const m = M(); if (!m || m.error) return;
   if (brushy()) { painting = true; paint(e); return; }
   const p = toImg(e);
+  if (tool === 'lasso') {
+    const q = toCanvas(e), tol = 10 * cv.width / cv.getBoundingClientRect().width;
+    if (lasso && lasso.length >= 3 && Math.hypot(q[0] - lasso[0][0], q[1] - lasso[0][1]) < tol) return finishLasso(e.shiftKey);
+    (lasso = lasso || []).push(q); lassoDown = true; draw(); return;
+  }
+  if (tool === 'razor') {
+    if (!m.lot.length) return;
+    const h = hit(m, p); if (!h || h.kind !== 'edge') return;
+    if (e.shiftKey) { const g = new Set(m.gaps || []); g.has(h.j) ? g.delete(h.j) : g.add(h.j); m.gaps = [...g].sort((a, b) => a - b); }
+    else insertPoint(m, h.j, h.t);
+    m.manual = true; draw(); save(); return;
+  }
   if (tool === 'draw') {
     pts = pts || [];
     const tol = 10 * m.w / cv.getBoundingClientRect().width;
@@ -409,21 +477,27 @@ cv.onmousedown = async e => {
   }
   const h = hit(m, p); if (!h) return;
   if (h.kind === 'corner' && e.altKey) {
-    if (m.lot.length > 3) { m.lot.splice(h.i, 1); m.manual = true; draw(); save(); }
+    if (m.lot.length > 3) { deletePoint(m, h.i); m.manual = true; draw(); save(); }
     return;
   }
   drag = { ...h, start: p, lot0: m.lot.map(q => q.slice()), alt: e.altKey };
   cv.onmousemove(e);
 };
 cv.ondblclick = e => {
+  if (tool === 'lasso' && lasso) return finishLasso(e.shiftKey);
   if (tool === 'draw' && pts) return finishDraw();
   const m = M(); if (tool !== 'edit' || !m || m.error) return;
   const h = hit(m, toImg(e));
-  if (h && h.kind === 'edge') { const a = m.lot[h.j], b = m.lot[(h.j + 1) % m.lot.length]; m.lot.splice(h.j + 1, 0, [a[0] + (b[0] - a[0]) * h.t, a[1] + (b[1] - a[1]) * h.t]); m.manual = true; draw(); save(); }
+  if (h && h.kind === 'edge') { insertPoint(m, h.j, h.t); m.manual = true; draw(); save(); }
 };
 cv.onmousemove = e => {
   if (panning) { pan = [e.clientX - panning[0], e.clientY - panning[1]]; view(); return; }
   if (tool === 'draw') { hover = toImg(e); draw(); return; }
+  if (tool === 'lasso') {
+    hover = toCanvas(e);
+    if (lassoDown && lasso) { const l = lasso[lasso.length - 1]; if (Math.hypot(hover[0] - l[0], hover[1] - l[1]) > 3 / zoom) lasso.push(hover); }
+    draw(); return;
+  }
   if (brushy()) { cursor = toCanvas(e); if (painting) paint(e); else draw(); return; }
   if (!drag) return;
   const m = M(), p = toImg(e), dx = p[0] - drag.start[0], dy = p[1] - drag.start[1];
@@ -438,6 +512,7 @@ cv.onmouseleave = () => { cursor = null; if (brushy()) draw(); };
 window.onmouseup = async e => {
   if (panning) { panning = null; cv.style.cursor = brushy() ? 'none' : spaceDown ? 'grab' : 'crosshair'; return; }
   if (painting) { painting = false; saveMask(); return; }
+  if (lassoDown) { lassoDown = false; return; }
   if (!drag) return;
   const m = M(), d = drag; drag = null;
   if (d.kind !== 'tip') return save();
@@ -502,7 +577,7 @@ document.getElementById('approve').onclick = async () => {
 };
 document.getElementById('reset').onclick = async () => {
   if (!await ask('Reset this photo to the automatic placement? Hand edits to the pin and outline are lost (the behind mask and outline thickness stay).')) return;
-  const m = M(); m.manual = false; m.anchors = {}; delete m.pin_len; m.reviewed = false;
+  const m = M(); m.manual = false; m.anchors = {}; m.gaps = []; delete m.pin_len; m.reviewed = false;
   await save();
   const r = await api('/solve', { file: names[cur], anchors: {} });
   marks = r.marks; anchors = {}; draw(); list();
@@ -516,6 +591,11 @@ document.getElementById('apply').onclick = async () => {
 window.onkeydown = e => {
   if (e.target.tagName === 'INPUT') return;
   if (e.key === ' ') { e.preventDefault(); if (!spaceDown) { spaceDown = true; cv.style.cursor = 'grab'; } return; }
+  if (tool === 'lasso' && lasso) {
+    if (e.key === 'Enter') { e.preventDefault(); return finishLasso(e.shiftKey); }
+    if (e.key === 'Escape') { lasso = null; return draw(); }
+    if (e.key === 'Backspace') { e.preventDefault(); lasso.pop(); if (!lasso.length) lasso = null; return draw(); }
+  }
   if (tool === 'draw' && pts) {
     if (e.key === 'Enter') { e.preventDefault(); return finishDraw(); }
     if (e.key === 'Escape') { pts = null; return draw(); }
@@ -533,8 +613,10 @@ window.onkeydown = e => {
   else if (e.key === 'l') setTool('place');
   else if (e.key === 'x') setTool('erase');
   else if (e.key === 'd') setTool('draw');
-  else if (e.key === '[') { brush = Math.max(6, brush / 1.25); draw(); }
-  else if (e.key === ']') { brush = Math.min(400, brush * 1.25); draw(); }
+  else if (e.key === '[') setBrush(brush / 1.25);
+  else if (e.key === ']') setBrush(brush * 1.25);
+  else if (e.key === 'r') setTool('razor');
+  else if (e.key === 'a') setTool('lasso');
 };
 load();
 </script>
