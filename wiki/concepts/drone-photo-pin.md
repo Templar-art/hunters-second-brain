@@ -19,6 +19,15 @@ updated: 2026-10-27
    - "Apply correction" carries a compass offset fitted from the approved photos to the rest of the flight.
 4. **Render.** Run `drone_pin.py render <job>`. It writes the full-resolution JPG (EXIF and colour profile kept) and a transparent PNG overlay for each approved photo. The outline carries a very subtle drop shadow (Hunter, 2026-10-27): black at 60%, offset half a line width down, blurred 0.6× the line width; the pin has none. The pin uses the same proportions as the video pin, and the line shortens when needed so the K stays in frame.
 
+## Mac app (2026-10-27)
+To use it without Claude, double-click **`~/Desktop/Drone Pin.app`**. It's built from `projects/drone-pin/app.applescript` with `osacompile -o ~/Desktop/"Drone Pin.app" projects/drone-pin/app.applescript`.
+1. Pick the folder of drone stills.
+2. The first time for a folder, confirm the address. It's pre-filled from a folder named like `Client | 5 Street, Suburb`.
+3. It reads the GPS, finds the lot, and opens the review page in the browser on port 8770.
+4. Edit and Export from there.
+
+Jobs live in `projects/drone-pin/jobs/<folder>`. Reopening the same folder resumes the job. Only one job is served at a time; opening another stops the last one. The backend is `app.sh`.
+
 ## Style (matched to Kollosche's own listing stills, 2026-10-27)
 - **Pin:** a Kollosche Blue (#011A3B) square badge with a thin white border and a white K. It sits directly on a thin white line, with no gap. Drag the badge to set the line length per photo. This replaced the bare-K video pin for stills.
 - **Outline:** thin white, 0.22% of photo width, with a very subtle drop shadow.
