@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drone Run</title>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:#87b8dc;font-family:Poppins,system-ui,sans-serif;color:#fff}
+  #hud{position:fixed;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;pointer-events:none;font-weight:600;font-size:18px;text-shadow:0 1px 4px #0008}
+  #hud span b{color:#61a8d8;font-size:26px}
+  #screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0b1620cc;text-align:center;padding:16px}
+  #screen h1{font-size:48px;margin:0 0 8px;letter-spacing:2px}
+  #screen h1 em{color:#61a8d8;font-style:normal}
+  #screen p{max-width:460px;line-height:1.6;opacity:.9}
+  #screen button{margin-top:16px;padding:12px 32px;font:600 18px Poppins,system-ui;background:#61a8d8;color:#fff;border:0;border-radius:6px;cursor:pointer}
+  kbd{background:#fff2;padding:2px 6px;border-radius:4px}
+  #flash{position:fixed;inset:0;pointer-events:none;background:#61a8d8;opacity:0;transition:opacity .3s}
+</style>
+</head>
+<body>
+<div id="hud"><span>SHOTS <b id="score">0</b></span><span>TIME <b id="time">60</b></span><span>BEST <b id="best">0</b></span></div>
+<div id="flash"></div>
+<div id="screen">
+  <h1>DRONE <em>RUN</em></h1>
+  <p>Fly through the blue shot markers before golden hour ends. Each shot adds 5 seconds. Avoid roofs, trees and powerlines.</p>
+  <p><kbd>W</kbd><kbd>S</kbd> forward/back · <kbd>A</kbd><kbd>D</kbd> strafe · <kbd>←</kbd><kbd>→</kbd> yaw · <kbd>Space</kbd>/<kbd>Shift</kbd> up/down</p>
+  <button id="go">Take off</button>
+</div>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.shadowMap.enabled = true;
+document.body.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x9cc7e6);
+scene.fog = new THREE.Fog(0x9cc7e6, 120, 320);
+const camera = new THREE.PerspectiveCamera(65, innerWidth/innerHeight, 0.1, 600);
+
+const sun = new THREE.DirectionalLight(0xfff1d6, 2.2);
+sun.position.set(80,120,40); sun.castShadow = true;
+sun.shadow.mapSize.set(2048,2048);
+Object.assign(sun.shadow.camera,{left:-160,right:160,top:160,bottom:-160,far:400});
+scene.add(sun, new THREE.HemisphereLight(0xcfe8ff,0x5a7a3a,1.1));
+
+const mat = c => new THREE.MeshStandardMaterial({color:c, roughness:.85});
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(800,800), mat(0x6f9a4a));
+ground.rotation.x = -Math.PI/2; ground.receiveShadow = true; scene.add(ground);
+
+// --- Suburb: grid of blocks split by roads ---
+const boxes = [];   // AABB colliders {min,max}
+const trees = [];   // {x,z,r,h}
+const wires = [];   // segments {a,b}
+const SIZE = 6, BLOCK = 36, ROAD = 10, HALF = SIZE*(BLOCK+ROAD)/2;
+const roadMat = mat(0x3d4247);
+const roofCols = [0x8c4a3a,0x4a4f57,0x6b6e73,0xa0623e,0x2f3a44];
+const wallCols = [0xf2efe8,0xe4d9c6,0xd7dde2,0xc9b8a0,0xffffff];
+const rnd = (a,b)=>a+Math.random()*(b-a);
+
+for(let i=0;i<=SIZE;i++){
+  const p = -HALF + i*(BLOCK+ROAD) - ROAD/2;
+  for(const rot of [0,1]){
+    const r = new THREE.Mesh(new THREE.PlaneGeometry(rot?ROAD:HALF*2+ROAD, rot?HALF*2+ROAD:ROAD), roadMat);
+    r.rotation.x=-Math.PI/2; r.position.set(rot?p:0, .02, rot?0:p); r.receiveShadow=true; scene.add(r);
+  }
+}
+
+function house(x,z){
+  const w=rnd(9,13), d=rnd(9,13), h=rnd(4,7.5);
+  const body = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), mat(wallCols[Math.random()*5|0]));
+  body.position.set(x,h/2,z); body.castShadow=body.receiveShadow=true; scene.add(body);
+  const rh = rnd(2.5,4);
+  const roof = new THREE.Mesh(new THREE.ConeGeometry(Math.hypot(w,d)/2*1.02, rh, 4), mat(roofCols[Math.random()*5|0]));
+  roof.rotation.y=Math.PI/4; roof.scale.set(w/Math.hypot(w,d)*1.41,1,d/Math.hypot(w,d)*1.41);
+  roof.position.set(x,h+rh/2,z); roof.castShadow=true; scene.add(roof);
+  boxes.push({min:new THREE.Vector3(x-w/2,0,z-d/2), max:new THREE.Vector3(x+w/2,h+rh*.6,z+d/2)});
+  if(Math.random()<.35){ // pool
+    const pool = new THREE.Mesh(new THREE.PlaneGeometry(5,3), new THREE.MeshStandardMaterial({color:0x3fb6d8,roughness:.1}));
+    pool.rotation.x=-Math.PI/2; pool.position.set(x+rnd(-3,3), .05, z+d/2+3); scene.add(pool);
+  }
+}
+const trunkMat = mat(0x5b4030), leafMats=[mat(0x2f6b34),mat(0x3d7d3a),mat(0x4f8a3c)];
+function tree(x,z){
+  const h=rnd(6,11), r=rnd(1.8,3);
+  const t=new THREE.Mesh(new THREE.CylinderGeometry(.3,.4,h*.4),trunkMat); t.position.set(x,h*.2,z);
+  const l=new THREE.Mesh(new THREE.IcosahedronGeometry(r,0),leafMats[Math.random()*3|0]);
+  l.position.set(x,h*.4+r*.8,z); l.scale.y=1.3; l.castShadow=t.castShadow=true; scene.add(t,l);
+  trees.push({x,z,r:r*.9,h:h*.4+r*1.9});
+}
+const poleMat = mat(0x6b5a48), wireMat = new THREE.LineBasicMaterial({color:0x111111});
+function powerline(x0,z0,x1,z1){
+  const n=5, H=9, pts=[];
+  for(let i=0;i<=n;i++){
+    const x=x0+(x1-x0)*i/n, z=z0+(z1-z0)*i/n;
+    const p=new THREE.Mesh(new THREE.CylinderGeometry(.18,.22,H),poleMat); p.position.set(x,H/2,z); p.castShadow=true; scene.add(p);
+    boxes.push({min:new THREE.Vector3(x-.4,0,z-.4),max:new THREE.Vector3(x+.4,H,z+.4)});
+    pts.push(new THREE.Vector3(x,H-.3,z));
+  }
+  for(let i=0;i<n;i++){
+    const a=pts[i], b=pts[i+1], curve=[];
+    for(let k=0;k<=10;k++){const t=k/10; const v=a.clone().lerp(b,t); v.y-=Math.sin(t*Math.PI)*.8; curve.push(v);}
+    scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve),wireMat));
+    wires.push({a:a.clone().setY(a.y-.4),b:b.clone().setY(b.y-.4)});
+  }
+}
+
+for(let i=0;i<SIZE;i++) for(let j=0;j<SIZE;j++){
+  const cx=-HALF+i*(BLOCK+ROAD)+BLOCK/2, cz=-HALF+j*(BLOCK+ROAD)+BLOCK/2;
+  if(i===2&&j===3){ // park
+    for(let k=0;k<9;k++) tree(cx+rnd(-14,14),cz+rnd(-14,14));
+    continue;
+  }
+  for(const dx of [-9,9]) for(const dz of [-9,9]) if(Math.random()<.85) house(cx+dx+rnd(-1,1),cz+dz+rnd(-1,1));
+  for(let k=0;k<3;k++) tree(cx+rnd(-17,17)*(Math.random()<.5?1:-1)*.95, cz+(Math.random()<.5?-17:17));
+}
+for(let i=1;i<SIZE;i+=2){
+  const p=-HALF+i*(BLOCK+ROAD)-ROAD/2+3.5;
+  powerline(p,-HALF,p,HALF);
+}
+
+// --- Drone ---
+const drone = new THREE.Group();
+const dBody = new THREE.Mesh(new THREE.BoxGeometry(.9,.25,.9), mat(0x2a2d31));
+const cam = new THREE.Mesh(new THREE.SphereGeometry(.18), mat(0x111111)); cam.position.set(0,-.2,-.35);
+drone.add(dBody,cam);
+const rotors=[];
+for(const [x,z] of [[1,1],[1,-1],[-1,1],[-1,-1]]){
+  const arm=new THREE.Mesh(new THREE.BoxGeometry(.12,.08,1.1),mat(0x2a2d31));
+  arm.position.set(x*.45,.05,z*.45); arm.rotation.y=Math.atan2(x,z); drone.add(arm);
+  const rot=new THREE.Mesh(new THREE.BoxGeometry(.9,.02,.08),mat(0x61a8d8));
+  rot.position.set(x*.8,.18,z*.8); drone.add(rot); rotors.push(rot);
+}
+const led=new THREE.Mesh(new THREE.SphereGeometry(.07),new THREE.MeshBasicMaterial({color:0xff3030})); led.position.set(0,.1,.45); drone.add(led);
+drone.traverse(o=>o.castShadow=true);
+scene.add(drone);
+
+// --- Shot markers ---
+const marker = new THREE.Group();
+const ring = new THREE.Mesh(new THREE.TorusGeometry(3,.25,12,40), new THREE.MeshBasicMaterial({color:0x61a8d8}));
+const glow = new THREE.Mesh(new THREE.CircleGeometry(2.8,32), new THREE.MeshBasicMaterial({color:0x61a8d8,transparent:true,opacity:.18,side:THREE.DoubleSide}));
+const beam = new THREE.Mesh(new THREE.CylinderGeometry(.08,.08,200), new THREE.MeshBasicMaterial({color:0x61a8d8,transparent:true,opacity:.35}));
+beam.position.y=100; marker.add(ring,glow,beam); scene.add(marker);
+const arrow = new THREE.Mesh(new THREE.ConeGeometry(.25,.7,8), new THREE.MeshBasicMaterial({color:0x61a8d8}));
+scene.add(arrow);
+
+function placeMarker(){
+  for(let tries=0;tries<200;tries++){
+    const p=new THREE.Vector3(rnd(-HALF+10,HALF-10), rnd(6,22), rnd(-HALF+10,HALF-10));
+    if(p.distanceTo(drone.position)<35) continue;
+    if(blocked(p,4)) continue;
+    marker.position.copy(p); marker.rotation.y=rnd(0,Math.PI); return;
+  }
+}
+
+// --- Collision ---
+function blocked(p,r){
+  if(p.y<r*.5) return true;
+  for(const b of boxes) if(p.x>b.min.x-r&&p.x<b.max.x+r&&p.z>b.min.z-r&&p.z<b.max.z+r&&p.y<b.max.y+r*.5) return true;
+  for(const t of trees) if(Math.hypot(p.x-t.x,p.z-t.z)<t.r+r&&p.y<t.h+r*.3) return true;
+  const ab=new THREE.Vector3(), ap=new THREE.Vector3();
+  for(const w of wires){
+    ab.subVectors(w.b,w.a); ap.subVectors(p,w.a);
+    const t=THREE.MathUtils.clamp(ap.dot(ab)/ab.lengthSq(),0,1);
+    if(p.distanceTo(w.a.clone().addScaledVector(ab,t))<r+.35) return true;
+  }
+  return false;
+}
+
+// --- Input + state ---
+const keys={};
+addEventListener('keydown',e=>{keys[e.code]=true; if(e.code==='Space')e.preventDefault();});
+addEventListener('keyup',e=>keys[e.code]=false);
+const $=id=>document.getElementById(id);
+let best=+(()=>{try{return localStorage.getItem('droneRunBest')||0}catch{return 0}})();
+$('best').textContent=best;
+
+let playing=false, score=0, time=60, yaw=0;
+const vel=new THREE.Vector3();
+function start(){
+  drone.position.set(-HALF+BLOCK+ROAD/2, 10, HALF-20); yaw=0; vel.set(0,0,0);
+  score=0; time=60; playing=true; $('score').textContent=0; $('screen').style.display='none';
+  placeMarker();
+}
+function end(msg){
+  playing=false;
+  if(score>best){best=score; try{localStorage.setItem('droneRunBest',best)}catch{} $('best').textContent=best;}
+  $('screen').querySelector('h1').innerHTML=msg;
+  $('screen').querySelector('p').textContent=`${score} shot${score===1?'':'s'} captured. Best: ${best}.`;
+  $('go').textContent='Fly again';
+  $('screen').style.display='flex';
+}
+$('go').onclick=start;
+addEventListener('keydown',e=>{if(!playing&&e.code==='Enter')start();});
+
+// --- Loop ---
+const clock=new THREE.Clock(), fwd=new THREE.Vector3(), right=new THREE.Vector3(), camTarget=new THREE.Vector3();
+drone.position.set(-HALF+BLOCK+ROAD/2,10,HALF-20);
+function tick(){
+  const dt=Math.min(clock.getDelta(),.05), t=clock.elapsedTime;
+  rotors.forEach((r,i)=>r.rotation.y+=dt*(i%2?40:-40));
+  ring.rotation.z+=dt; marker.lookAt(drone.position.x,marker.position.y,drone.position.z);
+
+  if(playing){
+    if(keys.ArrowLeft||keys.KeyQ) yaw+=dt*2.2;
+    if(keys.ArrowRight||keys.KeyE) yaw-=dt*2.2;
+    fwd.set(-Math.sin(yaw),0,-Math.cos(yaw)); right.set(-fwd.z,0,fwd.x);
+    const acc=new THREE.Vector3();
+    if(keys.KeyW||keys.ArrowUp) acc.add(fwd);
+    if(keys.KeyS||keys.ArrowDown) acc.sub(fwd);
+    if(keys.KeyD) acc.add(right);
+    if(keys.KeyA) acc.sub(right);
+    acc.multiplyScalar(40);
+    if(keys.Space) acc.y+=26;
+    if(keys.ShiftLeft||keys.ShiftRight) acc.y-=26;
+    vel.addScaledVector(acc,dt).multiplyScalar(Math.pow(.25,dt));
+    drone.position.addScaledVector(vel,dt);
+    drone.position.y=Math.min(drone.position.y,60);
+    const lim=HALF+20; drone.position.x=THREE.MathUtils.clamp(drone.position.x,-lim,lim); drone.position.z=THREE.MathUtils.clamp(drone.position.z,-lim,lim);
+    // tilt with velocity
+    const lf=vel.dot(fwd), lr=vel.dot(right);
+    drone.rotation.set(0,0,0); drone.rotation.y=yaw;
+    drone.rotateX(-lf*.025); drone.rotateZ(-lr*.025);
+
+    if(blocked(drone.position,.6)) return crash();
+
+    // marker hit
+    if(drone.position.distanceTo(marker.position)<3.2){
+      score++; time+=5; $('score').textContent=score;
+      $('flash').style.opacity=.35; setTimeout(()=>$('flash').style.opacity=0,80);
+      placeMarker();
+    }
+    time-=dt; $('time').textContent=Math.max(0,Math.ceil(time));
+    if(time<=0) end('GOLDEN HOUR<br><em>OVER</em>');
+    // golden hour dims sky as time runs low
+    const g=THREE.MathUtils.clamp(time/60,0,1);
+    scene.background.setRGB(.61+(.95-.61)*(1-g)*.6,.78-(.25)*(1-g),.9-.45*(1-g));
+    scene.fog.color.copy(scene.background);
+    sun.color.setRGB(1,.94-.3*(1-g),.84-.5*(1-g));
+  }
+
+  // nav arrow above drone pointing at marker
+  arrow.position.copy(drone.position).add(new THREE.Vector3(0,1.4,0));
+  arrow.lookAt(marker.position); arrow.rotateX(Math.PI/2);
+
+  // chase cam
+  const back=new THREE.Vector3(Math.sin(yaw),0,Math.cos(yaw)).multiplyScalar(8);
+  camTarget.copy(drone.position).add(back).add(new THREE.Vector3(0,3,0));
+  camera.position.lerp(camTarget,1-Math.pow(.002,dt));
+  camera.lookAt(drone.position.x,drone.position.y+.8,drone.position.z);
+
+  renderer.render(scene,camera);
+  requestAnimationFrame(tick);
+}
+function crash(){
+  end('CRASHED');
+  renderer.render(scene,camera);
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+</script>
+</body>
+</html>

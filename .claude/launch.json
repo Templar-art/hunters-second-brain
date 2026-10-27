@@ -82,6 +82,18 @@
       "port": 8160
     },
     {
+      "name": "drone-run",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8170",
+        "--directory",
+        "projects/drone-run"
+      ],
+      "port": 8170
+    },
+    {
       "name": "drone-pin-review",
       "runtimeExecutable": "/Users/10xhunter/.venvs/typeset/bin/python",
       "runtimeArgs": [
