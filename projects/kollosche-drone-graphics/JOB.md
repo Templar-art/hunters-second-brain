@@ -7,6 +7,8 @@ cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from - 2026-10-27 stills
 
 - 2026-10-27 stills: pin restyled to Kollosche's photo badge (navy square, white K, thin border); thin outline, editable by hand, with a behind brush. Drones-6 outline needs Hunter's hand placement (drone height/heading off). Re-rendered as a draft; final render after Hunter's review.
 
+- 2026-10-27 delivery: Hunter exported Web (pin + outline) and Print (clean) to `Done/Drone Graphics`, and dropped the top-down (Drones-4) because Kollosche doesn't like top-downs.
+
 ## Ledger — never edit by hand
 ---
 

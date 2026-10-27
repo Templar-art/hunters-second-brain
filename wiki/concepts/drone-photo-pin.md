@@ -40,6 +40,9 @@ updated: 2026-10-27
 - **Behind brush (B):** paint over buildings or trees that stand in front of the outline, and the line and its shadow are hidden there. The mask is stored per photo in `masks/`. Use it on the close-up and straight-on shots; the far wides don't need it.
 - **Drones-6 lesson (Esther Pl):** at 45 m up, the drone's height and heading were off enough that the camera maths couldn't place the outline (the rear corners landed in front of the building). Close oblique shots will often need the outline placed by hand, and that's what the editing is for.
 
+## Client fit
+- The top-down outline shot is worth making for most agencies, but **Kollosche doesn't use top-downs** (see [[kollosche]]).
+
 ## Lessons from the build (Somerset Dr test set, 7 photos)
 - **⚠️ Don't trust `GimbalYawDegree`.** On these DJI files it sat 39–55° off true north. `FlightYawDegree` (the aircraft heading) put the lot on the house on every photo, top-downs included, so the tool uses it.
 - **Accuracy with no drags:** the outline matched the fence lines on the top-down and the close obliques, and the pin landed on the roof ridge at 360 m. The 400 m near-horizon wide was about 1° off, and one drag fixed it.

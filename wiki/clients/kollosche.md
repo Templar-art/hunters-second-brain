@@ -47,3 +47,4 @@ Taylor Kleinberg and Thibault Parolini (end cards), Duncan Longmore, Michael Kol
 
 - **Drone stills pin/outline:** [[drone-photo-pin]] (built 2026-10-27, for the townhouse stills).
 - **Drone stills deliverable (2026-10-27):** the web versions get the K badge pin and the lot outline. The **print versions are clean**, with no pin or outline. See [[drone-photo-pin]].
+- **No top-down drone stills (2026-10-27):** Kollosche doesn't like straight-down shots, so Hunter dropped the Esther Pl top-down (Drones-4) from the delivery. Keep shooting them because other agencies use them, but leave them out of Kollosche deliveries.
