@@ -118,8 +118,8 @@
   <h3>Export</h3>
   <label class="row">Folder <input id="xfolder" placeholder="/Volumes/…/Export"><button type="button" id="xchoose">Choose…</button></label>
   <div class="row">
-    <label><input type="checkbox" id="xprint" checked> Print <small>full size, clean photo</small></label>
-    <label><input type="checkbox" id="xpg"> pin + outline on print too</label>
+    <label><input type="checkbox" id="xprint" checked> Print <small>full size, 300 dpi</small></label>
+    <label><input type="checkbox" id="xpg" checked> pin + outline on print <small>(untick for a clean print)</small></label>
     <label><input type="checkbox" id="xweb" checked> Web <small>2048 px, pin + outline, no GPS data</small></label>
   </div>
   <label class="row">Name all <input id="xbase" placeholder="e.g. 5 Esther Place Surfers Paradise"><button type="button" id="xnum">Number them</button></label>
@@ -173,6 +173,7 @@ X('export').onclick = async () => {
   const pr = xprefs();
   X('xfolder').value = pr.folder || site.photos.replace(/\/[^/]*$/, '') + '/Drone Graphics';
   X('xbase').value = pr.base || '';
+  X('xpg').checked = pr.print_graphics ?? true;
   X('xlist').innerHTML = names.map((n, i) => {
     const m = marks[n], on = !m.error && m.mode !== 'none';
     const nm = (pr.names || {})[n] || n.replace(/\.[^.]+$/, '');
@@ -197,7 +198,7 @@ X('xgo').onclick = async () => {
   const items = [...document.querySelectorAll('[data-x]')].filter(c => c.checked).map(c => ({ file: names[+c.dataset.x], name: document.querySelector(`[data-xn="${c.dataset.x}"]`).value.trim() }));
   const body = { folder: X('xfolder').value.trim(), print: X('xprint').checked, print_graphics: X('xpg').checked, web: X('xweb').checked, items };
   const allNames = Object.fromEntries([...document.querySelectorAll('[data-xn]')].map(i => [names[+i.dataset.xn], i.value.trim()]));
-  try { localStorage.setItem(XKEY(), JSON.stringify({ folder: body.folder, base: X('xbase').value, names: allNames })); } catch {}
+  try { localStorage.setItem(XKEY(), JSON.stringify({ folder: body.folder, base: X('xbase').value, print_graphics: body.print_graphics, names: allNames })); } catch {}
   X('xmsg').textContent = `exporting ${items.length} photo${items.length === 1 ? '' : 's'}…`; X('xgo').disabled = true;
   const r = await api('/export', body);
   X('xgo').disabled = false;

@@ -46,5 +46,5 @@ Taylor Kleinberg and Thibault Parolini (end cards), Duncan Longmore, Michael Kol
 - **Reels (Day to Night townhouse, opened 2026-10-27):** a flythrough and a cinematic reel, 9:16. The kit (K opener + Eddie Wardale outro) is in [projects/kollosche-reels](../../projects/kollosche-reels/JOB.md).
 
 - **Drone stills pin/outline:** [[drone-photo-pin]] (built 2026-10-27, for the townhouse stills).
-- **Drone stills deliverable (2026-10-27):** the web versions get the K badge pin and the lot outline. The **print versions are clean**, with no pin or outline. See [[drone-photo-pin]].
+- **Drone stills deliverable (2026-10-27):** both the web and print versions get the K badge pin and the lot outline. ⚠️ Corrected the same day; an earlier note said prints are clean, which was wrong. See [[drone-photo-pin]].
 - **No top-down drone stills (2026-10-27):** Kollosche doesn't like straight-down shots, so Hunter dropped the Esther Pl top-down (Drones-4) from the delivery. Keep shooting them because other agencies use them, but leave them out of Kollosche deliveries.
