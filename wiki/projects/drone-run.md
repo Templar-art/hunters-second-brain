@@ -21,3 +21,5 @@ A browser game built in one session on 2026-10-27, as a test of whether Claude p
 
 ## Next ideas
 Touch joysticks for phones, parked cars and fences, and a published link.
+
+Follow-up the same day: [[street-racer]] reused this stack for a racing game.

@@ -1519,3 +1519,6 @@ Demucs is installed locally (free). It split the snapgram reel and 32 candidate 
 
 ## [2026-10-27] ingest | Drone Run browser game
 Three.js drone game with a Blender-built DJI-style drone and house variants, 0cr. Page: [[drone-run]].
+
+## [2026-10-27] ingest | Street Racer browser game
+A 3-lap racer against AI cars, with a Blender-built car and reused houses, 0cr. Page: [[street-racer]].

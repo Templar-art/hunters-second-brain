@@ -82,6 +82,18 @@
       "port": 8160
     },
     {
+      "name": "street-racer",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8175",
+        "--directory",
+        "projects/street-racer"
+      ],
+      "port": 8175
+    },
+    {
       "name": "drone-run",
       "runtimeExecutable": "python3",
       "runtimeArgs": [
