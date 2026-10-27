@@ -1491,3 +1491,6 @@ Built a K location pin for 9:16 wide drone shots (`projects/kollosche-pin/`, PNG
 
 ## [2026-10-27] ingest | Kollosche townhouse drone graphics
 Made a tracked white lot outline on the top-down Main.mp4 and a roof-locked K pin on the wide View.mp4, both local and $0. The plate-vfx drone fit failed on Main (fast spin and motion blur in the first frames). Chained SIFT homographies from the sharp last frame worked instead, which is the right model for a straight-down shot. In review with Hunter. Job: projects/kollosche-drone-graphics/JOB.md.
+
+## [2026-10-27] harvest | Kollosche townhouse drone graphics delivered
+Hunter approved the tracked lot outline and the roof-locked K pin. Status set to delivered in JOB.md and [[kollosche]]. Lesson: for straight-down shots that open on a blurred spin, chain homographies back from the sharpest frame instead of running the drone fit. No spend.
