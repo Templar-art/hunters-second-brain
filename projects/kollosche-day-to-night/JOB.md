@@ -25,6 +25,7 @@ This is a different property from the Pottsville reel. Clip 1 was checked frame-
 
 - 2026-10-27 intake: 4 clips triaged. Prompts written. Nothing has been spent yet. Waiting on Hunter's go-ahead and a decision on resolution.
 - 2026-10-27 Hunter is running it himself: night still per first frame, then that still as the video reference. Credits are on his own account, so no ledger lines from us. Clip 2 still approved ("this one is great"). Clip 4 still: Hunter liked the look but wants it darker. Two problems: the sign misspells the name as "ONTSTHER", and the 5 glows gold. The source frame shows flat black standoff letters with no visible halo LED, so they stay unlit and a darker re-roll was given. Plan: comp the source sign wall back in during post.
+- 2026-10-27 Clip 4 darker still approved ("looks great"), using the master prompt with the sign unlit. Built 4K padded 4.2 s copies of all 4 clips in `~/Downloads/Kollosche Day to Night/padded-4s/` for the video step. Trim back to the source lengths afterwards: 3.46 / 1.96 / 2.00 / 1.46 s.
 
 ## Ledger
 
