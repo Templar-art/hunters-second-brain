@@ -63,6 +63,7 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 BADGE, BADGE_K, BADGE_BORDER = 0.085, 0.62, 0.018   # badge side; K width and border as fractions of the badge
 BADGE_FILL = (1, 26, 59)                             # Kollosche Blue #011A3B
 LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05
+BLACKOUT_FEATHER = 0.0015                            # blackout edge softness, of photo width
 OUTLINE_W = 0.0033                                   # of photo width, x per-photo outline_w (0.5-3)
 # Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
 # below, low opacity. All in multiples of the outline width.
@@ -383,7 +384,7 @@ def cmd_review(a):
                 return self.send(html.replace("__SIZES__", json.dumps(
                     {"BADGE": BADGE, "BADGE_K": BADGE_K, "BADGE_BORDER": BADGE_BORDER,
                      "BADGE_FILL": "#%02x%02x%02x" % BADGE_FILL, "LINE_W": LINE_W, "LINE_LEN": LINE_LEN,
-                     "TOP_MARGIN": TOP_MARGIN, "OUTLINE_W": OUTLINE_W,
+                     "TOP_MARGIN": TOP_MARGIN, "OUTLINE_W": OUTLINE_W, "BLACKOUT_FEATHER": BLACKOUT_FEATHER,
                      "SHADOW_OFFSET": SHADOW_OFFSET, "SHADOW_BLUR": SHADOW_BLUR, "SHADOW_OPACITY": SHADOW_OPACITY,
                      "PLACE_DOT": PLACE_DOT, "PLACE_LINE": PLACE_LINE, "PLACE_GAP": PLACE_GAP,
                      "PLACE_CAP": PLACE_CAP, "PLACE_SUB": PLACE_SUB, "PLACE_TRACK": PLACE_TRACK,
@@ -616,6 +617,17 @@ def draw_places(m, site, W, H):
     return layer
 
 
+def lit_area(lot, lift):
+    """Polygons whose union is the lot swept straight up by `lift` px, so the building rising
+    above a ground-level outline stays bright under the blackout."""
+    polys = [lot]
+    if lift > 0:
+        up = [[x, y - lift] for x, y in lot]
+        polys.append(up)
+        polys += [[lot[j], lot[(j + 1) % len(lot)], up[(j + 1) % len(lot)], up[j]] for j in range(len(lot))]
+    return polys
+
+
 def draw_overlay(m, k, site=None, mask=None):
     W, H = m["w"], m["h"]
     ss = 2
@@ -633,6 +645,17 @@ def draw_overlay(m, k, site=None, mask=None):
                 cv2.circle(a, (int(x), int(y)), lw // 2 * 16, 255, -1, cv2.LINE_AA, shift=4)
     alpha = cv2.resize(a, (W, H), interpolation=cv2.INTER_AREA)
     im = Image.new("RGBA", (W, H), (255, 255, 255, 0))
+    if m.get("blackout") and (m.get("lit") or m["lot"]):
+        # ZED look: darken everything outside the bright area, soft edge. The bright area is the
+        # hand-drawn Bright lasso shapes (added/cut in order) if any, else the outline (+ lift).
+        inside = np.zeros((H, W), np.uint8)
+        shapes = [(sh["pts"], 0 if sh.get("cut") else 255) for sh in m["lit"]] if m.get("lit") \
+            else [(poly, 255) for poly in lit_area(m["lot"], m.get("lift", 0) * H)]
+        for poly, val in shapes:
+            cv2.fillPoly(inside, [np.round(np.array(poly) * 16).astype(np.int32)], val, cv2.LINE_AA, shift=4)
+        inside = cv2.GaussianBlur(inside.astype(np.float32), (0, 0), BLACKOUT_FEATHER * W)
+        dark = (m["blackout"] * (255 - inside)).clip(0, 255).astype(np.uint8)
+        im = Image.merge("RGBA", (*[Image.new("L", (W, H), 0)] * 3, Image.fromarray(dark)))
     if alpha.any():
         lw = max(2, round(OUTLINE_W * m.get("outline_w", 1) * W))
         if mask is not None:
@@ -717,7 +740,7 @@ def cmd_render(a):
     out.mkdir(exist_ok=True)
     k = k_glyph()
     for name, m in marks.items():
-        if m["mode"] == "none" and not any(p.get("on") for p in m.get("places", {}).values()):
+        if m["mode"] == "none" and not m.get("blackout") and not any(p.get("on") for p in m.get("places", {}).values()):
             continue
         if not m.get("reviewed") and not a.all:
             print(f"  skip {name}: not approved in review (use --all to render anyway)")

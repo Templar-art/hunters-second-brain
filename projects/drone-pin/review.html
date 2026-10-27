@@ -81,6 +81,7 @@
       <button data-tool="brush">Behind brush <small>B</small></button>
       <button data-tool="lasso">Lasso <small>A</small></button>
       <button data-tool="erase">Eraser <small>X</small></button>
+      <button data-tool="light" title="ZED blackout: lasso what stays bright">Bright lasso <small>G</small></button>
       <button data-tool="razor">Razor <small>R</small></button>
       <button data-tool="draw">Draw outline <small>D</small></button>
       <button data-tool="place">Location pin <small>L</small></button>
@@ -88,6 +89,12 @@
     <div class="grp" title="Behind brush / eraser size ([ and ] also work). Each tool keeps its own size.">
       <label for="bs" style="align-self:center;color:var(--dim)">Brush</label>
       <small style="align-self:center">S</small><input id="bs" type="range" min="4" max="300" step="1" value="40"><small style="align-self:center">L</small>
+    </div>
+    <div class="grp" title="ZED look: darken everything outside the outline (0 = off), for this photo">
+      <label for="bo" style="align-self:center;color:var(--dim)">Blackout</label>
+      <input id="bo" type="range" min="0" max="1" step="0.05" value="0"><span id="bov" style="align-self:center;color:var(--dim);width:3ch">0</span>
+      <input id="lf" type="hidden" value="0">
+      <button id="boall" title="Use this blackout on every photo">All</button>
     </div>
     <div class="grp" title="Outline thickness for this photo">
       <label for="ow" style="align-self:center;color:var(--dim)">Outline</label>
@@ -127,6 +134,7 @@ const HELP = {
   edit: 'Pin: drag the tip onto the house (first drag on a close or top-down shot sets the house for every photo) · drag the badge up/down to change the line length · ⌥-drag tip re-sets the house.  Outline: drag a corner · drag the line or inside to move it all · double-click the line to add a corner · ⌥-click a corner to delete it.',
   brush: 'Paint over whatever stands in front of the outline (buildings, trees) and the line goes behind it · ⇧ erases · [ ] brush size · red = hidden area.',
   lasso: 'Hide the outline behind a building: click its corners (or hold and drag freehand) and close by clicking the first point, double-clicking or ⏎ · hold ⇧ while closing to erase that area instead · ⌫ removes the last point · Esc cancels · red = hidden area.',
+  light: 'ZED blackout: lasso the house (click its corners or drag freehand) and close it. Everything outside goes dark. Add more shapes to add more bright area · ⇧ while closing cuts a shape back to dark · ⌥-click inside a shape to delete it · Blackout slider sets how dark.',
   razor: 'Click the outline to cut it there · ⇧-click a piece of line to remove it (shown red dashed), ⇧-click again to bring it back. Cut twice, then ⇧-click between the cuts to take out just that stretch.',
   draw: 'Click to place outline points around whatever you want. Click the first point, double-click or press ⏎ to finish · ⌫ removes the last point · Esc cancels. Replaces this photo\'s outline; fine-tune afterwards in Edit.',
   erase: 'Rub out the behind mask where you went too far, and the outline comes back · [ ] brush size · red = hidden area.',
@@ -248,14 +256,14 @@ function show(i) {
   };
   im.src = '/preview/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.jpg'));
   document.getElementById('note').textContent = m.error || m.note || '';
-  list(); modeBtns(); ow.value = m.outline_w ?? 1;
+  list(); modeBtns(); ow.value = m.outline_w ?? 1; bo.value = m.blackout ?? 0; boShow(bo.value); lf.value = m.lift ?? 0;
 }
 function modeBtns() { document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === M().mode)); }
 const brushy = () => tool === 'brush' || tool === 'erase';
 const outlineW = m => Math.max(2, Math.round(SZ.OUTLINE_W * (m.outline_w ?? 1) * m.w));
 function setTool(t) {
   if (t !== 'draw') pts = null;
-  if (t !== 'lasso') lasso = null;
+  if (t !== 'lasso' && t !== 'light') lasso = null;
   tool = t;
   if (sizes[t]) { brush = sizes[t]; document.getElementById('bs').value = brush; }
   document.querySelectorAll('[data-tool]').forEach(b => b.classList.toggle('on', b.dataset.tool === t));
@@ -286,6 +294,27 @@ function draw() {
   cx.setTransform(1, 0, 0, 1, 0, 0);
   cx.drawImage(img, 0, 0);
   if (m.error) return;
+  if (m.blackout && ((m.lit || []).length || m.lot.length)) {
+    // ZED look, same as drone_pin.py: dark outside the outline with a soft edge.
+    const B = document.createElement('canvas'); B.width = cv.width; B.height = cv.height;
+    const b = B.getContext('2d');
+    b.fillStyle = `rgba(0,0,0,${m.blackout})`; b.fillRect(0, 0, B.width, B.height);
+    b.globalCompositeOperation = 'destination-out'; b.filter = `blur(${SZ.BLACKOUT_FEATHER * m.w * s}px)`; b.fillStyle = '#000';
+    // Lot swept straight up by "lift" (same as lit_area() in drone_pin.py), one path so overlaps don't double up.
+    const up = (m.lift || 0) * m.h, L2 = m.lot, n = L2.length, poly = q => { q.forEach(([x, y], j) => j ? b.lineTo(x * s, y * s) : b.moveTo(x * s, y * s)); b.closePath(); };
+    b.beginPath(); poly(L2);
+    if (up > 0) { poly(L2.map(([x, y]) => [x, y - up])); for (let j = 0; j < n; j++) { const p0 = L2[j], p1 = L2[(j + 1) % n]; poly([p0, p1, [p1[0], p1[1] - up], [p0[0], p0[1] - up]]); } }
+    if ((m.lit || []).length) {
+      // Bright lasso shapes replace the outline-based area: add = punch bright, cut = dark again.
+      b.beginPath();   // drop the outline path built above
+      m.lit.forEach(sh => {
+        b.globalCompositeOperation = sh.cut ? 'source-over' : 'destination-out';
+        b.fillStyle = sh.cut ? `rgba(0,0,0,${m.blackout})` : '#000';
+        b.beginPath(); poly(sh.pts); b.fill();
+      });
+    } else b.fill('nonzero');
+    cx.drawImage(B, 0, 0);
+  }
   const on = k => m.mode === k || m.mode === 'both';
   if (on('outline') && m.lot.length) {
     // Outline on its own layer so the behind-mask can cut it (shadow included).
@@ -327,7 +356,12 @@ function draw() {
     cx.stroke(); cx.setLineDash([]);
   }
   if (tool === 'edit' || tool === 'razor') handles(m, s);
-  if (tool === 'lasso' && lasso) {
+  if (tool === 'light' && (m.lit || []).length) {
+    cx.lineWidth = 1.5 / zoom; cx.setLineDash([6 / zoom, 4 / zoom]);
+    m.lit.forEach(sh => { cx.strokeStyle = sh.cut ? '#ff4646' : '#f5d041'; cx.beginPath(); sh.pts.forEach(([x, y], j) => j ? cx.lineTo(x * s, y * s) : cx.moveTo(x * s, y * s)); cx.closePath(); cx.stroke(); });
+    cx.setLineDash([]);
+  }
+  if ((tool === 'lasso' || tool === 'light') && lasso) {
     const line = hover ? [...lasso, hover] : lasso;
     cx.strokeStyle = '#ff4646'; cx.lineWidth = 2 / zoom; cx.setLineDash([8 / zoom, 5 / zoom]);
     cx.beginPath(); line.forEach(([x, y], j) => j ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.setLineDash([]);
@@ -368,6 +402,12 @@ function finishLasso(erase) {
   const q = (lasso || []).filter((p, j, a) => !j || Math.hypot(p[0] - a[j - 1][0], p[1] - a[j - 1][1]) > 1);
   lasso = null; lassoDown = false;
   if (q.length < 3) return draw();
+  if (tool === 'light') {
+    const m = M(), k = m.w / cv.width;
+    (m.lit = m.lit || []).push({ pts: q.map(([x, y]) => [x * k, y * k]), cut: !!erase });
+    if (!m.blackout) { m.blackout = 0.7; bo.value = 0.7; boShow(0.7); }
+    save(); draw(); return flash(erase ? 'cut back to dark' : 'bright area added');
+  }
   const c = mask.getContext('2d');
   c.globalCompositeOperation = erase ? 'destination-out' : 'source-over'; c.fillStyle = '#fff';
   c.beginPath(); q.forEach(([x, y], j) => j ? c.lineTo(x, y) : c.moveTo(x, y)); c.closePath(); c.fill();
@@ -452,7 +492,12 @@ cv.onmousedown = async e => {
   const m = M(); if (!m || m.error) return;
   if (brushy()) { painting = true; paint(e); return; }
   const p = toImg(e);
-  if (tool === 'lasso') {
+  if (tool === 'light' && e.altKey && !lasso) {
+    const i = (m.lit || []).map((sh, j) => [sh, j]).reverse().find(([sh]) => inside(p, sh.pts));
+    if (i) { m.lit.splice(i[1], 1); draw(); save(); flash('bright shape deleted'); }
+    return;
+  }
+  if (tool === 'lasso' || tool === 'light') {
     const q = toCanvas(e), tol = 10 * cv.width / cv.getBoundingClientRect().width;
     if (lasso && lasso.length >= 3 && Math.hypot(q[0] - lasso[0][0], q[1] - lasso[0][1]) < tol) return finishLasso(e.shiftKey);
     (lasso = lasso || []).push(q); lassoDown = true; draw(); return;
@@ -485,7 +530,7 @@ cv.onmousedown = async e => {
   cv.onmousemove(e);
 };
 cv.ondblclick = e => {
-  if (tool === 'lasso' && lasso) return finishLasso(e.shiftKey);
+  if ((tool === 'lasso' || tool === 'light') && lasso) return finishLasso(e.shiftKey);
   if (tool === 'draw' && pts) return finishDraw();
   const m = M(); if (tool !== 'edit' || !m || m.error) return;
   const h = hit(m, toImg(e));
@@ -494,7 +539,7 @@ cv.ondblclick = e => {
 cv.onmousemove = e => {
   if (panning) { pan = [e.clientX - panning[0], e.clientY - panning[1]]; view(); return; }
   if (tool === 'draw') { hover = toImg(e); draw(); return; }
-  if (tool === 'lasso') {
+  if (tool === 'lasso' || tool === 'light') {
     hover = toCanvas(e);
     if (lassoDown && lasso) { const l = lasso[lasso.length - 1]; if (Math.hypot(hover[0] - l[0], hover[1] - l[1]) > 3 / zoom) lasso.push(hover); }
     draw(); return;
@@ -566,6 +611,16 @@ async function saveMask() {
 async function setMode(mode) { M().mode = mode; modeBtns(); draw(); list(); await save(); }
 document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
 document.querySelectorAll('[data-tool]').forEach(b => b.onclick = () => setTool(b.dataset.tool));
+const bo = document.getElementById('bo'), bov = document.getElementById('bov');
+const boShow = v => bov.textContent = Math.round(v * 100);
+bo.oninput = () => { M().blackout = +bo.value; boShow(bo.value); draw(); };
+bo.onchange = () => save();
+const lf = document.getElementById('lf');
+lf.oninput = () => { M().lift = +lf.value; draw(); };
+lf.onchange = () => save();
+document.getElementById('boall').onclick = async () => {
+  names.forEach(n => marks[n].blackout = +bo.value); await api('/save', marks); flash(`blackout ${Math.round(bo.value * 100)}% on every photo`);
+};
 const ow = document.getElementById('ow');
 ow.oninput = () => { M().outline_w = +ow.value; draw(); };
 ow.onchange = () => save();
@@ -578,7 +633,7 @@ document.getElementById('approve').onclick = async () => {
 };
 document.getElementById('reset').onclick = async () => {
   if (!await ask('Reset this photo to the automatic placement? Hand edits to the pin and outline are lost (the behind mask and outline thickness stay).')) return;
-  const m = M(); m.manual = false; m.anchors = {}; m.gaps = []; delete m.pin_len; m.reviewed = false;
+  const m = M(); m.manual = false; m.anchors = {}; m.gaps = []; m.lit = []; delete m.pin_len; m.reviewed = false;
   await save();
   const r = await api('/solve', { file: names[cur], anchors: {} });
   marks = r.marks; anchors = {}; draw(); list();
@@ -592,7 +647,7 @@ document.getElementById('apply').onclick = async () => {
 window.onkeydown = e => {
   if (e.target.tagName === 'INPUT') return;
   if (e.key === ' ') { e.preventDefault(); if (!spaceDown) { spaceDown = true; cv.style.cursor = 'grab'; } return; }
-  if (tool === 'lasso' && lasso) {
+  if ((tool === 'lasso' || tool === 'light') && lasso) {
     if (e.key === 'Enter') { e.preventDefault(); return finishLasso(e.shiftKey); }
     if (e.key === 'Escape') { lasso = null; return draw(); }
     if (e.key === 'Backspace') { e.preventDefault(); lasso.pop(); if (!lasso.length) lasso = null; return draw(); }
@@ -618,6 +673,7 @@ window.onkeydown = e => {
   else if (e.key === ']') setBrush(brush * 1.25);
   else if (e.key === 'r') setTool('razor');
   else if (e.key === 'a') setTool('lasso');
+  else if (e.key === 'g') setTool('light');
 };
 load();
 </script>
