@@ -3,7 +3,7 @@ client: kollosche
 address: 5 Esther (Villas on Esther townhouses, street TBC)
 opened: 2026-10-27
 status: generating        # intake → generating → review → delivered
-cost: { credits: 38148, hf_credits: 0, aud: 0 }   # derived from ## Ledger
+cost: { credits: 38148, hf_credits: 56, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — Kollosche day-to-night clips, Villas on Esther
@@ -30,6 +30,7 @@ This is a different property from the Pottsville reel. Clip 1 was checked frame-
 - 2026-10-27 Finals picked (zip `board-creations (31)` → `Downloads/Kollosche Day to Night/finals-1080p/`). Clip 1: O6IcQ2Oynm. Clip 2: IfO199itvE. Clip 3: nV5mlLuYQD. Clip 4: MBLusy2DCm, with the sign checked and still reading "5 / VILLAS ON ESTHER". The 4K Precision upscale is quoted at 2,297 + 1,897 + 1,897 + 2,297 = 8,388 cr, waiting on Hunter's go.
 - 2026-10-27 Upscaled with Magnific Precision 4K x4 (8,388 cr). It returned 2560x1440 again, the same cap as Pottsville, so I scaled to 3840x2160 locally with lanczos. No frozen tails were detected, because Seedance generated real motion for the full 4–5 s, so the clips are delivered at full length and Hunter trims them in the edit. Delivered to `~/Downloads/Kollosche Day to Night/FINAL 4K/` as ProRes 422 HQ and H.264, one each per clip.
 - 2026-10-27 Hunter flagged that clip 3's motion drifted from the source. The source was only 3.0 s, so Seedance invented the move. Hunter is redoing all 4 on Higgsfield himself, either with Kling 3.0 Omni Edit at native 4K or with Seedance 2.5 `video_edit`, using at least 4 s of real footage plus a motion-lock line. The current FINAL 4K set stays in place until the replacements land.
+- 2026-10-27 Hunter redid the clips on Higgsfield. Seedance was blocked by the copyright filter, so he used Kling 3.0 Omni Edit. Clip 1 came back at 1080p (4.4 s) and clip 3 at 480p (4.0 s). I upscaled both with Topaz at 2160p to a true 3840x2160, with no 2560 cap. Clip 1 is crisp. Clip 3 is usable but softer, because the source was 480p. Delivered as `FINAL 4K/* v2 (Topaz)` in .mp4 and ProRes .mov, and the v1 versions moved to `old v1/`. Clip 2 stays as the Magnific v1. Clip 4 is still open because Omni keeps lighting the sign; the fallback is a free comp of the sign wall.
 
 ## Ledger
 
@@ -37,6 +38,7 @@ This is a different property from the Pottsville reel. Clip 1 was checked frame-
 <!-- Higgsfield batches: gen_runner.py run appends here. Magnific/MCP or web spends: gen_runner.py log JOB.md <amount> <hf|cr|aud> <note> -->
 - 2026-10-27 | 29760 cr | Hunter's Magnific web Seedance 2.5 video runs (6x 1080p + 4x draft 480p, all 4 clips). Image stills not included
 - 2026-10-27 | 8388 cr | Magnific video_upscale Precision 4K x4 (clip1 2297, clip2 1897, clip3 1897, clip4 2297)
+- 2026-10-27 | 56 hf | Higgsfield topaz_video 2160p x2 (clips 1+3 Omni redo). Estimate ~28/clip, the CLI gives no quote
 
 ---
 _Vault: [[jarvis]] · Client: [[kollosche]]_
