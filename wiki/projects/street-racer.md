@@ -57,5 +57,19 @@ A three-lap arcade racer built in the browser on 2026-10-27, straight after [[dr
   - **White glow:** baked-in emission is zeroed, and bloom drops to 0.18 in the garage.
 - **Steering:** a smaller lock (0.42), a slower steering ramp, half the counter-steer assist, a gentler handbrake rotation and slower yaw response while sliding. The user found v3 "touchy", and drift mode "extremely touchy".
 
+## v5: Pit lane, tyre wear, fuel, racecraft AI (2026-10-28)
+- **Races are now 5 laps**, so one stop is needed:
+  - **Tyres** wear from distance, sliding and hard braking (faster off-road). Grip scales to 66% when they're bald.
+  - **Fuel** burns by throttle × the power tune. An empty tank cuts drive to a crawl.
+  - **HUD:** tyre and fuel gauges (blue → amber → red) plus a "BOX THIS LAP" call.
+- **Pit lane:** it runs outside the left wall along the start straight, with wall gaps at the entry (before the line) and the exit, its own asphalt, an outer wall, a yellow box with crew and tyre stacks, and PIT/EXIT boards. There's an 80 km/h limiter between the gaps. Stopping in the box holds the car for 2.6 s plus fuel time, then refits tyres and refuels. The collision limits switch between the main track and the pit lane by index zone (`inPit` state).
+- **AI:**
+  - **Braking:** target speed comes from braking distance to every corner within about 110 samples ahead. Corner speed is √(lateral-g × radius), and lateral g scales with tyre wear.
+  - **Racing line:** outside on entry and inside at the apex.
+  - **Racecraft:** it overtakes to the other side when a car is just ahead in its line, and skill now runs 0.97–1.03 with a small catch-up boost only when far behind.
+  - **Strategy:** it pits when tyres drop below 42% or fuel below 24%. Its steering lock is separate from the player's softened one.
+  - **Lesson:** an AI whose target line gets clamped to the track edge can never enter the pit, so the entry gap must lift that clamp. Verified that rivals box, get serviced and rejoin.
+- **Realism:** a rubbered-in racing line, mown-stripe grass, a lit city skyline beyond the hills, and contact shadows under every car.
+
 ## Next ideas
 More tracks, wheel detection for the static-wheel cars (G80, M5, R8, RX-7, 930, M4 GT), the G82 M4, a published link.

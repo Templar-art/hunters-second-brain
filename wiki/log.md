@@ -1531,3 +1531,6 @@ A Forza-style garage with 14 real cars (new-gen BMW M included) baked by a headl
 
 ## [2026-10-27] ingest | Street Racer v4 F1 circuit
 A harder F1 layout with hills, crests and jumps, a forest, tyre walls and hills around it. Compressed GLBs, fixed wheel pivots and backwards cars, removed the start-line bar, softer steering. 0cr. Page: [[street-racer]].
+
+## [2026-10-28] ingest | Street Racer v5 pits and strategy
+A working pit lane, tyre wear and fuel, 5-lap races, AI with braking-distance planning, a racing line, overtakes and its own pit stops, plus a realism pass (racing line, skyline, contact shadows). 0cr. Page: [[street-racer]].
