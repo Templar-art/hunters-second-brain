@@ -1494,3 +1494,6 @@ Made a tracked white lot outline on the top-down Main.mp4 and a roof-locked K pi
 
 ## [2026-10-27] harvest | Kollosche townhouse drone graphics delivered
 Hunter approved the tracked lot outline and the roof-locked K pin. Status set to delivered in JOB.md and [[kollosche]]. Lesson: for straight-down shots that open on a blurred spin, chain homographies back from the sharpest frame instead of running the drone fit. No spend.
+
+## [2026-10-27] ingest | Kollosche outro generator + Eddie Wardale outro
+Built `projects/kollosche-outro/make_outro.py`, which copies Kollosche's own end card (HarfBuzz kerning; the --check re-render matches within 0.2 % of pixels). Rendered Eddie Wardale's outro in 16:9 + 9:16 for the townhouse job. Flagged that Taylor Kleinberg's number differs between the end-card files and the guidelines. No spend.
