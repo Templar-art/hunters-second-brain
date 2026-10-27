@@ -26,5 +26,23 @@ A three-lap arcade racer built in the browser on 2026-10-27, straight after [[dr
 - **Lesson:** keep the bloom threshold around 0.95, or every white surface glows.
 - **More cars:** a research pass found the vecarz F40 (120k tris, the closest to the Huracán's realism), plus low-poly GT-Rs and CC0 Quaternius/Kenney kits. None are downloaded yet.
 
+## v3: Garage, 14 cars, drift mode (same day)
+- **Cars (14):** Huracán, F40, Supra MK4, RX-7 FD, AE86, Skyline R34, Silvia S15, 930 Turbo, BMW M3 Competition G80, M3 CS Touring, M4 GT3 Touring 24h, M5 Competition, Audi R8 and Audi RS5. All came free from Sketchfab via Chrome. An M4 Competition G82 is in the roster code but its download never landed; drop `cars/m4.glb` in and it appears. The McLaren F1 came as a `.7z`, and nothing on the Mac opens that format.
+- **Prep pipeline:** headless Blender (`Blender -b -P runcar.py -- name path flip`), four at a time, using the `carprep.py` functions:
+  1. Import any of glb, gltf, fbx, obj or blend.
+  2. Decimate to 180k tris and shrink textures to 1024.
+  3. Normalise to real length, facing +Y.
+  4. Detect wheels from tyre-shaped loose parts. Where that fails, place static wheel pivots estimated from the body box.
+  5. Tag the largest body material `paint` and export WEBP GLBs.
+  6. Run `glbfix.py` to strip texture references whose image never exported. Blender leaves sourceless texture stubs that crash three's GLTFLoader.
+
+  Sources sit in `cars_src/`, which is gitignored.
+- **Garage:** a showroom turntable built off to the side of the circuit. It has paint swatches plus a custom colour picker, and five finishes (gloss, metallic, matte, chrome, pearl). There are rim colours, ride height and camber, plus tyre smoke colour, underglow and an exhaust flames toggle with a "Rev it" test. The tune sliders cover power, gearing, grip, drift balance, brakes, steering lock and weight. Setups save per car in localStorage.
+- **Handling rewrite:** velocity stays in world space and the body yaws, so rotation becomes slip naturally. Grip bleeds slip off, power-over and the handbrake loosen the rear, and there's counter-steer assist. Steering uses real geometry (`v·tan(δ)/wheelbase`), reverse works on S, and the gearbox has wider hysteresis.
+- **Map fix:** walls and gravel crossed the road on tight corners because ribbon offsets bigger than the turn radius fold over. Inside offsets are now clamped to 0.82× the smoothed local radius, and the wall collision follows the clamped line. Grandstands, towers and the pit building now skip any spot within reach of another part of the track.
+- **Exhaust spit flames:** additive sprites with a blue core plus an orange flash light, triggered on upshifts and for about half a second of crackle after lifting at high RPM, with noise-burst backfire pops.
+- **Drift mode:** a 90-second solo run. Slide angle × speed builds a combo, holding it raises a multiplier up to x5, and a wall hit loses the combo. Best score is saved.
+- **Lessons:** source files carry junk that blows out under bloom (flat emission, transmission body shells, magenta missing-texture colours), so neutralise it at load. Splitting 100k+ tri meshes into loose parts in Blender stalls, so decimate first and skip the split on models already in many parts.
+
 ## Next ideas
-Touch controls, engine and skid sound, drift smoke, more tracks, a published link.
+Touch controls, more tracks, wheel detection for the static-wheel cars (G80, M5, R8, RX-7, 930, M4 GT), the G82 M4, a published link.

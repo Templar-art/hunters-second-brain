@@ -1525,3 +1525,6 @@ A 3-lap racer against AI cars, with a Blender-built car and reused houses, 0cr. 
 
 ## [2026-10-27] ingest | Street Racer v2 Night GP
 Night stadium, real Huracán x6, drift and smoke, the Huracán recordings as engine audio, bloom. 0cr. Page: [[street-racer]].
+
+## [2026-10-27] ingest | Street Racer v3 Garage
+A Forza-style garage with 14 real cars (new-gen BMW M included) baked by a headless Blender pipeline. Paint, finish, wheels, tune, smoke and underglow, a handling rewrite, the folded-track map fix, exhaust spit flames and a drift scoring mode. 0cr. Page: [[street-racer]].
