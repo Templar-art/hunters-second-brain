@@ -2,7 +2,7 @@
 client: kollosche
 address: townhouse block (address TBC), Gold Coast
 opened: 2026-10-27
-status: review        # intake → generating → review → delivered
+status: delivered        # intake → generating → review → delivered
 cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger — never edit by hand
 ---
 
@@ -16,7 +16,7 @@ Source clips: `~/Downloads/Kollosche Day to Night/Drones/` (`Main.mp4`, `View.mp
 |---|------|----------|--------|-------|
 | 1 | Main (top-down) | local CG overlay, chained SIFT homographies | delivered | White lot outline around the whole townhouse lot (street fence, north boundary, rear timber fence, south wall by the driveway); boundary traced by eye, not from a plan. Draws on from frame 15 once the opening spin and blur settle. Track ≤0.6 px/frame from frame 14. |
 | 2 | View (wide to Surfers) | plate-vfx camera solve + KLT roof track | delivered | Kollosche K pin on the townhouse roof (2nd unit), line screen-vertical, K upright. Frame 1 is a cut, so the pin starts on frame 2. Tip KLT track; the camera solve agrees within 3 px median. |
-| 3 | Agent outro (Eddie Wardale, 0408 881 678) | `projects/kollosche-outro/make_outro.py` | review | Navy overlay + kerned Söhne Breit Kräftig + copyright line, fading in together. Layout measured from Kollosche's Taylor × Thibault card (re-render matches within 0.2 % of pixels). 16:9 + 9:16 ProRes 4444 alpha + PNG in `projects/kollosche-outro/out/`. |
+| 3 | Agent outro (Eddie Wardale, 0408 881 678) | `projects/kollosche-outro/make_outro.py` | delivered | Navy overlay + kerned Söhne Breit Kräftig + copyright line, fading in together. Layout measured from Kollosche's Taylor × Thibault card (re-render matches within 0.2 % of pixels). 16:9 + 9:16 ProRes 4444 alpha + PNG in `projects/kollosche-outro/out/`. |
 
 ## Log
 
@@ -26,6 +26,7 @@ Source clips: `~/Downloads/Kollosche Day to Night/Drones/` (`Main.mp4`, `View.mp
 - 2026-10-27 review: outputs sent to Hunter. Each shot comes as an mp4 preview, a ProRes 422 HQ comp and a ProRes 4444 alpha overlay in `<shot>/out/`.
 - 2026-10-27 delivered: Hunter approved both shots ("looks good").
 - 2026-10-27 outro: Hunter asked for the ending. Agent Eddie Wardale, 0408 881 678 (from Hunter). Rendered 16:9 + 9:16.
+- 2026-10-27 delivered: Hunter accepted the outro and moved on to the next reels.
 
 ## Ledger
 
