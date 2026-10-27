@@ -19,6 +19,16 @@ updated: 2026-10-27
    - "Apply correction" carries a compass offset fitted from the approved photos to the rest of the flight.
 4. **Render.** Run `drone_pin.py render <job>`. It writes the full-resolution JPG (EXIF and colour profile kept) and a transparent PNG overlay for each approved photo. The outline carries a very subtle drop shadow (Hunter, 2026-10-27): black at 60%, offset half a line width down, blurred 0.6× the line width; the pin has none. The pin uses the same proportions as the video pin, and the line shortens when needed so the K stays in frame.
 
+## Style (matched to Kollosche's own listing stills, 2026-10-27)
+- **Pin:** a Kollosche Blue (#011A3B) square badge with a thin white border and a white K. It sits directly on a thin white line, with no gap. Drag the badge to set the line length per photo. This replaced the bare-K video pin for stills.
+- **Outline:** thin white, 0.22% of photo width, with a very subtle drop shadow.
+- **Location pins** (dot, line, label and auto distance) are built for other clients. **Kollosche doesn't use location pins**, only the logo pin and the outline.
+
+## Hand editing (Hunter's request, 2026-10-27)
+- **Outline:** drag a corner, drag the line or the inside to move it all, double-click the line to add a corner, and ⌥-click a corner to delete it. Hand edits stick, and re-solving the camera won't overwrite them.
+- **Behind brush (B):** paint over buildings or trees that stand in front of the outline, and the line and its shadow are hidden there. The mask is stored per photo in `masks/`. Use it on the close-up and straight-on shots; the far wides don't need it.
+- **Drones-6 lesson (Esther Pl):** at 45 m up, the drone's height and heading were off enough that the camera maths couldn't place the outline (the rear corners landed in front of the building). Close oblique shots will often need the outline placed by hand, and that's what the editing is for.
+
 ## Lessons from the build (Somerset Dr test set, 7 photos)
 - **⚠️ Don't trust `GimbalYawDegree`.** On these DJI files it sat 39–55° off true north. `FlightYawDegree` (the aircraft heading) put the lot on the house on every photo, top-downs included, so the tool uses it.
 - **Accuracy with no drags:** the outline matched the fence lines on the top-down and the close obliques, and the pin landed on the roof ridge at 360 m. The 400 m near-horizon wide was about 1° off, and one drag fixed it.
@@ -27,9 +37,10 @@ updated: 2026-10-27
 
 ## Usage
 ```
-python3 -I projects/drone-pin/drone_pin.py init   <job_dir> <photos_dir> --address "47 Somerset Drive Mudgeeraba"
-python3 -I projects/drone-pin/drone_pin.py review <job_dir>
-python3 -I projects/drone-pin/drone_pin.py render <job_dir>     # --all also renders unapproved photos
+PY=~/.venvs/typeset/bin/python   # needs OpenCV, SciPy, Pillow, HarfBuzz
+$PY -I projects/drone-pin/drone_pin.py init   <job_dir> <photos_dir> --address "47 Somerset Drive Mudgeeraba"
+$PY -I projects/drone-pin/drone_pin.py review <job_dir>
+$PY -I projects/drone-pin/drone_pin.py render <job_dir>     # --all also renders unapproved photos
 ```
 Mode per photo: `pin`, `outline`, `both` or `none`. By default, straight-down shots (pitch ≤ -70°) get the outline and angled shots get the pin.
 

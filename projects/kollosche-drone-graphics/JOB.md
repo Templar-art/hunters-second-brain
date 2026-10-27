@@ -5,6 +5,8 @@ opened: 2026-10-27
 status: review           # intake → generating → review → delivered
 cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from - 2026-10-27 stills: 6 drone stills from the SSD (`Done/Drone`) auto-placed with [[drone-photo-pin]] (`stills/`, roof height 10 m). All 6 landed with no drags. Awaiting Hunter's review in the browser.
 
+- 2026-10-27 stills: pin restyled to Kollosche's photo badge (navy square, white K, thin border); thin outline, editable by hand, with a behind brush. Drones-6 outline needs Hunter's hand placement (drone height/heading off). Re-rendered as a draft; final render after Hunter's review.
+
 ## Ledger — never edit by hand
 ---
 

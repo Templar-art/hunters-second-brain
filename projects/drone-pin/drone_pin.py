@@ -12,12 +12,19 @@ How it works:
   3. Drone compass and GPS drift by a degree or two. Drag a pin tip in the
      review page and it solves that photo's yaw/pitch correction; "Apply to
      flight" carries the median correction to every photo you haven't touched.
+  4. The outline is freely editable per photo (corners, move, add/delete
+     points), a "behind" brush hides it where buildings stand in front, and
+     location pins (label + auto distance) clicked on one photo appear on every
+     photo that sees that spot.
 
-Usage (system python3):
-  python3 -I drone_pin.py init   <job_dir> <photos_dir> --address "47 Somerset Drive Mudgeeraba"
-  python3 -I drone_pin.py review <job_dir>          # opens the review page
-  python3 -I drone_pin.py render <job_dir>          # finished JPGs + transparent PNG overlays
+Usage (~/.venvs/typeset python: OpenCV, SciPy, Pillow and HarfBuzz for kerned labels):
+  PY=~/.venvs/typeset/bin/python
+  $PY -I drone_pin.py init   <job_dir> <photos_dir> --address "47 Somerset Drive Mudgeeraba"
+  $PY -I drone_pin.py review <job_dir>          # opens the review page
+  $PY -I drone_pin.py render <job_dir>          # finished JPGs + transparent PNG overlays
 """
+import base64
+import os
 import argparse
 import http.server
 import io
@@ -44,15 +51,26 @@ ROOT = HERE.parents[1]
 QLD = "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer"
 DIAG35 = math.hypot(36, 24)
 ROOF_H = 6.0          # default metres above ground for the pin tip (--roof-height per site)
+TARGET_MAX_RANGE = 120  # m: only top-downs and close shots may set the house (a 245 m drag moved it metres off)
 PREVIEW = 1600        # long edge of review previews (px)
 EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 
-# Pin and outline sizes, as fractions of the photo (same ratios as the video pin).
-K_W, LINE_W, LINE_LEN, GAP, TOP_MARGIN = 0.079, 0.0037, 0.42, 0.015, 0.05
-OUTLINE_W = 0.0055
+# Pin and outline, matched to Kollosche's own listing stills (Hunter's refs,
+# 2026-10-27): a navy square badge with a thin white border and a white K,
+# sitting straight on a thin white line. Fractions of photo height unless noted.
+BADGE, BADGE_K, BADGE_BORDER = 0.085, 0.48, 0.018   # badge side; K width and border as fractions of the badge
+BADGE_FILL = (1, 26, 59)                             # Kollosche Blue #011A3B
+LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05
+OUTLINE_W = 0.0022                                   # of photo width
 # Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
 # below, low opacity. All in multiples of the outline width.
 SHADOW_OFFSET, SHADOW_BLUR, SHADOW_OPACITY = 0.5, 0.6, 0.6
+# Location pins: dot on the spot, thin line up, label (Kräftig caps) over the
+# distance (Buch). Fractions of photo height; tracking in em.
+PLACE_DOT, PLACE_LINE, PLACE_GAP = 0.0032, 0.07, 0.009
+PLACE_CAP, PLACE_SUB, PLACE_TRACK, PLACE_LEAD = 0.0135, 0.0095, 0.06, 0.65
+FONT_K = os.path.expanduser("~/Library/Fonts/SöhneBreit-Kräftig.otf")
+FONT_B = os.path.expanduser("~/Library/Fonts/SöhneBreit-Buch.otf")
 
 
 # --- cadastre -----------------------------------------------------------------
@@ -192,14 +210,46 @@ def world(m, site, dz=0.0):
 
 
 def propose(m, site, dyaw=0.0, dpitch=0.0, droll=0.0, dz=None):
+    """Re-project the site through this photo's (corrected) camera. A hand-edited
+    outline and hand-placed location pins are kept as they are."""
     dz = m.get("dz", 0.0) if dz is None else dz
     tip_w, lot_w = world(m, site, dz)
     tip, tip_ok = project(m, [tip_w], dyaw, dpitch, droll)
     lot, lot_ok = project(m, lot_w, dyaw, dpitch, droll)
     inside = lambda p: 0 <= p[0] < m["w"] and 0 <= p[1] < m["h"]
+    places = dict(m.get("places", {}))
+    for pl in site.get("places", []):
+        key = str(pl["id"])
+        old = places.get(key, {})
+        if old.get("manual"):
+            continue
+        w = np.r_[enu(pl["lat"], pl["lon"], m["lat"], m["lon"]), dz]
+        uv, ok = project(m, [w], dyaw, dpitch, droll)
+        seen = bool(ok[0] and inside(uv[0]))
+        places[key] = {"xy": uv[0].round(1).tolist(), "on": old.get("on", seen) and seen, "manual": False}
     return {"tip": tip[0].round(1).tolist(), "tip_visible": bool(tip_ok[0] and inside(tip[0])),
-            "lot": lot.round(1).tolist(), "lot_visible": bool(lot_ok.all() and all(inside(p) for p in lot)),
-            "dyaw": dyaw, "dpitch": dpitch, "droll": droll, "dz": dz}
+            "lot": m["lot"] if m.get("manual") else lot.round(1).tolist(),
+            "lot_visible": bool(lot_ok.all() and all(inside(p) for p in lot)),
+            "places": places, "dyaw": dyaw, "dpitch": dpitch, "droll": droll, "dz": dz}
+
+
+def place_distance(site, pl):
+    d = float(np.linalg.norm(enu(pl["lat"], pl["lon"], site["tip"][1], site["tip"][0])))
+    return f"{d / 1000:.1f} KM" if d >= 1000 else f"{round(d / 10) * 10:.0f} M"
+
+
+def add_place(m, site, uv, label):
+    """A location clicked on this photo: its ray meets the ground, and that spot
+    becomes a place every photo can show."""
+    e, n = unproject(m, uv, m.get("dz", 0.0), m.get("dyaw", 0.0), m.get("dpitch", 0.0), m.get("droll", 0.0))
+    if not math.isfinite(e) or np.hypot(e, n) > 50000:
+        raise ValueError("that point is at or above the horizon; click the ground under the place")
+    pl = {"id": max([p["id"] for p in site.get("places", [])], default=0) + 1,
+          "label": label.strip().upper(), "dist": True,
+          "lon": m["lon"] + math.degrees(e / (6378137.0 * math.cos(math.radians(m["lat"])))),
+          "lat": m["lat"] + math.degrees(n / 6378137.0), "from": m["file"]}
+    site.setdefault("places", []).append(pl)
+    return pl
 
 
 def solve(m, site, anchors):
@@ -320,14 +370,25 @@ def cmd_review(a):
             if path == "/":
                 html = (HERE / "review.html").read_text()
                 return self.send(html.replace("__SIZES__", json.dumps(
-                    {"K_W": K_W, "LINE_W": LINE_W, "LINE_LEN": LINE_LEN, "GAP": GAP,
-                     "TOP_MARGIN": TOP_MARGIN, "OUTLINE_W": OUTLINE_W})).encode(), "text/html")
+                    {"BADGE": BADGE, "BADGE_K": BADGE_K, "BADGE_BORDER": BADGE_BORDER,
+                     "BADGE_FILL": "#%02x%02x%02x" % BADGE_FILL, "LINE_W": LINE_W, "LINE_LEN": LINE_LEN,
+                     "TOP_MARGIN": TOP_MARGIN, "OUTLINE_W": OUTLINE_W,
+                     "SHADOW_OFFSET": SHADOW_OFFSET, "SHADOW_BLUR": SHADOW_BLUR, "SHADOW_OPACITY": SHADOW_OPACITY,
+                     "PLACE_DOT": PLACE_DOT, "PLACE_LINE": PLACE_LINE, "PLACE_GAP": PLACE_GAP,
+                     "PLACE_CAP": PLACE_CAP, "PLACE_SUB": PLACE_SUB, "PLACE_TRACK": PLACE_TRACK,
+                     "PLACE_LEAD": PLACE_LEAD})).encode(), "text/html")
             if path == "/marks":
                 return self.send(json.dumps({"site": site, "marks": load(job, "marks.json")}).encode())
             if path.startswith("/preview/"):
                 f = job / "previews" / Path(path).name
                 if f.exists():
                     return self.send(f.read_bytes(), "image/png" if f.suffix == ".png" else "image/jpeg")
+            if path.startswith("/mask/"):
+                f = job / "masks" / Path(path).name
+                if f.exists():
+                    return self.send(f.read_bytes(), "image/png")
+            if path in ("/font/kraftig", "/font/buch"):
+                return self.send(Path(FONT_K if path.endswith("kraftig") else FONT_B).read_bytes(), "font/otf")
             self.send(b"not found", "text/plain", 404)
 
         def do_POST(self):
@@ -342,7 +403,9 @@ def cmd_review(a):
                     # Handles dragged: solve this photo's correction, re-project everything.
                     m = marks[body["file"]]
                     anchors = dict(body["anchors"])
-                    if "tip" in anchors and (not site.get("tip_from") or body.get("target")):
+                    rng = np.linalg.norm(enu(site["tip"][1], site["tip"][0], m["lat"], m["lon"]))
+                    close = m["pitch"] <= -60 or rng <= TARGET_MAX_RANGE
+                    if "tip" in anchors and close and (not site.get("tip_from") or body.get("target")):
                         # First pin drag (or "set house here"): this pixel IS the house.
                         # Move the target for every photo instead of bending this camera.
                         set_target(m, site, anchors.pop("tip"))
@@ -357,6 +420,36 @@ def cmd_review(a):
                     elif not body.get("target") and "tip" not in body["anchors"]:
                         m.update(propose(m, site))
                     return self.send(json.dumps({"m": m, "site": site, "marks": marks}).encode())
+                if self.path == "/mask":
+                    # "Behind" brush: where buildings stand in front of the outline.
+                    (job / "masks").mkdir(exist_ok=True)
+                    png = base64.b64decode(body["data"].split(",", 1)[1])
+                    (job / "masks" / (Path(body["file"]).stem + ".png")).write_bytes(png)
+                    return self.send(b"{}")
+                if self.path == "/place":
+                    m = marks[body["file"]]
+                    try:
+                        add_place(m, site, body["xy"], body["label"])
+                    except ValueError as e:
+                        return self.send(json.dumps({"error": str(e)}).encode())
+                    save(job, "site.json", site)
+                    for o in marks.values():
+                        if "error" not in o:
+                            o.update(propose(o, site, o.get("dyaw", 0.0), o.get("dpitch", 0.0), o.get("droll", 0.0)))
+                    save(job, "marks.json", marks)
+                    return self.send(json.dumps({"site": site, "marks": marks}).encode())
+                if self.path == "/place_edit":
+                    pl = next(p for p in site["places"] if p["id"] == body["id"])
+                    if body.get("delete"):
+                        site["places"].remove(pl)
+                        for o in marks.values():
+                            o.get("places", {}).pop(str(pl["id"]), None)
+                    for k in ("label", "dist"):
+                        if k in body:
+                            pl[k] = body[k].strip().upper() if k == "label" else bool(body[k])
+                    save(job, "site.json", site)
+                    save(job, "marks.json", marks)
+                    return self.send(json.dumps({"site": site, "marks": marks}).encode())
                 if self.path == "/apply":
                     # Median correction of the reviewed photos, applied to the rest of the flight.
                     done = [m for m in marks.values() if m.get("reviewed") and m.get("anchors") and "error" not in m]
@@ -393,15 +486,111 @@ def k_glyph():
     return k.crop(k.getchannel("A").getbbox())
 
 
-def pin_layout(W, H, tip, k_aspect):
-    """K size and line length for a tip; the line shortens so the K stays in frame."""
-    kw = K_W * H
-    kh = kw * k_aspect
-    room = tip[1] - TOP_MARGIN * H - kh - GAP * H
-    return kw, kh, max(0.0, min(LINE_LEN * H, room))
+def pin_layout(m):
+    """Badge side and line length; per-photo pin_len (dragged in review) wins,
+    and the line shortens so the badge stays in frame."""
+    H = m["h"]
+    side = BADGE * H
+    want = m.get("pin_len", LINE_LEN) * H
+    room = m["tip"][1] - TOP_MARGIN * H - side
+    return side, max(0.0, min(want, room))
 
 
-def draw_overlay(m, k):
+def badge(side, k):
+    """Navy square, thin white border, white K centred."""
+    side = round(side)
+    b = Image.new("RGBA", (side, side), BADGE_FILL + (255,))
+    bw = max(1, round(BADGE_BORDER * side))
+    a = np.zeros((side, side), np.uint8)
+    a[:bw], a[-bw:], a[:, :bw], a[:, -bw:] = 255, 255, 255, 255
+    border = Image.new("RGBA", (side, side), (255, 255, 255, 0))
+    border.putalpha(Image.fromarray(a))
+    b.alpha_composite(border)
+    kw = round(BADGE_K * side)
+    kk = k.resize((kw, round(k.height * kw / k.width)), Image.LANCZOS)
+    b.alpha_composite(kk, ((side - kk.width) // 2, (side - kk.height) // 2))
+    return b
+
+
+def text_image(text, font_path, cap_px, track_em):
+    """White kerned caps (HarfBuzz) whose cap height is cap_px; tight RGBA."""
+    import uharfbuzz as hb
+    from PIL import ImageDraw, ImageFont
+    probe = ImageFont.truetype(font_path, 1000)
+    hbox = probe.getbbox("H")
+    size = cap_px / ((hbox[3] - hbox[1]) / 1000)
+    font = ImageFont.truetype(font_path, max(1, round(size)))
+    face = hb.Font(hb.Face(hb.Blob.from_file_path(font_path)))
+    buf = hb.Buffer()
+    buf.add_str(text)
+    buf.guess_segment_properties()
+    hb.shape(face, buf, {"kern": True})
+    adv = [g.x_advance / face.face.upem * font.size for g in buf.glyph_positions]
+    track = track_em * font.size
+    width = sum(adv) + track * max(0, len(text) - 1)
+    ink = font.getbbox("H")
+    pad = round(cap_px)
+    layer = Image.new("L", (int(width) + 2 * pad, int(cap_px) + 2 * pad), 0)
+    d = ImageDraw.Draw(layer)
+    x = pad
+    for c, w in zip(text, adv):
+        d.text((x, pad - ink[1]), c, font=font, fill=255)
+        x += w + track
+    im = Image.new("RGBA", layer.size, (255, 255, 255, 0))
+    im.putalpha(layer)
+    return im, pad   # pad: offset of the cap top / left edge inside the image
+
+
+def shadowed(alpha, lw):
+    """The outline's subtle drop shadow, for any white alpha layer."""
+    off = round(SHADOW_OFFSET * lw)
+    sh = np.roll(alpha, off, axis=0).astype(np.float32)
+    sh = cv2.GaussianBlur(sh, (0, 0), SHADOW_BLUR * lw) * SHADOW_OPACITY
+    shadow = Image.new("RGBA", (alpha.shape[1], alpha.shape[0]), (0, 0, 0, 0))
+    shadow.putalpha(Image.fromarray(np.clip(sh, 0, 255).astype(np.uint8)))
+    line = Image.new("RGBA", shadow.size, (255, 255, 255, 0))
+    line.putalpha(Image.fromarray(alpha))
+    shadow.alpha_composite(line)
+    return shadow
+
+
+def draw_places(m, site, W, H):
+    """Location pins: dot, thin line up, label over distance, centred on the spot."""
+    layer = Image.new("RGBA", (W, H), (255, 255, 255, 0))
+    a = np.zeros((H, W), np.uint8)
+    lw = max(2, round(LINE_W * H))
+    for pl in site.get("places", []):
+        st = m.get("places", {}).get(str(pl["id"]))
+        if not st or not st.get("on"):
+            continue
+        x, y = st["xy"]
+        r = PLACE_DOT * H
+        cv2.circle(a, (round(x * 16), round(y * 16)), round(r * 16), 255, -1, cv2.LINE_AA, shift=4)
+        top = y - PLACE_LINE * H
+        a[max(0, round(top)):max(0, round(y)), max(0, round(x - lw / 2)):max(0, round(x - lw / 2) + lw)] = 255
+        lines = [(pl["label"], FONT_K, PLACE_CAP * H)]
+        if pl.get("dist", True):
+            lines.append((place_distance(site, pl), FONT_B, PLACE_SUB * H))
+        imgs = [text_image(t, f, c, PLACE_TRACK) + (c,) for t, f, c in lines]
+        lead = PLACE_LEAD * PLACE_CAP * H
+        block = sum(c for _, _, c in imgs) + lead * (len(imgs) - 1)
+        cy = top - PLACE_GAP * H - block
+        for im, pad, c in imgs:
+            tw = im.width - 2 * pad
+            tx = min(max(x - tw / 2, 0.02 * W), W - 0.02 * W - tw)
+            ta = np.array(im.getchannel("A"))
+            x0, y0 = round(tx - pad), round(cy - pad)
+            xs, ys = max(0, x0), max(0, y0)
+            xe, ye = min(W, x0 + ta.shape[1]), min(H, y0 + ta.shape[0])
+            if xe > xs and ye > ys:
+                a[ys:ye, xs:xe] = np.maximum(a[ys:ye, xs:xe], ta[ys - y0:ye - y0, xs - x0:xe - x0])
+            cy += c + lead
+    if a.any():
+        layer.alpha_composite(shadowed(a, lw))
+    return layer
+
+
+def draw_overlay(m, k, site=None, mask=None):
     W, H = m["w"], m["h"]
     ss = 2
     a = np.zeros((H * ss, W * ss), np.uint8)
@@ -415,23 +604,22 @@ def draw_overlay(m, k):
     im = Image.new("RGBA", (W, H), (255, 255, 255, 0))
     if alpha.any():
         lw = max(2, round(OUTLINE_W * W))
-        off = round(SHADOW_OFFSET * lw)
-        sh = np.roll(alpha, off, axis=0).astype(np.float32)
-        sh = cv2.GaussianBlur(sh, (0, 0), SHADOW_BLUR * lw) * SHADOW_OPACITY
-        shadow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        shadow.putalpha(Image.fromarray(np.clip(sh, 0, 255).astype(np.uint8)))
-        im.alpha_composite(shadow)
-    line = Image.new("RGBA", (W, H), (255, 255, 255, 0))
-    line.putalpha(Image.fromarray(alpha))
-    im.alpha_composite(line)
+        if mask is not None:
+            # "Behind" brush: hide the line (and so its shadow) where buildings stand in front.
+            mk = cv2.resize(np.array(mask.convert("L")), (W, H), interpolation=cv2.INTER_LINEAR).astype(np.float32)
+            mk = cv2.GaussianBlur(mk, (0, 0), 0.15 * lw)
+            alpha = (alpha * (1 - mk / 255)).astype(np.uint8)
+        im.alpha_composite(shadowed(alpha, lw))
+    if site is not None:
+        im.alpha_composite(draw_places(m, site, W, H))
     if m["mode"] in ("pin", "both"):
         tx, ty = m["tip"]
-        kw, kh, length = pin_layout(W, H, m["tip"], k.height / k.width)
+        side, length = pin_layout(m)
         lw = max(2, round(LINE_W * H))
         line = Image.new("RGBA", (lw, max(1, round(length))), (255, 255, 255, 255))
         im.alpha_composite(line, (round(tx - lw / 2), round(ty - length)))
-        kk = k.resize((round(kw), round(kh)), Image.LANCZOS)
-        im.alpha_composite(kk, (round(tx - kw / 2), round(ty - length - GAP * H - kh)))
+        bd = badge(side, k)
+        im.alpha_composite(bd, (round(tx - bd.width / 2), round(ty - length - bd.height)))
     return im
 
 
@@ -442,17 +630,21 @@ def cmd_render(a):
     out.mkdir(exist_ok=True)
     k = k_glyph()
     for name, m in marks.items():
-        if m["mode"] == "none":
+        if m["mode"] == "none" and not any(p.get("on") for p in m.get("places", {}).values()):
             continue
         if not m.get("reviewed") and not a.all:
             print(f"  skip {name}: not approved in review (use --all to render anyway)")
             continue
         src = Image.open(Path(site["photos"]) / name)
-        ov = draw_overlay(m, k)
+        mf = job / "masks" / (Path(name).stem + ".png")
+        mask = Image.open(mf).getchannel("A") if mf.exists() else None
+        ov = draw_overlay(m, k, site, mask)
         ov.save(out / f"{Path(name).stem}_overlay.png")
         final = src.convert("RGBA")
         final.alpha_composite(ov)
         extra = {k2: src.info[k2] for k2 in ("exif", "icc_profile") if k2 in src.info}
+        for old in out.glob(f"{Path(name).stem}_*.jpg"):
+            old.unlink()   # one finished JPG per photo, whatever its mode was last time
         final.convert("RGB").save(out / f"{Path(name).stem}_{m['mode']}.jpg", quality=95, **extra)
         print(f"  {name}: {m['mode']}")
     print("done", out)

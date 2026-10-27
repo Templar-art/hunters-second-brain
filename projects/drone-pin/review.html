@@ -5,30 +5,41 @@
 <title>Drone Pin Review</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  :root { --bg: #111317; --panel: #1a1d23; --line: #2a2e36; --text: #e8eaee; --dim: #8a909c; --accent: #61a8d8; --ok: #5cc28a; }
+  @font-face { font-family: "SohneK"; src: url(/font/kraftig); }
+  @font-face { font-family: "SohneB"; src: url(/font/buch); }
+  :root { --bg: #111317; --panel: #1a1d23; --line: #2a2e36; --text: #e8eaee; --dim: #8a909c; --accent: #61a8d8; --ok: #5cc28a; --warn: #f5b041; }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.4 -apple-system, "Poppins", sans-serif; display: grid; grid-template-columns: 260px 1fr; height: 100vh; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.4 -apple-system, "Poppins", sans-serif; display: grid; grid-template-columns: 250px 1fr; height: 100vh; overflow: hidden; }
   aside { background: var(--panel); border-right: 1px solid var(--line); overflow-y: auto; }
-  aside h1 { font-size: 13px; margin: 0; padding: 14px 14px 4px; letter-spacing: .04em; }
+  aside h1 { font-size: 12px; margin: 0; padding: 14px 14px 4px; letter-spacing: .06em; }
+  aside h2 { font-size: 11px; margin: 0; padding: 14px 14px 6px; color: var(--dim); letter-spacing: .06em; font-weight: 600; }
   aside .site { padding: 0 14px 12px; color: var(--dim); font-size: 12px; border-bottom: 1px solid var(--line); }
-  .ph { padding: 8px 14px; border-bottom: 1px solid var(--line); cursor: pointer; display: flex; gap: 8px; align-items: center; }
+  .ph { padding: 7px 14px; border-bottom: 1px solid var(--line); cursor: pointer; display: flex; gap: 8px; align-items: center; }
   .ph:hover { background: #22262e; }
   .ph.sel { background: #26303c; }
   .ph .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); flex: none; }
   .ph.done .dot { background: var(--ok); }
   .ph .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .ph .md { color: var(--dim); font-size: 12px; }
-  main { display: grid; grid-template-rows: auto 1fr auto; min-width: 0; }
-  .bar { display: flex; gap: 6px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .ph .md { color: var(--dim); font-size: 11px; }
+  .pl { padding: 6px 14px; display: flex; gap: 6px; align-items: center; border-bottom: 1px solid var(--line); }
+  .pl .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pl .ds { color: var(--dim); font-size: 11px; }
+  .pl button { padding: 2px 6px; font-size: 11px; }
+  .empty { padding: 4px 14px 10px; color: var(--dim); font-size: 12px; }
+  main { display: grid; grid-template-rows: auto 1fr auto; min-width: 0; min-height: 0; }
+  .bar { display: flex; gap: 6px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
   .bar.bottom { border-top: 1px solid var(--line); border-bottom: 0; color: var(--dim); font-size: 12px; }
-  button { background: #262a32; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+  .grp { display: flex; gap: 4px; padding-right: 8px; margin-right: 4px; border-right: 1px solid var(--line); }
+  button { background: #262a32; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; font: inherit; cursor: pointer; }
   button:hover { border-color: var(--dim); }
   button.on { background: var(--accent); border-color: var(--accent); color: #0b1520; }
   button.go { background: var(--ok); border-color: var(--ok); color: #08140d; font-weight: 600; }
+  small { opacity: .6; }
   .sp { flex: 1; }
-  #wrap { position: relative; overflow: hidden; display: grid; place-items: center; }
-  canvas { max-width: 100%; max-height: 100%; cursor: crosshair; }
+  #wrap { position: relative; overflow: hidden; display: grid; place-items: center; min-height: 0; }
+  canvas { max-width: 100%; max-height: 100%; }
   #msg { color: var(--accent); }
+  #help { display: block; width: 100%; color: var(--dim); }
 </style>
 </head>
 <body>
@@ -36,13 +47,22 @@
   <h1>DRONE PIN REVIEW</h1>
   <div class="site" id="site"></div>
   <div id="list"></div>
+  <h2>LOCATION PINS <small>(optional, not used for Kollosche)</small></h2>
+  <div id="places"></div>
 </aside>
 <main>
   <div class="bar">
-    <button data-mode="pin">Pin <small>1</small></button>
-    <button data-mode="outline">Outline <small>2</small></button>
-    <button data-mode="both">Both <small>3</small></button>
-    <button data-mode="none">None <small>4</small></button>
+    <div class="grp">
+      <button data-mode="pin">Pin <small>1</small></button>
+      <button data-mode="outline">Outline <small>2</small></button>
+      <button data-mode="both">Both <small>3</small></button>
+      <button data-mode="none">None <small>4</small></button>
+    </div>
+    <div class="grp">
+      <button data-tool="edit">Edit <small>E</small></button>
+      <button data-tool="brush">Behind brush <small>B</small></button>
+      <button data-tool="place">Location pin <small>L</small></button>
+    </div>
     <span class="sp"></span>
     <button id="reset">Reset photo</button>
     <button id="apply">Apply correction to unapproved</button>
@@ -51,26 +71,35 @@
   <div id="wrap"><canvas id="cv"></canvas></div>
   <div class="bar bottom">
     <span id="note"></span><span class="sp"></span><span id="msg"></span>
-    <span>First pin drag sets the house · later drags correct that photo · ⌥-drag resets the house · ⇧-drag moves one corner · ← → photos</span>
+    <span id="help"></span>
   </div>
 </main>
 <script>
 const SZ = __SIZES__;
+const HELP = {
+  edit: 'Pin: drag the tip onto the house (first drag on a close or top-down shot sets the house for every photo) · drag the badge up/down to change the line length · ⌥-drag tip re-sets the house.  Outline: drag a corner · drag the line or inside to move it all · double-click the line to add a corner · ⌥-click a corner to delete it.',
+  brush: 'Paint over whatever stands in front of the outline (buildings, trees) and the line goes behind it · ⇧ erases · [ ] brush size · red = hidden area.',
+  place: 'Click the ground at a location, type its name; the pin and its distance from the house appear on every photo that sees it. Drag a location pin in Edit to nudge it on this photo.',
+};
 let site, marks, names = [], cur = 0, img = new Image(), K = new Image(), anchors = {}, drag = null;
+let tool = 'edit', brush = 40, mask = null, maskDirty = false, painting = false, cursor = null;
 const cv = document.getElementById('cv'), cx = cv.getContext('2d');
-K.src = '/preview/_k.png';
+K.onload = () => draw(); K.src = '/preview/_k.png';
+document.fonts.load('40px SohneK'); document.fonts.load('40px SohneB'); document.fonts.ready.then(() => draw());
 
 async function api(path, body) {
   const r = await fetch(path, body === undefined ? {} : { method: 'POST', body: JSON.stringify(body) });
   return r.json();
 }
-const flash = t => { const e = document.getElementById('msg'); e.textContent = t; clearTimeout(flash.t); flash.t = setTimeout(() => e.textContent = '', 3000); };
+const flash = t => { const e = document.getElementById('msg'); e.textContent = t; clearTimeout(flash.t); flash.t = setTimeout(() => e.textContent = '', 4000); };
+const M = () => marks[names[cur]];
+const save = () => api('/save', { [names[cur]]: M() });
 
 async function load() {
   ({ site, marks } = await api('/marks'));
   names = Object.keys(marks);
   document.getElementById('site').innerHTML = `${site.address}<br>Lot ${site.lotplan} · ${Math.round(site.lot_area)} m²`;
-  list(); show(0);
+  setTool('edit'); show(0);
 }
 function list() {
   document.getElementById('list').innerHTML = names.map((n, i) => {
@@ -78,108 +107,242 @@ function list() {
     return `<div class="ph ${i === cur ? 'sel' : ''} ${m.reviewed ? 'done' : ''}" data-i="${i}"><span class="dot"></span><span class="nm">${n}</span><span class="md">${m.error ? 'no GPS' : m.mode}</span></div>`;
   }).join('');
   document.querySelectorAll('.ph').forEach(e => e.onclick = () => show(+e.dataset.i));
+  const pls = site.places || [], m = M();
+  document.getElementById('places').innerHTML = pls.length ? pls.map(p => {
+    const st = (m.places || {})[p.id] || {};
+    return `<div class="pl"><input type="checkbox" data-on="${p.id}" ${st.on ? 'checked' : ''} title="show on this photo">
+      <span class="nm" title="${p.label}">${p.label}</span><span class="ds">${p.dist ? dist(p) : ''}</span>
+      <button data-dist="${p.id}" title="show distance">km</button><button data-ren="${p.id}">✎</button><button data-del="${p.id}">✕</button></div>`;
+  }).join('') : '<div class="empty">None. Use the Location pin tool (L) to add one.</div>';
+  document.querySelectorAll('[data-on]').forEach(e => e.onchange = () => { const st = (M().places ||= {})[e.dataset.on] ||= { xy: [M().w / 2, M().h / 2] }; st.on = e.checked; draw(); save(); });
+  document.querySelectorAll('[data-del]').forEach(e => e.onclick = () => { if (confirm('Delete this location pin from every photo?')) placeEdit({ id: +e.dataset.del, delete: true }); });
+  document.querySelectorAll('[data-ren]').forEach(e => e.onclick = () => { const p = pls.find(q => q.id == e.dataset.ren); const t = prompt('Location name', p.label); if (t) placeEdit({ id: p.id, label: t }); });
+  document.querySelectorAll('[data-dist]').forEach(e => e.onclick = () => { const p = pls.find(q => q.id == e.dataset.dist); placeEdit({ id: p.id, dist: !p.dist }); });
 }
+async function placeEdit(b) { const r = await api('/place_edit', b); site = r.site; marks = r.marks; list(); draw(); }
+
 function show(i) {
+  if (maskDirty) saveMask();
   cur = (i + names.length) % names.length;
-  const n = names[cur], m = marks[n];
+  const n = names[cur], m = M();
   anchors = { ...(m.anchors || {}) };
   const im = new Image();
-  im.onload = () => { if (names[cur] !== n) return; img = im; cv.width = im.width; cv.height = im.height; draw(); };
+  im.onload = () => {
+    if (names[cur] !== n) return;
+    img = im; cv.width = im.width; cv.height = im.height;
+    mask = document.createElement('canvas'); mask.width = im.width; mask.height = im.height;
+    const mi = new Image();
+    mi.onload = () => { if (names[cur] === n) { mask.getContext('2d').drawImage(mi, 0, 0, im.width, im.height); draw(); } };
+    mi.src = '/mask/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.png')) + '?t=' + Date.now();
+    draw();
+  };
   im.src = '/preview/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.jpg'));
   document.getElementById('note').textContent = m.error || m.note || '';
   list(); modeBtns();
 }
-function modeBtns() {
-  document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === marks[names[cur]].mode));
+function modeBtns() { document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === M().mode)); }
+function setTool(t) {
+  tool = t;
+  document.querySelectorAll('[data-tool]').forEach(b => b.classList.toggle('on', b.dataset.tool === t));
+  document.getElementById('help').textContent = HELP[t];
+  cv.style.cursor = t === 'brush' ? 'none' : 'crosshair';
+  draw();
 }
 
-// Same layout as drone_pin.py pin_layout(): the line shortens so the K stays in frame.
-function pinLayout(m) {
-  const kw = SZ.K_W * m.h, kh = kw * K.height / K.width;
-  const room = m.tip[1] - SZ.TOP_MARGIN * m.h - kh - SZ.GAP * m.h;
-  return { kw, kh, len: Math.max(0, Math.min(SZ.LINE_LEN * m.h, room)) };
+function dist(p) {
+  const R = 6378137, la = site.tip[1] * Math.PI / 180;
+  const e = (p.lon - site.tip[0]) * Math.PI / 180 * R * Math.cos(la), n = (p.lat - site.tip[1]) * Math.PI / 180 * R;
+  const d = Math.hypot(e, n);
+  return d >= 1000 ? (d / 1000).toFixed(1) + ' KM' : Math.round(d / 10) * 10 + ' M';
 }
+// Same as drone_pin.py pin_layout(): per-photo pin_len, line shortens to keep the badge in frame.
+function pinLayout(m) {
+  const side = SZ.BADGE * m.h;
+  const room = m.tip[1] - SZ.TOP_MARGIN * m.h - side;
+  return { side, len: Math.max(0, Math.min((m.pin_len ?? SZ.LINE_LEN) * m.h, room)) };
+}
+function shadowOn(c, lw) {
+  c.shadowColor = `rgba(0,0,0,${SZ.SHADOW_OPACITY})`; c.shadowBlur = 2 * SZ.SHADOW_BLUR * lw; c.shadowOffsetY = SZ.SHADOW_OFFSET * lw;
+}
+
 function draw() {
-  const m = marks[names[cur]], s = cv.width / m.w;
+  const m = M(); if (!img.width || !m) return;
+  const s = cv.width / m.w;
+  cx.setTransform(1, 0, 0, 1, 0, 0);
   cx.drawImage(img, 0, 0);
   if (m.error) return;
+  const on = k => m.mode === k || m.mode === 'both';
+  if (on('outline') && m.lot.length) {
+    // Outline on its own layer so the behind-mask can cut it (shadow included).
+    const L = document.createElement('canvas'); L.width = cv.width; L.height = cv.height;
+    const c = L.getContext('2d'), lw = Math.max(2, Math.round(SZ.OUTLINE_W * m.w)) * s;
+    c.strokeStyle = '#fff'; c.lineJoin = c.lineCap = 'round'; c.lineWidth = Math.max(1, lw); shadowOn(c, lw);
+    c.beginPath(); m.lot.forEach(([x, y], j) => j ? c.lineTo(x * s, y * s) : c.moveTo(x * s, y * s)); c.closePath(); c.stroke();
+    if (mask) { c.shadowColor = 'transparent'; c.globalCompositeOperation = 'destination-out'; c.drawImage(mask, 0, 0); }
+    cx.drawImage(L, 0, 0);
+  }
   cx.save(); cx.scale(s, s);
-  if ((m.mode === 'outline' || m.mode === 'both') && m.lot.length) {
-    cx.strokeStyle = '#fff'; cx.lineJoin = cx.lineCap = 'round';
-    cx.lineWidth = Math.max(2, Math.round(SZ.OUTLINE_W * m.w));
-    // Same subtle shadow as the render (SHADOW_* in drone_pin.py).
-    cx.shadowColor = 'rgba(0,0,0,0.6)'; cx.shadowBlur = 1.2 * cx.lineWidth * s; cx.shadowOffsetY = 0.5 * cx.lineWidth * s;
-    cx.beginPath(); m.lot.forEach(([x, y], j) => j ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.closePath(); cx.stroke();
-    cx.shadowColor = 'transparent';
+  if (on('pin')) {
+    const { side, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.LINE_W * m.h));
+    const [tx, ty] = m.tip, bx = tx - side / 2, by = ty - len - side;
+    cx.fillStyle = '#fff'; cx.fillRect(tx - lw / 2, ty - len, lw, len);
+    cx.fillStyle = SZ.BADGE_FILL; cx.fillRect(bx, by, side, side);
+    const bw = Math.max(1, SZ.BADGE_BORDER * side);
+    cx.strokeStyle = '#fff'; cx.lineWidth = bw; cx.strokeRect(bx + bw / 2, by + bw / 2, side - bw, side - bw);
+    const kw = SZ.BADGE_K * side, kh = kw * K.height / K.width;
+    cx.drawImage(K, tx - kw / 2, by + (side - kh) / 2, kw, kh);
   }
-  if (m.mode === 'pin' || m.mode === 'both') {
-    const { kw, kh, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.LINE_W * m.h));
-    cx.fillStyle = '#fff';
-    cx.fillRect(m.tip[0] - lw / 2, m.tip[1] - len, lw, len);
-    cx.drawImage(K, m.tip[0] - kw / 2, m.tip[1] - len - SZ.GAP * m.h - kh, kw, kh);
-  }
+  drawPlaces(m);
   cx.restore();
-  // Handles: blue = tip, small squares = lot corners; amber = ones you've placed.
+  if (tool === 'brush' && mask) {
+    // Show the hidden area in red while painting.
+    const T = document.createElement('canvas'); T.width = cv.width; T.height = cv.height;
+    const t = T.getContext('2d'); t.drawImage(mask, 0, 0); t.globalCompositeOperation = 'source-in'; t.fillStyle = 'rgba(255,60,60,0.45)'; t.fillRect(0, 0, T.width, T.height);
+    cx.drawImage(T, 0, 0);
+    if (cursor) { cx.beginPath(); cx.strokeStyle = '#fff'; cx.lineWidth = 1.5; cx.arc(cursor[0], cursor[1], brush / 2, 0, 7); cx.stroke(); }
+  }
+  if (tool === 'edit') handles(m, s);
+}
+function drawPlaces(m) {
+  const lw = Math.max(2, Math.round(SZ.LINE_W * m.h));
+  for (const p of site.places || []) {
+    const st = (m.places || {})[p.id]; if (!st || !st.on) continue;
+    const [x, y] = st.xy, top = y - SZ.PLACE_LINE * m.h;
+    cx.save(); shadowOn(cx, lw);
+    cx.fillStyle = '#fff';
+    cx.beginPath(); cx.arc(x, y, SZ.PLACE_DOT * m.h, 0, 7); cx.fill();
+    cx.fillRect(x - lw / 2, top, lw, y - top);
+    const rows = [[p.label, 'SohneK', SZ.PLACE_CAP * m.h]];
+    if (p.dist) rows.push([dist(p), 'SohneB', SZ.PLACE_SUB * m.h]);
+    const lead = SZ.PLACE_LEAD * SZ.PLACE_CAP * m.h;
+    let cy = top - SZ.PLACE_GAP * m.h - rows.reduce((a, r) => a + r[2], 0) - lead * (rows.length - 1);
+    cx.textAlign = 'center'; cx.textBaseline = 'alphabetic';
+    for (const [t, f, cap] of rows) {
+      const size = cap / 0.7;  // Söhne Breit cap height ≈ 0.7 em
+      cx.font = `${size}px ${f}`; cx.letterSpacing = `${SZ.PLACE_TRACK * size}px`;
+      cx.fillText(t, x, cy + cap); cy += cap + lead;
+    }
+    cx.restore();
+  }
+}
+function handles(m, s) {
   const h = (x, y, r, col, sq) => {
     cx.beginPath(); cx.fillStyle = col; cx.strokeStyle = '#000'; cx.lineWidth = 2;
     if (sq) cx.rect(x * s - r, y * s - r, 2 * r, 2 * r); else cx.arc(x * s, y * s, r, 0, 7);
     cx.fill(); cx.stroke();
   };
-  if (m.mode !== 'none') {
-    if (m.mode !== 'pin') m.lot.forEach(([x, y], j) => h(x, y, 6, anchors[j] ? '#f5b041' : '#61a8d8', true));
-    if (m.mode !== 'outline') h(m.tip[0], m.tip[1], 9, anchors.tip ? '#f5b041' : '#61a8d8');
-  }
+  if (m.mode === 'outline' || m.mode === 'both') m.lot.forEach(([x, y]) => h(x, y, 6, m.manual ? '#f5b041' : '#61a8d8', true));
+  if (m.mode === 'pin' || m.mode === 'both') h(m.tip[0], m.tip[1], 8, anchors.tip ? '#f5b041' : '#61a8d8');
+  for (const p of site.places || []) { const st = (m.places || {})[p.id]; if (st && st.on) h(st.xy[0], st.xy[1], 6, st.manual ? '#f5b041' : '#61a8d8'); }
 }
 
 function toImg(e) {
-  const r = cv.getBoundingClientRect(), m = marks[names[cur]];
+  const r = cv.getBoundingClientRect(), m = M();
   return [(e.clientX - r.left) / r.width * m.w, (e.clientY - r.top) / r.height * m.h];
 }
-cv.onmousedown = e => {
-  const m = marks[names[cur]]; if (m.error || m.mode === 'none') return;
-  const p = toImg(e), tol = 14 * m.w / cv.getBoundingClientRect().width;
-  const cands = [];
-  if (m.mode !== 'outline') cands.push(['tip', m.tip]);
-  if (m.mode !== 'pin') m.lot.forEach((q, j) => cands.push([String(j), q]));
-  let best = null, bd = tol;
-  for (const [k, q] of cands) { const d = Math.hypot(q[0] - p[0], q[1] - p[1]); if (d < bd) { bd = d; best = k; } }
-  // Click on empty image in pin mode moves the tip there.
-  if (!best && m.mode === 'pin') best = 'tip';
-  if (best) drag = { key: best, free: e.shiftKey };
+function toCanvas(e) { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * cv.width, (e.clientY - r.top) / r.height * cv.height]; }
+function segDist(p, a, b) {
+  const dx = b[0] - a[0], dy = b[1] - a[1], t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy || 1)));
+  return [Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy), t];
+}
+function inside(p, poly) {
+  let c = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const [xi, yi] = poly[i], [xj, yj] = poly[j];
+    if ((yi > p[1]) !== (yj > p[1]) && p[0] < (xj - xi) * (p[1] - yi) / (yj - yi) + xi) c = !c;
+  }
+  return c;
+}
+function hit(m, p) {
+  const tol = 12 * m.w / cv.getBoundingClientRect().width;
+  const out = m.mode === 'outline' || m.mode === 'both', pin = m.mode === 'pin' || m.mode === 'both';
+  for (const pl of site.places || []) { const st = (m.places || {})[pl.id]; if (st && st.on && Math.hypot(st.xy[0] - p[0], st.xy[1] - p[1]) < tol) return { kind: 'place', id: pl.id }; }
+  if (pin && Math.hypot(m.tip[0] - p[0], m.tip[1] - p[1]) < tol * 1.3) return { kind: 'tip' };
+  if (pin) { const { side, len } = pinLayout(m); const by = m.tip[1] - len - side; if (Math.abs(p[0] - m.tip[0]) < side / 2 && p[1] > by && p[1] < by + side) return { kind: 'badge' }; }
+  if (out) {
+    const i = m.lot.findIndex(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < tol); if (i >= 0) return { kind: 'corner', i };
+    for (let j = 0; j < m.lot.length; j++) { const [d, t] = segDist(p, m.lot[j], m.lot[(j + 1) % m.lot.length]); if (d < tol) return { kind: 'edge', j, t }; }
+    if (inside(p, m.lot)) return { kind: 'body' };
+  }
+  if (pin && m.mode === 'pin') return { kind: 'tip' };   // click empty image in pin mode: move the tip there
+  return null;
+}
+
+cv.onmousedown = async e => {
+  const m = M(); if (!m || m.error) return;
+  if (tool === 'brush') { painting = true; paint(e); return; }
+  const p = toImg(e);
+  if (tool === 'place') {
+    const label = prompt('Location name (e.g. SURFERS PARADISE BEACH)'); if (!label) return;
+    const r = await api('/place', { file: names[cur], xy: p, label });
+    if (r.error) return flash(r.error);
+    site = r.site; marks = r.marks; list(); draw(); flash(`added ${label.toUpperCase()}`); return;
+  }
+  const h = hit(m, p); if (!h) return;
+  if (h.kind === 'corner' && e.altKey) {
+    if (m.lot.length > 3) { m.lot.splice(h.i, 1); m.manual = true; draw(); save(); }
+    return;
+  }
+  drag = { ...h, start: p, lot0: m.lot.map(q => q.slice()), alt: e.altKey };
   cv.onmousemove(e);
 };
+cv.ondblclick = e => {
+  const m = M(); if (tool !== 'edit' || !m || m.error) return;
+  const h = hit(m, toImg(e));
+  if (h && h.kind === 'edge') { const a = m.lot[h.j], b = m.lot[(h.j + 1) % m.lot.length]; m.lot.splice(h.j + 1, 0, [a[0] + (b[0] - a[0]) * h.t, a[1] + (b[1] - a[1]) * h.t]); m.manual = true; draw(); save(); }
+};
 cv.onmousemove = e => {
+  if (tool === 'brush') { cursor = toCanvas(e); if (painting) paint(e); else draw(); return; }
   if (!drag) return;
-  const m = marks[names[cur]], p = toImg(e);
-  if (drag.key === 'tip') m.tip = p; else m.lot[+drag.key] = p;
+  const m = M(), p = toImg(e), dx = p[0] - drag.start[0], dy = p[1] - drag.start[1];
+  if (drag.kind === 'tip') m.tip = p;
+  else if (drag.kind === 'badge') m.pin_len = Math.max(0.02, (m.tip[1] - p[1] - SZ.BADGE * m.h / 2) / m.h);
+  else if (drag.kind === 'corner') { m.lot[drag.i] = p; m.manual = true; }
+  else if (drag.kind === 'edge' || drag.kind === 'body') { m.lot = drag.lot0.map(([x, y]) => [x + dx, y + dy]); m.manual = true; }
+  else if (drag.kind === 'place') { const st = m.places[drag.id]; st.xy = p; st.manual = true; }
   draw();
 };
+cv.onmouseleave = () => { cursor = null; if (tool === 'brush') draw(); };
 window.onmouseup = async e => {
+  if (painting) { painting = false; saveMask(); return; }
   if (!drag) return;
-  const m = marks[names[cur]], d = drag; drag = null;
-  const p = d.key === 'tip' ? m.tip : m.lot[+d.key];
-  if (d.free) { m.manual = true; draw(); return; }   // shift-drag: move just this corner
-  anchors[d.key] = p;
-  const first = d.key === 'tip' && !site.tip_from;
-  const r = await api('/solve', { file: names[cur], anchors, target: d.key === 'tip' && e.altKey });
+  const m = M(), d = drag; drag = null;
+  if (d.kind !== 'tip') return save();
+  anchors.tip = m.tip;
+  const first = !site.tip_from;
+  const r = await api('/solve', { file: names[cur], anchors, target: d.alt });
   site = r.site; marks = r.marks; anchors = { ...(r.m.anchors || {}) }; draw(); list();
-  flash(first || e.altKey ? `house set from ${names[cur]}; every photo now pins this spot`
+  flash(site.tip_from === names[cur] && (first || d.alt) ? `house set from ${names[cur]}; every photo now pins this spot`
     : `correction: heading ${r.m.dyaw.toFixed(2)}°, tilt ${r.m.dpitch.toFixed(2)}°, roll ${r.m.droll.toFixed(2)}°`);
 };
 
-async function setMode(mode) { marks[names[cur]].mode = mode; modeBtns(); draw(); list(); await api('/save', { [names[cur]]: marks[names[cur]] }); }
+function paint(e) {
+  // Stroke from the last point so fast drags leave no gaps.
+  const c = mask.getContext('2d'), [x, y] = toCanvas(e), [px, py] = painting === true ? [x, y] : painting;
+  c.globalCompositeOperation = e.shiftKey ? 'destination-out' : 'source-over';
+  c.strokeStyle = '#fff'; c.lineWidth = brush; c.lineCap = 'round';
+  c.beginPath(); c.moveTo(px, py); c.lineTo(x, y); c.stroke();
+  painting = [x, y]; maskDirty = true; cursor = [x, y]; draw();
+}
+async function saveMask() {
+  if (!maskDirty || !mask) return;
+  maskDirty = false;
+  await api('/mask', { file: names[cur], data: mask.toDataURL('image/png') });
+}
+
+async function setMode(mode) { M().mode = mode; modeBtns(); draw(); list(); await save(); }
 document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+document.querySelectorAll('[data-tool]').forEach(b => b.onclick = () => setTool(b.dataset.tool));
 document.getElementById('approve').onclick = async () => {
-  marks[names[cur]].reviewed = true;
-  await api('/save', { [names[cur]]: marks[names[cur]] });
-  flash('approved'); show(cur + 1);
+  if (maskDirty) await saveMask();
+  M().reviewed = true; await save(); flash('approved'); show(cur + 1);
 };
 document.getElementById('reset').onclick = async () => {
-  anchors = {};
+  if (!confirm('Reset this photo to the automatic placement? Hand edits to the outline are lost (the behind mask stays).')) return;
+  const m = M(); m.manual = false; m.anchors = {}; delete m.pin_len; m.reviewed = false;
+  await save();
   const r = await api('/solve', { file: names[cur], anchors: {} });
-  marks = r.marks; Object.assign(marks[names[cur]], { reviewed: false, manual: false, anchors: {} });
-  await api('/save', { [names[cur]]: marks[names[cur]] });
-  draw(); list();
+  marks = r.marks; anchors = {}; draw(); list();
 };
 document.getElementById('apply').onclick = async () => {
   const r = await api('/apply', {});
@@ -188,10 +351,16 @@ document.getElementById('apply').onclick = async () => {
   flash(`applied compass ${r.dyaw.toFixed(2)}°` + (r.dz ? `, lot ground ${r.dz >= 0 ? '+' : ''}${r.dz.toFixed(1)} m` : '') + ' to unapproved photos');
 };
 window.onkeydown = e => {
+  if (e.target.tagName === 'INPUT') return;
   if (e.key === 'ArrowRight') show(cur + 1);
   else if (e.key === 'ArrowLeft') show(cur - 1);
   else if (e.key === 'Enter') document.getElementById('approve').click();
   else if ('1234'.includes(e.key) && e.key.length === 1) setMode(['pin', 'outline', 'both', 'none'][+e.key - 1]);
+  else if (e.key === 'e') setTool('edit');
+  else if (e.key === 'b') setTool('brush');
+  else if (e.key === 'l') setTool('place');
+  else if (e.key === '[') { brush = Math.max(6, brush / 1.25); draw(); }
+  else if (e.key === ']') { brush = Math.min(400, brush * 1.25); draw(); }
 };
 load();
 </script>

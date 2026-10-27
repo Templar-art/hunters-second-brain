@@ -83,7 +83,7 @@
     },
     {
       "name": "drone-pin-review",
-      "runtimeExecutable": "python3",
+      "runtimeExecutable": "/Users/10xhunter/.venvs/typeset/bin/python",
       "runtimeArgs": [
         "-I",
         "projects/drone-pin/drone_pin.py",
