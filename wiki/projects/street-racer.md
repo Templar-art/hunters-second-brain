@@ -19,5 +19,12 @@ A three-lap arcade racer built in the browser on 2026-10-27, straight after [[dr
 - Lap counting has to detect the car crossing from the end of the sample list back to the start (and the reverse), so a car that backs over the line doesn't gain a lap.
 - A Blender subsurf modifier shrinks the body, so lights and grilles placed against the unsmoothed shape float off it. Place them after a look at the smoothed result.
 
+## v2: Night GP (same day)
+`index.html` is now a night stadium race (v1 is kept as `v1.html`). Six cars, all the real Huracán from [[lambo-huracan|projects/lambo-huracan]], re-exported as `huracan.glb` (4.4 MB). Wheel pivots were added, the car was rotated so its front faces +Y, and the plate text was converted to meshes. Each car gets a clear-coat paint swap, and the head and tail light materials glow. The scene has ACES tone mapping, bloom, RoomEnvironment reflections, floodlight towers, grandstands with an instanced crowd, glowing sponsor walls, a pit building and F1 five-light starts. There's drift physics (separate lateral velocity, handbrake drops grip), smoke sprites, instanced skid marks, a 7-speed automatic box, and a hood/chase/high camera toggle on C.
+- **Sound:** the low and high loops are cut from Hunter's Huracán recordings in Downloads (12–19 s cruise, 61–66 s full rev), crossfaded and pitched by RPM. They are local only (`*.wav` is gitignored), with a sawtooth synth fallback.
+- **Lesson:** gearbox hysteresis. If the RPM right after an upshift is below the downshift point, the box flip-flops and kills the throttle. Compute RPM as speed over the gear's top speed and keep the downshift threshold well below the post-shift RPM.
+- **Lesson:** keep the bloom threshold around 0.95, or every white surface glows.
+- **More cars:** a research pass found the vecarz F40 (120k tris, the closest to the Huracán's realism), plus low-poly GT-Rs and CC0 Quaternius/Kenney kits. None are downloaded yet.
+
 ## Next ideas
 Touch controls, engine and skid sound, drift smoke, more tracks, a published link.
