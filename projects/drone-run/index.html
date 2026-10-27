@@ -59,8 +59,20 @@ const trees = [];   // {x,z,r,h}
 const wires = [];   // segments {a,b}
 const SIZE = 6, BLOCK = 36, ROAD = 10, HALF = SIZE*(BLOCK+ROAD)/2;
 const roadMat = mat(0x3d4247);
-const roofCols = [0x8c4a3a,0x4a4f57,0x6b6e73,0xa0623e,0x2f3a44];
-const wallCols = [0xf2efe8,0xe4d9c6,0xd7dde2,0xc9b8a0,0xffffff];
+const roofMats = [0x8c4a3a,0x4a4f57,0x6b6e73,0xa0623e,0x2f3a44].map(c=>mat(c));
+const wallMats = [0xf2efe8,0xe4d9c6,0xd7dde2,0xb5674a,0xffffff].map(c=>mat(c));
+// House variants modelled in Blender (houses.blend → houses.glb): house_A/B/C, front faces -Z.
+// Collider per variant = bounds of everything above 0.2 m, so driveways stay flyable.
+const HOUSE_SCALE = .8;
+const variants = (await new GLTFLoader().loadAsync('houses.glb')).scene.children.map(node=>{
+  node.position.set(0,0,0); node.updateMatrixWorld(true);
+  const bb = new THREE.Box3(), v = new THREE.Vector3();
+  node.traverse(o=>{ if(!o.isMesh) return;
+    const p=o.geometry.attributes.position;
+    for(let i=0;i<p.count;i++){ v.fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld); if(v.y>.2) bb.expandByPoint(v); }
+  });
+  return {node, bb};
+});
 const rnd = (a,b)=>a+Math.random()*(b-a);
 
 for(let i=0;i<=SIZE;i++){
@@ -71,18 +83,18 @@ for(let i=0;i<=SIZE;i++){
   }
 }
 
-function house(x,z){
-  const w=rnd(9,13), d=rnd(9,13), h=rnd(4,7.5);
-  const body = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), mat(wallCols[Math.random()*5|0]));
-  body.position.set(x,h/2,z); body.castShadow=body.receiveShadow=true; scene.add(body);
-  const rh = rnd(2.5,4);
-  const roof = new THREE.Mesh(new THREE.ConeGeometry(Math.hypot(w,d)/2*1.02, rh, 4), mat(roofCols[Math.random()*5|0]));
-  roof.rotation.y=Math.PI/4; roof.scale.set(w/Math.hypot(w,d)*1.41,1,d/Math.hypot(w,d)*1.41);
-  roof.position.set(x,h+rh/2,z); roof.castShadow=true; scene.add(roof);
-  boxes.push({min:new THREE.Vector3(x-w/2,0,z-d/2), max:new THREE.Vector3(x+w/2,h+rh*.6,z+d/2)});
-  if(Math.random()<.35){ // pool
-    const pool = new THREE.Mesh(new THREE.PlaneGeometry(5,3), new THREE.MeshStandardMaterial({color:0x3fb6d8,roughness:.1}));
-    pool.rotation.x=-Math.PI/2; pool.position.set(x+rnd(-3,3), .05, z+d/2+3); scene.add(pool);
+function house(x,z,facing){ // facing -1 = front toward -Z, +1 = toward +Z
+  const {node,bb} = variants[Math.random()*variants.length|0];
+  const h = node.clone(), wm = wallMats[Math.random()*5|0], rm = roofMats[Math.random()*5|0];
+  h.traverse(o=>{ if(!o.isMesh) return; o.castShadow=o.receiveShadow=true;
+    if(o.material.name.startsWith('wall')) o.material=wm; else if(o.material.name.startsWith('roof')) o.material=rm; });
+  const flip = facing>0 ? -1 : 1;
+  h.rotation.y = facing>0 ? Math.PI : 0; h.scale.setScalar(HOUSE_SCALE); h.position.set(x,0,z); scene.add(h);
+  const s=HOUSE_SCALE, xs=[bb.min.x*s*flip,bb.max.x*s*flip], zs=[bb.min.z*s*flip,bb.max.z*s*flip];
+  boxes.push({min:new THREE.Vector3(x+Math.min(...xs),0,z+Math.min(...zs)), max:new THREE.Vector3(x+Math.max(...xs),bb.max.y*s,z+Math.max(...zs))});
+  if(Math.random()<.35){ // backyard pool
+    const pool = new THREE.Mesh(new THREE.PlaneGeometry(4,2.5), new THREE.MeshStandardMaterial({color:0x3fb6d8,roughness:.1}));
+    pool.rotation.x=-Math.PI/2; pool.position.set(x+rnd(-2,2), .05, z-facing*(bb.max.z*s+2.2)); scene.add(pool);
   }
 }
 const trunkMat = mat(0x5b4030), leafMats=[mat(0x2f6b34),mat(0x3d7d3a),mat(0x4f8a3c)];
@@ -116,7 +128,7 @@ for(let i=0;i<SIZE;i++) for(let j=0;j<SIZE;j++){
     for(let k=0;k<9;k++) tree(cx+rnd(-14,14),cz+rnd(-14,14));
     continue;
   }
-  for(const dx of [-9,9]) for(const dz of [-9,9]) if(Math.random()<.85) house(cx+dx+rnd(-1,1),cz+dz+rnd(-1,1));
+  for(const dx of [-9,9]) for(const dz of [-6,6]) if(Math.random()<.85) house(cx+dx+rnd(-.5,.5),cz+dz,Math.sign(dz));
   for(let k=0;k<3;k++) tree(cx+rnd(-17,17)*(Math.random()<.5?1:-1)*.95, cz+(Math.random()<.5?-17:17));
 }
 for(let i=1;i<SIZE;i+=2){
