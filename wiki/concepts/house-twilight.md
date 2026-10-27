@@ -2,7 +2,7 @@
 type: concept
 tags: [twilight, exterior, ai-generation, recipe]
 status: locked
-updated: 2026-10-20
+updated: 2026-10-27
 ---
 
 # House twilight (the look we like)
@@ -30,3 +30,9 @@ Learned 2026-10-20 on the Extra Salt Pottsville reel ([JOB](../../projects/extra
 - Interiors can carry a deeper blue sky than ground exteriors and still read well.
 - Seedance needs at least 4s of video, so pad short clips with a frozen last frame and trim back afterwards. At 1080p a 4s clip costs 4,320cr, at 720p 2,080cr.
 - Magnific Precision with a 3840 target returned a 2560×1440 file, so we upscaled to 4K locally with lanczos.
+
+## Interior stills: the Kollosche target (2026-10-27)
+On the Villas on Esther job ([JOB](../../projects/kollosche-day-to-night/JOB.md)), Hunter named the clip 2 balcony still as the look every interior should match. It was made on Nano Banana 2.1 from the "early-evening twilight, about twenty minutes after sunset" prompt. In it the interior is bright, and the downlights, pendant and wine fridge read clearly. The sky is a clear blue fading to peach, and the exterior stays readable in cool blue rather than dropping to silhouette.
+- **Asking for "darker / more impactful" backfired.** A prompt saying "deep blue hour, forty minutes, moody, cinematic, strong warm amber, rich shadow" gave a muddy, underexposed frame with an orange cast across the whole image. Avoid moody, amber and cinematic wording on stills.
+- **Metaphors get rendered literally.** "Glow like a lantern" put two candle lanterns on the balcony floor. Never use an object as a simile in a prompt.
+- **How to get consistency across a set:** once one still is approved, pass it as Image 1 (the look reference) and the next day frame as Image 2.
