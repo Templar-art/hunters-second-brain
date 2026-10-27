@@ -1513,3 +1513,6 @@ Delivered the Kollosche 5 Esther Place drone stills (6 photos, Print and Web, wi
 
 Next is Coastal. Page: [[drone-photo-pin]].
 
+
+## [2026-10-27] ingest | SFX lifted from a reference reel via Demucs
+Demucs is installed locally (free). It split the snapgram reel and 32 candidate hits were cut at the scene cuts into SFX Library/_Incoming. Method and caveats are on [[sfx-library]]. No spend.
