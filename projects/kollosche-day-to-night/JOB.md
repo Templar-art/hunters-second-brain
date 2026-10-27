@@ -2,8 +2,8 @@
 client: kollosche
 address: 5 Esther (Villas on Esther townhouses, street TBC)
 opened: 2026-10-27
-status: generating        # intake → generating → review → delivered
-cost: { credits: 38148, hf_credits: 56, aud: 0 }   # derived from ## Ledger
+status: delivered        # intake → generating → review → delivered
+cost: { credits: 38148, hf_credits: 84, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — Kollosche day-to-night clips, Villas on Esther
@@ -31,6 +31,7 @@ This is a different property from the Pottsville reel. Clip 1 was checked frame-
 - 2026-10-27 Upscaled with Magnific Precision 4K x4 (8,388 cr). It returned 2560x1440 again, the same cap as Pottsville, so I scaled to 3840x2160 locally with lanczos. No frozen tails were detected, because Seedance generated real motion for the full 4–5 s, so the clips are delivered at full length and Hunter trims them in the edit. Delivered to `~/Downloads/Kollosche Day to Night/FINAL 4K/` as ProRes 422 HQ and H.264, one each per clip.
 - 2026-10-27 Hunter flagged that clip 3's motion drifted from the source. The source was only 3.0 s, so Seedance invented the move. Hunter is redoing all 4 on Higgsfield himself, either with Kling 3.0 Omni Edit at native 4K or with Seedance 2.5 `video_edit`, using at least 4 s of real footage plus a motion-lock line. The current FINAL 4K set stays in place until the replacements land.
 - 2026-10-27 Hunter redid the clips on Higgsfield. Seedance was blocked by the copyright filter, so he used Kling 3.0 Omni Edit. Clip 1 came back at 1080p (4.4 s) and clip 3 at 480p (4.0 s). I upscaled both with Topaz at 2160p to a true 3840x2160, with no 2560 cap. Clip 1 is crisp. Clip 3 is usable but softer, because the source was 480p. Delivered as `FINAL 4K/* v2 (Topaz)` in .mp4 and ProRes .mov, and the v1 versions moved to `old v1/`. Clip 2 stays as the Magnific v1. Clip 4 is still open because Omni keeps lighting the sign; the fallback is a free comp of the sign wall.
+- 2026-10-27 Clip 4 Omni redo landed with the sign unlit and reading "5 / VILLAS ON ESTHER" at the start, middle and end. Upscaled with Topaz 2160p to `FINAL 4K/4 Street Front - DUSK 4K v2 (Topaz)` in .mp4 and .mov, and the v1 moved to `old v1/`. The set is complete: clips 1, 3 and 4 are Topaz v2, and clip 2 is the Magnific v1.
 
 ## Ledger
 
@@ -39,6 +40,7 @@ This is a different property from the Pottsville reel. Clip 1 was checked frame-
 - 2026-10-27 | 29760 cr | Hunter's Magnific web Seedance 2.5 video runs (6x 1080p + 4x draft 480p, all 4 clips). Image stills not included
 - 2026-10-27 | 8388 cr | Magnific video_upscale Precision 4K x4 (clip1 2297, clip2 1897, clip3 1897, clip4 2297)
 - 2026-10-27 | 56 hf | Higgsfield topaz_video 2160p x2 (clips 1+3 Omni redo). Estimate ~28/clip, the CLI gives no quote
+- 2026-10-27 | 28 hf | Higgsfield topaz_video 2160p, clip 4 Omni redo (sign unlit, checked). Estimate
 
 ---
 _Vault: [[jarvis]] · Client: [[kollosche]]_
