@@ -37,11 +37,13 @@ from PIL import Image
 from scipy import ndimage
 from scipy.optimize import least_squares
 
+Image.MAX_IMAGE_PIXELS = None  # 100 MP drone exports are ours, not a decompression bomb
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 QLD = "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer"
 DIAG35 = math.hypot(36, 24)
-ROOF_H = 6.0          # metres above ground for the pin tip
+ROOF_H = 6.0          # default metres above ground for the pin tip (--roof-height per site)
 PREVIEW = 1600        # long edge of review previews (px)
 EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 
@@ -172,7 +174,7 @@ def unproject(m, uv, z, dyaw=0.0, dpitch=0.0, droll=0.0):
 
 def set_target(m, site, uv):
     """Move the pin target to where this pixel's ray meets roof height."""
-    e, n = unproject(m, uv, m.get("dz", 0.0) + ROOF_H, m.get("dyaw", 0.0), m.get("dpitch", 0.0), m.get("droll", 0.0))
+    e, n = unproject(m, uv, m.get("dz", 0.0) + site.get("roof_h", ROOF_H), m.get("dyaw", 0.0), m.get("dpitch", 0.0), m.get("droll", 0.0))
     site["tip"] = [m["lon"] + math.degrees(e / (6378137.0 * math.cos(math.radians(m["lat"])))),
                    m["lat"] + math.degrees(n / 6378137.0)]
     site["tip_from"] = m["file"]
@@ -182,7 +184,7 @@ def world(m, site, dz=0.0):
     """Site geometry in this photo's drone-centred ENU frame. dz = the lot's ground
     height above the takeoff point (hilly sites; solved from the photos you fix)."""
     lot = np.array([np.r_[enu(lat, lon, m["lat"], m["lon"]), dz] for lon, lat in site["ring"]])
-    tip = np.r_[enu(site["tip"][1], site["tip"][0], m["lat"], m["lon"]), dz + ROOF_H]
+    tip = np.r_[enu(site["tip"][1], site["tip"][0], m["lat"], m["lon"]), dz + site.get("roof_h", ROOF_H)]
     return tip, lot
 
 
@@ -261,7 +263,7 @@ def cmd_init(a):
     tip = [lon0 + math.degrees(ip[0] / (6378137.0 * math.cos(math.radians(lat0)))),
            lat0 + math.degrees(ip[1] / 6378137.0)]
     site = {"address": rec["address"], "lotplan": rec["lotplan"], "lot_area": rec["lot_area"],
-            "ring": ring, "tip": tip, "photos": str(photos.resolve())}
+            "ring": ring, "tip": tip, "roof_h": a.roof_height, "photos": str(photos.resolve())}
     save(job, "site.json", site)
     print(f"{rec['address']}  lot {rec['lotplan']}  {rec['lot_area']} m²  {len(ring)} corners")
 
@@ -450,6 +452,7 @@ def main():
     p.add_argument("job")
     p.add_argument("photos")
     p.add_argument("--address", required=True)
+    p.add_argument("--roof-height", type=float, default=ROOF_H, help="pin tip height in metres (single storey ~6, three storey ~10)")
     p = sub.add_parser("review")
     p.add_argument("job")
     p.add_argument("--port", type=int, default=8765)

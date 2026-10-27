@@ -1,9 +1,11 @@
 ---
 client: kollosche
-address: townhouse block (address TBC), Gold Coast
+address: 5 Esther Place, Surfers Paradise (Villas on Esther, lot 3RP128565)
 opened: 2026-10-27
-status: delivered        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger — never edit by hand
+status: review           # intake → generating → review → delivered
+cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from - 2026-10-27 stills: 6 drone stills from the SSD (`Done/Drone`) auto-placed with [[drone-photo-pin]] (`stills/`, roof height 10 m). All 6 landed with no drags. Awaiting Hunter's review in the browser.
+
+## Ledger — never edit by hand
 ---
 
 # Job — Kollosche townhouse drone graphics
