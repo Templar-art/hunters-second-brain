@@ -3,7 +3,7 @@ client: kollosche
 address: 5 Esther (Villas on Esther townhouses, street TBC)
 opened: 2026-10-27
 status: intake        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger — never edit by hand
+cost: { credits: 29760, hf_credits: 0, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — Kollosche day-to-night clips, Villas on Esther
@@ -27,11 +27,13 @@ This is a different property from the Pottsville reel. Clip 1 was checked frame-
 - 2026-10-27 Hunter is running it himself: night still per first frame, then that still as the video reference. Credits are on his own account, so no ledger lines from us. Clip 2 still approved ("this one is great"). Clip 4 still: Hunter liked the look but wants it darker. Two problems: the sign misspells the name as "ONTSTHER", and the 5 glows gold. The source frame shows flat black standoff letters with no visible halo LED, so they stay unlit and a darker re-roll was given. Plan: comp the source sign wall back in during post.
 - 2026-10-27 Clip 4 darker still approved ("looks great"), using the master prompt with the sign unlit. Built 4K padded 4.2 s copies of all 4 clips in `~/Downloads/Kollosche Day to Night/padded-4s/` for the video step. Trim back to the source lengths afterwards: 3.46 / 1.96 / 2.00 / 1.46 s.
 - 2026-10-27 Clip 1 video worked (Hunter). The interior target is the clip 2 look, and the deep-blue-hour "moody/amber" still failed with an orange cast and added lanterns. Clip 3 changed frame because it was under 4 s, so it's being re-run on the 4.3 s padded copy. New standing rule: clips must be at least 4 s.
+- 2026-10-27 Finals picked (zip `board-creations (31)` → `Downloads/Kollosche Day to Night/finals-1080p/`). Clip 1: O6IcQ2Oynm. Clip 2: IfO199itvE. Clip 3: nV5mlLuYQD. Clip 4: MBLusy2DCm, with the sign checked and still reading "5 / VILLAS ON ESTHER". The 4K Precision upscale is quoted at 2,297 + 1,897 + 1,897 + 2,297 = 8,388 cr, waiting on Hunter's go.
 
 ## Ledger
 
 <!-- one line per spend; the cost: header is derived from this (gen_runner.py tally) -->
 <!-- Higgsfield batches: gen_runner.py run appends here. Magnific/MCP or web spends: gen_runner.py log JOB.md <amount> <hf|cr|aud> <note> -->
+- 2026-10-27 | 29760 cr | Hunter's Magnific web Seedance 2.5 video runs (6x 1080p + 4x draft 480p, all 4 clips). Image stills not included
 
 ---
 _Vault: [[jarvis]] · Client: [[kollosche]]_
