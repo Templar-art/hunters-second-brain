@@ -44,5 +44,7 @@ A three-lap arcade racer built in the browser on 2026-10-27, straight after [[dr
 - **Drift mode:** a 90-second solo run. Slide angle × speed builds a combo, holding it raises a multiplier up to x5, and a wall hit loses the combo. Best score is saved.
 - **Lessons:** source files carry junk that blows out under bloom (flat emission, transmission body shells, magenta missing-texture colours), so neutralise it at load. Splitting 100k+ tri meshes into loose parts in Blender stalls, so decimate first and skip the split on models already in many parts.
 
+- **Touch controls (phones):** on-screen steer, gas, brake, e-brake, camera and menu buttons appear only on touch screens while driving. Hold buttons write straight into the same `keys{}` map the keyboard uses. Play from a phone on the same Wi-Fi at the Mac's LAN IP, port 8175, in landscape.
+
 ## Next ideas
-Touch controls, more tracks, wheel detection for the static-wheel cars (G80, M5, R8, RX-7, 930, M4 GT), the G82 M4, a published link.
+More tracks, wheel detection for the static-wheel cars (G80, M5, R8, RX-7, 930, M4 GT), the G82 M4, a published link.
