@@ -28,7 +28,7 @@ Learned 2026-10-20 on the Extra Salt Pottsville reel ([JOB](../../projects/extra
 - Writing "change to early dusk" only dims the daylight, and Hunter said it looked "too much like a filter, not real dusk". A later ffmpeg brighten pass did not fix that.
 - What worked: relight from the room's own fittings. Say all daylight is gone, then describe the existing downlights making warm pools on the floor and scallops down the walls, cool blue spill through the glass, faint warm reflections in the glass, and the warm-inside versus cool-outside contrast.
 - Interiors can carry a deeper blue sky than ground exteriors and still read well.
-- Seedance needs at least 4s of video, so pad short clips with a frozen last frame and trim back afterwards. At 1080p a 4s clip costs 4,320cr, at 720p 2,080cr.
+- **Hard rule (Hunter, 2026-10-27): every clip sent to a video model must be at least 4 s of real footage, so export about 4.5 s.** On Kollosche, a clip under 4 s came back with a changed frame. Seedance needs at least 4s of video, so pad short clips with a frozen last frame and trim back afterwards. At 1080p a 4s clip costs 4,320cr, at 720p 2,080cr.
 - Magnific Precision with a 3840 target returned a 2560×1440 file, so we upscaled to 4K locally with lanczos.
 
 ## Interior stills: the Kollosche target (2026-10-27)
