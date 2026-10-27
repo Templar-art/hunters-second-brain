@@ -1500,3 +1500,6 @@ Built `projects/kollosche-outro/make_outro.py`, which copies Kollosche's own end
 
 ## [2026-10-27] query | Kollosche reel opening
 Recent Kollosche reels open on the K only, with no address super. This contradicts the 2024 guideline PDF and is flagged in [[kollosche-video-guidelines]]. Default for reels is now K only.
+
+## [2026-10-27] ingest | Drone photo pinning tool
+Built `projects/drone-pin/`, which auto-places the K pin and the surveyed lot outline on DJI stills using drone XMP data and the QLD cadastre, with a browser review page and render step. Tested on 7 Somerset Dr photos. Found that DJI GimbalYawDegree is 39–55° off, so the tool uses FlightYawDegree. Page: [[drone-photo-pin]]. No spend.

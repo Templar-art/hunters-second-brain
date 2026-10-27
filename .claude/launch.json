@@ -80,6 +80,20 @@
         "dev"
       ],
       "port": 8160
+    },
+    {
+      "name": "drone-pin-test",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "projects/drone-pin/drone_pin.py",
+        "review",
+        "/private/tmp/claude-502/-Users-10xhunter-Documents-Hunters-Second-Brain/102b30a6-8d28-4671-9531-b4272295e4a7/scratchpad/dp/job",
+        "--port",
+        "8765",
+        "--no-open"
+      ],
+      "port": 8765
     }
   ]
 }

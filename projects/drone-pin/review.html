@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Drone Pin Review</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --bg: #111317; --panel: #1a1d23; --line: #2a2e36; --text: #e8eaee; --dim: #8a909c; --accent: #61a8d8; --ok: #5cc28a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.4 -apple-system, "Poppins", sans-serif; display: grid; grid-template-columns: 260px 1fr; height: 100vh; }
+  aside { background: var(--panel); border-right: 1px solid var(--line); overflow-y: auto; }
+  aside h1 { font-size: 13px; margin: 0; padding: 14px 14px 4px; letter-spacing: .04em; }
+  aside .site { padding: 0 14px 12px; color: var(--dim); font-size: 12px; border-bottom: 1px solid var(--line); }
+  .ph { padding: 8px 14px; border-bottom: 1px solid var(--line); cursor: pointer; display: flex; gap: 8px; align-items: center; }
+  .ph:hover { background: #22262e; }
+  .ph.sel { background: #26303c; }
+  .ph .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); flex: none; }
+  .ph.done .dot { background: var(--ok); }
+  .ph .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ph .md { color: var(--dim); font-size: 12px; }
+  main { display: grid; grid-template-rows: auto 1fr auto; min-width: 0; }
+  .bar { display: flex; gap: 6px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .bar.bottom { border-top: 1px solid var(--line); border-bottom: 0; color: var(--dim); font-size: 12px; }
+  button { background: #262a32; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+  button:hover { border-color: var(--dim); }
+  button.on { background: var(--accent); border-color: var(--accent); color: #0b1520; }
+  button.go { background: var(--ok); border-color: var(--ok); color: #08140d; font-weight: 600; }
+  .sp { flex: 1; }
+  #wrap { position: relative; overflow: hidden; display: grid; place-items: center; }
+  canvas { max-width: 100%; max-height: 100%; cursor: crosshair; }
+  #msg { color: var(--accent); }
+</style>
+</head>
+<body>
+<aside>
+  <h1>DRONE PIN REVIEW</h1>
+  <div class="site" id="site"></div>
+  <div id="list"></div>
+</aside>
+<main>
+  <div class="bar">
+    <button data-mode="pin">Pin <small>1</small></button>
+    <button data-mode="outline">Outline <small>2</small></button>
+    <button data-mode="both">Both <small>3</small></button>
+    <button data-mode="none">None <small>4</small></button>
+    <span class="sp"></span>
+    <button id="reset">Reset photo</button>
+    <button id="apply">Apply correction to unapproved</button>
+    <button id="approve" class="go">Approve ⏎</button>
+  </div>
+  <div id="wrap"><canvas id="cv"></canvas></div>
+  <div class="bar bottom">
+    <span id="note"></span><span class="sp"></span><span id="msg"></span>
+    <span>First pin drag sets the house · later drags correct that photo · ⌥-drag resets the house · ⇧-drag moves one corner · ← → photos</span>
+  </div>
+</main>
+<script>
+const SZ = __SIZES__;
+let site, marks, names = [], cur = 0, img = new Image(), K = new Image(), anchors = {}, drag = null;
+const cv = document.getElementById('cv'), cx = cv.getContext('2d');
+K.src = '/preview/_k.png';
+
+async function api(path, body) {
+  const r = await fetch(path, body === undefined ? {} : { method: 'POST', body: JSON.stringify(body) });
+  return r.json();
+}
+const flash = t => { const e = document.getElementById('msg'); e.textContent = t; clearTimeout(flash.t); flash.t = setTimeout(() => e.textContent = '', 3000); };
+
+async function load() {
+  ({ site, marks } = await api('/marks'));
+  names = Object.keys(marks);
+  document.getElementById('site').innerHTML = `${site.address}<br>Lot ${site.lotplan} · ${Math.round(site.lot_area)} m²`;
+  list(); show(0);
+}
+function list() {
+  document.getElementById('list').innerHTML = names.map((n, i) => {
+    const m = marks[n];
+    return `<div class="ph ${i === cur ? 'sel' : ''} ${m.reviewed ? 'done' : ''}" data-i="${i}"><span class="dot"></span><span class="nm">${n}</span><span class="md">${m.error ? 'no GPS' : m.mode}</span></div>`;
+  }).join('');
+  document.querySelectorAll('.ph').forEach(e => e.onclick = () => show(+e.dataset.i));
+}
+function show(i) {
+  cur = (i + names.length) % names.length;
+  const n = names[cur], m = marks[n];
+  anchors = { ...(m.anchors || {}) };
+  const im = new Image();
+  im.onload = () => { if (names[cur] !== n) return; img = im; cv.width = im.width; cv.height = im.height; draw(); };
+  im.src = '/preview/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.jpg'));
+  document.getElementById('note').textContent = m.error || m.note || '';
+  list(); modeBtns();
+}
+function modeBtns() {
+  document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === marks[names[cur]].mode));
+}
+
+// Same layout as drone_pin.py pin_layout(): the line shortens so the K stays in frame.
+function pinLayout(m) {
+  const kw = SZ.K_W * m.h, kh = kw * K.height / K.width;
+  const room = m.tip[1] - SZ.TOP_MARGIN * m.h - kh - SZ.GAP * m.h;
+  return { kw, kh, len: Math.max(0, Math.min(SZ.LINE_LEN * m.h, room)) };
+}
+function draw() {
+  const m = marks[names[cur]], s = cv.width / m.w;
+  cx.drawImage(img, 0, 0);
+  if (m.error) return;
+  cx.save(); cx.scale(s, s);
+  if ((m.mode === 'outline' || m.mode === 'both') && m.lot.length) {
+    cx.strokeStyle = '#fff'; cx.lineJoin = cx.lineCap = 'round';
+    cx.lineWidth = Math.max(2, Math.round(SZ.OUTLINE_W * m.w));
+    cx.beginPath(); m.lot.forEach(([x, y], j) => j ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.closePath(); cx.stroke();
+  }
+  if (m.mode === 'pin' || m.mode === 'both') {
+    const { kw, kh, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.LINE_W * m.h));
+    cx.fillStyle = '#fff';
+    cx.fillRect(m.tip[0] - lw / 2, m.tip[1] - len, lw, len);
+    cx.drawImage(K, m.tip[0] - kw / 2, m.tip[1] - len - SZ.GAP * m.h - kh, kw, kh);
+  }
+  cx.restore();
+  // Handles: blue = tip, small squares = lot corners; amber = ones you've placed.
+  const h = (x, y, r, col, sq) => {
+    cx.beginPath(); cx.fillStyle = col; cx.strokeStyle = '#000'; cx.lineWidth = 2;
+    if (sq) cx.rect(x * s - r, y * s - r, 2 * r, 2 * r); else cx.arc(x * s, y * s, r, 0, 7);
+    cx.fill(); cx.stroke();
+  };
+  if (m.mode !== 'none') {
+    if (m.mode !== 'pin') m.lot.forEach(([x, y], j) => h(x, y, 6, anchors[j] ? '#f5b041' : '#61a8d8', true));
+    if (m.mode !== 'outline') h(m.tip[0], m.tip[1], 9, anchors.tip ? '#f5b041' : '#61a8d8');
+  }
+}
+
+function toImg(e) {
+  const r = cv.getBoundingClientRect(), m = marks[names[cur]];
+  return [(e.clientX - r.left) / r.width * m.w, (e.clientY - r.top) / r.height * m.h];
+}
+cv.onmousedown = e => {
+  const m = marks[names[cur]]; if (m.error || m.mode === 'none') return;
+  const p = toImg(e), tol = 14 * m.w / cv.getBoundingClientRect().width;
+  const cands = [];
+  if (m.mode !== 'outline') cands.push(['tip', m.tip]);
+  if (m.mode !== 'pin') m.lot.forEach((q, j) => cands.push([String(j), q]));
+  let best = null, bd = tol;
+  for (const [k, q] of cands) { const d = Math.hypot(q[0] - p[0], q[1] - p[1]); if (d < bd) { bd = d; best = k; } }
+  // Click on empty image in pin mode moves the tip there.
+  if (!best && m.mode === 'pin') best = 'tip';
+  if (best) drag = { key: best, free: e.shiftKey };
+  cv.onmousemove(e);
+};
+cv.onmousemove = e => {
+  if (!drag) return;
+  const m = marks[names[cur]], p = toImg(e);
+  if (drag.key === 'tip') m.tip = p; else m.lot[+drag.key] = p;
+  draw();
+};
+window.onmouseup = async e => {
+  if (!drag) return;
+  const m = marks[names[cur]], d = drag; drag = null;
+  const p = d.key === 'tip' ? m.tip : m.lot[+d.key];
+  if (d.free) { m.manual = true; draw(); return; }   // shift-drag: move just this corner
+  anchors[d.key] = p;
+  const first = d.key === 'tip' && !site.tip_from;
+  const r = await api('/solve', { file: names[cur], anchors, target: d.key === 'tip' && e.altKey });
+  site = r.site; marks = r.marks; anchors = { ...(r.m.anchors || {}) }; draw(); list();
+  flash(first || e.altKey ? `house set from ${names[cur]}; every photo now pins this spot`
+    : `correction: heading ${r.m.dyaw.toFixed(2)}°, tilt ${r.m.dpitch.toFixed(2)}°, roll ${r.m.droll.toFixed(2)}°`);
+};
+
+async function setMode(mode) { marks[names[cur]].mode = mode; modeBtns(); draw(); list(); await api('/save', { [names[cur]]: marks[names[cur]] }); }
+document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+document.getElementById('approve').onclick = async () => {
+  marks[names[cur]].reviewed = true;
+  await api('/save', { [names[cur]]: marks[names[cur]] });
+  flash('approved'); show(cur + 1);
+};
+document.getElementById('reset').onclick = async () => {
+  anchors = {};
+  const r = await api('/solve', { file: names[cur], anchors: {} });
+  marks = r.marks; Object.assign(marks[names[cur]], { reviewed: false, manual: false, anchors: {} });
+  await api('/save', { [names[cur]]: marks[names[cur]] });
+  draw(); list();
+};
+document.getElementById('apply').onclick = async () => {
+  const r = await api('/apply', {});
+  if (r.error) return flash(r.error);
+  marks = r.marks; draw(); list();
+  flash(`applied compass ${r.dyaw.toFixed(2)}°` + (r.dz ? `, lot ground ${r.dz >= 0 ? '+' : ''}${r.dz.toFixed(1)} m` : '') + ' to unapproved photos');
+};
+window.onkeydown = e => {
+  if (e.key === 'ArrowRight') show(cur + 1);
+  else if (e.key === 'ArrowLeft') show(cur - 1);
+  else if (e.key === 'Enter') document.getElementById('approve').click();
+  else if ('1234'.includes(e.key) && e.key.length === 1) setMode(['pin', 'outline', 'both', 'none'][+e.key - 1]);
+};
+load();
+</script>
+</body>
+</html>
