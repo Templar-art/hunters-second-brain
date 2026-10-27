@@ -1,10 +1,23 @@
 {
  "name": "ZED",
+ "aliases": [
+  "Zed Real Estate"
+ ],
  "confirmed": false,
- "notes": "Blacks out everything around the house (Bright lasso + Blackout slider, 2026-10-27). Pin style not confirmed: the Ormeu St 'Pins Print' folder was empty. Set pin/outline here once Hunter confirms.",
+ "notes": "From Sam Drones (Ormeu St) + Drive Zed Map Pins: white-ringed Z logo with a faint dark fill on a thin line, thin white outline, neighbourhood in black & white (lot, sky, far landscape stay colour, varies per job), labels regular sentence case, no dot, no distance. Research 2026-10-28: finished pinned sets on the Clients Drive (paths in wiki/concepts/drone-photo-pin.md). Sizes estimated from previews.",
  "style": {
-  "pin": "none",
-  "blackout": 0.6
+  "pin": "mark",
+  "glyph": "projects/drone-pin/logos/zed-z-ring-white.png",
+  "fill": "#000000",
+  "fill_opacity": 0.2,
+  "badge": 0.08,
+  "pin_line": 0.02,
+  "outline_w": 0.0018,
+  "surround": "mono",
+  "blackout": 1.0,
+  "place_dot": false,
+  "place_upper": false,
+  "place_font": "~/Library/Fonts/SöhneBreit-Buch.otf"
  },
  "agents": {}
 }

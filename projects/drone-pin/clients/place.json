@@ -1,0 +1,21 @@
+{
+ "name": "Place",
+ "aliases": [
+  "Place Cleveland",
+  "Place Estate Agents"
+ ],
+ "confirmed": false,
+ "notes": "From 13 Pyrite St: solid white disc with a navy P, thin line; labels in caps with a dot at the base, no distance. NEEDS the Place P logo PNG; navy shade unconfirmed. Research 2026-10-28: finished pinned sets on the Clients Drive (paths in wiki/concepts/drone-photo-pin.md). Sizes estimated from previews.",
+ "style": {
+  "pin": "disc",
+  "glyph": null,
+  "glyph_w": 0.5,
+  "fill": "#FFFFFF",
+  "glyph_color": "#0B1F3A",
+  "badge": 0.075,
+  "pin_line": 0.025,
+  "place_dot": true,
+  "place_upper": true
+ },
+ "agents": {}
+}

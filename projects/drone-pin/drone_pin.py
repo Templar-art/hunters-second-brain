@@ -61,7 +61,11 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 # then that client's "agents" entry for the job's agent. The job's site.json names
 # the client and agent. Kollosche's: a navy square badge with a thin white border
 # and a white K on a thin white line, proportions from its own 'Kollosche Map Pin.png'.
-#   pin: "badge" (square) | "ring" (circle, ZED) | "none"   fill_opacity: badge/ring fill alpha 0-1
+#   pin: "badge" (square, Kollosche) | "ring" (circle + white ring, Belle) | "disc" (solid circle, Place)
+#        | "mark" (the logo PNG alone at badge height, e.g. ZED's ringed Z, Bespoke's B icon; a
+#          fill_opacity > 0 puts a soft circle behind it) | "none"
+#   fill_opacity: badge/ring/disc fill alpha 0-1   glyph_color: tint the mark (e.g. navy on a white disc)
+#   line_dot: the pin line ends in a dot on the house (Remax, Bespoke)
 #   glyph: "kollosche-k", a white PNG (vault path), or null
 #   badge: side, of photo height  glyph_w / border / pin_line: fractions of the badge side
 #   outline_w: of photo width (x per-photo outline_w)   blackout: default for new photos (ZED)
@@ -74,7 +78,8 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 #   mono_fade: [full, none] heights above the lot's top edge, of photo height, where B&W fades out
 CLIENTS = HERE / "clients"
 DEFAULT_STYLE = {"pin": "none", "glyph": None, "badge": 0.085, "glyph_w": 0.54, "border": 0.05,
-                 "pin_line": 0.055, "fill": "#011A3B", "fill_opacity": 1.0, "outline_w": 0.0033, "outline_color": "#FFFFFF",
+                 "pin_line": 0.055, "fill": "#011A3B", "fill_opacity": 1.0,
+                 "glyph_color": None, "line_dot": False, "outline_w": 0.0033, "outline_color": "#FFFFFF",
                  "blackout": 0, "topdowns": True, "location_pins": True, "print_graphics": True,
                  "naming": "{address} - {kind}-{n}", "surround": "dark", "mono_fade": [0.25, 0.4],
                  "place_dot": True, "place_upper": True, "place_font": None}
@@ -126,7 +131,8 @@ def from_folder(path):
             address = re.sub(r"\s*\|.*$", "", rest).strip() or None   # "Name | Address | Photos"
             key = re.sub(r"[^a-z0-9]", "", head.lower())
             for slug, prof in clients().items():
-                if key and key in {re.sub(r"[^a-z0-9]", "", s.lower()) for s in [slug, prof["name"], *prof.get("aliases", [])]}:
+                # "Belle Property Hope Island" -> belle-property: the folder may add a branch name.
+                if key and any(key.startswith(n) for n in {re.sub(r"[^a-z0-9]", "", s.lower()) for s in [slug, prof["name"], *prof.get("aliases", [])]} if n):
                     return slug, address
             return None, address
     return None, None
@@ -583,11 +589,17 @@ def glyph(st):
     """The badge's white mark: the built-in Kollosche K, a white PNG from the vault, or nothing."""
     g = st.get("glyph")
     if g == "kollosche-k":
-        return k_glyph()
-    if g:
+        im = k_glyph()
+    elif g:
         im = Image.open(ROOT / g).convert("RGBA")
-        return im.crop(im.getchannel("A").getbbox())
-    return Image.new("RGBA", (1, 1), (255, 255, 255, 0))
+        im = im.crop(im.getchannel("A").getbbox())
+    else:
+        return Image.new("RGBA", (1, 1), (255, 255, 255, 0))
+    if st.get("glyph_color"):
+        tinted = Image.new("RGBA", im.size, rgb(st["glyph_color"]) + (0,))
+        tinted.putalpha(im.getchannel("A"))
+        im = tinted
+    return im
 
 
 def k_glyph():
@@ -618,16 +630,29 @@ def rgb(hexc):
 
 
 def badge(side, k, st):
-    """Filled square (Kollosche navy) or circle (ZED ring), thin white border, white mark centred."""
+    """The pin head: filled square (Kollosche navy), ringed or solid circle, or the logo alone;
+    white border, mark centred."""
     side = round(side)
     fill = rgb(st["fill"]) + (round(255 * st["fill_opacity"]),)
     bw = max(1, round(st["border"] * side))
-    if st["pin"] == "ring":
+    if st["pin"] == "mark":
+        kk = k.resize((max(1, round(k.width * side / k.height)), side), Image.LANCZOS) if k.width > 1 else k
+        b = Image.new("RGBA", (max(side, kk.width), side), (0, 0, 0, 0))
+        if fill[3]:
+            f = np.zeros((side * 4, side * 4), np.uint8)
+            cv2.circle(f, (side * 2, side * 2), side * 2 - 2, 255, -1, cv2.LINE_AA)
+            disc = Image.new("RGBA", (side, side), fill[:3] + (0,))
+            disc.putalpha(Image.fromarray((cv2.resize(f, (side, side), interpolation=cv2.INTER_AREA) * (fill[3] / 255)).astype(np.uint8)))
+            b.alpha_composite(disc, ((b.width - side) // 2, 0))
+        b.alpha_composite(kk, ((b.width - kk.width) // 2, 0))
+        return b
+    if st["pin"] in ("ring", "disc"):
         ss = 4   # supersampled for a clean circle edge
         a, f = np.zeros((side * ss, side * ss), np.uint8), np.zeros((side * ss, side * ss), np.uint8)
         c, r = (side * ss) // 2, side * ss / 2
         cv2.circle(f, (c, c), round(r), 255, -1, cv2.LINE_AA)
-        cv2.circle(a, (c, c), round(r - bw * ss / 2), 255, round(bw * ss), cv2.LINE_AA)
+        if st["pin"] == "ring":
+            cv2.circle(a, (c, c), round(r - bw * ss / 2), 255, round(bw * ss), cv2.LINE_AA)
         f, a = (cv2.resize(x, (side, side), interpolation=cv2.INTER_AREA) for x in (f, a))
         b = Image.new("RGBA", (side, side), fill[:3] + (0,))
         b.putalpha(Image.fromarray((f.astype(np.float32) * fill[3] / 255).astype(np.uint8)))
@@ -641,6 +666,8 @@ def badge(side, k, st):
     if k.width < 2:
         return b
     kw = round(st["glyph_w"] * side)
+    if k.height * kw / k.width > 0.9 * side:   # tall marks: fit the height instead
+        kw = round(0.9 * side * k.width / k.height)
     kk = k.resize((kw, round(k.height * kw / k.width)), Image.LANCZOS)
     b.alpha_composite(kk, ((side - kk.width) // 2, (side - kk.height) // 2))
     return b
@@ -794,6 +821,14 @@ def draw_overlay(m, k, st, site=None, mask=None):
         lw = max(2, round(st["pin_line"] * side))
         line = Image.new("RGBA", (lw, max(1, round(length))), (255, 255, 255, 255))
         im.alpha_composite(line, (round(tx - lw / 2), round(ty - length)))
+        if st["line_dot"]:
+            r4 = round(1.6 * lw * 4)
+            d = np.zeros((r4 * 2 + 8, r4 * 2 + 8), np.uint8)
+            cv2.circle(d, (r4 + 4, r4 + 4), r4, 255, -1, cv2.LINE_AA)
+            d = cv2.resize(d, (d.shape[1] // 4, d.shape[0] // 4), interpolation=cv2.INTER_AREA)
+            dot = Image.new("RGBA", (d.shape[1], d.shape[0]), (255, 255, 255, 0))
+            dot.putalpha(Image.fromarray(d))
+            im.alpha_composite(dot, (round(tx - dot.width / 2), round(ty - dot.height / 2)))
         bd = badge(side, k, st)
         im.alpha_composite(bd, (round(tx - bd.width / 2), round(ty - length - bd.height)))
     return im

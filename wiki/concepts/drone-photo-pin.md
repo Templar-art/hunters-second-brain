@@ -2,7 +2,7 @@
 type: concept
 tags: [tool, drone, kollosche, pin, outline, cadastre]
 status: built-untested-on-live-job
-updated: 2026-10-27
+updated: 2026-10-28
 ---
 
 # Drone photo pinning
@@ -59,6 +59,43 @@ Jobs live in `projects/drone-pin/jobs/<folder>`. Reopening the same folder resum
 
 ## Client fit
 - The top-down outline shot is worth making for most agencies, but **Kollosche doesn't use top-downs** (see [[kollosche]]).
+
+## Client style profiles (2026-10-28)
+Each client's look is a file in `projects/drone-pin/clients/<slug>.json`, so a new client or a style change means editing JSON rather than code. The app reads the client and address from the SSD's `Client | Address` folder name (e.g. `Zed | 86 Ormeu Street`). A branch suffix is fine (`Belle Property Hope Island` → Belle). The review page has **Client** and **Agent** pickers; an agent entry in the profile can override any style key, e.g. a team logo instead of the K. Kollosche's agent list comes from its 32 team-logo folders. Re-rendering the delivered Esther set with the profile system was pixel-identical to the delivery.
+
+Pin heads available:
+- `badge`: a square (Kollosche).
+- `ring`: a circle with a white ring (Belle, YPA, Jessica Wallace).
+- `disc`: a solid circle with a tinted mark (Place).
+- `mark`: the logo PNG on its own, optionally over a soft circle. ZED's ringed Z works this way, as does Bespoke's B icon.
+- `none`.
+
+Other style keys:
+- A dot at the end of the line (Remax, Bespoke).
+- Outline colour (YPA is yellow).
+- Label options: no dot, sentence case, and a regular font (ZED, Coastline).
+- `surround: "mono"`: **ZED's real look**. The neighbourhood goes black and white, while the lot, any Bright-lasso shapes and the far landscape (fading out above the lot) stay in colour. It isn't a darkening. The earlier "blacks out" description was a misreading, now corrected from the Sam Drones files.
+
+Research sweep (finished pinned sets on the Clients Drive and SSD):
+- **ZED:** `Zed Real Estate/*/Print/*Map Pin*`, plus `SSD/Zed | 86 Ormeu Street/AI PHOTOS/Sam Drones-0*`. How far the black and white reaches varies by job.
+- **Belle:** `Belle Property Hope Island/5 Jackson Street`.
+- **Bespoke:** `3009 The Boulevard`, `45 Devoy St`.
+- **YPA:** `41 Sears Road`, `57 Girtin Ct`.
+- **Place:** `Place Cleveland/13 Pyrite Street`.
+- **Remax:** `Stuart Legg/32 Southern Skies`.
+- **Coastline Prestige:** `10x Drive Pulls/REA/…/71-73 Lydford Close`.
+- **Jessica Wallace:** `88 Third Ave` (The Agency, but she may now be with Harcourts).
+
+Only **Kollosche** is confirmed. Every other profile is marked unconfirmed and explains itself in the review page. Logo files are in `projects/drone-pin/logos/`: ZED, Belle and Bespoke. **Still needed:** the YPA, Place, RE/MAX, Coastline and agency logos as white PNGs. **Coastal** (34 Albany Ave) has no finished graphics yet, and it may be Coastline Prestige; this needs confirming.
+
+## Auto-align attempts (2026-10-28): none beat a hand drag
+Tested on Esther against Hunter's hand fixes. On a photo 11,000 px wide, the uncorrected drift was 100–400 px.
+- **Matching against QLD aerial imagery:** 0–10 matches. The imagery is 3 or more years old, and the Esther lot has been redeveloped since, which is exactly Hunter's renovation concern.
+- **Sea horizon for pitch and roll:** this locked onto the skyline and gave 2–3° where the right answer was 0.5–1°.
+- **Matching photos against each other:** only 7–13 matches, because the views face different directions.
+- **Neighbouring lot boundaries (cadastre, 765 parcels) chamfer-matched to image edges:** worse on 5 of 6 photos. Fences don't sit on boundary lines closely enough, and roofs, trees and shadows swamp the edge signal.
+
+Conclusion: one drag per photo plus "Apply to flight" stays the method. Revisit only with a better edge signal, for example a segmentation model trained on kerbs and roads.
 
 ## Lessons from the build (Somerset Dr test set, 7 photos)
 - **⚠️ Don't trust `GimbalYawDegree`.** On these DJI files it sat 39–55° off true north. `FlightYawDegree` (the aircraft heading) put the lot on the house on every photo, top-downs included, so the tool uses it.

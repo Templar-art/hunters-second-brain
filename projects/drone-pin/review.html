@@ -223,7 +223,7 @@ async function api(path, body) {
   return r.json();
 }
 const flash = t => { const e = document.getElementById('msg'); e.textContent = t; clearTimeout(flash.t); flash.t = setTimeout(() => e.textContent = '', 4000); };
-const M = () => marks[names[cur]];
+const M = () => marks && marks[names[cur]];   // the K image can load before the marks do
 const save = () => api('/save', { [names[cur]]: M() });
 
 let clients = {};
@@ -370,20 +370,28 @@ function draw() {
   }
   cx.save(); cx.scale(s, s);
   if (on('pin') && SZ.STYLE.pin !== 'none') {
-    const { side, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.PIN_LINE * side));
-    const [tx, ty] = m.tip, bx = tx - side / 2, by = ty - len - side;
+    // Same as drone_pin.py badge(): square badge, ringed/solid circle, or the logo alone.
+    const S = SZ.STYLE, { side, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.PIN_LINE * side));
+    const [tx, ty] = m.tip, bx = tx - side / 2, by = ty - len - side, cyy = by + side / 2;
     cx.fillStyle = '#fff'; cx.fillRect(tx - lw / 2, ty - len, lw, len);
-    const bw = Math.max(1, SZ.BADGE_BORDER * side);
-    cx.globalAlpha = SZ.STYLE.fill_opacity; cx.fillStyle = SZ.BADGE_FILL;
-    if (SZ.STYLE.pin === 'ring') {   // ZED: circle, white ring
-      cx.beginPath(); cx.arc(tx, by + side / 2, side / 2, 0, 7); cx.fill(); cx.globalAlpha = 1;
-      cx.strokeStyle = '#fff'; cx.lineWidth = bw; cx.beginPath(); cx.arc(tx, by + side / 2, side / 2 - bw / 2, 0, 7); cx.stroke();
+    if (S.line_dot) { cx.beginPath(); cx.arc(tx, ty, 1.6 * lw, 0, 7); cx.fill(); }
+    const bw = Math.max(1, SZ.BADGE_BORDER * side), hasK = K.width > 1;
+    cx.globalAlpha = S.fill_opacity; cx.fillStyle = SZ.BADGE_FILL;
+    if (S.pin === 'mark') {
+      if (S.fill_opacity) { cx.beginPath(); cx.arc(tx, cyy, side / 2, 0, 7); cx.fill(); }
+      cx.globalAlpha = 1;
+      if (hasK) { const kw = side * K.width / K.height; cx.drawImage(K, tx - kw / 2, by, kw, side); }
     } else {
-      cx.fillRect(bx, by, side, side); cx.globalAlpha = 1;
-      cx.strokeStyle = '#fff'; cx.lineWidth = bw; cx.strokeRect(bx + bw / 2, by + bw / 2, side - bw, side - bw);
+      if (S.pin === 'badge') cx.fillRect(bx, by, side, side); else { cx.beginPath(); cx.arc(tx, cyy, side / 2, 0, 7); cx.fill(); }
+      cx.globalAlpha = 1; cx.strokeStyle = '#fff'; cx.lineWidth = bw;
+      if (S.pin === 'badge') cx.strokeRect(bx + bw / 2, by + bw / 2, side - bw, side - bw);
+      else if (S.pin === 'ring') { cx.beginPath(); cx.arc(tx, cyy, side / 2 - bw / 2, 0, 7); cx.stroke(); }
+      if (hasK) {
+        let kw = SZ.BADGE_K * side, kh = kw * K.height / K.width;
+        if (kh > 0.9 * side) { kh = 0.9 * side; kw = kh * K.width / K.height; }
+        cx.drawImage(K, tx - kw / 2, by + (side - kh) / 2, kw, kh);
+      }
     }
-    const kw = SZ.BADGE_K * side, kh = kw * K.height / K.width;
-    if (K.width > 1) cx.drawImage(K, tx - kw / 2, by + (side - kh) / 2, kw, kh);
   }
   drawPlaces(m);
   cx.restore();

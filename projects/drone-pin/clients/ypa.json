@@ -1,0 +1,21 @@
+{
+ "name": "YPA",
+ "aliases": [
+  "YPA QLD"
+ ],
+ "confirmed": false,
+ "notes": "From 41 Sears Rd + 57 Girtin Ct: white ring, dark see-through fill, white ypa wordmark, thin line; YELLOW lot outline. NEEDS the white ypa logo PNG (glyph). Research 2026-10-28: finished pinned sets on the Clients Drive (paths in wiki/concepts/drone-photo-pin.md). Sizes estimated from previews.",
+ "style": {
+  "pin": "ring",
+  "glyph": null,
+  "glyph_w": 0.62,
+  "fill": "#000000",
+  "fill_opacity": 0.25,
+  "badge": 0.075,
+  "border": 0.035,
+  "pin_line": 0.025,
+  "outline_w": 0.002,
+  "outline_color": "#F2C200"
+ },
+ "agents": {}
+}

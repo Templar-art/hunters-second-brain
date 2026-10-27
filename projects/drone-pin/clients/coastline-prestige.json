@@ -1,0 +1,17 @@
+{
+ "name": "Coastline Prestige",
+ "confirmed": false,
+ "notes": "From 71/73 Lydford Close: bare white line-art C-with-wave mark, very thin line, no dot; labels small regular sentence case, no dot, no distance. NEEDS the white C logo PNG. Research 2026-10-28: finished pinned sets on the Clients Drive (paths in wiki/concepts/drone-photo-pin.md). Sizes estimated from previews.",
+ "style": {
+  "pin": "mark",
+  "glyph": null,
+  "fill_opacity": 0,
+  "badge": 0.07,
+  "pin_line": 0.02,
+  "outline_w": 0.0018,
+  "place_dot": false,
+  "place_upper": false,
+  "place_font": "~/Library/Fonts/SöhneBreit-Buch.otf"
+ },
+ "agents": {}
+}

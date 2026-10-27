@@ -1538,3 +1538,6 @@ A working pit lane, tyre wear and fuel, 5-lap races, AI with braking-distance pl
 ## [2026-10-28] update | Street Racer v6: spinning wheels on all cars, paint/light pass
 
 ## [2026-10-28] update | Street Racer v7: 3 maps, story mode, per-car engine synth, harder AI, R34/AE86/M3 fixes
+
+## [2026-10-28] build | Drone pin: client style profiles + auto-align attempts
+Per-client style profiles (clients/*.json, 10 clients from a Drive/SSD research sweep), client and address read from the "Client | Address" folder name, agent overrides, ZED's B&W surround, plus ring/disc/mark pins with a line dot. Kollosche output is pixel-identical. Four auto-align methods were tested; none beat a hand drag. See [[drone-photo-pin]].
