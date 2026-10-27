@@ -33,6 +33,7 @@ The full pack is in `raw/kollosche/`. It holds the guidelines, overlays, PSD tem
 **Font:** all 7 Söhne Breit weights were installed to `~/Library/Fonts` on 2026-10-26 (from `raw/kollosche/fonts/sohne-breit/`). Restart Premiere or Final Cut if either was open at the time.
 
 ## Work for and around Kollosche
+- **K location pin** (2026-10-27): the K from the wordmark over a thin white line down to the house, matching a reference Hunter sent. [projects/kollosche-pin/](../../projects/kollosche-pin/make_pin.py) renders 1080×1920 transparent PNGs and 5 s ProRes 4444 alpha movies (the line draws up over 0.5 s, then the K fades in), in long and short lengths. ⚠️ A mid-video K bends the "K only at the open" rule, so confirm with Kollosche before using it on their channels.
 - [[extra-salt-kollosche-birds]]: CG gulls comped into a Pottsville drone wide from the Kollosche reel (Oct 2026). That plate became the [[plate-vfx]] benchmark.
 - 18 Maryland: the house and site were rebuilt in Blender from the Kollosche floor plan (`raw/18-maryland/floorplan-kollosche*.png`).
 - `~/Downloads/Kollosche BTS REEL FINAL.mp4` (1 Sep 2026) is a BTS reel. It was left in Downloads and is not part of the brand pack.

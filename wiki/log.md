@@ -1485,3 +1485,6 @@ Inventoried 37 client folders on the Drive and pulled 47 finished shoots (12.4 G
 
 ## [2026-10-27] ingest | Kollosche day-to-night intake (Villas on Esther)
 4 clips (4K, 1.5–3.5 s) triaged; Seedance video_modify prompts written to projects/kollosche-day-to-night/prompts.md. Nothing spent.
+
+## [2026-10-27] ingest | Kollosche K pin + logo/super specs
+Built a K location pin for 9:16 wide drone shots (`projects/kollosche-pin/`, PNG + ProRes 4444 alpha, $0). Measured the 16:9 logo and address super specs into [[kollosche-video-guidelines]]. The pack's `svg_Kollosche…` files turned out to be Kara Christensen team logos; they were refiled, and clean wordmark PNGs were extracted.
