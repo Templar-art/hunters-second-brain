@@ -107,7 +107,10 @@ function draw() {
   if ((m.mode === 'outline' || m.mode === 'both') && m.lot.length) {
     cx.strokeStyle = '#fff'; cx.lineJoin = cx.lineCap = 'round';
     cx.lineWidth = Math.max(2, Math.round(SZ.OUTLINE_W * m.w));
+    // Same subtle shadow as the render (SHADOW_* in drone_pin.py).
+    cx.shadowColor = 'rgba(0,0,0,0.6)'; cx.shadowBlur = 1.2 * cx.lineWidth * s; cx.shadowOffsetY = 0.5 * cx.lineWidth * s;
     cx.beginPath(); m.lot.forEach(([x, y], j) => j ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.closePath(); cx.stroke();
+    cx.shadowColor = 'transparent';
   }
   if (m.mode === 'pin' || m.mode === 'both') {
     const { kw, kh, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.LINE_W * m.h));

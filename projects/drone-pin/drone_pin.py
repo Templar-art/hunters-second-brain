@@ -50,6 +50,9 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 # Pin and outline sizes, as fractions of the photo (same ratios as the video pin).
 K_W, LINE_W, LINE_LEN, GAP, TOP_MARGIN = 0.079, 0.0037, 0.42, 0.015, 0.05
 OUTLINE_W = 0.0055
+# Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
+# below, low opacity. All in multiples of the outline width.
+SHADOW_OFFSET, SHADOW_BLUR, SHADOW_OPACITY = 0.5, 0.6, 0.6
 
 
 # --- cadastre -----------------------------------------------------------------
@@ -410,7 +413,17 @@ def draw_overlay(m, k):
             cv2.circle(a, (int(x), int(y)), lw // 2 * 16, 255, -1, cv2.LINE_AA, shift=4)
     alpha = cv2.resize(a, (W, H), interpolation=cv2.INTER_AREA)
     im = Image.new("RGBA", (W, H), (255, 255, 255, 0))
-    im.putalpha(Image.fromarray(alpha))
+    if alpha.any():
+        lw = max(2, round(OUTLINE_W * W))
+        off = round(SHADOW_OFFSET * lw)
+        sh = np.roll(alpha, off, axis=0).astype(np.float32)
+        sh = cv2.GaussianBlur(sh, (0, 0), SHADOW_BLUR * lw) * SHADOW_OPACITY
+        shadow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        shadow.putalpha(Image.fromarray(np.clip(sh, 0, 255).astype(np.uint8)))
+        im.alpha_composite(shadow)
+    line = Image.new("RGBA", (W, H), (255, 255, 255, 0))
+    line.putalpha(Image.fromarray(alpha))
+    im.alpha_composite(line)
     if m["mode"] in ("pin", "both"):
         tx, ty = m["tip"]
         kw, kh, length = pin_layout(W, H, m["tip"], k.height / k.width)

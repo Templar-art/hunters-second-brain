@@ -17,7 +17,7 @@ updated: 2026-10-27
    - Later drags correct that photo's camera.
    - ⌥-drag re-marks the house, and ⇧-drag moves one outline corner by hand.
    - "Apply correction" carries a compass offset fitted from the approved photos to the rest of the flight.
-4. **Render.** Run `drone_pin.py render <job>`. It writes the full-resolution JPG (EXIF and colour profile kept) and a transparent PNG overlay for each approved photo. The pin uses the same proportions as the video pin, and the line shortens when needed so the K stays in frame.
+4. **Render.** Run `drone_pin.py render <job>`. It writes the full-resolution JPG (EXIF and colour profile kept) and a transparent PNG overlay for each approved photo. The outline carries a very subtle drop shadow (Hunter, 2026-10-27): black at 60%, offset half a line width down, blurred 0.6× the line width; the pin has none. The pin uses the same proportions as the video pin, and the line shortens when needed so the K stays in frame.
 
 ## Lessons from the build (Somerset Dr test set, 7 photos)
 - **⚠️ Don't trust `GimbalYawDegree`.** On these DJI files it sat 39–55° off true north. `FlightYawDegree` (the aircraft heading) put the lot on the house on every photo, top-downs included, so the tool uses it.
