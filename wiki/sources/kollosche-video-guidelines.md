@@ -61,7 +61,7 @@ The PDF and the example video agree on Kräftig with no box, and the example (45
 | Folder | Contents |
 |---|---|
 | `guidelines/` | 2× guidelines PDF, the Final Cut caption SOP, the Premiere caption settings screenshot, `Disclaimer 2026.docx` (© Kollosche Sales Pty Ltd 2026 copyright line, the small print on 4K outros) |
-| `brand-logos/` | K icon + KOLLOSCHE wordmark overlays (1080×1920, 3840×2160, transparent PNG), `svg_Kollosche Black/Blue/White_01/02.svg` |
+| `brand-logos/` | K icon + KOLLOSCHE wordmark overlays (1080×1920, 3840×2160, transparent PNG); `wordmark/Kollosche-wordmark-{navy,black,white}.png` (2411 px, transparent, extracted 2026-10-27 from the Hayley Kidson lockup, the largest clean copy in the pack). ⚠️ No vector of the plain wordmark came in the pack. The `svg_Kollosche …` files were actually **Kara Christensen team logos** with misleading names, and they were moved to her folder |
 | `overlays/` | Blue overlay 9:16 + 4K (50% navy), AUCTION overlay 9:16 |
 | `templates-psd/` | `Agent-Outro`, `Agent-Property-Intro` (K + AUCTION + address + team), `Agent-Title` (name + title lower-third), `Monthly-wrap-INTRO` (KOLLOSCHE + month), `Blue_overlay_4K`, `Kollosche_YouTube-video_overlays_GROUPED` (4K K + address). Local only, not in git |
 | `fonts/sohne-breit/` | Söhne Breit: Extraleicht, Leicht, Buch, Kräftig, Halbfett, Dreiviertelfett, Extrafett (licensed, local only; installed to `~/Library/Fonts` 2026-10-26) |
