@@ -1488,3 +1488,6 @@ Inventoried 37 client folders on the Drive and pulled 47 finished shoots (12.4 G
 
 ## [2026-10-27] ingest | Kollosche K pin + logo/super specs
 Built a K location pin for 9:16 wide drone shots (`projects/kollosche-pin/`, PNG + ProRes 4444 alpha, $0). Measured the 16:9 logo and address super specs into [[kollosche-video-guidelines]]. The pack's `svg_Kollosche…` files turned out to be Kara Christensen team logos; they were refiled, and clean wordmark PNGs were extracted.
+
+## [2026-10-27] ingest | Kollosche townhouse drone graphics
+Made a tracked white lot outline on the top-down Main.mp4 and a roof-locked K pin on the wide View.mp4, both local and $0. The plate-vfx drone fit failed on Main (fast spin and motion blur in the first frames). Chained SIFT homographies from the sharp last frame worked instead, which is the right model for a straight-down shot. In review with Hunter. Job: projects/kollosche-drone-graphics/JOB.md.

@@ -111,3 +111,10 @@ raw/kollosche/**/*.ai
 raw/kollosche/**/*.psd
 raw/kollosche/**/*.otf
 raw/kollosche/_duplicates/
+
+# kollosche drone graphics: frames, renders and outputs regenerate from scripts/
+projects/kollosche-drone-graphics/*/frames/
+projects/kollosche-drone-graphics/*/render/
+projects/kollosche-drone-graphics/*/src/
+projects/kollosche-drone-graphics/*/comp/
+projects/kollosche-drone-graphics/*/out/
