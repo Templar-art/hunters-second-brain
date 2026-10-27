@@ -78,3 +78,18 @@ More tracks, wheel detection for the static-wheel cars (G80, M5, R8, RX-7, 930, 
 - All six previously static cars (M3 G80, M5, R8, RX-7, 930, M4 GT) were rebaked with separate spinning wheels. `carprep.py` now measures real vertices, because `bound_box` goes stale in background Blender. It drops proxy junk meshes and splits axle-wide pieces.
 - The game re-pivots each wheel on its mesh bounding-box centre, so the wheels stay on their hubs when they spin.
 - Paint is now the largest-area body material, ignoring glass, rubber and chrome. Glass and tyres get their own material values. Head and tail light sprites were added, and the tail lights brighten under braking.
+
+## v7 (2026-10-28): maps, story, per-car engines, harder AI
+- **Car fixes:** the R34 and AE86 sources had no material colours at all, so every part merged into one white material. They were rebaked with hand-assigned paint, glass, trim, tyre and light materials, identified from false-colour Blender renders (`runcol.py` in the scratchpad). The M3 G80's body is a purple placeholder material, so the game now has a per-car `paint` regex override. Car files are cache-busted with `?v=7`.
+- **Maps** (`?map=` or the garage picker, saved per player):
+  - **Night GP:** smooth, no bumps or jumps.
+  - **Coastal GP:** daytime, physical `Sky` with sky-lit reflections.
+  - **Back Roads:** dusk, a narrow 10.5 m road with armco rails, a dashed centre line, bumps and a dense forest.
+- **Engines:** a WebAudio synth per car, driven by cylinder count, firing frequency, rasp, cross-plane burble, turbo whistle and blow-off. It covers V10, flat-plane and cross-plane V8, I6 turbo, 2JZ/RB26, I4, 4A-GE, rotary and the 930's flat six. The nearest rival is audible too.
+- **AI:**
+  - Higher lateral-g and braking limits.
+  - Skill 1.0–1.05.
+  - Defends the inside against the player on straights.
+  - Proportional catch-up when behind.
+  - Pits earlier on long races.
+- **Story mode:** eight chapters across the maps, running from rookie to Grand Final, with a rival Kai Moreno in an F40. Progress is saved in `save.story`. A chapter on another map reloads with `?map=X&ch=i`.
