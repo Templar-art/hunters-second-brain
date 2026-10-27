@@ -2,7 +2,7 @@
 type: project
 tags: [game, three-js, blender, side-project]
 status: playable-prototype
-updated: 2026-10-27
+updated: 2026-10-28
 ---
 
 # Street Racer
@@ -73,3 +73,8 @@ A three-lap arcade racer built in the browser on 2026-10-27, straight after [[dr
 
 ## Next ideas
 More tracks, wheel detection for the static-wheel cars (G80, M5, R8, RX-7, 930, M4 GT), the G82 M4, a published link.
+
+## v6 (2026-10-28): real wheels and look pass
+- All six previously static cars (M3 G80, M5, R8, RX-7, 930, M4 GT) were rebaked with separate spinning wheels. `carprep.py` now measures real vertices, because `bound_box` goes stale in background Blender. It drops proxy junk meshes and splits axle-wide pieces.
+- The game re-pivots each wheel on its mesh bounding-box centre, so the wheels stay on their hubs when they spin.
+- Paint is now the largest-area body material, ignoring glass, rubber and chrome. Glass and tyres get their own material values. Head and tail light sprites were added, and the tail lights brighten under braking.

@@ -1534,3 +1534,5 @@ A harder F1 layout with hills, crests and jumps, a forest, tyre walls and hills 
 
 ## [2026-10-28] ingest | Street Racer v5 pits and strategy
 A working pit lane, tyre wear and fuel, 5-lap races, AI with braking-distance planning, a racing line, overtakes and its own pit stops, plus a realism pass (racing line, skyline, contact shadows). 0cr. Page: [[street-racer]].
+
+## [2026-10-28] update | Street Racer v6: spinning wheels on all cars, paint/light pass
