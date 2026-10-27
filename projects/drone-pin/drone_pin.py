@@ -662,6 +662,10 @@ def finished(job, site, name, m, k):
     final = src.convert("RGBA")
     final.alpha_composite(ov)
     extra = {k2: src.info[k2] for k2 in ("exif", "icc_profile") if k2 in src.info}
+    if "exif" in extra:
+        # Re-serialise: drops Lightroom's embedded thumbnail of the CLEAN photo, which Finder and
+        # Quick Look show instead of the real pixels (looked like "print has no pin").
+        extra["exif"] = src.getexif().tobytes()
     return final.convert("RGB"), extra, ov
 
 
