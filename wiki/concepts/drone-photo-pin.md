@@ -19,6 +19,13 @@ updated: 2026-10-27
    - "Apply correction" carries a compass offset fitted from the approved photos to the rest of the flight.
 4. **Render.** Run `drone_pin.py render <job>`. It writes the full-resolution JPG (EXIF and colour profile kept) and a transparent PNG overlay for each approved photo. The outline carries a very subtle drop shadow (Hunter, 2026-10-27): black at 60%, offset half a line width down, blurred 0.6× the line width; the pin has none. The pin uses the same proportions as the video pin, and the line shortens when needed so the K stays in frame.
 
+## Next time (run order)
+1. Open `Drone Pin.app`, or for a Claude session use `preview_start drone-pin-review` after pointing `.claude/launch.json` at the job.
+2. Pick the photo folder and confirm the address.
+3. In review, for each photo: drag the pin onto the house on a close or top-down shot (this sets the house for every photo). Use Draw outline or drag corners to fix the lot, Lasso or Behind brush to hide the line behind buildings, and Razor for pieces that shouldn't show. Zoom in for accuracy.
+4. Export: name with "Name all" and "Number them", pick the folder, export Print and Web. Kollosche prints are pinned.
+5. Up next: **Coastal** drone stills (client and pin style to be confirmed; Hunter, 2026-10-27). Check whether they use their own badge, Kollosche's look, or ZED's blackout before starting.
+
 ## Mac app (2026-10-27)
 To use it without Claude, double-click **`~/Desktop/Drone Pin.app`**. It's built from `projects/drone-pin/app.applescript` with `osacompile -o ~/Desktop/"Drone Pin.app" projects/drone-pin/app.applescript`.
 1. Pick the folder of drone stills.

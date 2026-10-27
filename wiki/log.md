@@ -1503,3 +1503,13 @@ Recent Kollosche reels open on the K only, with no address super. This contradic
 
 ## [2026-10-27] ingest | Drone photo pinning tool
 Built `projects/drone-pin/`, which auto-places the K pin and the surveyed lot outline on DJI stills using drone XMP data and the QLD cadastre, with a browser review page and render step. Tested on 7 Somerset Dr photos. Found that DJI GimbalYawDegree is 39–55° off, so the tool uses FlightYawDegree. Page: [[drone-photo-pin]]. No spend.
+
+## [2026-10-27] harvest | Esther Pl drone stills delivered, plus drone-pin tool v2
+Delivered the Kollosche 5 Esther Place drone stills (6 photos, Print and Web, with pin and outline) at $0. The tool gained hand-edit tools (draw outline, razor, lasso and behind brush with eraser, zoom), export panel, ZED blackout with Bright lasso, and `Drone Pin.app`. Rules learned:
+- Kollosche pins the prints and doesn't want top-downs.
+- ZED blacks out everything outside the house.
+- The app's preview pane blocks `confirm()`.
+- Lightroom's EXIF thumbnail fools Finder into showing the clean photo.
+
+Next is Coastal. Page: [[drone-photo-pin]].
+

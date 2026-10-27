@@ -2,12 +2,14 @@
 client: kollosche
 address: 5 Esther Place, Surfers Paradise (Villas on Esther, lot 3RP128565)
 opened: 2026-10-27
-status: review           # intake → generating → review → delivered
+status: delivered           # intake → generating → review → delivered
 cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from - 2026-10-27 stills: 6 drone stills from the SSD (`Done/Drone`) auto-placed with [[drone-photo-pin]] (`stills/`, roof height 10 m). All 6 landed with no drags. Awaiting Hunter's review in the browser.
 
 - 2026-10-27 stills: pin restyled to Kollosche's photo badge (navy square, white K, thin border); thin outline, editable by hand, with a behind brush. Drones-6 outline needs Hunter's hand placement (drone height/heading off). Re-rendered as a draft; final render after Hunter's review.
 
 - 2026-10-27 delivery: Hunter exported Web (pin + outline) and Print (clean) to `Done/Drone Graphics`, and dropped the top-down (Drones-4) because Kollosche doesn't like top-downs.
+
+- 2026-10-27 DELIVERED: Hunter touched up the stills and re-exported all 6 to `Done/Drone Graphics/Print` (full size, 300 dpi, with pin and outline) and `Web` (2048 px, pin and outline), named `5 Esther Place - Surfers Paradise 01–06`. Spend: $0, all local.
 
 ## Ledger — never edit by hand
 ---
