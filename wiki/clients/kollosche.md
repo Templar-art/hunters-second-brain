@@ -42,3 +42,5 @@ The full pack is in `raw/kollosche/`. It holds the guidelines, overlays, PSD tem
 
 ## Agents seen in the pack
 Taylor Kleinberg and Thibault Parolini (end cards), Duncan Longmore, Michael Kollosche and Marco De Vincentiis (4K example outro), Gareth Denning, and Hayley Kidson ("The Conversation" PAS series). There are 32 team logo sets in all. The list is on the source page.
+
+- **Reels (Day to Night townhouse, opened 2026-10-27):** a flythrough and a cinematic reel, 9:16. The kit (K opener + Eddie Wardale outro) is in [projects/kollosche-reels](../../projects/kollosche-reels/JOB.md).
