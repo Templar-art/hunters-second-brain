@@ -19,8 +19,8 @@
   ],
   "crop_angle": 0,
   "tip": [
-   5928.5,
-   6548.1
+   5940.5,
+   6521.2
   ],
   "tip_visible": true,
   "lot": [
@@ -41,8 +41,8 @@
     6902.9
    ],
    [
-    5308,
-    6577.7
+    5841.149626910985,
+    6532.365497845133
    ],
    [
     5311.3,
@@ -50,19 +50,23 @@
    ]
   ],
   "lot_visible": true,
-  "dyaw": -0.3925809185009176,
-  "dpitch": -0.1164417897514952,
-  "droll": 0.12345261005378497,
+  "dyaw": -0.27830168116199505,
+  "dpitch": 0.5109192323662372,
+  "droll": 0.08283805297931865,
   "dz": 0,
   "mode": "pin",
   "note": "245 m from the lot, 111 m up, pitch -6\u00b0",
-  "reviewed": false,
+  "reviewed": true,
   "anchors": {
    "tip": [
-    5930.466000333167,
-    6547.562635825444
+    5941.859103237037,
+    6523.445344129555
    ]
-  }
+  },
+  "manual": true,
+  "places": {},
+  "pin_len": 0.30263159909667964,
+  "outline_w": 1
  },
  "Kollosche Drones-3.JPG": {
   "file": "Kollosche Drones-3.JPG",
@@ -74,7 +78,7 @@
   "alt": 113.851,
   "yaw": 144.1,
   "pitch": -6.5,
-  "roll": 0.0,
+  "roll": 0,
   "drone": "Mavic4 Pro L3B",
   "crop": [
    0.01665,
@@ -82,46 +86,55 @@
    0.936265,
    0.997123
   ],
-  "crop_angle": 0.0,
+  "crop_angle": 0,
   "tip": [
-   5847.7,
-   6082.6
+   5805.1,
+   6372.9
   ],
   "tip_visible": true,
   "lot": [
    [
-    6020.3,
-    6182.0
+    5979.1,
+    6473.9
    ],
    [
-    6129.0,
-    6196.0
+    6088.7,
+    6488.1
    ],
    [
-    6468.1,
-    6333.5
+    6430.8,
+    6627.7
    ],
    [
-    5554.3,
-    6717.1
+    5508.2,
+    7019.4
    ],
    [
-    5074.4,
-    6481.7
+    5024.0,
+    6779.8
    ],
    [
-    5043.8,
-    6466.7
+    4993.1,
+    6764.5
    ]
   ],
   "lot_visible": true,
-  "dyaw": 0.0,
-  "dpitch": 0.0,
-  "droll": 0.0,
-  "dz": 0.0,
+  "dyaw": 0.24165228629526983,
+  "dpitch": 1.6057370895717389,
+  "droll": -0.05317274654271992,
+  "dz": 0,
   "mode": "pin",
   "note": "255 m from the lot, 114 m up, pitch -6\u00b0",
-  "reviewed": false
+  "reviewed": false,
+  "outline_w": 1,
+  "anchors": {
+   "tip": [
+    5804.069024286323,
+    6379.4212400694
+   ]
+  },
+  "places": {},
+  "pin_len": 0.3292352606616905
  },
  "Kollosche Drones-4.JPG": {
   "file": "Kollosche Drones-4.JPG",
@@ -132,8 +145,8 @@
   "lon": 153.412917352,
   "alt": 79.441,
   "yaw": 101.1,
-  "pitch": -90.0,
-  "roll": 0.0,
+  "pitch": -90,
+  "roll": 0,
   "drone": "Mavic4 Pro L3B",
   "crop": [
    0.041947,
@@ -141,7 +154,7 @@
    0.90402,
    0.95873
   ],
-  "crop_angle": 0.0,
+  "crop_angle": 0,
   "tip": [
    5208.9,
    3791.2
@@ -149,38 +162,40 @@
   "tip_visible": true,
   "lot": [
    [
-    7114.2,
-    2628.0
+    7022.197179340334,
+    2655.063668494492
    ],
    [
-    7312.9,
-    2988.2
+    7220.897179340333,
+    3015.263668494492
    ],
    [
-    7337.8,
-    4656.9
+    7245.797179340334,
+    4683.963668494492
    ],
    [
-    3083.6,
-    4729.6
+    2991.5971793403337,
+    4756.663668494492
    ],
    [
-    3047.3,
-    2305.8
+    2955.297179340334,
+    2332.8636684944922
    ],
    [
-    3044.9,
-    2141.9
+    2952.897179340334,
+    2168.963668494492
    ]
   ],
   "lot_visible": true,
-  "dyaw": 0.0,
-  "dpitch": 0.0,
-  "droll": 0.0,
-  "dz": 0.0,
+  "dyaw": 0,
+  "dpitch": 0,
+  "droll": 0,
+  "dz": 0,
   "mode": "outline",
   "note": "11 m from the lot, 79 m up, pitch -90\u00b0",
-  "reviewed": false
+  "reviewed": false,
+  "manual": true,
+  "outline_w": 1
  },
  "Kollosche Drones-5.JPG": {
   "file": "Kollosche Drones-5.JPG",
@@ -192,15 +207,15 @@
   "alt": 10.855,
   "yaw": 11.4,
   "pitch": -10.7,
-  "roll": 0.0,
+  "roll": 0,
   "drone": "Mavic4 Pro L3B",
   "crop": [
-   0.0,
+   0,
    0.038387,
    0.824958,
    0.863341
   ],
-  "crop_angle": 0.0,
+  "crop_angle": 0,
   "tip": [
    5138.9,
    2172.2
@@ -233,13 +248,14 @@
    ]
   ],
   "lot_visible": true,
-  "dyaw": 0.0,
-  "dpitch": 0.0,
-  "droll": 0.0,
-  "dz": 0.0,
+  "dyaw": 0,
+  "dpitch": 0,
+  "droll": 0,
+  "dz": 0,
   "mode": "pin",
   "note": "51 m from the lot, 11 m up, pitch -11\u00b0",
-  "reviewed": false
+  "reviewed": false,
+  "outline_w": 1
  },
  "Kollosche Drones-6.JPG": {
   "file": "Kollosche Drones-6.JPG",
@@ -267,8 +283,8 @@
   "tip_visible": true,
   "lot": [
    [
-    4037.0,
-    4458.0
+    4037,
+    4458
    ],
    [
     3463.3,
@@ -283,11 +299,11 @@
     2300.2
    ],
    [
-    6239.0,
+    6239,
     2601.6
    ],
    [
-    6413.0,
+    6413,
     2623.5
    ]
   ],
@@ -300,15 +316,16 @@
   "note": "111 m from the lot, 45 m up, pitch -21\u00b0",
   "reviewed": false,
   "anchors": {
-   "tip": [
-    3779.775,
-    1853.7749999999999
-   ],
    "2": [
     1444.5,
     4179.42
+   ],
+   "tip": [
+    3779.775,
+    1853.7749999999999
    ]
-  }
+  },
+  "outline_w": 1
  },
  "Kollosche Drones.JPG": {
   "file": "Kollosche Drones.JPG",
@@ -320,15 +337,15 @@
   "alt": 121.403,
   "yaw": 55.1,
   "pitch": -6.8,
-  "roll": 0.0,
+  "roll": 0,
   "drone": "Mavic4 Pro L3B",
   "crop": [
-   0.0,
+   0,
    0.080386,
    0.919615,
-   1.0
+   1
   ],
-  "crop_angle": 0.0,
+  "crop_angle": 0,
   "tip": [
    5411.7,
    6043.4
@@ -361,12 +378,13 @@
    ]
   ],
   "lot_visible": true,
-  "dyaw": 0.0,
-  "dpitch": 0.0,
-  "droll": 0.0,
-  "dz": 0.0,
+  "dyaw": 0,
+  "dpitch": 0,
+  "droll": 0,
+  "dz": 0,
   "mode": "pin",
   "note": "283 m from the lot, 121 m up, pitch -7\u00b0",
-  "reviewed": false
+  "reviewed": false,
+  "outline_w": 1
  }
 }
