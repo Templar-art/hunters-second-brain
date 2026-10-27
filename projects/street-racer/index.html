@@ -424,7 +424,7 @@ const CARS=[
   {id:'supra',    name:'Toyota Supra MK4',         file:'cars/supra.glb',       accel:11,  top:80, grip:.95, drift:.65},
   {id:'r34',      name:'Nissan Skyline GT-R R34',  file:'cars/r34.glb',         accel:11.5,top:82, grip:1.05,drift:.4},
   {id:'s15',flip:1,      name:'Nissan Silvia S15',        file:'cars/s15.glb',         accel:10,  top:72, grip:.95, drift:.85},
-  {id:'rx7',flip:1,      name:'Mazda RX-7 FD',            file:'cars/rx7.glb',         accel:10.5,top:74, grip:.97, drift:.75},
+  {id:'rx7',      name:'Mazda RX-7 FD',            file:'cars/rx7.glb',         accel:10.5,top:74, grip:.97, drift:.75},
   {id:'ae86',     name:'Toyota AE86 Trueno',       file:'cars/ae86.glb',        accel:8.5, top:58, grip:.9,  drift:.9},
   {id:'p930',     name:'Porsche 930 Turbo',        file:'cars/p930.glb',        accel:11,  top:78, grip:.88, drift:.7},
 ];
@@ -441,7 +441,18 @@ function loadModel(def){ return modelCache[def.id]??=loader.loadAsync(def.file).
   root.updateMatrixWorld(true); const b2=new THREE.Box3().setFromObject(root), c2=b2.getCenter(new THREE.Vector3());
   root.position.x-=c2.x; root.position.z-=c2.z; root.position.y-=b2.min.y;
   const s2=b2.getSize(new THREE.Vector3());
-  return {root,len:Math.max(s2.x,s2.z),width:Math.min(s2.x,s2.z)};
+  // paint: the material covering the most surface (ignoring glass, rubber, chrome, interior, near-black trim)
+  const area=new Map(), tri=new THREE.Triangle(), a=new THREE.Vector3(), b=new THREE.Vector3(), c=new THREE.Vector3();
+  root.traverse(o=>{ if(!o.isMesh||/^wheel/.test(o.parent?.name||'')) return; const m=o.material, n=(m.name||'').toLowerCase();
+    if(m.transparent&&m.opacity<.9||m.transmission>0||/glass|window|tire|tyre|rubber|chrome|interior|seat|light|lamp|grill|carbon|badge|plate|mirror/.test(n)) return;
+    const col=m.color; if(!m.map&&col&&col.r+col.g+col.b<.25) return;
+    const pos=o.geometry.attributes.position, ix=o.geometry.index, cnt=ix?ix.count:pos.count, sc=o.getWorldScale(new THREE.Vector3()).x**2; let A=0;
+    for(let i=0;i<cnt;i+=9){ const i0=ix?ix.getX(i):i, i1=ix?ix.getX(i+1):i+1, i2=ix?ix.getX(i+2):i+2;
+      a.fromBufferAttribute(pos,i0); b.fromBufferAttribute(pos,i1); c.fromBufferAttribute(pos,i2); tri.set(a,b,c); A+=tri.getArea()*3; }
+    area.set(m.name,(area.get(m.name)||0)+A*sc); });
+  let paintName=null, best=0; for(const [n,v] of area) if(v>best){ best=v; paintName=n; }
+  const tagged=[...area.keys()].find(n=>/^paint/i.test(n)); if(tagged&&area.get(tagged)>best*.3) paintName=tagged;
+  return {root,len:Math.max(s2.x,s2.z),width:Math.min(s2.x,s2.z),height:s2.y,paintName};
 }).catch(e=>{ console.warn('car failed to load, dropping',def.id,e); const i=avail.indexOf(def); if(i>=0) avail.splice(i,1); delete modelCache[def.id]; throw e; }); }
 
 // ---------- Customisation ----------
@@ -466,13 +477,15 @@ const GLOWT=glowTex();
 async function makeCar(def,setup){
   const M=await loadModel(def), g=new THREE.Group(), body=M.root.clone(true);
   const inner=new THREE.Group(); inner.add(body); g.add(inner);
-  const paint=new THREE.MeshPhysicalMaterial({color:setup.paint,...FINISH[setup.finish]});
+  const paint=new THREE.MeshPhysicalMaterial({color:setup.paint,envMapIntensity:1.3,...FINISH[setup.finish]});
   const wheels=[], rimMats=[];
   body.traverse(o=>{
     if(o.isMesh){ o.castShadow=true; const n=o.material?.name||'';
       if(o.material?.emissive&&(o.material.emissiveMap||o.material.emissive.getHex())){ o.material=o.material.clone(); o.material.emissive.setHex(0); o.material.emissiveMap=null; } // stray flat emission from source files blows out under bloom
       if(o.material?.transmission>0){ o.material=o.material.clone(); o.material.transmission=0; o.material.transparent=true; o.material.opacity=Math.min(o.material.opacity,.55); o.material.color.set(0x0d1014); o.material.roughness=.05; o.material.metalness=.2; } // see-through shells → tinted glass
-      if((/^paint/i.test(n)||/CarPaint_Max1/.test(n))&&!/Trim/.test(n)) o.material=paint;
+      if(def.id==='huracan'?(/CarPaint_Max1/.test(n)&&!/Trim/.test(n)):n===M.paintName) o.material=paint;
+      else if(o.material.transparent||/glass|window/i.test(n)){ o.material=o.material.clone(); Object.assign(o.material,{roughness:.04,metalness:.1,envMapIntensity:1.6}); }
+      else if(/tire|tyre|rubber/i.test(n)){ o.material=o.material.clone(); Object.assign(o.material,{roughness:.95,metalness:0}); }
       else if(/M_Light_Max1|Clear_Low1/.test(n)){ o.material=o.material.clone(); o.material.emissive=new THREE.Color(0xffffff); o.material.emissiveIntensity=2.5; }
       else if(o.material?.color&&!o.material.map&&o.material.color.r>.7&&o.material.color.b>.7&&o.material.color.g<.35){ o.material=o.material.clone(); o.material.color.set(0x1c1c1e); } // Blender missing-texture magenta
       else if(/Red_SetHC/.test(n)){ o.material=o.material.clone(); o.material.emissive=new THREE.Color(0xff1a0a); o.material.emissiveIntensity=2.2; } }
@@ -494,7 +507,13 @@ async function makeCar(def,setup){
   const shadowTex=GLOWT, cs=new THREE.Mesh(new THREE.PlaneGeometry(M.width*1.25,M.len*1.1),new THREE.MeshBasicMaterial({map:shadowTex,color:0x000000,transparent:true,opacity:.75,depthWrite:false}));
   cs.rotation.x=-Math.PI/2; cs.position.y=.02; g.add(cs);
   const glowL=new THREE.PointLight(0xffffff,0,7,1.6); glowL.position.y=.25; g.add(glowL);
-  const car={g,inner,body,def,setup,paint,wheels,rimMats,glow,glowL,len:M.len,width:M.width};
+  const lightTex=GLOWT, head=[], tail=[];
+  for(const sx of [-1,1]){
+    const h=new THREE.Sprite(new THREE.SpriteMaterial({map:lightTex,color:0xfff3dc,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,opacity:.9}));
+    h.scale.set(.55,.32,1); h.position.set(sx*(M.width/2-.28),M.height*.5,-M.len/2+.12); inner.add(h); head.push(h);
+    const t=new THREE.Sprite(new THREE.SpriteMaterial({map:lightTex,color:0xff1a0a,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,opacity:.55}));
+    t.scale.set(.5,.26,1); t.position.set(sx*(M.width/2-.25),M.height*.58,M.len/2-.08); inner.add(t); tail.push(t); }
+  const car={g,inner,body,def,setup,paint,wheels,rimMats,glow,glowL,len:M.len,width:M.width,tail,head};
   applySetup(car); scene.add(g); return car;
 }
 function applySetup(c){
@@ -692,6 +711,7 @@ function physics(c,dt,inp){
   c.g.position.copy(next);
   c.pitch+=((c.grounded?Math.atan(slope*dir):c.pitch*.98)-c.pitch)*Math.min(1,dt*8);
   c.g.rotation.set(0,c.heading,0); c.g.rotateX(c.pitch);
+  for(const t of c.tail){ t.material.opacity=inp.brake?1:.5; t.scale.set(inp.brake?.75:.5,inp.brake?.36:.26,1); }
   c.inner.rotation.set(clamp(-(inp.throttle-inp.brake)*.012,-.02,.02),0,clamp(-c.yawRate*vF*.004,-.05,.05)); // pitch + roll
   for(const w of c.wheels){ if(w.spin) w.o.rotation.x-=vF*dt/(w.r||.34); if(w.front) w.o.rotation.y=inp.steer*lock*.9; }
   if(c.slip>4&&sp>6){ for(const w of c.wheels) if(!w.front){ const wp=w.o.getWorldPosition(new THREE.Vector3());
