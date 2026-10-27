@@ -31,6 +31,7 @@ import io
 import json
 import math
 import re
+import shutil
 import subprocess
 import sys
 import threading
@@ -669,7 +670,7 @@ def finished(job, site, name, m, k):
     return final.convert("RGB"), extra, ov
 
 
-# Export presets. Print: full resolution, max quality, 300 dpi, EXIF kept.
+# Export presets. Print: the clean original photo (or, if asked, full resolution with graphics, max quality, 300 dpi).
 # Web: 2048 px long edge, lighter file, no EXIF (drops the drone GPS), colour profile kept.
 WEB_EDGE = 2048
 
@@ -695,7 +696,10 @@ def export(job, site, marks, body):
         for kind in kinds:
             d = folder / kind.capitalize()
             d.mkdir(parents=True, exist_ok=True)
-            if kind == "print":
+            if kind == "print" and not body.get("print_graphics"):
+                # Kollosche: print copies are the clean photo (no pin, no outline), byte-for-byte.
+                shutil.copyfile(Path(site["photos"]) / it["file"], d / f"{nm}.jpg")
+            elif kind == "print":
                 img.save(d / f"{nm}.jpg", quality=100, subsampling=0, dpi=(300, 300), **extra)
             else:
                 w = img.copy()
