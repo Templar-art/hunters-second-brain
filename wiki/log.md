@@ -1497,3 +1497,6 @@ Hunter approved the tracked lot outline and the roof-locked K pin. Status set to
 
 ## [2026-10-27] ingest | Kollosche outro generator + Eddie Wardale outro
 Built `projects/kollosche-outro/make_outro.py`, which copies Kollosche's own end card (HarfBuzz kerning; the --check re-render matches within 0.2 % of pixels). Rendered Eddie Wardale's outro in 16:9 + 9:16 for the townhouse job. Flagged that Taylor Kleinberg's number differs between the end-card files and the guidelines. No spend.
+
+## [2026-10-27] query | Kollosche reel opening
+Recent Kollosche reels open on the K only, with no address super. This contradicts the 2024 guideline PDF and is flagged in [[kollosche-video-guidelines]]. Default for reels is now K only.

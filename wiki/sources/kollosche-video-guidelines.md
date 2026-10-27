@@ -1,7 +1,7 @@
 ---
 type: source
 tags: [kollosche, brand, video, captions, guidelines]
-updated: 2026-10-26
+updated: 2026-10-27
 ---
 
 # Kollosche — Video and Caption Guidelines (2024) + asset pack
@@ -25,6 +25,7 @@ Kollosche's own brand rules for every video made for their social channels. The 
 - **16:9 address super (measured from the 4K example, 2026-10-27):** cap height 47 px on 3840×2160 (≈2.2% of frame height), which is ≈65 px font size. Tracking ≈8% (≈80/1000 em). Line pitch 78 px (≈1.2 em, i.e. default leading). The block is centred on the frame. Line 1 ("56B WOODROFFE AVENUE") is ≈29% of frame width.
 - **Font:** Söhne Breit **Kräftig** (Klim Type Foundry). It is used for all supers: **40 pt on 9:16** and **75 pt on 4K**. The agent and address supers use the same font and size.
 - **Intro order:** K → agent mention → address (VPA), or K → agent → subject/series title (PAS). The agent and address can swap order. Each super appears on a frame switch or fades in. The agent super runs 2–3 s and the address or title 3–4 s, then fades out or hard-cuts.
+- **⚠️ Current practice contradicts the address super (Hunter, 2026-10-27):** Kollosche's recent reels open on **the K only, with no agent or address super**. The 2024 PDF and its example `01. Intro_and_Outro` (K, then "56B WOODROFFE AVENUE / MAIN BEACH" from about 4 s) show the address. The `02. Captions` example (an agent talking-head piece) already shows the K over captions with no address. **Default for reels: K only.** Keep the address for 4K landscape (the 4K example has it) and when the agent asks for it.
 - Supers are **ALL CAPS**, centred, and white. Two-line addresses go street on line 1 and suburb on line 2 (e.g. "18 TANJA COURT / TALLAI").
 
 ## Outro (agent details)
