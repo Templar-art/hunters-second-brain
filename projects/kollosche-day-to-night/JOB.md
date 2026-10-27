@@ -2,7 +2,7 @@
 client: kollosche
 address: 5 Esther (Villas on Esther townhouses, street TBC)
 opened: 2026-10-27
-status: review        # intake → generating → review → delivered
+status: generating        # intake → generating → review → delivered
 cost: { credits: 38148, hf_credits: 0, aud: 0 }   # derived from ## Ledger
 ---
 
@@ -29,6 +29,7 @@ This is a different property from the Pottsville reel. Clip 1 was checked frame-
 - 2026-10-27 Clip 1 video worked (Hunter). The interior target is the clip 2 look, and the deep-blue-hour "moody/amber" still failed with an orange cast and added lanterns. Clip 3 changed frame because it was under 4 s, so it's being re-run on the 4.3 s padded copy. New standing rule: clips must be at least 4 s.
 - 2026-10-27 Finals picked (zip `board-creations (31)` → `Downloads/Kollosche Day to Night/finals-1080p/`). Clip 1: O6IcQ2Oynm. Clip 2: IfO199itvE. Clip 3: nV5mlLuYQD. Clip 4: MBLusy2DCm, with the sign checked and still reading "5 / VILLAS ON ESTHER". The 4K Precision upscale is quoted at 2,297 + 1,897 + 1,897 + 2,297 = 8,388 cr, waiting on Hunter's go.
 - 2026-10-27 Upscaled with Magnific Precision 4K x4 (8,388 cr). It returned 2560x1440 again, the same cap as Pottsville, so I scaled to 3840x2160 locally with lanczos. No frozen tails were detected, because Seedance generated real motion for the full 4–5 s, so the clips are delivered at full length and Hunter trims them in the edit. Delivered to `~/Downloads/Kollosche Day to Night/FINAL 4K/` as ProRes 422 HQ and H.264, one each per clip.
+- 2026-10-27 Hunter flagged that clip 3's motion drifted from the source. The source was only 3.0 s, so Seedance invented the move. Hunter is redoing all 4 on Higgsfield himself, either with Kling 3.0 Omni Edit at native 4K or with Seedance 2.5 `video_edit`, using at least 4 s of real footage plus a motion-lock line. The current FINAL 4K set stays in place until the replacements land.
 
 ## Ledger
 
