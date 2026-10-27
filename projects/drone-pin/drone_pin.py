@@ -52,7 +52,7 @@ QLD = "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningC
 DIAG35 = math.hypot(36, 24)
 ROOF_H = 6.0          # default metres above ground for the pin tip (--roof-height per site)
 TARGET_MAX_RANGE = 120  # m: only top-downs and close shots may set the house (a 245 m drag moved it metres off)
-PREVIEW = 1600        # long edge of review previews (px)
+PREVIEW = 3200        # long edge of review previews (px); sharp enough to zoom in on
 EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 
 # Pin and outline, matched to Kollosche's own listing stills (Hunter's refs,
@@ -339,9 +339,7 @@ def cmd_init(a):
             m["lot"] = []
         m["reviewed"] = False
         marks[p.name] = m
-        im = Image.open(p)
-        im.thumbnail((PREVIEW, PREVIEW))
-        im.convert("RGB").save(job / "previews" / (p.stem + ".jpg"), quality=85)
+        make_preview(p, job)
         print(f"  {p.name}: {m['mode']:7s} {m.get('note', m.get('error'))}")
     save(job, "marks.json", marks)
     k_glyph().save(job / "previews" / "_k.png")
@@ -349,9 +347,20 @@ def cmd_init(a):
 
 # --- review server --------------------------------------------------------------
 
+def make_preview(p, job):
+    im = Image.open(p)
+    im.thumbnail((PREVIEW, PREVIEW))
+    im.convert("RGB").save(job / "previews" / (p.stem + ".jpg"), quality=88)
+
+
 def cmd_review(a):
     job = Path(a.job)
     site = load(job, "site.json")
+    for name in load(job, "marks.json"):
+        # Rebuild previews made before PREVIEW grew (older jobs).
+        pv, src = job / "previews" / (Path(name).stem + ".jpg"), Path(site["photos"]) / name
+        if src.exists() and (not pv.exists() or max(Image.open(pv).size) < PREVIEW):
+            make_preview(src, job)
     lock = threading.Lock()
 
     class H(http.server.BaseHTTPRequestHandler):
