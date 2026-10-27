@@ -24,6 +24,7 @@ This is a different property from the Pottsville reel. Clip 1 was checked frame-
 ## Log
 
 - 2026-10-27 intake: 4 clips triaged. Prompts written. Nothing has been spent yet. Waiting on Hunter's go-ahead and a decision on resolution.
+- 2026-10-27 Hunter is running it himself: night still per first frame, then that still as the video reference. Credits are on his own account, so no ledger lines from us. Clip 2 still approved ("this one is great"). Clip 4 still: Hunter liked the look but wants it darker. Two problems: the sign misspells the name as "ONTSTHER", and the 5 glows gold. The source frame shows flat black standoff letters with no visible halo LED, so they stay unlit and a darker re-roll was given. Plan: comp the source sign wall back in during post.
 
 ## Ledger
 
