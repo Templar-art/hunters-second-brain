@@ -27,9 +27,10 @@
   <button id="go">Take off</button>
 </div>
 
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const renderer = new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));
@@ -124,19 +125,14 @@ for(let i=1;i<SIZE;i+=2){
 }
 
 // --- Drone ---
+// DJI-style model built in Blender (drone.blend → drone.glb); props are nodes prop_0..3
 const drone = new THREE.Group();
-const dBody = new THREE.Mesh(new THREE.BoxGeometry(.9,.25,.9), mat(0x2a2d31));
-const cam = new THREE.Mesh(new THREE.SphereGeometry(.18), mat(0x111111)); cam.position.set(0,-.2,-.35);
-drone.add(dBody,cam);
 const rotors=[];
-for(const [x,z] of [[1,1],[1,-1],[-1,1],[-1,-1]]){
-  const arm=new THREE.Mesh(new THREE.BoxGeometry(.12,.08,1.1),mat(0x2a2d31));
-  arm.position.set(x*.45,.05,z*.45); arm.rotation.y=Math.atan2(x,z); drone.add(arm);
-  const rot=new THREE.Mesh(new THREE.BoxGeometry(.9,.02,.08),mat(0x61a8d8));
-  rot.position.set(x*.8,.18,z*.8); drone.add(rot); rotors.push(rot);
-}
-const led=new THREE.Mesh(new THREE.SphereGeometry(.07),new THREE.MeshBasicMaterial({color:0xff3030})); led.position.set(0,.1,.45); drone.add(led);
-drone.traverse(o=>o.castShadow=true);
+new GLTFLoader().load('drone.glb', g=>{
+  const m=g.scene; m.scale.setScalar(.9);
+  m.traverse(o=>{ if(o.isMesh) o.castShadow=true; if(/^prop_\d$/.test(o.name)) rotors.push(o); });
+  drone.add(m);
+});
 scene.add(drone);
 
 // --- Shot markers ---
@@ -202,7 +198,7 @@ const clock=new THREE.Clock(), fwd=new THREE.Vector3(), right=new THREE.Vector3(
 drone.position.set(-HALF+BLOCK+ROAD/2,10,HALF-20);
 function tick(){
   const dt=Math.min(clock.getDelta(),.05), t=clock.elapsedTime;
-  rotors.forEach((r,i)=>r.rotation.y+=dt*(i%2?40:-40));
+  rotors.forEach((r,i)=>r.rotation.y+=dt*(i===0||i===3?45:-45));
   ring.rotation.z+=dt; marker.lookAt(drone.position.x,marker.position.y,drone.position.z);
 
   if(playing){
