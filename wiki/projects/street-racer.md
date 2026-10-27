@@ -46,5 +46,16 @@ A three-lap arcade racer built in the browser on 2026-10-27, straight after [[dr
 
 - **Touch controls (phones):** on-screen steer, gas, brake, e-brake, camera and menu buttons appear only on touch screens while driving. Hold buttons write straight into the same `keys{}` map the keyboard uses. Play from a phone on the same Wi-Fi at the Mac's LAN IP, port 8175, in landscape.
 
+## v4: F1 circuit, hills and fixes (same day)
+- **Track:** a longer, harder layout (hairpin, esses, chicane, sweepers). It rolls with two hills and a dip, has two sharp crests the car can leave the ground on, and has small bumps in the braking zones, with the start straight kept flat. The cars have vertical physics: they follow the road surface, pitch with the slope, launch off a crest when the road drops away faster than gravity, and lose drive, grip and steering while airborne. Grass embankments run from the walls down to the ground.
+- **Scenery:** about 1,400 instanced pine and leafy trees kept clear of the track, tyre walls on the outside of every real corner, marshal posts, 150/100/50 m braking boards and a ring of dark hills. The garage moved to (1500, 1500), outside the hill ring.
+- **Fixes:**
+  - **"Black bar" at the start line:** this was the gantry beam blocking the chase cam. It is now 13.5 m up and slim.
+  - **Cars loading slowly or not at all over the tunnel:** every GLB went through gltf-transform (dedup → resize 1024 → webp → meshopt), cutting 28 MB down to 8.7 MB and 0.8 MB down to 0.24 MB. The game loads them with `MeshoptDecoder`.
+  - **Wheels flying off when they spun:** the exported pivots weren't on the hubs. The game now re-pivots each wheel on its mesh's own bounding-box centre and spins it by that radius, and it bolts on any group that isn't wheel-shaped.
+  - **Backwards cars:** the RX-7, S15 and M3 G80 get `flip:1` in the roster.
+  - **White glow:** baked-in emission is zeroed, and bloom drops to 0.18 in the garage.
+- **Steering:** a smaller lock (0.42), a slower steering ramp, half the counter-steer assist, a gentler handbrake rotation and slower yaw response while sliding. The user found v3 "touchy", and drift mode "extremely touchy".
+
 ## Next ideas
 More tracks, wheel detection for the static-wheel cars (G80, M5, R8, RX-7, 930, M4 GT), the G82 M4, a published link.

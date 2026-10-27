@@ -1528,3 +1528,6 @@ Night stadium, real Huracán x6, drift and smoke, the Huracán recordings as eng
 
 ## [2026-10-27] ingest | Street Racer v3 Garage
 A Forza-style garage with 14 real cars (new-gen BMW M included) baked by a headless Blender pipeline. Paint, finish, wheels, tune, smoke and underglow, a handling rewrite, the folded-track map fix, exhaust spit flames and a drift scoring mode. 0cr. Page: [[street-racer]].
+
+## [2026-10-27] ingest | Street Racer v4 F1 circuit
+A harder F1 layout with hills, crests and jumps, a forest, tyre walls and hills around it. Compressed GLBs, fixed wheel pivots and backwards cars, removed the start-line bar, softer steering. 0cr. Page: [[street-racer]].
