@@ -27,6 +27,9 @@ updated: 2026-10-27
 ## Hand editing (Hunter's request, 2026-10-27)
 - **Outline:** drag a corner, drag the line or the inside to move it all, double-click the line to add a corner, and ⌥-click a corner to delete it. Hand edits stick, and re-solving the camera won't overwrite them.
 - **Outline thickness:** a Small–Large slider for each photo (0.5–3× of 0.33% of the width), plus an "All" button that applies it to every photo.
+- **Export…** opens a panel. Tick photos, name each one ("Name all" + "Number them" gives `Base 01`, `Base 02` …), and pick a folder (Choose… opens the macOS folder picker). Writes `Print/` (full size, JPEG q100, 300 dpi, EXIF kept, ~57 MB on the 75 MP Mavic stills) and `Web/` (2048 px, q85, no EXIF so the drone GPS is dropped, ~0.7 MB). It remembers the folder and names for each job in the browser.
+- **Fit view** button (or 0) zooms back out. Edits are kept.
+- **Gotcha:** the Claude app's preview pane silently cancels `window.confirm()`/`prompt()`, which is why Reset photo did nothing. The page now uses in-page dialogs. The server also wasn't saving `/solve` results, so tip corrections and resets vanished on reload; that's fixed too.
 - **Zoom:** scroll or pinch zooms at the pointer (up to 12×). Hold space and drag, or right-drag, to pan. 0 fits the photo. Previews are 3200 px, so a zoomed view stays sharp.
 - **Eraser (X):** rubs out the behind mask so the outline comes back.
 - **Behind brush (B):** paint over buildings or trees that stand in front of the outline, and the line and its shadow are hidden there. The mask is stored per photo in `masks/`. Use it on the close-up and straight-on shots; the far wides don't need it.

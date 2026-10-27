@@ -31,6 +31,7 @@ import io
 import json
 import math
 import re
+import subprocess
 import sys
 import threading
 import urllib.parse
@@ -402,6 +403,20 @@ def cmd_review(a):
 
         def do_POST(self):
             body = json.loads(self.rfile.read(int(self.headers["Content-Length"])) or b"{}")
+            if self.path == "/choose_folder":
+                # Native macOS folder picker (the browser can't hand us a real path).
+                start = body.get("start") or site["photos"]
+                while start and not Path(start).exists():
+                    start = str(Path(start).parent)
+                script = f'POSIX path of (choose folder with prompt "Export to" default location (POSIX file "{start}"))'
+                r = subprocess.run(["osascript", "-e", script], capture_output=True, text=True)
+                return self.send(json.dumps({"folder": r.stdout.strip().rstrip("/") or None}).encode())
+            if self.path == "/export":
+                try:
+                    done = export(job, site, load(job, "marks.json"), body)
+                except Exception as e:
+                    return self.send(json.dumps({"error": str(e)}).encode())
+                return self.send(json.dumps({"done": done}).encode())
             with lock:
                 marks = load(job, "marks.json")
                 if self.path == "/save":
@@ -428,6 +443,7 @@ def cmd_review(a):
                         m.update(propose(m, site, *solve(m, site, anchors)))
                     elif not body.get("target") and "tip" not in body["anchors"]:
                         m.update(propose(m, site))
+                    save(job, "marks.json", marks)   # without this, solves and resets were lost on reload
                     return self.send(json.dumps({"m": m, "site": site, "marks": marks}).encode())
                 if self.path == "/mask":
                     # "Behind" brush: where buildings stand in front of the outline.
@@ -632,6 +648,55 @@ def draw_overlay(m, k, site=None, mask=None):
     return im
 
 
+def finished(job, site, name, m, k):
+    """The photo with its pin/outline burned in, plus the source's EXIF/ICC and the overlay layer."""
+    src = Image.open(Path(site["photos"]) / name)
+    mf = job / "masks" / (Path(name).stem + ".png")
+    mask = Image.open(mf).getchannel("A") if mf.exists() else None
+    ov = draw_overlay(m, k, site, mask)
+    final = src.convert("RGBA")
+    final.alpha_composite(ov)
+    extra = {k2: src.info[k2] for k2 in ("exif", "icc_profile") if k2 in src.info}
+    return final.convert("RGB"), extra, ov
+
+
+# Export presets. Print: full resolution, max quality, 300 dpi, EXIF kept.
+# Web: 2048 px long edge, lighter file, no EXIF (drops the drone GPS), colour profile kept.
+WEB_EDGE = 2048
+
+
+def safe_name(n):
+    n = re.sub(r'[/\\:*?"<>|]+', "-", n).strip().strip(".")
+    return re.sub(r"\.jpe?g$", "", n, flags=re.I) or "photo"
+
+
+def export(job, site, marks, body):
+    folder = Path(body["folder"]).expanduser()
+    if not folder.is_absolute():
+        raise ValueError("pick a folder first")
+    kinds = [x for x in ("print", "web") if body.get(x)]
+    if not kinds or not body.get("items"):
+        raise ValueError("nothing to export")
+    names = [safe_name(it["name"]) for it in body["items"]]
+    if len(set(n.lower() for n in names)) < len(names):
+        raise ValueError("two photos have the same name")
+    k, done = k_glyph(), []
+    for it, nm in zip(body["items"], names):
+        img, extra, _ = finished(job, site, it["file"], marks[it["file"]], k)
+        for kind in kinds:
+            d = folder / kind.capitalize()
+            d.mkdir(parents=True, exist_ok=True)
+            if kind == "print":
+                img.save(d / f"{nm}.jpg", quality=100, subsampling=0, dpi=(300, 300), **extra)
+            else:
+                w = img.copy()
+                w.thumbnail((WEB_EDGE, WEB_EDGE), Image.LANCZOS)
+                w.save(d / f"{nm}.jpg", quality=85, optimize=True, progressive=True,
+                       **({"icc_profile": extra["icc_profile"]} if "icc_profile" in extra else {}))
+            done.append(str(d / f"{nm}.jpg"))
+    return done
+
+
 def cmd_render(a):
     job = Path(a.job)
     site, marks = load(job, "site.json"), load(job, "marks.json")
@@ -644,17 +709,11 @@ def cmd_render(a):
         if not m.get("reviewed") and not a.all:
             print(f"  skip {name}: not approved in review (use --all to render anyway)")
             continue
-        src = Image.open(Path(site["photos"]) / name)
-        mf = job / "masks" / (Path(name).stem + ".png")
-        mask = Image.open(mf).getchannel("A") if mf.exists() else None
-        ov = draw_overlay(m, k, site, mask)
+        final, extra, ov = finished(job, site, name, m, k)
         ov.save(out / f"{Path(name).stem}_overlay.png")
-        final = src.convert("RGBA")
-        final.alpha_composite(ov)
-        extra = {k2: src.info[k2] for k2 in ("exif", "icc_profile") if k2 in src.info}
         for old in out.glob(f"{Path(name).stem}_*.jpg"):
             old.unlink()   # one finished JPG per photo, whatever its mode was last time
-        final.convert("RGB").save(out / f"{Path(name).stem}_{m['mode']}.jpg", quality=95, **extra)
+        final.save(out / f"{Path(name).stem}_{m['mode']}.jpg", quality=95, **extra)
         print(f"  {name}: {m['mode']}")
     print("done", out)
 

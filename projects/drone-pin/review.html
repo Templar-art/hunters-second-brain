@@ -39,6 +39,23 @@
   #wrap { position: relative; overflow: hidden; display: grid; place-items: center; min-height: 0; }
   canvas { max-width: 100%; max-height: 100%; transform-origin: 0 0; }
   #msg { color: var(--accent); }
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: grid; place-items: center; z-index: 8; }
+  .modal[hidden] { display: none; }
+  .panel { background: #1d2026; border: 1px solid var(--line); border-radius: 10px; padding: 18px; width: min(680px, 94vw); max-height: 90vh; overflow: auto; display: grid; gap: 12px; }
+  .panel h3 { margin: 0; font-size: 15px; }
+  .panel .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .panel .row.end { justify-content: flex-end; }
+  .panel input:not([type]) { flex: 1; min-width: 0; background: #111317; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: inherit; }
+  #xlist { display: grid; gap: 4px; }
+  #xlist .x { display: grid; grid-template-columns: auto 1fr 1.4fr; gap: 8px; align-items: center; }
+  #xlist .o { color: var(--dim); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #xmsg { color: var(--accent); }
+  #dlg { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: grid; place-items: center; z-index: 9; }
+  #dlg[hidden] { display: none; }
+  #dlg form { background: #1d2026; border: 1px solid var(--line); border-radius: 10px; padding: 18px; width: min(420px, 90vw); display: grid; gap: 12px; }
+  #dlg p { margin: 0; line-height: 1.4; }
+  #dlg input { background: #111317; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; font: inherit; }
+  #dlg form > div { display: flex; gap: 8px; justify-content: flex-end; }
   #help { display: block; width: 100%; color: var(--dim); }
 </style>
 </head>
@@ -70,6 +87,8 @@
       <button id="owall" title="Use this thickness on every photo">All</button>
     </div>
     <span class="sp"></span>
+    <button id="fit" title="Zoom back out to the whole photo (0). Keeps your edits.">Fit view <small>0</small></button>
+    <button id="export" title="Export finished photos for print and web">Export…</button>
     <button id="reset">Reset photo</button>
     <button id="apply">Apply correction to unapproved</button>
     <button id="approve" class="go">Approve ⏎</button>
@@ -80,6 +99,19 @@
     <span id="help"></span>
   </div>
 </main>
+<div id="exp" class="modal" hidden><div class="panel">
+  <h3>Export</h3>
+  <label class="row">Folder <input id="xfolder" placeholder="/Volumes/…/Export"><button type="button" id="xchoose">Choose…</button></label>
+  <div class="row">
+    <label><input type="checkbox" id="xprint" checked> Print <small>full size, max quality, 300 dpi</small></label>
+    <label><input type="checkbox" id="xweb" checked> Web <small>2048 px, no GPS data</small></label>
+  </div>
+  <label class="row">Name all <input id="xbase" placeholder="e.g. 5 Esther Place Surfers Paradise"><button type="button" id="xnum">Number them</button></label>
+  <div id="xlist"></div>
+  <div class="row end"><span id="xmsg"></span><span class="sp"></span><button type="button" id="xcancel">Close</button><button type="button" class="go" id="xgo">Export</button></div>
+  <small>Saves into Print/ and Web/ folders inside the folder you pick. Same name = overwritten.</small>
+</div></div>
+<div id="dlg" hidden><form><p></p><input><div><button type="button" value="no">Cancel</button><button class="go" value="ok">OK</button></div></form></div>
 <script>
 const SZ = __SIZES__;
 const HELP = {
@@ -94,6 +126,61 @@ let tool = 'edit', brush = 40, mask = null, maskDirty = false, painting = false,
 const cv = document.getElementById('cv'), cx = cv.getContext('2d');
 K.onload = () => draw(); K.src = '/preview/_k.png';
 document.fonts.load('40px SohneK'); document.fonts.load('40px SohneB'); document.fonts.ready.then(() => draw());
+
+// In-page confirm/prompt: the preview pane silently cancels window.confirm and window.prompt.
+// ask(text) resolves true/false; ask(text, value) shows a text box and resolves the text or null.
+function ask(text, value) {
+  const d = document.getElementById('dlg'), f = d.querySelector('form'), inp = d.querySelector('input');
+  d.querySelector('p').textContent = text; inp.hidden = value === undefined; inp.value = value ?? '';
+  d.hidden = false; (inp.hidden ? f.querySelector('.go') : inp).focus();
+  return new Promise(res => {
+    const done = ok => { d.hidden = true; f.onsubmit = null; f.querySelector('[value=no]').onclick = null; res(value === undefined ? ok : ok ? inp.value.trim() || null : null); };
+    f.onsubmit = e => { e.preventDefault(); done(true); };
+    f.querySelector('[value=no]').onclick = () => done(false);
+    d.onkeydown = e => { if (e.key === 'Escape') done(false); e.stopPropagation(); };
+  });
+}
+document.getElementById('fit').onclick = () => setZoom(1);
+
+// Export panel: tick photos, name each, pick a folder; server writes Print/ and Web/ JPGs.
+const X = id => document.getElementById(id), XKEY = () => 'drone-pin-export:' + site.address;
+function xprefs() { try { return JSON.parse(localStorage.getItem(XKEY())) || {}; } catch { return {}; } }
+X('export').onclick = async () => {
+  if (maskDirty) await saveMask();
+  await save();
+  const pr = xprefs();
+  X('xfolder').value = pr.folder || site.photos.replace(/\/[^/]*$/, '') + '/Drone Graphics';
+  X('xbase').value = pr.base || '';
+  X('xlist').innerHTML = names.map((n, i) => {
+    const m = marks[n], on = !m.error && m.mode !== 'none';
+    const nm = (pr.names || {})[n] || n.replace(/\.[^.]+$/, '');
+    return `<label class="x"><input type="checkbox" data-x="${i}" ${on ? 'checked' : ''}><span class="o">${n} · ${m.error ? 'no GPS' : m.mode}${m.reviewed ? ' ✓' : ''}</span><input data-xn="${i}" value="${nm.replace(/"/g, '&quot;')}"></label>`;
+  }).join('');
+  X('xmsg').textContent = ''; X('exp').hidden = false;
+};
+X('xcancel').onclick = () => X('exp').hidden = true;
+X('exp').onkeydown = e => { e.stopPropagation(); if (e.key === 'Escape') X('exp').hidden = true; };
+X('xnum').onclick = () => {
+  const base = X('xbase').value.trim(); if (!base) return;
+  let k = 0;
+  document.querySelectorAll('[data-x]').forEach(c => { if (c.checked) document.querySelector(`[data-xn="${c.dataset.x}"]`).value = `${base} ${String(++k).padStart(2, '0')}`; });
+};
+X('xchoose').onclick = async () => {
+  X('xmsg').textContent = 'pick a folder in the Finder window…';
+  const r = await api('/choose_folder', { start: X('xfolder').value });
+  if (r.folder) X('xfolder').value = r.folder;
+  X('xmsg').textContent = '';
+};
+X('xgo').onclick = async () => {
+  const items = [...document.querySelectorAll('[data-x]')].filter(c => c.checked).map(c => ({ file: names[+c.dataset.x], name: document.querySelector(`[data-xn="${c.dataset.x}"]`).value.trim() }));
+  const body = { folder: X('xfolder').value.trim(), print: X('xprint').checked, web: X('xweb').checked, items };
+  const allNames = Object.fromEntries([...document.querySelectorAll('[data-xn]')].map(i => [names[+i.dataset.xn], i.value.trim()]));
+  try { localStorage.setItem(XKEY(), JSON.stringify({ folder: body.folder, base: X('xbase').value, names: allNames })); } catch {}
+  X('xmsg').textContent = `exporting ${items.length} photo${items.length === 1 ? '' : 's'}…`; X('xgo').disabled = true;
+  const r = await api('/export', body);
+  X('xgo').disabled = false;
+  X('xmsg').textContent = r.error ? '⚠ ' + r.error : `done: ${r.done.length} files in ${body.folder}`;
+};
 
 async function api(path, body) {
   const r = await fetch(path, body === undefined ? {} : { method: 'POST', body: JSON.stringify(body) });
@@ -123,8 +210,8 @@ function list() {
       <button data-dist="${p.id}" title="show distance">km</button><button data-ren="${p.id}">✎</button><button data-del="${p.id}">✕</button></div>`;
   }).join('') : '<div class="empty">None. Use the Location pin tool (L) to add one.</div>';
   document.querySelectorAll('[data-on]').forEach(e => e.onchange = () => { const st = (M().places ||= {})[e.dataset.on] ||= { xy: [M().w / 2, M().h / 2] }; st.on = e.checked; draw(); save(); });
-  document.querySelectorAll('[data-del]').forEach(e => e.onclick = () => { if (confirm('Delete this location pin from every photo?')) placeEdit({ id: +e.dataset.del, delete: true }); });
-  document.querySelectorAll('[data-ren]').forEach(e => e.onclick = () => { const p = pls.find(q => q.id == e.dataset.ren); const t = prompt('Location name', p.label); if (t) placeEdit({ id: p.id, label: t }); });
+  document.querySelectorAll('[data-del]').forEach(e => e.onclick = async () => { if (await ask('Delete this location pin from every photo?')) placeEdit({ id: +e.dataset.del, delete: true }); });
+  document.querySelectorAll('[data-ren]').forEach(e => e.onclick = async () => { const p = pls.find(q => q.id == e.dataset.ren); const t = await ask('Location name', p.label); if (t) placeEdit({ id: p.id, label: t }); });
   document.querySelectorAll('[data-dist]').forEach(e => e.onclick = () => { const p = pls.find(q => q.id == e.dataset.dist); placeEdit({ id: p.id, dist: !p.dist }); });
 }
 async function placeEdit(b) { const r = await api('/place_edit', b); site = r.site; marks = r.marks; list(); draw(); }
@@ -286,7 +373,7 @@ cv.onmousedown = async e => {
   if (brushy()) { painting = true; paint(e); return; }
   const p = toImg(e);
   if (tool === 'place') {
-    const label = prompt('Location name (e.g. SURFERS PARADISE BEACH)'); if (!label) return;
+    const label = await ask('Location name (e.g. SURFERS PARADISE BEACH)', ''); if (!label) return;
     const r = await api('/place', { file: names[cur], xy: p, label });
     if (r.error) return flash(r.error);
     site = r.site; marks = r.marks; list(); draw(); flash(`added ${label.toUpperCase()}`); return;
@@ -383,7 +470,7 @@ document.getElementById('approve').onclick = async () => {
   M().reviewed = true; await save(); flash('approved'); show(cur + 1);
 };
 document.getElementById('reset').onclick = async () => {
-  if (!confirm('Reset this photo to the automatic placement? Hand edits to the outline are lost (the behind mask stays).')) return;
+  if (!await ask('Reset this photo to the automatic placement? Hand edits to the pin and outline are lost (the behind mask and outline thickness stay).')) return;
   const m = M(); m.manual = false; m.anchors = {}; delete m.pin_len; m.reviewed = false;
   await save();
   const r = await api('/solve', { file: names[cur], anchors: {} });
