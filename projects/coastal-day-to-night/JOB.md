@@ -2,8 +2,8 @@
 client: coastal
 address: TBC (balcony and bedroom, jacaranda outlook)
 opened: 2026-10-28
-status: intake        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger — never edit by hand
+status: review        # intake → generating → review → delivered
+cost: { credits: 0, hf_credits: 30, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — Coastal balcony day-to-night
@@ -16,16 +16,19 @@ Source: `~/Downloads/Kollosche Ester Place/Coastal Day to Night/Day.mp4`. It is 
 
 | # | Shot | Len | Pipeline | Status | Notes |
 |---|------|-----|----------|--------|-------|
-| 1 | Balcony slide, bedroom behind the glass | 3.09 s | still (NB 2.1), then video (Omni Edit 4K, with the still as reference) | todo | re-export at 4 s or more |
+| 1 | Balcony slide, bedroom behind the glass | 3.09 s | still (NB 2.1), then video (Omni Edit 4K, with the still as reference) | review | padded to 4.2 s, trimmed back to 3.09 s |
 
 ## Log
 
 - 2026-10-28 intake: 1 shot. The reference is the same shot already at dusk. Nothing has been spent.
+- 2026-10-28 Hunter said go (~30 HF), pad to 4 s. Still v1 matched the look but took its framing from the reference at 1.5 s, which is mid-move. Re-pulled the reference from frame 0 to get v2, which lines up with Day. Omni Edit 4K: motion edge-match against the source holds at 75–78% across the clip. The lamps and fan light are warm, the sun patches are gone and the jacarandas are still purple. The sky came out as a clean pink-peach gradient with fewer clouds than the reference. Delivered `Coastal Balcony - DUSK 4K` as .mov and .mp4 next to the source, trimmed to 3.09 s. Lesson: when the reference is the same shot, pull it from the frame that matches the source's first frame.
 
 ## Ledger
 
 <!-- one line per spend; the cost: header is derived from this (gen_runner.py tally) -->
 <!-- Higgsfield batches: gen_runner.py run appends here. Magnific/MCP or web spends: gen_runner.py log JOB.md <amount> <hf|cr|aud> <note> -->
+- 2026-10-28 | 6 hf | Nano Banana 2.1 4K night still x2 (v1 took the reference's mid-move framing; v2 used reference frame 0)
+- 2026-10-28 | 24 hf | Kling 3.0 Omni Edit 4K, padded 4.2 s clip with still v2 as reference
 
 ---
 _Vault: [[jarvis]] · Same workflow as [[kollosche-day-to-night]]_
