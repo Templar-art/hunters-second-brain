@@ -109,6 +109,13 @@ The tool can't see. A **scene map** is a small JSON file saying what each stretc
 ```
 Labels: `exterior, balcony, aerial, dusk, interior, bathroom, presenter, endcard`. The example map is `scene-maps/kollosche-5-esther-pl-main.json`. The synthetic kit is a stand-in; recorded ambience (e.g. Ocular Rainforest/Cityscapes) tagged `ambience, outdoor` (or `aerial`, `dusk`, `interior`) in a `.tags` sidecar will be used the same way.
 
+**Adding real ambience (recommended; Hunter rejected the synthetic beds on 28 Oct).** Put recordings in any SFX folder with a sidecar `<file>.tags`:
+- day exteriors: `ambience, outdoor, birds, day`
+- dusk/night: `ambience, dusk, crickets, night`
+- aerials: `ambience, aerial, wind`
+
+Recordings are always chosen over the synthetic kit. 30–90 s is plenty, because each bed starts at a different point in the file.
+
 Presets: `presets/tasteful.json` (Hunter's pick, 28 Oct) and `presets/dense.json` ("jam-packed", judged over the top).
 
 ## Missing sounds

@@ -17,7 +17,9 @@ from pathlib import Path
 
 # label -> (ambience tag to look for, extra level offset dB, keep one-shots out?)
 LABELS = {
+    # Day exteriors want birds; dusk/night want crickets (Hunter, 28 Oct: "that's obvious").
     "exterior": ("outdoor", 0.0, False),
+    "night": ("dusk", 0.0, False),
     "balcony": ("outdoor", -3.0, False),
     "aerial": ("aerial", 0.0, False),
     "dusk": ("dusk", 0.0, False),

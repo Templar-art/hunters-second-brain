@@ -1,5 +1,5 @@
 {
-  "_about": "Tasteful (v6, after Hunter: 'too much SFX, especially on interior shots'): whooshes only where the film changes zone (outside/inside/aerial) or the camera moves; nothing on static interior cuts; no interior ambience; quieter.",
+  "_about": "Tasteful (v6, after Hunter: 'too much SFX, especially on interior shots'): whooshes only where the film changes zone (outside/inside/aerial) or the camera moves; nothing on static interior cuts; no interior ambience; quieter. Aerial wind bed off until a recorded wind exists (synthetic wind rejected 28 Oct).",
   "rules": {
     "min_score": 0.4,
     "whoosh_requires_sync": true,
@@ -51,12 +51,14 @@
   },
   "scenes": {
     "skip_tags": [
-      "interior"
+      "interior",
+      "aerial"
     ],
     "relative_db": {
       "outdoor": -15,
       "aerial": -14,
       "dusk": -15
-    }
+    },
+    "prefer_recorded": true
   }
 }

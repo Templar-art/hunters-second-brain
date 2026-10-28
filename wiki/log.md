@@ -1601,3 +1601,6 @@ Broke down Desire's Kollosche film (65 shots, 16 transition strips, per-cut audi
 
 ## [2026-10-28] build | Auto Sound Design v6 after "sounds so bad"
 v5 was rejected as too much, especially on interiors. v6 places whooshes only on zone changes (outside/inside/aerial) or camera motion, drops interior ambience and runs quieter: 8 one-shots in 87 s. Hunter flagged that Desire's talent is AI, a possible AI-lifestyle-talent thread. See [[auto-sound-design]].
+
+## [2026-10-28] decision | Synthetic ambience rejected; real recordings needed
+Hunter: the ambience doesn't sound good and the wind isn't wind. Day shots get birds and night shots crickets. Every free SFX source is blocked by the cloud network policy, so recordings must be uploaded or the domains allowed. The tool now prefers recorded beds over synthetic, and the aerial wind is off. See [[auto-sound-design]].

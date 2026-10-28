@@ -369,6 +369,9 @@ def scene_beds(scenes, music, library, cfg, duration, fd, skipped):
             skipped.append({"time": round(seg.start, 3), "category": "ambience", "score": 1.0,
                             "why": f"no ambience tagged '{seg.tag}' for the {seg.label} scene"})
             continue
+        recorded = [s for s in pool if "synthetic" not in s["tags"]]
+        if sc.get("prefer_recorded") and recorded:
+            pool = recorded  # a real recording always beats the synthetic stand-in
         sound = pool[n % len(pool)]
         shape = sound_shape(sound)
         start = max(0.0, seg.start - xfade / 2)
