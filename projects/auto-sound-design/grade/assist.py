@@ -43,6 +43,15 @@ def to_linear(x):
     return np.where(x <= 0.04045, x / 12.92, ((x + 0.055) / 1.055) ** 2.4)
 
 
+def lab_to_linear(L, a, b):
+    fy = (L + 16) / 116
+    fx, fz = fy + a / 500, fy - b / 200
+    inv = lambda t: t ** 3 if t ** 3 > 0.008856 else (t - 16 / 116) / 7.787  # noqa: E731
+    xyz = np.array([inv(fx) * 0.95047, inv(fy), inv(fz) * 1.08883])
+    m = np.array([[3.2406, -1.5372, -0.4986], [-0.9689, 1.8758, 0.0415], [0.0557, -0.2040, 1.0570]])
+    return np.clip(m @ xyz, 1e-6, None)
+
+
 def timecode(t, fps):
     f = int(round(t * fps))
     n = round(fps)
@@ -50,7 +59,7 @@ def timecode(t, fps):
 
 
 def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_tol_a=3.0, exp_tol_stops=0.3,
-            scene_map=None, analysis_lut=None, heroes=None):
+            scene_map=None, analysis_lut=None, heroes=None, clean_white=(0.5, 4.0), black_tol=4.0):
     """Match each shot to the film's OWN look (its typical white cast and white level), not to
     neutral: an already-graded warm film stays warm; only shots that drift from it get flagged."""
     video, _ = media.video_info(path)
@@ -74,7 +83,8 @@ def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_to
         L, A, B = measure.lab(sample / 255.0)
         C = np.hypot(A, B)
         neutral = (L > 55) & (L < 97) & (C < 16)
-        info.update({"median_L": float(np.median(L)), "chroma": float(C.mean()), "neutral_share": float(neutral.mean())})
+        info.update({"median_L": float(np.median(L)), "black_L": float(np.percentile(L, 10)), "chroma": float(C.mean()),
+                     "neutral_share": float(neutral.mean())})
         # White surfaces are only trustworthy indoors: outside, "white" is mostly sky and cloud,
         # and dusk is meant to be cool. With a scene map, compare interiors only.
         indoor = label in (None, "interior", "bathroom", "presenter") if scene_map else True
@@ -88,13 +98,27 @@ def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_to
 
     # Reference look: the shots Hunter likes ("heroes"), or the film's median if none are picked.
     ref_shots = [s for s in shots if "white_ratio" in s and (not heroes or s["shot"] in heroes)]
-    if heroes and not ref_shots:
-        raise SystemExit("None of the hero shots has white surfaces to measure; pick interior shots you like.")
-    ref = {"white_a": float(np.median([s["white_a"] for s in ref_shots])) if ref_shots else 0.0,
+    hero_shots = [s for s in shots if heroes and s["shot"] in heroes and "chroma" in s]
+    exterior_mode = bool(heroes) and not ref_shots
+    if exterior_mode:
+        # Heroes are exteriors (no walls to read). Interiors are matched to a clean white with a hint of
+        # warmth, keep their own brightness, and take the heroes' saturation and black level.
+        target = np.array(lab_to_linear(90.0, clean_white[0], clean_white[1]))
+        interiors = [s for s in shots if "white_ratio" in s]
+        ref = {"white_a": clean_white[0], "white_b": clean_white[1],
+               "white_L": float(np.median([s["white_L"] for s in interiors])) if interiors else 85.0,
+               "rb": [float(target[0] / target[1]), float(target[2] / target[1])],
+               "chroma": float(np.median([s["chroma"] for s in hero_shots])),
+               "black_L": float(np.median([s["black_L"] for s in hero_shots]))}
+    else:
+        ref = None
+    if ref is None:
+        ref = {"white_a": float(np.median([s["white_a"] for s in ref_shots])) if ref_shots else 0.0,
            "white_b": float(np.median([s["white_b"] for s in ref_shots])) if ref_shots else 0.0,
            "white_L": float(np.median([s["white_L"] for s in ref_shots])) if ref_shots else 85.0,
            "rb": [float(np.median([s["white_ratio"][k] for s in ref_shots])) for k in (0, 1)] if ref_shots else [1, 1],
-           "chroma": float(np.median([s["chroma"] for s in shots if "chroma" in s]))}
+           "chroma": float(np.median([s["chroma"] for s in (hero_shots or [s for s in shots if "chroma" in s])])),
+           "black_L": float(np.median([s["black_L"] for s in (hero_shots or [s for s in shots if "black_L" in s])]))}
     for s in shots:
         if "skip" in s:
             continue
@@ -105,7 +129,7 @@ def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_to
             if abs(db) > wb_tol_b or abs(da) > wb_tol_a:
                 want = np.array([ref["rb"][0] / s["white_ratio"][0], 1.0, ref["rb"][1] / s["white_ratio"][1]])
                 gains = np.clip(1 + strength * (want - 1), 1 - max_wb, 1 + max_wb)
-                notes.append(f"whites {'warmer' if db > 0 else 'cooler'} than the film ({db:+.1f} b*)"
+                notes.append(f"whites {'warmer' if db > 0 else 'cooler'} than the reference ({db:+.1f} b*)"
                              + (f", {'magenta' if da > 0 else 'green'} {da:+.1f} a*" if abs(da) > wb_tol_a else ""))
             # Exposure judged on the white surfaces, so a dark-timber kitchen isn't "underexposed".
             y = lambda l: ((l + 16) / 116) ** 3  # noqa: E731
@@ -113,23 +137,30 @@ def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_to
             if abs(stops) > exp_tol_stops:
                 corr = float(np.clip(0.6 * stops, -0.15, max_stops))  # house rule: barely ever darken
                 gains = gains * 2 ** corr
-                notes.append(f"whites {abs(stops):.2f} stop {'under' if stops > 0 else 'over'} the film's level")
+                notes.append(f"whites {abs(stops):.2f} stop {'under' if stops > 0 else 'over'} the reference level")
                 s["exposure_stops"] = round(corr, 2)
         else:
             notes.append(f"{s.get('scene') or 'no white surfaces'}: not auto-matched; judge by eye against neighbours")
         s.setdefault("exposure_stops", 0.0)
+        offset = 0.0
+        if "white_ratio" in s and s["black_L"] - ref["black_L"] > black_tol:
+            # Shadows more lifted than the reference: pull them down a touch (never crush: capped).
+            offset = -float(np.clip((s["black_L"] - ref["black_L"]) / 100 * 0.4, 0, 0.03))
+            notes.append(f"shadows lifted vs the reference (L {s['black_L']:.0f} vs {ref['black_L']:.0f})")
+        s["resolve_offset"] = [round(offset, 4)] * 3
         if s["chroma"] > ref["chroma"] * 1.35:
-            notes.append("noticeably more saturated than the film: try Sat 45-48")
+            notes.append("noticeably more saturated than the reference: try Sat 45-48")
         elif s["chroma"] < ref["chroma"] * 0.65 and s.get("median_L", 50) > 35:
-            notes.append("noticeably flatter than the film: try Sat 55-58")
+            notes.append("noticeably flatter than the reference: try Sat 55-58")
         s["resolve_gain"] = [round(float(x), 3) for x in gains]
-        s["changed"] = bool(max(abs(x - 1) for x in s["resolve_gain"]) >= 0.015)
+        s["changed"] = bool(max(abs(x - 1) for x in s["resolve_gain"]) >= 0.015 or abs(offset) >= 0.005)
         s["note"] = "; ".join(notes)
     for s in shots:
         if heroes and s["shot"] in heroes:
             s["note"] = ("HERO (your pick, the reference). " + s.get("note", "")).strip()
             s["resolve_gain"], s["changed"], s["exposure_stops"] = [1.0, 1.0, 1.0], False, 0.0
-    return video, frames, shots, {"heroes": sorted(heroes) if heroes else None, "target_median_L": ref["white_L"], "median_chroma": ref["chroma"],
+            s["resolve_offset"] = [0.0, 0.0, 0.0]
+    return video, frames, shots, {"exterior_heroes_mode": exterior_mode, "heroes": sorted(heroes) if heroes else None, "target_median_L": ref["white_L"], "median_chroma": ref["chroma"],
                                   "film_white_cast_b": ref["white_b"], "film_white_cast_a": ref["white_a"]}
 
 
@@ -150,6 +181,8 @@ def fcp_words(s):
         out.append(f"Temperature {size} {'warmer' if r > b else 'cooler'}")
     if abs(tint) >= 0.03:
         out.append(f"Tint {'toward green' if tint > 0 else 'toward magenta'}")
+    if s.get("resolve_offset", [0])[0] < -0.004:
+        out.append("Shadows down a little (Shadows wheel brightness)")
     if "Sat 45-48" in s.get("note", ""):
         out.append("Master saturation down ~5-10%")
     elif "Sat 55-58" in s.get("note", ""):
@@ -165,6 +198,7 @@ def apply(frames, shots, fps):
         a, b = int(round(s["start"] * fps)), int(round(s["end"] * fps))
         lin = to_linear(out[a:b])
         lin *= np.array(s["resolve_gain"], dtype=np.float32)
+        lin += np.array(s.get("resolve_offset", [0, 0, 0]), dtype=np.float32) * 0.5  # rough preview of a CDL offset
         lin = np.clip(lin, 0, 1)
         out[a:b] = np.where(lin <= 0.0031308, 12.92 * lin, 1.055 * lin ** (1 / 2.4) - 0.055) * 255
     return out.clip(0, 255).astype(np.uint8)
@@ -235,7 +269,9 @@ def main(argv=None):
 
     lines = [f"# Grade assistant: {Path(args.video).name}", "",
              "Consistency pass only (white balance on neutral surfaces + exposure outliers). Keeps your brightness.",
-             (f"Reference = your hero shots {summary['heroes']}: " if summary.get("heroes") else "Reference = the film's own typical look: ")
+             ("Reference = your exterior hero shots " + str(summary['heroes']) + " for saturation and black level; interiors get clean "
+              "whites with a hint of warmth and keep their own brightness: " if summary.get("exterior_heroes_mode") else
+              f"Reference = your hero shots {summary['heroes']}: " if summary.get("heroes") else "Reference = the film's own typical look: ")
              + f"whites at L* {summary['target_median_L']:.1f}, cast b* {summary['film_white_cast_b']:+.1f}, "
              f"typical chroma {summary['median_chroma']:.1f}. Other shots are matched to that, not to neutral.", "",
              "Type these into **Resolve → Color → Primaries (bars) → Gain R / G / B** on each shot. "

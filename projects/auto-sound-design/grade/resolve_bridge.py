@@ -51,7 +51,8 @@ def plan(assist, fps, node_index=1, aerial_labels=("aerial",)):
             "shot": s["shot"], "startFrame": start, "endFrame": end, "label": s.get("scene"),
             "skip_grade": "skip" in s,
             "cdl": {"NodeIndex": str(node_index), "Slope": " ".join(f"{g:.4f}" for g in gain),
-                    "Offset": "0 0 0", "Power": "1 1 1", "Saturation": f"{sat:.3f}"},
+                    "Offset": " ".join(f"{o:.4f}" for o in s.get("resolve_offset", [0, 0, 0])),
+                    "Power": "1 1 1", "Saturation": f"{sat:.3f}"},
             "aerial": (s.get("scene") in aerial_labels),
             "note": note,
         })
