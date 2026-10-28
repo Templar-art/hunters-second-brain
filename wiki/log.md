@@ -1553,3 +1553,6 @@ Pulled 8 CubiCasa exports from the CubiCasa web account into raw/floorplans/cubi
 
 ## [2026-10-28] project | Floor-plan app milestone 2: 10x A4 page
 render.py skins the CubiCasa SVG (true-scale textures, charcoal walls, Poppins labels) and builds the full A4 page with PDF/PNG export; multi-storey plans laid out side by side at one scale. Geometry check passes on all 8 jobs. Open: area rule, north, client logos. See [[floorplan-app]].
+
+## [2026-10-28] ingest | Katrina Walsh (Coastal) profile, video formula and song shortlist
+Hunter confirmed that "Coast" means COASTAL° (coastal.com.au) and that it is a different agency from Coastline Prestige. Pulled Katrina's public profile, headshot URL, socials and listings. Studied her IG listing films: the cold open, the COASTAL° wordmark at ~5–9 s, VO with white subtitles, the name and number sunset outro, and the charcoal end card. Credited audio on her reels: Buddha Code "Moment of Peace" and Tony Batts "To Live Again". Found Coastal's drone pin style in the listing photos (white C° on a stem, thin white lot outline). Built a slow earthy shortlist, with 7 of 8 tracks already in the 10x music library. Nothing is on the Clients Drive for Coastal and nothing was downloaded. New pages [[katrina-walsh]] and [[coastal]]; [[drone-photo-pin]] updated.

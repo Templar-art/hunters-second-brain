@@ -24,7 +24,7 @@ updated: 2026-10-28
 2. Pick the photo folder and confirm the address.
 3. In review, for each photo: drag the pin onto the house on a close or top-down shot (this sets the house for every photo). Use Draw outline or drag corners to fix the lot, Lasso or Behind brush to hide the line behind buildings, and Razor for pieces that shouldn't show. Zoom in for accuracy.
 4. Export: name with "Name all" and "Number them", pick the folder, export Print and Web. Kollosche prints are pinned.
-5. Up next: **Coastal** drone stills (client and pin style to be confirmed; Hunter, 2026-10-27). Check whether they use their own badge, Kollosche's look, or ZED's blackout before starting.
+5. Up next: **Coastal** drone stills (client and pin style to be confirmed; Hunter, 2026-10-27). Check whether they use their own badge, Kollosche's look, or ZED's blackout before starting. **Answered 2026-10-28:** Coastal's own listing drones use a white "C°" mark on a thin white stem with a thin white lot outline, no label and no fill (see [[katrina-walsh]]). Coastal is a separate agency from Coastline Prestige.
 
 ## Mac app (2026-10-27)
 To use it without Claude, double-click **`~/Desktop/Drone Pin.app`**. It's built from `projects/drone-pin/app.applescript` with `osacompile -o ~/Desktop/"Drone Pin.app" projects/drone-pin/app.applescript`.
