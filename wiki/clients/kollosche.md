@@ -2,7 +2,7 @@
 type: client
 tags: [kollosche, real-estate, gold-coast, video, brand]
 status: active
-updated: 2026-10-26
+updated: 2026-10-28
 ---
 
 # Kollosche
