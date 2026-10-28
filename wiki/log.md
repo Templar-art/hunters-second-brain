@@ -1571,3 +1571,6 @@ Rebuilt her "KATRINA WALSH / PRESENTS" title (transparent) and the charcoal end 
 
 ## [2026-10-28] project | Katrina Walsh animated end card and Coastal C° pin
 Added animate.py, which renders an 8 s animated end card (the background fades up, then name, number and logo ease in) and a 5 s Coastal pin (the stem draws up, then the C° lands). Both are 4K ProRes 4444 with alpha. The pin size was checked against Coastal's own Lita Ct drone pin. The address treatment is still to be decided: Coastal pins carry no label. See [[katrina-walsh]].
+
+## [2026-10-28] project | Coastal address caption for 34 Albany Avenue, Currumbin
+The suburb was confirmed from the QLD address register. Added an address mode to animate.py that makes a caption in her subtitle style (white Helvetica Neue in sentence case, lower centre), as a PNG plus a 5 s alpha MOV. See [[katrina-walsh]].

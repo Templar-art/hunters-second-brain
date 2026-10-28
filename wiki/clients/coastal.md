@@ -18,4 +18,4 @@ A Gold Coast real-estate group (coastal.com.au) with offices in Broadbeach, Para
 - **Logos:** `raw/coastal/` holds the white and black wordmark PNGs and the C° favicon. The white C° pin mark is `projects/drone-pin/logos/coastal-c-white.png`. There is no SVG.
 
 ## Jobs
-- First job on record: 34 Albany Ave, drone stills (`projects/drone-pin/clients/coastal.json`).
+- First job on record: 34 Albany Avenue, Currumbin, drone stills. Pin, address caption and end card are built in `projects/coastal-katrina/` (`projects/drone-pin/clients/coastal.json`).

@@ -6,7 +6,9 @@ pin (5 s): thin white stem draws up from the ground point, C° mark fades/settle
 Pin proportions measured from Coastal's own listing drone stills (4 Lita Ct).
 
 Usage: python3 animate.py            -> out/*.mov + out/coastal-pin-4k.png
+       python3 animate.py address "34 Albany Avenue, Currumbin"   -> address caption PNG + MOV
 """
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -124,8 +126,31 @@ def pin():
     encode(frame, 5 * FPS, OUT / "coastal-pin-anim-4k.mov")
 
 
+REGULAR = 0  # HelveticaNeue.ttc
+
+
+def address(text, slug):
+    """Address caption in the style of her film subtitles: small white sentence case, lower centre.
+    Measured from her Lita Ct film: the caption sits ~80% down; "Tallebudgera property" spans ~22% of width."""
+    cap = layer(lambda d, i: mc.centred(d, text, mc.font(REGULAR, 100), cy=H * 0.80))
+    Image.fromarray((cap * 255).astype(np.uint8)).save(OUT / f"address-{slug}-4k.png")
+    blank = np.zeros((H, W, 4), np.float32)
+
+    def frame(t):
+        f = blank.copy()
+        k = phase(t, 0.2, 0.8) * (1 - phase(t, 4.2, 0.8))  # fade in, hold, fade out by 5 s
+        over(f, cap, k)
+        return f
+
+    encode(frame, 5 * FPS, OUT / f"address-{slug}-anim-4k.mov")
+
+
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
+    if len(sys.argv) > 2 and sys.argv[1] == "address":
+        text = sys.argv[2]
+        address(text, re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-"))
+        sys.exit()
     end_card()
     pin()
     print("written to", OUT)
