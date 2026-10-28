@@ -43,6 +43,21 @@ Method: Claude looked at one frame per shot (65 shots) plus 8-frame strips acros
 - **-16.2 LUFS integrated, loudness range 5.4 LU**: a tight, glued mix. The 3 s RMS moves only about 5 dB across the film.
 - For comparison, Kollosche Esther Pl (10x) is -15.7 LUFS with LRA 8.0, so it swings about twice as much. Matching the consistency matters more than adding effects.
 
+## Colour grade (measured 28 Oct, CIELAB over 2 fps samples)
+| | Desire | Kollosche Esther Pl (10x) | Read |
+|---|---|---|---|
+| Shadow floor (L p10) | **7.5** | 17.0 | Desire has deep, clean blacks; ours are lifted and milky |
+| Global contrast (L p90−p10) | **73** | 60 | More snap |
+| Mean chroma | **12.7** | 17.6 | Desire is restrained; ours is about 40% more saturated |
+| Mid b* (yellow) | **+6.3** | +16.9 | Ours is nearly 3× more yellow |
+| Shadow b* | **+0.5** (neutral) | +6.7 | Yellow shadows read muddy |
+| Highlight b* | **+4.7** | +10.1 | Their whites are white |
+| Cool hues among saturated pixels | **29%** (blue/purple) | 4% | Warm/cool separation; ours is almost entirely orange and yellow |
+
+**Why it reads premium:** deep neutral blacks, white whites, restrained saturation, warmth kept to the mids, and cool blues (water, dusk skies) against the warm timber. Part of the cool share is content (canals, dusk), so shoot dusk and water when the property has them.
+
+**Grade test** (`projects/auto-sound-design/grade/desire-match.ffmpeg.txt`, measured): shadow floor 6.6, contrast 73.7, chroma 12.7, shadow b 0.6, highlight b 6.6, all on target. Mid b 11.5 stays above Desire's 6.3 because pushing it further turns the timber grey. This is an ffmpeg preview of the direction, not a finished grade. In FCP: lower the blacks (Color Wheels → Shadows down, or Curves toe), cool the shadows and highlights a little, reduce saturation about 20%, a gentle S-curve, and keep the mids warm.
+
 ## What changed in the tool because of it
 - `presets/tasteful.json`: whooshes capped at about 22% of cuts, and they now favour **motion blur across the cut** (new `cut_motion` detector), as Desire does. On Desire itself the detector picked out the 39.3, 68.5, 79.2 and 89.4 s whips and the 22.1 s reveal.
 - A new **existing-effects detector** (`existing_sfx`) finds whooshes and booms already baked into an edit so the tool doesn't double them. On Hunter's Kollosche Esther Pl edit it found 6 likely whooshes (16.7, 24.2, 42.2, 43.2, 57.4, 58.4 s) that the earlier passes had been doubling.

@@ -25,6 +25,7 @@ class Candidate:
     score: float
     reason: str
     group: str = ""  # riser+impact pairs share a group so spacing treats them as one moment
+    level_offset_db: float = 0.0  # per-accent trim from the scene map
 
 
 @dataclass
@@ -151,7 +152,8 @@ def candidates(cuts, music, duration, cfg, scenes=None):
     if scenes:
         for a in scenes.accents:
             out.append(Candidate(float(a["time"]), a["category"], 0.9,
-                                 f"scene map: {a.get('why', a['category'])} ({scenes.source})", f"accent@{a['time']}"))
+                                 f"scene map: {a.get('why', a['category'])} ({scenes.source})", f"accent@{a['time']}",
+                                 float(a.get("level_db", 0.0))))
 
     # 4. Outro: shimmer on the last cut in the final stretch (often an end card; not verified).
     if rules.get("outro_shimmer") and cuts:
@@ -316,7 +318,7 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
             # An end card or a hush in the music shouldn't make an accent vanish.
             level_ref = max(level_ref, float(np.median(music.rms_db)) - 6)
         rel = cfg["levels"]["relative_db"][cat]
-        gain = level_ref + rel - shape["rms_db"] - (1 - c.score) * cfg["levels"]["confidence_scale_db"]
+        gain = level_ref + rel - shape["rms_db"] - (1 - c.score) * cfg["levels"]["confidence_scale_db"] + c.level_offset_db
         # RMS under-reads transient hits, so also cap the effect's own peak per category.
         gain = min(gain, cfg["levels"]["peak_ceiling_dbfs"][cat] - shape["peak_db"])
         gain = max(cfg["levels"]["min_gain_db"], min(cfg["levels"]["max_gain_db"], gain))

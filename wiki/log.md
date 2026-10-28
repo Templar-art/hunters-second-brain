@@ -1613,3 +1613,6 @@ Desire is -16.2 LUFS with LRA 5.4 and whooshes on 11% of cuts; Hunter's edit alr
 
 ## [2026-10-28] build | Auto Sound Design v9: flavour accents + music-cut smoothing
 Found the hard music cut at 42.17 s (the highs return after the dusk section) and smoothed it with a reverse swell from the incoming music plus a filter sweep. Added click/pop foley and on-screen accents (flash, pin, tilt, title, end card) that layer above the density caps. Sent v9. See [[auto-sound-design]].
+
+## [2026-10-28] query | Why Desire's colour looks premium (measured)
+Desire has a shadow floor of L 7.5 against our 17, contrast 73 against 60, chroma 12.7 against 17.6, neutral shadows against yellow ones, and 29% cool hues against 4%. A test grade (`grade/desire-match.ffmpeg.txt`) hits the targets except mid yellow. The K pin glint became a soft whoosh. Filed in [[desire-the-pilot-reference]].

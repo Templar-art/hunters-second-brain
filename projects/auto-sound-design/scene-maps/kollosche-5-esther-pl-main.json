@@ -130,9 +130,10 @@
       "why": "light-flash transition into the kitchen + address title"
     },
     {
-      "time": 55.9,
-      "category": "pop",
-      "why": "K location pin head lands"
+      "time": 55.85,
+      "category": "whoosh",
+      "why": "K location pin rises and lands (soft air whoosh; the pop/glint read as tacky, Hunter 28 Oct)",
+      "level_db": -6
     },
     {
       "time": 80.4,

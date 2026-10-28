@@ -104,6 +104,10 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 - Kollosche accents (from frame strips): a glint on the **light-flash transition** (2.79 s), a **pop** as the K pin lands (55.9 s), a **whoosh** on the tilt-up to the end card (80.4 s), a **tick** as the agent title appears (81.2 s), and a soft **hit** on the navy end card (85.3 s). No real light-switch moment exists in this edit; the click category is there for future ones.
 - The placeholder accents use `committed-coaching/sfx-lib` click/pop files and the synthetic glint; real foley comes from Ocular Utility/Mechanica on the Mac.
 
+## 28 Oct, v10 + colour
+- Hunter: the K-pin glint was **"too tacky and too loud, needs a whoosh"**, so it's now a soft whoosh at -6 dB (scene-map accents can carry `level_db`). He then said **colour difference is the biggest thing**: Desire looks more premium.
+- Measured the grade on both films. See the colour table in [[desire-the-pilot-reference]]: ours has lifted blacks, too much saturation and yellow throughout, and no cool tones. Built `grade/measure.py` (CIELAB stats) and the test grade `grade/desire-match.ffmpeg.txt`. Sent before/after stills and a graded copy of v10 (`…_SOUND-MIX_GRADE-TEST.mp4`; re-encoded, so not the picture-untouched deliverable).
+
 ## Not yet known
 - **Whether it sounds good.** Nobody has listened to the preview yet.
 - Whether the FCPXML imports into FCP 12.4.
