@@ -1562,3 +1562,6 @@ Downloaded the COASTAL° wordmark (white, black and legacy PNGs) and the C° fav
 
 ## [2026-10-28] lint | Katrina Walsh "PRESENTS" title card
 Hunter supplied screenshots of her "KATRINA WALSH / PRESENTS" title card (white, centred, thin name over a heavier smaller PRESENTS, laid over footage) and of her charcoal end card. The first pass had mistaken the COASTAL° wordmark for the "presents" beat; this is corrected and flagged on [[katrina-walsh]].
+
+## [2026-10-28] ingest | Coastal balcony day-to-night intake
+One shot (Day.mp4, 3.09 s 4K, under 4 s so it needs a re-export). The reference is the same shot already at dusk (Main.mp4). Job at projects/coastal-day-to-night/JOB.md.
