@@ -41,6 +41,10 @@ The house style comes from her recent listing films: 4 Lita Court (142 s), 6 Sto
 `projects/coastal-katrina/make_cards.py` rebuilds both cards as 4K PNGs from Hunter's screenshots. Both use Helvetica Neue: Light for the name and number, Medium for PRESENTS. They are matched by eye, because her original font file is unknown.
 - `out/katrina-walsh-presents-4k.png`: transparent, so it can be laid straight over footage.
 - `out/katrina-walsh-end-card-4k.png`: the charcoal gradient end card, using `raw/coastal/coastal-logo-WHITE.png`.
+- `animate.py` builds the animated versions as 4K ProRes 4444 with alpha at 25 fps. The MOVs are gitignored; re-run the script to rebuild them.
+  - `out/katrina-walsh-end-card-anim-4k.mov` (8 s): the charcoal background fades up over the footage across 0–1 s. The name eases in at 0.6 s, the number at 0.9 s and the wordmark at 1.5 s, each with a fade and a 24 px rise. It holds to the end.
+  - `out/coastal-pin-anim-4k.mov` (5 s): the thin white stem draws up from the ground point across 0–0.7 s, then the C° fades in and settles on top across 0.5–1.1 s. The ground point is at frame centre, 72% down; move the clip in the edit to place it. The stills are `out/coastal-pin-4k.png` (full frame) and `out/coastal-pin-tight.png` (cropped).
+  - The pin size was matched to Coastal's own pin on the 4 Lita Ct drone still, and overlaid it is near-identical. Coastal's pins carry **no address label**. In her films the place name appears instead as a small white sentence-case caption at the lower centre ("Tallebudgera property").
 - To change sizes or positions, edit the numbers in the script and re-run it with `python3 make_cards.py [background.jpg]` (the background only feeds the preview).
 
 ## Drone pin style (Coastal listing photos)

@@ -1568,3 +1568,6 @@ One shot (Day.mp4, 3.09 s 4K, under 4 s so it needs a re-export). The reference 
 
 ## [2026-10-28] project | Katrina Walsh title and end card rebuilds
 Rebuilt her "KATRINA WALSH / PRESENTS" title (transparent) and the charcoal end card as 4K PNGs in Helvetica Neue Light and Medium, with the Coastal white wordmark. Script and outputs are in projects/coastal-katrina. See [[katrina-walsh]].
+
+## [2026-10-28] project | Katrina Walsh animated end card and Coastal C° pin
+Added animate.py, which renders an 8 s animated end card (the background fades up, then name, number and logo ease in) and a 5 s Coastal pin (the stem draws up, then the C° lands). Both are 4K ProRes 4444 with alpha. The pin size was checked against Coastal's own Lita Ct drone pin. The address treatment is still to be decided: Coastal pins carry no label. See [[katrina-walsh]].

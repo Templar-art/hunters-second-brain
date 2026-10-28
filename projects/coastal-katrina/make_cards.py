@@ -45,15 +45,17 @@ def presents():
     return img
 
 
-def end_card():
-    img = Image.new("RGBA", (W, H))
+def end_card_background():
     top, bottom = (42, 46, 49), (29, 33, 36)
-    px = img.load()
+    col = Image.new("RGBA", (1, H))
     for y in range(H):
         t = y / (H - 1)
-        c = tuple(round(a + (b - a) * t) for a, b in zip(top, bottom)) + (255,)
-        for x in range(W):
-            px[x, y] = c
+        col.putpixel((0, y), tuple(round(a + (b - a) * t) for a, b in zip(top, bottom)) + (255,))
+    return col.resize((W, H))
+
+
+def end_card():
+    img = end_card_background()
     d = ImageDraw.Draw(img)
     centred(d, "KATRINA WALSH", font(LIGHT, 190), cy=H * 0.30)
     centred(d, "0429 899 295", font(LIGHT, 190), cy=H * 0.30 + 225)
