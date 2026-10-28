@@ -78,7 +78,7 @@ That writes `…_relinked.fcpxml` pointing at the new locations. Import that one
 
 | | Cloud session (Linux) | Needs the Mac |
 |---|---|---|
-| Cut and music analysis, placement, mixing | ✅ tested (33 tests + real 10x videos) | – |
+| Cut and music analysis, placement, mixing | ✅ tested (37 tests + real 10x videos) | – |
 | Playable mixed video, picture untouched | ✅ frame-by-frame identical to the source | play it in QuickTime |
 | FCPXML validity | ✅ against Apple's 1.10 DTD | ❌ **actual Final Cut import untested** |
 | `relink` to Mac paths | ✅ logic tested | run it on the Mac |
@@ -95,6 +95,22 @@ That writes `…_relinked.fcpxml` pointing at the new locations. Import that one
 - **Levels** are set relative to the music's loudness at that moment, then capped by a per-category peak ceiling. A clipping check turns down only the effects that push the mix over -1 dBFS, by at most 3 dB each. If the music itself is mastered hot, the *preview* is turned down overall and the report says so. Your source files are never modified.
 - Folders starting with `_` (such as `_docs`, `_Archives` or `_magnific`) are skipped when indexing.
 
+## Scene ambience and accents (scene maps)
+
+The tool can't see. A **scene map** is a small JSON file saying what each stretch of the video shows. A person writes it, or Claude writes it after looking at one frame per shot. With one, the tool:
+- lays an **ambience bed per scene**: birds and breeze on exteriors, wind on aerials, crickets at dusk, quiet room tone inside. The beds crossfade at the joins, and each starts at a different point in the file;
+- keeps **presenter** shots clear of one-shot effects, since someone is probably talking;
+- places **accents** listed in the map, such as a glint on a sun flare or on a location pin landing.
+
+```
+.venv/bin/python sounddesign.py synth      # free synthetic ambience + shimmer kit -> sfx/generated/
+./run.sh "video.mp4" --sfx "/path/to/Ocular Sounds" --sfx sfx/generated \
+    --config presets/tasteful.json --scenes scene-maps/kollosche-5-esther-pl-main.json
+```
+Labels: `exterior, balcony, aerial, dusk, interior, bathroom, presenter, endcard`. The example map is `scene-maps/kollosche-5-esther-pl-main.json`. The synthetic kit is a stand-in; recorded ambience (e.g. Ocular Rainforest/Cityscapes) tagged `ambience, outdoor` (or `aerial`, `dusk`, `interior`) in a `.tags` sidecar will be used the same way.
+
+Presets: `presets/tasteful.json` (Hunter's pick, 28 Oct) and `presets/dense.json` ("jam-packed", judged over the top).
+
 ## Missing sounds
 
 When a category has no files, the report says so. Nothing is downloaded or generated. Add files with the word in the name (`soft_shimmer_01.wav`), or give an existing file a sidecar called `name.wav.tags` containing `shimmer, glass`.
@@ -106,4 +122,4 @@ When a category has no files, the report says so. Nothing is downloaded or gener
 ```
 .venv/bin/python -m unittest discover -s tests -v
 ```
-33 tests cover rational frame timing (including 29.97 drop-frame), effect bounds, overlap and spacing rules, reproducibility, missing files and folders, manifest tagging, DTD validation, the clipping check, and a full end-to-end run on generated media with known cuts.
+37 tests cover rational frame timing (including 29.97 drop-frame), effect bounds, overlap and spacing rules, reproducibility, missing files and folders, manifest tagging, DTD validation, the clipping check, and a full end-to-end run on generated media with known cuts.

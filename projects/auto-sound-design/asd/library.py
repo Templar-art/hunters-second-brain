@@ -173,6 +173,16 @@ def build_manifest(root, cache_path=None, log=print, skip_underscore=True):
     return manifest
 
 
+def merge_manifests(parts):
+    """One searchable view over several libraries (e.g. Ocular + the generated kit)."""
+    sounds = [s for p in parts for s in p["sounds"]]
+    counts = {cat: sum(1 for s in sounds if cat in s["categories"]) for cat in CATEGORIES}
+    return {"root": [p["root"] for p in parts], "count": len(sounds), "category_counts": counts,
+            "missing_categories": [c for c, n in counts.items() if n == 0],
+            "uncategorised": sum(1 for s in sounds if not s["categories"]),
+            "note": parts[0]["note"] if parts else "", "sounds": sounds}
+
+
 def save_manifest(manifest, path):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     Path(path).write_text(json.dumps(manifest, indent=1))

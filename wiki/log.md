@@ -1592,3 +1592,6 @@ Sent Hunter the full 87 s Kollosche mix: default (9 effects), then `presets/dens
 
 ## [2026-10-28] build | Auto Sound Design: tasteful preset
 Hunter wants SFX tasteful, not over the top. Added `presets/tasteful.json`; the Kollosche full run placed 19 effects. "Sound bite" SFX generator not verified, so asked which product. See [[auto-sound-design]].
+
+## [2026-10-28] build | Auto Sound Design: scene maps + ambience
+Hunter liked the tasteful pass and wants scene-specific SFX plus audible ambience. Claude reviewed 55 shots and wrote a Kollosche scene map. Added per-scene ambience beds, presenter keep-clear, map accents (sun flare, K pin), and a free synthetic ambience kit. The beds were raised from about -20 dB to about -13 dB under the music. 37 tests pass. See [[auto-sound-design]].

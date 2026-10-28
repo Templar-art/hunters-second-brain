@@ -84,7 +84,7 @@ def build(video, placements, sources, sequence_duration, project_name, event_nam
         # Connected clips are positioned in the parent clip's own time, which begins at its
         # media start (the timecode), so the offset includes `start`.
         lines.append(f'            <asset-clip ref="{asset_ids[p.source]}" lane="{p.lane}" offset="{t(start + p.offset)}" '
-                     f'name={quoteattr(f"{p.id} {p.category} - {p.source_name}")} start="0s" duration="{t(p.duration)}" '
+                     f'name={quoteattr(f"{p.id} {p.category} - {p.source_name}")} start="{t(p.source_in)}" duration="{t(p.duration)}" '
                      f'audioRole="effects">')
         lines.append(f'              <note>{_esc(p.reason)} | confidence {p.confidence}</note>')
         fades = ""

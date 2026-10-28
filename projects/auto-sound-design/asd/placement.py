@@ -44,6 +44,7 @@ class Placement:
     lane: int = -1
     snap_error_ms: float = 0.0
     notes: list = field(default_factory=list)
+    source_in: Fraction = Fraction(0)  # where in the effect file playback starts (beds vary this)
 
     def end(self):
         return self.offset + self.duration
@@ -55,7 +56,8 @@ class Placement:
         data["duration_s"] = round(float(self.duration), 6)
         data["duration_rational"] = f"{self.duration.numerator}/{self.duration.denominator}s"
         data["end_s"] = round(float(self.end()), 6)
-        del data["offset"], data["duration"]
+        data["source_in_s"] = round(float(self.source_in), 6)
+        del data["offset"], data["duration"], data["source_in"]
         return data
 
 
@@ -78,7 +80,7 @@ def _near(times, t, tol):
     return best
 
 
-def candidates(cuts, music, duration, cfg):
+def candidates(cuts, music, duration, cfg, scenes=None):
     rules = cfg["rules"]
     out = []
     onset_tol = rules["sync_tolerance_s"]
@@ -121,12 +123,18 @@ def candidates(cuts, music, duration, cfg):
                              f"hard cut (scene score {c.score:.2f})" + (f", {', '.join(why)}" if why else ", no music sync")))
 
     # 3. Intro bed: low ambience under the opening, until the first big moment.
-    bed = rules.get("intro_bed")
+    bed = None if scenes else rules.get("intro_bed")  # a scene map supplies proper beds instead
     if bed:
         first = min([t for t, _ in music.energy_rises] + [duration])
         length = min(rules["intro_bed_max_s"], first, duration)
         if length >= 3:
             out.append(Candidate(0.0, bed, 0.5, f"opening bed under the first {length:.1f}s (generic intro texture, not scene-aware)", "intro"))
+
+    # Scene-map accents (placed from a visual review, not from the signal).
+    if scenes:
+        for a in scenes.accents:
+            out.append(Candidate(float(a["time"]), a["category"], 0.9,
+                                 f"scene map: {a.get('why', a['category'])} ({scenes.source})", f"accent@{a['time']}"))
 
     # 4. Outro: shimmer on the last cut in the final stretch (often an end card; not verified).
     if rules.get("outro_shimmer") and cuts:
@@ -201,7 +209,7 @@ def _fit_sound(c, sound, cat, cfg, chosen, duration, fd):
     return (sound, shape, align, offset, length, snap_err, notes, use_len, file_len), None
 
 
-def place(cuts, music, video, library, cfg, log=print):
+def place(cuts, music, video, library, cfg, log=print, scenes=None):
     """Greedy, score-ordered selection under spacing/density/overlap limits. Deterministic for a seed."""
     rules = cfg["rules"]
     limits = cfg["limits"]
@@ -213,7 +221,7 @@ def place(cuts, music, video, library, cfg, log=print):
     rng = random.Random(cfg["seed"])
     available = {c for s in library["sounds"] for c in s["categories"]}
 
-    cands = candidates(cuts, music, float(duration), cfg)
+    cands = candidates(cuts, music, float(duration), cfg, scenes)
     cands.sort(key=lambda c: (-c.score, c.time, c.category))
     minutes = max(float(duration) / 60, 0.5)
     per_cat_cap = {cat: max(1, int(round(n * minutes))) for cat, n in limits["per_minute"].items()}
@@ -235,6 +243,9 @@ def place(cuts, music, video, library, cfg, log=print):
             continue
         if cat not in available:
             reject(c, f"no '{cat}' sounds in the library")
+            continue
+        if scenes and scenes.quiet_at(c.time):
+            reject(c, "presenter on screen (scene map): kept clear")
             continue
         if used_count.get(cat, 0) >= per_cat_cap.get(cat, 99):
             reject(c, f"{cat} cap reached ({per_cat_cap.get(cat)} for this length)")
@@ -268,6 +279,10 @@ def place(cuts, music, video, library, cfg, log=print):
             reject(c, why_not)
             continue
         sound, shape, align, offset, length, snap_err, notes, use_len, file_len = fit
+        if scenes and any(seg.quiet and float(offset) < seg.end - 0.3 and seg.start + 0.3 < float(offset + length)
+                          for seg in scenes.segments):
+            reject(c, f"{sound['name']} would play over the presenter (scene map)")
+            continue
 
         level_ref = music.level_at(c.time)
         rel = cfg["levels"]["relative_db"][cat]
@@ -297,6 +312,8 @@ def place(cuts, music, video, library, cfg, log=print):
         if c.group:
             group_times.setdefault(c.group, pid)
 
+    if scenes:
+        chosen += scene_beds(scenes, music, library, cfg, duration, fd, skipped)
     chosen.sort(key=lambda p: (p.offset, p.category))
     _assign_lanes(chosen)
     for n, p in enumerate(chosen, 1):
@@ -317,3 +334,44 @@ def _assign_lanes(placements):
         else:
             lanes.append(p.end())
             p.lane = -len(lanes)
+
+
+def scene_beds(scenes, music, library, cfg, duration, fd, skipped):
+    """One ambience bed per scene stretch, matched by tag, crossfaded at the joins.
+    Each bed starts at a different point in its file so repeats don't line up."""
+    sc = cfg.get("scenes", {})
+    xfade = sc.get("crossfade_s", 0.6)
+    beds = []
+    for n, seg in enumerate(scenes.merged()):
+        if not seg.tag:
+            continue
+        pool = [s for s in library["sounds"] if "ambience" in s["categories"] and seg.tag in s["tags"]]
+        if not pool:
+            skipped.append({"time": round(seg.start, 3), "category": "ambience", "score": 1.0,
+                            "why": f"no ambience tagged '{seg.tag}' for the {seg.label} scene"})
+            continue
+        sound = pool[n % len(pool)]
+        shape = sound_shape(sound)
+        start = max(0.0, seg.start - xfade / 2)
+        end = min(float(duration), seg.end + xfade / 2)
+        offset = snap(start, fd)
+        length = snap(end - float(offset), fd, "floor")
+        if length <= 0:
+            continue
+        spare = max(0.0, sound["duration"] - float(length) - 1.0)
+        source_in = snap((n * 7.37) % spare, fd) if spare > 0 else Fraction(0)
+        if float(length) > sound["duration"] - float(source_in):
+            length = snap(sound["duration"] - float(source_in), fd, "floor")
+        rel = sc.get("relative_db", {}).get(seg.tag, -16) + seg.offset_db
+        gain = music.level_at((seg.start + seg.end) / 2, window=max(1.0, (seg.end - seg.start) / 2)) + rel - shape["rms_db"]
+        gain = min(gain, sc.get("peak_ceiling_dbfs", -12) - shape["peak_db"])
+        gain = max(cfg["levels"]["min_gain_db"], min(cfg["levels"]["max_gain_db"], gain))
+        beds.append(Placement(
+            id="bed", category="ambience", event_time=round(seg.start, 4), offset=offset, duration=length,
+            source=sound["path"], source_name=sound.get("relative", sound["name"]), gain_db=round(gain, 2),
+            fade_in=xfade, fade_out=xfade, confidence=0.7,
+            reason=f"{seg.label} scene {seg.start:.1f}-{seg.end:.1f}s -> '{seg.tag}' ambience (scene map: {scenes.source})",
+            align="start", source_in=source_in,
+            notes=["synthetic ambience" if "synthetic" in sound["tags"] else "library ambience"],
+        ))
+    return beds

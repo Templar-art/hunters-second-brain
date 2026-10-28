@@ -18,7 +18,7 @@ sys.path.insert(0, str(HERE))
 import numpy as np  # noqa: E402
 
 import sounddesign  # noqa: E402
-from asd import analysis, fcpxml, library, media, mix, placement  # noqa: E402
+from asd import analysis, fcpxml, library, media, mix, placement, scenes  # noqa: E402
 
 DTD = HERE / "fixtures" / "FCPXMLv1_10.dtd"
 HAVE_FFMPEG = shutil.which("ffmpeg") and shutil.which("ffprobe")
@@ -180,6 +180,57 @@ class Placement(unittest.TestCase):
         video = fake_video()
         chosen, _, _ = placement.place(cuts_every(), music, video, fake_library(), cfg())
         self.assertFalse([p for p in chosen if p.category == "whoosh"], "whoosh_requires_sync should block unsynced cuts")
+
+
+class Scenes(unittest.TestCase):
+    def scene_map(self):
+        segs = [scenes.Segment(0, 20, "exterior"), scenes.Segment(20, 30, "presenter"),
+                scenes.Segment(30, 45, "interior"), scenes.Segment(45, 60, "interior")]
+        return scenes.SceneMap("test", segs, [{"time": 12.0, "category": "shimmer", "why": "flare"}])
+
+    def library(self):
+        lib = fake_library()
+        lib["sounds"] += [
+            {**fake_sound("/sfx/amb_out.wav", "ambience", 60.0, peak=10.0), "tags": ["ambience", "outdoor"]},
+            {**fake_sound("/sfx/amb_in.wav", "ambience", 60.0, peak=10.0), "tags": ["ambience", "interior"]},
+        ]
+        return lib
+
+    def test_presenter_kept_clear_and_beds_follow_scenes(self):
+        video = fake_video()
+        chosen, skipped, _ = placement.place(cuts_every(), busy_music(rises=(25.0, 50.0)), video, self.library(), cfg(),
+                                             scenes=self.scene_map())
+        for p in chosen:
+            if p.category in placement.ONE_SHOT:
+                self.assertFalse(p.offset < Fraction(29.7) and p.end() > Fraction(20.3), f"{p.id} overlaps presenter")
+        beds = [p for p in chosen if p.category == "ambience"]
+        self.assertEqual([b.source for b in beds], ["/sfx/amb_out.wav", "/sfx/amb_in.wav"])  # interiors merged, presenter bare
+        self.assertTrue(any("presenter" in s["why"] for s in skipped))
+        self.assertTrue(any(p.category == "shimmer" and abs(p.event_time - 12.0) < 1e-6 for p in chosen))
+
+    def test_shift_to_section(self):
+        m = self.scene_map().shifted(25.0, 10.0)
+        self.assertEqual([(s.start, s.end, s.label) for s in m.segments], [(0.0, 5.0, "presenter"), (5.0, 10.0, "interior")])
+        self.assertEqual(m.accents, [])
+
+    def test_bad_label(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "m.json"
+            path.write_text(json.dumps({"segments": [{"start": 0, "end": 1, "label": "spaceship"}]}))
+            with self.assertRaises(ValueError):
+                scenes.load(path)
+
+    @unittest.skipUnless(HAVE_FFMPEG, "needs ffmpeg")
+    def test_synth_kit_is_tagged(self):
+        from asd import synth
+        with tempfile.TemporaryDirectory() as tmp:
+            synth.make_assets(tmp, seconds=6)
+            man = library.build_manifest(tmp)
+            by = {s["name"]: s for s in man["sounds"]}
+            self.assertEqual(by["ambience_aerial_wind.wav"]["category"], "ambience")
+            self.assertIn("aerial", by["ambience_aerial_wind.wav"]["tags"])
+            self.assertEqual(by["shimmer_soft_glint.wav"]["category"], "shimmer")
+            self.assertTrue(all("synthetic" in s["tags"] for s in man["sounds"]))
 
 
 class Library(unittest.TestCase):

@@ -20,7 +20,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from asd import analysis, fcpxml, library, media, mix, placement  # noqa: E402
+from asd import analysis, fcpxml, library, media, mix, placement, scenes  # noqa: E402
 
 DTD = HERE / "tests" / "fixtures" / "FCPXMLv1_10.dtd"
 
@@ -101,7 +101,8 @@ def cmd_manifest(args):
 def cmd_process(args):
     media.require_tools()
     cfg = load_config(args.config, args.seed)
-    args.sfx = args.sfx or cfg.get("sfx_folder")
+    folders = cfg.get("sfx_folder")
+    args.sfx = args.sfx or ([folders] if isinstance(folders, str) else folders)
     if not args.sfx:
         raise media.MediaError('No sound-effects folder. Pass --sfx "/path/to/folder" or set "sfx_folder" in asd.local.json')
     video_path = Path(args.video).expanduser()
@@ -144,8 +145,9 @@ def cmd_process(args):
               + (f"; start moved back to the keyframe at {start_s:.3f}s" if args.start and abs(start_s - args.start) > 1e-3 else ""))
 
     print("Indexing sound effects ...")
-    man = library.build_manifest(args.sfx, cache_path=manifest_cache(args.sfx), log=lambda m: print(m),
-                                 skip_underscore=cfg["library"]["skip_underscore_folders"])
+    parts = [library.build_manifest(folder, cache_path=manifest_cache(folder), log=lambda m: print(m),
+                                    skip_underscore=cfg["library"]["skip_underscore_folders"]) for folder in args.sfx]
+    man = library.merge_manifests(parts)
     print(f"  {man['count']} sounds; " + ", ".join(f"{c} {n}" for c, n in man["category_counts"].items()))
     if man["count"] == 0:
         raise media.MediaError(f"No audio files found in {args.sfx}")
@@ -164,8 +166,13 @@ def cmd_process(args):
     print(f"  {music.source}: {len(music.onsets)} onsets, {len(music.energy_rises)} energy rises, "
           f"tempo {music.tempo_bpm} BPM (confidence {music.tempo_confidence}, beats {'used' if music.beats_reliable else 'NOT used - unreliable'})")
 
-    placements, skipped, missing = placement.place(cuts, music, video, man, cfg)
-    library.save_manifest(man, manifest_cache(args.sfx))  # keep newly measured peak times
+    scene_map = None
+    if args.scenes:
+        scene_map = scenes.load(args.scenes).shifted(start_s, seconds)
+        print(f"Scene map: {len(scene_map.segments)} segments, {len(scene_map.accents)} accents ({scene_map.source})")
+    placements, skipped, missing = placement.place(cuts, music, video, man, cfg, scenes=scene_map)
+    for part in parts:  # keep newly measured peak times (sound dicts are shared with the merged view)
+        library.save_manifest(part, manifest_cache(part["root"]))
     print(f"Placed {len(placements)} effects ({len(skipped)} candidates skipped)")
 
     print("Rendering effects bus ...")
@@ -220,7 +227,10 @@ def cmd_process(args):
                    "note": "effect times are relative to the start of this section; video_time_s is the time in the full video"},
         "test_seconds": limit,
         "music_source": music.source,
-        "sfx_library": man["root"],
+        "scene_map": ({"file": str(Path(args.scenes).resolve()), "source": scene_map.source,
+                       "note": "scene labels come from a visual review recorded in this file, not from the tool's own analysis"}
+                      if scene_map else None),
+        "sfx_library": [p["root"] for p in parts],
         "seed": cfg["seed"],
         "honesty": ("Placements are heuristic: they come from cut scores, music loudness and onsets. The tool does not "
                     "know what any shot shows (drone, room reveal, sun flare, twilight). SFX categories come from file "
@@ -246,6 +256,14 @@ def cmd_process(args):
         print(f"  ! {mix_report['warning']}")
     if edl["missing_categories"]:
         print(f"  ! Missing SFX categories: {', '.join(edl['missing_categories'])} (nothing downloaded or generated)")
+    return 0
+
+
+def cmd_synth(args):
+    from asd import synth
+    for path in synth.make_assets(args.out):
+        print(f"  {path}")
+    print("Synthetic stand-ins (tagged 'synthetic'); recorded ambience will sound more natural.")
     return 0
 
 
@@ -326,7 +344,8 @@ def main(argv=None):
     m.add_argument("--include-underscore", action="store_true", help="also index folders starting with _")
     p = sub.add_parser("process", help="make a sound-design pass for one video")
     p.add_argument("video")
-    p.add_argument("--sfx", help="folder of sound effects you own (default: sfx_folder in asd.local.json)")
+    p.add_argument("--sfx", action="append", help="folder of sound effects (repeatable; default: sfx_folder in asd.local.json)")
+    p.add_argument("--scenes", help="scene-map JSON (what each stretch shows) for scene ambience + accents")
     p.add_argument("--music", help="optional separate music file (analysis only; it is not added to the mix)")
     p.add_argument("--out", default=str(HERE / "output"))
     p.add_argument("--config")
@@ -334,12 +353,14 @@ def main(argv=None):
     p.add_argument("--test-seconds", type=float, help="only process N seconds (quick check)")
     p.add_argument("--start", type=float, help="start the test section here (moved back to the nearest keyframe)")
     p.add_argument("--no-xml", action="store_true")
+    y = sub.add_parser("synth", help="make the free synthetic ambience + shimmer kit")
+    y.add_argument("--out", default=str(HERE / "sfx" / "generated"))
     r = sub.add_parser("relink", help="re-point a run folder's FCPXML at this machine's paths")
     r.add_argument("run_dir")
     r.add_argument("--video", required=True, help="where the source video is on this machine")
     args = parser.parse_args(argv)
     try:
-        return {"check": cmd_check, "manifest": cmd_manifest, "process": cmd_process, "relink": cmd_relink}[args.command](args)
+        return {"check": cmd_check, "manifest": cmd_manifest, "process": cmd_process, "relink": cmd_relink, "synth": cmd_synth}[args.command](args)
     except media.MediaError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2

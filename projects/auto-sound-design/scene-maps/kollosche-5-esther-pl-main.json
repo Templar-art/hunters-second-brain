@@ -1,0 +1,30 @@
+{
+  "video": "Kollosche 5 Esther Pl - Main.mp4 (87.5 s, 23.976)",
+  "source": "Claude visual review of one frame per detected shot, 28 Oct 2026",
+  "segments": [
+    {"start": 0.0,  "end": 2.6,  "label": "exterior",  "note": "front facade, Villas on Esther sign"},
+    {"start": 2.6,  "end": 5.8,  "label": "interior",  "note": "kitchen, address title"},
+    {"start": 5.8,  "end": 8.3,  "label": "presenter", "note": "Eddie in kitchen"},
+    {"start": 8.3,  "end": 12.3, "label": "interior",  "note": "kitchen/living"},
+    {"start": 12.3, "end": 15.3, "label": "presenter", "note": "Eddie in kitchen"},
+    {"start": 15.3, "end": 16.7, "label": "interior",  "note": "window view to palms"},
+    {"start": 16.7, "end": 19.2, "label": "aerial",    "note": "drone over the block"},
+    {"start": 19.2, "end": 22.1, "label": "dusk",      "note": "twilight exterior"},
+    {"start": 22.1, "end": 27.4, "label": "exterior",  "note": "low-angle facade, sun flare, signage"},
+    {"start": 27.4, "end": 42.2, "label": "interior",  "note": "living, kitchen, dining"},
+    {"start": 42.2, "end": 44.0, "label": "balcony",   "note": "covered terrace"},
+    {"start": 44.0, "end": 53.4, "label": "interior",  "note": "window view, dining, stairs, powder room"},
+    {"start": 53.4, "end": 57.4, "label": "aerial",    "note": "top-down then wide with K pin"},
+    {"start": 57.4, "end": 64.3, "label": "interior",  "note": "bedrooms"},
+    {"start": 64.3, "end": 68.3, "label": "bathroom",  "note": "ensuite/bathrooms"},
+    {"start": 68.3, "end": 70.5, "label": "interior",  "note": "stair void"},
+    {"start": 70.5, "end": 71.7, "label": "exterior",  "note": "low angle, planter"},
+    {"start": 71.7, "end": 76.4, "label": "presenter", "note": "Eddie walking outside"},
+    {"start": 76.4, "end": 85.3, "label": "aerial",    "note": "drone, end-card text over city"},
+    {"start": 85.3, "end": 87.5, "label": "endcard",   "note": "navy end card"}
+  ],
+  "accents": [
+    {"time": 24.3, "category": "shimmer", "why": "sun flare through the louvres"},
+    {"time": 55.9, "category": "shimmer", "why": "K location pin lands"}
+  ]
+}

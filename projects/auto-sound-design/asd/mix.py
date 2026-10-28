@@ -17,6 +17,8 @@ def render_clips(placements):
     clips = []
     for p in placements:
         audio = media.decode_audio(p.source, rate=RATE, channels=2)
+        skip = int(round(float(getattr(p, "source_in", 0)) * RATE))
+        audio = audio[skip:]
         n = min(len(audio), int(round(float(p.duration) * RATE)))
         clip = audio[:n].copy()
         fi = min(n, int(p.fade_in * RATE))
@@ -74,6 +76,8 @@ def balance(placements, clips, total_seconds, source, cfg):
         for p, (start, clip) in zip(placements, clips):
             if original[p.id] - p.gain_db >= max_trim - 1e-6:
                 continue
+            if getattr(p, "category", "") in ("ambience", "low drone"):
+                continue  # beds are low and long; trimming them for a one-frame peak just buries them
             hit = np.any((over >= start) & (over < start + len(clip)))
             if hit:
                 p.gain_db = round(p.gain_db - 0.5, 2)
