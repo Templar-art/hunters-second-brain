@@ -18,6 +18,7 @@ class Cut:
     time: float  # first frame of the new shot, seconds from the start of the video
     frame: int
     score: float  # FFmpeg scene score, 0..1
+    motion: float = 0.0  # motion blur around the cut, 0..1 (whip pans, fast moves)
 
 
 @dataclass
@@ -200,3 +201,79 @@ def analyse_music(path, cfg, limit=None, label="", start=None):
         beats=beats,
         beats_reliable=reliable,
     )
+
+
+def existing_sfx(path, cuts, cfg, start=None, limit=None):
+    """Effects that look already baked into the edit's audio, checked at each cut:
+    a whoosh shows as a jump in high-frequency noise just before the cut; a boom as a jump in
+    sub-bass right after it. Signal heuristics only: a crash cymbal on the cut can read as a
+    whoosh too, which is fine, since it also means the cut already has a sound on it."""
+    sr = SR
+    try:
+        a = media.decode_audio(path, rate=sr, channels=1, start=start, duration=limit)[:, 0]
+    except media.MediaError:
+        return []
+    hop, nfft = 441, 1024  # 20 ms hops
+    if len(a) < nfft * 4:
+        return []
+    frames = np.lib.stride_tricks.sliding_window_view(np.pad(a, (nfft // 2, nfft // 2)), nfft)[::hop]
+    spec = np.abs(np.fft.rfft(frames * np.hanning(nfft), axis=1)) + 1e-9
+    f = np.fft.rfftfreq(nfft, 1 / sr)
+    hf = 20 * np.log10(spec[:, f > 5000].mean(1))
+    sub = 20 * np.log10(spec[:, f < 90].mean(1))
+    mid = spec[:, (f > 200) & (f < 10000)]
+    flat = np.exp(np.log(mid).mean(1)) / mid.mean(1)
+
+    def mean(x, t0, t1):
+        i, j = max(0, int(t0 / 0.02)), max(1, int(t1 / 0.02))
+        return float(x[i:max(i + 1, j)].mean())
+
+    found = []
+    for c in cuts:
+        t = c.time
+        hf_rise = mean(hf, t - 0.35, t + 0.05) - mean(hf, t - 1.5, t - 0.6)
+        flat_rise = mean(flat, t - 0.35, t + 0.05) - mean(flat, t - 1.5, t - 0.6)
+        sub_hit = mean(sub, t, t + 0.25) - mean(sub, t - 0.6, t - 0.1)
+        if hf_rise >= cfg["existing_whoosh_hf_db"] and flat_rise >= cfg["existing_whoosh_flatness"]:
+            found.append({"time": t, "kind": "whoosh", "evidence": f"high-frequency noise up {hf_rise:.1f} dB into the cut"})
+        i0 = max(0, int(t / 0.02))
+        peak_now = float(sub[i0: i0 + 13].max()) if i0 < len(sub) else -200.0
+        later = sub[i0 + 15: i0 + 100]
+        peak_later = float(later.max()) if len(later) else -200.0
+        # A boom is a one-off; kicks in the music come back at the same weight within a couple of seconds.
+        if sub_hit >= cfg["existing_boom_sub_db"] and peak_now - peak_later >= 6:
+            found.append({"time": t, "kind": "boom", "evidence": f"sub-bass up {sub_hit:.1f} dB on the cut"})
+    return found
+
+
+def cut_motion(path, cuts, fps, start=None, width=160):
+    """Motion blur around each cut, 0..1. Whip pans and fast drone moves smear the frames either
+    side of the cut; a static shot doesn't. 1 - (sharpness near the cut / sharpness ~1 s away)."""
+    out = {}
+    fps = float(fps)
+    for c in cuts:
+        t = c.time + (start or 0.0)
+        a = max(0.0, t - 1.0)
+        cmd = ["ffmpeg", "-v", "error", "-nostdin", "-ss", f"{a:.3f}", "-i", str(path), "-t", "2.0",
+               "-vf", f"scale={width}:-2,format=gray", "-f", "rawvideo", "-"]
+        try:
+            raw = media._run(cmd, binary=True)
+        except media.MediaError:
+            continue
+        h = None
+        for cand in range(60, 200):
+            if len(raw) % (width * cand) == 0 and (len(raw) // (width * cand)) >= 4:
+                h = cand
+                break
+        if h is None:
+            continue
+        frames = np.frombuffer(raw, np.uint8).reshape(-1, h, width).astype(np.float32)
+        sharp = np.array([np.abs(np.diff(f, axis=0)).mean() + np.abs(np.diff(f, axis=1)).mean() for f in frames])
+        n = len(sharp)
+        centre = int(round((t - a) * fps))
+        near = sharp[max(0, centre - 3): centre + 3]
+        far = np.concatenate([sharp[: max(1, centre - 12)], sharp[min(n - 1, centre + 12):]])
+        if len(near) == 0 or len(far) == 0:
+            continue
+        out[round(c.time, 4)] = float(np.clip(1 - near.min() / (np.median(far) + 1e-6), 0, 1))
+    return out

@@ -111,10 +111,16 @@ def candidates(cuts, music, duration, cfg, scenes=None):
         if beat:
             sync = max(sync, 0.6)
             why.append("on the beat grid")
+        moving = c.motion >= rules.get("motion_whoosh_min", 0.5)
+        if moving:
+            why.append(f"motion blur {c.motion:.2f} across the cut (whip/fast move)")
         if not why and rules["whoosh_requires_sync"]:
             continue
-        # Capped below an impact's floor so a musical hit outranks a whoosh on the same cut.
-        score = 0.4 * c.score + 0.4 * sync
+        if rules["whoosh_requires_sync"] and not (onset or beat) and not moving:
+            continue
+        # Capped below an impact's floor so a musical hit outranks a whoosh on the same cut;
+        # motion lifts it, since a whoosh sells movement more than it sells a static cut.
+        score = min(0.85, 0.4 * c.score + 0.4 * sync + rules.get("motion_weight", 0.35) * c.motion)
         if rules.get("impact_on_synced_cuts") and sync >= rules.get("impact_sync_min", 0.7):
             # Dense mode: a cut that lands hard on a music hit can take a small impact instead of a whoosh.
             out.append(Candidate(c.time, "impact", 0.35 + 0.3 * sync,
@@ -209,7 +215,7 @@ def _fit_sound(c, sound, cat, cfg, chosen, duration, fd):
     return (sound, shape, align, offset, length, snap_err, notes, use_len, file_len), None
 
 
-def place(cuts, music, video, library, cfg, log=print, scenes=None):
+def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=None):
     """Greedy, score-ordered selection under spacing/density/overlap limits. Deterministic for a seed."""
     rules = cfg["rules"]
     limits = cfg["limits"]
@@ -243,6 +249,10 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None):
             continue
         if cat not in available:
             reject(c, f"no '{cat}' sounds in the library")
+            continue
+        near = next((e for e in (existing or []) if abs(e["time"] - c.time) <= rules.get("existing_clearance_s", 0.6)), None)
+        if near and rules.get("respect_existing_sfx", True) and cat in ONE_SHOT:
+            reject(c, f"the edit already has a {near['kind']} here ({near['evidence']})")
             continue
         if scenes and scenes.quiet_at(c.time):
             reject(c, "presenter on screen (scene map): kept clear")

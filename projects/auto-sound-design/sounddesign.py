@@ -154,7 +154,10 @@ def cmd_process(args):
 
     print("Finding cuts ...")
     cuts = [c for c in analysis.detect_cuts(video, cfg["analysis"], limit=seconds, start=start_s) if c.time < seconds]
-    print(f"  {len(cuts)} cuts")
+    motion = analysis.cut_motion(video.path, cuts, video.fps, start=start_s)
+    for c in cuts:
+        c.motion = motion.get(round(c.time, 4), 0.0)
+    print(f"  {len(cuts)} cuts ({sum(1 for c in cuts if c.motion >= cfg['rules'].get('motion_whoosh_min', 0.5))} with motion blur)")
     print("Analysing music ...")
     if music_path:
         music = analysis.analyse_music(music_path, cfg["analysis"], limit=seconds, start=start_s,
@@ -170,7 +173,10 @@ def cmd_process(args):
     if args.scenes:
         scene_map = scenes.load(args.scenes).shifted(start_s, seconds)
         print(f"Scene map: {len(scene_map.segments)} segments, {len(scene_map.accents)} accents ({scene_map.source})")
-    placements, skipped, missing = placement.place(cuts, music, video, man, cfg, scenes=scene_map)
+    existing = analysis.existing_sfx(video.path, cuts, cfg["analysis"], start=start_s, limit=seconds) if video.has_audio else []
+    if existing:
+        print(f"  Effects already in the edit (heuristic): " + ", ".join(f"{e['kind']} {e['time']:.2f}s" for e in existing))
+    placements, skipped, missing = placement.place(cuts, music, video, man, cfg, scenes=scene_map, existing=existing)
     for part in parts:  # keep newly measured peak times (sound dicts are shared with the merged view)
         library.save_manifest(part, manifest_cache(part["root"]))
     print(f"Placed {len(placements)} effects ({len(skipped)} candidates skipped)")
@@ -235,10 +241,12 @@ def cmd_process(args):
         "honesty": ("Placements are heuristic: they come from cut scores, music loudness and onsets. The tool does not "
                     "know what any shot shows (drone, room reveal, sun flare, twilight). SFX categories come from file "
                     "and folder names, not from listening. No dialogue detection, so nothing is ducked."),
-        "analysis": {"cuts": [{"time": round(c.time, 4), "frame": c.frame, "score": round(c.score, 3)} for c in cuts],
+        "analysis": {"cuts": [{"time": round(c.time, 4), "frame": c.frame, "score": round(c.score, 3),
+                              "motion": round(c.motion, 3)} for c in cuts],
                      "energy_rises": [{"time": round(a, 3), "rise_db": round(b, 2)} for a, b in music.energy_rises],
                      "tempo_bpm": music.tempo_bpm, "tempo_confidence": music.tempo_confidence,
-                     "beats_used": music.beats_reliable, "onset_count": len(music.onsets)},
+                     "beats_used": music.beats_reliable, "onset_count": len(music.onsets),
+                     "existing_sfx_in_edit": existing},
         "effects": [{**p.to_json(), "video_time_s": round(start_s + p.event_time, 4)} for p in placements],
         "skipped_candidates": skipped,
         "missing_categories": sorted(set(missing) | set(man["missing_categories"])),

@@ -1595,3 +1595,6 @@ Hunter wants SFX tasteful, not over the top. Added `presets/tasteful.json`; the 
 
 ## [2026-10-28] build | Auto Sound Design: scene maps + ambience
 Hunter liked the tasteful pass and wants scene-specific SFX plus audible ambience. Claude reviewed 55 shots and wrote a Kollosche scene map. Added per-scene ambience beds, presenter keep-clear, map accents (sun flare, K pin), and a free synthetic ambience kit. The beds were raised from about -20 dB to about -13 dB under the music. 37 tests pass. See [[auto-sound-design]].
+
+## [2026-10-28] ingest | Desire Media "The Pilot" reference
+Broke down Desire's Kollosche film (65 shots, 16 transition strips, per-cut audio signatures) into [[desire-the-pilot-reference]]: whooshes on about 1 in 5 cuts, on motion; 2–5 big hits; whip, pillar-wipe and lights-on transitions; lifestyle talent. The tool gained `existing_sfx` (it found 6 effects already in Hunter's Esther Pl edit) and `cut_motion`, and the tasteful preset was retuned. See [[auto-sound-design]].

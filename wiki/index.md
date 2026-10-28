@@ -125,6 +125,7 @@ The durable how-to layer — standing technique, distinct from client/ops pages.
 - [[oneill-brand-book-edition-one]] — O'Neill Property Brand Book, Edition One: the delivered identity manual (palette + hexes, type, logo minimums, campaign words, print, photography, and the six open items)
 - [[oneill-brand-book-edition-two]] — O'Neill Property Brand Guidelines, Edition Two: 26 spreads condensed to 13 print pages (A3 landscape PDF + editable canvas). Locked client copy, 10x design only. Nominates **Antic Didone** as the non-Apple display substitute. Built from the master logo SVGs in Drive (`Branding/Logos/`) — all three lockups
 
+- [[desire-the-pilot-reference]] — Desire Media's Kollosche "The Pilot" film (110 s): logo-held open, lifestyle talent in every amenity, whip/pillar-wipe/lights-on transitions, whooshes on only ~1 in 5 cuts (on motion), 2–5 big hits; drove the tasteful preset + motion/existing-SFX detectors
 - [[kollosche-video-guidelines]] — Kollosche Video & Caption Guidelines 2024 + asset pack inventory; intro/outro/auction/4K/subtitle rules; ⚠️ four conflicting caption specs tabled
 - [[salt-pm-brand-scrub]] — Salt PM site + IG scrub (2 Sep): verbatim bio/captions, two-register voice profile for the planned chatbot
 

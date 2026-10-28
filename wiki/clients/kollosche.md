@@ -42,6 +42,8 @@ The full pack is in `raw/kollosche/`. It holds the guidelines, overlays, PSD tem
 - `~/Downloads/Kollosche BTS REEL FINAL.mp4` (1 Sep 2026) is a BTS reel. It was left in Downloads and is not part of the brand pack.
 - Custom transition SFX: `~/Desktop/Ocular Sounds/kollosche_transition_SFX.wav` ([[sfx-custom]]).
 
+- **Competitor reference:** Desire Media shot "The Pilot" (17 Pilot Ct, Mermaid Waters) for Kollosche. It's broken down in [[desire-the-pilot-reference]] and is Hunter's target style for sound design. The 5 Esther Pl edit is the [[auto-sound-design]] test case.
+
 ## Agents seen in the pack
 Taylor Kleinberg and Thibault Parolini (end cards), Duncan Longmore, Michael Kollosche and Marco De Vincentiis (4K example outro), Gareth Denning, and Hayley Kidson ("The Conversation" PAS series). There are 32 team logo sets in all. The list is on the source page.
 

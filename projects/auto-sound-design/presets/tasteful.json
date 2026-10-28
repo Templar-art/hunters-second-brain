@@ -1,22 +1,50 @@
 {
-  "_about": "Tasteful: whooshes only on cuts that land with the music, impacts only on real music lifts, quieter than default, short tails. No stacking.",
+  "_about": "Tasteful: whooshes only on cuts that land with the music, impacts only on real music lifts, quieter than default, short tails. No stacking. Whooshes favour motion (whip pans/fast moves), ~1 in 5 cuts, as in the Desire reference.",
   "rules": {
     "min_score": 0.4,
     "whoosh_requires_sync": true,
     "riser_min_rise_db": 7.0,
     "impact_on_synced_cuts": false,
-    "max_tail_s": {"whoosh": 1.2, "impact": 2.5, "shimmer": 1.5}
+    "max_tail_s": {
+      "whoosh": 1.2,
+      "impact": 2.5,
+      "shimmer": 1.5
+    },
+    "motion_whoosh_min": 0.5
   },
   "limits": {
     "min_spacing_s": 2.5,
     "total_per_minute": 13,
-    "per_minute": {"whoosh": 9, "impact": 3, "riser": 2, "shimmer": 1, "low drone": 1, "ambience": 1},
-    "max_whoosh_share_of_cuts": 0.3,
+    "per_minute": {
+      "whoosh": 9,
+      "impact": 3,
+      "riser": 2,
+      "shimmer": 1,
+      "low drone": 1,
+      "ambience": 1
+    },
+    "max_whoosh_share_of_cuts": 0.22,
     "max_overlap": 2
   },
   "levels": {
-    "relative_db": {"whoosh": -11, "riser": -12, "impact": -8, "shimmer": -14, "low drone": -18, "ambience": -20},
-    "peak_ceiling_dbfs": {"whoosh": -12, "riser": -12, "impact": -8, "shimmer": -16, "low drone": -20, "ambience": -22}
+    "relative_db": {
+      "whoosh": -11,
+      "riser": -12,
+      "impact": -8,
+      "shimmer": -14,
+      "low drone": -18,
+      "ambience": -20
+    },
+    "peak_ceiling_dbfs": {
+      "whoosh": -12,
+      "riser": -12,
+      "impact": -8,
+      "shimmer": -16,
+      "low drone": -20,
+      "ambience": -22
+    }
   },
-  "fades": {"trim_fade_out": 0.35}
+  "fades": {
+    "trim_fade_out": 0.35
+  }
 }

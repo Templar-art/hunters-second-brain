@@ -9,7 +9,10 @@
     "energy_window_s": 1.5,
     "energy_rise_db": 5.0,
     "energy_min_gap_s": 6.0,
-    "beat_confidence": 0.35
+    "beat_confidence": 0.35,
+    "existing_whoosh_hf_db": 7.0,
+    "existing_whoosh_flatness": 0.05,
+    "existing_boom_sub_db": 11.0
   },
   "rules": {
     "min_score": 0.45,
@@ -21,7 +24,9 @@
     "intro_bed": "ambience",
     "intro_bed_max_s": 8.0,
     "outro_shimmer": true,
-    "outro_window": 0.2
+    "outro_window": 0.2,
+    "respect_existing_sfx": true,
+    "existing_clearance_s": 0.6
   },
   "limits": {
     "min_spacing_s": 3.0,
