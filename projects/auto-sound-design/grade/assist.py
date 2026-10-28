@@ -50,7 +50,7 @@ def timecode(t, fps):
 
 
 def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_tol_a=3.0, exp_tol_stops=0.3,
-            scene_map=None, analysis_lut=None):
+            scene_map=None, analysis_lut=None, heroes=None):
     """Match each shot to the film's OWN look (its typical white cast and white level), not to
     neutral: an already-graded warm film stays warm; only shots that drift from it get flagged."""
     video, _ = media.video_info(path)
@@ -86,7 +86,10 @@ def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_to
                          "white_ratio": [float(rgb[0] / rgb[1]), float(rgb[2] / rgb[1])]})
         shots.append(info)
 
-    ref_shots = [s for s in shots if "white_ratio" in s]
+    # Reference look: the shots Hunter likes ("heroes"), or the film's median if none are picked.
+    ref_shots = [s for s in shots if "white_ratio" in s and (not heroes or s["shot"] in heroes)]
+    if heroes and not ref_shots:
+        raise SystemExit("None of the hero shots has white surfaces to measure; pick interior shots you like.")
     ref = {"white_a": float(np.median([s["white_a"] for s in ref_shots])) if ref_shots else 0.0,
            "white_b": float(np.median([s["white_b"] for s in ref_shots])) if ref_shots else 0.0,
            "white_L": float(np.median([s["white_L"] for s in ref_shots])) if ref_shots else 85.0,
@@ -122,7 +125,11 @@ def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_to
         s["resolve_gain"] = [round(float(x), 3) for x in gains]
         s["changed"] = bool(max(abs(x - 1) for x in s["resolve_gain"]) >= 0.015)
         s["note"] = "; ".join(notes)
-    return video, frames, shots, {"target_median_L": ref["white_L"], "median_chroma": ref["chroma"],
+    for s in shots:
+        if heroes and s["shot"] in heroes:
+            s["note"] = ("HERO (your pick, the reference). " + s.get("note", "")).strip()
+            s["resolve_gain"], s["changed"], s["exposure_stops"] = [1.0, 1.0, 1.0], False, 0.0
+    return video, frames, shots, {"heroes": sorted(heroes) if heroes else None, "target_median_L": ref["white_L"], "median_chroma": ref["chroma"],
                                   "film_white_cast_b": ref["white_b"], "film_white_cast_a": ref["white_a"]}
 
 
@@ -163,6 +170,28 @@ def apply(frames, shots, fps):
     return out.clip(0, 255).astype(np.uint8)
 
 
+def contact_sheet(video_path, out=None, lut=None):
+    """Numbered thumbnail of every shot, so Hunter can say which ones he likes."""
+    video, _ = media.video_info(video_path)
+    cfg = sounddesign.load_config()
+    cuts = analysis.detect_cuts(video, cfg["analysis"])
+    edges = [0.0] + [c.time for c in cuts] + [video.duration]
+    out = Path(out or (HERE.parent / "output" / f"{Path(video_path).stem}_grade-assist"))
+    out.mkdir(parents=True, exist_ok=True)
+    tiles = out / "tiles"
+    tiles.mkdir(exist_ok=True)
+    for i, (a, b) in enumerate(zip(edges, edges[1:])):
+        vf = (f"lut3d=file='{lut}'," if lut else "") + (f"scale=320:-2,drawtext=text='{i:02d}':x=8:y=8:fontsize=28:"
+                                                        "fontcolor=yellow:box=1:boxcolor=black@0.6")
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{(a + b) / 2:.3f}", "-i", str(video_path), "-frames:v", "1",
+                        "-vf", vf, str(tiles / f"s{i:03d}.png")], check=True)
+    sheet = out / "shots-numbered.png"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(tiles / "s%03d.png"), "-vf", "tile=6x10",
+                    "-frames:v", "1", str(sheet)], check=True)
+    print(f"{len(edges) - 1} shots -> {sheet}")
+    return 0
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     p.add_argument("video")
@@ -170,10 +199,16 @@ def main(argv=None):
     p.add_argument("--strength", type=float, default=0.7)
     p.add_argument("--scenes", help="scene-map JSON: only interiors are auto-matched")
     p.add_argument("--analysis-lut", help="log->Rec.709 .cube for flat/log masters (judge shots after conversion)")
+    p.add_argument("--heroes", help="shots you like, e.g. '3,8,15' (numbers from the contact sheet): the rest are matched to them")
+    p.add_argument("--contact-sheet", action="store_true", help="just write a numbered contact sheet to pick heroes from")
     args = p.parse_args(argv)
+    if args.contact_sheet:
+        return contact_sheet(args.video, args.out, args.analysis_lut)
     from asd import scenes as scenes_mod
     smap = scenes_mod.load(args.scenes) if args.scenes else None
-    video, frames, shots, summary = analyse(args.video, args.strength, scene_map=smap, analysis_lut=args.analysis_lut)
+    heroes = {int(x) for x in args.heroes.split(",")} if args.heroes else None
+    video, frames, shots, summary = analyse(args.video, args.strength, scene_map=smap, analysis_lut=args.analysis_lut,
+                                            heroes=heroes)
     out = Path(args.out or (HERE.parent / "output" / f"{Path(args.video).stem}_grade-assist"))
     out.mkdir(parents=True, exist_ok=True)
     fps = float(video.fps)
@@ -200,8 +235,9 @@ def main(argv=None):
 
     lines = [f"# Grade assistant: {Path(args.video).name}", "",
              "Consistency pass only (white balance on neutral surfaces + exposure outliers). Keeps your brightness.",
-             f"Film's own look: whites at L* {summary['target_median_L']:.1f} with cast b* {summary['film_white_cast_b']:+.1f} "
-             f"(warm), typical chroma {summary['median_chroma']:.1f}. Shots are matched to that, not to neutral.", "",
+             (f"Reference = your hero shots {summary['heroes']}: " if summary.get("heroes") else "Reference = the film's own typical look: ")
+             + f"whites at L* {summary['target_median_L']:.1f}, cast b* {summary['film_white_cast_b']:+.1f}, "
+             f"typical chroma {summary['median_chroma']:.1f}. Other shots are matched to that, not to neutral.", "",
              "Type these into **Resolve → Color → Primaries (bars) → Gain R / G / B** on each shot. "
              "Leave Lift/Gamma alone for this pass.", "",
              "**In Final Cut:** select the shot → Inspector → Color → add Color Wheels → follow the *Final Cut* column, "

@@ -1640,3 +1640,6 @@ Hunter doesn't know Resolve. The grade assistant now gives FCP Color Wheels inst
 
 ## [2026-10-28] build | Resolve bridge
 `grade/resolve_bridge.py` takes the flat master and grade-assist JSON and builds a per-shot Resolve timeline with the house PowerGrade, CDLs and a drone LUT. Dry run and fake-Resolve tests pass (40 tests); untested on a real Resolve. See [[fcp-resolve-workflow]].
+
+## [2026-10-28] build | Grade assistant: hero shots
+Hunter's next grade is good on some shots only. `assist.py --contact-sheet` numbers the shots; `--heroes` makes his picks the reference, and the look LUT is learned from those pairs. See [[fcp-resolve-workflow]].
