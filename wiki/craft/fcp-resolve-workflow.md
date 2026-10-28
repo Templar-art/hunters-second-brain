@@ -40,6 +40,13 @@ Trade-off: you grade a baked master, so there are no handles; if the cut changes
 5. FCP: **File → Import → XML** → the round-trip XML gives a new project pointing at the graded clips. Titles and effects from the original need re-adding or copying across.
 6. **Check every retime and transition** against the original before delivery.
 
+## Grade assistant (Claude, before you open Resolve)
+Send the Path A master (and the scene map if there is one). `projects/auto-sound-design/grade/assist.py` splits it into shots, reads each one like the scopes, and writes `GRADE-NOTES.md`: **per-shot Gain R/G/B numbers to type into Resolve → Color → Primaries (bars) → Gain**, plus before/after stills and a side-by-side preview.
+- It matches every shot to the **film's own look** (its typical white level and warmth, measured on interior white walls, ceilings and linen), not to neutral or to Desire, so an intentionally warm grade stays warm.
+- Only interiors are auto-matched. Exteriors, aerials and dusk are listed "judge by eye", because there the "white" is sky and dusk is meant to be cool.
+- Exposure is judged on white surfaces (so a dark-timber kitchen isn't called underexposed), with ±0.3 stop tolerance, correction capped at +0.33 / −0.15 stop (house rule: don't darken).
+- First run (Kollosche Esther Pl, already graded by Hunter): 13 of 55 shots flagged, mostly window and bedroom shots 0.3–0.5 stop under the film's white level, plus 5 interiors noticeably more saturated than the rest. It's a demo; the real use is ungraded or tricky footage.
+
 ## Resolve project settings (once per project)
 - **Colour science: DaVinci YRGB Color Managed.** Input: per clip (below). Timeline: DaVinci Wide Gamut / Intermediate. Output: **Rec.709 Gamma 2.4** for TV-style mastering, or **Rec.709-A** when it will mostly be watched on Macs, iPhones and web (it stops QuickTime and Safari washing it out). Pick one per job and stick with it.
 - **Input colour space per source:**

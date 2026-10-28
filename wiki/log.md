@@ -1628,3 +1628,6 @@ Hunter prefers his own grade on Kollosche Esther Pl. New rule: colour help keeps
 
 ## [2026-10-28] ingest | FCP → Resolve Studio grading workflow
 Hunter owns Resolve Studio; Desire grades in Resolve. Wrote [[fcp-resolve-workflow]]: a graded-master path (survives speed ramps and titles) and an XML round trip, project colour settings, a 10x node tree that keeps the brightness, and Studio tools. Draft until run once.
+
+## [2026-10-28] build | Grade assistant (Resolve numbers per shot)
+`grade/assist.py` gives per-shot Gain R/G/B matched to the film's own white level and warmth, interiors only, never darkening. Kollosche demo: 13 of 55 shots flagged. Added to [[fcp-resolve-workflow]].
