@@ -130,9 +130,9 @@ REGULAR = 0  # HelveticaNeue.ttc
 
 
 def address(text, slug):
-    """Address caption in the style of her film subtitles: small white sentence case, lower centre.
+    """Address caption in the style of her film subtitles: small white sentence case, centred in frame (Hunter, 2026-10-28).
     Measured from her Lita Ct film: the caption sits ~80% down; "Tallebudgera property" spans ~22% of width."""
-    cap = layer(lambda d, i: mc.centred(d, text, mc.font(REGULAR, 100), cy=H * 0.80))
+    cap = layer(lambda d, i: mc.centred(d, text, mc.font(REGULAR, 100), cy=H * 0.50))
     Image.fromarray((cap * 255).astype(np.uint8)).save(OUT / f"address-{slug}-4k.png")
     blank = np.zeros((H, W, 4), np.float32)
 
