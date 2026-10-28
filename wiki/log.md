@@ -1619,3 +1619,6 @@ Desire has a shadow floor of L 7.5 against our 17, contrast 73 against 60, chrom
 
 ## [2026-10-28] build | Auto Sound Design v11 + Desire-match LUT
 The 42.17 s music return is now rebuilt phrase-aligned (the music after it was 180 ms off-grid) with a 1-bar filter and level opening, and the fix is exported as a music clip plus a source mute in the XML. Impacts lock to the music hit, whooshes lead the cut by 40 ms, and a day→night ambience story was added. Colour v2 is a statistical-transfer .cube LUT (75%); the ffmpeg grade was rejected as "fucked". See [[auto-sound-design]].
+
+## [2026-10-28] query | Music cut cause + next test video
+The 42 s stumble was Hunter's own hand-shortening of the song. A bar-aligned "music fitter" is proposed. A slower, earthy pool/drone edit is coming 29 Oct as the next test. See [[auto-sound-design]].
