@@ -66,6 +66,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[street-racer]] — browser night GP racer: 14-car garage w/ paint+tune, drift mode, exhaust flames (Three.js + Blender, 0cr); `projects/street-racer/`
 
 ## Concepts
+- [[floor-plan-house-style]] — audit of 11 delivered floor plans, 8 clients: two template generations (Feb vs Oct 2026), per-client blocks, YPA own layout, errors shipped (Jessica phone mismatch, 1.061m², typos)
 - [[sfx-library]]: the Ocular Sounds library (1,547 sounds since 20 Oct, ~/Music/SFX Library) and how the motion engine uses it
 - [[sfx-sourcing-and-design]]: SFX libraries, prices and licences (client work and paid social), layering/LUFS technique, design tools, FCP drop-on-the-cut workflow; starter pick Soundly Pro + Sonniss (~A$275/yr)
 - [[house-twilight]] — locked twilight target: early dusk, clean blue→peach sky, bright ground, amber windows (ref frame in raw/assets/twilight)

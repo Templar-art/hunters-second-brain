@@ -1541,3 +1541,6 @@ A working pit lane, tyre wear and fuel, 5-lap races, AI with braking-distance pl
 
 ## [2026-10-28] build | Drone pin: client style profiles + auto-align attempts
 Per-client style profiles (clients/*.json, 10 clients from a Drive/SSD research sweep), client and address read from the "Client | Address" folder name, agent overrides, ZED's B&W surround, plus ring/disc/mark pins with a line dot. Kollosche output is pixel-identical. Four auto-align methods were tested; none beat a hand drag. See [[drone-photo-pin]].
+
+## [2026-10-28] query | Floor plans as delivered, per client
+Pulled one finished plan per client from the Clients Drive (YPA, RE/MAX, The Agency, Belle, Place, Ray White, Coastline, ZED, Harcourts). Found two template generations, per-client logo and agent blocks, and errors that shipped. See [[floor-plan-house-style]]; contact sheet in projects/floorplan-app/refs.
