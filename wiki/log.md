@@ -1646,3 +1646,6 @@ Hunter's next grade is good on some shots only. `assist.py --contact-sheet` numb
 
 ## [2026-10-28] build | Desire look matched per shot type
 `grade/desire_match.py` builds per-type LUTs (interior, exterior, aerial, dusk) with midtones locked. Kollosche gets brighter whites, more contrast, less yellow, and isn't darker. Sent a preview, the 4 LUTs and stills. See [[fcp-resolve-workflow]].
+
+## [2026-10-28] build | Desire match v4 (per-type tuning)
+After "inside too dark, outside too bright, drone far away": interiors +5 L, exteriors and aerials get a highlight roll-off, and aerials take tone only, not colour. Sent v4. See [[fcp-resolve-workflow]].

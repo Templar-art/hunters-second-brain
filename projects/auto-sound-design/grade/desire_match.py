@@ -58,12 +58,24 @@ def sample(path, segs, per_shot=4, w=240, h=135):
     return {g: np.stack(v) for g, v in frames.items()}
 
 
-def build_lut(src, ref, out_cube, strength=0.8, keep_mid=True, size=33, title="match"):
+# Per shot type tuning after Hunter's review (28 Oct): "inside too dark, outside too bright, drone far away".
+#   keep_mid: 1 = our midtone stays put, 0 = take the reference's; mid_shift: extra L* in the midtones (+ = brighter).
+GROUP_TUNING = {
+    "interior": {"strength": 0.8, "keep_mid": 1.0, "mid_shift": +5.0, "high_shift": 0.0},
+    "exterior": {"strength": 0.8, "keep_mid": 1.0, "mid_shift": -3.0, "high_shift": -5.0},
+    # Desire's aerials are golden-hour water and dusk sky: take their contrast, not their colour.
+    "aerial": {"strength": 0.8, "colour": 0.25, "keep_mid": 0.75, "mid_shift": 0.0, "high_shift": -6.0},
+    "dusk": {"strength": 0.8, "keep_mid": 1.0, "mid_shift": 0.0, "high_shift": 0.0},
+}
+
+
+def build_lut(src, ref, out_cube, strength=0.8, keep_mid=1.0, size=33, title="match", mid_shift=0.0, high_shift=0.0,
+              colour=None):
     S, R = measure.lab(src), measure.lab(ref)
     qs = np.linspace(0, 100, 101)
     Ls, Lr = np.percentile(S[0], qs), np.percentile(R[0], qs)
-    if keep_mid:
-        Lr = Lr + (np.percentile(S[0], 50) - np.percentile(R[0], 50))  # same midtone, reference's shape
+    # Shift the reference curve so our midtone stays put (keep_mid=1) or partly moves (0..1).
+    Lr = Lr + float(keep_mid) * (np.percentile(S[0], 50) - np.percentile(R[0], 50))
     centres = np.array([12.5, 47.5, 85.0])
     stats = []
     for lo, hi in [(0, 25), (25, 70), (70, 101)]:
@@ -77,7 +89,9 @@ def build_lut(src, ref, out_cube, strength=0.8, keep_mid=True, size=33, title="m
     bb, gg, rr = np.meshgrid(g, g, g, indexing="ij")
     rgb = np.stack([rr, gg, bb], -1).reshape(-1, 3)
     L, a, b = measure.lab(rgb)
-    L2 = np.clip(np.interp(L, Ls, Lr), 0, 100)
+    L2 = np.interp(L, Ls, Lr)
+    L2 = L2 + mid_shift * np.exp(-((L - 50) / 28) ** 2)  # bell: moves mids, spares black/white
+    L2 = np.clip(L2 + high_shift * np.clip((L - 70) / 25, 0, 1) ** 1.5, 0, 100)  # roll off bright roofs/sky
     w = np.exp(-((L[:, None] - centres[None, :]) / 18) ** 2)
     for k, st in enumerate(stats):
         if st is None:
@@ -90,7 +104,8 @@ def build_lut(src, ref, out_cube, strength=0.8, keep_mid=True, size=33, title="m
         (sa, ssa, sb, ssb), (ra, rsa, rb, rsb) = st
         a2 += w[:, k] * ((a - sa) * min(1.5, rsa / ssa) + ra)
         b2 += w[:, k] * ((b - sb) * min(1.5, rsb / ssb) + rb)
-    out = lab_to_rgb(L + strength * (L2 - L), a + strength * (a2 - a), b + strength * (b2 - b))
+    cs = strength if colour is None else colour  # colour transfer can be weaker than tone transfer
+    out = lab_to_rgb(L + strength * (L2 - L), a + cs * (a2 - a), b + cs * (b2 - b))
     with open(out_cube, "w") as fh:
         fh.write(f'TITLE "{title}"\nLUT_3D_SIZE {size}\nDOMAIN_MIN 0 0 0\nDOMAIN_MAX 1 1 1\n')
         for r_, g_, b_ in out:
@@ -149,9 +164,12 @@ def main(argv=None):
             report[g] = "no reference shots of this type: left as is"
             continue
         cube = out / f"{Path(args.src).stem}_{g}_desire-{int(args.strength * 100)}.cube"
-        build_lut(S[g], R[g], cube, args.strength, keep_mid=not args.no_keep_mid, title=f"Desire match {g}")
+        t = GROUP_TUNING.get(g, {"strength": args.strength, "keep_mid": 1.0, "mid_shift": 0.0})
+        build_lut(S[g], R[g], cube, t["strength"], keep_mid=0.0 if args.no_keep_mid else t["keep_mid"],
+                  title=f"Desire match {g}", mid_shift=t["mid_shift"], high_shift=t.get("high_shift", 0.0),
+                  colour=t.get("colour"))
         luts[g] = cube
-        report[g] = {"src_frames": len(S[g]), "ref_frames": len(R[g]), "lut": cube.name}
+        report[g] = {"src_frames": len(S[g]), "ref_frames": len(R[g]), "lut": cube.name, "tuning": t}
     preview = render(args.src, src_segs, luts, out / f"{Path(args.src).stem}_DESIRE-MATCH-{int(args.strength * 100)}.mp4",
                      audio_from=args.audio_from)
     (out / "desire-match.json").write_text(json.dumps({"strength": args.strength, "groups": report}, indent=1))
