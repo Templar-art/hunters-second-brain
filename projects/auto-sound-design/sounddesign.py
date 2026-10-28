@@ -17,6 +17,8 @@ import sys
 from fractions import Fraction
 from pathlib import Path
 
+import numpy as np
+
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
@@ -197,6 +199,43 @@ def cmd_process(args):
     for t_fix in sweeps:  # preview-only filter sweep after a smoothed music cut
         if source is not None:
             source = musicfix.filter_sweep(source, t_fix)
+    for fx in (scene_map.fixes if scene_map else []):
+        if fx.get("type") != "seamless_return" or source is None:
+            continue
+        a_rel, cut_rel = float(fx["from"]) - start_s, float(fx["time"]) - start_s
+        if a_rel < 0 or cut_rel > seconds - 2:
+            continue
+        try:
+            source, (s_a, s_b), fix_rep = musicfix.seamless_return(source, a_rel, cut_rel, music.tempo_bpm,
+                                                                   open_bars=float(fx.get("open_bars", 1.0)))
+        except ValueError as exc:
+            fix_notes.append(f"seamless return at {fx['time']}s skipped: {exc}")
+            continue
+        fd_ = video.frame_duration
+        off, end_ = placement.snap(s_a, fd_, "floor"), placement.snap(s_b, fd_)
+        gen = out_dir / "fx_generated"
+        gen.mkdir(exist_ok=True)
+        seg_path = gen / f"music_rebuilt_{start_s + float(off):.2f}-{start_s + float(end_):.2f}s.wav"
+        media.write_wav(seg_path, source[int(float(off) * mix.RATE): int(float(end_) * mix.RATE)].astype("float32"))
+        rp = placement.Placement(
+            id="music", category="music", event_time=round(cut_rel, 4), offset=off, duration=end_ - off,
+            source=str(seg_path), source_name=f"fx_generated/{seg_path.name}", gain_db=0.0, fade_in=0.0, fade_out=0.0,
+            confidence=0.7, align="start",
+            reason=(f"seamless music return at {fx['time']}s: muffled section rebuilt from the music {fix_rep['shift_bars']} bars "
+                    f"later so the beat runs straight through, then the filter/level open over {fix_rep['opening_s']}s; "
+                    f"replaces the original audio over this span (muted in the XML)"),
+            notes=[f"rebuilt from {fix_rep['rebuilt_from_s']}s, handover {fix_rep['handover_s']}s, muffle {fix_rep['muffle_db_by_band']}"])
+        extra_sources[str(seg_path)] = {"duration": float(end_ - off), "channels": 2, "sample_rate": mix.RATE}
+        placements.append(rp)
+        clips.append((int(round(float(off) * mix.RATE)), np.zeros((1, 2), dtype="float32")))
+        placements_sorted = sorted(zip(placements, clips), key=lambda pc: (pc[0].offset, pc[0].category))
+        placements, clips = [p for p, _ in placements_sorted], [c for _, c in placements_sorted]
+        placement._assign_lanes(placements)
+        for n_, p in enumerate(placements, 1):
+            p.id = f"fx{n_:02d}"
+        fix_notes.append(f"Seamless return at {fx['time']}s: {rp.reason}. In FCP the rebuilt clip sits on the music role "
+                         f"and the original audio is muted {start_s + float(off):.2f}-{start_s + float(end_):.2f}s.")
+        print(f"  {rp.reason}")
     bus, preview_gain, mix_report = mix.balance(placements, clips, seconds, source, cfg)
     sfx_wav = out_dir / f"{video_path.stem}_sfx_only.wav"
     media.write_wav(sfx_wav, bus)

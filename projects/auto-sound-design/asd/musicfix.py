@@ -95,3 +95,91 @@ def plan(fixes, video, window_start, seconds, out_dir, music_level_at):
         notes.append(f"Music cut at {t_abs:.2f}s: reverse swell clip + {fx.get('sweep_s', 0.7)}s filter sweep "
                      f"(preview only; in FCP keyframe a low-pass on the music from {t_abs:.2f}s to {t_abs + 0.7:.2f}s)")
     return placements, sweeps, notes
+
+
+# --- v2: seamless return from a filtered section (rebuild + 1-bar opening) -------------------
+
+def _stft(x, n=2048, hop=512):
+    win = np.hanning(n)
+    pad = np.pad(x, ((n, n), (0, 0)))
+    frames = np.lib.stride_tricks.sliding_window_view(pad, n, axis=0)[::hop]  # (frames, ch, n)
+    return np.fft.rfft(frames * win, axis=-1), len(x)
+
+
+def _istft(spec, length, n=2048, hop=512):
+    win = np.hanning(n)
+    frames = np.fft.irfft(spec, n, axis=-1) * win  # (frames, ch, n)
+    out = np.zeros((length + 2 * n, frames.shape[1]))
+    norm = np.zeros(length + 2 * n)
+    for i in range(frames.shape[0]):
+        out[i * hop: i * hop + n] += frames[i].T
+        norm[i * hop: i * hop + n] += win ** 2
+    out /= np.maximum(norm, 1e-8)[:, None]
+    return out[n: n + length]
+
+
+def _band_curve(a, b, n=2048):
+    """Per-bin dB difference between two audio spans' average spectra (b relative to a), smoothed."""
+    def avg(x):
+        spec, _ = _stft(x, n)
+        return 10 * np.log10((np.abs(spec) ** 2).mean(axis=(0, 1)) + 1e-12)
+    diff = avg(b) - avg(a)
+    k = 15
+    return np.convolve(np.pad(diff, (k, k), mode="edge"), np.ones(2 * k + 1) / (2 * k + 1), mode="valid")
+
+
+def seamless_return(source, section_start, cut, bpm, open_bars=1.0, n=2048, hop=512):
+    """`source` is the full section's audio (samples, 2) at RATE; times are relative to it.
+    Rebuilds [section_start, cut] from the music *after* the cut, shifted back a whole number of
+    bars (so its beat grid continues straight through the cut), muffled to match the original
+    filtered section, then opens the filter + level back up over `open_bars` after the cut.
+    Returns (new_source, (seg_start, seg_end), report)."""
+    bar = 4 * 60.0 / bpm
+    length = cut - section_start
+    shift_bars = int(np.ceil(length / bar))
+    shift = shift_bars * bar
+    s0, c = int(section_start * RATE), int(cut * RATE)
+    src_a, src_b = int((section_start + shift) * RATE), int((cut + shift) * RATE)
+    open_len = open_bars * bar
+    o_end = int((cut + open_len) * RATE)
+    if src_b > len(source) or o_end > len(source):
+        raise ValueError("not enough music after the cut to rebuild the section")
+    # How the original section is muffled relative to the music after the cut.
+    muffled = source[s0 + int(0.3 * RATE): c - int(0.1 * RATE)]
+    open_music = source[c + int(0.2 * RATE): c + int(min(4.0, shift) * RATE)]
+    curve_db = np.clip(_band_curve(open_music, muffled, n), -48, 6)
+    gain_curve = 10 ** (curve_db / 20)
+    # 1. Rebuilt section, muffled to match.
+    rebuilt_spec, ln = _stft(source[src_a:src_b], n, hop)
+    rebuilt = _istft(rebuilt_spec * gain_curve[None, None, :], ln, n, hop)
+    # The curve matches tone; match level separately to the original muffled section.
+    rms = lambda x: np.sqrt(np.mean(x ** 2)) + 1e-12  # noqa: E731
+    rebuilt *= rms(muffled) / rms(rebuilt[int(0.3 * RATE): c - s0 - int(0.1 * RATE)])
+    # ...and the opening must start from that same level, so scale the curve's overall offset too.
+    level_fix = rms(muffled) / (rms(_istft(_stft(open_music, n, hop)[0] * gain_curve[None, None, :], len(open_music), n, hop)))
+    gain_curve = gain_curve * level_fix
+    # 2. Opening: from the muffled curve to flat over one bar, eased.
+    seg = source[c:o_end]
+    spec, ln2 = _stft(seg, n, hop)
+    frames = spec.shape[0]
+    t = np.clip((np.arange(frames) * hop - n) / max(1, ln2), 0, 1)
+    ease = (1 - np.cos(np.pi * t)) / 2  # smooth S
+    gains = gain_curve[None, :] ** (1 - ease[:, None])
+    opened = _istft(spec * gains[:, None, :], ln2, n, hop)
+    out = source.copy()
+    # Hand over to the rebuilt (re-gridded) music deep inside the muffled section, where it's
+    # quietest and softest, so the grid change hides there instead of at the cut. Long blend.
+    hand = section_start + (bar if length > 1.5 * bar else length / 3)
+    h0 = int(hand * RATE)
+    xf = int(min(0.5, (cut - hand) / 2) * RATE)
+    ramp = ((1 - np.cos(np.linspace(0, np.pi, xf))) / 2)[:, None]
+    out[h0:h0 + xf] = source[h0:h0 + xf] * (1 - ramp) + rebuilt[h0 - s0: h0 - s0 + xf] * ramp
+    out[h0 + xf:c] = rebuilt[h0 - s0 + xf: c - s0]
+    out[c:o_end] = opened
+    report = {"bar_s": round(bar, 4), "rebuilt_from_s": [round(section_start + shift, 3), round(cut + shift, 3)],
+              "shift_bars": shift_bars, "opening_s": round(open_len, 3),
+              "muffle_db_by_band": {f"{lo}-{hi}Hz": round(float(np.mean(curve_db[(np.fft.rfftfreq(n, 1 / RATE) >= lo) &
+                                                                                   (np.fft.rfftfreq(n, 1 / RATE) < hi)])), 1)
+                                    for lo, hi in [(40, 400), (400, 2000), (2000, 8000), (8000, 16000)]}}
+    report["handover_s"] = round(hand, 3)
+    return out, (hand, cut + open_len), report

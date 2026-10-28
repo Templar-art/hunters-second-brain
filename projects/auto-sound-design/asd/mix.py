@@ -35,6 +35,8 @@ def mix_bus(placements, clips, total_seconds):
     total = int(round(total_seconds * RATE))
     bus = np.zeros((total, 2), dtype=np.float32)
     for p, (start, clip) in zip(placements, clips):
+        if getattr(p, "category", "") == "music":
+            continue  # music replacements go into the source, not the effects bus
         end = min(total, start + len(clip))
         if end > start:
             bus[start:end] += clip[: end - start] * np.float32(10 ** (p.gain_db / 20))

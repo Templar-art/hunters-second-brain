@@ -192,7 +192,9 @@ def _fit_sound(c, sound, cat, cfg, chosen, duration, fd, extra_overlap=0):
         return None, f"could not read {sound['name']}: {exc}"
     align = ALIGN[cat]
     anchor = {"peak": shape["peak_s"], "onset": shape["onset_s"], "attack": shape["attack_s"], "start": 0.0}[align]
-    start_s = c.time - anchor
+    # A whoosh feels on time when its peak arrives a hair *before* the cut and pulls you through it.
+    lead = rules.get("whoosh_peak_lead_s", 0.0) if cat == "whoosh" else 0.0
+    start_s = c.time - anchor - lead
     file_len = sound["duration"]
     notes = []
     if cat in BEDS:

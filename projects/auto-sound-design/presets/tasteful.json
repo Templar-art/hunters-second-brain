@@ -1,5 +1,5 @@
 {
-  "_about": "Tasteful (v6, after Hunter: 'too much SFX, especially on interior shots'): whooshes only where the film changes zone (outside/inside/aerial) or the camera moves; nothing on static interior cuts; no interior ambience; quieter. Aerial wind bed off until a recorded wind exists (synthetic wind rejected 28 Oct). v8: whoosh share counts the edit's own whooshes (Desire ~11-15% of cuts); preview mastered like Desire (-16 LUFS, LRA 6).",
+  "_about": "Tasteful (v6, after Hunter: 'too much SFX, especially on interior shots'): whooshes only where the film changes zone (outside/inside/aerial) or the camera moves; nothing on static interior cuts; no interior ambience; quieter. Aerial wind bed off until a recorded wind exists (synthetic wind rejected 28 Oct). v8: whoosh share counts the edit's own whooshes (Desire ~11-15% of cuts); preview mastered like Desire (-16 LUFS, LRA 6). v11: impacts land on the music hit (snap to a cut only within 60 ms); whoosh peaks lead the cut by 40 ms.",
   "rules": {
     "min_score": 0.4,
     "whoosh_requires_sync": true,
@@ -12,7 +12,9 @@
     },
     "motion_whoosh_min": 0.5,
     "whoosh_on_scene_changes_only": true,
-    "scene_change_weight": 0.2
+    "scene_change_weight": 0.2,
+    "snap_to_cut_s": 0.06,
+    "whoosh_peak_lead_s": 0.04
   },
   "limits": {
     "min_spacing_s": 2.5,

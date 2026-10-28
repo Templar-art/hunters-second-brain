@@ -58,9 +58,15 @@
     },
     {
       "start": 27.4,
-      "end": 42.2,
+      "end": 37.5,
       "label": "interior",
       "note": "living, kitchen, dining"
+    },
+    {
+      "start": 37.5,
+      "end": 42.2,
+      "label": "night_interior",
+      "note": "day-to-night timelapse, dusk balcony, night window (music muffled)"
     },
     {
       "start": 42.2,
@@ -130,6 +136,12 @@
       "why": "light-flash transition into the kitchen + address title"
     },
     {
+      "time": 37.45,
+      "category": "whoosh",
+      "why": "nightfall: soft downward air as the timelapse darkens and the music closes",
+      "level_db": -6
+    },
+    {
       "time": 55.85,
       "category": "whoosh",
       "why": "K location pin rises and lands (soft air whoosh; the pop/glint read as tacky, Hunter 28 Oct)",
@@ -154,8 +166,10 @@
   "music_fixes": [
     {
       "time": 42.17,
-      "type": "smooth_cut",
-      "why": "music slams back to full when the balcony shot returns to day after the dusk sequence (37.5-42.2s)"
+      "from": 37.5,
+      "type": "seamless_return",
+      "open_bars": 1.0,
+      "why": "music was low-passed and ~9 dB down for the dusk section (37.5-42.2s), then snapped back at 42.17s ~180 ms off the beat grid"
     }
   ]
 }

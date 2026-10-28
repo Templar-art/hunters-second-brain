@@ -85,7 +85,7 @@ def build(video, placements, sources, sequence_duration, project_name, event_nam
         # media start (the timecode), so the offset includes `start`.
         lines.append(f'            <asset-clip ref="{asset_ids[p.source]}" lane="{p.lane}" offset="{t(start + p.offset)}" '
                      f'name={quoteattr(f"{p.id} {p.category} - {p.source_name}")} start="{t(p.source_in)}" duration="{t(p.duration)}" '
-                     f'audioRole="effects">')
+                     f'audioRole="{"music" if p.category == "music" else "effects"}">')
         lines.append(f'              <note>{_esc(p.reason)} | confidence {p.confidence}</note>')
         fades = ""
         if write_fades:
@@ -98,6 +98,15 @@ def build(video, placements, sources, sequence_duration, project_name, event_nam
                 fades = f'<param name="amount">{"".join(parts)}</param>'
         lines.append(f'              <adjust-volume amount="{p.gain_db:+.2f}dB">{fades}</adjust-volume>')
         lines.append("            </asset-clip>")
+    music = [p for p in placements if p.category == "music"]
+    if music and video.has_audio:
+        # The rebuilt music replaces the original audio over its span: mute that range of the
+        # source clip (editable in FCP: Audio > Expand Audio Components shows the muted range).
+        chans = ", ".join(str(i + 1) for i in range(max(1, video.audio_channels)))
+        lines.append(f'            <audio-channel-source srcCh="{chans}">')
+        for p in music:
+            lines.append(f'              <mute start="{t(start + p.offset)}" duration="{t(p.duration)}"/>')
+        lines.append("            </audio-channel-source>")
     lines.append("          </asset-clip>")
     lines.append("        </spine>")
     lines.append("      </sequence>")

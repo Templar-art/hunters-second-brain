@@ -20,6 +20,7 @@ LABELS = {
     # Day exteriors want birds; dusk/night want crickets (Hunter, 28 Oct: "that's obvious").
     "exterior": ("outdoor", 0.0, False),
     "night": ("dusk", 0.0, False),
+    "night_interior": ("dusk", -6.0, False),  # night outside, heard faintly through the glass
     "balcony": ("outdoor", -3.0, False),
     "aerial": ("aerial", 0.0, False),
     "dusk": ("dusk", 0.0, False),
@@ -69,7 +70,8 @@ class SceneMap:
     def zone_change(self, t, eps=0.15):
         """('outside', 'inside') style pair if the cut at t moves between zones, else None.
         Zones: outside (exterior/balcony/dusk), inside (interior/bathroom), aerial."""
-        zone = {"exterior": "outside", "balcony": "outside", "dusk": "outside", "interior": "inside",
+        zone = {"exterior": "outside", "balcony": "outside", "dusk": "outside", "night": "outside",
+                "night_interior": "inside", "interior": "inside",
                 "bathroom": "inside", "aerial": "aerial", "presenter": "presenter", "endcard": "endcard"}
         a, b = zone.get(self.label_at(t - eps)), zone.get(self.label_at(t + eps))
         return (a, b) if a and b and a != b else None
