@@ -1643,3 +1643,6 @@ Hunter doesn't know Resolve. The grade assistant now gives FCP Color Wheels inst
 
 ## [2026-10-28] build | Grade assistant: hero shots
 Hunter's next grade is good on some shots only. `assist.py --contact-sheet` numbers the shots; `--heroes` makes his picks the reference, and the look LUT is learned from those pairs. See [[fcp-resolve-workflow]].
+
+## [2026-10-28] build | Desire look matched per shot type
+`grade/desire_match.py` builds per-type LUTs (interior, exterior, aerial, dusk) with midtones locked. Kollosche gets brighter whites, more contrast, less yellow, and isn't darker. Sent a preview, the 4 LUTs and stills. See [[fcp-resolve-workflow]].

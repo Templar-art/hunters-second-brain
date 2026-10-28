@@ -1,0 +1,331 @@
+{
+ "video": "Desire - The Pilot 17 Pilot Ct (reference).mp4",
+ "source": "Claude visual review of one frame per shot, 28 Oct 2026 (grade grouping only)",
+ "grade_segments": [
+  {
+   "start": 0.0,
+   "end": 1.44,
+   "label": "exterior"
+  },
+  {
+   "start": 1.44,
+   "end": 3.44,
+   "label": "exterior"
+  },
+  {
+   "start": 3.44,
+   "end": 4.4,
+   "label": "exterior"
+  },
+  {
+   "start": 4.4,
+   "end": 5.48,
+   "label": "interior"
+  },
+  {
+   "start": 5.48,
+   "end": 9.52,
+   "label": "golden"
+  },
+  {
+   "start": 9.52,
+   "end": 10.6,
+   "label": "golden"
+  },
+  {
+   "start": 10.6,
+   "end": 11.96,
+   "label": "golden"
+  },
+  {
+   "start": 11.96,
+   "end": 13.6,
+   "label": "title"
+  },
+  {
+   "start": 13.6,
+   "end": 14.68,
+   "label": "aerial"
+  },
+  {
+   "start": 14.68,
+   "end": 21.0,
+   "label": "dusk"
+  },
+  {
+   "start": 21.0,
+   "end": 22.12,
+   "label": "interior"
+  },
+  {
+   "start": 22.12,
+   "end": 22.8,
+   "label": "interior"
+  },
+  {
+   "start": 22.8,
+   "end": 23.8,
+   "label": "interior"
+  },
+  {
+   "start": 23.8,
+   "end": 25.32,
+   "label": "interior"
+  },
+  {
+   "start": 25.32,
+   "end": 27.88,
+   "label": "interior"
+  },
+  {
+   "start": 27.88,
+   "end": 30.44,
+   "label": "interior"
+  },
+  {
+   "start": 30.44,
+   "end": 32.96,
+   "label": "interior"
+  },
+  {
+   "start": 32.96,
+   "end": 34.0,
+   "label": "interior"
+  },
+  {
+   "start": 34.0,
+   "end": 36.0,
+   "label": "dusk"
+  },
+  {
+   "start": 36.0,
+   "end": 38.08,
+   "label": "exterior"
+  },
+  {
+   "start": 38.08,
+   "end": 39.32,
+   "label": "exterior"
+  },
+  {
+   "start": 39.32,
+   "end": 41.56,
+   "label": "aerial"
+  },
+  {
+   "start": 41.56,
+   "end": 43.6,
+   "label": "exterior"
+  },
+  {
+   "start": 43.6,
+   "end": 45.16,
+   "label": "interior"
+  },
+  {
+   "start": 45.16,
+   "end": 46.16,
+   "label": "interior"
+  },
+  {
+   "start": 46.16,
+   "end": 47.16,
+   "label": "interior"
+  },
+  {
+   "start": 47.16,
+   "end": 50.24,
+   "label": "aerial"
+  },
+  {
+   "start": 50.24,
+   "end": 52.2,
+   "label": "interior"
+  },
+  {
+   "start": 52.2,
+   "end": 53.28,
+   "label": "exterior"
+  },
+  {
+   "start": 53.28,
+   "end": 54.36,
+   "label": "exterior"
+  },
+  {
+   "start": 54.36,
+   "end": 56.28,
+   "label": "aerial"
+  },
+  {
+   "start": 56.28,
+   "end": 57.88,
+   "label": "interior"
+  },
+  {
+   "start": 57.88,
+   "end": 60.88,
+   "label": "interior"
+  },
+  {
+   "start": 60.88,
+   "end": 62.24,
+   "label": "interior"
+  },
+  {
+   "start": 62.24,
+   "end": 63.96,
+   "label": "interior"
+  },
+  {
+   "start": 63.96,
+   "end": 64.96,
+   "label": "interior"
+  },
+  {
+   "start": 64.96,
+   "end": 66.48,
+   "label": "interior"
+  },
+  {
+   "start": 66.48,
+   "end": 67.52,
+   "label": "interior"
+  },
+  {
+   "start": 67.52,
+   "end": 68.52,
+   "label": "interior"
+  },
+  {
+   "start": 68.52,
+   "end": 70.52,
+   "label": "golden"
+  },
+  {
+   "start": 70.52,
+   "end": 71.4,
+   "label": "golden"
+  },
+  {
+   "start": 71.4,
+   "end": 72.56,
+   "label": "golden"
+  },
+  {
+   "start": 72.56,
+   "end": 73.96,
+   "label": "golden"
+  },
+  {
+   "start": 73.96,
+   "end": 74.6,
+   "label": "interior"
+  },
+  {
+   "start": 74.6,
+   "end": 76.64,
+   "label": "dusk"
+  },
+  {
+   "start": 76.64,
+   "end": 79.2,
+   "label": "dusk"
+  },
+  {
+   "start": 79.2,
+   "end": 81.24,
+   "label": "interior"
+  },
+  {
+   "start": 81.24,
+   "end": 82.24,
+   "label": "exterior"
+  },
+  {
+   "start": 82.24,
+   "end": 83.28,
+   "label": "exterior"
+  },
+  {
+   "start": 83.28,
+   "end": 84.76,
+   "label": "exterior"
+  },
+  {
+   "start": 84.76,
+   "end": 86.36,
+   "label": "exterior"
+  },
+  {
+   "start": 86.36,
+   "end": 87.4,
+   "label": "exterior"
+  },
+  {
+   "start": 87.4,
+   "end": 89.36,
+   "label": "aerial"
+  },
+  {
+   "start": 89.36,
+   "end": 91.88,
+   "label": "interior"
+  },
+  {
+   "start": 91.88,
+   "end": 93.0,
+   "label": "interior"
+  },
+  {
+   "start": 93.0,
+   "end": 93.92,
+   "label": "interior"
+  },
+  {
+   "start": 93.92,
+   "end": 94.96,
+   "label": "interior"
+  },
+  {
+   "start": 94.96,
+   "end": 95.96,
+   "label": "exterior"
+  },
+  {
+   "start": 95.96,
+   "end": 97.48,
+   "label": "interior"
+  },
+  {
+   "start": 97.48,
+   "end": 99.0,
+   "label": "interior"
+  },
+  {
+   "start": 99.0,
+   "end": 100.04,
+   "label": "interior"
+  },
+  {
+   "start": 100.04,
+   "end": 101.6,
+   "label": "interior"
+  },
+  {
+   "start": 101.6,
+   "end": 103.56,
+   "label": "exterior"
+  },
+  {
+   "start": 103.56,
+   "end": 106.16,
+   "label": "exterior"
+  },
+  {
+   "start": 106.16,
+   "end": 110.24,
+   "label": "dusk"
+  }
+ ]
+}

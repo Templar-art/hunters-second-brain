@@ -46,6 +46,12 @@ Hunter doesn't know Resolve grading yet ("no clue"). For now he **stays in FCP**
 ## Log stays log (Path A detail)
 A baked-ramp master stays **log** only if FCP isn't converting it. Before exporting, select all the clips → Inspector → **Info / Settings: Camera LUT (log processing) = None**, and remove any LUT or colour effects. The exported ProRes then *looks* flat in FCP, which is correct. In Resolve, after Scene Cut Detector, set **Input Color Space per shot** (Sony S-Log3/S-Gamut3.Cine vs DJI D-Log M), because one master mixes cameras. Check it once by toggling a shot's input space.
 
+## Desire look, matched per shot type (28 Oct, `grade/desire_match.py`)
+Hunter: "I want our vids to look like Desire's now, so we need to cook." The first global match failed because it copied Desire's **mix of shots** (lots of dusk and night), so Kollosche went dark. The new method matches **interiors to Desire interiors, exteriors to exteriors, aerials to aerials, dusk/golden to dusk**, using a labelled shot list for both films (`scene-maps/desire-the-pilot-grade-groups.json`: 31 interior, 16 exterior, 7 golden, 5 aerial, 5 dusk). Each group gets a .cube LUT: an L* tone curve with **our midtone locked** (no darkening) plus per-band colour transfer at 80%.
+- Measured per type: Desire interiors have *darker* mids (L 48.6 vs our 55.3) but *brighter* whites (p90 80.4 vs 75.5): more contrast, not more darkness. With mids locked, we take the bright whites and contrast without going dark.
+- Kollosche result: mid L unchanged (51.7), whites up (p90 76.6 → 84.8), contrast 60 → 69.5, chroma 17.6 → 14.0, mid yellow b* 16.9 → 9.6, shadows neutral (6.7 → 2.8), cool share 4% → 14%.
+- Usable in FCP today: put the group's LUT on each clip with the **Custom LUT** effect (interior / exterior / aerial / dusk). In Resolve, the same LUTs go on the look node.
+
 ## Resolve bridge: built 28 Oct, untested on a real Resolve
 Hunter: "continue in FCP for now but build the system, DaVinci will always beat FCP." One command on the Mac (Resolve Studio open, Preferences → System → General → External scripting: **Local**):
 ```
