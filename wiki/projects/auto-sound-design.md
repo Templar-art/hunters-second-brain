@@ -120,6 +120,10 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 - Hunter: the 42 s stumble came from **cutting the song by hand to shorten it so it ends on its natural ending** (as Desire does), and the edit landed off the beat. Opportunity: a **music fitter** that shortens or lengthens a song to the film's length with **bar-aligned edits** (matching phrase, crossfade on the downbeat) so it ends on the song's real ending. Not built yet; needs the original full-length song file.
 - **Next test video (29 Oct):** slower, earthy real-estate edit, with lifestyle at the start and then the property; lots of pool and drone. Hunter will only add his own whooshes on speed ramps and his sun-flare shimmer, so the tool's existing-effects detector must leave those alone. Hunter warns the **colours are hard** on that one, so it needs grading help as well as sound. He'll upload **his full sound library** (owned Ocular etc., about 9 GB on the Mac; licence-clean, so it replaces the preview-only ambience). Ambience it will want: pool water (lapping, filter hum), drone air/wind, outdoor birds, earthy interiors. These need **owned recordings** for delivery (the current recorded ambience is licence-unverified, preview only).
 
+## 28 Oct, colour verdict
+- Hunter: **"I liked the one I did, it suited… the Desire one you did is just dark."** Both grade attempts (the ffmpeg filter and the 75% transfer LUT) are rejected for Kollosche Esther Pl; his own grade stands.
+- **Standing rule for colour help:** don't chase a reference's numbers. Matching Desire's deep shadow floor (L p10 7.5) reads as *dark* on a bright 10x interior edit. Keep Hunter's brightness and exposure; only fix shot-to-shot consistency (white balance, exposure matching) and offer subtle tweaks on request. A look LUT, if any, must not lower midtones or blacks.
+
 ## Not yet known
 - **Whether it sounds good.** Nobody has listened to the preview yet.
 - Whether the FCPXML imports into FCP 12.4.

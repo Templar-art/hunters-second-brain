@@ -58,6 +58,8 @@ Method: Claude looked at one frame per shot (65 shots) plus 8-frame strips acros
 
 **⚠️ Superseded:** Hunter judged this hand-built filter grade "fucked, def not the same" (28 Oct); it's replaced by the statistical-transfer LUT `grade/kollosche-to-desire-0.75.cube` (`grade/transfer.py`). Original note: **Grade test** (`projects/auto-sound-design/grade/desire-match.ffmpeg.txt`, measured): shadow floor 6.6, contrast 73.7, chroma 12.7, shadow b 0.6, highlight b 6.6, all on target. Mid b 11.5 stays above Desire's 6.3 because pushing it further turns the timber grey. This is an ffmpeg preview of the direction, not a finished grade. In FCP: lower the blacks (Color Wheels → Shadows down, or Curves toe), cool the shadows and highlights a little, reduce saturation about 20%, a gentle S-curve, and keep the mids warm.
 
+**⚠️ Hunter's verdict (28 Oct):** the Desire-match LUT made Kollosche "just dark", and he prefers his own grade. Use these numbers to understand Desire, not as a target to copy onto 10x footage.
+
 ## What changed in the tool because of it
 - `presets/tasteful.json`: whooshes capped at about 22% of cuts, and they now favour **motion blur across the cut** (new `cut_motion` detector), as Desire does. On Desire itself the detector picked out the 39.3, 68.5, 79.2 and 89.4 s whips and the 22.1 s reveal.
 - A new **existing-effects detector** (`existing_sfx`) finds whooshes and booms already baked into an edit so the tool doesn't double them. On Hunter's Kollosche Esther Pl edit it found 6 likely whooshes (16.7, 24.2, 42.2, 43.2, 57.4, 58.4 s) that the earlier passes had been doubling.
