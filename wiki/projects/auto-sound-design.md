@@ -80,6 +80,13 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 - The synthetic kit is rejected for client work. The aerial wind bed is off and recorded files are always preferred over synthetic (`scenes.prefer_recorded`). A `night` label has been added.
 - **Getting real recordings into the cloud is blocked:** freesound.org, cdn.freesound.org, sonniss.com, pixabay.com, archive.org, zapsplat.com and BBC sound effects are all denied by the environment network policy (checked 28 Oct). Options: Hunter uploads recordings (his own phone wild-tracks, or Ocular ambience from Drive), or allowed domains are added in the environment settings, or the work moves to the Mac with the full Ocular library.
 
+## 28 Oct, v7: real recordings (preview only)
+- Hunter: "If it can reach stuff online do it." Reachable from the cloud: GitHub, PyPI, npm. Everything else (Freesound, Sonniss, Pixabay, HF, Zenodo, archive.org) is blocked.
+- Used `github.com/localhostnick/-open-sleep-sounds`, which **claims CC0 but isn't clean**. It's a single-commit repo created 27 Oct 2026; one file carries a YouTube channel's tags ("Mahakatha Meditation Club"), and others carry CC-BY and "(c) 2020" notices. So its birds, crickets and wind are staged in `sfx/unverified-preview-only/` (git-ignored, with a README-LICENCE) and tagged `licence-unverified`. The tool now prints and reports **LICENCE UNVERIFIED: preview only, do not deliver** whenever such a file is used.
+- Bed gain can now go up to +24 dB (recordings vary: the crickets file sits about 18 dB under the birds file); the bed peak cap is -4 dBFS.
+- v7: birds on day exteriors, crickets on the dusk shot, real wind on aerials, no interior ambience. Measured beds land about 5–18 dB under the music; where the music is loudest the birds are about 28 dB under, effectively masked. Sent.
+- **For delivery:** use Hunter's own phone wild-tracks or Ocular ambience, which are verified licences.
+
 ## Not yet known
 - **Whether it sounds good.** Nobody has listened to the preview yet.
 - Whether the FCPXML imports into FCP 12.4.

@@ -386,8 +386,10 @@ def scene_beds(scenes, music, library, cfg, duration, fd, skipped):
             length = snap(sound["duration"] - float(source_in), fd, "floor")
         rel = sc.get("relative_db", {}).get(seg.tag, -16) + seg.offset_db
         gain = music.level_at((seg.start + seg.end) / 2, window=max(1.0, (seg.end - seg.start) / 2)) + rel - shape["rms_db"]
+        # Recordings arrive at wildly different levels (a crickets file can sit 20 dB under a birds
+        # file), so beds may be boosted well past the one-shot limit; the peak cap still applies.
         gain = min(gain, sc.get("peak_ceiling_dbfs", -12) - shape["peak_db"])
-        gain = max(cfg["levels"]["min_gain_db"], min(cfg["levels"]["max_gain_db"], gain))
+        gain = max(cfg["levels"]["min_gain_db"], min(sc.get("max_gain_db", 24.0), gain))
         beds.append(Placement(
             id="bed", category="ambience", event_time=round(seg.start, 4), offset=offset, duration=length,
             source=sound["path"], source_name=sound.get("relative", sound["name"]), gain_db=round(gain, 2),

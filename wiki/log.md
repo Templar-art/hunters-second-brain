@@ -1604,3 +1604,6 @@ v5 was rejected as too much, especially on interiors. v6 places whooshes only on
 
 ## [2026-10-28] decision | Synthetic ambience rejected; real recordings needed
 Hunter: the ambience doesn't sound good and the wind isn't wind. Day shots get birds and night shots crickets. Every free SFX source is blocked by the cloud network policy, so recordings must be uploaded or the domains allowed. The tool now prefers recorded beds over synthetic, and the aerial wind is off. See [[auto-sound-design]].
+
+## [2026-10-28] build | Auto Sound Design v7: real ambience, preview only
+Only GitHub, PyPI and npm are reachable. Pulled birds, crickets and wind from a GitHub "CC0" repo that bundles third-party audio, so they're preview-only and flagged by a new licence warning. Kollosche v7 sent. Delivery needs owned recordings. See [[auto-sound-design]].

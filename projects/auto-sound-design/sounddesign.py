@@ -221,6 +221,10 @@ def cmd_process(args):
         ok, msg = fcpxml.validate(xml_path, DTD)
         xml_status = ("DTD-valid; " if ok else "DTD INVALID; ") + msg + ". NOT yet confirmed by a Final Cut import."
 
+    tags_by_path = {snd["path"]: snd["tags"] for snd in man["sounds"]}
+    unverified = sorted({p.source_name for p in placements if "unverified" in tags_by_path.get(p.source, [])})
+    if unverified:
+        print(f"  ! LICENCE UNVERIFIED (preview only, do not deliver): {', '.join(unverified)}")
     edl = {
         "tool": "auto-sound-design",
         "version": 1,
@@ -251,6 +255,7 @@ def cmd_process(args):
         "skipped_candidates": skipped,
         "missing_categories": sorted(set(missing) | set(man["missing_categories"])),
         "mix": mix_report,
+        "licence_unverified": unverified,
         "outputs": {"preview": str(preview), "sfx_only_wav": str(sfx_wav), "fcpxml": str(xml_path) if xml_path else None},
         "fcpxml_status": xml_status,
         "config": {k: v for k, v in cfg.items() if not k.startswith("_")},
@@ -331,6 +336,10 @@ def report(edl):
               "## Mix", ""]
     for k, v in edl["mix"].items():
         lines.append(f"- {k}: {v}")
+    if edl.get("licence_unverified"):
+        lines += ["", "## ⚠️ Licence unverified: preview only", "",
+                  "These sounds' licences could not be verified. Don't deliver this mix to a client until they're "
+                  "swapped for owned sounds: " + ", ".join(edl["licence_unverified"])]
     lines += ["", "## Final Cut", "", f"- {edl['fcpxml_status']}"]
     if edl["missing_categories"]:
         lines += ["", "## Missing sound categories", "",

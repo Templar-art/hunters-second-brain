@@ -51,14 +51,15 @@
   },
   "scenes": {
     "skip_tags": [
-      "interior",
-      "aerial"
+      "interior"
     ],
     "relative_db": {
-      "outdoor": -15,
-      "aerial": -14,
-      "dusk": -15
+      "outdoor": -12,
+      "aerial": -12,
+      "dusk": -12
     },
-    "prefer_recorded": true
+    "prefer_recorded": true,
+    "peak_ceiling_dbfs": -4,
+    "max_gain_db": 24
   }
 }
