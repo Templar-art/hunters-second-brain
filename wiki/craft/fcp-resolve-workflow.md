@@ -40,6 +40,13 @@ Trade-off: you grade a baked master, so there are no handles; if the cut changes
 5. FCP: **File → Import → XML** → the round-trip XML gives a new project pointing at the graded clips. Titles and effects from the original need re-adding or copying across.
 6. **Check every retime and transition** against the original before delivery.
 
+## Log stays log (Path A detail)
+A baked-ramp master stays **log** only if FCP isn't converting it. Before exporting, select all the clips → Inspector → **Info / Settings: Camera LUT (log processing) = None**, and remove any LUT or colour effects. The exported ProRes then *looks* flat in FCP, which is correct. In Resolve, after Scene Cut Detector, set **Input Color Space per shot** (Sony S-Log3/S-Gamut3.Cine vs DJI D-Log M), because one master mixes cameras. Check it once by toggling a shot's input space.
+
+## Automating Resolve from Claude (Mac only, untested)
+Resolve **Studio** allows external Python/Lua scripting (Preferences → System → General → External scripting: Local). Community MCP servers wrap it so Claude Code on the Mac can drive Resolve: [Tooflex/davinci-resolve-mcp](https://mcpservers.org/id/servers/Tooflex/davinci-resolve-mcp) (Studio 18+), [lordhoell/davinci-resolve-mcp](https://github.com/lordhoell/davinci-resolve-mcp) (full API, lists CDL and node/LUT tools) and apvlv/davinci-resolve-mcp (raw script execution). The plan: run the grade assistant, then push each shot's numbers into Resolve as **CDL** (slope = gain) plus a house-look LUT, with Hunter reviewing in Resolve. Read each server's code before installing it (third-party, it gets full control of Resolve). Not set up yet; this needs a local Claude Code session on the edit Mac, not the cloud.
+- **PowerGrade:** a saved still holding a node tree. Build the 10x tree below once by hand, save it as a PowerGrade, and apply it to every job; the assistant's per-shot numbers go on the balance node.
+
 ## Grade assistant (Claude, before you open Resolve)
 Send the Path A master (and the scene map if there is one). `projects/auto-sound-design/grade/assist.py` splits it into shots, reads each one like the scopes, and writes `GRADE-NOTES.md`: **per-shot Gain R/G/B numbers to type into Resolve → Color → Primaries (bars) → Gain**, plus before/after stills and a side-by-side preview.
 - It matches every shot to the **film's own look** (its typical white level and warmth, measured on interior white walls, ceilings and linen), not to neutral or to Desire, so an intentionally warm grade stays warm.

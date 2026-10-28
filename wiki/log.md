@@ -1631,3 +1631,6 @@ Hunter owns Resolve Studio; Desire grades in Resolve. Wrote [[fcp-resolve-workfl
 
 ## [2026-10-28] build | Grade assistant (Resolve numbers per shot)
 `grade/assist.py` gives per-shot Gain R/G/B matched to the film's own white level and warmth, interiors only, never darkening. Kollosche demo: 13 of 55 shots flagged. Added to [[fcp-resolve-workflow]].
+
+## [2026-10-28] query | Log export, Resolve MCP, PowerGrade, FL Studio
+A log master needs FCP's Camera LUT set to None, and Resolve sets the input space per shot. Community Resolve MCP servers exist (Studio scripting), which makes it possible to push CDLs from the grade assistant on the Mac. FL Studio has no practical automation route; sound design from Hunter's library in code is the better path. See [[fcp-resolve-workflow]].
