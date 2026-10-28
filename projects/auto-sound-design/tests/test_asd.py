@@ -304,7 +304,8 @@ class FinalCutXML(unittest.TestCase):
 
     def test_paths_and_names_escaped(self):
         _, _, xml = self.build()
-        self.assertIn("file:///tmp/My%20Video%20%28final%29.mov", xml)
+        # macOS resolves /tmp to /private/tmp
+        self.assertRegex(xml, r"file:///(private/)?tmp/My%20Video%20%28final%29\.mov")
         self.assertIn("Test &amp; &lt;Project&gt;", xml)
         self.assertIn('frameDuration="1001/30000s"', xml)
         self.assertIn('audioRole="effects"', xml)
