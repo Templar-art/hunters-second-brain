@@ -65,6 +65,7 @@
     "relative_db": {
       "outdoor": -12,
       "aerial": -12,
+      "poolside": -14,
       "dusk": -12
     },
     "prefer_recorded": true,

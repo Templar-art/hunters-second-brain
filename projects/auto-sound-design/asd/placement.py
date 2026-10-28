@@ -245,7 +245,8 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
     cands = candidates(cuts, music, float(duration), cfg, scenes)
     cands.sort(key=lambda c: (-c.score, c.time, c.category))
     minutes = max(float(duration) / 60, 0.5)
-    per_cat_cap = {cat: max(1, int(round(n * minutes))) for cat, n in limits["per_minute"].items()}
+    # 0 per minute switches a category off; otherwise at least one is allowed
+    per_cat_cap = {cat: max(1, int(round(n * minutes))) if n else 0 for cat, n in limits["per_minute"].items()}
     total_cap = max(1, int(round(limits["total_per_minute"] * minutes)))
     whoosh_cap = max(1, int(len(cuts) * limits["max_whoosh_share_of_cuts"])) if cuts else 0
     if limits.get("count_existing_whooshes") and existing:

@@ -1,0 +1,110 @@
+{
+  "video": "Coastal 43 Albany - Main.mp4 (71.6 s, 23.976)",
+  "source": "Claude visual review: 1 fps contact sheet, 29 Oct 2026",
+  "segments": [
+    {
+      "start": 0,
+      "end": 4,
+      "label": "aerial",
+      "note": "Coastal logo over treetop drone"
+    },
+    {
+      "start": 4,
+      "end": 9,
+      "label": "exterior",
+      "note": "lifestyle: river, jet ski, cafe, jogger"
+    },
+    {
+      "start": 9,
+      "end": 12,
+      "label": "balcony",
+      "note": "deck lounge, address title"
+    },
+    {
+      "start": 12,
+      "end": 15,
+      "label": "exterior",
+      "note": "low-angle facade, leaves + sun flare"
+    },
+    {
+      "start": 15,
+      "end": 19,
+      "label": "exterior",
+      "note": "street front, woman walks to door"
+    },
+    {
+      "start": 19,
+      "end": 32,
+      "label": "interior",
+      "note": "entry, living, kitchen"
+    },
+    {
+      "start": 32,
+      "end": 36,
+      "label": "interior",
+      "note": "dining, woman at window"
+    },
+    {
+      "start": 36,
+      "end": 42,
+      "label": "pool",
+      "note": "top-down pool, rear facade, cabana, poolside chairs"
+    },
+    {
+      "start": 43,
+      "end": 47,
+      "label": "aerial",
+      "note": "top-down then wide to the coast"
+    },
+    {
+      "start": 47,
+      "end": 48,
+      "label": "balcony",
+      "note": "covered terrace"
+    },
+    {
+      "start": 48,
+      "end": 51,
+      "label": "interior",
+      "note": "lounge"
+    },
+    {
+      "start": 51,
+      "end": 54,
+      "label": "interior",
+      "note": "bedroom"
+    },
+    {
+      "start": 54,
+      "end": 56,
+      "label": "bathroom",
+      "note": "bathroom"
+    },
+    {
+      "start": 56,
+      "end": 61,
+      "label": "interior",
+      "note": "bedrooms"
+    },
+    {
+      "start": 61,
+      "end": 63,
+      "label": "balcony",
+      "note": "bedroom balcony"
+    },
+    {
+      "start": 63,
+      "end": 68,
+      "label": "aerial",
+      "note": "house drone, hazy sunrise wide"
+    },
+    {
+      "start": 68,
+      "end": 71.6,
+      "label": "endcard",
+      "note": "agent card"
+    }
+  ],
+  "accents": [],
+  "music_fixes": []
+}
