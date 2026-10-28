@@ -1550,3 +1550,6 @@ Hunter picked Gen B (aerial site plan, m units, title-case area strip) as the st
 
 ## [2026-10-28] build | Floor-plan app milestone 1 + 8 CubiCasa sources
 Pulled 8 CubiCasa exports from the CubiCasa web account into raw/floorplans/cubicasa, plus 3 supplier finals. Built fp.py + review UI: untrusted-SVG sanitiser, house-style label proposals with human sign-off, areas from CubiCasa text, geometry-unchanged check. Found the supplier area method is inconsistent (walls/garage added on some jobs). See [[floorplan-app]].
+
+## [2026-10-28] project | Floor-plan app milestone 2: 10x A4 page
+render.py skins the CubiCasa SVG (true-scale textures, charcoal walls, Poppins labels) and builds the full A4 page with PDF/PNG export; multi-storey plans laid out side by side at one scale. Geometry check passes on all 8 jobs. Open: area rule, north, client logos. See [[floorplan-app]].

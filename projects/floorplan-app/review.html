@@ -55,14 +55,16 @@
   <span id="todo" class="pill"></span>
   <span class="grow"></span>
   <button class="ghost" id="save">Save</button>
-  <button id="write">Write 10x SVG + check</button>
+  <button id="write">Build 10x page + check</button>
 </header>
 <main>
   <section>
     <div class="tabs">
       <button data-v="plan" class="on">CubiCasa (sanitised) + live labels</button>
       <button data-v="out">10x output</button>
+      <button data-v="page">10x page</button>
       <button data-v="final">Supplier final</button>
+      <a id="pdf" href="#" target="_blank" class="note" style="margin-left:auto;align-self:center">Open PDF</a>
     </div>
     <div id="view"></div>
   </section>
@@ -75,7 +77,15 @@
         <input type="number" id="beds" style="width:60px"> <input type="number" id="baths" step="0.5" style="width:60px"> <input type="number" id="cars" style="width:60px">
       </div>
       <div class="note" id="countnote"></div>
-      <div class="row"><label>North (°)</label><input type="number" id="north" placeholder="set by you, never guessed" style="width:220px"></div>
+      <div class="row"><label>North (°)</label><input type="number" id="north" placeholder="set by you, never guessed" style="width:220px">
+        <span class="note">0 = up the page, 90 = right</span></div>
+      <div class="row"><label>Floor title</label><input type="text" id="ftitle" placeholder="GROUND FLOOR" style="width:220px"></div>
+    </div>
+    <div class="card">
+      <h3>Site plan (optional, supplied image only)</h3>
+      <div class="row"><input type="file" id="site" accept="image/png,image/jpeg"><button class="ghost" id="clearsite">Remove</button></div>
+      <div class="note" id="sitenote"></div>
+      <div class="row"><label>Legend</label><textarea id="legend" rows="4" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit" placeholder="one item per line, e.g. Driveway"></textarea></div>
     </div>
     <div class="card">
       <h3>Areas (from CubiCasa's text, not pixels)</h3>
@@ -121,6 +131,10 @@ async function open(slug) {
   $("#beds").value = job.counts.beds ?? ""; $("#baths").value = job.counts.baths ?? ""; $("#cars").value = job.counts.cars ?? "";
   $("#countnote").textContent = job.counts.note;
   $("#north").value = job.north ?? ""; $("#land").value = job.land_area ?? ""; $("#round").checked = !!job.round_dims;
+  $("#ftitle").value = job.floor_title || ""; $("#legend").value = (job.legend || []).join("\n");
+  $("#sitenote").textContent = job.site_plan ? "Site plan attached." : "None: the plan fills the page.";
+  $("#pdf").href = `/job/${slug}/page.pdf`; $("#pdf").style.visibility = job.exports ? "visible" : "hidden";
+  document.querySelector('.tabs [data-v="page"]').disabled = !job.exports;
   document.querySelector('.tabs [data-v="final"]').disabled = !job.final;
   renderLabels(); renderAreas(); renderChecks();
   await show(view === "final" && !job.final ? "plan" : view);
@@ -180,6 +194,7 @@ async function show(v) {
   document.querySelectorAll(".tabs button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
   const box = $("#view"); box.innerHTML = "";
   if (v === "final") { const im = new Image(); im.src = `/job/${job.slug}/${job.final}`; box.append(im); return; }
+  if (v === "page") { const im = new Image(); im.src = `/job/${job.slug}/page.png?t=` + Date.now(); box.append(im); return; }
   const url = v === "out" ? `/job/${job.slug}/out.svg` : `/job/${job.slug}/plan.svg`;
   const r = await fetch(url + "?t=" + Date.now());
   if (!r.ok) { box.innerHTML = '<p class="note">Not written yet.</p>'; return; }
@@ -203,13 +218,28 @@ function payload() {
   return { address: $("#address").value || null, client: $("#client").value || null,
     north: $("#north").value === "" ? null : +$("#north").value, land_area: $("#land").value === "" ? null : +$("#land").value,
     counts: { ...job.counts, beds: num("#beds"), baths: num("#baths"), cars: num("#cars") },
+    floor_title: $("#ftitle").value || null, legend: $("#legend").value.split("\n").map(s => s.trim()).filter(Boolean),
     areas: job.areas, labels: job.labels.map(({ i, text, hidden, approved }) => ({ i, text, hidden, approved })) };
 }
 function num(s) { return $(s).value === "" ? null : +$(s).value; }
 
 $("#round").onchange = async () => { job = await api(`/api/job/${job.slug}/save`, { ...payload(), round_dims: $("#round").checked }); renderLabels(); show(view); };
 $("#save").onclick = async () => { job = await api(`/api/job/${job.slug}/save`, payload()); toast("Saved"); };
-$("#write").onclick = async () => { job = await api(`/api/job/${job.slug}/write`, payload()); renderChecks(); show("out"); toast("Written: out/" + job.slug + "-10x.svg"); };
+$("#write").onclick = async () => {
+  $("#write").disabled = true; $("#write").textContent = "Rendering…";
+  const r = await api(`/api/job/${job.slug}/write`, payload());
+  $("#write").disabled = false; $("#write").textContent = "Build 10x page + check";
+  if (r.error) { toast(r.error); return; }
+  job = r; renderChecks(); $("#pdf").href = `/job/${job.slug}/page.pdf`; $("#pdf").style.visibility = "visible";
+  document.querySelector('.tabs [data-v="page"]').disabled = false; show("page"); toast("Built: SVG, PDF, PNG");
+};
+$("#site").onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  await api(`/api/job/${job.slug}/save`, payload());
+  const r = await fetch(`/api/job/${job.slug}/site`, { method: "POST", body: f }); job = await r.json();
+  $("#sitenote").textContent = "Site plan attached."; toast("Site plan attached; rebuild to see it");
+};
+$("#clearsite").onclick = async () => { job = await api(`/api/job/${job.slug}/save`, { ...payload(), clear_site: true }); $("#sitenote").textContent = "None: the plan fills the page."; };
 $("#jobs").onchange = e => open(e.target.value);
 document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => show(b.dataset.v));
 loadJobs();

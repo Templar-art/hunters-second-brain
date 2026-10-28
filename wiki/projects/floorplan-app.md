@@ -1,7 +1,7 @@
 ---
 type: project
 tags: [floor-plans, tooling, cubicasa]
-status: milestone-1
+status: milestone-2
 updated: 2026-10-28
 ---
 
@@ -59,9 +59,55 @@ Eight CubiCasa exports came from Tyson's CubiCasa account (Plus package, logged 
 - **All 8 exports share one structure:** live text, a room label followed by its size, and no scripts. Robina is the odd one out. It was exported in CAPS with an embedded Josefin Sans font and sizes to 2 decimals (`4.26 m`). The others are title case, use Verdana and give sizes to 1 decimal. **CubiCasa's style setting decides the rounding**, so the rounding question mostly disappears if the account is set to 1 decimal.
 - **The supplier's area method isn't consistent.** Ormeau 214 = CubiCasa 203 + 11 m² walls. Parkwood 223 = 179 + 16 walls + 28 garage. Robina 126 is CubiCasa's GLA with no walls added. ⚠️ An agreed method is needed. The app shows every component instead of guessing.
 
-## Next milestone
+## Milestone 2: the 10x page (built 2026-10-28)
 
-1. Restyle the drawing to the Oct template: grey walls, floor fills by room type, solid fixtures. This depends on proving that walls and floors can be told apart.
-2. Build the A4 page: header, bed/bath/car icons, north arrow, area strip, client block, disclaimer, 10x logo.
-3. Export to PDF and PNG from the same SVG.
-4. The site plan stays a manual drop-in image.
+The goal was "look as good as the supplier final, but better". `render.py` turns the checked SVG into a finished A4 landscape page and exports SVG, a vector PDF and a 300 dpi PNG through headless Chrome. The page tab in the review app shows it, with an Open PDF link.
+
+**Skin (presentation only).** Only fill, stroke, font and display change, plus added `<defs>`. The geometry check still compares every points/d/transform attribute and **passes on all 8 jobs**.
+
+- **Walls:** charcoal `#4b5157` with a soft drop shadow.
+- **Openings:** windows and doors are white with hairline outlines. CubiCasa's marker triangles are hidden.
+- **Floors:** each floor polygon takes the material of the room label inside it:
+  - wood is the default;
+  - tile for wet areas;
+  - carpet for bedrooms;
+  - honed concrete for the garage;
+  - timber boards for decks;
+  - pavers for patios.
+
+  Textures are drawn **at true scale**, because 1 SVG unit = 1 cm (verified against the printed room sizes, worst error ≤ 10 cm): boards 18 cm wide, tiles 60 cm.
+- **Labels:** Poppins, name 500, size 400 grey.
+
+**Page:**
+
+- Header: address, with the suburb in caps.
+- Bed, bath and car icons.
+- North arrow, **only when a person has set north**.
+- Thin frame.
+- Storeys laid out side by side at **one shared scale**, ordered Basement → Ground → Upper. They wrap to two rows when that prints bigger: Alex Keith's 1-room basement sits above the other storeys.
+- 5 m scale bar, **only when the scale check passes**. Robina's old-style export can't be checked, so it gets no bar.
+- Optional site-plan image with a legend.
+- Area strip, taken from CubiCasa's footer figures.
+- Client logo (from `clients/<name>.json`), disclaimer, 10x logo.
+
+**Why it's better than the supplier's:**
+
+- The scale and textures are true.
+- The geometry is provably untouched.
+- No typos: the supplier's "Siting" doesn't happen.
+- Nothing appears unless it's verified: no guessed north, no unverified scale bar.
+- One click to rebuild.
+
+**Still open:**
+
+- **Area rule (needs Hunter):** recommended PCA, where Internal = floors + walls and garage/patio/deck = External. The app currently counts the garage as internal, to match the Oct finals.
+- **North:** set per job.
+- **Logos:** ZED's full lockup (only the Z mark is on file); Coastline and Harcourts profiles don't exist yet.
+- **Storey naming:** Upper or First Floor.
+- **Alex Keith:** the upper deck around the pool renders unfilled.
+
+## Next
+
+1. Hunter signs off the page look and the area rule.
+2. Run a live job end to end: CubiCasa export → app → client PDF.
+3. Site plan from our own drone top-down via [[drone-pin-tool]] instead of a manual upload.

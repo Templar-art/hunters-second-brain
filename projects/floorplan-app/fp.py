@@ -137,10 +137,22 @@ def fmt_num(s, rnd):
     return s
 
 
+def title(s):
+    return " ".join(w[:1].upper() + w[1:] for w in s.strip().lower().split())
+
+
+FLOORS = {"1st floor": ("Ground Floor", "auto", "CubiCasa counts storeys US-style: 1st = ground"),
+          "2nd floor": ("Upper Floor", "needs-you", "Upper Floor or First Floor?"),
+          "3rd floor": ("Second Floor", "needs-you", "Which storey name?"),
+          "basement": ("Basement", "auto", "storey title")}
+
+
 def propose(src, kind, rnd):
     """Deterministic proposal for one label. Returns (text, status, note)."""
     if kind == "footer":
         return "", "auto", "CubiCasa footer; the 10x template prints the areas instead"
+    if kind == "storey":
+        return FLOORS.get(src.strip().lower(), (title(src), "needs-you", "storey title"))
     if kind == "dim":
         m = DIM.match(src)
         w, h = fmt_num(m[1], rnd), fmt_num(m[2], rnd)
@@ -149,10 +161,10 @@ def propose(src, kind, rnd):
         return out, "needs-you" if changed else "auto", ("rounded from " + src) if changed else "format only, numbers untouched"
     key = src.strip().lower()
     if key in STYLE["ask"]:
-        return src.strip().title(), "needs-you", STYLE["ask"][key]
+        return title(src), "needs-you", STYLE["ask"][key]
     if key in STYLE["rename"]:
         return STYLE["rename"][key], "auto", "house-style rename"
-    return src.strip().title(), "auto", "title case"
+    return title(src), "auto", "title case"
 
 
 def classify(all_texts):
@@ -162,6 +174,8 @@ def classify(all_texts):
         low = s.lower()
         if DIM.match(s):
             kind = "dim"
+        elif re.fullmatch(r"basement|\d+(st|nd|rd|th) floor", low):
+            kind = "storey"
         elif any(p in low for p in STYLE["footer_patterns"]):
             kind = "footer"
         else:
@@ -288,34 +302,74 @@ def cmd_import_all():
 
 # ---------- write + checks ----------
 
+def client_profile(name):
+    """clients/<slug>.json whose name or aliases match the job's client text."""
+    if not name:
+        return None
+    key = re.sub(r"[^a-z0-9]", "", name.lower())
+    for f in sorted((HERE / "clients").glob("*.json")):
+        prof = json.loads(f.read_text())
+        names = [prof["name"], *prof.get("aliases", [])]
+        if any(re.sub(r"[^a-z0-9]", "", n.lower()) == key for n in names):
+            return prof
+    return None
+
+
 def write_out(job):
+    import render
     data = json.loads((job / "job.json").read_text())
     root = ET.parse(job / "work" / "plan.svg").getroot()
     ts = texts(root)
     for t in data["labels"]:
         e = ts[t["i"]]
         if t["hidden"]:
-            e.set("display", "none")
+            render.hide(e)
         elif t["approved"]:
             set_text(e, t["text"])
     (job / "out").mkdir(exist_ok=True)
     out = job / "out" / f"{data['slug']}-10x.svg"
     ET.ElementTree(root).write(out, encoding="unicode")
-    data["checks"] = checks(job, data, out)
+    # 10x skin (presentation only) + the A4 page
+    rep = render.skin(root)
+    data["skin"] = rep
+    data["scale"] = rep["scale"]
+    styled = job / "out" / f"{data['slug']}-10x-plan.svg"
+    ET.ElementTree(root).write(styled, encoding="unicode")
+    pg = render.page(data, styled.read_text(), client_profile(data.get("client")))
+    data["exports"] = [p.name for p in render.export(pg, job / "out" / f"{data['slug']}-10x-page")]
+    data["checks"] = checks(job, data, styled)
     (job / "job.json").write_text(json.dumps(data, indent=1))
     return data["checks"]
 
 
+GEOM = {"points", "d", "x", "y", "x1", "y1", "x2", "y2", "cx", "cy", "r", "rx", "ry", "width", "height",
+        "transform", "viewBox", "patternTransform", "refX", "refY", "orient", "markerWidth", "markerHeight"}
+
+
+def drawing(root):
+    """Drawing elements in order, skipping <defs> (patterns/filters the skin adds) and text."""
+    out, skip = [], set()
+    for e in root.iter():
+        if local(e.tag) == "defs":
+            skip.update(e.iter())
+        if e in skip or local(e.tag) in ("text", "tspan"):
+            continue
+        out.append(e)
+    return out
+
+
 def geometry_same(a, b):
-    """Every non-text element must match the sanitised source exactly (tag, attributes, order)."""
-    A = [e for e in a.iter() if local(e.tag) not in ("text", "tspan")]
-    B = [e for e in b.iter() if local(e.tag) not in ("text", "tspan")]
+    """Every drawing element keeps its tag and every geometry attribute exactly as CubiCasa drew it.
+    Colours, line weights and fonts may change; positions and shapes may not."""
+    A, B = drawing(a), drawing(b)
     if len(A) != len(B):
         return False, f"element count {len(A)} → {len(B)}"
     for x, y in zip(A, B):
-        if x.tag != y.tag or x.attrib != y.attrib or (local(x.tag) in ("style",) and x.text != y.text):
-            return False, f"<{local(x.tag)} id={x.get('id')}> changed"
-    return True, f"{len(A)} drawing elements identical"
+        gx = {k: v for k, v in x.attrib.items() if k in GEOM}
+        gy = {k: v for k, v in y.attrib.items() if k in GEOM}
+        if x.tag != y.tag or gx != gy:
+            return False, f"<{local(x.tag)}> geometry changed"
+    return True, f"{len(A)} drawing elements, every coordinate identical"
 
 
 def checks(job, data, out):
@@ -338,6 +392,14 @@ def checks(job, data, out):
                 "msg": "never inferred; set it" if data["north"] is None else f"{data['north']}°"})
     res.append({"name": "Land area supplied", "ok": bool(data["land_area"]),
                 "msg": "needs the title/listing figure" if not data["land_area"] else f"{data['land_area']} m²"})
+    sc = data.get("scale")
+    res.append({"name": "Scale verified against printed sizes", "ok": bool(sc and sc["ok"]),
+                "msg": f"{sc['rooms_checked']} rooms, worst {sc['worst_cm']} cm" if sc else "no sized rooms; scale bar left off"})
+    sk = data.get("skin") or {}
+    res.append({"name": "Floor finishes", "ok": True,
+                "msg": f"{len(sk.get('rooms', []))} floors textured, {sk.get('unlabelled', 0)} unlabelled spaces got a default (check them)"})
+    res.append({"name": "Client profile found", "ok": client_profile(data.get("client")) is not None,
+                "msg": data.get("client") or "no client set"})
     res.append({"name": "Source untouched (read-only copy)", "ok": not any(
         p.stat().st_mode & stat.S_IWUSR for p in (job / "source").rglob("*") if p.is_file()), "msg": "jobs/…/source"})
     return res
@@ -382,24 +444,44 @@ class H(http.server.BaseHTTPRequestHandler):
             m = re.fullmatch(r"/api/job/([\w-]+)", p)
             if m:
                 return self.send((self.job(m[1]) / "job.json").read_text())
-            m = re.fullmatch(r"/job/([\w-]+)/(plan\.svg|final\.(?:png|jpg|jpeg)|out\.svg)", p)
+            m = re.fullmatch(r"/job/([\w-]+)/(plan\.svg|final\.(?:png|jpg|jpeg)|out\.svg|page\.png|page\.pdf|site\.png)", p)
             if m:
                 j = self.job(m[1])
-                f = j / "work" / m[2] if m[2] != "out.svg" else j / "out" / f"{m[1]}-10x.svg"
-                ctype = "image/svg+xml" if f.suffix == ".svg" else "image/png" if f.suffix == ".png" else "image/jpeg"
+                f = {"out.svg": j / "out" / f"{m[1]}-10x.svg",
+                     "page.png": j / "out" / f"{m[1]}-10x-page.png",
+                     "page.pdf": j / "out" / f"{m[1]}-10x-page.pdf"}.get(m[2], j / "work" / m[2])
+                ctype = {".svg": "image/svg+xml", ".png": "image/png", ".pdf": "application/pdf"}.get(f.suffix, "image/jpeg")
                 return self.send(f.read_bytes(), ctype)
         except FileNotFoundError:
             pass
         self.send('{"error":"not found"}', code=404)
 
     def do_POST(self):
+        m = re.fullmatch(r"/api/job/([\w-]+)/site", self.path)
+        if m:  # site plan image: decoded and re-encoded as PNG, so nothing but pixels survives
+            from PIL import Image
+            import io
+            j = self.job(m[1])
+            raw = self.rfile.read(min(int(self.headers["Content-Length"] or 0), 40_000_000))
+            try:
+                im = Image.open(io.BytesIO(raw))
+                im.load()
+            except Exception:
+                return self.send('{"error":"not an image"}', code=400)
+            im = im.convert("RGB")
+            im.thumbnail((2400, 2400))
+            im.save(j / "work" / "site.png")
+            data = json.loads((j / "job.json").read_text())
+            data["site_plan"] = str(j / "work" / "site.png")
+            (j / "job.json").write_text(json.dumps(data, indent=1))
+            return self.send(json.dumps(data))
         m = re.fullmatch(r"/api/job/([\w-]+)/(save|write)", self.path)
         if not m:
             return self.send('{"error":"not found"}', code=404)
         j = self.job(m[1])
         body = json.loads(self.rfile.read(int(self.headers["Content-Length"] or 0)) or b"{}")
         data = json.loads((j / "job.json").read_text())
-        for k in ("client", "address", "north", "land_area", "round_dims", "counts", "areas"):
+        for k in ("client", "address", "north", "land_area", "round_dims", "counts", "areas", "floor_title", "legend"):
             if k in body:
                 data[k] = body[k]
         if "labels" in body:
@@ -415,8 +497,14 @@ class H(http.server.BaseHTTPRequestHandler):
                     t["text"], t["status"], t["note"] = txt, st, note
                     t["approved"] = st == "auto"
         (j / "job.json").write_text(json.dumps(data, indent=1))
+        if body.get("clear_site"):
+            data["site_plan"] = None
+            (j / "job.json").write_text(json.dumps(data, indent=1))
         if m[2] == "write":
-            write_out(j)
+            try:
+                write_out(j)
+            except Exception as e:  # report, don't crash the server
+                return self.send(json.dumps({"error": f"{type(e).__name__}: {e}"}), code=500)
             data = json.loads((j / "job.json").read_text())
         self.send(json.dumps(data))
 
