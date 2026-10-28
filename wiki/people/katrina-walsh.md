@@ -37,6 +37,12 @@ The house style comes from her recent listing films: 4 Lita Court (142 s), 6 Sto
 - **Outro (the last ~8 s):** a drone sunset over the hinterland with **KATRINA WALSH** in thin white caps and her number under it, centred. The COASTAL° wordmark sits small at the bottom centre. This dissolves to a **charcoal end card**: a dark charcoal-to-near-black vertical gradient. Upper centre: "KATRINA WALSH" in thin uppercase sans, with her number under it at about the same size in regular weight. At the bottom centre is the white COASTAL° wordmark with wide letter-spacing. The card is held to the end. (The red line at the very bottom of Hunter's screenshot is probably the player's progress bar, not part of the design; this needs checking against a clean frame.)
 - **Grade:** warm and natural. She leans heavily on golden hour and dusk, with lit windows on the twilight exteriors.
 
+## Rebuilt cards (2026-10-28)
+`projects/coastal-katrina/make_cards.py` rebuilds both cards as 4K PNGs from Hunter's screenshots. Both use Helvetica Neue: Light for the name and number, Medium for PRESENTS. They are matched by eye, because her original font file is unknown.
+- `out/katrina-walsh-presents-4k.png`: transparent, so it can be laid straight over footage.
+- `out/katrina-walsh-end-card-4k.png`: the charcoal gradient end card, using `raw/coastal/coastal-logo-WHITE.png`.
+- To change sizes or positions, edit the numbers in the script and re-run it with `python3 make_cards.py [background.jpg]` (the background only feeds the preview).
+
 ## Drone pin style (Coastal listing photos)
 From the 4 Lita Court and 6 Stockyard Ct photo sets on coastal.com.au:
 - **Pin:** a white **"C°" mark** on top of a **thin white vertical stem**. There is no badge, no dot and no address label.

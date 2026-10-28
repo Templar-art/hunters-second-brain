@@ -1565,3 +1565,6 @@ Hunter supplied screenshots of her "KATRINA WALSH / PRESENTS" title card (white,
 
 ## [2026-10-28] ingest | Coastal balcony day-to-night intake
 One shot (Day.mp4, 3.09 s 4K, under 4 s so it needs a re-export). The reference is the same shot already at dusk (Main.mp4). Job at projects/coastal-day-to-night/JOB.md.
+
+## [2026-10-28] project | Katrina Walsh title and end card rebuilds
+Rebuilt her "KATRINA WALSH / PRESENTS" title (transparent) and the charcoal end card as 4K PNGs in Helvetica Neue Light and Medium, with the Coastal white wordmark. Script and outputs are in projects/coastal-katrina. See [[katrina-walsh]].
