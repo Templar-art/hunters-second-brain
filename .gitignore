@@ -119,3 +119,6 @@ projects/kollosche-drone-graphics/*/src/
 projects/kollosche-drone-graphics/*/comp/
 projects/kollosche-drone-graphics/*/out/
 projects/street-racer/cars_src/
+
+# floor-plan app jobs: read-only copies of raw/floorplans sources + working output
+projects/floorplan-app/jobs/

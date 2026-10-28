@@ -1547,3 +1547,6 @@ Pulled one finished plan per client from the Clients Drive (YPA, RE/MAX, The Age
 
 ## [2026-10-28] decision | Floor plans: the Oct 2026 template is the 10x standard
 Hunter picked Gen B (aerial site plan, m units, title-case area strip) as the standard for the in-house floor-plan app. See [[floor-plan-house-style]].
+
+## [2026-10-28] build | Floor-plan app milestone 1 + 8 CubiCasa sources
+Pulled 8 CubiCasa exports from the CubiCasa web account into raw/floorplans/cubicasa, plus 3 supplier finals. Built fp.py + review UI: untrusted-SVG sanitiser, house-style label proposals with human sign-off, areas from CubiCasa text, geometry-unchanged check. Found the supplier area method is inconsistent (walls/garage added on some jobs). See [[floorplan-app]].

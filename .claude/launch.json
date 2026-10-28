@@ -106,6 +106,18 @@
       "port": 8170
     },
     {
+      "name": "floorplan-app",
+      "runtimeExecutable": "/Users/10xhunter/.venvs/typeset/bin/python",
+      "runtimeArgs": [
+        "-I",
+        "projects/floorplan-app/fp.py",
+        "serve",
+        "--port",
+        "8790"
+      ],
+      "port": 8790
+    },
+    {
       "name": "drone-pin-review",
       "runtimeExecutable": "/Users/10xhunter/.venvs/typeset/bin/python",
       "runtimeArgs": [

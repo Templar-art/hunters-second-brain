@@ -50,6 +50,8 @@ These went out to clients.
 
 ## Implications for the in-house app
 
+Built as [[floorplan-app]] (milestone 1, 2026-10-28).
+
 - The template needs **client profiles**, the same way the drone-pin tool has them: logo, agent lines, marker colour, and the YPA layout as its own template.
 - A label dictionary and a dimension format should be **locked rules**, not left to the drafter. Most of the errors above are the kind a deterministic check would catch: units, separators, spelling against a dictionary, and phone numbers against a stored client record.
 - Agent phone numbers should come from a single stored record, never retyped.

@@ -36,6 +36,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])
 
 ## Projects
+- [[floorplan-app]] — in-house CubiCasa finishing app, milestone 1 (28 Oct): sanitise, house-style labels with human sign-off, areas from CubiCasa text, geometry-unchanged check; 8 CubiCasa sources pulled
 - [[cva-woomala-render-enhance]] — 11 Woomala St renders made photoreal (NBP from source, layout locked); 3,210cr; recipe + failure log
 - [[10xrealestate-ig]] — @10xrealestate_ page polish: bio, logo/highlights, 5 seamless listing carousels (v5.2) + 12-post planner from 28 Oct
 - [[solis-pool-cinemagraph]] — Salt PM listing photo → 10s 9:16 cinemagraph: Seedance 2.5 with camera lock moves only water + spout (160 hf); clouds added free in post by anchored sky-zoom composite
