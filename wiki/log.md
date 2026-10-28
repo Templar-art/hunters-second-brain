@@ -1559,3 +1559,6 @@ Hunter confirmed that "Coast" means COASTAL° (coastal.com.au) and that it is a 
 
 ## [2026-10-28] ingest | Coastal logos
 Downloaded the COASTAL° wordmark (white, black and legacy PNGs) and the C° favicon from coastal.com.au into raw/coastal/. Derived a white transparent C° pin mark at projects/drone-pin/logos/coastal-c-white.png. Hunter didn't need Katrina's headshot, so it isn't stored. See [[coastal]] and [[katrina-walsh]].
+
+## [2026-10-28] lint | Katrina Walsh "PRESENTS" title card
+Hunter supplied screenshots of her "KATRINA WALSH / PRESENTS" title card (white, centred, thin name over a heavier smaller PRESENTS, laid over footage) and of her charcoal end card. The first pass had mistaken the COASTAL° wordmark for the "presents" beat; this is corrected and flagged on [[katrina-walsh]].
