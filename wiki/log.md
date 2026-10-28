@@ -1586,3 +1586,6 @@ Built `projects/auto-sound-design/`, a local Python + FFmpeg tool. It takes a vi
 
 ## [2026-10-28] build | Auto Sound Design: test sections + Kollosche Esther Pl test
 Added `--start` keyframe-exact test sections (frames byte-identical), `…_SOUND-MIX.mp4` as the main output, `sfx_used/` copies and `relink` for the Mac. The Kollosche Main.mp4 section 16.7–43.8 s got 4 effects and was sent to Hunter for review. The YouTube style reference is blocked by the network policy. 33 tests pass. See [[auto-sound-design]].
+
+## [2026-10-28] build | Auto Sound Design: dense preset, full Kollosche renders
+Sent Hunter the full 87 s Kollosche mix: default (9 effects), then `presets/dense.json` (44 effects). Added file rotation, a fallback to the next file when one doesn't fit, and tail trimming. Hunter is downloading the "desire" reference video to upload. See [[auto-sound-design]].

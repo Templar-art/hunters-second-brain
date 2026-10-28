@@ -1,0 +1,36 @@
+{
+  "_about": "Jam-packed: a whoosh on most cuts, extra impacts on strong music hits. Expect audible repeats with a small library.",
+  "rules": {
+    "min_score": 0.2,
+    "whoosh_requires_sync": false,
+    "riser_min_rise_db": 5.0,
+    "impact_on_synced_cuts": true,
+    "impact_sync_min": 0.6,
+    "max_tail_s": {
+      "whoosh": 1.0,
+      "impact": 2.0,
+      "shimmer": 1.5
+    }
+  },
+  "analysis": {
+    "energy_rise_db": 4.0,
+    "energy_min_gap_s": 4.0
+  },
+  "limits": {
+    "min_spacing_s": 1.0,
+    "total_per_minute": 45,
+    "per_minute": {
+      "whoosh": 32,
+      "impact": 10,
+      "riser": 4,
+      "shimmer": 3,
+      "low drone": 2,
+      "ambience": 1
+    },
+    "max_whoosh_share_of_cuts": 1.0,
+    "max_overlap": 3
+  },
+  "fades": {
+    "trim_fade_out": 0.35
+  }
+}

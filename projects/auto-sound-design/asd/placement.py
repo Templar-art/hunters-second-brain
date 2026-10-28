@@ -113,6 +113,10 @@ def candidates(cuts, music, duration, cfg):
             continue
         # Capped below an impact's floor so a musical hit outranks a whoosh on the same cut.
         score = 0.4 * c.score + 0.4 * sync
+        if rules.get("impact_on_synced_cuts") and sync >= rules.get("impact_sync_min", 0.7):
+            # Dense mode: a cut that lands hard on a music hit can take a small impact instead of a whoosh.
+            out.append(Candidate(c.time, "impact", 0.35 + 0.3 * sync,
+                                 f"hard cut (scene score {c.score:.2f}) on a strong music hit ({', '.join(why)})"))
         out.append(Candidate(c.time, "whoosh", score,
                              f"hard cut (scene score {c.score:.2f})" + (f", {', '.join(why)}" if why else ", no music sync")))
 
@@ -142,12 +146,59 @@ def _fits(sound, category, cfg):
     return True
 
 
-def choose_sound(category, library, cfg, rng, recent):
+def sound_options(category, library, cfg, rng, recent):
+    """Files to try for one placement: never-used ones (seeded shuffle) first, then the rest
+    least-recently-used first, so a small library rotates instead of hammering one file."""
     pool = [s for s in library["sounds"] if category in s["categories"] and _fits(s, category, cfg)]
-    if not pool:
-        return None
-    fresh = [s for s in pool if s["path"] not in recent] or pool
-    return fresh[rng.randrange(len(fresh))]
+    unused = [s for s in pool if s["path"] not in recent]
+    rng.shuffle(unused)
+    used = sorted((s for s in pool if s["path"] in recent), key=lambda s: recent.index(s["path"]))
+    return unused + used
+
+
+def _fit_sound(c, sound, cat, cfg, chosen, duration, fd):
+    """Place one file against one candidate. Returns (fit tuple, None) or (None, reason)."""
+    rules, limits = cfg["rules"], cfg["limits"]
+    try:
+        shape = sound_shape(sound)
+    except Exception as exc:  # unreadable file: try the next one
+        return None, f"could not read {sound['name']}: {exc}"
+    align = ALIGN[cat]
+    anchor = {"peak": shape["peak_s"], "onset": shape["onset_s"], "attack": shape["attack_s"], "start": 0.0}[align]
+    start_s = c.time - anchor
+    file_len = sound["duration"]
+    notes = []
+    if cat in BEDS:
+        use_len = min(file_len, rules["intro_bed_max_s"] if c.group == "intro" else cfg["durations"][cat][1])
+    else:
+        use_len = file_len
+        tail = rules.get("max_tail_s", {}).get(cat)
+        if tail and anchor + tail < file_len:
+            use_len = anchor + tail
+            notes.append(f"tail trimmed to {tail}s after the {align}")
+    if start_s < 0:
+        if cat in BEDS:
+            start_s = 0.0
+        else:
+            return None, f"{sound['name']} would start {-start_s:.2f}s before the video"
+    offset = snap(start_s, fd)
+    snap_err = (float(offset) - start_s) * 1000
+    length = snap(use_len, fd, "floor")
+    if offset + length > duration:
+        length = duration - offset
+        notes.append("trimmed at the end of the video")
+        if length < snap(min(1.0, use_len), fd, "floor"):
+            return None, f"{sound['name']} would mostly run past the end"
+    if length <= 0:
+        return None, "zero length after frame snapping"
+
+    def overlapping(kind):
+        return [p for p in chosen if (p.category in kind) and p.offset < offset + length and offset < p.end()]
+    if cat in ONE_SHOT and len(overlapping(ONE_SHOT)) >= limits["max_overlap"]:
+        return None, f"already {limits['max_overlap']} one-shots sounding there"
+    if cat in BEDS and len(overlapping(BEDS)) >= limits["max_beds"]:
+        return None, "another bed already covers that span"
+    return (sound, shape, align, offset, length, snap_err, notes, use_len, file_len), None
 
 
 def place(cuts, music, video, library, cfg, log=print):
@@ -204,53 +255,19 @@ def place(cuts, music, video, library, cfg, log=print):
             reject(c, "riser only plays into an impact that was kept")
             continue
 
-        sound = choose_sound(cat, library, cfg, rng, recent.get(cat, set()))
-        if sound is None:
+        options = sound_options(cat, library, cfg, rng, recent.get(cat, []))
+        if not options:
             reject(c, f"no '{cat}' sound fits duration limits {cfg['durations'][cat]}")
             continue
-        try:
-            shape = sound_shape(sound)
-        except Exception as exc:  # unreadable file: skip, keep going
-            reject(c, f"could not read {sound['name']}: {exc}")
+        fit, why_not = None, ""
+        for sound in options:  # least-recently-used first; fall through to the next file if one won't fit
+            fit, why_not = _fit_sound(c, sound, cat, cfg, chosen, duration, fd)
+            if fit:
+                break
+        if not fit:
+            reject(c, why_not)
             continue
-
-        align = ALIGN[cat]
-        anchor = {"peak": shape["peak_s"], "onset": shape["onset_s"], "attack": shape["attack_s"], "start": 0.0}[align]
-        start_s = c.time - anchor
-        file_len = sound["duration"]
-        notes = []
-        if cat in BEDS:
-            use_len = min(file_len, rules["intro_bed_max_s"] if c.group == "intro" else cfg["durations"][cat][1])
-        else:
-            use_len = file_len
-        if start_s < 0:
-            if cat in BEDS:
-                start_s = 0.0
-            else:
-                reject(c, f"{sound['name']} would start {-start_s:.2f}s before the video")
-                continue
-        offset = snap(start_s, fd)
-        snap_err = (float(offset) - start_s) * 1000
-        length = snap(use_len, fd, "floor")
-        if offset + length > duration:
-            length = duration - offset
-            notes.append("trimmed at the end of the video")
-            if length < snap(min(1.0, use_len), fd, "floor"):
-                reject(c, f"{sound['name']} would mostly run past the end")
-                continue
-        if length <= 0:
-            reject(c, "zero length after frame snapping")
-            continue
-
-        # Overlap limit: count effects already sounding at any point in this one's span.
-        def overlapping(kind):
-            return [p for p in chosen if (p.category in kind) and p.offset < offset + length and offset < p.end()]
-        if cat in ONE_SHOT and len(overlapping(ONE_SHOT)) >= limits["max_overlap"]:
-            reject(c, f"already {limits['max_overlap']} one-shots sounding there")
-            continue
-        if cat in BEDS and len(overlapping(BEDS)) >= limits["max_beds"]:
-            reject(c, "another bed already covers that span")
-            continue
+        sound, shape, align, offset, length, snap_err, notes, use_len, file_len = fit
 
         level_ref = music.level_at(c.time)
         rel = cfg["levels"]["relative_db"][cat]
@@ -260,7 +277,7 @@ def place(cuts, music, video, library, cfg, log=print):
         gain = max(cfg["levels"]["min_gain_db"], min(cfg["levels"]["max_gain_db"], gain))
         fades = cfg["fades"][cat]
         fade_out = fades[1]
-        if "trimmed at the end of the video" in notes or (cat in BEDS and use_len < file_len):
+        if use_len < file_len or "trimmed at the end of the video" in notes:
             fade_out = max(fade_out, cfg["fades"]["trim_fade_out"])
         confidence = round(min(1.0, c.score) * (0.8 if cat in BEDS or c.group == "outro" else 1.0), 2)
 
@@ -273,9 +290,10 @@ def place(cuts, music, video, library, cfg, log=print):
             align=align, snap_error_ms=round(snap_err, 2), notes=notes,
         ))
         used_count[cat] = used_count.get(cat, 0) + 1
-        recent.setdefault(cat, set()).add(sound["path"])
-        if len(recent[cat]) > 3:
-            recent[cat] = set(list(recent[cat])[-3:])
+        history = recent.setdefault(cat, [])
+        if sound["path"] in history:
+            history.remove(sound["path"])
+        history.append(sound["path"])
         if c.group:
             group_times.setdefault(c.group, pid)
 
