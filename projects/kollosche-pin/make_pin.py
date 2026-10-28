@@ -5,7 +5,9 @@ ProRes 4444 (alpha) for Final Cut, 1080x1920 @ 25 fps.
 Layout follows Hunter's reference (2026-10-27): the K is ~14% of frame
 width, the line is ~6 px, and the line's tip marks the house.
 
-Usage: python3 -I make_pin.py <repo_root> <out_dir>
+Usage: python3 -I make_pin.py <repo_root> <out_dir> [navy]
+  navy: K taken from the official navy wordmark (#011A3B) instead of the white
+  team wordmark; the line stays white. Outputs get a -navy suffix.
 """
 import subprocess
 import sys
@@ -16,18 +18,25 @@ from PIL import Image
 from scipy import ndimage
 
 root, out = Path(sys.argv[1]), Path(sys.argv[2])
+NAVY = len(sys.argv) > 3 and sys.argv[3] == "navy"
+SUFFIX = "-navy" if NAVY else ""
 out.mkdir(parents=True, exist_ok=True)
 W, H, FPS = 1080, 1920, 25
 
-# The K glyph: the first two connected shapes of the large white wordmark.
-src = Image.open(root / "raw/kollosche/team-logos/HayleyKidson/HK Kollosche_2white.png").convert("RGBA")
-band = src.crop((0, 232, src.width, 621))
+# The K glyph: the first two connected shapes (stem + arm) of the wordmark.
+if NAVY:
+    band = Image.open(root / "raw/kollosche/brand-logos/wordmark/Kollosche-wordmark-navy.png").convert("RGBA")
+    K_RGB = (1, 26, 59)
+else:
+    src = Image.open(root / "raw/kollosche/team-logos/HayleyKidson/HK Kollosche_2white.png").convert("RGBA")
+    band = src.crop((0, 232, src.width, 621))
+    K_RGB = (255, 255, 255)
 lab, _ = ndimage.label(np.array(band.getchannel("A")) > 8)
 objs = ndimage.find_objects(lab)
 first = sorted(range(len(objs)), key=lambda i: objs[i][1].start)[:2]
 keep = np.isin(lab, [i + 1 for i in first])
 alpha = np.where(keep, np.array(band.getchannel("A")), 0).astype(np.uint8)
-k = Image.new("RGBA", band.size, (255, 255, 255, 0))
+k = Image.new("RGBA", band.size, K_RGB + (0,))
 k.putalpha(Image.fromarray(alpha))
 k = k.crop(k.getchannel("A").getbbox())
 
@@ -71,8 +80,8 @@ variants = {
     "short": (round(H * 0.30), round(H * 0.62)),
 }
 for name, (k_top, tip_y) in variants.items():
-    frame(k_top, tip_y, 1, 1).save(out / f"kollosche-pin-{name}.png")
-    seq = out / f"_seq_{name}"
+    frame(k_top, tip_y, 1, 1).save(out / f"kollosche-pin-{name}{SUFFIX}.png")
+    seq = out / f"_seq_{name}{SUFFIX}"
     seq.mkdir(exist_ok=True)
     total = FPS * 5  # 0.5 s line draw, K fades, then hold; trim in FCP
     for f in range(total):
@@ -82,7 +91,7 @@ for name, (k_top, tip_y) in variants.items():
     subprocess.run(
         ["ffmpeg", "-v", "error", "-y", "-framerate", str(FPS), "-i", str(seq / "%04d.png"),
          "-c:v", "prores_ks", "-profile:v", "4444", "-pix_fmt", "yuva444p10le",
-         "-alpha_bits", "16", str(out / f"kollosche-pin-{name}.mov")],
+         "-alpha_bits", "16", str(out / f"kollosche-pin-{name}{SUFFIX}.mov")],
         check=True,
     )
     for p in seq.iterdir():

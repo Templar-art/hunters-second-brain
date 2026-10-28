@@ -1574,3 +1574,6 @@ Added animate.py, which renders an 8 s animated end card (the background fades u
 
 ## [2026-10-28] project | Coastal address caption for 34 Albany Avenue, Currumbin
 The suburb was confirmed from the QLD address register. Added an address mode to animate.py that makes a caption in her subtitle style (white Helvetica Neue in sentence case, lower centre), as a PNG plus a 5 s alpha MOV. See [[katrina-walsh]].
+
+## [2026-10-28] project | Kollosche pin, navy K version
+At Hunter's request (relayed by another session), added a navy option to make_pin.py. The K now comes from the official navy wordmark, the only blue logo on file, with no recolouring. Re-rendered the long and short PNGs and ProRes 4444 MOVs with a -navy suffix; the white originals are kept. See [[kollosche]].
