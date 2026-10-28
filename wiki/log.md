@@ -1589,3 +1589,6 @@ Added `--start` keyframe-exact test sections (frames byte-identical), `…_SOUND
 
 ## [2026-10-28] build | Auto Sound Design: dense preset, full Kollosche renders
 Sent Hunter the full 87 s Kollosche mix: default (9 effects), then `presets/dense.json` (44 effects). Added file rotation, a fallback to the next file when one doesn't fit, and tail trimming. Hunter is downloading the "desire" reference video to upload. See [[auto-sound-design]].
+
+## [2026-10-28] build | Auto Sound Design: tasteful preset
+Hunter wants SFX tasteful, not over the top. Added `presets/tasteful.json`; the Kollosche full run placed 19 effects. "Sound bite" SFX generator not verified, so asked which product. See [[auto-sound-design]].
