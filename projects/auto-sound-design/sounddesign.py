@@ -193,7 +193,20 @@ def cmd_process(args):
     else:
         preview_audio = bus * 10 ** (preview_gain / 20)
     preview_wav = out_dir / ".preview_mix.wav"
-    media.write_wav(preview_wav, preview_audio)
+    master_report = None
+    if cfg.get("master", {}).get("enabled"):
+        # Mastering replaces the blunt overall turn-down: build the mix at full level, then level it.
+        raw = (source[:n] + bus[:n]) if source is not None else bus
+        media.write_wav(out_dir / ".premaster.wav", raw)
+        master_report = mix.master(out_dir / ".premaster.wav", preview_wav, cfg)
+        (out_dir / ".premaster.wav").unlink()
+        mix_report["preview_output_gain_db"] = "replaced by mastering"
+        mix_report.pop("warning", None)
+        mix_report["master"] = master_report
+        print(f"  Mastered preview: {master_report['input_lufs']:.1f} -> {master_report['output_lufs']} LUFS, "
+              f"LRA {master_report['input_lra']:.1f} -> {master_report['output_lra']} LU, true peak {master_report['output_true_peak_dbfs']} dBFS")
+    else:
+        media.write_wav(preview_wav, preview_audio)
     ext = video_path.suffix.lower() if video_path.suffix.lower() in (".mov", ".mp4", ".m4v") else ".mov"
     preview = out_dir / f"{video_path.stem}{tag}_SOUND-MIX{ext}"
     media.mux_preview(video.path, preview_wav, preview, duration=seconds, start=start_s)

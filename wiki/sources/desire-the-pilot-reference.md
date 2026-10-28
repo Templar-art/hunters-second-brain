@@ -39,6 +39,10 @@ Method: Claude looked at one frame per shot (65 shots) plus 8-frame strips acros
 - **Ambience:** exterior shots carry slightly more broadband noise texture under the music than interiors (about +1 to +2 dB against −2 to −4 dB, relative to the median shot). That suggests light location ambience outside and clean interiors. This is weak evidence; nobody has listened to it.
 - Tempo is about 118 BPM, steady. Cuts mostly land on the grid.
 
+## Mastering (measured 28 Oct)
+- **-16.2 LUFS integrated, loudness range 5.4 LU**: a tight, glued mix. The 3 s RMS moves only about 5 dB across the film.
+- For comparison, Kollosche Esther Pl (10x) is -15.7 LUFS with LRA 8.0, so it swings about twice as much. Matching the consistency matters more than adding effects.
+
 ## What changed in the tool because of it
 - `presets/tasteful.json`: whooshes capped at about 22% of cuts, and they now favour **motion blur across the cut** (new `cut_motion` detector), as Desire does. On Desire itself the detector picked out the 39.3, 68.5, 79.2 and 89.4 s whips and the 22.1 s reveal.
 - A new **existing-effects detector** (`existing_sfx`) finds whooshes and booms already baked into an edit so the tool doesn't double them. On Hunter's Kollosche Esther Pl edit it found 6 likely whooshes (16.7, 24.2, 42.2, 43.2, 57.4, 58.4 s) that the earlier passes had been doubling.

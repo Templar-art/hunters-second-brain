@@ -87,6 +87,15 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 - v7: birds on day exteriors, crickets on the dusk shot, real wind on aerials, no interior ambience. Measured beds land about 5–18 dB under the music; where the music is loudest the birds are about 28 dB under, effectively masked. Sent.
 - **For delivery:** use Hunter's own phone wild-tracks or Ocular ambience, which are verified licences.
 
+## 28 Oct, v8: matching Desire by measurement
+- Hunter on v7: "pretty good, right direction, just needs to be like the Desire one."
+- **Measured, not guessed** (same detectors on both full mixes):
+  - **Whoosh density:** Desire has a whoosh signature on 11% of cuts (HF rise p90 7.1 dB, max 13.5). Hunter's *source* edit already has 19% (max 26 dB), so his own whooshes are already louder and more frequent than Desire's.
+  - **Loudness:** Desire is **-16.2 LUFS, LRA 5.4 LU**. Kollosche source is -15.7 LUFS, LRA 8.0; v7 was -18.1 LUFS because of the blunt preview turn-down. The 3 s RMS spread is 5.4 dB for Desire against 10.4 dB for Kollosche. **The biggest gap is mastering consistency, not effect count.**
+  - Long-term spectral balance is similar; Kollosche is slightly brighter. My visual read of "continuous highs" in Desire's spectrograms didn't hold up when measured.
+- v8 (`tasteful.json`): the whoosh budget is 15% of cuts **including the edit's own**, which left 2 new whooshes. Preview **mastering**: a two-pass EBU R128 loudnorm to -16 LUFS / LRA 6 / -1 dBTP, replacing the turn-down. Result: -16.0 LUFS, LRA 6.3. It applies to the preview only; in FCP use a compressor and limiter on the master to match.
+- Placed: impacts at 1.4, 52.8 and 79.9 s, whooshes at 70.5 and 76.4 s, the K-pin glint, and the real (unverified-licence) ambience beds. Sent.
+
 ## Not yet known
 - **Whether it sounds good.** Nobody has listened to the preview yet.
 - Whether the FCPXML imports into FCP 12.4.

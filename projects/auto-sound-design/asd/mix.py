@@ -105,3 +105,36 @@ def balance(placements, clips, total_seconds, source, cfg):
             f"music down ~{-preview_gain:.0f}-{-preview_gain + 1:.0f} dB under the effects, or limit the master."
         )
     return bus, preview_gain, report
+
+
+def master(in_wav, out_wav, cfg):
+    """Preview mastering (two-pass EBU R128 loudnorm): evens out the loudness range and limits
+    true peak, the way the Desire reference is mastered (-16.2 LUFS, LRA 5.4). Applies to the
+    preview only; the SFX-only WAV and the FCPXML are unmastered. Returns measured stats."""
+    import json as _json
+    import subprocess
+    m = cfg["master"]
+    target = f"I={m['lufs']}:LRA={m['lra']}:TP={m['true_peak']}"
+    probe = subprocess.run(["ffmpeg", "-hide_banner", "-nostdin", "-i", str(in_wav), "-af",
+                            f"loudnorm={target}:print_format=json", "-f", "null", "-"], capture_output=True, text=True)
+    text = probe.stderr[probe.stderr.rfind("{"):]
+    first = _json.loads(text[: text.rfind("}") + 1])
+    chain = (f"loudnorm={target}:measured_I={first['input_i']}:measured_LRA={first['input_lra']}:"
+             f"measured_TP={first['input_tp']}:measured_thresh={first['input_thresh']}:offset={first['target_offset']}:"
+             f"linear=false,aresample=48000")
+    run = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-y", "-i", str(in_wav), "-af", chain,
+                          "-c:a", "pcm_s24le", str(out_wav)], capture_output=True, text=True)
+    if run.returncode != 0:
+        raise media.MediaError("mastering failed: " + run.stderr[-300:])
+    after = subprocess.run(["ffmpeg", "-hide_banner", "-nostdin", "-i", str(out_wav), "-af", "ebur128=peak=true",
+                            "-f", "null", "-"], capture_output=True, text=True).stderr
+    summary = after[after.rfind("Summary:"):]
+
+    def grab(key):
+        for line in summary.splitlines():
+            if line.strip().startswith(key + ":"):
+                return float(line.split(":")[1].split()[0])
+        return None
+    return {"input_lufs": float(first["input_i"]), "input_lra": float(first["input_lra"]),
+            "output_lufs": grab("I"), "output_lra": grab("LRA"), "output_true_peak_dbfs": grab("Peak"),
+            "target": target}

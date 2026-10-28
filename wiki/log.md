@@ -1607,3 +1607,6 @@ Hunter: the ambience doesn't sound good and the wind isn't wind. Day shots get b
 
 ## [2026-10-28] build | Auto Sound Design v7: real ambience, preview only
 Only GitHub, PyPI and npm are reachable. Pulled birds, crickets and wind from a GitHub "CC0" repo that bundles third-party audio, so they're preview-only and flagged by a new licence warning. Kollosche v7 sent. Delivery needs owned recordings. See [[auto-sound-design]].
+
+## [2026-10-28] build | Auto Sound Design v8: Desire matched by measurement
+Desire is -16.2 LUFS with LRA 5.4 and whooshes on 11% of cuts; Hunter's edit already has 19%. v8 counts his own whooshes in the budget and masters the preview to -16 LUFS / LRA 6.3. Sent. See [[auto-sound-design]].

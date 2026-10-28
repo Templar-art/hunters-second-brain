@@ -242,6 +242,9 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
     per_cat_cap = {cat: max(1, int(round(n * minutes))) for cat, n in limits["per_minute"].items()}
     total_cap = max(1, int(round(limits["total_per_minute"] * minutes)))
     whoosh_cap = max(1, int(len(cuts) * limits["max_whoosh_share_of_cuts"])) if cuts else 0
+    if limits.get("count_existing_whooshes") and existing:
+        # The edit's own whooshes use up the budget too: the film as a whole should stay sparse.
+        whoosh_cap = max(0, whoosh_cap - sum(1 for e in existing if e["kind"] == "whoosh"))
 
     chosen, skipped = [], []
     used_count = {}
@@ -270,7 +273,7 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
             reject(c, f"{cat} cap reached ({per_cat_cap.get(cat)} for this length)")
             continue
         if cat == "whoosh" and used_count.get(cat, 0) >= whoosh_cap:
-            reject(c, f"whoosh share cap ({whoosh_cap} of {len(cuts)} cuts)")
+            reject(c, f"whoosh share cap ({whoosh_cap} new of {len(cuts)} cuts, after the edit's own)")
             continue
         if cat in ONE_SHOT and sum(1 for p in chosen if p.category in ONE_SHOT) >= total_cap:
             reject(c, f"total density cap reached ({total_cap})")

@@ -41,7 +41,8 @@
     },
     "max_whoosh_share_of_cuts": 0.35,
     "max_overlap": 2,
-    "max_beds": 1
+    "max_beds": 1,
+    "count_existing_whooshes": false
   },
   "durations": {
     "whoosh": [
@@ -141,5 +142,11 @@
       "interior": -15
     },
     "peak_ceiling_dbfs": -8
+  },
+  "master": {
+    "enabled": false,
+    "lufs": -16,
+    "lra": 6,
+    "true_peak": -1.0
   }
 }

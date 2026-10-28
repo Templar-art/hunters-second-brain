@@ -1,5 +1,5 @@
 {
-  "_about": "Tasteful (v6, after Hunter: 'too much SFX, especially on interior shots'): whooshes only where the film changes zone (outside/inside/aerial) or the camera moves; nothing on static interior cuts; no interior ambience; quieter. Aerial wind bed off until a recorded wind exists (synthetic wind rejected 28 Oct).",
+  "_about": "Tasteful (v6, after Hunter: 'too much SFX, especially on interior shots'): whooshes only where the film changes zone (outside/inside/aerial) or the camera moves; nothing on static interior cuts; no interior ambience; quieter. Aerial wind bed off until a recorded wind exists (synthetic wind rejected 28 Oct). v8: whoosh share counts the edit's own whooshes (Desire ~11-15% of cuts); preview mastered like Desire (-16 LUFS, LRA 6).",
   "rules": {
     "min_score": 0.4,
     "whoosh_requires_sync": true,
@@ -25,8 +25,9 @@
       "low drone": 1,
       "ambience": 1
     },
-    "max_whoosh_share_of_cuts": 0.22,
-    "max_overlap": 2
+    "max_whoosh_share_of_cuts": 0.15,
+    "max_overlap": 2,
+    "count_existing_whooshes": true
   },
   "levels": {
     "relative_db": {
@@ -61,5 +62,11 @@
     "prefer_recorded": true,
     "peak_ceiling_dbfs": -4,
     "max_gain_db": 24
+  },
+  "master": {
+    "enabled": true,
+    "lufs": -16,
+    "lra": 6,
+    "true_peak": -1.0
   }
 }
