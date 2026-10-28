@@ -1,7 +1,7 @@
 ---
 type: reference
 tags: [post-production, color-grading, davinci-resolve, video]
-updated: 2026-07-19
+updated: 2026-10-28
 ---
 
 # Color Grading
@@ -46,3 +46,5 @@ Grading for video (and keeping stills consistent). Balance first, look last, sco
 
 ## Related
 [[video-edit-pipeline]] · [[video-camera-settings]] · [[photo-editing-pipeline]] · [[post-production]]
+
+FCP ↔ Resolve Studio grading round trip: [[fcp-resolve-workflow]].

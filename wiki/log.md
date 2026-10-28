@@ -1625,3 +1625,6 @@ The 42 s stumble was Hunter's own hand-shortening of the song. A bar-aligned "mu
 
 ## [2026-10-28] decision | Keep Hunter's grade; the Desire-match LUT reads as dark
 Hunter prefers his own grade on Kollosche Esther Pl. New rule: colour help keeps his brightness and only fixes consistency. See [[auto-sound-design]].
+
+## [2026-10-28] ingest | FCP → Resolve Studio grading workflow
+Hunter owns Resolve Studio; Desire grades in Resolve. Wrote [[fcp-resolve-workflow]]: a graded-master path (survives speed ramps and titles) and an XML round trip, project colour settings, a 10x node tree that keeps the brightness, and Studio tools. Draft until run once.

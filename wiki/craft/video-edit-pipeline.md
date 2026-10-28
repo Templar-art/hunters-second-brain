@@ -1,14 +1,14 @@
 ---
 type: reference
 tags: [post-production, video-editing, davinci-resolve, premiere, workflow]
-updated: 2026-10-21
+updated: 2026-10-28
 ---
 
 # Video Edit Pipeline
 
 Property / social video, ingest to delivery. Resolve or Premiere.
 
-**⚠️ contradicts current setup (2026-10-21):** Final Cut Pro 12.4 is the working NLE on the edit Mac; Resolve 21 is used for FCPXML grading round trips. FCP-specific tools and native features: [[fcp-plugin-research]].
+**⚠️ contradicts current setup (2026-10-21):** Final Cut Pro 12.4 is the working NLE on the edit Mac; Resolve 21 is used for FCPXML grading round trips. Hunter owns **Resolve Studio** (28 Oct). FCP-specific tools and native features: [[fcp-plugin-research]].
 
 ## 1. Ingest & organise
 - Offload + backup (3-2-1). Generate proxies for 4K/log for smooth cutting.
@@ -57,3 +57,5 @@ Property / social video, ingest to delivery. Resolve or Premiere.
 
 ## Related
 [[color-grading]] · [[reel-formats]] · [[music-taxonomy]] · [[post-production]]
+
+FCP ↔ Resolve Studio grading round trip: [[fcp-resolve-workflow]].
