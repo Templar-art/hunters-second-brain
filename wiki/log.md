@@ -1482,3 +1482,6 @@ Built 5 listing carousels: Cylinders, Solis, Pottsville townhouses (merged), Aus
 
 ## [2026-10-26] build | Every shot set → carousels (Drive pull)
 Inventoried 37 client folders on the Drive and pulled 47 finished shoots (12.4 GB) to `~/Documents/10x Drive Pulls/`. Built 21 REA decks (@10xrealestate_ posts 12 to 32) and 21 construction decks (14 queued as posts 04 to 17, 7 held). Ready to Post folders, captions, and planners are done for both pages. Web research fixed four address typos. Unverified handles and the holds are flagged in each READ ME. See [[10xrealestate-ig]].
+
+## [2026-10-28] build | Auto Sound Design MVP
+Built `projects/auto-sound-design/`, a local Python + FFmpeg tool. It takes a video and an owned SFX folder and makes a sparse heuristic SFX pass, delivered as a preview, an SFX-only WAV, FCPXML 1.10 (DTD-valid, not import-tested) and `edit_decisions.json`. 31 tests pass. Real run on the Davenport hero: 8 effects over 41 cuts, with peaks within half a frame. Real media changed four defaults: longer whoosh length, per-category peak caps, skipping `_` folders, and the hot-master warning. See [[auto-sound-design]].

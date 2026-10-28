@@ -1,0 +1,11 @@
+# media never goes in git — the vault backs up code + docs only
+input/*
+sfx/*
+output/*
+!input/.gitkeep
+!sfx/.gitkeep
+!output/.gitkeep
+.venv/
+__pycache__/
+*.pyc
+asd.local.json

@@ -1,0 +1,73 @@
+{
+  "seed": 10,
+  "analysis": {
+    "cut_threshold": 0.3,
+    "cut_min_score": 0.1,
+    "cut_prominence": 6.0,
+    "min_shot_s": 0.6,
+    "onset_sigma": 2.0,
+    "energy_window_s": 1.5,
+    "energy_rise_db": 5.0,
+    "energy_min_gap_s": 6.0,
+    "beat_confidence": 0.35
+  },
+  "rules": {
+    "min_score": 0.45,
+    "sync_tolerance_s": 0.12,
+    "snap_to_cut_s": 0.3,
+    "whoosh_requires_sync": true,
+    "energy_full_db": 12.0,
+    "riser_min_rise_db": 7.0,
+    "intro_bed": "ambience",
+    "intro_bed_max_s": 8.0,
+    "outro_shimmer": true,
+    "outro_window": 0.2
+  },
+  "limits": {
+    "min_spacing_s": 3.0,
+    "total_per_minute": 8,
+    "per_minute": {"whoosh": 4, "impact": 2, "riser": 1.5, "shimmer": 1, "low drone": 1, "ambience": 1},
+    "max_whoosh_share_of_cuts": 0.35,
+    "max_overlap": 2,
+    "max_beds": 1
+  },
+  "durations": {
+    "whoosh": [0.3, 6.5],
+    "riser": [1.5, 12.0],
+    "impact": [0.3, 8.0],
+    "shimmer": [0.4, 6.0],
+    "low drone": [4.0, 60.0],
+    "ambience": [4.0, 600.0]
+  },
+  "levels": {
+    "relative_db": {"whoosh": -8, "riser": -10, "impact": -6, "shimmer": -12, "low drone": -16, "ambience": -18},
+    "peak_ceiling_dbfs": {"whoosh": -9, "riser": -10, "impact": -6, "shimmer": -14, "low drone": -18, "ambience": -20},
+    "confidence_scale_db": 4.0,
+    "min_gain_db": -40.0,
+    "max_gain_db": 0.0
+  },
+  "fades": {
+    "whoosh": [0.005, 0.05],
+    "riser": [0.05, 0.05],
+    "impact": [0.002, 0.2],
+    "shimmer": [0.005, 0.3],
+    "low drone": [1.5, 2.0],
+    "ambience": [1.5, 2.0],
+    "trim_fade_out": 0.5
+  },
+  "mix": {
+    "ceiling_dbfs": -1.0,
+    "max_bus_trim_db": 3.0
+  },
+  "library": {
+    "skip_underscore_folders": true
+  },
+  "fcpxml": {
+    "write_fades": true,
+    "event_name": "Auto Sound Design"
+  },
+  "generation": {
+    "enabled": false,
+    "provider": "none"
+  }
+}

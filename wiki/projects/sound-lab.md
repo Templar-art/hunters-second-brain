@@ -2,7 +2,7 @@
 type: project
 tags: [audio, sfx, tools, editing]
 status: built-unproven
-updated: 2026-10-20
+updated: 2026-10-28
 ---
 
 # Sound Lab (local, 10x fork)
@@ -61,4 +61,4 @@ The motion engine's curated `projects/committed-coaching/sfx-lib/<kind>_N.wav` i
 
 Research prompts for better SFX sources and FCP plugins: [projects/fcp-plugin-research/perplexity-prompts.md](../../projects/fcp-plugin-research/perplexity-prompts.md) → [[fcp-plugin-research]].
 
-Related: [[sfx-library]] · [[fcp-plugin-research]] · [[motion-and-stills-tools]] · [[use-definitions-series]] · [[audio-for-video]]
+Related: [[auto-sound-design]] (automatic placement from cuts + music, Python CLI) · [[sfx-library]] · [[fcp-plugin-research]] · [[motion-and-stills-tools]] · [[use-definitions-series]] · [[audio-for-video]]
