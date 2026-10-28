@@ -1,5 +1,5 @@
 {
-  "_about": "Tasteful: whooshes only on cuts that land with the music, impacts only on real music lifts, quieter than default, short tails. No stacking. Whooshes favour motion (whip pans/fast moves), ~1 in 5 cuts, as in the Desire reference.",
+  "_about": "Tasteful (v6, after Hunter: 'too much SFX, especially on interior shots'): whooshes only where the film changes zone (outside/inside/aerial) or the camera moves; nothing on static interior cuts; no interior ambience; quieter.",
   "rules": {
     "min_score": 0.4,
     "whoosh_requires_sync": true,
@@ -10,7 +10,9 @@
       "impact": 2.5,
       "shimmer": 1.5
     },
-    "motion_whoosh_min": 0.5
+    "motion_whoosh_min": 0.5,
+    "whoosh_on_scene_changes_only": true,
+    "scene_change_weight": 0.2
   },
   "limits": {
     "min_spacing_s": 2.5,
@@ -28,7 +30,7 @@
   },
   "levels": {
     "relative_db": {
-      "whoosh": -11,
+      "whoosh": -13,
       "riser": -12,
       "impact": -8,
       "shimmer": -14,
@@ -36,7 +38,7 @@
       "ambience": -20
     },
     "peak_ceiling_dbfs": {
-      "whoosh": -12,
+      "whoosh": -14,
       "riser": -12,
       "impact": -8,
       "shimmer": -16,
@@ -46,5 +48,15 @@
   },
   "fades": {
     "trim_fade_out": 0.35
+  },
+  "scenes": {
+    "skip_tags": [
+      "interior"
+    ],
+    "relative_db": {
+      "outdoor": -15,
+      "aerial": -14,
+      "dusk": -15
+    }
   }
 }

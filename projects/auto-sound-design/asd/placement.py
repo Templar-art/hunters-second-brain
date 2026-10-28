@@ -118,9 +118,18 @@ def candidates(cuts, music, duration, cfg, scenes=None):
             continue
         if rules["whoosh_requires_sync"] and not (onset or beat) and not moving:
             continue
+        change = scenes.zone_change(c.time) if scenes else None
+        if scenes and rules.get("whoosh_on_scene_changes_only"):
+            # Back the flow, not every cut: only where the film moves somewhere new, or the camera moves.
+            if not change and not moving:
+                continue
+        if change:
+            why.append(f"scene change {change[0]} -> {change[1]}")
         # Capped below an impact's floor so a musical hit outranks a whoosh on the same cut;
         # motion lifts it, since a whoosh sells movement more than it sells a static cut.
         score = min(0.85, 0.4 * c.score + 0.4 * sync + rules.get("motion_weight", 0.35) * c.motion)
+        if change:
+            score = min(0.85, score + rules.get("scene_change_weight", 0.2))
         if rules.get("impact_on_synced_cuts") and sync >= rules.get("impact_sync_min", 0.7):
             # Dense mode: a cut that lands hard on a music hit can take a small impact instead of a whoosh.
             out.append(Candidate(c.time, "impact", 0.35 + 0.3 * sync,
@@ -353,7 +362,7 @@ def scene_beds(scenes, music, library, cfg, duration, fd, skipped):
     xfade = sc.get("crossfade_s", 0.6)
     beds = []
     for n, seg in enumerate(scenes.merged()):
-        if not seg.tag:
+        if not seg.tag or seg.tag in sc.get("skip_tags", []):
             continue
         pool = [s for s in library["sounds"] if "ambience" in s["categories"] and seg.tag in s["tags"]]
         if not pool:

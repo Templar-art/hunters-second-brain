@@ -1598,3 +1598,6 @@ Hunter liked the tasteful pass and wants scene-specific SFX plus audible ambienc
 
 ## [2026-10-28] ingest | Desire Media "The Pilot" reference
 Broke down Desire's Kollosche film (65 shots, 16 transition strips, per-cut audio signatures) into [[desire-the-pilot-reference]]: whooshes on about 1 in 5 cuts, on motion; 2–5 big hits; whip, pillar-wipe and lights-on transitions; lifestyle talent. The tool gained `existing_sfx` (it found 6 effects already in Hunter's Esther Pl edit) and `cut_motion`, and the tasteful preset was retuned. See [[auto-sound-design]].
+
+## [2026-10-28] build | Auto Sound Design v6 after "sounds so bad"
+v5 was rejected as too much, especially on interiors. v6 places whooshes only on zone changes (outside/inside/aerial) or camera motion, drops interior ambience and runs quieter: 8 one-shots in 87 s. Hunter flagged that Desire's talent is AI, a possible AI-lifestyle-talent thread. See [[auto-sound-design]].

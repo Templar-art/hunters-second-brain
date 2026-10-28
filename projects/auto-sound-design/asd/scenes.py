@@ -60,6 +60,17 @@ class SceneMap:
         acc = [{**a, "time": a["time"] - start} for a in self.accents if start <= a["time"] < start + length]
         return SceneMap(self.source, segs, acc)
 
+    def label_at(self, t):
+        return next((s.label for s in self.segments if s.start <= t < s.end), None)
+
+    def zone_change(self, t, eps=0.15):
+        """('outside', 'inside') style pair if the cut at t moves between zones, else None.
+        Zones: outside (exterior/balcony/dusk), inside (interior/bathroom), aerial."""
+        zone = {"exterior": "outside", "balcony": "outside", "dusk": "outside", "interior": "inside",
+                "bathroom": "inside", "aerial": "aerial", "presenter": "presenter", "endcard": "endcard"}
+        a, b = zone.get(self.label_at(t - eps)), zone.get(self.label_at(t + eps))
+        return (a, b) if a and b and a != b else None
+
     def quiet_at(self, t):
         return any(s.quiet and s.start <= t < s.end for s in self.segments)
 
