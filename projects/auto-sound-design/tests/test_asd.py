@@ -366,10 +366,30 @@ class EndToEnd(unittest.TestCase):
         self.assertLess(np.abs(bus[~mask]).max() if (~mask).any() else 0, 1e-3)
         self.assertGreater(np.abs(bus[mask]).max(), 1e-3)
 
+    def test_relink_after_moving_run_folder(self):
+        moved = Path(self.tmp.name) / "Moved Run"
+        shutil.copytree(self.run_dir, moved)
+        self.assertEqual(sounddesign.main(["relink", str(moved), "--video", str(self.video)]), 0)
+        xml = next(moved.glob("*_relinked.fcpxml")).read_text()
+        self.assertIn(fcpxml.file_url(moved / "sfx_used"), xml)
+        self.assertNotIn(fcpxml.file_url(self.run_dir), xml)
+
+    def test_section_with_start(self):
+        code = sounddesign.main(["process", str(self.video), "--sfx", str(self.sfx), "--out", str(self.out),
+                                 "--start", "5.2", "--test-seconds", "8"])
+        self.assertEqual(code, 0)
+        run = sorted(self.out.glob("Test House (v2)_test_*-*s_*"))[-1]
+        edl = json.loads((run / "edit_decisions.json").read_text())
+        self.assertLessEqual(edl["window"]["start_s"], 5.2)  # moved back to a keyframe
+        cut_times = [round(c["time"] + edl["window"]["start_s"], 2) for c in edl["analysis"]["cuts"]]
+        self.assertIn(6.0, cut_times)  # the fixture's 6.0 s cut, found inside the section
+        ok, msg = fcpxml.validate(edl["outputs"]["fcpxml"], DTD)
+        self.assertTrue(ok, msg)
+
     def test_short_test_mode(self):
         code = sounddesign.main(["process", str(self.video), "--sfx", str(self.sfx), "--out", str(self.out), "--test-seconds", "8"])
         self.assertEqual(code, 0)
-        run = sorted(self.out.glob("Test House (v2)_test8s_*"))[-1]
+        run = sorted(self.out.glob("Test House (v2)_test_0.0-8.0s_*"))[-1]
         edl = json.loads((run / "edit_decisions.json").read_text())
         for e in edl["effects"]:
             self.assertLessEqual(e["end_s"], 8.0 + 1e-6)

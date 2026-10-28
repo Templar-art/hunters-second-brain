@@ -33,10 +33,11 @@ It runs entirely on your Mac. Nothing is uploaded, nothing is bought and nothing
 
 ## Process a video: the one command
 
-Run a short test first. This processes only the first 20 seconds and takes a few seconds:
+Run a short test section first and review it. For example, 27 seconds starting at 16.7 s:
 ```
-./run.sh "/path/to/My Listing Video.mp4" --test-seconds 20
+./run.sh "/path/to/My Listing Video.mp4" --start 16.7 --test-seconds 27
 ```
+The section starts on the nearest keyframe at or before `--start`, so the picture is copied untouched. The main output is a **playable video with the finished mix**, named `…_SOUND-MIX.mp4`.
 Then run the whole video:
 ```
 ./run.sh "/path/to/My Listing Video.mp4"
@@ -67,7 +68,22 @@ The XML is **FCPXML 1.10**, the version on Apple's developer documentation page,
 
 If the XML won't import, the **effects-only WAV** still works: drag it under the edit at 0:00.
 
-Moving or renaming the video or SFX files after a run breaks the XML links, because it uses absolute paths.
+Each run folder includes `sfx_used/`, a copy of every effect the XML uses, so the folder can be moved as a whole. After moving it (for example from a cloud session to the Mac), relink it:
+```
+.venv/bin/python sounddesign.py relink "output/<run folder>" --video "/path/to/the video on this Mac.mp4"
+```
+That writes `…_relinked.fcpxml` pointing at the new locations. Import that one.
+
+## Tested where
+
+| | Cloud session (Linux) | Needs the Mac |
+|---|---|---|
+| Cut and music analysis, placement, mixing | ✅ tested (33 tests + real 10x videos) | – |
+| Playable mixed video, picture untouched | ✅ frame-by-frame identical to the source | play it in QuickTime |
+| FCPXML validity | ✅ against Apple's 1.10 DTD | ❌ **actual Final Cut import untested** |
+| `relink` to Mac paths | ✅ logic tested | run it on the Mac |
+| `setup.sh` (Homebrew, venv) | ❌ written for macOS, not run | run once |
+| Full Ocular library (1,547 sounds) | ❌ not in the cloud | first index is slow, then cached |
 
 ## How placement works (defaults in `config.default.json`)
 
@@ -90,4 +106,4 @@ When a category has no files, the report says so. Nothing is downloaded or gener
 ```
 .venv/bin/python -m unittest discover -s tests -v
 ```
-31 tests cover rational frame timing (including 29.97 drop-frame), effect bounds, overlap and spacing rules, reproducibility, missing files and folders, manifest tagging, DTD validation, the clipping check, and a full end-to-end run on generated media with known cuts.
+33 tests cover rational frame timing (including 29.97 drop-frame), effect bounds, overlap and spacing rules, reproducibility, missing files and folders, manifest tagging, DTD validation, the clipping check, and a full end-to-end run on generated media with known cuts.

@@ -149,9 +149,13 @@ def decode_audio(path, rate=48000, channels=2, start=None, duration=None):
     return np.frombuffer(raw, dtype="<f4").reshape(-1, channels).copy()
 
 
-def scene_scores(path, duration=None, width=256):
-    """Per-frame scene-change score (0..1) from FFmpeg's select filter, on a downscaled copy."""
-    cmd = ["ffmpeg", "-v", "error", "-nostdin", "-i", str(path)]
+def scene_scores(path, duration=None, width=256, start=None):
+    """Per-frame scene-change score (0..1) from FFmpeg's select filter, on a downscaled copy.
+    Times are relative to `start` when one is given."""
+    cmd = ["ffmpeg", "-v", "error", "-nostdin"]
+    if start:
+        cmd += ["-ss", f"{start:.6f}"]
+    cmd += ["-i", str(path)]
     if duration is not None:
         cmd += ["-t", f"{duration:.6f}"]
     cmd += [
@@ -188,9 +192,20 @@ def write_wav(path, samples, rate=48000):
         raise MediaError("ffmpeg WAV write failed: " + proc.stderr.decode("utf-8", "replace")[-400:])
 
 
-def mux_preview(video_path, audio_wav, out_path, duration=None):
-    """Copy the picture untouched and lay the preview mix underneath as AAC."""
-    cmd = ["ffmpeg", "-v", "error", "-nostdin", "-y", "-i", str(video_path), "-i", str(audio_wav)]
+def keyframes(path):
+    """Keyframe times (seconds) of the first video stream."""
+    out = _run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-skip_frame", "nokey",
+                "-show_entries", "frame=pts_time", "-of", "csv=p=0", str(path)])
+    return [float(x.strip(",")) for x in out.split() if x.strip(",")]
+
+
+def mux_preview(video_path, audio_wav, out_path, duration=None, start=None):
+    """Copy the picture untouched and lay the preview mix underneath as AAC.
+    `start` must be a keyframe so the stream copy begins exactly there."""
+    cmd = ["ffmpeg", "-v", "error", "-nostdin", "-y"]
+    if start:
+        cmd += ["-ss", f"{start:.6f}"]
+    cmd += ["-i", str(video_path), "-i", str(audio_wav)]
     if duration is not None:
         cmd += ["-t", f"{duration:.6f}"]
     cmd += ["-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "320k", "-shortest", str(out_path)]

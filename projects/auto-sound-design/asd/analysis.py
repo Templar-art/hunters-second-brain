@@ -46,10 +46,10 @@ class MusicAnalysis:
         return float(10 * np.log10(power + 1e-12))
 
 
-def detect_cuts(video, cfg, limit=None):
+def detect_cuts(video, cfg, limit=None, start=None):
     """Hard cuts from FFmpeg scene scores, kept only where they're a local peak above threshold.
     Dissolves and slow fades score low and are mostly missed; that's a known limit."""
-    times, scores = media.scene_scores(video.path, duration=limit)
+    times, scores = media.scene_scores(video.path, duration=limit, start=start)
     if len(scores) == 0:
         return []
     threshold = cfg["cut_threshold"]
@@ -133,9 +133,9 @@ def estimate_tempo(onset_env, hop_s):
     return float(60 / (refined * hop_s)), confidence, int(best)
 
 
-def analyse_music(path, cfg, limit=None, label=""):
+def analyse_music(path, cfg, limit=None, label="", start=None):
     try:
-        samples = media.decode_audio(path, rate=SR, channels=1, duration=limit)[:, 0]
+        samples = media.decode_audio(path, rate=SR, channels=1, start=start, duration=limit)[:, 0]
     except media.MediaError:
         return MusicAnalysis(available=False, source=label)
     if len(samples) < SR:

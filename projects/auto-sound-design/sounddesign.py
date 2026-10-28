@@ -110,25 +110,38 @@ def cmd_process(args):
     if music_path and not music_path.is_file():
         raise media.MediaError(f"Music file not found: {music_path}")
     limit = args.test_seconds
-    if limit:
-        cfg["_analysis_limit"] = limit
-        if limit < video.duration:
-            cfg["rules"]["outro_shimmer"] = False  # the test excerpt's last cut isn't the film's ending
     fd = video.frame_duration
     full = Fraction(video.frame_count) * fd
-    seq_dur = min(full, placement.snap(limit, fd, "floor")) if limit else full
+    # A test section starts on a keyframe so the picture can be stream-copied, untouched.
+    start = Fraction(0)
+    if args.start:
+        if args.start >= float(full):
+            raise media.MediaError(f"--start {args.start}s is past the end of the video ({float(full):.2f}s)")
+        before = [k for k in media.keyframes(video.path) if k <= args.start + 1e-6]
+        start = placement.snap(before[-1] if before else 0.0, fd)
+    remaining = full - start
+    seq_dur = min(remaining, placement.snap(limit, fd, "floor")) if limit else remaining
     seconds = float(seq_dur)
+    start_s = float(start)
+    partial = start > 0 or seq_dur < full
+    if partial:
+        cfg["_analysis_limit"] = seconds
+        if start + seq_dur < full:
+            cfg["rules"]["outro_shimmer"] = False  # the section's last cut isn't the film's ending
+        if start > 0:
+            cfg["rules"]["intro_bed"] = None  # nor is its first second the film's opening
 
     stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
-    tag = f"_test{int(limit)}s" if limit else ""
+    tag = f"_test_{start_s:.1f}-{start_s + seconds:.1f}s" if partial else ""
     out_dir = Path(args.out).expanduser() / f"{video_path.stem}{tag}_{stamp}"
     out_dir.mkdir(parents=True, exist_ok=False)
     print(f"Video: {video.path.name}  {video.width}x{video.height}  {float(video.fps):.3f} fps ({video.fps})  "
           f"{video.duration:.2f}s  {video.frame_count} frames  tc {video.timecode or 'none'}")
     if flags["variable_frame_rate"]:
         print("  ! variable frame rate source: timing uses the nominal rate; check sync in FCP.")
-    if limit:
-        print(f"  Short test: first {seconds:.2f}s only")
+    if partial:
+        print(f"  Test section: {start_s:.3f}s to {start_s + seconds:.3f}s ({seconds:.2f}s)"
+              + (f"; start moved back to the keyframe at {start_s:.3f}s" if args.start and abs(start_s - args.start) > 1e-3 else ""))
 
     print("Indexing sound effects ...")
     man = library.build_manifest(args.sfx, cache_path=manifest_cache(args.sfx), log=lambda m: print(m),
@@ -138,13 +151,14 @@ def cmd_process(args):
         raise media.MediaError(f"No audio files found in {args.sfx}")
 
     print("Finding cuts ...")
-    cuts = [c for c in analysis.detect_cuts(video, cfg["analysis"], limit=limit) if c.time < seconds]
+    cuts = [c for c in analysis.detect_cuts(video, cfg["analysis"], limit=seconds, start=start_s) if c.time < seconds]
     print(f"  {len(cuts)} cuts")
     print("Analysing music ...")
     if music_path:
-        music = analysis.analyse_music(music_path, cfg["analysis"], limit=limit, label=f"separate music file: {music_path.name}")
+        music = analysis.analyse_music(music_path, cfg["analysis"], limit=seconds, start=start_s,
+                                       label=f"separate music file: {music_path.name}")
     elif video.has_audio:
-        music = analysis.analyse_music(video.path, cfg["analysis"], limit=limit, label="video's own audio track")
+        music = analysis.analyse_music(video.path, cfg["analysis"], limit=seconds, start=start_s, label="video's own audio track")
     else:
         music = analysis.MusicAnalysis(available=False, source="no audio")
     print(f"  {music.source}: {len(music.onsets)} onsets, {len(music.energy_rises)} energy rises, "
@@ -156,7 +170,7 @@ def cmd_process(args):
 
     print("Rendering effects bus ...")
     clips = mix.render_clips(placements)
-    source = media.decode_audio(video.path, rate=mix.RATE, channels=2, duration=seconds) if video.has_audio else None
+    source = media.decode_audio(video.path, rate=mix.RATE, channels=2, start=start_s, duration=seconds) if video.has_audio else None
     bus, preview_gain, mix_report = mix.balance(placements, clips, seconds, source, cfg)
     sfx_wav = out_dir / f"{video_path.stem}_sfx_only.wav"
     media.write_wav(sfx_wav, bus)
@@ -168,17 +182,27 @@ def cmd_process(args):
     preview_wav = out_dir / ".preview_mix.wav"
     media.write_wav(preview_wav, preview_audio)
     ext = video_path.suffix.lower() if video_path.suffix.lower() in (".mov", ".mp4", ".m4v") else ".mov"
-    preview = out_dir / f"{video_path.stem}_sfx_preview{ext}"
-    media.mux_preview(video.path, preview_wav, preview, duration=seconds)
+    preview = out_dir / f"{video_path.stem}{tag}_SOUND-MIX{ext}"
+    media.mux_preview(video.path, preview_wav, preview, duration=seconds, start=start_s)
     preview_wav.unlink()
 
     xml_status = "skipped (--no-xml)"
     xml_path = None
     if not args.no_xml:
         sources = {s["path"]: s for s in man["sounds"]}
-        project_name = f"{video_path.stem} - SFX pass {stamp}"
+        # Copies of the effects used travel with the run folder, so the XML can be relinked on another machine.
+        used_dir = out_dir / "sfx_used"
+        used_dir.mkdir()
+        copies = {}
+        for p in placements:
+            if p.source not in copies:
+                name = f"{len(copies) + 1:02d}_{Path(p.source).name}"
+                shutil.copy2(p.source, used_dir / name)
+                copies[p.source] = str(used_dir / name)
+        project_name = f"{video_path.stem}{tag} - SFX pass {stamp}"
         xml = fcpxml.build(video, placements, sources, seq_dur, project_name, cfg["fcpxml"]["event_name"],
-                           write_fades=cfg["fcpxml"]["write_fades"])
+                           write_fades=cfg["fcpxml"]["write_fades"], window_start=start,
+                           media_path=lambda path: copies.get(path, path))
         xml_path = out_dir / f"{video_path.stem}_sfx.fcpxml"
         xml_path.write_text(xml, encoding="utf-8")
         ok, msg = fcpxml.validate(xml_path, DTD)
@@ -192,6 +216,8 @@ def cmd_process(args):
                   "duration_s": video.duration, "frames": video.frame_count, "width": video.width, "height": video.height,
                   "timecode": video.timecode, "has_audio": video.has_audio, **flags},
         "processed_seconds": seconds,
+        "window": {"start_s": start_s, "end_s": round(start_s + seconds, 6),
+                   "note": "effect times are relative to the start of this section; video_time_s is the time in the full video"},
         "test_seconds": limit,
         "music_source": music.source,
         "sfx_library": man["root"],
@@ -203,7 +229,7 @@ def cmd_process(args):
                      "energy_rises": [{"time": round(a, 3), "rise_db": round(b, 2)} for a, b in music.energy_rises],
                      "tempo_bpm": music.tempo_bpm, "tempo_confidence": music.tempo_confidence,
                      "beats_used": music.beats_reliable, "onset_count": len(music.onsets)},
-        "effects": [p.to_json() for p in placements],
+        "effects": [{**p.to_json(), "video_time_s": round(start_s + p.event_time, 4)} for p in placements],
         "skipped_candidates": skipped,
         "missing_categories": sorted(set(missing) | set(man["missing_categories"])),
         "mix": mix_report,
@@ -223,10 +249,46 @@ def cmd_process(args):
     return 0
 
 
+def cmd_relink(args):
+    """Point a run folder's FCPXML at where its files live now (e.g. after copying it to the Mac)."""
+    import re
+    from urllib.parse import unquote
+    run = Path(args.run_dir).expanduser().resolve()
+    xmls = sorted(p for p in run.glob("*.fcpxml") if not p.stem.endswith("_relinked"))
+    if not xmls:
+        raise media.MediaError(f"No .fcpxml in {run}")
+    video = Path(args.video).expanduser().resolve()
+    if not video.is_file():
+        raise media.MediaError(f"Video not found: {video}")
+    used = run / "sfx_used"
+    text = xmls[0].read_text(encoding="utf-8")
+    missing = []
+
+    def swap(match):
+        old = unquote(match.group(1))
+        name = Path(old).name
+        if (used / name).is_file():
+            return f'src="{fcpxml.file_url(used / name)}"'
+        if Path(old).parent.name == "sfx_used":
+            missing.append(name)
+            return match.group(0)
+        return f'src="{fcpxml.file_url(video)}"'
+
+    out = re.sub(r'src="file://([^"]+)"', swap, text)
+    if missing:
+        raise media.MediaError(f"sfx_used is missing: {', '.join(missing)}")
+    target = xmls[0].with_name(xmls[0].stem + "_relinked.fcpxml")
+    target.write_text(out, encoding="utf-8")
+    ok, msg = fcpxml.validate(target, DTD)
+    print(f"Wrote {target}\n  {('DTD-valid; ' if ok else 'DTD INVALID; ') + msg}")
+    return 0 if ok else 1
+
+
 def report(edl):
     lines = [f"# Sound-design pass: {Path(edl['video']['path']).name}", "",
              f"Created {edl['created']} · seed {edl['seed']} · {edl['processed_seconds']:.2f}s processed"
-             + (f" (short test of {edl['test_seconds']}s)" if edl["test_seconds"] else ""), "",
+             + (f" (test section {edl['window']['start_s']:.2f}s to {edl['window']['end_s']:.2f}s of the full video;"
+                " times below are within the section)" if edl["window"]["start_s"] or edl["test_seconds"] else ""), "",
              f"> {edl['honesty']}", "", "## Effects", "",
              "| # | time | category | file | level | confidence | why |", "|---|---|---|---|---|---|---|"]
     for e in edl["effects"]:
@@ -269,11 +331,15 @@ def main(argv=None):
     p.add_argument("--out", default=str(HERE / "output"))
     p.add_argument("--config")
     p.add_argument("--seed", type=int)
-    p.add_argument("--test-seconds", type=float, help="only process the first N seconds (quick check)")
+    p.add_argument("--test-seconds", type=float, help="only process N seconds (quick check)")
+    p.add_argument("--start", type=float, help="start the test section here (moved back to the nearest keyframe)")
     p.add_argument("--no-xml", action="store_true")
+    r = sub.add_parser("relink", help="re-point a run folder's FCPXML at this machine's paths")
+    r.add_argument("run_dir")
+    r.add_argument("--video", required=True, help="where the source video is on this machine")
     args = parser.parse_args(argv)
     try:
-        return {"check": cmd_check, "manifest": cmd_manifest, "process": cmd_process}[args.command](args)
+        return {"check": cmd_check, "manifest": cmd_manifest, "process": cmd_process, "relink": cmd_relink}[args.command](args)
     except media.MediaError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2

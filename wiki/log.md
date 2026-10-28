@@ -1583,3 +1583,6 @@ Hunter corrected the navy-K version: the pin head should be the navy boxed K bad
 
 ## [2026-10-28] build | Auto Sound Design MVP
 Built `projects/auto-sound-design/`, a local Python + FFmpeg tool. It takes a video and an owned SFX folder and makes a sparse heuristic SFX pass, delivered as a preview, an SFX-only WAV, FCPXML 1.10 (DTD-valid, not import-tested) and `edit_decisions.json`. 31 tests pass. Real run on the Davenport hero: 8 effects over 41 cuts, with peaks within half a frame. Real media changed four defaults: longer whoosh length, per-category peak caps, skipping `_` folders, and the hot-master warning. See [[auto-sound-design]].
+
+## [2026-10-28] build | Auto Sound Design: test sections + Kollosche Esther Pl test
+Added `--start` keyframe-exact test sections (frames byte-identical), `…_SOUND-MIX.mp4` as the main output, `sfx_used/` copies and `relink` for the Mac. The Kollosche Main.mp4 section 16.7–43.8 s got 4 effects and was sent to Hunter for review. The YouTube style reference is blocked by the network policy. 33 tests pass. See [[auto-sound-design]].

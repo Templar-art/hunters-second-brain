@@ -40,10 +40,12 @@ def format_name(video):
     return None
 
 
-def build(video, placements, sources, sequence_duration, project_name, event_name, write_fades=True):
+def build(video, placements, sources, sequence_duration, project_name, event_name, write_fades=True,
+          window_start=Fraction(0), media_path=lambda path: path):
     """sources: {path: {duration, channels, sample_rate}} for every effect file used."""
     fd = video.frame_duration
-    start = video.start_tc
+    # The project starts at window_start inside the source clip (0 for a full run).
+    start = video.start_tc + window_start
     fmt_name = format_name(video)
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', "<!DOCTYPE fcpxml>", f'<fcpxml version="{VERSION}">', "  <resources>"]
     name_attr = f" name={quoteattr(fmt_name)}" if fmt_name else ""
@@ -51,7 +53,7 @@ def build(video, placements, sources, sequence_duration, project_name, event_nam
     video_dur = Fraction(video.frame_count) * fd
     audio_attrs = (f' hasAudio="1" audioSources="1" audioChannels="{video.audio_channels}" audioRate="{video.audio_rate}"'
                    if video.has_audio else "")
-    lines.append(f'    <asset id="r2" name={quoteattr(video.path.stem)} start="{t(start)}" duration="{t(video_dur)}" '
+    lines.append(f'    <asset id="r2" name={quoteattr(video.path.stem)} start="{t(video.start_tc)}" duration="{t(video_dur)}" '
                  f'hasVideo="1" format="r1"{audio_attrs}>')
     lines.append(f'      <media-rep kind="original-media" src={quoteattr(file_url(video.path))}/>')
     lines.append("    </asset>")
@@ -66,7 +68,7 @@ def build(video, placements, sources, sequence_duration, project_name, event_nam
         dur = (Fraction(info["duration"]) / fd).__floor__() * fd
         lines.append(f'    <asset id="{rid}" name={quoteattr(Path(p.source).stem)} start="0s" duration="{t(dur)}" '
                      f'hasAudio="1" audioSources="1" audioChannels="{info["channels"]}" audioRate="{info["sample_rate"]}">')
-        lines.append(f'      <media-rep kind="original-media" src={quoteattr(file_url(p.source))}/>')
+        lines.append(f'      <media-rep kind="original-media" src={quoteattr(file_url(media_path(p.source)))}/>')
         lines.append("    </asset>")
     lines.append("  </resources>")
 
