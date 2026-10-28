@@ -1483,5 +1483,103 @@ Built 5 listing carousels: Cylinders, Solis, Pottsville townhouses (merged), Aus
 ## [2026-10-26] build | Every shot set → carousels (Drive pull)
 Inventoried 37 client folders on the Drive and pulled 47 finished shoots (12.4 GB) to `~/Documents/10x Drive Pulls/`. Built 21 REA decks (@10xrealestate_ posts 12 to 32) and 21 construction decks (14 queued as posts 04 to 17, 7 held). Ready to Post folders, captions, and planners are done for both pages. Web research fixed four address typos. Unverified handles and the holds are flagged in each READ ME. See [[10xrealestate-ig]].
 
+## [2026-10-27] ingest | Kollosche day-to-night intake (Villas on Esther)
+4 clips (4K, 1.5–3.5 s) triaged; Seedance video_modify prompts written to projects/kollosche-day-to-night/prompts.md. Nothing spent.
+
+## [2026-10-27] ingest | Kollosche K pin + logo/super specs
+Built a K location pin for 9:16 wide drone shots (`projects/kollosche-pin/`, PNG + ProRes 4444 alpha, $0). Measured the 16:9 logo and address super specs into [[kollosche-video-guidelines]]. The pack's `svg_Kollosche…` files turned out to be Kara Christensen team logos; they were refiled, and clean wordmark PNGs were extracted.
+
+## [2026-10-27] ingest | Kollosche townhouse drone graphics
+Made a tracked white lot outline on the top-down Main.mp4 and a roof-locked K pin on the wide View.mp4, both local and $0. The plate-vfx drone fit failed on Main (fast spin and motion blur in the first frames). Chained SIFT homographies from the sharp last frame worked instead, which is the right model for a straight-down shot. In review with Hunter. Job: projects/kollosche-drone-graphics/JOB.md.
+
+## [2026-10-27] harvest | Kollosche townhouse drone graphics delivered
+Hunter approved the tracked lot outline and the roof-locked K pin. Status set to delivered in JOB.md and [[kollosche]]. Lesson: for straight-down shots that open on a blurred spin, chain homographies back from the sharpest frame instead of running the drone fit. No spend.
+
+## [2026-10-27] ingest | Kollosche outro generator + Eddie Wardale outro
+Built `projects/kollosche-outro/make_outro.py`, which copies Kollosche's own end card (HarfBuzz kerning; the --check re-render matches within 0.2 % of pixels). Rendered Eddie Wardale's outro in 16:9 + 9:16 for the townhouse job. Flagged that Taylor Kleinberg's number differs between the end-card files and the guidelines. No spend.
+
+## [2026-10-27] query | Kollosche reel opening
+Recent Kollosche reels open on the K only, with no address super. This contradicts the 2024 guideline PDF and is flagged in [[kollosche-video-guidelines]]. Default for reels is now K only.
+
+## [2026-10-27] ingest | Drone photo pinning tool
+Built `projects/drone-pin/`, which auto-places the K pin and the surveyed lot outline on DJI stills using drone XMP data and the QLD cadastre, with a browser review page and render step. Tested on 7 Somerset Dr photos. Found that DJI GimbalYawDegree is 39–55° off, so the tool uses FlightYawDegree. Page: [[drone-photo-pin]]. No spend.
+
+## [2026-10-27] harvest | Esther Pl drone stills delivered, plus drone-pin tool v2
+Delivered the Kollosche 5 Esther Place drone stills (6 photos, Print and Web, with pin and outline) at $0. The tool gained hand-edit tools (draw outline, razor, lasso and behind brush with eraser, zoom), export panel, ZED blackout with Bright lasso, and `Drone Pin.app`. Rules learned:
+- Kollosche pins the prints and doesn't want top-downs.
+- ZED blacks out everything outside the house.
+- The app's preview pane blocks `confirm()`.
+- Lightroom's EXIF thumbnail fools Finder into showing the clean photo.
+
+Next is Coastal. Page: [[drone-photo-pin]].
+
+
+## [2026-10-27] ingest | SFX lifted from a reference reel via Demucs
+Demucs is installed locally (free). It split the snapgram reel and 32 candidate hits were cut at the scene cuts into SFX Library/_Incoming. Method and caveats are on [[sfx-library]]. No spend.
+
+## [2026-10-27] ingest | Drone Run browser game
+Three.js drone game with a Blender-built DJI-style drone and house variants, 0cr. Page: [[drone-run]].
+
+## [2026-10-27] ingest | Street Racer browser game
+A 3-lap racer against AI cars, with a Blender-built car and reused houses, 0cr. Page: [[street-racer]].
+
+## [2026-10-27] ingest | Street Racer v2 Night GP
+Night stadium, real Huracán x6, drift and smoke, the Huracán recordings as engine audio, bloom. 0cr. Page: [[street-racer]].
+
+## [2026-10-27] ingest | Street Racer v3 Garage
+A Forza-style garage with 14 real cars (new-gen BMW M included) baked by a headless Blender pipeline. Paint, finish, wheels, tune, smoke and underglow, a handling rewrite, the folded-track map fix, exhaust spit flames and a drift scoring mode. 0cr. Page: [[street-racer]].
+
+## [2026-10-27] ingest | Street Racer v4 F1 circuit
+A harder F1 layout with hills, crests and jumps, a forest, tyre walls and hills around it. Compressed GLBs, fixed wheel pivots and backwards cars, removed the start-line bar, softer steering. 0cr. Page: [[street-racer]].
+
+## [2026-10-28] ingest | Street Racer v5 pits and strategy
+A working pit lane, tyre wear and fuel, 5-lap races, AI with braking-distance planning, a racing line, overtakes and its own pit stops, plus a realism pass (racing line, skyline, contact shadows). 0cr. Page: [[street-racer]].
+
+## [2026-10-28] update | Street Racer v6: spinning wheels on all cars, paint/light pass
+
+## [2026-10-28] update | Street Racer v7: 3 maps, story mode, per-car engine synth, harder AI, R34/AE86/M3 fixes
+
+## [2026-10-28] build | Drone pin: client style profiles + auto-align attempts
+Per-client style profiles (clients/*.json, 10 clients from a Drive/SSD research sweep), client and address read from the "Client | Address" folder name, agent overrides, ZED's B&W surround, plus ring/disc/mark pins with a line dot. Kollosche output is pixel-identical. Four auto-align methods were tested; none beat a hand drag. See [[drone-photo-pin]].
+
+## [2026-10-28] query | Floor plans as delivered, per client
+Pulled one finished plan per client from the Clients Drive (YPA, RE/MAX, The Agency, Belle, Place, Ray White, Coastline, ZED, Harcourts). Found two template generations, per-client logo and agent blocks, and errors that shipped. See [[floor-plan-house-style]]; contact sheet in projects/floorplan-app/refs.
+
+## [2026-10-28] decision | Floor plans: the Oct 2026 template is the 10x standard
+Hunter picked Gen B (aerial site plan, m units, title-case area strip) as the standard for the in-house floor-plan app. See [[floor-plan-house-style]].
+
+## [2026-10-28] build | Floor-plan app milestone 1 + 8 CubiCasa sources
+Pulled 8 CubiCasa exports from the CubiCasa web account into raw/floorplans/cubicasa, plus 3 supplier finals. Built fp.py + review UI: untrusted-SVG sanitiser, house-style label proposals with human sign-off, areas from CubiCasa text, geometry-unchanged check. Found the supplier area method is inconsistent (walls/garage added on some jobs). See [[floorplan-app]].
+
+## [2026-10-28] project | Floor-plan app milestone 2: 10x A4 page
+render.py skins the CubiCasa SVG (true-scale textures, charcoal walls, Poppins labels) and builds the full A4 page with PDF/PNG export; multi-storey plans laid out side by side at one scale. Geometry check passes on all 8 jobs. Open: area rule, north, client logos. See [[floorplan-app]].
+
+## [2026-10-28] ingest | Katrina Walsh (Coastal) profile, video formula and song shortlist
+Hunter confirmed that "Coast" means COASTAL° (coastal.com.au) and that it is a different agency from Coastline Prestige. Pulled Katrina's public profile, headshot URL, socials and listings. Studied her IG listing films: the cold open, the COASTAL° wordmark at ~5–9 s, VO with white subtitles, the name and number sunset outro, and the charcoal end card. Credited audio on her reels: Buddha Code "Moment of Peace" and Tony Batts "To Live Again". Found Coastal's drone pin style in the listing photos (white C° on a stem, thin white lot outline). Built a slow earthy shortlist, with 7 of 8 tracks already in the 10x music library. Nothing is on the Clients Drive for Coastal and nothing was downloaded. New pages [[katrina-walsh]] and [[coastal]]; [[drone-photo-pin]] updated.
+
+## [2026-10-28] ingest | Coastal logos
+Downloaded the COASTAL° wordmark (white, black and legacy PNGs) and the C° favicon from coastal.com.au into raw/coastal/. Derived a white transparent C° pin mark at projects/drone-pin/logos/coastal-c-white.png. Hunter didn't need Katrina's headshot, so it isn't stored. See [[coastal]] and [[katrina-walsh]].
+
+## [2026-10-28] lint | Katrina Walsh "PRESENTS" title card
+Hunter supplied screenshots of her "KATRINA WALSH / PRESENTS" title card (white, centred, thin name over a heavier smaller PRESENTS, laid over footage) and of her charcoal end card. The first pass had mistaken the COASTAL° wordmark for the "presents" beat; this is corrected and flagged on [[katrina-walsh]].
+
+## [2026-10-28] ingest | Coastal balcony day-to-night intake
+One shot (Day.mp4, 3.09 s 4K, under 4 s so it needs a re-export). The reference is the same shot already at dusk (Main.mp4). Job at projects/coastal-day-to-night/JOB.md.
+
+## [2026-10-28] project | Katrina Walsh title and end card rebuilds
+Rebuilt her "KATRINA WALSH / PRESENTS" title (transparent) and the charcoal end card as 4K PNGs in Helvetica Neue Light and Medium, with the Coastal white wordmark. Script and outputs are in projects/coastal-katrina. See [[katrina-walsh]].
+
+## [2026-10-28] project | Katrina Walsh animated end card and Coastal C° pin
+Added animate.py, which renders an 8 s animated end card (the background fades up, then name, number and logo ease in) and a 5 s Coastal pin (the stem draws up, then the C° lands). Both are 4K ProRes 4444 with alpha. The pin size was checked against Coastal's own Lita Ct drone pin. The address treatment is still to be decided: Coastal pins carry no label. See [[katrina-walsh]].
+
+## [2026-10-28] project | Coastal address caption for 34 Albany Avenue, Currumbin
+The suburb was confirmed from the QLD address register. Added an address mode to animate.py that makes a caption in her subtitle style (white Helvetica Neue in sentence case, lower centre), as a PNG plus a 5 s alpha MOV. See [[katrina-walsh]].
+
+## [2026-10-28] project | Kollosche pin, navy K version
+At Hunter's request (relayed by another session), added a navy option to make_pin.py. The K now comes from the official navy wordmark, the only blue logo on file, with no recolouring. Re-rendered the long and short PNGs and ProRes 4444 MOVs with a -navy suffix; the white originals are kept. See [[kollosche]].
+
+## [2026-10-28] project | Kollosche pin redone with the boxed photo badge
+Hunter corrected the navy-K version: the pin head should be the navy boxed K badge from the drone stills. The tracked View clip and the generic 9:16 pin now draw the head with drone-pin's badge() and the kollosche.json style, so it matches the photos. Re-rendered both with a _badge suffix and kept the earlier versions. See [[kollosche]].
+
 ## [2026-10-28] build | Auto Sound Design MVP
 Built `projects/auto-sound-design/`, a local Python + FFmpeg tool. It takes a video and an owned SFX folder and makes a sparse heuristic SFX pass, delivered as a preview, an SFX-only WAV, FCPXML 1.10 (DTD-valid, not import-tested) and `edit_decisions.json`. 31 tests pass. Real run on the Davenport hero: 8 effects over 41 cuts, with peaks within half a frame. Real media changed four defaults: longer whoosh length, per-category peak caps, skipping `_` folders, and the hot-master warning. See [[auto-sound-design]].

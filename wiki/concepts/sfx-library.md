@@ -36,3 +36,6 @@ For custom synthesised SFX (UI pops, accents, glitches, title stingers) that are
 Buying more SFX, licences, and how to make them sound expensive: [[sfx-sourcing-and-design]].
 
 Related: [[use-definitions-series]] · [[sound-lab]] · [[sfx-sourcing-and-design]]
+
+## Lifting SFX from reference reels (27 Oct 2026)
+Demucs is installed free in `~/.venvs/demucs` (`demucs -n htdemucs -d mps`, about 4 s per 110 s track on MPS). **Caveat:** it splits stems by *instrument*. It has no music-versus-SFX stem, so whooshes and hits get smeared across `vocals` and `other`. A sung vocal also dirties `vocals`. The working method is to find the cuts with ffmpeg scene detect, take transient peaks in vocals+other within 0.6 s of each cut, and trim from 0.5 s before to 1.5 s after with fades and normalise. First run: a Surfers canal-home reel ("The Pilot 17") gave 32 candidates in `~/Music/SFX Library/_Incoming/snapgram-upn69xj4gyxs/hits/`. Audition them; expect some music bleed. Reference-only, because a third-party reel's audio is not licensed for client work.

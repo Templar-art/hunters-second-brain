@@ -1,0 +1,17 @@
+{
+ "name": "Jessica Wallace",
+ "confirmed": false,
+ "notes": "From 88 Third Ave: thin white ring, nearly clear, The Agency chevron mark; labels bold sentence case, no dot, no distance. She may now be with Harcourts: confirm agency + logo. Research 2026-10-28: finished pinned sets on the Clients Drive (paths in wiki/concepts/drone-photo-pin.md). Sizes estimated from previews.",
+ "style": {
+  "pin": "ring",
+  "glyph": null,
+  "fill": "#000000",
+  "fill_opacity": 0.05,
+  "badge": 0.065,
+  "border": 0.03,
+  "pin_line": 0.025,
+  "place_dot": false,
+  "place_upper": false
+ },
+ "agents": {}
+}

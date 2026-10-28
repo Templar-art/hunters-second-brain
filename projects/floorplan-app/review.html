@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10x Floor Plans</title>
+<style>
+  :root { --blue:#61a8d8; --ink:#14202b; --mute:#6b7785; --line:#e3e8ee; --bg:#f6f8fa; --amber:#f4b740; --amberbg:#fff6e0; --red:#d9534f; --green:#2e9e6a; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.4 Poppins, -apple-system, Helvetica, sans-serif; color:var(--ink); background:var(--bg); }
+  header { display:flex; gap:12px; align-items:center; padding:10px 16px; background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; flex-wrap:wrap; }
+  header b { font-weight:600; letter-spacing:.02em; }
+  header b span { color:var(--blue); }
+  select, input, button { font:inherit; }
+  select, input[type=text], input[type=number] { border:1px solid var(--line); border-radius:6px; padding:5px 8px; background:#fff; }
+  button { border:0; border-radius:6px; padding:7px 14px; background:var(--blue); color:#fff; cursor:pointer; font-weight:500; }
+  button.ghost { background:#fff; color:var(--ink); border:1px solid var(--line); }
+  .grow { flex:1; }
+  main { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(380px,1fr); gap:14px; padding:14px; }
+  @media (max-width:1000px) { main { grid-template-columns:1fr; } }
+  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:14px; }
+  .card h3 { margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--mute); font-weight:600; }
+  .tabs { display:flex; gap:6px; margin-bottom:8px; }
+  .tabs button { background:#fff; color:var(--ink); border:1px solid var(--line); padding:5px 10px; }
+  .tabs button.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+  #view { background:#fff; border:1px solid var(--line); border-radius:8px; min-height:420px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:sticky; top:64px; }
+  #view svg, #view img { width:100%; height:auto; max-height:calc(100vh - 140px); display:block; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  td, th { padding:4px 6px; border-bottom:1px solid var(--line); vertical-align:middle; text-align:left; }
+  th { color:var(--mute); font-weight:500; font-size:12px; }
+  tr.need { background:var(--amberbg); }
+  tr.foot td { color:var(--mute); }
+  tr:hover { outline:2px solid var(--blue); outline-offset:-2px; }
+  td.src { color:var(--mute); white-space:nowrap; max-width:150px; overflow:hidden; text-overflow:ellipsis; }
+  td input[type=text] { width:100%; padding:3px 6px; }
+  .note { font-size:11px; color:var(--mute); }
+  tr.need .note { color:#9a6a00; }
+  .kind { font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--mute); }
+  .row { display:flex; gap:10px; align-items:center; margin:6px 0; flex-wrap:wrap; }
+  .row label { min-width:92px; color:var(--mute); font-size:13px; }
+  .strip { font-weight:500; padding:8px 10px; background:var(--bg); border-radius:6px; margin-top:8px; }
+  .warn { color:#9a6a00; font-size:12px; }
+  .chk { display:flex; gap:8px; align-items:baseline; padding:3px 0; }
+  .dot { width:9px; height:9px; border-radius:50%; flex:none; transform:translateY(1px); }
+  .ok { background:var(--green); } .bad { background:var(--red); }
+  .pill { font-size:11px; padding:2px 8px; border-radius:20px; background:var(--amberbg); color:#9a6a00; }
+  .pill.done { background:#e6f5ee; color:var(--green); }
+  #toast { position:fixed; bottom:16px; right:16px; background:var(--ink); color:#fff; padding:8px 14px; border-radius:8px; opacity:0; transition:opacity .2s; }
+</style>
+</head>
+<body>
+<header>
+  <b>10<span>X</span> Floor Plans</b>
+  <select id="jobs"></select>
+  <span id="todo" class="pill"></span>
+  <span class="grow"></span>
+  <button class="ghost" id="save">Save</button>
+  <button id="write">Build 10x page + check</button>
+</header>
+<main>
+  <section>
+    <div class="tabs">
+      <button data-v="plan" class="on">CubiCasa (sanitised) + live labels</button>
+      <button data-v="out">10x output</button>
+      <button data-v="page">10x page</button>
+      <button data-v="final">Supplier final</button>
+      <a id="pdf" href="#" target="_blank" class="note" style="margin-left:auto;align-self:center">Open PDF</a>
+    </div>
+    <div id="view"></div>
+  </section>
+  <section>
+    <div class="card">
+      <h3>Property</h3>
+      <div class="row"><label>Address</label><input type="text" id="address" class="grow"></div>
+      <div class="row"><label>Client</label><input type="text" id="client" class="grow"></div>
+      <div class="row"><label>Bed / bath / car</label>
+        <input type="number" id="beds" style="width:60px"> <input type="number" id="baths" step="0.5" style="width:60px"> <input type="number" id="cars" style="width:60px">
+      </div>
+      <div class="note" id="countnote"></div>
+      <div class="row"><label>North (°)</label><input type="number" id="north" placeholder="set by you, never guessed" style="width:220px">
+        <span class="note">0 = up the page, 90 = right</span></div>
+      <div class="row"><label>Floor title</label><input type="text" id="ftitle" placeholder="GROUND FLOOR" style="width:220px"></div>
+    </div>
+    <div class="card">
+      <h3>Site plan (optional, supplied image only)</h3>
+      <div class="row"><input type="file" id="site" accept="image/png,image/jpeg"><button class="ghost" id="clearsite">Remove</button></div>
+      <div class="note" id="sitenote"></div>
+      <div class="row"><label>Legend</label><textarea id="legend" rows="4" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit" placeholder="one item per line, e.g. Driveway"></textarea></div>
+    </div>
+    <div class="card">
+      <h3>Areas (from CubiCasa's text, not pixels)</h3>
+      <div id="areas"></div>
+      <div class="row"><label>Land area m²</label><input type="number" id="land" placeholder="from title / listing" style="width:180px"></div>
+      <div class="strip" id="strip"></div>
+    </div>
+    <div class="card">
+      <h3>Labels</h3>
+      <div class="row"><label style="min-width:0"><input type="checkbox" id="round"> Round sizes to 1 decimal</label>
+        <span class="warn">changes supplied numbers; each one then needs your tick</span></div>
+      <table><thead><tr><th></th><th>CubiCasa</th><th>10x</th><th title="approve">✓</th><th title="hide">Hide</th></tr></thead><tbody id="labels"></tbody></table>
+    </div>
+    <div class="card">
+      <h3>Checks</h3>
+      <div id="checks" class="note">Press "Write 10x SVG + check".</div>
+    </div>
+  </section>
+</main>
+<div id="toast"></div>
+<script>
+const $ = s => document.querySelector(s);
+let job = null, view = "plan", planTexts = [];
+
+function toast(m) { const t = $("#toast"); t.textContent = m; t.style.opacity = 1; setTimeout(() => t.style.opacity = 0, 1800); }
+async function api(path, body) {
+  const r = await fetch(path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {});
+  return r.json();
+}
+
+async function loadJobs() {
+  const js = await api("/api/jobs");
+  const want = location.hash.slice(1) || js[0].slug;
+  $("#jobs").innerHTML = js.map(j => `<option value="${j.slug}">${j.slug.replace(/_/g, " ")}${j.final ? "  · has final" : ""}</option>`).join("");
+  $("#jobs").value = want;
+  open(want);
+}
+
+async function open(slug) {
+  location.hash = slug;
+  job = await api("/api/job/" + slug);
+  $("#address").value = job.address || ""; $("#client").value = job.client || "";
+  $("#beds").value = job.counts.beds ?? ""; $("#baths").value = job.counts.baths ?? ""; $("#cars").value = job.counts.cars ?? "";
+  $("#countnote").textContent = job.counts.note;
+  $("#north").value = job.north ?? ""; $("#land").value = job.land_area ?? ""; $("#round").checked = !!job.round_dims;
+  $("#ftitle").value = job.floor_title || ""; $("#legend").value = (job.legend || []).join("\n");
+  $("#sitenote").textContent = job.site_plan ? "Site plan attached." : "None: the plan fills the page.";
+  $("#pdf").href = `/job/${slug}/page.pdf`; $("#pdf").style.visibility = job.exports ? "visible" : "hidden";
+  document.querySelector('.tabs [data-v="page"]').disabled = !job.exports;
+  document.querySelector('.tabs [data-v="final"]').disabled = !job.final;
+  renderLabels(); renderAreas(); renderChecks();
+  await show(view === "final" && !job.final ? "plan" : view);
+}
+
+function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+function renderLabels() {
+  const todo = job.labels.filter(t => !t.hidden && !t.approved).length;
+  $("#todo").textContent = todo ? `${todo} need you` : "all labels approved";
+  $("#todo").className = "pill" + (todo ? "" : " done");
+  $("#labels").innerHTML = job.labels.map(t => `
+    <tr data-i="${t.i}" class="${t.status === "needs-you" && !t.approved ? "need" : ""} ${t.kind === "footer" ? "foot" : ""}">
+      <td class="kind">${t.kind}</td>
+      <td class="src" title="${esc(t.src)}">${esc(t.src)}</td>
+      <td><input type="text" value="${esc(t.text)}" data-f="text"><div class="note">${esc(t.note)}</div></td>
+      <td><input type="checkbox" data-f="approved" ${t.approved ? "checked" : ""}></td>
+      <td><input type="checkbox" data-f="hidden" ${t.hidden ? "checked" : ""}></td>
+    </tr>`).join("");
+}
+
+$("#labels").addEventListener("input", e => {
+  const tr = e.target.closest("tr"), t = job.labels.find(x => x.i == tr.dataset.i), f = e.target.dataset.f;
+  t[f] = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  if (f === "text") { t.approved = true; tr.querySelector('[data-f="approved"]').checked = true; }
+  tr.classList.toggle("need", t.status === "needs-you" && !t.approved);
+  liveText(t); renderTodo();
+});
+function renderTodo() { const todo = job.labels.filter(t => !t.hidden && !t.approved).length; $("#todo").textContent = todo ? `${todo} need you` : "all labels approved"; $("#todo").className = "pill" + (todo ? "" : " done"); }
+$("#labels").addEventListener("mouseover", e => { const tr = e.target.closest("tr"); if (tr) highlight(+tr.dataset.i); });
+$("#labels").addEventListener("mouseleave", () => highlight(-1));
+
+function renderAreas() {
+  const a = job.areas;
+  const fl = Object.entries(a.floors).map(([k, v]) => `${k}: ${v} m²`).join(" · ");
+  $("#areas").innerHTML = `<div class="note">CubiCasa floors: ${fl || "–"} · GLA ${a.gla ?? "–"} m²</div>` +
+    Object.entries(a.excluded).map(([k, v]) => `<div class="row"><label>${esc(k)} ${v} m²</label>
+      <select data-k="${esc(k)}">${["internal", "external", "none"].map(o => `<option ${a.assign[k] === o ? "selected" : ""}>${o}</option>`).join("")}</select></div>`).join("");
+  $("#areas").querySelectorAll("select").forEach(s => s.onchange = () => { a.assign[s.dataset.k] = s.value; strip(); });
+  strip();
+}
+function strip() {
+  const a = job.areas; let int = a.gla || 0, ext = 0;
+  for (const [k, v] of Object.entries(a.excluded)) { if (a.assign[k] === "internal") int += v; if (a.assign[k] === "external") ext += v; }
+  const land = $("#land").value;
+  $("#strip").textContent = `Internal: ${int}m² | ${ext ? `External: ${ext}m² | ` : ""}Total: ${int + ext}m² | Land area: ${land ? Number(land).toLocaleString("en-AU") : "??"}m²`;
+}
+$("#land").oninput = strip;
+
+function renderChecks() {
+  if (!job.checks) { $("#checks").innerHTML = 'Press "Write 10x SVG + check".'; return; }
+  $("#checks").innerHTML = job.checks.map(c => `<div class="chk"><span class="dot ${c.ok ? "ok" : "bad"}"></span><div><b>${esc(c.name)}</b> <span class="note">${esc(c.msg)}</span></div></div>`).join("");
+}
+
+async function show(v) {
+  view = v;
+  document.querySelectorAll(".tabs button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
+  const box = $("#view"); box.innerHTML = "";
+  if (v === "final") { const im = new Image(); im.src = `/job/${job.slug}/${job.final}`; box.append(im); return; }
+  if (v === "page") { const im = new Image(); im.src = `/job/${job.slug}/page.png?t=` + Date.now(); box.append(im); return; }
+  const url = v === "out" ? `/job/${job.slug}/out.svg` : `/job/${job.slug}/plan.svg`;
+  const r = await fetch(url + "?t=" + Date.now());
+  if (!r.ok) { box.innerHTML = '<p class="note">Not written yet.</p>'; return; }
+  // already sanitised server-side; parsed as XML so nothing executes on insert
+  const doc = new DOMParser().parseFromString(await r.text(), "image/svg+xml");
+  const svg = document.importNode(doc.documentElement, true);
+  svg.removeAttribute("width"); svg.removeAttribute("height");
+  box.append(svg);
+  planTexts = [...svg.querySelectorAll("text")];
+  if (v === "plan") job.labels.forEach(liveText);
+}
+function liveText(t) {
+  const e = planTexts[t.i]; if (!e || view !== "plan") return;
+  e.style.display = t.hidden ? "none" : "";
+  const target = e.querySelector("tspan") || e;
+  target.textContent = t.approved ? t.text : t.src;
+}
+function highlight(i) { planTexts.forEach((e, k) => { e.style.fill = k === i ? "#61a8d8" : ""; e.style.fontWeight = k === i ? "700" : ""; }); }
+
+function payload() {
+  return { address: $("#address").value || null, client: $("#client").value || null,
+    north: $("#north").value === "" ? null : +$("#north").value, land_area: $("#land").value === "" ? null : +$("#land").value,
+    counts: { ...job.counts, beds: num("#beds"), baths: num("#baths"), cars: num("#cars") },
+    floor_title: $("#ftitle").value || null, legend: $("#legend").value.split("\n").map(s => s.trim()).filter(Boolean),
+    areas: job.areas, labels: job.labels.map(({ i, text, hidden, approved }) => ({ i, text, hidden, approved })) };
+}
+function num(s) { return $(s).value === "" ? null : +$(s).value; }
+
+$("#round").onchange = async () => { job = await api(`/api/job/${job.slug}/save`, { ...payload(), round_dims: $("#round").checked }); renderLabels(); show(view); };
+$("#save").onclick = async () => { job = await api(`/api/job/${job.slug}/save`, payload()); toast("Saved"); };
+$("#write").onclick = async () => {
+  $("#write").disabled = true; $("#write").textContent = "Rendering…";
+  const r = await api(`/api/job/${job.slug}/write`, payload());
+  $("#write").disabled = false; $("#write").textContent = "Build 10x page + check";
+  if (r.error) { toast(r.error); return; }
+  job = r; renderChecks(); $("#pdf").href = `/job/${job.slug}/page.pdf`; $("#pdf").style.visibility = "visible";
+  document.querySelector('.tabs [data-v="page"]').disabled = false; show("page"); toast("Built: SVG, PDF, PNG");
+};
+$("#site").onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  await api(`/api/job/${job.slug}/save`, payload());
+  const r = await fetch(`/api/job/${job.slug}/site`, { method: "POST", body: f }); job = await r.json();
+  $("#sitenote").textContent = "Site plan attached."; toast("Site plan attached; rebuild to see it");
+};
+$("#clearsite").onclick = async () => { job = await api(`/api/job/${job.slug}/save`, { ...payload(), clear_site: true }); $("#sitenote").textContent = "None: the plan fills the page."; };
+$("#jobs").onchange = e => open(e.target.value);
+document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => show(b.dataset.v));
+loadJobs();
+</script>
+</body>
+</html>

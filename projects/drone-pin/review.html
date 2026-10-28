@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Drone Pin Review</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @font-face { font-family: "SohneK"; src: url(/font/kraftig); }
+  @font-face { font-family: "SohneB"; src: url(/font/buch); }
+  @font-face { font-family: "PlaceF"; src: url(/font/place); }
+  :root { --bg: #111317; --panel: #1a1d23; --line: #2a2e36; --text: #e8eaee; --dim: #8a909c; --accent: #61a8d8; --ok: #5cc28a; --warn: #f5b041; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.4 -apple-system, "Poppins", sans-serif; display: grid; grid-template-columns: 250px 1fr; height: 100vh; overflow: hidden; }
+  aside { background: var(--panel); border-right: 1px solid var(--line); overflow-y: auto; }
+  aside h1 { font-size: 12px; margin: 0; padding: 14px 14px 4px; letter-spacing: .06em; }
+  aside h2 { font-size: 11px; margin: 0; padding: 14px 14px 6px; color: var(--dim); letter-spacing: .06em; font-weight: 600; }
+  aside .site { padding: 0 14px 12px; color: var(--dim); font-size: 12px; border-bottom: 1px solid var(--line); }
+  .ph { padding: 7px 14px; border-bottom: 1px solid var(--line); cursor: pointer; display: flex; gap: 8px; align-items: center; }
+  .ph:hover { background: #22262e; }
+  .ph.sel { background: #26303c; }
+  .ph .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); flex: none; }
+  .ph.done .dot { background: var(--ok); }
+  .ph .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ph .md { color: var(--dim); font-size: 11px; }
+  .pl { padding: 6px 14px; display: flex; gap: 6px; align-items: center; border-bottom: 1px solid var(--line); }
+  .pl .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pl .ds { color: var(--dim); font-size: 11px; }
+  .pl button { padding: 2px 6px; font-size: 11px; }
+  .empty { padding: 4px 14px 10px; color: var(--dim); font-size: 12px; }
+  main { display: grid; grid-template-rows: auto 1fr auto; min-width: 0; min-height: 0; }
+  .bar { display: flex; gap: 6px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .bar.bottom { border-top: 1px solid var(--line); border-bottom: 0; color: var(--dim); font-size: 12px; }
+  .grp { display: flex; gap: 4px; padding-right: 8px; margin-right: 4px; border-right: 1px solid var(--line); }
+  button { background: #262a32; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; font: inherit; cursor: pointer; }
+  button:hover { border-color: var(--dim); }
+  button.on { background: var(--accent); border-color: var(--accent); color: #0b1520; }
+  button.go { background: var(--ok); border-color: var(--ok); color: #08140d; font-weight: 600; }
+  small { opacity: .6; }
+  .sp { flex: 1; }
+  #wrap { position: relative; overflow: hidden; display: grid; place-items: center; min-height: 0; }
+  /* Absolute + inset 0 gives the % limits a definite box, so the photo always fits the pane at zoom 1. */
+  canvas { position: absolute; inset: 0; margin: auto; max-width: 100%; max-height: 100%; transform-origin: 0 0; }
+  #msg { color: var(--accent); }
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: grid; place-items: center; z-index: 8; }
+  .modal[hidden] { display: none; }
+  .panel { background: #1d2026; border: 1px solid var(--line); border-radius: 10px; padding: 18px; width: min(680px, 94vw); max-height: 90vh; overflow: auto; display: grid; gap: 12px; }
+  .panel h3 { margin: 0; font-size: 15px; }
+  .panel .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .panel .row.end { justify-content: flex-end; }
+  .panel input:not([type]) { flex: 1; min-width: 0; background: #111317; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: inherit; }
+  #xlist { display: grid; gap: 4px; }
+  #xlist .x { display: grid; grid-template-columns: auto 1fr 1.4fr; gap: 8px; align-items: center; }
+  #xlist .o { color: var(--dim); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #xmsg { color: var(--accent); }
+  #dlg { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: grid; place-items: center; z-index: 9; }
+  #dlg[hidden] { display: none; }
+  #dlg form { background: #1d2026; border: 1px solid var(--line); border-radius: 10px; padding: 18px; width: min(420px, 90vw); display: grid; gap: 12px; }
+  #dlg p { margin: 0; line-height: 1.4; }
+  #dlg input { background: #111317; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; font: inherit; }
+  #dlg form > div { display: flex; gap: 8px; justify-content: flex-end; }
+  #help { display: block; width: 100%; color: var(--dim); }
+  .look { display: grid; gap: 4px; margin: 6px 0 10px; font-size: 12px; color: var(--dim); }
+  .look label { display: flex; gap: 6px; align-items: center; justify-content: space-between; }
+  .look select { flex: 1; max-width: 70%; }
+  #lookmsg { color: #e0b050; }
+</style>
+</head>
+<body>
+<aside>
+  <h1>DRONE PIN REVIEW</h1>
+  <div class="site" id="site"></div>
+  <div class="look">
+    <label>Client <select id="client"></select></label>
+    <label>Agent <select id="agent"></select></label>
+    <small id="lookmsg"></small>
+  </div>
+  <div id="list"></div>
+  <h2>LOCATION PINS <small>(optional, not every client uses them)</small></h2>
+  <div id="places"></div>
+</aside>
+<main>
+  <div class="bar">
+    <div class="grp">
+      <button data-mode="pin">Pin <small>1</small></button>
+      <button data-mode="outline">Outline <small>2</small></button>
+      <button data-mode="both">Both <small>3</small></button>
+      <button data-mode="none">None <small>4</small></button>
+    </div>
+    <div class="grp">
+      <button data-tool="edit">Edit <small>E</small></button>
+      <button data-tool="brush">Behind brush <small>B</small></button>
+      <button data-tool="lasso">Lasso <small>A</small></button>
+      <button data-tool="erase">Eraser <small>X</small></button>
+      <button data-tool="light" title="ZED blackout: lasso what stays bright">Bright lasso <small>G</small></button>
+      <button data-tool="razor">Razor <small>R</small></button>
+      <button data-tool="draw">Draw outline <small>D</small></button>
+      <button data-tool="place">Location pin <small>L</small></button>
+    </div>
+    <div class="grp" title="Behind brush / eraser size ([ and ] also work). Each tool keeps its own size.">
+      <label for="bs" style="align-self:center;color:var(--dim)">Brush</label>
+      <small style="align-self:center">S</small><input id="bs" type="range" min="4" max="300" step="1" value="40"><small style="align-self:center">L</small>
+    </div>
+    <div class="grp" title="ZED look: darken everything outside the outline (0 = off), for this photo">
+      <label for="bo" style="align-self:center;color:var(--dim)">Blackout</label>
+      <input id="bo" type="range" min="0" max="1" step="0.05" value="0"><span id="bov" style="align-self:center;color:var(--dim);width:3ch">0</span>
+      <input id="lf" type="hidden" value="0">
+      <button id="boall" title="Use this blackout on every photo">All</button>
+    </div>
+    <div class="grp" title="Outline thickness for this photo">
+      <label for="ow" style="align-self:center;color:var(--dim)">Outline</label>
+      <small style="align-self:center">S</small><input id="ow" type="range" min="0.5" max="3" step="0.1" value="1"><small style="align-self:center">L</small>
+      <button id="owall" title="Use this thickness on every photo">All</button>
+    </div>
+    <span class="sp"></span>
+    <button id="fit" title="Zoom back out to the whole photo (0). Keeps your edits.">Fit view <small>0</small></button>
+    <button id="export" title="Export finished photos for print and web">Export…</button>
+    <button id="reset">Reset photo</button>
+    <button id="apply">Apply correction to unapproved</button>
+    <button id="approve" class="go">Approve ⏎</button>
+  </div>
+  <div id="wrap"><canvas id="cv"></canvas></div>
+  <div class="bar bottom">
+    <span id="note"></span><span class="sp"></span><span id="msg"></span>
+    <span id="help"></span>
+  </div>
+</main>
+<div id="exp" class="modal" hidden><div class="panel">
+  <h3>Export</h3>
+  <label class="row">Folder <input id="xfolder" placeholder="/Volumes/…/Export"><button type="button" id="xchoose">Choose…</button></label>
+  <div class="row">
+    <label><input type="checkbox" id="xprint" checked> Print <small>full size, 300 dpi</small></label>
+    <label><input type="checkbox" id="xpg" checked> pin + outline on print <small>(untick for a clean print)</small></label>
+    <label><input type="checkbox" id="xweb" checked> Web <small>2048 px, pin + outline, no GPS data</small></label>
+  </div>
+  <label class="row">Name all <input id="xbase" placeholder="e.g. 5 Esther Place"> from <input id="xstart" type="number" min="1" value="1" style="width:4em"><button type="button" id="xnum">Number them</button></label>
+  <small>Names may contain {kind}: it becomes Print or Web in each folder (e.g. "5 Esther Place - {kind}-14").</small>
+  <div id="xlist"></div>
+  <div class="row end"><span id="xmsg"></span><span class="sp"></span><button type="button" id="xcancel">Close</button><button type="button" class="go" id="xgo">Export</button></div>
+  <small>Saves into Print/ and Web/ folders inside the folder you pick. Same name = overwritten.</small>
+</div></div>
+<div id="dlg" hidden><form><p></p><input><div><button type="button" value="no">Cancel</button><button class="go" value="ok">OK</button></div></form></div>
+<script>
+const SZ = __SIZES__;
+const HELP = {
+  edit: 'Pin: drag the tip onto the house (first drag on a close or top-down shot sets the house for every photo) · drag the badge up/down to change the line length · ⌥-drag tip re-sets the house.  Outline: drag a corner · drag the line or inside to move it all · double-click the line to add a corner · ⌥-click a corner to delete it.',
+  brush: 'Paint over whatever stands in front of the outline (buildings, trees) and the line goes behind it · ⇧ erases · [ ] brush size · red = hidden area.',
+  lasso: 'Hide the outline behind a building: click its corners (or hold and drag freehand) and close by clicking the first point, double-clicking or ⏎ · hold ⇧ while closing to erase that area instead · ⌫ removes the last point · Esc cancels · red = hidden area.',
+  light: (SZ.STYLE.surround === 'mono' ? 'B&W surround (ZED): the neighbourhood goes black & white; the far landscape fades back to colour. ' : '') + 'Blackout: lasso the house (click its corners or drag freehand) and close it. Everything outside goes dark. Add more shapes to add more bright area · ⇧ while closing cuts a shape back to dark · ⌥-click inside a shape to delete it · Blackout slider sets how dark.',
+  razor: 'Click the outline to cut it there · ⇧-click a piece of line to remove it (shown red dashed), ⇧-click again to bring it back. Cut twice, then ⇧-click between the cuts to take out just that stretch.',
+  draw: 'Click to place outline points around whatever you want. Click the first point, double-click or press ⏎ to finish · ⌫ removes the last point · Esc cancels. Replaces this photo\'s outline; fine-tune afterwards in Edit.',
+  erase: 'Rub out the behind mask where you went too far, and the outline comes back · [ ] brush size · red = hidden area.',
+  place: 'Click the ground at a location, type its name; the pin and its distance from the house appear on every photo that sees it. Drag a location pin in Edit to nudge it on this photo.',
+};
+let site, marks, names = [], cur = 0, img = new Image(), K = new Image(), anchors = {}, drag = null;
+let zoom = 1, pan = [0, 0], panning = null, spaceDown = false;
+let pts = null, hover = null, lasso = null, lassoDown = false;   // lasso points in canvas px   // Draw outline: points placed so far, pointer in image px
+const sizes = { brush: 40, erase: 40 };
+let tool = 'edit', brush = 40, mask = null, maskDirty = false, painting = false, cursor = null;
+const cv = document.getElementById('cv'), cx = cv.getContext('2d');
+K.onload = () => draw(); K.src = '/preview/_k.png';
+document.fonts.load('40px PlaceF'); document.fonts.load('40px SohneK'); document.fonts.load('40px SohneB'); document.fonts.ready.then(() => draw());
+
+// In-page confirm/prompt: the preview pane silently cancels window.confirm and window.prompt.
+// ask(text) resolves true/false; ask(text, value) shows a text box and resolves the text or null.
+function ask(text, value) {
+  const d = document.getElementById('dlg'), f = d.querySelector('form'), inp = d.querySelector('input');
+  d.querySelector('p').textContent = text; inp.hidden = value === undefined; inp.value = value ?? '';
+  d.hidden = false; (inp.hidden ? f.querySelector('.go') : inp).focus();
+  return new Promise(res => {
+    const done = ok => { d.hidden = true; f.onsubmit = null; f.querySelector('[value=no]').onclick = null; res(value === undefined ? ok : ok ? inp.value.trim() || null : null); };
+    f.onsubmit = e => { e.preventDefault(); done(true); };
+    f.querySelector('[value=no]').onclick = () => done(false);
+    d.onkeydown = e => { if (e.key === 'Escape') done(false); e.stopPropagation(); };
+  });
+}
+document.getElementById('fit').onclick = () => setZoom(1);
+
+// Export panel: tick photos, name each, pick a folder; server writes Print/ and Web/ JPGs.
+const X = id => document.getElementById(id), XKEY = () => 'drone-pin-export:' + site.address;
+function xprefs() { try { return JSON.parse(localStorage.getItem(XKEY())) || {}; } catch { return {}; } }
+X('export').onclick = async () => {
+  if (maskDirty) await saveMask();
+  await save();
+  const pr = xprefs();
+  X('xfolder').value = pr.folder || site.photos.replace(/\/[^/]*$/, '') + '/Drone Graphics';
+  X('xbase').value = pr.base || '';
+  X('xpg').checked = pr.print_graphics ?? SZ.STYLE.print_graphics;
+  X('xlist').innerHTML = names.map((n, i) => {
+    const m = marks[n], on = !m.error && m.mode !== 'none';
+    const nm = (pr.names || {})[n] || n.replace(/\.[^.]+$/, '');
+    return `<label class="x"><input type="checkbox" data-x="${i}" ${on ? 'checked' : ''}><span class="o">${n} · ${m.error ? 'no GPS' : m.mode}${m.reviewed ? ' ✓' : ''}</span><input data-xn="${i}" value="${nm.replace(/"/g, '&quot;')}"></label>`;
+  }).join('');
+  X('xmsg').textContent = ''; X('exp').hidden = false;
+};
+X('xcancel').onclick = () => X('exp').hidden = true;
+X('exp').onkeydown = e => { e.stopPropagation(); if (e.key === 'Escape') X('exp').hidden = true; };
+X('xnum').onclick = () => {
+  // The client's naming pattern; {kind} stays in the name and becomes Print / Web per folder.
+  const base = X('xbase').value.trim(); if (!base) return;
+  const start = +(X('xstart').value || 1), pat = SZ.STYLE.naming || '{address} {n}';
+  let k = start - 1;
+  document.querySelectorAll('[data-x]').forEach(c => { if (c.checked) document.querySelector(`[data-xn="${c.dataset.x}"]`).value = pat.replace('{address}', base).replace('{n}', String(++k).padStart(2, '0')); });
+};
+X('xchoose').onclick = async () => {
+  X('xmsg').textContent = 'pick a folder in the Finder window…';
+  const r = await api('/choose_folder', { start: X('xfolder').value });
+  if (r.folder) X('xfolder').value = r.folder;
+  X('xmsg').textContent = '';
+};
+X('xgo').onclick = async () => {
+  const items = [...document.querySelectorAll('[data-x]')].filter(c => c.checked).map(c => ({ file: names[+c.dataset.x], name: document.querySelector(`[data-xn="${c.dataset.x}"]`).value.trim() }));
+  const body = { folder: X('xfolder').value.trim(), print: X('xprint').checked, print_graphics: X('xpg').checked, web: X('xweb').checked, items };
+  const allNames = Object.fromEntries([...document.querySelectorAll('[data-xn]')].map(i => [names[+i.dataset.xn], i.value.trim()]));
+  try { localStorage.setItem(XKEY(), JSON.stringify({ folder: body.folder, base: X('xbase').value, print_graphics: body.print_graphics, names: allNames })); } catch {}
+  X('xmsg').textContent = `exporting ${items.length} photo${items.length === 1 ? '' : 's'}…`; X('xgo').disabled = true;
+  const r = await api('/export', body);
+  X('xgo').disabled = false;
+  X('xmsg').textContent = r.error ? '⚠ ' + r.error : `done: ${r.done.length} files in ${body.folder}`;
+};
+
+async function api(path, body) {
+  const r = await fetch(path, body === undefined ? {} : { method: 'POST', body: JSON.stringify(body) });
+  return r.json();
+}
+const flash = t => { const e = document.getElementById('msg'); e.textContent = t; clearTimeout(flash.t); flash.t = setTimeout(() => e.textContent = '', 4000); };
+const M = () => marks && marks[names[cur]];   // the K image can load before the marks do
+const save = () => api('/save', { [names[cur]]: M() });
+
+let clients = {};
+async function load() {
+  ({ site, marks, clients } = await api('/marks'));
+  names = Object.keys(marks);
+  look();
+  document.getElementById('site').innerHTML = `${site.address}<br>Lot ${site.lotplan} · ${Math.round(site.lot_area)} m²`;
+  setTool('edit'); show(0);
+}
+// Client + agent: their profile (clients/<slug>.json) sets the pin, outline and export defaults.
+function look() {
+  const cs = X('client'), as = X('agent'), c = clients[site.client];
+  cs.innerHTML = '<option value="">(no client)</option>' + Object.entries(clients).map(([k, v]) => `<option value="${k}" ${k === site.client ? 'selected' : ''}>${v.name}</option>`).join('');
+  as.innerHTML = '<option value="">(any agent)</option>' + (c ? c.agents : []).map(a => `<option ${a === site.agent ? 'selected' : ''}>${a}</option>`).join('');
+  X('lookmsg').textContent = !c ? 'No client: plain outline only.' : c.confirmed ? '' : `${c.name}'s look isn't confirmed yet. ${c.notes}`;
+  const change = async () => {
+    await save();
+    await api('/client', { client: cs.value, agent: cs.value === site.client ? as.value : '' });
+    location.reload();
+  };
+  cs.onchange = as.onchange = change;
+}
+function list() {
+  document.getElementById('list').innerHTML = names.map((n, i) => {
+    const m = marks[n];
+    return `<div class="ph ${i === cur ? 'sel' : ''} ${m.reviewed ? 'done' : ''}" data-i="${i}"><span class="dot"></span><span class="nm">${n}</span><span class="md">${m.error ? 'no GPS' : m.mode}</span></div>`;
+  }).join('');
+  document.querySelectorAll('.ph').forEach(e => e.onclick = () => show(+e.dataset.i));
+  const pls = site.places || [], m = M();
+  document.getElementById('places').innerHTML = pls.length ? pls.map(p => {
+    const st = (m.places || {})[p.id] || {};
+    return `<div class="pl"><input type="checkbox" data-on="${p.id}" ${st.on ? 'checked' : ''} title="show on this photo">
+      <span class="nm" title="${p.label}">${p.label}</span><span class="ds">${p.dist ? dist(p) : ''}</span>
+      <button data-dist="${p.id}" title="show distance">km</button><button data-ren="${p.id}">✎</button><button data-del="${p.id}">✕</button></div>`;
+  }).join('') : '<div class="empty">None. Use the Location pin tool (L) to add one.</div>';
+  document.querySelectorAll('[data-on]').forEach(e => e.onchange = () => { const st = (M().places ||= {})[e.dataset.on] ||= { xy: [M().w / 2, M().h / 2] }; st.on = e.checked; draw(); save(); });
+  document.querySelectorAll('[data-del]').forEach(e => e.onclick = async () => { if (await ask('Delete this location pin from every photo?')) placeEdit({ id: +e.dataset.del, delete: true }); });
+  document.querySelectorAll('[data-ren]').forEach(e => e.onclick = async () => { const p = pls.find(q => q.id == e.dataset.ren); const t = await ask('Location name', p.label); if (t) placeEdit({ id: p.id, label: t }); });
+  document.querySelectorAll('[data-dist]').forEach(e => e.onclick = () => { const p = pls.find(q => q.id == e.dataset.dist); placeEdit({ id: p.id, dist: !p.dist }); });
+}
+async function placeEdit(b) { const r = await api('/place_edit', b); site = r.site; marks = r.marks; list(); draw(); }
+
+function show(i) {
+  if (maskDirty) saveMask();
+  cur = (i + names.length) % names.length;
+  zoom = 1; pan = [0, 0]; cv.style.transform = ''; document.getElementById('msg').textContent = '';
+  const n = names[cur], m = M();
+  anchors = { ...(m.anchors || {}) };
+  const im = new Image();
+  im.onload = () => {
+    if (names[cur] !== n) return;
+    img = im; cv.width = im.width; cv.height = im.height;
+    mask = document.createElement('canvas'); mask.width = im.width; mask.height = im.height;
+    const mi = new Image();
+    mi.onload = () => { if (names[cur] === n) { mask.getContext('2d').drawImage(mi, 0, 0, im.width, im.height); draw(); } };
+    mi.src = '/mask/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.png')) + '?t=' + Date.now();
+    draw();
+  };
+  im.src = '/preview/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.jpg'));
+  document.getElementById('note').textContent = m.error || m.note || '';
+  list(); modeBtns(); ow.value = m.outline_w ?? 1; bo.value = m.blackout ?? 0; boShow(bo.value); lf.value = m.lift ?? 0;
+}
+function modeBtns() { document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === M().mode)); }
+const brushy = () => tool === 'brush' || tool === 'erase';
+const outlineW = m => Math.max(2, Math.round(SZ.OUTLINE_W * (m.outline_w ?? 1) * m.w));
+function setTool(t) {
+  if (t !== 'draw') pts = null;
+  if (t !== 'lasso' && t !== 'light') lasso = null;
+  tool = t;
+  if (sizes[t]) { brush = sizes[t]; document.getElementById('bs').value = brush; }
+  document.querySelectorAll('[data-tool]').forEach(b => b.classList.toggle('on', b.dataset.tool === t));
+  document.getElementById('help').textContent = HELP[t] + ZOOM_HELP;
+  cv.style.cursor = brushy() ? 'none' : 'crosshair';
+  draw();
+}
+
+function dist(p) {
+  const R = 6378137, la = site.tip[1] * Math.PI / 180;
+  const e = (p.lon - site.tip[0]) * Math.PI / 180 * R * Math.cos(la), n = (p.lat - site.tip[1]) * Math.PI / 180 * R;
+  const d = Math.hypot(e, n);
+  return d >= 1000 ? (d / 1000).toFixed(1) + ' KM' : Math.round(d / 10) * 10 + ' M';
+}
+// Same as drone_pin.py pin_layout(): per-photo pin_len, line shortens to keep the badge in frame.
+function pinLayout(m) {
+  const side = SZ.BADGE * m.h;
+  const room = m.tip[1] - SZ.TOP_MARGIN * m.h - side;
+  return { side, len: Math.max(0, Math.min((m.pin_len ?? SZ.LINE_LEN) * m.h, room)) };
+}
+function shadowOn(c, lw) {
+  c.shadowColor = `rgba(0,0,0,${SZ.SHADOW_OPACITY})`; c.shadowBlur = 2 * SZ.SHADOW_BLUR * lw; c.shadowOffsetY = SZ.SHADOW_OFFSET * lw;
+}
+
+function draw() {
+  const m = M(); if (!img.width || !m) return;
+  const s = cv.width / m.w;
+  cx.setTransform(1, 0, 0, 1, 0, 0);
+  cx.drawImage(img, 0, 0);
+  if (m.error) return;
+  if (m.blackout && ((m.lit || []).length || m.lot.length)) {
+    // ZED look, same as drone_pin.py: dark outside the outline with a soft edge.
+    const B = document.createElement('canvas'); B.width = cv.width; B.height = cv.height;
+    const b = B.getContext('2d');
+    b.fillStyle = `rgba(0,0,0,${m.blackout})`; b.fillRect(0, 0, B.width, B.height);
+    b.globalCompositeOperation = 'destination-out'; b.filter = `blur(${SZ.BLACKOUT_FEATHER * m.w * s}px)`; b.fillStyle = '#000';
+    // Lot swept straight up by "lift" (same as lit_area() in drone_pin.py), one path so overlaps don't double up.
+    const up = (m.lift || 0) * m.h, L2 = m.lot, n = L2.length, poly = q => { q.forEach(([x, y], j) => j ? b.lineTo(x * s, y * s) : b.moveTo(x * s, y * s)); b.closePath(); };
+    b.beginPath(); poly(L2);
+    if (up > 0) { poly(L2.map(([x, y]) => [x, y - up])); for (let j = 0; j < n; j++) { const p0 = L2[j], p1 = L2[(j + 1) % n]; poly([p0, p1, [p1[0], p1[1] - up], [p0[0], p0[1] - up]]); } }
+    if ((m.lit || []).length) {
+      // Bright lasso shapes replace the outline-based area: add = punch bright, cut = dark again.
+      b.beginPath();   // drop the outline path built above
+      m.lit.forEach(sh => {
+        b.globalCompositeOperation = sh.cut ? 'source-over' : 'destination-out';
+        b.fillStyle = sh.cut ? `rgba(0,0,0,${m.blackout})` : '#000';
+        b.beginPath(); poly(sh.pts); b.fill();
+      });
+    } else b.fill('nonzero');
+    if (SZ.STYLE.surround === 'mono') {
+      // ZED: B&W instead of dark, fading back to colour toward the far landscape (drone_pin.py surround()).
+      const top = (m.lot.length ? Math.min(...m.lot.map(p => p[1])) : m.tip[1]) * s, H = m.h * s;
+      const [fa, fb] = SZ.STYLE.mono_fade, g = b.createLinearGradient(0, top - fb * H, 0, top - fa * H);
+      for (let i = 0; i <= 8; i++) { const t = i / 8; g.addColorStop(t, `rgba(0,0,0,${t * t * (3 - 2 * t)})`); }
+      b.filter = 'none'; b.globalCompositeOperation = 'destination-in'; b.fillStyle = g; b.fillRect(0, 0, B.width, B.height);
+      const G = document.createElement('canvas'); G.width = cv.width; G.height = cv.height;
+      const gc = G.getContext('2d'); gc.filter = 'grayscale(1)'; gc.drawImage(img, 0, 0, G.width, G.height);
+      gc.filter = 'none'; gc.globalCompositeOperation = 'destination-in'; gc.drawImage(B, 0, 0);
+      cx.drawImage(G, 0, 0);
+    } else cx.drawImage(B, 0, 0);
+  }
+  const on = k => m.mode === k || m.mode === 'both';
+  if (on('outline') && m.lot.length) {
+    // Outline on its own layer so the behind-mask can cut it (shadow included).
+    const L = document.createElement('canvas'); L.width = cv.width; L.height = cv.height;
+    const c = L.getContext('2d'), lw = outlineW(m) * s;
+    c.strokeStyle = SZ.STYLE.outline_color; c.lineJoin = c.lineCap = 'round'; c.lineWidth = Math.max(1, lw); shadowOn(c, lw);
+    const gaps = new Set(m.gaps || []), n = m.lot.length;
+    c.beginPath();
+    if (!gaps.size) { m.lot.forEach(([x, y], j) => j ? c.lineTo(x * s, y * s) : c.moveTo(x * s, y * s)); c.closePath(); }
+    else m.lot.forEach(([x, y], j) => { if (gaps.has(j)) return; const [u, v] = m.lot[(j + 1) % n]; c.moveTo(x * s, y * s); c.lineTo(u * s, v * s); });
+    c.stroke();
+    if (mask) { c.shadowColor = 'transparent'; c.globalCompositeOperation = 'destination-out'; c.drawImage(mask, 0, 0); }
+    cx.drawImage(L, 0, 0);
+  }
+  cx.save(); cx.scale(s, s);
+  if (on('pin') && SZ.STYLE.pin !== 'none') {
+    // Same as drone_pin.py badge(): square badge, ringed/solid circle, or the logo alone.
+    const S = SZ.STYLE, { side, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.PIN_LINE * side));
+    const [tx, ty] = m.tip, bx = tx - side / 2, by = ty - len - side, cyy = by + side / 2;
+    cx.fillStyle = '#fff'; cx.fillRect(tx - lw / 2, ty - len, lw, len);
+    if (S.line_dot) { cx.beginPath(); cx.arc(tx, ty, 1.6 * lw, 0, 7); cx.fill(); }
+    const bw = Math.max(1, SZ.BADGE_BORDER * side), hasK = K.width > 1;
+    cx.globalAlpha = S.fill_opacity; cx.fillStyle = SZ.BADGE_FILL;
+    if (S.pin === 'mark') {
+      if (S.fill_opacity) { cx.beginPath(); cx.arc(tx, cyy, side / 2, 0, 7); cx.fill(); }
+      cx.globalAlpha = 1;
+      if (hasK) { const kw = side * K.width / K.height; cx.drawImage(K, tx - kw / 2, by, kw, side); }
+    } else {
+      if (S.pin === 'badge') cx.fillRect(bx, by, side, side); else { cx.beginPath(); cx.arc(tx, cyy, side / 2, 0, 7); cx.fill(); }
+      cx.globalAlpha = 1; cx.strokeStyle = '#fff'; cx.lineWidth = bw;
+      if (S.pin === 'badge') cx.strokeRect(bx + bw / 2, by + bw / 2, side - bw, side - bw);
+      else if (S.pin === 'ring') { cx.beginPath(); cx.arc(tx, cyy, side / 2 - bw / 2, 0, 7); cx.stroke(); }
+      if (hasK) {
+        let kw = SZ.BADGE_K * side, kh = kw * K.height / K.width;
+        if (kh > 0.9 * side) { kh = 0.9 * side; kw = kh * K.width / K.height; }
+        cx.drawImage(K, tx - kw / 2, by + (side - kh) / 2, kw, kh);
+      }
+    }
+  }
+  drawPlaces(m);
+  cx.restore();
+  if ((brushy() || tool === 'lasso') && mask) {
+    // Show the hidden area in red while painting.
+    const T = document.createElement('canvas'); T.width = cv.width; T.height = cv.height;
+    const t = T.getContext('2d'); t.drawImage(mask, 0, 0); t.globalCompositeOperation = 'source-in'; t.fillStyle = 'rgba(255,60,60,0.45)'; t.fillRect(0, 0, T.width, T.height);
+    cx.drawImage(T, 0, 0);
+    if (cursor && brushy()) { cx.beginPath(); cx.strokeStyle = '#fff'; cx.lineWidth = 1.5 / zoom; cx.arc(cursor[0], cursor[1], brush / 2 / zoom, 0, 7); cx.stroke(); }
+  }
+  if ((tool === 'edit' || tool === 'razor') && (m.gaps || []).length) {
+    // Removed pieces: red dashed so you can see (and restore) them.
+    cx.strokeStyle = 'rgba(255,70,70,.9)'; cx.lineWidth = 2 / zoom; cx.setLineDash([6 / zoom, 5 / zoom]); cx.beginPath();
+    m.gaps.forEach(j => { const a = m.lot[j], b = m.lot[(j + 1) % m.lot.length]; if (a && b) { cx.moveTo(a[0] * s, a[1] * s); cx.lineTo(b[0] * s, b[1] * s); } });
+    cx.stroke(); cx.setLineDash([]);
+  }
+  if (tool === 'edit' || tool === 'razor') handles(m, s);
+  if (tool === 'light' && (m.lit || []).length) {
+    cx.lineWidth = 1.5 / zoom; cx.setLineDash([6 / zoom, 4 / zoom]);
+    m.lit.forEach(sh => { cx.strokeStyle = sh.cut ? '#ff4646' : '#f5d041'; cx.beginPath(); sh.pts.forEach(([x, y], j) => j ? cx.lineTo(x * s, y * s) : cx.moveTo(x * s, y * s)); cx.closePath(); cx.stroke(); });
+    cx.setLineDash([]);
+  }
+  if ((tool === 'lasso' || tool === 'light') && lasso) {
+    const line = hover ? [...lasso, hover] : lasso;
+    cx.strokeStyle = '#ff4646'; cx.lineWidth = 2 / zoom; cx.setLineDash([8 / zoom, 5 / zoom]);
+    cx.beginPath(); line.forEach(([x, y], j) => j ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.setLineDash([]);
+    const r = 7 / zoom; cx.fillStyle = '#f5b041'; cx.strokeStyle = '#000'; cx.beginPath(); cx.rect(lasso[0][0] - r, lasso[0][1] - r, 2 * r, 2 * r); cx.fill(); cx.stroke();
+  }
+  if (tool === 'draw' && pts) {
+    const z = q => [q[0] * s, q[1] * s], line = pts.map(z);
+    if (hover) line.push(z(hover));
+    cx.strokeStyle = '#61a8d8'; cx.lineWidth = 2 / zoom; cx.setLineDash([8 / zoom, 5 / zoom]);
+    cx.beginPath(); line.forEach(([x, y], j) => j ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.setLineDash([]);
+    pts.forEach(([x, y], j) => {
+      cx.beginPath(); cx.fillStyle = j ? '#61a8d8' : '#f5b041'; cx.strokeStyle = '#000'; cx.lineWidth = 2 / zoom;
+      const r = (j ? 5 : 7) / zoom; cx.rect(x * s - r, y * s - r, 2 * r, 2 * r); cx.fill(); cx.stroke();
+    });
+  }
+}
+// Outline edits that change the corner count keep m.gaps (removed edges, by start index) lined up.
+function insertPoint(m, j, t) {
+  const a = m.lot[j], b = m.lot[(j + 1) % m.lot.length];
+  m.lot.splice(j + 1, 0, [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]);
+  m.gaps = (m.gaps || []).flatMap(g => g < j ? [g] : g === j ? [j, j + 1] : [g + 1]);
+}
+function deletePoint(m, i) {
+  const n = m.lot.length, prev = (i - 1 + n) % n, g = new Set(m.gaps || []);
+  const merged = g.has(prev) && g.has(i), at = i === 0 ? n - 2 : i - 1;
+  m.lot.splice(i, 1);
+  m.gaps = [...g].filter(x => x !== i && x !== prev).map(x => x > i ? x - 1 : x);
+  if (merged) m.gaps.push(at);
+  m.gaps.sort((a, b) => a - b);
+}
+function setBrush(v) {
+  brush = Math.round(Math.min(300, Math.max(4, v)));
+  if (sizes[tool]) sizes[tool] = brush;
+  document.getElementById('bs').value = brush; draw();
+}
+document.getElementById('bs').oninput = e => setBrush(+e.target.value);
+function finishLasso(erase) {
+  const q = (lasso || []).filter((p, j, a) => !j || Math.hypot(p[0] - a[j - 1][0], p[1] - a[j - 1][1]) > 1);
+  lasso = null; lassoDown = false;
+  if (q.length < 3) return draw();
+  if (tool === 'light') {
+    const m = M(), k = m.w / cv.width;
+    (m.lit = m.lit || []).push({ pts: q.map(([x, y]) => [x * k, y * k]), cut: !!erase });
+    if (!m.blackout) { m.blackout = 0.7; bo.value = 0.7; boShow(0.7); }
+    save(); draw(); return flash(erase ? 'cut back to dark' : 'bright area added');
+  }
+  const c = mask.getContext('2d');
+  c.globalCompositeOperation = erase ? 'destination-out' : 'source-over'; c.fillStyle = '#fff';
+  c.beginPath(); q.forEach(([x, y], j) => j ? c.lineTo(x, y) : c.moveTo(x, y)); c.closePath(); c.fill();
+  maskDirty = true; saveMask(); draw(); flash(erase ? 'lasso area erased' : 'outline hidden inside the lasso');
+}
+function finishDraw() {
+  const m = M(), tol = 6 * m.w / cv.getBoundingClientRect().width;
+  const q = (pts || []).filter((p, j, a) => !j || Math.hypot(p[0] - a[j - 1][0], p[1] - a[j - 1][1]) > tol);   // dblclick dupes
+  if (q.length < 3) return flash('an outline needs at least 3 points');
+  m.lot = q; m.gaps = []; m.manual = true;
+  if (m.mode === 'pin') m.mode = 'both'; else if (m.mode === 'none') m.mode = 'outline';
+  pts = null; modeBtns(); list(); save(); setTool('edit'); flash(`outline drawn: ${q.length} points`);
+}
+function drawPlaces(m) {
+  const lw = Math.max(2, Math.round(SZ.LINE_W * m.h));
+  for (const p of site.places || []) {
+    const st = (m.places || {})[p.id]; if (!st || !st.on) continue;
+    const [x, y] = st.xy, top = y - SZ.PLACE_LINE * m.h;
+    cx.save(); shadowOn(cx, lw);
+    cx.fillStyle = '#fff';
+    if (SZ.STYLE.place_dot) { cx.beginPath(); cx.arc(x, y, SZ.PLACE_DOT * m.h, 0, 7); cx.fill(); }
+    cx.fillRect(x - lw / 2, top, lw, y - top);
+    const rows = [[SZ.STYLE.place_upper ? p.label.toUpperCase() : p.label, 'PlaceF', SZ.PLACE_CAP * m.h]];
+    if (p.dist) rows.push([dist(p), 'SohneB', SZ.PLACE_SUB * m.h]);
+    const lead = SZ.PLACE_LEAD * SZ.PLACE_CAP * m.h;
+    let cy = top - SZ.PLACE_GAP * m.h - rows.reduce((a, r) => a + r[2], 0) - lead * (rows.length - 1);
+    cx.textAlign = 'center'; cx.textBaseline = 'alphabetic';
+    for (const [t, f, cap] of rows) {
+      const size = cap / 0.7;  // Söhne Breit cap height ≈ 0.7 em
+      cx.font = `${size}px ${f}`; cx.letterSpacing = `${SZ.PLACE_TRACK * size}px`;
+      cx.fillText(t, x, cy + cap); cy += cap + lead;
+    }
+    cx.restore();
+  }
+}
+function handles(m, s) {
+  const h = (x, y, r, col, sq) => {
+    r /= zoom;   // handles stay the same size on screen when zoomed in
+    cx.beginPath(); cx.fillStyle = col; cx.strokeStyle = '#000'; cx.lineWidth = 2 / zoom;
+    if (sq) cx.rect(x * s - r, y * s - r, 2 * r, 2 * r); else cx.arc(x * s, y * s, r, 0, 7);
+    cx.fill(); cx.stroke();
+  };
+  if (m.mode === 'outline' || m.mode === 'both') m.lot.forEach(([x, y]) => h(x, y, 6, m.manual ? '#f5b041' : '#61a8d8', true));
+  if (m.mode === 'pin' || m.mode === 'both') h(m.tip[0], m.tip[1], 8, anchors.tip ? '#f5b041' : '#61a8d8');
+  for (const p of site.places || []) { const st = (m.places || {})[p.id]; if (st && st.on) h(st.xy[0], st.xy[1], 6, st.manual ? '#f5b041' : '#61a8d8'); }
+}
+
+function toImg(e) {
+  const r = cv.getBoundingClientRect(), m = M();
+  return [(e.clientX - r.left) / r.width * m.w, (e.clientY - r.top) / r.height * m.h];
+}
+function toCanvas(e) { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * cv.width, (e.clientY - r.top) / r.height * cv.height]; }
+function segDist(p, a, b) {
+  const dx = b[0] - a[0], dy = b[1] - a[1], t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy || 1)));
+  return [Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy), t];
+}
+function inside(p, poly) {
+  let c = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const [xi, yi] = poly[i], [xj, yj] = poly[j];
+    if ((yi > p[1]) !== (yj > p[1]) && p[0] < (xj - xi) * (p[1] - yi) / (yj - yi) + xi) c = !c;
+  }
+  return c;
+}
+function hit(m, p) {
+  const tol = 12 * m.w / cv.getBoundingClientRect().width;
+  const out = m.mode === 'outline' || m.mode === 'both', pin = m.mode === 'pin' || m.mode === 'both';
+  for (const pl of site.places || []) { const st = (m.places || {})[pl.id]; if (st && st.on && Math.hypot(st.xy[0] - p[0], st.xy[1] - p[1]) < tol) return { kind: 'place', id: pl.id }; }
+  if (pin && Math.hypot(m.tip[0] - p[0], m.tip[1] - p[1]) < tol * 1.3) return { kind: 'tip' };
+  if (pin) { const { side, len } = pinLayout(m); const by = m.tip[1] - len - side; if (Math.abs(p[0] - m.tip[0]) < side / 2 && p[1] > by && p[1] < by + side) return { kind: 'badge' }; }
+  if (out) {
+    const i = m.lot.findIndex(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < tol); if (i >= 0) return { kind: 'corner', i };
+    for (let j = 0; j < m.lot.length; j++) { const [d, t] = segDist(p, m.lot[j], m.lot[(j + 1) % m.lot.length]); if (d < tol) return { kind: 'edge', j, t }; }
+    if (inside(p, m.lot)) return { kind: 'body' };
+  }
+  if (pin && m.mode === 'pin') return { kind: 'tip' };   // click empty image in pin mode: move the tip there
+  return null;
+}
+
+cv.onmousedown = async e => {
+  if (spaceDown || e.button === 1 || e.button === 2) { panning = [e.clientX - pan[0], e.clientY - pan[1]]; cv.style.cursor = 'grabbing'; e.preventDefault(); return; }
+  const m = M(); if (!m || m.error) return;
+  if (brushy()) { painting = true; paint(e); return; }
+  const p = toImg(e);
+  if (tool === 'light' && e.altKey && !lasso) {
+    const i = (m.lit || []).map((sh, j) => [sh, j]).reverse().find(([sh]) => inside(p, sh.pts));
+    if (i) { m.lit.splice(i[1], 1); draw(); save(); flash('bright shape deleted'); }
+    return;
+  }
+  if (tool === 'lasso' || tool === 'light') {
+    const q = toCanvas(e), tol = 10 * cv.width / cv.getBoundingClientRect().width;
+    if (lasso && lasso.length >= 3 && Math.hypot(q[0] - lasso[0][0], q[1] - lasso[0][1]) < tol) return finishLasso(e.shiftKey);
+    (lasso = lasso || []).push(q); lassoDown = true; draw(); return;
+  }
+  if (tool === 'razor') {
+    if (!m.lot.length) return;
+    const h = hit(m, p); if (!h || h.kind !== 'edge') return;
+    if (e.shiftKey) { const g = new Set(m.gaps || []); g.has(h.j) ? g.delete(h.j) : g.add(h.j); m.gaps = [...g].sort((a, b) => a - b); }
+    else insertPoint(m, h.j, h.t);
+    m.manual = true; draw(); save(); return;
+  }
+  if (tool === 'draw') {
+    pts = pts || [];
+    const tol = 10 * m.w / cv.getBoundingClientRect().width;
+    if (pts.length >= 3 && Math.hypot(p[0] - pts[0][0], p[1] - pts[0][1]) < tol) return finishDraw();
+    pts.push(p); draw(); return;
+  }
+  if (tool === 'place') {
+    const label = await ask('Location name (e.g. SURFERS PARADISE BEACH)', ''); if (!label) return;
+    const r = await api('/place', { file: names[cur], xy: p, label });
+    if (r.error) return flash(r.error);
+    site = r.site; marks = r.marks; list(); draw(); flash(`added ${label.toUpperCase()}`); return;
+  }
+  const h = hit(m, p); if (!h) return;
+  if (h.kind === 'corner' && e.altKey) {
+    if (m.lot.length > 3) { deletePoint(m, h.i); m.manual = true; draw(); save(); }
+    return;
+  }
+  drag = { ...h, start: p, lot0: m.lot.map(q => q.slice()), alt: e.altKey };
+  cv.onmousemove(e);
+};
+cv.ondblclick = e => {
+  if ((tool === 'lasso' || tool === 'light') && lasso) return finishLasso(e.shiftKey);
+  if (tool === 'draw' && pts) return finishDraw();
+  const m = M(); if (tool !== 'edit' || !m || m.error) return;
+  const h = hit(m, toImg(e));
+  if (h && h.kind === 'edge') { insertPoint(m, h.j, h.t); m.manual = true; draw(); save(); }
+};
+cv.onmousemove = e => {
+  if (panning) { pan = [e.clientX - panning[0], e.clientY - panning[1]]; view(); return; }
+  if (tool === 'draw') { hover = toImg(e); draw(); return; }
+  if (tool === 'lasso' || tool === 'light') {
+    hover = toCanvas(e);
+    if (lassoDown && lasso) { const l = lasso[lasso.length - 1]; if (Math.hypot(hover[0] - l[0], hover[1] - l[1]) > 3 / zoom) lasso.push(hover); }
+    draw(); return;
+  }
+  if (brushy()) { cursor = toCanvas(e); if (painting) paint(e); else draw(); return; }
+  if (!drag) return;
+  const m = M(), p = toImg(e), dx = p[0] - drag.start[0], dy = p[1] - drag.start[1];
+  if (drag.kind === 'tip') m.tip = p;
+  else if (drag.kind === 'badge') m.pin_len = Math.max(0.02, (m.tip[1] - p[1] - SZ.BADGE * m.h / 2) / m.h);
+  else if (drag.kind === 'corner') { m.lot[drag.i] = p; m.manual = true; }
+  else if (drag.kind === 'edge' || drag.kind === 'body') { m.lot = drag.lot0.map(([x, y]) => [x + dx, y + dy]); m.manual = true; }
+  else if (drag.kind === 'place') { const st = m.places[drag.id]; st.xy = p; st.manual = true; }
+  draw();
+};
+cv.onmouseleave = () => { cursor = null; if (brushy()) draw(); };
+window.onmouseup = async e => {
+  if (panning) { panning = null; cv.style.cursor = brushy() ? 'none' : spaceDown ? 'grab' : 'crosshair'; return; }
+  if (painting) { painting = false; saveMask(); return; }
+  if (lassoDown) { lassoDown = false; return; }
+  if (!drag) return;
+  const m = M(), d = drag; drag = null;
+  if (d.kind !== 'tip') return save();
+  anchors.tip = m.tip;
+  const first = !site.tip_from;
+  const r = await api('/solve', { file: names[cur], anchors, target: d.alt });
+  site = r.site; marks = r.marks; anchors = { ...(r.m.anchors || {}) }; draw(); list();
+  flash(site.tip_from === names[cur] && (first || d.alt) ? `house set from ${names[cur]}; every photo now pins this spot`
+    : `correction: heading ${r.m.dyaw.toFixed(2)}°, tilt ${r.m.dpitch.toFixed(2)}°, roll ${r.m.droll.toFixed(2)}°`);
+};
+
+// Zoom: scroll / pinch zooms at the pointer; space-drag or right-drag pans; 0 fits.
+const ZOOM_HELP = '  ·  Zoom: scroll or pinch · pan: hold space and drag, or right-drag · 0 fits · + / − zoom.';
+function view() {
+  if (zoom === 1) pan = [0, 0];
+  cv.style.transform = `translate(${pan[0]}px, ${pan[1]}px) scale(${zoom})`;
+  document.getElementById('msg').textContent = zoom > 1 ? `${Math.round(zoom * 100)}%` : '';
+  draw();
+}
+function zoomAt(f, x, y) {
+  const r = cv.getBoundingClientRect();
+  if (x === undefined) { x = r.left + r.width / 2; y = r.top + r.height / 2; }
+  const z = Math.min(12, Math.max(1, zoom * f));
+  // Keep the point under the pointer still: base origin = rect origin minus pan.
+  const qx = (x - r.left) / zoom, qy = (y - r.top) / zoom, bx = r.left - pan[0], by = r.top - pan[1];
+  pan = [x - bx - qx * z, y - by - qy * z]; zoom = z; view();
+}
+function setZoom(z) { zoom = z; pan = [0, 0]; view(); }
+document.getElementById('wrap').addEventListener('wheel', e => {
+  e.preventDefault();
+  zoomAt(Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.002)), e.clientX, e.clientY);
+}, { passive: false });
+cv.oncontextmenu = e => e.preventDefault();
+window.addEventListener('keyup', e => { if (e.key === ' ') { spaceDown = false; if (!panning) cv.style.cursor = brushy() ? 'none' : 'crosshair'; } });
+
+function paint(e) {
+  // Stroke from the last point so fast drags leave no gaps.
+  const c = mask.getContext('2d'), [x, y] = toCanvas(e), [px, py] = painting === true ? [x, y] : painting;
+  c.globalCompositeOperation = (tool === 'erase') !== e.shiftKey ? 'destination-out' : 'source-over';
+  c.strokeStyle = '#fff'; c.lineWidth = brush / zoom; c.lineCap = 'round';
+  c.beginPath(); c.moveTo(px, py); c.lineTo(x, y); c.stroke();
+  painting = [x, y]; maskDirty = true; cursor = [x, y]; draw();
+}
+async function saveMask() {
+  if (!maskDirty || !mask) return;
+  maskDirty = false;
+  await api('/mask', { file: names[cur], data: mask.toDataURL('image/png') });
+}
+
+async function setMode(mode) { M().mode = mode; modeBtns(); draw(); list(); await save(); }
+document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+document.querySelectorAll('[data-tool]').forEach(b => b.onclick = () => setTool(b.dataset.tool));
+const bo = document.getElementById('bo'), bov = document.getElementById('bov');
+const boShow = v => bov.textContent = Math.round(v * 100);
+bo.oninput = () => { M().blackout = +bo.value; boShow(bo.value); draw(); };
+bo.onchange = () => save();
+const lf = document.getElementById('lf');
+lf.oninput = () => { M().lift = +lf.value; draw(); };
+lf.onchange = () => save();
+document.getElementById('boall').onclick = async () => {
+  names.forEach(n => marks[n].blackout = +bo.value); await api('/save', marks); flash(`blackout ${Math.round(bo.value * 100)}% on every photo`);
+};
+const ow = document.getElementById('ow');
+ow.oninput = () => { M().outline_w = +ow.value; draw(); };
+ow.onchange = () => save();
+document.getElementById('owall').onclick = async () => {
+  names.forEach(n => marks[n].outline_w = +ow.value); await api('/save', marks); flash(`outline ${(+ow.value).toFixed(1)}× on every photo`);
+};
+document.getElementById('approve').onclick = async () => {
+  if (maskDirty) await saveMask();
+  M().reviewed = true; await save(); flash('approved'); show(cur + 1);
+};
+document.getElementById('reset').onclick = async () => {
+  if (!await ask('Reset this photo to the automatic placement? Hand edits to the pin and outline are lost (the behind mask and outline thickness stay).')) return;
+  const m = M(); m.manual = false; m.anchors = {}; m.gaps = []; m.lit = []; delete m.pin_len; m.reviewed = false;
+  await save();
+  const r = await api('/solve', { file: names[cur], anchors: {} });
+  marks = r.marks; anchors = {}; draw(); list();
+};
+document.getElementById('apply').onclick = async () => {
+  const r = await api('/apply', {});
+  if (r.error) return flash(r.error);
+  marks = r.marks; draw(); list();
+  flash(`applied compass ${r.dyaw.toFixed(2)}°` + (r.dz ? `, lot ground ${r.dz >= 0 ? '+' : ''}${r.dz.toFixed(1)} m` : '') + ' to unapproved photos');
+};
+window.onkeydown = e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === ' ') { e.preventDefault(); if (!spaceDown) { spaceDown = true; cv.style.cursor = 'grab'; } return; }
+  if ((tool === 'lasso' || tool === 'light') && lasso) {
+    if (e.key === 'Enter') { e.preventDefault(); return finishLasso(e.shiftKey); }
+    if (e.key === 'Escape') { lasso = null; return draw(); }
+    if (e.key === 'Backspace') { e.preventDefault(); lasso.pop(); if (!lasso.length) lasso = null; return draw(); }
+  }
+  if (tool === 'draw' && pts) {
+    if (e.key === 'Enter') { e.preventDefault(); return finishDraw(); }
+    if (e.key === 'Escape') { pts = null; return draw(); }
+    if (e.key === 'Backspace') { e.preventDefault(); pts.pop(); if (!pts.length) pts = null; return draw(); }
+  }
+  if (e.key === '0') return setZoom(1);
+  if (e.key === '=' || e.key === '+') return zoomAt(1.5);
+  if (e.key === '-') return zoomAt(1 / 1.5);
+  if (e.key === 'ArrowRight') show(cur + 1);
+  else if (e.key === 'ArrowLeft') show(cur - 1);
+  else if (e.key === 'Enter') document.getElementById('approve').click();
+  else if ('1234'.includes(e.key) && e.key.length === 1) setMode(['pin', 'outline', 'both', 'none'][+e.key - 1]);
+  else if (e.key === 'e') setTool('edit');
+  else if (e.key === 'b') setTool('brush');
+  else if (e.key === 'l') setTool('place');
+  else if (e.key === 'x') setTool('erase');
+  else if (e.key === 'd') setTool('draw');
+  else if (e.key === '[') setBrush(brush / 1.25);
+  else if (e.key === ']') setBrush(brush * 1.25);
+  else if (e.key === 'r') setTool('razor');
+  else if (e.key === 'a') setTool('lasso');
+  else if (e.key === 'g') setTool('light');
+};
+load();
+</script>
+</body>
+</html>

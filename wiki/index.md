@@ -33,9 +33,12 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[iron-standard]] — Anthony McCoy, 800m² strength facility in Oslo. Six-page enquiry-led site built 22 Sep 2026 from the approved strategy doc; the waitlist scope is dead. Build discipline on [[premium-web-build]]
 - [[use-software]] — Gold Coast/Brisbane tech consultancy (Sam Bruhn, Founder & CEO); "Definitions" talking-head series; CRUD episode v5 in review 9 Oct, reusable template built
 - [[kollosche]] — prestige Gold Coast agency; strict video rulebook (K opens, never ends; Söhne Breit Kräftig; navy outro, no logo); brand pack + 32 team logo sets in `raw/kollosche/` (26 Oct)
+- [[coastal]] — COASTAL° Gold Coast agency group (not Coastline Prestige); house style = white C° pin + charcoal end card
+- [[katrina-walsh]] — Coastal Broadbeach lifestyle/luxury agent; VO-led films, Coastal° open, name+number sunset outro; asset inventory + slow earthy song shortlist (28 Oct)
 - [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])
 
 ## Projects
+- [[floorplan-app]] — in-house CubiCasa finishing app, milestone 2 (28 Oct): sanitise, house-style labels, areas from CubiCasa text, geometry-unchanged check, plus the full 10x A4 page (true-scale skin, side-by-side storeys, PDF/PNG export); 8 CubiCasa sources
 - [[cva-woomala-render-enhance]] — 11 Woomala St renders made photoreal (NBP from source, layout locked); 3,210cr; recipe + failure log
 - [[10xrealestate-ig]] — @10xrealestate_ page polish: bio, logo/highlights, 5 seamless listing carousels (v5.2) + 12-post planner from 28 Oct
 - [[solis-pool-cinemagraph]] — Salt PM listing photo → 10s 9:16 cinemagraph: Seedance 2.5 with camera lock moves only water + spout (160 hf); clouds added free in post by anchored sky-zoom composite
@@ -63,8 +66,11 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[bebita-lifestyle-store]] — **Bebita Collective** (renamed from Lifestyle 30 Sep): sister's activewear + swimwear Shopify store; connected via its own Claude app 29 Sep, products not yet loaded
 - [[use-definitions-series]] — USE Software Definitions episodes: CRUD v5 (0cr, local canvas render) + `projects/use-definitions/` template; lesson: get the client's own past episodes before styling
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
+- [[drone-run]] — browser drone game (Three.js + Blender-built drone/houses, 0cr); playable prototype `projects/drone-run/`
+- [[street-racer]] — browser night GP racer: 14-car garage w/ paint+tune, drift mode, exhaust flames (Three.js + Blender, 0cr); `projects/street-racer/`
 
 ## Concepts
+- [[floor-plan-house-style]] — **Oct 2026 template = 10x standard** · audit of 11 delivered floor plans, 8 clients: two template generations (Feb vs Oct 2026), per-client blocks, YPA own layout, errors shipped (Jessica phone mismatch, 1.061m², typos)
 - [[sfx-library]]: the Ocular Sounds library (1,547 sounds since 20 Oct, ~/Music/SFX Library) and how the motion engine uses it
 - [[sfx-sourcing-and-design]]: SFX libraries, prices and licences (client work and paid social), layering/LUFS technique, design tools, FCP drop-on-the-cut workflow; starter pick Soundly Pro + Sonniss (~A$275/yr)
 - [[house-twilight]] — locked twilight target: early dusk, clean blue→peach sky, bright ground, amber windows (ref frame in raw/assets/twilight)
@@ -72,6 +78,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[extra-salt-kollosche-birds]] — CG gulls comped over a 1.9s drone wide; constrained drone-camera fit beats Blender solve on low parallax (20 Oct, $0)
 - [[plate-vfx]] — skill + pipeline: CG birds, tracked lot lines/pins, sky swap, day-to-dusk into real footage; plate untouched; draft/standard/hero tiers (21 Oct, $0)
 - [[sfx-custom]] — procedural original SFX; 12 lens-flare + 9 shing WAVs (21 Oct, $0)
+- [[drone-photo-pin]] — auto K pin + surveyed lot outline on DJI stills from drone GPS/heading + QLD cadastre; browser review, one drag sets the house (27 Oct, $0)
 - [[plate-vfx-roadmap]] — what to build after the birds: tracked flare, property lines, sky swap, day-to-dusk video, CG house, boats, splats (21 Oct)
 - [[sky-library]] — real skies per time of day (299 Poly Haven HDRIs → 28 picks), physics + AI prompt wording; sun-behind judging (21 Oct, $0)
 - [[higgsfield-pipelines]] — AI generation routing: two pipelines, models, money gate

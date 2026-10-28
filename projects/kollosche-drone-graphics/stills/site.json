@@ -1,0 +1,58 @@
+{
+ "address": "5 Esther Place Surfers Paradise QLD",
+ "lotplan": "3RP128565",
+ "lot_area": 670.0,
+ "ring": [
+  [
+   153.4129492711432,
+   -28.009870690663448
+  ],
+  [
+   153.41291614614565,
+   -28.009880070660145
+  ],
+  [
+   153.41277724516374,
+   -28.009857904645795
+  ],
+  [
+   153.4128404851972,
+   -28.009545144649806
+  ],
+  [
+   153.41304223217088,
+   -28.009577330670616
+  ],
+  [
+   153.41305588216915,
+   -28.00957950667204
+  ]
+ ],
+ "tip": [
+  153.41288799051605,
+  -28.009719111791565
+ ],
+ "roof_h": 10.0,
+ "photos": "/Volumes/10X SSD1/Kollosche | 5 Esther Place, Surfers Paradise/Done/Drone",
+ "tip_from": "Kollosche Drones-4.JPG",
+ "places": [
+  {
+   "id": 1,
+   "label": "Q1",
+   "dist": true,
+   "lon": 153.41804577047043,
+   "lat": -28.013318027368715,
+   "from": "Kollosche Drones-2.JPG"
+  },
+  {
+   "id": 2,
+   "label": "RANDOM HOUSE",
+   "dist": true,
+   "lon": 153.41671881175785,
+   "lat": -28.0099155504549,
+   "from": "Kollosche Drones.JPG"
+  }
+ ],
+ "client": "kollosche",
+ "agent": null
+}

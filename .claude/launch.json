@@ -80,6 +80,56 @@
         "dev"
       ],
       "port": 8160
+    },
+    {
+      "name": "street-racer",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8175",
+        "--directory",
+        "projects/street-racer"
+      ],
+      "port": 8175
+    },
+    {
+      "name": "drone-run",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8170",
+        "--directory",
+        "projects/drone-run"
+      ],
+      "port": 8170
+    },
+    {
+      "name": "floorplan-app",
+      "runtimeExecutable": "/Users/10xhunter/.venvs/typeset/bin/python",
+      "runtimeArgs": [
+        "-I",
+        "projects/floorplan-app/fp.py",
+        "serve",
+        "--port",
+        "8790"
+      ],
+      "port": 8790
+    },
+    {
+      "name": "drone-pin-review",
+      "runtimeExecutable": "/Users/10xhunter/.venvs/typeset/bin/python",
+      "runtimeArgs": [
+        "-I",
+        "projects/drone-pin/drone_pin.py",
+        "review",
+        "projects/kollosche-drone-graphics/stills",
+        "--port",
+        "8765",
+        "--no-open"
+      ],
+      "port": 8765
     }
   ]
 }

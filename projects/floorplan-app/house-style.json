@@ -1,0 +1,32 @@
+{
+  "_about": "10x floor-plan house style (Oct 2026 template, locked 2026-10-28). Labels map CubiCasa names to ours. 'ask' labels always need a human choice: the app never guesses them.",
+  "rename": {
+    "primary bedroom": "Master Bedroom",
+    "primary bath": "Ens.",
+    "living room": "Living",
+    "dining area": "Dining",
+    "family room": "Family",
+    "sitting room": "Sitting",
+    "laundry": "L'dry",
+    "pantry": "P'try",
+    "w.i.c.": "W.I.C.",
+    "wc": "WC",
+    "powder room": "PDR",
+    "breakfast nook": "Breakfast Nook",
+    "covered patio": "Covered Patio",
+    "covered deck": "Covered Deck"
+  },
+  "ask": {
+    "bedroom": "Which bedroom number? (Bedroom 2, Bedroom 3 …)",
+    "bath": "Bath, Ens. or PDR?",
+    "garage": "Garage, Single Garage or Double Garage?",
+    "room": "CubiCasa didn't name this room. What is it?"
+  },
+  "dims": {
+    "format": "{w}m x {h}m",
+    "round_default": false,
+    "round_note": "Rounding to 1 decimal changes supplied measurements. Only on when Hunter approves it for the job."
+  },
+  "areas": "Internal: {internal}m² | External: {external}m² | Total: {total}m² | Land area: {land}m²",
+  "footer_patterns": ["floor:", "total:", "basement:", "total gla", "floor plan created by cubicasa", "excluded areas"]
+}

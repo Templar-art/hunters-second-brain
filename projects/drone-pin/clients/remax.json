@@ -1,0 +1,18 @@
+{
+ "name": "RE/MAX",
+ "aliases": [
+  "Remax"
+ ],
+ "confirmed": false,
+ "notes": "From 32 Southern Skies: no badge, the white RE/MAX wordmark over a thin line ending in a dot; thin white outline. NEEDS the white RE/MAX wordmark PNG. Research 2026-10-28: finished pinned sets on the Clients Drive (paths in wiki/concepts/drone-photo-pin.md). Sizes estimated from previews.",
+ "style": {
+  "pin": "mark",
+  "glyph": null,
+  "fill_opacity": 0,
+  "badge": 0.04,
+  "pin_line": 0.06,
+  "line_dot": true,
+  "outline_w": 0.0018
+ },
+ "agents": {}
+}
