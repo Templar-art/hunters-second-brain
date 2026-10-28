@@ -22,6 +22,12 @@ Source: `~/Downloads/Kollosche Ester Place/Coastal Day to Night/Day.mp4`. It is 
 
 - 2026-10-28 intake: 1 shot. The reference is the same shot already at dusk. Nothing has been spent.
 - 2026-10-28 Hunter said go (~30 HF), pad to 4 s. Still v1 matched the look but took its framing from the reference at 1.5 s, which is mid-move. Re-pulled the reference from frame 0 to get v2, which lines up with Day. Omni Edit 4K: motion edge-match against the source holds at 75–78% across the clip. The lamps and fan light are warm, the sun patches are gone and the jacarandas are still purple. The sky came out as a clean pink-peach gradient with fewer clouds than the reference. Delivered `Coastal Balcony - DUSK 4K` as .mov and .mp4 next to the source, trimmed to 3.09 s. Lesson: when the reference is the same shot, pull it from the frame that matches the source's first frame.
+- 2026-10-28 Hunter rejected it: wrong sky, the door is messed up, and the movement isn't the same. Diagnosis:
+  - **Door:** in the dusk clip, the white hinged bedroom door with its silver lever has turned into a mirror or glass panel, and the lever has become a black wall sconce.
+  - **Right window:** a sheer curtain has been added over the trees.
+  - **Root cause:** Night-still-v2 was **not aligned to Day frame 0**. Its framing is shifted toward the reference, and it had already dropped the door. Omni blended the still's geometry into the plate. Lesson: before spending on video, check the still against the day frame with phase correlation.
+  - **Sky:** the still has a clear pink gradient. The reference has peach-lit cumulus.
+  - **Motion:** optical flow matches Day.mp4 (dx about −0.3, dy about +0.27 px per 0.25 s in both). Main.mp4 is a different take with a different move.
 
 ## Ledger
 
