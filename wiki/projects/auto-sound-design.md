@@ -108,6 +108,14 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 - Hunter: the K-pin glint was **"too tacky and too loud, needs a whoosh"**, so it's now a soft whoosh at -6 dB (scene-map accents can carry `level_db`). He then said **colour difference is the biggest thing**: Desire looks more premium.
 - Measured the grade on both films. See the colour table in [[desire-the-pilot-reference]]: ours has lifted blacks, too much saturation and yellow throughout, and no cool tones. Built `grade/measure.py` (CIELAB stats) and the test grade `grade/desire-match.ffmpeg.txt`. Sent before/after stills and a graded copy of v10 (`…_SOUND-MIX_GRADE-TEST.mp4`; re-encoded, so not the picture-untouched deliverable).
 
+## 28 Oct, v11: seamless music return, timing, day→night story, LUT
+- Hunter: "time the SFX a bit better… the audio fix isn't as good as I hoped, needs to be seamless… try creative stuff like Desire… the colour grading looks fucked, def not the same."
+- **The music cut, diagnosed properly.** The dusk section (37.5–42.2 s) is the same song low-passed (-29 dB above 2 kHz) and about 9 dB down, and the music after 42.17 s comes back **about 180 ms (0.37 beat) off the beat grid**. A swell can't hide a rhythm stumble.
+- **`musicfix.seamless_return`:** rebuilds the muffled section from the music **3 bars after the cut** (whole-bar shift, so the grid runs straight through 42.17), applies the measured muffle curve, level-matches it to the original (within about 1 dB), hands over from the original at 39.48 s inside the quietest part with a 0.5 s cosine blend, then opens filter and level together over **one bar** (1.98 s, eased). Verified: onset phase is continuous through the cut, and the level rises -24 → -15 dB without a step. FCP: the rebuilt span is a `music`-role clip, and the source audio is muted over that span via `audio-channel-source`/`mute` (DTD-valid; import untested).
+- **Timing:** impacts now land on the music hit (they snap to a cut only within 60 ms, down from 300 ms), and whoosh peaks lead the cut by 40 ms.
+- **Creative, day→night story:** a soft downward whoosh at 37.45 s as the timelapse darkens, crickets heard faintly through the glass across the dusk section (`night_interior` label, -6 dB), and birds return at 42.2 s.
+- **Colour v2 (`grade/transfer.py`):** a real **.cube LUT** from statistical transfer against Desire's frames (L* quantile tone curve + per-band a*/b* mean/spread, blended by strength). The 75% LUT gives shadow floor 10.2, contrast 69, chroma 14.7, highlight b 6.1: gentler and more natural than the rejected ffmpeg-filter grade. Sent with stills comparing ours, the LUT and Desire. Honest limit: much of Desire's "premium" is exposure, lighting and content (high-key bright interiors, water, dusk), which a global LUT can't create.
+
 ## Not yet known
 - **Whether it sounds good.** Nobody has listened to the preview yet.
 - Whether the FCPXML imports into FCP 12.4.

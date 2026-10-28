@@ -1616,3 +1616,6 @@ Found the hard music cut at 42.17 s (the highs return after the dusk section) an
 
 ## [2026-10-28] query | Why Desire's colour looks premium (measured)
 Desire has a shadow floor of L 7.5 against our 17, contrast 73 against 60, chroma 12.7 against 17.6, neutral shadows against yellow ones, and 29% cool hues against 4%. A test grade (`grade/desire-match.ffmpeg.txt`) hits the targets except mid yellow. The K pin glint became a soft whoosh. Filed in [[desire-the-pilot-reference]].
+
+## [2026-10-28] build | Auto Sound Design v11 + Desire-match LUT
+The 42.17 s music return is now rebuilt phrase-aligned (the music after it was 180 ms off-grid) with a 1-bar filter and level opening, and the fix is exported as a music clip plus a source mute in the XML. Impacts lock to the music hit, whooshes lead the cut by 40 ms, and a day→night ambience story was added. Colour v2 is a statistical-transfer .cube LUT (75%); the ffmpeg grade was rejected as "fucked". See [[auto-sound-design]].
