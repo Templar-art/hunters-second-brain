@@ -23,7 +23,7 @@ This is an audit of the floor plans 10x has delivered to real-estate clients, al
 
 Common to both: A4 landscape, address top left, bed/bath/car counts plus north top right, framed plan area, area strip under the frame, client logo bottom left, the disclaimer, and the 10X VISUALS logo bottom right.
 
-**The house style changed between February and October 2026.** No one has decided which generation is the 10x standard. That decision has to be made before the in-house app gets a template.
+**The house style changed between February and October 2026.** **Decision (Hunter, 2026-10-28): Gen B, the Oct 2026 template, is the 10x standard.** That means an aerial site plan with numbered markers and a Legend list, sizes with units (`4.3m x 3.4m`), a title-case `Internal | External | Total | Land area` strip, a regular-weight address with the suburb in caps, grey walls and a filled north arrow. The in-house app builds this template first. Gen A is history only. YPA stays its own layout unless told otherwise.
 
 ## Per-client blocks (what actually varies)
 

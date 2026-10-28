@@ -1544,3 +1544,6 @@ Per-client style profiles (clients/*.json, 10 clients from a Drive/SSD research 
 
 ## [2026-10-28] query | Floor plans as delivered, per client
 Pulled one finished plan per client from the Clients Drive (YPA, RE/MAX, The Agency, Belle, Place, Ray White, Coastline, ZED, Harcourts). Found two template generations, per-client logo and agent blocks, and errors that shipped. See [[floor-plan-house-style]]; contact sheet in projects/floorplan-app/refs.
+
+## [2026-10-28] decision | Floor plans: the Oct 2026 template is the 10x standard
+Hunter picked Gen B (aerial site plan, m units, title-case area strip) as the standard for the in-house floor-plan app. See [[floor-plan-house-style]].
