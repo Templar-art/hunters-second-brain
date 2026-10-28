@@ -111,3 +111,5 @@ The goal was "look as good as the supplier final, but better". `render.py` turns
 1. Hunter signs off the page look and the area rule.
 2. Run a live job end to end: CubiCasa export → app → client PDF.
 3. Site plan from our own drone top-down via [[drone-pin-tool]] instead of a manual upload.
+4. **Parked (Hunter, 2026-10-28):** the page "needs a cool exterior". Exterior treatment is still undefined: site/land outline, landscaping, or a drone aerial. Pick it up after sign-off.
+5. **Parked:** area rule undecided ("not sure"). Garage stays Internal, matching the Oct finals, until decided.
