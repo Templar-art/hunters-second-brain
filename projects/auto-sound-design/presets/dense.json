@@ -25,7 +25,9 @@
       "riser": 4,
       "shimmer": 3,
       "low drone": 2,
-      "ambience": 1
+      "ambience": 1,
+      "click": 6,
+      "pop": 4
     },
     "max_whoosh_share_of_cuts": 1.0,
     "max_overlap": 3

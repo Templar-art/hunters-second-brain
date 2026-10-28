@@ -23,7 +23,9 @@
       "riser": 2,
       "shimmer": 1,
       "low drone": 1,
-      "ambience": 1
+      "ambience": 1,
+      "click": 4,
+      "pop": 3
     },
     "max_whoosh_share_of_cuts": 0.15,
     "max_overlap": 2,
@@ -36,7 +38,9 @@
       "impact": -8,
       "shimmer": -14,
       "low drone": -18,
-      "ambience": -20
+      "ambience": -20,
+      "click": -16,
+      "pop": -14
     },
     "peak_ceiling_dbfs": {
       "whoosh": -14,
@@ -44,7 +48,9 @@
       "impact": -8,
       "shimmer": -16,
       "low drone": -20,
-      "ambience": -22
+      "ambience": -22,
+      "click": -18,
+      "pop": -15
     }
   },
   "fades": {

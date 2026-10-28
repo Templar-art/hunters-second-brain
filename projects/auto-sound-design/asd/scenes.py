@@ -12,7 +12,7 @@ Labels: exterior, aerial, interior, bathroom, balcony, dusk, presenter, endcard.
 """
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 # label -> (ambience tag to look for, extra level offset dB, keep one-shots out?)
@@ -54,13 +54,14 @@ class SceneMap:
     source: str
     segments: list
     accents: list
+    fixes: list = field(default_factory=list)  # music fixes, in full-video seconds
 
     def shifted(self, start, length):
         """The part of the map inside a test section, re-timed to the section's start."""
         segs = [Segment(max(s.start, start) - start, min(s.end, start + length) - start, s.label)
                 for s in self.segments if s.end > start and s.start < start + length]
         acc = [{**a, "time": a["time"] - start} for a in self.accents if start <= a["time"] < start + length]
-        return SceneMap(self.source, segs, acc)
+        return SceneMap(self.source, segs, acc, self.fixes)
 
     def label_at(self, t):
         return next((s.label for s in self.segments if s.start <= t < s.end), None)
@@ -93,4 +94,4 @@ def load(path):
     unknown = sorted({s.label for s in segs} - set(LABELS))
     if unknown:
         raise ValueError(f"Unknown scene labels {unknown}; use one of {sorted(LABELS)}")
-    return SceneMap(data.get("source", "unspecified"), segs, data.get("accents", []))
+    return SceneMap(data.get("source", "unspecified"), segs, data.get("accents", []), data.get("music_fixes", []))

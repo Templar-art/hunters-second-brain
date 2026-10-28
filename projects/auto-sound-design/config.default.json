@@ -37,7 +37,9 @@
       "riser": 1.5,
       "shimmer": 1,
       "low drone": 1,
-      "ambience": 1
+      "ambience": 1,
+      "click": 4,
+      "pop": 3
     },
     "max_whoosh_share_of_cuts": 0.35,
     "max_overlap": 2,
@@ -68,6 +70,14 @@
     "ambience": [
       4.0,
       600.0
+    ],
+    "click": [
+      0.02,
+      1.5
+    ],
+    "pop": [
+      0.02,
+      1.5
     ]
   },
   "levels": {
@@ -77,7 +87,9 @@
       "impact": -6,
       "shimmer": -12,
       "low drone": -16,
-      "ambience": -18
+      "ambience": -18,
+      "click": -16,
+      "pop": -14
     },
     "peak_ceiling_dbfs": {
       "whoosh": -9,
@@ -85,7 +97,9 @@
       "impact": -6,
       "shimmer": -14,
       "low drone": -18,
-      "ambience": -20
+      "ambience": -20,
+      "click": -16,
+      "pop": -14
     },
     "confidence_scale_db": 4.0,
     "min_gain_db": -40.0,
@@ -116,7 +130,15 @@
       1.5,
       2.0
     ],
-    "trim_fade_out": 0.5
+    "trim_fade_out": 0.5,
+    "click": [
+      0.001,
+      0.05
+    ],
+    "pop": [
+      0.001,
+      0.08
+    ]
   },
   "mix": {
     "ceiling_dbfs": -1.0,

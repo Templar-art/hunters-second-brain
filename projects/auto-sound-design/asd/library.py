@@ -13,7 +13,7 @@ from . import media
 
 AUDIO_EXT = {".wav", ".aif", ".aiff", ".mp3", ".m4a", ".flac", ".caf", ".ogg"}
 
-CATEGORIES = ["whoosh", "riser", "impact", "low drone", "shimmer", "ambience"]
+CATEGORIES = ["whoosh", "riser", "impact", "low drone", "shimmer", "ambience", "click", "pop"]
 
 # Word -> category. Matched against whole tokens, so "hit" doesn't fire on "white".
 KEYWORDS = {
@@ -22,6 +22,9 @@ KEYWORDS = {
     "impact": ["impact", "hit", "boom", "slam", "thud", "punch", "braam", "stomp", "drop", "subdrop", "kick", "hits"],
     "low drone": ["drone", "rumble", "sub", "low", "pad", "dark"],
     "shimmer": ["shimmer", "sparkle", "chime", "chimes", "glitter", "twinkle", "magic", "glint", "shine", "bell", "bells", "glisten"],
+    # Small foley "flavour": switches, latches, UI ticks for text, pops for pins.
+    "click": ["click", "clicks", "switch", "tick", "button", "toggle", "latch", "clack"],
+    "pop": ["pop", "pops", "bubble", "blip", "plop"],
     "ambience": ["ambience", "ambiance", "ambient", "atmos", "atmosphere", "roomtone", "room", "birds", "rain", "forest", "city", "wind", "waves", "nature", "rainforest", "cityscape", "cityscapes"],
 }
 TOKEN_TO_CATEGORY = {word: cat for cat, words in KEYWORDS.items() for word in words}

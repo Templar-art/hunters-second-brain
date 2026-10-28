@@ -96,6 +96,14 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 - v8 (`tasteful.json`): the whoosh budget is 15% of cuts **including the edit's own**, which left 2 new whooshes. Preview **mastering**: a two-pass EBU R128 loudnorm to -16 LUFS / LRA 6 / -1 dBTP, replacing the turn-down. Result: -16.0 LUFS, LRA 6.3. It applies to the preview only; in FCP use a compressor and limiter on the master to match.
 - Placed: impacts at 1.4, 52.8 and 79.9 s, whooshes at 70.5 and 76.4 s, the K-pin glint, and the real (unverified-licence) ambience beds. Sent.
 
+## 28 Oct, v9: "little sounds" + smoothing the music cut
+- Hunter: Desire adds **little flavour sounds tied to what's on screen** (e.g. a mechanical switch when the kitchen lights come on). "Our video needs more spice." Also: **"there's a hard cut on the music when it goes back to day"** after the day-to-night section.
+- Found the cut by measurement: the music's highs drop at **37.5 s** (dusk timelapse) and slam back at **42.17 s** (balcony returns to day). Hunter's own whoosh sits there too.
+- New `asd/musicfix.py` (scene-map `music_fixes`): a **reverse swell** made from the incoming music (1 s after the cut, reverbed, reversed, about 5 dB under the music by the cut), placed as an editable clip in the FCPXML, plus a **0.7 s filter sweep** (preview only; in FCP keyframe a low-pass on the music 42.17→42.87 s).
+- New foley categories **click** (switch/tick/latch) and **pop**. Scene-map accents are now exempt from density caps and spacing (they're deliberate flavour) but still respect the presenter and the edit's existing effects; their level floor is the film's median music level -6 dB, so an end card doesn't swallow them.
+- Kollosche accents (from frame strips): a glint on the **light-flash transition** (2.79 s), a **pop** as the K pin lands (55.9 s), a **whoosh** on the tilt-up to the end card (80.4 s), a **tick** as the agent title appears (81.2 s), and a soft **hit** on the navy end card (85.3 s). No real light-switch moment exists in this edit; the click category is there for future ones.
+- The placeholder accents use `committed-coaching/sfx-lib` click/pop files and the synthetic glint; real foley comes from Ocular Utility/Mechanica on the Mac.
+
 ## Not yet known
 - **Whether it sounds good.** Nobody has listened to the preview yet.
 - Whether the FCPXML imports into FCP 12.4.

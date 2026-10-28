@@ -20,7 +20,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from asd import analysis, fcpxml, library, media, mix, placement, scenes  # noqa: E402
+from asd import analysis, fcpxml, library, media, mix, musicfix, placement, scenes  # noqa: E402
 
 DTD = HERE / "tests" / "fixtures" / "FCPXMLv1_10.dtd"
 
@@ -177,6 +177,16 @@ def cmd_process(args):
     if existing:
         print(f"  Effects already in the edit (heuristic): " + ", ".join(f"{e['kind']} {e['time']:.2f}s" for e in existing))
     placements, skipped, missing = placement.place(cuts, music, video, man, cfg, scenes=scene_map, existing=existing)
+    fix_notes, sweeps, extra_sources = [], [], {}
+    if scene_map and scene_map.fixes:
+        fixes, sweeps, fix_notes = musicfix.plan(scene_map.fixes, video, start_s, seconds, out_dir, music.level_at)
+        for p in fixes:
+            extra_sources[p.source] = {"duration": float(p.duration), "channels": 2, "sample_rate": 48000}
+            print(f"  {p.reason}")
+        placements = sorted(placements + fixes, key=lambda p: (p.offset, p.category))
+        placement._assign_lanes(placements)
+        for n_, p in enumerate(placements, 1):
+            p.id = f"fx{n_:02d}"
     for part in parts:  # keep newly measured peak times (sound dicts are shared with the merged view)
         library.save_manifest(part, manifest_cache(part["root"]))
     print(f"Placed {len(placements)} effects ({len(skipped)} candidates skipped)")
@@ -184,6 +194,9 @@ def cmd_process(args):
     print("Rendering effects bus ...")
     clips = mix.render_clips(placements)
     source = media.decode_audio(video.path, rate=mix.RATE, channels=2, start=start_s, duration=seconds) if video.has_audio else None
+    for t_fix in sweeps:  # preview-only filter sweep after a smoothed music cut
+        if source is not None:
+            source = musicfix.filter_sweep(source, t_fix)
     bus, preview_gain, mix_report = mix.balance(placements, clips, seconds, source, cfg)
     sfx_wav = out_dir / f"{video_path.stem}_sfx_only.wav"
     media.write_wav(sfx_wav, bus)
@@ -216,6 +229,7 @@ def cmd_process(args):
     xml_path = None
     if not args.no_xml:
         sources = {s["path"]: s for s in man["sounds"]}
+        sources.update(extra_sources)
         # Copies of the effects used travel with the run folder, so the XML can be relinked on another machine.
         used_dir = out_dir / "sfx_used"
         used_dir.mkdir()
@@ -268,6 +282,7 @@ def cmd_process(args):
         "skipped_candidates": skipped,
         "missing_categories": sorted(set(missing) | set(man["missing_categories"])),
         "mix": mix_report,
+        "music_fixes": fix_notes,
         "licence_unverified": unverified,
         "outputs": {"preview": str(preview), "sfx_only_wav": str(sfx_wav), "fcpxml": str(xml_path) if xml_path else None},
         "fcpxml_status": xml_status,
@@ -353,6 +368,8 @@ def report(edl):
         lines += ["", "## ⚠️ Licence unverified: preview only", "",
                   "These sounds' licences could not be verified. Don't deliver this mix to a client until they're "
                   "swapped for owned sounds: " + ", ".join(edl["licence_unverified"])]
+    if edl.get("music_fixes"):
+        lines += ["", "## Music fixes", ""] + [f"- {n}" for n in edl["music_fixes"]]
     lines += ["", "## Final Cut", "", f"- {edl['fcpxml_status']}"]
     if edl["missing_categories"]:
         lines += ["", "## Missing sound categories", "",

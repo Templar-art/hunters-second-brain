@@ -4,16 +4,18 @@ Every placement is labelled heuristic: the rules see cut scores and loudness, no
 "Impact on an energy rise" is a guess that a big musical moment wants weight under it."""
 
 import random
+
+import numpy as np
 from dataclasses import dataclass, asdict, field
 from fractions import Fraction
 
 from .library import sound_shape
 
-ONE_SHOT = {"whoosh", "riser", "impact", "shimmer"}
+ONE_SHOT = {"whoosh", "riser", "impact", "shimmer", "click", "pop"}
 BEDS = {"low drone", "ambience"}
 
 # Which point of the effect lands on the event time.
-ALIGN = {"whoosh": "peak", "riser": "peak", "impact": "attack", "shimmer": "onset", "low drone": "start", "ambience": "start"}
+ALIGN = {"click": "attack", "pop": "attack", "whoosh": "peak", "riser": "peak", "impact": "attack", "shimmer": "onset", "low drone": "start", "ambience": "start"}
 
 
 @dataclass
@@ -179,7 +181,7 @@ def sound_options(category, library, cfg, rng, recent):
     return unused + used
 
 
-def _fit_sound(c, sound, cat, cfg, chosen, duration, fd):
+def _fit_sound(c, sound, cat, cfg, chosen, duration, fd, extra_overlap=0):
     """Place one file against one candidate. Returns (fit tuple, None) or (None, reason)."""
     rules, limits = cfg["rules"], cfg["limits"]
     try:
@@ -217,8 +219,8 @@ def _fit_sound(c, sound, cat, cfg, chosen, duration, fd):
 
     def overlapping(kind):
         return [p for p in chosen if (p.category in kind) and p.offset < offset + length and offset < p.end()]
-    if cat in ONE_SHOT and len(overlapping(ONE_SHOT)) >= limits["max_overlap"]:
-        return None, f"already {limits['max_overlap']} one-shots sounding there"
+    if cat in ONE_SHOT and len(overlapping(ONE_SHOT)) >= limits["max_overlap"] + extra_overlap:
+        return None, f"already {limits['max_overlap'] + extra_overlap} one-shots sounding there"
     if cat in BEDS and len(overlapping(BEDS)) >= limits["max_beds"]:
         return None, "another bed already covers that span"
     return (sound, shape, align, offset, length, snap_err, notes, use_len, file_len), None
@@ -256,6 +258,9 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
 
     for c in cands:
         cat = c.category
+        # Scene-map accents are deliberate "flavour" on something visible (a flash, a pin, a title):
+        # they layer on top, so density caps and spacing don't apply; presenter/existing rules still do.
+        accent = c.group.startswith("accent@")
         if c.score < rules["min_score"]:
             reject(c, f"score {c.score:.2f} under min_score {rules['min_score']}")
             continue
@@ -269,16 +274,16 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
         if scenes and scenes.quiet_at(c.time):
             reject(c, "presenter on screen (scene map): kept clear")
             continue
-        if used_count.get(cat, 0) >= per_cat_cap.get(cat, 99):
+        if not accent and used_count.get(cat, 0) >= per_cat_cap.get(cat, 99):
             reject(c, f"{cat} cap reached ({per_cat_cap.get(cat)} for this length)")
             continue
-        if cat == "whoosh" and used_count.get(cat, 0) >= whoosh_cap:
+        if not accent and cat == "whoosh" and used_count.get(cat, 0) >= whoosh_cap:
             reject(c, f"whoosh share cap ({whoosh_cap} new of {len(cuts)} cuts, after the edit's own)")
             continue
-        if cat in ONE_SHOT and sum(1 for p in chosen if p.category in ONE_SHOT) >= total_cap:
+        if not accent and cat in ONE_SHOT and sum(1 for p in chosen if p.category in ONE_SHOT) >= total_cap:
             reject(c, f"total density cap reached ({total_cap})")
             continue
-        if cat in ONE_SHOT:
+        if cat in ONE_SHOT and not accent:
             clash = next((p for p in chosen if p.category in ONE_SHOT and abs(p.event_time - c.time) < limits["min_spacing_s"]
                           and not (c.group and group_times.get(c.group) == p.id)), None)
             if clash:
@@ -294,7 +299,7 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
             continue
         fit, why_not = None, ""
         for sound in options:  # least-recently-used first; fall through to the next file if one won't fit
-            fit, why_not = _fit_sound(c, sound, cat, cfg, chosen, duration, fd)
+            fit, why_not = _fit_sound(c, sound, cat, cfg, chosen, duration, fd, extra_overlap=2 if accent else 0)
             if fit:
                 break
         if not fit:
@@ -307,6 +312,9 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
             continue
 
         level_ref = music.level_at(c.time)
+        if accent and len(music.rms_db):
+            # An end card or a hush in the music shouldn't make an accent vanish.
+            level_ref = max(level_ref, float(np.median(music.rms_db)) - 6)
         rel = cfg["levels"]["relative_db"][cat]
         gain = level_ref + rel - shape["rms_db"] - (1 - c.score) * cfg["levels"]["confidence_scale_db"]
         # RMS under-reads transient hits, so also cap the effect's own peak per category.

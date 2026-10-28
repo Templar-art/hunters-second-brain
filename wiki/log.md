@@ -1610,3 +1610,6 @@ Only GitHub, PyPI and npm are reachable. Pulled birds, crickets and wind from a 
 
 ## [2026-10-28] build | Auto Sound Design v8: Desire matched by measurement
 Desire is -16.2 LUFS with LRA 5.4 and whooshes on 11% of cuts; Hunter's edit already has 19%. v8 counts his own whooshes in the budget and masters the preview to -16 LUFS / LRA 6.3. Sent. See [[auto-sound-design]].
+
+## [2026-10-28] build | Auto Sound Design v9: flavour accents + music-cut smoothing
+Found the hard music cut at 42.17 s (the highs return after the dusk section) and smoothed it with a reverse swell from the incoming music plus a filter sweep. Added click/pop foley and on-screen accents (flash, pin, tilt, title, end card) that layer above the density caps. Sent v9. See [[auto-sound-design]].
