@@ -1649,3 +1649,6 @@ Hunter's next grade is good on some shots only. `assist.py --contact-sheet` numb
 
 ## [2026-10-28] build | Desire match v4 (per-type tuning)
 After "inside too dark, outside too bright, drone far away": interiors +5 L, exteriors and aerials get a highlight roll-off, and aerials take tone only, not colour. Sent v4. See [[fcp-resolve-workflow]].
+
+## [2026-10-28] decision | Automated Desire colour match parked
+Hunter preferred his own colours on most shots, and the matches didn't read as Desire. His grade stays; colour tools are kept for consistency only. See [[fcp-resolve-workflow]].
