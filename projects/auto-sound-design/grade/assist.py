@@ -124,6 +124,30 @@ def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_to
                                   "film_white_cast_b": ref["white_b"], "film_white_cast_a": ref["white_a"]}
 
 
+def fcp_words(s):
+    """Plain Final Cut instructions (Color Wheels on the clip). Amounts are words, not numbers:
+    FCP's wheels don't map 1:1 to RGB gain, so set it by eye with the preview as the target."""
+    if s.get("skip") or not s.get("changed"):
+        return ""
+    r, g, b = s["resolve_gain"]
+    out = []
+    stops = s.get("exposure_stops", 0.0)
+    if abs(stops) >= 0.05:
+        size = "a little" if abs(stops) < 0.2 else "noticeably"
+        out.append(f"Master brightness {'up' if stops > 0 else 'down'} {size}")
+    tint = g - (r + b) / 2
+    if abs(r - b) >= 0.03:
+        size = "a touch" if abs(r - b) < 0.08 else "clearly"
+        out.append(f"Temperature {size} {'warmer' if r > b else 'cooler'}")
+    if abs(tint) >= 0.03:
+        out.append(f"Tint {'toward green' if tint > 0 else 'toward magenta'}")
+    if "Sat 45-48" in s.get("note", ""):
+        out.append("Master saturation down ~5-10%")
+    elif "Sat 55-58" in s.get("note", ""):
+        out.append("Master saturation up ~5-10%")
+    return "Color Wheels: " + "; ".join(out) if out else ""
+
+
 def apply(frames, shots, fps):
     out = frames.astype(np.float32).copy()
     for s in shots:
@@ -177,17 +201,21 @@ def main(argv=None):
              f"(warm), typical chroma {summary['median_chroma']:.1f}. Shots are matched to that, not to neutral.", "",
              "Type these into **Resolve → Color → Primaries (bars) → Gain R / G / B** on each shot. "
              "Leave Lift/Gamma alone for this pass.", "",
-             "| Shot | TC in | Gain R | Gain G | Gain B | Exposure | White cast (b*) | Note |", "|---|---|---|---|---|---|---|---|"]
+             "**In Final Cut:** select the shot → Inspector → Color → add Color Wheels → follow the *Final Cut* column, "
+             "matching the right side of the preview by eye.", "",
+             "| Shot | TC in | Final Cut | Gain R | Gain G | Gain B | Exposure | White cast (b*) | Note |",
+             "|---|---|---|---|---|---|---|---|---|"]
     for s in shots:
         if "skip" in s:
-            lines.append(f"| {s['shot']:02d} | {s.get('tc', '')} | – | – | – | – | – | {s['skip']} |")
+            lines.append(f"| {s['shot']:02d} | {s.get('tc', '')} | – | – | – | – | – | – | {s['skip']} |")
             continue
         r, g, b = s["resolve_gain"]
         cast = f"{s['white_b']:+.1f}" if "white_b" in s else "–"
         note = s["note"] or ("fine as is" if not s["changed"] else "")
         if not s["changed"] and "not auto-matched" not in note and "Sat" not in note:
             note = "fine as is"
-        lines.append(f"| {s['shot']:02d} | {s['tc']} | {r:.3f} | {g:.3f} | {b:.3f} | {s['exposure_stops']:+.2f} st | {cast} | {note} |")
+        lines.append(f"| {s['shot']:02d} | {s['tc']} | {fcp_words(s) or '–'} | {r:.3f} | {g:.3f} | {b:.3f} | "
+                     f"{s['exposure_stops']:+.2f} st | {cast} | {note} |")
     lines += ["", f"{len(changed)} of {len(shots)} shots would change by more than 1.5%.",
               "Preview: before-after_preview.mp4 (left = yours, right = suggested). Stills: changed-shots_before-after.png."]
     (out / "GRADE-NOTES.md").write_text("\n".join(lines) + "\n")

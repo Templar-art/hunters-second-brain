@@ -40,6 +40,9 @@ Trade-off: you grade a baked master, so there are no handles; if the cut changes
 5. FCP: **File → Import → XML** → the round-trip XML gives a new project pointing at the graded clips. Titles and effects from the original need re-adding or copying across.
 6. **Check every retime and transition** against the original before delivery.
 
+## Current decision (28 Oct): grade in Final Cut, automate Resolve later
+Hunter doesn't know Resolve grading yet ("no clue"). For now he **stays in FCP** (he likes his own grades), and the grade assistant prints plain **FCP Color Wheels** instructions per shot (brightness / temperature / tint / saturation, in words: FCP's wheels don't map 1:1 to RGB gain, so match the preview by eye). Resolve becomes worth it once the MCP route below is set up on the Mac, so Claude pushes the grade and Hunter only reviews. A click-by-click Resolve beginner guide is on offer if he wants to learn it.
+
 ## Log stays log (Path A detail)
 A baked-ramp master stays **log** only if FCP isn't converting it. Before exporting, select all the clips → Inspector → **Info / Settings: Camera LUT (log processing) = None**, and remove any LUT or colour effects. The exported ProRes then *looks* flat in FCP, which is correct. In Resolve, after Scene Cut Detector, set **Input Color Space per shot** (Sony S-Log3/S-Gamut3.Cine vs DJI D-Log M), because one master mixes cameras. Check it once by toggling a shot's input space.
 
