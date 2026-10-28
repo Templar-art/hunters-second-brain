@@ -7,7 +7,11 @@ motion), checked against the plate-vfx camera solve for the same pixel.
 Frame 1 of the clip is a cut from the previous shot, so the pin starts on
 frame 2.
 
-Usage: python3 -I render_pin.py <job_dir> <clip>
+Usage: python3 -I render_pin.py <job_dir> <clip> [badge]
+  badge: pin head is the boxed navy K badge from the delivered drone stills, drawn by
+  the drone-pin tool's own badge() with clients/kollosche.json (navy #011A3B square,
+  white 5% border, white K 54%, line 5.5% of the side and touching the badge, side
+  8.5% of frame height). Outputs get a _badge suffix; the white-K versions are kept.
 """
 import json
 import subprocess
@@ -21,6 +25,8 @@ from scipy import ndimage
 
 job = Path(sys.argv[1])
 clip = sys.argv[2]
+BADGE = len(sys.argv) > 3 and sys.argv[3] == "badge"
+SFX = "_badge" if BADGE else ""
 root = Path(__file__).resolve().parents[3]
 v = job / "view"
 frames = sorted((v / "frames").glob("f_*.png"))
@@ -71,11 +77,20 @@ LINE_W = max(2, round(H * 0.0037))
 LINE_LEN = round(H * 0.42)
 GAP = round(H * 0.015)
 
+if BADGE:
+    sys.path.insert(0, str(root / "projects/drone-pin"))
+    import drone_pin  # noqa: E402
+    st = {**drone_pin.DEFAULT_STYLE,
+          **json.loads((root / "projects/drone-pin/clients/kollosche.json").read_text())["style"]}
+    side = round(st["badge"] * H)
+    k_img = drone_pin.badge(side, drone_pin.k_glyph(), st)
+    LINE_W, GAP = max(2, round(st["pin_line"] * side)), 0
+
 def ease(t):
     t = min(max(t, 0.0), 1.0)
     return 1 - (1 - t) ** 3
 
-out_dir = v / "render" / "pin"
+out_dir = v / "render" / f"pin{SFX}"
 out_dir.mkdir(parents=True, exist_ok=True)
 for k in range(len(frames)):
     im = Image.new("RGBA", (W, H), (255, 255, 255, 0))
@@ -115,9 +130,9 @@ out.mkdir(exist_ok=True)
 seq = str(out_dir / "p_%04d.png")
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-framerate", fps, "-i", seq,
                 "-c:v", "prores_ks", "-profile:v", "4444", "-pix_fmt", "yuva444p10le",
-                str(out / "View_pin_alpha.mov")], check=True)
-for name, codec in [("View_pin.mp4", ["-c:v", "libx264", "-crf", "12", "-pix_fmt", "yuv420p"]),
-                    ("View_pin_ProRes422HQ.mov", ["-c:v", "prores_ks", "-profile:v", "3", "-pix_fmt", "yuv422p10le"])]:
+                str(out / f"View_pin{SFX}_alpha.mov")], check=True)
+for name, codec in [(f"View_pin{SFX}.mp4", ["-c:v", "libx264", "-crf", "12", "-pix_fmt", "yuv420p"]),
+                    (f"View_pin{SFX}_ProRes422HQ.mov", ["-c:v", "prores_ks", "-profile:v", "3", "-pix_fmt", "yuv422p10le"])]:
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", clip, "-framerate", fps, "-i", seq,
                     "-filter_complex", "[0:v][1:v]overlay=format=auto[v]", "-map", "[v]", "-map", "0:a?",
                     "-c:a", "copy", *codec, str(out / name)], check=True)

@@ -1577,3 +1577,6 @@ The suburb was confirmed from the QLD address register. Added an address mode to
 
 ## [2026-10-28] project | Kollosche pin, navy K version
 At Hunter's request (relayed by another session), added a navy option to make_pin.py. The K now comes from the official navy wordmark, the only blue logo on file, with no recolouring. Re-rendered the long and short PNGs and ProRes 4444 MOVs with a -navy suffix; the white originals are kept. See [[kollosche]].
+
+## [2026-10-28] project | Kollosche pin redone with the boxed photo badge
+Hunter corrected the navy-K version: the pin head should be the navy boxed K badge from the drone stills. The tracked View clip and the generic 9:16 pin now draw the head with drone-pin's badge() and the kollosche.json style, so it matches the photos. Re-rendered both with a _badge suffix and kept the earlier versions. See [[kollosche]].

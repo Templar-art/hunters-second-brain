@@ -5,7 +5,11 @@ ProRes 4444 (alpha) for Final Cut, 1080x1920 @ 25 fps.
 Layout follows Hunter's reference (2026-10-27): the K is ~14% of frame
 width, the line is ~6 px, and the line's tip marks the house.
 
-Usage: python3 -I make_pin.py <repo_root> <out_dir> [navy]
+Usage: python3 -I make_pin.py <repo_root> <out_dir> [navy|badge]
+  badge: the boxed navy K badge used on the delivered drone stills, drawn by the
+  drone-pin tool's own badge() with the clients/kollosche.json style (navy #011A3B
+  square, white 5% border, white K at 54%, white line 5.5% of the badge side touching
+  it, badge 8.5% of frame height). Outputs get a -badge suffix.
   navy: K taken from the official navy wordmark (#011A3B) instead of the white
   team wordmark; the line stays white. Outputs get a -navy suffix.
 """
@@ -18,8 +22,10 @@ from PIL import Image
 from scipy import ndimage
 
 root, out = Path(sys.argv[1]), Path(sys.argv[2])
-NAVY = len(sys.argv) > 3 and sys.argv[3] == "navy"
-SUFFIX = "-navy" if NAVY else ""
+MODE = sys.argv[3] if len(sys.argv) > 3 else ""
+NAVY = MODE == "navy"
+BADGE = MODE == "badge"
+SUFFIX = f"-{MODE}" if MODE else ""
 out.mkdir(parents=True, exist_ok=True)
 W, H, FPS = 1080, 1920, 25
 
@@ -43,6 +49,16 @@ k = k.crop(k.getchannel("A").getbbox())
 K_W = round(W * 0.14)
 k = k.resize((K_W, round(k.height * K_W / k.width)), Image.LANCZOS)
 LINE_W, GAP = 6, 28
+
+if BADGE:
+    import json
+    sys.path.insert(0, str(root / "projects/drone-pin"))
+    import drone_pin  # noqa: E402
+    st = {**drone_pin.DEFAULT_STYLE,
+          **json.loads((root / "projects/drone-pin/clients/kollosche.json").read_text())["style"]}
+    side = round(st["badge"] * H)
+    k = drone_pin.badge(side, drone_pin.k_glyph(), st)   # the "K" slot now holds the whole badge
+    LINE_W, GAP = max(2, round(st["pin_line"] * side)), 0
 
 def layout(tip_y, k_top):
     """Returns positions for a pin whose line ends at tip_y."""

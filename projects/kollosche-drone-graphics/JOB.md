@@ -35,6 +35,7 @@ Source clips: `~/Downloads/Kollosche Day to Night/Drones/` (`Main.mp4`, `View.mp
 - 2026-10-27 delivered: Hunter approved both shots ("looks good").
 - 2026-10-27 outro: Hunter asked for the ending. Agent Eddie Wardale, 0408 881 678 (from Hunter). Rendered 16:9 + 9:16.
 - 2026-10-27 delivered: Hunter accepted the outro and moved on to the next reels.
+- 2026-10-28 redo (view): Hunter wants the pin head to be "the one in the box that we do for the photos". Added a `badge` option to `scripts/render_pin.py`, which draws the head with drone-pin's own `badge()` and the `clients/kollosche.json` style: a navy #011A3B square, a white 5% border, the white K at 54%, a 10 px line touching the badge, and a 184 px side (8.5% of frame height). The track is unchanged (KLT vs solve median 3.1 px). New files: `view/out/View_pin_badge.mp4`, `View_pin_badge_ProRes422HQ.mov` and `View_pin_badge_alpha.mov`. The white-K files are kept. Sent for review. No spend.
 
 ## Ledger
 
