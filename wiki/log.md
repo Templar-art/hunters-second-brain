@@ -1637,3 +1637,6 @@ A log master needs FCP's Camera LUT set to None, and Resolve sets the input spac
 
 ## [2026-10-28] decision | Grade in FCP for now
 Hunter doesn't know Resolve. The grade assistant now gives FCP Color Wheels instructions per shot; Resolve waits for MCP automation on the Mac. See [[fcp-resolve-workflow]].
+
+## [2026-10-28] build | Resolve bridge
+`grade/resolve_bridge.py` takes the flat master and grade-assist JSON and builds a per-shot Resolve timeline with the house PowerGrade, CDLs and a drone LUT. Dry run and fake-Resolve tests pass (40 tests); untested on a real Resolve. See [[fcp-resolve-workflow]].

@@ -30,9 +30,11 @@ import measure  # noqa: E402
 W, H = 320, 180
 
 
-def decode_rgb(path, w=W, h=H):
-    raw = media._run(["ffmpeg", "-v", "error", "-i", str(path), "-vf", f"scale={w}:{h},format=rgb24", "-f", "rawvideo", "-"],
-                     binary=True)
+def decode_rgb(path, w=W, h=H, lut=None):
+    """Frames as RGB. For a flat/log master pass the camera's log->Rec.709 LUT, so shots are judged as
+    they'll look after conversion (the Resolve CDL then sits after the conversion too)."""
+    vf = (f"lut3d=file='{lut}'," if lut else "") + f"scale={w}:{h},format=rgb24"
+    raw = media._run(["ffmpeg", "-v", "error", "-i", str(path), "-vf", vf, "-f", "rawvideo", "-"], binary=True)
     return np.frombuffer(raw, np.uint8).reshape(-1, h, w, 3)
 
 
@@ -48,13 +50,13 @@ def timecode(t, fps):
 
 
 def analyse(path, strength=0.7, max_wb=0.06, max_stops=0.33, wb_tol_b=4.0, wb_tol_a=3.0, exp_tol_stops=0.3,
-            scene_map=None):
+            scene_map=None, analysis_lut=None):
     """Match each shot to the film's OWN look (its typical white cast and white level), not to
     neutral: an already-graded warm film stays warm; only shots that drift from it get flagged."""
     video, _ = media.video_info(path)
     cfg = sounddesign.load_config()
     cuts = analysis.detect_cuts(video, cfg["analysis"])
-    frames = decode_rgb(path)
+    frames = decode_rgb(path, lut=analysis_lut)
     fps = float(video.fps)
     edges = [0.0] + [c.time for c in cuts] + [len(frames) / fps]
     shots = []
@@ -167,10 +169,11 @@ def main(argv=None):
     p.add_argument("--out")
     p.add_argument("--strength", type=float, default=0.7)
     p.add_argument("--scenes", help="scene-map JSON: only interiors are auto-matched")
+    p.add_argument("--analysis-lut", help="log->Rec.709 .cube for flat/log masters (judge shots after conversion)")
     args = p.parse_args(argv)
     from asd import scenes as scenes_mod
     smap = scenes_mod.load(args.scenes) if args.scenes else None
-    video, frames, shots, summary = analyse(args.video, args.strength, scene_map=smap)
+    video, frames, shots, summary = analyse(args.video, args.strength, scene_map=smap, analysis_lut=args.analysis_lut)
     out = Path(args.out or (HERE.parent / "output" / f"{Path(args.video).stem}_grade-assist"))
     out.mkdir(parents=True, exist_ok=True)
     fps = float(video.fps)

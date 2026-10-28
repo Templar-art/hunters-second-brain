@@ -46,6 +46,15 @@ Hunter doesn't know Resolve grading yet ("no clue"). For now he **stays in FCP**
 ## Log stays log (Path A detail)
 A baked-ramp master stays **log** only if FCP isn't converting it. Before exporting, select all the clips → Inspector → **Info / Settings: Camera LUT (log processing) = None**, and remove any LUT or colour effects. The exported ProRes then *looks* flat in FCP, which is correct. In Resolve, after Scene Cut Detector, set **Input Color Space per shot** (Sony S-Log3/S-Gamut3.Cine vs DJI D-Log M), because one master mixes cameras. Check it once by toggling a shot's input space.
 
+## Resolve bridge: built 28 Oct, untested on a real Resolve
+Hunter: "continue in FCP for now but build the system, DaVinci will always beat FCP." One command on the Mac (Resolve Studio open, Preferences → System → General → External scripting: **Local**):
+```
+python3 grade/assist.py "Master_flat.mov" --scenes scene.json --analysis-lut "SLog3_to_709.cube"
+python3 grade/resolve_bridge.py "Master_flat.mov" --assist ".../grade-assist.json" \
+    --powergrade "10x house.drx" --drone-lut "DJI_DLogM_to_709.cube" --dry-run   # then without --dry-run
+```
+It creates or opens project "10x <name>" (colour managed where the API allows), imports the master, **lays out one timeline item per shot** from the assistant's cut list (no need to learn Scene Cut Detector), applies the **house PowerGrade (.drx)** to every shot, writes each shot's balance fix as a **CDL** on node 1 (saturation from the notes), puts the drone LUT on aerials, and adds a marker with the note. Rendering stays manual. The calls (`SetCDL`, `GetNodeGraph().ApplyGradeFromDRX/SetLUT`, `AppendToTimeline` with start/end frames) are copied from the open-source lordhoell/davinci-resolve-mcp. Tested here with a fake Resolve (call order) and a dry run on Kollosche (55 shots). **Not yet run against real Resolve.** One-time setup: build the 10x node tree by hand → Gallery → save still → right-click → Export → `.drx`.
+
 ## Automating Resolve from Claude (Mac only, untested)
 Resolve **Studio** allows external Python/Lua scripting (Preferences → System → General → External scripting: Local). Community MCP servers wrap it so Claude Code on the Mac can drive Resolve: [Tooflex/davinci-resolve-mcp](https://mcpservers.org/id/servers/Tooflex/davinci-resolve-mcp) (Studio 18+), [lordhoell/davinci-resolve-mcp](https://github.com/lordhoell/davinci-resolve-mcp) (full API, lists CDL and node/LUT tools) and apvlv/davinci-resolve-mcp (raw script execution). The plan: run the grade assistant, then push each shot's numbers into Resolve as **CDL** (slope = gain) plus a house-look LUT, with Hunter reviewing in Resolve. Read each server's code before installing it (third-party, it gets full control of Resolve). Not set up yet; this needs a local Claude Code session on the edit Mac, not the cloud.
 - **PowerGrade:** a saved still holding a node tree. Build the 10x tree below once by hand, save it as a PowerGrade, and apply it to every job; the assistant's per-shot numbers go on the balance node.
