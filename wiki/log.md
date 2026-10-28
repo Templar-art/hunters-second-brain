@@ -1556,3 +1556,6 @@ render.py skins the CubiCasa SVG (true-scale textures, charcoal walls, Poppins l
 
 ## [2026-10-28] ingest | Katrina Walsh (Coastal) profile, video formula and song shortlist
 Hunter confirmed that "Coast" means COASTAL° (coastal.com.au) and that it is a different agency from Coastline Prestige. Pulled Katrina's public profile, headshot URL, socials and listings. Studied her IG listing films: the cold open, the COASTAL° wordmark at ~5–9 s, VO with white subtitles, the name and number sunset outro, and the charcoal end card. Credited audio on her reels: Buddha Code "Moment of Peace" and Tony Batts "To Live Again". Found Coastal's drone pin style in the listing photos (white C° on a stem, thin white lot outline). Built a slow earthy shortlist, with 7 of 8 tracks already in the 10x music library. Nothing is on the Clients Drive for Coastal and nothing was downloaded. New pages [[katrina-walsh]] and [[coastal]]; [[drone-photo-pin]] updated.
+
+## [2026-10-28] ingest | Coastal logos
+Downloaded the COASTAL° wordmark (white, black and legacy PNGs) and the C° favicon from coastal.com.au into raw/coastal/. Derived a white transparent C° pin mark at projects/drone-pin/logos/coastal-c-white.png. Hunter didn't need Katrina's headshot, so it isn't stored. See [[coastal]] and [[katrina-walsh]].

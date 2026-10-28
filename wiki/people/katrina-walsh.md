@@ -17,12 +17,12 @@ Nothing is in the vault or on the Clients Drive yet. There is **no `Coastal` fol
 | Asset | Where |
 |---|---|
 | Agent profile and bio | https://www.coastal.com.au/katrina-walsh/ (her page exists, but she is not shown on the /team/ grid) |
-| Headshot | `https://cdn.coastal.com.au/wp-content/uploads/2023/08/28121251/KW-Website.jpg` (full size), plus a `-150x150` thumbnail |
+| Headshot | Online only: `https://cdn.coastal.com.au/wp-content/uploads/2023/08/28121251/KW-Website.jpg`. Hunter doesn't need it, so it isn't downloaded. |
 | Her listings | https://www.coastal.com.au/properties-for-sale/?agents=katrinawalsh |
 | Instagram | [@katrinawalshrealestate](https://www.instagram.com/katrinawalshrealestate/): 942 posts, about 3.2k followers, bio "Marketing lifestyle and luxury homes on the Gold Coast." @10xvisuals_ and @10xrealestate_ already follow her. |
 | LinkedIn | https://www.linkedin.com/in/katrina-walsh-a74b68127/ |
 | Agency socials | IG [@coastalpropertyagents](https://www.instagram.com/coastalpropertyagents/), [Facebook](https://www.facebook.com/coastalpropertyagents/), [LinkedIn](https://www.linkedin.com/company/coastalpropertyagents/) |
-| Logo | The COASTAL° wordmark and the "C°" mark. **We don't hold a file.** The white C° pin mark is still needed as a PNG for the drone-pin profile. |
+| Logo | Downloaded 2026-10-28 into `raw/coastal/`: the wordmark in white and black (`coastal-logo-WHITE.png` and `coastal-logo-BLACK.png`, 1011×146), an older 450×58 `coastal-logo.png`, and the C° favicon (`coastal-c-mark-favicon.png`, 512², dark C° on a mint circle). A white transparent C° for drone pins was derived at `projects/drone-pin/logos/coastal-c-white.png`. |
 | Third-party profile | [view.com.au](https://view.com.au/agent-profile/katrina-walsh-136600/) (thin data) |
 | Past 10x work for her | None on record in the wiki or on Drive. The Coastal drone-pin profile notes the first Coastal job as 34 Albany Ave. |
 
@@ -41,7 +41,7 @@ From the 4 Lita Court and 6 Stockyard Ct photo sets on coastal.com.au:
 - **Pin:** a white **"C°" mark** on top of a **thin white vertical stem**. There is no badge, no dot and no address label.
 - **Lot outline:** a thin white boundary polygon with no fill.
 - They use it on one to three wide drone frames per set, from both oblique and top-down views.
-- This fills in the open `coastal` profile in `projects/drone-pin/clients/coastal.json` (see [[drone-photo-pin]]): pin = mark, fill 0, no label. The logo PNG is still needed.
+- This fills in the open `coastal` profile in `projects/drone-pin/clients/coastal.json` (see [[drone-photo-pin]]): pin = mark, fill 0, no label. The white mark is `projects/drone-pin/logos/coastal-c-white.png`.
 
 ## Other graphics
 - Her open-homes tiles use a line-art **"KW" monogram** in white on light grey, with "Katrina Walsh" / "Open Homes" in a small regular font.
