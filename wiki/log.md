@@ -1670,3 +1670,6 @@ Katrina's VO transcribed (local Whisper), cleaned, trimmed; Get Down re-cut to 6
 
 ## [2026-10-29] ingest | Flythrough VO polished (tightened pauses, voice chain), song re-fit 61.5 s
 New tools/vo_polish.py. See [[auto-sound-design]].
+
+## [2026-10-29] ingest | Flythrough VO cut to a 37.8 s reel
+Fluffed bedrooms line + spec/birdlife/balcony lines dropped (vo_polish --drop); Get Down re-fit 22 -> 60. See [[auto-sound-design]].

@@ -199,6 +199,18 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   - **QC:** re-transcribe the edited VO and diff it against the original. Every word was intact.
   - **Song re-fit:** chorus bar 25 overlaps bar 55 (chroma 0.98), 61.5 s. Mix -14.9 LUFS / -1.2 dBTP, music 11 dB under her.
   - **Next lever if she still doesn't sound confident enough:** the delivery itself. EQ can't add energy to the read. Options: a paid AI speech enhance (Magnific `audio_clean_speech`, credits, needs Hunter's go), or ask her for a re-record.
+- **30-40 s reel cut of the VO.**
+  - **Lines dropped:**
+    - Hunter flagged that "three additional bedrooms on the lower level" was fluffed. In her take "additional" lasts only 0.34 s.
+    - For the reel length, I also cut "with native birdlife and natural surrounds creating a peaceful setting", the balcony clause, and the whole spec sentence (kitchen, floors, 7.8 kW solar, "practical modern comforts").
+  - **Script now:** hook -> views/beach -> three levels -> pool and cabana -> Currumbin lifestyle close. 32.8 s polished.
+  - **`vo_polish.py --drop FROM TO`:**
+    - The cut lands at the energy minimum of each boundary gap, widened ±60 ms because Whisper often marks no gap between run-on words.
+    - The join pauses as the dropped phrase ended (a full stop stays a full stop; otherwise the comma is kept).
+    - Word timestamps after the cut are shifted so pause tightening still works.
+  - **QC:** re-transcribed; it reads clean.
+  - **Song:** chorus bar 22 overlaps bar 60 (the B SMOOTH v2 ending, chroma 1.00). 37.8 s, so about 5 s of hook after her last word. Mix -14.8 LUFS / -1.2 dBTP, music 11 dB under her.
+  - **Bar maths for this song:** with the opening fixed, joins on the same 4-bar slot give 31.9 / 43.8 s, and 2-bar-slot joins give 37.8 s. Reel lengths come in those steps.
 - Delivered as Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` (song, ambience, whooshes, shing, preview) and `7 Flythrough Reel song (Get Down)`. Not yet heard by Hunter.
 
 ## Not yet known

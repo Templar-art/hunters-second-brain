@@ -17,6 +17,9 @@ ap = argparse.ArgumentParser()
 ap.add_argument("vo"); ap.add_argument("words"); ap.add_argument("out")
 ap.add_argument("--end", type=float, default=62.85)
 ap.add_argument("--tempo", type=float, default=1.04)
+ap.add_argument("--drop", nargs=2, type=float, action="append", default=[], metavar=("FROM", "TO"),
+                help="remove a phrase: original-time seconds between the last kept word's end and the next kept word's start;"
+                     " the cut lands in the quietest 10 ms of each gap; the join pauses like the dropped phrase ended")
 a = ap.parse_args()
 
 
@@ -33,10 +36,37 @@ raw = subprocess.run(["ffmpeg", "-v", "error", "-i", a.vo, "-t", str(a.end), "-a
 x = np.frombuffer(raw, np.float32).astype(np.float64)
 x = ff(x, "highpass=f=90:poles=2,afftdn=nr=16:nf=-48:tn=1")
 
-# --- pauses ---
+# --- dropped phrases (e.g. a fluffed line) ---
 words = [w for s in json.load(open(a.words))["segments"] for w in s["words"]]
 words = [w for w in words if w["end"] <= a.end]
 hop = int(0.01 * SR)
+for d0, d1 in sorted(a.drop, reverse=True):
+    before = max((w for w in words if w["end"] <= d0 + 0.01), key=lambda w: w["end"])
+    after = min((w for w in words if w["start"] >= d1 - 0.01), key=lambda w: w["start"])
+    nxt = min((w for w in words if w["start"] > before["end"]), key=lambda w: w["start"])
+    prv = max((w for w in words if w["end"] <= after["start"] and w is not after), key=lambda w: w["end"])
+    e = np.sqrt(np.convolve(x ** 2, np.ones(hop) / hop, "same"))
+    def q(t0, t1):                                    # Whisper often marks no gap between run-on words: widen to +-60 ms
+        t0, t1 = min(t0, t1) - 0.06, max(t0, t1) + 0.06
+        return int(t0 * SR) + int(np.argmin(e[int(t0 * SR):int(t1 * SR)]))
+    c0, c1 = q(before["end"], nxt["start"]), q(prv["end"], after["start"])
+    xf = int(0.02 * SR); tt = np.linspace(0, np.pi / 2, xf)
+    x = np.concatenate([x[:c0], x[c0:c0 + xf] * np.cos(tt) + x[c1:c1 + xf] * np.sin(tt), x[c1 + xf:]])
+    shift = (c1 - c0) / SR
+    kept = []
+    for w in words:
+        if w["start"] >= before["end"] and w["end"] <= after["start"]:
+            continue                                  # dropped
+        if w["start"] >= after["start"]:
+            w = dict(w, start=w["start"] - shift, end=w["end"] - shift)
+        kept.append(w)
+    words = kept
+    end = prv["word"].strip()[-1:]                    # the join pauses like the last dropped word ended (". " or keep the comma)
+    if end in ".!?":
+        words[words.index(before)] = dict(before, word=before["word"].rstrip(",;: ") + end)
+    print(f"dropped {d0:.2f}-{d1:.2f} s ({shift:.2f} s): '{nxt['word'].strip()} ... {prv['word'].strip()}'")
+
+# --- pauses ---
 env = np.sqrt(np.convolve(x ** 2, np.ones(hop) / hop, "same"))[::hop]
 db = 20 * np.log10(env + 1e-9)
 thr = np.percentile(db, 15) + 10                      # "silence" = within 10 dB of the noise floor

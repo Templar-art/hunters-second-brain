@@ -1,7 +1,8 @@
 """Get Down flythrough with Katrina's VO (34 Albany 1.m4a; "I love it." aside cut), polished by tools/vo_polish.py first.
 Song: the B SMOOTH v2 opening (bar 1 start, intro bar 3 overlapping the build bar 15, chorus at ~8.9 s), chorus 1 to
 OUT_BAR overlapping IN_BAR in chorus 2, then the song's real stop. v1 (raw VO, 62.5 s) used 27 -> 55 for 67.5 s;
-v2 (polished VO, 57.4 s) uses 25 -> 55 for 61.5 s.
+v2 (polished VO, 57.4 s) used 25 -> 55 for 61.5 s; v3 (bedrooms line dropped, 54.4 s) used 25 -> 56 for 58.6 s;
+v4 (30-40 s reel: spec + birdlife + balcony lines dropped too, VO 32.8 s) uses 22 -> 60 for 37.8 s.
 Under the VO the song is the demucs instrumental (no rap over her lines), ducked 11 dB while she speaks (music ~11 dB under her);
 after her last word the full mix (vocals) comes back for the ending.
 Writes output/getdown-vo/: song full + instrumental fits, the mixed music bed, cleaned VO, and the full mix."""
@@ -13,12 +14,12 @@ F = "/Users/10xhunter/Downloads/ryan james - Get Down (Put em up) _THIS SONG DON
 SP = "/private/tmp/claude-502/-Users-10xhunter-Documents-Hunters-Second-Brain/a9457b91-92f8-41fe-9b10-939264c376f9/scratchpad"
 NV = SP + "/demucs3/htdemucs/GetDown/no_vocals.wav"
 VO = "output/getdown-vo/vo_polished.wav"   # tools/vo_polish.py: pauses tightened, voice chain, -16 LUFS, 57.4 s
-OUT_BAR, IN_BAR = 25, 55             # chorus 1 bar 25 overlaps chorus 2 bar 55 (chroma 0.98), sized so ~4 s of song follows her
+OUT_BAR, IN_BAR = 22, 60             # chorus 1 bar 22 overlaps bar 60, the B SMOOTH v2 ending (chroma 1.00); ~5 s of song after her
 VO_END = sf.info(VO).duration
 OUT = "output/getdown-vo"
 BAR, END = 2.9705, 189.45
 # measured downbeats (onset cross-correlation against bar 16, see getdown_punchy.py)
-DOWN = {1: 0.116, 3: 0.102, 15: 0.009, 25: -0.067, 27: -0.084, 55: 0.078}
+DOWN = {1: 0.116, 3: 0.102, 15: 0.009, 22: -0.046, 25: -0.067, 27: -0.084, 55: 0.078, 56: 0.070, 60: 0.038}
 t = lambda k: k * BAR + DOWN[k]
 y, _ = librosa.load(F, sr=SR, mono=False); nv, _ = librosa.load(NV, sr=SR, mono=False)
 s = lambda a, b, src: src[:, int(a * SR):int(b * SR)].copy()
