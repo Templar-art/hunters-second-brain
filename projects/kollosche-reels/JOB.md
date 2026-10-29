@@ -33,3 +33,10 @@ Two 9:16 reels for the townhouse that the drone graphics job covered ([[kollosch
 ---
 _Vault: [[jarvis]]_
 - 2026-10-29 music: cut "Love Me" (JMSN) to 33.6 s for the cinematic reel. The song is 80.7 BPM with 2.97 s bars. The cut takes the intro from 0:00 to the bar-7 downbeat at 21.69 s, then the chorus bars 39–42 from 117.08 to 129.01 s, ending on the breath before the next chorus with a 1.8 s fade. The join is a one-bar overlap; the harmony matches (chroma 0.98), and the beat stays steady across it. The master is at −14 LUFS. Built with `projects/auto-sound-design/tools/reel_cut.py` and delivered to Desktop `Kollosche - Love Me cinematic cut`. Not yet heard by Hunter.
+- 2026-10-29 music FX: Hunter likes the Love Me cut and asked for quick flicker and beat FX to edit to. `tools/loveme_fx.py` builds four beat-locked stems:
+  - shutter and flash flickers
+  - synthesised glitch flickers
+  - stutter rolls cut from the song itself
+  - a riser plus glimmer hit into the 21.69 s drop
+
+  It also makes 9 one-shots, a beat map, and `Love Me - FX version (mastered).wav` (−14 LUFS) with all four baked in. Delivered to Desktop `Kollosche - Love Me cinematic cut`. Not yet heard by Hunter.
