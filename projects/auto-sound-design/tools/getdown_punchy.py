@@ -39,5 +39,31 @@ def cut(intro_bars, out):
     print(out, round(mix.shape[1] / SR, 2), "s; chorus hits at", round((intro_bars + 1) * BAR, 2), "s")
 
 
+def overlap(out_a, out_src, in_a, in_src, rise=1.6):
+    """One bar where the outgoing bar (out_src from out_a) fades out while the incoming bar (in_src from in_a)
+    swells in: equal power, incoming on a delayed curve sin((t**rise)*pi/2) so the swell lands on the downbeat."""
+    x, z = s(out_a, out_a + BAR, out_src), s(in_a, in_a + BAR, in_src)
+    n = min(x.shape[1], z.shape[1]); t = np.linspace(0, 1, n)
+    gi = np.sin(t ** rise * np.pi / 2); go = np.sqrt(1 - gi ** 2)
+    return x[:, :n] * go + z[:, :n] * gi
+
+
+def cut_smooth(out):
+    """B shape (chorus at 8.91 s), every join a bar-long overlap (Hunter: B's 0.12 s joins were too harsh).
+    Intro bar 1 under bar 14 on the instrumental stem (no verse vocal) -> bar 15 build -> chorus bars 16-19 ->
+    bar 20 fading out on the instrumental stem under bar 60 (the ending's lead-in, its vocal rising in) -> bar 61 to the stop.
+    Bars 20 and 60 sit in the same 4-bar slot; intro bar 1 is vocal-free (3.25-6.2 s)."""
+    parts = [s(0, BAR), overlap(BAR, y, 14 * BAR, nv), build_bar(), s(16 * BAR, 20 * BAR),
+             overlap(20 * BAR, nv, 60 * BAR, y), s(61 * BAR, END)]
+    mix = parts[0]
+    for p in parts[1:]:
+        mix = join(mix, p, xf=0.01)  # 10 ms seam guard between contiguous bars
+    mix[:, :480] *= np.linspace(0, 1, 480)
+    f = int(0.15 * SR); mix[:, -f:] *= np.linspace(1, 0, f)
+    sf.write(out, mix.T, SR, subtype="PCM_24")
+    print(out, round(mix.shape[1] / SR, 2), "s; chorus hits at", round(3 * BAR, 2), "s")
+
+
 cut(3, "output/getdown-reel/GetDown_reel_PUNCHY-A.wav")
 cut(2, "output/getdown-reel/GetDown_reel_PUNCHY-B.wav")
+cut_smooth("output/getdown-reel/GetDown_reel_PUNCHY-B-SMOOTH.wav")

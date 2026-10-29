@@ -159,6 +159,11 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   - **A**: 34.7 s, chorus at 11.9 s. **B**: 31.8 s, chorus at 8.9 s.
   - Every join is on a downbeat, with an equal-power crossfade of 0.12 s. Level stays within about 3 dB across each join.
   - Lesson: **for flythrough reels, Hunter wants the chorus early and most of the runtime in it.** The cinematic flow (intro to about 10 s, then build, then the song's own ending) suits slower films.
+- **B SMOOTH (Hunter's pick, 32.0 s).** Hunter liked B, but its 0.12 s joins were "too harsh", so every join is now a full bar of overlap:
+  - The last intro bar plays over bar 14, which comes in on the instrumental stem so the verse vocal stays out.
+  - The last chorus bar fades out on the instrumental stem while bar 60, the ending's lead-in, swells in with its own vocal. Bars 20 and 60 sit in the same slot of their 4-bar phrases.
+  - The incoming bar rises on a delayed equal-power curve (`rise` 1.6).
+  - Rule, now confirmed on two songs: **joins in a reel are bar-long overlaps, never short crossfades, even between sections at the same level.**
 - Delivered as Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` (song, ambience, whooshes, shing, preview) and `7 Flythrough Reel song (Get Down)`. Not yet heard by Hunter.
 
 ## Not yet known
