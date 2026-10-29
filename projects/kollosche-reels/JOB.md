@@ -15,7 +15,7 @@ Two 9:16 reels for the townhouse that the drone graphics job covered ([[kollosch
 | # | Reel | Pipeline | Status | Notes |
 |---|------|----------|--------|-------|
 | 1 | Flythrough | edit (FCP) | todo | Fast-paced with a drop. Track pick: Fred again.. & Swedish House Mafia, "Turn On The Lights again..". Drop on the cut out of the K, about 3 s in. |
-| 2 | Cinematic | edit (FCP) | todo | Slow build. Track pick: RÜFÜS DU SOL, "Innerbloom". |
+| 2 | Cinematic | edit (FCP) | music cut | Slow build. ⚠️ Track changed 2026-10-29 to JMSN, "Love Me" (was RÜFÜS DU SOL, "Innerbloom"). |
 
 ## Kit (`kit/`)
 
@@ -32,3 +32,4 @@ Two 9:16 reels for the townhouse that the drone graphics job covered ([[kollosch
 
 ---
 _Vault: [[jarvis]]_
+- 2026-10-29 music: cut "Love Me" (JMSN) to 33.6 s for the cinematic reel. The song is 80.7 BPM with 2.97 s bars. The cut takes the intro from 0:00 to the bar-7 downbeat at 21.69 s, then the chorus bars 39–42 from 117.08 to 129.01 s, ending on the breath before the next chorus with a 1.8 s fade. The join is a one-bar overlap; the harmony matches (chroma 0.98), and the beat stays steady across it. The master is at −14 LUFS. Built with `projects/auto-sound-design/tools/reel_cut.py` and delivered to Desktop `Kollosche - Love Me cinematic cut`. Not yet heard by Hunter.
