@@ -2,7 +2,7 @@
 
 Same art as the 16:9 film cards (make_cards.py / animate.py), re-laid for vertical: text sized to the
 narrow frame, everything kept above the bottom ~25% where Instagram's caption UI sits.
-  start: "KATRINA WALSH / PRESENTS" fades in, holds, fades out (over the opening drone).
+  start: COASTAL° wordmark fades in, holds, fades out over the opening drone (her films open this way).
   end:   name, number, COASTAL° wordmark ease in one after another and hold (no background, Hunter 29 Oct).
 
 Usage: python3 reel_cards.py [--start-len 3.2] [--end-len 4.63] [--preview start.png end.png]
@@ -23,19 +23,22 @@ an.FPS = FPS
 
 
 def start_card(length):
-    name = an.layer(lambda d, i: mc.centred(d, "KATRINA WALSH", mc.font(mc.LIGHT, 100), cy=H * 0.45))
-    sub = an.layer(lambda d, i: mc.centred(d, "PRESENTS", mc.font(mc.MEDIUM, 62), cy=H * 0.45 + 100, tracking=2))
+    """COASTAL° wordmark centred over the opening drone, as her films open (Main 0:00). Fade + small rise in, out by the cut."""
+    def logo_draw(d, img):
+        logo = Image.open(mc.LOGO_WHITE).convert("RGBA")
+        lw = int(W * 0.55)
+        logo = logo.resize((lw, round(logo.height * lw / logo.width)), Image.LANCZOS)
+        img.alpha_composite(logo, ((W - lw) // 2, int(H * 0.45) - logo.height // 2))
+    logo = an.layer(logo_draw)
     blank = np.zeros((H, W, 4), np.float32)
 
     def frame(t):
         f = blank.copy()
-        out = 1 - an.phase(t, length - 0.7, 0.6)
-        for lyr, start in ((name, 0.2), (sub, 0.45)):
-            k = an.phase(t, start, 0.9)
-            an.over(f, lyr, k * out, dy=(1 - k) * 10)
+        k = an.phase(t, 0.2, 1.0)
+        an.over(f, logo, k * (1 - an.phase(t, length - 0.7, 0.6)), dy=(1 - k) * 10)
         return f
 
-    an.encode(frame, round(length * FPS), mc.OUT / "katrina-walsh-presents-anim-9x16.mov")
+    an.encode(frame, round(length * FPS), mc.OUT / "coastal-wordmark-open-anim-9x16.mov")
     return frame(length / 2)
 
 
@@ -77,6 +80,6 @@ if __name__ == "__main__":
     mc.OUT.mkdir(exist_ok=True)
     s, e = start_card(a.start_len), end_card(a.end_len)
     if a.preview:
-        preview(s, a.preview[0], mc.OUT / "preview-presents-9x16.jpg")
+        preview(s, a.preview[0], mc.OUT / "preview-start-9x16.jpg")
         preview(e, a.preview[1], mc.OUT / "preview-end-card-9x16.jpg")
     print("written to", mc.OUT)

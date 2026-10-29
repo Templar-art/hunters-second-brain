@@ -35,5 +35,5 @@ Each output has a comp `.mp4` plus an alpha `.mov` to lay over the film in FCP. 
 - Same plain C° pin on the reel's coast-wide drone (27.94-30.49 s). That shot is a tighter, later take than the one in Main, so it was re-tracked from the reel itself rather than reusing B's solve. The track passed at 0.50 px.
 - **The plate-vfx track gate now scales by the long side.** At 1080 px wide, a 9:16 clip had been held to 0.28 px and failed a good track.
 - **Vertical pins need to be bigger.** At the 16:9 proportion the C° was about 5% of frame width, which reads tiny on a phone. `coastal_pin.py --scale 1.4` fixes it.
-- Cards: `projects/coastal-katrina/reel_cards.py` builds the start card (KATRINA WALSH / PRESENTS over the opening drone) and the alpha-only end card at 1080x1920, 23.976 fps. Everything sits above the bottom 25% of the frame, where Instagram's caption UI covers it.
+- Cards: `projects/coastal-katrina/reel_cards.py` builds the start card (the COASTAL° wordmark over the opening drone, the way her films open; a "KATRINA WALSH / PRESENTS" card was wrong for this) and the alpha-only end card at 1080x1920, 23.976 fps. Everything sits above the bottom 25% of the frame, where Instagram's caption UI covers it.
 
