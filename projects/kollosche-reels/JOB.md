@@ -40,3 +40,4 @@ _Vault: [[jarvis]]_
   - a riser plus glimmer hit into the 21.69 s drop
 
   It also makes 9 one-shots, a beat map, and `Love Me - FX version (mastered).wav` (−14 LUFS) with all four baked in. Delivered to Desktop `Kollosche - Love Me cinematic cut`. Not yet heard by Hunter.
+- 2026-10-29 music FX v2: Hunter didn't like the glitch things, so they're out completely, with no synthesised crush or buzz anywhere. In their place are reverse swells made from the song's own next downbeat, reversed and smeared, landing on the bass-in bar and each chorus bar. The only stutter left is the one into the drop; the last-bar stutter is gone. The FX version is re-mastered to −14 LUFS and the Desktop folder is updated.

@@ -6,8 +6,9 @@ mapped through the cut: intro 0-21.69 as-is, chorus = 21.69 + (orig - 117.08)).
 
 Stems (all start at 0:00, same length as the song, drop at 0 in FCP under the song):
   1 flicker shutters  - camera shutter / flash-bulb ticks, single and 1/16 bursts into downbeats
-  2 glitch flickers   - synthesised digital flickers (gated, crushed noise + buzz) on chorus offbeats
-  3 stutter rolls     - the song itself re-triggered 1/8 -> 1/16 -> 1/32 into the drop and the last bar
+  2 reverse swells    - the song's own next downbeat, reversed + smeared, sucking into the key bars (replaced the
+                        synth glitch flickers: Hunter 29 Oct "i dont like those glitch things")
+  3 stutter roll      - the song itself re-triggered 1/8 -> 1/16 -> 1/32 into the drop only
   4 riser + impact    - riser peaking on the drop (21.69) + glimmer hit
 plus "Love Me - FX version (mastered).wav" with all of it baked in (stutters replace the song under them),
 one-shots/ for free placement, and beat-map.txt (every beat time, downbeats marked).
@@ -76,24 +77,19 @@ def place(buf, g, t, db, pan=0.0):
     buf[1, s:s + len(g)] += g * np.sin((pan + 1) * np.pi / 4) * 1.414
 
 
-def glitch(kind, length):
-    n = int(length * SR)
-    t = np.arange(n) / SR
-    if kind == "crush":                               # gated, bit-crushed noise flicker
-        x = rng.standard_normal(n)
-        x = sosfilt(butter(2, 2500, "high", fs=SR, output="sos"), x)
-        hold = 6
-        x = np.repeat(x[::hold], hold)[:n]
-        x = np.round(x * 4) / 4
-        gate = (np.floor(t / 0.011) % 2 == 0).astype(float)
-    else:                                             # digital buzz: square-ish tone with fast on/off
-        x = np.sign(np.sin(2 * np.pi * 2200 * t)) * 0.5 + np.sin(2 * np.pi * 4400 * t) * 0.3
-        gate = (np.floor(t / 0.0075) % 2 == 0).astype(float)
-    env = np.exp(-t / (length * 0.45))
-    x = x * gate * env
-    k = int(0.002 * SR)
-    x[:k] *= np.linspace(0, 1, k)
-    return x / np.abs(x).max()
+def swell(song, t, length):
+    """Reverse swell into time t: the song's own first `length` s after t, smeared by a soft decaying-noise reverb,
+    reversed so it rises and lands on the downbeat. Low-passed so it sits under the mix, harmony always matches."""
+    a = int(t * SR)
+    x = song[:, a:a + int(length * SR)].mean(0)
+    ir = rng.standard_normal(int(1.2 * SR)) * np.exp(-np.arange(int(1.2 * SR)) / (0.35 * SR))
+    wet = np.convolve(x, ir)[: int(length * SR)]
+    wet = sosfilt(butter(2, 5000, "low", fs=SR, output="sos"), wet)
+    r = wet[::-1].copy()
+    r *= np.linspace(0, 1, len(r)) ** 2
+    f = int(0.006 * SR)
+    r[-f:] *= np.linspace(1, 0, f)
+    return r / np.abs(r).max()
 
 
 def stutter(song, start, pattern, out, fx):
@@ -130,7 +126,6 @@ def main():
     shut = [grain(CAM.format(f"VINTAGE CAMERA-Konica Shutter 0{i}"), 0.12) for i in (1, 3, 5, 7)]
     kodak = grain(CAM.format("VINTAGE CAMERA-Kodak 1950 Duaflex Shutter 01"), 0.15)
     bulb = grain(CAM.format("VINTAGE FLASHBULB-Camera Flash Bulb C 01"), 0.35)
-    crush, buzz = glitch("crush", 0.11), glitch("buzz", 0.08)
 
     s1, s2, s3, s4 = (np.zeros((2, n)) for _ in range(4))
     baked = song.copy()
@@ -145,20 +140,12 @@ def main():
             place(s1, kodak, d, -10)
     place(s1, bulb, DROP, -8)
 
-    # 2 glitch flickers: chorus, the "and" of beat 4 every bar + a 1/32 double on the 2 of every other bar
-    for i, d in enumerate(x for x in downs if x >= DROP - 0.05):
-        place(s2, crush, d + 3.5 * beat, -13, pan=0.5 if i % 2 else -0.5)
-        if i % 2 == 0:
-            place(s2, buzz, d + beat, -18, pan=-0.3)
-            place(s2, buzz, d + beat + beat / 8, -20, pan=0.3)
-    for d in downs:                                    # intro: light crush ticks on beat 3 of the bass-in bars
-        if 12.0 < d < DROP - 3:
-            place(s2, crush, d + 2 * beat, -20)
-
-    # 3 stutter rolls: last 2 beats into the drop (1/8 x2, 1/16 x2, 1/32 x4), and a 1/16 roll into the last bar
+    # 2 reverse swells: half a bar of suck into the bass-in bar, the bars either side of the drop, and the last bar
+    for d in [x for x in downs if 12.0 < x < DROP - 0.1] + [x for x in downs if x > DROP + 0.1]:
+        L = 2 * beat
+        place(s2, swell(song, d, L), d - L, -9)
+    # 3 stutter roll: last 2 beats into the drop (1/8 x2, 1/16 x2, 1/32 x4)
     stutter(song, DROP - 2 * beat, [(2, beat / 2), (2, beat / 4), (4, beat / 8)], baked, s3)
-    last = max(d for d in downs if d < 31.5)
-    stutter(song, last - beat, [(2, beat / 4), (4, beat / 8)], baked, s3)
 
     # 4 riser peaking on the drop + glimmer impact
     riser = mono(os.path.join(LIB, "Foundation", "DSGNRise", "DSGNRise_RISER-Into the Light_Ocular_Foundation.wav"))
@@ -170,7 +157,7 @@ def main():
     k = int(np.argmax(np.abs(hit)))
     place(s4, hit[max(0, k - int(0.01 * SR)):] / np.abs(hit).max(), DROP - 0.01, -9)
 
-    stems = [("1 FX - flicker shutters", s1), ("2 FX - glitch flickers", s2), ("3 FX - stutter rolls (song chops)", s3),
+    stems = [("1 FX - flicker shutters", s1), ("2 FX - reverse swells", s2), ("3 FX - stutter roll into drop (song chops)", s3),
              ("4 FX - riser + impact into drop", s4)]
     for name, s in stems:
         sf.write(os.path.join(OUT, f"{name}.wav"), np.clip(s, -1, 1).T, SR, subtype="PCM_24")
@@ -181,7 +168,7 @@ def main():
 
     shots = {"flicker-shutter-1": shut[0], "flicker-shutter-2": shut[1], "flicker-shutter-3": shut[2],
              "flicker-shutter-4": shut[3], "flicker-kodak": kodak, "flash-bulb-pop": bulb,
-             "glitch-crush": crush, "glitch-buzz": buzz}
+             "reverse-swell-into-drop": swell(song, DROP, 2 * beat)}
     burst = np.zeros(int(beat * SR))                   # ready-made 1/16 shutter burst, ends on its last hit
     for k in range(4):
         s = int(k * beat / 4 * SR)
