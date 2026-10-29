@@ -239,6 +239,13 @@ def cmd_process(args):
     bus, preview_gain, mix_report = mix.balance(placements, clips, seconds, source, cfg)
     sfx_wav = out_dir / f"{video_path.stem}_sfx_only.wav"
     media.write_wav(sfx_wav, bus)
+    # Stems for FCP: same gains as the bus, split so beds and accents get their own faders
+    for stem, keep in (("ambience", lambda c: c in ("ambience", "low drone")),
+                       ("accents", lambda c: c not in ("ambience", "low drone"))):
+        pcs = [(p, c) for p, c in zip(placements, clips) if keep(getattr(p, "category", ""))]
+        if pcs:
+            media.write_wav(out_dir / f"{video_path.stem}_sfx_{stem}.wav",
+                            mix.mix_bus([p for p, _ in pcs], [c for _, c in pcs], seconds))
     if source is not None:
         n = min(len(source), len(bus))
         preview_audio = (source[:n] + bus[:n]) * 10 ** (preview_gain / 20)

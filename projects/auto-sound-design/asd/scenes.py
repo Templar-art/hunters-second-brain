@@ -8,7 +8,7 @@ Format (times in seconds of the full video):
   "segments": [{"start": 0.0, "end": 2.6, "label": "exterior"}, ...],
   "accents":  [{"time": 24.3, "category": "shimmer", "why": "sun flare"}]
 }
-Labels: exterior, pool, aerial, interior, bathroom, balcony, dusk, presenter, endcard.
+Labels: exterior, waterfront, pool, aerial, interior, bathroom, balcony, dusk, presenter, endcard.
 """
 
 import json
@@ -22,6 +22,7 @@ LABELS = {
     "night": ("dusk", 0.0, False),
     "night_interior": ("dusk", -6.0, False),  # night outside, heard faintly through the glass
     "balcony": ("outdoor", -3.0, False),
+    "waterfront": ("watersidecreek", 0.0, False),  # river/creek/beach shots: gentle moving water
     "pool": ("poolside", 0.0, False),  # unique tag: Ocular catalogs say "pool" for jungle water
     "aerial": ("aerial", 0.0, False),
     "dusk": ("dusk", 0.0, False),
@@ -29,6 +30,15 @@ LABELS = {
     "bathroom": ("interior", -2.0, False),
     "presenter": (None, 0.0, True),  # someone on camera, probably talking: keep it clear
     "endcard": (None, 0.0, False),
+}
+
+# Extra beds laid under a scene's main bed: label -> [(ambience tag, level offset dB)].
+# Aerials read as empty with wind alone (Hunter, 29 Oct: "wind and birds").
+LAYERS = {
+    "aerial": [("outdoor", -6.0)],
+    "pool": [("outdoor", -8.0)],
+    "waterfront": [("outdoor", -4.0)],
+    "balcony": [("curtainbreeze", -8.0)],
 }
 
 
@@ -45,6 +55,10 @@ class Segment:
     @property
     def quiet(self):
         return LABELS.get(self.label, (None, 0, False))[2]
+
+    @property
+    def layers(self):
+        return LAYERS.get(self.label, [])
 
     @property
     def offset_db(self):
@@ -71,7 +85,7 @@ class SceneMap:
     def zone_change(self, t, eps=0.15):
         """('outside', 'inside') style pair if the cut at t moves between zones, else None.
         Zones: outside (exterior/balcony/dusk), inside (interior/bathroom), aerial."""
-        zone = {"exterior": "outside", "balcony": "outside", "pool": "outside", "dusk": "outside", "night": "outside",
+        zone = {"exterior": "outside", "balcony": "outside", "pool": "outside", "waterfront": "outside", "dusk": "outside", "night": "outside",
                 "night_interior": "inside", "interior": "inside",
                 "bathroom": "inside", "aerial": "aerial", "presenter": "presenter", "endcard": "endcard"}
         a, b = zone.get(self.label_at(t - eps)), zone.get(self.label_at(t + eps))

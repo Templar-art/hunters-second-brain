@@ -1,5 +1,5 @@
 {
-  "_about": "Earthy (29 Oct, Coastal 43 Albany): tasteful.json minus impacts and risers - slow lifestyle edit, beds + soft zone whooshes only.",
+  "_about": "Earthy (29 Oct, Coastal 43 Albany): tasteful.json minus impacts and risers - slow lifestyle edit, beds + soft zone whooshes only. avoid_words keeps the picks soft (first full pass picked an Action Sports Hit, a motorbike throttle and a mouse click as 'shimmer').",
   "rules": {
     "min_score": 0.4,
     "whoosh_requires_sync": true,
@@ -23,7 +23,7 @@
       "whoosh": 9,
       "impact": 0,
       "riser": 0,
-      "shimmer": 1,
+      "shimmer": 0,
       "low drone": 1,
       "ambience": 1,
       "click": 4,
@@ -66,7 +66,9 @@
       "outdoor": -12,
       "aerial": -12,
       "poolside": -14,
-      "dusk": -12
+      "dusk": -12,
+      "watersidecreek": -14,
+      "curtainbreeze": -16
     },
     "prefer_recorded": true,
     "peak_ceiling_dbfs": -4,
@@ -77,5 +79,22 @@
     "lufs": -16,
     "lra": 6,
     "true_peak": -1.0
-  }
+  },
+  "avoid_words": [
+    "hit",
+    "throttle",
+    "action",
+    "punch",
+    "engine",
+    "motor",
+    "vehicle",
+    "car ",
+    "mouse",
+    "gun",
+    "glitch",
+    "laser",
+    "sci-fi",
+    "cable",
+    "braam"
+  ]
 }

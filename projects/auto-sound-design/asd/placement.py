@@ -170,6 +170,10 @@ def _fits(sound, category, cfg):
         return False
     if category in ONE_SHOT and sound.get("is_loop"):
         return False
+    # Preset word blocklist, e.g. earthy edits never want "hit" or "throttle" whooshes
+    name = sound.get("relative", sound.get("name", "")).lower()
+    if any(w in name for w in cfg.get("avoid_words", [])):
+        return False
     return True
 
 
@@ -377,30 +381,29 @@ def scene_beds(scenes, music, library, cfg, duration, fd, skipped):
     sc = cfg.get("scenes", {})
     xfade = sc.get("crossfade_s", 0.6)
     beds = []
-    for n, seg in enumerate(scenes.merged()):
-        if not seg.tag or seg.tag in sc.get("skip_tags", []):
-            continue
-        pool = [s for s in library["sounds"] if "ambience" in s["categories"] and seg.tag in s["tags"]]
+
+    def lay(seg, n, tag, offset_db, layer):
+        pool = [s for s in library["sounds"] if "ambience" in s["categories"] and tag in s["tags"]]
         if not pool:
             skipped.append({"time": round(seg.start, 3), "category": "ambience", "score": 1.0,
-                            "why": f"no ambience tagged '{seg.tag}' for the {seg.label} scene"})
-            continue
+                            "why": f"no ambience tagged '{tag}' for the {seg.label} scene"})
+            return
         recorded = [s for s in pool if "synthetic" not in s["tags"]]
         if sc.get("prefer_recorded") and recorded:
             pool = recorded  # a real recording always beats the synthetic stand-in
-        sound = pool[n % len(pool)]
+        sound = pool[(n + len(beds)) % len(pool)]
         shape = sound_shape(sound)
         start = max(0.0, seg.start - xfade / 2)
         end = min(float(duration), seg.end + xfade / 2)
         offset = snap(start, fd)
         length = snap(end - float(offset), fd, "floor")
         if length <= 0:
-            continue
+            return
         spare = max(0.0, sound["duration"] - float(length) - 1.0)
         source_in = snap((n * 7.37) % spare, fd) if spare > 0 else Fraction(0)
         if float(length) > sound["duration"] - float(source_in):
             length = snap(sound["duration"] - float(source_in), fd, "floor")
-        rel = sc.get("relative_db", {}).get(seg.tag, -16) + seg.offset_db
+        rel = sc.get("relative_db", {}).get(tag, -16) + offset_db
         gain = music.level_at((seg.start + seg.end) / 2, window=max(1.0, (seg.end - seg.start) / 2)) + rel - shape["rms_db"]
         # Recordings arrive at wildly different levels (a crickets file can sit 20 dB under a birds
         # file), so beds may be boosted well past the one-shot limit; the peak cap still applies.
@@ -410,8 +413,14 @@ def scene_beds(scenes, music, library, cfg, duration, fd, skipped):
             id="bed", category="ambience", event_time=round(seg.start, 4), offset=offset, duration=length,
             source=sound["path"], source_name=sound.get("relative", sound["name"]), gain_db=round(gain, 2),
             fade_in=xfade, fade_out=xfade, confidence=0.7,
-            reason=f"{seg.label} scene {seg.start:.1f}-{seg.end:.1f}s -> '{seg.tag}' ambience (scene map: {scenes.source})",
+            reason=f"{seg.label} scene{' (layer)' if layer else ''} {seg.start:.1f}-{seg.end:.1f}s -> '{tag}' ambience (scene map: {scenes.source})",
             align="start", source_in=source_in,
             notes=["synthetic ambience" if "synthetic" in sound["tags"] else "library ambience"],
         ))
+    for n, seg in enumerate(scenes.merged()):
+        if not seg.tag or seg.tag in sc.get("skip_tags", []):
+            continue
+        lay(seg, n, seg.tag, seg.offset_db, False)
+        for tag, extra_db in seg.layers:
+            lay(seg, n, tag, seg.offset_db + extra_db, True)
     return beds
