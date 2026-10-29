@@ -78,6 +78,37 @@ def end_card(length):
     return frame(length)
 
 
+def end_card_reel(length, fade=0.45, charcoal=False):
+    """Her actual reel end card (Hunter 29 Oct, screenshot of her IG reel): full charcoal frame, name + number close
+    together just above centre, small COASTAL° low down. Proportions measured off that screenshot:
+    name 0.405 W wide centred at 0.489 H, number 0.69x the name width 0.028 H below, wordmark 0.263 W wide at 0.783 H.
+    Default is the spacing only, text on alpha over the footage (Hunter: "dont need the charcoal frame, i just want the
+    spacing"). charcoal=True adds her solid frame, fading up over `fade` s."""
+    name = an.layer(lambda d, i: mc.centred(d, "KATRINA WALSH", mc.font(mc.LIGHT, 56), cy=H * 0.489))
+    num = an.layer(lambda d, i: mc.centred(d, "0429 899 295", mc.font(mc.LIGHT, 49), cy=H * 0.489 + 52))
+
+    def logo_draw(d, img):
+        logo = Image.open(mc.LOGO_WHITE).convert("RGBA")
+        lw = int(W * 0.263)
+        logo = logo.resize((lw, round(logo.height * lw / logo.width)), Image.LANCZOS)
+        img.alpha_composite(logo, ((W - lw) // 2, int(H * 0.783) - logo.height // 2))
+    logo = an.layer(logo_draw)
+    bg = np.asarray(mc.end_card_background()).astype(np.float32) / 255
+    blank = np.zeros((H, W, 4), np.float32)
+
+    def frame(t):
+        f = blank.copy()
+        if charcoal:
+            an.over(f, bg, an.phase(t, 0.0, fade))
+        for lyr, start in ((name, fade + 0.15), (num, fade + 0.35), (logo, fade + 0.75)):
+            k = an.phase(t, start, 0.8)
+            an.over(f, lyr, k, dy=(1 - k) * 8)
+        return f
+
+    an.encode(frame, round(length * FPS), mc.OUT / f"katrina-walsh-end-card-reel-9x16{'-charcoal' if charcoal else ''}-{length:.2f}s.mov")
+    return frame(length)
+
+
 def preview(card, bg_path, out):
     bg = Image.open(bg_path).convert("RGBA").resize((W, H))
     bg.alpha_composite(Image.fromarray((np.clip(card, 0, 1) * 255).astype(np.uint8)))
@@ -89,9 +120,14 @@ if __name__ == "__main__":
     ap.add_argument("--start-len", type=float, default=3.2)
     ap.add_argument("--end-len", type=float, default=4.63)
     ap.add_argument("--scrim", type=float, default=0.0, help="opacity of a soft dark band behind the start wordmark")
+    ap.add_argument("--reel-end", type=float, help="only render her reel end card (charcoal frame) at this length")
     ap.add_argument("--preview", nargs=2, metavar=("START_BG", "END_BG"))
     a = ap.parse_args()
     mc.OUT.mkdir(exist_ok=True)
+    if a.reel_end:
+        Image.fromarray((np.clip(end_card_reel(a.reel_end), 0, 1) * 255).astype(np.uint8)).save(
+            mc.OUT / "preview-end-card-reel-9x16.png")
+        raise SystemExit(f"written to {mc.OUT}")
     s, e = start_card(a.start_len, a.scrim), end_card(a.end_len)
     if a.preview:
         preview(s, a.preview[0], mc.OUT / "preview-start-9x16.jpg")
