@@ -215,6 +215,7 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   - **Different look from the cinematic reel:** one continuous move; a door punch on the chorus drop (8.89 s); left-margin stem tags in place of centred cards; ending on the song's hard stop.
   - **Six cues,** each snapped to a song beat on or just after the VO word it echoes, with copy taken only from her VO.
   - **Placement:** 62% height, left margin. The script asserts every line clears a 170 px right zone for the IG button column; "…cafes nearby" failed it and was shortened.
+  - **⚠️ Rejected (Hunter, 29 Oct): "I don't like those pop ins."** He wants the room-by-room VO map instead. Don't put feature pop-ups on this reel; ask before offering pop-up graphics on Katrina's reels again.
 - Delivered as Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` (song, ambience, whooshes, shing, preview) and `7 Flythrough Reel song (Get Down)`. Not yet heard by Hunter.
 
 ## Not yet known

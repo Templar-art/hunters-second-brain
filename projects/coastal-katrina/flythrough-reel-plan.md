@@ -29,7 +29,7 @@ Bars are 2.97 s long; the chorus downbeat is 8.89 s.
 | 29.68–32.65 | ending hook | "…coastal living together." (ends 31.6) | Final wide. Tracked C° pin on the house (re-track on this footage) |
 | 32.65–37.85 | hook → hard stop | | End card (alpha) on the 32.65 downbeat. Cut to black on the stop |
 
-## Pop-ups
+## Pop-ups (⚠️ rejected by Hunter 29 Oct, not used; kept for the record)
 
 The files are `out/popups-9x16/` (one MOV per cue, named with its start time). `ALL-popups-37.85s.mov` has every cue on one track, so you can drop it in at 0:00.
 
