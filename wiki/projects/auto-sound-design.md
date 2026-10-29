@@ -132,6 +132,7 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 - Hunter on the test section: "looks pretty good, just in the air needs aerials noise like wind and birds" -> layered aerial beds. No colour work on this job; the song is his.
 - Scene map: `scene-maps/coastal-43-albany-main.json`. CG birds + tracked Coastal pins for the same film: [[coastal-albany-birds]].
 - **Reel music cut (Einaudi, Experience)**: Hunter's brief was intro 0-10 s, build 10-20/25 s, last stretch the song's own fade. Cut beat-aligned (librosa, 92 BPM) with chroma-matched joins, every join landing back on the song's real drop at 276.64 s and its decay to near-silence at ~288.6 s. Two versions in `output/einaudi-reel/` (A intro -> climax -> drop, 32.6 s; B intro -> build -> peak bar -> drop, 31.2 s), each with a straight-gain master at about -14 LUFS / -1 dBTP (no compression). This is a manual first version of the proposed **music fitter**.
+- **Approved 29 Oct**: Hunter called the SFX good, with one change: no click on the end card, a whoosh there instead. Scene-map accents now take `"file"` (part of a library path) so approved picks stay pinned when anything else changes. Removing the click on its own had reshuffled the other whooshes into a "Race Sequence Overdrive". Final run: `output/Main_20261029-104903`.
 
 ## Not yet known
 - **Whether it sounds good.** Nobody has listened to the preview yet.

@@ -26,6 +26,7 @@ class Candidate:
     reason: str
     group: str = ""  # riser+impact pairs share a group so spacing treats them as one moment
     level_offset_db: float = 0.0  # per-accent trim from the scene map
+    file: str = ""  # scene-map accent pinned to a library file (substring of its path)
 
 
 @dataclass
@@ -153,7 +154,7 @@ def candidates(cuts, music, duration, cfg, scenes=None):
         for a in scenes.accents:
             out.append(Candidate(float(a["time"]), a["category"], 0.9,
                                  f"scene map: {a.get('why', a['category'])} ({scenes.source})", f"accent@{a['time']}",
-                                 float(a.get("level_db", 0.0))))
+                                 float(a.get("level_db", 0.0)), a.get("file", "")))
 
     # 4. Outro: shimmer on the last cut in the final stretch (often an end card; not verified).
     if rules.get("outro_shimmer") and cuts:
@@ -303,6 +304,8 @@ def place(cuts, music, video, library, cfg, log=print, scenes=None, existing=Non
             continue
 
         options = sound_options(cat, library, cfg, rng, recent.get(cat, []))
+        if c.file:  # an approved pick stays put however the rest of the pass shuffles
+            options = [s for s in library["sounds"] if c.file in s.get("relative", s["name"])]
         if not options:
             reject(c, f"no '{cat}' sound fits duration limits {cfg['durations'][cat]}")
             continue
