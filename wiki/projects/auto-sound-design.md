@@ -143,6 +143,22 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   - `tools/getdown_cut.py` runs two bars of the drop, then a half-beat overlap at 28.98 (just before the next vocal line) into the song's own ending at 181.56. That point is a vocal gap, and the splice was scored at chroma 0.86 / onset correlation 0.92.
   - The cut runs through the real hard stop at 189.45, for 36.9 s.
   - Output: `output/getdown-reel/GetDown_reel_mastered.wav`.
+- **Get Down v2, PUNCHY** (Hunter on v1: "needs to be more punchy, more of the chorus where it goes quicker").
+  - Song map on a 2.9705 s bar grid from 0:00 (chroma-matched sections):
+    - intro 0-23.8;
+    - verse 23.8-47.5;
+    - **chorus 47.53-83**;
+    - verse 83-130.7;
+    - **chorus 130.7 to the end**.
+  - Bar 15 (44.56) is the dip and build into the chorus.
+  - `tools/getdown_punchy.py` cut:
+    1. intro bars;
+    2. the build bar, brought in on the instrumental stem and switching to the full mix in the 45.0 breath gap;
+    3. five bars of chorus 1;
+    4. a cut at the 62.38 vocal gap into the song's own last chorus bars and ending (181.20 -> 189.45).
+  - **A**: 34.7 s, chorus at 11.9 s. **B**: 31.8 s, chorus at 8.9 s.
+  - Every join is on a downbeat, with an equal-power crossfade of 0.12 s. Level stays within about 3 dB across each join.
+  - Lesson: **for flythrough reels, Hunter wants the chorus early and most of the runtime in it.** The cinematic flow (intro to about 10 s, then build, then the song's own ending) suits slower films.
 - Delivered as Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` (song, ambience, whooshes, shing, preview) and `7 Flythrough Reel song (Get Down)`. Not yet heard by Hunter.
 
 ## Not yet known

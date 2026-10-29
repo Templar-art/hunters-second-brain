@@ -1661,3 +1661,6 @@ Wildfire (C. James) hit placed on the 22.11 aerial; reel scene map + near-silent
 
 ## [2026-10-29] ingest | Cinematic Reel: tracked C° pin + 9:16 start/end cards
 Re-tracked the reel's coast-wide drone (gate now long-side), pin at 1.4x for vertical, reel_cards.py for Katrina Walsh cards. See [[coastal-albany-birds]].
+
+## [2026-10-29] ingest | Get Down punchy cuts A/B
+Chorus-heavy flythrough cuts after Hunter's 'more punchy' note. See [[auto-sound-design]].
