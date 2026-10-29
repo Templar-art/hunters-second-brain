@@ -179,7 +179,9 @@ def main():
     lufs = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", r)[-1])
     g = 10 ** ((-14 - lufs) / 20)
     g = min(g, 10 ** (-1 / 20) / np.abs(mix).max())    # never past -1 dBFS on the sum
-    for name, x in (("Love Me - SONG only (with drop stutter)", baked), ("Love Me - SFX only", fx_only)):
+    # "no shutters" is for edits that put their own clicks on the picture cuts (Kollosche cinematic, 29 Oct)
+    for name, x in (("Love Me - SONG only (with drop stutter)", baked), ("Love Me - SFX only", fx_only),
+                    ("Love Me - SFX swells + riser (no shutters)", s2 + s4)):
         sf.write(os.path.join(OUT, f"{name}.wav"), np.clip(x * g, -1, 1).T, SR, subtype="PCM_24")
     print(f"song + SFX tracks: gain {20 * np.log10(g):+.1f} dB (sum at {lufs + 20 * np.log10(g):.1f} LUFS)")
 

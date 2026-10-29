@@ -41,3 +41,9 @@ _Vault: [[jarvis]]_
 
   It also makes 9 one-shots, a beat map, and `Love Me - FX version (mastered).wav` (−14 LUFS) with all four baked in. Delivered to Desktop `Kollosche - Love Me cinematic cut`. Not yet heard by Hunter.
 - 2026-10-29 music FX v2: Hunter didn't like the glitch things, so they're out completely, with no synthesised crush or buzz anywhere. In their place are reverse swells made from the song's own next downbeat, reversed and smeared, landing on the bass-in bar and each chorus bar. The only stutter left is the one into the drop; the last-bar stutter is gone. The FX version is re-mastered to −14 LUFS and the Desktop folder is updated.
+- 2026-10-29 SFX pass on Hunter's edit (`Downloads/Kollosche Ester Place/Cinematic Reel.mp4`, 33.62 s). The edit carried the Love Me FX version at 0:00, whose bar shutters would double up with cut clicks, so the delivery swaps in SONG-only plus swells/riser.
+  - Shutter clicks sit on 7 picture cuts (14.18, 15.64, 17.14, 18.64, 23.19, 24.65, 26.86 s).
+  - Hunter's own click on the multi-photo flash (12.18–12.68) is kept, and nothing else is placed there.
+  - Whooshes on 3.96 (street → inside) and 29.11 (inside → aerial); ambience only on the outside shots.
+  - Scene map `scene-maps/kollosche-cinematic-reel.json`. Full preview at −14.6 LUFS.
+  - Delivered to Desktop `Kollosche - Love Me cinematic cut/SFX pass (your edit)`. Not yet heard by Hunter.
