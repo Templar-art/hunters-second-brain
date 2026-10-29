@@ -211,6 +211,10 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   - **QC:** re-transcribed; it reads clean.
   - **Song:** chorus bar 22 overlaps bar 60 (the B SMOOTH v2 ending, chroma 1.00). 37.8 s, so about 5 s of hook after her last word. Mix -14.8 LUFS / -1.2 dBTP, music 11 dB under her.
   - **Bar maths for this song:** with the opening fixed, joins on the same 4-bar slot give 31.9 / 43.8 s, and 2-bar-slot joins give 37.8 s. Reel lengths come in those steps.
+- **Flythrough flow and pop-ups.** The plan is in `projects/coastal-katrina/flythrough-reel-plan.md`; pop-ups come from `projects/coastal-katrina/popups.py`.
+  - **Different look from the cinematic reel:** one continuous move; a door punch on the chorus drop (8.89 s); left-margin stem tags in place of centred cards; ending on the song's hard stop.
+  - **Six cues,** each snapped to a song beat on or just after the VO word it echoes, with copy taken only from her VO.
+  - **Placement:** 62% height, left margin. The script asserts every line clears a 170 px right zone for the IG button column; "…cafes nearby" failed it and was shortened.
 - Delivered as Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` (song, ambience, whooshes, shing, preview) and `7 Flythrough Reel song (Get Down)`. Not yet heard by Hunter.
 
 ## Not yet known

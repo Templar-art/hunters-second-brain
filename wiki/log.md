@@ -1673,3 +1673,6 @@ New tools/vo_polish.py. See [[auto-sound-design]].
 
 ## [2026-10-29] ingest | Flythrough VO cut to a 37.8 s reel
 Fluffed bedrooms line + spec/birdlife/balcony lines dropped (vo_polish --drop); Get Down re-fit 22 -> 60. See [[auto-sound-design]].
+
+## [2026-10-29] ingest | Flythrough reel flow plan + 6 pop-ups
+Stem-tag pop-ups (9:16 alpha), cue sheet on VO words/song beats. See [[auto-sound-design]].
