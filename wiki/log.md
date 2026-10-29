@@ -1664,3 +1664,6 @@ Re-tracked the reel's coast-wide drone (gate now long-side), pin at 1.4x for ver
 
 ## [2026-10-29] ingest | Get Down punchy cuts A/B
 Chorus-heavy flythrough cuts after Hunter's 'more punchy' note. See [[auto-sound-design]].
+
+## [2026-10-29] ingest | Flythrough VO fitted to Get Down
+Katrina's VO transcribed (local Whisper), cleaned, trimmed; Get Down re-cut to 67.5 s, instrumental bed ducked under her. See [[auto-sound-design]].

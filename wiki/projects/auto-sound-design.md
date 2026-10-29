@@ -176,6 +176,14 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   Rules:
   - **Before overlapping two bars, check they match harmonically (chroma ≥ ~0.9) and line them up on measured downbeats, never a fixed tempo grid.**
   - Alternate intro bars often differ in harmony, so pick the overlap bar by similarity, not just by position.
+- **Flythrough with Katrina's VO** (`34 Albany 1.m4a`). The flythrough video isn't on the Mac yet, so the VO sits at 0:00 as recorded.
+  - **Transcript and trims:** transcribed locally with Whisper (`~/.venvs/demucs`, `small.en`). Her lines run 0.7-62.5 s. Her "I love it." aside at 63.2 s and a blip at 68.4 s are trimmed.
+  - **Raw VO:** recorded at -37 LUFS. Cleaned with HPF 80, light afftdn and 2.5:1 leveling, then set to -16 LUFS.
+  - **Song:** `tools/getdown_vo.py` takes the B SMOOTH v2 opening, then all of chorus 1. Bar 27 overlaps bar 55 (chroma 0.99, downbeats -84/+78 ms measured) into chorus 2, running to the real stop. Total 67.5 s, so about 5 s of song after her last word.
+  - **Under the VO:** the song is the demucs instrumental, ducked 11 dB while she speaks (music about 11 dB under her, -26.7 vs -16.3 LUFS).
+  - **After her last word:** the full mix with vocals swells back, 4 dB down so it doesn't jump.
+  - **Reference mix:** -14.7 LUFS / -1.2 dBTP, made with straight gain plus a peak limiter. The stems are unlimited.
+  - **Rule:** a rap or vocal song under a VO = the instrumental stem plus a duck. Lyrics over a spoken line fight it.
 - Delivered as Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` (song, ambience, whooshes, shing, preview) and `7 Flythrough Reel song (Get Down)`. Not yet heard by Hunter.
 
 ## Not yet known
