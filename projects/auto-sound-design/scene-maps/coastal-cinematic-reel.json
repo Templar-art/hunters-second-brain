@@ -1,0 +1,25 @@
+{
+  "video": "Cinematic Reel.mp4 (38.41 s, 9:16, 23.976) - Coastal 34 Albany flythrough reel, song: Wildfire (C. James) FIT cut",
+  "source": "Claude visual review: 2 fps contact sheet + scene-cut detection, 29 Oct 2026",
+  "segments": [
+    {"start": 0, "end": 3.25, "label": "aerial", "note": "hazy hinterland drone"},
+    {"start": 3.25, "end": 5.17, "label": "exterior", "note": "frangipani leaves, sun flare (shing at 4.25)"},
+    {"start": 5.17, "end": 6.46, "label": "waterfront", "note": "boat on the creek"},
+    {"start": 6.46, "end": 10.05, "label": "exterior", "note": "Beach House cafe, street front, roof eave"},
+    {"start": 10.05, "end": 18.85, "label": "interior", "note": "woman at door, entry, living, kitchen, tap, dining"},
+    {"start": 18.85, "end": 20.15, "label": "balcony", "note": "outdoor dining"},
+    {"start": 20.15, "end": 22.11, "label": "pool", "note": "pool through glass, cabana"},
+    {"start": 22.11, "end": 24.07, "label": "aerial", "note": "top-down (the song's hit)"},
+    {"start": 24.07, "end": 25.36, "label": "exterior", "note": "palms, low angle"},
+    {"start": 25.36, "end": 26.65, "label": "pool", "note": "pool + cabana"},
+    {"start": 26.65, "end": 27.94, "label": "balcony", "note": "rattan chairs"},
+    {"start": 27.94, "end": 32.49, "label": "aerial", "note": "coast wide, house drone"},
+    {"start": 32.49, "end": 33.78, "label": "balcony", "note": "woman on balcony"},
+    {"start": 33.78, "end": 38.41, "label": "aerial", "note": "hinterland wide out"}
+  ],
+  "accents": [
+    {"time": 10.05, "category": "whoosh", "file": "DSGNWhsh_WHOOSH-Weight_", "why": "street -> inside (same pick Hunter approved on Main)"},
+    {"time": 20.15, "category": "whoosh", "file": "Movement Sweetener 33_", "why": "inside -> pool (same pick Hunter approved on Main)"}
+  ],
+  "music_fixes": []
+}

@@ -1655,3 +1655,6 @@ Hunter preferred his own colours on most shots, and the matches didn't read as D
 
 ## [2026-10-29] ingest | Coastal 34 Albany: sound pass, CG birds, tracked pin, Einaudi reel cut
 First Mac run of auto-sound-design (layered beds, earthy preset, stems); plate-vfx 4K gate fix; new page coastal-albany-birds.
+
+## [2026-10-29] ingest | Cinematic Reel: Wildfire fitted to picture, reel SFX + shing, Get Down cut
+Wildfire (C. James) hit placed on the 22.11 aerial; reel scene map + near-silent existing-sfx fix; reel_mix.py hand-accent shing; Get Down flythrough cut 36.9 s. See [[auto-sound-design]].

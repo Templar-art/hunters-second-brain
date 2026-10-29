@@ -216,6 +216,10 @@ def existing_sfx(path, cuts, cfg, start=None, limit=None):
     hop, nfft = 441, 1024  # 20 ms hops
     if len(a) < nfft * 4:
         return []
+    # A near-silent track (an edit exported before the music went in) has no effects to keep clear of;
+    # the dB rises below would just be noise-floor jitter.
+    if np.abs(a).max() < 10 ** (-30 / 20):
+        return []
     frames = np.lib.stride_tricks.sliding_window_view(np.pad(a, (nfft // 2, nfft // 2)), nfft)[::hop]
     spec = np.abs(np.fft.rfft(frames * np.hanning(nfft), axis=1)) + 1e-9
     f = np.fft.rfftfreq(nfft, 1 / sr)
