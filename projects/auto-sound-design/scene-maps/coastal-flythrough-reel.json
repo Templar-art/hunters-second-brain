@@ -1,0 +1,27 @@
+{
+  "video": "Flythrough.mp4 (36.04 s, 9:16, 23.976) - Coastal 34 Albany flythrough reel, Katrina VO + Get Down already in the edit",
+  "source": "Claude visual review: 2 fps contact sheet + scene-cut detection, 29 Oct 2026",
+  "segments": [
+    {"start": 0, "end": 3.67, "label": "aerial", "note": "coast wide, then the house from the drone"},
+    {"start": 3.67, "end": 4.75, "label": "pool", "note": "frangipani over the pool"},
+    {"start": 4.75, "end": 5.88, "label": "exterior", "note": "street front"},
+    {"start": 5.88, "end": 7.22, "label": "balcony", "note": "woman on the balcony"},
+    {"start": 7.22, "end": 8.09, "label": "waterfront", "note": "man fishing at the beach"},
+    {"start": 8.09, "end": 16.27, "label": "interior", "note": "entry, FPV flythrough, living, kitchen, lounge"},
+    {"start": 16.27, "end": 21.81, "label": "pool", "note": "pool, facade, cabana"},
+    {"start": 21.81, "end": 22.56, "label": "balcony", "note": "rattan chair"},
+    {"start": 22.56, "end": 23.27, "label": "pool", "note": "pool low angle"},
+    {"start": 23.27, "end": 25.53, "label": "aerial", "note": "coast wide"},
+    {"start": 25.53, "end": 26.23, "label": "waterfront", "note": "boat on the creek"},
+    {"start": 26.23, "end": 27.36, "label": "exterior", "note": "Beach House cafe"},
+    {"start": 27.36, "end": 28.86, "label": "interior", "note": "bedroom, window view"},
+    {"start": 28.86, "end": 31.11, "label": "bathroom", "note": "bathroom, tapware"},
+    {"start": 31.11, "end": 32.53, "label": "aerial", "note": "top-down"},
+    {"start": 32.53, "end": 36.04, "label": "endcard", "note": "hazy aerial + end card"}
+  ],
+  "accents": [
+    {"time": 8.09, "category": "whoosh", "file": "DSGNWhsh_WHOOSH-Weight_", "why": "outside -> inside, into the FPV run (Hunter-approved pick on Main)"},
+    {"time": 16.27, "category": "whoosh", "file": "Movement Sweetener 33_", "why": "inside -> pool (Hunter-approved pick on Main)"}
+  ],
+  "music_fixes": []
+}
