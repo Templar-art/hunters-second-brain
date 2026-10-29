@@ -1,10 +1,43 @@
 {
- "address": "4-6 Buckingham Way Elanora",
- "lotplan": null,
- "ring": [],
- "tip": null,
+ "address": "4-6 Buckingham Way Elanora QLD",
+ "lotplan": "130RP206900",
+ "ring": [
+  [
+   153.4483418860959,
+   -28.14947804224346
+  ],
+  [
+   153.44874333804378,
+   -28.14953857028489
+  ],
+  [
+   153.4486849400039,
+   -28.14989581828172
+  ],
+  [
+   153.44862654996388,
+   -28.150253014278544
+  ],
+  [
+   153.44856813692385,
+   -28.150610336275392
+  ],
+  [
+   153.44833494195416,
+   -28.150575177251266
+  ],
+  [
+   153.448166692976,
+   -28.150549808233936
+  ]
+ ],
+ "tip": [
+  153.4484086405012,
+  -28.150331888659146
+ ],
  "photos": "/Volumes/10X SSD1/4-6 Buckingham Way Elanorra /Drone Photos Done",
  "client": "kollosche",
  "agent": null,
- "note": "QLD cadastre down (502) 2026-10-29: pins placed by hand on the house, no lot outline yet."
+ "lot_area": 4799.0,
+ "roof_h": 7.0
 }

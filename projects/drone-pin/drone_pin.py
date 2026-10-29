@@ -151,7 +151,7 @@ def qld(layer, **params):
 
 def lookup(address):
     """Address -> (address record, lot boundary ring as [lon, lat])."""
-    words = re.sub(r"[^A-Z0-9 /]", "", address.upper()).split()
+    words = re.sub(r"[^A-Z0-9 /-]", "", address.upper()).split()
     where = "UPPER(address) LIKE '" + "%".join(words) + "%'"
     hits = qld(0, where=where, outFields="address,lotplan,latitude,longitude", returnGeometry="false")
     if not hits:
