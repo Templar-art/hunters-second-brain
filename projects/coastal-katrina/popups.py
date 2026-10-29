@@ -8,8 +8,11 @@ Helvetica Neue Medium like her film captions, a soft shadow for legibility, ever
 Cues are on the reel timeline (song 'Get Down' VO cut, 37.85 s, VO starting 1.0 s in), each snapped to a beat of
 the song and starting on or just after the VO word it echoes. One pop-up on screen at a time.
 
-Usage: python3 popups.py [--preview BG.mp4 MIX.wav]
-  -> out/popups-9x16/NN-<slug>.mov (one per cue), out/popups-9x16/ALL-popups-37.85s.mov (all cues on one track)
+--cut flythrough36 uses the cues for Hunter's own 36.04 s cut (Flythrough.mp4, 29 Oct): VO from 0.0, his C° pin
+baked in over the coast aerial 23.3-25.5 and the end card from 32.5, so no cue goes near either.
+
+Usage: python3 popups.py [--cut planned|flythrough36] [--preview BG.mp4 MIX.wav]
+  -> out/popups-9x16[-<cut>]/NN-<slug>.mov (one per cue), ALL-popups-<len>s.mov (all cues on one track)
 """
 import argparse
 import re
@@ -38,9 +41,19 @@ CUES = [
     (17.80, 20.40, "Pool and cabana"),                # downbeat right after "Outside," 17.54
     (23.74, 26.40, "Beaches, creeks and cafes"),      # VO "Currumbin's beaches, creeks and cafes close by" 23.4-26.7
 ]
+# Hunter's cut, word times from Whisper on its audio: each cue starts on the word it echoes, inside one shot where it can
+CUES_36 = [
+    (3.40, 5.60, "34 Albany Avenue, Currumbin"),      # after the wordmark (out by 3.2); house aerial -> frangipani
+    (7.26, 9.30, "Minutes to the beach"),             # "just minutes from the beach" 7.26, over the man fishing
+    (10.18, 12.20, "Four bedrooms · Three levels"),  # "Spread across three levels" 10.18
+    (12.84, 14.70, "Private master retreat"),         # "private master retreat" 12.84
+    (16.82, 19.40, "Pool and cabana"),                # "Outside," 16.82; pool from the 16.27 cut
+    (25.60, 27.80, "Beaches, creeks and cafes"),      # boat -> Beach House cafe, after the pin shot ends 25.53
+]
+CUTS = {"planned": (CUES, LENGTH, "popups-9x16"), "flythrough36": (CUES_36, 36.04, "popups-9x16-flythrough36")}
 FONT = mc.font(mc.MEDIUM, SIZE)
 RIGHT_SAFE = 170                    # IG reel like/comment/share column sits on the right edge at this height
-for _, _, txt in CUES:
+for _, _, txt in CUES + CUES_36:
     right = X0 + STEM_W + GAP + ImageDraw.Draw(Image.new("L", (1, 1))).textlength(txt, font=FONT)
     assert right <= W - RIGHT_SAFE, f"pop-up runs into the IG button column: {txt!r} ends at {right:.0f}px"
 
@@ -95,7 +108,11 @@ def encode(frames, n, path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--preview", nargs=2, metavar=("BG_VIDEO", "MIX_WAV"))
+    ap.add_argument("--cut", default="planned", choices=list(CUTS))
     a = ap.parse_args()
+    global CUES, LENGTH, OUT
+    CUES, LENGTH, sub = CUTS[a.cut]
+    OUT = mc.OUT / sub
     OUT.mkdir(parents=True, exist_ok=True)
     blank = np.zeros((H, W, 4), np.uint8)
     for k, (t0, t1, text) in enumerate(CUES, 1):
@@ -116,7 +133,7 @@ def main():
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-stream_loop", "-1", "-i", bg, "-i", str(allp), "-i", mix,
                         "-filter_complex", f"[0]scale={W}:{H},setsar=1[b];[b][1]overlay=format=auto,format=yuv420p[v]",
                         "-map", "[v]", "-map", "2:a", "-t", f"{LENGTH}", "-c:v", "libx264", "-crf", "16", "-c:a", "aac",
-                        "-b:a", "256k", str(OUT / "PREVIEW-popups-over-stand-in-footage.mp4")], check=True)
+                        "-b:a", "256k", str(OUT / f"PREVIEW-popups-{a.cut}.mp4")], check=True)
     print("written to", OUT)
 
 
