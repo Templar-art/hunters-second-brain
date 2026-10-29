@@ -12,7 +12,6 @@ import sys
 from pathlib import Path
 import numpy as np
 from PIL import Image
-from scipy.ndimage import gaussian_filter
 
 sys.path.insert(0, str(Path(__file__).parent))
 import make_cards as mc  # noqa: E402
@@ -26,8 +25,8 @@ an.FPS = FPS
 def start_card(length, scrim=0.0):
     """COASTAL° wordmark centred over the opening drone, as her films open (Main 0:00). Fade + small rise in, out by the cut.
 
-    scrim > 0 lays a soft feathered black band behind the wordmark at that opacity, plus a faint shadow on the letters,
-    so it reads over busy drone footage (Hunter 29 Oct: logo lost over the flythrough's treetops)."""
+    scrim > 0 dims the whole frame under the wordmark with flat black at that opacity, fading with the logo, so it
+    reads over busy drone footage. Flat dim only: Hunter 29 Oct rejected a band + drop shadow ("not a drop shadow")."""
     cy = int(H * 0.45)
 
     def logo_draw(d, img):
@@ -39,11 +38,8 @@ def start_card(length, scrim=0.0):
     blank = np.zeros((H, W, 4), np.float32)
     shade = None
     if scrim > 0:
-        yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
-        band = np.exp(-((yy - cy) / 210) ** 2) * (0.75 + 0.25 * np.exp(-((xx - W / 2) / 700) ** 2))
-        shadow = gaussian_filter(logo[..., 3], 14) * 0.6
         shade = np.zeros((H, W, 4), np.float32)
-        shade[..., 3] = np.clip(band * scrim + shadow * (1 - band * scrim), 0, 1)
+        shade[..., 3] = scrim
 
     def frame(t):
         f = blank.copy()
