@@ -16,6 +16,8 @@ one-shots/ for free placement, and beat-map.txt (every beat time, downbeats mark
 Usage: python tools/loveme_fx.py
 """
 import os
+import re
+import subprocess
 
 import librosa
 import numpy as np
@@ -165,6 +167,21 @@ def main():
     mix = baked + fx_only
     sf.write(os.path.join(OUT, "Love Me - FX version.wav"), np.clip(mix / max(1.0, np.abs(mix).max() / 0.98), -1, 1).T,
              SR, subtype="PCM_24")
+
+    # Song and SFX as two separate tracks (Hunter 29 Oct) that sum back to the FX version at -14 LUFS: one linear gain
+    # for both, so they stay balanced when laid together at 0:00. The song track carries the drop stutter (it is an
+    # edit of the song itself); the SFX track is shutters + swells + riser/impact.
+    tmp = os.path.join(OUT, "_mix.wav")
+    sf.write(tmp, mix.T, SR, subtype="FLOAT")
+    r = subprocess.run(["ffmpeg", "-nostats", "-i", tmp, "-af", "ebur128", "-f", "null", "-"],
+                       capture_output=True, text=True).stderr
+    os.remove(tmp)
+    lufs = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", r)[-1])
+    g = 10 ** ((-14 - lufs) / 20)
+    g = min(g, 10 ** (-1 / 20) / np.abs(mix).max())    # never past -1 dBFS on the sum
+    for name, x in (("Love Me - SONG only (with drop stutter)", baked), ("Love Me - SFX only", fx_only)):
+        sf.write(os.path.join(OUT, f"{name}.wav"), np.clip(x * g, -1, 1).T, SR, subtype="PCM_24")
+    print(f"song + SFX tracks: gain {20 * np.log10(g):+.1f} dB (sum at {lufs + 20 * np.log10(g):.1f} LUFS)")
 
     shots = {"flicker-shutter-1": shut[0], "flicker-shutter-2": shut[1], "flicker-shutter-3": shut[2],
              "flicker-shutter-4": shut[3], "flicker-kodak": kodak, "flash-bulb-pop": bulb,
