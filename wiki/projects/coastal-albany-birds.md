@@ -11,7 +11,7 @@ Drone shots from Hunter's Katrina Walsh / [[coastal]] film of 34 Albany Avenue, 
 
 **Shots** (cut out of the film as their own clips and run through [[extra-salt-kollosche-birds|plate-vfx]]):
 - **A treetops 0–2.2 s:** skipped. There's no sky, the Coastal logo is on screen, and the draft birds came out yellow and huge.
-- **B coast wide 44.42–47.05 s:** the tracked Coastal pin goes here, on the house in the middle of the frame (frame-1 ground point 1985, 1335 at 4K). Two looks: the white stem + C° mark (same art and timing as `projects/coastal-katrina/animate.py`), and the same with "34 Albany Avenue / Currumbin" in Poppins. The pin holds on the house from first to last frame. Script: `projects/coastal-albany-birds/coastal_pin.py`.
+- **B coast wide 44.42–47.05 s:** the tracked Coastal pin goes here, on the house in the middle of the frame (frame-1 ground point 1985, 1335 at 4K). Two looks: the white stem + C° mark (same art and timing as `projects/coastal-katrina/animate.py`), and the same with "34 Albany Avenue / Currumbin" in Poppins. The pin holds on the house from first to last frame. **Hunter picked the plain C° pin (29 Oct)**, which matches the Coastal house style in [[coastal]]. The address card wasn't used. Script: `projects/coastal-albany-birds/coastal_pin.py`.
 - **C hazy sunrise 64.69–67.3 s:** four rigged herring gulls at the standard tier, crossing the backlit haze.
 
 Each output has a comp `.mp4` plus an alpha `.mov` to lay over the film in FCP. The gull asset needs the credit "Pofdpoi (Sketchfab), CC BY 4.0".
