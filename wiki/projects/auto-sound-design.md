@@ -164,6 +164,18 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   - The last chorus bar fades out on the instrumental stem while bar 60, the ending's lead-in, swells in with its own vocal. Bars 20 and 60 sit in the same slot of their 4-bar phrases.
   - The incoming bar rises on a delayed equal-power curve (`rise` 1.6).
   - Rule, now confirmed on two songs: **joins in a reel are bar-long overlaps, never short crossfades, even between sections at the same level.**
+- **B SMOOTH v2.** Hunter: "you can sorta hear it at the start." Two causes, both measured:
+  - Bar 14, the pre-roll under the intro, **clashed harmonically** with the intro (chroma 0.58).
+  - The intro sits **about 0.1 s off** a fixed 2.9705 s bar grid; the ending join was 70 ms out too.
+
+  Fixes:
+  - The reel now opens one bar in (bar 1, no vocals, 0.3 s fade-in), so intro bar 3 overlaps the build bar (chroma 0.98).
+  - Every overlap is placed on that bar's **measured downbeat**: cross-correlate its onset envelope against the chorus downbeat.
+  - The doubled hits in both overlaps are gone; length and chorus timing are unchanged (31.9 s / 8.9 s).
+
+  Rules:
+  - **Before overlapping two bars, check they match harmonically (chroma ≥ ~0.9) and line them up on measured downbeats, never a fixed tempo grid.**
+  - Alternate intro bars often differ in harmony, so pick the overlap bar by similarity, not just by position.
 - Delivered as Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` (song, ambience, whooshes, shing, preview) and `7 Flythrough Reel song (Get Down)`. Not yet heard by Hunter.
 
 ## Not yet known

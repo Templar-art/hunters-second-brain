@@ -64,6 +64,45 @@ def cut_smooth(out):
     print(out, round(mix.shape[1] / SR, 2), "s; chorus hits at", round(3 * BAR, 2), "s")
 
 
+# Measured downbeat of bar k = k*BAR + offset (onset-envelope cross-correlation against bar 16, the chorus downbeat).
+# The fixed grid drifts: the intro sits ~0.1 s late against it, bar 20 32 ms early, bar 60 38 ms late.
+DOWN = {1: 0.116, 3: 0.102, 15: 0.009, 16: 0.0, 20: -0.032, 60: 0.038}
+t = lambda k: k * BAR + DOWN[k]
+
+
+def cut_smooth2(out, rise=1.6):
+    """B SMOOTH v2 (Hunter: "you can sorta hear it at the start"). Bar 14, the old pre-roll, clashed with the intro
+    (chroma 0.58) and sat ~0.1 s off its beat. Now: start one bar in (bar 1, vocal-free), intro bars 1-3, with bar 3
+    (chroma 0.98 to the build bar) overlapping bar 15 -> chorus bars 16-19 -> bar 20 (instrumental stem) overlapping
+    bar 60 -> the ending. Overlap-add on measured downbeats; chorus still hits at 2 bars + one overlap bar = ~8.9 s."""
+    def ramp(n, up):
+        g = np.sin(np.linspace(0, 1, n) ** rise * np.pi / 2)
+        return g if up else np.sqrt(1 - g ** 2)
+    nb = int(BAR * SR)
+    p1 = s(t(1), t(3) + BAR)                                     # intro bars 1-3, fades out across bar 3
+    p1[:, -nb:] *= ramp(nb, False)
+    a, b = t(15), t(20) + BAR                                    # build bar + chorus bars 16-20
+    full, inst = s(a, b), s(a, b, nv)
+    n = min(full.shape[1], inst.shape[1]); full, inst = full[:, :n], inst[:, :n]
+    w = np.ones(n); k, bl = int((45.0 - a) * SR), int(0.1 * SR)
+    w[:k] = 0; w[k:k + bl] = np.linspace(0, 1, bl)                # build bar on the instrumental stem until the 45.0 gap
+    e = int((t(20) - a) * SR); w[e:e + bl] = np.minimum(w[e:e + bl], np.linspace(1, 0, bl)); w[e + bl:] = 0  # bar 20 instrumental
+    p2 = full * w + inst * (1 - w)
+    p2[:, :nb] *= ramp(nb, True); p2[:, -nb:] *= ramp(nb, False)
+    p3 = s(t(60), END)                                           # the ending's lead-in bar swells in, then plays to the stop
+    p3[:, :nb] *= ramp(nb, True)
+    o2 = p1.shape[1] - nb                                        # p2's downbeat on p1's bar-3 downbeat
+    o3 = o2 + int((t(20) - a) * SR)                              # p3's downbeat on p2's bar-20 downbeat
+    mix = np.zeros((2, o3 + p3.shape[1]))
+    for o, p in ((0, p1), (o2, p2), (o3, p3)):
+        mix[:, o:o + p.shape[1]] += p
+    mix[:, :int(0.3 * SR)] *= np.linspace(0, 1, int(0.3 * SR))   # 0.3 s fade-in: the reel opens one bar into the song
+    f = int(0.15 * SR); mix[:, -f:] *= np.linspace(1, 0, f)
+    sf.write(out, mix.T, SR, subtype="PCM_24")
+    print(out, round(mix.shape[1] / SR, 2), "s; chorus hits at", round((o2 + int((t(16) - a) * SR)) / SR, 2), "s")
+
+
 cut(3, "output/getdown-reel/GetDown_reel_PUNCHY-A.wav")
 cut(2, "output/getdown-reel/GetDown_reel_PUNCHY-B.wav")
 cut_smooth("output/getdown-reel/GetDown_reel_PUNCHY-B-SMOOTH.wav")
+cut_smooth2("output/getdown-reel/GetDown_reel_PUNCHY-B-SMOOTH2.wav")
