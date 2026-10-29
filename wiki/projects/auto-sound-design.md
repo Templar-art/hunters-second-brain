@@ -184,6 +184,21 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   - **After her last word:** the full mix with vocals swells back, 4 dB down so it doesn't jump.
   - **Reference mix:** -14.7 LUFS / -1.2 dBTP, made with straight gain plus a peak limiter. The stems are unlimited.
   - **Rule:** a rap or vocal song under a VO = the instrumental stem plus a duck. Lyrics over a spoken line fight it.
+- **VO polish v2** (Hunter: "cut up the silences, make her sound more confident, make her voice sound better"). New tool `tools/vo_polish.py`:
+  - **Pauses:** cut using Whisper word timings, inside the quietest part of each gap, with 20 ms crossfades. Full stops become 0.40 s, commas 0.24 s, other gaps 0.18 s. 6 s removed in total, so the VO went from 62.5 to 57.4 s.
+  - **Voice chain:** set from her *measured* spectrum (phone take: 120-500 Hz +4..+7 dB over the mids, 1-4 kHz -10..-16, nothing above 12 kHz, noise only 31 dB under her). The chain:
+    - HPF and afftdn;
+    - -2.5 dB at 160 Hz, -3.5 at 320;
+    - +2 at 1.6k, +6 at 3k, +3 at 5.2k, high shelf +3;
+    - a light exciter;
+    - de-ess;
+    - 3:1 compression;
+    - a soft gate on the pauses;
+    - `atempo` 1.04 (brisker, same pitch).
+  - **Result:** presence +8 dB, 4-8 kHz +7 dB, noise 46 dB under speech.
+  - **QC:** re-transcribe the edited VO and diff it against the original. Every word was intact.
+  - **Song re-fit:** chorus bar 25 overlaps bar 55 (chroma 0.98), 61.5 s. Mix -14.9 LUFS / -1.2 dBTP, music 11 dB under her.
+  - **Next lever if she still doesn't sound confident enough:** the delivery itself. EQ can't add energy to the read. Options: a paid AI speech enhance (Magnific `audio_clean_speech`, credits, needs Hunter's go), or ask her for a re-record.
 - Delivered as Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` (song, ambience, whooshes, shing, preview) and `7 Flythrough Reel song (Get Down)`. Not yet heard by Hunter.
 
 ## Not yet known

@@ -1,6 +1,7 @@
-"""Get Down flythrough with Katrina's VO (34 Albany 1.m4a, speech 0.7-62.5 s; her "I love it." aside at 63.2 is cut).
-Song: the B SMOOTH v2 opening (bar 1 start, intro bar 3 overlapping the build bar 15, chorus at ~8.9 s), all of chorus 1
-(bars 16-26), bar 27 overlapping bar 55 (chroma 0.99, same 4-bar slot) into chorus 2 and the song's real stop: 67.6 s.
+"""Get Down flythrough with Katrina's VO (34 Albany 1.m4a; "I love it." aside cut), polished by tools/vo_polish.py first.
+Song: the B SMOOTH v2 opening (bar 1 start, intro bar 3 overlapping the build bar 15, chorus at ~8.9 s), chorus 1 to
+OUT_BAR overlapping IN_BAR in chorus 2, then the song's real stop. v1 (raw VO, 62.5 s) used 27 -> 55 for 67.5 s;
+v2 (polished VO, 57.4 s) uses 25 -> 55 for 61.5 s.
 Under the VO the song is the demucs instrumental (no rap over her lines), ducked 11 dB while she speaks (music ~11 dB under her);
 after her last word the full mix (vocals) comes back for the ending.
 Writes output/getdown-vo/: song full + instrumental fits, the mixed music bed, cleaned VO, and the full mix."""
@@ -11,12 +12,13 @@ SR = 48000
 F = "/Users/10xhunter/Downloads/ryan james - Get Down (Put em up) _THIS SONG DONATES TO MAKE SCHOOLS HEALTHIER_.mp3"
 SP = "/private/tmp/claude-502/-Users-10xhunter-Documents-Hunters-Second-Brain/a9457b91-92f8-41fe-9b10-939264c376f9/scratchpad"
 NV = SP + "/demucs3/htdemucs/GetDown/no_vocals.wav"
-VO = "/Users/10xhunter/Downloads/34 Albany 1.m4a"
-VO_END = 62.85                       # after "together." (62.5) + its tail
+VO = "output/getdown-vo/vo_polished.wav"   # tools/vo_polish.py: pauses tightened, voice chain, -16 LUFS, 57.4 s
+OUT_BAR, IN_BAR = 25, 55             # chorus 1 bar 25 overlaps chorus 2 bar 55 (chroma 0.98), sized so ~4 s of song follows her
+VO_END = sf.info(VO).duration
 OUT = "output/getdown-vo"
 BAR, END = 2.9705, 189.45
 # measured downbeats (onset cross-correlation against bar 16, see getdown_punchy.py)
-DOWN = {1: 0.116, 3: 0.102, 15: 0.009, 27: -0.084, 55: 0.078}
+DOWN = {1: 0.116, 3: 0.102, 15: 0.009, 25: -0.067, 27: -0.084, 55: 0.078}
 t = lambda k: k * BAR + DOWN[k]
 y, _ = librosa.load(F, sr=SR, mono=False); nv, _ = librosa.load(NV, sr=SR, mono=False)
 s = lambda a, b, src: src[:, int(a * SR):int(b * SR)].copy()
@@ -32,15 +34,15 @@ def song(src, build_switch):
     stem and switches to src at the 45.0 breath gap (only matters for the full mix)."""
     nb = int(BAR * SR)
     p1 = s(t(1), t(3) + BAR, src); p1[:, -nb:] *= ramp(nb, False)
-    a, b = t(15), t(27) + BAR
+    a, b = t(15), t(OUT_BAR) + BAR
     p2 = s(a, b, src)
     if build_switch:
         inst = s(a, b, nv); n = min(p2.shape[1], inst.shape[1]); p2, inst = p2[:, :n], inst[:, :n]
         w = np.ones(n); k, bl = int((45.0 - a) * SR), int(0.1 * SR); w[:k] = 0; w[k:k + bl] = np.linspace(0, 1, bl)
         p2 = p2 * w + inst * (1 - w)
     p2[:, :nb] *= ramp(nb, True); p2[:, -nb:] *= ramp(nb, False)
-    p3 = s(t(55), END, src); p3[:, :nb] *= ramp(nb, True)
-    o2 = p1.shape[1] - nb; o3 = o2 + int((t(27) - a) * SR)
+    p3 = s(t(IN_BAR), END, src); p3[:, :nb] *= ramp(nb, True)
+    o2 = p1.shape[1] - nb; o3 = o2 + int((t(OUT_BAR) - a) * SR)
     mix = np.zeros((2, o3 + p3.shape[1]))
     for o, p in ((0, p1), (o2, p2), (o3, p3)):
         mix[:, o:o + p.shape[1]] += p
@@ -63,13 +65,7 @@ os.makedirs(OUT, exist_ok=True)
 full, inst = song(y, True), song(nv, False)
 n = min(full.shape[1], inst.shape[1]); full, inst = full[:, :n], inst[:, :n]
 
-# VO: high-pass, light denoise, gentle leveling, trimmed after her last line, -16 LUFS
-raw = subprocess.run(["ffmpeg", "-v", "error", "-i", VO, "-t", str(VO_END + 0.4), "-af",
-                      "highpass=f=80,afftdn=nr=8:nf=-60,acompressor=threshold=-24dB:ratio=2.5:attack=8:release=120:makeup=1",
-                      "-ac", "2", "-ar", str(SR), "-f", "f32le", "-"], capture_output=True, check=True).stdout
-vo = np.frombuffer(raw, np.float32).reshape(-1, 2).T.astype(np.float64)
-fo = int(0.4 * SR); vo[:, -fo:] *= np.linspace(1, 0, fo)
-vo = gain_to(vo, -16.0)
+vo = sf.read(VO)[0].T
 vo_full = np.zeros((2, n)); vo_full[:, :vo.shape[1]] = vo[:, :n]
 
 # bed: instrumental under the VO, crossfading to the full mix after her last word
@@ -92,7 +88,7 @@ bed *= sm
 
 mix = bed + vo_full
 mix *= min(1.0, 10 ** (-1 / 20) / np.abs(mix).max())
-for name, x in (("1 VO - Katrina (cleaned, trimmed).wav", vo_full), ("2 Music bed - ducked, instrumental under VO.wav", bed),
+for name, x in (("1 VO - Katrina (polished, tightened).wav", vo_full), ("2 Music bed - ducked, instrumental under VO.wav", bed),
                 ("3 Song fit - full mix (no duck).wav", gain_to(full, -14.0)), ("4 Song fit - instrumental (no duck).wav", gain_to(inst, -14.0)),
                 ("0 MIX - VO + song.wav", mix)):
     sf.write(os.path.join(OUT, name), x.T, SR, subtype="PCM_24")

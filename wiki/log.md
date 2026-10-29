@@ -1667,3 +1667,6 @@ Chorus-heavy flythrough cuts after Hunter's 'more punchy' note. See [[auto-sound
 
 ## [2026-10-29] ingest | Flythrough VO fitted to Get Down
 Katrina's VO transcribed (local Whisper), cleaned, trimmed; Get Down re-cut to 67.5 s, instrumental bed ducked under her. See [[auto-sound-design]].
+
+## [2026-10-29] ingest | Flythrough VO polished (tightened pauses, voice chain), song re-fit 61.5 s
+New tools/vo_polish.py. See [[auto-sound-design]].
