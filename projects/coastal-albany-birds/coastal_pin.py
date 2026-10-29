@@ -5,7 +5,7 @@ Two looks for Hunter to pick from, both locked to one ground point through the s
          C° mark fades/settles on top)
   card - Coastal C° mark over a white address line + sub line on the same stem
 
-Usage: python3 coastal_pin.py <job> --at X Y [--look c|card] [--start 0.3]
+Usage: python3 coastal_pin.py <job> --at X Y [--look c|card] [--start 0.3] [--scale 1.4]
 Outputs <job>/out/pin_<look>.mp4 (comp, original audio) + pin_<look>_alpha.mov (ProRes 4444 overlay)
 and <job>/pilot_pin_<look>.png.
 """
@@ -40,6 +40,7 @@ def main():
     ap.add_argument("--start", type=float, default=0.3, help="seconds before the stem starts drawing")
     ap.add_argument("--label", default="34 Albany Avenue")
     ap.add_argument("--sub", default="Currumbin")
+    ap.add_argument("--scale", type=float, default=1.0, help="pin size multiplier (9:16 reels read small at 1.0; 1.4 on phone)")
     a = ap.parse_args()
     job = os.path.abspath(a.job)
     cam = json.load(open(os.path.join(job, "camera.json")))
@@ -49,7 +50,7 @@ def main():
     track = ground.track([a.at], cam)
 
     # Sizes from the Katrina pin (4K, Lita Ct stills scale): C° ~194 px wide, stem ~757 px
-    k = w / 1400
+    k = w / 1400 * a.scale
     mark = Image.open(MARK).convert("RGBA")
     mw = round(68 * k)
     mark = mark.resize((mw, round(mark.height * mw / mark.width)), Image.LANCZOS)

@@ -30,3 +30,10 @@ Each output has a comp `.mp4` plus an alpha `.mov` to lay over the film in FCP. 
   - final: depth 30–60 m on the solve's prior scale, 10–18 m/s, a 30–45° heading, starting high in the sky.
   Draft renders take about 8 s at 4K, so iterate on the draft tier and only render the standard tier once.
 - **The solve's metric scale is only a prior** (120 m altitude). Bird depth and speed in metres don't mean real metres. Tune them by how they look on screen.
+
+## 29 Oct, Cinematic Reel (9:16): tracked pin + start/end cards
+- Same plain C° pin on the reel's coast-wide drone (27.94-30.49 s). That shot is a tighter, later take than the one in Main, so it was re-tracked from the reel itself rather than reusing B's solve. The track passed at 0.50 px.
+- **The plate-vfx track gate now scales by the long side.** At 1080 px wide, a 9:16 clip had been held to 0.28 px and failed a good track.
+- **Vertical pins need to be bigger.** At the 16:9 proportion the C° was about 5% of frame width, which reads tiny on a phone. `coastal_pin.py --scale 1.4` fixes it.
+- Cards: `projects/coastal-katrina/reel_cards.py` builds the start card (KATRINA WALSH / PRESENTS over the opening drone) and the alpha-only end card at 1080x1920, 23.976 fps. Everything sits above the bottom 25% of the frame, where Instagram's caption UI covers it.
+

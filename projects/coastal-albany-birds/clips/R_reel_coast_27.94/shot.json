@@ -1,0 +1,21 @@
+{
+ "clip": "/Users/10xhunter/Documents/Hunters Second Brain/projects/coastal-albany-birds/reel/coast_27.94.mp4",
+ "src": "/Users/10xhunter/Documents/Hunters Second Brain/projects/coastal-albany-birds/clips/R_reel_coast_27.94/src/plate.mp4",
+ "frames": 62,
+ "width": 1080,
+ "height": 1920,
+ "fps": [
+  24000,
+  1001
+ ],
+ "cuts_at": [
+  62
+ ],
+ "range": [
+  1,
+  61
+ ],
+ "aspect": "9:16",
+ "tier": "standard",
+ "shutter": 0.2
+}

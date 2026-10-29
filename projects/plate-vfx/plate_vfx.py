@@ -70,7 +70,7 @@ def cmd_track(a):
     frames = [cv2.imread(p, 0) for p in plate_paths(job)[r0 - 1:r1]]
     cam = track_fit.fit(frames, shot["width"], shot["height"], shot["fps"], model=a.model)
     jsave(os.path.join(job, "camera.json"), cam)
-    gate = 0.5 * shot["width"] / 1920  # 0.5 px at 1080p; scales with resolution (4K = 1.0 px)
+    gate = 0.5 * max(shot["width"], shot["height"]) / 1920  # 0.5 px at 1080p on the long side (4K = 1.0 px; 9:16 same as 16:9)
     ok = cam["mean_err_px"] < gate
     print(f"track: {'PASS' if ok else 'FAIL'} mean {cam['mean_err_px']:.3f}px (gate {gate:.2f}px)")
     sys.exit(0 if ok else 2)

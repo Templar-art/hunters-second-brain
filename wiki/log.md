@@ -1658,3 +1658,6 @@ First Mac run of auto-sound-design (layered beds, earthy preset, stems); plate-v
 
 ## [2026-10-29] ingest | Cinematic Reel: Wildfire fitted to picture, reel SFX + shing, Get Down cut
 Wildfire (C. James) hit placed on the 22.11 aerial; reel scene map + near-silent existing-sfx fix; reel_mix.py hand-accent shing; Get Down flythrough cut 36.9 s. See [[auto-sound-design]].
+
+## [2026-10-29] ingest | Cinematic Reel: tracked C° pin + 9:16 start/end cards
+Re-tracked the reel's coast-wide drone (gate now long-side), pin at 1.4x for vertical, reel_cards.py for Katrina Walsh cards. See [[coastal-albany-birds]].
