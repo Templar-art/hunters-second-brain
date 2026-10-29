@@ -203,7 +203,7 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
   - **Lines dropped:**
     - Hunter flagged that "three additional bedrooms on the lower level" was fluffed. In her take "additional" lasts only 0.34 s.
     - For the reel length, I also cut "with native birdlife and natural surrounds creating a peaceful setting", the balcony clause, and the whole spec sentence (kitchen, floors, 7.8 kW solar, "practical modern comforts").
-  - **Script now:** hook -> views/beach -> three levels -> pool and cabana -> Currumbin lifestyle close. 32.8 s polished.
+  - **Script now:** hook -> views/beach -> three levels -> pool and cabana -> Currumbin lifestyle close. Later Hunter also flagged a hesitation in "Set high among the greenery" (her "the" runs 0.58 s), so that line is dropped too. The VO is 30.6 s, placed 1 s into the song.
   - **`vo_polish.py --drop FROM TO`:**
     - The cut lands at the energy minimum of each boundary gap, widened ±60 ms because Whisper often marks no gap between run-on words.
     - The join pauses as the dropped phrase ended (a full stop stays a full stop; otherwise the comma is kept).
