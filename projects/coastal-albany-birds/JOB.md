@@ -22,3 +22,8 @@ Wiki: [[coastal-albany-birds]]
 - Plain C° pin at (595, 1200) on the house facade, `--scale 1.4` (1.0 read too small on a phone). `out/pin_c_alpha.mov` lays in at 27.94.
 - Start card (COASTAL° wordmark, 3.2 s at 0:00; Hunter: she starts reels with Coastal, not "presents") + alpha end card (4.63 s at 33.78) from `projects/coastal-katrina/reel_cards.py`.
 - Delivered to Desktop `Coastal 34 Albany - FCP/6 Cinematic Reel (Wildfire)` items 5–7 + full preview. Local only, 0 cr.
+
+## 2026-10-30 Flythrough (Hunter's new export) start + end cards
+- New export: `Downloads/Kollosche Ester Place/Costal 43 Albany Stuff/Flythrough.mp4` (36.04 s, 9:16, 23.976). The folder name says "43", but QLD's address register has only **34** Albany Ave, Currumbin.
+- Hunter: the pin is already done; he only needs the start and end. A pin-repaint attempt was started and dropped (nothing kept).
+- Laid the existing cards over the cut: `00-COASTAL-wordmark-start (35% dim)` at 0:00 and `END CARD - her spacing, alpha 3.55s` at 32.49 so it ends on the last frame. The original is untouched; the comp is `Flythrough - start + end cards.mp4` next to it. QC frames at 0.3, 1.5, 3.0, 3.4, 32.3, 33.5 and 35.9 s are OK. Local, 0 cr.

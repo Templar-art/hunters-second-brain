@@ -1682,3 +1682,6 @@ SFX-only pass on Hunter's cut `Flythrough.mp4` (36.04 s, 9:16). Scene map `proje
 
 ## [2026-10-29] job | 4-6 Buckingham Way Elanora drones (Kollosche)
 Reviewed the 5 drone stills: good to deliver. Pinned the 3 high wides with the Kollosche K badge. QLD cadastre was down, so the pins were placed by hand and there is no outline yet. Print and Web are on the SSD in `Drone Photos Pinned`. See [[drone-photo-pin]].
+
+## [2026-10-30] project | Coastal 34 Albany Flythrough start + end cards
+Put the existing COASTAL° start card and Katrina end card on Hunter's new Flythrough export, saved as "Flythrough - start + end cards.mp4" next to the original. The pin was already done. The folder name "43 Albany" is a typo for 34. See [[coastal-albany-birds]].
