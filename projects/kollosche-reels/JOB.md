@@ -47,3 +47,8 @@ _Vault: [[jarvis]]_
   - Whooshes on 3.96 (street → inside) and 29.11 (inside → aerial); ambience only on the outside shots.
   - Scene map `scene-maps/kollosche-cinematic-reel.json`. Full preview at −14.6 LUFS.
   - Delivered to Desktop `Kollosche - Love Me cinematic cut/SFX pass (your edit)`. Not yet heard by Hunter.
+- 2026-10-29 aerial and day-to-night SFX, built with `projects/auto-sound-design/tools/kollosche_aerial_d2n.py`:
+  - Track 6, aerials: high-passed altitude air with a slow stereo drift on 0–1.04 and 29.11–end, a distant city bed under the skyline, and a soft air sweep on the 30.61 cut.
+  - Track 7, day to night: the window shot 19.39–21.77. Birds through the glass fade out, crickets fade in as the sky turns, and a low "Time and Space" rise ends on the 21.77 drop cut.
+
+  The preview is re-rendered with all 7 layers at −14.6 LUFS. Not yet heard by Hunter.
