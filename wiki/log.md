@@ -1679,3 +1679,6 @@ Stem-tag pop-ups (9:16 alpha), cue sheet on VO words/song beats. See [[auto-soun
 
 ## [2026-10-29] ingest | Coastal 34 Albany flythrough reel: SFX pass
 SFX-only pass on Hunter's cut `Flythrough.mp4` (36.04 s, 9:16). Scene map `projects/auto-sound-design/scene-maps/coastal-flythrough-reel.json`. 24 effects placed; the two approved whooshes are pinned at 8.09 s (outside → inside) and 16.27 s (inside → pool). Stems are in Desktop `Coastal 34 Albany - FCP/10 Flythrough SFX`.
+
+## [2026-10-29] job | 4-6 Buckingham Way Elanora drones (Kollosche)
+Reviewed the 5 drone stills: good to deliver. Pinned the 3 high wides with the Kollosche K badge. QLD cadastre was down, so the pins were placed by hand and there is no outline yet. Print and Web are on the SSD in `Drone Photos Pinned`. See [[drone-photo-pin]].

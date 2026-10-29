@@ -2,7 +2,7 @@
 type: concept
 tags: [tool, drone, kollosche, pin, outline, cadastre]
 status: built-untested-on-live-job
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Drone photo pinning
@@ -113,6 +113,7 @@ $PY -I projects/drone-pin/drone_pin.py render <job_dir>     # --all also renders
 Mode per photo: `pin`, `outline`, `both` or `none`. By default, straight-down shots (pitch ≤ -70°) get the outline and angled shots get the pin.
 
 ## Limits
+- **QLD cadastre outages.** On 2026-10-29 QLD Spatial returned 502 for over 15 minutes, so `init` can't run. Fallback used on 4-6 Buckingham Way, Elanora (Kollosche): find the roof by eye in full-resolution crops, write `marks.json` by hand with `mode: pin` and an empty `lot`, and call `export()` directly. The result is pins only, with no outline until QLD is back.
 - Queensland addresses only (QLD cadastre). NSW would need its own service.
 - Townhouses and strata lots may resolve to the whole scheme parcel. Check the outline, and use a ⇧-drag on the corners or pin-only.
 - Lens distortion is ignored, which is fine for DJI JPGs and Lightroom-corrected DNGs.
