@@ -15,7 +15,7 @@ Two 9:16 reels for the townhouse that the drone graphics job covered ([[kollosch
 | # | Reel | Pipeline | Status | Notes |
 |---|------|----------|--------|-------|
 | 1 | Flythrough | edit (FCP) | todo | Fast-paced with a drop. Track pick: Fred again.. & Swedish House Mafia, "Turn On The Lights again..". Drop on the cut out of the K, about 3 s in. |
-| 2 | Cinematic | edit (FCP) | music cut | Slow build. ⚠️ Track changed 2026-10-29 to JMSN, "Love Me" (was RÜFÜS DU SOL, "Innerbloom"). |
+| 2 | Cinematic | edit (FCP) | delivered (full sound) | Slow build. ⚠️ Track changed 2026-10-29 to JMSN, "Love Me" (was RÜFÜS DU SOL, "Innerbloom"). |
 
 ## Kit (`kit/`)
 
@@ -53,3 +53,4 @@ _Vault: [[jarvis]]_
 
   The preview is re-rendered with all 7 layers at −14.6 LUFS. Not yet heard by Hunter.
 - 2026-10-29 photo burst: Hunter's own click on the multi-photo flash dropped out once the audio was rebuilt from separate tracks, so the burst is rebuilt inside track 3. There's a shutter on each photo cut (12.18, 12.30, 12.39, 12.51), stepping up in level, and a softer click on the return at 12.68. Hunter liked the aerial and day-to-night tracks ("its good").
+- 2026-10-29 delivered: Hunter approved ("yeah it good do the full thing"). All 7 tracks are summed and mastered to −14 LUFS, −1 dBTP, as `0 FULL MIX` plus `FINAL - Kollosche cinematic reel (full sound).mp4`. That's his 720×1280 picture copied untouched with the new audio, 33.62 s, in Desktop `Kollosche - Love Me cinematic cut/SFX pass (your edit)`.
