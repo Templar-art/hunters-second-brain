@@ -1652,3 +1652,6 @@ After "inside too dark, outside too bright, drone far away": interiors +5 L, ext
 
 ## [2026-10-28] decision | Automated Desire colour match parked
 Hunter preferred his own colours on most shots, and the matches didn't read as Desire. His grade stays; colour tools are kept for consistency only. See [[fcp-resolve-workflow]].
+
+## [2026-10-29] ingest | Coastal 34 Albany: sound pass, CG birds, tracked pin, Einaudi reel cut
+First Mac run of auto-sound-design (layered beds, earthy preset, stems); plate-vfx 4K gate fix; new page coastal-albany-birds.

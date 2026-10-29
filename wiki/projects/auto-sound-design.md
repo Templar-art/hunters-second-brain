@@ -2,7 +2,7 @@
 type: project
 tags: [audio, sfx, final-cut-pro, automation, tools, editing]
 status: built-unproven
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Auto Sound Design
@@ -123,6 +123,15 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 ## 28 Oct, colour verdict
 - Hunter: **"I liked the one I did, it suited… the Desire one you did is just dark."** Both grade attempts (the ffmpeg filter and the 75% transfer LUT) are rejected for Kollosche Esther Pl; his own grade stands.
 - **Standing rule for colour help:** don't chase a reference's numbers. Matching Desire's deep shadow floor (L p10 7.5) reads as *dark* on a bright 10x interior edit. Keep Hunter's brightness and exposure; only fix shot-to-shot consistency (white balance, exposure matching) and offer subtle tweaks on request. A look LUT, if any, must not lower midtones or blacks.
+
+## 29 Oct, first Mac run: Coastal 34 Albany Ave (Katrina Walsh)
+- **Setup on the Mac works**: `setup.sh` clean, 40/40 tests (one test fixed for macOS `/tmp` -> `/private/tmp`), full Ocular library indexed (1,547 sounds, ~45 s, cached).
+- **Owned recordings, no downloads**: Pixabay files already on the Mac (Desktop `_Brand & Tools/SFX Library`, Downloads) cover pool water, soft wind, wind in trees, birds, nature, curtain breeze, a gentle creek. Copied into `sfx/pixabay-owned/` with `.tags` sidecars. Ocular City Park loops tagged day birds; Danum Valley night/evening loops tagged dusk crickets.
+- **Catalog words leak into tags**: Ocular's catalog descriptions say "pool" and "breeze" for jungle loops, so a scene tag must be a word no catalog uses (`poolside`, `curtainbreeze`, `watersidecreek`).
+- **New in the tool**: `pool` and `waterfront` scene labels; **layered beds** (`LAYERS` in `asd/scenes.py`: aerial = wind + birds at -6 dB, pool = water + birds, balcony = birds + curtain breeze, waterfront = creek + birds); `presets/earthy.json` (tasteful minus impacts, risers and shimmer, plus an `avoid_words` blocklist after the first pass picked an "Action Sports Hit", a motorbike throttle and a mouse click); `per_minute: 0` now really switches a category off; **stems**: `<video>_sfx_ambience.wav` + `<video>_sfx_accents.wav` beside `_sfx_only.wav`, so Hunter imports audio into FCP instead of a baked preview.
+- Hunter on the test section: "looks pretty good, just in the air needs aerials noise like wind and birds" -> layered aerial beds. No colour work on this job; the song is his.
+- Scene map: `scene-maps/coastal-43-albany-main.json`. CG birds + tracked Coastal pins for the same film: [[coastal-albany-birds]].
+- **Reel music cut (Einaudi, Experience)**: Hunter's brief was intro 0-10 s, build 10-20/25 s, last stretch the song's own fade. Cut beat-aligned (librosa, 92 BPM) with chroma-matched joins, every join landing back on the song's real drop at 276.64 s and its decay to near-silence at ~288.6 s. Two versions in `output/einaudi-reel/` (A intro -> climax -> drop, 32.6 s; B intro -> build -> peak bar -> drop, 31.2 s), each with a straight-gain master at about -14 LUFS / -1 dBTP (no compression). This is a manual first version of the proposed **music fitter**.
 
 ## Not yet known
 - **Whether it sounds good.** Nobody has listened to the preview yet.

@@ -60,6 +60,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[fcp-plugin-research]] — which FCP 12.4 plugins to buy: researched 21 Oct. FCP 12.3 now does word-by-word captions, Match Color, Auto Mask natively; motionVFX now Apple-owned. Buy-first: Jumper, dxRevive, DipSync, Neat Video, ScriptStar, Arctic, Globe Trotter, captionTranslator (~US$592 one-off)
 - [[motion-and-stills-tools]] — small reusable builds: 10x logo sting, HIA awards title, synth-SFX test, white-border framer
 - [[ssd-to-drive-offload]] — multi-day SSD → Google Drive archive job (zip-then-upload, Clients/ mapping); still running, several days of backlog left
+- [[coastal-albany-birds]] — Coastal 34 Albany Ave film: CG gulls on the hazy-sunrise drone shot + tracked Coastal C° pin on the coast wide (2 looks); 4K track gate fix
 - [[auto-sound-design]] — local CLI: video + owned SFX folder → automatic sparse SFX pass (impacts/risers on music energy rises, whooshes on synced cuts), preview + SFX-only WAV + FCPXML 1.10 + decision log. 31 tests pass, Davenport hero run; FCP import and listening not yet confirmed
 - [[sfx-sorter]] — launchd watcher: new sound-pack zips in Downloads → extracted into ~/Music/SFX Library (Ocular → Ocular Sounds/, else _Incoming/); leaves music/VO alone; live 20 Oct
 - [[one-percent-standard-store]] — Hunter's own white-label Shopify store (100 units in hand, self-fulfilled); Claude connected via Admin API 29 Sep
