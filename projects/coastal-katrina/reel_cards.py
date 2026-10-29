@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 import numpy as np
 from PIL import Image
+from scipy.ndimage import gaussian_filter
 
 sys.path.insert(0, str(Path(__file__).parent))
 import make_cards as mc  # noqa: E402
@@ -22,23 +23,39 @@ mc.W, mc.H = an.W, an.H = W, H
 an.FPS = FPS
 
 
-def start_card(length):
-    """COASTAL° wordmark centred over the opening drone, as her films open (Main 0:00). Fade + small rise in, out by the cut."""
+def start_card(length, scrim=0.0):
+    """COASTAL° wordmark centred over the opening drone, as her films open (Main 0:00). Fade + small rise in, out by the cut.
+
+    scrim > 0 lays a soft feathered black band behind the wordmark at that opacity, plus a faint shadow on the letters,
+    so it reads over busy drone footage (Hunter 29 Oct: logo lost over the flythrough's treetops)."""
+    cy = int(H * 0.45)
+
     def logo_draw(d, img):
         logo = Image.open(mc.LOGO_WHITE).convert("RGBA")
         lw = int(W * 0.55)
         logo = logo.resize((lw, round(logo.height * lw / logo.width)), Image.LANCZOS)
-        img.alpha_composite(logo, ((W - lw) // 2, int(H * 0.45) - logo.height // 2))
+        img.alpha_composite(logo, ((W - lw) // 2, cy - logo.height // 2))
     logo = an.layer(logo_draw)
     blank = np.zeros((H, W, 4), np.float32)
+    shade = None
+    if scrim > 0:
+        yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+        band = np.exp(-((yy - cy) / 210) ** 2) * (0.75 + 0.25 * np.exp(-((xx - W / 2) / 700) ** 2))
+        shadow = gaussian_filter(logo[..., 3], 14) * 0.6
+        shade = np.zeros((H, W, 4), np.float32)
+        shade[..., 3] = np.clip(band * scrim + shadow * (1 - band * scrim), 0, 1)
 
     def frame(t):
         f = blank.copy()
         k = an.phase(t, 0.2, 1.0)
-        an.over(f, logo, k * (1 - an.phase(t, length - 0.7, 0.6)), dy=(1 - k) * 10)
+        a = k * (1 - an.phase(t, length - 0.7, 0.6))
+        if shade is not None:
+            an.over(f, shade, a)
+        an.over(f, logo, a, dy=(1 - k) * 10)
         return f
 
-    an.encode(frame, round(length * FPS), mc.OUT / "coastal-wordmark-open-anim-9x16.mov")
+    name = f"coastal-wordmark-open-anim-9x16-scrim{round(scrim * 100)}.mov" if scrim > 0 else "coastal-wordmark-open-anim-9x16.mov"
+    an.encode(frame, round(length * FPS), mc.OUT / name)
     return frame(length / 2)
 
 
@@ -75,10 +92,11 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--start-len", type=float, default=3.2)
     ap.add_argument("--end-len", type=float, default=4.63)
+    ap.add_argument("--scrim", type=float, default=0.0, help="opacity of a soft dark band behind the start wordmark")
     ap.add_argument("--preview", nargs=2, metavar=("START_BG", "END_BG"))
     a = ap.parse_args()
     mc.OUT.mkdir(exist_ok=True)
-    s, e = start_card(a.start_len), end_card(a.end_len)
+    s, e = start_card(a.start_len, a.scrim), end_card(a.end_len)
     if a.preview:
         preview(s, a.preview[0], mc.OUT / "preview-start-9x16.jpg")
         preview(e, a.preview[1], mc.OUT / "preview-end-card-9x16.jpg")
