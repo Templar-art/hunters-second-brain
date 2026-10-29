@@ -16,6 +16,11 @@ Drone shots from Hunter's Katrina Walsh / [[coastal]] film of 34 Albany Avenue, 
 
 Each output has a comp `.mp4` plus an alpha `.mov` to lay over the film in FCP. The gull asset needs the credit "Pofdpoi (Sketchfab), CC BY 4.0".
 
+**29 Oct changes (Hunter):**
+- The end card's charcoal gradient read tacky. `projects/coastal-katrina/animate.py endcard-alpha` now renders the name, number and COASTAL° wordmark on transparency only.
+- He asked for bird flapping. New `projects/plate-vfx/flap_sfx.py` re-runs the render's flight simulation, finds each downstroke, and places a real wingbeat grain on it, with level and high-cut set by distance and pan set by screen x. 29 flaps for the 4 gulls, written as a full-film-length WAV so it lines up at 0:00.
+- The end-card whoosh was removed. Only the two approved whooshes play, locked with `presets/coastal-albany-locked.json`.
+
 ## What it taught us
 - **The track gate has to scale with resolution.** The 0.5 px gate was set on the 1080p benchmark, so it failed all three 4K shots (0.58–0.79 px, the same as 0.29–0.39 px at 1080). `plate_vfx.py track` now uses 0.5 × width/1920.
 - **The auto layout puts birds over the treetops when the drone is climbing and pushing in.** The birds sink and get left behind within a second. Hand-placing them in the sky took four draft passes:

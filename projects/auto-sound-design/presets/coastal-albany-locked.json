@@ -1,0 +1,103 @@
+{
+  "_about": "Coastal 34 Albany locked mix (Hunter approved 29 Oct): earthy + no automatic one-shots; only the scene map's pinned whooshes play.",
+  "rules": {
+    "min_score": 0.4,
+    "whoosh_requires_sync": true,
+    "riser_min_rise_db": 7.0,
+    "impact_on_synced_cuts": false,
+    "max_tail_s": {
+      "whoosh": 1.2,
+      "impact": 2.5,
+      "shimmer": 1.5
+    },
+    "motion_whoosh_min": 0.5,
+    "whoosh_on_scene_changes_only": true,
+    "scene_change_weight": 0.2,
+    "snap_to_cut_s": 0.06,
+    "whoosh_peak_lead_s": 0.04
+  },
+  "limits": {
+    "min_spacing_s": 2.5,
+    "total_per_minute": 13,
+    "per_minute": {
+      "whoosh": 0,
+      "impact": 0,
+      "riser": 0,
+      "shimmer": 0,
+      "low drone": 0,
+      "ambience": 1,
+      "click": 0,
+      "pop": 0
+    },
+    "max_whoosh_share_of_cuts": 0.15,
+    "max_overlap": 2,
+    "count_existing_whooshes": true
+  },
+  "levels": {
+    "relative_db": {
+      "whoosh": -13,
+      "riser": -12,
+      "impact": -8,
+      "shimmer": -14,
+      "low drone": -18,
+      "ambience": -20,
+      "click": -16,
+      "pop": -14
+    },
+    "peak_ceiling_dbfs": {
+      "whoosh": -14,
+      "riser": -12,
+      "impact": -8,
+      "shimmer": -16,
+      "low drone": -20,
+      "ambience": -22,
+      "click": -18,
+      "pop": -15
+    }
+  },
+  "fades": {
+    "trim_fade_out": 0.35
+  },
+  "scenes": {
+    "skip_tags": [
+      "interior"
+    ],
+    "relative_db": {
+      "outdoor": -12,
+      "aerial": -12,
+      "poolside": -14,
+      "dusk": -12,
+      "watersidecreek": -14,
+      "curtainbreeze": -16
+    },
+    "prefer_recorded": true,
+    "peak_ceiling_dbfs": -4,
+    "max_gain_db": 24
+  },
+  "master": {
+    "enabled": true,
+    "lufs": -16,
+    "lra": 6,
+    "true_peak": -1.0
+  },
+  "avoid_words": [
+    "hit",
+    "throttle",
+    "action",
+    "punch",
+    "engine",
+    "motor",
+    "vehicle",
+    "car ",
+    "mouse",
+    "gun",
+    "glitch",
+    "laser",
+    "sci-fi",
+    "cable",
+    "braam",
+    "race",
+    "overdrive",
+    "racing"
+  ]
+}

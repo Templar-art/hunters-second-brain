@@ -6,6 +6,7 @@ pin (5 s): thin white stem draws up from the ground point, C° mark fades/settle
 Pin proportions measured from Coastal's own listing drone stills (4 Lita Ct).
 
 Usage: python3 animate.py            -> out/*.mov + out/coastal-pin-4k.png
+       python3 animate.py endcard-alpha   -> end card text + wordmark on transparency, no background
        python3 animate.py address "34 Albany Avenue, Currumbin"   -> address caption PNG + MOV
 """
 import re
@@ -64,7 +65,8 @@ def encode(frames_fn, n, path):
     p.wait()
 
 
-def end_card():
+def end_card(background=True):
+    """background=False: text + wordmark only on alpha, no charcoal gradient (Hunter 29 Oct: the gradient read tacky)."""
     blank = np.zeros((H, W, 4), np.float32)
     name = layer(lambda d, i: mc.centred(d, "KATRINA WALSH", mc.font(mc.LIGHT, 190), cy=H * 0.30))
     num = layer(lambda d, i: mc.centred(d, "0429 899 295", mc.font(mc.LIGHT, 190), cy=H * 0.30 + 225))
@@ -80,13 +82,14 @@ def end_card():
 
     def frame(t):
         f = blank.copy()
-        over(f, plain, phase(t, 0.0, 1.0))
+        if background:
+            over(f, plain, phase(t, 0.0, 1.0))
         for lyr, start in ((name, 0.6), (num, 0.9), (logo, 1.5)):
             k = phase(t, start, 1.0)
             over(f, lyr, k, dy=(1 - k) * 24)
         return f
 
-    encode(frame, 8 * FPS, OUT / "katrina-walsh-end-card-anim-4k.mov")
+    encode(frame, 8 * FPS, OUT / ("katrina-walsh-end-card-anim-4k.mov" if background else "katrina-walsh-end-card-anim-alpha-only-4k.mov"))
 
 
 def pin():
@@ -150,6 +153,9 @@ if __name__ == "__main__":
     if len(sys.argv) > 2 and sys.argv[1] == "address":
         text = sys.argv[2]
         address(text, re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-"))
+        sys.exit()
+    if len(sys.argv) > 1 and sys.argv[1] == "endcard-alpha":
+        end_card(background=False)
         sys.exit()
     end_card()
     pin()
