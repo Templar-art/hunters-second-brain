@@ -1,0 +1,12 @@
+{
+ "at": 1793332394.8595798,
+ "costs": {
+  "W10_bedroom": 2.0,
+  "W08_kitchen": 2.0,
+  "W02_pool": 2.0,
+  "W11_dining": 2.0,
+  "W06_tower": 2.0,
+  "W07_entry": 2.0
+ },
+ "total_pending": 12.0
+}

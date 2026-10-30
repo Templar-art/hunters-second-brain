@@ -3,7 +3,7 @@ client: {client-slug}
 address: {street address}
 opened: {YYYY-MM-DD}
 status: intake        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 30, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 42, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — {address}
@@ -35,6 +35,12 @@ cost: { credits: 0, hf_credits: 30, aud: 0 }   # derived from ## Ledger
 - 2026-10-30 | 2 hf | W05_gym nano_banana_2_1 (gen-runner)
 - 2026-10-30 | 2 hf | W02_pool nano_banana_2_1 (gen-runner)
 - 2026-10-30 | 2 hf | W01_pool_daybed nano_banana_2_1 (gen-runner)
+- 2026-10-30 | 2 hf | W06_tower nano_banana_2_1 (gen-runner)
+- 2026-10-30 | 2 hf | W07_entry nano_banana_2_1 (gen-runner)
+- 2026-10-30 | 2 hf | W10_bedroom nano_banana_2_1 (gen-runner)
+- 2026-10-30 | 2 hf | W08_kitchen nano_banana_2_1 (gen-runner)
+- 2026-10-30 | 2 hf | W02_pool nano_banana_2_1 (gen-runner)
+- 2026-10-30 | 2 hf | W11_dining nano_banana_2_1 (gen-runner)
 - 2026-10-30 | 2 hf | W06_tower nano_banana_2_1 (gen-runner)
 - 2026-10-30 | 2 hf | W07_entry nano_banana_2_1 (gen-runner)
 

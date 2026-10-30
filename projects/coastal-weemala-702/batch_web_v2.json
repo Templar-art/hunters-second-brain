@@ -1,0 +1,73 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 15,
+ "defaults": {
+  "model": "nano_banana_2_1",
+  "params": {
+   "resolution": "2k",
+   "aspect_ratio": "3:2"
+  }
+ },
+ "rows": [
+  {
+   "id": "W10_bedroom",
+   "params": {
+    "image": [
+     "source/web/Web-10.JPG"
+    ]
+   },
+   "out": "out/web/W10_bedroom_v2.png",
+   "prompt": "This is the same bedroom as Image 1 and its layout must not change: the corner of floor-to-ceiling bronze-framed glass with the Surfers Paradise skyline beyond, the sheer curtain at the right of the glass, the solid wall behind the bed with the bed in the same position and orientation, the carpet and the ceiling. Move the camera about two metres to the right and turn it a little left, so the bed is seen more side-on and more of the left-hand glass shows. Restyle with all-new pieces: a low walnut platform bed with crisp white linen and a sage linen throw, a walnut bedside table with a black ceramic lamp on each side of the bed, and a charcoal leather lounge chair by the glass in place of the cream chair. No wall art. Clear bright daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W08_kitchen",
+   "params": {
+    "image": [
+     "source/web/Web-8.JPG"
+    ]
+   },
+   "out": "out/web/W08_kitchen_v2.png",
+   "prompt": "This is the same kitchen as Image 1 and its layout must not change: the tall white joinery wall with the integrated fridge, open timber shelves and wall oven, the white stone island with the open shelving at its end and the fluted timber front, the stepped ceiling bulkhead over the kitchen, and the corner of floor-to-ceiling glass with the river and skyline. Move the camera about two metres to the left and lower it slightly so the island is seen more end-on. Restyle with all-new pieces: three black steel counter stools with walnut seats, a rectangular walnut dining table with six black spindle chairs in place of the round table, and one ceramic jug of eucalyptus on the island. Clear bright daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W02_pool",
+   "params": {
+    "image": [
+     "source/web/Web-2.JPG"
+    ]
+   },
+   "out": "out/web/W02_pool_v2.png",
+   "prompt": "This is the same rooftop pool as Image 1 and its layout must not change: the same long infinity-edge pool with its curved near end, the crazy-paved stone deck, the curved concrete canopy overhead, the planter at the far end and the Surfers Paradise skyline. Move the camera about three metres to the right along the deck and turn it slightly left, so the pool runs more diagonally across the frame. Restyle with all-new pieces: four slatted teak sun loungers with white cushions, two square white market umbrellas, and potted olive trees in place of the ferns. Clear bright daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W11_dining",
+   "params": {
+    "image": [
+     "source/web/Web-11.JPG"
+    ]
+   },
+   "out": "out/web/W11_dining_v2.png",
+   "prompt": "This is the same dining and kitchen space as Image 1 and its layout must not change: the kitchen joinery and island across the back of the room, the stepped ceiling bulkhead, the timber batten screen, the floor-to-ceiling glass on the right with its sheer curtain, and the living area just visible at the far left. Move the camera about two metres to the right, close to the glass, and turn it left so the table is seen diagonally and the glass runs down the right edge of the frame. Restyle with all-new pieces: a long rectangular walnut dining table with eight black spindle-back chairs in place of the round table, a low black ceramic bowl in the centre, and a sage linen sofa in the living area in place of the cream one. No artwork on the walls. Clear bright daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W06_tower",
+   "params": {
+    "image": [
+     "source/web/Web-6.JPG"
+    ]
+   },
+   "out": "out/web/W06_tower_v2.png",
+   "prompt": "This is the same tower as Image 1 and the building must not change at all: the same curved balconies, glazing, bronze tones, height, podium planting and rooftop. Move the camera about twenty metres further down the street to the right and lower it to standing height, so the tower is seen a little more from its right-hand side and rises more steeply in the frame. Clear midday light with a deep blue sky and a few high clouds. New surroundings: frangipani street trees in flower in the foreground, different parked cars along the kerb and a cyclist on the road. Clear bright daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W07_entry",
+   "params": {
+    "image": [
+     "source/web/Web-7.JPG"
+    ]
+   },
+   "out": "out/web/W07_entry_v2.png",
+   "prompt": "This is the same building entry as Image 1 and the architecture must not change at all: the white vertical fins, the central lit entry tower, the planted podium, the undercroft and driveway, and the name wall. Move the camera about six metres to the right across the street so the entry is seen at an angle from the right rather than straight on. Clear midday light with a blue sky in place of the sunset. New surroundings: a different, dark modern SUV in the driveway, new low tropical planting along the front wall, and a person walking past on the footpath. Clear bright daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  }
+ ]
+}
