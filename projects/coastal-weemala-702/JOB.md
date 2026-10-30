@@ -3,7 +3,7 @@ client: {client-slug}
 address: {street address}
 opened: {YYYY-MM-DD}
 status: intake        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 42, aud: 0 }   # derived from ## Ledger
+cost: { credits: 150, hf_credits: 42, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — {address}
@@ -43,6 +43,7 @@ cost: { credits: 0, hf_credits: 42, aud: 0 }   # derived from ## Ledger
 - 2026-10-30 | 2 hf | W11_dining nano_banana_2_1 (gen-runner)
 - 2026-10-30 | 2 hf | W06_tower nano_banana_2_1 (gen-runner)
 - 2026-10-30 | 2 hf | W07_entry nano_banana_2_1 (gen-runner)
+- 2026-10-30 | 150 cr | Magnific change-camera x3 (bedroom/kitchen/dining v2 -> v3cam)
 
 ---
 _Vault: [[jarvis]]_
