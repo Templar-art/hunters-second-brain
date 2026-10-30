@@ -1,0 +1,46 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 10,
+ "defaults": {
+  "model": "nano_banana_2_1",
+  "params": {
+   "resolution": "2k",
+   "aspect_ratio": "3:2"
+  }
+ },
+ "rows": [
+  {
+   "id": "A_kitchen_to_balcony",
+   "params": {
+    "image": [
+     "source/14.jpg",
+     "source/01.jpg"
+    ]
+   },
+   "out": "out/A_kitchen_to_balcony_3x2_v1.png",
+   "prompt": "Using Image 1 for the finishes, photograph this apartment from the kitchen end of the room, standing behind the island and looking down the full length of the room toward the balcony, with the glass wall running along the left of the frame, the island in the foreground, the dining table in the middle and the living area and balcony doors at the far end. Keep the architecture and finishes exactly as in Image 1: white walls, flat white ceiling with recessed downlights, wide pale oak floorboards, slim bronze window frames and soft sheer curtains. The apartment is one long open-plan room with a continuous floor-to-ceiling glass wall down one long side; along it run, in order, the living area, then the dining area, then the kitchen, and the living end of the room finishes in sliding glass doors onto a covered balcony with a curved corner. The kitchen is a long white stone island set perpendicular to the glass with three timber stools, backed by a flush white galley of joinery along the solid back wall with an integrated fridge, cooktop, wall oven and pantry. Through every pane of glass show the real outlook from Image 2, the Surfers Paradise skyline and the Nerang River seen from level seven, in clear daylight. Furnish with all-new pieces, nothing carried over from Image 1: a low oatmeal boucle modular sofa with its back to the glass facing a slim timber TV console on the solid wall, a round travertine coffee table on a large sand wool rug, a tan leather lounge chair beside the sofa, and a long rectangular timber dining table running perpendicular to the glass with six woven rattan chairs, with one olive tree in a stone pot near the balcony doors. No wall art. Bright, airy natural daylight, soft window light with no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate interior photograph."
+  },
+  {
+   "id": "B_balcony_looking_back",
+   "params": {
+    "image": [
+     "source/14.jpg",
+     "source/01.jpg"
+    ]
+   },
+   "out": "out/B_balcony_looking_back_3x2_v1.png",
+   "prompt": "Using Image 1 for the finishes, photograph this apartment from the living-room corner beside the balcony doors, looking back along the room, with the glass wall on the right of the frame, the sofa and coffee table in the foreground, the dining table beyond, and the island and white galley kitchen at the far end. Keep the architecture and finishes exactly as in Image 1: white walls, flat white ceiling with recessed downlights, wide pale oak floorboards, slim bronze window frames and soft sheer curtains. The apartment is one long open-plan room with a continuous floor-to-ceiling glass wall down one long side; along it run, in order, the living area, then the dining area, then the kitchen, and the living end of the room finishes in sliding glass doors onto a covered balcony with a curved corner. The kitchen is a long white stone island set perpendicular to the glass with three timber stools, backed by a flush white galley of joinery along the solid back wall with an integrated fridge, cooktop, wall oven and pantry. Through every pane of glass show the real outlook from Image 2, the Surfers Paradise skyline and the Nerang River seen from level seven, in clear daylight. Furnish with all-new pieces, nothing carried over from Image 1: a low oatmeal boucle modular sofa with its back to the glass facing a slim timber TV console on the solid wall, a round travertine coffee table on a large sand wool rug, a tan leather lounge chair beside the sofa, and a long rectangular timber dining table running perpendicular to the glass with six woven rattan chairs, with one olive tree in a stone pot near the balcony doors. No wall art. Bright, airy natural daylight, soft window light with no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate interior photograph."
+  },
+  {
+   "id": "C_glass_looking_in",
+   "params": {
+    "image": [
+     "source/14.jpg",
+     "source/01.jpg"
+    ]
+   },
+   "out": "out/C_glass_looking_in_3x2_v1.png",
+   "prompt": "Using Image 1 for the finishes, photograph this apartment standing just inside the glass wall at the dining area, looking straight in toward the solid back wall, showing the dining table side-on in the foreground and the long island with its stools and the white galley kitchen behind it, with the living area just entering the left of the frame. Keep the architecture and finishes exactly as in Image 1: white walls, flat white ceiling with recessed downlights, wide pale oak floorboards, slim bronze window frames and soft sheer curtains. The apartment is one long open-plan room with a continuous floor-to-ceiling glass wall down one long side; along it run, in order, the living area, then the dining area, then the kitchen, and the living end of the room finishes in sliding glass doors onto a covered balcony with a curved corner. The kitchen is a long white stone island set perpendicular to the glass with three timber stools, backed by a flush white galley of joinery along the solid back wall with an integrated fridge, cooktop, wall oven and pantry. Through every pane of glass show the real outlook from Image 2, the Surfers Paradise skyline and the Nerang River seen from level seven, in clear daylight. Furnish with all-new pieces, nothing carried over from Image 1: a low oatmeal boucle modular sofa with its back to the glass facing a slim timber TV console on the solid wall, a round travertine coffee table on a large sand wool rug, a tan leather lounge chair beside the sofa, and a long rectangular timber dining table running perpendicular to the glass with six woven rattan chairs, with one olive tree in a stone pot near the balcony doors. No wall art. Bright, airy natural daylight, soft window light with no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate interior photograph."
+  }
+ ]
+}
