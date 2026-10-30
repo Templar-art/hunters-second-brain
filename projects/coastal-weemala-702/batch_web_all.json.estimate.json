@@ -1,0 +1,17 @@
+{
+ "at": 1793324863.598619,
+ "costs": {
+  "W08_kitchen": 2.0,
+  "W09_living": 2.0,
+  "W10_bedroom": 2.0,
+  "W11_dining": 2.0,
+  "W03_amenity_dining": 2.0,
+  "W04_rooftop_dining": 2.0,
+  "W05_gym": 2.0,
+  "W02_pool": 2.0,
+  "W01_pool_daybed": 2.0,
+  "W06_tower": 2.0,
+  "W07_entry": 2.0
+ },
+ "total_pending": 22.0
+}

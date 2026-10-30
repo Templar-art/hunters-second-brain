@@ -1,0 +1,137 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 30,
+ "defaults": {
+  "model": "nano_banana_2_1",
+  "params": {
+   "resolution": "2k",
+   "aspect_ratio": "3:2"
+  }
+ },
+ "rows": [
+  {
+   "id": "W08_kitchen",
+   "params": {
+    "image": [
+     "source/web/Web-8.JPG",
+     "source/web/Web-9.JPG",
+     "source/web/Web-10.JPG",
+     "source/web/Web-11.JPG"
+    ]
+   },
+   "out": "out/web/W08_kitchen_v1.png",
+   "prompt": "This is one apartment: keep its architecture and finishes exactly as in the reference images, the white walls and ceiling with recessed downlights, pale oak floors, floor-to-ceiling bronze-framed glazing, sheer curtains, white joinery and the Surfers Paradise skyline and river through the glass. Photograph the kitchen from a completely new position, standing at the far end of the island looking back along it toward the tall white joinery and wall oven, with the glazing on the right of the frame. Restyle with all-new pieces, nothing carried over from the references: three slim black-steel stools with oak seats at the island, a single ceramic vase with olive branches, and a round travertine dining table with four oatmeal upholstered chairs just entering the frame. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W09_living",
+   "params": {
+    "image": [
+     "source/web/Web-8.JPG",
+     "source/web/Web-9.JPG",
+     "source/web/Web-10.JPG",
+     "source/web/Web-11.JPG"
+    ]
+   },
+   "out": "out/web/W09_living_v1.png",
+   "prompt": "This is one apartment: keep its architecture and finishes exactly as in the reference images, the white walls and ceiling with recessed downlights, pale oak floors, floor-to-ceiling bronze-framed glazing, sheer curtains, white joinery and the Surfers Paradise skyline and river through the glass. Photograph the living room from a completely new position, standing beside the glazing looking diagonally back across the room toward the solid wall and the kitchen. Restyle with all-new pieces, nothing carried over from the references: a low oatmeal boucle modular sofa with its back to the glass, a round travertine coffee table on a large sand wool rug, a pair of tan leather lounge chairs and one olive tree in a stone pot. No wall art. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W10_bedroom",
+   "params": {
+    "image": [
+     "source/web/Web-8.JPG",
+     "source/web/Web-9.JPG",
+     "source/web/Web-10.JPG",
+     "source/web/Web-11.JPG"
+    ]
+   },
+   "out": "out/web/W10_bedroom_v1.png",
+   "prompt": "This is one apartment: keep its architecture and finishes exactly as in the reference images, the white walls and ceiling with recessed downlights, pale oak floors, floor-to-ceiling bronze-framed glazing, sheer curtains, white joinery and the Surfers Paradise skyline and river through the glass. Photograph the main bedroom from a completely new position, standing in the corner beside the window looking back toward the bed wall, so the glazing is behind the camera on the left. Restyle with all-new pieces, nothing carried over from the references: a king bed with an upholstered oatmeal linen headboard, white and sand linen bedding with a folded mohair throw, matching timber bedside tables with one ceramic lamp on each side, and a small boucle armchair. No wall art above the bed. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W11_dining",
+   "params": {
+    "image": [
+     "source/web/Web-8.JPG",
+     "source/web/Web-9.JPG",
+     "source/web/Web-10.JPG",
+     "source/web/Web-11.JPG"
+    ]
+   },
+   "out": "out/web/W11_dining_v1.png",
+   "prompt": "This is one apartment: keep its architecture and finishes exactly as in the reference images, the white walls and ceiling with recessed downlights, pale oak floors, floor-to-ceiling bronze-framed glazing, sheer curtains, white joinery and the Surfers Paradise skyline and river through the glass. Photograph the dining area from a completely new position, standing at the glass looking inward toward the kitchen, the camera turned around from the reference views. Restyle with all-new pieces, nothing carried over from the references: a long rectangular solid timber dining table with six woven rattan chairs, a linen runner with one low ceramic bowl, and a slim timber sideboard against the solid wall. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W03_amenity_dining",
+   "params": {
+    "image": [
+     "source/web/Web-3.JPG"
+    ]
+   },
+   "out": "out/web/W03_amenity_dining_v1.png",
+   "prompt": "Keep the architecture of this residents' dining room exactly as in the reference: the floor-to-ceiling glazing, the bronze-toned frames, the ceiling with downlights, the timber floor and the hinterland view. Photograph it from a completely new position, from the corner of the room looking diagonally across toward the windows. Restyle with all-new pieces, nothing carried over: a long live-edge timber table with eight black leather dining chairs, a linear brass pendant, and light linen curtains in place of the brown drapes. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W04_rooftop_dining",
+   "params": {
+    "image": [
+     "source/web/Web-4.JPG"
+    ]
+   },
+   "out": "out/web/W04_rooftop_dining_v1.png",
+   "prompt": "Keep the architecture of this rooftop dining pavilion exactly as in the reference: the glazed bronze-framed walls, the ceiling, the open terrace, the planting and the Surfers Paradise skyline and ocean beyond. Photograph it from a completely new position, standing out on the terrace looking back in through the glass doors. Restyle with all-new pieces, nothing carried over: a long rectangular stone dining table with ten woven outdoor chairs, a cluster of paper pendant lights, and outdoor lounges in natural canvas on the terrace. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W05_gym",
+   "params": {
+    "image": [
+     "source/web/Web-5.JPG"
+    ]
+   },
+   "out": "out/web/W05_gym_v1.png",
+   "prompt": "Keep the architecture of this residents' gym exactly as in the reference: the floor-to-ceiling glazing and frames, the ceiling with downlights, the timber floor and the river and skyline view. Photograph it from a completely new position, from the far end of the room looking back along the glazing. Re-equip it with all-new pieces, nothing carried over: a row of three rowing machines facing the view, a dark timber rack of matte black dumbbells, two upright stretching mats rolled in a basket and a full-height mirror on the solid wall. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W02_pool",
+   "params": {
+    "image": [
+     "source/web/Web-2.JPG",
+     "source/web/Web.JPG"
+    ]
+   },
+   "out": "out/web/W02_pool_v1.png",
+   "prompt": "Keep the architecture of this rooftop pool exactly as in the references: the infinity-edge pool, the crazy-paved stone deck, the curved concrete canopy, the built-in planters and the Surfers Paradise skyline. Photograph it from a completely new position, standing at the far end of the pool looking back along its length toward the canopy. Restyle with all-new pieces, nothing carried over: a row of white aluminium sun loungers with sand cushions, two large natural-linen umbrellas, and potted olive trees in place of the ferns. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W01_pool_daybed",
+   "params": {
+    "image": [
+     "source/web/Web.JPG",
+     "source/web/Web-2.JPG"
+    ]
+   },
+   "out": "out/web/W01_pool_daybed_v1.png",
+   "prompt": "Keep the architecture of this rooftop pool terrace exactly as in the references: the infinity-edge pool, the crazy-paved stone deck, the curved concrete canopy with downlights, the built-in planters and the Surfers Paradise skyline. Photograph it from a completely new, lower position, from the pool's edge looking up toward the planters and canopy. Restyle with all-new pieces, nothing carried over: a pair of woven rope daybeds with white cushions, a low teak side table, and grasses and agaves in the planters in place of the ferns. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W06_tower",
+   "params": {
+    "image": [
+     "source/web/Web-6.JPG"
+    ]
+   },
+   "out": "out/web/W06_tower_v1.png",
+   "prompt": "Keep the building exactly as in the reference: the same tower, its curved balconies, glazing, colours, height and rooftop planting must not change at all. Move the camera a short way along the street and slightly lower so the tower is seen from a fresh but nearby viewpoint. Change only the surroundings: new street trees and garden planting, different parked cars, a clear blue morning sky with soft high cloud in place of the evening light, and a person walking a dog on the footpath. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  },
+  {
+   "id": "W07_entry",
+   "params": {
+    "image": [
+     "source/web/Web-7.JPG"
+    ]
+   },
+   "out": "out/web/W07_entry_v1.png",
+   "prompt": "Keep the building entry exactly as in the reference: the white vertical fins, the central lit entry tower, the planted facade, the driveway and the signage wall must not change at all. Photograph it from a new position across the street and further to the left so the entry is seen at an angle. Change only the surroundings: new tropical garden planting, a different modern car in the driveway, clear bright midday daylight in place of the sunset, and the street trees re-placed. Bright, airy natural daylight with soft window light and no streaming rays, everything square to the walls, a horizontal 3:2 editorial real estate photograph."
+  }
+ ]
+}
