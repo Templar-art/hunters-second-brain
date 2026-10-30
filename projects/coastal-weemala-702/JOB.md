@@ -47,3 +47,6 @@ cost: { credits: 150, hf_credits: 42, aud: 0 }   # derived from ## Ledger
 
 ---
 _Vault: [[jarvis]]_
+
+## Status
+PARKED 2026-10-30 — Hunter: "this clearly isnt working". No deliverable. See wiki/log.md entry.

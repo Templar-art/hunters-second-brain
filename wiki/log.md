@@ -1685,3 +1685,6 @@ Reviewed the 5 drone stills: good to deliver. Pinned the 3 high wides with the K
 
 ## [2026-10-30] project | Coastal 34 Albany Flythrough start + end cards
 Put the existing COASTAL° start card and Katrina end card on Hunter's new Flythrough export, saved as "Flythrough - start + end cards.mp4" next to the original. The pin was already done. The folder name "43 Albany" is a typo for 34. See [[coastal-albany-birds]].
+
+## [2026-10-30] ingest | Weemala 702 re-render attempt — parked
+Tried to re-angle + refurnish 11 AI'd Print/Web stills (architect legal ask). NB 2.1 with own-room ref keeps layout but won't move the camera; bundled refs blend rooms; Magnific change-camera moves the camera but invents space; Blender blockout from stills too imprecise. Spent 42 HF + ~150 Magnific cr. Hunter called it: not working. Files in projects/coastal-weemala-702.
