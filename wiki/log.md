@@ -1688,3 +1688,5 @@ Put the existing COASTAL° start card and Katrina end card on Hunter's new Flyth
 
 ## [2026-10-30] ingest | Weemala 702 re-render attempt — parked
 Tried to re-angle + refurnish 11 AI'd Print/Web stills (architect legal ask). NB 2.1 with own-room ref keeps layout but won't move the camera; bundled refs blend rooms; Magnific change-camera moves the camera but invents space; Blender blockout from stills too imprecise. Spent 42 HF + ~150 Magnific cr. Hunter called it: not working. Files in projects/coastal-weemala-702.
+
+## [2026-11-02] music | Osupa Ti 64 s Kollosche cut (bar-aligned, vocal-gap splices)

@@ -226,3 +226,8 @@ It writes **FCPXML 1.10**, the DTD Apple publishes in its developer docs (checke
 - No ambience or shimmer in `sfx-lib`. Ocular Rainforest/Cityscapes should cover ambience. Shimmer may not exist in Ocular, in which case [[sound-lab]] could make some.
 
 Related: [[sound-lab]] · [[sfx-library]] · [[sfx-sourcing-and-design]] · [[fcp-plugin-research]] · [[video-edit-pipeline]]
+
+## 2 Nov, Osupa Ti cut for Kollosche (64.3 s)
+- Hunter asked for about a minute of *Osupa Ti (Radio Edit)* for a Kollosche listing. A plain trim with a fade (v1) skipped this page's method and was redone.
+- The song is 119.7 BPM on a 2.004 s bar, with its downbeat on the 3rd tracked beat (librosa's tempo estimate said 117.5 and drifted, so bars come from the beat times). Map: intro to 33.6 s, break 33.6–49.6, drop 49.6–97.6, break 97.6–129.7, final drop to 225.6, then the decay.
+- **v2** (`tools/osupa_cut.py`): two splices, each a whole 4-bar shift landing in a vocal breath gap (from a demucs split): 14.14 → 22.15 inside the intro, and 56.66 → 216.64 out of the first drop into the song's own ending (chroma 0.997, onset correlation 0.82). The levels match, so the joins use 0.24 s equal-power crossfades. Mastered with straight gain to -14.0 LUFS / -5.2 dBTP. Output: `~/Downloads/Osupa Ti - 64s Kollosche Cut v2.{mp3,wav}`. Awaiting Hunter's listen.
