@@ -57,7 +57,9 @@ def topdown():
     fs = frames("topdown")
     n = len(fs)
     START, DRAW = 37, 14          # 0-based: draw-on once the whip has slowed
-    LOT = np.float32([[470, 640], [975, 325], [1165, 225], [1395, 525], [1240, 700], [800, 975]])  # last frame px
+    # Hunter's own lot outline from his delivered top-down still (Drone Graphics/Web-02), carried to the
+    # last frame by a SIFT homography (cadastre/lot_from_hunter_still.json; matches QLD lot 130RP206900).
+    LOT = np.float32(json.loads((job / "cadastre/lot_from_hunter_still.json").read_text())["lot_f72"])
     sift = cv2.SIFT_create(nfeatures=6000)
     S = 0.5
 
@@ -164,5 +166,4 @@ if __name__ == "__main__":
         topdown()
     if "view" in which:
         pin("view", (1062, 925), round(H * 0.36), len(frames("view")) - 1)
-    if "pullout" in which:
-        pin("pullout", (905, 560), round(H * 0.30), 35, fade_out=(28, 8))
+    # The pull-out pin was cut by Hunter (2026-11-02): "the end pin is unnecessary".

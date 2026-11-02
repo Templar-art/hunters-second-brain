@@ -1698,3 +1698,6 @@ Tried to re-angle + refurnish 11 AI'd Print/Web stills (architect legal ask). NB
 
 ## [2026-11-02] ingest | Kollosche 4-6 Buckingham Way overlay pack
 Hunter's 63 s edit got the opener (wordmark + address), a tracked lot outline, K badge pins, gulls and Taylor Kleinberg's outro. Delivered as 5 full-length ProRes 4444 alpha overlays for FCP, saved beside the original on SSD1. Taylor's number is now confirmed as 0447 466 177. Pages updated: [[kollosche]], [[kollosche-video-guidelines]]. $0.
+
+## [2026-11-02] ingest | Kollosche Buckingham Way v2 (Hunter review)
+Hunter cut the end pin and the gulls, and called the eyeballed lot outline wrong. The outline was rebuilt from his delivered Web-02 still (SIFT-registered, matches QLD cadastre 130RP206900). New rule: lot outlines come from his pinned stills or the cadastre. Pages updated: [[kollosche]], [[plate-vfx]].

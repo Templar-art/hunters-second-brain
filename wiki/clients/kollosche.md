@@ -44,9 +44,11 @@ The full pack is in `raw/kollosche/`. It holds the guidelines, overlays, PSD tem
 
 - **Competitor reference:** Desire Media shot "The Pilot" (17 Pilot Ct, Mermaid Waters) for Kollosche. It's broken down in [[desire-the-pilot-reference]] and is Hunter's target style for sound design. The 5 Esther Pl edit is the [[auto-sound-design]] test case.
 
-- **4-6 Buckingham Way, Elanora — FCP overlay pack** (2026-11-02, Taylor Kleinberg listing, $0, in review). Hunter's finished 63 s 1080p edit got "everything": the KOLLOSCHE wordmark + address super opener, a white tracked lot outline on the top-down, K badge pins on the view wide and the final pull-out, plate-vfx gulls, and Taylor's outro. Hunter asked for **overlays he lays in FCP**, not a finished comp, so the output is 5 full-length ProRes 4444 alpha files (all start at 00:00, frame-matched to `Main.mp4`) plus a preview MP4. They're in `Edits/Kollosche Overlays/` beside the original on SSD1. Lessons:
+- **4-6 Buckingham Way, Elanora — FCP overlay pack** (2026-11-02, Taylor Kleinberg listing, $0, in review). Hunter's finished 63 s 1080p edit got the KOLLOSCHE wordmark + address super opener, a white tracked lot outline on the top-down, one K badge pin on the view wide, and Taylor's outro. ⚠️ v1 also had a second pin on the final pull-out and plate-vfx gulls. Hunter cut both ("end pin is unnecessary", "birds are shit"). Hunter asked for **overlays he lays in FCP**, not a finished comp, so the output is 4 full-length ProRes 4444 alpha files (all start at 00:00, frame-matched to `Main.mp4`) plus a preview MP4. They're in `Edits/Kollosche Overlays/` beside the original on SSD1. Lessons:
   - Hunter's drone moves are often **speed-ramped whips**. The plate-vfx solve fails across the whip, so split the shot: graphics on the sharp section before or after it (KLT/SIFT homography), and birds on the settled tail.
-  - On a wide over hinterland the solve stalls at ~1.2 px (hillside parallax). That's fine for airborne birds but not for ground lines.
+  - **Lot outlines come from Hunter's delivered pinned stills**, never by eye. v1's eyeballed block was wrong. The real lot (QLD cadastre 130RP206900, 4,799 m², ~40 × 120 m) is the strip on his `Drone Graphics/Web-02`, which is SIFT-registered onto the video top-down. Cadastre lookup: QLD `LandParcelPropertyFramework` MapServer, layer 0 (address → lotplan), layer 4 (parcel polygon).
+  - One K pin per video is enough.
+  - On a wide over hinterland the solve stalls at ~1.2 px (hillside parallax).
   - A white address super can wash out over white eaves, and Kollosche bans shadows, so place it over darker footage.
   - [JOB.md](../../projects/kollosche-buckingham-way/JOB.md)
 

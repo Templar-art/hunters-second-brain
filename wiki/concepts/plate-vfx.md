@@ -2,7 +2,7 @@
 type: concept
 tags: [blender, vfx, camera-tracking, drone, birds, pipeline]
 status: active
-updated: 2026-10-21
+updated: 2026-11-02
 ---
 
 # plate-vfx — CG into real footage
@@ -32,6 +32,9 @@ Built 2026-10-21 from the [[extra-salt-kollosche-birds]] job. Hunter's brief was
 
 ## Flock (added 2026-10-21)
 `layout --flock N` routes a leader, then N members ride drifting slots in a loose elongated flock: own lag along the path, separation ≥1.6 m, banking/pitch from their own velocity, individual wingbeats, mostly-shared glides. Benchmark: 2 hero gulls + 24-bird flock over the Kollosche river mouth, standard tier 33 s, plate untouched.
+
+## ⚠️ Rejected on a client job (2026-11-02)
+Hunter rejected the standard-tier gulls on Kollosche 4-6 Buckingham Way ("birds are shit"). There were 4 gulls over a hinterland drone wide and a pull-out, mostly small white specks against the forest canopy, below the horizon. He didn't say exactly what was wrong. Before offering birds again, ask what failed (size, look, motion or placement), and show a pilot crop at 100%, not a downscaled sheet. [[kollosche]]
 
 ## Next
 Feather cards on the hero wing edges, sun direction read from plate shadows, keyframe-chained tracking for long shots, and new subjects (drones, boats, people).

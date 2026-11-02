@@ -1,8 +1,8 @@
 """Full-length (1522-frame, 63.48 s) ProRes 4444 alpha overlays for Hunter's
 FCP timeline, all starting at 00:00 over Main.mp4, plus a preview comp.
 
-Layers: opener (KOLLOSCHE wordmark + address super), lot outline, K pins,
-birds, Taylor Kleinberg outro. Timeline frame numbers are Main.mp4 frames.
+Layers: opener (KOLLOSCHE wordmark + address super), lot outline, K pin
+(view wide), Taylor Kleinberg outro. Timeline frame numbers are Main.mp4 frames.
 
 Usage: ~/.venvs/typeset/bin/python -I scripts/assemble.py <job_dir> <Main.mp4> <deliver_dir>
 """
@@ -94,9 +94,9 @@ def outro(f):
 LAYERS = {
     "01 Opener - KOLLOSCHE wordmark + address": opener,
     "02 Lot outline (top-down 31.2s)": seq("topdown/render/gfx", "g", 748),
-    "03 K badge pins (34.2s + 57.7s)": {**seq("view/render/gfx", "g", 820), **seq("pullout/render/gfx", "g", 1383)},
-    "04 Birds (34.2s + 60.6s)": {**seq("view/render/birds_png", "b", 820), **seq("pullout_wide/render/birds_png", "b", 1453)},
-    "05 Outro - Taylor Kleinberg 0447 466 177": outro,
+    "03 K badge pin (34.2s)": seq("view/render/gfx", "g", 820),
+    # Birds cut 2026-11-02: Hunter rejected the plate-vfx gulls on this job ("birds are shit").
+    "04 Outro - Taylor Kleinberg 0447 466 177": outro,
 }
 
 
