@@ -1,10 +1,10 @@
 """Full-length (1522-frame, 63.48 s) ProRes 4444 alpha overlays for Hunter's
 FCP timeline, all starting at 00:00 over Main.mp4, plus a preview comp.
 
-Layers: opener (KOLLOSCHE wordmark + address super), lot outline, K pin
-(view wide), sky gulls, Taylor Kleinberg outro. Timeline frame numbers are Main.mp4 frames.
+Layers: opener wordmark, address super (separate, hard cut), lot outline, K pin
+(view wide), sky gulls, Taylor Kleinberg + Thibault Parolini outro. Timeline frame numbers are Main.mp4 frames.
 
-Usage: ~/.venvs/typeset/bin/python -I scripts/assemble.py <job_dir> <Main.mp4> <deliver_dir>
+Usage: ~/.venvs/typeset/bin/python -I scripts/assemble.py <job_dir> <Main.mp4> <deliver_dir> [sfx_mix.mp4]
 """
 import subprocess
 import sys
@@ -74,16 +74,17 @@ def address(lines):
 addr = address(["4-6 BUCKINGHAM WAY", "ELANORA"])
 
 
-def opener(f):
-    if f < 72:
-        return with_alpha(wordmark, 1 - ss((f - 62) / 10))   # frame 1, no fade-in; fade out by 3 s
-    if f < 144:
-        return with_alpha(addr, min(ss((f - 72) / 10), 1 - ss((f - 134) / 10)))
-    return None
+# Hunter 2026-11-02: wordmark -> address is a hard cut, no transition, and each is its own layer.
+def opener_wordmark(f):
+    return wordmark if f < 72 else None                      # frame 1 to 3 s, hard cut out
+
+
+def opener_address(f):
+    return addr if 72 <= f < 144 else None                   # hard cut in on the wordmark's last frame + 1
 
 
 # --- outro ----------------------------------------------------------------------
-outro_png = Image.open(job / "cards/kollosche-outro-taylor-16x9.png").convert("RGBA").resize((W, H), Image.LANCZOS)
+outro_png = Image.open(job / "cards/kollosche-outro-taylor_thibault-16x9.png").convert("RGBA").resize((W, H), Image.LANCZOS)
 OUTRO = 1463   # 61.0 s; overlay + details fade in together
 
 
@@ -92,12 +93,13 @@ def outro(f):
 
 
 LAYERS = {
-    "01 Opener - KOLLOSCHE wordmark + address": opener,
+    "01a Opener - KOLLOSCHE wordmark (0-3s)": opener_wordmark,
+    "01b Opener - address 4-6 Buckingham Way (3-6s)": opener_address,
     "02 Lot outline (top-down 31.2s)": seq("topdown/render/gfx", "g", 748),
     "03 K badge pin (34.2s)": seq("view/render/gfx", "g", 820),
     # v1 gulls rejected ("birds are shit": grey specks over canopy); v2 keeps them in the sky (--sky-y).
     "03b Birds - gulls in the sky (34.2s + 60.6s)": {**seq("view/render/birds_png", "b", 820), **seq("pullout_wide/render/birds_png", "b", 1453)},
-    "04 Outro - Taylor Kleinberg 0447 466 177": outro,
+    "04 Outro - Taylor Kleinberg + Thibault Parolini": outro,
 }
 
 
@@ -122,13 +124,17 @@ for name, layer in LAYERS.items():
     ff.wait()
     print("wrote", out.name)
 
-# preview: everything over the edit, original audio
-ins, chain, last = [], [], "0:v"
+# preview: everything over the edit (source scaled to the overlay size: Main.mp4 is now a 4K export),
+# audio from the SFX mix when given, else the edit's own
+audio = sys.argv[4] if len(sys.argv) > 4 else None
+ins, chain, last = [], [f"[0:v]scale={W}:{H}:flags=lanczos[v0]"], "v0"
 for i, name in enumerate(LAYERS, 1):
     ins += ["-i", str(dst / f"{name}.mov")]
     chain.append(f"[{last}][{i}:v]overlay=format=auto[v{i}]")
     last = f"v{i}"
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, *ins, "-filter_complex", ";".join(chain),
-                "-map", f"[{last}]", "-map", "0:a", "-c:a", "copy", "-c:v", "libx264", "-crf", "14",
-                "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(dst / "Main - Kollosche overlays PREVIEW.mp4")], check=True)
+amap = ["-map", f"{len(LAYERS) + 1}:a"] if audio else ["-map", "0:a"]
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, *ins, *(["-i", audio] if audio else []),
+                "-filter_complex", ";".join(chain), "-map", f"[{last}]", *amap, "-c:a", "aac", "-b:a", "256k",
+                "-c:v", "libx264", "-crf", "14", "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-shortest",
+                str(dst / "Main - Kollosche overlays + SFX PREVIEW.mp4")], check=True)
 print("preview done")

@@ -44,7 +44,7 @@ def opener(f):
     return with_alpha(k_icon, 1 - ss((f - 62) / 10)) if f < 72 else None   # frame 1, no fade-in; out by 3 s
 
 
-outro_png = Image.open(job / "cards/kollosche-outro-taylor-9x16.png").convert("RGBA").resize((W, H), Image.LANCZOS)
+outro_png = Image.open(job / "cards/kollosche-outro-taylor_thibault-9x16.png").convert("RGBA").resize((W, H), Image.LANCZOS)
 OUTRO = N - 60                 # last 2.5 s, same length as the 16:9
 
 
@@ -56,7 +56,7 @@ LAYERS = {
     "01 Opener - K icon": opener,
     "02 K badge pin (20.9s)": seq("reel/r17/render/gfx", "g", R17),
     "03 Birds - gulls in the sky (20.9s)": seq("reel/r17/render/birds_png", "b", R17),
-    "04 Outro - Taylor Kleinberg 0447 466 177": outro,
+    "04 Outro - Taylor Kleinberg + Thibault Parolini": outro,
 }
 
 

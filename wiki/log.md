@@ -1716,3 +1716,6 @@ The Provence beds were cicada loops. Beds are now owned Pixabay birds only, veri
 
 ## [2026-11-02] ingest | Kollosche Buckingham Way reel: pin only
 Outline cut from the reel's pin shot per Hunter. Rule: pin shots get the pin alone. Pages: [[kollosche]].
+
+## [2026-11-02] ingest | Kollosche Buckingham Way: hard-cut opener, Thibault on the outro
+Wordmark and address are now separate layers with a hard cut. Thibault Parolini added to the main + reel outros. Pages: [[kollosche]].
