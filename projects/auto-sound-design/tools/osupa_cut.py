@@ -6,9 +6,9 @@ import librosa, numpy as np, soundfile as sf
 F="/Users/10xhunter/Downloads/Osupa Ti (Radio Edit).mp3"
 y,sr=librosa.load(F,sr=None,mono=False); bt=np.loadtxt("bt.txt")
 beat=lambda bar,b: bt[2+4*bar+b]
-H=0.12
+H=0.25
 # (out_time, in_time): splice in vocal breath gaps, whole 4-bar shifts
-J=[(beat(6,1),beat(10,1)),(beat(27,2),beat(107,2))]
+J=[(beat(6,1),beat(10,1)),(beat(27,1),beat(91,1)),(beat(95,0),beat(111,0))]  # v3
 segs=[];start=0.0
 for o,i in J: segs.append((start,o)); start=i
 segs.append((start,len(y[0])/sr))
