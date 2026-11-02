@@ -2,7 +2,7 @@
 timeline, all starting at 00:00 over Edits/Reel.mp4, plus a preview comp.
 
 Layers (Kollosche 9:16 rules: K icon opens, no address super, 9:16 outro): K icon opener,
-lot outline + K badge pin (coast wide r17, 20.9 s), sky gulls (same shot), Taylor Kleinberg outro.
+K badge pin (coast wide r17, 20.9 s), sky gulls (same shot), Taylor Kleinberg outro.
 
 Usage: python3 -I scripts/assemble_reel.py <job_dir> <Reel.mp4> <deliver_dir>
 """
@@ -54,7 +54,7 @@ def outro(f):
 
 LAYERS = {
     "01 Opener - K icon": opener,
-    "02 Lot outline + K badge pin (20.9s)": seq("reel/r17/render/gfx", "g", R17),
+    "02 K badge pin (20.9s)": seq("reel/r17/render/gfx", "g", R17),
     "03 Birds - gulls in the sky (20.9s)": seq("reel/r17/render/birds_png", "b", R17),
     "04 Outro - Taylor Kleinberg 0447 466 177": outro,
 }

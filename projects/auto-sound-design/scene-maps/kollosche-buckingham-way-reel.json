@@ -1,17 +1,54 @@
 {
-  "video": "4-6 Buckingham Way Elanora - Reel.mp4 (28.86 s, 9:16, 23.976) + Kollosche overlays (K icon, outline + pin, gulls, outro)",
-  "source": "Claude visual review: per-shot contact sheet + overlay timings, 2 Nov 2026",
-  "segments": [
-    {"start": 0, "end": 2.71, "label": "aerial", "note": "roof top-down + oblique under the K icon"},
-    {"start": 2.71, "end": 9.72, "label": "exterior", "note": "palm look-up, driveway, entry, tennis court"},
-    {"start": 9.72, "end": 20.94, "label": "interior", "note": "pool table, dining, bedrooms, stairs"},
-    {"start": 20.94, "end": 26.36, "label": "aerial", "note": "coast wide (lot outline + K pin + gulls), whip to the final wide"},
-    {"start": 26.36, "end": 28.86, "label": "endcard", "note": "Taylor Kleinberg outro over the wide"}
-  ],
-  "accents": [
-    {"time": 9.72, "category": "whoosh", "file": "DSGNWhsh_WHOOSH-Weight_", "level_db": -6, "why": "tennis court -> inside"},
-    {"time": 21.0, "category": "whoosh", "file": "WHOOSH-Organic Motion_", "level_db": -4, "why": "lot outline starts drawing on"},
-    {"time": 21.6, "category": "whoosh", "file": "WHOOSH-Be Gentle_", "level_db": -10, "why": "K badge pin lands (soft, no glint)"}
-  ],
-  "music_fixes": []
+ "video": "4-6 Buckingham Way Elanora - Reel.mp4 (28.86 s, 9:16, 23.976) + Kollosche overlays (K icon, outline + pin, gulls, outro)",
+ "source": "Claude visual review: per-shot contact sheet + overlay timings, 2 Nov 2026",
+ "segments": [
+  {
+   "start": 0,
+   "end": 2.71,
+   "label": "aerial",
+   "note": "roof top-down + oblique under the K icon"
+  },
+  {
+   "start": 2.71,
+   "end": 9.72,
+   "label": "exterior",
+   "note": "palm look-up, driveway, entry, tennis court"
+  },
+  {
+   "start": 9.72,
+   "end": 20.94,
+   "label": "interior",
+   "note": "pool table, dining, bedrooms, stairs"
+  },
+  {
+   "start": 20.94,
+   "end": 26.36,
+   "label": "aerial",
+   "note": "coast wide (lot outline + K pin + gulls), whip to the final wide"
+  },
+  {
+   "start": 26.36,
+   "end": 28.86,
+   "label": "endcard",
+   "note": "Taylor Kleinberg outro over the wide"
+  }
+ ],
+ "accents": [
+  {
+   "time": 9.72,
+   "category": "whoosh",
+   "file": "DSGNWhsh_WHOOSH-Weight_",
+   "level_db": -6,
+   "why": "tennis court -> inside"
+  },
+  {
+   "time": 21.4,
+   "category": "whoosh",
+   "file": "WHOOSH-Be Gentle_",
+   "level_db": -10,
+   "why": "K badge pin lands (soft, no glint)"
+  }
+ ],
+ "music_fixes": [],
+ "_removed": "2026-11-02: outline draw-on whoosh (21.0 s) cut with the outline (Hunter: pin didn't need the outline)."
 }

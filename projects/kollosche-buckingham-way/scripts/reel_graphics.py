@@ -1,4 +1,5 @@
-"""Reel (9:16) graphics for 4-6 Buckingham Way: Hunter's Web-06 lot outline + one K badge pin on
+"""Reel (9:16) graphics for 4-6 Buckingham Way: one K badge pin (no outline: Hunter 2026-11-02, "for the
+pin didnt need the outline") on
 reel shot r17 (coast wide, house bottom-centre). Outline corners measured off his delivered still
 (reel/cadastre/web06_outline.json), SIFT-registered to r17 f1 (web06_to_r17.json), then carried
 through the shot by frame-to-frame KLT homographies on the lot/street area. Writes r17/render/gfx/.
@@ -26,8 +27,9 @@ BADGE = drone_pin.badge(SIDE, drone_pin.k_glyph(), ST)
 PIN_LINE = max(2, round(ST["pin_line"] * SIDE))
 LW, SS = max(2, round(1920 * 0.0033)), 2
 DRAW_START, DRAW = 2, 16                  # outline draw-on (0-based frames)
-PIN_START = 8                             # pin grows once the outline is half drawn
+PIN_START = 2                             # pin grows right after the cut
 LINE_LEN = 300
+SHOW_OUTLINE = False                      # outline cut by Hunter; pin tip still comes from the Web-06 registration
 
 
 def ease(t):
@@ -87,7 +89,7 @@ def main():
         tx, ty = cv2.perspectiveTransform(TIP[None, None], Hs[k])[0, 0]
         canvas = np.zeros((H * SS, W * SS), np.uint8)
         frac = smooth((k - DRAW_START) / DRAW)
-        if frac > 0:
+        if SHOW_OUTLINE and frac > 0:
             path = partial(poly, frac) * SS
             cv2.polylines(canvas, [np.round(path * 16).astype(np.int32)], frac >= 1, 255, LW * SS, cv2.LINE_AA, shift=4)
             for x, y in path:
