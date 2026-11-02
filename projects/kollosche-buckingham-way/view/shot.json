@@ -1,0 +1,19 @@
+{
+ "clip": "/Users/10xhunter/Documents/Hunters Second Brain/projects/kollosche-buckingham-way/shots/view.mov",
+ "src": "/Users/10xhunter/Documents/Hunters Second Brain/projects/kollosche-buckingham-way/view/src/plate.mov",
+ "frames": 48,
+ "width": 1920,
+ "height": 1080,
+ "fps": [
+  24000,
+  1001
+ ],
+ "cuts_at": [],
+ "range": [
+  1,
+  48
+ ],
+ "aspect": "16:9",
+ "tier": "standard",
+ "shutter": 0.2
+}

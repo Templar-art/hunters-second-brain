@@ -1,7 +1,7 @@
 ---
 type: source
 tags: [kollosche, brand, video, captions, guidelines]
-updated: 2026-10-27
+updated: 2026-11-02
 ---
 
 # Kollosche — Video and Caption Guidelines (2024) + asset pack
@@ -35,7 +35,7 @@ Kollosche's own brand rules for every video made for their social channels. The 
 - The 9:16 text zone is y ≈ 535.8–885.7 px. The outro length is up to the editor.
 - Blue overlay = `#0B152C` at 50% opacity (sampled from `Blue_overlay_*.png`).
 
-**Outro generator (2026-10-27):** `projects/kollosche-outro/make_outro.py "NAME|0400 000 000" …` renders the outro for any agents as 16:9 + 9:16 ProRes 4444 alpha plus PNG. The layout is measured from the Taylor × Thibault cards: 16:9 is cap 110 px on 8000 wide (≈75 pt at 4K), line pitch 1.03 em, and one agent block step = 3 line pitches (two blank lines). The copyright line is copied from the card, and the reel card has none. The cards are **kerned with zero tracking**: Pillow here has no kerning, so the script uses HarfBuzz from `~/.venvs/typeset`. `--check` rebuilds the reference card (0.2 % of pixels differ). ⚠️ Taylor Kleinberg's number is 0446 466 177 on the end-card files but 0447 466 177 in the guidelines PDF and a live video.
+**Outro generator (2026-10-27):** `projects/kollosche-outro/make_outro.py "NAME|0400 000 000" …` renders the outro for any agents as 16:9 + 9:16 ProRes 4444 alpha plus PNG. The layout is measured from the Taylor × Thibault cards: 16:9 is cap 110 px on 8000 wide (≈75 pt at 4K), line pitch 1.03 em, and one agent block step = 3 line pitches (two blank lines). The copyright line is copied from the card, and the reel card has none. The cards are **kerned with zero tracking**: Pillow here has no kerning, so the script uses HarfBuzz from `~/.venvs/typeset`. `--check` rebuilds the reference card (0.2 % of pixels differ). ⚠️ Taylor Kleinberg's number is 0446 466 177 on the end-card files but 0447 466 177 in the guidelines PDF and a live video. **Resolved 2026-11-02: 0447 466 177 is correct** (Hunter's screenshot of Taylor's agent profile); the end-card file is wrong. `--check` still uses 0446 only because it diffs against that file.
 
 ## Agent Focus (agent promos only, never VPA)
 - Open on the **approved team logo**, already on screen with no fade-in, for 2–4 s. Then the series or subject super for 2–3 s. Outro on the approved Kollosche logo with the blue overlay. Don't repeat the agent details at the end.

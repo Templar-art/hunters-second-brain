@@ -2,7 +2,7 @@
 type: client
 tags: [kollosche, real-estate, gold-coast, video, brand]
 status: active
-updated: 2026-10-28
+updated: 2026-11-02
 ---
 
 # Kollosche
@@ -44,8 +44,14 @@ The full pack is in `raw/kollosche/`. It holds the guidelines, overlays, PSD tem
 
 - **Competitor reference:** Desire Media shot "The Pilot" (17 Pilot Ct, Mermaid Waters) for Kollosche. It's broken down in [[desire-the-pilot-reference]] and is Hunter's target style for sound design. The 5 Esther Pl edit is the [[auto-sound-design]] test case.
 
+- **4-6 Buckingham Way, Elanora — FCP overlay pack** (2026-11-02, Taylor Kleinberg listing, $0, in review). Hunter's finished 63 s 1080p edit got "everything": the KOLLOSCHE wordmark + address super opener, a white tracked lot outline on the top-down, K badge pins on the view wide and the final pull-out, plate-vfx gulls, and Taylor's outro. Hunter asked for **overlays he lays in FCP**, not a finished comp, so the output is 5 full-length ProRes 4444 alpha files (all start at 00:00, frame-matched to `Main.mp4`) plus a preview MP4. They're in `Edits/Kollosche Overlays/` beside the original on SSD1. Lessons:
+  - Hunter's drone moves are often **speed-ramped whips**. The plate-vfx solve fails across the whip, so split the shot: graphics on the sharp section before or after it (KLT/SIFT homography), and birds on the settled tail.
+  - On a wide over hinterland the solve stalls at ~1.2 px (hillside parallax). That's fine for airborne birds but not for ground lines.
+  - A white address super can wash out over white eaves, and Kollosche bans shadows, so place it over darker footage.
+  - [JOB.md](../../projects/kollosche-buckingham-way/JOB.md)
+
 ## Agents seen in the pack
-Taylor Kleinberg and Thibault Parolini (end cards), Duncan Longmore, Michael Kollosche and Marco De Vincentiis (4K example outro), Gareth Denning, and Hayley Kidson ("The Conversation" PAS series). There are 32 team logo sets in all. The list is on the source page.
+Taylor Kleinberg (**0447 466 177**, confirmed from his agent profile 2026-11-02) and Thibault Parolini (end cards), Duncan Longmore, Michael Kollosche and Marco De Vincentiis (4K example outro), Gareth Denning, and Hayley Kidson ("The Conversation" PAS series). There are 32 team logo sets in all. The list is on the source page.
 
 - **Reels (Day to Night townhouse, opened 2026-10-27):** a flythrough and a cinematic reel, 9:16. The kit (K opener + Eddie Wardale outro) is in [projects/kollosche-reels](../../projects/kollosche-reels/JOB.md).
 

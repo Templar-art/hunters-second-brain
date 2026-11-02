@@ -32,7 +32,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[oneill-group]] — client; full rebrand + website. Identity landed 2026-08 as **O'Neill Property** (Sage Grey/Basalt/Stone/Deep Sage, Sinhala MN + Inter) — the earlier 10x-palette brief on that page is superseded
 - [[iron-standard]] — Anthony McCoy, 800m² strength facility in Oslo. Six-page enquiry-led site built 22 Sep 2026 from the approved strategy doc; the waitlist scope is dead. Build discipline on [[premium-web-build]]
 - [[use-software]] — Gold Coast/Brisbane tech consultancy (Sam Bruhn, Founder & CEO); "Definitions" talking-head series; CRUD episode v5 in review 9 Oct, reusable template built
-- [[kollosche]] — prestige Gold Coast agency; strict video rulebook (K opens, never ends; Söhne Breit Kräftig; navy outro, no logo); brand pack + 32 team logo sets in `raw/kollosche/` (26 Oct)
+- [[kollosche]] — prestige Gold Coast agency; strict video rulebook (K opens, never ends; Söhne Breit Kräftig; navy outro, no logo); brand pack + 32 team logo sets in `raw/kollosche/` (26 Oct); 4-6 Buckingham Way FCP overlay pack (2 Nov)
 - [[coastal]] — COASTAL° Gold Coast agency group (not Coastline Prestige); house style = white C° pin + charcoal end card
 - [[katrina-walsh]] — Coastal Broadbeach lifestyle/luxury agent; VO-led films, Coastal° open, name+number sunset outro; asset inventory + slow earthy song shortlist (28 Oct)
 - [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])

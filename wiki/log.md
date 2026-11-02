@@ -1695,3 +1695,6 @@ Tried to re-angle + refurnish 11 AI'd Print/Web stills (architect legal ask). NB
 
 ## [2026-11-02] music | No Bad Vibes 69 s cut (no splices, echo-out ending)
 ## [2026-11-02] ingest | Osupa Ti 30 s reel cut (osupa_30.py)
+
+## [2026-11-02] ingest | Kollosche 4-6 Buckingham Way overlay pack
+Hunter's 63 s edit got the opener (wordmark + address), a tracked lot outline, K badge pins, gulls and Taylor Kleinberg's outro. Delivered as 5 full-length ProRes 4444 alpha overlays for FCP, saved beside the original on SSD1. Taylor's number is now confirmed as 0447 466 177. Pages updated: [[kollosche]], [[kollosche-video-guidelines]]. $0.

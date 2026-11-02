@@ -1,0 +1,10 @@
+shots/
+out/
+*/frames/
+*/render/
+*/comp/
+*/src/
+*/out/
+contact/*.png
+cards/*.mov
+contact/s[0-9]*.jpg
