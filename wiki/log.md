@@ -1694,3 +1694,4 @@ Tried to re-angle + refurnish 11 AI'd Print/Web stills (architect legal ask). NB
 ## [2026-11-02] music | Low Again 75 s cut + niche-song YouTube shortlist
 
 ## [2026-11-02] music | No Bad Vibes 69 s cut (no splices, echo-out ending)
+## [2026-11-02] ingest | Osupa Ti 30 s reel cut (osupa_30.py)
