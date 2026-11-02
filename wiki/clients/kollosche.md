@@ -55,6 +55,8 @@ The full pack is in `raw/kollosche/`. It holds the guidelines, overlays, PSD tem
 ## Agents seen in the pack
 Taylor Kleinberg (**0447 466 177**, confirmed from his agent profile 2026-11-02) and Thibault Parolini (end cards), Duncan Longmore, Michael Kollosche and Marco De Vincentiis (4K example outro), Gareth Denning, and Hayley Kidson ("The Conversation" PAS series). There are 32 team logo sets in all. The list is on the source page.
 
+- **4-6 Buckingham Way reel** (2026-11-02, $0, in review): same overlay-pack approach at 9:16 — K icon opener, Hunter's Web-06 lot outline + one K pin tracked on the coast wide, sky gulls, Taylor outro, SFX. In `Edits/Kollosche Overlays - Reel/` on SSD1. See [projects/kollosche-buckingham-way](../../projects/kollosche-buckingham-way/JOB.md).
+
 - **Reels (Day to Night townhouse, opened 2026-10-27):** a flythrough and a cinematic reel, 9:16. The kit (K opener + Eddie Wardale outro) is in [projects/kollosche-reels](../../projects/kollosche-reels/JOB.md).
 
 - **Drone stills pin/outline:** [[drone-photo-pin]] (built 2026-10-27, for the townhouse stills).

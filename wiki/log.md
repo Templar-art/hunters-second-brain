@@ -1710,3 +1710,6 @@ SFX: the voice was the spoken Kollosche transition tag plus Ocular City Park wal
 
 ## [2026-11-02] ingest | Kollosche Buckingham Way: cicadas out of the SFX
 The Provence beds were cicada loops. Beds are now owned Pixabay birds only, verified by a high-band measurement and Whisper. Page updated: [[auto-sound-design]].
+
+## [2026-11-02] ingest | Kollosche Buckingham Way reel: overlay pack
+9:16 overlays (K icon, Web-06 outline + pin, sky gulls, Taylor outro) + SFX beds/whooshes, delivered beside Reel.mp4. Pages: [[kollosche]].
