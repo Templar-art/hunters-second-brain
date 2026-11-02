@@ -91,7 +91,7 @@ def cmd_layout(a):
     job = os.path.abspath(a.job)
     shot = jload(os.path.join(job, "shot.json"))
     cam = jload(os.path.join(job, "camera.json"))
-    lay = layout.auto(cam, count=a.count, aspect=shot["aspect"], seed=a.seed, direction=a.direction) if a.count else \
+    lay = layout.auto(cam, count=a.count, aspect=shot["aspect"], seed=a.seed, direction=a.direction, sky_y=getattr(a, "sky_y", None)) if a.count else \
         {"aspect": shot["aspect"], "seed": a.seed, "safe_rect": layout.safe_rect(cam["width"], cam["height"], shot["aspect"]), "birds": []}
     lay["flocks"] = [layout.auto_flock(cam, count=a.flock, aspect=shot["aspect"], seed=a.seed, direction=a.direction)] if a.flock else []
     jsave(os.path.join(job, "layout.json"), lay)
@@ -371,6 +371,7 @@ def main():
     p = sp.add_parser("layout"); p.add_argument("job"); p.add_argument("--count", type=int, default=4)
     p.add_argument("--seed", type=int, default=1); p.add_argument("--direction", type=int, default=1)
     p.add_argument("--flock", type=int, default=0, help="add a flock of N birds")
+    p.add_argument("--sky-y", type=int, help="keep birds above this pixel row (horizon): gulls against sky, not canopy")
     p = sp.add_parser("pilot"); p.add_argument("job"); p.add_argument("--frame", type=int); p.add_argument("--tier", default="draft")
     p = sp.add_parser("render"); p.add_argument("job"); p.add_argument("--tier")
     p = sp.add_parser("dusk"); p.add_argument("job"); p.add_argument("--sky", default="industrial_sunset_02_puresky")

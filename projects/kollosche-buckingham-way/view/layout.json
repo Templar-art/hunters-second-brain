@@ -1,101 +1,72 @@
 {
  "aspect": "16:9",
- "seed": 1,
+ "seed": 3,
  "safe_rect": [
   0.0,
   0,
   1920.0,
-  1080
+  330
  ],
  "birds": [
   {
    "tag": "hero",
-   "depth": 8.77,
-   "sx": -154,
-   "sy": -400,
-   "speed": 10.18,
-   "hz": 3.23,
-   "phase": 0.85,
-   "heading": 41.7,
-   "bank": 13.0,
+   "depth": 9.67,
+   "sx": -425,
+   "sy": 784,
+   "speed": 9.88,
+   "hz": 3.13,
+   "phase": 0.59,
+   "heading": 52.5,
+   "bank": 11.5,
    "span": 0.95,
    "glides": [
     [
-     0.0,
-     0.37
+     1.28,
+     1.75
     ]
    ],
    "score": {
-    "visible": 1.0,
-    "min_px": 49.476,
-    "max_px": 198.077,
+    "visible": 0.375,
+    "min_px": 44.964,
+    "max_px": 179.652,
     "overlap": 0.0
    }
   },
   {
    "tag": "b2",
-   "depth": 11.14,
-   "sx": 266,
-   "sy": -228,
-   "speed": 10.62,
-   "hz": 3.21,
-   "phase": 0.09,
-   "heading": 51.9,
-   "bank": 13.3,
-   "span": 0.98,
-   "glides": [
-    [
-     0.65,
-     1.16
-    ]
-   ],
+   "depth": 14.95,
+   "sx": -774,
+   "sy": 786,
+   "speed": 9.31,
+   "hz": 3.3,
+   "phase": 0.5,
+   "heading": 37.8,
+   "bank": 12.6,
+   "span": 0.93,
+   "glides": [],
    "score": {
-    "visible": 1.0,
-    "min_px": 44.777,
-    "max_px": 160.851,
+    "visible": 0.604,
+    "min_px": 42.666,
+    "max_px": 113.75,
     "overlap": 0.0
    }
   },
   {
    "tag": "b3",
-   "depth": 19.83,
-   "sx": 382,
-   "sy": -412,
-   "speed": 9.44,
-   "hz": 2.98,
-   "phase": 0.47,
-   "heading": 36.3,
-   "bank": 10.5,
-   "span": 0.99,
+   "depth": 24.0,
+   "sx": -56,
+   "sy": 639,
+   "speed": 9.09,
+   "hz": 2.9,
+   "phase": 0.0,
+   "heading": 36.0,
+   "bank": 11.5,
+   "span": 0.97,
    "glides": [],
    "score": {
-    "visible": 1.0,
-    "min_px": 41.341,
-    "max_px": 91.289,
-    "overlap": 0.0
-   }
-  },
-  {
-   "tag": "b4",
-   "depth": 29.27,
-   "sx": -791,
-   "sy": 92,
-   "speed": 10.84,
-   "hz": 2.87,
-   "phase": 0.87,
-   "heading": 40.9,
-   "bank": 8.0,
-   "span": 1.0,
-   "glides": [
-    [
-     1.19,
-     1.51
-    ]
-   ],
-   "score": {
-    "visible": 1.0,
-    "min_px": 32.091,
-    "max_px": 62.475,
+    "visible": 0.833,
+    "min_px": 37.602,
+    "max_px": 73.905,
     "overlap": 0.0
    }
   }

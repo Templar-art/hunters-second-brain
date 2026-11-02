@@ -2,7 +2,7 @@
 FCP timeline, all starting at 00:00 over Main.mp4, plus a preview comp.
 
 Layers: opener (KOLLOSCHE wordmark + address super), lot outline, K pin
-(view wide), Taylor Kleinberg outro. Timeline frame numbers are Main.mp4 frames.
+(view wide), sky gulls, Taylor Kleinberg outro. Timeline frame numbers are Main.mp4 frames.
 
 Usage: ~/.venvs/typeset/bin/python -I scripts/assemble.py <job_dir> <Main.mp4> <deliver_dir>
 """
@@ -95,7 +95,8 @@ LAYERS = {
     "01 Opener - KOLLOSCHE wordmark + address": opener,
     "02 Lot outline (top-down 31.2s)": seq("topdown/render/gfx", "g", 748),
     "03 K badge pin (34.2s)": seq("view/render/gfx", "g", 820),
-    # Birds cut 2026-11-02: Hunter rejected the plate-vfx gulls on this job ("birds are shit").
+    # v1 gulls rejected ("birds are shit": grey specks over canopy); v2 keeps them in the sky (--sky-y).
+    "03b Birds - gulls in the sky (34.2s + 60.6s)": {**seq("view/render/birds_png", "b", 820), **seq("pullout_wide/render/birds_png", "b", 1453)},
     "04 Outro - Taylor Kleinberg 0447 466 177": outro,
 }
 

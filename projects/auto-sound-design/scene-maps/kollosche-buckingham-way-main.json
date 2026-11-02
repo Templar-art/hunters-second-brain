@@ -2,23 +2,89 @@
   "video": "4-6 Buckingham Way Elanora - Main.mp4 (63.48 s, 23.976) + Kollosche overlays (opener, outline, pin, outro)",
   "source": "Claude visual review: per-shot contact sheet + overlay timings, 2 Nov 2026",
   "segments": [
-    {"start": 0, "end": 2.7, "label": "aerial", "note": "opener drones under the KOLLOSCHE wordmark"},
-    {"start": 2.7, "end": 12.2, "label": "exterior", "note": "facade, eaves, palms (whip), driveway"},
-    {"start": 12.2, "end": 27.2, "label": "interior", "note": "kitchen, dining, living, rumpus"},
-    {"start": 27.2, "end": 29.2, "label": "exterior", "note": "tennis court"},
-    {"start": 29.2, "end": 31.2, "label": "pool", "note": "pool + alfresco"},
-    {"start": 31.2, "end": 36.2, "label": "aerial", "note": "top-down pull-up (lot outline), view wide to the coast (K pin)"},
-    {"start": 36.2, "end": 56.7, "label": "interior", "note": "bedrooms, stairs, gym, media, bathroom"},
-    {"start": 56.7, "end": 57.7, "label": "exterior", "note": "stone pillar + bush"},
-    {"start": 57.7, "end": 61.0, "label": "aerial", "note": "final pull-out to the coast"},
-    {"start": 61.0, "end": 63.48, "label": "endcard", "note": "Taylor Kleinberg outro over the wide"}
+    {
+      "start": 0,
+      "end": 2.7,
+      "label": "aerial",
+      "note": "opener drones under the KOLLOSCHE wordmark"
+    },
+    {
+      "start": 2.7,
+      "end": 12.2,
+      "label": "exterior",
+      "note": "facade, eaves, palms (whip), driveway"
+    },
+    {
+      "start": 12.2,
+      "end": 27.2,
+      "label": "interior",
+      "note": "kitchen, dining, living, rumpus"
+    },
+    {
+      "start": 27.2,
+      "end": 29.2,
+      "label": "exterior",
+      "note": "tennis court"
+    },
+    {
+      "start": 29.2,
+      "end": 31.2,
+      "label": "pool",
+      "note": "pool + alfresco"
+    },
+    {
+      "start": 31.2,
+      "end": 36.2,
+      "label": "aerial",
+      "note": "top-down pull-up (lot outline), view wide to the coast (K pin)"
+    },
+    {
+      "start": 36.2,
+      "end": 56.7,
+      "label": "interior",
+      "note": "bedrooms, stairs, gym, media, bathroom"
+    },
+    {
+      "start": 56.7,
+      "end": 57.7,
+      "label": "exterior",
+      "note": "stone pillar + bush"
+    },
+    {
+      "start": 57.7,
+      "end": 61.0,
+      "label": "aerial",
+      "note": "final pull-out to the coast"
+    },
+    {
+      "start": 61.0,
+      "end": 63.48,
+      "label": "endcard",
+      "note": "Taylor Kleinberg outro over the wide"
+    }
   ],
   "accents": [
-    {"time": 3.0, "category": "whoosh", "file": "kollosche_transition_SFX", "why": "Kollosche transition: wordmark out -> address super in"},
-    {"time": 32.75, "category": "whoosh", "file": "WHOOSH-Organic Motion_", "level_db": -4, "why": "lot outline starts drawing on (top-down settles)"},
-    {"time": 34.75, "category": "whoosh", "file": "WHOOSH-Be Gentle_", "level_db": -10, "why": "K badge pin lands (soft whoosh, per Hunter's Esther Pl note: glint was tacky)"},
-    {"time": 59.45, "category": "whoosh", "file": "DSGNWhsh_WHOOSH-Weight_", "why": "pull-out speed-ramp whip (Hunter-approved pick on Coastal)"},
-    {"time": 61.05, "category": "whoosh", "file": "kollosche_transition_SFX", "level_db": -3, "why": "Kollosche transition: navy outro fades in"}
+    {
+      "time": 32.75,
+      "category": "whoosh",
+      "file": "WHOOSH-Organic Motion_",
+      "level_db": -4,
+      "why": "lot outline starts drawing on (top-down settles)"
+    },
+    {
+      "time": 34.75,
+      "category": "whoosh",
+      "file": "WHOOSH-Be Gentle_",
+      "level_db": -10,
+      "why": "K badge pin lands (soft whoosh, per Hunter's Esther Pl note: glint was tacky)"
+    },
+    {
+      "time": 59.45,
+      "category": "whoosh",
+      "file": "DSGNWhsh_WHOOSH-Weight_",
+      "why": "pull-out speed-ramp whip (Hunter-approved pick on Coastal)"
+    }
   ],
-  "music_fixes": []
+  "music_fixes": [],
+  "_removed": "2026-11-02: kollosche_transition_SFX.wav accents (3.0, 61.05 s) cut. The file is a spoken 'Kollosche' voice tag, not an SFX (Hunter: 'weird voice at the start and end')."
 }

@@ -1704,3 +1704,6 @@ Hunter cut the end pin and the gulls, and called the eyeballed lot outline wrong
 
 ## [2026-11-02] ingest | Kollosche Buckingham Way SFX pass
 auto-sound-design was run with the locked preset and a scene map whose accents are timed to the overlay events. Delivered as 05 SFX WAVs beside the overlays, plus a preview with sound. Pages updated: [[auto-sound-design]], [[kollosche]].
+
+## [2026-11-02] ingest | Kollosche Buckingham Way: SFX voice fix + birds v2
+SFX: the voice was the spoken Kollosche transition tag plus Ocular City Park walla. Both are removed, and the stem is now Whisper-checked. Birds were redone in the sky with the new plate-vfx `--sky-y` option. Pages updated: [[plate-vfx]], [[auto-sound-design]].

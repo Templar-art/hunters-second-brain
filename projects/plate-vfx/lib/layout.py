@@ -32,7 +32,7 @@ def track_bird(b, cam, f_px, fps, w, h):
     return pts
 
 
-def score(b, pts, rect, f_px, placed, min_px):
+def score(b, pts, rect, f_px, placed, min_px, sky=False):
     x0, y0, x1, y1 = rect
     n = len(pts)
     vis, sizes, pen = 0, [], 0.0
@@ -43,7 +43,8 @@ def score(b, pts, rect, f_px, placed, min_px):
         span_px = b["span"] * f_px / z
         sizes.append(span_px)
         m = span_px / 2
-        if x0 + m < x < x1 - m and y0 + m < y < y1 - m:
+        # a sky band (y1 above frame bottom) only needs the body above the horizon, not the whole span
+        if x0 + m < x < x1 - m and y0 + m * 0.6 < y < (y1 if sky else y1 - m):
             vis += 1
         for q in placed:
             if q[i] is None:
@@ -66,7 +67,10 @@ def score(b, pts, rect, f_px, placed, min_px):
     return s, dict(visible=vis / n, min_px=min(sizes), max_px=max(sizes), overlap=pen)
 
 
-def auto(cam, count=4, aspect="16:9", seed=1, direction=1, min_px=16, tries=2500, log=print):
+def auto(cam, count=4, aspect="16:9", seed=1, direction=1, min_px=16, tries=2500, log=print, sky_y=None):
+    """sky_y: keep birds above this frame-1 pixel row (the horizon), so they read as white gulls
+    against sky. Seen from above against forest canopy they read as grey specks (Kollosche
+    Buckingham Way, 2 Nov 2026). Sky birds also fly closer: hero 3.5-6 m."""
     w, h = cam["width"], cam["height"]
     fps = cam["fps"][0] / cam["fps"][1]
     f_px = cam["lens_mm"] / 36 * w
@@ -74,6 +78,11 @@ def auto(cam, count=4, aspect="16:9", seed=1, direction=1, min_px=16, tries=2500
     rng = random.Random(seed)
     # depth bands: one hero, then stepping back
     bands = [(6.0, 9.0), (10.0, 14.0), (15.0, 20.0), (21.0, 30.0), (30.0, 42.0), (12.0, 26.0)]
+    sy_range = (-1.15, 0.2)
+    if sky_y:
+        rect = (rect[0], rect[1], rect[2], sky_y)
+        bands = [(6.0, 10.0), (9.0, 15.0), (14.0, 24.0), (20.0, 32.0), (28.0, 40.0)]
+        sy_range = (1.0 - sky_y / (h / 2), 1.5)  # camera y is up: above the horizon row = positive sy
     placed_pts, birds = [], []
     for i in range(count):
         lo, hi = bands[min(i, len(bands) - 1)]
@@ -85,7 +94,7 @@ def auto(cam, count=4, aspect="16:9", seed=1, direction=1, min_px=16, tries=2500
             if direction < 0:
                 heading, bank = 180 - heading, -bank
             b = dict(tag="hero" if i == 0 else f"b{i + 1}", depth=round(depth, 2),
-                     sx=round(rng.uniform(-1.3, 0.4) * w / 2 * direction), sy=round(rng.uniform(-1.15, 0.2) * h / 2),
+                     sx=round(rng.uniform(-1.3, 0.4) * w / 2 * direction), sy=round(rng.uniform(*sy_range) * h / 2),
                      speed=round(rng.uniform(9.0, 11.0), 2), hz=round(rng.uniform(2.7, 3.3), 2),
                      phase=round(rng.random(), 2), heading=round(heading, 1), bank=round(bank, 1),
                      span=round(rng.uniform(0.9, 1.0), 2), glides=[])
@@ -94,7 +103,7 @@ def auto(cam, count=4, aspect="16:9", seed=1, direction=1, min_px=16, tries=2500
                 a = rng.uniform(-0.2, t_shot * 0.8)
                 b["glides"] = [[round(a, 2), round(a + rng.uniform(0.3, 0.8), 2)]] if a > 0.05 else [[0.0, round(rng.uniform(0.3, 0.6), 2)]]
             pts = track_bird(b, cam, f_px, fps, w, h)
-            s, info = score(b, pts, rect, f_px, placed_pts, min_px)
+            s, info = score(b, pts, rect, f_px, placed_pts, min_px, sky=bool(sky_y))
             if best is None or s > best[0]:
                 best = (s, b, pts, info)
         s, b, pts, info = best

@@ -35,6 +35,7 @@ Built 2026-10-21 from the [[extra-salt-kollosche-birds]] job. Hunter's brief was
 
 ## ⚠️ Rejected on a client job (2026-11-02)
 Hunter rejected the standard-tier gulls on Kollosche 4-6 Buckingham Way ("birds are shit"). There were 4 gulls over a hinterland drone wide and a pull-out, mostly small white specks against the forest canopy, below the horizon. He didn't say exactly what was wrong. Before offering birds again, ask what failed (size, look, motion or placement), and show a pilot crop at 100%, not a downscaled sheet. [[kollosche]]
+- **v2 fix, the `--sky-y ROW` layout option:** it keeps the birds above the horizon row, so white gulls read against blue sky (sky depth bands 6–40 m). This is now the default approach for high drone wides that look down over canopy. Watch the sign: camera `sy` is **positive upward**, so above the horizon means `sy > h/2 − row`.
 
 ## Next
 Feather cards on the hero wing edges, sun direction read from plate shadows, keyframe-chained tracking for long shots, and new subjects (drones, boats, people).

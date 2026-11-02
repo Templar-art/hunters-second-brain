@@ -1,102 +1,78 @@
 {
  "aspect": "16:9",
- "seed": 1,
+ "seed": 3,
  "safe_rect": [
   0.0,
   0,
   1920.0,
-  1080
+  380
  ],
  "birds": [
   {
    "tag": "hero",
-   "depth": 8.1,
-   "sx": -1220,
-   "sy": -259,
-   "speed": 9.97,
-   "hz": 3.03,
-   "phase": 0.43,
-   "heading": 53.8,
-   "bank": 13.6,
-   "span": 0.99,
+   "depth": 9.68,
+   "sx": -1243,
+   "sy": 407,
+   "speed": 10.94,
+   "hz": 3.29,
+   "phase": 0.51,
+   "heading": 53.5,
+   "bank": 13.9,
+   "span": 0.94,
    "glides": [
     [
-     0.88,
-     1.66
+     1.28,
+     1.98
     ]
    ],
    "score": {
-    "visible": 0.377,
-    "min_px": 46.523,
-    "max_px": 328.317,
+    "visible": 0.42,
+    "min_px": 41.68,
+    "max_px": 261.025,
     "overlap": 0.0
    }
   },
   {
    "tag": "b2",
-   "depth": 13.83,
-   "sx": -1152,
-   "sy": 99,
-   "speed": 9.64,
-   "hz": 3.0,
-   "phase": 0.43,
-   "heading": 51.0,
-   "bank": 13.7,
-   "span": 0.9,
+   "depth": 14.85,
+   "sx": -1180,
+   "sy": 611,
+   "speed": 9.4,
+   "hz": 3.06,
+   "phase": 0.53,
+   "heading": 54.6,
+   "bank": 13.0,
+   "span": 0.99,
    "glides": [
     [
-     2.08,
-     2.47
+     1.94,
+     2.43
     ]
    ],
    "score": {
-    "visible": 0.58,
-    "min_px": 39.433,
-    "max_px": 174.863,
-    "overlap": 0.0
+    "visible": 0.681,
+    "min_px": 42.586,
+    "max_px": 179.217,
+    "overlap": 0.058
    }
   },
   {
    "tag": "b3",
-   "depth": 19.93,
-   "sx": -1155,
-   "sy": -261,
-   "speed": 9.2,
-   "hz": 2.73,
-   "phase": 0.58,
-   "heading": 54.3,
-   "bank": 11.6,
-   "span": 1.0,
+   "depth": 21.6,
+   "sx": -1240,
+   "sy": 536,
+   "speed": 9.62,
+   "hz": 2.74,
+   "phase": 0.74,
+   "heading": 52.9,
+   "bank": 13.6,
+   "span": 0.92,
    "glides": [],
    "score": {
-    "visible": 0.928,
-    "min_px": 39.987,
-    "max_px": 134.904,
-    "overlap": 0.043
-   }
-  },
-  {
-   "tag": "b4",
-   "depth": 28.2,
-   "sx": -759,
-   "sy": -472,
-   "speed": 10.19,
-   "hz": 3.06,
-   "phase": 0.18,
-   "heading": 54.2,
-   "bank": 9.2,
-   "span": 0.92,
-   "glides": [
-    [
-     1.48,
-     2.25
-    ]
-   ],
-   "score": {
-    "visible": 1.0,
-    "min_px": 32.012,
-    "max_px": 87.659,
-    "overlap": 0.0
+    "visible": 0.942,
+    "min_px": 36.002,
+    "max_px": 114.548,
+    "overlap": 0.087
    }
   }
  ],
