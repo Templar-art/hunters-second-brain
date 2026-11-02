@@ -2,7 +2,7 @@
 type: project
 tags: [audio, sfx, final-cut-pro, automation, tools, editing]
 status: built-unproven
-updated: 2026-10-29
+updated: 2026-11-02
 ---
 
 # Auto Sound Design
@@ -256,3 +256,9 @@ Hunter asked for Osupa Ti at 30 s "for a reel". `tools/osupa_30.py`. A reel has 
 Lessons:
 - The first try started at bar 19 and ran 34 s. Moving the start to a later breath gap was the cheapest trim, because it costs no new splice.
 - When a library riser is longer than the pre-roll, its head is clipped and faded rather than the pre-roll being lengthened.
+
+## 2 Nov, Kollosche 4-6 Buckingham Way (graphics-synced accents)
+- The SFX here follow the **graphics overlays**, not just the cuts. Scene-map accents are timed to the overlay events: the Kollosche transition sound (`sfx/kollosche-brand/`, from Hunter's Desktop, tagged whoosh) on the wordmark-to-address change (3.0 s) and on the outro fade-in (61.05 s); `Organic Motion` as the lot outline starts drawing (32.75 s); `Be Gentle` as the K pin lands (34.75 s); and the Coastal-approved `Weight` on the pull-out whip (59.45 s).
+- Locked preset `presets/kollosche-buckingham-locked.json` (a copy of the Coastal locked one: beds plus pinned accents only). Run: `output/Main_20261102-135136`. It detected the edit's own whooshes at 7.2, 36.2 and 45.2 s and left them alone.
+- Level check by measurement: the pin whoosh landed in a music dip, level with the music, so it went to `level_db -10`. Hunter's source mix is hot (-7.8 LUFS, peaks above 0 dBFS), so the preview is loudnormed; the delivered WAVs are unmastered stems for FCP.
+- Delivered to Hunter as `05 SFX` WAVs beside the overlay movies. Awaiting his listen. [[kollosche]]

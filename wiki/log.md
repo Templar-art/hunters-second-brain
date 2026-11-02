@@ -1701,3 +1701,6 @@ Hunter's 63 s edit got the opener (wordmark + address), a tracked lot outline, K
 
 ## [2026-11-02] ingest | Kollosche Buckingham Way v2 (Hunter review)
 Hunter cut the end pin and the gulls, and called the eyeballed lot outline wrong. The outline was rebuilt from his delivered Web-02 still (SIFT-registered, matches QLD cadastre 130RP206900). New rule: lot outlines come from his pinned stills or the cadastre. Pages updated: [[kollosche]], [[plate-vfx]].
+
+## [2026-11-02] ingest | Kollosche Buckingham Way SFX pass
+auto-sound-design was run with the locked preset and a scene map whose accents are timed to the overlay events. Delivered as 05 SFX WAVs beside the overlays, plus a preview with sound. Pages updated: [[auto-sound-design]], [[kollosche]].

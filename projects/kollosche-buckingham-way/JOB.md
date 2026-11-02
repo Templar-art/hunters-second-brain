@@ -4,6 +4,7 @@ address: 4-6 Buckingham Way, Elanora
 opened: 2026-11-02
 status: review            # intake → generating → review → delivered
 cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from - 2026-11-02 review v1 → Hunter: "the end pin is unnecessary, the outline of the property is wrong … birds are shit". v2: pull-out pin and all birds cut; outline rebuilt from Hunter's own Web-02 still (he pointed me to it), cross-checked against the cadastre. Delivery folder now holds 4 overlays: opener, outline, view pin, outro, plus the preview. Old pins/birds/outro files replaced. $0.
+- 2026-11-02 SFX: added `05 SFX - all` (+ `05a` beds, `05b` accents) WAVs, 48k/24-bit, 63.48 s, drop at 00:00; the preview is now `Main - Kollosche overlays + SFX PREVIEW.mp4` (preview audio loudnorm'd -7.8 → -16 LUFS; the source mix is very hot, peaks >0 dBFS). Pin whoosh pulled to -10 dB because it landed in a music dip level with the music. $0.
 
 ## Ledger — never edit by hand
 ---
@@ -21,6 +22,7 @@ Brief: "everything done to it" = Kollosche K badge pin + white tracked lot outli
 | 1 | Top-down pull-up 31.2–34.2 s (src 748–819) | chained SIFT homographies (plate-vfx solve FAILED: speed-ramp whip), white outline draws on f38–51 | review | 0.16–0.24 px/frame. v2: lot = Hunter's own outline from his `Drone Graphics/Web-02` still, SIFT-registered to the last frame (239 inliers, 1.2 px); agrees with QLD cadastre lot 130RP206900 (4,799 m², ~40×120 m). ⚠️ v1 eyeballed outline was wrong (Hunter) |
 | 2 | View wide 34.2–36.2 s (820–867) | plate-vfx PASS 0.477 px; K badge pin via KLT roof track | review | gulls rendered then CUT (Hunter: "birds are shit") |
 | 3 | Final pull-out 57.7–63.5 s (1383–1521) | CUT: pin ("end pin is unnecessary") and gulls ("birds are shit") | cut | wide solve 1.27 px (fails 0.5 gate: hillside parallax) — accepted for airborne birds only; plate-untouched PASS |
+| 5 | SFX (Hunter: "did you do sfx aswell?" → yes, build it) | auto-sound-design, locked preset + `scene-maps/kollosche-buckingham-way-main.json`: outdoor/aerial/pool beds + 5 pinned accents (Kollosche transition at 3.0 + 61.05, Organic Motion on outline 32.75, Be Gentle on pin 34.75 at -10, Weight on pull-out whip 59.45) | review | edit's own whooshes at 7.2/36.2/45.2 s left alone; run `projects/auto-sound-design/output/Main_20261102-135136` |
 | 4 | Outro 61.0 s → end (1463–1521) | make_outro.py TAYLOR KLEINBERG / 0447 466 177, 15-frame fade in | review | |
 
 ## Log
