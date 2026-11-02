@@ -1707,3 +1707,6 @@ auto-sound-design was run with the locked preset and a scene map whose accents a
 
 ## [2026-11-02] ingest | Kollosche Buckingham Way: SFX voice fix + birds v2
 SFX: the voice was the spoken Kollosche transition tag plus Ocular City Park walla. Both are removed, and the stem is now Whisper-checked. Birds were redone in the sky with the new plate-vfx `--sky-y` option. Pages updated: [[plate-vfx]], [[auto-sound-design]].
+
+## [2026-11-02] ingest | Kollosche Buckingham Way: cicadas out of the SFX
+The Provence beds were cicada loops. Beds are now owned Pixabay birds only, verified by a high-band measurement and Whisper. Page updated: [[auto-sound-design]].
