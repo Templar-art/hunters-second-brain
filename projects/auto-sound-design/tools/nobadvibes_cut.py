@@ -15,24 +15,22 @@ lp = lambda x, f: sosfilt(butter(2, f, "low", fs=SR, output="sos"), x, axis=-1)
 hp = lambda x, f: sosfilt(butter(2, f, "high", fs=SR, output="sos"), x, axis=-1)
 def ir(sec, tau): n = int(sec * SR); return rng.standard_normal(n) * np.exp(-np.arange(n) / (tau * SR))
 I = lambda t: int(round(t * SR))
-# music: 0 -> END + 1 beat, the dry tail fades over that beat
-music = y[:, :I(END + B)].copy()
-f = I(B); music[:, -f:] *= np.linspace(1, 0, f) ** 2
-# echo-out: last beat into the downbeat, fed through a 1/4-note delay (fb 0.55, darker each repeat) + reverb
-src = y[:, I(END - B):I(END + B)] * np.hanning(I(2 * B))
-TAIL = 5.0; echo = np.zeros((2, I(2 * B + TAIL)))
-g, cut = 0.7, 8000
-for n in range(2, 11):  # first repeat lands after the dry beat has faded (n=1 would double the downbeat)
-    s = I(n * B); seg = lp(src, max(cut, 800)) * g
-    pan = (1.0, 0.6) if n % 2 else (0.6, 1.0)
-    for c in (0, 1): echo[c, s:s + seg.shape[1]] += seg[c] * pan[c]
-    g *= 0.6; cut *= 0.72
-v = lp(np.convolve(src.mean(0), ir(3.5, 0.8))[: echo.shape[1]], 5000); v[: I(2 * B)] *= np.linspace(0, 1, I(2 * B))
-v *= 0.3 * np.abs(src).max() / np.abs(v).max()  # IR is unnormalised noise; scale the wet to 30% of the dry peak
-verb = np.stack([v] * 2)
-echo[:, :verb.shape[1]] += verb
-echo *= np.linspace(1, 0, echo.shape[1]) ** 1.2
-out = np.zeros((2, I(END - B) + echo.shape[1])); out[:, :music.shape[1]] += music; out[:, I(END - B):] += echo
+MODE = sys.argv[2] if len(sys.argv) > 2 else "stop"   # v2 endings (Hunter: "ending could be better" on the echo-out)
+# Final hit = the drop's own downbeat at END (one beat of full mix), rung out by a normalised reverb (60% wet).
+hit = y[:, I(END):I(END + B)].copy(); k = I(0.25); hit[:, -k:] *= np.linspace(1, 0, k) ** 2
+v = np.convolve(hit.mean(0), ir(4.0, 0.9)); v = lp(v, 6000); v *= 0.6 * np.abs(hit).max() / np.abs(v).max()
+v *= np.linspace(1, 0, len(v)) ** 1.6; v[: I(0.03)] *= np.linspace(0, 1, I(0.03))
+ring = np.stack([v, v]); ring[:, :hit.shape[1]] += hit
+if MODE == "stop":   # music stops on the last eighth before END: a half-beat hole, reverse swell sucks into the hit
+    music = y[:, :I(END - B / 2)].copy(); k = I(0.012); music[:, -k:] *= np.linspace(1, 0, k)
+    music = np.concatenate([music, np.zeros((2, I(B / 2)))], 1)
+else:                # filter-out: low-pass sweeps 16k -> 300 Hz over the last 2 bars, level eases -4 dB, into the hit
+    music = y[:, :I(END)].copy(); n = I(4.0); seg = music[:, -n:]; out_ = np.zeros_like(seg); blk = I(0.05)
+    for j in range(0, n, blk):
+        u = j / n; fc = 16000 * (300 / 16000) ** (u ** 1.5)
+        out_[:, j:j + blk] = lp(seg[:, max(0, j - I(0.1)):j + blk], fc)[:, -seg[:, j:j + blk].shape[1]:] * 10 ** (-4 * u / 20)
+    music[:, -n:] = out_
+out = np.zeros((2, I(END) + ring.shape[1])); out[:, :music.shape[1]] += music; out[:, I(END):] += ring
 # FX
 fx = np.zeros_like(out)
 def put(g_, start, db):
@@ -52,7 +50,9 @@ def lib(name, t, db, align="peak", lo=None, hi=None):
 swell(DROP, 4, -9); lib("riser_1.wav", DROP, -14, lo=9000); lib("sub_1.wav", DROP, -11, align="attack", lo=150)
 for t in (bar(8), bar(16), bar(28)): swell(t, 2, -15)
 lib("whoosh_1.wav", bar(16), -20, lo=7000, hi=300)
-lib("sub_2.wav", END, -14, align="attack", lo=150)
+lib("sub_2.wav", END, -12, align="attack", lo=150)
+if MODE == "stop": swell(END, 1, -8)   # fills the half-beat hole
+else: swell(END, 2, -11)
 h = 10 ** (-6 / 20)
-for name, x in (("mix", out + fx), ("clean", out), ("fx", fx)): sf.write(f"{OUTD}/{name}.wav", (x * h).T, SR, subtype="PCM_24")
-print("len", round(out.shape[1] / SR, 2), "drop at", DROP, "echo-out from", END)
+for name, x in (("mix", out + fx), ("clean", out), ("fx", fx)): sf.write(f"{OUTD}/{name}_{MODE}.wav", (x * h).T, SR, subtype="PCM_24")
+print("len", round(out.shape[1] / SR, 2), "drop at", DROP, "ending", MODE, "at", END)
