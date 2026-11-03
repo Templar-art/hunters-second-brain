@@ -75,10 +75,10 @@ def build(address, out_png, context=0.55, n=2000, flip=False):
         rot += 180
     Xr, Yr = turned(rot)
     im = im.rotate(-rot, resample=Image.BICUBIC, center=(n / 2, n / 2))
-    # crop to the lot plus context
-    w, h = np.ptp(Xr), np.ptp(Yr)
-    pad = max(w, h) * context * 0.5
-    box = (int(Xr.min() - pad * 1.2), int(Yr.min() - pad * 0.45), int(Xr.max() + pad * 1.2), int(Yr.max() + pad * 0.45))
+    # crop: lot centred, portrait 1:2 card like the Gen B finals, ~40% margin around the lot
+    cxp, cyp = (Xr.min() + Xr.max()) / 2, (Yr.min() + Yr.max()) / 2
+    ch = max(np.ptp(Yr) * 1.5, np.ptp(Xr) * 2.3 * 2)
+    box = (int(cxp - ch / 4), int(cyp - ch / 2), int(cxp + ch / 4), int(cyp + ch / 2))
     im = im.crop(box)
     im.save(Path(out_png).with_name('site-raw.png'))  # unsoftened crop: input for an illustrated pass
     ring_px = [(x - box[0], y - box[1]) for x, y in zip(Xr, Yr)]
