@@ -286,6 +286,68 @@ def draw(aerial, lot_px, roof, cov, at, s, roof_house, turn, roof_rgb=(205, 98, 
     return img
 
 
+def from_trace(trace, shape):
+    """Traced roof sections (polygons on site-raw.png, each 'hip' or 'flat') -> the (roof, cov, at, turn)
+    that draw() takes: masks in an axis-aligned house frame plus where that frame sits on the page."""
+    H, W = shape
+    roof_p = np.zeros((H, W), np.uint8)
+    flat_p = np.zeros((H, W), np.uint8)
+    angles, weights = [], []
+    for sec in trace:
+        pts = np.array(sec["points"], np.float32)
+        if len(pts) < 3:
+            continue
+        cv2.fillPoly(flat_p if sec.get("kind") == "flat" else roof_p, [np.round(pts).astype(np.int32)], 255)
+        for a, b in zip(pts, np.roll(pts, -1, 0)):
+            d = b - a
+            angles.append(math.degrees(math.atan2(d[1], d[0])) % 90)
+            weights.append(float(np.hypot(*d)))
+    flat_p[roof_p > 0] = 0
+    # the house's square axis: length-weighted mean of edge angles folded into 0-90 (circular mean x4)
+    a = np.radians(np.array(angles) * 4)
+    turn = -math.degrees(math.atan2((np.sin(a) * weights).sum(), (np.cos(a) * weights).sum())) / 4
+    both = roof_p | flat_p
+    rb, fb, cb = rotate_mask(roof_p, -turn), rotate_mask(flat_p, -turn), rotate_mask(both, -turn)
+    ys, xs = np.nonzero(cb)
+    y0, y1, x0, x1 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
+    roof_h, cov_h = rb[y0:y1, x0:x1], fb[y0:y1, x0:x1]
+    back = rotate_mask(roof_h | cov_h, turn)
+    py, px = np.nonzero(both)
+    qy, qx = np.nonzero(back)
+    at = (int(round(px.mean() - qx.mean())), int(round(py.mean() - qy.mean())))
+    return roof_h, cov_h, at, turn
+
+
+def faded(png):
+    """The page version: 2x, edges faded to white in a rounded card like the Gen B finals."""
+    from PIL import ImageDraw, ImageFilter
+    im = Image.open(png).convert("RGB")
+    im = im.resize((im.width * 2, im.height * 2), Image.LANCZOS)
+    W, H = im.size
+    f = int(W * 0.08)
+    m = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(m).rounded_rectangle((f, f, W - f, H - f), radius=f * 2, fill=255)
+    m = m.filter(ImageFilter.GaussianBlur(f * 0.7))
+    out = Image.new("RGBA", (W, H), (255, 255, 255, 0))
+    out.paste(im, (0, 0), m)
+    dst = Path(png).with_name(Path(png).stem + "-faded.png")
+    out.save(dst)
+    return dst.resolve()
+
+
+def main_traced(job, data):
+    site = data["site"]
+    aerial = np.asarray(Image.open(job / "work" / "site-raw.png").convert("RGB"))
+    s = site["m_per_px"] * 100
+    roof_h, cov_h, at, turn = from_trace(data["site_trace"], aerial.shape[:2])
+    r, c = rotate_mask(roof_h, turn), rotate_mask(cov_h, turn)
+    img = draw(aerial, site["lot_px"], r, c, at, s, roof_h, turn)
+    Image.fromarray(img).save(job / "work" / "site-drawn.png")
+    data["site_drawn"] = {"turn_deg": round(turn, 1), "offset_px": list(at), "sections": len(data["site_trace"]),
+                          "method": "roof traced by a person on the QLD aerial; hip planes drawn by code"}
+    return job / "work" / "site-drawn.png"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("slug")

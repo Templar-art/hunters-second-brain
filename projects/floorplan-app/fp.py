@@ -25,6 +25,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))  # render/sitedraw sit beside this file (the server runs with -I)
 ROOT = HERE.parent.parent
 JOBS = HERE / "jobs"
 RAW = ROOT / "raw" / "floorplans"
@@ -436,6 +437,10 @@ class H(http.server.BaseHTTPRequestHandler):
         try:
             if p == "/":
                 return self.send((HERE / "review.html").read_text(), "text/html; charset=utf-8")
+            m = re.fullmatch(r"/trace/([\w-]+)", p)
+            if m:
+                self.job(m[1])
+                return self.send((HERE / "trace.html").read_text(), "text/html; charset=utf-8")
             if p == "/api/jobs":
                 js = [json.loads((d / "job.json").read_text()) for d in sorted(JOBS.iterdir()) if (d / "job.json").exists()]
                 return self.send(json.dumps([{"slug": x["slug"], "address": x["address"], "client": x["client"],
@@ -444,7 +449,7 @@ class H(http.server.BaseHTTPRequestHandler):
             m = re.fullmatch(r"/api/job/([\w-]+)", p)
             if m:
                 return self.send((self.job(m[1]) / "job.json").read_text())
-            m = re.fullmatch(r"/job/([\w-]+)/(plan\.svg|final\.(?:png|jpg|jpeg)|out\.svg|page\.png|page\.pdf|site\.png)", p)
+            m = re.fullmatch(r"/job/([\w-]+)/(plan\.svg|final\.(?:png|jpg|jpeg)|out\.svg|page\.png|page\.pdf|site\.png|site-raw\.png|site-drawn\.png)", p)
             if m:
                 j = self.job(m[1])
                 f = {"out.svg": j / "out" / f"{m[1]}-10x.svg",
@@ -475,6 +480,29 @@ class H(http.server.BaseHTTPRequestHandler):
             data["site_plan"] = str(j / "work" / "site.png")
             (j / "job.json").write_text(json.dumps(data, indent=1))
             return self.send(json.dumps(data))
+        m = re.fullmatch(r"/api/job/([\w-]+)/trace", self.path)
+        if m:  # roof traced on the aerial + markers -> drawn site plan -> page
+            j = self.job(m[1])
+            body = json.loads(self.rfile.read(min(int(self.headers["Content-Length"] or 0), 2_000_000)) or b"{}")
+            data = json.loads((j / "job.json").read_text())
+            try:
+                trace = [{"kind": "flat" if t.get("kind") == "flat" else "hip",
+                          "points": [[float(x), float(y)] for x, y in t["points"]][:200]} for t in body["site_trace"]][:40]
+                marks = [{"label": str(mk["label"])[:40], "x": None if mk.get("x") is None else float(mk["x"]),
+                          "y": None if mk.get("y") is None else float(mk["y"]), "traced": True} for mk in body.get("site_markers", [])][:12]
+            except (KeyError, TypeError, ValueError):
+                return self.send('{"error":"bad trace"}', code=400)
+            data["site_trace"], data["site_markers"] = trace, marks
+            try:
+                import sitedraw
+                png = sitedraw.main_traced(j, data)
+                data["site_plan"] = str(sitedraw.faded(png))
+                data["site_plan_kind"] = "drawn by code from a roof traced on the QLD aerial (no AI)"
+                (j / "job.json").write_text(json.dumps(data, indent=1))
+                write_out(j)
+            except Exception as e:
+                return self.send(json.dumps({"error": f"{type(e).__name__}: {e}"}), code=500)
+            return self.send((j / "job.json").read_text())
         m = re.fullmatch(r"/api/job/([\w-]+)/(save|write)", self.path)
         if not m:
             return self.send('{"error":"not found"}', code=404)

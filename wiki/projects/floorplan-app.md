@@ -126,6 +126,21 @@ The goal was "look as good as the supplier final, but better". `render.py` turns
 - It's a real photo, not the illustrated look the supplier uses.
 - An illustrated repaint is about 75 Magnific credits per try (Nano Banana Pro at 2K with 2 references). Not run yet.
 
+## Site plan: drawn from a traced roof (2026-11-03)
+
+The AI repaints looked right but **redrew the house**: the roof shape and proportions came out wrong (Hunter: "that is not what the house looks like"). They cost 150 cr in total.
+
+Building the roof from the CubiCasa footprint failed on a second house, for two reasons:
+- Auto-placement flipped Robina 180° and couldn't be trusted.
+- Ormeau's scan has no garage, so part of the real roof was missing. **CubiCasa only knows the rooms that were scanned.**
+
+**Current route** (`/trace/<slug>` in the review app, then `sitedraw.main_traced`):
+1. A person clicks the roof's eave corners on the QLD aerial, about 30–60 s per job. Each wing is traced as its own "tiled" section, and patios as "flat".
+2. The person places the numbered markers.
+3. Code draws the illustrated plan: hip planes from a rectangle cover of each section (straight hips and valleys), 60 cm eaves, tile texture, the lot line from the cadastre, and a faded rounded card.
+
+No AI and no credits. The roof is the real roof as seen from above, but it is always drawn as hips, so gables and skillions aren't represented yet.
+
 ## Next
 
 1. Hunter signs off the page look and the area rule.

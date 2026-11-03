@@ -1723,3 +1723,4 @@ Wordmark and address are now separate layers with a hard cut. Thibault Parolini 
 ## [2026-11-03] ingest | November Kid 45 s cut
 
 ## [2026-11-03] build | Floor-plan app: site plan from address (cadastre + QLD aerial), Robina labels/fit
+## [2026-11-03] build | Floor-plan app: roof-trace site plan (trace page + code drawing); AI repaints rejected as inaccurate

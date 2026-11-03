@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trace roof</title>
+<style>
+  :root { --ink:#1d2126; --mute:#6c737b; --line:#d5d9dd; --blue:#61a8d8; --hip:#e0633c; --flat:#3b8fd0; --bg:#f6f7f8; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.4 Poppins, system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+  header { display:flex; gap:12px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line); background:#fff; flex-wrap:wrap; }
+  header h1 { font-size:16px; font-weight:600; margin:0 12px 0 0; }
+  button { font:inherit; padding:6px 12px; border:1px solid var(--line); background:#fff; border-radius:6px; cursor:pointer; }
+  button.on { border-color:var(--ink); background:var(--ink); color:#fff; }
+  button.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
+  main { display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:16px; padding:16px; }
+  .stage { position:relative; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:auto; max-height:calc(100vh - 110px); }
+  canvas { display:block; cursor:crosshair; }
+  aside { display:flex; flex-direction:column; gap:14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:12px; }
+  .card h2 { font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--mute); margin:0 0 8px; }
+  .row { display:flex; gap:6px; align-items:center; margin:4px 0; }
+  .row input { flex:1; font:inherit; padding:4px 6px; border:1px solid var(--line); border-radius:4px; }
+  .dot { width:22px; height:22px; border-radius:50%; background:var(--ink); color:#fff; font-size:12px; display:grid; place-items:center; flex:none; }
+  .help { color:var(--mute); font-size:12.5px; }
+  .sec { display:flex; justify-content:space-between; align-items:center; padding:3px 0; }
+  img.preview { width:100%; border-radius:6px; border:1px solid var(--line); }
+  #status { color:var(--mute); }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title">Trace roof</h1>
+  <button id="t-hip" class="on">Tiled roof section</button>
+  <button id="t-flat">Flat / patio roof</button>
+  <button id="t-mark">Place markers</button>
+  <button id="undo">Undo point</button>
+  <button id="zoom">Zoom 2×</button>
+  <button id="save" class="primary">Save &amp; draw</button>
+  <span id="status"></span>
+</header>
+<main>
+  <div class="stage"><canvas id="cv"></canvas></div>
+  <aside>
+    <div class="card">
+      <h2>How</h2>
+      <div class="help">Click the corners of each roof section, at the eave line (the roof's outer edge). Click the first point again to close it. Trace each wing as its own section where roofs meet, or the whole roof as one if it is one shape. Patios with a flat or pergola roof go in as "Flat". Then place the numbered markers.</div>
+    </div>
+    <div class="card"><h2>Sections</h2><div id="secs"></div></div>
+    <div class="card">
+      <h2>Markers</h2>
+      <div id="marks"></div>
+      <button id="addmark">Add marker</button>
+      <div class="help" style="margin-top:6px">In "Place markers", pick a marker here, then click the image.</div>
+    </div>
+    <div class="card"><h2>Result</h2><img id="out" class="preview" alt=""><div class="help" id="pagelink"></div></div>
+  </aside>
+</main>
+<script>
+const slug = location.pathname.split("/").pop();
+const cv = document.getElementById("cv"), cx = cv.getContext("2d");
+const img = new Image();
+let scale = 2, tool = "hip", sections = [], cur = null, markers = [], active = 0;
+const $ = id => document.getElementById(id);
+
+fetch(`/api/job/${slug}`).then(r => r.json()).then(j => {
+  $("title").textContent = "Trace roof · " + (j.address || slug);
+  sections = j.site_trace || [];
+  markers = (j.site_markers || []).map(m => ({ label: m.label, x: m.x, y: m.y, traced: !!m.traced }));
+  if (!markers.length) markers = ["Driveway", "Garage", "Alfresco", "Backyard"].map(l => ({ label: l, x: null, y: null }));
+  markers.forEach(m => { if (!m.traced) { m.x = null; m.y = null; } });  // old markers were placed on another image
+  img.onload = () => { scale = Math.max(1, Math.min(2, (document.querySelector(".stage").clientWidth - 4) / img.width)); fit(); draw(); lists(); };
+  img.src = `/job/${slug}/site-raw.png?` + Date.now();
+});
+
+function fit() { cv.width = img.width * scale; cv.height = img.height * scale; }
+function pt(e) { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) / scale, (e.clientY - r.top) / scale]; }
+
+function draw() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  cx.drawImage(img, 0, 0, cv.width, cv.height);
+  const poly = (s, closed) => {
+    cx.beginPath();
+    s.points.forEach(([x, y], i) => i ? cx.lineTo(x * scale, y * scale) : cx.moveTo(x * scale, y * scale));
+    if (closed) cx.closePath();
+    const c = s.kind === "flat" ? "59,143,208" : "224,99,60";
+    if (closed) { cx.fillStyle = `rgba(${c},.28)`; cx.fill(); }
+    cx.strokeStyle = `rgb(${c})`; cx.lineWidth = 2; cx.stroke();
+    s.points.forEach(([x, y]) => { cx.fillStyle = "#fff"; cx.fillRect(x * scale - 3, y * scale - 3, 6, 6); cx.strokeRect(x * scale - 3, y * scale - 3, 6, 6); });
+  };
+  sections.forEach(s => poly(s, true));
+  if (cur) poly(cur, false);
+  markers.forEach((m, i) => {
+    if (m.x == null) return;
+    const x = m.x * img.width * scale, y = m.y * img.height * scale;
+    cx.beginPath(); cx.arc(x, y, 13, 0, 7); cx.fillStyle = "#1d2126"; cx.fill();
+    cx.strokeStyle = "#fff"; cx.lineWidth = 2; cx.stroke();
+    cx.fillStyle = "#fff"; cx.font = "600 13px Poppins, sans-serif"; cx.textAlign = "center"; cx.fillText(i + 1, x, y + 5);
+  });
+}
+
+function lists() {
+  $("secs").innerHTML = sections.length ? "" : '<div class="help">None yet.</div>';
+  sections.forEach((s, i) => {
+    const d = document.createElement("div"); d.className = "sec";
+    d.innerHTML = `<span>${i + 1}. ${s.kind === "flat" ? "Flat" : "Tiled"} · ${s.points.length} pts</span>`;
+    const b = document.createElement("button"); b.textContent = "Delete";
+    b.onclick = () => { sections.splice(i, 1); lists(); draw(); };
+    d.append(b); $("secs").append(d);
+  });
+  $("marks").innerHTML = "";
+  markers.forEach((m, i) => {
+    const d = document.createElement("div"); d.className = "row";
+    d.innerHTML = `<span class="dot" style="${i === active && tool === "mark" ? "background:#61a8d8" : ""}">${i + 1}</span>`;
+    const inp = document.createElement("input"); inp.value = m.label; inp.oninput = () => m.label = inp.value;
+    inp.onfocus = () => { active = i; setTool("mark"); };
+    const x = document.createElement("button"); x.textContent = "×";
+    x.onclick = () => { markers.splice(i, 1); active = 0; lists(); draw(); };
+    d.append(inp, x); $("marks").append(d);
+  });
+}
+
+function setTool(t) {
+  tool = t;
+  ["hip", "flat", "mark"].forEach(k => $("t-" + k).classList.toggle("on", k === t));
+  if (cur && (t === "mark" || cur.kind !== t)) cur = null;
+  lists(); draw();
+}
+$("t-hip").onclick = () => setTool("hip");
+$("t-flat").onclick = () => setTool("flat");
+$("t-mark").onclick = () => setTool("mark");
+$("zoom").onclick = () => { scale = scale === 2 ? 1 : 2; $("zoom").textContent = scale === 2 ? "Zoom 1×" : "Zoom 2×"; fit(); draw(); };
+$("undo").onclick = () => { if (cur && cur.points.length) cur.points.pop(); else if (sections.length) cur = sections.pop(); draw(); lists(); };
+$("addmark").onclick = () => { markers.push({ label: "New", x: null, y: null }); active = markers.length - 1; setTool("mark"); };
+
+cv.addEventListener("click", e => {
+  const [x, y] = pt(e);
+  if (tool === "mark") {
+    if (!markers.length) return;
+    Object.assign(markers[active], { x: x / img.width, y: y / img.height, traced: true });
+    active = Math.min(active + 1, markers.length - 1); lists(); draw(); return;
+  }
+  if (!cur) cur = { kind: tool, points: [] };
+  const p0 = cur.points[0];
+  if (p0 && cur.points.length >= 3 && Math.hypot(p0[0] - x, p0[1] - y) * scale < 12) {
+    sections.push(cur); cur = null; lists(); draw(); return;
+  }
+  cur.points.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]); draw();
+});
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  if (e.key === "Enter" && cur && cur.points.length >= 3) { sections.push(cur); cur = null; lists(); draw(); }
+  if (e.key === "Backspace") { e.preventDefault(); $("undo").onclick(); }
+  if (e.key === "Escape") { cur = null; draw(); }
+});
+
+$("save").onclick = async () => {
+  if (!sections.length) { $("status").textContent = "Trace at least one roof section."; return; }
+  $("status").textContent = "Drawing…";
+  const r = await fetch(`/api/job/${slug}/trace`, { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ site_trace: sections, site_markers: markers.filter(m => m.label.trim()) }) });
+  const j = await r.json();
+  if (j.error) { $("status").textContent = j.error; return; }
+  $("status").textContent = "Saved.";
+  $("out").src = `/job/${slug}/site-drawn.png?` + Date.now();
+  $("pagelink").innerHTML = `<a href="/job/${slug}/page.png?${Date.now()}" target="_blank">Open page PNG</a> · <a href="/job/${slug}/page.pdf" target="_blank">PDF</a>`;
+};
+</script>
+</body>
+</html>
