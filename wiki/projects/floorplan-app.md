@@ -2,7 +2,7 @@
 type: project
 tags: [floor-plans, tooling, cubicasa]
 status: milestone-2
-updated: 2026-10-28
+updated: 2026-11-03
 ---
 
 # Floor-plan app (in-house finishing of CubiCasa exports)
@@ -105,6 +105,26 @@ The goal was "look as good as the supplier final, but better". `render.py` turns
 - **Logos:** ZED's full lockup (only the Z mark is on file); Coastline and Harcourts profiles don't exist yet.
 - **Storey naming:** Upper or First Floor.
 - **Alex Keith:** the upper deck around the pool renders unfilled.
+
+## Site plan from the address (built 2026-11-03)
+
+`sitegen.py <job>` makes the site-plan aerial for any QLD job from the address alone. It doesn't need supplier files or a drone flight.
+
+**How it works:**
+- **Lot lookup:** uses the QLD cadastre through [[drone-pin-tool]]'s lookup. Unit addresses are rewritten to the register's `U53/3 …` form.
+- **Aerial:** the free QLD government aerial (Spatial Imagery Subscription Plan, the latest public state program). It's fetched at up to 2,048 px, which is the service's limit.
+- **Orientation:** the lot is turned so its long side is vertical. `site_flip` in the job turns it 180°.
+- **Finish:** the image is lightened a little and faded to white at the edges like the Gen B finals, and the lot line is drawn in white.
+
+**Markers:** the numbered markers are stored as `site_markers` in the job (label plus x/y on the image) and are placed by a person. The page draws them as vector circles in the client's marker colour, and the Legend lists them in order.
+
+**Land area:** the cadastre figure is stored as `land_area_suggested` and is never printed on its own. Robina's cadastre area is 232 m², but the supplier final says 224 m² (probably the listing figure).
+
+**Limits:**
+- The government imagery can be years old, so new builds may be missing; use a drone nadir for those.
+- QLD only.
+- It's a real photo, not the illustrated look the supplier uses.
+- An illustrated repaint is about 75 Magnific credits per try (Nano Banana Pro at 2K with 2 references). Not run yet.
 
 ## Next
 

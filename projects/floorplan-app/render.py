@@ -649,8 +649,19 @@ def page(job, styled_svg_text, client=None):
     if site:
         sx0, sy0, sx1, sy1 = 2080, frame[1] + 80, frame[2] - 70, frame[3] - 420
         o.append(f'<image href="{img_data(site)}" x="{sx0}" y="{sy0}" width="{sx1 - sx0}" height="{sy1 - sy0}" preserveAspectRatio="xMidYMid meet"/>')
+        # numbered markers, placed by a person (0-1 of the image); drawn as vectors over the fitted image
+        iw, ih = Image.open(site).size
+        k = min((sx1 - sx0) / iw, (sy1 - sy0) / ih)
+        ix, iy = sx0 + ((sx1 - sx0) - iw * k) / 2, sy0 + ((sy1 - sy0) - ih * k) / 2
+        mk = (client or {}).get("marker_colour", INK)
+        for i, m in enumerate(job.get("site_markers") or []):
+            if m.get("x") is None:
+                continue
+            cx, cy = ix + m["x"] * iw * k, iy + m["y"] * ih * k
+            o.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="27" fill="{mk}" stroke="#ffffff" stroke-width="3"/>'
+                     f'<text x="{cx:.1f}" y="{cy + 11:.1f}" font-size="30" font-weight="600" text-anchor="middle" fill="#ffffff">{i + 1}</text>')
         o.append(f'<text x="{sx0}" y="{sy1 + 60}" font-size="30" font-weight="500" letter-spacing="5" fill="{MUTE}">SITE PLAN</text>')
-        for i, item in enumerate(job.get("legend") or []):
+        for i, item in enumerate(job.get("legend") or [m["label"] for m in job.get("site_markers") or []]):
             o.append(f'<text x="{sx0}" y="{sy1 + 130 + i * 46}" font-size="30" font-weight="300" fill="{INK}">'
                      f'<tspan font-weight="500">{i + 1}.</tspan>  {esc(item)}</text>')
 

@@ -1721,3 +1721,5 @@ Outline cut from the reel's pin shot per Hunter. Rule: pin shots get the pin alo
 Wordmark and address are now separate layers with a hard cut. Thibault Parolini added to the main + reel outros. Pages: [[kollosche]].
 ## [2026-11-03] ingest | November Kid 60 s + 30 s reel cuts
 ## [2026-11-03] ingest | November Kid 45 s cut
+
+## [2026-11-03] build | Floor-plan app: site plan from address (cadastre + QLD aerial), Robina labels/fit
