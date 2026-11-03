@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VELLAN — At-Home Body Sculpting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f3ee; --surface:#fff; --ink:#1c1917; --muted:#6b625a; --line:#e6ddd3;
+  --accent:#b4775a; --accent-ink:#fff; --soft:#efe6dc; --good:#3f6b4f;
+  --r:14px; --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141210; --surface:#1d1a17; --ink:#f3ede6; --muted:#a89c90; --line:#2f2a25; --soft:#26211d;
+}}
+:root[data-theme="dark"]{--bg:#141210; --surface:#1d1a17; --ink:#f3ede6; --muted:#a89c90; --line:#2f2a25; --soft:#26211d}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,5vw,3.8rem)} h2{font-size:clamp(1.8rem,3.6vw,2.7rem)} h3{font-size:1.25rem}
+.eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:16px 30px;font:600 .95rem var(--sans);cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)} .btn.accent{background:var(--accent);color:var(--accent-ink)} .btn.block{width:100%}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+section{padding:88px 0}
+
+/* bar + nav */
+.bar{background:var(--ink);color:var(--bg);text-align:center;font-size:.8rem;padding:9px 16px;letter-spacing:.03em}
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font:600 1.3rem var(--serif);letter-spacing:.2em;text-decoration:none}
+.links{display:flex;gap:28px;font-size:.9rem}
+.links a{text-decoration:none;color:var(--muted)} .links a:hover,.links a.on{color:var(--ink)}
+.cart{border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.85rem;background:none;color:var(--ink);cursor:pointer}
+@media(max-width:760px){.links{display:none}}
+
+/* device placeholder */
+.device{aspect-ratio:1;border-radius:28px;background:radial-gradient(circle at 50% 42%,#fff 0 18%,transparent 19%),radial-gradient(circle at 50% 42%,#d9c3b3 0 30%,var(--soft) 31%);position:relative;overflow:hidden}
+.device::after{content:"Product photo";position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.device.sm{border-radius:var(--r)}
+
+/* hero */
+.hero{padding:56px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero p.lede{font-size:1.15rem;color:var(--muted);margin:20px 0 30px;max-width:30em}
+.stars{color:var(--accent);letter-spacing:2px}
+.proof{display:flex;gap:10px;align-items:center;font-size:.9rem;margin-bottom:18px}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:26px;font-size:.85rem;color:var(--muted)}
+.ticks span::before{content:"✓ ";color:var(--good);font-weight:700}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:32px}.hero .device{order:-1}}
+
+/* tech */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.card .n{font:400 2rem var(--serif);color:var(--accent)}
+.card h3{margin:14px 0 8px}
+.card p{font-size:.92rem;color:var(--muted)}
+@media(max-width:900px){.grid4{grid-template-columns:1fr 1fr}} @media(max-width:520px){.grid4{grid-template-columns:1fr}}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.steps{counter-reset:s;display:grid;gap:22px;margin-top:28px}
+.steps div{display:grid;grid-template-columns:44px 1fr;gap:16px}
+.steps div::before{counter-increment:s;content:counter(s);width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-family:var(--serif)}
+.steps b{display:block}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+
+/* compare */
+.tbl{width:100%;border-collapse:collapse;margin-top:40px;background:var(--surface);border-radius:var(--r);overflow:hidden;font-size:.92rem}
+.tbl th,.tbl td{padding:16px;text-align:left;border-bottom:1px solid var(--line)}
+.tbl th:nth-child(2),.tbl td:nth-child(2){background:var(--soft);font-weight:600}
+.tbl-wrap{overflow-x:auto}
+
+/* shop */
+.shop{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.p{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column}
+.p h3{font-size:1.05rem;margin:14px 0 4px} .p .pr{font-weight:600;margin-bottom:14px}
+.p .btn{margin-top:auto;padding:12px}
+@media(max-width:900px){.shop{grid-template-columns:1fr 1fr}}
+
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.revs .card p{color:var(--ink);font-size:1rem}
+.revs small{display:block;margin-top:14px;color:var(--muted)}
+@media(max-width:860px){.revs{grid-template-columns:1fr}}
+
+/* guarantee */
+.guar{background:var(--ink);color:var(--bg);border-radius:28px;padding:64px;text-align:center}
+.guar p{max-width:36em;margin:18px auto 28px;opacity:.8}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";font-size:1.3rem;color:var(--muted)} details[open] summary::after{content:"–"}
+details p{margin-top:12px;color:var(--muted)}
+
+/* product page */
+.pdp{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;padding:40px 0 80px}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.thumbs .device{aspect-ratio:1}
+.thumbs .device::after{content:""}
+.buy{position:sticky;top:90px;align-self:start}
+.price{display:flex;align-items:baseline;gap:12px;margin:18px 0}
+.price b{font:600 2rem var(--sans)} .price s{color:var(--muted)}
+.tag{background:var(--soft);color:var(--accent);border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:600}
+.bundles{display:grid;gap:10px;margin:22px 0}
+.bundle{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;background:var(--surface)}
+.bundle input{accent-color:var(--accent);width:18px;height:18px}
+.bundle.on{border-color:var(--accent)}
+.bundle .t{flex:1} .bundle .t small{display:block;color:var(--muted)}
+.sub{display:flex;gap:12px;align-items:flex-start;background:var(--soft);border-radius:var(--r);padding:14px 16px;font-size:.9rem;margin-bottom:18px}
+.inbox{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+.inbox span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.82rem;color:var(--muted)}
+.sticky{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:12px 20px;display:none;z-index:30;align-items:center;gap:14px}
+@media(max-width:860px){.pdp{grid-template-columns:1fr}.buy{position:static}.sticky.show{display:flex}}
+
+footer{border-top:1px solid var(--line);padding:56px 0;font-size:.88rem;color:var(--muted)}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px}
+footer b{color:var(--ink);display:block;margin-bottom:10px}
+footer a{display:block;text-decoration:none;margin:6px 0}
+@media(max-width:760px){footer .cols{grid-template-columns:1fr 1fr}}
+.page{display:none} .page.on{display:block}
+.note{font-size:.75rem;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="bar">Free express shipping across Australia · 30-day money-back guarantee</div>
+<nav><div class="wrap">
+  <a class="logo" href="#home">VELLAN</a>
+  <div class="links">
+    <a href="#product">The Device</a><a href="#home" data-jump="shop">Shop</a><a href="#home" data-jump="how">How it works</a><a href="#home" data-jump="reviews">Reviews</a><a href="#home" data-jump="faq">FAQ</a>
+  </div>
+  <button class="cart" id="cartBtn">Cart (0)</button>
+</div></nav>
+
+<!-- ============ HOME ============ -->
+<main class="page on" id="p-home">
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="proof"><span class="stars">★★★★★</span><span>4.8 from [X] verified reviews</span></div>
+    <h1>Firmer, smoother skin.<br>Fifteen minutes a day, at home.</h1>
+    <p class="lede">A 4-in-1 handheld device combining warmth, dynamic suction, red light and microcurrent, built for belly, arms and thighs.</p>
+    <a class="btn accent" href="#product">Shop the Full Kit</a>
+    <div class="ticks"><span>30-day guarantee</span><span>Free AU shipping</span><span>Ships in 24h</span></div>
+  </div>
+  <div class="device"></div>
+</div></section>
+
+<section style="background:var(--surface)"><div class="wrap">
+  <div class="eyebrow">Four modes, one device</div>
+  <h2>Everything a salon session uses,<br>in the palm of your hand.</h2>
+  <div class="grid4">
+    <div class="card"><div class="n">01</div><h3>Gentle warmth</h3><p>Warms the area to relax tissue and encourage circulation.</p></div>
+    <div class="card"><div class="n">02</div><h3>Dynamic suction</h3><p>Moving, rhythmic suction massage. No static cups, no marks.</p></div>
+    <div class="card"><div class="n">03</div><h3>Red light</h3><p>LED light commonly used in skin-care routines for firmness.</p></div>
+    <div class="card"><div class="n">04</div><h3>Microcurrent</h3><p>Low-level pulses for a toning sensation, adjustable to comfort.</p></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap split">
+  <div class="device"></div>
+  <div>
+    <div class="eyebrow">How it works</div>
+    <h2>Simple enough to use on the couch.</h2>
+    <div class="steps">
+      <div><span><b>Charge</b><span class="muted">USB-C, about 2 hours for a full charge.</span></span></div>
+      <div><span><b>Apply the gel</b><span class="muted">A thin layer of conductive gel helps it glide.</span></span></div>
+      <div><span><b>Set your levels</b><span class="muted">Choose suction and microcurrent intensity.</span></span></div>
+      <div><span><b>Glide for 15 minutes</b><span class="muted">Slow strokes over each area, once a day.</span></span></div>
+    </div>
+  </div>
+</div></section>
+
+<section style="background:var(--surface)"><div class="wrap">
+  <div class="eyebrow">Compare</div>
+  <h2>Why people switch from salon sessions.</h2>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th></th><th>VELLAN</th><th>Creams alone</th><th>Salon sessions</th></tr>
+    <tr><td>Four modes in one</td><td>Yes</td><td>No</td><td>Usually one per session</td></tr>
+    <tr><td>Use at home, any time</td><td>Yes</td><td>Yes</td><td>Appointments</td></tr>
+    <tr><td>Downtime</td><td>None</td><td>None</td><td>Varies</td></tr>
+    <tr><td>Cost</td><td>One-off $[PRICE]</td><td>Ongoing</td><td>$100+ per visit</td></tr>
+  </table></div>
+</div></section>
+
+<section id="shop"><div class="wrap">
+  <div class="eyebrow">Shop</div>
+  <h2>The routine, complete.</h2>
+  <div class="shop" id="shopGrid"></div>
+</div></section>
+
+<section id="reviews" style="background:var(--surface)"><div class="wrap">
+  <div class="eyebrow">Reviews</div>
+  <h2>From real customers.</h2>
+  <div class="revs">
+    <div class="card"><div class="stars">★★★★★</div><p>"[Real customer review goes here. Pull from Judge.me / Okendo once orders land.]"</p><small>[Name], verified buyer</small></div>
+    <div class="card"><div class="stars">★★★★★</div><p>"[Real customer review goes here.]"</p><small>[Name], verified buyer</small></div>
+    <div class="card"><div class="stars">★★★★★</div><p>"[Real customer review goes here.]"</p><small>[Name], verified buyer</small></div>
+  </div>
+</div></section>
+
+<section><div class="wrap"><div class="guar">
+  <div class="eyebrow" style="color:#e2b49c">Our promise</div>
+  <h2>Try it for 30 days.<br>Love it, or send it back.</h2>
+  <p>Use it daily for a month. If it's not for you, return it for a full refund. No forms, no hoops.</p>
+  <a class="btn accent" href="#product">Start risk-free</a>
+</div></div></section>
+
+<section id="faq"><div class="wrap" style="max-width:760px">
+  <div class="eyebrow">FAQ</div><h2 style="margin-bottom:24px">Questions, answered.</h2>
+  <details><summary>Does it hurt?</summary><p>No. It feels like a warm massage with a light tingle. Start on the lowest level and build up.</p></details>
+  <details><summary>Where can I use it?</summary><p>Belly, arms, thighs, hips and glutes. Not on the face, broken skin, or over implants.</p></details>
+  <details><summary>How long until I notice a difference?</summary><p>Most people use it daily for 4 to 8 weeks. Results vary from person to person.</p></details>
+  <details><summary>Who shouldn't use it?</summary><p>Not suitable during pregnancy, with a pacemaker or other implanted device, or with some medical conditions. Check with your GP if unsure.</p></details>
+  <details><summary>Shipping and returns?</summary><p>Free express shipping in Australia, dispatched within 24 hours. 30-day money-back guarantee.</p></details>
+</div></section>
+</main>
+
+<!-- ============ PRODUCT ============ -->
+<main class="page" id="p-product"><div class="wrap">
+<div class="pdp">
+  <div>
+    <div class="device"></div>
+    <div class="thumbs"><div class="device sm"></div><div class="device sm"></div><div class="device sm"></div><div class="device sm"></div></div>
+  </div>
+  <div class="buy">
+    <div class="proof"><span class="stars">★★★★★</span><span>4.8 · [X] reviews</span></div>
+    <h1 style="font-size:clamp(2rem,4vw,2.8rem)">VELLAN Full Kit</h1>
+    <p class="muted" style="margin-top:10px">4-in-1 body device with belly, arm and leg heads, plus conductive gel.</p>
+    <div class="price"><b id="price">$189</b><s id="was">$249</s><span class="tag" id="save">Save $60</span></div>
+    <div class="bundles" id="bundles"></div>
+    <label class="sub"><input type="checkbox" id="subChk" style="accent-color:var(--accent);margin-top:4px"><span><b>Add gel subscription, $29/month</b><br><span class="muted">Fresh gel every 30 days. Skip or cancel any time.</span></span></label>
+    <button class="btn accent block" id="addBtn">Add to cart</button>
+    <p class="note">Free express shipping · Dispatched within 24h · 30-day money-back guarantee</p>
+    <div class="inbox"><span>Device</span><span>3 treatment heads</span><span>Conductive gel 100ml</span><span>USB-C cable</span><span>Pouch</span><span>Guide</span></div>
+    <details><summary>What's it made of?</summary><p>[Materials, battery, certifications: fill from supplier spec sheet.]</p></details>
+    <details><summary>Safety</summary><p>Not for use during pregnancy, with implanted electronic devices, or on broken skin. Read the guide before first use.</p></details>
+    <details><summary>Shipping &amp; returns</summary><p>Free express AU shipping. 30-day money-back guarantee from delivery.</p></details>
+  </div>
+</div>
+</div>
+<div class="sticky" id="sticky"><b id="stickyPrice">$189</b><button class="btn accent" style="flex:1" onclick="add()">Add to cart</button></div>
+</main>
+
+<footer><div class="wrap cols">
+  <div><span class="logo">VELLAN</span><p style="margin-top:12px;max-width:22em">At-home body care tools, made in [location], shipped from Australia.</p></div>
+  <div><b>Shop</b><a href="#product">Full Kit</a><a href="#home">Gel</a><a href="#home">Creams</a></div>
+  <div><b>Help</b><a href="#">Track order</a><a href="#">Contact</a><a href="#">How to use</a></div>
+  <div><b>Policies</b><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+</div></footer>
+
+<script>
+const products=[
+  {n:'Full Kit',p:189,link:'#product'},
+  {n:'Conductive Gel 100ml',p:39},
+  {n:'Firming Body Cream',p:49},
+  {n:'Smoothing Body Cream',p:49}
+];
+document.getElementById('shopGrid').innerHTML=products.map(x=>`<div class="p"><div class="device sm"></div><h3>${x.n}</h3><div class="pr">$${x.p}</div><a class="btn ghost" href="${x.link||'#home'}" ${x.link?'':'onclick="add();return false"'}>${x.link?'View':'Add'}</a></div>`).join('');
+
+const bundles=[
+  {id:1,t:'1 Kit',s:'Single device',p:189,w:249},
+  {id:2,t:'Kit + 2 Gels',s:'Most popular · 3 months of gel',p:239,w:327,pop:1},
+  {id:3,t:'2 Kits',s:'Share with a friend · best value',p:339,w:498}
+];
+let sel=2;
+function renderB(){
+  document.getElementById('bundles').innerHTML=bundles.map(b=>`<label class="bundle ${b.id===sel?'on':''}"><input type="radio" name="b" ${b.id===sel?'checked':''} onchange="sel=${b.id};renderB()"><span class="t"><b>${b.t}</b>${b.pop?' <span class="tag">Most popular</span>':''}<small>${b.s}</small></span><span><b>$${b.p}</b><br><s class="muted" style="font-size:.85rem">$${b.w}</s></span></label>`).join('');
+  const b=bundles.find(x=>x.id===sel);
+  price.textContent=stickyPrice.textContent='$'+b.p; was.textContent='$'+b.w; save.textContent='Save $'+(b.w-b.p);
+}
+renderB();
+let n=0; function add(){cartBtn.textContent=`Cart (${++n})`}
+addBtn.onclick=add;
+
+function route(){
+  const h=location.hash||'#home', id=h==='#product'?'product':'home';
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id==='p-'+id));
+  if(!window._jump)scrollTo(0,0);
+}
+document.querySelectorAll('[data-jump]').forEach(a=>a.onclick=e=>{e.preventDefault();location.hash='home';window._jump=1;route();window._jump=0;document.getElementById(a.dataset.jump).scrollIntoView({behavior:'smooth'})});
+addEventListener('hashchange',route); route();
+addEventListener('scroll',()=>sticky.classList.toggle('show',scrollY>600));
+</script>
+</body>
+</html>
