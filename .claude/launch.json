@@ -130,6 +130,18 @@
         "--no-open"
       ],
       "port": 8765
+    },
+    {
+      "name": "vellan-store",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8141",
+        "--directory",
+        "projects/body-device-store"
+      ],
+      "port": 8141
     }
   ]
 }

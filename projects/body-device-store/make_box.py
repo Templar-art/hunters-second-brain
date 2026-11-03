@@ -1,79 +1,116 @@
-# Straight-tuck-end folding carton. Units mm. Outputs SVG dieline + print art.
-W,D,H=230,80,170   # front width, depth, height (internal approx)
-B=3; TUCK=D*0.9; GLUE=15; PX=4  # bleed, tuck depth, glue flap
-INK='#2a2420'; ACC='#b4775a'; CREAM='#f4ede4'
-x0=20; y0=20+D+TUCK
-cols=[(GLUE,'glue'),(W,'front'),(D,'side'),(W,'back'),(D,'side')]
-xs=[x0]; 
-for w,_ in cols: xs.append(xs[-1]+w)
-TW=xs[-1]+20; TH=y0+H+D+TUCK+20
-cut=[];fold=[];art=[]
-def r(x,y,w,h): return f'<rect x="{x}" y="{y}" width="{w}" height="{h}"/>'
-# body outline pieces
-gx=xs[0]
-cut.append(f'M{gx+GLUE},{y0} L{gx},{y0+6} L{gx},{y0+H-6} L{gx+GLUE},{y0+H}')
-for i in range(1,5): fold.append(f'M{xs[i]},{y0} L{xs[i]},{y0+H}')
-# top: front panel gets lid (D) + tuck; sides get dust flaps; back plain
-fx=xs[1]
-cut.append(f'M{fx},{y0} L{fx},{y0-D} Q{fx},{y0-D-TUCK} {fx+12},{y0-D-TUCK} L{fx+W-12},{y0-D-TUCK} Q{fx+W},{y0-D-TUCK} {fx+W},{y0-D} L{fx+W},{y0}')
-fold.append(f'M{fx},{y0} L{fx+W},{y0}'); fold.append(f'M{fx},{y0-D} L{fx+W},{y0-D}')
-for i in (2,4):
-  sx=xs[i]; cut.append(f'M{sx},{y0} L{sx+2},{y0-D*0.8} L{sx+D-8},{y0-D*0.8} L{sx+D},{y0-8} L{sx+D},{y0}'); fold.append(f'M{sx},{y0} L{sx+D},{y0}')
-cut.append(f'M{xs[3]},{y0} L{xs[4]},{y0}')
-# bottom: back panel gets base + tuck (reverse), sides dust flaps, front plain
-yb=y0+H; bx=xs[3]
-cut.append(f'M{bx},{yb} L{bx},{yb+D} Q{bx},{yb+D+TUCK} {bx+12},{yb+D+TUCK} L{bx+W-12},{yb+D+TUCK} Q{bx+W},{yb+D+TUCK} {bx+W},{yb+D} L{bx+W},{yb}')
-fold.append(f'M{bx},{yb} L{bx+W},{yb}'); fold.append(f'M{bx},{yb+D} L{bx+W},{yb+D}')
-for i in (2,4):
-  sx=xs[i]; cut.append(f'M{sx},{yb} L{sx},{yb+8} L{sx+8},{yb+D*0.8} L{sx+D-2},{yb+D*0.8} L{sx+D},{yb}'); fold.append(f'M{sx},{yb} L{sx+D},{yb}')
-cut.append(f'M{xs[1]},{yb} L{xs[2]},{yb}'); cut.append(f'M{xs[5]},{y0} L{xs[5]},{yb}')
-def logo(cx,cy,s,col):
-  return f'<g fill="{col}" text-anchor="middle"><circle cx="{cx}" cy="{cy-s*1.1}" r="{s*0.38}" fill="none" stroke="{col}" stroke-width="{s*0.06}"/><circle cx="{cx}" cy="{cy-s*1.1}" r="{s*0.14}"/><text x="{cx+s*0.16}" y="{cy}" font-family="Fraunces, Georgia, serif" font-size="{s}" letter-spacing="{s*0.32}">VELLAN</text></g>'
-def txt(x,y,s,t,col=INK,anchor='middle',w=400,ls=0):
-  return f'<text x="{x}" y="{y}" font-family="Inter, Helvetica, sans-serif" font-size="{s}" font-weight="{w}" fill="{col}" text-anchor="{anchor}" letter-spacing="{ls}">{t}</text>'
-# artwork backgrounds (with bleed)
-art.append(f'<rect x="{xs[1]-B}" y="{y0-D-TUCK-B}" width="{W+2*B}" height="{H+D+TUCK+2*B}" fill="{CREAM}"/>')
-art.append(f'<rect x="{xs[0]-B}" y="{y0-B}" width="{xs[5]-xs[0]+2*B}" height="{H+2*B}" fill="{CREAM}"/>')
-art.append(f'<rect x="{xs[3]-B}" y="{yb-B}" width="{W+2*B}" height="{D+TUCK+2*B}" fill="{CREAM}"/>')
-for i in (2,4): art.append(f'<rect x="{xs[i]}" y="{y0}" width="{D}" height="{H}" fill="{INK}"/>')
-art.append(f'<rect x="{xs[1]}" y="{y0-D}" width="{W}" height="{D}" fill="{INK}"/>')
-art.append(logo(xs[1]+W/2,y0-D/2+12,16,CREAM))
-# front
-c=xs[1]+W/2
-art.append(logo(c,y0+62,22,INK))
-art.append(txt(c,y0+90,6.5,'4-IN-1 BODY SCULPTING DEVICE',ACC,w=600,ls=1.6))
-art.append(f'<line x1="{c-30}" y1="{y0+104}" x2="{c+30}" y2="{y0+104}" stroke="{ACC}" stroke-width=".5"/>')
-art.append(txt(c,y0+122,5.5,'WARMTH · DYNAMIC SUCTION · RED LIGHT · MICROCURRENT',INK,ls=.8))
-art.append(txt(c,y0+H-14,5,'FULL KIT',INK,w=600,ls=2))
-# back
-c=xs[3]+W/2
-art.append(txt(c,y0+28,9,'Fifteen minutes a day, at home.',INK))
-for k,(a,b) in enumerate([('In the box','Device · 3 treatment heads · 100ml conductive gel · USB-C cable · Pouch · Guide'),('How to use','Charge, apply gel, set your levels, glide for 15 minutes.'),('Caution','Not for use during pregnancy, with implanted electronic devices, or on broken skin.')]):
-  yy=y0+52+k*30
-  art.append(txt(xs[3]+18,yy,5.5,a.upper(),ACC,'start',600,1.2)); art.append(txt(xs[3]+18,yy+10,5,b,INK,'start'))
-art.append(txt(xs[3]+18,y0+130,5,'Read the guide before first use.',INK,'start'))
-art.append(f'<rect x="{xs[3]+W-70}" y="{y0+H-42}" width="52" height="28" fill="#fff" stroke="{INK}" stroke-width=".3"/>')
-art.append(txt(xs[3]+W-44,y0+H-26,4,'BARCODE',INK))
-art.append(txt(xs[3]+18,y0+H-30,4.5,'[Company name] · ABN [xx xxx xxx xxx]',INK,'start'))
-art.append(txt(xs[3]+18,y0+H-22,4.5,'vellan.com.au · Made in [country]',INK,'start'))
-art.append(txt(xs[3]+18,y0+H-14,4.5,'Model [xxx] · 5V DC 1A · [battery mAh]  · CE · RCM',INK,'start'))
-# sides
-for i in (2,4):
-  sx=xs[i]+D/2
-  art.append(f'<g transform="translate({sx},{y0+H/2}) rotate(-90)">{logo(0,6,13,CREAM)}</g>')
-art.append(txt(xs[1]+W/2,yb+D/2+3,6,'VELLAN.COM.AU',INK,ls=2))
-def svg(with_art,with_lines,labels):
-  o=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{TW}mm" height="{TH}mm" viewBox="0 0 {TW} {TH}">','<rect width="100%" height="100%" fill="#fff"/>']
-  if with_art: o+=art
-  if with_lines:
-    o.append('<g fill="none" stroke="#e00" stroke-width=".35">'+''.join(f'<path d="{p}"/>' for p in cut)+'</g>')
-    o.append('<g fill="none" stroke="#00a" stroke-width=".35" stroke-dasharray="3 2">'+''.join(f'<path d="{p}"/>' for p in fold)+'</g>')
-  if labels:
-    o.append(txt(20,10,4.5,f'VELLAN Full Kit — straight tuck end carton · {W}×{D}×{H} mm (W×D×H) · 3 mm bleed · RED=cut  BLUE dashed=fold · confirm against device + supplier template','#000','start',600))
-  o.append('</svg>'); return '\n'.join(o)
-open('box_dieline_print.svg','w').write(svg(True,True,True))
-open('box_dieline_lines_only.svg','w').write(svg(False,True,True))
-open('box_artwork_no_lines.svg','w').write(svg(True,False,False))
-open('logo.svg','w').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 140" width="300" height="140"><rect width="300" height="140" fill="#fff"/>{logo(150,108,40,INK)}</svg>')
-open('logo_light.svg','w').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 140" width="300" height="140"><rect width="300" height="140" fill="{INK}"/>{logo(150,108,40,CREAM)}</svg>')
+"""VELLAN Full Kit: straight tuck end carton. Units mm. All type outlined.
+Change W/D/H to the supplier's confirmed internal size and re-run."""
+import cairosvg
+from brand import *
+
+W, D, H = 230, 80, 170          # front width, depth, height
+B = 3; TUCK = 22; GLUE = 15     # bleed, tuck flap, glue flap
+x0 = 20; y0 = 30 + D + TUCK
+xs = [x0]
+for w in (GLUE, W, D, W, D): xs.append(xs[-1] + w)
+TW = xs[-1] + 20; TH = y0 + H + D + TUCK + 30
+yb = y0 + H
+cut, fold, art = [], [], []
+
+# ---- dieline geometry ----
+gx = xs[0]
+cut.append(f'M{gx+GLUE},{y0} L{gx},{y0+6} L{gx},{yb-6} L{gx+GLUE},{yb}')
+for i in range(1, 5): fold.append(f'M{xs[i]},{y0} L{xs[i]},{yb}')
+def lid(px, py, up):
+    s = -1 if up else 1
+    a, b = py + s*D, py + s*(D+TUCK)
+    cut.append(f'M{px},{py} L{px},{a} L{px+2},{a} Q{px+2},{b} {px+14},{b} L{px+W-14},{b} Q{px+W-2},{b} {px+W-2},{a} L{px+W},{a} L{px+W},{py}')
+    fold.append(f'M{px},{py} L{px+W},{py}'); fold.append(f'M{px+2},{a} L{px+W-2},{a}')
+def dust(sx, py, up):
+    s = -1 if up else 1; d = D*0.75
+    cut.append(f'M{sx},{py} L{sx+2},{py+s*d} L{sx+D-14},{py+s*d} L{sx+D},{py+s*6} L{sx+D},{py}')
+    fold.append(f'M{sx},{py} L{sx+D},{py}')
+lid(xs[1], y0, True); lid(xs[3], yb, False)
+for i in (2, 4): dust(xs[i], y0, True); dust(xs[i], yb, False)
+cut += [f'M{xs[3]},{y0} L{xs[4]},{y0}', f'M{xs[1]},{yb} L{xs[2]},{yb}', f'M{xs[5]},{y0} L{xs[5]},{yb}']
+
+# ---- artwork ----
+def rect(x, y, w, h, c): return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{c}"/>'
+art.append(rect(xs[0]-B, y0-B, xs[5]-xs[0]+2*B, H+2*B, BONE))
+art.append(rect(xs[1]-B, y0-D-TUCK-B, W+2*B, D+TUCK+B, ESPRESSO))      # lid + tuck
+art.append(rect(xs[3]-B, yb, W+2*B, D+TUCK+B, ESPRESSO))                  # base + tuck
+for i in (2, 4):
+    art.append(rect(xs[i], y0, D, H, ESPRESSO))
+    art.append(rect(xs[i], y0-D*0.75-B, D, D*0.75+B, SAND))
+    art.append(rect(xs[i], yb, D, D*0.75+B, SAND))
+
+FACES = {}
+def face(name, x, y, w, h, body):
+    FACES[name] = (x, y, w, h); art.append(body)
+
+# Front
+c = xs[1] + W/2
+f = []
+f.append(text('THE BODY CONTOUR SYSTEM', c, y0+18, SANS_MED, 4.2, STONE, 'middle', track=1.7))
+f.append(mark(c, y0+58, 30, CLAY))
+f.append(wordmark(c, y0+101, 30, ESPRESSO))
+f.append(f'<line x1="{c-14}" y1="{y0+116}" x2="{c+14}" y2="{y0+116}" stroke="{CLAY}" stroke-width=".35"/>')
+f.append(text('Four-in-one at-home body device', c, y0+129, SERIF_LIGHT, 9, ESPRESSO, 'middle'))
+f.append(text('WARMTH  ·  SUCTION  ·  RED LIGHT  ·  MICROCURRENT', c, y0+140, SANS, 3.8, STONE, 'middle', track=1.0))
+f.append(text('FULL KIT', c, yb-12, SANS_MED, 4.2, ESPRESSO, 'middle', track=2.4))
+face('front', xs[1], y0, W, H, ''.join(f))
+
+# Lid (reads correctly when box closed and viewed from top)
+lx = xs[1] + W/2; ly = y0 - D/2
+art.append(lockup(lx, ly+6, 17, BONE, SAND))
+art.append(text('VELLAN.COM.AU', lx, y0-D-TUCK/2+1.5, SANS, 3.4, SAND, 'middle', track=1.6))
+# Base
+art.append(text('VELLAN  ·  BODY CONTOUR SYSTEM', xs[3]+W/2, yb+D/2+1.5, SANS, 3.8, SAND, 'middle', track=1.8))
+
+# Sides: vertical wordmark + tagline
+for i in (2, 4):
+    sx = xs[i] + D/2; sy = y0 + H/2
+    art.append(f'<g transform="rotate(-90 {sx} {sy})">{wordmark(sx, sy+5, 15, BONE)}</g>')
+    art.append(mark(sx, y0+20, 11, SAND))
+    art.append(text('FULL KIT', sx, yb-12, SANS_MED, 3.6, SAND, 'middle', track=2))
+
+# Back
+bx = xs[3] + 18; bw = W - 36
+b = [text('Fifteen minutes a day, at home.', xs[3]+W/2, y0+24, SERIF_LIGHT, 11, ESPRESSO, 'middle')]
+yy = y0 + 42
+for head, body in [
+    ('IN THE BOX', 'VELLAN device  ·  3 treatment heads (belly, arm, leg)  ·  Conductive gel 100 ml  ·  USB-C cable  ·  Travel pouch  ·  User guide'),
+    ('HOW TO USE', 'Charge fully. Apply a thin layer of gel. Choose your suction and microcurrent levels. Glide slowly over each area for 15 minutes, once a day.'),
+    ('CAUTION', 'Do not use during pregnancy, with a pacemaker or other implanted electronic device, or on broken or irritated skin. Read the user guide before first use.'),
+]:
+    b.append(text(head, bx, yy, SANS_MED, 3.6, CLAY, track=1.3))
+    s, yy = lines([body], bx, yy+6.5, SANS, 3.9, ESPRESSO, bw, lead=1.5); b.append(s); yy += 5
+b.append(f'<line x1="{bx}" y1="{yb-38}" x2="{bx+bw}" y2="{yb-38}" stroke="{SAND}" stroke-width=".35"/>')
+for k, t in enumerate(['[Company Pty Ltd]  ·  ABN [00 000 000 000]', '[Address, City STATE 0000]  ·  vellan.com.au',
+                       'Model [VL-01]  ·  5V DC 1A  ·  Li-ion [0000] mAh  ·  Made in [country]']):
+    b.append(text(t, bx, yb-29+k*6, SANS, 3.3, STONE))
+b.append(f'<rect x="{xs[3]+W-56}" y="{yb-34}" width="38" height="24" fill="#fff"/>')
+b.append(text('EAN-13 BARCODE', xs[3]+W-37, yb-21, SANS, 2.6, STONE, 'middle', track=.5))
+face('back', xs[3], y0, W, H, ''.join(b))
+
+def doc(with_art, with_lines, label):
+    o = [rect(0, 0, TW, TH, '#fff')]
+    if with_art: o += art
+    if with_lines:
+        o.append('<g fill="none" stroke="#E4002B" stroke-width=".3">' + ''.join(f'<path d="{p}"/>' for p in cut) + '</g>')
+        o.append('<g fill="none" stroke="#0055FF" stroke-width=".3" stroke-dasharray="2.5 1.5">' + ''.join(f'<path d="{p}"/>' for p in fold) + '</g>')
+    if label:
+        o.append(text(f'VELLAN FULL KIT  ·  STRAIGHT TUCK END CARTON  ·  {W} x {D} x {H} MM (W x D x H)  ·  3 MM BLEED  ·  RED = CUT  ·  BLUE DASHED = FOLD  ·  ALL TYPE OUTLINED', 20, 14, SANS_MED, 3.6, '#000', track=.6))
+        o.append(text('Colours: Espresso #221C18 · Bone #EEE8E0 · Sand #DCCFBF · Clay #9C5B43 (match to Pantone on press proof). Stock: 350gsm SBS / C1S board, matte laminate, spot gloss UV on wordmark optional.', 20, 20, SANS, 3.2, '#333'))
+        o.append(text('Supplier: confirm internal dimensions fit the device + accessories before plate-making. Replace all [bracketed] text and add the barcode.', 20, TH-12, SANS, 3.2, '#333'))
+    return svg_doc(TW, TH, ''.join(o))
+
+out = 'box'
+import os; os.makedirs(out, exist_ok=True)
+for name, a, l, lab in [('VELLAN_box_dieline_with_art', 1, 1, 1), ('VELLAN_box_print_art_only', 1, 0, 0), ('VELLAN_box_cutter_lines_only', 0, 1, 1)]:
+    s = doc(a, l, lab)
+    open(f'{out}/{name}.svg', 'w').write(s)
+    cairosvg.svg2pdf(bytestring=s.encode(), write_to=f'{out}/{name}.pdf')
+    cairosvg.svg2png(bytestring=s.encode(), write_to=f'{out}/{name}.png', output_width=3000)
+
+# Individual faces for the web mockup
+full = doc(1, 0, 0)
+for name, (x, y, w, h) in FACES.items() | {'side': (xs[2], y0, D, H), 'lid': (xs[1], y0-D, W, D)}.items():
+    s = full.replace(f'viewBox="0 0 {TW} {TH}"', f'viewBox="{x} {y} {w} {h}"').replace(f'width="{TW}mm" height="{TH}mm"', f'width="{w}mm" height="{h}mm"')
+    cairosvg.svg2png(bytestring=s.encode(), write_to=f'{out}/face_{name}.png', output_width=int(w*6))
 print('ok')
