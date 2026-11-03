@@ -313,6 +313,7 @@ def _skin_storey(root, big, report, scale_err):
 
     # labels: centre point (in big's frame) + text
     labels = []
+    label_texts = []
     for k in kids:
         ts = [t for t in k.iter() if local(t.tag) == "text"]
         if not ts or k.get("display") == "none":
@@ -323,6 +324,7 @@ def _skin_storey(root, big, report, scale_err):
         tparent = {c: p for p in k.iter() for c in p}
         m = inv_big @ chain_tf(root, tparent[ts[0]])
         labels.append((name, m[:2, 2]))
+        label_texts.append((m, ts))
         # hide CubiCasa's corner triangles
         for g in k.iter():
             if local(g.tag) == "g" and any(local(c.tag) == "polygon" for c in g) and g.get("fill") == "#000000":
@@ -360,6 +362,24 @@ def _skin_storey(root, big, report, scale_err):
             mat = "tile" if wet(g.get("fill")) else "carpet" if area(P) < 40000 else "wood"
         report["rooms"].append({"label": hit[0] if hit else None, "material": mat, "m2": round(float(area(P)) / 1e4, 1)})
         restyle(g, fill=f"url(#fp-{mat})", stroke=f"url(#fp-{mat})", stroke_width="1")
+
+    # fit labels: shrink a room's name + size until the wider line fits inside its floor polygon
+    for m, ts in label_texts:
+        c = m[:2, 2]
+        room = [P for _, _, P in polys if inside(c, P)]
+        if not room:
+            continue
+        P = min(room, key=area)
+        w, h = P[:, 0].max() - P[:, 0].min(), P[:, 1].max() - P[:, 1].min()
+        sx = math.hypot(m[0, 0], m[1, 0]) or 1
+        avail = (h if abs(m[1, 0]) > abs(m[0, 0]) else w) * 0.86 / sx
+        sizes = [23, 20.5]
+        need = max(len("".join(t.itertext()).strip()) * sizes[min(i, 1)] * 0.56 for i, t in enumerate(ts))
+        if need > avail:
+            f = max(avail / need, 0.6)
+            for i, t in enumerate(ts):
+                t.set("font-size", f"{sizes[min(i, 1)] * f:.1f}")
+            report["fitted"] = report.get("fitted", 0) + 1
 
     # everything else
     for k in kids[1:]:
