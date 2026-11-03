@@ -80,6 +80,7 @@ def build(address, out_png, context=0.55, n=2000, flip=False):
     pad = max(w, h) * context * 0.5
     box = (int(Xr.min() - pad * 1.2), int(Yr.min() - pad * 0.45), int(Xr.max() + pad * 1.2), int(Yr.max() + pad * 0.45))
     im = im.crop(box)
+    im.save(Path(out_png).with_name('site-raw.png'))  # unsoftened crop: input for an illustrated pass
     ring_px = [(x - box[0], y - box[1]) for x, y in zip(Xr, Yr)]
     # soften: a touch brighter/airier like the finals, then a feathered rounded-rect fade to white
     arr = np.asarray(im).astype(np.float32)
