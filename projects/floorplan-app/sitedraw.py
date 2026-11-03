@@ -26,6 +26,8 @@ from PIL import Image
 import render as R
 
 HERE = Path(__file__).resolve().parent
+EAVE_CM = 60
+ROOFED_OVERRIDE = set()  # covered areas a person has confirmed sit under the main tiled roof
 OUTDOOR = ("yard", "patio", "deck", "balcony", "porch", "terrace", "courtyard", "alfresco", "verandah", "pergola")
 
 
@@ -57,7 +59,7 @@ def plan_rooms(root):
     return rooms
 
 
-def footprint_masks(rooms, cm_per_px):
+def footprint_masks(rooms, cm_per_px, roofed_covered=()):
     """(roofed, covered-outdoor) masks of the house in its own frame, plus the frame origin."""
     allp = np.vstack([q for _, q in rooms])
     lo = allp.min(0) - 60
@@ -68,7 +70,7 @@ def footprint_masks(rooms, cm_per_px):
     for name, q in rooms:
         pts = np.round((q - lo) / cm_per_px).astype(np.int32)
         low = name.lower()
-        if any(k in low for k in OUTDOOR):
+        if any(k in low for k in OUTDOOR) and id(q) not in roofed_covered:
             if "covered" in low:
                 cv2.fillPoly(cov, [pts], 255)
             continue
@@ -76,7 +78,11 @@ def footprint_masks(rooms, cm_per_px):
     # walls sit between room polygons: close the gaps (~ 30 cm) so the roof is one solid shape
     k = max(3, int(round(30 / cm_per_px)) | 1)
     roof = cv2.morphologyEx(roof, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (k, k)))
-    roof = cv2.dilate(roof, cv2.getStructuringElement(cv2.MORPH_RECT, (k // 2 | 1, k // 2 | 1)))  # eaves past the outer wall
+    # a roof spans straight over small wall steps (< 1.5 m) and overhangs the walls by ~ 0.6 m of eave
+    big = max(3, int(round(150 / cm_per_px)) | 1)
+    roof = cv2.morphologyEx(roof, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (big, big)))
+    eave = max(3, int(round(2 * EAVE_CM / cm_per_px)) | 1)
+    roof = cv2.dilate(roof, cv2.getStructuringElement(cv2.MORPH_RECT, (eave, eave)))
     cov = cv2.morphologyEx(cov, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (k, k)))
     cov[roof > 0] = 0
     return roof, cov
@@ -111,7 +117,7 @@ def place(roof, cov, aerial, lot_mask, base_turn, extra_turn=None):
     for t in turns:
         r = rotate_mask(roof, t)
         c = rotate_mask(cov, t)
-        tpl = ((r > 0) | (c > 0)).astype(np.float32)
+        tpl = (r > 0).astype(np.float32)  # place by the indoor footprint only; outdoor areas are judged after
         if tpl.shape[0] >= score_map.shape[0] or tpl.shape[1] >= score_map.shape[1]:
             continue
         res = cv2.matchTemplate(score_map, tpl, cv2.TM_CCORR)
@@ -304,10 +310,34 @@ def main():
     longest = edges[np.argmax(np.hypot(*edges.T))]
     base = math.degrees(math.atan2(longest[1], longest[0])) - 90
     v, t, loc, r, c = place(roof, cov, aerial, lot_mask, base, a.turn - base if a.turn is not None else None)
+    # each covered outdoor area: under the main tiled roof, or open/flat? the aerial decides, per area
+    hsv = cv2.cvtColor(aerial, cv2.COLOR_RGB2HSV)
+    allp = np.vstack([q for _, q in rooms])
+    lo = allp.min(0) - 60
+    tiled, shares = [], {}
+    for name, q in rooms:
+        if not any(k in name.lower() for k in OUTDOOR):
+            continue
+        m = np.zeros_like(roof)
+        cv2.fillPoly(m, [np.round((q - lo) / s).astype(np.int32)], 255)
+        ys, xs = np.nonzero(rotate_mask(m, t))
+        ys, xs = ys + loc[1], xs + loc[0]
+        ok = (ys >= 0) & (ys < H) & (xs >= 0) & (xs < W)
+        tile = roofiness(aerial)[ys[ok], xs[ok]]
+        flat = (hsv[ys[ok], xs[ok], 1] < 40) & (hsv[ys[ok], xs[ok], 2] > 170)
+        share_tile = float((tile.astype(bool) & ~flat).mean()) if ok.any() else 0.0
+        shares[name + f" @{len(shares)}"] = round(share_tile, 2)
+        if name in ROOFED_OVERRIDE or share_tile > 0.6:  # tile in the aerial over most of it -> under the main roof
+            tiled.append(id(q))
+    covered_roof = shares
+    flat_share = None
+    if tiled:
+        roof, cov = footprint_masks(rooms, s, set(tiled))
+        v, t, loc, r, c = place(roof, cov, aerial, lot_mask, base, t - base)
     at = (int(loc[0] + a.dx * 100 / s), int(loc[1] + a.dy * 100 / s))
     img = draw(aerial, lot_px, r, c, at, s, roof, t)
     Image.fromarray(img).save(job / "work" / "site-drawn.png")
-    data["site_drawn"] = {"turn_deg": round(t, 1), "offset_px": list(at), "score": round(float(v), 3),
+    data["site_drawn"] = {"turn_deg": round(t, 1), "offset_px": list(at), "score": round(float(v), 3), "covered_roof": covered_roof, 
                           "method": "CubiCasa footprint + QLD cadastre lot, auto-placed on the aerial; roof planes drawn as hips"}
     (job / "job.json").write_text(json.dumps(data, indent=1))
     print(job / "work" / "site-drawn.png", data["site_drawn"])
