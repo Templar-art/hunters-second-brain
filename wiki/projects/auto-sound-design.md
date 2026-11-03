@@ -271,3 +271,11 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **30 s reel (30.4 s):** starts 2 bars before chorus 2, so the chorus lands 5 s in. There is one 12-bar splice (beat 290 → 338, deep vocal gaps on both sides) into chorus 2's instrumental tail, which runs into the outro fade.
 - **Master:** this song is dynamic, so straight gain to -14 LUFS would overshoot 0 dBTP. A light limiter is used instead (ceiling -1 dB, true peak about -0.7 dBTP).
 - **45 s (45.9 s, `tools/novemberkid_45.py`):** Hunter said "the start of the 60 is too long ... make the beat drop quicker, long middle section". It uses the reel's start, so chorus 2 lands 5 s in. To keep the middle long there is only one 4-bar splice (beat 290 → 306, deep vocal gaps, score 0.818, level delta 0.0 dB), and the rest of chorus 2 plays whole into the fade. Lesson: Hunter wants the drop inside about 5 s even for longer cuts. A long build is the first thing to cut.
+
+## 3 Nov, Broken Plans: 60 s cut
+`tools/brokenplans_60.py`, beat grid in `tools/brokenplans_bt.txt`. The song is exactly 122.0 BPM.
+- **Grid lesson:** the usual polyfit over librosa beats drifted ±0.12 s. Snapping each tracked beat to its local onset peak, then refitting with robust weights, brought the median residual down to 5 ms. That refit is now the first thing to try on any song before scoring.
+- **Structure:** the song repeats on a 160-beat period (hook / verse / chorus / verse or bridge). Every join between different sections scored 0.6–0.75. A path search that allowed only joins scoring ≥0.85 found exactly one clean single-join 60 s route.
+- **The cut (60.3 s, -14 LUFS, straight gain):** it starts on the one-beat stop just before chorus 2 (beat 224), so the drop hits about 1.5 s in. Then chorus 2 and the bridge play through to the final hook. One 4-bar repeat inside the final hook is removed (beat 328 → 344, same vocal line, score 0.941), and the song ends on its own real ending.
+- **FX:** swell, riser and sub on the drop; swell and riser into the final hook; a faint swell and whoosh at the splice.
+- **Lesson:** a hard stop or break beat right before a chorus is the ideal reel or real-estate start point. It gives an instant drop, which matches Hunter's "make the beat drop quicker".
