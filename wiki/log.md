@@ -1726,3 +1726,4 @@ Wordmark and address are now separate layers with a hard cut. Thibault Parolini 
 ## [2026-11-03] build | Floor-plan app: roof-trace site plan (trace page + code drawing); AI repaints rejected as inaccurate
 ## [2026-11-03] ingest | Broken Plans 60 s cut + onset-refit grid lesson
 ## [2026-11-03] ingest | Broken Plans 60 s v2 (drop at 8.9 s for establishing shots)
+## [2026-11-03] ingest | Broken Plans v3 (drop 16.8 s, 68 s)
