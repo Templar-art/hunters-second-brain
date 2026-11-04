@@ -38,6 +38,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])
 
 ## Projects
+- [[trivelle-beauty]] — Hunter's own Shopify store: 4-in-1 body device, $219, AI UGC ads + store graphics, launching Nov 2026
 - [[floorplan-app]] — in-house CubiCasa finishing app, milestone 2 (28 Oct): sanitise, house-style labels, areas from CubiCasa text, geometry-unchanged check, plus the full 10x A4 page (true-scale skin, side-by-side storeys, PDF/PNG export); 8 CubiCasa sources
 - [[cva-woomala-render-enhance]] — 11 Woomala St renders made photoreal (NBP from source, layout locked); 3,210cr; recipe + failure log
 - [[10xrealestate-ig]] — @10xrealestate_ page polish: bio, logo/highlights, 5 seamless listing carousels (v5.2) + 12-post planner from 28 Oct

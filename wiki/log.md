@@ -1739,3 +1739,6 @@ Added Gallery/Magazine layouts to build_carousels.py; 6 SHAPE venue decks on the
 
 ## [2026-11-04] ingest | Main-page carousels batch 3
 5 more listing decks + Westside HQ and Lions @ Springwood added to @10xvisuals_ carousels.
+
+## [2026-11-04] ingest | Trivelle Beauty launch build
+4-in-1 device ads, 8 store graphics, launch checklist, store copy, packaging draft. New page [[trivelle-beauty]].
