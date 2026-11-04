@@ -43,7 +43,7 @@ Use 3–5 times a week. Consistency is what makes the difference.
 - English user manual
 
 ## Shipping line (product page + cart)
-Free tracked shipping Australia-wide. Ships in 7–15 business days.
+Free tracked shipping Australia-wide. Ships within 1–4 business days, then 7–15 business days delivery.
 
 ---
 
@@ -71,7 +71,7 @@ The vacuum mode can cause temporary redness, like a massage. Start on the lowest
 Don't use it if you're pregnant or breastfeeding, have a pacemaker or other electronic or metal implant, have epilepsy, a heart condition, cancer, a blood clotting disorder, or on broken, sunburnt or irritated skin. If you have a medical condition, check with your doctor first.
 
 **How long does shipping take?**
-Orders ship free with tracking and arrive in 7–15 business days. You'll get a tracking link by email.
+Orders ship free with tracking within 1–4 business days, then take 7–15 business days to arrive. You'll get a tracking link by email.
 
 **What if it's not for me?**
 You have 30 days to try it. If you're not happy, contact us for a full refund. See our Refund Policy for details.

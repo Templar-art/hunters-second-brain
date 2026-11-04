@@ -31,7 +31,7 @@ Shopify admin works on your phone too. Do the sections in order.
 ## 3. Shipping + legal — ~20 min
 - [ ] Banner + FAQ: "Free worldwide shipping" → **"Free shipping Australia-wide"**.
 - [ ] Settings → Markets: Australia only.
-- [ ] Product page, FAQ, shipping policy: **"Ships in 7–15 business days, tracked."**
+- [ ] Product page, FAQ, shipping policy: **"Ships within 1–4 business days, then 7–15 business days delivery, tracked."**
 - [ ] Settings → Policies: replace "My Store" with business name; add ABN, address, email to Terms + footer.
 - [ ] Product FAQ: add "Who shouldn't use Trivelle" (pregnancy, pacemaker/implants, epilepsy, broken or irritated skin).
 - [ ] FAQ: "no marks" → "start on the lowest level to avoid marks".

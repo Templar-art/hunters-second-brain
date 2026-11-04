@@ -69,7 +69,7 @@ Home, product, collection, About, Contact, FAQ, How to Use, Track order, cart, a
   - Device + gel — **$219** · *Everything you need*
   - Gift 2-Pack — **$389** · *Save $49 vs buying two* (2 × $219 = $438)
 - Home hero eyebrow: **New · Free shipping Australia-wide**
-- Shipping line on product page + FAQ: **Ships in 7–15 business days, tracked.**
+- Shipping line on product page + FAQ: **Ships within 1–4 business days, then 7–15 business days delivery, tracked.**
 - Features: Warm (gentle heat for a relaxing massage feel) · Glow (red light for a radiant-looking finish) · Lift (EMS micro-pulses for a toning, firming feel) · Smooth (vacuum massage to smooth the look of skin).
 - In the box: Trivelle 4-in-1 device, USB charging cable, English user manual, Microcurrent gel (80 g).
 

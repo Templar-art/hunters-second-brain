@@ -12,9 +12,9 @@ Thanks!
 ## Customer emails / replies
 
 **Where's my order?**
-Hi [Name], thanks for your order! Trivelle ships free with tracking and usually arrives in 7–15 business days. Your tracking link: [link]. It can take a few days to show movement once it's handed over. Any questions, just reply here.
+Hi [Name], thanks for your order! Trivelle ships free with tracking and ships within 1–4 business days and usually arrives 7–15 business days after that. Your tracking link: [link]. It can take a few days to show movement once it's handed over. Any questions, just reply here.
 
-**Delay (past 15 business days)**
+**Delay (past ~19 business days)**
 Hi [Name], sorry your Trivelle is taking longer than expected. I've checked with our shipping partner and [update]. If it hasn't arrived by [date], we'll send a replacement or refund you in full, your choice.
 
 **How do I use it?**
@@ -35,6 +35,6 @@ Hi [Name], thanks for checking. Please don't use Trivelle if you're pregnant or 
 ## Ad comments (Meta / TikTok)
 - **"Does it work?"** It's a 10-minute at-home ritual for smoother, firmer-looking skin. Most people use it 3–5 times a week. And there's a 30-day money-back guarantee, so you can try it risk-free 💚
 - **"How much?"** $219 with free shipping Australia-wide, gel included. Tap Shop now for the details.
-- **"Shipping time?"** Free tracked shipping, 7–15 business days.
+- **"Shipping time?"** Free tracked shipping. Ships in 1–4 business days, then 7–15 days delivery.
 - **"Scam?"** Fair question! We're Australian-run, every order is tracked, and you've got 30 days to return it for a full refund.
 - Never reply with medical claims ("removes cellulite", "burns fat").
