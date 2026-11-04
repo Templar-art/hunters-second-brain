@@ -301,3 +301,4 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
   Lessons:
   - For hype cuts, **fewer joins and a vocal drop beat a perfectly-scored three-piece jigsaw.**
   - When a natural decay has a vocal pickup in it, swap to the instrumental stem rather than fading early.
+- **v3 (32.0 s).** Hunter on v2: "I like it the start feel weak the rest is nice". The 1.5 s of quiet build (-20 dB, vocal gap) read as dead air. v3 starts on the last build beat (303), so the chorus hits at 2.0 s. The pre-drop FX are 6-8 dB louder: swell -3, riser -6, sub -8, plus a boom at -12. The build-up now rises -29 → -20 dB into the drop instead of sitting around -30. Everything after the drop is unchanged. **Hype rule:** the opening second must already be rising. Quiet build bars belong to the cinematic cut, not the hype cut.

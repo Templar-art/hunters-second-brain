@@ -1735,3 +1735,4 @@ Built 4 editorial decks (Kollosche x2, Whitefox, Kodiak) from Frame.io Print set
 Added Gallery/Magazine layouts to build_carousels.py; 6 SHAPE venue decks on the construction page; Belle checked on Drive, nothing editorial. [[10xvisuals-ig-carousels]]
 ## [2026-11-04] ingest | wildfire (origins) 30 s hype cut + tempo-trap lesson
 ## [2026-11-04] ingest | wildfire (origins) hype v2: one join, chorus 3 drop, natural decay ending
+## [2026-11-04] ingest | wildfire hype v3: punchier start (drop 2.0 s, louder pre-drop FX)

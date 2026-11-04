@@ -1,4 +1,6 @@
-"""wildfire (origins) ~32 s HYPE cut for the company, v2 (2026-11-04, Hunter on v1: "i think it could be cut up a bit
+"""wildfire (origins) ~32 s HYPE cut for the company, v3 (Hunter on v2: "I like it the start feel weak the rest is nice";
+v3 drops the 1.5 s quiet build: the song now enters on the last build beat (303), so the chorus hits at 2.0 s, and the
+song-derived swell, riser, sub and an added boom are 6-8 dB louder under it; everything after the drop is unchanged). v2 (2026-11-04, Hunter on v1: "i think it could be cut up a bit
 better"). v1 (in git) was choppy: three segments, the drop landed on the instrumental hook, and it ended on a fade.
 v2 has one join and ends on the song's own decay. 120.0 BPM, grid = wildfire_origins_bt.txt (argv[2], start_bpm=120 +
 onset-snap refit). Map (beats, 2 s bars): chorus 2 200-264, break 264-296, build 296-303 (vocal gap 300-303, mix -20 dB),
@@ -17,7 +19,7 @@ SR = 44100; B = 0.5; rng = np.random.default_rng(5)
 y, _ = librosa.load(F, sr=SR, mono=False); nv, _ = librosa.load(sys.argv[3], sr=SR, mono=False)
 bt = np.loadtxt(sys.argv[2])
 I = lambda t: int(round(t * SR)); H = 0.25
-START = bt[300] - 0.02; PRE = 1.0; END = bt[372]; FADE = bt[372] - bt[367]; NV = bt[362] + 0.25
+START = bt[303] - 0.02; PRE = 1.5; END = bt[372]; FADE = bt[372] - bt[367]; NV = bt[362] + 0.25
 n0 = min(y.shape[1], nv.shape[1]); w = np.clip((np.arange(n0) / SR - NV) / 0.3, 0, 1); w = 0.5 - 0.5 * np.cos(w * np.pi)
 y = y[:, :n0] * (1 - w) + nv[:, :n0] * w  # linear (signals are correlated): full mix -> instrumental stem at NV
 segs = [(START, bt[336]), (bt[344], END)]
@@ -51,9 +53,8 @@ def lib(name, t, db, align="peak", lo=None, hi=None):
     if align == "peak": g = g[: k + I(0.03)]; q = I(0.03); g[-q:] *= np.linspace(1, 0, q); put(g, t - k / SR, db)
     else: put(g[k:], t, db)
 swell(J, 1, -16); lib("whoosh_1.wav", J, -24, lo=7000, hi=300)
-swell(DROP, 4, -9); lib("riser_1.wav", DROP, -14, lo=9000); lib("sub_1.wav", DROP, -11, align="attack", lo=150)  # chorus 3 drop
+swell(DROP, 4, -3); lib("riser_1.wav", DROP, -6, lo=10000); lib("sub_1.wav", DROP, -8, align="attack", lo=150); lib("boom_1.wav", DROP, -12, align="attack")  # chorus 3 drop, v3: louder, + boom
 swell(HOOK, 2, -12); lib("riser_2.wav", HOOK, -20, lo=8000)  # into the hook
-swell(PRE, 2, -13)  # pre-roll into the build
 h = 10 ** (-6 / 20)
 for name, x in (("mix", mix + fx), ("clean", mix), ("fx", fx)): sf.write(f"{OUTD}/{name}.wav", (x * h).T, SR, subtype="PCM_24")
 print("len", round(mix.shape[1] / SR, 2), "splice", round(J, 2), "drop", round(DROP, 2), "hook", round(HOOK, 2))
