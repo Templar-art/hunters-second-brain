@@ -1727,3 +1727,6 @@ Wordmark and address are now separate layers with a hard cut. Thibault Parolini 
 ## [2026-11-03] ingest | Broken Plans 60 s cut + onset-refit grid lesson
 ## [2026-11-03] ingest | Broken Plans 60 s v2 (drop at 8.9 s for establishing shots)
 ## [2026-11-03] ingest | Broken Plans v3 (drop 16.8 s, 68 s)
+
+## [2026-11-04] ingest | @10xvisuals_ main-page carousels
+Built 4 editorial decks (Kollosche x2, Whitefox, Kodiak) from Frame.io Print sets; cut Buckingham + Marine Pde. Page: [[10xvisuals-ig-carousels]].

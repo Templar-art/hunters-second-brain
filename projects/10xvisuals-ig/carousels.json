@@ -123,126 +123,126 @@
   ],
   "cover_mode": "front"
  },
- "4-6-buckingham-way": {
-  "client": "Kollosche",
-  "kicker": "NO. 4 TO 6",
-  "street": "Buckingham",
-  "suffix": "Way",
-  "area": "ELANORA QLD",
-  "place": "Elanora",
-  "address": "4-6 Buckingham Way, Elanora",
-  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Kollosche/4-6 Buckingham Way Print",
+ "13-15-eagleview-ct": {
+  "client": "Whitefox",
+  "kicker": "NO. 13 TO 15",
+  "street": "Eagleview",
+  "suffix": "Court",
+  "area": "BONOGIN QLD",
+  "place": "Bonogin",
+  "address": "13-15 Eagleview Court, Bonogin",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Whitefox/13-15 Eagleview Court Print",
   "match": "",
   "photos": [
    [
-    7,
+    1,
     ""
    ],
    [
-    14,
+    7,
     "Living"
    ],
    [
-    15,
+    9,
     "Kitchen"
    ],
    [
-    8,
-    "Alfresco"
+    4,
+    "Pavilion"
    ],
    [
-    1,
-    "Stair"
+    11,
+    "Walkway"
    ],
    [
-    13,
-    "Bath"
+    10,
+    "Garden"
    ],
    [
-    19,
-    "Entry"
+    5,
+    "Firepit"
    ],
    [
-    17,
-    "Billiards"
-   ],
-   [
-    16,
-    "Dining"
+    6,
+    "Island"
    ],
    [
     0,
-    "Bedroom"
+    "Dining"
    ],
    [
-    12,
-    "Tennis"
+    8,
+    "Lounge"
    ],
    [
-    9,
+    2,
+    "Courtyard"
+   ],
+   [
+    13,
     "Pool"
    ]
   ],
   "cover_mode": "front"
  },
- "506-388-marine-pde": {
-  "client": "Kollosche",
-  "kicker": "APARTMENT 506",
-  "street": "Marine",
-  "suffix": "Parade",
-  "area": "LABRADOR QLD",
-  "place": "Labrador",
-  "address": "506/388 Marine Parade, Labrador",
-  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Kollosche/506-388 Marine Parade Print",
+ "39-harold-st": {
+  "client": "Kodiak Projects",
+  "kicker": "NO. 39",
+  "street": "Harold",
+  "suffix": "Street",
+  "area": "STAFFORD QLD",
+  "place": "Stafford",
+  "address": "39 Harold Street, Stafford",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Kodiak/39 Harold Street",
   "match": "",
   "photos": [
    [
-    2,
+    21,
     ""
    ],
    [
-    0,
+    22,
     "Kitchen"
    ],
    [
-    3,
-    "Gym"
-   ],
-   [
-    6,
-    "Bedroom"
-   ],
-   [
-    1,
-    "Bath"
-   ],
-   [
-    10,
-    "Ensuite"
-   ],
-   [
-    5,
-    "Lobby"
-   ],
-   [
-    13,
-    "Galley"
+    4,
+    "Vanity"
    ],
    [
     11,
-    "Lounge"
-   ],
-   [
-    9,
-    "Suite"
-   ],
-   [
-    12,
     "Living"
    ],
    [
-    4,
-    "Pool"
+    1,
+    "Hall"
+   ],
+   [
+    2,
+    "Stair"
+   ],
+   [
+    13,
+    "Bar"
+   ],
+   [
+    5,
+    "Shower"
+   ],
+   [
+    0,
+    "Dining"
+   ],
+   [
+    24,
+    "Bedroom"
+   ],
+   [
+    27,
+    "Island"
+   ],
+   [
+    18,
+    "Rear"
    ]
   ],
   "cover_mode": "front"

@@ -41,6 +41,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[floorplan-app]] — in-house CubiCasa finishing app, milestone 2 (28 Oct): sanitise, house-style labels, areas from CubiCasa text, geometry-unchanged check, plus the full 10x A4 page (true-scale skin, side-by-side storeys, PDF/PNG export); 8 CubiCasa sources
 - [[cva-woomala-render-enhance]] — 11 Woomala St renders made photoreal (NBP from source, layout locked); 3,210cr; recipe + failure log
 - [[10xrealestate-ig]] — @10xrealestate_ page polish: bio, logo/highlights, 5 seamless listing carousels (v5.2) + 12-post planner from 28 Oct
+- [[10xvisuals-ig-carousels]] — @10xvisuals_ main-page versions of the v5.2 swipe decks: Esther Pl, Seagull Ave, Eagleview Ct, Harold St
 - [[solis-pool-cinemagraph]] — Salt PM listing photo → 10s 9:16 cinemagraph: Seedance 2.5 with camera lock moves only water + spout (160 hf); clouds added free in post by anchored sky-zoom composite
 - [[woomala-st-9x16-reframe]] — 14 Woomala St renders → 9:16 via pad-canvas + Nano Banana Pro + 1:1 paste-back (88 cr); method for any render reframe
 - [[lead-gen-engine]] — ads + landing pages for MVX, CVA and 10x itself; per-niche strategy, 3 pages built 28 Jul
