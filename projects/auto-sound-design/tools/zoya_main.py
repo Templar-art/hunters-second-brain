@@ -12,8 +12,8 @@ LIB = "/Users/10xhunter/Documents/Hunters Second Brain/projects/committed-coachi
 SR = 44100; rng = np.random.default_rng(5)
 y, _ = librosa.load(F, sr=SR, mono=False); v, _ = librosa.load(VOC, sr=SR)
 g = np.loadtxt(BT); B = float(np.mean(np.diff(g)))
-I = lambda t: int(round(t * SR)); H = 0.12
-START = g[128] - 0.02; PRE = 1.0; OFF = g[380] - g[200]
+I = lambda t: int(round(t * SR)); H = 0.04
+START = g[128] - 0.02; PRE = 1.0; OFF = g[380] - g[200] - 0.0368  # v2: measured onset lag at the join (flam fix)
 def vrms(t): x = v[I(t - 0.08):I(t + 0.08)]; return np.sqrt(np.mean(x ** 2))
 cand = np.arange(g[200] - B, g[200] + B, 0.01)
 JT = cand[np.argmin([max(vrms(t), vrms(t + OFF)) for t in cand])]
