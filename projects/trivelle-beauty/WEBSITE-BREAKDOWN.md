@@ -71,23 +71,24 @@ Home, product, collection, About, Contact, FAQ, How to Use, Track order, cart, a
 - Home hero eyebrow: **New · Free shipping Australia-wide**
 - Shipping line on product page + FAQ: **Ships in 7–15 business days, tracked.**
 - Features: Warm (gentle heat for a relaxing massage feel) · Glow (red light for a radiant-looking finish) · Lift (EMS micro-pulses for a toning, firming feel) · Smooth (vacuum massage to smooth the look of skin).
-- In the box: Trivelle 4-in-1 device, USB charging cable, English user manual, conductive gel.
+- In the box: Trivelle 4-in-1 device, USB charging cable, English user manual, Microcurrent gel (80 g).
 
 Keep the 30-day money-back guarantee prominent; with no discount badge it does the urgency work.
 
 ## Product page image order (4-in-1, from `device-v2/`)
 
-1. `device-v2/stills/01-hero-v2-pilot.png` — hero
-2. `device-v2/graphics/01-feature-panel.jpg` — four rituals
+1. `device-v2/graphics/01-kit-hero.jpg` — device + gel, four modes
+2. `device-v2/graphics/02-four-rituals.jpg`
 3. `device-v2/stills/s1-stomach.png` — in use
-4. `device-v2/stills/02-macro-head.png` — treatment head
-5. `device-v2/stills/s3-arm.png` — in use
-6. `device-v2/graphics/02-how-to-use.jpg`
-7. `device-v2/stills/s4-jaw.png`, `s5-thigh-front.png` — diverse models
-8. `device-v2/graphics/03-comparison.jpg`
-9. `device-v2/stills/04-hand-screen.png` — the screen
-10. `device-v2/graphics/04-in-the-box.jpg`
+4. `device-v2/graphics/03-how-to-use.jpg`
+5. `device-v2/graphics/04-gel.jpg`
+6. `device-v2/graphics/05-where-to-use.jpg`
+7. `device-v2/stills/04-hand-screen.png` — the screen
+8. `device-v2/graphics/06-comparison.jpg`
+9. `device-v2/graphics/07-in-the-box.jpg`
+10. `device-v2/graphics/08-guarantee.jpg`
 
+Graphics built by `scripts/graphics_v3.py`; gel tube cut from the supplier photo (`device-v2/supplier-photos/gel.jpg`).
 Old 3-in-1 images in `stills/` and `graphics/` are retired — don't upload them.
 
 ## Before running ads — checklist
