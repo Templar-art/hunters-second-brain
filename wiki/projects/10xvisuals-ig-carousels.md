@@ -3,7 +3,6 @@ type: project
 tags: [instagram, carousel, 10xvisuals]
 status: built, not posted
 updated: 2026-11-04
-updated: 2026-11-04
 ---
 
 # @10xvisuals_ main-page listing carousels
