@@ -1,12 +1,12 @@
 """Trivelle fold-up box: reverse-tuck-end carton dieline + print artwork (SVG, mm units).
-Usage: python3 box_dieline.py [L W H]  — inner size in mm (default 140 x 110 x 160, a placeholder:
+Usage: python3 box_dieline.py [L W H]  — inner size in mm (default 170 x 115 x 180, a placeholder:
 get the real device + gel + insert size from the supplier / box maker before printing).
 Lines: black = cut, red dashed = fold, cyan = 3 mm bleed. Outside face shown; inside is solid lime.
 """
 import sys, os
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = f"{R}/packaging"; os.makedirs(OUT, exist_ok=True)
-L, W, H = (float(x) for x in sys.argv[1:4]) if len(sys.argv) == 4 else (140.0, 110.0, 160.0)
+L, W, H = (float(x) for x in sys.argv[1:4]) if len(sys.argv) == 4 else (170.0, 115.0, 180.0)
 GREEN, LIME, WHITE = "#1D2A26", "#C4CE26", "#FFFFFF"
 G = 15.0           # glue flap width
 T = W * 0.75       # tuck flap depth
