@@ -35,13 +35,16 @@ for k in range(int(total * FPS)):
     t = k / FPS
     i = max(j for j in range(6) if cuts[j] <= t)
     lt, sd = t - cuts[i], cuts[i + 1] - cuts[i]
-    z = 1.0 + 0.06 * (lt / sd)
-    im = imgs[i]; cw, ch = int(W / z), int(H / z)
-    y0 = int((im.height - H) * 0.5)
-    fr = im.crop(((W - cw) // 2, y0 + (H - ch) // 2, (W + cw) // 2, y0 + (H + ch) // 2)).resize((W, H), Image.BILINEAR).convert("RGBA")
-    if lt < 0.25 and i:  # quick crossfade from previous scene
-        pv = imgs[i - 1].crop((0, int((imgs[i-1].height - H) * 0.5), W, int((imgs[i-1].height - H) * 0.5) + H)).convert("RGBA")
-        fr = Image.blend(pv, fr, lt / 0.25)
+    def view(img, z):
+        y0 = (img.height - H) * 0.5
+        cx, cy = W / 2, y0 + H / 2
+        # sub-pixel affine zoom about the frame centre: no integer crop steps, no jitter
+        return img.transform((W, H), Image.AFFINE, (1 / z, 0, cx - W / (2 * z), 0, 1 / z, cy - H / (2 * z)),
+                             resample=Image.BICUBIC).convert("RGBA")
+    zf = lambda u: 1.0 + 0.06 * (u * u * (3 - 2 * u))  # eased push-in
+    fr = view(imgs[i], zf(lt / sd))
+    if lt < 0.25 and i:  # crossfade from where the previous scene ended
+        fr = Image.blend(view(imgs[i - 1], zf(1.0)), fr, lt / 0.25)
     d = ImageDraw.Draw(fr)
     if i == 0 and t >= at("meet") - 0.05:  # logo reveal
         a = ease((t - at("meet")) / 0.5); lg = logo.copy(); lg.putalpha(lg.split()[3].point(lambda v: int(v * a)))
