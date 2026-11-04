@@ -3,13 +3,15 @@
 Do these in order. Shopify admin works on your phone too (Shopify app).
 
 ## 1. Store (must-do before any ad spend) — ~45 min
-- [ ] **Images** — Products → Trivelle → Media. Upload in this order: `stills/01-hero-final.png`, `graphics/01-feature-panel.jpg`, `stills/02-stomach-older.png`, `graphics/05-how-it-works.jpg`, `stills/04-thigh-older.png`, `graphics/02-how-to-use.jpg`, 2–3 from `stills/roster/`, `graphics/03-comparison.jpg`, `stills/05-macro.png`, `graphics/04-in-the-box.jpg`.
-- [ ] **Pricing** — each variant: clear *Compare-at price*. Theme editor: delete the countdown, "Launch offer · save $110" and "Save 39%" badge. Paste the value-anchor copy from `WEBSITE-BREAKDOWN.md`.
+- [ ] **Images** — Products → Trivelle → Media. Delete the old images. Upload the 4-in-1 set in the order listed in `WEBSITE-BREAKDOWN.md` (all from `device-v2/`).
+- [ ] **Product** — title "Trivelle 4-in-1 Sculpt & Glow"; description says heat, red light, EMS, vacuum (not 3-in-1).
+- [ ] **Pricing** — $219 kit, $389 2-pack. Each variant: clear *Compare-at price*. Theme editor: delete the countdown, "Launch offer · save $110" and "Save 39%" badge. Paste the value-anchor copy from `WEBSITE-BREAKDOWN.md`.
 - [ ] **Shipping** — banner + FAQ: "Free worldwide shipping" → "Free shipping Australia-wide". Settings → Markets: turn off everything except Australia.
 - [ ] **Policies** — Settings → Policies: replace "My Store" with your business name; add ABN, address, contact email to Terms + footer.
 - [ ] **Safety FAQ** — copy "Who shouldn't use Trivelle" (pregnancy, pacemaker, epilepsy, broken skin) from the FAQ page into the product page FAQ.
 - [ ] **FAQ wording** — "no marks" → "start on the lowest level to avoid marks". "10 minutes a day" → "10 minutes, 3–5 times a week".
-- [ ] **In the box** — confirm with the supplier it really ships face + body heads; if not, edit the copy.
+- [ ] **In the box** — device, USB cable, English manual, gel. Remove any "face + body heads" line.
+- [ ] **Shipping time** — "Ships in 7–15 business days, tracked" on product page, FAQ and shipping policy.
 - [ ] **Collection** — turn off the price filter (shows a raw `${{amount}}` bug).
 - [ ] **Payments** — turn on Afterpay or Shop Pay Installments.
 - [ ] **Test order** — buy it yourself with a real card, then refund. Check the confirmation email.
@@ -21,8 +23,8 @@ Do these in order. Shopify admin works on your phone too (Shopify app).
 
 ## 3. Ads — ~30 min
 - [ ] Meta Business: verify domain trivellebeauty.com, set up a payment method.
-- [ ] Campaign: **Sales**, Advantage+ audience, Australia, women 35–65, budget ~$30–50/day to start.
-- [ ] One ad set, upload all 4 long ads + the 30s cuts (`videos/ads/`): A Salon, B Lived-a-little, C Drawer, D Seated explainer. Let Meta pick winners.
+- [ ] Campaign: **Sales**, Advantage+ audience, Australia, women 35–65, budget **$20/day for 5 days (~$100 test)**. Judge on cost per add-to-cart first; scale ~20% every few days only once sales come in.
+- [ ] One ad set, upload 3–4 ads from `device-v2/ads/` (start with D Seated explainer, A Salon 30s, B Lived-a-little 30s, A Hook 10s). The old `videos/ads/` are the 3-in-1 device — don't use them. Let Meta pick winners.
 - [ ] Copy: primary text + headline from `higgsfield-pack/README.md` Step 4. CTA button **Shop now**.
 - [ ] TikTok: same videos, 9:16 already, use the 30s cuts.
 - [ ] Don't touch it for 3 days. Kill ads with no add-to-carts after ~$40 spend each.
@@ -33,5 +35,6 @@ Do these in order. Shopify admin works on your phone too (Shopify app).
 - [ ] hello@trivellebeauty.com email.
 
 ## Known issues in the ads
-- Seated explainer: the presenter says "Trivone" (AI mispronunciation); captions read Trivelle. Fine for testing; swap later if it wins.
+- Presenters say "Trevolz" (hook) / "Trivel" (seated) — AI mispronunciation; captions read Trivelle. Fine for testing; re-roll if one wins.
+- Copy assumes the 4 modes are heat, red light, EMS, vacuum — confirm with the supplier.
 - All presenters/models are AI-generated. Meta and TikTok require AI-content labels on realistic AI people: tick "AI-generated / altered" when uploading.

@@ -56,34 +56,39 @@ Home, product, collection, About, Contact, FAQ, How to Use, Track order, cart, a
 
 ## Value-anchor copy changes
 
+**⚠️ Updated 2026-11-04: switched to the 4-in-1 device (heat, red light, EMS, vacuum) at $219 AUD.** Landed cost US$29.23 (~A$45) device + gel, supplier ships direct to AU in 7–15 days. Supersedes the $169 / 3-in-1 copy below it in git history.
+
 **Remove in Shopify admin**
-- Product → each variant → *Compare-at price*: clear ($279, $249, $558).
-- Theme editor → home + product: delete the countdown block ("Launch price ends in…", "Regular price from 1 December").
-- Theme editor: delete "Launch offer · save $110" (home banner) and the "Save 39% OFF" badge.
+- Product → each variant → *Compare-at price*: clear all.
+- Theme editor → home + product: delete the countdown block, "Launch offer · save $110" banner and the "Save 39% OFF" badge.
 
 **Replace with**
-- Price line: **$169 AUD — about the cost of one salon treatment**
-- Under the price: **Under $1 a session.** *(Based on 4 sessions a week for a year.)* — $169 ÷ 208 = 81c, true.
+- Product title: **Trivelle 4-in-1 Sculpt & Glow**
+- Price line: **$219 AUD — about a dollar a session** *(4 sessions a week for a year = 208 sessions, $1.05 each — do not say "under $1")*
 - Kit cards:
-  - Device + Glide Gel — **$169** · *Everything you need*
-  - Gift 2-Pack — **$299** · *Save $39 vs buying two*
-  - Device only — **$149** · *Already have a conductive gel*
-- Home hero eyebrow (where "Launch offer" was): **New · Free shipping Australia-wide** (once #3 is fixed)
+  - Device + gel — **$219** · *Everything you need*
+  - Gift 2-Pack — **$389** · *Save $49 vs buying two* (2 × $219 = $438)
+- Home hero eyebrow: **New · Free shipping Australia-wide**
+- Shipping line on product page + FAQ: **Ships in 7–15 business days, tracked.**
+- Features: Warm (gentle heat for a relaxing massage feel) · Glow (red light for a radiant-looking finish) · Lift (EMS micro-pulses for a toning, firming feel) · Smooth (vacuum massage to smooth the look of skin).
+- In the box: Trivelle 4-in-1 device, USB charging cable, English user manual, conductive gel.
 
 Keep the 30-day money-back guarantee prominent; with no discount badge it does the urgency work.
 
-## Product page image order (from what's been made)
+## Product page image order (4-in-1, from `device-v2/`)
 
-1. `stills/01-hero-final.png` — hero
-2. `graphics/01-feature-panel.jpg` — three rituals
-3. `stills/02-stomach-older.png` — in use
-4. `graphics/05-how-it-works.jpg` — through the skin
-5. `stills/04-thigh-older.png` — in use
-6. `graphics/02-how-to-use.jpg`
-7. `stills/roster/` — 2–3 diverse models
-8. `graphics/03-comparison.jpg`
-9. `stills/05-macro.png` — roller close-up
-10. `graphics/04-in-the-box.jpg`
+1. `device-v2/stills/01-hero-v2-pilot.png` — hero
+2. `device-v2/graphics/01-feature-panel.jpg` — four rituals
+3. `device-v2/stills/s1-stomach.png` — in use
+4. `device-v2/stills/02-macro-head.png` — treatment head
+5. `device-v2/stills/s3-arm.png` — in use
+6. `device-v2/graphics/02-how-to-use.jpg`
+7. `device-v2/stills/s4-jaw.png`, `s5-thigh-front.png` — diverse models
+8. `device-v2/graphics/03-comparison.jpg`
+9. `device-v2/stills/04-hand-screen.png` — the screen
+10. `device-v2/graphics/04-in-the-box.jpg`
+
+Old 3-in-1 images in `stills/` and `graphics/` are retired — don't upload them.
 
 ## Before running ads — checklist
 

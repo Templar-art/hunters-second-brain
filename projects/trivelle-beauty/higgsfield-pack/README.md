@@ -80,9 +80,9 @@ Reject any clip where the device changes shape, the cup ends up on top, or text 
 
 ## Step 4 — Ad captions (for Meta / TikTok)
 
-- **Primary text:** Made for skin that's lived a little. Red light, EMS and suction massage in one cordless device, for brighter, smoother, firmer-looking skin in about 10 minutes. 30-day money-back guarantee.
-- **Headline:** Three rituals. One device.
-- **Description:** $169 · under $1 a session
+- **Primary text:** Made for skin that's lived a little. Heat, red light, EMS and vacuum massage in one cordless device, for brighter, smoother, firmer-looking skin in about 10 minutes. 30-day money-back guarantee.
+- **Headline:** Four rituals. One device.
+- **Description:** $219 · 30-day money-back guarantee
 - **CTA button:** Shop now
 
 ---
