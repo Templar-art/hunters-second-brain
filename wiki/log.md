@@ -1744,3 +1744,5 @@ Added Gallery/Magazine layouts to build_carousels.py; 6 SHAPE venue decks on the
 4-in-1 device ads, 8 store graphics, launch checklist, store copy, packaging draft. New page [[trivelle-beauty]].
 
 ## [2026-11-05] ingest | ZOYA Pulled Under song cut, join drift lesson
+
+## [2026-11-05] ingest | SFX toolkit installed (Real SFX, Earshot, SFXMint, Openverse)
