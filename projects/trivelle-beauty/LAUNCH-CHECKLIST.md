@@ -37,3 +37,7 @@ Do these in order. Shopify admin works on your phone too (Shopify app).
 ## Known issues in the ads
 - Presenters say "Trevolz" (hook) / "Trivel" (seated) — AI mispronunciation; captions read Trivelle. Fine for testing; re-roll if one wins.
 - All presenters/models are AI-generated. Meta and TikTok require AI-content labels on realistic AI people: tick "AI-generated / altered" when uploading.
+
+## Packaging
+- Launch with the supplier's stock box. In-the-box graphic shows a plain white box to match.
+- Custom box later (~A$900–1,000 for 500 incl. inserts + sample) once sales are steady. Current green design in `packaging/` is a placeholder — redo with more character (gel-wave pattern, lighter stock, emboss/foil) before ordering.

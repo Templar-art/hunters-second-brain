@@ -183,7 +183,10 @@ for i, (r, h) in enumerate(zip(rows, have)):
 save(im, "06-comparison")
 
 # 07 — In the box: flatlay + the real gel tube
-im = fit(f"{S}/08-unbox-gel.png", N, N).convert("RGBA")
+im = fit(f"{S}/03-flatlay.png", N, N).convert("RGBA")
+gel = rounded(fit(f"{S}/09-gel-studio.png", 300, 380, (0.8, 0.5)), 22)
+sh = Image.new("RGBA", (N, N), (0, 0, 0, 0)); ImageDraw.Draw(sh).rounded_rectangle((736, 618, 1046, 1008), 22, fill=(0, 0, 0, 70))
+im.alpha_composite(sh.filter(ImageFilter.GaussianBlur(14))); im.alpha_composite(gel, (730, 610))
 d = ImageDraw.Draw(im)
 d.rounded_rectangle((50, 690, 540, 1030), 28, fill=WHITE)
 d.text((86, 718), "What's in the box", font=f("D", 42), fill=INK)
