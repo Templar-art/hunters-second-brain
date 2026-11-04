@@ -32,38 +32,50 @@ SCRIPTS = {
  "ugc": "I'm forty-eight, and I was so over paying for salon treatments. This is Trivelle. Red light and a gentle massage, all in one little device. Ten minutes, a few nights a week. My skin just looks fresher. And there's a thirty-day money-back guarantee.",
  "vo1-salon-cost": "Salon body treatments add up fast. A hundred dollars here, a hundred and fifty there, and the waitlist never ends. So we made Trivelle. Red light, EMS and a gentle suction massage, in one cordless device you use at home. Smooth on the Glide Gel, pick a mode, and glide. About ten minutes, three to five times a week. Red light for a radiant-looking glow. EMS micro-pulses for a toned, firmer feel. And suction massage for skin that looks smoother. Face, arms, stomach, thighs. It's one hundred and sixty-nine dollars, about the cost of one salon treatment, and under a dollar a session. Free shipping Australia-wide, and a thirty-day money-back guarantee. Trivelle. Three rituals. One device.",
  "vo2-lived-a-little": "If your skin has lived a little, this one's for you. The arms you keep covered. The jawline you check in every mirror. The shorts that stay in the drawer. Trivelle is a cordless at-home device that brings three salon rituals together. Red light for a radiant-looking glow. EMS micro-pulses for a toned, firmer feel. And a gentle suction massage for skin that looks smoother. Ten minutes, a few nights a week, with the Glide Gel. It feels like a warm massage with a gentle tingle. One hundred and sixty-nine dollars, with free shipping Australia-wide, and thirty days to try it. If you don't love it, send it back. Trivelle. Made for skin that's lived a little.",
+ "seated": "Okay, so a few of you asked what this little thing is. It's called Trivelle. It does three things in one. Red light, for that glowy, radiant look. EMS, which feels like tiny little pulses, so it's got a toned, firmer feel. And a gentle suction massage, which is this clear cup here, for skin that looks smoother. I just pop on some gel and do about ten minutes, a few nights a week, while I watch telly. It's cordless, it's easy, and honestly it just feels lovely. And there's a thirty-day money-back guarantee, so you can try it yourself.",
  "vo3-drawer": "Jade rollers. Gua sha stones. Creams that promised everything. Most of them end up in the bathroom drawer. Trivelle is different, because it does three things at once. Red light for a radiant-looking glow. EMS micro-pulses for a toned, firmer feel. And a suction massage that leaves skin looking smoother. Here's the routine. A thin layer of Glide Gel. Choose your mode. Slow upward strokes, about ten minutes. Three to five times a week. That's it. Cordless, rechargeable, and it fits in your hand. One hundred and sixty-nine dollars, under a dollar a session, with a thirty-day money-back guarantee and free shipping Australia-wide. Clear out the drawer. Trivelle. Three rituals. One device.",
 }
 
 
+def _norm(t):
+    import re
+    t = t.lower().replace("-", " ")
+    return re.sub(r"[^a-z0-9 ]", "", t)
+
+
+NUM = {"trivone": "trivelle", "48": "fortyeight", "10": "ten", "30": "thirty", "100": "hundred", "150": "hundredfifty", "169": "onehundredsixtynine"}
+
+
 def words(name):
-    """Whisper gives timing; the script gives the words. Spread script words across
-    the whisper timeline by matching character position, so captions say exactly
-    what was written (and spoken) with whisper's timing."""
+    """Exact script words, each timed to the moment it is spoken: script tokens are
+    aligned to whisper word tokens (difflib); matched words take whisper's own
+    timing, unmatched ones are interpolated between their matched neighbours."""
+    import difflib
     d = json.load(open(os.path.join(ASR, name + ".json")))
     asr = [(s["offsets"]["from"] / 1000, s["offsets"]["to"] / 1000, s["text"].strip())
            for s in d["transcription"] if s["text"].strip()]
     script = SCRIPTS[name].split()
-    # cumulative character fraction for each asr word -> time
-    alen = sum(len(w[2]) + 1 for w in asr); slen = sum(len(w) + 1 for w in script)
-    pts, c = [], 0
-    for a, b, t in asr:
-        pts.append((c / alen, a)); c += len(t) + 1; pts.append((c / alen, b))
-    def t_at(f):
-        for (f0, t0), (f1, t1) in zip(pts, pts[1:]):
-            if f0 <= f <= f1:
-                return t0 if f1 == f0 else t0 + (t1 - t0) * (f - f0) / (f1 - f0)
-        return pts[-1][1]
-    out, c = [], 0
-    for w in script:
-        a = t_at(c / slen); c += len(w) + 1; b = t_at(c / slen)
-        out.append((a, b, w))
-    return out
-
-
-FIX = {"trivial": "Trivelle", "Trivial": "Trivelle", "Travelle": "Trivelle", "travelle": "Trivelle",
-       "gwasha": "gua sha", "ENS": "EMS", "overpaying": "over paying", "you're checking": "you check in",
-       "Glide Gel": "Glide Gel", "glide gel": "Glide Gel"}
+    sa = [_norm(w).replace(" ", "") for w in script]
+    aa = [NUM.get(_norm(w[2]).replace(" ", ""), _norm(w[2]).replace(" ", "")) for w in asr]
+    times = [None] * len(script)
+    sm = difflib.SequenceMatcher(None, sa, aa, autojunk=False)
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag == "equal":
+            for k in range(i2 - i1):
+                times[i1 + k] = (asr[j1 + k][0], asr[j1 + k][1])
+        elif tag == "replace" and j2 > j1:
+            # spread the replaced script words across the replaced asr span
+            t0, t1 = asr[j1][0], asr[j2 - 1][1]
+            n = i2 - i1
+            for k in range(n):
+                times[i1 + k] = (t0 + (t1 - t0) * k / n, t0 + (t1 - t0) * (k + 1) / n)
+    # interpolate any gaps
+    for i in range(len(script)):
+        if times[i] is None:
+            prev = next((times[j][1] for j in range(i - 1, -1, -1) if times[j]), 0.0)
+            nxt = next((times[j][0] for j in range(i + 1, len(script)) if times[j]), prev + 0.3)
+            times[i] = (prev, max(prev + 0.05, nxt))
+    return [(a, b, w) for (a, b), w in zip(times, script)]
 
 
 def chunks(ws, offset=0.0, n=3):
@@ -189,7 +201,9 @@ def norm(src, dst, length, still=False):
             "-c:v", "libx264", "-crf", "18", "-an", dst])
     else:
         ss = 0.0 if src.endswith(("ugc-01-salon-48.mp4",)) or "/stock/" in src else 0.25
-        d = dur(src) - ss
+        if "#ss=" in src:
+            src, off = src.split("#ss="); ss = float(off)
+        d = dur(src) - ss if "#" not in src else 99
         speed = max(0.8, min(1.0, d / length))  # gentle slow-down only, never below 80%
         sharp = "" if "/stock/" in src else "unsharp=5:5:0.6:3:3:0.0,"
         vf = (f"setpts=PTS/{speed:.4f},scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=increase,"
@@ -309,3 +323,24 @@ for k, v in results.items():
         os.path.join(OUT, f"{base}-30s.mp4")])
     os.remove(a); os.remove(tail)
 print("\n".join(sorted(os.listdir(OUT))))
+
+
+# ---- Ad D: seated UGC explainer, her own audio, cutaways on each mode
+SEAT = os.path.join(V, "ugc-02-seated-explainer.mp4")
+wd = words("seated"); ds = dur(SEAT)
+def at(word, nth=0):
+    hits = [w[0] for w in wd if _norm(w[2]).startswith(word)]
+    return hits[nth]
+cuts = [(at("red"), B("d6-stomach-redlight")), (at("ems"), B("d8-arm-redlight")),
+        (at("suction"), B("d5-stomach-lift")), (at("gel"), B("d9-thigh-plus"))]
+seqD, t = [], 0.0
+for i, (c0, clip) in enumerate(cuts):
+    c0 = max(t, c0 - 0.15)
+    nxt = cuts[i + 1][0] - 0.15 if i + 1 < len(cuts) else ds
+    if c0 - t > 0.05:
+        seqD.append((SEAT + f"#ss={t:.3f}", c0 - t, False))
+    L = min(2.4, nxt - c0)
+    seqD.append((clip, L, False)); t = c0 + L
+seqD.append((SEAT + f"#ss={t:.3f}", ds - t, False)); seqD.append((END, 3.5, False))
+totalD = ds + 3.5
+results["D"] = build("trivelle-D-seated-explainer-34s", seqD, SEAT, chunks(wd), totalD, 0)
