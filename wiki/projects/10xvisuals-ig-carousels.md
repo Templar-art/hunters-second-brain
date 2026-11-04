@@ -16,6 +16,8 @@ Main-page (@10xvisuals_) versions of the [[10xrealestate-ig]] v5.2 seamless 9-sl
 | 2/116 Seagull Avenue, Mermaid Beach | Kollosche | Frame.io Print |
 | 13-15 Eagleview Court, Bonogin | Whitefox | Frame.io Print |
 | 39 Harold Street, Stafford | Kodiak Projects | Frame.io Photos |
+| 37 Southaven Drive, Helensvale | Belle Property | REA Drive pull (layout B) |
+| Club Robina, Grand View Hotel, Victoria Point Sharks, CSi Southport | SHAPE | Frame.io Photos (also on construction page) |
 
 Photos pulled via Chrome from Frame.io (10x Clients project) into `Documents/10x Drive Pulls/<client>/`.
 
@@ -27,6 +29,7 @@ Six SHAPE venues added to [10xconstruction-ig](../../projects/10xconstruction-ig
 
 ## Cut / skipped
 - Buckingham Way (Elanora) and 506/388 Marine Parade: built, then cut by Hunter as not editorial enough.
+- Westside HQ and Lions @ Springwood stay construction-only (dated fit-out / mostly pokies).
 - Belle: 25 Bunderoo Circuit (project home) and 5 Jackson St (Drive; cluttered, occupied) skipped; no editorial Belle shoot yet. 84 Southaven, 13 Mayra Ct, 53 Tenth St: video only.
 
 

@@ -360,8 +360,8 @@
     "Lounge"
    ],
    [
-    13,
-    "Kitchen"
+    14,
+    "Glasshouse"
    ],
    [
     19,
@@ -501,5 +501,68 @@
   "layout": "A",
   "cover_mode": "front",
   "cover_shade": 0.38
+ },
+ "37-southaven-dr": {
+  "client": "Belle Property Hope Island",
+  "kicker": "NO. 37",
+  "street": "Southaven",
+  "suffix": "Drive",
+  "area": "HELENSVALE QLD",
+  "place": "Helensvale",
+  "address": "37 Southaven Drive, Helensvale",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Belle Property Hope Island/37 Southaven Drive, Helensvale",
+  "match": "",
+  "photos": [
+   [
+    17,
+    ""
+   ],
+   [
+    20,
+    "Living"
+   ],
+   [
+    3,
+    "Terrace"
+   ],
+   [
+    5,
+    "Kitchen"
+   ],
+   [
+    2,
+    "Cabana"
+   ],
+   [
+    26,
+    "Bath"
+   ],
+   [
+    9,
+    "Courtyard"
+   ],
+   [
+    29,
+    "Retreat"
+   ],
+   [
+    7,
+    "Lounge"
+   ],
+   [
+    21,
+    "Bedroom"
+   ],
+   [
+    14,
+    "Pontoon"
+   ],
+   [
+    1,
+    "Pool"
+   ]
+  ],
+  "cover_mode": "front",
+  "layout": "B"
  }
 }
