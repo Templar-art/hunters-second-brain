@@ -281,3 +281,14 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Lesson:** a hard stop or break beat right before a chorus is the ideal reel or real-estate start point. It gives an instant drop, which matches Hunter's "make the beat drop quicker".
 - **v2:** Hunter said "make the start a little later so i can do establishment clips". The cut now starts 4 bars earlier, on the last line of verse 3, which is calm. Chorus 2 drops at 8.9 s. To hold 60 s, a second 4-bar trim was added inside chorus 2 (beat 262 → 278, vocal gaps, score 0.823). Lesson: real-estate edits want roughly 8–10 s of calm before the drop, enough for establishing shots. A reel wants the drop inside 5 s. Ask which it is, or default to about 8 s for a main real-estate edit.
 - **v3 (`tools/brokenplans_v3.py`):** Hunter asked to "make the beat drop around 14 second or after". The cut now starts at verse 3's first line (beat 192, a clean phrase start), so the drop lands at 16.8 s. The joins are the same as v2. It runs 68 s because no 60 s path exists from this start: verse 3 is one continuous vocal, and the only other usable joins land around 52 s. Updated preference: Hunter wants about 14–17 s of calm before the drop on a main real-estate edit, more than the roughly 9 s I first assumed.
+
+## 4 Nov, wildfire (origins): 30 s hype cut for the company
+`tools/wildfire_origins_hype30.py`, grid in `tools/wildfire_origins_bt.txt`. This is a different song from the Austin Snell and C. James "Wildfire" tracks above.
+- **Tempo trap:** librosa's default beat tracker locked onto 161 BPM (median residual 0.1 s). Onset autocorrelation shows a 1.0 s period, so the song is 120 BPM. Re-tracking with `start_bpm=120` and then the onset-snap refit holds every block within 0.02 s. **Always check tempo against onset autocorrelation before trusting the tracker.**
+- **The cut (29.1 s, -14 LUFS):**
+  1. Starts on the song's own stop bar (beat 168), so the instrumental hook drops at 3.1 s.
+  2. Joins 180 → 196, a 4-bar repeat inside the hook (score 0.958).
+  3. Chorus 2 vocal comes in at 9 s.
+  4. Joins 208 → 240, an 8-bar repeat with vocal gaps on both sides (score 0.929).
+  5. Runs to the end of chorus 2.
+- **Ending trade-off:** the real outro is 18 s of quiet vocal, and every path into it left a 30 s cut that was mostly calm. So the hype cut ends on chorus 2's own wind-down (-6 → -17 dB over 4 s), with a 2 s fade on the last bar. That's the song's own decay plus a fade, with no synthetic tail. If Hunter rejects the ending, the next option is ending on a hard downbeat stop.
