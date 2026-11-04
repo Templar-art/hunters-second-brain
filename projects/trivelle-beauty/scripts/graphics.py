@@ -53,7 +53,7 @@ d.text((70, 60), "How to use", font=f("Regular", 52), fill=MUTE)
 d.text((70, 120), "your Trivelle", font=f("Bold", 60), fill=INK)
 steps = [("02-stomach.png", "Apply the gel", "Spread a thin, even layer of Glide Gel on clean, dry skin."),
          ("04-thigh.png", "Glide for 10 minutes", "Pick a mode and level, then move slowly over each area."),
-         ("07-lifestyle-older.png", "Repeat daily", "Wipe off any leftover gel or massage it in. Use it every day.")]
+         ("07-lifestyle-older.png", "Repeat 3–5x a week", "Wipe off leftover gel and follow with your usual skincare.")]
 y = 250
 for k, (img, h, b) in enumerate(steps):
     ph = rounded(fit(f"{S}/{img}", 240, 230), 22); im.paste(ph, (70, y), ph)
