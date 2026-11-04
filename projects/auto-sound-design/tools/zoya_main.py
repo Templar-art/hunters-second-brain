@@ -13,9 +13,9 @@ SR = 44100; rng = np.random.default_rng(5)
 y, _ = librosa.load(F, sr=SR, mono=False); v, _ = librosa.load(VOC, sr=SR)
 g = np.loadtxt(BT); B = float(np.mean(np.diff(g)))
 I = lambda t: int(round(t * SR)); H = 0.04
-START = g[128] - 0.02; PRE = 1.0; OFF = g[380] - g[200] - 0.0368  # v2: measured onset lag at the join (flam fix)
+START = g[128] - 0.02; PRE = 1.0; OFF = g[400] - g[244] + 0.180  # v3: join b244->b400, measured lag (grid drifts ~180 ms)
 def vrms(t): x = v[I(t - 0.08):I(t + 0.08)]; return np.sqrt(np.mean(x ** 2))
-cand = np.arange(g[200] - B, g[200] + B, 0.01)
+cand = np.arange(g[244] - B, g[244] + B, 0.005)
 JT = cand[np.argmin([max(vrms(t), vrms(t + OFF)) for t in cand])]
 print("join out %.2f in %.2f  voc %.1f/%.1f dB" % (JT, JT + OFF, 20*np.log10(vrms(JT)+1e-9), 20*np.log10(vrms(JT+OFF)+1e-9)))
 segs = [(START, JT), (JT + OFF, y.shape[1] / SR)]
