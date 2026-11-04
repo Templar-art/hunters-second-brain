@@ -1736,3 +1736,6 @@ Added Gallery/Magazine layouts to build_carousels.py; 6 SHAPE venue decks on the
 ## [2026-11-04] ingest | wildfire (origins) 30 s hype cut + tempo-trap lesson
 ## [2026-11-04] ingest | wildfire (origins) hype v2: one join, chorus 3 drop, natural decay ending
 ## [2026-11-04] ingest | wildfire hype v3: punchier start (drop 2.0 s, louder pre-drop FX)
+
+## [2026-11-04] ingest | Main-page carousels batch 3
+5 more listing decks + Westside HQ and Lions @ Springwood added to @10xvisuals_ carousels.

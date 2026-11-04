@@ -564,5 +564,442 @@
   ],
   "cover_mode": "front",
   "layout": "B"
+ },
+ "59-cylinders-dr": {
+  "folder": "59 Cylinders Drive | Salt PM",
+  "kicker": "NO. 59",
+  "street": "Cylinders",
+  "suffix": "Drive",
+  "area": "KINGSCLIFF NSW",
+  "place": "Kingscliff",
+  "address": "59 Cylinders Drive, Kingscliff",
+  "photos": [
+   [
+    8,
+    ""
+   ],
+   [
+    1,
+    "Living"
+   ],
+   [
+    7,
+    "Courtyard"
+   ],
+   [
+    13,
+    "Entry"
+   ],
+   [
+    2,
+    "Kitchen"
+   ],
+   [
+    20,
+    "Bedroom"
+   ],
+   [
+    4,
+    "Lounge"
+   ],
+   [
+    14,
+    "Garden"
+   ],
+   [
+    4,
+    "Lounge"
+   ],
+   [
+    16,
+    "Ensuite"
+   ],
+   [
+    20,
+    "Bedroom"
+   ],
+   [
+    9,
+    "Gallery"
+   ]
+  ],
+  "layout": "B"
+ },
+ "10-australis-ct": {
+  "folder": "10 Australis Court | Kollosche",
+  "kicker": "NO. 10",
+  "street": "Australis",
+  "suffix": "Court",
+  "area": "MERMAID WATERS QLD",
+  "place": "Mermaid Waters",
+  "address": "10 Australis Court, Mermaid Waters",
+  "photos": [
+   [
+    21,
+    ""
+   ],
+   [
+    22,
+    "Living"
+   ],
+   [
+    13,
+    "Waterfront"
+   ],
+   [
+    3,
+    "Dining"
+   ],
+   [
+    10,
+    "Alfresco"
+   ],
+   [
+    4,
+    "Bedroom"
+   ],
+   [
+    1,
+    "Lounge"
+   ],
+   [
+    5,
+    "Shower"
+   ],
+   [
+    1,
+    "Lounge"
+   ],
+   [
+    17,
+    "Outlook"
+   ],
+   [
+    4,
+    "Bedroom"
+   ],
+   [
+    12,
+    "Pool"
+   ]
+  ],
+  "layout": "B"
+ },
+ "47-somerset-dr": {
+  "dir": "/Users/10xhunter/Desktop/Websites photos and videos/Photos",
+  "match": "Somerset Drive _ Print",
+  "kicker": "NO. 47",
+  "street": "Somerset",
+  "suffix": "Drive",
+  "area": "MUDGEERABA QLD",
+  "place": "Mudgeeraba",
+  "address": "47 Somerset Drive, Mudgeeraba",
+  "photos": [
+   [
+    27,
+    ""
+   ],
+   [
+    22,
+    "Living"
+   ],
+   [
+    3,
+    "From above"
+   ],
+   [
+    23,
+    "Games room"
+   ],
+   [
+    18,
+    "Kitchen"
+   ],
+   [
+    0,
+    "Entry"
+   ],
+   [
+    14,
+    "Alfresco"
+   ],
+   [
+    10,
+    "Lounge"
+   ],
+   [
+    14,
+    "Alfresco"
+   ],
+   [
+    50,
+    "Bedroom"
+   ],
+   [
+    0,
+    "Entry"
+   ],
+   [
+    54,
+    "Pool"
+   ]
+  ],
+  "cover_mode": "front",
+  "layout": "B"
+ },
+ "solis-673-casuarina-way": {
+  "folder": "Solis 673 Casuarina Way | SALTPM",
+  "kicker": "SOLIS 673",
+  "street": "Casuarina",
+  "suffix": "Way",
+  "area": "CASUARINA NSW",
+  "place": "Casuarina",
+  "address": "Solis, 673 Casuarina Way",
+  "photos": [
+   [
+    5,
+    ""
+   ],
+   [
+    9,
+    "Kitchen and dining"
+   ],
+   [
+    10,
+    "Entry"
+   ],
+   [
+    4,
+    "Alfresco"
+   ],
+   [
+    2,
+    "Tub"
+   ],
+   [
+    15,
+    "Vanity"
+   ],
+   [
+    8,
+    "Living"
+   ],
+   [
+    14,
+    "Bathroom"
+   ],
+   [
+    8,
+    "Living"
+   ],
+   [
+    1,
+    "Bedroom"
+   ],
+   [
+    0,
+    "Retreat"
+   ],
+   [
+    6,
+    "Lap pool"
+   ]
+  ],
+  "layout": "C"
+ },
+ "elanora-ave-townhouses": {
+  "folders": [
+   "2:7A Elanora Ave | Salt Pm",
+   "2:9B Elanora Ave | Salt PM"
+  ],
+  "kicker": "2/7A AND 2/9B",
+  "street": "Elanora",
+  "suffix": "Avenue",
+  "area": "POTTSVILLE NSW",
+  "place": "Pottsville",
+  "address": "2/7A and 2/9B Elanora Avenue, Pottsville",
+  "cover_crop": [
+   0.22,
+   0.0,
+   1.0,
+   0.86
+  ],
+  "photos": [
+   [
+    8,
+    ""
+   ],
+   [
+    18,
+    "Living"
+   ],
+   [
+    20,
+    "Plunge pool"
+   ],
+   [
+    1,
+    "Bedroom"
+   ],
+   [
+    3,
+    "Bath"
+   ],
+   [
+    11,
+    "Stair"
+   ],
+   [
+    9,
+    "Kitchen"
+   ],
+   [
+    4,
+    "Tub"
+   ],
+   [
+    9,
+    "Kitchen"
+   ],
+   [
+    15,
+    "Vanity"
+   ],
+   [
+    2,
+    "Bedroom"
+   ],
+   [
+    0,
+    "Living"
+   ]
+  ],
+  "layout": "C"
+ },
+ "westside-hq": {
+  "client": "SHAPE",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/CON/SHAPE AUS/Westside HQ",
+  "match": "",
+  "kicker": "SHAPE",
+  "street": "Westside",
+  "suffix": "HQ",
+  "area": "CORINDA QLD",
+  "place": "Corinda",
+  "address": "Westside HQ, Corinda",
+  "photos": [
+   [
+    10,
+    ""
+   ],
+   [
+    5,
+    "Dining"
+   ],
+   [
+    1,
+    "Bar"
+   ],
+   [
+    13,
+    "Amenities"
+   ],
+   [
+    4,
+    "Ceiling"
+   ],
+   [
+    9,
+    "Entry"
+   ],
+   [
+    14,
+    "Vanity"
+   ],
+   [
+    21,
+    "Snooker"
+   ],
+   [
+    6,
+    "Bistro"
+   ],
+   [
+    20,
+    "Servery"
+   ],
+   [
+    18,
+    "Lounge"
+   ],
+   [
+    3,
+    "Function"
+   ]
+  ],
+  "layout": "C",
+  "cover_mode": "front"
+ },
+ "lions-springwood": {
+  "client": "SHAPE",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/CON/SHAPE AUS/Lions Springwood",
+  "match": "",
+  "kicker": "SHAPE",
+  "street": "Lions",
+  "suffix": "Springwood",
+  "area": "SPRINGWOOD QLD",
+  "place": "Springwood",
+  "address": "Lions @ Springwood, Springwood",
+  "photos": [
+   [
+    1,
+    ""
+   ],
+   [
+    12,
+    "Bar"
+   ],
+   [
+    4,
+    "Spirits"
+   ],
+   [
+    3,
+    "Cashier"
+   ],
+   [
+    24,
+    "Entry"
+   ],
+   [
+    17,
+    "Booths"
+   ],
+   [
+    11,
+    "Detail"
+   ],
+   [
+    10,
+    "Screens"
+   ],
+   [
+    20,
+    "Floor"
+   ],
+   [
+    2,
+    "Signage"
+   ],
+   [
+    22,
+    "Gaming"
+   ],
+   [
+    0,
+    "Lounge"
+   ]
+  ],
+  "layout": "B",
+  "cover_mode": "front"
  }
 }
