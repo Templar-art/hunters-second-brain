@@ -1,4 +1,4 @@
-"""v5 (2026-11-05): start beat 124 (v4 at beat 112 was "too much"), about 18 s before the drop.
+"""v6 (2026-11-05): start beat 126, about 17 s before the drop (v5 at 18 s was a touch long; v3 at 16 s was the main edit).
 ZOYA - Pulled Under, main real-estate edit (~56 s), 2026-11-05.
 Grid: tools/zoya_bt.txt (onset-snapped refit, 127.31 BPM). Map (beats): verse 0-156, near-silent break 156-160,
 DROP 1 instrumental 160-192, chorus 192-252, verse 2 252-352, DROP 2 356-412, real ending 412-end.
@@ -14,7 +14,7 @@ SR = 44100; rng = np.random.default_rng(5)
 y, _ = librosa.load(F, sr=SR, mono=False); v, _ = librosa.load(VOC, sr=SR)
 g = np.loadtxt(BT); B = float(np.mean(np.diff(g)))
 I = lambda t: int(round(t * SR)); H = 0.04
-START = g[124] - 0.02; PRE = 1.0; OFF = g[400] - g[244] + 0.180  # v3: join b244->b400, measured lag (grid drifts ~180 ms)
+START = g[126] - 0.02; PRE = 1.0; OFF = g[400] - g[244] + 0.180  # v3: join b244->b400, measured lag (grid drifts ~180 ms)
 def vrms(t): x = v[I(t - 0.08):I(t + 0.08)]; return np.sqrt(np.mean(x ** 2))
 cand = np.arange(g[244] - B, g[244] + B, 0.005)
 JT = cand[np.argmin([max(vrms(t), vrms(t + OFF)) for t in cand])]
