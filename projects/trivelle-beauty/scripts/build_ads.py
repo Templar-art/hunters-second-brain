@@ -152,24 +152,24 @@ def caption_track(caps, total, path):
         "-c:v", "qtrle", path])
 
 
-def end_card(path, seconds=4):
-    im = Image.new("RGB", (W, H), GREEN)
-    hero = Image.open(os.path.join(ROOT, "stills", "01-hero-final.png")).convert("RGB").resize((1000, 1000))
-    im.paste(hero, (40, 300))
-    d = ImageDraw.Draw(im)
+def end_card(path, seconds=3.5):
+    """Animated hero clip with a light text overlay. No button: a soft spoken-style CTA."""
+    ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(ov)
+    # soft fade at the bottom so the type reads on the white bench
+    for y in range(H - 620, H):
+        a = int(170 * (y - (H - 620)) / 620)
+        d.line([(0, y), (W, y)], fill=(29, 42, 38, a))
     def ctr(txt, y, f, fill):
         d.text(((W - d.textlength(txt, font=f)) / 2, y), txt, font=f, fill=fill)
-    ctr("TRIVELLE", 110, font(130), "white")
-    ctr("THREE RITUALS. ONE DEVICE.", 1370, font(72), "white")
-    ctr("$169 AUD  ·  under $1 a session", 1490, font(50, False), SAGE)
-    ctr("30-day money-back guarantee", 1570, font(50, False), SAGE)
-    ctr("Free shipping Australia-wide", 1650, font(50, False), SAGE)
-    d.rounded_rectangle((290, 1750, 790, 1850), 50, fill=RED)
-    ctr("SHOP NOW", 1768, font(60), "white")
-    png = path.replace(".mp4", ".png"); im.save(png)
-    sh(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-i", png, "-t", str(seconds), "-vf",
-        f"scale={W}:{H},zoompan=z='1+0.0006*on':d={seconds*FPS}:s={W}x{H}:fps={FPS},format=yuv420p",
-        "-c:v", "libx264", "-crf", "18", path])
+    ctr("TRIVELLE", 1440, font(110), "white")
+    ctr("$169  ·  30-day money-back guarantee", 1585, cap_font(44), "white")
+    ctr("Tap below to try it", 1665, cap_font(44), YELLOW)
+    png = path.replace(".mp4", ".png"); ov.save(png)
+    src = os.path.join(V, "broll", "d1-hero.mp4")
+    sh(["ffmpeg", "-v", "error", "-y", "-ss", "1.2", "-i", src, "-i", png, "-t", str(seconds), "-filter_complex",
+        f"[0:v]scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=increase,crop={W}:{H},"
+        f"unsharp=5:5:0.5,fps={FPS}[b];[b][1:v]overlay=0:0,fade=t=in:d=0.25,format=yuv420p",
+        "-c:v", "libx264", "-crf", "16", "-an", path])
 
 
 def norm(src, dst, length, still=False):
@@ -188,12 +188,14 @@ def norm(src, dst, length, still=False):
         sh(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-i", src, "-t", f"{length:.3f}", "-vf", vf,
             "-c:v", "libx264", "-crf", "18", "-an", dst])
     else:
-        d = dur(src)
-        speed = min(1.0, d / length)  # slow down slightly if the slot is longer than the clip
-        vf = (f"setpts=PTS/{speed:.4f},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
-              f"fps={FPS},format=yuv420p")
-        sh(["ffmpeg", "-v", "error", "-y", "-i", src, "-t", f"{length:.3f}", "-vf", vf,
-            "-c:v", "libx264", "-crf", "18", "-an", dst])
+        ss = 0.0 if src.endswith(("ugc-01-salon-48.mp4",)) or "/stock/" in src else 0.25
+        d = dur(src) - ss
+        speed = max(0.8, min(1.0, d / length))  # gentle slow-down only, never below 80%
+        sharp = "" if "/stock/" in src else "unsharp=5:5:0.6:3:3:0.0,"
+        vf = (f"setpts=PTS/{speed:.4f},scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=increase,"
+              f"crop={W}:{H},{sharp}fps={FPS},format=yuv420p")
+        sh(["ffmpeg", "-v", "error", "-y", "-ss", f"{ss:.2f}", "-i", src, "-t", f"{length:.3f}", "-vf", vf,
+            "-c:v", "libx264", "-crf", "16", "-an", dst])
 
 
 def build(name, seq, vo, caps, total, vo_offset, hook=None):
@@ -218,7 +220,7 @@ def build(name, seq, vo, caps, total, vo_offset, hook=None):
     fc.append(f"{mix}amix=inputs={k}:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]")
     out = os.path.join(OUT, f"{name}.mp4")
     sh(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(fc), "-map", "[v]", "-map", "[a]",
-        "-t", f"{total:.3f}", "-c:v", "libx264", "-crf", "22", "-maxrate", "3.5M", "-bufsize", "7M", "-preset", "medium", "-c:a", "aac", "-b:a", "192k",
+        "-t", f"{total:.3f}", "-c:v", "libx264", "-crf", "20", "-maxrate", "3.6M", "-bufsize", "7M", "-preset", "slow", "-tune", "film", "-c:a", "aac", "-b:a", "192k",
         "-movflags", "+faststart", out])
     return out
 
@@ -237,10 +239,25 @@ UGC = os.path.join(V, "ugc-01-salon-48.mp4")
 END = os.path.join(WORK, "endcard.mp4"); end_card(END)
 
 
-def fill(clips, span):
-    """Split span seconds evenly across clips."""
-    each = span / len(clips)
-    return [(c, each, c.endswith(".png") or c.endswith(".jpg")) for c in clips]
+def fill(clips, span, start=0.0, ws=None):
+    """Split [start, start+span] across clips, snapping each cut to the nearest
+    phrase start (word after punctuation, else any word start) so cuts land on the voice."""
+    n = len(clips); end = start + span
+    targets = [start + span * k / n for k in range(1, n)]
+    cuts = []
+    if ws:
+        phr = [w[0] for i, w in enumerate(ws) if i and ws[i - 1][2][-1] in ".,!?" and start < w[0] < end]
+        anyw = [w[0] for w in ws if start < w[0] < end]
+        prev = start
+        for t in targets:
+            pool = [x for x in phr if abs(x - t) < span / n * 0.45 and x - prev > 2.2] or \
+                   [x for x in anyw if abs(x - t) < span / n * 0.45 and x - prev > 2.2]
+            c = min(pool, key=lambda x: abs(x - t)) if pool else t
+            cuts.append(c); prev = c
+    else:
+        cuts = targets
+    edges = [start] + cuts + [end]
+    return [(c, edges[i + 1] - edges[i], c.endswith(".png") or c.endswith(".jpg")) for i, c in enumerate(clips)]
 
 
 def first_word(ws, word):
@@ -254,30 +271,30 @@ results = {}
 w1 = words("vo1-salon-cost"); d1 = dur(os.path.join(V, "vo", "vo1-salon-cost.mp3"))
 hook = dur(UGC)
 split = first_word(w1, "Trivelle") - 0.1
-seqA = [(UGC, hook, False)] + fill([B("p06-salon-wait"), B("p05-phone-bill"), ST("s3-mirror-check")], split) \
+seqA = [(UGC, hook, False)] + fill([B("p06-salon-wait"), B("p05-phone-bill"), ST("s3-mirror-check")], split, 0, w1) \
      + fill([B("d10-switch-on"), B("d5-stomach-lift"), B("d6-stomach-redlight"), B("d8-arm-redlight"),
-             ST("s2-device-vanity"), B("d7-thigh-lift"), B("d9-thigh-plus"), B("d2-stomach"), B("d1-hero")], d1 - split) \
-     + [(END, 4, False)]
-totalA = hook + d1 + 4
+             ST("s2-device-vanity"), B("d7-thigh-lift"), B("d9-thigh-plus"), B("d2-stomach"), B("d1-hero")], d1 - split, split, w1) \
+     + [(END, 3.5, False)]
+totalA = hook + d1 + 3.5
 capsA = chunks(words("ugc")) + chunks(w1, hook)
 results["A"] = build("trivelle-A-salon-60s", seqA, os.path.join(V, "vo", "vo1-salon-cost.mp3"), capsA, totalA, hook, hook=UGC)
 
 # ---- Ad B: VO2 lived-a-little
 w2 = words("vo2-lived-a-little"); d2 = dur(os.path.join(V, "vo", "vo2-lived-a-little.mp3"))
 split = first_word(w2, "Trivelle") - 0.1
-seqB = fill([B("p02-arm-pinch"), ST("s1-roller-jaw"), B("p03-shorts-skirt"), B("p11-brunch-sleeve")], split) \
+seqB = fill([B("p02-arm-pinch"), ST("s1-roller-jaw"), B("p03-shorts-skirt"), B("p11-brunch-sleeve")], split, 0, w2) \
      + fill([B("d10-switch-on"), B("d6-stomach-redlight"), B("d8-arm-redlight"), B("d5-stomach-lift"),
-             B("d9-thigh-plus"), B("d4-arm"), B("p12-relief-sofa")], d2 - split) + [(END, 4, False)]
-totalB = d2 + 4
+             B("d9-thigh-plus"), B("d4-arm"), B("p12-relief-sofa")], d2 - split, split, w2) + [(END, 3.5, False)]
+totalB = d2 + 3.5
 results["B"] = build("trivelle-B-lived-a-little-50s", seqB, os.path.join(V, "vo", "vo2-lived-a-little.mp3"), chunks(w2), totalB, 0)
 
 # ---- Ad C: VO3 drawer
 w3 = words("vo3-drawer"); d3 = dur(os.path.join(V, "vo", "vo3-drawer.mp3"))
 split = first_word(w3, "Trivelle") - 0.1
-seqC = fill([B("p07-drawer"), ST("s1-roller-jaw"), B("p09-moisturiser")], split) \
+seqC = fill([B("p07-drawer"), ST("s1-roller-jaw"), B("p09-moisturiser")], split, 0, w3) \
      + fill([B("d1-hero"), B("d6-stomach-redlight"), B("d5-stomach-lift"), ST("s2-device-vanity"), B("d8-arm-redlight"),
-             B("d7-thigh-lift"), B("d3-thigh"), B("d10-switch-on"), B("p12-relief-sofa")], d3 - split) + [(END, 4, False)]
-totalC = d3 + 4
+             B("d7-thigh-lift"), B("d3-thigh"), B("d10-switch-on"), B("p12-relief-sofa")], d3 - split, split, w3) + [(END, 3.5, False)]
+totalC = d3 + 3.5
 results["C"] = build("trivelle-C-drawer-55s", seqC, os.path.join(V, "vo", "vo3-drawer.mp3"), chunks(w3), totalC, 0)
 
 # ---- Cutdowns: 15s = UGC hook + end card; 30s = first 26s + end card tail
@@ -285,7 +302,7 @@ cut(results["A"], "trivelle-A-salon-15s", 0, hook)  # UGC hook alone (talking he
 for k, v in results.items():
     T = dur(v)
     a = cut(v, f"_tmp_{k}_head", 0, 26)
-    tail = cut(v, f"_tmp_{k}_tail", T - 4, 4)
+    tail = cut(v, f"_tmp_{k}_tail", T - 3.5, 3.5)
     lst = os.path.join(WORK, f"cut_{k}.txt"); open(lst, "w").write(f"file '{a}'\nfile '{tail}'\n")
     base = os.path.basename(v).rsplit("-", 1)[0]
     sh(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy",
