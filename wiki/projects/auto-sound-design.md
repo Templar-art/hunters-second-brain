@@ -292,3 +292,12 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
   4. Joins 208 → 240, an 8-bar repeat with vocal gaps on both sides (score 0.929).
   5. Runs to the end of chorus 2.
 - **Ending trade-off:** the real outro is 18 s of quiet vocal, and every path into it left a 30 s cut that was mostly calm. So the hype cut ends on chorus 2's own wind-down (-6 → -17 dB over 4 s), with a 2 s fade on the last bar. That's the song's own decay plus a fade, with no synthetic tail. If Hunter rejects the ending, the next option is ending on a hard downbeat stop.
+- **v2 (33.0 s).** Hunter on v1: "i think it could be cut up a bit better". v1 had three segments in 29 s, the drop landed on an instrumental hook, and it ended on a fade. v2 changes:
+  - It starts in chorus 3's build (beat 300, a vocal gap), so the **sung** chorus drops at 3.0 s.
+  - There is **one** 2-bar trim (336 → 344, vocal gaps on both sides, score 0.879).
+  - It runs through the hook (with a riser into it at 23 s) to where the beat drops out (beat 364).
+  - The ending is the song's own pad decay. From 362.5 the mix crossfades to the demucs instrumental, so the outro's pickup word drops out, and the decay is faded by beat 372. The crossfade is **linear**, because mix and stem are correlated and an equal-power fade would bump the level.
+
+  Lessons:
+  - For hype cuts, **fewer joins and a vocal drop beat a perfectly-scored three-piece jigsaw.**
+  - When a natural decay has a vocal pickup in it, swap to the instrumental stem rather than fading early.
