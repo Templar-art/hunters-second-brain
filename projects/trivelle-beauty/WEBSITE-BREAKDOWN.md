@@ -95,3 +95,7 @@ Keep the 30-day money-back guarantee prominent; with no discount badge it does t
 - [ ] Safety FAQ added (6)
 - [ ] Reviews app installed (7)
 - [ ] Afterpay on (8)
+
+## Brand kit (from Higgsfield, 2026-11-04)
+
+Main #1D2A26 (deep green) · #FFFFFF · #000000 · #E1E8E5 (pale sage) · accent #8B0000 (deep red). Display **Anton**, body **Montserrat** (clean copies in `fonts/`; the system Montserrat files are corrupt). All graphics regenerated in this kit. Note the kit still says "free worldwide shipping" — it was scraped from the site, so it inherits issue #3.

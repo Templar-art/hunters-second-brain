@@ -1,8 +1,16 @@
 """Label the skin cross-section render (2048px) -> 1080 graphic."""
+import os
 from PIL import Image, ImageDraw, ImageFont
 F = "/Users/10xhunter/Library/Fonts/Poppins-"
-def f(w, s): return ImageFont.truetype(F + w + ".ttf", s)
-INK, SAGE, MUTE = (24, 52, 46), (60, 96, 86), (96, 112, 106)
+FD = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "fonts")
+def f(w, s):
+    """Brand kit: Anton display (Bold/Black), Montserrat body."""
+    if w in ("Bold", "Black"):
+        return ImageFont.truetype(f"{FD}/Anton-Regular.ttf", int(s * 1.08))
+    ft = ImageFont.truetype(f"{FD}/Montserrat.ttf", s)
+    ft.set_variation_by_name({"SemiBold": "SemiBold", "Medium": "Medium", "Regular": "Regular"}.get(w, "Regular"))
+    return ft
+INK, SAGE, MUTE = (29, 42, 38), (62, 86, 80), (88, 100, 96)
 im = Image.open("stills/09-skin-layers.png").convert("RGB"); d = ImageDraw.Draw(im)
 d.text((90, 90), "How Trivelle works", font=f("Bold", 92), fill=INK)
 d.text((90, 205), "Three rituals, working together", font=f("Regular", 46), fill=SAGE)
