@@ -36,5 +36,4 @@ Do these in order. Shopify admin works on your phone too (Shopify app).
 
 ## Known issues in the ads
 - Presenters say "Trevolz" (hook) / "Trivel" (seated) — AI mispronunciation; captions read Trivelle. Fine for testing; re-roll if one wins.
-- Copy assumes the 4 modes are heat, red light, EMS, vacuum — confirm with the supplier.
 - All presenters/models are AI-generated. Meta and TikTok require AI-content labels on realistic AI people: tick "AI-generated / altered" when uploading.

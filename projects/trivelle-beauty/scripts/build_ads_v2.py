@@ -218,6 +218,7 @@ def norm(src, dst, length, still=False):
 def build(name, seq, vo, caps, total, vo_offset, hook=None):
     """seq: list of (src, seconds, is_still). hook: ugc clip played first with its own audio."""
     parts = []
+    print(name, [f"{os.path.basename(c)[:14]} {x:.1f}" for c, x, _ in seq])
     for i, (src, sec, st) in enumerate(seq):
         p = os.path.join(WORK, f"{name}_{i:02d}.mp4"); norm(src, p, sec, st); parts.append(p)
     lst = os.path.join(WORK, f"{name}.txt")
@@ -255,6 +256,9 @@ S = lambda p: os.path.join(ROOT, p)
 END = os.path.join(WORK, "endcard.mp4"); end_card(END)
 
 
+MINS = 3.5  # no shot shorter than this
+
+
 def fill(clips, span, start=0.0, ws=None):
     """Split [start, start+span] across clips, snapping each cut to the nearest
     phrase start (word after punctuation, else any word start) so cuts land on the voice."""
@@ -266,8 +270,8 @@ def fill(clips, span, start=0.0, ws=None):
         anyw = [w[0] for w in ws if start < w[0] < end]
         prev = start
         for t in targets:
-            pool = [x for x in phr if abs(x - t) < span / n * 0.45 and x - prev > 2.2] or \
-                   [x for x in anyw if abs(x - t) < span / n * 0.45 and x - prev > 2.2]
+            pool = [x for x in phr if abs(x - t) < span / n * 0.45 and x - prev > MINS and end - x > MINS] or \
+                   [x for x in anyw if abs(x - t) < span / n * 0.45 and x - prev > MINS and end - x > MINS]
             c = min(pool, key=lambda x: abs(x - t)) if pool else t
             cuts.append(c); prev = c
     else:
@@ -288,24 +292,24 @@ results = {}
 
 w1 = words("vo1-salon-cost"); d1 = dur(VO("vo1-salon-cost")); hook = dur(UGC)
 split = first_word(w1, "Trivelle") - 0.1
-seqA = [(UGC, hook, False)] + fill([B("p06-salon-wait"), B("p05-phone-bill"), ST("s3-mirror-check")], split, 0, w1) \
-     + fill([N2("v6-screen-on"), N2("v7-stomach-red"), N2("v3-arm-red"), N2("v1-stomach-glow"), N2("v4-jaw"),
-             N2("v2-thigh-back"), N2("v5-thigh-front"), N2("v8-arm-orbit"), B("p12-relief-sofa")], d1 - split, split, w1) + [(END, 3.5, False)]
+seqA = [(UGC, hook, False)] + fill([B("p06-salon-wait"), ST("s3-mirror-check")], split, 0, w1) \
+     + fill([N2("v6-screen-on"), N2("v7-stomach-red"), N2("v3-arm-red"), N2("v4-jaw"), N2("v2-thigh-back"),
+             B("p08-cardigan"), ST("s3-mirror-check") + "#ss=14", B("p12-relief-sofa")], d1 - split, split, w1) + [(END, 3.5, False)]
 totalA = hook + d1 + 3.5
 results["A"] = build("trivelle-A-salon", seqA, VO("vo1-salon-cost"), chunks(words("ugc2")) + chunks(w1, hook), totalA, hook, hook=UGC)
 
 w2 = words("vo2-lived-a-little"); d2 = dur(VO("vo2-lived-a-little"))
 split = first_word(w2, "Trivelle") - 0.1
-seqB = fill([B("p02-arm-pinch"), ST("s1-roller-jaw"), B("p03-shorts-skirt"), B("p11-brunch-sleeve")], split, 0, w2) \
-     + fill([N2("v6-screen-on"), N2("v1-stomach-glow"), N2("v3-arm-red"), N2("v7-stomach-red"), N2("v5-thigh-front"),
-             N2("v4-jaw"), B("p12-relief-sofa")], d2 - split, split, w2) + [(END, 3.5, False)]
+seqB = fill([B("p02-arm-pinch"), B("p03-shorts-skirt")], split, 0, w2) \
+     + fill([N2("v6-screen-on"), N2("v1-stomach-glow"), N2("v3-arm-red"), N2("v4-jaw"), N2("v5-thigh-front"),
+             B("p12-relief-sofa")], d2 - split, split, w2) + [(END, 3.5, False)]
 results["B"] = build("trivelle-B-lived-a-little", seqB, VO("vo2-lived-a-little"), chunks(w2), d2 + 3.5, 0)
 
 w3 = words("vo3-drawer"); d3 = dur(VO("vo3-drawer"))
 split = first_word(w3, "Trivelle") - 0.1
-seqC = fill([B("p07-drawer"), ST("s1-roller-jaw"), B("p09-moisturiser")], split, 0, w3) \
-     + fill([N2("v6-screen-on"), N2("v7-stomach-red"), N2("v8-arm-orbit"), N2("v1-stomach-glow"), N2("v4-jaw"),
-             N2("v2-thigh-back"), N2("v3-arm-red"), N2("v5-thigh-front"), B("p12-relief-sofa")], d3 - split, split, w3) + [(END, 3.5, False)]
+seqC = fill([B("p07-drawer"), B("p09-moisturiser")], split, 0, w3) \
+     + fill([N2("v6-screen-on"), N2("v7-stomach-red"), N2("v8-arm-orbit"), N2("v4-jaw"), N2("v2-thigh-back"),
+             B("p11-brunch-sleeve"), B("p10-bed-scroll"), B("p12-relief-sofa")], d3 - split, split, w3) + [(END, 3.5, False)]
 results["C"] = build("trivelle-C-drawer", seqC, VO("vo3-drawer"), chunks(w3), d3 + 3.5, 0)
 
 SEAT = os.path.join(D2, "ugc-02-seated-v2.mp4")
@@ -313,15 +317,18 @@ if os.path.exists(SEAT):
     wd = words("seated"); ds = dur(SEAT)
     def at(word):
         return next(w[0] for w in wd if _norm(w[2]).startswith(word))
-    cuts = [(at("heat"), N2("v1-stomach-glow")), (at("red"), N2("v3-arm-red")), (at("ems"), N2("v7-stomach-red")),
+    cuts = [(at("heat"), N2("v1-stomach-glow")), (at("ems"), N2("v7-stomach-red")),
             (at("vacuum"), N2("v2-thigh-back")), (at("screen"), N2("v6-screen-on")), (at("gel"), N2("v5-thigh-front"))]
     seqD, t = [], 0.0
     for i, (c0, clip) in enumerate(cuts):
         c0 = max(t, c0 - 0.15)
         nxt = cuts[i + 1][0] - 0.15 if i + 1 < len(cuts) else ds
-        if c0 - t > 0.05:
+        if c0 - t > 0.05 and seqD and c0 - t < 1.5:
+            seqD[-1] = (seqD[-1][0], seqD[-1][1] + c0 - t, False)
+        elif c0 - t > 0.05:
             seqD.append((SEAT + f"#ss={t:.3f}", c0 - t, False))
-        L = min(2.2, nxt - c0)
+        L = min(3.2, nxt - c0)
+        if nxt - c0 - L < 1.5: L = nxt - c0  # no presenter flash shorter than 1.5 s
         seqD.append((clip, L, False)); t = c0 + L
     seqD.append((SEAT + f"#ss={t:.3f}", ds - t, False)); seqD.append((END, 3.5, False))
     results["D"] = build("trivelle-D-seated-explainer", seqD, SEAT, chunks(wd), ds + 3.5, 0)
