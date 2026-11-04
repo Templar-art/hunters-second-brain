@@ -1,4 +1,4 @@
-"""v7 (2026-11-05): start beat 130, drop at about 15 s (Hunter: "like 15 seconds or so").
+"""v8 (2026-11-05): start beat 128, no pre-roll and no intro FX, 0.25 s fade-in, drop at about 15 s.
 ZOYA - Pulled Under, main real-estate edit (~56 s), 2026-11-05.
 Grid: tools/zoya_bt.txt (onset-snapped refit, 127.31 BPM). Map (beats): verse 0-156, near-silent break 156-160,
 DROP 1 instrumental 160-192, chorus 192-252, verse 2 252-352, DROP 2 356-412, real ending 412-end.
@@ -14,7 +14,7 @@ SR = 44100; rng = np.random.default_rng(5)
 y, _ = librosa.load(F, sr=SR, mono=False); v, _ = librosa.load(VOC, sr=SR)
 g = np.loadtxt(BT); B = float(np.mean(np.diff(g)))
 I = lambda t: int(round(t * SR)); H = 0.04
-START = g[130] - 0.02; PRE = 1.0; OFF = g[400] - g[244] + 0.180  # v3: join b244->b400, measured lag (grid drifts ~180 ms)
+START = g[128] - 0.02; PRE = 0.0; OFF = g[400] - g[244] + 0.180  # v3: join b244->b400, measured lag (grid drifts ~180 ms)
 def vrms(t): x = v[I(t - 0.08):I(t + 0.08)]; return np.sqrt(np.mean(x ** 2))
 cand = np.arange(g[244] - B, g[244] + B, 0.005)
 JT = cand[np.argmin([max(vrms(t), vrms(t + OFF)) for t in cand])]
@@ -27,7 +27,7 @@ mix = None
 for j, (a, b) in enumerate(segs):
     x = y[:, I(a - (H if j else 0)):I(b + (H if j < len(segs) - 1 else 0))]
     mix = x.copy() if mix is None else xf(mix, x, I(2 * H))
-f0 = I(0.03); mix[:, :f0] *= np.linspace(0, 1, f0)
+f0 = I(0.25); mix[:, :f0] *= np.linspace(0, 1, f0)
 mix = np.concatenate([np.zeros((2, I(PRE))), mix], 1)
 J = JT - START + PRE; DROP = g[160] - START + PRE
 lp = lambda x, f: sosfilt(butter(2, f, "low", fs=SR, output="sos"), x, axis=-1)
@@ -49,7 +49,7 @@ def lib(name, t, db, align="peak", lo=None, hi=None):
     if align == "peak": s_ = s_[: k + I(0.03)]; q = I(0.03); s_[-q:] *= np.linspace(1, 0, q); put(s_, t - k / SR, db)
     else: put(s_[k:], t, db)
 swell(J, 1, -16); lib("whoosh_1.wav", J, -24, lo=7000, hi=300)
-swell(PRE, 2, -11); lib("riser_2.wav", PRE, -20, lo=8000)
+# v8: no intro swell + riser (Hunter: "the very start where it does that weird thing")
 swell(DROP, 2, -9); lib("riser_1.wav", DROP, -14, lo=9000); lib("sub_1.wav", DROP, -11, align="attack", lo=150)
 for name, x in (("mix", mix + fx), ("clean", mix), ("fx", fx)): sf.write(f"{OUTD}/{name}_raw.wav", x.T, SR, subtype="FLOAT")
 print("len %.2f  drop %.2f  join %.2f" % (mix.shape[1] / SR, DROP, J))
