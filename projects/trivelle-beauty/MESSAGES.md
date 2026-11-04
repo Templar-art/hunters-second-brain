@@ -1,12 +1,12 @@
 # Trivelle — ready-to-send messages
 
 ## To the supplier (send now)
-Hi! A few quick things before we launch:
-1. What are the exact device dimensions (length × width × height, mm) and weight? And the gel tube size?
-2. Can you ship each order in your standard box with the English manual and the 80 g gel included?
-3. Please don't include any invoice, price list or supplier branding in the parcel — customers buy from our store.
-4. Do you provide a tracking number for every order, and how soon after the order is placed?
-5. Later we may want our own printed box (about 170 × 115 × 180 mm, cardboard insert). Could you quote 300 and 500 units, packed by you?
+Hi! We're getting ready to launch. A few quick things:
+1. Please ship each order in your standard box with the device, USB cable, English manual and the 80 g gel included.
+2. Please don't put any invoice, prices or supplier branding in the parcel. Customers buy from our store.
+3. Do you provide a tracking number for every order? How soon after the order is placed?
+4. How long does it take from order to dispatch?
+5. If a customer gets a faulty unit, can you send a replacement?
 Thanks!
 
 ## Customer emails / replies
