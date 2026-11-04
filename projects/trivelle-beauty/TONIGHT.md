@@ -22,3 +22,7 @@ Download Trivelle-Launch-Pack.zip from Google Drive (My Drive), unzip, open LAUN
 ## After
 - Don't touch the ads for 3 days. Day 3+: turn off any ad with ~$40 spent and no add-to-carts.
 - Day 5: screenshot results → send to Claude for the winner + next hooks.
+
+## Still to ask the supplier (before first order)
+- Does the gel fit in the stock box? If not, one tracking number or two?
+- Returns: AU return address, or refund + customer keeps it?
