@@ -2,7 +2,7 @@
 type: project
 tags: [audio, sfx, final-cut-pro, automation, tools, editing]
 status: built-unproven
-updated: 2026-11-02
+updated: 2026-11-05
 ---
 
 # Auto Sound Design
@@ -302,3 +302,5 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
   - For hype cuts, **fewer joins and a vocal drop beat a perfectly-scored three-piece jigsaw.**
   - When a natural decay has a vocal pickup in it, swap to the instrumental stem rather than fading early.
 - **v3 (32.0 s).** Hunter on v2: "I like it the start feel weak the rest is nice". The 1.5 s of quiet build (-20 dB, vocal gap) read as dead air. v3 starts on the last build beat (303), so the chorus hits at 2.0 s. The pre-drop FX are 6-8 dB louder: swell -3, riser -6, sub -8, plus a boom at -12. The build-up now rises -29 → -20 dB into the drop instead of sitting around -30. Everything after the drop is unchanged. **Hype rule:** the opening second must already be rising. Quiet build bars belong to the cinematic cut, not the hype cut.
+
+- **ZOYA "Pulled Under" main-edit cut (2026-11-05), approved as "seamless now".** 68 s: start at beat 128 (61.28 s), drop at 16.1 s, one join b244 → b400 at 55.7 s, then the song's own ending. Mix, clean and FX-only stems at -14 LUFS are in `output/zoya-pulled-under/`. **Lesson:** the onset-refit grid drifted about 180 ms between chorus 1 and drop 2, so v1 (b200 → b380) and v2 (a 37 ms nudge) both doubled at the join. `tools/zoya_join2.py` measures the true lag per candidate over ±0.3 s and scores chroma, mel and onset on the instrumental stem. Seamless joins scored mel ≥ 0.85. A check of beat intervals through the rendered join (≤ 9 ms deviation) confirmed it. Scripts: `tools/zoya_main.py`, `zoya_join2.py`, `zoya_analyse.py`.
