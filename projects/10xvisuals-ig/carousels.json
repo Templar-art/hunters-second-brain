@@ -1,0 +1,64 @@
+{
+ "5-esther-pl": {
+  "client": "Kollosche",
+  "kicker": "NO. 5",
+  "street": "Esther",
+  "suffix": "Place",
+  "area": "SURFERS PARADISE QLD",
+  "place": "Surfers Paradise",
+  "address": "5 Esther Place, Surfers Paradise",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Kollosche/5 Esther Place Print",
+  "match": "",
+  "photos": [
+   [
+    12,
+    ""
+   ],
+   [
+    3,
+    "Living"
+   ],
+   [
+    1,
+    "Island"
+   ],
+   [
+    6,
+    "Terrace"
+   ],
+   [
+    13,
+    "Stair"
+   ],
+   [
+    23,
+    "Bath"
+   ],
+   [
+    18,
+    "Entry"
+   ],
+   [
+    29,
+    "Lift"
+   ],
+   [
+    9,
+    "Dining"
+   ],
+   [
+    24,
+    "Bedroom"
+   ],
+   [
+    7,
+    "Kitchen"
+   ],
+   [
+    16,
+    "Facade"
+   ]
+  ],
+  "cover_mode": "front"
+ }
+}
