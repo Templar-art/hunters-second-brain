@@ -19,11 +19,11 @@ Free AU shipping · 30-day money-back guarantee
 
 ## The 9 posts (post in this order)
 
-Posts marked "Reel" are videos from `New ads/reels/`. The rest are images from the Launch Pack zip (`device-v2/graphics/` and `device-v2/stills/`).
+Posts marked "Reel" are videos from `New ads/reels/`. The rest are images from Launch Pack zip → "1 Product images".
 
 ---
 
-**Post 1 — image: `graphics/01-kit-hero.jpg`**
+**Post 1 — image: `01-01-kit-hero.jpg`**
 ```
 Meet Trivelle.
 
@@ -48,7 +48,7 @@ Cancelled the salon bill. Kept the ritual. 🛋️
 
 ---
 
-**Post 3 — image: `graphics/02-four-rituals.jpg`**
+**Post 3 — image: `02-02-four-rituals.jpg`**
 ```
 Four rituals, one device.
 
@@ -75,7 +75,7 @@ Tag the friend who needs the link.
 
 ---
 
-**Post 5 — image: `graphics/03-how-to-use.jpg`**
+**Post 5 — image: `04-03-how-to-use.jpg`**
 ```
 How to use it, in three steps.
 
@@ -99,7 +99,7 @@ Ten minutes on the couch, a few nights a week.
 
 ---
 
-**Post 7 — image: `graphics/04-gel.jpg`**
+**Post 7 — image: `05-04-gel.jpg`**
 ```
 The part nobody talks about: the gel.
 
@@ -121,7 +121,7 @@ Your new ten-minute wind-down.
 
 ---
 
-**Post 9 — image: `graphics/08-guarantee.jpg`**
+**Post 9 — image: `10-08-guarantee.jpg`**
 ```
 Try it for 30 days.
 
