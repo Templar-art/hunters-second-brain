@@ -121,7 +121,8 @@
     "Balcony"
    ]
   ],
-  "cover_mode": "front"
+  "cover_mode": "front",
+  "layout": "C"
  },
  "13-15-eagleview-ct": {
   "client": "Whitefox",
@@ -245,6 +246,7 @@
     "Rear"
    ]
   ],
-  "cover_mode": "front"
+  "cover_mode": "front",
+  "layout": "B"
  }
 }

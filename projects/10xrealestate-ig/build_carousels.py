@@ -255,6 +255,147 @@ def compose(listing, photos):
     return c
 
 
+def compose_b(listing, photos):
+    """Layout B 'Gallery': ink pages, left-set cover, seamless panorama, 2x2 grid,
+    vertical place name, staggered columns across the seam, full-bleed close."""
+    p = [photos[i] for i, _ in listing["photos"]]
+    lab = [l for _, l in listing["photos"]]
+    c = Image.new("RGBA", (W * SLIDES, H), INK + (255,))
+    s = lambda n: W * (n - 1)
+
+    # 1 · cover: full bleed, name set flush left low
+    c.paste(load(p[0], (W, H)), (0, 0))
+    shade(c, (0, int(H * 0.4), W, H), 0, 215)
+    d = ImageDraw.Draw(c)
+    big = fit(d, listing["street"], "SemiBold", 230, W - 2 * M - 20)
+    top = d.textbbox((M - 6, H - 300), listing["street"], font=big, anchor="ls")[1]
+    tracked(d, (M + 2, top - 40), listing["kicker"], font("Medium", 26), (255, 255, 255, 235), 9)
+    d.text((M - 6, H - 300), listing["street"], anchor="ls", fill="white", font=big)
+    d.text((M, H - 230), listing["suffix"], anchor="lm", fill="white", font=font("LightItalic", 96))
+    d.line((M, H - 120, M + 44, H - 120), fill=BLUE, width=3)
+    tracked(d, (M + 60, H - 120), listing["area"], font("Medium", 24), (255, 255, 255, 230), 8)
+
+    # 2-3 · one panorama running straight across the seam
+    place(c, p[1], (s(2) + M, 200, s(3) + W - M, 1130))
+    caption(d, (s(2) + M, 1200), 1, lab[1], light=True)
+
+    # 4 · 2x2 grid
+    gw, gh, gg = 460, 500, 24
+    gx, gy = s(4) + (W - 2 * gw - gg) // 2, 190
+    for k in range(4):
+        x, y = gx + (k % 2) * (gw + gg), gy + (k // 2) * (gh + gg + 50)
+        place(c, p[2 + k], (x, y, x + gw, y + gh))
+        caption(d, (x, y + gh + 26), 2 + k, lab[2 + k], light=True)
+
+    # 5 · place name set vertically, tall photo beside it
+    place(c, p[6], (s(5) + 360, 170, s(5) + W - M, 1180))
+    caption(d, (s(5) + 360, 1240), 6, lab[6], light=True)
+    pf = fit(d, listing["place"], "LightItalic", 170, 1000)
+    tw = int(d.textlength(listing["place"], font=pf)) + 20
+    t = Image.new("RGBA", (tw, 230), (0, 0, 0, 0))
+    ImageDraw.Draw(t).text((0, 115), listing["place"], anchor="lm", fill="white", font=pf)
+    t = t.rotate(90, expand=True)
+    c.alpha_composite(t, (s(5) + 70, 1180 - t.height))
+    d.line((s(5) + 120, 1240, s(5) + 160, 1240), fill=BLUE, width=3)
+
+    # 6-7 · three tall columns, staggered, the middle one cut by the seam
+    cols = [(s(6) + 110, 230), (s(6) + 690, 120), (s(7) + 420, 300)]
+    for k, (x, y) in enumerate(cols):
+        place(c, p[7 + k], (x, y, x + 520, y + 860))
+        caption(d, (x, y + 900), 7 + k, lab[7 + k], light=True)
+
+    # 8 · full bleed
+    place(c, p[10], (s(8), 0, s(9), H))
+    shade(c, (s(8), H - 300, s(9), H), 0, 150)
+    d = ImageDraw.Draw(c)
+    caption(d, (s(8) + M, H - M - 10), 10, lab[10], light=True)
+
+    # 9 · hero full bleed, address over it
+    place(c, p[11], (s(9), 0, s(10), H))
+    shade(c, (s(9), H - 380, s(10), H), 0, 190)
+    d = ImageDraw.Draw(c)
+    caption(d, (s(9) + M, H - 150), 11, lab[11], light=True)
+    d.text((s(9) + M, H - M - 10), listing["address"], anchor="lm", fill=(255, 255, 255, 235), font=font("Regular", 30))
+    return c
+
+
+def compose_c(listing, photos):
+    """Layout C 'Magazine': paper cover with the name under the photo, overlapping
+    collage, a frame across the seam, room index page, full bleed, framed hero."""
+    p = [photos[i] for i, _ in listing["photos"]]
+    lab = [l for _, l in listing["photos"]]
+    c = Image.new("RGBA", (W * SLIDES, H), PAPER + (255,))
+    d = ImageDraw.Draw(c)
+    s = lambda n: W * (n - 1)
+
+    # 1 · cover: photo on top, name in ink on the paper below
+    place(c, p[0], (0, 0, W, 860))
+    d = ImageDraw.Draw(c)
+    tracked(d, (M + 2, 930), listing["kicker"], font("Medium", 24), INK + (220,), 9)
+    big = fit(d, listing["street"], "SemiBold", 190, W - 2 * M - 300)
+    d.text((M - 4, 1110), listing["street"], anchor="ls", fill=INK, font=big)
+    sx = M + int(d.textlength(listing["street"], font=big)) + 22
+    suf = font("LightItalic", 90)
+    if sx + d.textlength(listing["suffix"], font=suf) > W - M:  # long suffix: drop it under the name
+        d.text((M, 1205), listing["suffix"], anchor="ls", fill=INK, font=fit(d, listing["suffix"], "LightItalic", 90, W - 2 * M))
+    else:
+        d.text((sx, 1110), listing["suffix"], anchor="ls", fill=INK, font=suf)
+    d.line((M, 1270, M + 44, 1270), fill=BLUE, width=3)
+    tracked(d, (M + 60, 1270), listing["area"], font("Medium", 24), INK + (200,), 8)
+
+    # 2-3 · collage: one wide frame, a small one, and a third cut by the seam
+    place(c, p[1], (s(2) + M, 170, s(2) + W - M, 760))
+    caption(d, (s(2) + M, 800), 1, lab[1])
+    place(c, p[2], (s(2) + M, 870, s(2) + 560, 1250))
+    caption(d, (s(2) + M, 1295), 2, lab[2])
+    place(c, p[3], (s(2) + 720, 860, s(3) + 520, 1250), border=True)
+    caption(d, (s(3) + 40, 1295), 3, lab[3])
+    pf = fit(d, listing["place"], "LightItalic", 130, W - 2 * M - 40)
+    d.text((s(3) + M, 330), listing["place"], anchor="lm", fill=INK, font=pf)
+    d.line((s(3) + M, 440, s(3) + M + 40, 440), fill=BLUE, width=3)
+    place(c, p[4], (s(3) + 580, 500, s(3) + W - M, 1160))
+    caption(d, (s(3) + 580, 1205), 4, lab[4])
+
+    # 4-5 · one big frame across the seam, bordered inset over its right side
+    place(c, p[5], (s(4) + 220, 190, s(5) + 560, 1060))
+    caption(d, (s(4) + 220, 1110), 5, lab[5])
+    place(c, p[6], (s(5) + 600, 640, s(5) + W - M, 1200), border=True)
+    caption(d, (s(5) + 600, 1260), 6, lab[6])
+
+    # 6 · two tilted prints
+    tilt(c, p[7], (s(6) + 420, 470), (600, 450), -3)
+    tilt(c, p[8], (s(6) + 640, 950), (520, 420), 4)
+    caption(d, (s(6) + M, 1250), 7, lab[7])
+    caption(d, (s(6) + 420, 1250), 8, lab[8])
+
+    # 7 · tall column + room index set in type
+    place(c, p[9], (s(7), 0, s(7) + 520, H))
+    d = ImageDraw.Draw(c)
+    caption(d, (s(7) + 40, H - 60), 9, lab[9], light=True)
+    y = 260
+    for n, l in enumerate(lab[1:], 1):
+        if not l:
+            continue
+        tracked(d, (s(7) + 600, y), f"{n:02d}", font("Medium", 24), BLUE + (255,), 3)
+        d.text((s(7) + 660, y), l, anchor="lm", fill=INK + (235,), font=font("Light", 44))
+        y += 78
+
+    # 8 · full bleed
+    place(c, p[10], (s(8), 0, s(9), H))
+    shade(c, (s(8), H - 300, s(9), H), 0, 150)
+    d = ImageDraw.Draw(c)
+    caption(d, (s(8) + M, H - M - 10), 10, lab[10], light=True)
+
+    # 9 · framed hero + address
+    place(c, p[11], (s(9) + M, 170, s(10) - M, 1100))
+    caption(d, (s(9) + M, 1160), 11, lab[11])
+    d.text((s(9) + M, H - M - 10), listing["address"], anchor="lm", fill=INK + (225,), font=font("Regular", 30))
+    return c
+
+
+LAYOUTS = {"A": compose, "B": compose_b, "C": compose_c}
+
+
 def chrome(slide, n):
     """Mark + index, inked dark on paper and white on photos."""
     box = (M, M - 8, M + MARK_WHITE.width, M - 8 + MARK_WHITE.height)
@@ -274,7 +415,7 @@ def build(key, listing, photos):
     os.makedirs(out, exist_ok=True)
     for f in os.listdir(out):
         os.remove(f"{out}/{f}")
-    strip = compose(listing, photos)
+    strip = LAYOUTS[listing.get("layout", "A")](listing, photos)
     for n in range(1, SLIDES + 1):
         sl = strip.crop((W * (n - 1), 0, W * n, H))
         chrome(sl, n)

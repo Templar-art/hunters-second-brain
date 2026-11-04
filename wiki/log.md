@@ -1730,3 +1730,6 @@ Wordmark and address are now separate layers with a hard cut. Thibault Parolini 
 
 ## [2026-11-04] ingest | @10xvisuals_ main-page carousels
 Built 4 editorial decks (Kollosche x2, Whitefox, Kodiak) from Frame.io Print sets; cut Buckingham + Marine Pde. Page: [[10xvisuals-ig-carousels]].
+
+## [2026-11-04] ingest | Carousel layouts B+C, SHAPE construction decks
+Added Gallery/Magazine layouts to build_carousels.py; 6 SHAPE venue decks on the construction page; Belle checked on Drive, nothing editorial. [[10xvisuals-ig-carousels]]

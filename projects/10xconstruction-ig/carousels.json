@@ -1502,5 +1502,384 @@
   ],
   "cover_mode": "front",
   "hold": "Salisbury content not cleared with Murph (same as Kennedys)"
+ },
+ "club-robina": {
+  "client": "SHAPE",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/CON/SHAPE AUS/Club Robina",
+  "match": "",
+  "kicker": "SHAPE",
+  "street": "Robina",
+  "suffix": "Bowls Club",
+  "area": "ROBINA QLD",
+  "place": "Robina",
+  "address": "Club Robina, Robina",
+  "photos": [
+   [
+    0,
+    ""
+   ],
+   [
+    14,
+    "Bistro"
+   ],
+   [
+    9,
+    "Bar"
+   ],
+   [
+    12,
+    "Amenities"
+   ],
+   [
+    22,
+    "Pendants"
+   ],
+   [
+    10,
+    "Entry"
+   ],
+   [
+    13,
+    "Vanity"
+   ],
+   [
+    23,
+    "Arches"
+   ],
+   [
+    18,
+    "Lounge"
+   ],
+   [
+    11,
+    "Gaming"
+   ],
+   [
+    7,
+    "Hall"
+   ],
+   [
+    26,
+    "Terrace"
+   ]
+  ],
+  "layout": "B",
+  "cover_mode": "front"
+ },
+ "grandview-hotel": {
+  "client": "SHAPE",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/CON/SHAPE AUS/Grandview Hotel",
+  "match": "",
+  "kicker": "SHAPE",
+  "street": "Grandview",
+  "suffix": "Hotel",
+  "area": "CLEVELAND QLD",
+  "place": "Cleveland",
+  "address": "Grand View Hotel, Cleveland",
+  "photos": [
+   [
+    24,
+    ""
+   ],
+   [
+    11,
+    "Bar"
+   ],
+   [
+    3,
+    "Amenities"
+   ],
+   [
+    4,
+    "Vanity"
+   ],
+   [
+    6,
+    "Pendants"
+   ],
+   [
+    5,
+    "Entry"
+   ],
+   [
+    9,
+    "Sports Bar"
+   ],
+   [
+    12,
+    "Kiosk"
+   ],
+   [
+    2,
+    "Lounge"
+   ],
+   [
+    13,
+    "Kitchen"
+   ],
+   [
+    19,
+    "Verandah"
+   ],
+   [
+    22,
+    "Beer Garden"
+   ]
+  ],
+  "layout": "C",
+  "cover_mode": "front"
+ },
+ "westside-hq": {
+  "client": "SHAPE",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/CON/SHAPE AUS/Westside HQ",
+  "match": "",
+  "kicker": "SHAPE",
+  "street": "Westside",
+  "suffix": "HQ",
+  "area": "CORINDA QLD",
+  "place": "Corinda",
+  "address": "Westside HQ, Corinda",
+  "photos": [
+   [
+    10,
+    ""
+   ],
+   [
+    5,
+    "Dining"
+   ],
+   [
+    1,
+    "Bar"
+   ],
+   [
+    13,
+    "Amenities"
+   ],
+   [
+    4,
+    "Ceiling"
+   ],
+   [
+    9,
+    "Entry"
+   ],
+   [
+    14,
+    "Vanity"
+   ],
+   [
+    21,
+    "Snooker"
+   ],
+   [
+    6,
+    "Bistro"
+   ],
+   [
+    20,
+    "Servery"
+   ],
+   [
+    18,
+    "Lounge"
+   ],
+   [
+    3,
+    "Function"
+   ]
+  ],
+  "layout": "A",
+  "cover_mode": "front"
+ },
+ "lions-springwood": {
+  "client": "SHAPE",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/CON/SHAPE AUS/Lions Springwood",
+  "match": "",
+  "kicker": "SHAPE",
+  "street": "Lions",
+  "suffix": "Springwood",
+  "area": "SPRINGWOOD QLD",
+  "place": "Springwood",
+  "address": "Lions @ Springwood, Springwood",
+  "photos": [
+   [
+    1,
+    ""
+   ],
+   [
+    12,
+    "Bar"
+   ],
+   [
+    4,
+    "Spirits"
+   ],
+   [
+    3,
+    "Cashier"
+   ],
+   [
+    24,
+    "Entry"
+   ],
+   [
+    17,
+    "Booths"
+   ],
+   [
+    11,
+    "Detail"
+   ],
+   [
+    10,
+    "Screens"
+   ],
+   [
+    20,
+    "Floor"
+   ],
+   [
+    2,
+    "Signage"
+   ],
+   [
+    22,
+    "Gaming"
+   ],
+   [
+    0,
+    "Lounge"
+   ]
+  ],
+  "layout": "B",
+  "cover_mode": "front"
+ },
+ "victoria-point-sharks": {
+  "client": "SHAPE",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/CON/SHAPE AUS/Victoria Point Sharks",
+  "match": "",
+  "kicker": "SHAPE",
+  "street": "Sharks",
+  "suffix": "Victoria Point",
+  "area": "VICTORIA POINT QLD",
+  "place": "Victoria Point",
+  "address": "Victoria Point Sharks, Victoria Point",
+  "photos": [
+   [
+    11,
+    ""
+   ],
+   [
+    2,
+    "Booths"
+   ],
+   [
+    5,
+    "Amenities"
+   ],
+   [
+    3,
+    "Lounge"
+   ],
+   [
+    4,
+    "Entry"
+   ],
+   [
+    7,
+    "Vanity"
+   ],
+   [
+    15,
+    "Servery"
+   ],
+   [
+    8,
+    "Signage"
+   ],
+   [
+    14,
+    "Bistro"
+   ],
+   [
+    1,
+    "Dining"
+   ],
+   [
+    21,
+    "Windows"
+   ],
+   [
+    12,
+    "Facade"
+   ]
+  ],
+  "layout": "C",
+  "cover_mode": "front"
+ },
+ "csi-southport": {
+  "client": "SHAPE",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/CON/SHAPE AUS/CSi Southport",
+  "match": "",
+  "kicker": "SHAPE",
+  "street": "CSi",
+  "suffix": "Club Southport",
+  "area": "SOUTHPORT QLD",
+  "place": "Southport",
+  "address": "CSi Club Southport, Southport",
+  "photos": [
+   [
+    0,
+    ""
+   ],
+   [
+    3,
+    "Bistro"
+   ],
+   [
+    13,
+    "Umbrellas"
+   ],
+   [
+    44,
+    "Splash Pad"
+   ],
+   [
+    16,
+    "Amenities"
+   ],
+   [
+    17,
+    "Arch"
+   ],
+   [
+    35,
+    "Kids"
+   ],
+   [
+    89,
+    "Entry"
+   ],
+   [
+    50,
+    "Dining"
+   ],
+   [
+    11,
+    "Bar"
+   ],
+   [
+    36,
+    "Play"
+   ],
+   [
+    91,
+    "Atrium"
+   ]
+  ],
+  "layout": "A",
+  "cover_mode": "front",
+  "cover_shade": 0.38
  }
 }
