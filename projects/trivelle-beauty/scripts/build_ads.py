@@ -14,8 +14,8 @@ os.makedirs(WORK, exist_ok=True)
 OUT = os.path.join(V, "ads")
 os.makedirs(OUT, exist_ok=True)
 W, H, FPS = 1080, 1920, 30
-GREEN, SAGE, RED = (29, 42, 38), (225, 232, 229), (139, 0, 0)
-MUSIC = os.path.expanduser("~/Desktop/Ocular Sounds/MUSCSynth_SYNTH-Off Shore Loopable D_Ocular_Pendulum_90 bpm.wav")
+GREEN, SAGE, RED, YELLOW = (29, 42, 38), (225, 232, 229), (139, 0, 0), (255, 222, 60)
+MUSIC = os.path.join(ROOT, "videos", "music-soft.mp3")
 
 
 def sh(cmd):
@@ -28,14 +28,36 @@ def dur(f):
     return float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f]).decode())
 
 
+SCRIPTS = {
+ "ugc": "I'm forty-eight, and I was so over paying for salon treatments. This is Trivelle. Red light and a gentle massage, all in one little device. Ten minutes, a few nights a week. My skin just looks fresher. And there's a thirty-day money-back guarantee.",
+ "vo1-salon-cost": "Salon body treatments add up fast. A hundred dollars here, a hundred and fifty there, and the waitlist never ends. So we made Trivelle. Red light, EMS and a gentle suction massage, in one cordless device you use at home. Smooth on the Glide Gel, pick a mode, and glide. About ten minutes, three to five times a week. Red light for a radiant-looking glow. EMS micro-pulses for a toned, firmer feel. And suction massage for skin that looks smoother. Face, arms, stomach, thighs. It's one hundred and sixty-nine dollars, about the cost of one salon treatment, and under a dollar a session. Free shipping Australia-wide, and a thirty-day money-back guarantee. Trivelle. Three rituals. One device.",
+ "vo2-lived-a-little": "If your skin has lived a little, this one's for you. The arms you keep covered. The jawline you check in every mirror. The shorts that stay in the drawer. Trivelle is a cordless at-home device that brings three salon rituals together. Red light for a radiant-looking glow. EMS micro-pulses for a toned, firmer feel. And a gentle suction massage for skin that looks smoother. Ten minutes, a few nights a week, with the Glide Gel. It feels like a warm massage with a gentle tingle. One hundred and sixty-nine dollars, with free shipping Australia-wide, and thirty days to try it. If you don't love it, send it back. Trivelle. Made for skin that's lived a little.",
+ "vo3-drawer": "Jade rollers. Gua sha stones. Creams that promised everything. Most of them end up in the bathroom drawer. Trivelle is different, because it does three things at once. Red light for a radiant-looking glow. EMS micro-pulses for a toned, firmer feel. And a suction massage that leaves skin looking smoother. Here's the routine. A thin layer of Glide Gel. Choose your mode. Slow upward strokes, about ten minutes. Three to five times a week. That's it. Cordless, rechargeable, and it fits in your hand. One hundred and sixty-nine dollars, under a dollar a session, with a thirty-day money-back guarantee and free shipping Australia-wide. Clear out the drawer. Trivelle. Three rituals. One device.",
+}
+
+
 def words(name):
+    """Whisper gives timing; the script gives the words. Spread script words across
+    the whisper timeline by matching character position, so captions say exactly
+    what was written (and spoken) with whisper's timing."""
     d = json.load(open(os.path.join(ASR, name + ".json")))
-    out = []
-    for s in d["transcription"]:
-        t = s["text"].strip()
-        if not t:
-            continue
-        out.append((s["offsets"]["from"] / 1000, s["offsets"]["to"] / 1000, t))
+    asr = [(s["offsets"]["from"] / 1000, s["offsets"]["to"] / 1000, s["text"].strip())
+           for s in d["transcription"] if s["text"].strip()]
+    script = SCRIPTS[name].split()
+    # cumulative character fraction for each asr word -> time
+    alen = sum(len(w[2]) + 1 for w in asr); slen = sum(len(w) + 1 for w in script)
+    pts, c = [], 0
+    for a, b, t in asr:
+        pts.append((c / alen, a)); c += len(t) + 1; pts.append((c / alen, b))
+    def t_at(f):
+        for (f0, t0), (f1, t1) in zip(pts, pts[1:]):
+            if f0 <= f <= f1:
+                return t0 if f1 == f0 else t0 + (t1 - t0) * (f - f0) / (f1 - f0)
+        return pts[-1][1]
+    out, c = [], 0
+    for w in script:
+        a = t_at(c / slen); c += len(w) + 1; b = t_at(c / slen)
+        out.append((a, b, w))
     return out
 
 
@@ -45,23 +67,24 @@ FIX = {"trivial": "Trivelle", "Trivial": "Trivelle", "Travelle": "Trivelle", "tr
 
 
 def chunks(ws, offset=0.0, n=3):
-    """Group words into caption chunks; break on punctuation."""
+    """Group words into caption chunks (<=3 words, <=22 chars); break on punctuation.
+    Each chunk keeps its words for the per-word highlight."""
     res, cur = [], []
+    def push():
+        ww = [(a + offset, b + offset, t) for a, b, t in cur]
+        res.append([ww[0][0], ww[-1][1], " ".join(x[2] for x in ww), ww])
     for w in ws:
+        if cur and len(" ".join(x[2] for x in cur + [w])) > 22:
+            push(); cur = []
         cur.append(w)
         if len(cur) >= n or w[2][-1] in ".,!?":
-            res.append((cur[0][0] + offset, cur[-1][1] + offset, " ".join(x[2] for x in cur)))
-            cur = []
+            push(); cur = []
     if cur:
-        res.append((cur[0][0] + offset, cur[-1][1] + offset, " ".join(x[2] for x in cur)))
-    # hold each chunk until the next starts
-    fixed = []
-    for i, (a, b, t) in enumerate(res):
-        nb = res[i + 1][0] if i + 1 < len(res) else b + 0.3
-        for k, v in FIX.items():
-            t = t.replace(k, v)
-        fixed.append((a, max(b, nb), t))
-    return fixed
+        push()
+    for i, c in enumerate(res):
+        nb = res[i + 1][0] if i + 1 < len(res) else c[1] + 0.3
+        c[1] = max(c[1], nb)
+    return [tuple(c) for c in res]
 
 
 def font(size, display=True):
@@ -75,32 +98,57 @@ def font(size, display=True):
     return f
 
 
+def cap_font(size):
+    f = ImageFont.truetype(os.path.join(FONTS, "Montserrat.ttf"), size)
+    try:
+        f.set_variation_by_name("ExtraBold")
+    except Exception:
+        try: f.set_variation_by_name("Bold")
+        except Exception: pass
+    return f
+
+
 def caption_track(caps, total, path):
-    """Render captions as a PNG-sequence alpha video at 10 fps."""
+    """Premium karaoke captions: white rounded box, black text, the word being
+    spoken gets a brand-red pill with white text. Rendered at 15 fps alpha."""
     fdir = path + "_frames"
     os.makedirs(fdir, exist_ok=True)
-    f = font(78)
+    f = cap_font(62)
     blank = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     cache = {}
-    n = int(total * 10) + 1
+    n = int(total * 15) + 1
     for i in range(n):
-        t = i / 10
-        txt = next((c[2] for c in caps if c[0] <= t < c[1]), None)
-        if txt not in cache:
-            if txt is None:
-                cache[txt] = blank
+        t = i / 15
+        cap = next((c for c in caps if c[0] <= t < c[1]), None)
+        key = None
+        if cap:
+            ws = cap[3]
+            act = max([k for k, w in enumerate(ws) if w[0] <= t] or [0])
+            key = (cap[2], act)
+        if key not in cache:
+            if key is None:
+                cache[key] = blank
             else:
                 im = blank.copy(); d = ImageDraw.Draw(im)
-                s = txt.upper()
-                bw = d.textlength(s, font=f)
-                while bw > W - 140 and f.size > 40:
-                    f = font(f.size - 4); bw = d.textlength(s, font=f)
-                x, y = (W - bw) / 2, int(H * 0.68)
-                d.text((x, y), s, font=f, fill="white", stroke_width=7, stroke_fill=(0, 0, 0))
-                cache[txt] = im
-                f = font(78)
-        cache[txt].save(os.path.join(fdir, f"{i:05d}.png"))
-    sh(["ffmpeg", "-v", "error", "-y", "-framerate", "10", "-i", os.path.join(fdir, "%05d.png"),
+                toks = [w[2].upper() for w in ws]
+                sp = d.textlength(" ", font=f)
+                widths = [d.textlength(tk, font=f) for tk in toks]
+                padx, pady, gap = 34, 24, sp
+                tw = sum(widths) + gap * (len(toks) - 1)
+                asc, desc = f.getmetrics(); th = asc + desc
+                bx0 = (W - tw) / 2 - padx; by0 = int(H * 0.70)
+                d.rounded_rectangle((bx0, by0, bx0 + tw + 2 * padx, by0 + th + 2 * pady), 26, fill=(255, 255, 255, 245))
+                x = bx0 + padx; y = by0 + pady
+                for k, tk in enumerate(toks):
+                    if k == act:
+                        d.rounded_rectangle((x - 12, y - 6, x + widths[k] + 12, y + th + 4), 14, fill=YELLOW)
+                        d.text((x, y), tk, font=f, fill=(15, 15, 15))
+                    else:
+                        d.text((x, y), tk, font=f, fill=(15, 15, 15))
+                    x += widths[k] + gap
+                cache[key] = im
+        cache[key].save(os.path.join(fdir, f"{i:05d}.png"))
+    sh(["ffmpeg", "-v", "error", "-y", "-framerate", "15", "-i", os.path.join(fdir, "%05d.png"),
         "-c:v", "qtrle", path])
 
 
@@ -162,7 +210,7 @@ def build(name, seq, vo, caps, total, vo_offset, hook=None):
     inputs = ["-i", vid, "-i", cap, "-i", vo, "-stream_loop", "-1", "-i", MUSIC]
     fc = [f"[0:v][1:v]overlay=0:0:format=auto,format=yuv420p[v]",
           f"[2:a]adelay={int(vo_offset*1000)}|{int(vo_offset*1000)},volume=1.0[vo]",
-          f"[3:a]volume=0.12,afade=t=in:d=1,afade=t=out:st={total-2}:d=2[mu]"]
+          f"[3:a]volume=0.09,afade=t=in:d=1.5,afade=t=out:st={total-3}:d=3[mu]"]
     mix = "[vo][mu]"; k = 2
     if hook:
         inputs += ["-i", hook]
@@ -170,7 +218,7 @@ def build(name, seq, vo, caps, total, vo_offset, hook=None):
     fc.append(f"{mix}amix=inputs={k}:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]")
     out = os.path.join(OUT, f"{name}.mp4")
     sh(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(fc), "-map", "[v]", "-map", "[a]",
-        "-t", f"{total:.3f}", "-c:v", "libx264", "-crf", "19", "-preset", "medium", "-c:a", "aac", "-b:a", "192k",
+        "-t", f"{total:.3f}", "-c:v", "libx264", "-crf", "22", "-maxrate", "3.5M", "-bufsize", "7M", "-preset", "medium", "-c:a", "aac", "-b:a", "192k",
         "-movflags", "+faststart", out])
     return out
 
@@ -196,40 +244,39 @@ def fill(clips, span):
 
 
 def first_word(ws, word):
-    return next(w[0] for w in ws if w[2].lower().startswith(("trivelle", "travelle", "trivial")))
+    return next(w[0] for w in ws if w[2].lower().startswith("trivelle"))
 
 
-PRODUCT = [B("d1-hero"), B("d2-stomach"), S("stills/roster/r5-middleeastern-50s-arm.png"), B("d4-arm"),
-           S("graphics/01-feature-panel.jpg"), B("d3-thigh"), S("stills/roster/r8-black-50s-lifestyle.png"),
-           S("graphics/02-how-to-use.jpg")]
-
+ST = lambda n: os.path.join(V, "stock", n + ".mp4")
 results = {}
 
 # ---- Ad A: UGC hook (10s) + VO1 salon cost + end card
 w1 = words("vo1-salon-cost"); d1 = dur(os.path.join(V, "vo", "vo1-salon-cost.mp3"))
 hook = dur(UGC)
 split = first_word(w1, "Trivelle") - 0.1
-seqA = [(UGC, hook, False)] + fill([B("p06-salon-wait"), B("p05-phone-bill")], split) \
-     + fill(PRODUCT, d1 - split) + [(END, 4, False)]
+seqA = [(UGC, hook, False)] + fill([B("p06-salon-wait"), B("p05-phone-bill"), ST("s3-mirror-check")], split) \
+     + fill([B("d10-switch-on"), B("d5-stomach-lift"), B("d6-stomach-redlight"), B("d8-arm-redlight"),
+             ST("s2-device-vanity"), B("d7-thigh-lift"), B("d9-thigh-plus"), B("d2-stomach"), B("d1-hero")], d1 - split) \
+     + [(END, 4, False)]
 totalA = hook + d1 + 4
 capsA = chunks(words("ugc")) + chunks(w1, hook)
 results["A"] = build("trivelle-A-salon-60s", seqA, os.path.join(V, "vo", "vo1-salon-cost.mp3"), capsA, totalA, hook, hook=UGC)
 
-# ---- Ad B: VO2 lived-a-little, pain montage → product → UGC → end card
+# ---- Ad B: VO2 lived-a-little
 w2 = words("vo2-lived-a-little"); d2 = dur(os.path.join(V, "vo", "vo2-lived-a-little.mp3"))
 split = first_word(w2, "Trivelle") - 0.1
-seqB = fill([B("p01-jawline"), B("p02-arm-pinch"), B("p03-shorts-skirt"), B("p08-cardigan"), B("p11-brunch-sleeve")], split) \
-     + fill(PRODUCT[:6] + [B("p12-relief-sofa")], d2 - split) + [(END, 4, False)]
+seqB = fill([B("p02-arm-pinch"), ST("s1-roller-jaw"), B("p03-shorts-skirt"), B("p11-brunch-sleeve")], split) \
+     + fill([B("d10-switch-on"), B("d6-stomach-redlight"), B("d8-arm-redlight"), B("d5-stomach-lift"),
+             B("d9-thigh-plus"), B("d4-arm"), B("p12-relief-sofa")], d2 - split) + [(END, 4, False)]
 totalB = d2 + 4
 results["B"] = build("trivelle-B-lived-a-little-50s", seqB, os.path.join(V, "vo", "vo2-lived-a-little.mp3"), chunks(w2), totalB, 0)
 
-# ---- Ad C: VO3 drawer, pain → routine → end card
+# ---- Ad C: VO3 drawer
 w3 = words("vo3-drawer"); d3 = dur(os.path.join(V, "vo", "vo3-drawer.mp3"))
 split = first_word(w3, "Trivelle") - 0.1
-seqC = fill([B("p07-drawer"), B("p09-moisturiser"), B("p04-late-mirror"), B("p10-bed-scroll")], split) \
-     + fill([B("d1-hero"), B("d2-stomach"), S("graphics/05-how-it-works.jpg"), B("d4-arm"),
-             S("stills/roster/r2-eastasian-40s-arm.png"), B("d3-thigh"), S("graphics/04-in-the-box.jpg"),
-             B("p12-relief-sofa")], d3 - split) + [(END, 4, False)]
+seqC = fill([B("p07-drawer"), ST("s1-roller-jaw"), B("p09-moisturiser")], split) \
+     + fill([B("d1-hero"), B("d6-stomach-redlight"), B("d5-stomach-lift"), ST("s2-device-vanity"), B("d8-arm-redlight"),
+             B("d7-thigh-lift"), B("d3-thigh"), B("d10-switch-on"), B("p12-relief-sofa")], d3 - split) + [(END, 4, False)]
 totalC = d3 + 4
 results["C"] = build("trivelle-C-drawer-55s", seqC, os.path.join(V, "vo", "vo3-drawer.mp3"), chunks(w3), totalC, 0)
 
