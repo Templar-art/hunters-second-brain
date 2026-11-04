@@ -76,10 +76,8 @@ def save(im, n):
 
 
 # 01 — Kit hero: device on the counter + the gel beside it, clean offer strip
-im = fit(f"{S}/01-hero-v2-pilot.png", N, N, (0.42, 0.5)).convert("RGBA")
-tube(im, 700, 300, 560, angle=-4)
+im = fit(f"{S}/07-kit-hero-gel.png", N, N).convert("RGBA")
 d = ImageDraw.Draw(im)
-d.rectangle((0, 0, N, 150), fill=(255, 255, 255, 0))
 eyebrow(d, (60, 56), "Trivelle  ·  4-in-1 Sculpt & Glow", INK)
 d.text((60, 86), "The full at-home ritual.", font=f("D", 58), fill=INK)
 d.rounded_rectangle((0, 930, N, N), 0, fill=INK)
@@ -131,17 +129,15 @@ for k, (img, h, b) in enumerate(cols):
 d.text((60, 1000), "Start on the lowest level and work up.", font=f("Medium", 24), fill=INK)
 save(im, "03-how-to-use")
 
-# 04 — The gel: hero of the tube, what it does (no ingredient claims we can't verify)
-im = Image.new("RGBA", (N, N), BG + (255,)); d = ImageDraw.Draw(im)
-d.ellipse((520, 170, 1040, 690), fill=(236, 240, 222))
-tube(im, 600, 150, 820, angle=-6)
+# 04 — The gel
+im = fit(f"{S}/09-gel-studio.png", N, N).convert("RGBA"); d = ImageDraw.Draw(im)
 eyebrow(d, (60, 120), "Included in every kit")
 d.text((60, 152), "Pro-grade", font=f("D", 72), fill=INK)
 d.text((60, 236), "microcurrent gel", font=f("D", 72), fill=INK)
 y = 380
 for h, b in (("Glides", "Lets the device move smoothly without dragging on skin."),
              ("Conducts", "Helps the EMS mode reach the skin evenly."),
-             ("Light", "Water-based and clear. Wipes off clean, no sticky feel.")):
+             ("Light", "Clear, light texture. Wipes off clean.")):
     d.rectangle((60, y+8, 66, y+92), fill=LIME)
     d.text((88, y), h, font=f("D", 36), fill=INK)
     para(d, (88, y+50), b, f("Regular", 23), 400, MUTE, 31)
@@ -187,8 +183,7 @@ for i, (r, h) in enumerate(zip(rows, have)):
 save(im, "06-comparison")
 
 # 07 — In the box: flatlay + the real gel tube
-im = fit(f"{S}/03-flatlay.png", N, N).convert("RGBA")
-tube(im, 820, 560, 420, angle=12)
+im = fit(f"{S}/08-unbox-gel.png", N, N).convert("RGBA")
 d = ImageDraw.Draw(im)
 d.rounded_rectangle((50, 690, 540, 1030), 28, fill=WHITE)
 d.text((86, 718), "What's in the box", font=f("D", 42), fill=INK)
