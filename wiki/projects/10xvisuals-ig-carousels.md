@@ -21,8 +21,12 @@ Main-page (@10xvisuals_) versions of the [[10xrealestate-ig]] v5.2 seamless 9-sl
 
 Photos pulled via Chrome from Frame.io (10x Clients project) into `Documents/10x Drive Pulls/<client>/`.
 
-## Layout variants (2026-11-04)
-Hunter asked that the decks not all look the same. `build_carousels.py` now takes `"layout"` per listing: **A** original paper deck, **B** "Gallery" (ink pages, left-set cover, seamless panorama, 2×2 grid, vertical place name, staggered columns, full-bleed close), **C** "Magazine" (paper cover with name under the photo, overlapping collage, room index page, framed hero). Rotate A/B/C across a feed. Seagull = C, Harold = B.
+## Layout variants (2026-11-04, v2)
+Hunter asked that decks not all look the same, then rejected the first B/C attempt (grids, staggered columns, room-index list, overlapping collage) as messy: "it needs to show our work, it's for a media page." v2 gets variety from pacing, not collage. `"layout"` per listing:
+- **A**: original v5.2 paper deck (bands, tilted prints, film strip, seam split).
+- **B "Cinema"**: ink; full-bleed cover; slides 2-3 and 6-7 are one photo panned across the seam; full bleeds; one clean stacked pair; full-bleed hero. Pan slots (p1, p5) need wide, striking frames, never a bathroom.
+- **C "Framed"**: paper; one large framed photo per slide with even margins; a framed pan across slides 4-5; one stacked pair; full bleed; framed hero.
+Current: A = Esther, Eagleview; B = Harold, Robina, Southaven; C = Seagull, Grand View, Sharks, CSi. Rule saved to auto-memory as feedback-media-page-show-the-work.
 
 ## SHAPE on the construction page (2026-11-04)
 Six SHAPE venues added to [10xconstruction-ig](../../projects/10xconstruction-ig/carousels.json) from Frame.io › SHAPE › Photos: Club Robina (B), Grand View Hotel Cleveland (C), Westside HQ Corinda (A), Lions @ Springwood (B), Victoria Point Sharks (C), CSi Club Southport (A). Covers avoid shots where the venue's own signage repeats the headline (Lions, CSi).

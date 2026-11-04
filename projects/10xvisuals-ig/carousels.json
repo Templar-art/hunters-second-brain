@@ -97,8 +97,8 @@
     "Ensuite"
    ],
    [
-    9,
-    "Hall"
+    6,
+    "Suite"
    ],
    [
     3,
@@ -498,7 +498,7 @@
     "Atrium"
    ]
   ],
-  "layout": "A",
+  "layout": "C",
   "cover_mode": "front",
   "cover_shade": 0.38
  },
@@ -534,8 +534,8 @@
     "Cabana"
    ],
    [
-    26,
-    "Bath"
+    14,
+    "Pontoon"
    ],
    [
     9,
