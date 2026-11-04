@@ -60,5 +60,191 @@
    ]
   ],
   "cover_mode": "front"
+ },
+ "2-116-seagull-ave": {
+  "client": "Kollosche",
+  "kicker": "2/116",
+  "street": "Seagull",
+  "suffix": "Avenue",
+  "area": "MERMAID BEACH QLD",
+  "place": "Mermaid Beach",
+  "address": "2/116 Seagull Avenue, Mermaid Beach",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Kollosche/2-116 Seagull Ave Print",
+  "match": "",
+  "photos": [
+   [
+    1,
+    ""
+   ],
+   [
+    12,
+    "Living"
+   ],
+   [
+    13,
+    "Kitchen"
+   ],
+   [
+    2,
+    "Bath"
+   ],
+   [
+    8,
+    "Vanity"
+   ],
+   [
+    10,
+    "Ensuite"
+   ],
+   [
+    9,
+    "Hall"
+   ],
+   [
+    3,
+    "Robes"
+   ],
+   [
+    6,
+    "Suite"
+   ],
+   [
+    0,
+    "Bedroom"
+   ],
+   [
+    14,
+    "Dining"
+   ],
+   [
+    11,
+    "Balcony"
+   ]
+  ],
+  "cover_mode": "front"
+ },
+ "4-6-buckingham-way": {
+  "client": "Kollosche",
+  "kicker": "NO. 4 TO 6",
+  "street": "Buckingham",
+  "suffix": "Way",
+  "area": "ELANORA QLD",
+  "place": "Elanora",
+  "address": "4-6 Buckingham Way, Elanora",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Kollosche/4-6 Buckingham Way Print",
+  "match": "",
+  "photos": [
+   [
+    7,
+    ""
+   ],
+   [
+    14,
+    "Living"
+   ],
+   [
+    15,
+    "Kitchen"
+   ],
+   [
+    8,
+    "Alfresco"
+   ],
+   [
+    1,
+    "Stair"
+   ],
+   [
+    13,
+    "Bath"
+   ],
+   [
+    19,
+    "Entry"
+   ],
+   [
+    17,
+    "Billiards"
+   ],
+   [
+    16,
+    "Dining"
+   ],
+   [
+    0,
+    "Bedroom"
+   ],
+   [
+    12,
+    "Tennis"
+   ],
+   [
+    9,
+    "Pool"
+   ]
+  ],
+  "cover_mode": "front"
+ },
+ "506-388-marine-pde": {
+  "client": "Kollosche",
+  "kicker": "APARTMENT 506",
+  "street": "Marine",
+  "suffix": "Parade",
+  "area": "LABRADOR QLD",
+  "place": "Labrador",
+  "address": "506/388 Marine Parade, Labrador",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Kollosche/506-388 Marine Parade Print",
+  "match": "",
+  "photos": [
+   [
+    2,
+    ""
+   ],
+   [
+    0,
+    "Kitchen"
+   ],
+   [
+    3,
+    "Gym"
+   ],
+   [
+    6,
+    "Bedroom"
+   ],
+   [
+    1,
+    "Bath"
+   ],
+   [
+    10,
+    "Ensuite"
+   ],
+   [
+    5,
+    "Lobby"
+   ],
+   [
+    13,
+    "Galley"
+   ],
+   [
+    11,
+    "Lounge"
+   ],
+   [
+    9,
+    "Suite"
+   ],
+   [
+    12,
+    "Living"
+   ],
+   [
+    4,
+    "Pool"
+   ]
+  ],
+  "cover_mode": "front"
  }
 }
