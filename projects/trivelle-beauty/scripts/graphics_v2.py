@@ -96,7 +96,7 @@ im.save(f"{O}/03-comparison.jpg", quality=94)
 im = fit(f"{S}/03-flatlay.png", N, N); d = ImageDraw.Draw(im)
 d.rounded_rectangle((50, 640, 560, 990), 28, fill=(255, 255, 255))
 d.text((90, 675), "What's in the box", font=f("Bold", 40), fill=INK)
-for i, t in enumerate(["Trivelle 4-in-1 device", "USB charging cable", "User guide", "Gift box", "Conductive gel (kit only)"]):
+for i, t in enumerate(["Trivelle 4-in-1 device", "USB charging cable", "English user manual", "Conductive gel (kit only)"]):
     yy = 750 + i*44; d.ellipse((92, yy+10, 108, yy+26), fill=LIME); d.text((124, yy), t, font=f("Regular", 26), fill=INK)
 im.save(f"{O}/04-in-the-box.jpg", quality=94)
 print("ok")
