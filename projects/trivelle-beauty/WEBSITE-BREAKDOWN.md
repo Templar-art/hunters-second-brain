@@ -52,6 +52,26 @@ Home, product, collection, About, Contact, FAQ, How to Use, Track order, cart, a
 3. **Bundle saving (always true):** "Gift 2-Pack $299 — save $39 vs buying two" (2 × $169 = $338). Real maths, no reference price needed.
 4. **Raise the actual price.** If you want $550 positioning, sell at $550 for a real period first; you can then discount from it legitimately.
 
+**Decision (2026-11-04): value anchor.** Copy changes below.
+
+## Value-anchor copy changes
+
+**Remove in Shopify admin**
+- Product → each variant → *Compare-at price*: clear ($279, $249, $558).
+- Theme editor → home + product: delete the countdown block ("Launch price ends in…", "Regular price from 1 December").
+- Theme editor: delete "Launch offer · save $110" (home banner) and the "Save 39% OFF" badge.
+
+**Replace with**
+- Price line: **$169 AUD — about the cost of one salon treatment**
+- Under the price: **Under $1 a session.** *(Based on 4 sessions a week for a year.)* — $169 ÷ 208 = 81c, true.
+- Kit cards:
+  - Device + Glide Gel — **$169** · *Everything you need*
+  - Gift 2-Pack — **$299** · *Save $39 vs buying two*
+  - Device only — **$149** · *Already have a conductive gel*
+- Home hero eyebrow (where "Launch offer" was): **New · Free shipping Australia-wide** (once #3 is fixed)
+
+Keep the 30-day money-back guarantee prominent; with no discount badge it does the urgency work.
+
 ## Product page image order (from what's been made)
 
 1. `stills/01-hero-final.png` — hero
