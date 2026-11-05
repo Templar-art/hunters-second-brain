@@ -46,3 +46,8 @@ Final mix: -14.6 LUFS, -0.1 dBTP (the original itself peaks at +0.9). Output: `r
 - Pin: Kollosche navy badge K on subject roof, city wide (src f900–933), KLT tip track (5.8 px travel). `graphics/pin_salerno.py`.
 - Delivered ProRes 4444 alpha + previews → SSD `Edits/Overlays/`. Cost: $0 (local).
 - Full composite (2026-11-05): `Edits/Graphics/Main_Kollosche_graphics.mp4` = Main.mp4 + both alpha overlays at src frames 833 (outline) / 900 (pin), H.264 CRF 14, original audio. QC frames 832/860/899/900/920/934 checked by eye: graphics appear only inside their shots and stay locked. No pinned stills on the SSD, so the cadastre is the lot source. Wiki: [[salerno-st-listing]]. Cost: $0.
+
+## 2026-11-05 — Outline v2 (Hunter: "the outline is dog shit")
+- Diagnosis: v1's sat→drone registration was a hand-fit affine, about 1 lot width off, so the left edge cut across the subject's own roof. The line was also 21 px (Buckingham spec is 0.0033·W = 13 px) with no round joins.
+- Fix: cadastre lot 231RP110045 → current QLD LatestStateProgram ortho → last top-down frame via ECC homography on edge maps (`cadastre/v2/H_ortho2last.npy`; the overlay lines up on roofs, pools and jetties). Side lines sit on both neighbours' fences. The front is extended to the kerb, detected as the first ≥100 px asphalt run (about 150 px / 5 m verge, parallel to the frontage), `cadastre/v2/kerb_lot.py`. SIFT chain track over f1–67, 13 px with round joins, draws on from f22: `graphics/outline_v2.py`.
+- Hunter approved the pilot (`pilot/outline_v2_*.jpg`) → swapped into SSD `Edits/Overlays/` (v1 kept in `_v1 superseded/`), and `Edits/Graphics/Main_Kollosche_graphics.mp4` re-rendered. $0.
