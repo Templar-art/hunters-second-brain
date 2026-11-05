@@ -6,3 +6,5 @@ out/picture.mp4
 out/gfxframes/
 out/gfx.mov
 out/clean.mp4
+motion/ep/build/
+motion/node_modules

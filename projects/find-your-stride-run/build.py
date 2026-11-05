@@ -18,7 +18,7 @@ for i,(s,e,z) in enumerate(SEGS):
     n=round((e-s)*FPS)
     push=f"{z}+0.05*on/{n}"   # slow push across every segment
     fc.append(f"[0:v:0]trim={s}:{e},setpts=PTS-STARTPTS,fps=24000/1001,scale=1080:1920,"
-              f"zoompan=z='{push}':x='iw/2-iw/zoom/2':y='ih*0.42-ih/zoom*0.42':d=1:s=1080x1920:fps=24000/1001,{GRADE}[v{i}];")
+              f"" + ("" if os.environ.get("NOZOOM") else f"zoompan=z='{push}':x='iw/2-iw/zoom/2':y='ih*0.42-ih/zoom*0.42':d=1:s=1080x1920:fps=24000/1001,") + f"{GRADE}[v{i}];")
     fc.append(f"[0:a:0]atrim={s}:{e},asetpts=PTS-STARTPTS,afade=t=in:d=0.04,afade=t=out:st={e-s-0.06}:d=0.06[a{i}];")
 k=len(SEGS)
 fc.append("".join(f"[v{i}][a{i}]" for i in range(k))+f"concat=n={k}:v=1:a=1[vc][ac];")
