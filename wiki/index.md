@@ -71,6 +71,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[product-research-gethookd]] — product hunt via GetHookd + SimilarWeb; 67 scored over 10 passes; **top: MirrorMate mirror frames 77, Barnakl ceiling-fan filters 72 (US-only brands, no AU seller)**; FixionTools AU-store model noted
 - [[drone-run]] — browser drone game (Three.js + Blender-built drone/houses, 0cr); playable prototype `projects/drone-run/`
 - [[street-racer]] — browser night GP racer: 14-car garage w/ paint+tune, drift mode, exhaust flames (Three.js + Blender, 0cr); `projects/street-racer/`
+- [[salerno-st-listing]] — 42 Salerno St Kollosche listing: SFX beds, cadastre lot outline (to kerb) on top-down, navy K badge pin on city wide, full graphics composite (5 Nov, $0)
 
 ## Concepts
 - [[sfx-toolkit]] — Real SFX, Earshot, SFXMint, Openverse: free tools for placing, vetting and sourcing sound effects

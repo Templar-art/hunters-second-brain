@@ -1746,3 +1746,6 @@ Added Gallery/Magazine layouts to build_carousels.py; 6 SHAPE venue decks on the
 ## [2026-11-05] ingest | ZOYA Pulled Under song cut, join drift lesson
 
 ## [2026-11-05] ingest | SFX toolkit installed (Real SFX, Earshot, SFXMint, Openverse)
+
+## [2026-11-05] ingest | 42 Salerno St listing: lot outline + K pin + graphics composite
+New page [[salerno-st-listing]]. Overlays from d4a7af65 QC'd; full composite Main_Kollosche_graphics.mp4 → SSD Edits/Graphics/.

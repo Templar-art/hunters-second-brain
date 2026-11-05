@@ -45,3 +45,4 @@ Final mix: -14.6 LUFS, -0.1 dBTP (the original itself peaks at +0.9). Output: `r
 - Outline: QLD cadastre lot 231RP110045, front edge extended to kerb (Hunter: "goto the street"), SIFT-chained track on top-down (src f833–899), draws on from shot frame 22. `graphics/track_outline.py`, `render_outline2.py`.
 - Pin: Kollosche navy badge K on subject roof, city wide (src f900–933), KLT tip track (5.8 px travel). `graphics/pin_salerno.py`.
 - Delivered ProRes 4444 alpha + previews → SSD `Edits/Overlays/`. Cost: $0 (local).
+- Full composite (2026-11-05): `Edits/Graphics/Main_Kollosche_graphics.mp4` = Main.mp4 + both alpha overlays at src frames 833 (outline) / 900 (pin), H.264 CRF 14, original audio. QC frames 832/860/899/900/920/934 checked by eye: graphics appear only inside their shots and stay locked. No pinned stills on the SSD, so the cadastre is the lot source. Wiki: [[salerno-st-listing]]. Cost: $0.
