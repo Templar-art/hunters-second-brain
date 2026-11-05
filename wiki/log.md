@@ -1752,3 +1752,4 @@ New page [[salerno-st-listing]]. Overlays from d4a7af65 QC'd; full composite Mai
 
 ## [2026-11-05] lint | Salerno outline v2
 Hunter rejected the v1 outline: it was a hand-fit registration and 21 px thick. Rebuilt with ortho→ECC cadastre registration, the auto-detected kerb and the 13 px spec. Lesson added to [[salerno-st-listing]].
+## [2026-11-05] ingest | on rewind 30 s flythrough reel (zero joins) + brute-force grid lesson
