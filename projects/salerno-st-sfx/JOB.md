@@ -27,3 +27,16 @@ Outputs are in `result/`: `Salerno_Main_sfx.mp4`, `Salerno_Main_sfx_sfx_track.wa
 - Logos were gathered into `Logos/` on the SSD: Eddie Wardale team logo PNG/SVG plus `_tight` crops, the Kollosche brand marks and the 10x marks.
 - ⚠️ Kollosche rule: team logos appear on Agent Focus promos only, never on listing videos. Flagged to Hunter.
 - End card: Eddie Wardale outro (0408 881 678), reused from `projects/kollosche-outro/out/`. Copied to SSD `Logos/End Card/` (16:9 + 9:16 ProRes 4444 alpha + PNG).
+
+## v3: scene-matched beds on the 15:14 re-export (2026-11-05)
+The re-export carries Hunter's own SFX (logo 0–3 s, ramps around 27, 32 and 35 s, the whip at 63 s), found by subtracting the old audio. So v3 has **no whooshes**. It runs 21 scenes, each with its own bed (`work/build_v3.py`):
+- birds and wind on the exteriors and aerials
+- pool water on the pool shots, running water on the dock
+- curtain breeze on the curtain shots
+- a faint birds bleed (22–23 dB under the music) on the interiors
+
+Each scene is calibrated to a target level under the music (13–15 dB, with `work/calib.py` iterating). Hut/pool and aerials measure +3 to +5 dB because Hunter's ramp whooshes sit in those windows. The shing stays on the flare at 6.23.
+
+⚠️ The `outside-ambience-with-birds-61606` bed has a voice-like component around 91 s (the vocal stem is only 9 dB under), and Whisper read it as "it's fine". It was dropped from all scenes in favour of the birds and nature beds. The final Whisper pass gives only one-word birdsong hallucinations, and the vocal stem has 0% of its energy in the 200–1500 Hz speech band. No cicadas: the 3.5–9 kHz share peaks at 0.11.
+
+Final mix: -14.6 LUFS, -0.1 dBTP (the original itself peaks at +0.9). Output: `result/Salerno_Main_sfx_v3.mp4` + `_sfx_track.wav`.
