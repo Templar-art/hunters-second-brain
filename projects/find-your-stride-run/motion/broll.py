@@ -9,7 +9,7 @@ PLAN=[(18.96,21.50,16.40,18.94,""),        # selfie runners (unused)
       (41.16,44.55,11.97,13.85,"")]        # path runner, slow-mo (under the coin)
 fr="ep/build/frames"; tmp="ep/build/broll_tmp"; shutil.rmtree(tmp,ignore_errors=True); os.makedirs(tmp)
 for k,(a,b,s,e,x) in enumerate(PLAN):
-    i0=math.floor(a*FPS)+1; i1=math.floor(b*FPS); n=i1-i0+1; speed=(e-s)/(n/FPS); d=f"{tmp}/{k}"; os.makedirs(d)
+    i0=math.floor(a*FPS)+1; i1=math.ceil(b*FPS)+1; n=i1-i0+1; speed=(e-s)/(n/FPS); d=f"{tmp}/{k}"; os.makedirs(d)
     subprocess.run(["ffmpeg","-v","error","-ss",str(s),"-to",str(e),"-i",SRC,"-map","0:v:0","-vf",
       f"setpts=PTS/{speed:.4f},fps=24000/1001,scale=1080:1920,{GRADE}{x}","-frames:v",str(n),"-q:v","2",f"{d}/b%04d.jpg"],check=True)
     got=sorted(glob.glob(f"{d}/b*.jpg"))
