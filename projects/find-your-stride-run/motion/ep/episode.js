@@ -108,7 +108,7 @@ function bars(T, a, b) {
 /* Coin flips in on "Every dollar", spins, schools/workplaces pills fly out. */
 function coin(T, a, b) {
   const p = back((T - a) / .5), q = expoIn((T - b) / .25); if (p <= 0 || q >= 1) return;
-  const st = clamp((T - a) / .7), spin = st < 1 ? Math.cos(st * Math.PI * 4) : 1, sx = Math.max(.25, Math.abs(spin)) * p * (1 - q), y = 1080 - (1 - clamp(p)) * 300;
+  const st = clamp((T - a) / .7), spin = st < 1 ? Math.cos(st * Math.PI * 4) : 1, sx = Math.max(.25, Math.abs(spin)) * p * (1 - q), y = 1120 - (1 - clamp(p)) * 300;
   g.save(); g.translate(540, y); g.scale(sx, p * (1 - q));
   g.shadowColor = 'rgba(0,0,0,.4)'; g.shadowBlur = 40; g.shadowOffsetY = 14; g.fillStyle = CYAN; g.beginPath(); g.arc(0, 0, 130, 0, 7); g.fill(); g.shadowColor = 'transparent';
   g.fillStyle = BLUE; g.beginPath(); g.arc(0, 0, 104, 0, 7); g.fill(); font(800, 170, COND); g.fillStyle = WHITE; g.textAlign = 'center'; g.fillText('$', 0, 60); g.textAlign = 'left'; g.restore();
@@ -134,7 +134,7 @@ window.EP = {
   dur: 50.22,
   voEnd: 50.22,
   faceBox: { x: 150, y: 560, w: 720, h: 330 },
-  cuts: [3.04, 6.63, BIB_IN, 8.34, 9.68, BIB_OUT, 11.97, 13.9, 16.4, 18.96, 24.02, 31.29, 34.94, 37.99, 41.16, 44.42],
+  cuts: [3.04, 6.63, BIB_IN, 8.34, 9.68, BIB_OUT, 11.97, 13.9, 16.4, 18.96, 24.02, 31.29, 34.94, 37.99, 41.16, 43.70, 44.42, 46.40],
   captions: [[0, 3.04, CAPY], [BIB_OUT, 11.85, CAPY], [17.85, TOOLS_IN, CAPY], [TOOLS_OUT, CTA_IN, CAPY]],
 
   frame(T) {
@@ -165,7 +165,7 @@ window.EP = {
     else if (T < TOOLS_OUT) sceneTools(T);
     else if (T < 34.94) { th(FULL); if (T > 32.95) { rise('ALL IN', 540, 800, T - 32.95, { size: 400, col: CYAN, align: 'center', dur: .45 }); cutout(); } captions(T); }
     else if (T < 41.16) { th(FULL); bars(T, 35.15, 41.0); captions(T); }
-    else if (T < CTA_IN) { th(FULL); coin(T, 41.3, 44.3); tagPill(T, 42.75, 44.3, 'SCHOOLS', 300, 1290, { size: 60 }); tagPill(T, 43.45, 44.3, 'WORKPLACES', 760, 1290, { size: 60, rot: .05 }); captions(T); }
+    else if (T < CTA_IN) { th(FULL); coin(T, 41.3, 44.3); tagPill(T, 42.75, 44.3, 'SCHOOLS', 300, 1340, { size: 60 }); tagPill(T, 43.45, 44.3, 'WORKPLACES', 760, 1340, { size: 60, rot: .05 }); captions(T); }
     else sceneCTA(T);
   },
 };
