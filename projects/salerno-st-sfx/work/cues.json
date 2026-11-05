@@ -1,0 +1,72 @@
+{
+ "video": "/Volumes/10X SSD2/42 Salerno Street, Isle of Capri | Listing Package/Edits/Main.mp4",
+ "keep_audio": "yes",
+ "cues": [
+  {
+   "t": 0.0,
+   "label": "birds bed (opening exteriors)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "loop_to": 15.0,
+   "fade_in": 0.8,
+   "fade_out": 2.5,
+   "gain_db": -4
+  },
+  {
+   "t": 3.54,
+   "label": "whoosh curtain reveal",
+   "id": 531,
+   "role": "whoosh",
+   "gain_db": -1,
+   "lowpass": 9000,
+   "highpass": 200
+  },
+  {
+   "t": 6.23,
+   "label": "shing flare",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/sfx-custom/out/shing_classic.wav",
+   "role": "chime",
+   "anchor": "peak",
+   "gain_db": -4
+  },
+  {
+   "t": 8.09,
+   "label": "whoosh garden push",
+   "id": 487,
+   "role": "whoosh",
+   "gain_db": -3,
+   "lowpass": 8000,
+   "highpass": 200
+  },
+  {
+   "t": 27.65,
+   "label": "whoosh interior move",
+   "id": 491,
+   "role": "whoosh",
+   "gain_db": -4,
+   "lowpass": 8000,
+   "highpass": 200,
+   "max_dur": 1.2
+  },
+  {
+   "t": 34.74,
+   "label": "whoosh into top-down",
+   "id": 453,
+   "role": "whoosh",
+   "gain_db": -1,
+   "lowpass": 9000,
+   "highpass": 150
+  },
+  {
+   "t": 63.52,
+   "label": "whoosh presenter whip",
+   "id": 528,
+   "role": "whoosh",
+   "gain_db": -1,
+   "lowpass": 9000,
+   "highpass": 200,
+   "pitch": 1
+  }
+ ]
+}
