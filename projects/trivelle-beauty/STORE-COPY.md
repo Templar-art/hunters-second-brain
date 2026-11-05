@@ -21,7 +21,6 @@ Made for skin that's lived a little. Gentle heat, red light, EMS micro-pulses an
 
 ## Kit cards / variants
 - **Device + Gel — $219** · Everything you need to start
-- **Gift 2-Pack — $389** · Save $49 vs buying two
 
 ## Four rituals (feature section)
 **Warm** — Gentle heat for a relaxing, massage-like feel.

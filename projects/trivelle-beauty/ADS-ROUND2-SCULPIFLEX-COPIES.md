@@ -58,7 +58,7 @@ Clone for: jawline / neck, stomach, thighs (face and body are in the product cop
 
 Only run with a REAL discount on a REAL price, and set the real price first.
 - Black Friday: "Our Black Friday price on Trivelle. Real saving, real price."
-- Christmas: "One for you, one for Mum." Gift 2-Pack. Ship cut-off date stated.
+- Christmas: "One for you, one for Mum." Gift a single kit. Ship cut-off date stated.
 - Never "up to 88% off", never a was-price you didn't charge.
 
 ---

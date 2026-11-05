@@ -39,9 +39,9 @@ Headline: The at-home version
 VO template: "Arms that feel softer than they used to? Ten minutes, a few times a week. Gentle heat, EMS micro-pulses, vacuum massage. Skin that looks smoother and feels firmer." Swap the area. Never two B-roll clips of the same body part back to back. Keep to appearance, no "fat" or "cellulite" words.
 Headline: For the {area} you've been hiding
 
-### A5. Gifting (15 s) (Gift 2-Pack)
-VO: "One for you, one for Mum. Two Trivelle kits, one gift." Tilly and a friend open two boxes (plain box only, as shipped). End card: ship-by date (fill real date) + price.
-Primary text: One for you, one for someone who deserves it. Gift 2-Pack. Order by {DATE} for delivery before Christmas (confirm with supplier first).
+### A5. Gifting (15 s) (single kit as a gift)
+VO: "Know someone who deserves a little me-time? Trivelle makes a gift." Tilly wraps one plain-box kit with a ribbon. End card: A$169 + ship-by date (fill real date).
+Primary text: A gift for someone who deserves a little me-time. One Trivelle kit, A$169. Order by {DATE} for delivery before Christmas (confirm with supplier first).
 
 ### A6. Black Friday (15 s) - only with a REAL discount on the real price
 VO: "Our Black Friday price on Trivelle. Real price, real saving." End card: A$169 and dates. Do not run until the base price is final and you have actually charged it.

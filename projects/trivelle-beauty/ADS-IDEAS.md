@@ -28,7 +28,7 @@ D seated explainer 30s · A salon 30s · B lived-a-little 30s · A hook 10s
 ### 4. Angles
 - Money saved vs salon.
 - Self-care ritual / me-time.
-- **Gift (late Nov → Christmas):** push the 2-pack "one for you, one for Mum".
+- **Gift (late Nov → Christmas):** gift the single kit ("a little me-time for someone who deserves it"). No 2-pack.
 - Older audience (50–65) with an older presenter.
 
 ### 5. Later, once a winner holds

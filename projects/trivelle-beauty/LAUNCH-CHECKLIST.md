@@ -23,7 +23,7 @@ Shopify admin works on your phone too. Do the sections in order.
 - [ ] Usage everywhere: "10 minutes, 3–5 times a week".
 
 ## 2. Pricing — ~10 min
-- [ ] Kit **$219**, Gift 2-Pack **$389** ("Save $49 vs buying two"). Delete the old $149 variant if it's still there.
+- [ ] Kit **A$169 + gel subscription**, no Gift 2-Pack (dropped 2026-11-06). Delete the old $149 variant if it's still there.
 - [ ] Each variant: clear Compare-at price.
 - [ ] Theme editor: delete the countdown, "Launch offer · save $110" banner, "Save 39% OFF" badge.
 - [ ] Price line: "$219 — about a dollar a session". Never "under $1".

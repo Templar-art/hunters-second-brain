@@ -10,7 +10,7 @@ updated: 2026-11-06
 Hunter's own Shopify dropshipping store, separate from [[10x-visuals]] client work. One product: the **Trivelle 4-in-1 Sculpt & Glow**, a handheld body and face device (gentle heat, red light, EMS micro-pulses, vacuum massage), sold with an 80 g microcurrent gel. Working folder: [projects/trivelle-beauty](../../projects/trivelle-beauty/).
 
 ## Offer and economics
-- Price **A$219** kit, **A$389** gift 2-pack. Value-anchor copy only, no fake "was" prices (ACCC reference-pricing risk).
+- Price **A$169** kit + gel subscription (from 2026-11-06; was A$219). Gift 2-pack dropped, too confusing. Value-anchor copy only, no fake "was" prices (ACCC reference-pricing risk).
 - Supplier ships direct to AU in 7–15 days. Landed cost US$29.23 (~A$45) for device and gel, so ~A$170 margin per sale before ads.
 - Launch test: one Meta Sales campaign, one ad set, **$20/day for 5 days**, four ads. Judge on cost per add-to-cart.
 - Stock supplier box at launch. Custom carton (~A$900–1,000 for 500) only once sales are steady; draft dieline in `packaging/` is too plain and needs a redesign.
