@@ -2,7 +2,7 @@
 type: project
 tags: [trivelle, ecommerce, dropshipping, ads, side-business]
 status: launching
-updated: 2026-11-04
+updated: 2026-11-06
 ---
 
 # Trivelle Beauty (trivellebeauty.com)
@@ -30,3 +30,9 @@ Roughly 50k Magnific credits across two device versions (the 3-in-1 ads were mad
 - **Real packaging only.** Don't show branded packaging the customer won't receive; the in-the-box image must match what ships.
 - **Composites of a flat product photo look fake.** Regenerating the scene with the real product as a reference beat pasting a cut-out.
 - **Higgsfield Marketing Studio blocks body-device ads as nsfw**; Magnific (Seedance 2.5) handled them.
+
+## Round 2 plan (2026-11-06)
+- Ads went live 2026-11-05 after a long "Preparing" queue (every edit/republish resets it; billing, pixel, Account Quality all clean). Pixel has no Purchase event yet, which only slows optimisation.
+- Competitor research: Sculpiflex (A$158 kit, gel subscription, ~730 AU ads). Their long-runners are plain offer ads; their persona, trial stats, fat claims and fake was-prices are NOT usable. Details: [ADS-RESEARCH-SCULPIFLEX](../../projects/trivelle-beauty/ADS-RESEARCH-SCULPIFLEX.md), scripts: [ADS-ROUND2-SCULPIFLEX-COPIES](../../projects/trivelle-beauty/ADS-ROUND2-SCULPIFLEX-COPIES.md).
+- **Decision:** no fake doctor or fake trial (ACCC/Meta). Run a REAL tester trial ([TRIAL-KIT](../../projects/trivelle-beauty/TRIAL-KIT.md)): 20-30 testers, 30 days, publish real n. Persona = animated character for volume tests + a real person for the trust ad. Hunter is finding the person and recruiting testers.
+- Open: price (A$169 + gel sub vs A$219; live price A$199 vs 219 to confirm), supplier cost/shipping for 20-30 kits.
