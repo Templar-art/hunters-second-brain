@@ -2,7 +2,7 @@
 type: concept
 tags: [tool, drone, kollosche, pin, outline, cadastre]
 status: built-untested-on-live-job
-updated: 2026-10-29
+updated: 2026-11-06
 ---
 
 # Drone photo pinning
@@ -114,6 +114,7 @@ Mode per photo: `pin`, `outline`, `both` or `none`. By default, straight-down sh
 
 ## Limits
 - **QLD cadastre outages.** On 2026-10-29 QLD Spatial returned 502 for over 15 minutes, so `init` can't run. Fallback used on 4-6 Buckingham Way, Elanora (Kollosche): find the roof by eye in full-resolution crops, write `marks.json` by hand with `mode: pin` and an empty `lot`, and call `export()` directly. The result is pins only, with no outline until QLD is back.
+- **Edited exports with no metadata** (42 Salerno St, Isle of Capri, 2026-11-06). Lightroom exported the edited stills without XMP, so `init` saw no drone position. Fix: match each edit to its HDR DNG with SIFT, which gives the crop rect. Then copy the edited JPG into `jobs/<job>/src/`, take FocalLengthIn35mm from the raw `_D.DNG` (the HDR merge DNGs drop the `drone-dji` flight tags), and append the raw's `drone-dji:*` attributes plus `crs:Crop*` as a trailer comment, which `meta()` reads by regex. Run `init` on `src/`. Also, the cadastre registers Isle of Capri addresses under **Surfers Paradise**, so a lookup with "Isle of Capri" finds nothing.
 - Queensland addresses only (QLD cadastre). NSW would need its own service.
 - Townhouses and strata lots may resolve to the whole scheme parcel. Check the outline, and use a ⇧-drag on the corners or pin-only.
 - Lens distortion is ignored, which is fine for DJI JPGs and Lightroom-corrected DNGs.
