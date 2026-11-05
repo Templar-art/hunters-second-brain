@@ -3,24 +3,176 @@
  "keep_audio": "yes",
  "cues": [
   {
-   "t": 0.0,
-   "label": "birds bed (opening exteriors)",
+   "t": 0,
+   "label": "amb aerial (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    10,
+    3.2
+   ],
+   "fade_in": 0.8,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 6
+  },
+  {
+   "t": 0,
+   "label": "amb aerial (B)",
    "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
    "role": "ambience",
    "anchor": "start",
-   "loop_to": 15.0,
+   "slice": [
+    5,
+    3.2
+   ],
    "fade_in": 0.8,
-   "fade_out": 2.5,
-   "gain_db": -4
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 2
+  },
+  {
+   "t": 1.17,
+   "label": "whip start (aerial to aerial)",
+   "id": 531,
+   "role": "whoosh",
+   "anchor": "peak",
+   "gain_db": -3,
+   "lowpass": 10000,
+   "highpass": 250,
+   "layers": [
+    {
+     "dt": 0.0,
+     "id": 540,
+     "role": "whoosh",
+     "reverse": true,
+     "anchor": "end",
+     "gain_db": -8,
+     "lowpass": 9000,
+     "highpass": 400,
+     "max_dur": 0.9
+    },
+    {
+     "dt": 0.0,
+     "id": 445,
+     "role": "whoosh",
+     "anchor": "peak",
+     "gain_db": -6,
+     "lowpass": 400
+    },
+    {
+     "dt": 0.05,
+     "id": 539,
+     "role": "whoosh",
+     "anchor": "start",
+     "gain_db": -12,
+     "lowpass": 8000,
+     "highpass": 1500,
+     "max_dur": 0.7
+    }
+   ]
+  },
+  {
+   "t": 2.3,
+   "label": "amb curtain (CUR)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-160170_wind-blowing-curtain_owi-102398.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    1,
+    1.6
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 2
+  },
+  {
+   "t": 3.3,
+   "label": "amb pool view (PW)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-pool-water-27449.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    3,
+    2.9
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 7
+  },
+  {
+   "t": 3.3,
+   "label": "amb pool view (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    60,
+    2.9
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 5
   },
   {
    "t": 3.54,
-   "label": "whoosh curtain reveal",
-   "id": 531,
+   "label": "whip curtain wipe",
+   "id": 528,
    "role": "whoosh",
-   "gain_db": -1,
-   "lowpass": 9000,
-   "highpass": 200
+   "anchor": "peak",
+   "gain_db": -2,
+   "lowpass": 10000,
+   "highpass": 250,
+   "layers": [
+    {
+     "dt": 0.0,
+     "id": 487,
+     "role": "whoosh",
+     "reverse": true,
+     "anchor": "end",
+     "gain_db": -8,
+     "lowpass": 9000,
+     "highpass": 400,
+     "max_dur": 0.9
+    },
+    {
+     "dt": 0.0,
+     "id": 446,
+     "role": "whoosh",
+     "anchor": "peak",
+     "gain_db": -6,
+     "lowpass": 400
+    },
+    {
+     "dt": 0.05,
+     "id": 423,
+     "role": "whoosh",
+     "anchor": "start",
+     "gain_db": -12,
+     "lowpass": 8000,
+     "highpass": 1500,
+     "max_dur": 0.7
+    }
+   ]
+  },
+  {
+   "t": 5.6,
+   "label": "amb garden / front (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    120,
+    7.1
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 2
   },
   {
    "t": 6.23,
@@ -31,42 +183,165 @@
    "gain_db": -4
   },
   {
-   "t": 8.09,
-   "label": "whoosh garden push",
-   "id": 487,
-   "role": "whoosh",
-   "gain_db": -3,
-   "lowpass": 8000,
-   "highpass": 200
+   "t": 12.1,
+   "label": "amb street / front (O)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-outside-ambience-with-birds-61606.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    20,
+    5.5
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 12
   },
   {
-   "t": 27.65,
-   "label": "whoosh interior move",
-   "id": 491,
-   "role": "whoosh",
-   "gain_db": -4,
-   "lowpass": 8000,
-   "highpass": 200,
-   "max_dur": 1.2
+   "t": 27.3,
+   "label": "amb pool deck (PW2)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-water-of-a-pool-54298.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    8,
+    7.7
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 9
   },
   {
-   "t": 34.74,
-   "label": "whoosh into top-down",
-   "id": 453,
-   "role": "whoosh",
-   "gain_db": -1,
-   "lowpass": 9000,
-   "highpass": 150
+   "t": 27.3,
+   "label": "amb pool deck (N)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/u_vr5icvkppa-nature-ambience-323729.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    585,
+    7.7
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 9
+  },
+  {
+   "t": 34.4,
+   "label": "amb aerials (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    40,
+    4.9
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 8
+  },
+  {
+   "t": 48.6,
+   "label": "amb window curtain (CUR)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-160170_wind-blowing-curtain_owi-102398.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    4,
+    1.5
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 0
+  },
+  {
+   "t": 49.5,
+   "label": "amb presenter / dock / cafe (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    240,
+    14.3
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 4
+  },
+  {
+   "t": 49.5,
+   "label": "amb presenter / dock / cafe (PW)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-pool-water-27449.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    15,
+    14.3
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "fade_curve": "qsin",
+   "gain_db": 2
+  },
+  {
+   "t": 63.2,
+   "label": "amb closing aerial (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    60,
+    4.9
+   ],
+   "fade_in": 0.6,
+   "fade_out": 2.5,
+   "fade_curve": "qsin",
+   "gain_db": -12
   },
   {
    "t": 63.52,
-   "label": "whoosh presenter whip",
-   "id": 528,
+   "label": "whip presenter whip",
+   "id": 453,
    "role": "whoosh",
+   "anchor": "peak",
    "gain_db": -1,
-   "lowpass": 9000,
-   "highpass": 200,
-   "pitch": 1
+   "lowpass": 10000,
+   "highpass": 250,
+   "layers": [
+    {
+     "dt": 0.0,
+     "id": 491,
+     "role": "whoosh",
+     "reverse": true,
+     "anchor": "end",
+     "gain_db": -8,
+     "lowpass": 9000,
+     "highpass": 400,
+     "max_dur": 0.9
+    },
+    {
+     "dt": 0.0,
+     "id": 437,
+     "role": "whoosh",
+     "anchor": "peak",
+     "gain_db": -6,
+     "lowpass": 400
+    },
+    {
+     "dt": 0.05,
+     "id": 540,
+     "role": "whoosh",
+     "anchor": "start",
+     "gain_db": -12,
+     "lowpass": 8000,
+     "highpass": 1500,
+     "max_dur": 0.7
+    }
+   ]
   }
  ]
 }
