@@ -26,3 +26,4 @@ Outputs are in `result/`: `Salerno_Main_sfx.mp4`, `Salerno_Main_sfx_sfx_track.wa
 - Address super: `Logos/Address_42-Salerno-Street_4K.png` and `_1080p.png` on the SSD, in Kollosche spec (Söhne Breit Kräftig, caps, white, centred; script `graphics/address.py`).
 - Logos were gathered into `Logos/` on the SSD: Eddie Wardale team logo PNG/SVG plus `_tight` crops, the Kollosche brand marks and the 10x marks.
 - ⚠️ Kollosche rule: team logos appear on Agent Focus promos only, never on listing videos. Flagged to Hunter.
+- End card: Eddie Wardale outro (0408 881 678), reused from `projects/kollosche-outro/out/`. Copied to SSD `Logos/End Card/` (16:9 + 9:16 ProRes 4444 alpha + PNG).
