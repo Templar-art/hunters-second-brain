@@ -1,0 +1,150 @@
+[Script Info]
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cap,Poppins Black,78,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,1,0,1,5,3,2,80,80,520,1
+Style: Hook,Poppins Black,84,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,2,0,1,5,3,8,70,70,150,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:00.28,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}HEY,{\c&HFFFFFF&}
+Dialogue: 0,0:00:00.28,0:00:00.44,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}I'M{\c&HFFFFFF&} EVERETT AND
+Dialogue: 0,0:00:00.44,0:00:00.87,Cap,,0,0,0,,I'M {\c&HD8A861&}EVERETT{\c&HFFFFFF&} AND
+Dialogue: 0,0:00:00.87,0:00:01.00,Cap,,0,0,0,,I'M EVERETT {\c&HD8A861&}AND{\c&HFFFFFF&}
+Dialogue: 0,0:00:01.00,0:00:01.22,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THIS{\c&HFFFFFF&} IS ALEX.
+Dialogue: 0,0:00:01.22,0:00:01.33,Cap,,0,0,0,,THIS {\c&HD8A861&}IS{\c&HFFFFFF&} ALEX.
+Dialogue: 0,0:00:01.33,0:00:01.94,Cap,,0,0,0,,THIS IS {\c&HD8A861&}ALEX.{\c&HFFFFFF&}
+Dialogue: 0,0:00:01.94,0:00:01.94,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}WE'RE{\c&HFFFFFF&} FROM FIND
+Dialogue: 0,0:00:01.94,0:00:02.20,Cap,,0,0,0,,WE'RE {\c&HD8A861&}FROM{\c&HFFFFFF&} FIND
+Dialogue: 0,0:00:02.20,0:00:02.44,Cap,,0,0,0,,WE'RE FROM {\c&HD8A861&}FIND{\c&HFFFFFF&}
+Dialogue: 0,0:00:02.44,0:00:02.81,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}YOUR{\c&HFFFFFF&} STRIDE,
+Dialogue: 0,0:00:02.81,0:00:03.12,Cap,,0,0,0,,YOUR {\c&HD8A861&}STRIDE,{\c&HFFFFFF&}
+Dialogue: 0,0:00:03.12,0:00:03.30,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}WHO{\c&HFFFFFF&} ARE A
+Dialogue: 0,0:00:03.30,0:00:03.50,Cap,,0,0,0,,WHO {\c&HD8A861&}ARE{\c&HFFFFFF&} A
+Dialogue: 0,0:00:03.50,0:00:03.54,Cap,,0,0,0,,WHO ARE {\c&HD8A861&}A{\c&HFFFFFF&}
+Dialogue: 0,0:00:03.54,0:00:03.84,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}BUNCH{\c&HFFFFFF&} OF MATES
+Dialogue: 0,0:00:03.84,0:00:03.95,Cap,,0,0,0,,BUNCH {\c&HD8A861&}OF{\c&HFFFFFF&} MATES
+Dialogue: 0,0:00:03.95,0:00:04.26,Cap,,0,0,0,,BUNCH OF {\c&HD8A861&}MATES{\c&HFFFFFF&}
+Dialogue: 0,0:00:04.26,0:00:04.37,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}WHO{\c&HFFFFFF&} LIKE TO
+Dialogue: 0,0:00:04.37,0:00:04.51,Cap,,0,0,0,,WHO {\c&HD8A861&}LIKE{\c&HFFFFFF&} TO
+Dialogue: 0,0:00:04.51,0:00:04.58,Cap,,0,0,0,,WHO LIKE {\c&HD8A861&}TO{\c&HFFFFFF&}
+Dialogue: 0,0:00:04.58,0:00:04.69,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}RUN{\c&HFFFFFF&} TOGETHER.
+Dialogue: 0,0:00:04.69,0:00:05.74,Cap,,0,0,0,,RUN {\c&HD8A861&}TOGETHER.{\c&HFFFFFF&}
+Dialogue: 0,0:00:05.74,0:00:05.74,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THIS{\c&HFFFFFF&} YEAR WE'RE
+Dialogue: 0,0:00:05.74,0:00:05.74,Cap,,0,0,0,,THIS {\c&HD8A861&}YEAR{\c&HFFFFFF&} WE'RE
+Dialogue: 0,0:00:05.74,0:00:05.90,Cap,,0,0,0,,THIS YEAR {\c&HD8A861&}WE'RE{\c&HFFFFFF&}
+Dialogue: 0,0:00:05.90,0:00:06.33,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}RUNNING{\c&HFFFFFF&} TOGETHER IN
+Dialogue: 0,0:00:06.33,0:00:06.83,Cap,,0,0,0,,RUNNING {\c&HD8A861&}TOGETHER{\c&HFFFFFF&} IN
+Dialogue: 0,0:00:06.83,0:00:06.94,Cap,,0,0,0,,RUNNING TOGETHER {\c&HD8A861&}IN{\c&HFFFFFF&}
+Dialogue: 0,0:00:06.94,0:00:07.12,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THE{\c&HFFFFFF&} QUEENSTOWN MARATHON
+Dialogue: 0,0:00:07.12,0:00:07.73,Cap,,0,0,0,,THE {\c&HD8A861&}QUEENSTOWN{\c&HFFFFFF&} MARATHON
+Dialogue: 0,0:00:07.73,0:00:08.30,Cap,,0,0,0,,THE QUEENSTOWN {\c&HD8A861&}MARATHON{\c&HFFFFFF&}
+Dialogue: 0,0:00:08.30,0:00:08.40,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}ON{\c&HFFFFFF&} THE 14TH
+Dialogue: 0,0:00:08.40,0:00:08.55,Cap,,0,0,0,,ON {\c&HD8A861&}THE{\c&HFFFFFF&} 14TH
+Dialogue: 0,0:00:08.55,0:00:08.96,Cap,,0,0,0,,ON THE {\c&HD8A861&}14TH{\c&HFFFFFF&}
+Dialogue: 0,0:00:08.96,0:00:09.16,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}OF{\c&HFFFFFF&} NOVEMBER TO
+Dialogue: 0,0:00:09.16,0:00:09.50,Cap,,0,0,0,,OF {\c&HD8A861&}NOVEMBER{\c&HFFFFFF&} TO
+Dialogue: 0,0:00:09.50,0:00:09.66,Cap,,0,0,0,,OF NOVEMBER {\c&HD8A861&}TO{\c&HFFFFFF&}
+Dialogue: 0,0:00:09.66,0:00:10.06,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}RAISE{\c&HFFFFFF&} FUNDS AND
+Dialogue: 0,0:00:10.06,0:00:10.46,Cap,,0,0,0,,RAISE {\c&HD8A861&}FUNDS{\c&HFFFFFF&} AND
+Dialogue: 0,0:00:10.46,0:00:10.70,Cap,,0,0,0,,RAISE FUNDS {\c&HD8A861&}AND{\c&HFFFFFF&}
+Dialogue: 0,0:00:10.70,0:00:11.43,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}AWARENESS{\c&HFFFFFF&}
+Dialogue: 0,0:00:11.43,0:00:11.67,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}FOR{\c&HFFFFFF&} THE FIND
+Dialogue: 0,0:00:11.67,0:00:11.91,Cap,,0,0,0,,FOR {\c&HD8A861&}THE{\c&HFFFFFF&} FIND
+Dialogue: 0,0:00:11.91,0:00:12.23,Cap,,0,0,0,,FOR THE {\c&HD8A861&}FIND{\c&HFFFFFF&}
+Dialogue: 0,0:00:12.23,0:00:12.55,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}YOUR{\c&HFFFFFF&} FEET CHARITY.
+Dialogue: 0,0:00:12.55,0:00:12.92,Cap,,0,0,0,,YOUR {\c&HD8A861&}FEET{\c&HFFFFFF&} CHARITY.
+Dialogue: 0,0:00:12.92,0:00:14.12,Cap,,0,0,0,,YOUR FEET {\c&HD8A861&}CHARITY.{\c&HFFFFFF&}
+Dialogue: 0,0:00:17.88,0:00:17.88,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}TOMMY{\c&HFFFFFF&} HERSCHEL RUNS
+Dialogue: 0,0:00:17.88,0:00:17.88,Cap,,0,0,0,,TOMMY {\c&HD8A861&}HERSCHEL{\c&HFFFFFF&} RUNS
+Dialogue: 0,0:00:17.88,0:00:17.88,Cap,,0,0,0,,TOMMY HERSCHEL {\c&HD8A861&}RUNS{\c&HFFFFFF&}
+Dialogue: 0,0:00:17.88,0:00:17.88,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THOSE{\c&HFFFFFF&} WORKSHOPS,
+Dialogue: 0,0:00:17.88,0:00:19.08,Cap,,0,0,0,,THOSE {\c&HD8A861&}WORKSHOPS,{\c&HFFFFFF&}
+Dialogue: 0,0:00:19.88,0:00:20.36,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}GETTING{\c&HFFFFFF&} PEOPLE TALKING
+Dialogue: 0,0:00:20.36,0:00:20.77,Cap,,0,0,0,,GETTING {\c&HD8A861&}PEOPLE{\c&HFFFFFF&} TALKING
+Dialogue: 0,0:00:20.77,0:00:21.30,Cap,,0,0,0,,GETTING PEOPLE {\c&HD8A861&}TALKING{\c&HFFFFFF&}
+Dialogue: 0,0:00:21.30,0:00:21.59,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}ABOUT{\c&HFFFFFF&} THE STUFF
+Dialogue: 0,0:00:21.59,0:00:21.80,Cap,,0,0,0,,ABOUT {\c&HD8A861&}THE{\c&HFFFFFF&} STUFF
+Dialogue: 0,0:00:21.80,0:00:22.16,Cap,,0,0,0,,ABOUT THE {\c&HD8A861&}STUFF{\c&HFFFFFF&}
+Dialogue: 0,0:00:22.16,0:00:22.49,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THAT{\c&HFFFFFF&} MOST KEEP
+Dialogue: 0,0:00:22.49,0:00:22.82,Cap,,0,0,0,,THAT {\c&HD8A861&}MOST{\c&HFFFFFF&} KEEP
+Dialogue: 0,0:00:22.82,0:00:23.18,Cap,,0,0,0,,THAT MOST {\c&HD8A861&}KEEP{\c&HFFFFFF&}
+Dialogue: 0,0:00:23.18,0:00:23.24,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}TO{\c&HFFFFFF&} OURSELVES.
+Dialogue: 0,0:00:23.24,0:00:24.13,Cap,,0,0,0,,TO {\c&HD8A861&}OURSELVES.{\c&HFFFFFF&}
+Dialogue: 0,0:00:24.13,0:00:24.36,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THEM{\c&HFFFFFF&} PRACTICAL TOOLS
+Dialogue: 0,0:00:24.36,0:00:24.88,Cap,,0,0,0,,THEM {\c&HD8A861&}PRACTICAL{\c&HFFFFFF&} TOOLS
+Dialogue: 0,0:00:24.88,0:00:25.17,Cap,,0,0,0,,THEM PRACTICAL {\c&HD8A861&}TOOLS{\c&HFFFFFF&}
+Dialogue: 0,0:00:25.17,0:00:25.28,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}TO{\c&HFFFFFF&} LOOK AFTER
+Dialogue: 0,0:00:25.28,0:00:25.51,Cap,,0,0,0,,TO {\c&HD8A861&}LOOK{\c&HFFFFFF&} AFTER
+Dialogue: 0,0:00:25.51,0:00:25.84,Cap,,0,0,0,,TO LOOK {\c&HD8A861&}AFTER{\c&HFFFFFF&}
+Dialogue: 0,0:00:25.84,0:00:26.09,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THEIR{\c&HFFFFFF&} MENTAL HEALTH,
+Dialogue: 0,0:00:26.09,0:00:26.45,Cap,,0,0,0,,THEIR {\c&HD8A861&}MENTAL{\c&HFFFFFF&} HEALTH,
+Dialogue: 0,0:00:26.45,0:00:27.15,Cap,,0,0,0,,THEIR MENTAL {\c&HD8A861&}HEALTH,{\c&HFFFFFF&}
+Dialogue: 0,0:00:27.15,0:00:27.55,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}MANAGE{\c&HFFFFFF&} TOUGH DAYS
+Dialogue: 0,0:00:27.55,0:00:28.03,Cap,,0,0,0,,MANAGE {\c&HD8A861&}TOUGH{\c&HFFFFFF&} DAYS
+Dialogue: 0,0:00:28.03,0:00:28.43,Cap,,0,0,0,,MANAGE TOUGH {\c&HD8A861&}DAYS{\c&HFFFFFF&}
+Dialogue: 0,0:00:28.43,0:00:28.58,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}AND{\c&HFFFFFF&} NOTICE WHEN
+Dialogue: 0,0:00:28.58,0:00:28.89,Cap,,0,0,0,,AND {\c&HD8A861&}NOTICE{\c&HFFFFFF&} WHEN
+Dialogue: 0,0:00:28.89,0:00:29.10,Cap,,0,0,0,,AND NOTICE {\c&HD8A861&}WHEN{\c&HFFFFFF&}
+Dialogue: 0,0:00:29.10,0:00:29.30,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}A{\c&HFFFFFF&} MATE ISN'T
+Dialogue: 0,0:00:29.30,0:00:29.36,Cap,,0,0,0,,A {\c&HD8A861&}MATE{\c&HFFFFFF&} ISN'T
+Dialogue: 0,0:00:29.36,0:00:29.61,Cap,,0,0,0,,A MATE {\c&HD8A861&}ISN'T{\c&HFFFFFF&}
+Dialogue: 0,0:00:29.61,0:00:29.87,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}DOING{\c&HFFFFFF&} SO WELL.
+Dialogue: 0,0:00:29.87,0:00:29.98,Cap,,0,0,0,,DOING {\c&HD8A861&}SO{\c&HFFFFFF&} WELL.
+Dialogue: 0,0:00:29.98,0:00:31.18,Cap,,0,0,0,,DOING SO {\c&HD8A861&}WELL.{\c&HFFFFFF&}
+Dialogue: 0,0:00:31.63,0:00:32.03,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}CAUSE{\c&HFFFFFF&} AND THAT'S
+Dialogue: 0,0:00:32.03,0:00:32.27,Cap,,0,0,0,,CAUSE {\c&HD8A861&}AND{\c&HFFFFFF&} THAT'S
+Dialogue: 0,0:00:32.27,0:00:32.75,Cap,,0,0,0,,CAUSE AND {\c&HD8A861&}THAT'S{\c&HFFFFFF&}
+Dialogue: 0,0:00:32.75,0:00:32.99,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}WHY{\c&HFFFFFF&} WE'RE GETTING
+Dialogue: 0,0:00:32.99,0:00:33.39,Cap,,0,0,0,,WHY {\c&HD8A861&}WE'RE{\c&HFFFFFF&} GETTING
+Dialogue: 0,0:00:33.39,0:00:33.95,Cap,,0,0,0,,WHY WE'RE {\c&HD8A861&}GETTING{\c&HFFFFFF&}
+Dialogue: 0,0:00:33.95,0:00:34.48,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}BEHIND{\c&HFFFFFF&} IT.
+Dialogue: 0,0:00:34.48,0:00:35.13,Cap,,0,0,0,,BEHIND {\c&HD8A861&}IT.{\c&HFFFFFF&}
+Dialogue: 0,0:00:35.13,0:00:35.36,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}OUR{\c&HFFFFFF&} BODIES TO
+Dialogue: 0,0:00:35.36,0:00:35.85,Cap,,0,0,0,,OUR {\c&HD8A861&}BODIES{\c&HFFFFFF&} TO
+Dialogue: 0,0:00:35.85,0:00:35.98,Cap,,0,0,0,,OUR BODIES {\c&HD8A861&}TO{\c&HFFFFFF&}
+Dialogue: 0,0:00:35.98,0:00:36.21,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}GET{\c&HFFFFFF&} FIT FOR
+Dialogue: 0,0:00:36.21,0:00:36.44,Cap,,0,0,0,,GET {\c&HD8A861&}FIT{\c&HFFFFFF&} FOR
+Dialogue: 0,0:00:36.44,0:00:36.67,Cap,,0,0,0,,GET FIT {\c&HD8A861&}FOR{\c&HFFFFFF&}
+Dialogue: 0,0:00:36.67,0:00:36.90,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THE{\c&HFFFFFF&} MARATHON,
+Dialogue: 0,0:00:36.90,0:00:38.10,Cap,,0,0,0,,THE {\c&HD8A861&}MARATHON,{\c&HFFFFFF&}
+Dialogue: 0,0:00:38.21,0:00:38.46,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}JUST{\c&HFFFFFF&} AS HARD
+Dialogue: 0,0:00:38.46,0:00:38.73,Cap,,0,0,0,,JUST {\c&HD8A861&}AS{\c&HFFFFFF&} HARD
+Dialogue: 0,0:00:38.73,0:00:38.83,Cap,,0,0,0,,JUST AS {\c&HD8A861&}HARD{\c&HFFFFFF&}
+Dialogue: 0,0:00:38.83,0:00:38.95,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}TO{\c&HFFFFFF&} RAISE MONEY
+Dialogue: 0,0:00:38.95,0:00:39.27,Cap,,0,0,0,,TO {\c&HD8A861&}RAISE{\c&HFFFFFF&} MONEY
+Dialogue: 0,0:00:39.27,0:00:39.59,Cap,,0,0,0,,TO RAISE {\c&HD8A861&}MONEY{\c&HFFFFFF&}
+Dialogue: 0,0:00:39.59,0:00:39.78,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}FOR{\c&HFFFFFF&} FIND YOUR
+Dialogue: 0,0:00:39.78,0:00:40.03,Cap,,0,0,0,,FOR {\c&HD8A861&}FIND{\c&HFFFFFF&} YOUR
+Dialogue: 0,0:00:40.03,0:00:40.28,Cap,,0,0,0,,FOR FIND {\c&HD8A861&}YOUR{\c&HFFFFFF&}
+Dialogue: 0,0:00:40.28,0:00:41.22,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}FEET.{\c&HFFFFFF&}
+Dialogue: 0,0:00:41.22,0:00:41.22,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}EVERY{\c&HFFFFFF&} DOLLAR HELPS
+Dialogue: 0,0:00:41.22,0:00:41.22,Cap,,0,0,0,,EVERY {\c&HD8A861&}DOLLAR{\c&HFFFFFF&} HELPS
+Dialogue: 0,0:00:41.22,0:00:41.33,Cap,,0,0,0,,EVERY DOLLAR {\c&HD8A861&}HELPS{\c&HFFFFFF&}
+Dialogue: 0,0:00:41.33,0:00:41.69,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}TOMMY{\c&HFFFFFF&} GET INTO
+Dialogue: 0,0:00:41.69,0:00:41.90,Cap,,0,0,0,,TOMMY {\c&HD8A861&}GET{\c&HFFFFFF&} INTO
+Dialogue: 0,0:00:41.90,0:00:42.18,Cap,,0,0,0,,TOMMY GET {\c&HD8A861&}INTO{\c&HFFFFFF&}
+Dialogue: 0,0:00:42.18,0:00:42.46,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}MORE{\c&HFFFFFF&} SCHOOLS AND
+Dialogue: 0,0:00:42.46,0:00:42.96,Cap,,0,0,0,,MORE {\c&HD8A861&}SCHOOLS{\c&HFFFFFF&} AND
+Dialogue: 0,0:00:42.96,0:00:43.17,Cap,,0,0,0,,MORE SCHOOLS {\c&HD8A861&}AND{\c&HFFFFFF&}
+Dialogue: 0,0:00:43.17,0:00:44.37,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}WORKPLACES.{\c&HFFFFFF&}
+Dialogue: 0,0:00:44.54,0:00:45.24,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}LINK.{\c&HFFFFFF&}
+Dialogue: 0,0:00:45.24,0:00:45.59,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}PLEASE{\c&HFFFFFF&} SPONSOR US,
+Dialogue: 0,0:00:45.59,0:00:46.00,Cap,,0,0,0,,PLEASE {\c&HD8A861&}SPONSOR{\c&HFFFFFF&} US,
+Dialogue: 0,0:00:46.00,0:00:46.22,Cap,,0,0,0,,PLEASE SPONSOR {\c&HD8A861&}US,{\c&HFFFFFF&}
+Dialogue: 0,0:00:46.22,0:00:46.53,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}SHARE{\c&HFFFFFF&} THIS VIDEO
+Dialogue: 0,0:00:46.53,0:00:46.74,Cap,,0,0,0,,SHARE {\c&HD8A861&}THIS{\c&HFFFFFF&} VIDEO
+Dialogue: 0,0:00:46.74,0:00:47.03,Cap,,0,0,0,,SHARE THIS {\c&HD8A861&}VIDEO{\c&HFFFFFF&}
+Dialogue: 0,0:00:47.03,0:00:47.20,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}AND{\c&HFFFFFF&} WE'LL DO
+Dialogue: 0,0:00:47.20,0:00:47.59,Cap,,0,0,0,,AND {\c&HD8A861&}WE'LL{\c&HFFFFFF&} DO
+Dialogue: 0,0:00:47.59,0:00:47.66,Cap,,0,0,0,,AND WE'LL {\c&HD8A861&}DO{\c&HFFFFFF&}
+Dialogue: 0,0:00:47.66,0:00:47.76,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}THE{\c&HFFFFFF&} HARD PART
+Dialogue: 0,0:00:47.76,0:00:47.99,Cap,,0,0,0,,THE {\c&HD8A861&}HARD{\c&HFFFFFF&} PART
+Dialogue: 0,0:00:47.99,0:00:48.22,Cap,,0,0,0,,THE HARD {\c&HD8A861&}PART{\c&HFFFFFF&}
+Dialogue: 0,0:00:48.22,0:00:48.33,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}IN{\c&HFFFFFF&} QUEENSTOWN.
+Dialogue: 0,0:00:48.33,0:00:49.53,Cap,,0,0,0,,IN {\c&HD8A861&}QUEENSTOWN.{\c&HFFFFFF&}
+Dialogue: 0,0:00:49.74,0:00:50.74,Cap,,0,0,0,,{\fscx92\fscy92\t(0,90,\fscx100\fscy100)}{\c&HD8A861&}CHEERS.{\c&HFFFFFF&}
+Dialogue: 1,0:00:00.10,0:00:02.90,Hook,,0,0,0,,{\fad(150,200)}42.2 KM FOR {\c&HD8A861&}FIND YOUR FEET
+Dialogue: 1,0:00:44.62,0:00:50.22,Hook,,0,0,0,,{\fad(200,0)}{\c&HD8A861&}LINK BELOW
