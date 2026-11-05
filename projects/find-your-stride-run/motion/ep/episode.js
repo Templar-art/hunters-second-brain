@@ -122,11 +122,11 @@ function sceneCTA(T) {
   const ay = top + 66 + Math.sin(t * 7) * 10; if (t > .4) { g.fillStyle = BLUE; g.beginPath(); g.moveTo(980, ay + 30); g.lineTo(940, ay - 14); g.lineTo(1020, ay - 14); g.closePath(); g.fill(); g.fillRect(970, ay - 60, 20, 50); }
   CTA.forEach(([txt, at], i) => { const y = top + 230 + i * 130; rise(txt, 80, y, T - at, { size: 104, col: i === 2 ? BLUE : INK, dur: .45 });
     const u = expo((T - at - .2) / .5); if (u > 0 && i < 2) { font(800, 104, COND); g.fillStyle = BLUE; g.fillRect(80, y + 18, g.measureText(txt).width * u, 8); } });
-  confetti(T, 49.75);
+  g.save(); g.beginPath(); g.rect(0, top, W, H - top); g.clip(); confetti(T, 49.75, top); g.restore();   /* confetti stays in the panel, never over faces */
 }
-function confetti(T, a) {
+function confetti(T, a, top = 1000) {
   const t = T - a; if (t <= 0) return; const r = rng(5);
-  for (let i = 0; i < 70; i++) { const ang = -Math.PI / 2 + (r() - .5) * 2.2, sp = 900 + r() * 1300, x = 540 + Math.cos(ang) * sp * t, y = 1000 + Math.sin(ang) * sp * t + 1600 * t * t;
+  for (let i = 0; i < 70; i++) { const ang = -Math.PI / 2 + (r() - .5) * 2.2, sp = 900 + r() * 1300, x = 540 + Math.cos(ang) * sp * t * 1.3, y = H + 40 + Math.sin(ang) * sp * t * .55 + 1100 * t * t;
     g.save(); g.translate(x, y); g.rotate(r() * 6 + t * (6 + r() * 8)); g.fillStyle = [BLUE, CYAN, WHITE, '#C2410C'][i % 4]; g.fillRect(-12, -6, 24, 12 * Math.abs(Math.cos(t * 10 + i))); g.restore(); }
 }
 
