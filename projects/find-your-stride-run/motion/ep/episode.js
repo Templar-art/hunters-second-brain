@@ -145,7 +145,7 @@ window.EP = {
       rise(v, 540, 760, T - .1, { size: 420, w: 800, col: WHITE, dur: .5, align: 'center', exitAt: 2.75, T });
       typeOn('KM  ·  QUEENSTOWN', 540 - 210, 300, T - .5, { size: 44, col: WHITE, track: 5, w: 600, fam: BODY, cps: 40 });
       cutout(); speedLines(T, .05, 1.2, 420, 2);
-      namePill(T, .2, 2.85, 'EVERETT', 280, 1080); namePill(T, 1.12, 2.85, 'ALEX', 790, 1080);
+      namePill(T, .2, 2.85, 'EVERETT', 280, 1080); namePill(T, 1.12, 2.85, 'ALEKS', 790, 1080);
       captions(T);
     } else if (T < BIB_IN) {                                         /* bridge B-roll: MATES kinetic type */
       th(FULL); g.fillStyle = 'rgba(0,0,0,.25)'; g.fillRect(0, 0, W, H);
