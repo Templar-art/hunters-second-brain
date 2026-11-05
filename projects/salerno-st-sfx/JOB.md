@@ -40,3 +40,8 @@ Each scene is calibrated to a target level under the music (13–15 dB, with `wo
 ⚠️ The `outside-ambience-with-birds-61606` bed has a voice-like component around 91 s (the vocal stem is only 9 dB under), and Whisper read it as "it's fine". It was dropped from all scenes in favour of the birds and nature beds. The final Whisper pass gives only one-word birdsong hallucinations, and the vocal stem has 0% of its energy in the 200–1500 Hz speech band. No cicadas: the 3.5–9 kHz share peaks at 0.11.
 
 Final mix: -14.6 LUFS, -0.1 dBTP (the original itself peaks at +0.9). Output: `result/Salerno_Main_sfx_v3.mp4` + `_sfx_track.wav`.
+
+## 2026-11-05 — Lot outline + K pin
+- Outline: QLD cadastre lot 231RP110045, front edge extended to kerb (Hunter: "goto the street"), SIFT-chained track on top-down (src f833–899), draws on from shot frame 22. `graphics/track_outline.py`, `render_outline2.py`.
+- Pin: Kollosche navy badge K on subject roof, city wide (src f900–933), KLT tip track (5.8 px travel). `graphics/pin_salerno.py`.
+- Delivered ProRes 4444 alpha + previews → SSD `Edits/Overlays/`. Cost: $0 (local).
