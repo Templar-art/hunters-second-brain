@@ -19,7 +19,7 @@ for i,(s,e,z) in enumerate(SEGS):
     push=f"{z}+0.05*on/{n}"   # slow push across every segment
     fc.append(f"[0:v:0]trim={s}:{e},setpts=PTS-STARTPTS,fps=24000/1001,scale=1080:1920,"
               f"zoompan=z='{push}':x='iw/2-iw/zoom/2':y='ih*0.42-ih/zoom*0.42':d=1:s=1080x1920:fps=24000/1001,{GRADE}[v{i}];")
-    fc.append(f"[0:a:0]atrim={s}:{e},asetpts=PTS-STARTPTS,afade=t=in:d=0.02,afade=t=out:st={e-s-0.03}:d=0.03[a{i}];")
+    fc.append(f"[0:a:0]atrim={s}:{e},asetpts=PTS-STARTPTS,afade=t=in:d=0.04,afade=t=out:st={e-s-0.06}:d=0.06[a{i}];")
 k=len(SEGS)
 fc.append("".join(f"[v{i}][a{i}]" for i in range(k))+f"concat=n={k}:v=1:a=1[vc][ac];")
 # captions: PIL-rendered alpha layer (this ffmpeg has no libass). 3-word chunks, active word blue, pop-in
@@ -38,13 +38,13 @@ for ci,ch in enumerate(chunks):
     for wi,(t,w) in enumerate(ch):
         CAP.append((t, ch[wi+1][0] if wi+1<len(ch) else end_ch, [x.upper().strip(',.') for _,x in ch], wi, ch[0][0]))
 FB=os.path.expanduser('~/Library/Fonts/Poppins-Black.ttf')
-BLUE=(97,168,216,255)
+BLUE=(255,255,255,255)  # client job (Ashley Cooper Construction): no 10x blue; active word = white, others dimmed
 def draw_line(img, parts, y, size, active=None, scale=1.0):
     f=ImageFont.truetype(FB, int(size*scale)); d=ImageDraw.Draw(img)
     sp=f.getlength(' '); widths=[f.getlength(p) for p in parts]; W=sum(widths)+sp*(len(parts)-1)
     x=(1080-W)/2
     for i,(p,w) in enumerate(zip(parts,widths)):
-        col=BLUE if (active is not None and i in active) else (255,255,255,255)
+        col=BLUE if (active is None or i in active) else (255,255,255,170)
         d.text((x+3,y+4),p,font=f,fill=(0,0,0,140),anchor='lm')
         d.text((x,y),p,font=f,fill=col,anchor='lm',stroke_width=6,stroke_fill=(0,0,0,255))
         x+=w+sp
@@ -65,7 +65,7 @@ for n in range(N):
         draw_line(img,["SPONSOR US"],230,72); draw_line(img,["LINK","BELOW"],320,92,{0,1})
     img.save(f"{fr}/{n:05d}.png")
 subprocess.run(["ffmpeg","-v","error","-y","-framerate","24000/1001","-i",f"{fr}/%05d.png","-c:v","qtrle",f"{OUT}/caps.mov"],check=True)
-fc.append(f"[vc][1:v]overlay=0:0:format=auto[vo];[ac]loudnorm=I=-14:TP=-1.5:LRA=9[ao]")
+fc.append(f"[vc][1:v]overlay=0:0:format=auto[vo];[ac]highpass=f=85,afftdn=nr=10:nf=-45,equalizer=f=250:t=q:w=1.2:g=-2,equalizer=f=3500:t=q:w=1.5:g=2,deesser=i=0.3,acompressor=threshold=-20dB:ratio=2.5:attack=15:release=200:makeup=3,loudnorm=I=-14:TP=-1.5:LRA=7[ao]")
 subprocess.run(["ffmpeg","-v","error","-y","-i",SRC,"-i",f"{OUT}/caps.mov","-filter_complex","".join(fc),"-map","[vo]","-map","[ao]",
-  "-c:v","libx264","-crf","17","-preset","medium","-pix_fmt","yuv420p","-c:a","aac","-b:a","256k","-movflags","+faststart",f"{OUT}/picture.mp4"],check=True)
+  "-c:v","libx264","-crf","17","-preset","medium","-pix_fmt","yuv420p","-c:a","aac","-b:a","256k","-ar","48000","-movflags","+faststart",f"{OUT}/picture.mp4"],check=True)
 print("total",round(total,2))
