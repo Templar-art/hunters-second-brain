@@ -55,3 +55,4 @@ Final mix: -14.6 LUFS, -0.1 dBTP (the original itself peaks at +0.9). Output: `r
 ## 2026-11-05 — Reel SFX
 - Reel.mp4 (38.3 s, 9:16): 18 scene beds reusing the Main's vetted beds, each set to a target level under the reel's own audio. Pin-reveal accent at 23.8 s (2014 + 460 low). No whooshes; Hunter does those himself.
 - Delivered `Edits/SFX/Reel/Salerno_Reel_SFX_ALL.wav` (starts at 00:00) + a preview. `reel/build_reel.py`. Cost: $0.
+- 2026-11-05: K open (0–3.2 s, fades at 2.6 s) + Eddie end card (from 35.0 s, over the closing aerial) burned into the reel → Edits/Reel_K-EndCard_{with-SFX,original-audio}.mp4.
