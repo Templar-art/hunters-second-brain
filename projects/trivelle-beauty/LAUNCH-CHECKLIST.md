@@ -1,6 +1,6 @@
 # Trivelle — full launch to-do
 
-Updated 2026-11-04. Product: **Trivelle 4-in-1 Sculpt & Glow** (heat, red light, EMS, vacuum) + 80 g microcurrent gel. **A$219** kit · **A$389** 2-pack. Supplier ships direct to AU, 7–15 days, landed cost ~A$45. Stock supplier box for now.
+Updated 2026-11-04. Product: **Trivelle 4-in-1 Sculpt & Glow** (heat, red light, EMS, vacuum) + 80 g microcurrent gel. **A$169** kit + gel subscription (updated 2026-11-06, no 2-pack). Supplier ships direct to AU, 7–15 days, landed cost ~A$45. Stock supplier box for now.
 
 Shopify admin works on your phone too. Do the sections in order.
 
