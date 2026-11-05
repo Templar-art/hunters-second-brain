@@ -50,7 +50,7 @@ def draw_line(img, parts, y, size, active=None, scale=1.0):
         x+=w+sp
 HOOK=[(0.1,2.9,["42.2 KM FOR"],None),(0.1,2.9,["FIND","YOUR","FEET"],{0,1,2})]
 fr=f"{OUT}/capframes"; os.makedirs(fr,exist_ok=True)
-N=round(total*FPS)
+N=0 if os.environ.get("CLEAN") else round(total*FPS)
 for n in range(N):
     t=n/FPS; img=Image.new('RGBA',(1080,1920),(0,0,0,0))
     for s,e,parts,ai,cs in CAP:
@@ -64,8 +64,8 @@ for n in range(N):
     if t>total-5.6:
         draw_line(img,["SPONSOR US"],230,72); draw_line(img,["LINK","BELOW"],320,92,{0,1})
     img.save(f"{fr}/{n:05d}.png")
-subprocess.run(["ffmpeg","-v","error","-y","-framerate","24000/1001","-i",f"{fr}/%05d.png","-c:v","qtrle",f"{OUT}/caps.mov"],check=True)
-fc.append(f"[vc][1:v]overlay=0:0:format=auto[vo];[ac]highpass=f=85,afftdn=nr=10:nf=-45,equalizer=f=250:t=q:w=1.2:g=-2,equalizer=f=3500:t=q:w=1.5:g=2,deesser=i=0.3,acompressor=threshold=-20dB:ratio=2.5:attack=15:release=200:makeup=3,loudnorm=I=-14:TP=-1.5:LRA=7[ao]")
+None if os.environ.get("CLEAN") else subprocess.run(["ffmpeg","-v","error","-y","-framerate","24000/1001","-i",f"{fr}/%05d.png","-c:v","qtrle",f"{OUT}/caps.mov"],check=True)
+fc.append(("[vc]null[vo];" if os.environ.get("CLEAN") else "[vc][1:v]overlay=0:0:format=auto[vo];")+f"[ac]highpass=f=85,afftdn=nr=10:nf=-45,equalizer=f=250:t=q:w=1.2:g=-2,equalizer=f=3500:t=q:w=1.5:g=2,deesser=i=0.3,acompressor=threshold=-20dB:ratio=2.5:attack=15:release=200:makeup=3,loudnorm=I=-14:TP=-1.5:LRA=7[ao]")
 subprocess.run(["ffmpeg","-v","error","-y","-i",SRC,"-i",f"{OUT}/caps.mov","-filter_complex","".join(fc),"-map","[vo]","-map","[ao]",
-  "-c:v","libx264","-crf","17","-preset","medium","-pix_fmt","yuv420p","-c:a","aac","-b:a","256k","-ar","48000","-movflags","+faststart",f"{OUT}/picture.mp4"],check=True)
+  "-c:v","libx264","-crf","17","-preset","medium","-pix_fmt","yuv420p","-c:a","aac","-b:a","256k","-ar","48000","-movflags","+faststart",f"{OUT}/"+("clean.mp4" if os.environ.get("CLEAN") else "picture.mp4")],check=True)
 print("total",round(total,2))
