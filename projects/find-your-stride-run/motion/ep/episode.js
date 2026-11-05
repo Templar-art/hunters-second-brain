@@ -79,22 +79,23 @@ function sceneBib(T) {
 }
 /* Light panel checklist (practical tools). Rows tick on their spoken words. */
 const TOOLS = [['Look after your mental health', 25.3], ['Manage tough days', 27.3], ['Notice when a mate is struggling', 28.35]];
-const toolsTop = T => lerp(H + 40, 1060, expo((T - TOOLS_IN) / .6)) + (H - 1020) * expoIn((T - TOOLS_OUT + .35) / .35);
+const toolsTop = T => lerp(H + 40, 760, expo((T - TOOLS_IN) / .6));
 function sceneTools(T) {
-  th(FULL); const top = toolsTop(T); panel(top);
-  typeOn('PRACTICAL TOOLS', 80, top + 100, T - TOOLS_IN - .3, { size: 44, col: BLUE, track: 8, w: 600, fam: BODY, cps: 30 });
-  TOOLS.forEach(([txt, at], i) => { const y = top + 210 + i * 120, p = expo((T - at) / .45); if (p <= 0) return;
+  g.fillStyle = NAVY; g.fillRect(0, 0, W, H); speedLines(T, TOOLS_IN, TOOLS_IN + 1.2, 260, 21);
+  rise('TOMMY GIVES THEM', 80, 470, T - 24.16, { size: 96 }); rise('PRACTICAL TOOLS', 80, 610, T - 24.45, { size: 140, col: BLUE });
+  const top = toolsTop(T); panel(top);
+    TOOLS.forEach(([txt, at], i) => { const y = top + 190 + i * 170, p = expo((T - at) / .45); if (p <= 0) return;
     const bxx = 80 + (1 - p) * -200; g.save(); g.globalAlpha = clamp(p * 2);
     g.fillStyle = BLUE; g.beginPath(); g.roundRect(bxx, y - 52, 64, 64, 14); g.fill();
     const k = clamp((T - at - .15) / .25); g.strokeStyle = WHITE; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath();
     g.moveTo(bxx + 16, y - 20); if (k > 0) g.lineTo(bxx + 16 + 12 * Math.min(1, k * 2), y - 20 + 12 * Math.min(1, k * 2)); if (k > .5) g.lineTo(bxx + 28 + 22 * (k - .5) * 2, y - 8 - 30 * (k - .5) * 2); g.stroke();
-    g.restore(); font(800, 58, COND); const fit = Math.min(58, 58 * 820 / g.measureText(txt.toUpperCase()).width);
+    g.restore(); font(800, 72, COND); const fit = Math.min(72, 72 * 820 / g.measureText(txt.toUpperCase()).width);
     rise(txt.toUpperCase(), 170, y, T - at, { size: fit, col: INK, dur: .45 }); });
 }
 /* Training vs fundraising bars on a dark glass card (no numbers: nothing invented). */
 function bars(T, a, b) {
   const p = expo((T - a) / .5), q = expoIn((T - b) / .3); if (p <= 0 || q >= 1) return;
-  const x = 70, y = 1080 + (1 - p) * 120 + q * 300, w = 940, h = 310;
+  const x = 70, y = 820 + (1 - p) * 120 + q * 300, w = 940, h = 310;
   g.save(); g.globalAlpha = clamp(p * 2) * (1 - q); g.fillStyle = 'rgba(20,22,28,.82)'; g.beginPath(); g.roundRect(x, y, w, h, 26); g.fill();
   [['TRAINING THE BODY', 35.6, 37.1], ['RAISING THE MONEY', 38.15, 40.4]].forEach(([lab, s, e], i) => { const yy = y + 100 + i * 125;
     typeOn(lab, x + 44, yy, T - s + .2, { size: 42, col: WHITE, track: 6, w: 600, fam: BODY, cps: 40 });
@@ -116,12 +117,13 @@ function coin(T, a, b) {
 /* CTA panel: arrow, then three lines tick on as they're said, confetti on "Cheers". */
 const CTA = [['SPONSOR US', 45.7], ['SHARE THIS VIDEO', 46.5], ["WE'LL RUN THE 42.2", 47.45]];
 function sceneCTA(T) {
-  th(FULL); const top = lerp(H + 40, 1000, expo((T - CTA_IN) / .6)); panel(top);
+  g.fillStyle = NAVY; g.fillRect(0, 0, W, H); const top = lerp(H + 40, 420, expo((T - CTA_IN) / .6)); panel(top);
+  rise('FIND YOUR FEET', 80, 250, T - CTA_IN - .1, { size: 120, col: WHITE }); typeOn('QUEENSTOWN MARATHON  ·  14 NOV', 84, 330, T - CTA_IN - .4, { size: 36, col: CYAN, track: 5, w: 600, fam: BODY, cps: 40 });
   const t = T - CTA_IN; font(800, 44, COND);
-  typeOn('LINK BELOW', 80, top + 100, t - .1, { size: 46, col: BLUE, track: 8, w: 600, fam: BODY, cps: 30 });
-  const ay = top + 66 + Math.sin(t * 7) * 10; if (t > .4) { g.fillStyle = BLUE; g.beginPath(); g.moveTo(980, ay + 30); g.lineTo(940, ay - 14); g.lineTo(1020, ay - 14); g.closePath(); g.fill(); g.fillRect(970, ay - 60, 20, 50); }
-  CTA.forEach(([txt, at], i) => { const y = top + 230 + i * 130; rise(txt, 80, y, T - at, { size: 104, col: i === 2 ? BLUE : INK, dur: .45 });
-    const u = expo((T - at - .2) / .5); if (u > 0 && i < 2) { font(800, 104, COND); g.fillStyle = BLUE; g.fillRect(80, y + 18, g.measureText(txt).width * u, 8); } });
+  typeOn('LINK BELOW', 80, top + 110, t - .1, { size: 52, col: BLUE, track: 8, w: 600, fam: BODY, cps: 30 });
+  const ay = top + 76 + Math.sin(t * 7) * 10; if (t > .4) { g.fillStyle = BLUE; g.beginPath(); g.moveTo(980, ay + 30); g.lineTo(940, ay - 14); g.lineTo(1020, ay - 14); g.closePath(); g.fill(); g.fillRect(970, ay - 60, 20, 50); }
+  CTA.forEach(([txt, at], i) => { const y = top + 300 + i * 190; rise(txt, 80, y, T - at, { size: 130, col: i === 2 ? BLUE : INK, dur: .45 });
+    const u = expo((T - at - .2) / .5); if (u > 0 && i < 2) { font(800, 130, COND); g.fillStyle = BLUE; g.fillRect(80, y + 18, g.measureText(txt).width * u, 8); } });
   g.save(); g.beginPath(); g.rect(0, top, W, H - top); g.clip(); confetti(T, 49.75, top); g.restore();   /* confetti stays in the panel, never over faces */
 }
 function confetti(T, a, top = 1000) {
@@ -134,7 +136,7 @@ window.EP = {
   dur: 50.22,
   voEnd: 50.22,
   faceBox: { x: 150, y: 560, w: 720, h: 330 },
-  cuts: [3.04, 6.63, BIB_IN, 8.34, 9.68, BIB_OUT, 11.97, 13.9, 16.4, 18.96, 24.02, 31.29, 34.94, 37.99, 41.16, 43.70, 44.42, 46.40],
+  cuts: [3.04, 6.63, BIB_IN, 8.34, 9.68, BIB_OUT, 11.97, 13.9, 16.4, 18.96, 24.02, 21.50, 30.45, 32.45, 34.94, 41.16, 44.55],
   captions: [[0, 3.04, CAPY], [BIB_OUT, 11.85, CAPY], [17.85, TOOLS_IN, CAPY], [TOOLS_OUT, CTA_IN, CAPY]],
 
   frame(T) {
@@ -163,8 +165,11 @@ window.EP = {
       captions(T);
     }
     else if (T < TOOLS_OUT) sceneTools(T);
-    else if (T < 34.94) { th(FULL); if (T > 32.95) { rise('ALL IN', 540, 800, T - 32.95, { size: 400, col: CYAN, align: 'center', dur: .45 }); cutout(); } captions(T); }
-    else if (T < 41.16) { th(FULL); bars(T, 35.15, 41.0); captions(T); }
+    else if (T < 34.94) { th(FULL); rise('IMPORTANT', 540, 900, T - 31.38, { size: 170, align: 'center', exitAt: 32.75, T }); if (T > 32.95) rise('ALL IN', 540, 1000, T - 32.95, { size: 400, col: CYAN, align: 'center', dur: .45 }); captions(T); }
+    else if (T < 41.16) { g.fillStyle = NAVY; g.fillRect(0, 0, W, H); speedLines(T, 34.94, 36.2, 300, 31);
+      rise('PUSHING OUR BODIES', 540, 620, T - 35.6, { size: 120, align: 'center', exitAt: 37.95, T });
+      rise('RAISING THE MONEY', 540, 620, T - 38.2, { size: 120, col: BLUE, align: 'center', exitAt: 41.0, T });
+      bars(T, 35.15, 41.0); captions(T); }
     else if (T < CTA_IN) { th(FULL); coin(T, 41.3, 44.3); tagPill(T, 42.75, 44.3, 'SCHOOLS', 300, 1340, { size: 60 }); tagPill(T, 43.45, 44.3, 'WORKPLACES', 760, 1340, { size: 60, rot: .05 }); captions(T); }
     else sceneCTA(T);
   },
