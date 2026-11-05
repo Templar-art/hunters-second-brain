@@ -6,7 +6,7 @@ Read this before any Trivelle work. It replaces the original build chat (2026-11
 Hunter's own Shopify dropshipping store, **trivellebeauty.com**, separate from 10x Visuals client work. The store runs on Hunter's other laptop, under a custom Gmail owner account; Claude can't reach the Shopify admin from here.
 
 - **Product:** Trivelle 4-in-1 Sculpt & Glow, a cordless handheld device with four modes: Warm (gentle heat), Glow (red light), Lift (EMS micro-pulses) and Smooth (vacuum massage). It comes with an **80 g microcurrent gel**.
-- **Price:** **A$219** for the kit, **A$389** for the Gift 2-Pack ("Save $49 vs buying two"). No fake compare-at or "was" prices. Never write "under $1 a session"; "about a dollar a session" is fine.
+- **Price:** **A$169 kit + gel subscription (decided 2026-11-06, set in Shopify by Hunter; was A$219)**, previously A$219 for the kit, **A$389** for the Gift 2-Pack ("Save $49 vs buying two"). No fake compare-at or "was" prices. Never write "under $1 a session"; "about a dollar a session" is fine.
 - **Supplier:** ships blind (no supplier branding) direct to customers, with tracking, and replaces defective units. Landed cost is about A$45. Processing is within 24 h on weekdays, then 1–3 days to the warehouse, then 7–15 days in transit.
   - Store wording: **"Ships within 1–4 business days, then 7–15 business days delivery."**
   - **Open questions for the supplier:** does the gel fit in the stock box (one tracking number or two)? How do returns work: an AU return address, or refund and the customer keeps it?

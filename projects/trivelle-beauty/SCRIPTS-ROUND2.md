@@ -1,6 +1,6 @@
 # Trivelle round 2: all scripts, copy and pages
 
-Everything here is honest and cosmetic-only (looks / feels). Nothing is generated or spent until Hunter says go and a credit quote is approved. AI label ON for every ad using AI visuals or voice. Shipping line: "Ships within 1-4 business days, then 7-15 business days delivery." Price shown = whatever is live in the store (fill {PRICE}). No "was" prices, no fake scarcity, no stats until the real trial finishes.
+Everything here is honest and cosmetic-only (looks / feels). Nothing is generated or spent until Hunter says go and a credit quote is approved. AI label ON for every ad using AI visuals or voice. Shipping line: "Ships within 1-4 business days, then 7-15 business days delivery." Price shown = whatever is live in the store (fill A$169). No "was" prices, no fake scarcity, no stats until the real trial finishes.
 
 Pronunciation: tri-VELL (not "Trevolz"). Write phonetically in VO prompts: "tri-vell".
 
@@ -44,7 +44,7 @@ VO: "One for you, one for Mum. Two Trivelle kits, one gift." Tilly and a friend 
 Primary text: One for you, one for someone who deserves it. Gift 2-Pack. Order by {DATE} for delivery before Christmas (confirm with supplier first).
 
 ### A6. Black Friday (15 s) - only with a REAL discount on the real price
-VO: "Our Black Friday price on Trivelle. Real price, real saving." End card: {PRICE} and dates. Do not run until the base price is final and you have actually charged it.
+VO: "Our Black Friday price on Trivelle. Real price, real saving." End card: A$169 and dates. Do not run until the base price is final and you have actually charged it.
 
 ---
 
@@ -89,7 +89,7 @@ Title: Is Trivelle a scam? The honest answer.
 (Build in Shopify as a page, then point the ad link at it. Don't edit the live ads, make a new one.)
 
 ## E. PRICING AND OFFER (needs Hunter's decision)
-- Option 1: A$169 + gel subscription (Sculpiflex-style, fresh gel every 30 days).
+- DECIDED 2026-11-06: A$169 kit + gel subscription (fresh gel every 30 days). Hunter sets it in Shopify.
 - Option 2: keep A$219.
 - Confirm the live price (A$199 vs A$219 in notes).
 - Changing the Shopify price does NOT reset the ads.
