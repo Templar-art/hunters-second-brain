@@ -314,6 +314,7 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 
 ## 6 Nov, u know (Civilian): 60 s main edit
 `tools/uknow_60.py`, grid in `tools/uknow_bt.txt` (124.0 BPM, brute-force period + phase fit). This is the **first cut with Earshot in the loop** ([[sfx-toolkit]]).
+- **Approved:** Hunter called it "good, really good" (2026-11-06).
 - **Cut (60.9 s, -14 LUFS):**
   - Starts at beat 19 (9.3 s into the song, a verse breath) with a plain 0.25 s fade-in.
   - The instrumental drop lands at 14.5 s.
