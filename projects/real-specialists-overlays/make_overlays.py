@@ -64,9 +64,7 @@ def opener_address(W, H, lines):
     base = H * (0.034 if W > H else 0.022)
     f1 = ImageFont.truetype(FONT["Black"], round(base / 0.72))
     f2 = ImageFont.truetype(FONT["Regular"], round(base * 0.62 / 0.72))   # Light read too thin over footage
-    rule_w, rule_h = base * 1.6, max(2, round(base * 0.09))
-    y = H / 2 - base * 1.3
-    d.rectangle([W / 2 - rule_w / 2, y - base * 0.9, W / 2 + rule_w / 2, y - base * 0.9 + rule_h], fill=ORANGE + (255,))
+    y = H / 2 - base * 1.3   # no orange rule above: Hunter cut it 2026-11-06 (lost on dark roofs)
     cap = text(d, (W / 2, y), lines[0], f1, 0.12)
     if len(lines) > 1:
         text(d, (W / 2, y + cap + base * 0.75), lines[1], f2, 0.32)
