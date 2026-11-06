@@ -58,3 +58,10 @@ Compared trivellebeauty.com (live) with sculpiflex.com. Goal: same conversion me
 
 ## Approval needed before I touch Shopify
 Hunter sets prices and logins himself. If you want me to make these edits through your logged-in Chrome, say go and I'll do them one at a time, screenshot each, and not publish anything that spends money. Steps 1-4 first.
+
+## Status log (2026-11-06, done in Hunter's logged-in Shopify via Chrome)
+- DONE: kit price set to A$169 (hero, product, CTA all show it).
+- DONE: Gift 2-Pack variant hidden from every sales channel (not deleted; the delete is permanent so Hunter does that himself if wanted). Gone from the product page.
+- DONE: TRIVELLE10 created (10% off order, one use per customer, active, no end date).
+- DONE: Shopify Forms installed; "Welcome 10% popup" created (email + first name, shows TRIVELLE10 after submit), Forms theme embed switched on and saved, form turned on. Not yet seen on the live storefront at last check, so test in a fresh incognito window; Shopify titled it "10% off entire order".
+- NOT DONE: gel subscription (needs Shopify Subscriptions app + the real refill saving), email flows (Shopify Email / Klaviyo; copy ready in COPY-PACK-ROUND2.md), advertorial page.
