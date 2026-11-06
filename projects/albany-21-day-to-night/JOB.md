@@ -2,8 +2,8 @@
 client: tbc
 address: 21 Albany Avenue, Currumbin
 opened: 2026-11-06
-status: intake        # intake → generating → review → delivered
-cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger — never edit by hand
+status: generating        # intake → generating → review → delivered
+cost: { credits: 0, hf_credits: 3, aud: 0 }   # derived from ## Ledger
 ---
 
 # Job — 21 Albany Avenue, Currumbin (day → dusk video)
@@ -34,10 +34,17 @@ cost: { credits: 0, hf_credits: 0, aud: 0 }   # derived from ## Ledger — never
   - Name every fixed element so nothing gets swapped.
 - Quoted with `higgsfield generate cost`: Omni Edit 4K is 30 HF for 5 s and 72 HF for 12.9 s. The full-res 83 MB upload failed on the quote, so the source may need re-encoding smaller before the run. Nothing spent yet, waiting for Hunter's go.
 
+- 2026-11-06 Hunter said go (about 75 HF).
+  - **Still v1** (NB 2.1 4K, 3 HF): the Day frame went in as Image 1 and the reference frame as Image 2 (light only). Phase correlation against Day frame 0 measured -0.01/+0.07 px at 1080p, so it is aligned. The sun is gone, the eave downlights and garage door glow, and the window is warm. The large "5" on the garage pier went faint, so it is named in the video prompt.
+  - **Upload:** the 4K source has to be under about 40 MB, so I re-encoded it at 22 Mb/s (`in/day_upload.mp4`, 31 MB).
+  - **Omni Edit 4K (72 HF) FAILED** with not_enough_credits. The Higgsfield balance is 5.55 HF. Nothing was charged.
+  - **Alternative quoted:** Magnific `video_modify` Kling 4.0 at 1080p is 4,290 cr (exact, simulate_cost), then a local lanczos upscale to 4K. Waiting on Hunter: top up Higgsfield, or use Magnific.
+
 ## Ledger
 
 <!-- one line per spend; the cost: header is derived from this (gen_runner.py tally) -->
 <!-- Higgsfield batches: gen_runner.py run appends here. Magnific/MCP or web spends: gen_runner.py log JOB.md <amount> <hf|cr|aud> <note> -->
+- 2026-11-06 | 3 hf | dusk_still_v1 nano_banana_2_1 (gen-runner)
 
 ---
 _Vault: [[jarvis]] · Same workflow as [[house-twilight]] / projects/coastal-day-to-night_
