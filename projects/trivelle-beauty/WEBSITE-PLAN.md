@@ -71,3 +71,6 @@ Hunter sets prices and logins himself. If you want me to make these edits throug
 - DONE: Shopify Messaging permissions approved. "Welcome new subscribers with a discount email" automation created and turned ON (subject "Your Trivelle code is inside", TRIVELLE10 attached). "Recover abandoned checkout" automation was already active.
 - NOT DONE yet (templates exist in Messaging > Automations): recover abandoned cart, convert abandoned product browse, thank customers after purchase, review request, gel refill, win-back. Copy ready in COPY-PACK-ROUND2.md.
 - NOT DONE: gel subscription (needs the real refill saving), popup not yet seen live (test in incognito).
+
+### Website photos generated 2026-11-06 (Magnific, Nano Banana 2.1, 2K 3:2, 8 x 65 = 520 credits, approved by Hunter)
+Files: device-v2/website-photos/ (JPG) and Drive "Trivelle/Website photos" (full-size PNG): 01 hero lifestyle, 02 face in-use, 03 arm in-use, 04 four-modes close-up, 05 flat lay gel+box, 06 comparison, 07 how-it-works, 08 gift / me-time. AI-generated: tick the AI label wherever they run in ads. Not yet uploaded to Shopify.
