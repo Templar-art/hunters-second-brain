@@ -1760,3 +1760,5 @@ Hunter rejected the v1 outline: it was a hand-fit registration and 21 px thick. 
 ## [2026-11-06] query | Trivelle round 2: Sculpiflex research, honest persona + real trial plan
 
 ## [2026-11-06] query | u know (Civilian) 60 s main edit — first song cut checked by Earshot, Ocular FX
+
+## [2026-11-06] ingest | REAL Specialists: Connor Hewitt moved there; brand + drone pin style researched

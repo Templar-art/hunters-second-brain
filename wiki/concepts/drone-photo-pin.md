@@ -86,7 +86,7 @@ Research sweep (finished pinned sets on the Clients Drive and SSD):
 - **Coastline Prestige:** `10x Drive Pulls/REA/…/71-73 Lydford Close`.
 - **Jessica Wallace:** `88 Third Ave` (The Agency, but she may now be with Harcourts).
 
-Only **Kollosche** is confirmed. Every other profile is marked unconfirmed and explains itself in the review page. Logo files are in `projects/drone-pin/logos/`: ZED, Belle and Bespoke. **Still needed:** the YPA, Place, RE/MAX, Coastline and agency logos as white PNGs. **Coastal** (34 Albany Ave) has no finished graphics yet, and it may be Coastline Prestige; this needs confirming.
+Only **Kollosche** is confirmed. Every other profile is marked unconfirmed and explains itself in the review page. Logo files are in `projects/drone-pin/logos/`: ZED, Belle and Bespoke. **Still needed:** the YPA, Place, RE/MAX, Coastline and agency logos as white PNGs. **REAL Specialists** (Connor Hewitt, 2026-11-06): orange logo on a white line plus dark suburb labels, no outline; see [[real-specialists]]. **Coastal** (34 Albany Ave) has no finished graphics yet, and it may be Coastline Prestige; this needs confirming.
 
 ## Auto-align attempts (2026-10-28): none beat a hand drag
 Tested on Esther against Hunter's hand fixes. On a photo 11,000 px wide, the uncorrected drift was 100–400 px.
