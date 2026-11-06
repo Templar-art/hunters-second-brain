@@ -1765,3 +1765,5 @@ Hunter rejected the v1 outline: it was a hand-fit registration and 21 px thick. 
 
 ## [2026-11-06] ingest | 21 Albany Ave Currumbin day-to-dusk intake
 One 12.9 s ground walk-in (Day.mp4), with Main v2.mp4 as the dusk look reference (a different take). The route is the Coastal balcony one: NB 2.1 still, then Kling Omni Edit 4K. Quoted at about 75 HF, waiting on a go. Job at projects/albany-21-day-to-night/JOB.md.
+
+## [2026-11-06] update | Drone Pin: NSW cadastre lookup (Tweed jobs) + place_color/place_dist label keys; REAL Specialists profile completed

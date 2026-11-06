@@ -28,11 +28,11 @@ The profile is `projects/drone-pin/clients/real-specialists.json`. It is **uncon
 
 **Still needed:**
 - ~~Logo PNG~~ **done 2026-11-06:** traced their 491 px PNG into a vector (`projects/drone-pin/logos/real-specialists.svg`, potrace) and rendered a 3000 px orange PNG for print. Their line hangs from the logo's **left edge**, so a new `mark_anchor: "left"` style key was added to `drone_pin.py` and `review.html`. A test render matched their stills. An official vector from the brand pack would still be better.
-- A dark-label style key in `drone_pin.py`, because labels currently render white.
+- ~~Dark labels~~ **done 2026-11-06:** `place_color: "#1E1E1E"` and `place_dist: false` are set in the profile. A test render gave flat dark labels with no distance line on white lines, as in their stills. Place labels on the sky: dark text over rooftops is hard to read.
 - Confirmation of whether Connor wants their stock look or something of his own. Prestige agents often brand themselves; his JW-era IG handle suggests a personal brand.
 
 ## Gotchas
-- **NSW lots.** The Drone Pin tool's cadastre lookup is QLD only (see [[drone-photo-pin]]). Tweed-side listings (Tweed Heads, Kingscliff, Murwillumbah) need the NSW Spatial cadastre added, or a hand-placed pin with no outline.
+- **NSW lots:** ~~QLD only~~ **done 2026-11-06.** The Drone Pin tool now falls back to NSW Spatial Services, so Tweed-side addresses resolve to the real lot outline (see [[drone-photo-pin]]).
 
 Sources: [Allhomes agency page](https://www.allhomes.com.au/agency/real-specialists-496872/), [Connor Hewitt on Allhomes](https://www.allhomes.com.au/agent/connor-hewitt-1602534/), [RateMyAgent](https://www.ratemyagent.com.au/real-estate-agency/real-specialists-am265/sales), [Connor Hewitt on RateMyAgent (JW. Prestige)](https://www.ratemyagent.com.au/real-estate-agent/connor-hewitt-eb505/sales), [McGrath profile](https://www.mcgrath.com.au/agents/connor-hewitt-a1VRE0000019fkv2AA).
 

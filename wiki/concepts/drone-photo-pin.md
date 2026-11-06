@@ -7,10 +7,15 @@ updated: 2026-11-06
 
 # Drone photo pinning
 
-`projects/drone-pin/drone_pin.py` places the Kollosche K pin and the lot outline on DJI drone stills automatically. It works out where the property sits in each photo from the drone's own position data and Queensland's surveyed lot boundaries, then Hunter approves or nudges each photo in a browser page before it renders. Everything runs locally except the address lookup, and it spends no credits. It was built 2026-10-27 for the Kollosche townhouse stills; the video version is [[plate-vfx]] / the `kollosche-drone-graphics` scripts.
+`projects/drone-pin/drone_pin.py` places the Kollosche K pin and the lot outline on DJI drone stills automatically. It works out where the property sits in each photo from the drone's own position data and the surveyed lot boundaries (Queensland or NSW), then Hunter approves or nudges each photo in a browser page before it renders. Everything runs locally except the address lookup, and it spends no credits. It was built 2026-10-27 for the Kollosche townhouse stills; the video version is [[plate-vfx]] / the `kollosche-drone-graphics` scripts.
 
 ## How it works
 1. **Address → lot.** QLD Spatial's public cadastre (`LandParcelPropertyFramework` MapServer) turns the address into a lot/plan and its surveyed boundary polygon. The outline is the real legal boundary, not a trace.
+   - **NSW (added 2026-11-06, for Tweed-side jobs such as [[real-specialists]]).** If QLD finds nothing or times out, or the address ends in "NSW", the tool tries NSW Spatial Services. That's a two-step lookup:
+     - **Address point:** `NSW_Geocoded_Addressing_Theme/FeatureServer/1`, exact match first, then a LIKE match that keeps the house number whole. Street types are expanded, so Ave → AVENUE.
+     - **Lot:** the polygon under that point, from `NSW_Land_Parcel_Property_Theme/FeatureServer/8` on portal.spatial.nsw.gov.au.
+   - The `maps.six` public cadastre is only a fallback, because it stalled for minutes on 2026-11-06 while the portal answered in 0.2 s.
+   - Tested: 5 Riviera Ave Tweed Heads West → 93//DP29193 (649 m²), and 138 Kennedy Dr → 10//DP33087.
 2. **Photo → camera.** DJI writes GPS, height above takeoff, heading and gimbal tilt into each photo's XMP, and EXIF holds the 35 mm focal length. **Lightroom exports keep all of it** (checked on Mavic 4 Pro and Air 3S exports), including the crop (`crs:Crop*`, `CropAngle`), so the original frame is rebuilt and projected through the crop.
 3. **Review page.** Run `drone_pin.py review <job>`. Every photo opens with the auto placement already on it.
    - The **first pin drag marks the house**: that pixel becomes the pin target for every photo, because the lot's deepest interior point isn't always the roof (on Somerset Dr it was the pool).
@@ -74,6 +79,9 @@ Other style keys:
 - A dot at the end of the line (Remax, Bespoke).
 - Outline colour (YPA is yellow).
 - Label options: no dot, sentence case, and a regular font (ZED, Coastline).
+- `place_color`: label text in a colour, drawn flat with no shadow. REAL Specialists use dark #1E1E1E text on the sky. The default is white with the line's shadow.
+- `place_dist: false`: drops the distance line under every label.
+- `mark_anchor: "left"`: hangs the logo by its left edge over the pin line (REAL Specialists). The default centres it.
 - `surround: "mono"`: **ZED's real look**. The neighbourhood goes black and white, while the lot, any Bright-lasso shapes and the far landscape (fading out above the lot) stay in colour. It isn't a darkening. The earlier "blacks out" description was a misreading, now corrected from the Sam Drones files.
 
 Research sweep (finished pinned sets on the Clients Drive and SSD):
@@ -115,7 +123,7 @@ Mode per photo: `pin`, `outline`, `both` or `none`. By default, straight-down sh
 ## Limits
 - **QLD cadastre outages.** On 2026-10-29 QLD Spatial returned 502 for over 15 minutes, so `init` can't run. Fallback used on 4-6 Buckingham Way, Elanora (Kollosche): find the roof by eye in full-resolution crops, write `marks.json` by hand with `mode: pin` and an empty `lot`, and call `export()` directly. The result is pins only, with no outline until QLD is back.
 - **Edited exports with no metadata** (42 Salerno St, Isle of Capri, 2026-11-06). Lightroom exported the edited stills without XMP, so `init` saw no drone position. Fix: match each edit to its HDR DNG with SIFT, which gives the crop rect. Then copy the edited JPG into `jobs/<job>/src/`, take FocalLengthIn35mm from the raw `_D.DNG` (the HDR merge DNGs drop the `drone-dji` flight tags), and append the raw's `drone-dji:*` attributes plus `crs:Crop*` as a trailer comment, which `meta()` reads by regex. Run `init` on `src/`. Also, the cadastre registers Isle of Capri addresses under **Surfers Paradise**, so a lookup with "Isle of Capri" finds nothing.
-- Queensland addresses only (QLD cadastre). NSW would need its own service.
+- **Queensland and NSW only.** Other states would need their own cadastre service.
 - Townhouses and strata lots may resolve to the whole scheme parcel. Check the outline, and use a ⇧-drag on the corners or pin-only.
 - Lens distortion is ignored, which is fine for DJI JPGs and Lightroom-corrected DNGs.
 

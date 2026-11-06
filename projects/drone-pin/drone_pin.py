@@ -51,6 +51,15 @@ Image.MAX_IMAGE_PIXELS = None  # 100 MP drone exports are ours, not a decompress
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 QLD = "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer"
+# NSW (Tweed-side jobs): NSW Spatial Services, public. Address points, then the lot polygon under the point.
+NSW_ADDR = "https://portal.spatial.nsw.gov.au/server/rest/services/NSW_Geocoded_Addressing_Theme/FeatureServer/1"
+# Lots: the portal's Lot layer (same host as the addresses, fast); maps.six's public cadastre is the
+# fallback (it stalled for minutes on 2026-11-06 while the portal answered in 0.2 s).
+NSW_LOT = "https://portal.spatial.nsw.gov.au/server/rest/services/NSW_Land_Parcel_Property_Theme/FeatureServer/8"
+NSW_LOT_ALT = "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Cadastre/MapServer/9"
+NSW_ABBR = {"ST": "STREET", "AVE": "AVENUE", "AV": "AVENUE", "DR": "DRIVE", "RD": "ROAD", "CRES": "CRESCENT",
+            "CT": "COURT", "PDE": "PARADE", "PL": "PLACE", "TCE": "TERRACE", "HWY": "HIGHWAY", "CL": "CLOSE",
+            "LN": "LANE", "BLVD": "BOULEVARD", "CCT": "CIRCUIT", "ESP": "ESPLANADE", "GR": "GROVE", "WY": "WAY"}
 DIAG35 = math.hypot(36, 24)
 ROOF_H = 6.0          # default metres above ground for the pin tip (--roof-height per site)
 TARGET_MAX_RANGE = 120  # m: only top-downs and close shots may set the house (a 245 m drag moved it metres off)
@@ -76,6 +85,8 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 #     the lot, Bright-lasso shapes and, past mono_fade, the far landscape stay colour)
 #   place_dot / place_upper: location pins get a dot on the spot / labels in caps
 #   place_font: label font file (default Söhne Breit Kräftig); placed labels are kept as typed
+#   place_color: label text colour, flat with no shadow (null = white with the line's shadow)
+#   place_dist: false drops the distance line under every label
 #   mono_fade: [full, none] heights above the lot's top edge, of photo height, where B&W fades out
 CLIENTS = HERE / "clients"
 DEFAULT_STYLE = {"pin": "none", "glyph": None, "badge": 0.085, "glyph_w": 0.54, "border": 0.05,
@@ -83,7 +94,8 @@ DEFAULT_STYLE = {"pin": "none", "glyph": None, "badge": 0.085, "glyph_w": 0.54, 
                  "glyph_color": None, "line_dot": False, "outline_w": 0.0033, "outline_color": "#FFFFFF",
                  "blackout": 0, "topdowns": True, "location_pins": True, "print_graphics": True,
                  "naming": "{address} - {kind}-{n}", "surround": "dark", "mono_fade": [0.25, 0.4],
-                 "place_dot": True, "place_upper": True, "place_font": None}
+                 "place_dot": True, "place_upper": True, "place_font": None, "place_color": None,
+                 "place_dist": True, "mark_anchor": None}
 LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05   # LINE_W: location-pin lines
 BLACKOUT_FEATHER = 0.0015                            # blackout edge softness, of photo width
 # Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
@@ -150,13 +162,64 @@ def qld(layer, **params):
     return d["features"]
 
 
-def lookup(address):
-    """Address -> (address record, lot boundary ring as [lon, lat])."""
-    words = re.sub(r"[^A-Z0-9 /-]", "", address.upper()).split()
-    where = "UPPER(address) LIKE '" + "%".join(words) + "%'"
-    hits = qld(0, where=where, outFields="address,lotplan,latitude,longitude", returnGeometry="false")
+def nsw(url, **params):
+    url = f"{url}/query?" + urllib.parse.urlencode({"f": "json", **params})
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (drone-pin)"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        d = json.load(r)
+    if "error" in d:
+        raise SystemExit(f"NSW cadastre error: {d['error']}")
+    return d["features"]
+
+
+def lookup_nsw(words):
+    """NSW: address point (NSW Spatial geocoded addressing) -> the cadastre lot under it."""
+    words = [NSW_ABBR.get(w, w) for w in words if w not in ("NSW", "QLD")]
+    # NSW stores "5 RIVIERA AVENUE TWEED HEADS WEST": try that exactly (fast), then a loose match
+    # that keeps the house number whole ("5 RIVIERA" must not find 59 or 5/12 Riviera).
+    hits = nsw(NSW_ADDR, where=f"address = '{' '.join(words)}'", outFields="address", outSR="4326")
     if not hits:
-        raise SystemExit(f"No QLD address matches '{address}'. Try the street number, name and suburb only.")
+        where = "address LIKE '" + words[0] + " " + "%".join(words[1:]) + "%'"
+        hits = nsw(NSW_ADDR, where=where, outFields="address", outSR="4326")
+    if not hits:
+        return None
+    names = sorted({h["attributes"]["address"] for h in hits})
+    if len(names) > 1:
+        raise SystemExit("Several addresses match, be more specific:\n  " + "\n  ".join(names[:15]))
+    pt = hits[0]["geometry"]
+    q = dict(geometry=f"{pt['x']},{pt['y']}", geometryType="esriGeometryPoint", inSR="4326",
+             spatialRel="esriSpatialRelIntersects", outFields="lotidstring,planlotarea", outSR="4326")
+    try:
+        lots = nsw(NSW_LOT, **q)
+    except (TimeoutError, OSError):
+        lots = nsw(NSW_LOT_ALT, **q)
+    if not lots:
+        raise SystemExit(f"No NSW lot under the address point for {names[0]}")
+    ring = max(lots[0]["geometry"]["rings"], key=len)
+    if ring[0] == ring[-1]:
+        ring = ring[:-1]
+    rec = {"address": names[0].title() + " NSW", "lotplan": lots[0]["attributes"]["lotidstring"],
+           "latitude": pt["y"], "longitude": pt["x"], "lot_area": lots[0]["attributes"].get("planlotarea")}
+    return rec, ring
+
+
+def lookup(address):
+    """Address -> (address record, lot boundary ring as [lon, lat]). QLD first, then NSW
+    (Tweed-side jobs); an address ending in NSW goes straight to NSW."""
+    words = re.sub(r"[^A-Z0-9 /-]", "", address.upper()).split()
+    if words and words[-1] == "NSW":
+        if r := lookup_nsw(words):
+            return r
+        raise SystemExit(f"No NSW address matches '{address}'. Try the street number, name and suburb only.")
+    where = "UPPER(address) LIKE '" + "%".join(w for w in words if w != "QLD") + "%'"
+    try:
+        hits = qld(0, where=where, outFields="address,lotplan,latitude,longitude", returnGeometry="false")
+    except (TimeoutError, OSError):
+        hits = []   # QLD's service often times out on a non-QLD address instead of returning nothing
+    if not hits:
+        if r := lookup_nsw(words):
+            return r
+        raise SystemExit(f"No QLD or NSW address matches '{address}'. Try the street number, name and suburb only.")
     if len(hits) > 1:
         names = sorted({h["attributes"]["address"] for h in hits})
         if len(names) > 1:
@@ -720,6 +783,7 @@ def draw_places(m, site, W, H, st):
     """Location pins: dot, thin line up, label over distance, centred on the spot."""
     layer = Image.new("RGBA", (W, H), (255, 255, 255, 0))
     a = np.zeros((H, W), np.uint8)
+    txt = np.zeros((H, W), np.uint8) if st["place_color"] else a   # labels share the white layer unless coloured
     lw = max(2, round(LINE_W * H))
     for pl in site.get("places", []):
         ps = m.get("places", {}).get(str(pl["id"]))
@@ -733,7 +797,7 @@ def draw_places(m, site, W, H, st):
         a[max(0, round(top)):max(0, round(y)), max(0, round(x - lw / 2)):max(0, round(x - lw / 2) + lw)] = 255
         label = pl["label"].upper() if st["place_upper"] else pl["label"]
         lines = [(label, os.path.expanduser(st["place_font"] or FONT_K), PLACE_CAP * H)]
-        if pl.get("dist", True):
+        if st["place_dist"] and pl.get("dist", True):
             lines.append((place_distance(site, pl), FONT_B, PLACE_SUB * H))
         imgs = [text_image(t, f, c, PLACE_TRACK) + (c,) for t, f, c in lines]
         lead = PLACE_LEAD * PLACE_CAP * H
@@ -747,10 +811,15 @@ def draw_places(m, site, W, H, st):
             xs, ys = max(0, x0), max(0, y0)
             xe, ye = min(W, x0 + ta.shape[1]), min(H, y0 + ta.shape[0])
             if xe > xs and ye > ys:
-                a[ys:ye, xs:xe] = np.maximum(a[ys:ye, xs:xe], ta[ys - y0:ye - y0, xs - x0:xe - x0])
+                txt[ys:ye, xs:xe] = np.maximum(txt[ys:ye, xs:xe], ta[ys - y0:ye - y0, xs - x0:xe - x0])
             cy += c + lead
     if a.any():
         layer.alpha_composite(shadowed(a, lw))
+    if txt is not a and txt.any():
+        # Coloured labels (REAL Specialists: dark text on the sky) sit flat, no shadow.
+        ink = Image.new("RGBA", (W, H), rgb(st["place_color"]) + (0,))
+        ink.putalpha(Image.fromarray(txt))
+        layer.alpha_composite(ink)
     return layer
 
 

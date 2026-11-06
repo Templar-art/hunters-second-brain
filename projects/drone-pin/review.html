@@ -484,7 +484,8 @@ function drawPlaces(m) {
     if (SZ.STYLE.place_dot) { cx.beginPath(); cx.arc(x, y, SZ.PLACE_DOT * m.h, 0, 7); cx.fill(); }
     cx.fillRect(x - lw / 2, top, lw, y - top);
     const rows = [[SZ.STYLE.place_upper ? p.label.toUpperCase() : p.label, 'PlaceF', SZ.PLACE_CAP * m.h]];
-    if (p.dist) rows.push([dist(p), 'SohneB', SZ.PLACE_SUB * m.h]);
+    if (SZ.STYLE.place_dist !== false && p.dist) rows.push([dist(p), 'SohneB', SZ.PLACE_SUB * m.h]);
+    if (SZ.STYLE.place_color) { cx.shadowColor = 'transparent'; cx.fillStyle = SZ.STYLE.place_color; }
     const lead = SZ.PLACE_LEAD * SZ.PLACE_CAP * m.h;
     let cy = top - SZ.PLACE_GAP * m.h - rows.reduce((a, r) => a + r[2], 0) - lead * (rows.length - 1);
     cx.textAlign = 'center'; cx.textBaseline = 'alphabetic';
