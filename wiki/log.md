@@ -1773,3 +1773,11 @@ Added projects/real-specialists-overlays/make_overlays.py, which renders a logo 
 
 ## [2026-11-06] update | REAL overlays rendered for 21 Albany Ave, Currumbin
 The final pack (Connor Hewitt, 0451 514 962) is in /Volumes/10X SSD3/21 Albany Avenue, Currumbin/Video/REAL Overlays/.
+
+## [2026-11-06] ingest | 21 Albany Ave day-to-dusk video delivered
+The Day walk-in was relit to dusk:
+- A Nano Banana 2.1 still (3 HF).
+- Magnific Kling 4.0 `video_modify` at 1080p (4,290 cr; Higgsfield Omni had no credits).
+- A local 4K lanczos upscale, retimed to 23.976.
+
+The motion is frame-locked (under 0.5 px). The charcoal walls drift olive under the warm light. The 4K file and a side-by-side are on SSD3 under Twilight Examples. Page: [[albany-21-day-to-night]].
