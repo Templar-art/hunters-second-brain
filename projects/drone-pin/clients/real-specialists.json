@@ -5,20 +5,21 @@
   "REALspecialists"
  ],
  "confirmed": false,
- "notes": "From their own listing drones (5 Riviera Ave, Tweed Heads West, Allhomes, 2026-11-06): the orange REAL SPECIALISTS logo (icon + REAL / specialists) sits straight on the sky with no badge or circle, over a thin white line down to the house. No dot, no lot outline. Location pins: small dark sentence-case labels (Bilinga, Kirra, Coolangatta, Currumbin, Tugun) on thin white lines, no dot, no distance. NEEDS the logo as a transparent PNG (orange #FF6634) - only a 120 px thumbnail found online. Dark label text isn't a style key yet. Office is Tweed Heads South NSW: NSW lots won't resolve in the QLD cadastre.",
+ "notes": "From their own listing drones (5 Riviera Ave, Tweed Heads West, Allhomes, 2026-11-06): the orange REAL SPECIALISTS logo (icon + REAL / specialists) sits straight on the sky with no badge or circle, over a thin white line down to the house. No dot, no lot outline. Location pins: small dark sentence-case labels (Bilinga, Kirra, Coolangatta, Currumbin, Tugun) on thin white lines, no dot, no distance. Logo: traced from realspecialists.com/assets/img/RS-logo-blue.png (actually orange #E45E39) -> logos/real-specialists.svg + 3000 px PNG. Hung by its left edge on the line (mark_anchor left), as in their stills. Dark label text isn't a style key yet. Office is Tweed Heads South NSW: NSW lots won't resolve in the QLD cadastre.",
  "style": {
   "pin": "mark",
-  "glyph": null,
+  "glyph": "projects/drone-pin/logos/real-specialists-orange.png",
   "fill_opacity": 0,
   "badge": 0.045,
-  "pin_line": 0.02,
+  "pin_line": 0.075,
   "line_dot": false,
   "outline_w": 0,
   "topdowns": false,
   "location_pins": true,
   "place_dot": false,
   "place_upper": false,
-  "place_font": "~/Library/Fonts/SöhneBreit-Buch.otf"
+  "place_font": "~/Library/Fonts/SöhneBreit-Buch.otf",
+  "mark_anchor": "left"
  },
  "agents": {
   "Connor Hewitt": {}

@@ -66,6 +66,7 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 #          fill_opacity > 0 puts a soft circle behind it) | "none"
 #   fill_opacity: badge/ring/disc fill alpha 0-1   glyph_color: tint the mark (e.g. navy on a white disc)
 #   line_dot: the pin line ends in a dot on the house (Remax, Bespoke)
+#   mark_anchor: "left" hangs the pin head by its left edge over the line (REAL Specialists)
 #   glyph: "kollosche-k", a white PNG (vault path), or null
 #   badge: side, of photo height  glyph_w / border / pin_line: fractions of the badge side
 #   outline_w: of photo width (x per-photo outline_w)   blackout: default for new photos (ZED)
@@ -830,7 +831,9 @@ def draw_overlay(m, k, st, site=None, mask=None):
             dot.putalpha(Image.fromarray(d))
             im.alpha_composite(dot, (round(tx - dot.width / 2), round(ty - dot.height / 2)))
         bd = badge(side, k, st)
-        im.alpha_composite(bd, (round(tx - bd.width / 2), round(ty - length - bd.height)))
+        # REAL Specialists hang the logo by its left edge; everyone else centres it on the line.
+        bx = tx - lw / 2 if st.get("mark_anchor") == "left" else tx - bd.width / 2
+        im.alpha_composite(bd, (round(bx), round(ty - length - bd.height)))
     return im
 
 

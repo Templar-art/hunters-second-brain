@@ -13,9 +13,9 @@ updated: 2026-11-06
 
 ## Brand
 - **Logo:** an orange stacked-bar "R" icon, then **REAL** in heavy caps over a lighter **SPECIALISTS**. On their portal tiles it is white on solid orange. In drone stills the logo is orange directly on the sky.
-- **Orange:** about **#FF6634**, sampled from the Allhomes agency tile (R255 G102 B52). This is approximate, so get the real value from a brand pack.
-- **Fonts:** unknown.
-- **Website:** realspecialists.com.au did not resolve from here on 2026-11-06. Their listings are on Allhomes, Domain and REA.
+- **Orange:** **#E45E39**, taken from the transparent logo on their own site. (The #FF6634 sampled from the Allhomes tile was a JPEG approximation.)
+- **Web font:** Lato (site body and headings).
+- **Website:** [realspecialists.com](https://www.realspecialists.com/). It is .com, not .com.au, and has the tagline "Reinventing Real Estate". The logo files are `/assets/img/RS-logo-blue.png` (which is actually the orange version) and `RS-logo-white.png`, both 491 px PNGs. Copies are in `raw/real-specialists/`.
 
 ## Drone pin style (from their own listing stills)
 Reference: 5 Riviera Ave, Tweed Heads West (EOI, Nov 2026). The three pinned drones are saved in `raw/real-specialists/`.
@@ -27,7 +27,7 @@ Reference: 5 Riviera Ave, Tweed Heads West (EOI, Nov 2026). The three pinned dro
 The profile is `projects/drone-pin/clients/real-specialists.json`. It is **unconfirmed** until Hunter or Connor signs off the look.
 
 **Still needed:**
-- The logo as a transparent PNG; only a 120 px thumbnail was online. Ask Connor or the office for the brand pack.
+- ~~Logo PNG~~ **done 2026-11-06:** traced their 491 px PNG into a vector (`projects/drone-pin/logos/real-specialists.svg`, potrace) and rendered a 3000 px orange PNG for print. Their line hangs from the logo's **left edge**, so a new `mark_anchor: "left"` style key was added to `drone_pin.py` and `review.html`. A test render matched their stills. An official vector from the brand pack would still be better.
 - A dark-label style key in `drone_pin.py`, because labels currently render white.
 - Confirmation of whether Connor wants their stock look or something of his own. Prestige agents often brand themselves; his JW-era IG handle suggests a personal brand.
 

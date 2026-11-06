@@ -380,7 +380,7 @@ function draw() {
     if (S.pin === 'mark') {
       if (S.fill_opacity) { cx.beginPath(); cx.arc(tx, cyy, side / 2, 0, 7); cx.fill(); }
       cx.globalAlpha = 1;
-      if (hasK) { const kw = side * K.width / K.height; cx.drawImage(K, tx - kw / 2, by, kw, side); }
+      if (hasK) { const kw = side * K.width / K.height; cx.drawImage(K, S.mark_anchor === 'left' ? tx - lw / 2 : tx - kw / 2, by, kw, side); }
     } else {
       if (S.pin === 'badge') cx.fillRect(bx, by, side, side); else { cx.beginPath(); cx.arc(tx, cyy, side / 2, 0, 7); cx.fill(); }
       cx.globalAlpha = 1; cx.strokeStyle = '#fff'; cx.lineWidth = bw;
