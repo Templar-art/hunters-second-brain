@@ -2,7 +2,7 @@
 type: project
 tags: [audio, sfx, final-cut-pro, automation, tools, editing]
 status: built-unproven
-updated: 2026-11-05
+updated: 2026-11-06
 ---
 
 # Auto Sound Design
@@ -311,3 +311,24 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Cut (28.9 s, -14 LUFS): no joins at all.** The song's last 28 s are already a reel. It starts on the last bar of the instrumental drop (beat 252, full energy), the sung final chorus comes in at 2.9 s, and it ends on the song's own fade-out. FX: a 1 s reverse swell and riser into the opening bar with a sub on its downbeat, and a swell into the chorus vocal.
 - **Lesson:** before searching for joins, check whether a contiguous window ending on the real ending already fits the length and starts loud.
 - **40 s version (38.3 s, `tools/onrewind_reel40.py`).** Hunter asked to "make it around 40 seconds". Still no joins. It starts 5 bars earlier, on the 2-bar build before the instrumental drop (beat 232). The vocal there is one continuous line with no breath, so the start sits on the 8-beat phrase line under a swell and riser pre-roll. The drop hits at 4.8 s and the sung chorus at 12.3 s, then the song's own fade-out.
+
+## 6 Nov, u know (Civilian): 60 s main edit
+`tools/uknow_60.py`, grid in `tools/uknow_bt.txt` (124.0 BPM, brute-force period + phase fit). This is the **first cut with Earshot in the loop** ([[sfx-toolkit]]).
+- **Cut (60.9 s, -14 LUFS):**
+  - Starts at beat 19 (9.3 s into the song, a verse breath) with a plain 0.25 s fade-in.
+  - The instrumental drop lands at 14.5 s.
+  - Chorus 1, then one join, 122 → 254, at 49.9 s. Chorus 2 repeats the same lines 130 beats later, with vocal gaps on both sides. Score 0.917. Measured lag over ±0.3 s: best at 0 ms, mel 0.876.
+  - Ends on the song's real ending.
+- **FX are from Hunter's Ocular library, picked with Earshot `rank`:**
+  - riser "Stop That Train", z +3.7
+  - boom "They're Here", z +4.8
+  - Velocity "Link" whoosh at the join, z +3.2
+  - plus `sub_1` and song-derived swells
+
+  Ocular risers rise to a peak and then tail, so they are peak-aligned and cut 30 ms after the peak.
+- **Earshot verdict:**
+  - Timeline: the drop is a strong accent on cue. The join sits only +6 dB over the bed, so it is not audible as an edit.
+  - Critique: launch-grade, 21 of 22 metrics in range. The one minor flag is "nearly mono", which comes from the song itself.
+- **Lessons:**
+  - v1's critique flagged **2.9 s of dead air**. The song file carries a silent tail. Trim with a -50 dB RMS gate (50 ms windows) plus 0.5 s. A -60 dBFS sample gate catches noise and doesn't work.
+  - v1 also used an intro swell before the first line. That was removed per the ZOYA v7 rule (no swell when a cut starts mid-verse). The start moved half a bar earlier to keep the drop at ~14.5 s. Earshot `ab` shows v1 and v2 are otherwise identical (cosine 0.99).
