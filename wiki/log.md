@@ -1762,3 +1762,6 @@ Hunter rejected the v1 outline: it was a hand-fit registration and 21 px thick. 
 ## [2026-11-06] query | u know (Civilian) 60 s main edit — first song cut checked by Earshot, Ocular FX
 
 ## [2026-11-06] ingest | REAL Specialists: Connor Hewitt moved there; brand + drone pin style researched
+
+## [2026-11-06] ingest | 21 Albany Ave Currumbin day-to-dusk intake
+One 12.9 s ground walk-in (Day.mp4), with Main v2.mp4 as the dusk look reference (a different take). The route is the Coastal balcony one: NB 2.1 still, then Kling Omni Edit 4K. Quoted at about 75 HF, waiting on a go. Job at projects/albany-21-day-to-night/JOB.md.
