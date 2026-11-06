@@ -37,7 +37,7 @@ An opener and end card pack for Connor's listing videos lives in `projects/real-
 - **01b address super:** an orange rule over the street in Lato Black caps and the suburb in Lato Regular tracked caps, 3 s. It hard-cuts in and fades out. The logo-to-address change is a hard cut, the [[kollosche]] lesson.
 - **02 end card:** their brand tile, solid orange #E45E39 with the white logo, the agent name in Lato Black caps, the number in Regular, and REALSPECIALISTS.COM at the foot. It fades in over 15 frames and holds 4 s.
 
-Run: `~/.venvs/typeset/bin/python -I make_overlays.py <out> --agent "Connor Hewitt|NUMBER" --address "STREET|SUBURB" --preview frame.jpg`. Connor's mobile is not public; it is still needed from Hunter. The first test used a placeholder number. Lato is OFL (`fonts/OFL.txt`).
+Run: `~/.venvs/typeset/bin/python -I make_overlays.py <out> --agent "Connor Hewitt|NUMBER" --address "STREET|SUBURB" --preview frame.jpg`. Connor's mobile is 0451 514 962 (from Hunter; it is not public). The first real use was 21 Albany Ave, Currumbin, in that job's SSD `Video/REAL Overlays/` folder. Lato is OFL (`fonts/OFL.txt`).
 
 ## Gotchas
 - **NSW lots:** ~~QLD only~~ **done 2026-11-06.** The Drone Pin tool now falls back to NSW Spatial Services, so Tweed-side addresses resolve to the real lot outline (see [[drone-photo-pin]]).

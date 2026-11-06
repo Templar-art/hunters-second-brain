@@ -1770,3 +1770,6 @@ One 12.9 s ground walk-in (Day.mp4), with Main v2.mp4 as the dusk look reference
 
 ## [2026-11-06] update | REAL Specialists video overlays
 Added projects/real-specialists-overlays/make_overlays.py, which renders a logo opener, an address super and an orange agent end card as ProRes 4444 alpha in 16:9 4K and 9:16. It uses Lato (OFL, vendored) and the traced logo. A test render used a placeholder number because Connor's mobile is still needed. Documented in wiki/clients/real-specialists.md.
+
+## [2026-11-06] update | REAL overlays rendered for 21 Albany Ave, Currumbin
+The final pack (Connor Hewitt, 0451 514 962) is in /Volumes/10X SSD3/21 Albany Avenue, Currumbin/Video/REAL Overlays/.
