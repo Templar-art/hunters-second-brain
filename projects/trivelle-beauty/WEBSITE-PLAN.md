@@ -65,3 +65,9 @@ Hunter sets prices and logins himself. If you want me to make these edits throug
 - DONE: TRIVELLE10 created (10% off order, one use per customer, active, no end date).
 - DONE: Shopify Forms installed; "Welcome 10% popup" created (email + first name, shows TRIVELLE10 after submit), Forms theme embed switched on and saved, form turned on. Not yet seen on the live storefront at last check, so test in a fresh incognito window; Shopify titled it "10% off entire order".
 - NOT DONE: gel subscription (needs Shopify Subscriptions app + the real refill saving), email flows (Shopify Email / Klaviyo; copy ready in COPY-PACK-ROUND2.md), advertorial page.
+
+### Update later 2026-11-06
+- DONE: advertorial page live at https://trivellebeauty.com/pages/is-trivelle-a-scam-the-honest-answer (visible, links to the product page).
+- DONE: Shopify Messaging permissions approved. "Welcome new subscribers with a discount email" automation created and turned ON (subject "Your Trivelle code is inside", TRIVELLE10 attached). "Recover abandoned checkout" automation was already active.
+- NOT DONE yet (templates exist in Messaging > Automations): recover abandoned cart, convert abandoned product browse, thank customers after purchase, review request, gel refill, win-back. Copy ready in COPY-PACK-ROUND2.md.
+- NOT DONE: gel subscription (needs the real refill saving), popup not yet seen live (test in incognito).
