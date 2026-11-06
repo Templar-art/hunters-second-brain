@@ -48,18 +48,28 @@ def text(draw, xy_center_top, s, font, track_em, fill=(255, 255, 255, 255)):
     return font.getbbox("H")[3] - top   # cap height
 
 
+def shadowed(im, W):
+    """Soft diffuse shadow under white type/logo: no box, just enough to hold on bright sky."""
+    from PIL import ImageFilter
+    a = im.getchannel("A").filter(ImageFilter.GaussianBlur(W * 0.004))
+    sh = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    sh.putalpha(a.point(lambda v: round(v * 0.45)))
+    sh.alpha_composite(im)
+    return sh
+
+
 def opener_logo(W, H):
-    """White logo centred over a light scrim so it holds on bright sky."""
-    im = Image.new("RGBA", (W, H), (0, 0, 0, round(255 * 0.22)))
+    """White logo centred, no scrim (Hunter cut the grey box 2026-11-06); a soft shadow holds it on bright sky."""
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     lw = W * (0.34 if W > H else 0.66)
     lg = logo(lw)
     im.alpha_composite(lg, ((W - lg.width) // 2, (H - lg.height) // 2))
-    return im
+    return shadowed(im, W)
 
 
 def opener_address(W, H, lines):
-    """Address super: a short orange rule over tracked white caps (Lato Black, then Light)."""
-    im = Image.new("RGBA", (W, H), (0, 0, 0, round(255 * 0.22)))
+    """Address super: tracked white caps (Lato Black, then Regular), no scrim, soft shadow."""
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
     base = H * (0.034 if W > H else 0.022)
     f1 = ImageFont.truetype(FONT["Black"], round(base / 0.72))
@@ -68,7 +78,7 @@ def opener_address(W, H, lines):
     cap = text(d, (W / 2, y), lines[0], f1, 0.12)
     if len(lines) > 1:
         text(d, (W / 2, y + cap + base * 0.75), lines[1], f2, 0.32)
-    return im
+    return shadowed(im, W)
 
 
 def end_card(W, H, agents):
