@@ -26,7 +26,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[jessica-wallace]] — Harcourts Property Hub agent; 9-room "Coastal Luxury" staging redo, 17 Sep — no curtains, Sunburst, five new staging rules came out of it; office added 7 Oct (Nano Banana 2.1, no standing plants)
 - [[jang-studio]] — vendor contact: offshore architectural photo editor
 - [[mvx-electrical]] — web client (Matt); 2 live Google Ads LPs + hot water page; General Electrical *calls* campaign built 10 Aug off the 3 Aug shoot; hot water still blocked on plumbing-licence call
-- [[real-specialists]] — Tweed Heads South/Coolangatta agency; Connor Hewitt moved here (Nov 2026); drone look = orange REAL logo on a white line + dark suburb labels, no outline; profile unconfirmed, logo PNG needed, NSW lots need their own cadastre
+- [[real-specialists]] — Tweed Heads South/Coolangatta agency; Connor Hewitt moved here (Nov 2026); drone look = orange REAL logo on a white line + dark suburb labels, no outline (profile unconfirmed); NSW lots + dark labels done; video opener/end-card overlay pack in projects/real-specialists-overlays
 - [[open-arms-australia]] — web client; NDIS support provider (QLD/NSW/VIC); site header redesigned + handed to Lach 23 Jul
 - [[strategic-investing-qld]] — Brian O'Neill property advisory; Quiet Equity system; ad kit + social batch delivered 15 Jul — **converted: 10–15 leads in 4 business days**
 - [[akmal]] — 1007/180 Marine Parade full ZED restyle; delivered 14 Jul, 14cr

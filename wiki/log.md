@@ -1767,3 +1767,6 @@ Hunter rejected the v1 outline: it was a hand-fit registration and 21 px thick. 
 One 12.9 s ground walk-in (Day.mp4), with Main v2.mp4 as the dusk look reference (a different take). The route is the Coastal balcony one: NB 2.1 still, then Kling Omni Edit 4K. Quoted at about 75 HF, waiting on a go. Job at projects/albany-21-day-to-night/JOB.md.
 
 ## [2026-11-06] update | Drone Pin: NSW cadastre lookup (Tweed jobs) + place_color/place_dist label keys; REAL Specialists profile completed
+
+## [2026-11-06] update | REAL Specialists video overlays
+Added projects/real-specialists-overlays/make_overlays.py, which renders a logo opener, an address super and an orange agent end card as ProRes 4444 alpha in 16:9 4K and 9:16. It uses Lato (OFL, vendored) and the traced logo. A test render used a placeholder number because Connor's mobile is still needed. Documented in wiki/clients/real-specialists.md.
