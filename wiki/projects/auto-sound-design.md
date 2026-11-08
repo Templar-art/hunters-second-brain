@@ -2,7 +2,7 @@
 type: project
 tags: [audio, sfx, final-cut-pro, automation, tools, editing]
 status: built-unproven
-updated: 2026-11-06
+updated: 2026-11-09
 ---
 
 # Auto Sound Design
@@ -333,3 +333,16 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Lessons:**
   - v1's critique flagged **2.9 s of dead air**. The song file carries a silent tail. Trim with a -50 dB RMS gate (50 ms windows) plus 0.5 s. A -60 dBFS sample gate catches noise and doesn't work.
   - v1 also used an intro swell before the first line. That was removed per the ZOYA v7 rule (no swell when a cut starts mid-verse). The start moved half a bar earlier to keep the drop at ~14.5 s. Earshot `ab` shows v1 and v2 are otherwise identical (cosine 0.99).
+
+## 9 Nov, Fire Fire (Shimza x AR/CO x Kasango): 30 s reel
+`tools/firefire_30.py`, grid in `tools/firefire_bt.txt`. The grid is a brute-force fit at exactly 125.0 BPM, with every 32-beat block within 5 ms.
+- **Song map:** drop 1 at 38.8 s, a long break, then drop 2 at 115.6 s, which runs to the song's hard stop at 147.5 s.
+- **Cut (28.9 s, -14 LUFS):**
+  - Starts on the last 2 bars of the build into drop 2 (beat 232), with a plain 0.25 s fade-in.
+  - The drop hits at 3.9 s.
+  - One 16-beat join, 279 → 295, at 22.6 s. Both sides sit in vocal gaps. Score 0.933, measured lag 0 ms, mel 0.94.
+  - Ends on the song's own stop hit.
+- **FX:** the u know riser, boom and sub on the drop, plus the Ocular "Speed is Everything" whoosh at the join (Earshot rank z +4.95).
+- **Earshot verdict:**
+  - Critique: launch-grade, 22 of 22 checks in range.
+  - Timeline: the join is inaudible. The drop is only about +9 dB over the bed, because the build is already loud. This is the same pattern as On Rewind 40, which Hunter left as is.

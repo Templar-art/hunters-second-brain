@@ -1781,3 +1781,5 @@ The Day walk-in was relit to dusk:
 - A local 4K lanczos upscale, retimed to 23.976.
 
 The motion is frame-locked (under 0.5 px). The charcoal walls drift olive under the warm light. The 4K file and a side-by-side are on SSD3 under Twilight Examples. Page: [[albany-21-day-to-night]].
+
+## [2026-11-09] query | Fire Fire 30 s reel — Earshot 22/22, one join, song's own stop
