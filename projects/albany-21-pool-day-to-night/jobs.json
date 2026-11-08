@@ -1,0 +1,65 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 100,
+ "defaults": {
+  "model": "kling3_0",
+  "params": {}
+ },
+ "rows": [
+  {
+   "id": "pool_night",
+   "model": "kling_video_edit",
+   "out": "video/pool_night_omni4k.mp4",
+   "params": {
+    "mode": "4k",
+    "video": "in/pool_day_upload.mp4",
+    "image": "in/night_f0.jpg"
+   },
+   "prompt": "Relight this exact video to blue-hour twilight about twenty-five minutes after sunset, using the reference image as the target look for light, sky and colour. Keep the camera movement, framing, timing and every object exactly as in the video: the white two-storey house with its dark roof and timber posts, the glass balustrades on the upper balcony, the curved pool and attached spa with blue mosaic tile edging, the brick-paved pool surround, the dark timber deck, the hanging wicker egg chair, the stacked-stone pillar, the glass pool fence, the flagpole with its flag, the tall palms and the tropical gardens. Nothing is added, removed or rebuilt. All direct sunlight is gone, with no sun patches or hard shadows. The pool glows an even electric blue from its underwater lights and reflects the house. The existing eave and balcony downlights are on and throw warm pools of light, and the windows and glass doors glow soft warm white from inside. The sky is a deep blue overhead fading to a soft peach and violet glow over the distant hinterland. The deck, pavers and gardens stay readable in cool even dusk light. Photorealistic high-end twilight real estate video."
+  },
+  {
+   "id": "table_wide",
+   "out": "video/table_wide_lookleft.mp4",
+   "params": {
+    "start-image": "in/B.jpg",
+    "duration": 5,
+    "sound": "off",
+    "aspect_ratio": "16:9"
+   },
+   "prompt": "Locked-off camera, no camera movement. The woman in the white sundress sits on the timber bench at the table with her back to us, hands resting in her lap. Slowly and naturally she turns her head to her left, coming round into a soft side profile as she gazes out over the tropical garden, a calm relaxed expression. Her shoulders stay relaxed, her hands stay in her lap and she stays seated. Her wavy blonde hair shifts gently with the turn and a light breeze. The out-of-focus bamboo and palm leaves in the foreground sway very slightly. The table, glass candle holders, jute runners, bench, stone pillar and deck stay perfectly still. Warm golden late-afternoon light holds throughout. Photorealistic, cinematic real estate lifestyle film."
+  },
+  {
+   "id": "balcony_wide",
+   "out": "video/balcony_wide_lookleft.mp4",
+   "params": {
+    "start-image": "in/A.jpg",
+    "duration": 5,
+    "sound": "off",
+    "aspect_ratio": "16:9"
+   },
+   "prompt": "Locked-off camera, no camera movement. The woman in the white sundress leans with her forearms on the white balcony rail looking out at the hinterland view. Slowly and naturally she turns her head to her left, towards the house and the camera side, with a soft relaxed smile, then settles. Her forearms stay resting on the rail and her feet stay planted. Her wavy blonde hair lifts gently in a light breeze, the flag stirs softly and the palms beyond the rail sway slightly. The deck, timber posts, glass balustrade, high table and stools, barbecue, open sliding doors and living room inside stay perfectly still. Warm golden late-afternoon light holds throughout. Photorealistic, cinematic real estate lifestyle film."
+  },
+  {
+   "id": "table_detail_still",
+   "model": "nano_banana_2_1",
+   "out": "still/table_detail.png",
+   "params": {
+    "image": "in/B.jpg",
+    "resolution": "4k",
+    "aspect_ratio": "16:9"
+   },
+   "prompt": "A close-up detail photograph from the same moment as Image 1, the same woman at the same table. Shot on a long lens from just behind and to the right of her at shoulder height, framing her bare right shoulder, the thin white strap of her white smocked sundress and her wavy honey-blonde hair in sharp focus. Beyond her, the glass candle holder on its white coaster and the jute table runner sit on the whitewashed herringbone tabletop, falling into soft bokeh. The out-of-focus bamboo in the foreground is a soft warm blur at the frame edge. Her face is not visible. Warm golden late-afternoon light, shallow depth of field, photorealistic editorial real estate lifestyle photography."
+  },
+  {
+   "id": "balcony_detail_still",
+   "model": "nano_banana_2_1",
+   "out": "still/balcony_detail.png",
+   "params": {
+    "image": "in/A.jpg",
+    "resolution": "4k",
+    "aspect_ratio": "16:9"
+   },
+   "prompt": "A close-up detail photograph from the same moment as Image 1, the same woman on the same balcony. Shot on a long lens from beside her at rail height, framing her hands and forearms resting relaxed on the white balcony top rail, her white sundress and the ends of her wavy blonde hair in the edge of frame, in sharp focus. Beyond the glass balustrade the green palms and the hazy hinterland under a soft blue sky fall into creamy bokeh. Warm golden late-afternoon light, shallow depth of field, photorealistic editorial real estate lifestyle photography."
+  }
+ ]
+}
