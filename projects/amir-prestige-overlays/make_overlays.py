@@ -121,17 +121,21 @@ def name_title(W, H, name, sub, t, style="caps"):
         f = font(PLAY, c / 0.71, "Regular")
         txt, tr = name.upper(), 0.30 - 0.08 * s_
     elif style == "lower":
-        c = H * 0.034 * k / (1 if not port else 0.56)
+        c = H * 0.040 * k / (1 if not port else 0.56)
         f = font(PLAY, c / 0.71, "SemiBold")
-        txt, tr = name.lower(), 0.05 - 0.04 * s_
+        txt, tr = name.lower(), 0.04 - 0.035 * s_
     else:
         c = H * 0.036 * k / (1 if not port else 0.56)
         f = font(PLAY, c / 0.71, "Regular")
         txt, tr = name, 0.06 - 0.04 * s_
-    fs = font(MONT, c * (0.36 if style == "caps" else 0.30) / 0.70, "Medium")
-    ts = 0.45
+    if style == "lower":
+        # Hunter 2026-11-09: suburb must read clearly; no rule. Bolder, bigger, full white.
+        fs = font(MONT, c * 0.40 / 0.70, "SemiBold")
+        ts, gap = 0.36, c * 0.80
+    else:
+        fs = font(MONT, c * (0.36 if style == "caps" else 0.30) / 0.70, "Medium")
+        ts, gap = 0.45, c * (1.05 if style == "caps" else 0.95)
     sc = cap(fs)
-    gap = c * (1.05 if style == "caps" else 0.95)
     block = c + (gap + sc if sub else 0)
     y = H / 2 - block / 2
     run(d, (W - width(txt, f, tr)) / 2, y, txt, f, tr)
@@ -141,8 +145,9 @@ def name_title(W, H, name, sub, t, style="caps"):
             rw, rh = c * 1.1, max(1, round(c * 0.035))
             d.rectangle([W / 2 - rw / 2, y + c + gap * 0.5 - rh / 2, W / 2 + rw / 2, y + c + gap * 0.5 + rh / 2], fill=(255, 255, 255, 220))
             ys = y + c + gap * 1.0
-        run(d, (W - width(sub, fs, ts)) / 2, ys, sub, fs, ts, fill=(255, 255, 255, 235))
-    return shadowed(im, W, 0.40)
+        run(d, (W - width(sub, fs, ts)) / 2, ys, sub, fs, ts,
+            fill=(255, 255, 255, 255 if style == "lower" else 235))
+    return shadowed(im, W, 0.50 if style == "lower" else 0.40)
 
 
 def agents_card(W, H, agents):
@@ -214,7 +219,7 @@ def main():
     ap.add_argument("--address", help='"STREET|SUBURB"')
     ap.add_argument("--name", help='property name, e.g. "Bella Vista"')
     ap.add_argument("--name-sub", help="small line under the name (e.g. the suburb)")
-    ap.add_argument("--name-style", default="caps", choices=["caps", "lower", "roman"])
+    ap.add_argument("--name-style", default="lower", choices=["caps", "lower", "roman"])
     ap.add_argument("--agent", action="append", default=[], help='"Name|mobile"')
     ap.add_argument("--preview", help="a video frame to comp the stills over")
     a = ap.parse_args()

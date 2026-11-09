@@ -1816,3 +1816,6 @@ Rendered the pack ("Bella Vista", address 8 NASSAU AVE, TERRANORA, placeholder a
 
 ## [2026-11-09] update | Amir "Bella Vista" title redone
 The italic and swash version read tacky. It is replaced by restrained tracked Playfair caps with a hairline and small suburb caps (`--name-style caps`; `lower` and `roman` are alternatives). Re-rendered to T7 `8 Nassau Avenue Terranora/Amir Overlays/`, with an A/B/C comparison sheet.
+
+## [2026-11-09] update | Amir title: Hunter picked B
+The title is now lowercase "bella vista" (Playfair SemiBold) with a bolder, larger TERRANORA and no line. It is the default `--name-style lower`, re-rendered to T7.
