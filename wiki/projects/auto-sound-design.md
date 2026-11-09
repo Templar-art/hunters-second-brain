@@ -374,3 +374,9 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **v1 ending:** v1 ran into the 30 s piano coda, and Earshot critique flagged the ending at 23.5 LU below the body, the same "fading away" failure as Cinema v1.
 - **v2 score:** "close", 17 of 22. What is left is the brief itself: a quiet piano intro (LRA 17 LU), a sparse track and a ring-out ending.
 - **Pattern:** for slow classical builds, end on the climax's last chord, not on the coda.
+
+**Cinema 90 s (9 Nov).** This is what Hunter actually wanted: Cinema itself at 90 s. The Experience cut came from misreading his "find a similar track" message as a request for a different song.
+- **Route:** `cinema_90.py`. At 90 s no hit-to-hit cut is needed: the song plays as written (calm intro, first hit at 0:17, biggest hit at 0:51, epic), then makes ONE join at 1:16.0, from b143 into its own repeat at b311. Score 0.939, mel 0.983, lag 0, onset correlation 0.90. After the join comes the 60 s cut's ending.
+- **Variants:** an FX version and a soft version, set by argv `soft`.
+- **Earshot:** "close", 18 of 22, and the ending is in range. The only flags are the track's own sparseness and width.
+- **Lesson:** when a reply is ambiguous ("on seconds for both"), ask before building a different song.

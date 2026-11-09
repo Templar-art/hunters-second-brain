@@ -1799,3 +1799,4 @@ The re-export (boss's flow change) got outdoor-only ambience with silent interio
 The review page gets an Import… button (multi-file picker, any folder, per-photo `src`). REAL Specialists pins switch to the square icon only. The 21 Albany job had an empty marks.json; Print-8 and Print-9 are now loaded.
 ## [2026-11-09] query | Cinema soft variant: no-FX render, Earshot shows the trailer feel is the track itself
 ## [2026-11-09] query | Experience (Einaudi) 90 s soft cinematic cut for the big property, Earshot-picked + checked
+## [2026-11-09] query | Cinema 90 s cut (FX + soft), one repeat join, Earshot close 18/22
