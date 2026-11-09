@@ -1,0 +1,20 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 12,
+ "defaults": {
+  "model": "kling_video_edit",
+  "params": {}
+ },
+ "rows": [
+  {
+   "id": "reel_night",
+   "out": "video/reel_night_pro.mp4",
+   "params": {
+    "mode": "pro",
+    "video": "in/reel_day.mp4",
+    "image": "in/reel_night_f0.jpg"
+   },
+   "prompt": "Relight this exact video to blue-hour twilight about twenty-five minutes after sunset, using the reference image as the target look for light, sky and colour. Keep the camera movement, framing, timing and every object exactly as in the video: the white two-storey house with its dark roof and timber posts, the glass balustrades on the upper balcony, the curved pool and attached spa with blue mosaic tile edging, the brick-paved pool surround, the dark timber deck, the glass pool fence, the flagpole with its flag, the tall palms and the tropical gardens. Nothing is added, removed or rebuilt. All direct sunlight is gone, with no sun patches or hard shadows. The pool glows an even electric blue from its underwater lights and reflects the house. The existing eave and balcony downlights are on and throw warm pools of light, and the windows and glass doors glow soft warm white from inside. The sky is a deep blue overhead fading to a soft peach and violet glow over the distant hinterland. The deck, pavers and gardens stay readable in cool even dusk light. Photorealistic high-end twilight real estate video."
+  }
+ ]
+}

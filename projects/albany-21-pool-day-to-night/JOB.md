@@ -3,7 +3,7 @@ client: tbc
 address: 21 Albany Avenue, Currumbin
 opened: 2026-11-09
 status: delivered
-cost: { credits: 0, hf_credits: 386, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 396, aud: 0 }   # derived from ## Ledger
   - **Balcony wide v2:** candid, she keeps looking out at the view and never at camera. Motion is very subtle (QC flagged NO_MOTION).
   - **Table detail:** strong. She turns slowly into profile; the face matches the character sheet.
   - **Balcony detail:** good. Her hands start hovering just above the rail, then settle onto it.
@@ -12,6 +12,7 @@ cost: { credits: 0, hf_credits: 386, aud: 0 }   # derived from ## Ledger
 - 2026-11-09 table detail v2: new still from a rear three-quarter profile (3 HF), then Seedance (80 HF). Her gaze holds screen-left the whole clip, matching the wide, with a slow push-in. Delivered as `AI Clips/Table Lady Detail v2.mp4`.
 
 - 2026-11-09 Hunter is keeping the subtle balcony wide. All 5 shots are delivered and the job is closed.
+- 2026-11-09 reel (vertical 1080×1920, 5.3 s): Reel Day and Reel Night don't line up (handheld). Ran Kling Omni Edit pro (10 HF; the first try was an HTTP 520 upload error with no charge). The night clip stays locked to Day within about 2 px through the dissolve. Dissolve runs 1.2–4.0 s. Delivered as `Day to night/Reel Day to Night.mp4`.
 
 ## Ledger
 ---
@@ -26,6 +27,7 @@ cost: { credits: 0, hf_credits: 386, aud: 0 }   # derived from ## Ledger
 **Brief (Hunter):** a pool day→night clip on Higgsfield. The lady at the table and the lady on the balcony each get a wide clip of her looking left plus a detail shot. That is 4 lady shots.
 - 2026-11-09 | 3 hf | table_detail_v2_still nano_banana_2_1 (gen-runner)
 - 2026-11-09 | 80 hf | table_detail_v2 seedance_2_5 (gen-runner)
+- 2026-11-09 | 10 hf | reel_night kling_video_edit (gen-runner)
 
 ## Shots
 | # | Shot | Pipeline | Status |
