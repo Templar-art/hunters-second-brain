@@ -8,6 +8,7 @@ cost: { credits: 0, hf_credits: 303, aud: 0 }   # derived from - 2026-11-09 batc
   - **Table detail:** strong. She turns slowly into profile; the face matches the character sheet.
   - **Balcony detail:** good. Her hands start hovering just above the rail, then settle onto it.
   - All 3 are delivered to the SSD `AI Clips/`, waiting on Hunter's review.
+- 2026-11-09 Hunter: balcony detail approved. Table detail REJECTED because she turns the opposite way to the wide (screen-right vs left) and it's the same angle. Redo plan: new still from her left side, front three-quarter, looking left (3 HF), then Seedance (80 HF). Waiting on go.
 
 ## Ledger
 ---
