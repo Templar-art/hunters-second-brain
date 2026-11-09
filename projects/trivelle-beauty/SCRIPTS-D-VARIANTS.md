@@ -29,6 +29,8 @@ Saying the price filters out clicks that would never buy at $169.
 **Why:** sells how easy it is. The target buyer (35–65) has the time objection, not the money one.
 
 ## D4: Comment reply
+> ⚠️ **F review-reply already exists** (D footage + a "YOU ASKED" comment bubble) and hasn't run yet. **Test F first instead of making D4.** Only build D4 if F's comment line isn't the "does it actually work" one.
+
 **Frame 0:** a comment bubble over the presenter: *"does this actually work?? 👀"* (a generic made-up commenter, not a real person's name or photo).
 **VO hook:** "Okay, does it actually work? Here's what it does, and here's what it doesn't."
 **Caption:** DOES IT ACTUALLY WORK?
@@ -41,8 +43,8 @@ Saying the price filters out clicks that would never buy at $169.
 - Reuse `device-v2/ugc-02-seated-v2.mp4` and the existing cutaways. Re-edit with `scripts/build_ads_v2.py`: new VO keys `seated-d2/d3/d4`, everything else the same.
 - New VO needed: hook line + new close only (~6–8 s each). Same voice as the original.
 - Export 30 s and 15 s cuts of each, 9:16.
-- **Cost:** ~150 cr each in the earlier estimate (ADS-IDEAS.md) → ~450 cr for all three. **Not spent yet: quote exactly before generating.**
+- **Cost:** ~150 cr each in the earlier estimate (ADS-IDEAS.md) → ~300 cr for D2 + D3 (D4 is covered by F). **Not spent yet: quote exactly before generating.**
 
 ## Test plan
-- One ad set, optimised for **Purchase**, ~$15/day: D (original) + D2 + D3 + D4.
+- One ad set, optimised for **Purchase**, ~$15/day: D (original) + D2 + D3 + F (already built).
 - After about $30–40 spend per ad: kill anything with link CTR under 2% or no add-to-cart. Keep the best one or two.
