@@ -2,7 +2,7 @@
 client: tbc
 address: 21 Albany Avenue, Currumbin
 opened: 2026-11-09
-status: generating
+status: delivered
 cost: { credits: 0, hf_credits: 386, aud: 0 }   # derived from ## Ledger
   - **Balcony wide v2:** candid, she keeps looking out at the view and never at camera. Motion is very subtle (QC flagged NO_MOTION).
   - **Table detail:** strong. She turns slowly into profile; the face matches the character sheet.
@@ -10,6 +10,8 @@ cost: { credits: 0, hf_credits: 386, aud: 0 }   # derived from ## Ledger
   - All 3 are delivered to the SSD `AI Clips/`, waiting on Hunter's review.
 - 2026-11-09 Hunter: balcony detail approved. Table detail REJECTED because she turns the opposite way to the wide (screen-right vs left) and it's the same angle. Redo plan: new still from her left side, front three-quarter, looking left (3 HF), then Seedance (80 HF). Waiting on go.
 - 2026-11-09 table detail v2: new still from a rear three-quarter profile (3 HF), then Seedance (80 HF). Her gaze holds screen-left the whole clip, matching the wide, with a slow push-in. Delivered as `AI Clips/Table Lady Detail v2.mp4`.
+
+- 2026-11-09 Hunter is keeping the subtle balcony wide. All 5 shots are delivered and the job is closed.
 
 ## Ledger
 ---
