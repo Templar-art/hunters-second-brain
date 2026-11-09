@@ -3,7 +3,7 @@ client: tbc
 address: 21 Albany Avenue, Currumbin
 opened: 2026-11-09
 status: delivered
-cost: { credits: 0, hf_credits: 515, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 598, aud: 0 }   # derived from ## Ledger
   - **Balcony wide v2:** candid, she keeps looking out at the view and never at camera. Motion is very subtle (QC flagged NO_MOTION).
   - **Table detail:** strong. She turns slowly into profile; the face matches the character sheet.
   - **Balcony detail:** good. Her hands start hovering just above the rail, then settle onto it.
@@ -21,6 +21,8 @@ cost: { credits: 0, hf_credits: 515, aud: 0 }   # derived from ## Ledger
   - **Coffee rail still:** done (3 HF). The earlier attempt was lost in the session crash, also 3 HF. The clip (80 HF) waits on Hunter.
 
 - 2026-11-09 Hunter REJECTED the Seedance walk-up: her face looks off and the walk is unnatural. A full walk across a wide frame is too much for AI; it needs a shorter move.
+
+- 2026-11-09 **Coffee clip:** Seedance using the character sheet (80 HF). The camera drifts round to reveal her face in three-quarter profile looking out, holding the cup the whole time. Upscaled to 4K and delivered as `Balcony Coffee Detail 4K.mp4`. The walk start still is done (3 HF), with the clip waiting on Hunter's go.
 
 ## Ledger
 ---
@@ -41,6 +43,8 @@ cost: { credits: 0, hf_credits: 515, aud: 0 }   # derived from ## Ledger
 - 2026-11-09 | 3 hf | coffee_detail_still NB 2.1 lost in session crash (charged, no file)
 - 2026-11-09 | 80 hf | walkup_seedance seedance_2_5 (gen-runner)
 - 2026-11-09 | 3 hf | coffee_detail_still nano_banana_2_1 (gen-runner)
+- 2026-11-09 | 3 hf | walk_start_still nano_banana_2_1 (gen-runner)
+- 2026-11-09 | 80 hf | coffee_clip seedance_2_5 (gen-runner)
 
 ## Shots
 | # | Shot | Pipeline | Status |
