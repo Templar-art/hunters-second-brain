@@ -75,6 +75,7 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 #          fill_opacity > 0 puts a soft circle behind it) | "none"
 #   fill_opacity: badge/ring/disc fill alpha 0-1   glyph_color: tint the mark (e.g. navy on a white disc)
 #   line_dot: the pin line ends in a dot on the house (Remax, Bespoke)
+#   mark_gap: space between the line top and the logo, as a fraction of the badge side
 #   mark_anchor: "left" hangs the pin head by its left edge over the line (REAL Specialists)
 #   glyph: "kollosche-k", a white PNG (vault path), or null
 #   badge: side, of photo height  glyph_w / border / pin_line: fractions of the badge side
@@ -95,7 +96,7 @@ DEFAULT_STYLE = {"pin": "none", "glyph": None, "badge": 0.085, "glyph_w": 0.54, 
                  "blackout": 0, "topdowns": True, "location_pins": True, "print_graphics": True,
                  "naming": "{address} - {kind}-{n}", "surround": "dark", "mono_fade": [0.25, 0.4],
                  "place_dot": True, "place_upper": True, "place_font": None, "place_color": None,
-                 "place_dist": True, "mark_anchor": None}
+                 "place_dist": True, "mark_anchor": None, "mark_gap": 0}
 LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05   # LINE_W: location-pin lines
 BLACKOUT_FEATHER = 0.0015                            # blackout edge softness, of photo width
 # Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
@@ -935,7 +936,8 @@ def draw_overlay(m, k, st, site=None, mask=None):
         bd = badge(side, k, st)
         # REAL Specialists hang the logo by its left edge; everyone else centres it on the line.
         bx = tx - lw / 2 if st.get("mark_anchor") == "left" else tx - bd.width / 2
-        im.alpha_composite(bd, (round(bx), round(ty - length - bd.height)))
+        gap = (st.get("mark_gap") or 0) * side   # space between the line top and the logo
+        im.alpha_composite(bd, (round(bx), round(ty - length - bd.height - gap)))
     return im
 
 

@@ -21,7 +21,8 @@
   "place_font": "~/Library/Fonts/SöhneBreit-Buch.otf",
   "mark_anchor": null,
   "place_color": "#1E1E1E",
-  "place_dist": false
+  "place_dist": false,
+  "mark_gap": 0.3
  },
  "agents": {
   "Connor Hewitt": {}
