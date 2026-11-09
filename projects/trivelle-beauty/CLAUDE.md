@@ -38,6 +38,7 @@ Hunter's own Shopify dropshipping store, **trivellebeauty.com**, separate from 1
 | B lived-a-little | body-confidence angle (some rejection risk on Meta) | 46 s, 30 s, 15 s |
 | C drawer | "devices end up in the drawer" angle | 52 s, 30 s, 15 s |
 | D seated explainer | presenter explains the 4 modes | 34 s, 30 s, 15 s |
+| D2 salon-swap / D3 ten-minutes | D body with a new Higgsfield Marketing Studio UGC hook (same presenter, start frame from D). Built by `build_d_hooks.py` | 30 s, 15 s |
 | E animated | flat illustrated, mode labels | 25 s, 15 s, reel |
 | F review-reply | D with a "YOU ASKED" comment bubble | 34 s, 30 s, 15 s |
 | G animated 3D | original 3D animated-film character; the "motion" version is fully animated (Kling) | 27 s, 15 s, reel |
