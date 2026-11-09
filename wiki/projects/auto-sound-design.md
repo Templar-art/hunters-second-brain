@@ -388,3 +388,5 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Bug found — levels:** set by measuring the SFX-to-music RMS at each cue, aiming for about −8 dB. The first pass sat 22–26 dB under in the dense section and was inaudible: Earshot ab heard no difference. "Subtle Pressure" is mostly sub, so a highpass leaves nothing; it was replaced.
 - **Whisper check:** it returns different "thanks for watching" text on every run, which is a hallucination on noise. AST speech ≤ 0.02 confirms the stem is clean.
 - **Next level:** a picture-locked pass (Real SFX skill) on the actual edit.
+
+**Polish pass (9 Nov).** `tools/ms_polish.py` is a mid/side fix for the "very wide" and "harsh mids" critique flags: the side is narrowed by 3 dB and made mono below 120 Hz, with −2 dB at 2 kHz. On Cinema 90 SFX it moved the score from 18 to 19 of 22 (width −3.1 → −7.5 dB, low end fuller) with the character unchanged (Earshot ab cosine 1.00). An ffmpeg band-split version thinned 60–250 Hz by 4 dB, so don't use that. Delivered as `Cinema - 90s Cinematic Cut SFX POLISHED`, with the approved file kept alongside it.
