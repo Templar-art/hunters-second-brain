@@ -1789,3 +1789,6 @@ The edit had no baked-in SFX. Added 24 calibrated scene beds, 4 whooshes (the ap
 
 ## [2026-11-09] update | 21 Albany Reel ambience
 The reel got ambience only (Hunter did the whooshes and shings): 17 outdoor beds, and silent interiors per Hunter's new no-birds-inside rule. Delivered to Exports/SFX. Page: [[albany-21-main-sfx]].
+
+## [2026-11-09] update | 21 Albany Main new flow
+The re-export (boss's flow change) got outdoor-only ambience with silent interiors. The REAL pin overlay was reused because the drone shot is unchanged. Delivered to Exports/SFX, with the old files moved to _old flow. Page: [[albany-21-main-sfx]].

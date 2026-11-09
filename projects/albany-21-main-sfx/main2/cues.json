@@ -1,0 +1,606 @@
+{
+ "video": "/Volumes/10X SSD3/21 Albany Avenue, Currumbin/Exports/21 Albany Avenue | Main.mp4",
+ "keep_audio": "yes",
+ "cues": [
+  {
+   "t": 0,
+   "label": "amb beach aerial (WV)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/albany-21-main-sfx/beds/u_m17uwtnjmh-soft-waves-on-the-beach-sound-190884.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    20,
+    1.71
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 3.8
+  },
+  {
+   "t": 0,
+   "label": "amb beach aerial (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    10,
+    1.71
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -2.2
+  },
+  {
+   "t": 1.21,
+   "label": "amb house aerial (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    30,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 1.2
+  },
+  {
+   "t": 1.21,
+   "label": "amb house aerial (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    5,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -3.8
+  },
+  {
+   "t": 2.67,
+   "label": "amb lake aerial (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    40,
+    1.92
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -1.0
+  },
+  {
+   "t": 2.67,
+   "label": "amb lake aerial (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    15,
+    1.92
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -9.0
+  },
+  {
+   "t": 4.09,
+   "label": "amb rock beach (WV2)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/albany-21-main-sfx/beds/juliush-sandy-beach-calm-waves-water-nature-sounds-8052.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    10,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 13.2
+  },
+  {
+   "t": 5.55,
+   "label": "amb sand beach (WV)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/albany-21-main-sfx/beds/u_m17uwtnjmh-soft-waves-on-the-beach-sound-190884.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    50,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 10.3
+  },
+  {
+   "t": 5.55,
+   "label": "amb sand beach (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    50,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 2.3
+  },
+  {
+   "t": 7.01,
+   "label": "amb creek park (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    30,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 2.5
+  },
+  {
+   "t": 7.01,
+   "label": "amb creek park (N)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/u_vr5icvkppa-nature-ambience-323729.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    585,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -3.5
+  },
+  {
+   "t": 8.47,
+   "label": "amb garden path (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    45,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 1.5
+  },
+  {
+   "t": 9.93,
+   "label": "amb balcony ext (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    60,
+    2.42
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -0.6
+  },
+  {
+   "t": 9.93,
+   "label": "amb balcony ext (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    60,
+    2.42
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -8.6
+  },
+  {
+   "t": 11.85,
+   "label": "amb sunset chair (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    75,
+    1.96
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 1.0
+  },
+  {
+   "t": 13.31,
+   "label": "amb bbq wine (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    90,
+    1.45
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 0.3
+  },
+  {
+   "t": 14.26,
+   "label": "amb twilight front (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    84,
+    2.67
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.12,
+   "fade_curve": "qsin",
+   "gain_db": 12.6
+  },
+  {
+   "t": 14.26,
+   "label": "amb twilight front (N)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/u_vr5icvkppa-nature-ambience-323729.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    580,
+    2.67
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.12,
+   "fade_curve": "qsin",
+   "gain_db": 4.6
+  },
+  {
+   "t": 24.19,
+   "label": "amb outdoor lounge (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    110,
+    1.46
+   ],
+   "fade_in": 0.12,
+   "fade_out": 0.12,
+   "fade_curve": "qsin",
+   "gain_db": 14.2
+  },
+  {
+   "t": 24.19,
+   "label": "amb outdoor lounge (PW)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-pool-water-27449.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    12,
+    1.46
+   ],
+   "fade_in": 0.12,
+   "fade_out": 0.12,
+   "fade_curve": "qsin",
+   "gain_db": 6.2
+  },
+  {
+   "t": 33.37,
+   "label": "amb woman cup balcony (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    165,
+    1.71
+   ],
+   "fade_in": 0.12,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 12.7
+  },
+  {
+   "t": 33.37,
+   "label": "amb woman cup balcony (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    75,
+    1.71
+   ],
+   "fade_in": 0.12,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 6.7
+  },
+  {
+   "t": 34.58,
+   "label": "amb aerial houses (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    5,
+    2.04
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 0.6
+  },
+  {
+   "t": 34.58,
+   "label": "amb aerial houses (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    180,
+    2.04
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -5.4
+  },
+  {
+   "t": 36.12,
+   "label": "amb wide aerial pin (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    20,
+    2.42
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 2.5
+  },
+  {
+   "t": 36.12,
+   "label": "amb wide aerial pin (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    190,
+    2.42
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": -3.5
+  },
+  {
+   "t": 38.04,
+   "label": "amb sun deck (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    200,
+    1.87
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 10.6
+  },
+  {
+   "t": 39.41,
+   "label": "amb pool ext (PW)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-pool-water-27449.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    3,
+    2.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 14.0
+  },
+  {
+   "t": 39.41,
+   "label": "amb pool ext (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    210,
+    2.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 9.0
+  },
+  {
+   "t": 41.37,
+   "label": "amb hanging chair (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    220,
+    1.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 17.2
+  },
+  {
+   "t": 41.37,
+   "label": "amb hanging chair (N)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/u_vr5icvkppa-nature-ambience-323729.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    586,
+    1.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 11.2
+  },
+  {
+   "t": 42.33,
+   "label": "amb pool rear (PW2)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-water-of-a-pool-54298.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    8,
+    1.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 13.9
+  },
+  {
+   "t": 42.33,
+   "label": "amb pool rear (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    225,
+    1.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 8.9
+  },
+  {
+   "t": 43.29,
+   "label": "amb balcony low (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    230,
+    1.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 13.7
+  },
+  {
+   "t": 43.29,
+   "label": "amb balcony low (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    45,
+    1.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 7.7
+  },
+  {
+   "t": 44.25,
+   "label": "amb outdoor table (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    240,
+    2.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 10.9
+  },
+  {
+   "t": 44.25,
+   "label": "amb outdoor table (N)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/u_vr5icvkppa-nature-ambience-323729.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    590,
+    2.46
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.5,
+   "fade_curve": "qsin",
+   "gain_db": 4.9
+  },
+  {
+   "t": 46.21,
+   "label": "amb entertaining (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    255,
+    1.17
+   ],
+   "fade_in": 0.5,
+   "fade_out": 0.12,
+   "fade_curve": "qsin",
+   "gain_db": 13.4
+  },
+  {
+   "t": 56.22,
+   "label": "amb top-down aerials (W)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    55,
+    4.68
+   ],
+   "fade_in": 0.12,
+   "fade_out": 1.2,
+   "fade_curve": "qsin",
+   "gain_db": 2.7
+  },
+  {
+   "t": 56.22,
+   "label": "amb top-down aerials (B)",
+   "file": "/Users/10xhunter/Documents/Hunters Second Brain/projects/auto-sound-design/sfx/pixabay-owned/freesound_community-birds-19624.mp3",
+   "role": "ambience",
+   "anchor": "start",
+   "slice": [
+    300,
+    4.68
+   ],
+   "fade_in": 0.12,
+   "fade_out": 1.2,
+   "fade_curve": "qsin",
+   "gain_db": -3.3
+  }
+ ]
+}

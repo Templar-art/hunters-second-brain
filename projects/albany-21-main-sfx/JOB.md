@@ -53,6 +53,14 @@ Hunter: "this one please. I put the whooshes and shings, I just want the ambienc
 - **Checks:** Whisper produced only its stock non-speech hallucination ("Thanks for watching!" across the whole file). The high band spikes to 0.53 on single birdsong half-seconds only, with no cicada wall.
 - **Delivered:** `Exports/SFX/21 Albany Reel ambience only (starts 00-00-00-00).wav` + `21 Albany Reel (ambience) preview.mp4`.
 
+## Main, new flow (2026-11-09, 12:25 re-export)
+Hunter: "do the same with this but this needed the tracked pin as well" (the boss changed the flow).
+- **What changed in the cut:** same 64.06 s and the same cut points, with shots swapped: wine glasses at 19.35, the outdoor lounge at 24.19, the woman with a cup at 33.37, the hanging chair at 41.62 and the pool rear at 42.58. The audio now carries Hunter's own whooshes and shings, so this pass is **ambience only**.
+- **Pin:** the wide drone shot is unchanged (frames 872–917; the re-track matches the old one within 0.16 px), so the existing `04 REAL pin wide drone 4K (Main 00-00-36-08).mov` stays valid.
+- **Beds:** 23 outdoor scenes, built with `main2/build.py` and 4 calibration rounds. Interiors are silent: 16.93–24.19, 25.65–33.37 (this includes the woman-on-balcony shot, which is filmed from inside) and 47.38–56.22. The beds fade out across the whip by 60.9 s. Hanging chair and twilight front sit 2–3 dB quieter than target because their source slices hit the boost cap.
+- **Checks:** the interiors and the tail measure as digital silence. Whisper produced only its stock hallucination. The high band peaks at 0.22.
+- **Delivered:** `Exports/SFX/21 Albany Main NEW FLOW ambience only (starts 00-00-00-00).wav` + `21 Albany Avenue | Main NEW FLOW (ambience + REAL pin) preview.mp4`. The old-flow files are moved to `Exports/SFX/_old flow (superseded)/`.
+
 ## Ledger
 <!-- one line per spend -->
 - 2026-11-09 | 0 | all local (Earshot, real-sfx mix, OpenCV track)

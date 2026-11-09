@@ -1,0 +1,23 @@
+beach aerial                 under  17.8 target 14 -> +3.8
+house aerial                 under  15.2 target 14 -> +1.2
+lake aerial                  under  14.0 target 15 -> -1.0
+rock beach                   under  25.2 target 12 -> +13.2
+sand beach                   under  23.3 target 13 -> +10.3
+creek park                   under  15.5 target 13 -> +2.5
+garden path                  under  14.5 target 13 -> +1.5
+balcony ext                  under  13.4 target 14 -> -0.6
+sunset chair                 under  16.0 target 15 -> +1.0
+bbq wine                     under  15.3 target 15 -> +0.3
+twilight front               under  22.6 target 15 -> +7.6
+outdoor lounge               under  30.2 target 16 -> +14.2
+woman cup balcony            under  26.7 target 14 -> +12.7
+aerial houses                under  14.6 target 14 -> +0.6
+wide aerial pin              under  16.5 target 14 -> +2.5
+sun deck                     under  26.6 target 16 -> +10.6
+pool ext                     under  27.0 target 13 -> +14.0
+hanging chair                under  24.9 target 14 -> +10.9
+pool rear                    under  26.3 target 13 -> +13.3
+balcony low                  under  25.0 target 14 -> +11.0
+outdoor table                under  23.1 target 14 -> +9.1
+entertaining                 under  26.6 target 15 -> +11.6
+top-down aerials             under  16.7 target 14 -> +2.7

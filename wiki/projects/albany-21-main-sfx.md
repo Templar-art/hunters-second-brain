@@ -23,6 +23,9 @@ The music ends at 59.3 s, so the tail gets a fixed-level wind bed fading out und
 ## Reel (ambience only)
 Hunter added his own whooshes and shings to the reel and asked for ambience only, with **no birds inside the house**. The 17 outdoor shots get calibrated beds. The interiors are left silent, and the outdoor beds end at the cut into them (a 0.12 s fade) instead of crossfading across it.
 
+## Main, new flow
+The boss re-ordered some shots, keeping the same length and cut points. The new export carries Hunter's own whooshes and shings, so the redo is outdoor-only ambience beds with silent interiors, the same as the reel. The wide drone shot didn't move, so the pin overlay was reused as is (the re-track matched within 0.16 px). The old-flow files were moved to `_old flow (superseded)`.
+
 ## Lessons
 - **Standing rule (Hunter, 2026-11-09): no birds or ambience on interior shots.** The birds bleed that Salerno used on interiors is out. Interiors stay silent, and an outdoor bed must not crossfade into an interior cut.
 - A low sunset oblique makes neighbouring roofs read alike. Confirm the subject from the cadastre and aerial photo by its roof shape and pool side before pinning.
