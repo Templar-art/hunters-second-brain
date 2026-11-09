@@ -20,6 +20,10 @@ The music ends at 59.3 s, so the tail gets a fixed-level wind bed fading out und
 - **Track:** an LK track on the roof ridge.
 - **Output:** a 4K ProRes 4444 alpha overlay placed at 00:00:36:08.
 
+## Reel (ambience only)
+Hunter added his own whooshes and shings to the reel and asked for ambience only, with **no birds inside the house**. The 17 outdoor shots get calibrated beds. The interiors are left silent, and the outdoor beds end at the cut into them (a 0.12 s fade) instead of crossfading across it.
+
 ## Lessons
+- **Standing rule (Hunter, 2026-11-09): no birds or ambience on interior shots.** The birds bleed that Salerno used on interiors is out. Interiors stay silent, and an outdoor bed must not crossfade into an interior cut.
 - A low sunset oblique makes neighbouring roofs read alike. Confirm the subject from the cadastre and aerial photo by its roof shape and pool side before pinning.
 - Check the shot's exact first and last frames from the frame-difference curve. The first track was one frame short at each end.

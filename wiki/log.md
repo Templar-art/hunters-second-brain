@@ -1786,3 +1786,6 @@ The motion is frame-locked (under 0.5 px). The charcoal walls drift olive under 
 
 ## [2026-11-09] ingest | 21 Albany Ave Main: SFX + REAL pin
 The edit had no baked-in SFX. Added 24 calibrated scene beds, 4 whooshes (the approved Coastal picks) and a soft flare, plus a fixed wind bed under the silent tail. The REAL pin is tracked on the wide drone at 36.37 s, with the house confirmed by the cadastre and the QLD aerial photo. Delivered to the SSD under Exports/SFX and Video/REAL Overlays. $0. Page: [[albany-21-main-sfx]].
+
+## [2026-11-09] update | 21 Albany Reel ambience
+The reel got ambience only (Hunter did the whooshes and shings): 17 outdoor beds, and silent interiors per Hunter's new no-birds-inside rule. Delivered to Exports/SFX. Page: [[albany-21-main-sfx]].

@@ -44,6 +44,15 @@ cost: { credits: 0, hf_credits: 0, aud: 0 }   # all local
 - `Exports/SFX/21 Albany Main SFX only (starts 00-00-00-00).wav` (48k/24-bit, full length)
 - `Video/REAL Overlays/04 REAL pin wide drone 4K (Main 00-00-36-08).mov` (ProRes 4444 alpha, 46 frames; place at 00:00:36:08)
 
+## Reel ambience (2026-11-09)
+Hunter: "this one please. I put the whooshes and shings, I just want the ambience stuff. Make sure there's no birds on the inside of the houses."
+- **Source:** `Exports/Reel.mp4`, 30.4 s, 9:16, 26 shots.
+- **Beds:** 17 outdoor scenes get calibrated beds, built with the same files and calibration as Main (`reel/build.py`). Waves on the beach aerial, wind and birds on the aerials, birds on the exteriors and deck, pool water on the pool shots. All 17 landed on target in 4 rounds.
+- **Interiors:** 9.84–14.64 and 16.56–19.44 get **nothing**. The outdoor beds stop at the cut into an interior with a 0.12 s fade, rather than crossfading across it. Measured digital silence in both blocks.
+- **Tail:** the beds fade out over Hunter's whip into the end card (out by 27.6 s).
+- **Checks:** Whisper produced only its stock non-speech hallucination ("Thanks for watching!" across the whole file). The high band spikes to 0.53 on single birdsong half-seconds only, with no cicada wall.
+- **Delivered:** `Exports/SFX/21 Albany Reel ambience only (starts 00-00-00-00).wav` + `21 Albany Reel (ambience) preview.mp4`.
+
 ## Ledger
 <!-- one line per spend -->
 - 2026-11-09 | 0 | all local (Earshot, real-sfx mix, OpenCV track)

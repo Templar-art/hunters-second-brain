@@ -1,0 +1,17 @@
+top-down open                under  15.7 target 14 -> +1.7
+rock beach aerial            under  20.5 target 13 -> +7.5
+creek park                   under  17.6 target 13 -> +4.6
+sunset deck                  under  15.1 target 15 -> +0.1
+driveway                     under  18.1 target 14 -> +4.1
+pool day-dusk                under  26.9 target 13 -> +13.9
+hanging chair                under  21.3 target 14 -> +7.3
+pool rear                    under  26.5 target 13 -> +13.5
+balcony underside            under  23.6 target 14 -> +9.6
+outdoor lounge               under  22.3 target 14 -> +8.3
+entertaining pool            under  31.1 target 14 -> +17.1
+covered deck sunset          under  28.7 target 15 -> +13.7
+covered entertaining         under  23.1 target 16 -> +7.1
+outdoor table                under  22.5 target 14 -> +8.5
+woman profile                under  22.4 target 14 -> +8.4
+aerial in trees              under  10.9 target 14 -> -3.1
+top-down close               under   9.7 target 14 -> -4.3
