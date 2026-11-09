@@ -43,6 +43,16 @@ All their listing films sit on one YouTube channel, [Amir Prestige](https://www.
 - **Grade:** warm, slightly desaturated and filmic, with lifted creamy whites. Interiors lean beige and terracotta; exteriors run punchy blue sky against white render.
 - **Audio:** music only, with **no voice-over**. The track is a **lo-fi hip-hop beat (~132 BPM)** with vocal chops, at -19 LUFS and -1 dBTP. The rapid bursts are cut to the drops, and the rest is cut loosely: only 20 % of cuts land within a frame of a sound. There are no added whooshes or SFX beds.
 
-To match them: Montserrat Regular/Bold for the address, a serif for the agent names, a black wordmark end card, grey-mat framed montages and rapid-fire cut bursts on the drops, a warm filmic grade, a lo-fi beat, no VO, and the ap. pin on one wide drone. An overlay pack like [[real-specialists]]' (`projects/real-specialists-overlays/`) would cover the address super, agent names and end card.
+To match them: Montserrat Regular/Bold for the address, a serif for the agent names, a black wordmark end card, grey-mat framed montages and rapid-fire cut bursts on the drops, a warm filmic grade, a lo-fi beat, no VO, and the ap. pin on one wide drone. 
+## Overlay pack (built 2026-11-09)
+The generator is `projects/amir-prestige-overlays/make_overlays.py`. It renders ProRes 4444 alpha MOVs for FCP at 25 fps, in 16:9 4K and 9:16 1080x1920, plus a PNG of each:
+- **00 logo opener:** the white wordmark centred with a soft shadow and no box. It eases in over 3 s and hard-cuts out. The Via Roma film opens on the address with no logo, so this opener is our addition at Hunter's ask.
+- **01 address:** `STREET, **SUBURB**` in Montserrat Regular/Bold caps, on one line, 3 s.
+- **01n property name** (e.g. "Bella Vista"): large Playfair Display Italic over a hairline swash that draws on, a nod to the cut through their wordmark, with the suburb in tracked Montserrat caps beneath. The letters settle in from wide tracking over 1.6 s, and it holds 4 s.
+- **02 agents:** Playfair names over Montserrat mobiles, left and right (stacked for 9:16), 3 s.
+- **03 end card:** black with the small white wordmark, 3 s, opaque.
+- **04 grey mat:** their framed-montage border, #D6D6D6 with a clear window, 5 s.
+
+Run: `~/.venvs/typeset/bin/python -I make_overlays.py <out> --address "STREET|SUBURB" --name "Bella Vista" --name-sub "SUBURB" --agent "Name|mobile" --preview frame.jpg`. The sample in `out/` uses the Via Roma address and agents as placeholders. Fonts are OFL: Montserrat and Playfair Display stand in for Garet and their serif.
 
 Sources: [YouTube channel](https://www.youtube.com/channel/UCKRDrsPL0UD32sasmnXmJxQ), [44 Via Roma film](https://www.youtube.com/watch?v=RgFwW6Hm8Pk), [amirprestige.com.au](https://www.amirprestige.com.au/), [Domain agency page](https://www.domain.com.au/real-estate-agencies/amirprestigegroup-33541), [RateMyAgent Paradise Point](https://www.ratemyagent.com.au/real-estate-agency/amir-prestige-paradise-point-as181/sales/overview), [Ocean Road Magazine](https://www.oceanroadmagazine.com.au/at-amir-prestige-we-dont-follow-records-we-set-them/).

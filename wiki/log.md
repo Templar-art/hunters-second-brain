@@ -1807,3 +1807,6 @@ Gathered the wordmark, "ap." monogram, teal #24506A and Garet from amirprestige.
 
 ## [2026-11-09] ingest | Amir Prestige listing video style
 Broke down the 44 Via Roma YouTube film covering structure, supers, agent outro, black wordmark end card, grey-mat montage, lo-fi beat with no VO, and grade. Frames are in `raw/amir-prestige/video-refs/`, and the video section is on [[amir-prestige]].
+
+## [2026-11-09] update | Amir Prestige overlay pack
+Built `projects/amir-prestige-overlays/make_overlays.py`: logo opener, address super, "Bella Vista" property-name title, agent names, black end card and grey montage mat, in 16:9 4K and 9:16. A sample render is in `out/`.
