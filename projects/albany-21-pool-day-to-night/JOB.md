@@ -3,7 +3,13 @@ client: tbc
 address: 21 Albany Avenue, Currumbin
 opened: 2026-11-09
 status: generating
-cost: { credits: 0, hf_credits: 63, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 303, aud: 0 }   # derived from - 2026-11-09 batch 2 (Seedance 2.5 omni_reference + character sheet, 240 HF): Hunter approved with "go".
+  - **Balcony wide v2:** candid, she keeps looking out at the view and never at camera. Motion is very subtle (QC flagged NO_MOTION).
+  - **Table detail:** strong. She turns slowly into profile; the face matches the character sheet.
+  - **Balcony detail:** good. Her hands start hovering just above the rail, then settle onto it.
+  - All 3 are delivered to the SSD `AI Clips/`, waiting on Hunter's review.
+
+## Ledger
 ---
 
 # Job: 21 Albany Avenue, Currumbin (pool day → night + lifestyle clips)
@@ -39,3 +45,6 @@ cost: { credits: 0, hf_credits: 63, aud: 0 }   # derived from ## Ledger
 - 2026-11-09 | 7.5 hf | balcony_wide kling3_0 (gen-runner)
 - 2026-11-09 | 3 hf | table_detail_still nano_banana_2_1 (gen-runner)
 - 2026-11-09 | 3 hf | balcony_detail_still nano_banana_2_1 (gen-runner)
+- 2026-11-09 | 80 hf | balcony_wide_v2 seedance_2_5 (gen-runner)
+- 2026-11-09 | 80 hf | table_detail_v1 seedance_2_5 (gen-runner)
+- 2026-11-09 | 80 hf | balcony_detail_v1 seedance_2_5 (gen-runner)
