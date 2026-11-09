@@ -3,7 +3,8 @@
 ## Today
 1. **Ship the first order.** In the supplier app, find the order and pay or process it (about $45). If there's no button for that, message the supplier with the order number (the message is below).
 2. ~~Meta ads~~ ✅ done Nov 9: D, D2, D3 and F are live at $20/day (Purchase). D2, D3 and F have 4:5 feed videos. Meta's "increase budget to $38" pop-up: ignore it.
-3. **Abandoned-checkout email.** Shopify, Marketing, Automations, "Abandoned checkout": turn it on with a 1-hour delay and paste the email below.
+3. ~~Abandoned-checkout email~~ ✅ already active (it only reaches people who ticked "Email me with news and offers"). For everyone else: Orders → Abandoned checkouts → open one → "Send a cart recovery email". Check every 2 days.
+3b. ✅ Microsoft Clarity installed (Shopify → Apps → Microsoft Clarity → Recordings). The $400 compare-at price was removed Nov 9 (ACCC fake-"was"-price risk).
 4. **Message the buyer** asking for a review (message below).
 5. ~~Higgsfield cleanup~~ ✅ done (items are in Higgsfield's Trash).
 6. **Instagram:** start the `IG Posts/` folder tomorrow with 01. The captions and hashtags are in `0-POST-LIST.md`.
