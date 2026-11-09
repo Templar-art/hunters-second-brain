@@ -50,12 +50,14 @@ def lib(name, t, db, align="peak", lo=None, hi=None):
     k = int(np.argmax(np.abs(g)))
     if align == "peak": g = g[: k + I(0.03)]; q = I(0.03); g[-q:] *= np.linspace(1, 0, q); put(g, t - k / SR, db)
     else: put(g[k:], t, db)
-swell(DROP, 4, -10); lib(OC + "Foundation/DSGNRise/DSGNRise_RISER-Stop That Train_Ocular_Foundation.wav", DROP, -14)
-lib("sub_1.wav", DROP, -12, align="attack", lo=150); lib(OC + "Foundation/DSGNBoom/DSGNBoom_BOOM-Rift_Ocular_Foundation.wav", DROP, -14, align="attack")
-swell(J, 2, -20)
+SOFT = len(sys.argv) > 3 and sys.argv[3] == "soft"   # soft variant (Hunter, 9 Nov): same cut, no riser/sub/booms, only the song's own reversed-reverb swells
+if SOFT:
+    swell(DROP, 4, -14); swell(bt[150] - HIT2 + HIT1, 2, -24); swell(HIT1 + (bt[150] - HIT2) + (bt[324] - bt[310]), 2, -20)
+if not SOFT: swell(DROP, 4, -10); lib(OC + "Foundation/DSGNRise/DSGNRise_RISER-Stop That Train_Ocular_Foundation.wav", DROP, -14)
+if not SOFT: lib("sub_1.wav", DROP, -12, align="attack", lo=150); lib(OC + "Foundation/DSGNBoom/DSGNBoom_BOOM-Rift_Ocular_Foundation.wav", DROP, -14, align="attack")
 LAST = J + (bt[324] - bt[310])   # the epic section's last downbeat, where the song's decay starts
-swell(LAST, 2, -16); lib(OC + "Foundation/DSGNBoom/DSGNBoom_BOOM-Quake_Ocular_Foundation.wav", LAST, -6, align="attack")
-lib("sub_1.wav", LAST, -9, align="attack", lo=150)
+if not SOFT: swell(J, 2, -20); swell(LAST, 2, -16); lib(OC + "Foundation/DSGNBoom/DSGNBoom_BOOM-Quake_Ocular_Foundation.wav", LAST, -6, align="attack")
+if not SOFT: lib("sub_1.wav", LAST, -9, align="attack", lo=150)
 n = I(2.0); ramp = np.cos(np.linspace(0, np.pi / 2, n)) ** 2
 for arr in (mix, fx): arr[:, -n:] *= ramp
 h = 10 ** (-9 / 20)   # the source is hot (-8 LUFS, clipped): more headroom before the -14 LUFS export

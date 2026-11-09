@@ -365,3 +365,5 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **FX:** riser "Stop That Train", a swell, `sub_1` and the "Rift" boom on the 17 s hit (Rift was Earshot's top "cinematic trailer impact", z +4.6).
 - **Earshot:** "close" (18 of 22 metrics in range). The leftover flags are few salient hits, wide stereo and bright mids. All three describe the track itself (a sparse, wide orchestral score) rather than the edit.
 - **Lesson:** a cinematic score may have no repeats outside its epic sections. When it doesn't, a **cut from one hit to another** is the clean way to jump sections: the transient covers the change of harmony.
+
+**Cinema soft variant (9 Nov).** Same cut, rendered with `cinema_60.py ... soft`: no riser, sub or booms, only faint song-derived swells. Earshot ab heard it as almost identical to the FX version (cosine 1.00; only the ending tail is shorter). Lesson: the "aggressive / epic trailer" read comes from the track itself (hybrid orchestral plus electronic), not the FX, so a softer feel needs a different song, not a lighter FX pass.
