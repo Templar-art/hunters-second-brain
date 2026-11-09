@@ -3,12 +3,13 @@ client: tbc
 address: 21 Albany Avenue, Currumbin
 opened: 2026-11-09
 status: generating
-cost: { credits: 0, hf_credits: 303, aud: 0 }   # derived from - 2026-11-09 batch 2 (Seedance 2.5 omni_reference + character sheet, 240 HF): Hunter approved with "go".
+cost: { credits: 0, hf_credits: 386, aud: 0 }   # derived from ## Ledger
   - **Balcony wide v2:** candid, she keeps looking out at the view and never at camera. Motion is very subtle (QC flagged NO_MOTION).
   - **Table detail:** strong. She turns slowly into profile; the face matches the character sheet.
   - **Balcony detail:** good. Her hands start hovering just above the rail, then settle onto it.
   - All 3 are delivered to the SSD `AI Clips/`, waiting on Hunter's review.
 - 2026-11-09 Hunter: balcony detail approved. Table detail REJECTED because she turns the opposite way to the wide (screen-right vs left) and it's the same angle. Redo plan: new still from her left side, front three-quarter, looking left (3 HF), then Seedance (80 HF). Waiting on go.
+- 2026-11-09 table detail v2: new still from a rear three-quarter profile (3 HF), then Seedance (80 HF). Her gaze holds screen-left the whole clip, matching the wide, with a slow push-in. Delivered as `AI Clips/Table Lady Detail v2.mp4`.
 
 ## Ledger
 ---
@@ -21,6 +22,8 @@ cost: { credits: 0, hf_credits: 303, aud: 0 }   # derived from - 2026-11-09 batc
 - `~/Downloads/hf_20261106_074318…png` is the table lady (in/B.jpg).
 
 **Brief (Hunter):** a pool day→night clip on Higgsfield. The lady at the table and the lady on the balcony each get a wide clip of her looking left plus a detail shot. That is 4 lady shots.
+- 2026-11-09 | 3 hf | table_detail_v2_still nano_banana_2_1 (gen-runner)
+- 2026-11-09 | 80 hf | table_detail_v2 seedance_2_5 (gen-runner)
 
 ## Shots
 | # | Shot | Pipeline | Status |
