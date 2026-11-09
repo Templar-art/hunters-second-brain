@@ -381,7 +381,7 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Earshot:** "close", 18 of 22, and the ending is in range. The only flags are the track's own sparseness and width.
 - **Lesson:** when a reply is ambiguous ("on seconds for both"), ask before building a different song.
 
-**Cinema 90 s SFX pass (9 Nov).** `cinema_90.py ... sfx` adds a sound-design layer on top of the FX version. The cues sit on the song's 32-beat phrase grid, where picture cuts will fall: b16, the first hit, the b64 dip, the big hit, b112, b128, the join and the end.
+**Cinema 90 s SFX pass (9 Nov) — APPROVED, Hunter: "holy shit that was good".** `cinema_90.py ... sfx` adds a sound-design layer on top of the FX version. The cues sit on the song's 32-beat phrase grid, where picture cuts will fall: b16, the first hit, the b64 dip, the big hit, b112, b128, the join and the end.
 - **Sounds:** all Ocular, picked by Earshot rank. "Cinematic Opening" impact under the first note; Dark Air, Transport, Organic Motion and Turn of Events whooshes; the Frosty slow-motion downlifter into the dip; "Epic" layered on the big hit; and "Thunderbell" under the closing boom. Plus a 0.45 s "breath" (music −7 dB) right before the big hit.
 - **No beds:** they depend on picture (no birds on interiors).
 - **Bug found — whooshes:** `lib(align="peak")` cuts 30 ms after the peak. That suits risers but chops a whoosh's tail, so whooshes now use `align="center"` (peak on the cue, full tail).
