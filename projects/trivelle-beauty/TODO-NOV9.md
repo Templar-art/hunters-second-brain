@@ -2,15 +2,11 @@
 
 ## Today
 1. **Ship the first order.** In the supplier app, find the order and pay or process it (about $45). If there's no button for that, message the supplier with the order number (the message is below).
-2. **Meta ads.**
-   - Left list, AU Women 35-65: only these 4 ads should be ON: D Seated 30s, D2 Salon swap 30s, D3 Ten minutes 30s, F Review reply 30s. Turn H, A, G, E1 and E6 OFF.
-   - Keep the "Statics - Add to cart" ad set OFF.
-   - Edit D Seated 30s: change the description to `$169 · Free shipping · 30-day money-back guarantee`. It currently says $199/Afterpay.
-   - If you see an "AI-generated" label option, tick it on all 4.
-   - Turn the AU Women 35-65 ad set ON. Budget $20/day and Purchase are already set. Then click **Publish**.
+2. ~~Meta ads~~ ✅ done Nov 9: D, D2, D3 and F are live at $20/day (Purchase). D2, D3 and F have 4:5 feed videos. Meta's "increase budget to $38" pop-up: ignore it.
 3. **Abandoned-checkout email.** Shopify, Marketing, Automations, "Abandoned checkout": turn it on with a 1-hour delay and paste the email below.
 4. **Message the buyer** asking for a review (message below).
-5. **Higgsfield:** log in on Chrome so Claude can delete the Trivelle clips and uploads.
+5. ~~Higgsfield cleanup~~ ✅ done (items are in Higgsfield's Trash).
+6. **Instagram:** start the `IG Posts/` folder tomorrow with 01. The captions and hashtags are in `0-POST-LIST.md`.
 
 ## This week
 - Post on IG one every 1–2 days, using `IG-POST-LIST.md`.
@@ -18,7 +14,7 @@
 
 ## Do NOT touch (7 days, until Nov 16)
 - No ad, budget or audience changes. Changing them resets Meta's learning.
-- Nov 16: screenshot Ads Manager for Claude. Each ad gets judged once it has spent $30–40; turn it off if link CTR is under 2% or it has no add-to-carts.
+- Nov 16: screenshot Ads Manager for Claude (spend, link CTR, add-to-carts, purchases). The plan: keep the best 1–2 ads, cut the rest, add D6 Christmas, D4 and D5 (in `New ads/`), and raise the budget behind the winner. Expect about 2–3 sales by then; break-even is about 1 sale per $120 spent. Each ad gets judged once it has spent $30–40; turn it off if link CTR is under 2% or it has no add-to-carts.
 
 ## Later
 - Retargeting ad set ($5/day, site visitors) once about 1,000 people have visited.
