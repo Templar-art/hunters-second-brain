@@ -20,6 +20,8 @@ cost: { credits: 0, hf_credits: 515, aud: 0 }   # derived from ## Ledger
   - **Walk-up:** Seedance using the character sheet, start frame the empty plate and end frame A (80 HF). Clean walk-in, sandals on, candid. Lanczos-upscaled to 4K and delivered as `Balcony Lady Walk Up Seedance 4K.mp4`.
   - **Coffee rail still:** done (3 HF). The earlier attempt was lost in the session crash, also 3 HF. The clip (80 HF) waits on Hunter.
 
+- 2026-11-09 Hunter REJECTED the Seedance walk-up: her face looks off and the walk is unnatural. A full walk across a wide frame is too much for AI; it needs a shorter move.
+
 ## Ledger
 ---
 
