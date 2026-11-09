@@ -380,3 +380,11 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Variants:** an FX version and a soft version, set by argv `soft`.
 - **Earshot:** "close", 18 of 22, and the ending is in range. The only flags are the track's own sparseness and width.
 - **Lesson:** when a reply is ambiguous ("on seconds for both"), ask before building a different song.
+
+**Cinema 90 s SFX pass (9 Nov).** `cinema_90.py ... sfx` adds a sound-design layer on top of the FX version. The cues sit on the song's 32-beat phrase grid, where picture cuts will fall: b16, the first hit, the b64 dip, the big hit, b112, b128, the join and the end.
+- **Sounds:** all Ocular, picked by Earshot rank. "Cinematic Opening" impact under the first note; Dark Air, Transport, Organic Motion and Turn of Events whooshes; the Frosty slow-motion downlifter into the dip; "Epic" layered on the big hit; and "Thunderbell" under the closing boom. Plus a 0.45 s "breath" (music −7 dB) right before the big hit.
+- **No beds:** they depend on picture (no birds on interiors).
+- **Bug found — whooshes:** `lib(align="peak")` cuts 30 ms after the peak. That suits risers but chops a whoosh's tail, so whooshes now use `align="center"` (peak on the cue, full tail).
+- **Bug found — levels:** set by measuring the SFX-to-music RMS at each cue, aiming for about −8 dB. The first pass sat 22–26 dB under in the dense section and was inaudible: Earshot ab heard no difference. "Subtle Pressure" is mostly sub, so a highpass leaves nothing; it was replaced.
+- **Whisper check:** it returns different "thanks for watching" text on every run, which is a hallucination on noise. AST speech ≤ 0.02 confirms the stem is clean.
+- **Next level:** a picture-locked pass (Real SFX skill) on the actual edit.
