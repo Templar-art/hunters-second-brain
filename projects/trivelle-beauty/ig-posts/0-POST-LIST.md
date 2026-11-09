@@ -9,6 +9,11 @@
 Every caption ends the same way, so it's only written out once here:
 > $169 · free shipping Australia-wide · 30-day money-back guarantee. Link in bio.
 
+**Hashtags:** 3–5 per post. Instagram now limits it to 5, and it reads hashtags like keywords. Rotate the sets so posts don't all look identical:
+- **Set A (odd numbers):** #redlighttherapy #athomefacial #skincareover40 #australianbeauty
+- **Set B (even numbers):** #skincaredevice #selfcareroutine #skincareaustralia #trivellebeauty
+- **Christmas posts (01, 02, 08, 16, 24):** #christmasgiftsformum #giftideasforher #redlighttherapy #trivellebeauty
+
 ---
 
 **01 · Reel · D6 Christmas Mum** (~Nov 10)
