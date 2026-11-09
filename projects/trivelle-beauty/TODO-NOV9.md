@@ -9,7 +9,7 @@
 6. **Instagram:** start the `IG Posts/` folder tomorrow with 01. The captions and hashtags are in `0-POST-LIST.md`.
 
 ## This week
-- Post on IG one every 1–2 days, using `IG-POST-LIST.md`.
+- Post on IG one every 1–2 days, using `IG Posts/0-POST-LIST.md` (the older `IG-POST-LIST.md` is replaced by it).
 - When tracking arrives, check it shows in Shopify (the order should say "Fulfilled"). If the order still says Unfulfilled after about 4 business days, chase the supplier.
 
 ## Do NOT touch (7 days, until Nov 16)
@@ -18,7 +18,7 @@
 
 ## Later
 - Retargeting ad set ($5/day, site visitors) once about 1,000 people have visited.
-- Re-voice "Trivelle" (it's said as "Trevolz") on whichever ad wins.
+- Name pronunciation: whisper hears "Trivel", which is close enough. Only re-voice if customers comment on it.
 
 ---
 
