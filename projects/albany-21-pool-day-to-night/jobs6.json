@@ -1,0 +1,37 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 40,
+ "defaults": {
+  "model": "kling3_0",
+  "params": {}
+ },
+ "rows": [
+  {
+   "id": "balcony_walkup",
+   "out": "video/balcony_walkup_4k.mp4",
+   "params": {
+    "start-image": "in/balcony_empty.jpg",
+    "end-image": "in/A.jpg",
+    "mode": "4k",
+    "duration": 5,
+    "sound": "off",
+    "aspect_ratio": "16:9"
+   },
+   "prompt": "Locked-off camera, no camera movement at all. The covered balcony starts empty. A woman with wavy honey-blonde hair, in a white smocked sundress and flat tan sandals, steps out through the open sliding glass doors on the left and walks unhurried and relaxed across the timber deck towards the white balcony rail on the right, candid and unaware of any camera, her eyes on the hinterland view the whole time. She arrives at the rail beside the timber post, leans forward and rests her forearms on the top rail, and settles there looking out at the view, matching the end frame exactly. She never looks towards the camera and touches nothing but the rail. Natural, grounded walking with real weight, her dress and hair moving softly. The deck, posts, glass balustrade, high table and stools, barbecue, flag and the living room inside stay perfectly still. Warm golden late-afternoon light, cinematic, candid, photorealistic luxury real estate lifestyle film."
+  },
+  {
+   "id": "coffee_still",
+   "model": "nano_banana_2_1",
+   "out": "still/coffee_closeup.png",
+   "params": {
+    "image": [
+     "in/A.jpg",
+     "in/charsheet/creation_3832275915.png"
+    ],
+    "resolution": "4k",
+    "aspect_ratio": "16:9"
+   },
+   "prompt": "Image 1 is the scene and the moment and Image 2 shows the same woman's face and hair for identity. Create a close-up photograph of the same woman on the same balcony as Image 1, in the same white smocked sundress and the same warm golden late-afternoon light, from a new camera position at her side, chest height, on a long lens. She leans lightly on the white balcony top rail holding a plain matte white ceramic coffee cup in both hands just above the rail, a faint wisp of steam rising from it. She is framed from the waist up in soft three-quarter profile, gazing out to the right of frame over the green palms and the hazy hinterland, candid and content, never looking towards the camera. Her wavy honey-blonde hair falls over her shoulder and lifts slightly in the breeze. Behind her the palms, the flag and the distant hills fall into soft creamy bokeh. Her face matches Image 2 exactly, natural skin with fine freckles. Shallow depth of field, cinematic, photorealistic editorial lifestyle photography."
+  }
+ ]
+}
