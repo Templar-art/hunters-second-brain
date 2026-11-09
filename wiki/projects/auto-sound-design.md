@@ -367,3 +367,10 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Lesson:** a cinematic score may have no repeats outside its epic sections. When it doesn't, a **cut from one hit to another** is the clean way to jump sections: the transient covers the change of harmony.
 
 **Cinema soft variant (9 Nov).** Same cut, rendered with `cinema_60.py ... soft`: no riser, sub or booms, only faint song-derived swells. Earshot ab heard it as almost identical to the FX version (cosine 1.00; only the ending tail is shorter). Lesson: the "aggressive / epic trailer" read comes from the track itself (hybrid orchestral plus electronic), not the FX, so a softer feel needs a different song, not a lighter FX pass.
+
+**Experience (Ludovico Einaudi), 90 s soft cinematic (9 Nov).** This is the calmer alternative to Cinema for the same big property. Earshot `rank` over Hunter's local tracks for "elegant cinematic orchestral, piano and strings" picked it: z +3.4, the only strong match; the runner-up was The Progression of Time at z +2.8.
+- **Route:** `experience_90.py` + `experience_bt.txt`. 18 s of solo piano, then a gap cut to the strings entry. The build runs into the full section, joins at 1:01.6 into the climax (score 0.823, mel 0.974, lag 0; the join lands on an orchestral stab), takes in the 4:14 peak, and ends on the orchestra's own final chord and ring-out.
+- **No booms:** the soft brief.
+- **v1 ending:** v1 ran into the 30 s piano coda, and Earshot critique flagged the ending at 23.5 LU below the body, the same "fading away" failure as Cinema v1.
+- **v2 score:** "close", 17 of 22. What is left is the brief itself: a quiet piano intro (LRA 17 LU), a sparse track and a ring-out ending.
+- **Pattern:** for slow classical builds, end on the climax's last chord, not on the coda.
