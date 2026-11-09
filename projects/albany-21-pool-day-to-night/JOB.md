@@ -3,7 +3,7 @@ client: tbc
 address: 21 Albany Avenue, Currumbin
 opened: 2026-11-09
 status: delivered
-cost: { credits: 0, hf_credits: 429, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 515, aud: 0 }   # derived from ## Ledger
   - **Balcony wide v2:** candid, she keeps looking out at the view and never at camera. Motion is very subtle (QC flagged NO_MOTION).
   - **Table detail:** strong. She turns slowly into profile; the face matches the character sheet.
   - **Balcony detail:** good. Her hands start hovering just above the rail, then settle onto it.
@@ -16,6 +16,9 @@ cost: { credits: 0, hf_credits: 429, aud: 0 }   # derived from ## Ledger
 - 2026-11-09 Hunter asked for 2 more balcony shots, both 4K. Approved with "go" (63 HF).
   - **Walk-up:** kling3_0 4K, start frame the empty balcony plate, end frame A. She walks in from frame-left and settles at the rail, never looking at camera. Delivered as `AI Clips/Balcony Lady Walk Up 4K.mp4`.
   - **Coffee close-up still:** done (3 HF). She looks screen-right, matching the wide. Waiting on Hunter before animating (30 HF).
+- 2026-11-09 Hunter: the walk-up should have been Seedance, and the coffee detail is the existing rail framing with a cup added. Redo approved with "go".
+  - **Walk-up:** Seedance using the character sheet, start frame the empty plate and end frame A (80 HF). Clean walk-in, sandals on, candid. Lanczos-upscaled to 4K and delivered as `Balcony Lady Walk Up Seedance 4K.mp4`.
+  - **Coffee rail still:** done (3 HF). The earlier attempt was lost in the session crash, also 3 HF. The clip (80 HF) waits on Hunter.
 
 ## Ledger
 ---
@@ -33,6 +36,9 @@ cost: { credits: 0, hf_credits: 429, aud: 0 }   # derived from ## Ledger
 - 2026-11-09 | 10 hf | reel_night kling_video_edit (gen-runner)
 - 2026-11-09 | 30 hf | balcony_walkup kling3_0 (gen-runner)
 - 2026-11-09 | 3 hf | coffee_still nano_banana_2_1 (gen-runner)
+- 2026-11-09 | 3 hf | coffee_detail_still NB 2.1 lost in session crash (charged, no file)
+- 2026-11-09 | 80 hf | walkup_seedance seedance_2_5 (gen-runner)
+- 2026-11-09 | 3 hf | coffee_detail_still nano_banana_2_1 (gen-runner)
 
 ## Shots
 | # | Shot | Pipeline | Status |

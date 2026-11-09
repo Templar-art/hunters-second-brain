@@ -1,0 +1,39 @@
+{
+ "job_md": "JOB.md",
+ "cap_hf": 90,
+ "defaults": {
+  "model": "seedance_2_5",
+  "params": {}
+ },
+ "rows": [
+  {
+   "id": "walkup_seedance",
+   "out": "video/balcony_walkup_seedance.mp4",
+   "params": {
+    "mode": "omni_reference",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "duration": 5,
+    "aspect_ratio": "16:9",
+    "start-image": "in/balcony_empty.jpg",
+    "end-image": "in/A.jpg",
+    "image-references": [
+     "in/charsheet/creation_3832275915.png",
+     "in/charsheet/creation_3832274099.png"
+    ]
+   },
+   "prompt": "Locked-off camera, no camera movement at all. The covered balcony starts empty. The woman shown in the reference images, with the same face, wavy honey-blonde hair, white smocked sundress and flat tan sandals worn on her feet the whole time, steps out through the open sliding glass doors on the left and walks unhurried and relaxed across the timber deck towards the white balcony rail on the right, candid and unaware of any camera, her eyes on the hinterland view the whole time. She arrives at the rail beside the timber post, leans forward and rests her forearms on the top rail, and settles there looking out at the view, matching the end frame exactly. She never looks towards the camera and touches nothing but the rail. Natural, grounded walking with real weight, her dress and hair moving softly. The deck, posts, glass balustrade, high table and stools, barbecue, flag and the living room inside stay perfectly still. Warm golden late-afternoon light, cinematic, candid, photorealistic luxury real estate lifestyle film."
+  },
+  {
+   "id": "coffee_detail_still",
+   "out": "still/coffee_detail.png",
+   "params": {
+    "image": "still/balcony_detail.png",
+    "resolution": "4k",
+    "aspect_ratio": "16:9"
+   },
+   "prompt": "Edit Image 1 and keep everything exactly the same: the identical camera angle, framing and crop, the same woman's arms, freckled skin, gold ring, white smocked sundress and wavy honey-blonde hair at the right edge of frame, the same white balcony top rail and glass balustrade, the same soft bokeh of palms, the flag and the hazy hinterland, and the same warm golden late-afternoon light. The only change: her two hands now loosely cradle a plain matte white ceramic coffee cup, resting it on the flat top of the white rail where her hands already are, her fingers wrapped naturally around it, the cup in sharp focus and the right size for a real coffee cup. Nothing else is added, moved or changed. Photorealistic editorial lifestyle photography.",
+   "model": "nano_banana_2_1"
+  }
+ ]
+}
