@@ -1813,3 +1813,6 @@ Built `projects/amir-prestige-overlays/make_overlays.py`: logo opener, address s
 
 ## [2026-11-09] update | Amir overlays for 8 Nassau Ave, Terranora
 Rendered the pack ("Bella Vista", address 8 NASSAU AVE, TERRANORA, placeholder agent "Agent Name / 0400 000 000") to T7 `8 Nassau Avenue Terranora/Amir Overlays/`. Re-render the 02 agents card once the agent is known. The SSD shoot folder is labelled "| Coastline".
+
+## [2026-11-09] update | Amir "Bella Vista" title redone
+The italic and swash version read tacky. It is replaced by restrained tracked Playfair caps with a hairline and small suburb caps (`--name-style caps`; `lower` and `roman` are alternatives). Re-rendered to T7 `8 Nassau Avenue Terranora/Amir Overlays/`, with an A/B/C comparison sheet.

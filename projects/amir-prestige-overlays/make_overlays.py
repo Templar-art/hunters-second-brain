@@ -4,9 +4,9 @@ ProRes 4444 alpha MOVs for FCP (25 fps) in 16:9 4K and 9:16 1080x1920, plus a PN
   00  logo opener      white "amir prestige" wordmark centred over footage, soft shadow, no box;
                        eases in, hard cut out (Kollosche lesson: logo to address is a hard cut)
   01  address super    one centred line, street Montserrat Regular caps + suburb Bold caps, no box
-  01n property name    e.g. "Bella Vista": large Playfair Display Italic with a hairline swash under it
-                       (a nod to the cut through their wordmark), small tracked Montserrat line below;
-                       letters settle from wide tracking as it fades in
+  01n property name    e.g. "Bella Vista", restrained: --name-style caps (default: tracked Playfair caps,
+                       hairline, small suburb), lower (lowercase like their wordmark) or roman; fades in
+                       while the tracking settles slightly
   02  agent names      left and right, Playfair Display title case over Montserrat mobile numbers
   03  end card         solid black, small white "amir prestige" wordmark centred (opaque)
   04  grey mat         their framed-montage border, #D6D6D6 with a transparent window
@@ -104,43 +104,44 @@ def address(W, H, street, suburb):
     return shadowed(im, W)
 
 
-def name_title(W, H, name, sub, t):
-    """t in 0..1 = settle progress: tracking eases from wide to set, swash draws left to right."""
+def name_title(W, H, name, sub, t, style="caps"):
+    """Property name. t in 0..1 = settle progress (tracking eases from slightly wide to set).
+    Styles (Hunter 2026-11-09: the big italic + swash read tacky; restraint instead):
+      caps  - BELLA VISTA in Playfair Regular caps, wide tracking, a short hairline, suburb in small tracked caps
+      lower - bella vista in Playfair SemiBold lowercase, echoing their own wordmark; suburb under
+      roman - Bella Vista in Playfair Regular title case; suburb under
+    """
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
     port = H > W
-    c = H * (0.075 if not port else 0.042)
-    f = font(PLAY_I, c / 0.71, "Regular")
-    tr = 0.10 - 0.08 * ease(t)
-    wn = width(name, f, tr)
-    y = H / 2 - c * (0.75 if sub else 0.5)
-    run(d, (W - wn) / 2, y, name, f, tr)
-    # Hairline swash under the name: a shallow arc that draws on, echoing the cut through their wordmark.
-    set_w = width(name, f, 0.02)
-    x0, x1 = W / 2 - set_w * 0.46, W / 2 + set_w * 0.46
-    yb = y + c * 1.28
-    lw = max(2, round(c * 0.028))
-    n = 200
-    xs = np.linspace(x0, x0 + (x1 - x0) * ease(min(1, t * 1.15)), n)
-    u = (xs - x0) / (x1 - x0)
-    ys = yb - np.sin(u * np.pi) * c * 0.10 + (u - 0.5) * c * 0.10
-    ss = 4
-    big = Image.new("L", (W * ss // 4, H * ss // 4), 0)   # same size; supersample only the stroke ends
-    bd = ImageDraw.Draw(big)
-    pts = [(float(a), float(b)) for a, b in zip(xs, ys)]
-    if len(pts) > 1 and xs[-1] - xs[0] > 1:
-        bd.line(pts, fill=255, width=lw, joint="curve")
-        # taper both ends so it reads as a pen stroke, not a rule
-        fade = np.clip(np.minimum(u, 1 - u) / 0.18, 0, 1) if t >= 1 else np.clip(u / 0.18, 0, 1)
-        stroke = Image.new("RGBA", (W, H), (255, 255, 255, 0))
-        alpha = np.array(big, np.float32)
-        col = np.interp(np.arange(W), xs, fade, left=0, right=0)
-        stroke.putalpha(Image.fromarray((alpha * col[None, :]).astype(np.uint8)))
-        im.alpha_composite(stroke)
+    k = 1 if not port else 0.62
+    s_ = ease(t)
+    if style == "caps":
+        c = H * 0.026 * k / (1 if not port else 0.56)
+        f = font(PLAY, c / 0.71, "Regular")
+        txt, tr = name.upper(), 0.30 - 0.08 * s_
+    elif style == "lower":
+        c = H * 0.034 * k / (1 if not port else 0.56)
+        f = font(PLAY, c / 0.71, "SemiBold")
+        txt, tr = name.lower(), 0.05 - 0.04 * s_
+    else:
+        c = H * 0.036 * k / (1 if not port else 0.56)
+        f = font(PLAY, c / 0.71, "Regular")
+        txt, tr = name, 0.06 - 0.04 * s_
+    fs = font(MONT, c * (0.36 if style == "caps" else 0.30) / 0.70, "Medium")
+    ts = 0.45
+    sc = cap(fs)
+    gap = c * (1.05 if style == "caps" else 0.95)
+    block = c + (gap + sc if sub else 0)
+    y = H / 2 - block / 2
+    run(d, (W - width(txt, f, tr)) / 2, y, txt, f, tr)
     if sub:
-        fs = font(MONT, c * 0.20 / 0.70, "Medium")
-        ts = 0.42
-        run(d, (W - width(sub, fs, ts)) / 2, yb + c * 0.55, sub, fs, ts, fill=(255, 255, 255, 235))
+        ys = y + c + gap
+        if style == "caps":
+            rw, rh = c * 1.1, max(1, round(c * 0.035))
+            d.rectangle([W / 2 - rw / 2, y + c + gap * 0.5 - rh / 2, W / 2 + rw / 2, y + c + gap * 0.5 + rh / 2], fill=(255, 255, 255, 220))
+            ys = y + c + gap * 1.0
+        run(d, (W - width(sub, fs, ts)) / 2, ys, sub, fs, ts, fill=(255, 255, 255, 235))
     return shadowed(im, W, 0.40)
 
 
@@ -213,6 +214,7 @@ def main():
     ap.add_argument("--address", help='"STREET|SUBURB"')
     ap.add_argument("--name", help='property name, e.g. "Bella Vista"')
     ap.add_argument("--name-sub", help="small line under the name (e.g. the suburb)")
+    ap.add_argument("--name-style", default="caps", choices=["caps", "lower", "roman"])
     ap.add_argument("--agent", action="append", default=[], help='"Name|mobile"')
     ap.add_argument("--preview", help="a video frame to comp the stills over")
     a = ap.parse_args()
@@ -234,9 +236,9 @@ def main():
         if a.name:
             sub = (a.name_sub or "").upper()
             n, settle = 4 * FPS, round(1.6 * FPS)
-            final = name_title(W, H, a.name, sub, 1)
+            final = name_title(W, H, a.name, sub, 1, a.name_style)
             slug = a.name.replace("/", "-")
-            write_mov(lambda f: faded(name_title(W, H, a.name, sub, (f + 1) / settle) if f < settle else final,
+            write_mov(lambda f: faded(name_title(W, H, a.name, sub, (f + 1) / settle, a.name_style) if f < settle else final,
                                       inout(f, n, 14, 12)), n, out / f"01n Amir name {slug} {asp}.mov")
             final.save(out / f"01n Amir name {slug} {asp}.png")
             parts.append(final)
@@ -274,4 +276,5 @@ def main():
         print("wrote", asp)
 
 
-main()
+if __name__ == "__main__":
+    main()
