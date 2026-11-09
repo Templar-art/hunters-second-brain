@@ -24,6 +24,8 @@ cost: { credits: 0, hf_credits: 598, aud: 0 }   # derived from ## Ledger
 
 - 2026-11-09 **Coffee clip:** Seedance using the character sheet (80 HF). The camera drifts round to reveal her face in three-quarter profile looking out, holding the cup the whole time. Upscaled to 4K and delivered as `Balcony Coffee Detail 4K.mp4`. The walk start still is done (3 HF), with the clip waiting on Hunter's go.
 
+- 2026-11-09 Hunter APPROVED the coffee detail.
+
 ## Ledger
 ---
 
