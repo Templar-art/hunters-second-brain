@@ -1792,3 +1792,5 @@ The reel got ambience only (Hunter did the whooshes and shings): 17 outdoor beds
 
 ## [2026-11-09] update | 21 Albany Main new flow
 The re-export (boss's flow change) got outdoor-only ambience with silent interiors. The REAL pin overlay was reused because the drone shot is unchanged. Delivered to Exports/SFX, with the old files moved to _old flow. Page: [[albany-21-main-sfx]].
+
+## [2026-11-09] query | Cinema (Judah Earl & boda) 60 s cinematic main edit — hit-to-hit cut, Earshot-shortened ending

@@ -346,3 +346,22 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Earshot verdict:**
   - Critique: launch-grade, 22 of 22 checks in range.
   - Timeline: the join is inaudible. The drop is only about +9 dB over the bed, because the build is already loud. This is the same pattern as On Rewind 40, which Hunter left as is.
+
+## 9 Nov, Cinema (Judah Earl & boda): 60 s cinematic main edit, very big property
+`tools/cinema_60.py`, grid in `tools/cinema_bt.txt` (113.0 BPM). The track is an instrumental orchestral trailer piece, mastered hot (-8 LUFS and clipping), so the cut gets 9 dB of headroom before the -14 LUFS export.
+- **Song map:**
+  - calm intro 0–17 s, first hit at 17.0 s
+  - strings and beat 17–34, strings dip 34–50
+  - the song's biggest hit at 51.0 s (+13 dB)
+  - epic section 59–85, triumphant 85–102, dark dip 102–118
+  - epic 118–171, which repeats the 59–85 material 160 beats later
+  - a 14 s outro decay
+- **Route.** Nothing early in the song repeats. Single joins into the ending all scored about 0.74 (harmony mismatch), so the cut is built from:
+  1. The full 17 s intro, for establishing shots.
+  2. A **hit-to-hit cut**: the first hit swapped for the biggest hit. It's a 15 ms crossfade just before both onsets, so the hit hides the edit (post-hit chroma 0.895).
+  3. The epic run, then a join from it into its own repeat (b150 → b310, score 0.976, lag 0).
+  4. The ending.
+- **Ending, v2.** v1 ran the whole outro. Earshot critique flagged the last 15 s as "fading away", with the final moment 12.8 LU under the body. v2 runs the song's decay 2 bars past the last epic downbeat, puts an Ocular "Quake" boom and a sub on that downbeat, and closes with a 2 s fade. The final moment is now -4.6 LU (reference range starts at -3.7). The trade is that the cut is 60.5 s instead of 67 s.
+- **FX:** riser "Stop That Train", a swell, `sub_1` and the "Rift" boom on the 17 s hit (Rift was Earshot's top "cinematic trailer impact", z +4.6).
+- **Earshot:** "close" (18 of 22 metrics in range). The leftover flags are few salient hits, wide stereo and bright mids. All three describe the track itself (a sparse, wide orchestral score) rather than the edit.
+- **Lesson:** a cinematic score may have no repeats outside its epic sections. When it doesn't, a **cut from one hit to another** is the clean way to jump sections: the transient covers the change of harmony.
