@@ -39,6 +39,7 @@ Hunter's own Shopify dropshipping store, **trivellebeauty.com**, separate from 1
 | C drawer | "devices end up in the drawer" angle | 52 s, 30 s, 15 s |
 | D seated explainer | presenter explains the 4 modes | 34 s, 30 s, 15 s |
 | D2 salon-swap / D3 ten-minutes | D body with a new Higgsfield Marketing Studio UGC hook (same presenter, start frame from D). Built by `build_d_hooks.py` | 30 s, 15 s |
+| D4–D11 (Nov 9) | 8 more UGC hooks on the D body: does-it-work, facials $150, Christmas Mum, 54, daughter, red light, wind-down, everyone-asks. D7/D8/D11 = AI posing as a customer → ACCC fake-testimonial risk, reserves only. Run `ONLY=D4,… python3 scripts/build_d_hooks.py …`. 20 GPT Image 2 stills in `device-v2/stills/batch2/` (Xmas/gift/lifestyle). Cost 490 cr (UGC 40 ea, GPT img 6.5 ea). A clean-name clip was tried; whisper hears D's original as "Trivel" too, so no swap was made | 30 s, 15 s |
 | E animated | flat illustrated, mode labels | 25 s, 15 s, reel |
 | F review-reply | D with a "YOU ASKED" comment bubble | 34 s, 30 s, 15 s |
 | G animated 3D | original 3D animated-film character; the "motion" version is fully animated (Kling) | 27 s, 15 s, reel |

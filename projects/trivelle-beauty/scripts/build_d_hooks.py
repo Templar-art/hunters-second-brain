@@ -14,7 +14,17 @@ BODY_START = 2.5  # D at 2.5 s = "It's called Trivelle…"
 HOOKS = {
     "D2-salon-swap": ("d2-hook-fixed.mp4", "This is what I use instead of the salon now."),
     "D3-ten-minutes": ("d3-hook-fixed.mp4", "Ten minutes, a few nights a week. That is it."),
+    "D4-does-it-work": ("d4-hook-fixed.mp4", "Okay, does this actually work? Honest answer."),
+    "D5-facials": ("d5-hook-fixed.mp4", "I was spending $150 a month on facials. Now I don't."),
+    "D6-christmas-mum": ("d6-hook-fixed.mp4", "Christmas sorted for Mum. Trust me."),
+    "D7-fifty-four": ("d7-hook-fixed.mp4", "I'm 54, and this is my ten minutes."),
+    "D8-daughter": ("d8-hook-fixed.mp4", "My daughter keeps stealing this off me."),
+    "D9-red-light": ("d9-hook-fixed.mp4", "Red light therapy, without the salon booking. Just this."),
+    "D10-wind-down": ("d10-hook-fixed.mp4", "This is my wind-down before bed now."),
+    "D11-everyone-asks": ("d11-hook-fixed.mp4", "Everyone asks what I've done to my skin."),
 }
+ONLY = os.environ.get("ONLY")
+if ONLY: HOOKS = {k: v for k, v in HOOKS.items() if k.split("-")[0] in ONLY.split(",")}
 BODIES = {"30s": os.path.join(DV, "ads", "trivelle-D-seated-explainer-30s.mp4"),
           "15s": os.path.join(DV, "ads", "15s", "trivelle-D-seated-explainer-15s.mp4")}
 
