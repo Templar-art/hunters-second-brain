@@ -1801,3 +1801,6 @@ The review page gets an Import… button (multi-file picker, any folder, per-pho
 ## [2026-11-09] query | Experience (Einaudi) 90 s soft cinematic cut for the big property, Earshot-picked + checked
 ## [2026-11-09] query | Cinema 90 s cut (FX + soft), one repeat join, Earshot close 18/22
 ## [2026-11-09] query | Cinema 90 s SFX sound-design pass (Ocular, Earshot-ranked, measured levels)
+
+## [2026-11-09] ingest | Amir Prestige brand + drone style
+Gathered the wordmark, "ap." monogram, teal #24506A and Garet from amirprestige.com.au, plus three drone references from their 44 Via Roma listing, into `raw/amir-prestige/`. Added the client page and drone-pin profile `amir-prestige.json` (white ap. pin, caps labels, mono surround). Test render matched.

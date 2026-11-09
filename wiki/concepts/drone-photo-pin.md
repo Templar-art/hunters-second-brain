@@ -110,6 +110,7 @@ Conclusion: one drag per photo plus "Apply to flight" stays the method. Revisit 
 - **⚠️ Don't trust `GimbalYawDegree`.** On these DJI files it sat 39–55° off true north. `FlightYawDegree` (the aircraft heading) put the lot on the house on every photo, top-downs included, so the tool uses it.
 - **Accuracy with no drags:** the outline matched the fence lines on the top-down and the close obliques, and the pin landed on the roof ridge at 360 m. The 400 m near-horizon wide was about 1° off, and one drag fixed it.
 - **Ground height can't be fitted from one photo**, because a single far shot can't separate tilt from terrain height (an early version solved -20 m and wrecked the close shots). The flight fix only solves ground height when the approved photos are at clearly different ranges; otherwise it corrects the compass alone.
+- **Amir Prestige** (2026-11-09, unconfirmed): white "ap." monogram on a thin line, white caps location labels, B&W surround on top-downs. See [[amir-prestige]].
 - **REAL Specialists pin = icon only** (Hunter, 2026-11-09): the orange square mark (`logos/real-specialists-icon-orange.png`), centred on the line with a gap above it (`mark_gap` 0.3 of the icon size), with no wordmark.
 - **Exports without metadata won't place.** If Lightroom strips location info, use the originals off the drone.
 

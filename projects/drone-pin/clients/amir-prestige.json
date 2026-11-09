@@ -1,0 +1,27 @@
+{
+ "name": "Amir Prestige",
+ "aliases": [
+  "Amir Prestige Group",
+  "Amir"
+ ],
+ "confirmed": false,
+ "notes": "From their own listing drones (44 Via Roma, Isle of Capri, amirprestige.com.au, 2026-11-09). Wide drone pin: the white 'ap.' monogram on the sky with no circle or badge, a small gap, then a thin white line down to the house, with no dot and no outline. Location pins: white BOLD UPPERCASE wide sans labels (their site font is Garet; Söhne Breit Kräftig stands in) to the right of the top of a thin white line, with no dot and no distance. The close top-down oblique has no pin and no outline: the neighbourhood goes black & white and the lot stays colour (ZED-style mono surround). The monogram was cut from their 512 px favicon (logos/amir-prestige-ap-white.png), so ask for vector brand files before print. Sizes were estimated from 1920 px web copies.",
+ "style": {
+  "pin": "mark",
+  "glyph": "projects/drone-pin/logos/amir-prestige-ap-white.png",
+  "fill_opacity": 0,
+  "badge": 0.028,
+  "pin_line": 0.05,
+  "mark_gap": 0.25,
+  "line_dot": false,
+  "outline_w": 0,
+  "surround": "mono",
+  "blackout": 0,
+  "topdowns": true,
+  "location_pins": true,
+  "place_dot": false,
+  "place_upper": true,
+  "place_dist": false
+ },
+ "agents": {}
+}
