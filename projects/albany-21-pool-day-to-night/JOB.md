@@ -3,7 +3,7 @@ client: tbc
 address: 21 Albany Avenue, Currumbin
 opened: 2026-11-09
 status: delivered
-cost: { credits: 0, hf_credits: 598, aud: 0 }   # derived from ## Ledger
+cost: { credits: 0, hf_credits: 678, aud: 0 }   # derived from ## Ledger
   - **Balcony wide v2:** candid, she keeps looking out at the view and never at camera. Motion is very subtle (QC flagged NO_MOTION).
   - **Table detail:** strong. She turns slowly into profile; the face matches the character sheet.
   - **Balcony detail:** good. Her hands start hovering just above the rail, then settle onto it.
@@ -26,6 +26,8 @@ cost: { credits: 0, hf_credits: 598, aud: 0 }   # derived from ## Ledger
 
 - 2026-11-09 Hunter APPROVED the coffee detail.
 
+- 2026-11-09 **Walk-up v3:** Seedance with start frame walk_start (side-profile, mid-step), end frame A, and the character sheet (80 HF). She takes short steps with her face in profile throughout and settles at the rail. Upscaled to 4K and delivered as `Balcony Walk Up v3 4K.mp4`. Waiting on Hunter.
+
 ## Ledger
 ---
 
@@ -47,6 +49,7 @@ cost: { credits: 0, hf_credits: 598, aud: 0 }   # derived from ## Ledger
 - 2026-11-09 | 3 hf | coffee_detail_still nano_banana_2_1 (gen-runner)
 - 2026-11-09 | 3 hf | walk_start_still nano_banana_2_1 (gen-runner)
 - 2026-11-09 | 80 hf | coffee_clip seedance_2_5 (gen-runner)
+- 2026-11-09 | 80 hf | walkup_v3 seedance_2_5 (gen-runner)
 
 ## Shots
 | # | Shot | Pipeline | Status |
