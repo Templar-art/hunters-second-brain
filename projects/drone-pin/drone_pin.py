@@ -437,6 +437,36 @@ def save(job, name, data):
     (job / name).write_text(json.dumps(data, indent=1))
 
 
+def add_photo(p, job, site, st):
+    """Read one drone still's GPS/gimbal, propose its pin and outline, write its preview."""
+    m = meta(p)
+    tip = site["tip"]
+    if "error" not in m:
+        m.update(propose(m, site))
+        m["mode"] = default_mode(m, st)
+        dist = np.linalg.norm(enu(tip[1], tip[0], m["lat"], m["lon"]))
+        m["note"] = f"{dist:.0f} m from the lot, {m['alt']:.0f} m up, pitch {m['pitch']:.0f}°"
+        if m["mode"] == "pin" and not m["tip_visible"] or m["mode"] == "outline" and not m["lot_visible"] and m["pitch"] > -70:
+            m["mode"] = "none"
+            m["note"] += ", lot not in frame"
+        if st["blackout"]:
+            m["blackout"] = st["blackout"]
+    else:
+        m["mode"] = "none"
+        m["tip"] = [m["w"] / 2, m["h"] * 0.6]
+        m["lot"] = []
+    m["reviewed"] = False
+    if p.parent.resolve() != Path(site["photos"]).resolve():
+        m["src"] = str(p.resolve())   # imported from another folder
+    make_preview(p, job)
+    return m
+
+
+def src_path(site, name, m=None):
+    """Where a photo's original lives: its own folder if imported, else the job's photos folder."""
+    return Path((m or {}).get("src") or Path(site["photos"]) / name)
+
+
 def cmd_init(a):
     job, photos = Path(a.job), Path(a.photos)
     (job / "previews").mkdir(parents=True, exist_ok=True)
@@ -455,27 +485,9 @@ def cmd_init(a):
 
     marks = {}
     for p in sorted(photos.iterdir()):
-        if p.suffix.lower() not in EXTS:
-            continue
-        m = meta(p)
-        if "error" not in m:
-            m.update(propose(m, site))
-            m["mode"] = default_mode(m, st)
-            dist = np.linalg.norm(enu(tip[1], tip[0], m["lat"], m["lon"]))
-            m["note"] = f"{dist:.0f} m from the lot, {m['alt']:.0f} m up, pitch {m['pitch']:.0f}°"
-            if m["mode"] == "pin" and not m["tip_visible"] or m["mode"] == "outline" and not m["lot_visible"] and m["pitch"] > -70:
-                m["mode"] = "none"
-                m["note"] += ", lot not in frame"
-            if st["blackout"]:
-                m["blackout"] = st["blackout"]
-        else:
-            m["mode"] = "none"
-            m["tip"] = [m["w"] / 2, m["h"] * 0.6]
-            m["lot"] = []
-        m["reviewed"] = False
-        marks[p.name] = m
-        make_preview(p, job)
-        print(f"  {p.name}: {m['mode']:7s} {m.get('note', m.get('error'))}")
+        if p.suffix.lower() in EXTS and not p.name.startswith("._"):
+            marks[p.name] = add_photo(p, job, site, st)
+            print(f"  {p.name}: {marks[p.name]['mode']:7s} {marks[p.name].get('note', marks[p.name].get('error'))}")
     save(job, "marks.json", marks)
     glyph(st).save(job / "previews" / "_k.png")
 
@@ -491,9 +503,9 @@ def make_preview(p, job):
 def cmd_review(a):
     job = Path(a.job)
     site = load(job, "site.json")
-    for name in load(job, "marks.json"):
+    for name, m in load(job, "marks.json").items():
         # Rebuild previews made before PREVIEW grew (older jobs).
-        pv, src = job / "previews" / (Path(name).stem + ".jpg"), Path(site["photos"]) / name
+        pv, src = job / "previews" / (Path(name).stem + ".jpg"), src_path(site, name, m)
         if src.exists() and (not pv.exists() or max(Image.open(pv).size) < PREVIEW):
             make_preview(src, job)
     # The look (client + agent) is fixed for the life of the server: changing it reloads the page.
@@ -555,6 +567,27 @@ def cmd_review(a):
                 script = f'POSIX path of (choose folder with prompt "Export to" default location (POSIX file "{start}"))'
                 r = subprocess.run(["osascript", "-e", script], capture_output=True, text=True)
                 return self.send(json.dumps({"folder": r.stdout.strip().rstrip("/") or None}).encode())
+            if self.path == "/import":
+                # Native macOS picker: drone stills from any folder join this job (already-added names skipped).
+                start = site["photos"]
+                while start and not Path(start).exists():
+                    start = str(Path(start).parent)
+                script = (f'set fs to choose file with prompt "Import drone photos" of type {{"public.image"}} '
+                          f'default location (POSIX file "{start}") with multiple selections allowed\n'
+                          'set out to ""\nrepeat with f in fs\nset out to out & POSIX path of f & linefeed\nend repeat\nreturn out')
+                r = subprocess.run(["osascript", "-e", script], capture_output=True, text=True)
+                files = [Path(x) for x in r.stdout.splitlines() if x.strip()]
+                added, skipped = [], []
+                with lock:
+                    marks = load(job, "marks.json")
+                    for f in files:
+                        if f.suffix.lower() not in EXTS or f.name in marks:
+                            skipped.append(f.name)
+                            continue
+                        marks[f.name] = add_photo(f, job, site, look["st"])
+                        added.append(f.name)
+                    save(job, "marks.json", marks)
+                return self.send(json.dumps({"added": added, "skipped": skipped, "marks": marks}).encode())
             if self.path == "/client":
                 # Client / agent picked in the review page: new look for every photo.
                 site["client"], site["agent"] = body.get("client") or None, body.get("agent") or None
@@ -908,7 +941,7 @@ def draw_overlay(m, k, st, site=None, mask=None):
 
 def finished(job, site, name, m, k, st):
     """The photo with its pin/outline burned in, plus the source's EXIF/ICC and the overlay layer."""
-    src = Image.open(Path(site["photos"]) / name)
+    src = Image.open(src_path(site, name, m))
     mf = job / "masks" / (Path(name).stem + ".png")
     mask = Image.open(mf).getchannel("A") if mf.exists() else None
     ov = draw_overlay(m, k, st, site, mask)
@@ -956,7 +989,7 @@ def export(job, site, marks, body):
             d.mkdir(parents=True, exist_ok=True)
             if kind == "print" and not body.get("print_graphics"):
                 # Kollosche: print copies are the clean photo (no pin, no outline), byte-for-byte.
-                shutil.copyfile(Path(site["photos"]) / it["file"], d / f"{out}.jpg")
+                shutil.copyfile(src_path(site, it["file"], marks[it["file"]]), d / f"{out}.jpg")
             elif kind == "print":
                 img.save(d / f"{out}.jpg", quality=100, subsampling=0, dpi=(300, 300), **extra)
             else:

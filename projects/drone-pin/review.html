@@ -113,6 +113,7 @@
     </div>
     <span class="sp"></span>
     <button id="fit" title="Zoom back out to the whole photo (0). Keeps your edits.">Fit view <small>0</small></button>
+    <button id="import" title="Add drone photos from any folder to this job">Import…</button>
     <button id="export" title="Export finished photos for print and web">Export…</button>
     <button id="reset">Reset photo</button>
     <button id="apply">Apply correction to unapproved</button>
@@ -218,6 +219,16 @@ X('xgo').onclick = async () => {
   X('xmsg').textContent = r.error ? '⚠ ' + r.error : `done: ${r.done.length} files in ${body.folder}`;
 };
 
+X('import').onclick = async () => {
+  if (names.length) { if (maskDirty) await saveMask(); await save(); }
+  flash('pick photos in the Finder window…');
+  const r = await api('/import', {});
+  if (!r.added.length) return flash(r.skipped.length ? `already in this job: ${r.skipped.join(', ')}` : 'nothing imported');
+  marks = r.marks; names = Object.keys(marks);
+  flash(`imported ${r.added.length} photo${r.added.length === 1 ? '' : 's'}` + (r.skipped.length ? ` (${r.skipped.length} skipped)` : ''));
+  show(names.indexOf(r.added[0]));
+};
+
 async function api(path, body) {
   const r = await fetch(path, body === undefined ? {} : { method: 'POST', body: JSON.stringify(body) });
   return r.json();
@@ -232,7 +243,8 @@ async function load() {
   names = Object.keys(marks);
   look();
   document.getElementById('site').innerHTML = `${site.address}<br>Lot ${site.lotplan} · ${Math.round(site.lot_area)} m²`;
-  setTool('edit'); show(0);
+  setTool('edit');
+  if (names.length) show(0); else flash('No photos in this job yet. Use Import… to add them.');
 }
 // Client + agent: their profile (clients/<slug>.json) sets the pin, outline and export defaults.
 function look() {

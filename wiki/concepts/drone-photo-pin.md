@@ -2,7 +2,7 @@
 type: concept
 tags: [tool, drone, kollosche, pin, outline, cadastre]
 status: built-untested-on-live-job
-updated: 2026-11-06
+updated: 2026-11-09
 ---
 
 # Drone photo pinning
@@ -48,6 +48,7 @@ Jobs live in `projects/drone-pin/jobs/<folder>`. Reopening the same folder resum
 ## Hand editing (Hunter's request, 2026-10-27)
 - **Outline:** drag a corner, drag the line or the inside to move it all, double-click the line to add a corner, and ⌥-click a corner to delete it. Hand edits stick, and re-solving the camera won't overwrite them.
 - **Outline thickness:** a Small–Large slider for each photo (0.5–3× of 0.33% of the width), plus an "All" button that applies it to every photo.
+- **Import…** (added 2026-11-09) opens the macOS file picker, which takes several files at once. The photos you pick can come from any folder. They join the current job: GPS is read, a pin and outline are proposed, and a preview is made. Each one keeps its own source path (`src` in marks.json), so print copies and finished renders read the right original. A name already in the job is skipped. If a job opens empty, the page says to use Import.
 - **Export…** opens a panel. Tick photos, name each one ("Name all" + "Number them" gives `Base 01`, `Base 02` …), and pick a folder (Choose… opens the macOS folder picker). Writes `Print/` **with the pin and outline** by default (full size, JPEG q100, 300 dpi). **⚠️ Supersedes the same-day note that Kollosche prints are clean:** Kollosche does pin the prints (Hunter, 2026-10-27, later that day). Untick the box to get the clean original instead. It also writes and `Web/` (2048 px, q85, no EXIF so the drone GPS is dropped, ~0.7 MB). It remembers the folder and names for each job in the browser.
 - **Gotcha (Finder thumbnail):** copying the source EXIF also carried Lightroom's embedded thumbnail of the clean photo, so Finder and Quick Look showed full-size prints "without the pin" even though the pixels had it. The EXIF is now re-serialised without the thumbnail.
 - **Fit view** button (or 0) zooms back out. Edits are kept.
@@ -109,6 +110,7 @@ Conclusion: one drag per photo plus "Apply to flight" stays the method. Revisit 
 - **⚠️ Don't trust `GimbalYawDegree`.** On these DJI files it sat 39–55° off true north. `FlightYawDegree` (the aircraft heading) put the lot on the house on every photo, top-downs included, so the tool uses it.
 - **Accuracy with no drags:** the outline matched the fence lines on the top-down and the close obliques, and the pin landed on the roof ridge at 360 m. The 400 m near-horizon wide was about 1° off, and one drag fixed it.
 - **Ground height can't be fitted from one photo**, because a single far shot can't separate tilt from terrain height (an early version solved -20 m and wrecked the close shots). The flight fix only solves ground height when the approved photos are at clearly different ranges; otherwise it corrects the compass alone.
+- **REAL Specialists pin = icon only** (Hunter, 2026-11-09): the orange square mark (`logos/real-specialists-icon-orange.png`), centred on the line, with no wordmark.
 - **Exports without metadata won't place.** If Lightroom strips location info, use the originals off the drone.
 
 ## Usage

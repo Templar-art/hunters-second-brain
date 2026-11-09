@@ -1794,3 +1794,6 @@ The reel got ambience only (Hunter did the whooshes and shings): 17 outdoor beds
 The re-export (boss's flow change) got outdoor-only ambience with silent interiors. The REAL pin overlay was reused because the drone shot is unchanged. Delivered to Exports/SFX, with the old files moved to _old flow. Page: [[albany-21-main-sfx]].
 
 ## [2026-11-09] query | Cinema (Judah Earl & boda) 60 s cinematic main edit — hit-to-hit cut, Earshot-shortened ending
+
+## [2026-11-09] update | Drone Pin: Import button + REAL icon-only pin
+The review page gets an Import… button (multi-file picker, any folder, per-photo `src`). REAL Specialists pins switch to the square icon only. The 21 Albany job had an empty marks.json; Print-8 and Print-9 are now loaded.
