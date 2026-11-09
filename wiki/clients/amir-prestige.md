@@ -53,6 +53,8 @@ The generator is `projects/amir-prestige-overlays/make_overlays.py`. It renders 
 - **03 end card:** black with the small white wordmark, 3 s, opaque.
 - **04 grey mat:** their framed-montage border, #D6D6D6 with a clear window, 5 s.
 
-Run: `~/.venvs/typeset/bin/python -I make_overlays.py <out> --address "STREET|SUBURB" --name "Bella Vista" --name-sub "SUBURB" --agent "Name|mobile" --preview frame.jpg`. The sample in `out/` uses the Via Roma address and agents as placeholders. Fonts are OFL: Montserrat and Playfair Display stand in for Garet and their serif.
+Run: `~/.venvs/typeset/bin/python -I make_overlays.py <out> --address "STREET|SUBURB" --name "Bella Vista" --name-sub "SUBURB" --agent "Name|mobile" --preview frame.jpg`. The sample in `out/` uses the Via Roma address and agents as placeholders.
+
+**First job: 8 Nassau Ave, Terranora NSW 2486, "Bella Vista"** (2026-11-09). The pack is on T7 at `8 Nassau Avenue Terranora/Amir Overlays/`. The agent isn't known yet, so the 02 card says "Agent Name / 0400 000 000"; re-run with `--agent` when we have it. Note that the T7 shoot folder is named `| Coastline`. Fonts are OFL: Montserrat and Playfair Display stand in for Garet and their serif.
 
 Sources: [YouTube channel](https://www.youtube.com/channel/UCKRDrsPL0UD32sasmnXmJxQ), [44 Via Roma film](https://www.youtube.com/watch?v=RgFwW6Hm8Pk), [amirprestige.com.au](https://www.amirprestige.com.au/), [Domain agency page](https://www.domain.com.au/real-estate-agencies/amirprestigegroup-33541), [RateMyAgent Paradise Point](https://www.ratemyagent.com.au/real-estate-agency/amir-prestige-paradise-point-as181/sales/overview), [Ocean Road Magazine](https://www.oceanroadmagazine.com.au/at-amir-prestige-we-dont-follow-records-we-set-them/).

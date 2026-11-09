@@ -1810,3 +1810,6 @@ Broke down the 44 Via Roma YouTube film covering structure, supers, agent outro,
 
 ## [2026-11-09] update | Amir Prestige overlay pack
 Built `projects/amir-prestige-overlays/make_overlays.py`: logo opener, address super, "Bella Vista" property-name title, agent names, black end card and grey montage mat, in 16:9 4K and 9:16. A sample render is in `out/`.
+
+## [2026-11-09] update | Amir overlays for 8 Nassau Ave, Terranora
+Rendered the pack ("Bella Vista", address 8 NASSAU AVE, TERRANORA, placeholder agent "Agent Name / 0400 000 000") to T7 `8 Nassau Avenue Terranora/Amir Overlays/`. Re-render the 02 agents card once the agent is known. The SSD shoot folder is labelled "| Coastline".
