@@ -5,10 +5,10 @@
   "REALspecialists"
  ],
  "confirmed": false,
- "notes": "From their own listing drones (5 Riviera Ave, Tweed Heads West, Allhomes, 2026-11-06): the orange REAL SPECIALISTS logo (icon + REAL / specialists) sits straight on the sky with no badge or circle, over a thin white line down to the house. No dot, no lot outline. Location pins: small dark sentence-case labels (Bilinga, Kirra, Coolangatta, Currumbin, Tugun) on thin white lines, no dot, no distance. Logo: traced from realspecialists.com/assets/img/RS-logo-blue.png (actually orange #E45E39) -> logos/real-specialists.svg + 3000 px PNG. Hung by its left edge on the line (mark_anchor left), as in their stills. Dark labels via place_color #1E1E1E, no distance (place_dist false). Office is Tweed Heads South NSW; NSW addresses resolve through NSW Spatial (lookup_nsw).",
+ "notes": "From their own listing drones (5 Riviera Ave, Tweed Heads West, Allhomes, 2026-11-06): the orange REAL SPECIALISTS logo (icon + REAL / specialists) sits straight on the sky with no badge or circle, over a thin white line down to the house. No dot, no lot outline. Location pins: small dark sentence-case labels (Bilinga, Kirra, Coolangatta, Currumbin, Tugun) on thin white lines, no dot, no distance. Logo: traced from realspecialists.com/assets/img/RS-logo-blue.png (actually orange #E45E39) -> logos/real-specialists.svg + 3000 px PNG. Hung by its left edge on the line (mark_anchor left), as in their stills. Dark labels via place_color #1E1E1E, no distance (place_dist false). Office is Tweed Heads South NSW; NSW addresses resolve through NSW Spatial (lookup_nsw). 2026-11-09: Hunter asked for the icon only on drone pins (no REAL / SPECIALISTS words): glyph -> logos/real-specialists-icon-orange.png (square mark cut from the full logo), centred on the line. Full logo still at logos/real-specialists-orange.png.",
  "style": {
   "pin": "mark",
-  "glyph": "projects/drone-pin/logos/real-specialists-orange.png",
+  "glyph": "projects/drone-pin/logos/real-specialists-icon-orange.png",
   "fill_opacity": 0,
   "badge": 0.045,
   "pin_line": 0.075,
@@ -19,7 +19,7 @@
   "place_dot": false,
   "place_upper": false,
   "place_font": "~/Library/Fonts/SöhneBreit-Buch.otf",
-  "mark_anchor": "left",
+  "mark_anchor": null,
   "place_color": "#1E1E1E",
   "place_dist": false
  },
