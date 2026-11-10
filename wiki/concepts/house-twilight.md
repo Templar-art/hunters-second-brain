@@ -2,7 +2,7 @@
 type: concept
 tags: [twilight, exterior, ai-generation, recipe]
 status: locked
-updated: 2026-10-27
+updated: 2026-11-11
 ---
 
 # House twilight (the look we like)
@@ -37,3 +37,4 @@ On the Villas on Esther job ([JOB](../../projects/kollosche-day-to-night/JOB.md)
 - **Metaphors get rendered literally.** "Glow like a lantern" put two candle lanterns on the balcony floor. Never use an object as a simile in a prompt.
 - **How to get consistency across a set:** once one still is approved, pass it as Image 1 (the look reference) and the next day frame as Image 2.
 - **Upscale route (2026-10-27):** Higgsfield `topaz_video --resolution 2160p` gives a true 3840x2160 for about 28 HF credits per clip. That beats Magnific Precision, which costs about 1,900 cr and caps at 2560. Seedance on Higgsfield can be blocked by the copyright filter on footage with signage; Kling 3.0 Omni Edit works instead and can render natively at 4K.
+- **Two handheld passes that don't line up (2026-11-09):** when the Day and Night takes are separate handheld passes (15–40 px apart), don't dissolve them raw. Run Kling Omni Edit on the Day clip with a Night frame as reference (42 HF at 4K for 7 s) and dissolve Day into that; it held within ~2 px. See [[albany-21-pool-day-to-night]].

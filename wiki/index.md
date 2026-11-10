@@ -38,6 +38,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[coastal]] — COASTAL° Gold Coast agency group (not Coastline Prestige); house style = white C° pin + charcoal end card
 - [[katrina-walsh]] — Coastal Broadbeach lifestyle/luxury agent; VO-led films, Coastal° open, name+number sunset outro; asset inventory + slow earthy song shortlist (28 Oct)
 - [[salt-pm]] — Kingscliff property mgmt + holiday rentals; brand-voice scrub done 2 Sep for a planned IG chatbot ([[salt-pm-brand-scrub]])
+- [[salisbury-building-projects]] — builder client (120 Kennedys Lane scroll site, Vista render set); near-black/Anton/amber brand, slow hard-cut reels
 
 ## Projects
 - [[trivelle-beauty]] — Hunter's own Shopify store: 4-in-1 body device, $219, AI UGC ads + store graphics, launching Nov 2026
@@ -74,6 +75,11 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[drone-run]] — browser drone game (Three.js + Blender-built drone/houses, 0cr); playable prototype `projects/drone-run/`
 - [[street-racer]] — browser night GP racer: 14-car garage w/ paint+tune, drift mode, exhaust flames (Three.js + Blender, 0cr); `projects/street-racer/`
 - [[salerno-st-listing]] — 42 Salerno St Kollosche listing: SFX beds, cadastre lot outline (to kerb) on top-down, navy K badge pin on city wide, full graphics composite (5 Nov, $0)
+- [[albany-21-pool-day-to-night]] — 21 Albany pool day-to-night (Kling Omni Edit aligns two handheld passes) + AI lifestyle-people clips; 678 HF vs 88 quoted; delivered 9 Nov
+- [[18-maryland-cg-rebuild]] — Kollosche 18 Maryland 1:1 Blender copy (floor plan + Object Capture scan) for a CG Huracán drive; plan beats scan; provisional
+- [[vista-renders]] — Salisbury "Vista" 12-render set: camera-locked Seedance cinemagraph reels (465 HF) + 1:1 Blender rebuild pilot (powder room); provisional
+- [[find-your-stride-run]] — Ashley Cooper Construction charity-run talking-head reel (v1–v9): transcript-driven cut, punch-ins, USE motion engine, face keep-out; provisional
+- [[body-device-store]] — VELLAN body-contour device brand: palette/type, outlined-type print kit, parametric tuck-end dieline + supplier pack, store prototype; provisional
 
 ## Concepts
 - [[sfx-toolkit]] — Real SFX, Earshot, SFXMint, Openverse: free tools for placing, vetting and sourcing sound effects

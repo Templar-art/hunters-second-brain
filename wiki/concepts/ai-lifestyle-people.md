@@ -2,7 +2,7 @@
 type: concept
 tags: [ai, people, lifestyle, listings, framework, higgsfield]
 status: piloted
-updated: 2026-10-26
+updated: 2026-11-11
 ---
 
 # AI lifestyle people (listings)
@@ -113,6 +113,13 @@ A typical listing (3 stills with people + 1 motion clip at 720p) runs about **45
 4. Write the results (what held, what failed, the real costs) back here and into [[shot-class-routes]], then decide on the rest of the cast.
 
 **Pilot total: ~75 HF (estimate).** ✅ Done per Hunter 2026-10-26. The cast list, pilot job and agency-rules questions are closed; their answers aren't filed here yet.
+
+## Field results: 21 Albany pool job (2026-11-09)
+From [[albany-21-pool-day-to-night]], the first paid lifestyle-people job on a real listing:
+- **⚠️ Contradicts step 4's "faces in frame → Kling 3.0 Pro" routing above.** On this job, kling3_0 i2v produced a to-camera look and a wrong-model walk-up; Seedance 2.5 omni_reference *with a character sheet* held faces and was approved. The earlier beach test (Seedance morphing at ~2 s) ran without a sheet. Current default: Seedance + sheet for people (auto-memory `feedback-people-clips-seedance`); Kling only for non-face motion.
+- **Detail shots are new angles with the same gaze direction as the wide**, never a crop (auto-memory `feedback-eyeline-continuity`).
+- **Keep moves short.** A full walk across a wide frame failed twice; start from a mid-step still and ask for short steps (provisional).
+- **Real cost is ~80 HF per 1080p Seedance clip**, not the 35 HF 720p estimate in the cost table. Budget per rejected clip accordingly.
 
 ## Related
 [[job-framework-v2]] · [[shot-class-routes]] · [[staging-rules]] · [[higgsfield-pipelines]] · [[zed-style]] · [[plate-vfx]] · [[lambo-huracan]]

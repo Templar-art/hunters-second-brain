@@ -2,7 +2,7 @@
 type: project
 tags: [project, cinemagraph, seedance, video, 9x16, salt-pm]
 status: delivered
-updated: 2026-10-20
+updated: 2026-11-11
 ---
 
 # Solis, 673 Casuarina Way — pool cinemagraph (Oct 2026)
@@ -19,3 +19,6 @@ One real listing photo (Solis 673 Casuarina Way, Salt PM, frame 16) made into a 
 - Add secondary motion (sky, clouds) in post over an approved AI pass instead of re-rolling, because a re-roll can lose the water you already approved. Anchored zoom gives clouds a glide, not a billow. If a client needs real billowing time-lapse clouds, that's a re-roll.
 - QC the sky mask at the **last** frame, where displacement is largest. A static sky pocket under the eave showed up there as a hard vertical seam.
 - `gen_runner` flags cinemagraphs **NO_MOTION**. It measures the whole frame, so that's a false positive here; check motion per region (pool vs house vs sky) instead.
+
+## Reused
+- [[vista-renders]] (Oct 2026) ran this recipe on 8 developer renders. It held at 16:9 from full-width heroes, but 9:16 from a narrow upscaled crop re-imagined the frame — **⚠️ qualifies step 1 above**: the local 9:16 crop worked here from a 3564px-tall original, not from a low-res crop. Some compositions barely move at all.

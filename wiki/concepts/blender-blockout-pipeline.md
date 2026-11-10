@@ -2,7 +2,7 @@
 type: concept
 tags: [ai-video, blender, higgsfield, magnific, pipeline]
 status: setup-complete
-updated: 2026-10-26
+updated: 2026-11-11
 ---
 # Blender block-out → AI video pipeline
 
@@ -130,6 +130,15 @@ Audit of this Mac (Mac mini, M5 Pro, 48 GB, macOS 27.0.1) against the [install c
 
 ✅ **Poly Haven, Sketchfab and Poly Pizza search turned on (26 Oct)** in the add-on's N-panel and confirmed via `get_addon_status`. They had been off, contrary to "already wired in" above. The 3D generators (Hunyuan3D, Hyper3D, Meshy, Tripo) stay off because they are metered.
 
+## 1:1 render rebuild (Vista powder pilot, 21 Oct — provisional)
+A third use beside guide-frame and final-pixel: rebuild a client's developer render exactly, so 10x owns the scene (any time of day via [[sky-library]], real camera moves, no AI). Pilot: [[vista-renders]] powder room, v11, 0 credits, ~1 min Cycles at 2000×1368 / 256 spp. Awaiting Hunter's verdict.
+- One headless script per room; camera solved from the render's vanishing points; primitives sized off the render; CC0 Poly Haven/ambientCG materials; sun aimed from the shadow directions; brightness matched region by region; QC as a 50% overlay + side-by-side.
+- **Cycles blocks direct sun through a refractive glass pane**: make the pane shadow-invisible.
+- **Area lights emit along local −Z**: check the fill actually points into the room.
+- Poly Haven plaster reads blotchy on painted walls; use flat colour + faint bump.
+- The view through the window can be the render's own pixels on a camera-only backplate for a matching pass, but other times of day need a real modelled garden.
+- Start with the simplest room (one-point perspective); leave palms/stone exteriors and mirror walls last.
+
 ## When Blender is the final pixel (no AI repaint)
 Most of the pipeline uses Blender only as a guide frame. For shots where the render *is* the deliverable, follow the photoreal checklist and critique loop in [[claude-blender-guides-2026-10]]:
 - Bevel every hard edge.
@@ -220,3 +229,5 @@ The lounger is a frontless block, so its −Y (ocean) end was chosen as the fron
 - `house.pool.fence`: frameless glass panels.
 - **Measurement lesson:** a support-check ray must start *above* the surface. Starting 1 mm under the lawn top misses the lawn and reports the surface beneath it.
 
+## Case study
+- [[18-maryland-cg-rebuild]] (Nov 2026): a 1:1 house twin built from the floor plan, with Object Capture scans as reference. It added automated layout review and camera-collision checks before render.

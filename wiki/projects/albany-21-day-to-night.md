@@ -2,7 +2,7 @@
 type: project
 tags: [twilight, day-to-dusk, video, magnific, kling, nano-banana]
 status: review
-updated: 2026-11-06
+updated: 2026-11-11
 ---
 
 # 21 Albany Ave, Currumbin: day-to-dusk video
@@ -37,5 +37,7 @@ All three are fixable with a grade (pull yellow out of the mids and hold the cha
 - Magnific Kling 4.0 `video_modify` with a matched dusk still as the reference **keeps the move frame-exact**. It is a working fallback when Higgsfield credits run dry. It costs much more (4,290 cr for 13 s), so quote it first.
 - Higgsfield's cost quote and upload fail on sources over about 40 MB. Re-encode 4K to about 22 Mb/s first.
 - Kling outputs 24 fps. Retime it back to the source rate before delivery, or it drifts against the edit.
+
+Sibling job: [[albany-21-pool-day-to-night]] (pool dissolve via Kling Omni Edit on Higgsfield + AI lifestyle clips).
 
 Related: [[house-twilight]], [[plate-vfx]], [[higgsfield-pipelines]].

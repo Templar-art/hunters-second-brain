@@ -1,7 +1,7 @@
 ---
 type: concept
 tags: [brand, design, 10x-visuals]
-updated: 2026-07-10
+updated: 2026-11-11
 ---
          
 # 10x Visuals Brand System
@@ -21,3 +21,7 @@ updated: 2026-07-10
 
 ## Craft
 The "one grade" premium rule in practice: [[color-grading]]. Content formats that honour the graphic restraint: [[content-systems]] · [[reel-formats]].
+
+## Small 10x brand builds (Nov 2026)
+- **Title plate** ([projects/10x-title-plate](../../projects/10x-title-plate/)): `make_title.py` renders a 4K transparent title overlay to guidelines v1.0. It uses Poppins Bold caps with about 18% tracking, white on the footage with a soft blurred shadow on the text only (never on the logo), a short #61a8d8 rule under the title and the master "White Logo Blue X" SVG below that (via cairosvg). The first use was "POSTCARDS". To reuse it, change `txt` and re-run.
+- **Email signature** ([projects/email-signature/hunter-signature.html](../../projects/email-signature/hunter-signature.html)): a table-based HTML signature with inline styles only. Images are hot-linked from 10xvisuals.com.au (a circle profile logo, plus the white logo on a black pill), with a #61a8d8 divider and links, and the tagline "It's time to raise the standard." To install it, open the file, select from the logo down to the tagline, copy, and paste into Gmail → Settings → Signature. Reuse it for other staff by swapping the name and role.

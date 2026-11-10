@@ -2,7 +2,7 @@
 type: client
 tags: [kollosche, real-estate, gold-coast, video, brand]
 status: active
-updated: 2026-11-02
+updated: 2026-11-11
 ---
 
 # Kollosche
@@ -38,7 +38,7 @@ The full pack is in `raw/kollosche/`. It holds the guidelines, overlays, PSD tem
   - **Boxed badge version (2026-10-28), the correct one:** Hunter wants the pin head to be "the one in the box that we do for the photos", meaning the navy square K badge used on the drone stills. Both `kollosche-drone-graphics/scripts/render_pin.py … badge` (the tracked View clip) and `kollosche-pin/make_pin.py . out badge` (the generic 9:16 overlay) now draw it with drone-pin's own `badge()` and `clients/kollosche.json`, so it is pixel-identical to the photos. The outputs carry a `_badge`/`-badge` suffix.
   - **Navy-K version (2026-10-28, ⚠️ wrong logo per Hunter, kept for history):** `make_pin.py . out navy` takes the K from the official navy wordmark (`raw/kollosche/brand-logos/wordmark/Kollosche-wordmark-navy.png`, #011A3B), which is the only blue Kollosche logo on file; nothing was recoloured. The line stays white. The outputs are `kollosche-pin-{long,short}-navy.{png,mov}`. The navy K reads well against sky but gets lost over dark trees or buildings, so place it with sky behind it.
 - [[extra-salt-kollosche-birds]]: CG gulls comped into a Pottsville drone wide from the Kollosche reel (Oct 2026). That plate became the [[plate-vfx]] benchmark.
-- 18 Maryland: the house and site were rebuilt in Blender from the Kollosche floor plan (`raw/18-maryland/floorplan-kollosche*.png`).
+- 18 Maryland: the house and site were rebuilt in Blender from the Kollosche floor plan (`raw/18-maryland/floorplan-kollosche*.png`), with a photogrammetry scan alongside, as a twin for a CG Huracán drive. See [[18-maryland-cg-rebuild]] (outcome provisional).
 - `~/Downloads/Kollosche BTS REEL FINAL.mp4` (1 Sep 2026) is a BTS reel. It was left in Downloads and is not part of the brand pack.
 - Custom transition SFX: `~/Desktop/Ocular Sounds/kollosche_transition_SFX.wav` ([[sfx-custom]]).
 
