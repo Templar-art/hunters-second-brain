@@ -9,4 +9,4 @@
 
 ## Log
 - 2026-11-10 SFX: 69 shots mapped; 18 outdoor scene beds (air = wind + birds, garden = birds + nature, pool = pool water, dusk = pool + nature, end sky = wind), calibrated to 13–15 dB under the music. Interiors digitally silent (12.8–17.1, 23.4–24.5, 28.7–38.3, 63.7–79.7). `work/build.py`. Delivered `Exports/SFX/`.
-- 2026-11-10 Pin: Amir Prestige style (white 'ap.' monogram, gap, thin white line, no badge) on the aerial at source f1353–1401 (56.4 s), KLT-tracked on the main roof. `pin/pin_nassau.py`. Delivered `Exports/Overlays/`. Mark size 5% H is an estimate (client style unconfirmed).
+- 2026-11-10 Pin: Amir style (white ap. monogram, gap, thin line) moved to the WIDE coast aerial only (Hunter: "drone pin on this one only"); source f1402–1452 (58.5 s), SIFT-homography tracked on the roof. `pin/pin_wide.py`. Medium-aerial pin removed.
