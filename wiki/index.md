@@ -80,6 +80,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[floor-plan-house-style]] — **Oct 2026 template = 10x standard** · audit of 11 delivered floor plans, 8 clients: two template generations (Feb vs Oct 2026), per-client blocks, YPA own layout, errors shipped (Jessica phone mismatch, 1.061m², typos)
 - [[sfx-library]]: the Ocular Sounds library (1,547 sounds since 20 Oct, ~/Music/SFX Library) and how the motion engine uses it
 - [[sfx-sourcing-and-design]]: SFX libraries, prices and licences (client work and paid social), layering/LUFS technique, design tools, FCP drop-on-the-cut workflow; starter pick Soundly Pro + Sonniss (~A$275/yr)
+- [[nassau-ave-terranora]] — 8 Nassau Ave Terranora (Amir, "Bella Vista"): Main + Reel ambience beds (interiors silent), Amir ap. pin on wide aerial, Fire Fire reel cut, Amir overlay pack; $0 (10 Nov)
 - [[albany-21-main-sfx]] — 21 Albany Ave Main (REAL/Connor): 24 calibrated scene beds + 4 whooshes + REAL pin tracked on the wide drone (cadastre-confirmed house); $0 (9 Nov)
 - [[albany-21-day-to-night]] — 21 Albany Ave Currumbin: Day walk-in relit to dusk via NB 2.1 still + Magnific Kling 4.0 video_modify, motion frame-locked; 3 HF + 4,290 cr (6 Nov)
 - [[house-twilight]] — locked twilight target: early dusk, clean blue→peach sky, bright ground, amber windows (ref frame in raw/assets/twilight)

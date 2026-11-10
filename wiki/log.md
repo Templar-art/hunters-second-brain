@@ -1829,3 +1829,6 @@ The REAL Specialists 01b address super for the Albany video now reads 5 ALBANY L
 
 ## [2026-11-10] update | Amir logo on black
 Added 00b, the wordmark on solid black (fade up and back, 3.5 s, 16:9 and 9:16), to the Amir pack. Rendered to T7 Nassau `Amir Overlays/`.
+
+## [2026-11-10] update | Nassau Reel SFX
+Ambience-only beds for the 30 s Reel: 10 outdoor scenes with the interiors silent, calibrated within 0.4 dB of target, delivered to T7 `Exports/SFX/`. Added the missing project page [[nassau-ave-terranora]], which also covers the Main SFX, pin, music and overlays. Recorded a lesson: a Whisper sentence on a boosted bed turned out to be a hallucination.

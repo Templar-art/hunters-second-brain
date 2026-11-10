@@ -1,0 +1,10 @@
+air 0.0                      under  20.3 target 14 -> +6.3
+dusk 1.7                     under  18.7 target 14 -> +4.7
+out 2.0                      under  21.1 target 14 -> +7.1
+air 3.6                      under  15.8 target 14 -> +1.8
+out 5.0                      under  25.7 target 14 -> +11.7
+duskpool 6.4                 under  15.5 target 13 -> +2.5
+pool 7.9                     under  27.7 target 13 -> +14.7
+duskpool 9.8                 under  23.0 target 13 -> +10.0
+out 10.8                     under  27.2 target 14 -> +13.2
+air 26.2                     under  21.4 target 14 -> +7.4
