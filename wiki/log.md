@@ -1823,3 +1823,6 @@ The title is now lowercase "bella vista" (Playfair SemiBold) with a bolder, larg
 
 ## [2026-11-10] query | Amir Prestige video endings
 Checked the endings of 3 more of their YouTube films. They finish on agent names over a scenic drone, with no black card. Flagged this on the client page.
+
+## [2026-11-10] update | Albany address super remade as 5 ALBANY LANE
+The REAL Specialists 01b address super for the Albany video now reads 5 ALBANY LANE / CURRUMBIN, in 16:9 and 9:16, on SSD3 `21 Albany Avenue, Currumbin/Video/REAL Overlays/`. The old 21 Albany Avenue version is in `_old (21 Albany Avenue)/`.
