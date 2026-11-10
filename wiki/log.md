@@ -1820,3 +1820,6 @@ The italic and swash version read tacky. It is replaced by restrained tracked Pl
 ## [2026-11-09] update | Amir title: Hunter picked B
 The title is now lowercase "bella vista" (Playfair SemiBold) with a bolder, larger TERRANORA and no line. It is the default `--name-style lower`, re-rendered to T7.
 ## [2026-11-09] query | Cinema 90 SFX mid/side polish (ms_polish.py), critique 18 to 19/22
+
+## [2026-11-10] query | Amir Prestige video endings
+Checked the endings of 3 more of their YouTube films. They finish on agent names over a scenic drone, with no black card. Flagged this on the client page.

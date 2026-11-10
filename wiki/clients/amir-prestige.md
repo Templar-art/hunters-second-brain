@@ -2,7 +2,7 @@
 type: client
 tags: [client, real-estate, agency, drone, pin, gold-coast, prestige]
 status: prospect
-updated: 2026-11-09
+updated: 2026-11-10
 ---
 
 # Amir Prestige
@@ -40,6 +40,7 @@ All their listing films sit on one YouTube channel, [Amir Prestige](https://www.
   - **Address super:** centred, one line, white, a geometric sans in Montserrat style. The street is Regular caps and the suburb is **Bold caps**, e.g. `44 VIA ROMA, ISLE OF CAPRI`. No box and no logo.
   - **Agent names:** white **serif in title case** (Playfair or Garet Display in feel), each name over the agent's mobile in small sans, placed left and right over the hero shot, e.g. Omar Amir-Mian 0428 553 883 and Sean Weill 0432 749 677.
   - **End card:** solid **black** with the small white **"amir prestige" wordmark** centred. That's all: no URL and no phone number.
+  - **⚠️ Not universal (checked 2026-11-10).** In three more films the agent names are the last frame, with no black card. Those films are 48/53 Darrambal St (Surfers Paradise), 1/37 Broadwater St (Runaway Bay) and 7 Martinique Way (Clear Island Waters). Each one ends on a **scenic drone**: a Surfers skyline from the water, a boat wake over sandbanks, or a canal sunset. The names sit **over that drone**, in the same white serif with sans mobiles, either left and right or stacked in the centre, held about 3 s with a fade-in. So the common ending is **agent names over the closing drone**, and the black wordmark card is optional.
 - **Grade:** warm, slightly desaturated and filmic, with lifted creamy whites. Interiors lean beige and terracotta; exteriors run punchy blue sky against white render.
 - **Audio:** music only, with **no voice-over**. The track is a **lo-fi hip-hop beat (~132 BPM)** with vocal chops, at -19 LUFS and -1 dBTP. The rapid bursts are cut to the drops, and the rest is cut loosely: only 20 % of cuts land within a frame of a sound. There are no added whooshes or SFX beds.
 
