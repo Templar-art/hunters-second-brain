@@ -221,11 +221,16 @@ def main():
     ap.add_argument("--name-sub", help="small line under the name (e.g. the suburb)")
     ap.add_argument("--name-style", default="lower", choices=["caps", "lower", "roman"])
     ap.add_argument("--agent", action="append", default=[], help='"Name|mobile"')
+    ap.add_argument("--cut", action="store_true", help="hard cuts: no fades or settle, every card fully on for its whole length")
     ap.add_argument("--preview", help="a video frame to comp the stills over")
     a = ap.parse_args()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     agents = [tuple((s.split("|") + [""])[:2]) for s in a.agent]
+    global ease, inout
+    if a.cut:
+        ease = lambda t: 1.0
+        inout = lambda *args, **kw: 1.0
     for asp, (W, H) in SIZES.items():
         op = opener(W, H)
         write_mov(lambda f: faded(op, ease((f + 1) / 12)), 3 * FPS, out / f"00 Amir logo opener {asp}.mov")
@@ -243,7 +248,7 @@ def main():
             n, settle = 4 * FPS, round(1.6 * FPS)
             final = name_title(W, H, a.name, sub, 1, a.name_style)
             slug = a.name.replace("/", "-")
-            write_mov(lambda f: faded(name_title(W, H, a.name, sub, (f + 1) / settle, a.name_style) if f < settle else final,
+            write_mov(lambda f: faded(name_title(W, H, a.name, sub, (f + 1) / settle, a.name_style) if f < settle and not a.cut else final,
                                       inout(f, n, 14, 12)), n, out / f"01n Amir name {slug} {asp}.mov")
             final.save(out / f"01n Amir name {slug} {asp}.png")
             parts.append(final)
