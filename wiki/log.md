@@ -1832,3 +1832,6 @@ Added 00b, the wordmark on solid black (fade up and back, 3.5 s, 16:9 and 9:16),
 
 ## [2026-11-10] update | Nassau Reel SFX
 Ambience-only beds for the 30 s Reel: 10 outdoor scenes with the interiors silent, calibrated within 0.4 dB of target, delivered to T7 `Exports/SFX/`. Added the missing project page [[nassau-ave-terranora]], which also covers the Main SFX, pin, music and overlays. Recorded a lesson: a Whisper sentence on a boosted bed turned out to be a hallucination.
+
+## [2026-11-10] query | How Amir Prestige pins drones
+Audited the drone pins on all 18 Amir residential listings (about 450 photos). The ap. pin is house style. Location labels vary by photographer. Apartments get an elbow leader and a unit-band outline, and top-downs get a white outline over a mono surround. Multi-lot land gets coloured lot fills. Updated [[amir-prestige]]; references are in raw/amir-prestige/pin-refs/.

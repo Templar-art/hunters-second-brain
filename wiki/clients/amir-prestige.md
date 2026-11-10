@@ -24,6 +24,21 @@ References are saved in `raw/amir-prestige/`.
 - **Location pins:** **white BOLD UPPERCASE** wide sans labels (SURFERS PARADISE, ROMA PARK, school and shopping names), placed to the right of the top of a thin white line. There is no dot and no distance.
 - **Close top-down oblique:** no pin and no outline. The **neighbourhood goes black & white** and the lot and house stay in colour, the same treatment as [[zed]].
 
+### Pin system across their whole book (checked 2026-11-10)
+On 2026-11-10 we went through all 18 residential listings on their site (about 450 gallery photos). References are in `raw/amir-prestige/pin-refs/`.
+- **The "ap." pin is house style.** Almost every listing with a wide drone has it: the white "ap." in the sky, a gap, then a hairline straight down to the property. It is used in blue-sky, dusk and night shots, over canals, golf courses, cities and acreage. It appears once per wide, and the same frame is often reused with a second crop. The size varies with the shot. It is about 3% of frame height on city wides, but it can be **much bigger** (roughly 8–10%) on a single-subject shot. The Coombabah example has a large ap. over the river.
+- **Location labels are inconsistent.** They depend on who shot the listing.
+  - The Surfers and Isle of Capri style is **BOLD UPPERCASE** sans, with the hairline starting at the label's left end.
+  - Coombabah uses **light sentence-case** sans ("The Pines Golf Course", "Paradise Point"), with the label centred over a short line that ends in a **small dot**.
+  - Eureka uses regular uppercase with a short line ("BANGALOW", "BYRON BAY").
+  - So there's no locked type spec for labels. Default to the Via Roma uppercase style.
+- **Apartments and towers:** the ap. line runs down, then elbows sideways (a right-angle leader) to the exact floor. One version adds a **translucent white-filled outline of the unit's floor band**, with "OUTLINES INDICATIVE ONLY" in small caps bottom-left. A tower at dusk instead lit the floor glowing gold, with an elbow leader to it.
+- **Lot outlines do get used,** contradicting the Via Roma-only read above. They are a **plain white stroke (~3 px at 1400 px), with no fill, no ap., no dimensions**.
+  - On top-down obliques the outline sits over the **B&W surround** with the lot in colour, plus centred bottom text: "Boundaries and dimensions are approximate only / Interested parties should conduct their own independent enquiries."
+  - On acreage it is used in full colour with no mono surround and no text.
+- **Multi-lot land:** each lot gets its own **semi-transparent colour fill** (rust, green, ochre, burgundy), a white border, and a centred white **address in uppercase**. A grey-box disclaimer sits top-left: "**DISCLAIMER:** BOUNDARIES INDICATIVE ONLY".
+- **Never seen:** a dot or pin head on the ap. pin, a distance or km label, coloured or teal lines, or a circle or badge behind the ap.
+
 Profile: `projects/drone-pin/clients/amir-prestige.json`, **unconfirmed**. The mono surround is in the profile but `blackout` defaults to 0, so set the slider per photo on the top-downs only. A test render on a 21 Albany still matched their look. See [[drone-photo-pin]].
 
 ## Listing videos (from their YouTube channel, 2026-11-09)
