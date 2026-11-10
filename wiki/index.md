@@ -79,7 +79,6 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[18-maryland-cg-rebuild]] — Kollosche 18 Maryland 1:1 Blender copy (floor plan + Object Capture scan) for a CG Huracán drive; plan beats scan; provisional
 - [[vista-renders]] — Salisbury "Vista" 12-render set: camera-locked Seedance cinemagraph reels (465 HF) + 1:1 Blender rebuild pilot (powder room); provisional
 - [[find-your-stride-run]] — Ashley Cooper Construction charity-run talking-head reel (v1–v9): transcript-driven cut, punch-ins, USE motion engine, face keep-out; provisional
-- [[body-device-store]] — VELLAN body-contour device brand: palette/type, outlined-type print kit, parametric tuck-end dieline + supplier pack, store prototype; provisional
 
 ## Concepts
 - [[sfx-toolkit]] — Real SFX, Earshot, SFXMint, Openverse: free tools for placing, vetting and sourcing sound effects

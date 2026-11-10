@@ -1,0 +1,32 @@
+{
+ "address": "42 Salerno Street Surfers Paradise QLD",
+ "lotplan": "231RP110045",
+ "lot_area": 612.0,
+ "ring": [
+  [
+   153.42153011869442,
+   -28.01379830156887
+  ],
+  [
+   153.42169782367253,
+   -28.01382526558614
+  ],
+  [
+   153.42163143863777,
+   -28.014150163581952
+  ],
+  [
+   153.42146373365955,
+   -28.01412320656459
+  ]
+ ],
+ "tip": [
+  153.4216728181813,
+  -28.013630784166068
+ ],
+ "roof_h": 6.0,
+ "photos": "/Users/10xhunter/Documents/Hunters Second Brain/projects/drone-pin/jobs/42-Salerno-Street-Isle-of-Capri/src",
+ "client": "kollosche",
+ "agent": null,
+ "tip_from": "42 Salerno Street | Isle of Capri.JPG"
+}

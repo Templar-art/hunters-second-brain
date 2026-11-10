@@ -1838,3 +1838,6 @@ Audited the drone pins on all 18 Amir residential listings (about 450 photos). T
 
 ## [2026-11-11] harvest | 9 projects with no wiki page
 Wrote up 9 project folders that had no wiki page. New pages: [[albany-21-pool-day-to-night]], [[18-maryland-cg-rebuild]] (covers maryland-build and maryland-scan), [[vista-renders]] (covers vista-blender-rebuild and vista-render-cinemagraphs), [[find-your-stride-run]], [[body-device-store]] and the client page [[salisbury-building-projects]]. 10x-title-plate and email-signature went in as paragraphs on [[brand-system]]. Also updated [[kollosche]], [[ai-lifestyle-people]] (⚠️ the Kling rule for faces in frame is superseded), [[house-twilight]], [[blender-blockout-pipeline]], [[solis-pool-cinemagraph]] and [[albany-21-day-to-night]]. Each project folder now has a HARVESTED.md linking back to its page. Most outcomes are marked provisional because none of these jobs has a JOB.md.
+
+## [2026-11-11] update | VELLAN removed
+Hunter asked to remove VELLAN: deleted the body-device-store wiki page and its index entry. The earlier harvest entry is kept as history.

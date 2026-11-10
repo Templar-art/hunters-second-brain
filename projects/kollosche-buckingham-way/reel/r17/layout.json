@@ -1,0 +1,75 @@
+{
+ "aspect": "16:9",
+ "seed": 3,
+ "safe_rect": [
+  0.0,
+  0,
+  1080.0,
+  690
+ ],
+ "birds": [
+  {
+   "tag": "hero",
+   "depth": 9.99,
+   "sx": -220,
+   "sy": 1402,
+   "speed": 10.32,
+   "hz": 2.84,
+   "phase": 0.43,
+   "heading": 37.4,
+   "bank": 8.1,
+   "span": 0.91,
+   "glides": [],
+   "score": {
+    "visible": 0.542,
+    "min_px": 39.103,
+    "max_px": 137.723,
+    "overlap": 0.0
+   }
+  },
+  {
+   "tag": "b2",
+   "depth": 14.84,
+   "sx": 53,
+   "sy": 1426,
+   "speed": 9.75,
+   "hz": 3.24,
+   "phase": 0.98,
+   "heading": 32.7,
+   "bank": 12.6,
+   "span": 0.92,
+   "glides": [
+    [
+     0.0,
+     0.41
+    ]
+   ],
+   "score": {
+    "visible": 0.792,
+    "min_px": 37.317,
+    "max_px": 93.736,
+    "overlap": 0.0
+   }
+  },
+  {
+   "tag": "b3",
+   "depth": 21.89,
+   "sx": 206,
+   "sy": 1040,
+   "speed": 9.92,
+   "hz": 2.82,
+   "phase": 0.56,
+   "heading": 46.7,
+   "bank": 13.4,
+   "span": 0.99,
+   "glides": [],
+   "score": {
+    "visible": 0.938,
+    "min_px": 30.609,
+    "max_px": 68.383,
+    "overlap": 0.0
+   }
+  }
+ ],
+ "flocks": []
+}

@@ -122,3 +122,23 @@ projects/street-racer/cars_src/
 
 # floor-plan app jobs: read-only copies of raw/floorplans sources + working output
 projects/floorplan-app/jobs/
+
+# generation/render scratch — regenerable intermediates, kept local (added 2026-11-11)
+**/frames/
+**/*_frames/
+**/render/draft/
+**/render/standard/
+**/render/pin_*/
+**/render/gfx/
+**/render/birds_png/
+**/comp/draft/
+**/comp/standard/
+**/work/
+**/raw/
+!/raw/
+*.estimate.json
+*.npy
+*.log
+qc-*.jpg
+qc-*.json
+projects/salerno-st-sfx/graphics/out/ol*/
