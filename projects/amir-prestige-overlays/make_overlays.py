@@ -3,6 +3,7 @@ ProRes 4444 alpha MOVs for FCP (25 fps) in 16:9 4K and 9:16 1080x1920, plus a PN
 
   00  logo opener      white "amir prestige" wordmark centred over footage, soft shadow, no box;
                        eases in, hard cut out (Kollosche lesson: logo to address is a hard cut)
+  00b logo on black    the same wordmark on solid black (opaque), fades up from and back to black, 3.5 s
   01  address super    one centred line, street Montserrat Regular caps + suburb Bold caps, no box
   01n property name    e.g. "Bella Vista", restrained: --name-style caps (default: tracked Playfair caps,
                        hairline, small suburb), lower (lowercase like their wordmark) or roman; fades in
@@ -235,6 +236,15 @@ def main():
         op = opener(W, H)
         write_mov(lambda f: faded(op, ease((f + 1) / 12)), 3 * FPS, out / f"00 Amir logo opener {asp}.mov")
         op.save(out / f"00 Amir logo opener {asp}.png")
+        # 00b: the same wordmark on solid black (opaque): fades up from black, holds, fades back to black.
+        ww = W * (0.30 if W > H else 0.62)
+        lgb = WORDMARK.resize((round(ww), round(ww * WORDMARK.height / WORDMARK.width)), Image.LANCZOS)
+        def on_black(f, n=round(3.5 * FPS)):
+            im = Image.new("RGBA", (W, H), (0, 0, 0, 255))
+            im.alpha_composite(faded(lgb, inout(f, n, 15, 12)), ((W - lgb.width) // 2, (H - lgb.height) // 2))
+            return im
+        write_mov(on_black, round(3.5 * FPS), out / f"00b Amir logo on black {asp}.mov")
+        on_black(40).save(out / f"00b Amir logo on black {asp}.png")
         parts = [op]
         if a.address:
             st, sb = (a.address.upper().split("|") + [""])[:2]

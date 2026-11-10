@@ -1826,3 +1826,6 @@ Checked the endings of 3 more of their YouTube films. They finish on agent names
 
 ## [2026-11-10] update | Albany address super remade as 5 ALBANY LANE
 The REAL Specialists 01b address super for the Albany video now reads 5 ALBANY LANE / CURRUMBIN, in 16:9 and 9:16, on SSD3 `21 Albany Avenue, Currumbin/Video/REAL Overlays/`. The old 21 Albany Avenue version is in `_old (21 Albany Avenue)/`.
+
+## [2026-11-10] update | Amir logo on black
+Added 00b, the wordmark on solid black (fade up and back, 3.5 s, 16:9 and 9:16), to the Amir pack. Rendered to T7 Nassau `Amir Overlays/`.

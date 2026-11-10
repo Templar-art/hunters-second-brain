@@ -48,6 +48,7 @@ To match them: Montserrat Regular/Bold for the address, a serif for the agent na
 ## Overlay pack (built 2026-11-09)
 The generator is `projects/amir-prestige-overlays/make_overlays.py`. It renders ProRes 4444 alpha MOVs for FCP at 25 fps, in 16:9 4K and 9:16 1080x1920, plus a PNG of each:
 - **00 logo opener:** the white wordmark centred with a soft shadow and no box. It eases in over 3 s and hard-cuts out. The Via Roma film opens on the address with no logo, so this opener is our addition at Hunter's ask.
+- **00b logo on black** (2026-11-10): the same wordmark on solid black, opaque. It fades up from black and back over 3.5 s. The 1000 px source is upscaled about 15 % at 4K, so ask for a vector logo.
 - **01 address:** `STREET, **SUBURB**` in Montserrat Regular/Bold caps, on one line, 3 s.
 - **01n property name** (e.g. "Bella Vista"): the first version used a large italic with a swash, and Hunter called it **tacky** (2026-11-09). It is now restrained, with `--name-style lower` as the default, Hunter's pick: **bella vista** in Playfair SemiBold lowercase like their wordmark, and the suburb clear and bold in Montserrat SemiBold tracked caps, with no rule. Option A was BELLA VISTA in Playfair Regular caps with wide tracking, a short hairline, and the suburb in small tracked Montserrat caps. The tracking settles slightly as it fades in, and it holds 4 s. The `lower` style (lowercase, like their wordmark) and the `roman` style are alternatives.
 - **02 agents:** Playfair names over Montserrat mobiles, left and right (stacked for 9:16), 3 s.
