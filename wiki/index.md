@@ -19,6 +19,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 
 ## Clients
 - [[amir-prestige]] — Gold Coast prestige agency (Amir Mian, Mermaid Beach HQ); black/white serif wordmark + "ap." monogram, teal #24506A, Garet; drone look = white ap. on a thin line, white caps location labels, B&W surround on top-downs (profile unconfirmed); video = lo-fi beat, no VO, black wordmark end card; overlay pack in projects/amir-prestige-overlays
+- [[whitefox]] — WHITEFOX Gold Coast (national boutique agency; 47 Somerset Dr shoot). Drone look: white ring + 日 glyph pin, a thin line ending in a dot, sentence-case light labels, dotted outline on land, and a big ring watermark bottom-right on every photo
 - [[lrgr-than-life-apparel]] — streetwear hat brand (Shak); proof-over-promises short-form plan
 - [[coast-life-constructions]] — builder IG repositioning; active execution; Rob's brand verdict governs
 - [[bespoke-estate-agents]] — Jason Ward prestige agent; live site (Elementor HTML paste) getting real photos in / fake listings out (4 Aug), source at `projects/bespoke-elementor-source/`; About still a Services duplicate

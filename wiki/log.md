@@ -1841,3 +1841,6 @@ Wrote up 9 project folders that had no wiki page. New pages: [[albany-21-pool-da
 
 ## [2026-11-11] update | VELLAN removed
 Hunter asked to remove VELLAN: deleted the body-device-store wiki page and its index entry. The earlier harvest entry is kept as history.
+
+## [2026-11-11] query | How WHITEFOX does drone photos
+Audited 23 WHITEFOX Gold Coast listings (647 photos). Every drone shot has a ring + glyph pin on a thin line ending in a dot, plus a big corner watermark on all photos. Labels are sparse and sentence case, and land gets a dotted outline. New page [[whitefox]]; references are in raw/whitefox/pin-refs/.
