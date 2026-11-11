@@ -27,9 +27,10 @@ SCRIPTS = {
   (194.0, 195.5, "Less breathing room"),
   (199.0, 201.6, "And the same strategy you put together years ago"),
   (224.3, 227.0, "You can't control the next rate decision"),
-  (231.3, 236.1, "But you can review your debt Your cash flow"),
+  (231.3, 234.0, "But you can review your debt"),
+  (233.4, 236.1, "Your cash flow"),
   (243.5, 246.2, "And what your property can realistically support"),
-  (251.4, 254.2, "I'm Brian from Strategic Investor in Queensland"),
+  (533.5, 535.7, "I'm Brian from Strategic Investing"),  # S1 take said "Investor in Queensland"; borrowed S3 ID line
   (257.4, 260.2, "before you make your next property move"),
   (270.8, 273.3, "get in touch and let's discuss your options"),
  ],
@@ -122,11 +123,8 @@ SCRIPTS = {
   (901.4, 908.6, "Look at whether Your cash flow Can handle those things happening together"),
   (923.3, 924.5, "The next purchase"),
   (925.5, 928.7, "Shouldn't depend on a perfect run"),
-  (931.2, 932.7, "At strategic investing"),
-  (933.9, 935.8, "We help investors"),
-  (936.7, 938.0, "Explore their property"),
-  (938.7, 940.0, "and equity options"),
-  (941.4, 942.8, "With risk in view"),
+  # S7 own CTA ("At SI we help investors... with risk in view") = 1 s fragments, unreliable -> borrowed ID line
+  (533.5, 535.7, "I'm Brian from Strategic Investing"),
   (944.2, 945.2, "Get in touch"),
  ],
  "08 Don't collect properties": [
@@ -137,8 +135,7 @@ SCRIPTS = {
   (993.0, 995.3, "is it building long term wealth"),
   (998.9, 1000.4, "to support future income"),
   (1007.5, 1009.4, "Does it fit a particular timeline"),
-  (1014.0, 1017.7, "Then ask Whether the repayments"),
-  (1021.6, 1025.0, "And risk Fit in your life today"),
+  # dropped: "Then ask whether the repayments, costs and risks fit your life" - no clean take
   (1026.5, 1027.7, "Using equity"),
   (1042.3, 1043.4, "Because it's available"),
   (1044.5, 1045.5, "Isn't the same"),
@@ -157,7 +154,7 @@ SCRIPTS = {
   (1102.9, 1104.6, "Before you use your property"),
   (1106.2, 1107.8, "To take on more debt"),
   (1112.7, 1114.8, "Decide what you're willing to commit to"),
-  (1125.2, 1129.5, "Not just What might Get approved"),
+  # dropped: "Not just what might get approved" - only stuttered takes
   (1131.4, 1133.1, "That's strategic investing"),
   (1134.3, 1135.6, "We help homeowners"),
   (1136.3, 1137.5, "And investors"),
@@ -194,6 +191,19 @@ def quiet_snap(t, lo, hi):
     cands = np.arange(t+lo, t+hi, 0.01)
     return float(min(cands, key=energy))
 
+QUIET_DB = 36.0
+def db(t0, t1):
+    x = AUD[int(t0*16000):int(t1*16000)]
+    return 20*np.log10(np.sqrt((x**2).mean())+1e-9) if len(x) else 0
+def tail(t, d, limit):
+    """walk from t in direction d until a 150 ms window is quiet; stop at limit; add 60 ms air"""
+    while (t < limit if d > 0 else t > limit):
+        w = (t, t+0.15) if d > 0 else (t-0.15, t)
+        if db(*w) < QUIET_DB: break
+        t += 0.01*d
+    t += 0.06*d
+    return min(t, limit) if d > 0 else max(t, limit)
+
 def pick(s, e, phrase):
     ws = [w for w in W if w[0] >= s-0.2 and w[1] <= e+0.3]
     target = [norm(x) for x in phrase.split()]
@@ -209,8 +219,12 @@ def pick(s, e, phrase):
     r, i, L = best
     seg = ws[i:i+L]
     a0, a1 = seg[0][0], seg[-1][1]
-    a0 = quiet_snap(a0, -0.18, 0.0)
-    a1 = quiet_snap(a1, 0.0, 0.22)
+    gi0, gi1 = W.index(seg[0]), W.index(seg[-1])
+    prev_end = W[gi0-1][1] if gi0 else 0
+    next_start = W[gi1+1][0] if gi1+1 < len(W) else a1 + 1
+    # FCP word ends run early: extend until 150 ms of quiet (or the next word), then breathe
+    a1 = tail(a1, +1, a1 + 0.6)  # energy decides; FCP next-word times are unreliable
+    a0 = tail(a0, -1, max(prev_end + 0.04, a0 - 0.5))
     return a0, a1, " ".join(w[2] for w in seg), r
 
 fr = lambda t: int(round(t*FPS))
@@ -222,12 +236,12 @@ for name, sel in SCRIPTS.items():
     for s, e, ph in sel:
         a0, a1, said, r = pick(s, e, ph)
         f0, f1 = fr(a0), fr(a1)
-        if segs and f0 < segs[-1][1]: f0 = segs[-1][1]  # no overlap with previous
+        if segs and segs[-1][0] < f0 < segs[-1][1]: f0 = segs[-1][1]  # no overlap with previous
         segs.append([f0, f1, said, r])
     # camera: alternate on every take change; first line (hook) on A wide, then B
     cams, cur = [], "A"
     for i, sg in enumerate(segs):
-        contiguous = i and sg[0] - segs[i-1][1] <= 2
+        contiguous = i and 0 <= sg[0] - segs[i-1][1] <= 2
         if i and not contiguous: cur = "B" if cur == "A" else "A"
         cams.append(cur)
     EDL[name] = [[f0, f1, c] for (f0, f1, _, _), c in zip(segs, cams)]
