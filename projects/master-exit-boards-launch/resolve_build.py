@@ -46,7 +46,7 @@ def build(name="Master Exit Boards launch"):
     V = tl.GetItemListInTrack("video", 1); A = tl.GetItemListInTrack("audio", 1)
     for k, it in enumerate(V):
         z, px, ty = ANG[ROT[k % 3]]
-        it.GetNodeGraph().SetLUT(1, "Sony/10x_Bespoke_look.cube")  # S-Log3 -> 10x look (chosen vs LC-709 / Phntm Arri)
+        it.GetNodeGraph().SetLUT(1, "Sony/10x_Master_look.cube")  # 10x look + neutral grey backdrop, crushed blacks, +8% luma contrast, +5% sat (10x_Master_look.cube in this folder)
         if z != 1.0: it.SetProperty("ZoomX", z); it.SetProperty("ZoomY", z); it.SetProperty("Pan", px); it.SetProperty("Tilt", ty)
     for it in A:
         it.SetProperty("AudioVoiceIsolationEnabled", True); it.SetProperty("AudioVoiceIsolationAmount", 55); it.SetProperty("AudioDialogueLevelerEnabled", True)
