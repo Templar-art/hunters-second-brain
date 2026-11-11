@@ -6,5 +6,12 @@
 - **Status:** 2026-11-11 — A/B rough selects built for all 10 scripts (`Brian_AB_cuts.fcpxml`, `picks.md`, `previews/`). Awaiting Hunter review. Not graded, no captions/compliance line yet.
 - **Method:** Brian was fed line-by-line; Damon's prompts separated by lav loudness (>41 dB = Brian). Last clean take of each line picked from the FCP transcript; camera flips on every take change to hide jumps.
 
+## 2026-11-11 v2 — graded, 3-angle, captioned
+- Resolve project **Brian Ads AB** (10 timelines, `resolve_build.py`): W = A wide, M = A punch-in (zoom 1.5, tilt -150), C = B close; open + close on W, never same angle twice in a row (`angles.json`).
+- Grade: A gets `A_SLog3_to_Bcam_match.cube` (Sony LC-709 TypeA + fitted match to B, installed as `Sony/10x_A_to_Bcam_match.cube` in Resolve's LUT folder). B untouched.
+- Audio: A lav only; Voice Isolation 40 + Dialogue Leveler per clip; 4-frame centre crossfades on every cut; loudnorm -14 LUFS / -1 dBTP after render.
+- Captions: `caption_text.json` (corrected as-spoken text) aligned to whisper word times, one line, Poppins SemiBold on soft dark pill (white alone vanished on the gingham shirt). SRTs in `srt/`.
+- Delivered locally: `finals_clean/` + `finals_captions/` (4K vertical), `previews/` 1080.
+
 ## Ledger
 No credits spent (all local).
