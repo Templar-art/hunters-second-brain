@@ -9,3 +9,4 @@ Status: CHECK render sent, ungraded (Hunter grades). 26.4 s.
 No credits spent.
 
 - 2026-11-11: Hunter adds B-roll himself. Delivered talking-only 4K ProRes 422 HQ (V2 cleared, no Smooth Cuts, ungraded).
+- 2026-11-11 rev: redone MASTR-style — silent heads/tails trimmed (each trim re-transcribed), W/P/C punch-in rotation every join (no Smooth Cuts, no B-roll), graded 10x_Master_look.cube, 4K final -14 LUFS: Bespoke - Emerald Lakes Runner (9x16 4K).mp4

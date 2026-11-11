@@ -1,106 +1,65 @@
 {
  "opener": {
   "clip": "C8194.MP4",
-  "src_in": 0,
-  "src_out": 203
+  "src_in": 4,
+  "src_out": 195
  },
  "segs": [
   {
    "src_in": 2589,
    "src_out": 2630,
-   "rec": 203,
-   "broll": []
+   "rec": 191,
+   "broll": [],
+   "angle": "P"
   },
   {
    "src_in": 2712,
    "src_out": 2756,
-   "rec": 244,
-   "broll": [
-    {
-     "clip": "C3939.MP4",
-     "src_in": 25,
-     "rec_in": 232,
-     "rec_out": 288
-    }
-   ]
+   "rec": 232,
+   "broll": [],
+   "angle": "C"
   },
   {
    "src_in": 4093,
-   "src_out": 4140,
-   "rec": 288,
-   "broll": [
-    {
-     "clip": "C3929.MP4",
-     "src_in": 37,
-     "rec_in": 288,
-     "rec_out": 308
-    }
-   ]
+   "src_out": 4126,
+   "rec": 276,
+   "broll": [],
+   "angle": "W"
   },
   {
    "src_in": 4197,
    "src_out": 4240,
-   "rec": 335,
-   "broll": [
-    {
-     "clip": "C8180.MP4",
-     "src_in": 12,
-     "rec_in": 323,
-     "rec_out": 378
-    }
-   ]
+   "rec": 309,
+   "broll": [],
+   "angle": "P"
   },
   {
    "src_in": 4286,
    "src_out": 4382,
-   "rec": 378,
-   "broll": [
-    {
-     "clip": "C3949.MP4",
-     "src_in": 37,
-     "rec_in": 378,
-     "rec_out": 398
-    }
-   ]
+   "rec": 352,
+   "broll": [],
+   "angle": "C"
   },
   {
-   "src_in": 4774,
+   "src_in": 4779,
    "src_out": 4843,
-   "rec": 474,
-   "broll": [
-    {
-     "clip": "C3944.MP4",
-     "src_in": 25,
-     "rec_in": 462,
-     "rec_out": 543
-    }
-   ]
+   "rec": 448,
+   "broll": [],
+   "angle": "W"
   },
   {
    "src_in": 4886,
    "src_out": 4916,
-   "rec": 543,
-   "broll": [
-    {
-     "clip": "C3925.MP4",
-     "src_in": 62,
-     "rec_in": 543,
-     "rec_out": 573
-    }
-   ]
+   "rec": 512,
+   "broll": [],
+   "angle": "P"
   },
   {
    "src_in": 5060,
-   "src_out": 5148,
-   "rec": 573,
-   "broll": [
-    {
-     "clip": "C3924.MP4",
-     "src_in": 37,
-     "rec_in": 573,
-     "rec_out": 593
-    }
-   ]
+   "src_out": 5140,
+   "rec": 542,
+   "broll": [],
+   "angle": "C"
   }
  ]
 }

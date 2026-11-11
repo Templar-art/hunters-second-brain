@@ -13,3 +13,4 @@ No credits spent.
 - 2026-11-11: Hunter reversed no-B-roll: every cut covered by 3 B-roll clips back-to-back (C3917→ in filename order, 0.8 s each, starting ~1 s before the join). Smooth Cuts removed. 51 s.
 
 - 2026-11-11: Hunter adds B-roll himself. Delivered talking-only 4K ProRes 422 HQ (V2 cleared, no Smooth Cuts, ungraded).
+- 2026-11-11 rev: redone MASTR-style — silent heads/tails trimmed (each trim re-transcribed), W/P/C punch-in rotation every join (no Smooth Cuts, no B-roll), graded 10x_Master_look.cube, 4K final -14 LUFS: Bespoke - Emerald Lakes Interview (9x16 4K).mp4

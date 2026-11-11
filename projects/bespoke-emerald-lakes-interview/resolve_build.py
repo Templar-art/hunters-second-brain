@@ -5,7 +5,7 @@
 import json
 ROOT = "/Users/10xhunter/Documents/Hunters Second Brain/projects/bespoke-emerald-lakes-interview/"
 LUT = "Sony/10x_Bespoke_look.cube"
-ANG = {"W": (1.0, 0, 0), "MH": (1.8, -560, 250), "MM": (1.8, 700, 400)}
+ANG = {"W": (1.0, 0, 0), "P": (1.3, 0, 0), "C": (1.65, 0, 0)}  # rev 2026-11-11: punch-ins keep BOTH people in frame
 
 def build(name="Emerald Lakes interview"):
     p = resolve.GetProjectManager().GetCurrentProject(); mp = p.GetMediaPool()
@@ -29,6 +29,7 @@ def build(name="Emerald Lakes interview"):
     V1i = V1 if OFF == 0 else V1[1:]
     for it, s in zip(V1i, E):
         z, px, ty = ANG[s["angle"]]
+        it.GetNodeGraph().SetLUT(1, "Sony/10x_Master_look.cube")
         if z != 1.0:
             it.SetProperty("ZoomX", z); it.SetProperty("ZoomY", z); it.SetProperty("Pan", px); it.SetProperty("Tilt", ty)
     for it in V2:

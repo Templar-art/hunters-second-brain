@@ -23,6 +23,12 @@ def build(name="Emerald Lakes runner"):
             v2.append({"mediaPoolItem": cl[b["clip"]], "startFrame": b["src_in"], "endFrame": b["src_in"] + b["rec_out"] - b["rec_in"], "mediaType": 1, "trackIndex": 2, "recordFrame": st + b["rec_in"]})
     mp.AppendToTimeline(v1 + a1 + v2)
     V1 = tl.GetItemListInTrack("video", 1); V2 = tl.GetItemListInTrack("video", 2); A1 = tl.GetItemListInTrack("audio", 1)
+    ANG = {"W": (1.0, 0, 0), "P": (1.4, 0, 0), "C": (1.9, 0, 0)}
+    for k, it in enumerate(V1):
+        it.GetNodeGraph().SetLUT(1, "Sony/10x_Master_look.cube")
+        if k:
+            z, px, ty = ANG[E[k-1]["angle"]]
+            if z != 1.0: it.SetProperty("ZoomX", z); it.SetProperty("ZoomY", z)
     for it in V2:
         if it.GetMediaPoolItem().GetClipProperty("Resolution") == "3840x2160":
             it.SetProperty("ZoomX", 3.16); it.SetProperty("ZoomY", 3.16)
