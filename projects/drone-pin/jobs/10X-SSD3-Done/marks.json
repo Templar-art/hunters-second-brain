@@ -1,0 +1,133 @@
+{
+ "5 Nassua Drive Drone Photos to be pinned-2.JPG": {
+  "file": "5 Nassua Drive Drone Photos to be pinned-2.JPG",
+  "w": 12270,
+  "h": 8180,
+  "f35": 28,
+  "error": "no drone position data (export with All Metadata, or use the original file)",
+  "mode": "outline",
+  "tip": [
+   6135,
+   4908
+  ],
+  "lot": [
+   [
+    2580.886859586556,
+    2330.638289695114
+   ],
+   [
+    2857.6260461072193,
+    6038.631538420137
+   ],
+   [
+    10741.329832534584,
+    6141.667381891394
+   ],
+   [
+    10734.388190322128,
+    2316.252537044739
+   ],
+   [
+    8454.182092448502,
+    2263.0734035225237
+   ],
+   [
+    6216.925449339735,
+    2286.919833936379
+   ]
+  ],
+  "reviewed": true,
+  "manual": true,
+  "anchors": {},
+  "gaps": [],
+  "lit": [],
+  "outline_w": 1.4,
+  "fill": 0,
+  "disclaimer": "",
+  "blackout": 0
+ },
+ "5 Nassua Drive Drone Photos to be pinned-3.JPG": {
+  "file": "5 Nassua Drive Drone Photos to be pinned-3.JPG",
+  "w": 12270,
+  "h": 8180,
+  "f35": 28,
+  "error": "no drone position data (export with All Metadata, or use the original file)",
+  "mode": "none",
+  "tip": [
+   5930.298668281612,
+   3614.1011345204533
+  ],
+  "lot": [],
+  "reviewed": true,
+  "pin_len": 0.12563805649739554,
+  "pin_dx": 0
+ },
+ "5 Nassua Drive Drone Photos to be pinned-4.JPG": {
+  "file": "5 Nassua Drive Drone Photos to be pinned-4.JPG",
+  "w": 12270,
+  "h": 8180,
+  "f35": 28,
+  "error": "no drone position data (export with All Metadata, or use the original file)",
+  "mode": "pin",
+  "tip": [
+   6270.546065640648,
+   6836.238710242287
+  ],
+  "lot": [
+   [
+    5663.941340603393,
+    6620.33487243069
+   ],
+   [
+    5383.8658063450275,
+    8076.944568098009
+   ],
+   [
+    7247.64117977342,
+    8051.4793636283
+   ],
+   [
+    6947.19651575081,
+    6543.939259021565
+   ]
+  ],
+  "reviewed": true,
+  "gaps": [],
+  "manual": true,
+  "pin_len": 0.22424193400509804,
+  "pin_dx": 0,
+  "outline_w": 0.5
+ },
+ "5 Nassua Drive Drone Photos to be pinned-5.JPG": {
+  "file": "5 Nassua Drive Drone Photos to be pinned-5.JPG",
+  "w": 12270,
+  "h": 8180,
+  "f35": 28,
+  "error": "no drone position data (export with All Metadata, or use the original file)",
+  "mode": "pin",
+  "tip": [
+   6132.128625288387,
+   6795.702565784698
+  ],
+  "lot": [],
+  "reviewed": true,
+  "pin_len": 0.20713751525887958,
+  "pin_dx": 0
+ },
+ "5 Nassua Drive Drone Photos to be pinned.JPG": {
+  "file": "5 Nassua Drive Drone Photos to be pinned.JPG",
+  "w": 12270,
+  "h": 8180,
+  "f35": 28,
+  "error": "no drone position data (export with All Metadata, or use the original file)",
+  "mode": "pin",
+  "tip": [
+   6007.259332234197,
+   5672.882406644997
+  ],
+  "lot": [],
+  "reviewed": true,
+  "pin_len": 0.16492604010070477,
+  "pin_dx": 0
+ }
+}

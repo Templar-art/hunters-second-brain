@@ -58,7 +58,7 @@ The substantive tasks are AI image/video generation for real-estate clients. Rou
 `10x-crm` MCP server (may surface under a UUID). Check it before answering "what's on my plate"; write new tasks/reminders there. `projects/TASKS.md` is a local scratch view at most.
 
 ## Git
-Default branch `main`. **Commit and push freely without asking** — git is free and keeps the vault backed up. The line is **money, not git**: anything that spends credits (Magnific, Higgsfield, any paid op) ALWAYS needs Hunter's explicit go-ahead. Expect and ignore `.obsidian/` churn.
+Default branch `main`. **Commit freely; NEVER push or upload to GitHub without Hunter's push password** (held in auto-memory, never written in the repo). Local commits keep history. Separately, anything that spends credits (Magnific, Higgsfield, any paid op) ALWAYS needs Hunter's explicit go-ahead. Expect and ignore `.obsidian/` churn.
 
 ## Misc
 - `.github/workflows/claude.yml` runs Claude Code on issue comments/PRs (needs `ANTHROPIC_API_KEY`).

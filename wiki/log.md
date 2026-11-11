@@ -1853,3 +1853,6 @@ The Nassau JPGs had no DJI metadata, and the review page blocked pin and outline
 
 ## [2026-11-11] ingest | Drone Pin: source-DNG position fallback (33 Stella Pl Bonogin, WHITEFOX)
 Edited HDR exports missing DJI XMP now borrow position from the DNG they name. Bonogin job opened with the WHITEFOX profile.
+
+## [2026-11-12] query | a7S III firmware-hack scene researched + filed
+Hunter asked about the Doom-on-a7S-III story; dug the whole community feature-unlock scene (shutter angle, Variable Shutter, BIG6, Doom; Cine EI / open gate blocked). Durable gear reference, so filed as [[a7siii-firmware-hacks]]. Reddit primary posts are fetch-blocked; captured via SAR/4Filmmakers/PhotographyTalk + the two analysis repos. Verdict recorded: leave the working body stock.

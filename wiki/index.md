@@ -117,6 +117,7 @@ Catalog of every wiki page. Read this first when answering a query; update on ev
 - [[premium-web-build]] — how a client site avoids reading as a template: vary every section's layout, test the accent against both grounds before choosing light or dark, the fixed-position and grid gotchas, and verify by measurement not screenshot
 - [[rclone-drive-upload]] — fast SSD → Google Drive shared-drive uploads (rclone, no internal-space copy)
 - [[mac-performance]] — what actually slows the MacBook (RAM ceiling, 3 displays, Adobe stack); never delete the Camera Raw cache
+- [[a7siii-firmware-hacks]] — community feature-unlock scene (shutter angle, Variable Shutter, BIG6, Doom) on the a7S III; what's real vs demo-only, the two methods + risk, A7 IV brick; **verdict: leave the working body stock** (Nov 2026 research)
 
 - [[day-trading-research]]: day trading odds, AU tax and rules, AI trading tools and scams (Oct 2026 research)
 

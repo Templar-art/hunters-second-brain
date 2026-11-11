@@ -1,0 +1,36 @@
+{
+ "address": "11 Yeringba Street Mermaid Waters QLD",
+ "lotplan": "23RP94195",
+ "lot_area": 531.0,
+ "ring": [
+  [
+   153.43574298736442,
+   -28.058348745367034
+  ],
+  [
+   153.4357050043886,
+   -28.0581935343619
+  ],
+  [
+   153.4360050023632,
+   -28.058135852392073
+  ],
+  [
+   153.43602979034736,
+   -28.05823712739542
+  ],
+  [
+   153.43604297833886,
+   -28.058291070397146
+  ]
+ ],
+ "tip": [
+  153.435824724393,
+  -28.05825124904434
+ ],
+ "roof_h": 6.0,
+ "photos": "/Volumes/Kristian T7/11 Yeringba Street Gold Coast/Drones to pin",
+ "client": "kollosche",
+ "agent": "Taylor Kleinberg",
+ "tip_from": "DJI_20261111104711_0566_D-HDR.JPG"
+}
