@@ -269,6 +269,23 @@ def meta(path):
     f35 = im.getexif().get_ifd(0x8769).get(0xA405)
     m = {"file": path.name, "w": W, "h": H, "f35": f35}
     need = ["GpsLatitude", "GpsLongitude", "RelativeAltitude", "GimbalYawDegree", "GimbalPitchDegree"]
+    if any(k not in dji for k in need):
+        # Lightroom HDR/edited exports often drop the DJI XMP but still name their source
+        # (xmpMM:PreservedFileName = a bracket frame, crs:RawFileName = the HDR merge).
+        # Every bracket frame shares the drone's position, so borrow it from the first
+        # source found beside the export or one folder up (33 Stellar Dr, 2026-11-11).
+        names = [n.decode() for n in re.findall(rb'(?:xmpMM:PreservedFileName|crs:RawFileName)="([^"]+)"', b)]
+        for d in (path.parent, path.parent.parent):
+            src = next((d / n for n in names if (d / n).is_file()), None)
+            if src:
+                sb = src.read_bytes()
+                dji = {k.decode(): v.decode() for k, v in re.findall(rb'drone-dji:([A-Za-z]+)="([^"]*)"', sb)}
+                if all(k in dji for k in need):
+                    if not f35:
+                        f = re.search(rb'exif:FocalLengthIn35mmFilm="(\d+)"', sb)
+                        f35 = int(f.group(1)) if f else None
+                    m.update(f35=f35, meta_from=src.name)
+                    break
     if not f35 or any(k not in dji for k in need):
         m["error"] = "no drone position data (export with All Metadata, or use the original file)"
         return m
