@@ -360,7 +360,7 @@ def propose(m, site, dyaw=0.0, dpitch=0.0, droll=0.0, dz=None):
     for pl in site.get("places", []):
         key = str(pl["id"])
         old = places.get(key, {})
-        if old.get("manual"):
+        if old.get("manual") or "lat" not in pl:   # hand-placed on a no-GPS photo: that photo only
             continue
         w = np.r_[enu(pl["lat"], pl["lon"], m["lat"], m["lon"]), dz]
         uv, ok = project(m, [w], dyaw, dpitch, droll)
@@ -650,6 +650,14 @@ def cmd_review(a):
                     return self.send(b"{}")
                 if self.path == "/place":
                     m = marks[body["file"]]
+                    if "error" in m:
+                        # No drone GPS: the label goes where it was clicked, on this photo only, no distance.
+                        pid = max([p["id"] for p in site.get("places", [])], default=0) + 1
+                        site.setdefault("places", []).append({"id": pid, "label": body["label"].strip(), "dist": False, "from": m["file"]})
+                        m.setdefault("places", {})[str(pid)] = {"xy": body["xy"], "on": True, "manual": True}
+                        save(job, "site.json", site)
+                        save(job, "marks.json", marks)
+                        return self.send(json.dumps({"site": site, "marks": marks}).encode())
                     try:
                         add_place(m, site, body["xy"], body["label"])
                     except ValueError as e:
@@ -851,7 +859,7 @@ def draw_places(m, site, W, H, st):
         a[max(0, round(top)):max(0, round(y)), max(0, round(x - lw / 2)):max(0, round(x - lw / 2) + lw)] = 255
         label = pl["label"].upper() if st["place_upper"] else pl["label"]
         lines = [(label, os.path.expanduser(st["place_font"] or FONT_K), PLACE_CAP * H)]
-        if st["place_dist"] and pl.get("dist", True):
+        if st["place_dist"] and pl.get("dist", True) and "lat" in pl:
             lines.append((place_distance(site, pl), FONT_B, PLACE_SUB * H))
         imgs = [text_image(t, f, c, PLACE_TRACK) + (c,) for t, f, c in lines]
         lead = PLACE_LEAD * PLACE_CAP * H

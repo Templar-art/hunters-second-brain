@@ -63,6 +63,9 @@ Jobs live in `projects/drone-pin/jobs/<folder>`. Reopening the same folder resum
 - **Behind brush (B):** paint over buildings or trees that stand in front of the outline, and the line and its shadow are hidden there. The mask is stored per photo in `masks/`. Use it on the close-up and straight-on shots; the far wides don't need it.
 - **Drones-6 lesson (Esther Pl):** at 45 m up, the drone's height and heading were off enough that the camera maths couldn't place the outline (the rear corners landed in front of the building). Close oblique shots will often need the outline placed by hand, and that's what the editing is for.
 
+## Photos with no drone GPS (2026-11-11)
+Exports made without "All Metadata" (for example the Nassau "to be pinned" JPGs) carry no DJI position data. They used to load as "no GPS", and the review page then refused to draw or edit them, which Hunter reported as "Amir won't let me pin or outline". They now work **by hand**. The pin starts mid-frame, and dragging the tip just moves it, with no camera solve. Draw the lot with **Draw outline (D)**. A location pin added on such a photo stays on that photo only, with no distance. Nothing gets auto-placed and "set house for every photo" doesn't apply.
+
 ## Client fit
 - The top-down outline shot is worth making for most agencies, but **Kollosche doesn't use top-downs** (see [[kollosche]]).
 

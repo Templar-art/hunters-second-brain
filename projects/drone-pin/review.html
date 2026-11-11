@@ -197,9 +197,9 @@ X('export').onclick = async () => {
   X('xbase').value = pr.base || '';
   X('xpg').checked = pr.print_graphics ?? SZ.STYLE.print_graphics;
   X('xlist').innerHTML = names.map((n, i) => {
-    const m = marks[n], on = !m.error && m.mode !== 'none';
+    const m = marks[n], on = m.mode !== 'none';
     const nm = (pr.names || {})[n] || n.replace(/\.[^.]+$/, '');
-    return `<label class="x"><input type="checkbox" data-x="${i}" ${on ? 'checked' : ''}><span class="o">${n} · ${m.error ? 'no GPS' : m.mode}${m.reviewed ? ' ✓' : ''}</span><input data-xn="${i}" value="${nm.replace(/"/g, '&quot;')}"></label>`;
+    return `<label class="x"><input type="checkbox" data-x="${i}" ${on ? 'checked' : ''}><span class="o">${n} · ${m.error ? 'no GPS · ' : ''}${m.mode}${m.reviewed ? ' ✓' : ''}</span><input data-xn="${i}" value="${nm.replace(/"/g, '&quot;')}"></label>`;
   }).join('');
   X('xmsg').textContent = ''; X('exp').hidden = false;
 };
@@ -272,7 +272,7 @@ function look() {
 function list() {
   document.getElementById('list').innerHTML = names.map((n, i) => {
     const m = marks[n];
-    return `<div class="ph ${i === cur ? 'sel' : ''} ${m.reviewed ? 'done' : ''}" data-i="${i}"><span class="dot"></span><span class="nm">${n}</span><span class="md">${m.error ? 'no GPS' : m.mode}</span></div>`;
+    return `<div class="ph ${i === cur ? 'sel' : ''} ${m.reviewed ? 'done' : ''}" data-i="${i}"><span class="dot"></span><span class="nm">${n}</span><span class="md">${m.error ? 'no GPS · ' : ''}${m.mode}</span></div>`;
   }).join('');
   document.querySelectorAll('.ph').forEach(e => e.onclick = () => show(+e.dataset.i));
   const pls = site.places || [], m = M();
@@ -306,7 +306,7 @@ function show(i) {
     draw();
   };
   im.src = '/preview/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.jpg'));
-  document.getElementById('note').textContent = m.error || m.note || '';
+  document.getElementById('note').textContent = m.error ? 'No drone GPS in this file, so nothing is placed automatically: drag the pin onto the house, and draw the lot with Draw outline (D).' : (m.note || '');
   list(); modeBtns(); ow.value = m.outline_w ?? 1; bo.value = m.blackout ?? 0; boShow(bo.value); lf.value = m.lift ?? 0;
   olf.value = m.fill ?? (SZ.STYLE.outline_fill || 0); nt.value = noteKey(m) || '';
 }
@@ -325,6 +325,7 @@ function setTool(t) {
 }
 
 function dist(p) {
+  if (p.lat === undefined) return '';   // hand-placed on a no-GPS photo
   const R = 6378137, la = site.tip[1] * Math.PI / 180;
   const e = (p.lon - site.tip[0]) * Math.PI / 180 * R * Math.cos(la), n = (p.lat - site.tip[1]) * Math.PI / 180 * R;
   const d = Math.hypot(e, n);
@@ -362,7 +363,6 @@ function draw() {
   const s = cv.width / m.w;
   cx.setTransform(1, 0, 0, 1, 0, 0);
   cx.drawImage(img, 0, 0);
-  if (m.error) return;
   if (m.blackout && ((m.lit || []).length || m.lot.length)) {
     // ZED look, same as drone_pin.py: dark outside the outline with a soft edge.
     const B = document.createElement('canvas'); B.width = cv.width; B.height = cv.height;
@@ -439,6 +439,7 @@ function draw() {
   }
   drawPlaces(m);
   drawNote(m);
+  if (typeof nt !== 'undefined' && document.activeElement !== nt) nt.value = noteKey(m) || '';
   const W2 = SZ.STYLE.watermark;
   if (W2 && WM.width > 1) {
     // Same as drone_pin.py watermark(): the logo in the corner of every photo.
@@ -594,7 +595,7 @@ function hit(m, p) {
 
 cv.onmousedown = async e => {
   if (spaceDown || e.button === 1 || e.button === 2) { panning = [e.clientX - pan[0], e.clientY - pan[1]]; cv.style.cursor = 'grabbing'; e.preventDefault(); return; }
-  const m = M(); if (!m || m.error) return;
+  const m = M(); if (!m) return;
   if (brushy()) { painting = true; paint(e); return; }
   const p = toImg(e);
   if (tool === 'light' && e.altKey && !lasso) {
@@ -637,7 +638,7 @@ cv.onmousedown = async e => {
 cv.ondblclick = e => {
   if ((tool === 'lasso' || tool === 'light') && lasso) return finishLasso(e.shiftKey);
   if (tool === 'draw' && pts) return finishDraw();
-  const m = M(); if (tool !== 'edit' || !m || m.error) return;
+  const m = M(); if (tool !== 'edit' || !m) return;
   const h = hit(m, toImg(e));
   if (h && h.kind === 'edge') { insertPoint(m, h.j, h.t); m.manual = true; draw(); save(); }
 };
@@ -670,7 +671,8 @@ window.onmouseup = async e => {
   if (lassoDown) { lassoDown = false; return; }
   if (!drag) return;
   const m = M(), d = drag; drag = null;
-  if (d.kind !== 'tip') return save();
+  // No drone GPS in the file: nothing to solve, the pin just stays where it was dragged.
+  if (d.kind !== 'tip' || m.error) return save();
   anchors.tip = m.tip;
   const first = !site.tip_from;
   const r = await api('/solve', { file: names[cur], anchors, target: d.alt });

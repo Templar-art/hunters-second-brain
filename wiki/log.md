@@ -1847,3 +1847,6 @@ Audited 23 WHITEFOX Gold Coast listings (647 photos). Every drone shot has a rin
 
 ## [2026-11-11] update | Drone Pin: WHITEFOX profile + Amir modes
 New WHITEFOX profile (ring + glyph pin with a dot, dotted land outline, corner watermark on every photo). The Amir profile gained the apartment elbow leader, a white Fill wash and disclaimer notes. New Drone Pin keys: elbow/pin_dx, outline_dash, outline_fill/fill, notes/note_default/note_font/disclaimer, watermark. Test-rendered on the Somerset Dr previews and checked in the review page. See [[drone-photo-pin]].
+
+## [2026-11-11] fix | Drone Pin: no-GPS photos editable by hand
+The Nassau JPGs had no DJI metadata, and the review page blocked pin and outline editing on them. Now the pin drags freely, outlines are drawn by hand, and labels are per photo. Verified on a copy of the job and with a full render. See [[drone-photo-pin]].
