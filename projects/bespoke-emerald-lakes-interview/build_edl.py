@@ -39,6 +39,13 @@ for i, (a, b, ang, br) in enumerate(SEG):
         s = rec + (fr(c0) - f0 if c0 else 0); e = rec + (fr(c1) - f0 if c1 else f1 - f0)
         brs.append({"clip": clip, "src_in": fr(cin), "rec_in": s, "rec_out": e})
     out.append({"src_in": f0, "src_out": f1, "angle": ang, "rec": rec, "broll": brs}); rec += f1 - f0
+# Hunter 2026-11-11: B-roll over every cut, runs of 3 clips back-to-back, clips in filename order
+BR = ["C%d.MP4" % n for n in range(3917, 3956) if n != 3918]
+k = 0
+for i in range(1, len(out)):
+    j = out[i]["rec"]; t = j - 24
+    for _ in range(3):
+        out[i]["broll"].append({"clip": BR[k % len(BR)], "src_in": 25, "rec_in": t, "rec_out": t + 20}); t += 20; k += 1
 OPEN = {"clip": "C8194.MP4", "src_in": 0, "src_out": 0}  # opener removed: C8194 belongs to the other video  # full walk-in line "If you're a runner... Here's why.", own audio, before the interview
 json.dump({"opener": OPEN, "segs": out}, open("edl.json", "w"), indent=1)
 print("total", rec/FPS, "s")
