@@ -10,3 +10,4 @@ Status: CHECK render sent (53.8 s, ungraded, no captions).
 No credits spent.
 - 2026-11-11 rev 2 (Hunter: Smooth Cuts jumped, awkward silent heads, grade it): Smooth Cuts removed → angle changes on every join, rotating W / P 1.35 / C 1.75 so it never ping-pongs. Silent heads trimmed by voice energy (hook −0.25 s, "It's for owners" −0.3 s, close −0.5 s), each first word re-transcribed to confirm it survives. Graded with Sony/10x_Bespoke_look.cube (beat LC-709 TypeA = flat, Phntm Arri = cold). 52.4 s.
 - rev 3: grade refined → 10x_Master_look.cube (Bespoke look + backdrop neutralised, blacks crushed 3%, +8% luma contrast, +5% sat). No vignette (not scriptable; add in Resolve if wanted).
+- DELIVERED: MASTR Exit Boards - Launch Ad (9x16 4K).mp4 — 2160x3840 H.264 ~58 Mb/s, 52.4 s, loudnorm -14 LUFS / -1 dBTP.
