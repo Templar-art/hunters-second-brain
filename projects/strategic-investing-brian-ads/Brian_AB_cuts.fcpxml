@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fcpxml>
+<fcpxml version="1.10">
+  <resources>
+    <format id="r1" name="FFVideoFormat2160x3840p25" frameDuration="1/25s" width="2160" height="3840"/>
+    <format id="r2" name="FFVideoFormat3840x2160p25" frameDuration="1/25s" width="3840" height="2160"/>
+    <asset id="rA" name="C8202 A cam" start="1090428/25s" duration="1224s" hasVideo="1" hasAudio="1" format="r2" audioSources="1" audioChannels="2" audioRate="48000">
+      <media-rep kind="original-media" src="file:///Volumes/Kristian%20T7/Brian%20Ads/A7siii%201/C8202.MP4"/>
+    </asset>
+    <asset id="rB" name="C9731 B cam" start="1451280/25s" duration="29256/25s" hasVideo="1" hasAudio="1" format="r2" audioSources="1" audioChannels="2" audioRate="48000">
+      <media-rep kind="original-media" src="file:///Volumes/Kristian%20T7/Brian%20Ads/A7siii%202/C9731.MP4"/>
+    </asset>
+  </resources>
+  <library>
+    <event name="Brian Ads AB cuts">
+    <project name="Brian 01 Another rate rise AB">
+      <sequence format="r1" duration="634/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1094281/25s" duration="66/25s" name="A | The LBA just raised the cash rate again." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="66/25s" start="1094779/25s" duration="60/25s" name="B | So when did you last review your propert" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1094779/25s" start="1454043/25s" duration="60/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="126/25s" start="1095116/25s" duration="24/25s" name="A | higher repayments." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="6s" start="1095281/25s" duration="35/25s" name="B | Less breathing room." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1095281/25s" start="1454545/25s" duration="35/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="185/25s" start="1095406/25s" duration="58/25s" name="A | And the same strategy you put together y" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="243/25s" start="1096040/25s" duration="63/25s" name="B | You can't control the next rate decision" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1096040/25s" start="1455304/25s" duration="63/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="306/25s" start="1096212/25s" duration="88/25s" name="A | But you can review your debt. Your cash " tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="394/25s" start="1096518/25s" duration="61/25s" name="B | And what your property can realistically" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1096518/25s" start="1455782/25s" duration="61/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="455/25s" start="1096714/25s" duration="70/25s" name="A | I'm Brian from Strategic Investor in Que" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="21s" start="1096871/25s" duration="45/25s" name="B | before you make your next property move," tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1096871/25s" start="1456135/25s" duration="45/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="570/25s" start="1097194/25s" duration="64/25s" name="A | get in touch, and let's discuss your opt" tcFormat="NDF">
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 02 Rent doesn't tell the whole story AB">
+      <sequence format="r1" duration="664/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1097970/25s" duration="52/25s" name="A | The rent lands in your account." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="52/25s" start="1098059/25s" duration="35/25s" name="B | Then the mortgage comes out." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1098059/25s" start="1457323/25s" duration="35/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="87/25s" start="1098148/25s" duration="37/25s" name="A | How much is actually left?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="124/25s" start="1099254/25s" duration="53/25s" name="B | With the latest rate rise," tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1099254/25s" start="1458518/25s" duration="53/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="177/25s" start="1099792/25s" duration="64/25s" name="A | The purchase price and the rental income" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="241/25s" start="1099868/25s" duration="26/25s" name="B | Isn't enough." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1099868/25s" start="1459132/25s" duration="26/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="267/25s" start="1099931/25s" duration="31/25s" name="A | To judge an investment." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="298/25s" start="1100644/25s" duration="106/25s" name="B | Insurance, maintenance, and vacancies." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1100644/25s" start="1459908/25s" duration="106/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="404/25s" start="1100854/25s" duration="57/25s" name="A | The numbers need to work after those cos" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="461/25s" start="1100996/25s" duration="15/25s" name="B | Not before." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1100996/25s" start="1460260/25s" duration="15/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="476/25s" start="1101969/25s" duration="37/25s" name="A | At strategic investing." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="513/25s" start="1102059/25s" duration="27/25s" name="B | We help property investors." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1102059/25s" start="1461323/25s" duration="27/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="540/25s" start="1102122/25s" duration="24/25s" name="A | Look at their property" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="564/25s" start="1102165/25s" duration="1s" name="B | and equity." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1102165/25s" start="1461429/25s" duration="1s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="589/25s" start="1102409/25s" duration="38/25s" name="A | In context of their goals." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="627/25s" start="1102529/25s" duration="37/25s" name="B | Get in touch before your next move." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1102529/25s" start="1461793/25s" duration="37/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 03 A mortgage isn't a strategy AB">
+      <sequence format="r1" duration="24s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1102769/25s" duration="28/25s" name="A | You've got a mortgage?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="28/25s" start="1102870/25s" duration="54/25s" name="B | That doesn't mean you've got a property " tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1102870/25s" start="1462134/25s" duration="54/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="82/25s" start="1103014/25s" duration="40/25s" name="A | A loan tells you what you owe." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="122/25s" start="1103162/25s" duration="71/25s" name="B | A strategy as you, what are you trying t" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1103162/25s" start="1462426/25s" duration="71/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="193/25s" start="1103285/25s" duration="21/25s" name="A | What can you afford?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="214/25s" start="1103368/25s" duration="56/25s" name="B | And what happens if things don't go as p" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1103368/25s" start="1462632/25s" duration="56/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="270/25s" start="1103518/25s" duration="70/25s" name="A | Buying another property isn't automatica" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="340/25s" start="1103645/25s" duration="47/25s" name="B | Neither is leaving everything untouched." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1103645/25s" start="1462909/25s" duration="47/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="387/25s" start="1103768/25s" duration="54/25s" name="A | I'm Brian from Strategic Investing." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="441/25s" start="1104343/25s" duration="65/25s" name="B | We help homeowners and investors." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1104343/25s" start="1463607/25s" duration="65/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="506/25s" start="1104531/25s" duration="53/25s" name="A | explore their property, and" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="559/25s" start="1104607/25s" duration="17/25s" name="B | equity options." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1104607/25s" start="1463871/25s" duration="17/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="576/25s" start="1104666/25s" duration="24/25s" name="A | Let's talk about yours." tcFormat="NDF">
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 04 Property value doesn't pay the bills AB">
+      <sequence format="r1" duration="684/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1105473/25s" duration="76/25s" name="A | A higher property value isn't going to h" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="76/25s" start="1105678/25s" duration="3s" name="B | That's the difference between having equ" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1105678/25s" start="1464942/25s" duration="3s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="151/25s" start="1105833/25s" duration="51/25s" name="A | Before you borrow against your home," tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="202/25s" start="1106085/25s" duration="46/25s" name="B | You need to understand what" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1106085/25s" start="1465349/25s" duration="46/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="248/25s" start="1106158/25s" duration="76/25s" name="A | the extra repayments would mean for you." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="324/25s" start="1106285/25s" duration="70/25s" name="B | And your everyday life." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1106285/25s" start="1465549/25s" duration="70/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="394/25s" start="1106658/25s" duration="44/25s" name="A | Not just what you can buy with the money" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="438/25s" start="1106765/25s" duration="40/25s" name="B | Equity could create options," tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1106765/25s" start="1466029/25s" duration="40/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="478/25s" start="1107041/25s" duration="106/25s" name="A | But accessing it means taking on more de" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="584/25s" start="1107193/25s" duration="41/25s" name="B | That's strategic investing." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1107193/25s" start="1466457/25s" duration="41/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="25s" start="1107271/25s" duration="38/25s" name="A | We help you explore those options." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="663/25s" start="1107334/25s" duration="21/25s" name="B | Get in touch." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1107334/25s" start="1466598/25s" duration="21/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 05 Equity isn't free money AB">
+      <sequence format="r1" duration="511/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1107793/25s" duration="28/25s" name="A | Just use your equity." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="28/25s" start="1107911/25s" duration="39/25s" name="B | That's easy advice to give." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1107911/25s" start="58687s" duration="39/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="67/25s" start="1108110/25s" duration="36/25s" name="A | when it's not your home on the line." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="103/25s" start="1108277/25s" duration="38/25s" name="B | Equity isn't free money." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1108277/25s" start="1467541/25s" duration="38/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="141/25s" start="1108397/25s" duration="63/25s" name="A | Accessing it through a loan means more d" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="204/25s" start="1108492/25s" duration="38/25s" name="B | More repayments..." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1108492/25s" start="1467756/25s" duration="38/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="242/25s" start="1108552/25s" duration="31/25s" name="A | And more responsibility." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="273/25s" start="1108635/25s" duration="43/25s" name="B | The question isn't just." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1108635/25s" start="1467899/25s" duration="43/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="316/25s" start="1108722/25s" duration="29/25s" name="A | How much can I access?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="345/25s" start="1109243/25s" duration="21/25s" name="B | What would I use it for?" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1109243/25s" start="1468507/25s" duration="21/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="366/25s" start="1109337/25s" duration="37/25s" name="A | And can I afford the risk?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="403/25s" start="1109441/25s" duration="47/25s" name="B | I'm Brian from Strategic investing." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1109441/25s" start="1468705/25s" duration="47/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="18s" start="1109540/25s" duration="30/25s" name="A | before you use your equity," tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="480/25s" start="1109615/25s" duration="31/25s" name="B | Let's discuss your options." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1109615/25s" start="1468879/25s" duration="31/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 06 Waiting for a rate cut AB">
+      <sequence format="r1" duration="643/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1110028/25s" duration="37/25s" name="A | Waiting for a rate cut." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="37/25s" start="1110110/25s" duration="35/25s" name="B | Isn't a property strategy." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1110110/25s" start="1469374/25s" duration="35/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="72/25s" start="1110228/25s" duration="63/25s" name="A | A rate cut might ease the repayments." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="135/25s" start="1110462/25s" duration="62/25s" name="B | It won't tell you whether... your next p" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1110462/25s" start="1469726/25s" duration="62/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="197/25s" start="1110708/25s" duration="37/25s" name="A | actually stacks up." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="234/25s" start="1110798/25s" duration="58/25s" name="B | Before you borrow more..." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1110798/25s" start="1470062/25s" duration="58/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="292/25s" start="1110872/25s" duration="32/25s" name="A | Look at the repayments." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="324/25s" start="1110941/25s" duration="36/25s" name="B | The ongoing costs?" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1110941/25s" start="1470205/25s" duration="36/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="360/25s" start="1111234/25s" duration="61/25s" name="A | And what happens if rates stay higher th" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="421/25s" start="1111379/25s" duration="38/25s" name="B | Equity can give you options." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1111379/25s" start="1470643/25s" duration="38/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="459/25s" start="1111567/25s" duration="55/25s" name="A | Using it means taking on more debt." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="514/25s" start="1111760/25s" duration="45/25s" name="B | I'm Brian from Strategic Investing." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1111760/25s" start="1471024/25s" duration="45/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="559/25s" start="1111839/25s" duration="54/25s" name="A | Before your next move, get in touch." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="613/25s" start="1111944/25s" duration="30/25s" name="B | And let's discuss your options." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1111944/25s" start="1471208/25s" duration="30/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 07 Only works when everything goes right AB">
+      <sequence format="r1" duration="777/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1112144/25s" duration="121/25s" name="A | If your investment only works... When ev" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="121/25s" start="1112304/25s" duration="40/25s" name="B | What happens when nothing goes right?" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1112304/25s" start="1471568/25s" duration="40/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="161/25s" start="1112430/25s" duration="31/25s" name="A | The tenant leaves." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="192/25s" start="1112490/25s" duration="39/25s" name="B | A repair comes up." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1112490/25s" start="1471754/25s" duration="39/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="231/25s" start="1112661/25s" duration="54/25s" name="A | Or interest rates stay higher than expec" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="285/25s" start="1112773/25s" duration="39/25s" name="B | Before you add another property." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1112773/25s" start="1472037/25s" duration="39/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="324/25s" start="1112967/25s" duration="177/25s" name="A | Look at whether... Your cash flow... Can" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="501/25s" start="1113516/25s" duration="1s" name="B | The next purchase." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1113516/25s" start="1472780/25s" duration="1s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="526/25s" start="1113567/25s" duration="3s" name="A | Shouldn't depend on a perfect run." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="601/25s" start="1113716/25s" duration="26/25s" name="B | strategic investing." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1113716/25s" start="1472980/25s" duration="26/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="627/25s" start="1113780/25s" duration="42/25s" name="A | We help investors..." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="669/25s" start="1113846/25s" duration="31/25s" name="B | Explore their property," tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1113846/25s" start="1473110/25s" duration="31/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="28s" start="1113898/25s" duration="27/25s" name="A | and equity options." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="727/25s" start="1113968/25s" duration="28/25s" name="B | With risk in view." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1113968/25s" start="1473232/25s" duration="28/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="755/25s" start="1114036/25s" duration="22/25s" name="A | Get in touch." tcFormat="NDF">
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 08 Don't collect properties AB">
+      <sequence format="r1" duration="633/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1114757/25s" duration="56/25s" name="A | A second property isn't a trophy." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="56/25s" start="1114856/25s" duration="42/25s" name="B | It's another financial commitment." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1114856/25s" start="1474120/25s" duration="42/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="98/25s" start="1114983/25s" duration="29/25s" name="A | Before you buy." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="127/25s" start="1115098/25s" duration="46/25s" name="B | Ask what it actually means for you." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1115098/25s" start="1474362/25s" duration="46/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="173/25s" start="1115266/25s" duration="43/25s" name="A | is it building long term wealth?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="216/25s" start="44616s" duration="36/25s" name="B | to support future income?" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="44616s" start="1474664/25s" duration="36/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="252/25s" start="1115621/25s" duration="37/25s" name="A | Does it fit a particular timeline?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="289/25s" start="1115781/25s" duration="91/25s" name="B | Then ask... Whether the repayments..." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1115781/25s" start="1475045/25s" duration="91/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="380/25s" start="1115971/25s" duration="49/25s" name="A | And risk? Fit in your life today." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="429/25s" start="1116095/25s" duration="21/25s" name="B | Using equity?" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1116095/25s" start="1475359/25s" duration="21/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="18s" start="1116491/25s" duration="21/25s" name="A | Because it's available." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="471/25s" start="1116546/25s" duration="22/25s" name="B | Isn't the same?" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1116546/25s" start="1475810/25s" duration="22/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="493/25s" start="1116591/25s" duration="23/25s" name="A | As using it." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="516/25s" start="1116637/25s" duration="15/25s" name="B | With purpose." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1116637/25s" start="1475901/25s" duration="15/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="531/25s" start="1116763/25s" duration="49/25s" name="A | I'm Brian from Strategic Investing." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="580/25s" start="1116961/25s" duration="53/25s" name="B | Let's discuss the plan before the purcha" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1116961/25s" start="59049s" duration="53/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 09 Can borrow vs should borrow AB">
+      <sequence format="r1" duration="665/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1117195/25s" duration="45/25s" name="A | The biggest loan you can get..." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="45/25s" start="1117291/25s" duration="55/25s" name="B | Isn't necessarily the right one." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1117291/25s" start="1476555/25s" duration="55/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="4s" start="1117449/25s" duration="29/25s" name="A | A borrowing limit?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="129/25s" start="1117510/25s" duration="120/25s" name="B | Doesn't tell you... how much breathing r" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1117510/25s" start="1476774/25s" duration="120/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="249/25s" start="1117755/25s" duration="31/25s" name="A | What else you're planning?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="280/25s" start="1117870/25s" duration="48/25s" name="B | Oh, how comfortable you are with risk." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1117870/25s" start="1477134/25s" duration="48/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="328/25s" start="1118003/25s" duration="36/25s" name="A | Before you use your property." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="364/25s" start="1118086/25s" duration="37/25s" name="B | To take on more debt." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1118086/25s" start="59094s" duration="37/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="401/25s" start="1118246/25s" duration="48/25s" name="A | Decide what you're willing to commit to." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="449/25s" start="1118565/25s" duration="81/25s" name="B | just... What might? What might? Get appr" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1118565/25s" start="1477829/25s" duration="81/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="530/25s" start="1118718/25s" duration="39/25s" name="A | That's strategic investing." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="569/25s" start="1118790/25s" duration="29/25s" name="B | We help homeowners." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1118790/25s" start="1478054/25s" duration="29/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="598/25s" start="1118837/25s" duration="27/25s" name="A | And investors." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="25s" start="1118889/25s" duration="22/25s" name="B | Explore their options." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1118889/25s" start="1478153/25s" duration="22/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="647/25s" start="1118942/25s" duration="18/25s" name="A | Get in touch." tcFormat="NDF">
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    <project name="Brian 10 The missing exit plan AB">
+      <sequence format="r1" duration="547/25s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+        <spine>
+          <asset-clip ref="rA" offset="0s" start="1119246/25s" duration="40/25s" name="A | You thought about buying the next proper" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="40/25s" start="44779s" duration="55/25s" name="B | you thought about how you eventually gon" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="44779s" start="1478739/25s" duration="55/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="95/25s" start="1119803/25s" duration="34/25s" name="A | Holding cuffs don't stop." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="129/25s" start="1119891/25s" duration="28/25s" name="B | Just because your plans change." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1119891/25s" start="1479155/25s" duration="28/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="157/25s" start="1119978/25s" duration="34/25s" name="A | And selling takes time." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="191/25s" start="1120036/25s" duration="24/25s" name="B | And costs money." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1120036/25s" start="59172s" duration="24/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="215/25s" start="1120126/25s" duration="62/25s" name="A | Before you use equity to invest." tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="277/25s" start="1120233/25s" duration="33/25s" name="B | Think beyond the purchase." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1120233/25s" start="1479497/25s" duration="33/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="310/25s" start="1120331/25s" duration="36/25s" name="A | How long could you hold it?" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="346/25s" start="1120431/25s" duration="31/25s" name="B | And what would make you sell?" tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1120431/25s" start="1479695/25s" duration="31/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="377/25s" start="1120536/25s" duration="46/25s" name="A | What happens if you need the money soone" tcFormat="NDF">
+          </asset-clip>
+          <asset-clip ref="rA" offset="423/25s" start="1120711/25s" duration="58/25s" name="B | I'm Brian from Strategic investing." tcFormat="NDF">
+            <asset-clip ref="rB" lane="1" offset="1120711/25s" start="59199s" duration="58/25s" audioRole="dialogue" name="B cam"><adjust-volume amount="-96dB"/></asset-clip>
+          </asset-clip>
+          <asset-clip ref="rA" offset="481/25s" start="1120839/25s" duration="66/25s" name="A | And let's discuss your options before yo" tcFormat="NDF">
+          </asset-clip>
+        </spine>
+      </sequence>
+    </project>
+    </event>
+  </library>
+</fcpxml>
