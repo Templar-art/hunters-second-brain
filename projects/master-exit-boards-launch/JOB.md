@@ -8,3 +8,4 @@ Status: CHECK render sent (53.8 s, ungraded, no captions).
 - Todo: Hunter grades; loudnorm -14 LUFS on final.
 ## Ledger
 No credits spent.
+- 2026-11-11 rev 2 (Hunter: Smooth Cuts jumped, awkward silent heads, grade it): Smooth Cuts removed → angle changes on every join, rotating W / P 1.35 / C 1.75 so it never ping-pongs. Silent heads trimmed by voice energy (hook −0.25 s, "It's for owners" −0.3 s, close −0.5 s), each first word re-transcribed to confirm it survives. Graded with Sony/10x_Bespoke_look.cube (beat LC-709 TypeA = flat, Phntm Arri = cold). 52.4 s.
