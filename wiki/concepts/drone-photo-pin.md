@@ -83,6 +83,10 @@ Other style keys:
 - `place_color`: label text in a colour, drawn flat with no shadow. REAL Specialists use dark #1E1E1E text on the sky. The default is white with the line's shadow.
 - `place_dist: false`: drops the distance line under every label.
 - `mark_anchor: "left"`: hangs the logo by its left edge over the pin line (REAL Specialists). The default centres it.
+- `elbow` (2026-11-11, Amir apartments and towers): drag the pin head sideways in Edit and the line drops, then turns 90° to the tip, so it points at the exact floor. Within half a badge of the tip it snaps back straight. Per photo this is stored as `pin_dx`.
+- `outline_dash` (WHITEFOX land): a dotted outline. `outline_fill`, or the per-photo **Fill** slider, washes white inside the outline (Amir's apartment floor band).
+- `notes` + `note_default` + `note_font` (Amir): a disclaimer under the outline. Pick it per photo in the **Note** box ("" = none; stored as `disclaimer`, because `note` was already taken by the camera summary). The top-down default is the centred "Boundaries and dimensions are approximate only…"; "OUTLINES INDICATIVE ONLY" sits small and bottom-left. Fill and Note only show for clients with notes.
+- `watermark` (WHITEFOX): a logo burned into the corner of **every** exported photo, set by diameter, opacity and its centre offset from the right and bottom edges.
 - `surround: "mono"`: **ZED's real look**. The neighbourhood goes black and white, while the lot, any Bright-lasso shapes and the far landscape (fading out above the lot) stay in colour. It isn't a darkening. The earlier "blacks out" description was a misreading, now corrected from the Sam Drones files.
 
 Research sweep (finished pinned sets on the Clients Drive and SSD):
@@ -95,7 +99,7 @@ Research sweep (finished pinned sets on the Clients Drive and SSD):
 - **Coastline Prestige:** `10x Drive Pulls/REA/…/71-73 Lydford Close`.
 - **Jessica Wallace:** `88 Third Ave` (The Agency, but she may now be with Harcourts).
 
-Only **Kollosche** is confirmed. Every other profile is marked unconfirmed and explains itself in the review page. Logo files are in `projects/drone-pin/logos/`: ZED, Belle and Bespoke. **Still needed:** the YPA, Place, RE/MAX, Coastline and agency logos as white PNGs. **REAL Specialists** (Connor Hewitt, 2026-11-06): orange logo on a white line plus dark suburb labels, no outline; see [[real-specialists]]. **Coastal** (34 Albany Ave) has no finished graphics yet, and it may be Coastline Prestige; this needs confirming.
+Only **Kollosche** is confirmed. Every other profile is marked unconfirmed and explains itself in the review page. Logo files are in `projects/drone-pin/logos/`: ZED, Belle and Bespoke. **Still needed:** the YPA, Place, RE/MAX, Coastline and agency logos as white PNGs. **REAL Specialists** (Connor Hewitt, 2026-11-06): orange logo on a white line plus dark suburb labels, no outline; see [[real-specialists]]. **Amir Prestige** and **WHITEFOX** profiles were built 2026-11-11 from audits of their whole current listing books; see [[amir-prestige]] and [[whitefox]]. Both are unconfirmed. The WHITEFOX ring logo and watermark were redrawn from their photos, so ask for vector files. **Coastal** (34 Albany Ave) has no finished graphics yet, and it may be Coastline Prestige; this needs confirming.
 
 ## Auto-align attempts (2026-10-28): none beat a hand drag
 Tested on Esther against Hunter's hand fixes. On a photo 11,000 px wide, the uncorrected drift was 100–400 px.

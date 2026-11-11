@@ -89,6 +89,14 @@ EXTS = {".jpg", ".jpeg", ".tif", ".tiff", ".png"}
 #   place_color: label text colour, flat with no shadow (null = white with the line's shadow)
 #   place_dist: false drops the distance line under every label
 #   mono_fade: [full, none] heights above the lot's top edge, of photo height, where B&W fades out
+#   elbow: the pin head can be dragged sideways; the line drops, then turns 90° to the tip
+#     (Amir apartments / towers: leader to the exact floor). Per photo: pin_dx, of photo width.
+#   outline_dash: dotted outline (WHITEFOX land)   outline_fill: default white fill alpha inside the
+#     outline (per photo: fill; Amir's apartment floor band)
+#   notes: {key: {text, pos "bc"|"bl", upper, cap}} disclaimer under an outline; note_default = the key
+#     new outline photos get (per photo: disclaimer, "" = none). note_font (else place_font) sets its font.
+#   watermark: {glyph, h, opacity, cx, cy}: a logo burned into every photo (WHITEFOX), h = diameter of
+#     photo height, centred cx / cy photo heights in from the right / bottom edges
 CLIENTS = HERE / "clients"
 DEFAULT_STYLE = {"pin": "none", "glyph": None, "badge": 0.085, "glyph_w": 0.54, "border": 0.05,
                  "pin_line": 0.055, "fill": "#011A3B", "fill_opacity": 1.0,
@@ -96,7 +104,8 @@ DEFAULT_STYLE = {"pin": "none", "glyph": None, "badge": 0.085, "glyph_w": 0.54, 
                  "blackout": 0, "topdowns": True, "location_pins": True, "print_graphics": True,
                  "naming": "{address} - {kind}-{n}", "surround": "dark", "mono_fade": [0.25, 0.4],
                  "place_dot": True, "place_upper": True, "place_font": None, "place_color": None,
-                 "place_dist": True, "mark_anchor": None, "mark_gap": 0}
+                 "place_dist": True, "mark_anchor": None, "mark_gap": 0, "elbow": False,
+                 "outline_dash": False, "outline_fill": 0, "notes": {}, "note_default": None, "watermark": None}
 LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05   # LINE_W: location-pin lines
 BLACKOUT_FEATHER = 0.0015                            # blackout edge softness, of photo width
 # Subtle drop shadow under the outline only (Hunter, 2026-10-27): soft, slightly
@@ -490,7 +499,7 @@ def cmd_init(a):
             marks[p.name] = add_photo(p, job, site, st)
             print(f"  {p.name}: {marks[p.name]['mode']:7s} {marks[p.name].get('note', marks[p.name].get('error'))}")
     save(job, "marks.json", marks)
-    glyph(st).save(job / "previews" / "_k.png")
+    look_assets(job, st)
 
 
 # --- review server --------------------------------------------------------------
@@ -511,7 +520,7 @@ def cmd_review(a):
             make_preview(src, job)
     # The look (client + agent) is fixed for the life of the server: changing it reloads the page.
     look = {"st": style(site)}
-    glyph(look["st"]).save(job / "previews" / "_k.png")
+    look_assets(job, look["st"])
     lock = threading.Lock()
 
     class H(http.server.BaseHTTPRequestHandler):
@@ -537,7 +546,7 @@ def cmd_review(a):
                      "SHADOW_OFFSET": SHADOW_OFFSET, "SHADOW_BLUR": SHADOW_BLUR, "SHADOW_OPACITY": SHADOW_OPACITY,
                      "PLACE_DOT": PLACE_DOT, "PLACE_LINE": PLACE_LINE, "PLACE_GAP": PLACE_GAP,
                      "PLACE_CAP": PLACE_CAP, "PLACE_SUB": PLACE_SUB, "PLACE_TRACK": PLACE_TRACK,
-                     "PLACE_LEAD": PLACE_LEAD})).encode(), "text/html")
+                     "PLACE_LEAD": PLACE_LEAD, "DASH_STEP": DASH_STEP})).encode(), "text/html")
             if path == "/marks":
                 cl = clients()
                 return self.send(json.dumps({"site": site, "marks": load(job, "marks.json"),
@@ -554,6 +563,9 @@ def cmd_review(a):
                     return self.send(f.read_bytes(), "image/png")
             if path == "/font/place":
                 return self.send(Path(os.path.expanduser(look["st"]["place_font"] or FONT_K)).read_bytes(), "font/otf")
+            if path == "/font/note":
+                st = look["st"]
+                return self.send(Path(os.path.expanduser(st.get("note_font") or st["place_font"] or FONT_B)).read_bytes(), "font/otf")
             if path in ("/font/kraftig", "/font/buch"):
                 return self.send(Path(FONT_K if path.endswith("kraftig") else FONT_B).read_bytes(), "font/otf")
             self.send(b"not found", "text/plain", 404)
@@ -594,7 +606,7 @@ def cmd_review(a):
                 site["client"], site["agent"] = body.get("client") or None, body.get("agent") or None
                 save(job, "site.json", site)
                 look["st"] = style(site)
-                glyph(look["st"]).save(job / "previews" / "_k.png")
+                look_assets(job, look["st"])
                 return self.send(b"{}")
             if self.path == "/export":
                 try:
@@ -698,6 +710,14 @@ def glyph(st):
         tinted.putalpha(im.getchannel("A"))
         im = tinted
     return im
+
+
+def look_assets(job, st):
+    """The review page's copies of the pin mark (_k.png) and the watermark logo (_wm.png)."""
+    glyph(st).save(job / "previews" / "_k.png")
+    wm = st.get("watermark")
+    g = Image.open(ROOT / wm["glyph"]).convert("RGBA") if wm else Image.new("RGBA", (1, 1), (255, 255, 255, 0))
+    g.save(job / "previews" / "_wm.png")
 
 
 def k_glyph():
@@ -890,10 +910,60 @@ def surround(m, st):
     return amt.clip(0, 255).astype(np.uint8)
 
 
+DASH_STEP = 2.6   # dotted outline: dot spacing, in dot diameters
+
+
+def note_key(m, st):
+    """This photo's disclaimer: its own pick ("" = none), else the client's default once an outline shows."""
+    if "disclaimer" in m:
+        return m["disclaimer"] or None
+    return st.get("note_default") if m["mode"] in ("outline", "both") and m["lot"] else None
+
+
+def draw_note(m, st, W, H):
+    """Disclaimer text (Amir: 'Boundaries and dimensions are approximate only'), white, soft shadow."""
+    n = (st.get("notes") or {}).get(note_key(m, st) or "")
+    if not n:
+        return None
+    a = np.zeros((H, W), np.uint8)
+    cap = n.get("cap", 0.012) * H
+    font = os.path.expanduser(st.get("note_font") or st["place_font"] or FONT_B)
+    lines = [(t.upper() if n.get("upper") else t) for t in n["text"].split("\n")]
+    lead = 0.75 * cap
+    y = H - 0.035 * H - len(lines) * cap - (len(lines) - 1) * lead
+    for t in lines:
+        ti, pad = text_image(t, font, cap, 0.02 if not n.get("upper") else 0.08)
+        tw = ti.width - 2 * pad
+        x = 0.018 * W if n.get("pos") == "bl" else (W - tw) / 2
+        if n.get("pos") == "bl":
+            y = H - 0.022 * H - cap
+        ta = np.array(ti.getchannel("A"))
+        x0, y0 = round(x - pad), round(y - pad)
+        xs, ys, xe, ye = max(0, x0), max(0, y0), min(W, x0 + ta.shape[1]), min(H, y0 + ta.shape[0])
+        a[ys:ye, xs:xe] = np.maximum(a[ys:ye, xs:xe], ta[ys - y0:ye - y0, xs - x0:xe - x0])
+        y += cap + lead
+    return shadowed(a, max(2, round(0.12 * cap)))
+
+
+def watermark(st, W, H):
+    """The client's logo burned into the corner of every photo (WHITEFOX), or None."""
+    wm = st.get("watermark")
+    if not wm:
+        return None
+    g = Image.open(ROOT / wm["glyph"]).convert("RGBA")
+    d = max(1, round(wm.get("h", 0.18) * H))
+    g = g.resize((d, round(g.height * d / g.width)), Image.LANCZOS)
+    g.putalpha(Image.fromarray((np.array(g.getchannel("A")) * wm.get("opacity", 0.6)).astype(np.uint8)))
+    layer = Image.new("RGBA", (W, H), (255, 255, 255, 0))
+    layer.alpha_composite(g, (round(W - wm.get("cx", 0.23) * H - g.width / 2), round(H - wm.get("cy", 0.16) * H - g.height / 2)))
+    return layer
+
+
 def draw_overlay(m, k, st, site=None, mask=None):
     W, H = m["w"], m["h"]
     ss = 2
     a = np.zeros((H * ss, W * ss), np.uint8)
+    fill_a = m.get("fill", st.get("outline_fill") or 0)
     if m["mode"] in ("outline", "both") and m["lot"]:
         lw = max(2, round(st["outline_w"] * m.get("outline_w", 1) * W)) * ss
         p = np.round(np.array(m["lot"]) * ss * 16).astype(np.int32)
@@ -902,6 +972,14 @@ def draw_overlay(m, k, st, site=None, mask=None):
             if j in gaps:
                 continue
             seg = np.array([p[j], p[(j + 1) % len(p)]])
+            if st.get("outline_dash"):
+                # WHITEFOX land: a dotted line, round dots one line-width across.
+                (x0, y0), (x1, y1) = seg / 16
+                n = max(1, int(np.hypot(x1 - x0, y1 - y0) / (DASH_STEP * lw)))
+                for t in np.linspace(0, 1, n + 1)[:-1]:
+                    cv2.circle(a, (round((x0 + (x1 - x0) * t) * 16), round((y0 + (y1 - y0) * t) * 16)),
+                               round(lw / 2 * 16), 255, -1, cv2.LINE_AA, shift=4)
+                continue
             cv2.polylines(a, [seg], False, 255, lw, cv2.LINE_AA, shift=4)
             for x, y in seg:
                 cv2.circle(a, (int(x), int(y)), lw // 2 * 16, 255, -1, cv2.LINE_AA, shift=4)
@@ -909,6 +987,15 @@ def draw_overlay(m, k, st, site=None, mask=None):
     im = Image.new("RGBA", (W, H), (255, 255, 255, 0))
     if st["surround"] == "dark" and (amt := surround(m, st)) is not None:
         im = Image.merge("RGBA", (*[Image.new("L", (W, H), 0)] * 3, Image.fromarray(amt)))
+    if fill_a and m["mode"] in ("outline", "both") and m["lot"]:
+        # Amir apartments: the unit's floor band washed white inside its outline.
+        f = np.zeros((H, W), np.uint8)
+        cv2.fillPoly(f, [np.round(np.array(m["lot"]) * 16).astype(np.int32)], round(255 * fill_a), cv2.LINE_AA, shift=4)
+        if mask is not None:
+            f = (f * (1 - np.array(mask.convert("L").resize((W, H))) / 255)).astype(np.uint8)
+        wash = Image.new("RGBA", (W, H), (255, 255, 255, 0))
+        wash.putalpha(Image.fromarray(f))
+        im.alpha_composite(wash)
     if alpha.any():
         lw = max(2, round(st["outline_w"] * m.get("outline_w", 1) * W))
         if mask is not None:
@@ -919,12 +1006,21 @@ def draw_overlay(m, k, st, site=None, mask=None):
         im.alpha_composite(shadowed(alpha, lw, rgb(st["outline_color"])))
     if site is not None:
         im.alpha_composite(draw_places(m, site, W, H, st))
+    if (nt := draw_note(m, st, W, H)) is not None:
+        im.alpha_composite(nt)
     if m["mode"] in ("pin", "both") and st["pin"] != "none":
         tx, ty = m["tip"]
         side, length = pin_layout(m, st)
         lw = max(2, round(st["pin_line"] * side))
+        hx = tx + (m.get("pin_dx", 0) * W if st.get("elbow") else 0)   # Amir: head off to the side
         line = Image.new("RGBA", (lw, max(1, round(length))), (255, 255, 255, 255))
-        im.alpha_composite(line, (round(tx - lw / 2), round(ty - length)))
+        im.alpha_composite(line, (round(hx - lw / 2), round(ty - length)))
+        if abs(hx - tx) >= 1:
+            # The elbow: along from the bottom of the drop to the tip (the exact floor).
+            run = Image.new("RGBA", (round(abs(hx - tx)) + lw, lw), (255, 255, 255, 255))
+            im.alpha_composite(run, (round(min(hx, tx) - lw / 2), round(ty - lw / 2)))
+        tx_tip = tx
+        tx = hx
         if st["line_dot"]:
             r4 = round(1.6 * lw * 4)
             d = np.zeros((r4 * 2 + 8, r4 * 2 + 8), np.uint8)
@@ -932,12 +1028,14 @@ def draw_overlay(m, k, st, site=None, mask=None):
             d = cv2.resize(d, (d.shape[1] // 4, d.shape[0] // 4), interpolation=cv2.INTER_AREA)
             dot = Image.new("RGBA", (d.shape[1], d.shape[0]), (255, 255, 255, 0))
             dot.putalpha(Image.fromarray(d))
-            im.alpha_composite(dot, (round(tx - dot.width / 2), round(ty - dot.height / 2)))
+            im.alpha_composite(dot, (round(tx_tip - dot.width / 2), round(ty - dot.height / 2)))
         bd = badge(side, k, st)
         # REAL Specialists hang the logo by its left edge; everyone else centres it on the line.
         bx = tx - lw / 2 if st.get("mark_anchor") == "left" else tx - bd.width / 2
         gap = (st.get("mark_gap") or 0) * side   # space between the line top and the logo
         im.alpha_composite(bd, (round(bx), round(ty - length - bd.height - gap)))
+    if (wm := watermark(st, W, H)) is not None:
+        im.alpha_composite(wm)
     return im
 
 

@@ -8,6 +8,7 @@
   @font-face { font-family: "SohneK"; src: url(/font/kraftig); }
   @font-face { font-family: "SohneB"; src: url(/font/buch); }
   @font-face { font-family: "PlaceF"; src: url(/font/place); }
+  @font-face { font-family: "NoteF"; src: url(/font/note); }
   :root { --bg: #111317; --panel: #1a1d23; --line: #2a2e36; --text: #e8eaee; --dim: #8a909c; --accent: #61a8d8; --ok: #5cc28a; --warn: #f5b041; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.4 -apple-system, "Poppins", sans-serif; display: grid; grid-template-columns: 250px 1fr; height: 100vh; overflow: hidden; }
@@ -111,6 +112,14 @@
       <small style="align-self:center">S</small><input id="ow" type="range" min="0.5" max="3" step="0.1" value="1"><small style="align-self:center">L</small>
       <button id="owall" title="Use this thickness on every photo">All</button>
     </div>
+    <div class="grp" id="fillg" title="White wash inside the outline, for this photo (Amir apartments: the unit's floor band)">
+      <label for="olf" style="align-self:center;color:var(--dim)">Fill</label>
+      <input id="olf" type="range" min="0" max="0.6" step="0.05" value="0">
+    </div>
+    <div class="grp" id="noteg" title="Disclaimer under the outline, for this photo">
+      <label for="nt" style="align-self:center;color:var(--dim)">Note</label>
+      <select id="nt"></select>
+    </div>
     <span class="sp"></span>
     <button id="fit" title="Zoom back out to the whole photo (0). Keeps your edits.">Fit view <small>0</small></button>
     <button id="import" title="Add drone photos from any folder to this job">Import…</button>
@@ -159,7 +168,8 @@ const sizes = { brush: 40, erase: 40 };
 let tool = 'edit', brush = 40, mask = null, maskDirty = false, painting = false, cursor = null;
 const cv = document.getElementById('cv'), cx = cv.getContext('2d');
 K.onload = () => draw(); K.src = '/preview/_k.png';
-document.fonts.load('40px PlaceF'); document.fonts.load('40px SohneK'); document.fonts.load('40px SohneB'); document.fonts.ready.then(() => draw());
+const WM = new Image(); WM.onload = () => draw(); WM.src = '/preview/_wm.png';
+document.fonts.load('40px PlaceF'); document.fonts.load('40px NoteF'); document.fonts.load('40px SohneK'); document.fonts.load('40px SohneB'); document.fonts.ready.then(() => draw());
 
 // In-page confirm/prompt: the preview pane silently cancels window.confirm and window.prompt.
 // ask(text) resolves true/false; ask(text, value) shows a text box and resolves the text or null.
@@ -298,6 +308,7 @@ function show(i) {
   im.src = '/preview/' + encodeURIComponent(n.replace(/\.[^.]+$/, '.jpg'));
   document.getElementById('note').textContent = m.error || m.note || '';
   list(); modeBtns(); ow.value = m.outline_w ?? 1; bo.value = m.blackout ?? 0; boShow(bo.value); lf.value = m.lift ?? 0;
+  olf.value = m.fill ?? (SZ.STYLE.outline_fill || 0); nt.value = noteKey(m) || '';
 }
 function modeBtns() { document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === M().mode)); }
 const brushy = () => tool === 'brush' || tool === 'erase';
@@ -318,6 +329,23 @@ function dist(p) {
   const e = (p.lon - site.tip[0]) * Math.PI / 180 * R * Math.cos(la), n = (p.lat - site.tip[1]) * Math.PI / 180 * R;
   const d = Math.hypot(e, n);
   return d >= 1000 ? (d / 1000).toFixed(1) + ' KM' : Math.round(d / 10) * 10 + ' M';
+}
+// Amir apartments: the pin head sits off to the side (pin_dx), the line elbows to the tip.
+const headX = m => m.tip[0] + (SZ.STYLE.elbow ? (m.pin_dx || 0) * m.w : 0);
+// Same as drone_pin.py note_key()/draw_note(): disclaimer under an outline.
+function noteKey(m) { return 'disclaimer' in m ? (m.disclaimer || null) : ((m.mode === 'outline' || m.mode === 'both') && m.lot.length ? SZ.STYLE.note_default : null); }
+function drawNote(m) {
+  const n = (SZ.STYLE.notes || {})[noteKey(m) || '']; if (!n) return;
+  const cap = (n.cap || 0.012) * m.h, size = cap / 0.7, lead = 0.75 * cap, rows = n.text.split('\n').map(t => n.upper ? t.toUpperCase() : t);
+  cx.save(); shadowOn(cx, Math.max(2, 0.12 * cap)); cx.fillStyle = '#fff'; cx.font = `${size}px NoteF`;
+  cx.letterSpacing = `${(n.upper ? 0.08 : 0.02) * size}px`; cx.textBaseline = 'alphabetic';
+  let y = m.h - 0.035 * m.h - rows.length * cap - (rows.length - 1) * lead;
+  for (const t of rows) {
+    if (n.pos === 'bl') { cx.textAlign = 'left'; cx.fillText(t, 0.018 * m.w, m.h - 0.022 * m.h); }
+    else { cx.textAlign = 'center'; cx.fillText(t, m.w / 2, y + cap); }
+    y += cap + lead;
+  }
+  cx.restore();
 }
 // Same as drone_pin.py pin_layout(): per-photo pin_len, line shortens to keep the badge in frame.
 function pinLayout(m) {
@@ -371,7 +399,10 @@ function draw() {
     // Outline on its own layer so the behind-mask can cut it (shadow included).
     const L = document.createElement('canvas'); L.width = cv.width; L.height = cv.height;
     const c = L.getContext('2d'), lw = outlineW(m) * s;
+    const fa = m.fill ?? (SZ.STYLE.outline_fill || 0);
+    if (fa) { c.fillStyle = `rgba(255,255,255,${fa})`; c.beginPath(); m.lot.forEach(([x, y], j) => j ? c.lineTo(x * s, y * s) : c.moveTo(x * s, y * s)); c.closePath(); c.fill(); }
     c.strokeStyle = SZ.STYLE.outline_color; c.lineJoin = c.lineCap = 'round'; c.lineWidth = Math.max(1, lw); shadowOn(c, lw);
+    if (SZ.STYLE.outline_dash) c.setLineDash([0.001, SZ.DASH_STEP * lw]);   // WHITEFOX land: dots
     const gaps = new Set(m.gaps || []), n = m.lot.length;
     c.beginPath();
     if (!gaps.size) { m.lot.forEach(([x, y], j) => j ? c.lineTo(x * s, y * s) : c.moveTo(x * s, y * s)); c.closePath(); }
@@ -384,9 +415,10 @@ function draw() {
   if (on('pin') && SZ.STYLE.pin !== 'none') {
     // Same as drone_pin.py badge(): square badge, ringed/solid circle, or the logo alone.
     const S = SZ.STYLE, { side, len } = pinLayout(m), lw = Math.max(2, Math.round(SZ.PIN_LINE * side));
-    const [tx, ty] = m.tip, bx = tx - side / 2, by = ty - len - side - (S.mark_gap || 0) * side, cyy = by + side / 2;
+    const tip = m.tip[0], tx = headX(m), ty = m.tip[1], bx = tx - side / 2, by = ty - len - side - (S.mark_gap || 0) * side, cyy = by + side / 2;
     cx.fillStyle = '#fff'; cx.fillRect(tx - lw / 2, ty - len, lw, len);
-    if (S.line_dot) { cx.beginPath(); cx.arc(tx, ty, 1.6 * lw, 0, 7); cx.fill(); }
+    if (Math.abs(tx - tip) >= 1) cx.fillRect(Math.min(tx, tip) - lw / 2, ty - lw / 2, Math.abs(tx - tip) + lw, lw);   // Amir elbow
+    if (S.line_dot) { cx.beginPath(); cx.arc(tip, ty, 1.6 * lw, 0, 7); cx.fill(); }
     const bw = Math.max(1, SZ.BADGE_BORDER * side), hasK = K.width > 1;
     cx.globalAlpha = S.fill_opacity; cx.fillStyle = SZ.BADGE_FILL;
     if (S.pin === 'mark') {
@@ -406,6 +438,13 @@ function draw() {
     }
   }
   drawPlaces(m);
+  drawNote(m);
+  const W2 = SZ.STYLE.watermark;
+  if (W2 && WM.width > 1) {
+    // Same as drone_pin.py watermark(): the logo in the corner of every photo.
+    const d = W2.h * m.h, dh = d * WM.height / WM.width;
+    cx.globalAlpha = W2.opacity ?? 0.6; cx.drawImage(WM, m.w - W2.cx * m.h - d / 2, m.h - W2.cy * m.h - dh / 2, d, dh); cx.globalAlpha = 1;
+  }
   cx.restore();
   if ((brushy() || tool === 'lasso') && mask) {
     // Show the hidden area in red while painting.
@@ -543,7 +582,7 @@ function hit(m, p) {
   const out = m.mode === 'outline' || m.mode === 'both', pin = m.mode === 'pin' || m.mode === 'both';
   for (const pl of site.places || []) { const st = (m.places || {})[pl.id]; if (st && st.on && Math.hypot(st.xy[0] - p[0], st.xy[1] - p[1]) < tol) return { kind: 'place', id: pl.id }; }
   if (pin && Math.hypot(m.tip[0] - p[0], m.tip[1] - p[1]) < tol * 1.3) return { kind: 'tip' };
-  if (pin) { const { side, len } = pinLayout(m); const by = m.tip[1] - len - side - (SZ.STYLE.mark_gap || 0) * side; if (Math.abs(p[0] - m.tip[0]) < side / 2 && p[1] > by && p[1] < by + side) return { kind: 'badge' }; }
+  if (pin) { const { side, len } = pinLayout(m); const by = m.tip[1] - len - side - (SZ.STYLE.mark_gap || 0) * side; if (Math.abs(p[0] - headX(m)) < side / 2 && p[1] > by && p[1] < by + side) return { kind: 'badge' }; }
   if (out) {
     const i = m.lot.findIndex(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < tol); if (i >= 0) return { kind: 'corner', i };
     for (let j = 0; j < m.lot.length; j++) { const [d, t] = segDist(p, m.lot[j], m.lot[(j + 1) % m.lot.length]); if (d < tol) return { kind: 'edge', j, t }; }
@@ -614,7 +653,11 @@ cv.onmousemove = e => {
   if (!drag) return;
   const m = M(), p = toImg(e), dx = p[0] - drag.start[0], dy = p[1] - drag.start[1];
   if (drag.kind === 'tip') m.tip = p;
-  else if (drag.kind === 'badge') m.pin_len = Math.max(0.02, (m.tip[1] - p[1] - SZ.BADGE * m.h * (0.5 + (SZ.STYLE.mark_gap || 0))) / m.h);
+  else if (drag.kind === 'badge') {
+    m.pin_len = Math.max(0.02, (m.tip[1] - p[1] - SZ.BADGE * m.h * (0.5 + (SZ.STYLE.mark_gap || 0))) / m.h);
+    // Elbow clients (Amir): drag sideways too; within half a badge of the tip it snaps back straight.
+    if (SZ.STYLE.elbow) { const off = p[0] - m.tip[0]; m.pin_dx = Math.abs(off) < SZ.BADGE * m.h / 2 ? 0 : off / m.w; }
+  }
   else if (drag.kind === 'corner') { m.lot[drag.i] = p; m.manual = true; }
   else if (drag.kind === 'edge' || drag.kind === 'body') { m.lot = drag.lot0.map(([x, y]) => [x + dx, y + dy]); m.manual = true; }
   else if (drag.kind === 'place') { const st = m.places[drag.id]; st.xy = p; st.manual = true; }
@@ -687,6 +730,13 @@ lf.onchange = () => save();
 document.getElementById('boall').onclick = async () => {
   names.forEach(n => marks[n].blackout = +bo.value); await api('/save', marks); flash(`blackout ${Math.round(bo.value * 100)}% on every photo`);
 };
+const olf = document.getElementById('olf'), nt = document.getElementById('nt');
+olf.oninput = () => { M().fill = +olf.value; draw(); };
+olf.onchange = () => save();
+nt.innerHTML = '<option value="">None</option>' + Object.entries(SZ.STYLE.notes || {}).map(([k, v]) => `<option value="${k}">${v.label || k}</option>`).join('');
+nt.onchange = () => { M().disclaimer = nt.value; draw(); save(); };
+// Fill and Note only for clients that use them (Amir's disclaimers and apartment wash).
+if (!Object.keys(SZ.STYLE.notes || {}).length) { document.getElementById('noteg').style.display = 'none'; document.getElementById('fillg').style.display = 'none'; }
 const ow = document.getElementById('ow');
 ow.oninput = () => { M().outline_w = +ow.value; draw(); };
 ow.onchange = () => save();

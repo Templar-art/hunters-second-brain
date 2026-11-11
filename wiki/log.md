@@ -1844,3 +1844,6 @@ Hunter asked to remove VELLAN: deleted the body-device-store wiki page and its i
 
 ## [2026-11-11] query | How WHITEFOX does drone photos
 Audited 23 WHITEFOX Gold Coast listings (647 photos). Every drone shot has a ring + glyph pin on a thin line ending in a dot, plus a big corner watermark on all photos. Labels are sparse and sentence case, and land gets a dotted outline. New page [[whitefox]]; references are in raw/whitefox/pin-refs/.
+
+## [2026-11-11] update | Drone Pin: WHITEFOX profile + Amir modes
+New WHITEFOX profile (ring + glyph pin with a dot, dotted land outline, corner watermark on every photo). The Amir profile gained the apartment elbow leader, a white Fill wash and disclaimer notes. New Drone Pin keys: elbow/pin_dx, outline_dash, outline_fill/fill, notes/note_default/note_font/disclaimer, watermark. Test-rendered on the Somerset Dr previews and checked in the review page. See [[drone-photo-pin]].

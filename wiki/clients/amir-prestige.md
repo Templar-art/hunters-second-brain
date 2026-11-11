@@ -2,7 +2,7 @@
 type: client
 tags: [client, real-estate, agency, drone, pin, gold-coast, prestige]
 status: prospect
-updated: 2026-11-10
+updated: 2026-11-11
 ---
 
 # Amir Prestige
@@ -37,6 +37,7 @@ On 2026-11-10 we went through all 18 residential listings on their site (about 4
   - On top-down obliques the outline sits over the **B&W surround** with the lot in colour, plus centred bottom text: "Boundaries and dimensions are approximate only / Interested parties should conduct their own independent enquiries."
   - On acreage it is used in full colour with no mono surround and no text.
 - **Multi-lot land:** each lot gets its own **semi-transparent colour fill** (rust, green, ochre, burgundy), a white border, and a centred white **address in uppercase**. A grey-box disclaimer sits top-left: "**DISCLAIMER:** BOUNDARIES INDICATIVE ONLY".
+- **Drone Pin** (2026-11-11): the profile now covers these looks. Drag the ap. sideways for the apartment elbow. Use the Fill slider (~0.25) and the 'Outlines indicative' note for the unit band. Top-down outlines get the boundaries disclaimer by default, and blackout runs the B&W surround. Set Note to None for acreage.
 - **Never seen:** a dot or pin head on the ap. pin, a distance or km label, coloured or teal lines, or a circle or badge behind the ap.
 
 Profile: `projects/drone-pin/clients/amir-prestige.json`, **unconfirmed**. The mono surround is in the profile but `blackout` defaults to 0, so set the slider per photo on the top-downs only. A test render on a 21 Albany still matched their look. See [[drone-photo-pin]].

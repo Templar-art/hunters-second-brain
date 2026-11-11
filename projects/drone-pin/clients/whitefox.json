@@ -1,0 +1,37 @@
+{
+ "name": "WHITEFOX",
+ "aliases": [
+  "White Fox",
+  "Whitefox Real Estate",
+  "WHITEFOX Gold Coast"
+ ],
+ "confirmed": false,
+ "notes": "Built 2026-11-11 from their own listing drones (23 Gold Coast listings, goldcoast.whitefoxrealestate.com.au; refs in raw/whitefox/pin-refs). Pin: their square glyph inside a thin white ring, see-through, about 7.5% of photo height, touching a thin white line that ends in a small dot on the house. Every photo also carries a big ring watermark, about 18% of height, at 60% opacity, centred 0.23 H in from the right and 0.16 H up from the bottom. Location labels are light sentence case with no dot and no distance (Poppins Light stands in for their sans). Land gets a dotted outline. The logo was redrawn from their photos (logos/whitefox-*.png), so ask for vector brand files before print.",
+ "style": {
+  "pin": "mark",
+  "glyph": "projects/drone-pin/logos/whitefox-ring-white.png",
+  "fill_opacity": 0,
+  "badge": 0.075,
+  "pin_line": 0.044,
+  "mark_gap": 0,
+  "line_dot": true,
+  "outline_w": 0.003,
+  "outline_dash": true,
+  "surround": "dark",
+  "blackout": 0,
+  "topdowns": true,
+  "location_pins": true,
+  "place_dot": false,
+  "place_upper": false,
+  "place_dist": false,
+  "place_font": "~/Library/Fonts/Poppins-Light.ttf",
+  "watermark": {
+   "glyph": "projects/drone-pin/logos/whitefox-watermark-white.png",
+   "h": 0.18,
+   "opacity": 0.6,
+   "cx": 0.23,
+   "cy": 0.16
+  }
+ },
+ "agents": {}
+}

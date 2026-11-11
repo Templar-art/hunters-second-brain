@@ -20,4 +20,4 @@ We pulled all 23 current Gold Coast listings (647 gallery photos). References ar
 - **Not seen:** lot outlines on houses, black & white surrounds, distance labels, any colour in the graphics, or text addresses on the pin.
 - **Gallery habit, not drone-specific:** many listings open with or mix in **black & white hero shots**.
 
-There is no Drone Pin profile for WHITEFOX yet. To build one, we'd need a ring + glyph mark with no gap, a line ending in a dot, and the big corner watermark as a second layer. See [[drone-photo-pin]].
+**Drone Pin profile** (built 2026-11-11, unconfirmed): `projects/drone-pin/clients/whitefox.json`. It uses a ring + glyph mark at 7.5% of photo height with no gap, a line ending in a dot, Poppins Light sentence-case labels with no dot or distance, a dotted outline, and the 18% corner watermark at 60% opacity on every export. The logos (`logos/whitefox-ring-white.png`, `whitefox-watermark-white.png`) were redrawn from their photos, so ask for vector files. See [[drone-photo-pin]].
