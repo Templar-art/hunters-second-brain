@@ -2,7 +2,7 @@
 type: concept
 tags: [tool, drone, kollosche, pin, outline, cadastre]
 status: built-untested-on-live-job
-updated: 2026-11-09
+updated: 2026-11-11
 ---
 
 # Drone photo pinning
@@ -65,6 +65,8 @@ Jobs live in `projects/drone-pin/jobs/<folder>`. Reopening the same folder resum
 
 ## Photos with no drone GPS (2026-11-11)
 Exports made without "All Metadata" (for example the Nassau "to be pinned" JPGs) carry no DJI position data. They used to load as "no GPS", and the review page then refused to draw or edit them, which Hunter reported as "Amir won't let me pin or outline". They now work **by hand**. The pin starts mid-frame, and dragging the tip just moves it, with no camera solve. Draw the lot with **Draw outline (D)**. A location pin added on such a photo stays on that photo only, with no distance. Nothing gets auto-placed and "set house for every photo" doesn't apply.
+
+Before falling back to by-hand, the tool now checks whether the export names its source (Lightroom writes `xmpMM:PreservedFileName` for a bracket frame and `crs:RawFileName` for the HDR merge). If that DJI DNG sits beside the export or one folder up, it borrows the position from it. Every bracket frame shares one drone position. This rescued 33 Stellar Drive, Bonogin (WHITEFOX, 2026-11-11), where the `Edited/` JPGs had no XMP but the DNGs were in the folder above. Note that the register lists that address as **33 Stella Place**: Stellar Drive doesn't exist, and the drone GPS lands about 100 m from Stella Place's lot.
 
 ## Client fit
 - The top-down outline shot is worth making for most agencies, but **Kollosche doesn't use top-downs** (see [[kollosche]]).

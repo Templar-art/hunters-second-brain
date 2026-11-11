@@ -1850,3 +1850,6 @@ New WHITEFOX profile (ring + glyph pin with a dot, dotted land outline, corner w
 
 ## [2026-11-11] fix | Drone Pin: no-GPS photos editable by hand
 The Nassau JPGs had no DJI metadata, and the review page blocked pin and outline editing on them. Now the pin drags freely, outlines are drawn by hand, and labels are per photo. Verified on a copy of the job and with a full render. See [[drone-photo-pin]].
+
+## [2026-11-11] ingest | Drone Pin: source-DNG position fallback (33 Stella Pl Bonogin, WHITEFOX)
+Edited HDR exports missing DJI XMP now borrow position from the DNG they name. Bonogin job opened with the WHITEFOX profile.
