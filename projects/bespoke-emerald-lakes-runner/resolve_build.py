@@ -25,7 +25,7 @@ def build(name="Emerald Lakes runner"):
     V1 = tl.GetItemListInTrack("video", 1); V2 = tl.GetItemListInTrack("video", 2); A1 = tl.GetItemListInTrack("audio", 1)
     ANG = {"W": (1.0, 0, 0), "P": (1.4, 0, 0), "C": (1.9, 0, 0)}
     for k, it in enumerate(V1):
-        it.GetNodeGraph().SetLUT(1, "Sony/10x_Master_look.cube")
+        pass  # Hunter grades: left in S-Log3, no LUT
         if k:
             z, px, ty = ANG[E[k-1]["angle"]]
             if z != 1.0: it.SetProperty("ZoomX", z); it.SetProperty("ZoomY", z)

@@ -29,7 +29,7 @@ def build(name="Emerald Lakes interview"):
     V1i = V1 if OFF == 0 else V1[1:]
     for it, s in zip(V1i, E):
         z, px, ty = ANG[s["angle"]]
-        it.GetNodeGraph().SetLUT(1, "Sony/10x_Master_look.cube")
+        pass  # Hunter grades: left in S-Log3, no LUT
         if z != 1.0:
             it.SetProperty("ZoomX", z); it.SetProperty("ZoomY", z); it.SetProperty("Pan", px); it.SetProperty("Tilt", ty)
     for it in V2:
