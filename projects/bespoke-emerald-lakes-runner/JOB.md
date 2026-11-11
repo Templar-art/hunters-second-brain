@@ -7,3 +7,5 @@ Status: CHECK render sent, ungraded (Hunter grades). 26.4 s.
 - Todo on final: loudnorm -14 LUFS / -1 dBTP after grade.
 ## Ledger
 No credits spent.
+
+- 2026-11-11: Hunter adds B-roll himself. Delivered talking-only 4K ProRes 422 HQ (V2 cleared, no Smooth Cuts, ungraded).

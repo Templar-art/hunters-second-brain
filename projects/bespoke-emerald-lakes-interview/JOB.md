@@ -11,3 +11,5 @@
 No credits spent.
 
 - 2026-11-11: Hunter reversed no-B-roll: every cut covered by 3 B-roll clips back-to-back (C3917→ in filename order, 0.8 s each, starting ~1 s before the join). Smooth Cuts removed. 51 s.
+
+- 2026-11-11: Hunter adds B-roll himself. Delivered talking-only 4K ProRes 422 HQ (V2 cleared, no Smooth Cuts, ungraded).
