@@ -13,13 +13,13 @@ def snap(t, d, lim=0.35):
     return t + 0.05*d
 # (start, end, angle, broll list [(clip, clip_in_s, cover_from_s, cover_to_s)] in interview time)
 SEG = [
- (46.90, 48.80, "W",  []),
- (48.95, 52.95, "W", []),
+ (47.00, 48.80, "W",  []),
+ (48.99, 52.95, "W", []),
  (53.25, 55.85, "W", []),
- (55.95, 59.30, "W", []),
+ (55.99, 59.30, "W", []),
  (59.35, 60.95, "W", []),
- (117.62, 119.95, "W", []),
- (120.10, 124.05, "W", []),
+ (69.40, 71.95, "W",  []),
+ (118.98, 124.35, "W", []),   # cafe Q+A in one piece (whisper times drift ~1.2 s here; energy-checked)
  (133.15, 136.05, "W",  []),
  (136.05, 138.75, "W", []),
  (192.30, 198.20, "W",  []),
@@ -30,7 +30,7 @@ SEG = [
 FPS = 25; fr = lambda t: int(round(t*FPS)); out = []; rec = 0
 for i, (a, b, ang, br) in enumerate(SEG):
     prev_b = SEG[i-1][1] if i else -9; next_a = SEG[i+1][0] if i+1 < len(SEG) else 999
-    a2 = a if a - prev_b < 0.6 else snap(a, -1)   # near-contiguous trims (um removal): exact word edges
+    a2 = a - 0.02   # starts sit exactly on the first word (snapping back pulled in 'yep', 'take two', 'um')
     b2 = b if next_a - b < 0.6 else snap(b, +1)
     if out and fr(a2) < out[-1]["src_out"] and abs(a - SEG[i-1][1]) < 0.1: a2 = SEG[i-1][1]  # contiguous
     f0, f1 = fr(a2), fr(b2)
@@ -39,6 +39,6 @@ for i, (a, b, ang, br) in enumerate(SEG):
         s = rec + (fr(c0) - f0 if c0 else 0); e = rec + (fr(c1) - f0 if c1 else f1 - f0)
         brs.append({"clip": clip, "src_in": fr(cin), "rec_in": s, "rec_out": e})
     out.append({"src_in": f0, "src_out": f1, "angle": ang, "rec": rec, "broll": brs}); rec += f1 - f0
-OPEN = {"clip": "C8194.MP4", "src_in": 0, "src_out": 203}  # full walk-in line "If you're a runner... Here's why.", own audio, before the interview
+OPEN = {"clip": "C8194.MP4", "src_in": 0, "src_out": 0}  # opener removed: C8194 belongs to the other video  # full walk-in line "If you're a runner... Here's why.", own audio, before the interview
 json.dump({"opener": OPEN, "segs": out}, open("edl.json", "w"), indent=1)
 print("total", rec/FPS, "s")

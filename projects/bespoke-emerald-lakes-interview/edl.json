@@ -2,11 +2,11 @@
  "opener": {
   "clip": "C8194.MP4",
   "src_in": 0,
-  "src_out": 203
+  "src_out": 0
  },
  "segs": [
   {
-   "src_in": 1162,
+   "src_in": 1174,
    "src_out": 1220,
    "angle": "W",
    "rec": 0,
@@ -16,84 +16,84 @@
    "src_in": 1224,
    "src_out": 1324,
    "angle": "W",
-   "rec": 58,
+   "rec": 46,
    "broll": []
   },
   {
    "src_in": 1331,
    "src_out": 1396,
    "angle": "W",
-   "rec": 158,
+   "rec": 146,
    "broll": []
   },
   {
    "src_in": 1399,
    "src_out": 1482,
    "angle": "W",
-   "rec": 223,
+   "rec": 211,
    "broll": []
   },
   {
-   "src_in": 1484,
+   "src_in": 1483,
    "src_out": 1526,
    "angle": "W",
-   "rec": 306,
+   "rec": 294,
    "broll": []
   },
   {
-   "src_in": 2936,
-   "src_out": 2999,
+   "src_in": 1735,
+   "src_out": 1804,
    "angle": "W",
-   "rec": 348,
+   "rec": 337,
    "broll": []
   },
   {
-   "src_in": 3002,
-   "src_out": 3105,
+   "src_in": 2974,
+   "src_out": 3110,
    "angle": "W",
-   "rec": 411,
+   "rec": 406,
    "broll": []
   },
   {
-   "src_in": 3323,
+   "src_in": 3328,
    "src_out": 3401,
    "angle": "W",
-   "rec": 514,
+   "rec": 542,
    "broll": []
   },
   {
    "src_in": 3401,
    "src_out": 3477,
    "angle": "W",
-   "rec": 592,
+   "rec": 615,
    "broll": []
   },
   {
-   "src_in": 4805,
+   "src_in": 4807,
    "src_out": 4956,
    "angle": "W",
-   "rec": 668,
+   "rec": 691,
    "broll": []
   },
   {
-   "src_in": 5357,
+   "src_in": 5367,
    "src_out": 5604,
    "angle": "W",
-   "rec": 819,
+   "rec": 840,
    "broll": []
   },
   {
-   "src_in": 5892,
+   "src_in": 5893,
    "src_out": 6010,
    "angle": "W",
-   "rec": 1066,
+   "rec": 1077,
    "broll": []
   },
   {
    "src_in": 6022,
    "src_out": 6111,
    "angle": "W",
-   "rec": 1184,
+   "rec": 1194,
    "broll": []
   }
  ]
