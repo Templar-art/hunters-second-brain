@@ -1,0 +1,100 @@
+{
+ "opener": {
+  "clip": "C8194.MP4",
+  "src_in": 0,
+  "src_out": 203
+ },
+ "segs": [
+  {
+   "src_in": 1162,
+   "src_out": 1220,
+   "angle": "W",
+   "rec": 0,
+   "broll": []
+  },
+  {
+   "src_in": 1224,
+   "src_out": 1324,
+   "angle": "W",
+   "rec": 58,
+   "broll": []
+  },
+  {
+   "src_in": 1331,
+   "src_out": 1396,
+   "angle": "W",
+   "rec": 158,
+   "broll": []
+  },
+  {
+   "src_in": 1399,
+   "src_out": 1482,
+   "angle": "W",
+   "rec": 223,
+   "broll": []
+  },
+  {
+   "src_in": 1484,
+   "src_out": 1526,
+   "angle": "W",
+   "rec": 306,
+   "broll": []
+  },
+  {
+   "src_in": 2936,
+   "src_out": 2999,
+   "angle": "W",
+   "rec": 348,
+   "broll": []
+  },
+  {
+   "src_in": 3002,
+   "src_out": 3105,
+   "angle": "W",
+   "rec": 411,
+   "broll": []
+  },
+  {
+   "src_in": 3323,
+   "src_out": 3401,
+   "angle": "W",
+   "rec": 514,
+   "broll": []
+  },
+  {
+   "src_in": 3401,
+   "src_out": 3477,
+   "angle": "W",
+   "rec": 592,
+   "broll": []
+  },
+  {
+   "src_in": 4805,
+   "src_out": 4956,
+   "angle": "W",
+   "rec": 668,
+   "broll": []
+  },
+  {
+   "src_in": 5357,
+   "src_out": 5604,
+   "angle": "W",
+   "rec": 819,
+   "broll": []
+  },
+  {
+   "src_in": 5892,
+   "src_out": 6010,
+   "angle": "W",
+   "rec": 1066,
+   "broll": []
+  },
+  {
+   "src_in": 6022,
+   "src_out": 6111,
+   "angle": "W",
+   "rec": 1184,
+   "broll": []
+  }
+ ]
+}
