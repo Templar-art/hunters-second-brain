@@ -19,20 +19,21 @@ This is Hunter's second approval list, QC'd on 12 Nov (see QC-2026-11-12.md). On
 | 13 | Wed 25 Nov | 37 Southaven Dr | Carousel | `carousels/37-southaven-dr/` | ✅ scheduled |
 | 14 | Thu 26 Nov | 4-6 Buckingham Way | Reel | `To Post/4-6 Buckingham Way | Kollosche/Reel.mp4 (Frame.io delivered, 10 Nov)` | ✅ scheduled |
 | 15 | Fri 27 Nov | Elanora Ave (2/7A) | Main video | `To Post/2:7A Elanora…/Video/Saltpm, _ Solis _ Townhouse 1 _ Main.mp4` | ✅ scheduled |
-| 16 | Sat 28 Nov | 5 Esther Place | Cinematic reel (720p) | `~/Downloads/Kollosche Ester Place/Cinematic Reel.mp4` | pending |
-| 17 | Sun 29 Nov | 34 Albany (Coastal) | Flythrough reel | `~/Desktop/Coastal 34 Albany - FCP/11 …/FINAL - Flythrough reel (logo + SFX, no pop-ups).mp4` | pending |
-| 18 | Mon 30 Nov | 10 Australis Ct | Carousel | `carousels/10-australis-ct/` | pending |
-| 19 | Tue 1 Dec | 13 Mayra Ct | Agent talking reel | `To Post/13 Mayra Court…/Agent Talking Reel.mp4` | pending |
-| 20 | Wed 2 Dec | 84 Southaven Dr | Reel | `To Post/84 Southaven Drive | Belle/84 Southaven Drive Reel Video.mp4` | pending |
-| 21 | Thu 3 Dec | Solis | Carousel | `carousels/solis-673-casuarina-way/` | pending |
-| 22 | Fri 4 Dec | Elanora Ave | Reel | `Ready to Post/10 … Elanora …/Elanora Ave Pottsville.mp4` | pending |
-| 23 | Sat 5 Dec | 10 Australis Ct | Reel | `Ready to Post/05 … 10 Australis Ct (Reel)/10 Australis Ct.mp4` | pending |
-| 24 | Sun 6 Dec | 5 Esther Place | Flythrough reel (720p) | `~/Downloads/Kollosche Ester Place/Flythrough Reel.mp4` | pending |
+| 16 | Sat 28 Nov | 5 Esther Place | Cinematic reel (720p) | `~/Downloads/Kollosche Ester Place/Cinematic Reel.mp4` | ✅ scheduled |
+| 17 | Sun 29 Nov | 34 Albany (Coastal) | Flythrough reel | `~/Desktop/Coastal 34 Albany - FCP/11 …/FINAL - Flythrough reel (logo + SFX, no pop-ups).mp4` | ✅ scheduled |
+| 18 | Mon 30 Nov | 10 Australis Ct | Carousel | `carousels/10-australis-ct/` | ✅ scheduled |
+| 19 | Tue 1 Dec | 13 Mayra Ct | Agent talking reel | `To Post/13 Mayra Court…/Agent Talking Reel.mp4` | ✅ scheduled |
+| 20 | Wed 2 Dec | 84 Southaven Dr | Reel | `To Post/84 Southaven Drive | Belle/84 Southaven Drive Reel Video.mp4` | ✅ scheduled |
+| 21 | Thu 3 Dec | Solis | Carousel | `carousels/solis-673-casuarina-way/` | ✅ scheduled |
+| 22 | Fri 4 Dec | Elanora Ave | Reel | `Ready to Post/10 … Elanora …/Elanora Ave Pottsville.mp4` | ✅ scheduled |
+| 23 | Sat 5 Dec | 10 Australis Ct | Reel | `Ready to Post/05 … 10 Australis Ct (Reel)/10 Australis Ct.mp4` | ✅ scheduled |
+| 24 | Sun 6 Dec | 5 Esther Place | Flythrough reel (720p) | `~/Downloads/Kollosche Ester Place/Flythrough Reel.mp4` | ✅ scheduled |
 
 ## Scheduling log (12 Nov)
 - 1–7 scheduled on IG web as @10xrealestate_. Big mains re-encoded to 1080p CRF 18 first (IG caps at 1080p) so they upload in ~5 min.
 - #8 failed with "couldn't be scheduled"; after the reload the browser came back on @10xconstruction_ and @10xrealestate_ wasn't in the switcher. Nothing went to the construction page (the draft was discarded).
 - 8–15 scheduled after the account was switched back. #16 (Esther cinematic, 720p Frame.io file) failed twice, then IG threw "reopen your browser window" and the reload landed on @10xconstruction_ again. Clean remuxes (cover stream stripped) are ready as v16c/v24c.
+- 16–24 scheduled 12 Nov after a second account switch. All 24 are now queued on @10xrealestate_, 13 Nov to 6 Dec at 7pm. Esther reels went up as clean remuxes; #20 needed IG's "Try again". Mayra agent reel caption: "in the agent's own words".
 - Captions written fresh: Australis main, Elanora main, Esther cinematic ("from above and inside"; the cover frame is daytime, so "after dark" was dropped).
 - Captions written fresh: 13 Mayra main (plunge pool + sauna, from the frame). Handles verified: @realspecialists, @coastalpropertyagents (34 Albany).
 
