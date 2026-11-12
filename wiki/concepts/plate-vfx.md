@@ -2,7 +2,7 @@
 type: concept
 tags: [blender, vfx, camera-tracking, drone, birds, pipeline]
 status: active
-updated: 2026-11-02
+updated: 2026-11-12
 ---
 
 # plate-vfx — CG into real footage
@@ -10,7 +10,7 @@ updated: 2026-11-02
 Built 2026-10-21 from the [[extra-salt-kollosche-birds]] job. Hunter's brief was "improve this skill and workflow like crazy". It is a local, $0 pipeline that composites CG birds into real footage and guarantees the plate's pixels and grade stay untouched.
 
 - Code: [projects/plate-vfx/](../../projects/plate-vfx/README.md)
-- Skill: `plate-vfx` (`~/.claude/skills/plate-vfx/SKILL.md`)
+- Skill: `plate-vfx` (`skills-local/user/plate-vfx/SKILL.md`, parked 2026-11-12, not auto-loaded)
 - Benchmark: the Kollosche drone wide (`projects/plate-vfx/bench/kollosche`)
 
 ## Pipeline

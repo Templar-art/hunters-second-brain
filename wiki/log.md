@@ -1862,3 +1862,6 @@ Lux (Ryan Taubert) 63 s main edit. Beat grid unusable on a low-transient track (
 
 ## [2026-11-12] ingest | WHITEFOX location label layout
 Left-aligned labels on long lines, from their Arrowtown wide; Drone Pin gained place_align, place_len, place_cap and per-photo line lengths.
+
+## [2026-11-12] migrate | Custom skills parked in skills-local
+Every custom skill (42 user-level, project `harvest`, vendored Higgsfield set, `impeccable`, `skills-lock.json`) moved to `skills-local/`, gitignored and removed from the repo. Nothing auto-loads; see [[claude-code-setup]].

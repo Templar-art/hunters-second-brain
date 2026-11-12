@@ -2,7 +2,7 @@
 type: concept
 tags: [claude, infrastructure, security, tooling]
 status: audited
-updated: 2026-10-26
+updated: 2026-11-12
 ---
 
 # Claude Code Setup
@@ -20,6 +20,7 @@ The standing map of Hunter's Claude Code install — what is configured, where i
 | Skills | `~/.claude/skills/` | 35 as of 10 Aug; only `caveman-compress`, `impeccable`, `webapp-testing` ship executable code, and none of it auto-runs |
 | MCP servers | `~/.claude.json` | **none global** since 2026-10-19; all six (`magnific`, `10x-crm`, `skill-seekers`, `shopify-dev`, `gethookd`, `blender`) scoped to this vault. Kept in `~/.claude.json`, not `.mcp.json`, because the GetHookd entry carries a bearer token. `blender` still runs as `uvx blender-mcp`; upstream renamed it to `mcp-for-blender`, but the old name keeps working. Its socket (localhost:9876) has no authentication, and `BLENDER_MCP_SAFE_MODE=1` is available but not set ([[claude-blender-guides-2026-10]]) |
 | Parked skills | `~/.claude/skills-parked/` | 13 animation/web-dev skills moved out of global 2026-10-19; README there says how to revive |
+| All custom skills | `skills-local/` in the vault | **⚠️ supersedes the Skills row above (2026-11-12):** `~/.claude/skills/` is now empty. All 42 user skills, the project `harvest` skill, the vendored Higgsfield set, `impeccable` and `skills-lock.json` sit in `skills-local/` (gitignored, absent from the GitHub repo). To revive one, move its folder back to `~/.claude/skills/` |
 | Scheduled agents | `~/Library/LaunchAgents/com.10x.aios.*` | see [[agentic-os]] |
 
 Plugins were pruned 2026-07-27 — the dev-tooling packs and both output styles were injecting ~6–7k tokens of skill descriptions into every request in a vault that is not a software project. They stay registered but disabled; flip to `true` to revive.

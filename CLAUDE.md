@@ -2,7 +2,7 @@
 
 This repo is **Hunter's Second Brain**: an Obsidian vault structured as an **LLM-maintained wiki** (Karpathy pattern). It is not a software project — nothing to build, lint, or test. Claude maintains the wiki; Hunter curates sources, directs analysis, and asks questions.
 
-**Response style — ALWAYS:** caveman ultra (`~/.claude/skills/caveman`, level `ultra`). Every conversation in this vault, every response. Terse fragments, abbreviate prose (DB/config/req), arrows for causality. Wiki PAGES + code + commits stay normal prose. Off only if Hunter say "stop caveman".
+**Response style — ALWAYS:** caveman ultra (skill parked at `skills-local/user/caveman`, level `ultra`). Every conversation in this vault, every response. Terse fragments, abbreviate prose (DB/config/req), arrows for causality. Wiki PAGES + code + commits stay normal prose. Off only if Hunter say "stop caveman".
 
 **Who:** Hunter, videographer at 10x Visuals (founded by Tyson, CEO) (10xvisuals.com.au), hunter@10xvisuals.com.au. Start any session's orientation at `wiki/overview.md` and `wiki/index.md`.
 
@@ -47,7 +47,7 @@ Daily notes `YYYY-MM-DD.md`; `.base`/`.canvas` are plugin documents — don't ha
 
 ## Higgsfield / AI generation
 The substantive tasks are AI image/video generation for real-estate clients. Routing, models, and hard rules: `wiki/concepts/higgsfield-pipelines.md` + `wiki/concepts/staging-rules.md`; full KB in auto-memory `ai-realestate-workflow.md`.
-- **Vendored skills** in `.agents/skills/` (pinned by `skills-lock.json`) are read-only vendored content — update via sync tooling, never hand-edit. Read the relevant `SKILL.md` before generating; discover models with unfiltered `higgsfield model list` / `workflow list`.
+- **Skills are parked, not loaded** (2026-11-12): every custom skill (user-level, project-level and the vendored Higgsfield set + `skills-lock.json`) lives in `skills-local/`, which is gitignored and never goes to GitHub. Nothing auto-triggers; read a `SKILL.md` there by hand when a job needs it. Discover models with unfiltered `higgsfield model list` / `workflow list`.
 - **Route before generating:** full-frame generative for interiors/staging/renders/tight exteriors; masked inpaint for targeted edits on detail-heavy exteriors. ❌ Never full-frame a drone wide.
 - **Job tracking (Jarvis):** every 10x job gets a `JOB.md` in its job folder — copy `projects/jarvis/JOB-template.md` at intake, update on EVERY state change (generation, approval, redo, delivery, every credit spent). Cost tally always current: spends go in JOB.md `## Ledger` via `projects/gen-runner/gen_runner.py` (`run` for Higgsfield batches, `log` for Magnific/web), and the header is derived from it. Spec: `docs/superpowers/specs/2026-07-10-jarvis-phase2-job-tracking-design.md`.
 

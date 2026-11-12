@@ -142,3 +142,6 @@ projects/floorplan-app/jobs/
 qc-*.jpg
 qc-*.json
 projects/salerno-st-sfx/graphics/out/ol*/
+
+# all custom Claude skills, parked 2026-11-12 — local only, never in the repo
+/skills-local/
