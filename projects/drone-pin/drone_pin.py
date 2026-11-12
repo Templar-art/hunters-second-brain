@@ -720,6 +720,15 @@ def cmd_review(a):
                 return self.send(json.dumps({"done": done}).encode())
             with lock:
                 marks = load(job, "marks.json")
+                if self.path == "/wm":
+                    # No WM button: the watermark on/off per photo (save() keeps a missing key, so it needs its own route).
+                    for n in body["files"]:
+                        if body["on"]:
+                            marks[n].pop("watermark", None)
+                        else:
+                            marks[n]["watermark"] = False
+                    save(job, "marks.json", marks)
+                    return self.send(b"{}")
                 if self.path == "/save":
                     # A page opened before a relink doesn't know the copy's path or that its logo is
                     # baked in: keep those server-side fields unless the page sends them.

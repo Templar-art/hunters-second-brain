@@ -86,6 +86,7 @@
       <button data-mode="outline">Outline <small>2</small></button>
       <button data-mode="both">Both <small>3</small></button>
       <button data-mode="none">None <small>4</small></button>
+      <button id="nowm" title="No watermark on this photo (e.g. the logo is already baked in). Shift-click: every photo.">No WM <small>W</small></button>
     </div>
     <div class="grp">
       <button data-tool="edit">Edit <small>E</small></button>
@@ -318,7 +319,19 @@ function show(i) {
   list(); modeBtns(); ow.value = m.outline_w ?? 1; bo.value = m.blackout ?? 0; boShow(bo.value); lf.value = m.lift ?? 0;
   olf.value = m.fill ?? (SZ.STYLE.outline_fill || 0); nt.value = noteKey(m) || '';
 }
-function modeBtns() { document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === M().mode)); }
+function modeBtns() {
+  document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === M().mode));
+  const w = document.getElementById('nowm'); w.style.display = SZ.STYLE.watermark ? '' : 'none'; w.classList.toggle('on', M().watermark === false);
+}
+async function toggleWm(all) {
+  const off = M().watermark !== false;   // the new state: true = no watermark
+  const files = all ? names : [names[cur]];
+  for (const n of files) { if (off) marks[n].watermark = false; else delete marks[n].watermark; }
+  modeBtns(); draw();
+  await api('/wm', { files, on: !off });
+  flash(`watermark ${off ? 'off' : 'on'}${all ? ' on every photo' : ''}`);
+}
+document.getElementById('nowm').onclick = e => toggleWm(e.shiftKey);
 const brushy = () => tool === 'brush' || tool === 'erase';
 const outlineW = m => Math.max(2, Math.round(SZ.OUTLINE_W * (m.outline_w ?? 1) * m.w));
 function setTool(t) {
@@ -806,6 +819,7 @@ window.onkeydown = e => {
   if (e.key === 'ArrowRight') show(cur + 1);
   else if (e.key === 'ArrowLeft') show(cur - 1);
   else if (e.key === 'Enter') document.getElementById('approve').click();
+  else if (e.key === 'w' || e.key === 'W') toggleWm(e.shiftKey);
   else if ('1234'.includes(e.key) && e.key.length === 1) setMode(['pin', 'outline', 'both', 'none'][+e.key - 1]);
   else if (e.key === 'e') setTool('edit');
   else if (e.key === 'b') setTool('brush');
