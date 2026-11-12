@@ -177,10 +177,10 @@ Back on Southaven Drive. 84, Helensvale, for @bellepropertyhopeisland.
 Up in the Elanora hills at 4-6 Buckingham Way. For @kollosche_.
 
 ### 21 Albany main video
-21 Albany, with the whole coast from the balcony and the sunset doing the rest. Filmed for @realspecialists. (Verify the handle.)
+21 Albany, with the whole coast from the balcony and the sunset doing the rest. Filmed for @realspecialists.
 
 ### 34 Albany flythrough reel
-34 Albany in one take, from the street to the pool. For @coastal. (Verify the handle.)
+34 Albany in one take, from the street to the pool. For @coastalpropertyagents.
 
 ### 59 Cylinders Dr model shoot reel
 Back at 59 Cylinders Drive. Kingscliff, one morning, nothing staged but the light. @saltpropertymgt

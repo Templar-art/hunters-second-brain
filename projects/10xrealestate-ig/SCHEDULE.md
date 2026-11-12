@@ -2,32 +2,37 @@
 
 This is Hunter's second approval list, QC'd on 12 Nov (see QC-2026-11-12.md). One post a day at 7pm, 24 posts running 13 Nov to 6 Dec. The same listing never runs two days in a row.
 
-| # | Date (7pm) | Listing | Format | File |
-|---|---|---|---|---|
-| 1 | Fri 13 Nov | 5 Esther Place | Carousel | `carousels/5-esther-pl/` |
-| 2 | Sat 14 Nov | Solis | Main video | `To Post/Solis…/Video/Salt PM _ Solis _ Casuarina _ Main.mp4` |
-| 3 | Sun 15 Nov | 37 Southaven Dr | Main video | `To Post/37 Southaven Drive | Belle/37 Southaven Drive Main Video.mp4` |
-| 4 | Mon 16 Nov | 4-6 Buckingham Way | Main video | `To Post/4-6 Buckingham Way | Kollosche/Main.mp4 (Frame.io delivered, 2 Nov)` |
-| 5 | Tue 17 Nov | Elanora Ave | Carousel | `carousels/elanora-ave-townhouses/` |
-| 6 | Wed 18 Nov | 13 Mayra Ct | Main video | `To Post/13 Mayra Court…/Main Video (2).mp4` |
-| 7 | Thu 19 Nov | 21 Albany (Real Specialists) | Main video | `projects/albany-21-main-sfx/result/r4/Albany_Main_sfx.mp4` |
-| 8 | Fri 20 Nov | 5 Esther Place | Main video | `~/Downloads/Kollosche Ester Place/Main.mp4` |
-| 9 | Sat 21 Nov | 84 Southaven Dr | Main video | `To Post/84 Southaven Drive | Belle/84 Southaven Drive Main Video.mp4` |
-| 10 | Sun 22 Nov | Solis | Reel | `Ready to Post/02 … Solis …/Solis 673 Casuarina Way.mp4` |
-| 11 | Mon 23 Nov | 10 Australis Ct | Main video | `To Post/10 Australis Court…/Video/Main Video (Frame original).mp4` |
-| 12 | Tue 24 Nov | 59 Cylinders Dr | Model shoot reel | `To Post/59 Cylinders Drive…/Salt PM _ 14th Aug _ Model Shoot.mp4` |
-| 13 | Wed 25 Nov | 37 Southaven Dr | Carousel | `carousels/37-southaven-dr/` |
-| 14 | Thu 26 Nov | 4-6 Buckingham Way | Reel | `To Post/4-6 Buckingham Way | Kollosche/Reel.mp4 (Frame.io delivered, 10 Nov)` |
-| 15 | Fri 27 Nov | Elanora Ave (2/7A) | Main video | `To Post/2:7A Elanora…/Video/Saltpm, _ Solis _ Townhouse 1 _ Main.mp4` |
-| 16 | Sat 28 Nov | 5 Esther Place | Cinematic reel (720p) | `~/Downloads/Kollosche Ester Place/Cinematic Reel.mp4` |
-| 17 | Sun 29 Nov | 34 Albany (Coastal) | Flythrough reel | `~/Desktop/Coastal 34 Albany - FCP/11 …/FINAL - Flythrough reel (logo + SFX, no pop-ups).mp4` |
-| 18 | Mon 30 Nov | 10 Australis Ct | Carousel | `carousels/10-australis-ct/` |
-| 19 | Tue 1 Dec | 13 Mayra Ct | Agent talking reel | `To Post/13 Mayra Court…/Agent Talking Reel.mp4` |
-| 20 | Wed 2 Dec | 84 Southaven Dr | Reel | `To Post/84 Southaven Drive | Belle/84 Southaven Drive Reel Video.mp4` |
-| 21 | Thu 3 Dec | Solis | Carousel | `carousels/solis-673-casuarina-way/` |
-| 22 | Fri 4 Dec | Elanora Ave | Reel | `Ready to Post/10 … Elanora …/Elanora Ave Pottsville.mp4` |
-| 23 | Sat 5 Dec | 10 Australis Ct | Reel | `Ready to Post/05 … 10 Australis Ct (Reel)/10 Australis Ct.mp4` |
-| 24 | Sun 6 Dec | 5 Esther Place | Flythrough reel (720p) | `~/Downloads/Kollosche Ester Place/Flythrough Reel.mp4` |
+| # | Date (7pm) | Listing | Format | File | IG |
+|---|---|---|---|---|---|
+| 1 | Fri 13 Nov | 5 Esther Place | Carousel | `carousels/5-esther-pl/` | ✅ scheduled |
+| 2 | Sat 14 Nov | Solis | Main video | `To Post/Solis…/Video/Salt PM _ Solis _ Casuarina _ Main.mp4` | ✅ scheduled |
+| 3 | Sun 15 Nov | 37 Southaven Dr | Main video | `To Post/37 Southaven Drive | Belle/37 Southaven Drive Main Video.mp4` | ✅ scheduled |
+| 4 | Mon 16 Nov | 4-6 Buckingham Way | Main video | `To Post/4-6 Buckingham Way | Kollosche/Main.mp4 (Frame.io delivered, 2 Nov)` | ✅ scheduled |
+| 5 | Tue 17 Nov | Elanora Ave | Carousel | `carousels/elanora-ave-townhouses/` | ✅ scheduled |
+| 6 | Wed 18 Nov | 13 Mayra Ct | Main video | `To Post/13 Mayra Court…/Main Video (2).mp4` | ✅ scheduled |
+| 7 | Thu 19 Nov | 21 Albany (Real Specialists) | Main video | `projects/albany-21-main-sfx/result/r4/Albany_Main_sfx.mp4` | ✅ scheduled |
+| 8 | Fri 20 Nov | 5 Esther Place | Main video | `~/Downloads/Kollosche Ester Place/Main.mp4` | pending |
+| 9 | Sat 21 Nov | 84 Southaven Dr | Main video | `To Post/84 Southaven Drive | Belle/84 Southaven Drive Main Video.mp4` | pending |
+| 10 | Sun 22 Nov | Solis | Reel | `Ready to Post/02 … Solis …/Solis 673 Casuarina Way.mp4` | pending |
+| 11 | Mon 23 Nov | 10 Australis Ct | Main video | `To Post/10 Australis Court…/Video/Main Video (Frame original).mp4` | pending |
+| 12 | Tue 24 Nov | 59 Cylinders Dr | Model shoot reel | `To Post/59 Cylinders Drive…/Salt PM _ 14th Aug _ Model Shoot.mp4` | pending |
+| 13 | Wed 25 Nov | 37 Southaven Dr | Carousel | `carousels/37-southaven-dr/` | pending |
+| 14 | Thu 26 Nov | 4-6 Buckingham Way | Reel | `To Post/4-6 Buckingham Way | Kollosche/Reel.mp4 (Frame.io delivered, 10 Nov)` | pending |
+| 15 | Fri 27 Nov | Elanora Ave (2/7A) | Main video | `To Post/2:7A Elanora…/Video/Saltpm, _ Solis _ Townhouse 1 _ Main.mp4` | pending |
+| 16 | Sat 28 Nov | 5 Esther Place | Cinematic reel (720p) | `~/Downloads/Kollosche Ester Place/Cinematic Reel.mp4` | pending |
+| 17 | Sun 29 Nov | 34 Albany (Coastal) | Flythrough reel | `~/Desktop/Coastal 34 Albany - FCP/11 …/FINAL - Flythrough reel (logo + SFX, no pop-ups).mp4` | pending |
+| 18 | Mon 30 Nov | 10 Australis Ct | Carousel | `carousels/10-australis-ct/` | pending |
+| 19 | Tue 1 Dec | 13 Mayra Ct | Agent talking reel | `To Post/13 Mayra Court…/Agent Talking Reel.mp4` | pending |
+| 20 | Wed 2 Dec | 84 Southaven Dr | Reel | `To Post/84 Southaven Drive | Belle/84 Southaven Drive Reel Video.mp4` | pending |
+| 21 | Thu 3 Dec | Solis | Carousel | `carousels/solis-673-casuarina-way/` | pending |
+| 22 | Fri 4 Dec | Elanora Ave | Reel | `Ready to Post/10 … Elanora …/Elanora Ave Pottsville.mp4` | pending |
+| 23 | Sat 5 Dec | 10 Australis Ct | Reel | `Ready to Post/05 … 10 Australis Ct (Reel)/10 Australis Ct.mp4` | pending |
+| 24 | Sun 6 Dec | 5 Esther Place | Flythrough reel (720p) | `~/Downloads/Kollosche Ester Place/Flythrough Reel.mp4` | pending |
+
+## Scheduling log (12 Nov)
+- 1–7 scheduled on IG web as @10xrealestate_. Big mains re-encoded to 1080p CRF 18 first (IG caps at 1080p) so they upload in ~5 min.
+- #8 failed with "couldn't be scheduled"; after the reload the browser came back on @10xconstruction_ and @10xrealestate_ wasn't in the switcher. Nothing went to the construction page (the draft was discarded).
+- Captions written fresh: 13 Mayra main (plunge pool + sauna, from the frame). Handles verified: @realspecialists, @coastalpropertyagents (34 Albany).
 
 ## Held
 - **506/388 Marine Pde (Kollosche):** photos only, so the carousel still needs building.
