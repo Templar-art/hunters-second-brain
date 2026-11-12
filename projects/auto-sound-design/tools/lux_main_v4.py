@@ -43,7 +43,8 @@ w = I(1.0); ref = bpf[I(A2) - w:I(A2) + w]; s0 = I(A2 + 76.800) - w - I(0.02); c
 c = correlate(cand, ref, "valid"); k = int(np.argmax(c)); OFF = (s0 + k - (I(A2) - w)) / SR
 print("join2 out", round(A2, 3), "offset", round(OFF, 4), "waveform corr", round(np.corrcoef(ref, cand[k:k + 2 * w])[0, 1], 3))
 H2 = 0.015
-O0, OPK, IN1, H0 = 133.52, 139.42, 5.32, 0.5   # open: source 139.9 (last loud instant) lands at 6.2 s
+NB = float(sys.argv[3]) if len(sys.argv) > 3 else 0   # extra bars of opening build (Hunter: "the start needs to be a bit longer"); everything after shifts later
+O0, OPK, IN1, H0 = 133.52 - 2.4 * NB, 139.42, 5.32, 0.5   # open: source 139.9 (last loud instant) lands at 6.2 s
 e2 = lambda a, b: (I(a) + int(np.argmin(e[I(a):I(b)]))) / SR; AJ = e2(95.7, 96.5)
 segs = [(O0, OPK + 1.0, H0), (IN1, X1, H1)] + ([(Y1, AJ, H2), (AJ - 9.6, A2, H2)] if EXT else [(Y1, A2, H2)]) + [(A2 + OFF, END, None)]
 g0 = np.ones(I(OPK + 1.0 + H0) - I(O0) + 8); r0, r1 = I(OPK + 0.25 - O0), I(OPK + 0.75 - O0)
@@ -61,7 +62,7 @@ f0 = I(0.25); mix[:, :f0] *= np.linspace(0, 1, f0)
 OPEN = OPK - O0; LIFTo = OPEN + 1.0 + LIFT - IN1; J1 = LIFTo + X1 - LIFT; DROP = J1 + HIT - Y1; JX = DROP + AJ - HIT; J2 = DROP + A2 - HIT + (9.6 if EXT else 0); LAST = J2 + LASTsrc - (A2 + OFF)
 def gain(pts):   # piecewise-linear dB automation over output time
     tt = np.arange(mix.shape[1]) / SR; mix[:] *= 10 ** (np.interp(tt, [p[0] for p in pts], [p[1] for p in pts]) / 20)
-gain([(0, -9), (3.0, -2), (4.2, 0), (LIFTo - 0.5, 0), (LIFTo + 1.5, -3), (DROP - 2.4, -3), (DROP - 0.2, 0)])
+gain([(0, -9), (OPEN - 2.9, -2), (OPEN - 1.7, 0), (LIFTo - 0.5, 0), (LIFTo + 1.5, -3), (DROP - 2.4, -3), (DROP - 0.2, 0)])
 def ir(sec, tau): n = I(sec); return rng.standard_normal(n) * np.exp(-np.arange(n) / (tau * SR))
 fx = np.zeros_like(mix); mm = mix.mean(0)
 rms = lambda x: np.sqrt(np.mean(x ** 2) + 1e-12)
