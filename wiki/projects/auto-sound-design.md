@@ -2,7 +2,7 @@
 type: project
 tags: [audio, sfx, final-cut-pro, automation, tools, editing]
 status: built-unproven
-updated: 2026-11-09
+updated: 2026-11-12
 ---
 
 # Auto Sound Design
@@ -390,3 +390,16 @@ Tools: `tools/novemberkid_60.py` and `tools/novemberkid_30.py`. The song runs at
 - **Next level:** a picture-locked pass (Real SFX skill) on the actual edit.
 
 **Polish pass (9 Nov).** `tools/ms_polish.py` is a mid/side fix for the "very wide" and "harsh mids" critique flags: the side is narrowed by 3 dB and made mono below 120 Hz, with −2 dB at 2 kHz. On Cinema 90 SFX it moved the score from 18 to 19 of 22 (width −3.1 → −7.5 dB, low end fuller) with the character unchanged (Earshot ab cosine 1.00). An ffmpeg band-split version thinned 60–250 Hz by 4 dB, so don't use that. Delivered as `Cinema - 90s Cinematic Cut SFX POLISHED`, with the approved file kept alongside it.
+
+## 12 Nov, Lux (Ryan Taubert): 63 s cinematic main edit, built without the beat grid
+
+Lux has almost no transients (Earshot pulse clarity 0.04), so the onset-refit beat grid is only good to about ±80 ms. Versions 1 and 2 were built on it and both failed: the grid placed the big hit at 64.11 s when the real impact is at 62.62 s, so the riser and boom landed 1.5 s late, and the first join sat in a soft passage with a level dip before the hit.
+
+Version 3 (`tools/lux_main_v3.py`) uses measurements only:
+
+- **The hit** is found from 40 ms RMS steps: the song takes its own 80 ms breath and then jumps about 14 dB at 62.62 s.
+- **True repeats** are found by a fine mel-spectrum search (`tools/lux_v3_scan2.py`). Six different out-points in the full section all matched the final section at the same 76.80 s offset, which proves a real repeat. Band-passed waveform cross-correlation (`tools/lux_v3_scan3.py`) then refines the offset to the sample (waveform correlation 0.61), and the join is a 30 ms in-phase crossfade. Earshot hears nothing at that join on the clean track.
+- **Unrelated sections cannot be spliced seamlessly.** The strings section and the pre-hit build share no material (spectral match about 0). The transition there is designed instead: the strings play their full 8-bar phrase and the hit lands on the phrase boundary, cut inside the song's own breath.
+- **SFX levels** are set per cue from the measured music RMS (whooshes 8 dB under, impacts 7 to 10 dB under).
+
+Structure: one 4-bar intro phrase (7.4 s), strings lift, hit at 21.5 s, full section, join about 1.5 s before the last hit, the song's real decay. Rule of thumb from this job: when pulse clarity is under about 0.15, skip the grid. Standing recipe: [[sfx-toolkit]] and the song-cut feedback in auto-memory.
