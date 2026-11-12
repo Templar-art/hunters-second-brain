@@ -497,6 +497,87 @@ def src_path(site, name, m=None):
     return Path((m or {}).get("src") or Path(site["photos"]) / name)
 
 
+RELINK_DIRS = ["~/Downloads", "~/Desktop", "~/Pictures"]
+
+
+def find_copy(name, m):
+    """The job photo's original is gone (its SSD unplugged): look for a copy of it in Downloads,
+    Desktop, Pictures and every connected drive. A copy is the same photo when Lightroom's XMP names
+    it as the source (crs:RawFileName = the job photo, e.g. a re-edit exported as
+    '33 Stella Place - Print-5.jpg') or names the same DJI bracket frame, and it has the same size."""
+    want = {name.encode()}
+    if m.get("meta_from"):
+        want.add(m["meta_from"].encode())
+    roots = [Path(os.path.expanduser(d)) for d in RELINK_DIRS]
+    roots += [v for v in Path("/Volumes").iterdir() if v.name != "Macintosh HD"] if Path("/Volumes").exists() else []
+    for root in roots:
+        if not root.is_dir():
+            continue
+        for dirpath, dirs, files in os.walk(root):
+            depth = len(Path(dirpath).relative_to(root).parts)
+            dirs[:] = [] if depth >= 4 else [d for d in dirs if not d.startswith(".")]
+            for f in files:
+                if f.startswith(".") or Path(f).suffix.lower() not in (".jpg", ".jpeg"):
+                    continue
+                fp = Path(dirpath) / f
+                try:
+                    with open(fp, "rb") as fh:
+                        head = fh.read(1 << 20)
+                except OSError:
+                    continue
+                names = set(re.findall(rb'(?:crs:RawFileName|xmpMM:PreservedFileName)="([^"]+)"', head))
+                if names & want:
+                    try:
+                        if Image.open(fp).size == (m["w"], m["h"]):
+                            return fp
+                    except Exception:
+                        continue
+    return None
+
+
+def baked_watermark(job, name, src, st):
+    """True when the copy already carries the client watermark (WHITEFOX re-edits come out of
+    Lightroom with it): the watermark corner differs from the old preview far more than the rest."""
+    wm = st.get("watermark")
+    pv = job / "previews" / (Path(name).stem + ".jpg")
+    if not wm or not pv.exists():
+        return False
+    b = Image.open(pv).convert("L")
+    a = Image.open(src).convert("L")
+    a.draft("L", b.size)
+    a = np.asarray(a.resize(b.size, Image.BILINEAR), float)
+    b = np.asarray(b, float)
+    a, b = a - a.mean(), b - b.mean()   # a re-grade shifts brightness everywhere; the logo is local
+    W, H = b.shape[1], b.shape[0]
+    cx, cy, r = W - wm["cx"] * H, H - wm["cy"] * H, wm["h"] * H / 2
+    yy, xx = np.mgrid[0:H, 0:W]
+    ring = np.abs(np.hypot(xx - cx, yy - cy) - r * 0.95) < r * 0.06
+    d = np.abs(a - b)
+    return bool(d[ring].mean() > 2.5 * d.mean() + 4)
+
+
+def relink_missing(job, site, marks, st):
+    """Point photos whose original has gone missing at a copy found on this Mac. Returns names relinked."""
+    done = []
+    for name, m in marks.items():
+        if src_path(site, name, m).exists():
+            continue
+        fp = find_copy(name, m)
+        if not fp:
+            continue
+        m["src"] = str(fp)
+        if baked_watermark(job, name, fp, st):
+            m["watermark"] = False   # don't stamp a second logo over the baked-in one
+        im = Image.open(fp)
+        im.draft("RGB", (PREVIEW, PREVIEW))
+        im.thumbnail((PREVIEW, PREVIEW))
+        im.convert("RGB").save(job / "previews" / (Path(name).stem + ".jpg"), quality=88)
+        done.append(name)
+    if done:
+        save(job, "marks.json", marks)
+    return done
+
+
 def cmd_init(a):
     job, photos = Path(a.job), Path(a.photos)
     (job / "previews").mkdir(parents=True, exist_ok=True)
@@ -533,7 +614,10 @@ def make_preview(p, job):
 def cmd_review(a):
     job = Path(a.job)
     site = load(job, "site.json")
-    for name, m in load(job, "marks.json").items():
+    mk = load(job, "marks.json")
+    for name in relink_missing(job, site, mk, style(site)):
+        print(f"  {name}: original missing, using {mk[name]['src']}" + (" (watermark already on it)" if mk[name].get("watermark") is False else ""))
+    for name, m in mk.items():
         # Rebuild previews made before PREVIEW grew (older jobs).
         pv, src = job / "previews" / (Path(name).stem + ".jpg"), src_path(site, name, m)
         if src.exists() and (not pv.exists() or max(Image.open(pv).size) < PREVIEW):
@@ -637,6 +721,12 @@ def cmd_review(a):
             with lock:
                 marks = load(job, "marks.json")
                 if self.path == "/save":
+                    # A page opened before a relink doesn't know the copy's path or that its logo is
+                    # baked in: keep those server-side fields unless the page sends them.
+                    for name, nm in body.items():
+                        for k in ("src", "watermark"):
+                            if k in marks.get(name, {}) and k not in nm:
+                                nm[k] = marks[name][k]
                     marks.update(body)
                     save(job, "marks.json", marks)
                     return self.send(b"{}")
@@ -1085,7 +1175,7 @@ def draw_overlay(m, k, st, site=None, mask=None):
         bx = tx - lw / 2 if st.get("mark_anchor") == "left" else tx - bd.width / 2
         gap = (st.get("mark_gap") or 0) * side   # space between the line top and the logo
         im.alpha_composite(bd, (round(bx), round(ty - length - bd.height - gap)))
-    if (wm := watermark(st, W, H)) is not None:
+    if m.get("watermark", True) and (wm := watermark(st, W, H)) is not None:
         im.alpha_composite(wm)
     return im
 
@@ -1130,6 +1220,11 @@ def export(job, site, marks, body):
     if len(set(n.lower() for n in names)) < len(names):
         raise ValueError("two photos have the same name")
     st = style(site)
+    relink_missing(job, site, marks, st)
+    for it in body["items"]:
+        if not src_path(site, it["file"], marks[it["file"]]).exists():
+            raise ValueError(f"can't find the original of {it['file']} (its drive is unplugged and no copy "
+                             f"was found in Downloads, Desktop or a connected drive)")
     k, done = glyph(st), []
     for it, nm in zip(body["items"], names):
         img, extra, _ = finished(job, site, it["file"], marks[it["file"]], k, st)

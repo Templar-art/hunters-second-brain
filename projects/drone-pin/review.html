@@ -449,7 +449,7 @@ function draw() {
   drawNote(m);
   if (typeof nt !== 'undefined' && document.activeElement !== nt) nt.value = noteKey(m) || '';
   const W2 = SZ.STYLE.watermark;
-  if (W2 && WM.width > 1) {
+  if (W2 && WM.width > 1 && m.watermark !== false) {
     // Same as drone_pin.py watermark(): the logo in the corner of every photo.
     const d = W2.h * m.h, dh = d * WM.height / WM.width;
     cx.globalAlpha = W2.opacity ?? 0.6; cx.drawImage(WM, m.w - W2.cx * m.h - d / 2, m.h - W2.cy * m.h - dh / 2, d, dh); cx.globalAlpha = 1;
