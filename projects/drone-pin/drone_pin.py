@@ -679,10 +679,19 @@ def cmd_review(a):
                         save(job, "marks.json", marks)
                         return self.send(json.dumps({"site": site, "marks": marks}).encode())
                     try:
-                        add_place(m, site, body["xy"], body["label"])
+                        pl = add_place(m, site, body["xy"], body["label"])
                     except ValueError as e:
                         return self.send(json.dumps({"error": str(e)}).encode())
                     save(job, "site.json", site)
+                    # The clicked photo keeps the label on and exactly where it was clicked: a click near the
+                    # horizon re-projects badly and used to come back "off screen", so nothing appeared
+                    # (Bonogin, 2026-11-12). Other photos get it projected but switched off until ticked.
+                    key = str(pl["id"])
+                    for o in marks.values():
+                        if o is m:
+                            o.setdefault("places", {})[key] = {"xy": body["xy"], "on": True, "manual": True}
+                        else:
+                            o.setdefault("places", {})[key] = {"xy": [o["w"] / 2, o["h"] / 2], "on": False, "manual": False}
                     for o in marks.values():
                         if "error" not in o:
                             o.update(propose(o, site, o.get("dyaw", 0.0), o.get("dpitch", 0.0), o.get("droll", 0.0)))

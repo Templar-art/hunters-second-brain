@@ -283,7 +283,11 @@ function list() {
       <button data-sz="${p.id}" data-k="0.85" title="smaller label on this photo">A−</button><button data-sz="${p.id}" data-k="1.18" title="bigger label on this photo">A+</button><button data-flip="${p.id}" title="label to the other side of its line">⇄</button>
       <button data-dist="${p.id}" title="show distance">km</button><button data-ren="${p.id}">✎</button><button data-del="${p.id}">✕</button></div>`;
   }).join('') : '<div class="empty">None. Use the Location pin tool (L) to add one.</div>';
-  document.querySelectorAll('[data-on]').forEach(e => e.onchange = () => { const st = (M().places ||= {})[e.dataset.on] ||= { xy: [M().w / 2, M().h / 2] }; st.on = e.checked; draw(); save(); });
+  document.querySelectorAll('[data-on]').forEach(e => e.onchange = () => {
+    const m = M(), st = (m.places ||= {})[e.dataset.on] ||= { xy: [m.w / 2, m.h / 2] };
+    // a label placed off this frame (e.g. first clicked near the horizon on another photo): start it mid-frame to drag into place
+    if (e.checked && !(st.xy[0] >= 0 && st.xy[0] <= m.w && st.xy[1] >= 0 && st.xy[1] <= m.h)) { st.xy = [m.w / 2, m.h / 2]; st.manual = true; }
+    st.on = e.checked; draw(); save(); });
   const pst = id => (M().places ||= {})[id] ||= { xy: [M().w / 2, M().h / 2] };
   document.querySelectorAll('[data-sz]').forEach(e => e.onclick = () => { const st = pst(e.dataset.sz); st.size = Math.min(2.5, Math.max(0.3, (st.size || 1) * +e.dataset.k)); draw(); save(); flash(`label ${Math.round(st.size * 100)}%`); });
   document.querySelectorAll('[data-flip]').forEach(e => e.onclick = () => { const st = pst(e.dataset.flip); st.flip = !st.flip; draw(); save(); });
