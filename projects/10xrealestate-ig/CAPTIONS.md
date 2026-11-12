@@ -158,3 +158,32 @@ A day on set with the @kollosche_ team. What it takes to get a listing looking l
 
 ### Sat 28 Nov: 5 Esther Place flythrough reel
 Front door to the top floor in one move. 5 Esther Place, Surfers Paradise, for @kollosche_.
+
+## v7 additions (approved 12 Nov)
+
+### 37 Southaven Dr main video
+37 Southaven Drive, Helensvale. Pontoon out the back, the pool and the canal, start to finish. Filmed for @bellepropertyhopeisland.
+
+### 84 Southaven Dr main video
+84 Southaven Drive, Helensvale. Deck over the water and boats going past all afternoon. Filmed for @bellepropertyhopeisland.
+
+### 84 Southaven Dr reel
+Back on Southaven Drive. 84, Helensvale, for @bellepropertyhopeisland.
+
+### 4-6 Buckingham Way main video
+4-6 Buckingham Way, Elanora. Acreage up in the hills with the coast laid out below. Filmed for @kollosche_.
+
+### 4-6 Buckingham Way reel
+Up in the Elanora hills at 4-6 Buckingham Way. For @kollosche_.
+
+### 21 Albany main video
+21 Albany, with the whole coast from the balcony and the sunset doing the rest. Filmed for @realspecialists. (Verify the handle.)
+
+### 34 Albany flythrough reel
+34 Albany in one take, from the street to the pool. For @coastal. (Verify the handle.)
+
+### 59 Cylinders Dr model shoot reel
+Back at 59 Cylinders Drive. Kingscliff, one morning, nothing staged but the light. @saltpropertymgt
+
+### 10 Australis Ct reel
+10 Australis Court, Mermaid Waters. Lake on one side, the skyline on the other. Filmed with @kollosche_.
