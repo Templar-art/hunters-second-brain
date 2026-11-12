@@ -143,3 +143,4 @@ Related: [[kollosche]], [[kollosche-video-guidelines]], [[plate-vfx]].
 
 
 **Location label layout** (2026-11-12): `place_align: "left"` sets each label just left of its line's top end, which is the WHITEFOX look. The default `center` puts it above the line. `place_len` sets the client's default line length and `place_cap` the label size, both as a fraction of photo height. Each line's length is set per photo by dragging the top end of the line in review. It is stored as `places[id].len` and survives re-solves.
+Each label row in the Locations list has **A− / A+**, which shrink or grow that label on this photo (`places[id].size`, 0.3–2.5×), and **⇄**, which moves the label to the other side of its line (`places[id].flip`; a centred label flips to the left). A click anywhere on a label's text or line grabs the label. Before, only the line's base dot did, and a click elsewhere on the label fell through to the pin-mode "click to move the house pin".

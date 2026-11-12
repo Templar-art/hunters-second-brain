@@ -383,8 +383,9 @@ def propose(m, site, dyaw=0.0, dpitch=0.0, droll=0.0, dz=None):
         uv, ok = project(m, [w], dyaw, dpitch, droll)
         seen = bool(ok[0] and inside(uv[0]))
         places[key] = {"xy": uv[0].round(1).tolist(), "on": old.get("on", seen) and seen, "manual": False}
-        if old.get("len"):
-            places[key]["len"] = old["len"]   # a line length dragged in review survives re-solves
+        for k in ("len", "size", "flip"):   # per-photo look set in review survives re-solves
+            if old.get(k):
+                places[key][k] = old[k]
     return {"tip": tip[0].round(1).tolist(), "tip_visible": bool(tip_ok[0] and inside(tip[0])),
             "lot": m["lot"] if m.get("manual") else lot.round(1).tolist(),
             "lot_visible": bool(lot_ok.all() and all(inside(p) for p in lot)),
@@ -860,6 +861,15 @@ def shadowed(alpha, lw, color=(255, 255, 255)):
     return shadow
 
 
+def place_side(st, ps):
+    """Which side of its line a label sits: the client's place_align, mirrored by a per-photo flip
+    (a centred label flips to the left)."""
+    a = st["place_align"]
+    if not ps.get("flip"):
+        return a
+    return "right" if a == "left" else "left"
+
+
 def draw_places(m, site, W, H, st):
     """Location pins: dot, thin line up, label over distance, centred on the spot."""
     layer = Image.new("RGBA", (W, H), (255, 255, 255, 0))
@@ -878,18 +888,20 @@ def draw_places(m, site, W, H, st):
         top = y - (ps.get("len") or st["place_len"] or PLACE_LINE) * H
         a[max(0, round(top)):max(0, round(y)), max(0, round(x - lw / 2)):max(0, round(x - lw / 2) + lw)] = 255
         label = pl["label"].upper() if st["place_upper"] else pl["label"]
-        lines = [(label, os.path.expanduser(st["place_font"] or FONT_K), (st["place_cap"] or PLACE_CAP) * H)]
+        k = ps.get("size") or 1.0   # per-photo label scale (A-/A+ in review)
+        lines = [(label, os.path.expanduser(st["place_font"] or FONT_K), (st["place_cap"] or PLACE_CAP) * H * k)]
         if st["place_dist"] and pl.get("dist", True) and "lat" in pl:
-            lines.append((place_distance(site, pl), FONT_B, PLACE_SUB * H))
+            lines.append((place_distance(site, pl), FONT_B, PLACE_SUB * H * k))
         imgs = [text_image(t, f, c, PLACE_TRACK) + (c,) for t, f, c in lines]
-        lead = PLACE_LEAD * PLACE_CAP * H
+        lead = PLACE_LEAD * PLACE_CAP * H * k
         block = sum(c for _, _, c in imgs) + lead * (len(imgs) - 1)
-        left = st["place_align"] == "left"
-        # Left (WHITEFOX): the label ends just left of the line, centred on its top end.
-        cy = top - block / 2 if left else top - PLACE_GAP * H - block
+        side = place_side(st, ps)
+        # Left/right (WHITEFOX): the label sits beside the line, centred on its top end.
+        cy = top - block / 2 if side != "center" else top - PLACE_GAP * H - block
         for im, pad, c in imgs:
             tw = im.width - 2 * pad
-            tx = x - lw - PLACE_GAP * H - tw if left else min(max(x - tw / 2, 0.02 * W), W - 0.02 * W - tw)
+            tx = (x - lw - PLACE_GAP * H - tw if side == "left" else x + lw + PLACE_GAP * H if side == "right"
+                  else min(max(x - tw / 2, 0.02 * W), W - 0.02 * W - tw))
             ta = np.array(im.getchannel("A"))
             x0, y0 = round(tx - pad), round(cy - pad)
             xs, ys = max(0, x0), max(0, y0)
