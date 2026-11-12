@@ -138,3 +138,23 @@ Uniq Residences, Bundall. A lift, a pool and stone through every bathroom. Clean
 Kollosche posted it 29 Oct 2026.
 
 5 Esther Place, Surfers Paradise. Timber screens lit up at dusk, a floating stair and a kitchen that runs the full length of the room. Shot for @kollosche_.
+
+## v6 additions (approved 12 Nov)
+
+### Sat 14 Nov: Solis main video
+Solis, 673 Casuarina Way, walked through start to finish. Three levels, a lap pool and the garden right up against the glass. Filmed for @saltpropertymgt.
+
+### Wed 18 Nov: 5 Esther Place cinematic reel
+5 Esther Place, Surfers Paradise, after dark. Timber screens lit from inside and the whole street slowing down to look. Filmed for @kollosche_ 👀
+
+### Fri 20 Nov: 37 Southaven Dr carousel
+37 Southaven Drive, Helensvale. Pontoon out the back, a cabana by the pool and the canal doing the rest. Shot for @bellepropertyhopeisland.
+
+### Mon 23 Nov: 5 Esther Place main video
+5 Esther Place, Surfers Paradise. A floating stair, a kitchen that runs the full length of the room and the skyline five minutes away. Filmed for @kollosche_.
+
+### Thu 26 Nov: Kollosche BTS reel
+A day on set with the @kollosche_ team. What it takes to get a listing looking like this.
+
+### Sat 28 Nov: 5 Esther Place flythrough reel
+Front door to the top floor in one move. 5 Esther Place, Surfers Paradise, for @kollosche_.

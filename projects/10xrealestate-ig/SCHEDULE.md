@@ -1,44 +1,43 @@
-# @10xrealestate_ posting schedule (v5, 2026-11-12)
+# @10xrealestate_ posting schedule (v6, 2026-11-12): DAILY, Hunter-approved
 
-Three rules decide what goes on this page:
-1. **Recent work only.** Shot in roughly the last 4 to 6 months, so mid-May 2026 or later.
-2. **The client posts first.** The listing must already be live on the client's own IG.
-3. **Never post Zed.**
+Every post below was approved by Hunter on 12 Nov in `projects/posting-approvals.html`. They go out one a day at 7pm AEST. The same listing never runs two days in a row.
 
-## Cleared
-| Listing | Client | Proof | Status |
-|---|---|---|---|
-| 5 Esther Place | Kollosche | @kollosche_ posted it 29 Oct 2026 (DfGWMu-EkgI) | **Deck built:** `carousels/5-esther-pl/`. Post Fri 13 Nov, 7pm |
+Standing rules:
+- Recent work only.
+- The client posts first.
+- Never post Zed.
 
-## Recent work: waiting for the client to post
-File dates suggest these are recent. Re-check each one weekly.
-| Listing | Client | Approx. date |
-|---|---|---|
-| 10 Australis Ct (reel + carousel) | Kollosche | Oct 2026 |
-| 4-6 Buckingham Way | Kollosche | Oct 2026 |
-| 506/388 Marine Parade | Kollosche | Sep 2026 |
-| 2/116 Seagull Ave | Kollosche | Aug 2026 |
-| 13-15 Eagleview Ct | Whitefox | Oct 2026 |
-| Elanora Ave townhouses (reel + carousel) | Salt PM | Sep 2026 |
-| Coastline Prestige set (71/73 Lydford Cl) | Coastline | Oct 2026. Client handle unknown |
-| YPA set (Girtin, Mornington, Sears) | YPA | Oct 2026 file date, but this may only be the download date. @ypaqueensland wouldn't load |
-| Belle Hope Island set (Southaven, Gillian) | Belle | Aug 2026. @bellepropertyhopeisland wouldn't load |
-| 39 Harold St | Kodiak | Aug 2026. Client handle unknown |
+| # | Date (7pm) | Listing | Format | File |
+|---|---|---|---|---|
+| 1 | Fri 13 Nov | 5 Esther Place, Surfers Paradise | Carousel | `carousels/5-esther-pl/` |
+| 2 | Sat 14 Nov | Solis, 673 Casuarina Way | Main video | `~/Documents/Posting for 10xRealestate/To Post/Solis…/Video/Salt PM _ Solis _ Casuarina _ Main.mp4` |
+| 3 | Sun 15 Nov | 10 Australis Ct, Mermaid Waters | Main video | `~/Documents/Posting for 10xRealestate/To Post/10 Australis Court…/Video/Main Video (2).mp4` |
+| 4 | Mon 16 Nov | Elanora Ave townhouses, Pottsville | Carousel | `carousels/elanora-ave-townhouses/` |
+| 5 | Tue 17 Nov | 13 Mayra Ct, Mermaid Waters | Main video | `~/Documents/Posting for 10xRealestate/To Post/13 Mayra Court…/Main Video (2).mp4` |
+| 6 | Wed 18 Nov | 5 Esther Place, Surfers Paradise | Cinematic reel | `~/Downloads/Kollosche Ester Place/Cinematic Reel.mp4` |
+| 7 | Thu 19 Nov | Solis, 673 Casuarina Way | Reel | `~/Documents/Posting for 10xRealestate/Ready to Post/02 … Solis …/Solis 673 Casuarina Way.mp4` |
+| 8 | Fri 20 Nov | 37 Southaven Dr, Helensvale | Carousel | `carousels/37-southaven-dr/` |
+| 9 | Sat 21 Nov | 10 Australis Ct, Mermaid Waters | Carousel | `carousels/10-australis-ct/` |
+| 10 | Sun 22 Nov | Elanora Ave (2/7A), Pottsville | Main video | `~/Documents/Posting for 10xRealestate/To Post/2:7A Elanora…/Video/Saltpm, _ Solis _ Townhouse 1 _ Main.mp4` |
+| 11 | Mon 23 Nov | 5 Esther Place, Surfers Paradise | Main video | `~/Downloads/Kollosche Ester Place/Main.mp4` |
+| 12 | Tue 24 Nov | 13 Mayra Ct, Mermaid Waters | Agent talking reel | `~/Documents/Posting for 10xRealestate/To Post/13 Mayra Court…/Agent Talking Reel.mp4` |
+| 13 | Wed 25 Nov | Solis, 673 Casuarina Way | Carousel | `carousels/solis-673-casuarina-way/` |
+| 14 | Thu 26 Nov | Kollosche BTS | BTS reel | `~/Downloads/Kollosche BTS REEL FINAL.mp4` |
+| 15 | Fri 27 Nov | Elanora Ave, Pottsville | Reel | `~/Documents/Posting for 10xRealestate/Ready to Post/10 … Elanora …/Elanora Ave Pottsville.mp4` |
+| 16 | Sat 28 Nov | 5 Esther Place, Surfers Paradise | Flythrough reel | `~/Downloads/Kollosche Ester Place/Flythrough Reel.mp4` |
 
-## Too old (before about May 2026): dropped
-These are dropped from this page:
-- Solis (Salt posted it Feb 2026)
-- Bespoke: North View, Uniq, The Boulevard (Nov 2025)
-- Remax Southern Skies (Jan 2026)
-- Jessica Wallace 88 Third (Feb 2026)
-- Place 13 Pyrite (Feb 2026)
-- Ray White Muston (Feb 2026)
-- 47 Somerset reel (shot Jul 2026 or earlier, and the client never posted it)
+**The queue runs out after Sat 28 Nov.** The next batch can come from what's on Frame.io and Drive below.
 
-## Never: Zed
-All 7 Zed listings are dropped.
+## On Frame.io and Drive but not approved yet (checked 12 Nov)
+- **10 Australis Ct, Kollosche:** Sold Reel (Lachlan, 28 Sep), Walkthrough Reel (1:52), Fly Through Voice Over (1:01), TK Testimonial (6 Oct).
+- **13 Mayra Ct, Kollosche:** Social Reels folder with 13 Mayra Flythrough and 13 Mayra Vlog (Lachlan, 8 Oct).
+- **Solis, Salt PM:** Social Reel 1 and 2 (21 Oct), Social Reel 3 (now **V3**, 1 Oct). Make sure the reel we post is the latest cut.
+- **37 Southaven Dr, Belle (Drive):** Main Video, Sally Agent Reel, Jack Agent Reel (24 Aug).
+- **84 Southaven Dr, Belle (Drive, new listing):** Main Video and Reel (4 Sep).
+- **Other new Kollosche folders:** 11 Yeringba St, 42 Salerno St (Isle of Capri), 2/116 Seagull Ave, 506/388 Marine Pde.
+- **Recent Frame.io share links:** 33 Stellar Dr Bonogin, Bromfield Estate, 8 Nassau Ave final film, Emerald Lakes running video.
 
-The dates come from file metadata, which may be the download date rather than the shoot date. Hunter can correct any of them.
+**Checked and matching what we have:** the 5 Esther Pl videos (28–29 Oct), the 10 Australis main (31 Aug), the Mayra main and agent reel (25 Sep), and the Solis main (Solis Talking Main Video, 13 Oct).
 
 ## Sources
 - Carousels: `carousels/<key>/01-09.jpg`, built by `build_carousels.py` from `carousels.json`.
