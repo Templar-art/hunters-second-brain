@@ -1,31 +1,44 @@
-# @10xrealestate_ posting schedule (v4, 2026-11-12)
+# @10xrealestate_ posting schedule (v5, 2026-11-12)
 
-The goal is one post a day at 7pm AEST, with two rules:
-- Post a listing only after the client has posted it on their own IG.
-- Never post Zed.
+Three rules decide what goes on this page:
+1. **Recent work only.** Shot in roughly the last 4 to 6 months, so mid-May 2026 or later.
+2. **The client posts first.** The listing must already be live on the client's own IG.
+3. **Never post Zed.**
 
-## Cleared: the client has posted it
-| Date (7pm) | Listing | Format | Proof |
+## Cleared
+| Listing | Client | Proof | Status |
 |---|---|---|---|
-| Fri 13 Nov | Solis, 673 Casuarina Way | Reel | @saltpropertymgt, 26 Feb 2026 (DVPrZIhj_Bm) |
-| Fri 20 Nov | Solis, 673 Casuarina Way | Carousel | Same post |
+| 5 Esther Place | Kollosche | @kollosche_ posted it 29 Oct 2026 (DfGWMu-EkgI) | Photos are in `10x Drive Pulls/Kollosche/5 Esther Place Print/`. The carousel still has to be built |
 
-## Held: not found on the client's IG (checked 12 Nov)
-The check only reaches about 78 recent posts per account. "Not found" can mean the post is older than that, or that only the agent posted it. Hunter confirms each one before it moves up.
-| Listing | Client | Check result |
+## Recent work: waiting for the client to post
+File dates suggest these are recent. Re-check each one weekly.
+| Listing | Client | Approx. date |
 |---|---|---|
-| Elanora Ave townhouses (reel + carousel) | Salt PM | Not found in 78 posts back to Sep 2025 |
-| 10 Australis Ct (reel + carousel) | Kollosche | Not found. The feed only reached 14 Oct |
-| 47 Somerset Dr (reel) | Whitefox | Not found back to 22 Sep. The carousel is already live on our page |
-| 37 Southaven Dr, 23 Gillian Dr | Belle | Couldn't read @bellepropertyhopeisland. Wrong handle or private |
-| 43 North View St, Uniq, 3009 + 3049/3029 The Boulevard | Bespoke | Couldn't read @wardteam__bespoke |
-| 57 Girtin Cct, 4 Mornington Ct, 41 Sears Rd | YPA | Couldn't read @ypaqueensland |
-| 32 Southern Skies Ave | Remax | Not found back to Jul 2026 |
-| 15 Muston Ct | Ray White TMG | Not found back to Apr 2026 |
-| 71/73 Lydford Cl, 88 Third Ave, 13 Pyrite St | Coastline, Jessica Wallace, Place | Client handle unknown |
+| 10 Australis Ct (reel + carousel) | Kollosche | Oct 2026 |
+| 4-6 Buckingham Way | Kollosche | Oct 2026 |
+| 506/388 Marine Parade | Kollosche | Sep 2026 |
+| 2/116 Seagull Ave | Kollosche | Aug 2026 |
+| 13-15 Eagleview Ct | Whitefox | Oct 2026 |
+| Elanora Ave townhouses (reel + carousel) | Salt PM | Sep 2026 |
+| Coastline Prestige set (71/73 Lydford Cl) | Coastline | Oct 2026. Client handle unknown |
+| YPA set (Girtin, Mornington, Sears) | YPA | Oct 2026 file date, but this may only be the download date. @ypaqueensland wouldn't load |
+| Belle Hope Island set (Southaven, Gillian) | Belle | Aug 2026. @bellepropertyhopeisland wouldn't load |
+| 39 Harold St | Kodiak | Aug 2026. Client handle unknown |
 
-## Dropped for good: Zed (never post)
-6/446 Marine Pde, 701/1245 and 801/1245 Gold Coast Hwy, 24A Muscovey Ave, 3422 Surfers Paradise Blvd, 25 Dungogie Dr, 38 John Lund Dr.
+## Too old (before about May 2026): dropped
+These are dropped from this page:
+- Solis (Salt posted it Feb 2026)
+- Bespoke: North View, Uniq, The Boulevard (Nov 2025)
+- Remax Southern Skies (Jan 2026)
+- Jessica Wallace 88 Third (Feb 2026)
+- Place 13 Pyrite (Feb 2026)
+- Ray White Muston (Feb 2026)
+- 47 Somerset reel (shot Jul 2026 or earlier, and the client never posted it)
+
+## Never: Zed
+All 7 Zed listings are dropped.
+
+The dates come from file metadata, which may be the download date rather than the shoot date. Hunter can correct any of them.
 
 ## Sources
 - Carousels: `carousels/<key>/01-09.jpg`, built by `build_carousels.py` from `carousels.json`.
