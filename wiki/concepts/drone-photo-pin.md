@@ -2,7 +2,7 @@
 type: concept
 tags: [tool, drone, kollosche, pin, outline, cadastre]
 status: built-untested-on-live-job
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Drone photo pinning
@@ -140,3 +140,6 @@ Mode per photo: `pin`, `outline`, `both` or `none`. By default, straight-down sh
 - Lens distortion is ignored, which is fine for DJI JPGs and Lightroom-corrected DNGs.
 
 Related: [[kollosche]], [[kollosche-video-guidelines]], [[plate-vfx]].
+
+
+**Location label layout** (2026-11-12): `place_align: "left"` sets each label just left of its line's top end, which is the WHITEFOX look. The default `center` puts it above the line. `place_len` sets the client's default line length and `place_cap` the label size, both as a fraction of photo height. Each line's length is set per photo by dragging the top end of the line in review. It is stored as `places[id].len` and survives re-solves.

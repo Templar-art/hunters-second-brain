@@ -104,7 +104,7 @@ DEFAULT_STYLE = {"pin": "none", "glyph": None, "badge": 0.085, "glyph_w": 0.54, 
                  "blackout": 0, "topdowns": True, "location_pins": True, "print_graphics": True,
                  "naming": "{address} - {kind}-{n}", "surround": "dark", "mono_fade": [0.25, 0.4],
                  "place_dot": True, "place_upper": True, "place_font": None, "place_color": None,
-                 "place_dist": True, "mark_anchor": None, "mark_gap": 0, "elbow": False,
+                 "place_dist": True, "place_align": "center", "place_len": None, "place_cap": None, "mark_anchor": None, "mark_gap": 0, "elbow": False,
                  "outline_dash": False, "outline_fill": 0, "notes": {}, "note_default": None, "watermark": None}
 LINE_W, LINE_LEN, TOP_MARGIN = 0.0024, 0.42, 0.05   # LINE_W: location-pin lines
 BLACKOUT_FEATHER = 0.0015                            # blackout edge softness, of photo width
@@ -383,6 +383,8 @@ def propose(m, site, dyaw=0.0, dpitch=0.0, droll=0.0, dz=None):
         uv, ok = project(m, [w], dyaw, dpitch, droll)
         seen = bool(ok[0] and inside(uv[0]))
         places[key] = {"xy": uv[0].round(1).tolist(), "on": old.get("on", seen) and seen, "manual": False}
+        if old.get("len"):
+            places[key]["len"] = old["len"]   # a line length dragged in review survives re-solves
     return {"tip": tip[0].round(1).tolist(), "tip_visible": bool(tip_ok[0] and inside(tip[0])),
             "lot": m["lot"] if m.get("manual") else lot.round(1).tolist(),
             "lot_visible": bool(lot_ok.all() and all(inside(p) for p in lot)),
@@ -872,19 +874,22 @@ def draw_places(m, site, W, H, st):
         r = PLACE_DOT * H
         if st["place_dot"]:
             cv2.circle(a, (round(x * 16), round(y * 16)), round(r * 16), 255, -1, cv2.LINE_AA, shift=4)
-        top = y - PLACE_LINE * H
+        # Line length: per photo (dragged in review) > client default > house default.
+        top = y - (ps.get("len") or st["place_len"] or PLACE_LINE) * H
         a[max(0, round(top)):max(0, round(y)), max(0, round(x - lw / 2)):max(0, round(x - lw / 2) + lw)] = 255
         label = pl["label"].upper() if st["place_upper"] else pl["label"]
-        lines = [(label, os.path.expanduser(st["place_font"] or FONT_K), PLACE_CAP * H)]
+        lines = [(label, os.path.expanduser(st["place_font"] or FONT_K), (st["place_cap"] or PLACE_CAP) * H)]
         if st["place_dist"] and pl.get("dist", True) and "lat" in pl:
             lines.append((place_distance(site, pl), FONT_B, PLACE_SUB * H))
         imgs = [text_image(t, f, c, PLACE_TRACK) + (c,) for t, f, c in lines]
         lead = PLACE_LEAD * PLACE_CAP * H
         block = sum(c for _, _, c in imgs) + lead * (len(imgs) - 1)
-        cy = top - PLACE_GAP * H - block
+        left = st["place_align"] == "left"
+        # Left (WHITEFOX): the label ends just left of the line, centred on its top end.
+        cy = top - block / 2 if left else top - PLACE_GAP * H - block
         for im, pad, c in imgs:
             tw = im.width - 2 * pad
-            tx = min(max(x - tw / 2, 0.02 * W), W - 0.02 * W - tw)
+            tx = x - lw - PLACE_GAP * H - tw if left else min(max(x - tw / 2, 0.02 * W), W - 0.02 * W - tw)
             ta = np.array(im.getchannel("A"))
             x0, y0 = round(tx - pad), round(cy - pad)
             xs, ys = max(0, x0), max(0, y0)

@@ -6,7 +6,7 @@
   "WHITEFOX Gold Coast"
  ],
  "confirmed": false,
- "notes": "Built 2026-11-11 from their own listing drones (23 Gold Coast listings, goldcoast.whitefoxrealestate.com.au; refs in raw/whitefox/pin-refs). Pin: their square glyph inside a thin white ring, see-through, about 7.5% of photo height, touching a thin white line that ends in a small dot on the house. Every photo also carries a big ring watermark, about 18% of height, at 60% opacity, centred 0.23 H in from the right and 0.16 H up from the bottom. Location labels are light sentence case with no dot and no distance (Poppins Light stands in for their sans). Land gets a dotted outline. The logo was redrawn from their photos (logos/whitefox-*.png), so ask for vector brand files before print.",
+ "notes": "Built 2026-11-11 from their own listing drones (23 Gold Coast listings, goldcoast.whitefoxrealestate.com.au; refs in raw/whitefox/pin-refs). Pin: their square glyph inside a thin white ring, see-through, about 7.5% of photo height, touching a thin white line that ends in a small dot on the house. Every photo also carries a big ring watermark, about 18% of height, at 60% opacity, centred 0.23 H in from the right and 0.16 H up from the bottom. Location labels are light sentence case with no dot and no distance (Poppins Light stands in for their sans). Land gets a dotted outline. The logo was redrawn from their photos (logos/whitefox-*.png), so ask for vector brand files before print. Location labels (their Arrowtown listing, 2026-11-12): sentence case, set to the LEFT of a long thin line's top end (about a third of frame height on their wides), no dot.",
  "style": {
   "pin": "mark",
   "glyph": "projects/drone-pin/logos/whitefox-ring-white.png",
@@ -31,7 +31,10 @@
    "opacity": 0.6,
    "cx": 0.23,
    "cy": 0.16
-  }
+  },
+  "place_align": "left",
+  "place_len": 0.16,
+  "place_cap": 0.019
  },
  "agents": {}
 }

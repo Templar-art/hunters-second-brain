@@ -530,21 +530,23 @@ function drawPlaces(m) {
   const lw = Math.max(2, Math.round(SZ.LINE_W * m.h));
   for (const p of site.places || []) {
     const st = (m.places || {})[p.id]; if (!st || !st.on) continue;
-    const [x, y] = st.xy, top = y - SZ.PLACE_LINE * m.h;
+    const [x, y] = st.xy, top = y - (st.len || SZ.STYLE.place_len || SZ.PLACE_LINE) * m.h, left = SZ.STYLE.place_align === 'left';
     cx.save(); shadowOn(cx, lw);
     cx.fillStyle = '#fff';
     if (SZ.STYLE.place_dot) { cx.beginPath(); cx.arc(x, y, SZ.PLACE_DOT * m.h, 0, 7); cx.fill(); }
     cx.fillRect(x - lw / 2, top, lw, y - top);
-    const rows = [[SZ.STYLE.place_upper ? p.label.toUpperCase() : p.label, 'PlaceF', SZ.PLACE_CAP * m.h]];
+    const rows = [[SZ.STYLE.place_upper ? p.label.toUpperCase() : p.label, 'PlaceF', (SZ.STYLE.place_cap || SZ.PLACE_CAP) * m.h]];
     if (SZ.STYLE.place_dist !== false && p.dist) rows.push([dist(p), 'SohneB', SZ.PLACE_SUB * m.h]);
     if (SZ.STYLE.place_color) { cx.shadowColor = 'transparent'; cx.fillStyle = SZ.STYLE.place_color; }
     const lead = SZ.PLACE_LEAD * SZ.PLACE_CAP * m.h;
-    let cy = top - SZ.PLACE_GAP * m.h - rows.reduce((a, r) => a + r[2], 0) - lead * (rows.length - 1);
-    cx.textAlign = 'center'; cx.textBaseline = 'alphabetic';
+    const block = rows.reduce((a, r) => a + r[2], 0) + lead * (rows.length - 1);
+    let cy = left ? top - block / 2 : top - SZ.PLACE_GAP * m.h - block;
+    cx.textAlign = left ? 'right' : 'center'; cx.textBaseline = 'alphabetic';
+    const tx = left ? x - lw - SZ.PLACE_GAP * m.h : x;
     for (const [t, f, cap] of rows) {
       const size = cap / 0.7;  // Söhne Breit cap height ≈ 0.7 em
       cx.font = `${size}px ${f}`; cx.letterSpacing = `${SZ.PLACE_TRACK * size}px`;
-      cx.fillText(t, x, cy + cap); cy += cap + lead;
+      cx.fillText(t, tx, cy + cap); cy += cap + lead;
     }
     cx.restore();
   }
@@ -581,7 +583,10 @@ function inside(p, poly) {
 function hit(m, p) {
   const tol = 12 * m.w / cv.getBoundingClientRect().width;
   const out = m.mode === 'outline' || m.mode === 'both', pin = m.mode === 'pin' || m.mode === 'both';
-  for (const pl of site.places || []) { const st = (m.places || {})[pl.id]; if (st && st.on && Math.hypot(st.xy[0] - p[0], st.xy[1] - p[1]) < tol) return { kind: 'place', id: pl.id }; }
+  for (const pl of site.places || []) { const st = (m.places || {})[pl.id]; if (!st || !st.on) continue;
+    if (Math.hypot(st.xy[0] - p[0], st.xy[1] - p[1]) < tol) return { kind: 'place', id: pl.id };
+    const top = st.xy[1] - (st.len || SZ.STYLE.place_len || SZ.PLACE_LINE) * m.h;   // grab the line's top end: set its length
+    if (Math.hypot(st.xy[0] - p[0], top - p[1]) < tol) return { kind: 'placetop', id: pl.id }; }
   if (pin && Math.hypot(m.tip[0] - p[0], m.tip[1] - p[1]) < tol * 1.3) return { kind: 'tip' };
   if (pin) { const { side, len } = pinLayout(m); const by = m.tip[1] - len - side - (SZ.STYLE.mark_gap || 0) * side; if (Math.abs(p[0] - headX(m)) < side / 2 && p[1] > by && p[1] < by + side) return { kind: 'badge' }; }
   if (out) {
@@ -662,6 +667,7 @@ cv.onmousemove = e => {
   else if (drag.kind === 'corner') { m.lot[drag.i] = p; m.manual = true; }
   else if (drag.kind === 'edge' || drag.kind === 'body') { m.lot = drag.lot0.map(([x, y]) => [x + dx, y + dy]); m.manual = true; }
   else if (drag.kind === 'place') { const st = m.places[drag.id]; st.xy = p; st.manual = true; }
+  else if (drag.kind === 'placetop') { const st = m.places[drag.id]; st.len = Math.max(0.02, (st.xy[1] - p[1]) / m.h); }
   draw();
 };
 cv.onmouseleave = () => { cursor = null; if (brushy()) draw(); };

@@ -2,7 +2,7 @@
 type: client
 tags: [client, real-estate, agency, drone, pin, gold-coast]
 status: active
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # WHITEFOX Real Estate (Gold Coast)
@@ -14,7 +14,7 @@ We pulled all 23 current Gold Coast listings (647 gallery photos). References ar
 
 - **Pin:** the WHITEFOX **"日" glyph** (a square with a centre bar) inside a **thin white ring**, mostly see-through, with no badge fill. It sits in the sky or over the background. A **thin white line** drops from the bottom of the ring and ends in a **small white dot** on the house. The ring touches the line, with no gap. Size is about 7–10% of frame height on a wide, which is noticeably bigger than Amir's ap.
 - **One pin per drone shot.** They put it on nearly every elevated or drone shot: city, beach and canal wides, acreage and apartments. On apartments the line drops straight to the building, with no floor outline and no elbow leader.
-- **Location labels (sometimes):** **sentence case, light geometric sans** in white ("Star Casino", "Eden Academy Childcare"). The label is centred over a thin line, and the line has **no dot**. They're kept sparse, one or two per frame.
+- **Location labels (sometimes):** **sentence case, light geometric sans** in white ("Star Casino", "Eden Academy Childcare"). The label is centred over a thin line, and the line has **no dot**. They're kept sparse, one or two per frame. ⚠️ Their Arrowtown NZ wide (Nov 2026) sets each label to the **left of the line's top end**, with long lines of about a third of frame height ("Golf Course", "Reserve Land", "Arrowtown Primary School"). The Drone Pin profile now uses that left-aligned layout.
 - **Land and estates:** the lot gets a **dotted cream/white outline** with no fill. The estate name is in **tracked caps** ("BROMFIELD ESTATE") over a line ending in a small diamond or dot.
 - **Watermark on every photo,** interiors included: the same ring + glyph, **big (about 18–20% of frame height), bottom-right**, white at roughly 50–60% opacity. On drone frames this means two logos: the pin plus the watermark.
 - **Not seen:** lot outlines on houses, black & white surrounds, distance labels, any colour in the graphics, or text addresses on the pin.
