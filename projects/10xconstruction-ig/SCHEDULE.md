@@ -1,25 +1,33 @@
-# 10xConstruction posting schedule (2026-10-26)
+# 10xConstruction posting schedule (v2, 2026-11-12): DAILY
 
-One post every 3 days at 7pm AEST, a day off the real estate page. Ashley Cooper never posts twice in a row. Grid preview: [planner/PLANNER.jpg](planner/PLANNER.jpg). Edit POSTS in `planner/build_planner.py` and rerun to regenerate.
+Hunter, 12 Nov: "use whatever we have", but nothing weak. The queue is the 2026-10-26 deck set, QC'd from a contact sheet of every slide. Broncos (old post 01) is already live. One post a day at 7pm, and Ashley Cooper never runs two days in a row.
 
-| # | Date (7pm AEST) | Listing | Format | Client |
-|---|---|---|---|---|
-| 1 | Thu 29 Oct | Broncos Leagues Club, Red Hill | Carousel | ACC |
-| 2 | Sun 1 Nov | Grandview Hotel | Reel | SHAPE |
-| 3 | Wed 4 Nov | Elysium Noosa, Hastings St | Carousel | SHAPE |
-| 4 | Sat 7 Nov | Redcliffe RSL | Carousel | ACC |
-| 5 | Tue 10 Nov | 5 Friske Pl | Carousel | Maker Build |
-| 6 | Fri 13 Nov | Villa Noosa | Carousel | ACC |
-| 7 | Mon 16 Nov | 350 Wardell St | Carousel | Livit |
-| 8 | Thu 19 Nov | Arana Leagues Club | Carousel | ACC |
-| 9 | Sun 22 Nov | Nerang RSL | Carousel | SHAPE |
-| 10 | Wed 25 Nov | Maroochy RSL | Carousel | ACC |
-| 11 | Sat 28 Nov | 5 Rattan Ct | Carousel | Newscope |
-| 12 | Tue 1 Dec | The Montague Hotel | Carousel | ACC |
-| 13 | Fri 4 Dec | 25 Davenport Dr | Carousel | RAMU |
-| 14 | Mon 7 Dec | Rivermount College | Carousel | ACC |
-| 15 | Thu 10 Dec | Ipswich Mental Health Clinic | Carousel | Hill |
-| 16 | Sun 13 Dec | West End Residence | Carousel | Livit |
-| 17 | Wed 16 Dec | Burnside Tuckshop | Carousel | J&D |
+| # | Date (7pm) | Job | Format | Builder | IG |
+|---|---|---|---|---|---|
+| 1 | Fri 13 Nov | Grandview Hotel | Reel (1080p re-encode) | SHAPE | ⚠️ unconfirmed |
+| 2 | Sat 14 Nov | Redcliffe RSL | Carousel | ACC | pending |
+| 3 | Sun 15 Nov | 5 Friske Pl | Carousel | Maker Build | pending |
+| 4 | Mon 16 Nov | Villa Noosa | Carousel | ACC | pending |
+| 5 | Tue 17 Nov | Elysium Noosa | Carousel | SHAPE | pending |
+| 6 | Wed 18 Nov | Arana Leagues Club | Carousel | ACC | pending |
+| 7 | Thu 19 Nov | 350 Wardell St | Carousel | Livit | pending |
+| 8 | Fri 20 Nov | The Montague Hotel | Carousel | ACC | pending |
+| 9 | Sat 21 Nov | Nerang RSL | Carousel | SHAPE | pending |
+| 10 | Sun 22 Nov | Maroochy RSL | Carousel | ACC | pending |
+| 11 | Mon 23 Nov | 25 Davenport Dr | Carousel | RAMU | pending |
+| 12 | Tue 24 Nov | Rivermount College | Carousel | ACC | pending |
+| 13 | Wed 25 Nov | West End Residence | Carousel | Livit | pending |
 
-On hold (in `_On hold`): 120 Kennedys Lane, Ocean Shores (Salisbury, waiting on Murph), Stuartholme (builder credit disputed), Prince Hotel, Fernberg, Chambers Lane, Garden Grove, Unearthed House 2 (suburb unknown).
+Captions: caption.txt in each Ready to Post folder, or CAPTIONS.md.
+
+## Dropped in QC (12 Nov)
+These are flat, clinical or plain-reno sets that fall below the page's bar:
+- Ipswich Mental Health Clinic
+- Burnside Tuckshop
+- 5 Rattan Ct
+
+## Still on hold
+Everything in `_On hold` stays held (see README).
+
+## Log
+- #1 Grandview: IG returned "couldn't be shared", then "Try again" closed the dialog with no confirmation, and right after that the browser was logged out of Instagram. Check Scheduled content for it before redoing it.
