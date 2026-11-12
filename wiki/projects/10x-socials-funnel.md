@@ -2,7 +2,7 @@
 type: project
 tags: [10x-visuals, instagram, tiktok, strategy, branding]
 status: active
-updated: 2026-07-14
+updated: 2026-11-12
 ---
 
 # 10x Socials Funnel — vertical accounts → master curation
@@ -16,6 +16,8 @@ Sibling initiative to [[10x-ig-repositioning]] (which is scoped to @10xvisuals.c
 - Bio links: master's bio points out to both verticals; each vertical's bio points back to master ("Best of it all → @10xvisuals.co").
 
 ## Handles (checked live, 13 Jul 2026)
+**⚠️ superseded (2026-11-12):** live IG handles ended up `@10xrealestate_` and `@10xconstruction_` (construction per Hunter, unverified in-app), not the dotted names below.
+
 | Vertical | Instagram | TikTok |
 |---|---|---|
 | Real estate | `10x.realestate` (free) | `10x.realestate` (free) |
