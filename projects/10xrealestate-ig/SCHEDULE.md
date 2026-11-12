@@ -1,41 +1,31 @@
-# @10xrealestate_ posting schedule (v3, 2026-11-12): DAILY
+# @10xrealestate_ posting schedule (v4, 2026-11-12)
 
-The goal is one post every day at 7pm AEST. Already live, read from the feed on 12 Nov: 13 Mayra Ct reel, 47 Somerset carousel, and both 59 Cylinders posts. Below is everything still unposted, re-ordered so the same client never posts two days running and the same listing is at least a week apart.
+The goal is one post a day at 7pm AEST, with two rules:
+- Post a listing only after the client has posted it on their own IG.
+- Never post Zed.
 
-**The queue runs out on 10 Dec.** The next batch has to be ready by then: the zip-only clients (Kollosche, McGrath, Salt, Stone, Whitefox and others) and new shoots.
+## Cleared: the client has posted it
+| Date (7pm) | Listing | Format | Proof |
+|---|---|---|---|
+| Fri 13 Nov | Solis, 673 Casuarina Way | Reel | @saltpropertymgt, 26 Feb 2026 (DVPrZIhj_Bm) |
+| Fri 20 Nov | Solis, 673 Casuarina Way | Carousel | Same post |
 
-| # | Date (7pm) | Listing | Format | Client |
-|---|---|---|---|---|
-| 1 | 13 Nov | Solis, 673 Casuarina Way | Reel | Salt PM |
-| 2 | 14 Nov | 6/446 Marine Pde | Carousel | Zed |
-| 3 | 15 Nov | 10 Australis Ct, Mermaid Waters | Reel | Kollosche |
-| 4 | 16 Nov | 37 Southaven Dr | Carousel | Belle |
-| 5 | 17 Nov | Elanora Ave townhouses, Pottsville | Carousel | Salt PM |
-| 6 | 18 Nov | 701/1245 Gold Coast Hwy | Carousel | Zed |
-| 7 | 19 Nov | 47 Somerset Dr, Mudgeeraba | Reel | Whitefox |
-| 8 | 20 Nov | 43 North View St | Carousel | Bespoke |
-| 9 | 21 Nov | 57 Girtin Cct | Carousel | YPA |
-| 10 | 22 Nov | Solis, 673 Casuarina Way | Carousel | Salt PM |
-| 11 | 23 Nov | 24A Muscovey Ave | Carousel | Zed |
-| 12 | 24 Nov | 71/73 Lydford Cl | Carousel | Coastline |
-| 13 | 25 Nov | 10 Australis Ct, Mermaid Waters | Carousel | Kollosche |
-| 14 | 26 Nov | Uniq Residences | Carousel | Bespoke |
-| 15 | 27 Nov | 3422 Surfers Paradise Blvd | Carousel | Zed |
-| 16 | 28 Nov | Elanora Ave townhouses, Pottsville | Reel | Salt PM |
-| 17 | 29 Nov | 88 Third Ave | Carousel | Jessica Wallace |
-| 18 | 30 Nov | 4 Mornington Ct | Carousel | YPA |
-| 19 | 1 Dec | 801/1245 Gold Coast Hwy | Carousel | Zed |
-| 20 | 2 Dec | 32 Southern Skies Ave | Carousel | Remax |
-| 21 | 3 Dec | 3009 The Boulevard | Carousel | Bespoke |
-| 22 | 4 Dec | 15 Muston Ct | Carousel | Ray White TMG |
-| 23 | 5 Dec | 25 Dungogie Dr | Carousel | Zed |
-| 24 | 6 Dec | 23 Gillian Dr | Carousel | Belle |
-| 25 | 7 Dec | 41 Sears Rd | Carousel | YPA |
-| 26 | 8 Dec | 38 John Lund Dr | Carousel | Zed |
-| 27 | 9 Dec | 3049/3029 The Boulevard | Carousel | Bespoke |
-| 28 | 10 Dec | 13 Pyrite St | Carousel | Place |
+## Held: not found on the client's IG (checked 12 Nov)
+The check only reaches about 78 recent posts per account. "Not found" can mean the post is older than that, or that only the agent posted it. Hunter confirms each one before it moves up.
+| Listing | Client | Check result |
+|---|---|---|
+| Elanora Ave townhouses (reel + carousel) | Salt PM | Not found in 78 posts back to Sep 2025 |
+| 10 Australis Ct (reel + carousel) | Kollosche | Not found. The feed only reached 14 Oct |
+| 47 Somerset Dr (reel) | Whitefox | Not found back to 22 Sep. The carousel is already live on our page |
+| 37 Southaven Dr, 23 Gillian Dr | Belle | Couldn't read @bellepropertyhopeisland. Wrong handle or private |
+| 43 North View St, Uniq, 3009 + 3049/3029 The Boulevard | Bespoke | Couldn't read @wardteam__bespoke |
+| 57 Girtin Cct, 4 Mornington Ct, 41 Sears Rd | YPA | Couldn't read @ypaqueensland |
+| 32 Southern Skies Ave | Remax | Not found back to Jul 2026 |
+| 15 Muston Ct | Ray White TMG | Not found back to Apr 2026 |
+| 71/73 Lydford Cl, 88 Third Ave, 13 Pyrite St | Coastline, Jessica Wallace, Place | Client handle unknown |
 
-Captions are in CAPTIONS.md, filed under each post's old number. Look a post up by its listing name.
+## Dropped for good: Zed (never post)
+6/446 Marine Pde, 701/1245 and 801/1245 Gold Coast Hwy, 24A Muscovey Ave, 3422 Surfers Paradise Blvd, 25 Dungogie Dr, 38 John Lund Dr.
 
 ## Sources
 - Carousels: `carousels/<key>/01-09.jpg`, built by `build_carousels.py` from `carousels.json`.
