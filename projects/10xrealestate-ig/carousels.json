@@ -499,7 +499,7 @@
   "area": "CARRARA QLD",
   "place": "Carrara",
   "address": "3049/3029 The Boulevard, Carrara",
-  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Bespoke/3049\uff0f3029 The Boulevard",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Bespoke/3049／3029 The Boulevard",
   "match": "",
   "photos": [
    [
@@ -685,7 +685,7 @@
   "area": "BONOGIN QLD",
   "place": "Bonogin",
   "address": "71/73 Lydford Close, Bonogin",
-  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Coastline Prestige/71\uff0f73 Lydford Close",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Coastline Prestige/71／73 Lydford Close",
   "match": "",
   "photos": [
    [
@@ -1430,7 +1430,7 @@
   "area": "PALM BEACH QLD",
   "place": "Palm Beach",
   "address": "701/1245 Gold Coast Highway, Palm Beach",
-  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Zed Real Estate/701\uff0f1245 Gold Coast Highway",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Zed Real Estate/701／1245 Gold Coast Highway",
   "match": "",
   "photos": [
    [
@@ -1492,7 +1492,7 @@
   "area": "PALM BEACH QLD",
   "place": "Palm Beach",
   "address": "801/1245 Gold Coast Highway, Palm Beach",
-  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Zed Real Estate/801\uff0f1245 Gold Coast Highway",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Zed Real Estate/801／1245 Gold Coast Highway",
   "match": "",
   "photos": [
    [
@@ -1554,7 +1554,7 @@
   "area": "BIGGERA WATERS QLD",
   "place": "Biggera Waters",
   "address": "6/446 Marine Parade, Biggera Waters",
-  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Zed Real Estate/6\u201b\uff0f466 Marine Parade",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/REA/Zed Real Estate/6‛／466 Marine Parade",
   "match": "",
   "photos": [
    [
@@ -1607,5 +1607,66 @@
    ]
   ],
   "cover_mode": "front"
+ },
+ "5-esther-pl": {
+  "client": "Kollosche",
+  "kicker": "NO. 5",
+  "street": "Esther",
+  "suffix": "Place",
+  "area": "SURFERS PARADISE QLD",
+  "place": "Surfers Paradise",
+  "address": "5 Esther Place, Surfers Paradise",
+  "dir": "/Users/10xhunter/Documents/10x Drive Pulls/Kollosche/5 Esther Place Print",
+  "match": "",
+  "photos": [
+   [
+    16,
+    ""
+   ],
+   [
+    2,
+    "Living"
+   ],
+   [
+    1,
+    "Kitchen"
+   ],
+   [
+    0,
+    "Dining"
+   ],
+   [
+    26,
+    "Powder"
+   ],
+   [
+    13,
+    "Stair"
+   ],
+   [
+    23,
+    "Bath"
+   ],
+   [
+    18,
+    "Entry"
+   ],
+   [
+    14,
+    "Lounge"
+   ],
+   [
+    24,
+    "Bedroom"
+   ],
+   [
+    15,
+    "Kitchen"
+   ],
+   [
+    12,
+    "Facade"
+   ]
+  ]
  }
 }

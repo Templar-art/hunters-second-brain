@@ -8,7 +8,7 @@ Three rules decide what goes on this page:
 ## Cleared
 | Listing | Client | Proof | Status |
 |---|---|---|---|
-| 5 Esther Place | Kollosche | @kollosche_ posted it 29 Oct 2026 (DfGWMu-EkgI) | Photos are in `10x Drive Pulls/Kollosche/5 Esther Place Print/`. The carousel still has to be built |
+| 5 Esther Place | Kollosche | @kollosche_ posted it 29 Oct 2026 (DfGWMu-EkgI) | **Deck built:** `carousels/5-esther-pl/`. Post Fri 13 Nov, 7pm |
 
 ## Recent work: waiting for the client to post
 File dates suggest these are recent. Re-check each one weekly.

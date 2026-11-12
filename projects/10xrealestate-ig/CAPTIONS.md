@@ -131,3 +131,10 @@ Uniq Residences, Bundall. A lift, a pool and stone through every bathroom. Clean
 ## 32 Fri 29 Jan 13 Pyrite St (Carousel)
 
 13 Pyrite Street, Pimpama. A retreat upstairs, a big island and an alfresco out the back. Shot for Place Cleveland.
+
+# Cleared posts (v5 rules: recent, client posted first, no Zed)
+
+## 5 Esther Place, Surfers Paradise (Carousel), Kollosche
+Kollosche posted it 29 Oct 2026.
+
+5 Esther Place, Surfers Paradise. Timber screens lit up at dusk, a floating stair and a kitchen that runs the full length of the room. Shot for @kollosche_.
